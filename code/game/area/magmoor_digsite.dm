@@ -37,37 +37,64 @@
 	name = "Central Caves"
 	icon_state = "lava_cave_c"
 
+/area/magmoor/cave/central/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/magmoor/cave/north
 	name = "North Caves"
 	icon_state = "lava_cave_n"
+
+/area/magmoor/cave/north/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/magmoor/cave/northeast
 	name = "North East Caves"
 	icon_state = "lava_cave_ne"
 
+/area/magmoor/cave/northeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/magmoor/cave/northwest
 	name = "North West Caves"
 	icon_state = "lava_cave_nw"
+
+/area/magmoor/cave/northwest/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/magmoor/cave/south
 	name = "South Caves"
 	icon_state = "lava_cave_s"
 
+/area/magmoor/cave/south/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/magmoor/cave/southeast
 	name = "South East Caves"
 	icon_state = "lava_cave_se"
+
+/area/magmoor/cave/southeast/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/magmoor/cave/southwest
 	name = "South West Caves"
 	icon_state = "lava_cave_sw"
 
+/area/magmoor/cave/southwest/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/magmoor/cave/east
 	name = "East Caves"
 	icon_state = "lava_cave_e"
 
+/area/magmoor/cave/east/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/magmoor/cave/west
 	name = "West Caves"
 	icon_state = "lava_cave_w"
+
+/area/magmoor/cave/west/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/magmoor/cave/mining/fossil
 	name = "Southwest Fossil Deposits"

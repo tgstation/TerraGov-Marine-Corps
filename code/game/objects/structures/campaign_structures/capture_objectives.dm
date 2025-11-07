@@ -55,13 +55,13 @@
 	if(!capture_check(user))
 		return
 	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
+		user.balloon_alert(user, "busy!")
 		return
 	begin_capture(user)
 
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
-	user.balloon_alert_to_viewers("Activating!")
+	user.balloon_alert_to_viewers("activating...")
 	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
@@ -85,17 +85,17 @@
 /obj/structure/campaign_objective/capture_objective/proc/capture_check(mob/living/user)
 	if(capturing_faction)
 		if(capturing_faction == user.faction)
-			user.balloon_alert(user, "Already capturing!")
+			user.balloon_alert(user, "already capturing!")
 			return FALSE
 		else
 			return TRUE //someone else is trying to cap it, whether you already own it or not
 
 	if(owning_faction)
 		if(owning_faction == user.faction)
-			user.balloon_alert(user, "Already yours!")
+			user.balloon_alert(user, "already yours!")
 			return FALSE
 		if(!(capture_flags & CAPTURE_OBJECTIVE_RECAPTURABLE))
-			user.balloon_alert(user, "Cannot recaptured!")
+			user.balloon_alert(user, "can't recapture!")
 			return FALSE
 	return TRUE
 
@@ -245,7 +245,7 @@
 /obj/structure/campaign_objective/capture_objective/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
 	if((user.faction == owning_faction) && !capturing_faction)
-		user.balloon_alert(user, "Defend this objective!")
+		user.balloon_alert(user, "defend this objective!")
 		return FALSE
 	return ..()
 

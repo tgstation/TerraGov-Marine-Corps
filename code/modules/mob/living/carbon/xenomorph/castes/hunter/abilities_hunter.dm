@@ -27,7 +27,7 @@
 		cancel_stealth()
 	return ..()
 
-/datum/action/ability/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/stealth/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -305,7 +305,7 @@
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "Pounce ready")
+	owner.balloon_alert(owner, "pounce ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -476,7 +476,7 @@
 	)
 	cooldown_duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
-/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/psychic_trace/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 
@@ -557,7 +557,7 @@
 	illusions = list() // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
 	return ..()
 
-/datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/mirage/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(swap_used)
 		if(!silent)

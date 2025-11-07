@@ -7,9 +7,9 @@
 GLOBAL_LIST_INIT(designator_images_list, list(
 	INTERACT_DESIGNATOR_MODE = image('icons/mob/actions.dmi', icon_state = "interact_designator"),
 	/obj/structure/barricade/solid = image('icons/obj/structures/barricades/metal.dmi', icon_state = "metal_0"),
-	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	/obj/structure/barricade/solid/plasteel = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 	/obj/structure/barricade/folding/metal = image('icons/obj/structures/barricades/metal.dmi', icon_state = "folding_metal_0"),
-	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
+	/obj/structure/barricade/folding = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "folding_plasteel_0"),
 ))
 
 /datum/action/ability/activable/build_designator
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 ///build designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_build_ability(atom/target)
 	if(!isturf(target) || !update_hologram(target))
-		owner.balloon_alert(owner, "Invalid spot")
+		owner.balloon_alert(owner, "invalid spot!")
 		return FALSE
 	new /obj/effect/build_designator(target, construct_type, owner)
 	return TRUE

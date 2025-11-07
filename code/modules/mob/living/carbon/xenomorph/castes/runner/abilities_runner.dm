@@ -175,7 +175,7 @@
 	owner.balloon_alert(owner, "Evasion ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-/datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/evasion/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(xeno_owner.on_fire)
 		if(!silent)
@@ -227,7 +227,7 @@
 		COMSIG_LIVING_IGNITED), PROC_REF(evasion_debuff_check))
 	RegisterSignal(owner, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge))
 	RegisterSignal(owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit))
-	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
+	RegisterSignal(owner, COMSIG_PRE_MOVABLE_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
 	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
@@ -301,7 +301,7 @@
 		COMSIG_LIVING_STATUS_STAGGER,
 		COMSIG_LIVING_IGNITED,
 		COMSIG_XENO_PROJECTILE_HIT,
-		COMSIG_LIVING_PRE_THROW_IMPACT,
+		COMSIG_PRE_MOVABLE_IMPACT,
 		COMSIG_ATOM_BULLET_ACT
 		))
 	evade_active = FALSE
@@ -317,18 +317,20 @@
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	hud_set_evasion(evasion_duration)
 
-/// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
-/datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
+/// Determines whether or not a thrown object is dodged while the Evasion ability is active.
+/datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/thrown_atom)
 	SIGNAL_HANDLER
+	if(!isobj(thrown_atom))
+		return NONE
 	if(!evade_active) //If evasion is not active we don't dodge
 		return NONE
 	if((xeno_owner.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
 		return NONE
-	if(isitem(proj))
-		var/obj/item/I = proj
-		evasion_stacks += I.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
-	evasion_dodge_fx(proj)
-	return COMPONENT_PRE_THROW_IMPACT_HIT
+	if(isitem(thrown_atom))
+		var/obj/item/thrown_item = thrown_atom
+		evasion_stacks += thrown_item.throwforce //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes equal to the thrown force
+	evasion_dodge_fx(thrown_atom)
+	return COMPONENT_PRE_MOVABLE_IMPACT_DODGED
 
 /// This is where the dodgy magic happens
 /datum/action/ability/xeno_action/evasion/proc/evasion_dodge(datum/source, atom/movable/projectile/proj, cardinal_move, uncrossing)

@@ -85,7 +85,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
 	)
 
-/datum/action/repair_self/can_use_action()
+/datum/action/repair_self/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -99,7 +99,7 @@
 	if(!howner.getBruteLoss() && !howner.getFireLoss())
 		return
 	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
-	howner.balloon_alert_to_viewers("Repairing")
+	howner.balloon_alert_to_viewers("repairing...")
 
 /datum/species/robot/alpharii
 	name = "Hammerhead Combat Robot"

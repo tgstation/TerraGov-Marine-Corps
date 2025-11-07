@@ -660,6 +660,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"cY" = (
+/obj/machinery/landinglight/lz1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "da" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -1755,6 +1760,10 @@
 "jd" = (
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"je" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/LZ1)
 "jf" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/vomit,
@@ -3842,6 +3851,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"tt" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "tu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -10101,13 +10117,6 @@
 	dir = 8
 	},
 /area/icy_caves/caves/weapon_vault)
-"Xq" = (
-/obj/effect/ai_node,
-/obj/machinery/landinglight/lz1{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Xr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
@@ -11309,14 +11318,14 @@ Uu
 Uu
 Uu
 Uu
+fq
 Uu
 Uu
 Uu
 Uu
 Uu
 Uu
-Uu
-Uu
+fq
 ZP
 Ww
 ZP
@@ -11449,7 +11458,11 @@ Ww
 ZP
 ZP
 wL
-uw
+dW
+WT
+WT
+WT
+tt
 WT
 WT
 WT
@@ -11465,11 +11478,7 @@ WT
 WT
 WT
 WT
-Xq
 WT
-WT
-WT
-Xq
 Yj
 uw
 uw
@@ -12408,7 +12417,7 @@ Yn
 Yn
 Yn
 pH
-uw
+dW
 uw
 Ww
 ZP
@@ -12541,7 +12550,7 @@ Aq
 TM
 bU
 uw
-zM
+cY
 Yn
 Yn
 Yn
@@ -13469,16 +13478,15 @@ pR
 pR
 pR
 pR
-pR
+AW
 XO
 XO
 XO
 cQ
-UE
+je
 XW
 uw
-uw
-uw
+dW
 uw
 uw
 uw
@@ -13493,7 +13501,8 @@ uw
 uw
 uw
 uw
-dW
+uw
+uw
 uw
 uw
 uw
@@ -13634,7 +13643,7 @@ WD
 XW
 uw
 uw
-uw
+dW
 uw
 uw
 uw
@@ -13812,7 +13821,7 @@ HB
 uw
 uw
 uw
-uw
+dW
 uw
 Ww
 ZP
@@ -15102,12 +15111,12 @@ ZI
 ZI
 ZI
 ZI
-SR
+bl
 SR
 SR
 im
 Zl
-BZ
+cX
 Zl
 ZI
 ZI
@@ -16347,9 +16356,9 @@ ZP
 ZP
 ZP
 ZP
-im
+bp
 SR
-SR
+bl
 ZI
 ZI
 ZI
@@ -17124,10 +17133,10 @@ qI
 XV
 ZI
 ZI
-SR
+bl
 SR
 im
-SR
+bl
 SR
 ZP
 ZP
@@ -17592,7 +17601,7 @@ Px
 Px
 Tz
 Tz
-Tz
+mz
 Tz
 Tz
 mz

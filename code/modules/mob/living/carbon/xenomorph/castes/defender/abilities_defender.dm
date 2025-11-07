@@ -24,7 +24,7 @@
 	/// The multiplier of the damage to be applied.
 	var/damage_multiplier = 1
 
-/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
@@ -107,6 +107,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
+	paralyze_duration = 4 SECONDS
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
@@ -150,7 +151,8 @@
 	var/target_turf = get_ranged_target_turf(carbon_victim, get_dir(src, carbon_victim), rand(1, 2)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
 	carbon_victim.throw_at(get_turf(target_turf), charge_range, 5, src)
-	carbon_victim.Paralyze(4 SECONDS)
+	if(paralyze_duration)
+		carbon_victim.Paralyze(paralyze_duration)
 	GLOB.round_statistics.defender_charge_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_charge_victims")
 
@@ -480,7 +482,7 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/centrifugal_force/can_use_action(silent, override_flags, selecting)
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()

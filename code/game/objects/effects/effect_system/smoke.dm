@@ -365,6 +365,9 @@
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
 
+/obj/effect/particle_effect/smoke/xeno/burn/fast
+	lifetime = 1
+
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	alpha = 255
@@ -385,6 +388,11 @@
 /// With much less alpha, but can extinguish fire.
 /obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
 	alpha = 60
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+
+/// Can extinguish fire, but has significantly less lifetime.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/fast
+	lifetime = 1
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/toxic
@@ -430,6 +438,9 @@
 	opacity = FALSE
 	color = "#cff1ee" // Blueish.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
+	lifetime = 4 //Lasts for less time
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -483,6 +494,9 @@
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
+/datum/effect_system/smoke_spread/xeno/acid/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/fast
+
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
@@ -494,6 +508,9 @@
 
 /datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
+
+/datum/effect_system/smoke_spread/xeno/neuro/light/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/fast
 
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
@@ -522,6 +539,8 @@
 /datum/effect_system/smoke_spread/xeno/pyrogen_fire
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
 
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
 
 /////////////////////////////////////////////
 // Chem smoke

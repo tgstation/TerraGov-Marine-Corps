@@ -45,6 +45,7 @@
 			//todo: Need to have NPC path around lava entirely (or jump over it), if their direct path is into lava
 
 	//hazards
+	exclude_dirs.Cut()
 	for(var/atom/movable/thing AS in hazard_list)
 		var/dist = get_dist(mob_parent, thing)
 		if(dist > hazard_list[thing] + 1)
@@ -110,7 +111,7 @@
 		if(prob(20))
 			try_speak(pick(cas_avoid_chat))
 		return
-	if(istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
+	if(isfacehugger(hazard) || istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
 		if(prob(20))
 			try_speak(pick(xeno_avoid_chat))
 		return

@@ -2,6 +2,7 @@
     "map_name": "Research Outpost",
     "map_path": "map_files/Research_Outpost",
     "map_file": "Research_Outpost.dmm",
+	"parralax_icon": "redrock",
 	"disk_sets": {
 		"basic": 1
 	},

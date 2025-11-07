@@ -34,7 +34,7 @@
 	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
 	X.remove_filter("resin_jelly_outline")
-	owner.balloon_alert(owner, "We are vulnerable again")
+	owner.balloon_alert(owner, "you're vulnerable again")
 	return ..()
 
 /datum/status_effect/resin_jelly_coating/tick(delta_time)
@@ -97,7 +97,7 @@
 /datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
 	. = ..()
 	essence_link_action.update_button_icon()
-	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
+	link_owner.balloon_alert(link_owner, "attunement: [stacks]/[max_stacks]")
 	COOLDOWN_START(src, attunement_increase, essence_link_action.attunement_cooldown)
 	update_beam()
 
@@ -118,8 +118,8 @@
 	if(within_range != was_within_range) // Toggles the link depending on whether the linked xenos are still in range or not.
 		was_within_range = within_range
 		toggle_link(was_within_range)
-		link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
-		link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
+		link_owner.balloon_alert(link_owner, was_within_range ? ("link reestablished") : ("link faltering!"))
+		link_target.balloon_alert(link_target, was_within_range ? ("link reestablished") : ("link faltering!"))
 
 	if(stacks < max_stacks && COOLDOWN_FINISHED(src, attunement_increase))
 		add_stacks(1)
@@ -132,13 +132,14 @@
 	if(link_owner.plasma_stored < ability_cost)
 		if(!COOLDOWN_FINISHED(src, plasma_warning))
 			return
-		link_owner.balloon_alert(link_owner, "No plasma for link")
-		link_target.balloon_alert(link_target, "No plasma for link")
+		link_owner.balloon_alert(link_owner, "no plasma for link!")
+		link_target.balloon_alert(link_target, "no plasma for link!")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
-	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
-	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(link_target, leftover_healing, TRUE)
 	link_owner.use_plasma(ability_cost)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -156,8 +157,8 @@
 		buff_owner = link_owner
 		buff_target = link_target
 
-	buff_owner.balloon_alert(buff_owner, "Buff shared")
-	buff_target.balloon_alert(buff_target, "Buff shared")
+	buff_owner.balloon_alert(buff_owner, "buff shared")
+	buff_target.balloon_alert(buff_target, "buff shared")
 	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
 		span_xenonotice("Through the Essence Link, [buff_owner] has shared their resin jelly with us."))
 	INVOKE_ASYNC(buff_target, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar")
@@ -179,10 +180,13 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(heal_target))
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
-	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
-	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/10)
-	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(heal_target, leftover_healing, TRUE)
+	var/sunder_change = heal_target.adjust_sunder(-heal_amount / 10)
+
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
+	heal_target.balloon_alert(heal_target, "shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
@@ -243,6 +247,7 @@
 		return
 	var/damage_to_heal = damage_dealt * lifesteal_percentage
 	HEAL_XENO_DAMAGE(link_owner, damage_to_heal, FALSE)
+	GLOB.round_statistics.drone_essence_link += (damage_dealt * lifesteal_percentage) - damage_to_heal // Amount actually healed.
 
 // ***************************************
 // *********** Salve Regeneration
@@ -260,19 +265,21 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	buff_owner.balloon_alert(buff_owner, "Salve regeneration")
+	buff_owner.balloon_alert(buff_owner, "salve regenerationg starting")
 	return TRUE
 
 /datum/status_effect/salve_regen/on_remove()
-	buff_owner.balloon_alert(buff_owner, "Salve regeneration ended")
+	buff_owner.balloon_alert(buff_owner, "salve regeneration ended")
 	return ..()
 
 /datum/status_effect/salve_regen/tick(delta_time)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
-	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
-	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
-	buff_owner.adjust_sunder(-1)
+	var/leftover_healing = heal_amount
+	HEAL_XENO_DAMAGE(buff_owner, leftover_healing, TRUE)
+	var/sunder_change = buff_owner.adjust_sunder(-1)
+	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing) // While it is true that this comes from Acidic Salve, it is only applied to Essence Link users.
+	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
 	return ..()
 
 // ***************************************
@@ -330,8 +337,8 @@
 	return ..()
 
 /datum/status_effect/drone_enhancement/on_remove()
-	buffed_xeno.balloon_alert(buffed_xeno, "Enhancement inactive")
-	buffing_xeno.balloon_alert(buffing_xeno, "Enhancement inactive")
+	buffed_xeno.balloon_alert(buffed_xeno, "enhancement inactive")
+	buffing_xeno.balloon_alert(buffing_xeno, "enhancement inactive")
 	UnregisterSignal(buffed_xeno, COMSIG_MOB_DEATH)
 	UnregisterSignal(buffing_xeno, COMSIG_MOB_DEATH)
 	toggle_buff(FALSE)
@@ -676,8 +683,10 @@
 	var/health_ticks_remaining
 	///Sunder recovery ticks
 	var/sunder_ticks_remaining
+	/// Should the TRAIT_INNATE_HEALING trait be given?
+	var/innate_healing = FALSE
 
-/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
+/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS, new_innate_healing)
 	if(!isxeno(new_owner))
 		CRASH("something applied [id] on a nonxeno, dont do that")
 
@@ -685,6 +694,8 @@
 	owner = new_owner
 	health_ticks_remaining = stacks_to_apply //Apply stacks
 	sunder_ticks_remaining = stacks_to_apply
+	if(new_innate_healing)
+		innate_healing = new_innate_healing
 	return ..()
 
 
@@ -693,19 +704,23 @@
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	if(innate_healing)
+		ADD_TRAIT(owner, TRAIT_INNATE_HEALING, TRAIT_STATUS_EFFECT(id))
 	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(healing_infusion_regeneration)) //Register so we apply the effect whenever the target heals
 	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(healing_infusion_sunder_regeneration)) //Register so we apply the effect whenever the target heals
 
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	if(innate_healing)
+		REMOVE_TRAIT(owner, TRAIT_INNATE_HEALING, TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter("hivelord_healing_infusion_outline")
 	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
 	new /obj/effect/temp_visual/healing(get_turf(owner))
 
-	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
+	owner.balloon_alert(owner, "regeneration inactive")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()
@@ -769,18 +784,30 @@
 	id = "drain surge"
 	duration = 10 SECONDS
 	tick_interval = 2 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
+	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
+	/// The amount of soft armor to add/remove from the owner.
+	var/armor_modifier = SENTINEL_DRAIN_SURGE_ARMOR_MOD
+	/// The amount of melee damage modifier to add/remove from the owner.
+	var/damage_modifier = 0
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/drain_surge/on_creation(mob/living/new_owner, new_armor_modifier, new_damage_modifier)
+	if(new_armor_modifier)
+		armor_modifier = new_armor_modifier
+	if(new_damage_modifier)
+		damage_modifier = new_damage_modifier
+	return ..()
 
 /datum/status_effect/drain_surge/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(SENTINEL_DRAIN_SURGE_ARMOR_MOD)
-	X.visible_message(span_danger("[X]'s chitin glows with a vicious green!"), \
-	span_notice("You imbue your chitinous armor with the toxins of your victim!"), null, 5)
+	X.soft_armor = X.soft_armor.modifyAllRatings(armor_modifier)
+	X.xeno_melee_damage_modifier += damage_modifier
+	X.visible_message(span_danger("[X]'s [armor_modifier ? "chitin" : "claws"] glows with a vicious green!"), \
+	span_notice("You imbue your [armor_modifier ? "chitinous armor" : "claws"] with the toxins of your victim!"), null, 5)
 	X.color = "#7FFF00"
 	particle_holder = new(X, /particles/drain_surge)
 	particle_holder.pixel_x = 11
@@ -789,9 +816,10 @@
 
 /datum/status_effect/drain_surge/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyAllRatings(-SENTINEL_DRAIN_SURGE_ARMOR_MOD)
-	X.visible_message(span_danger("[X]'s chitin loses its green glow..."), \
-	span_notice("Your chitinous armor loses its glow."), null, 5)
+	X.soft_armor = X.soft_armor.modifyAllRatings(-armor_modifier)
+	X.xeno_melee_damage_modifier -= damage_modifier
+	X.visible_message(span_danger("[X]'s [armor_modifier ? "chitin" : "claws"] loses its green glow..."), \
+	span_notice("Your [armor_modifier ? "chitinous armor" : "claws"] loses its glow."), null, 5)
 	X.color = "#FFFFFF"
 	QDEL_NULL(particle_holder)
 	return ..()

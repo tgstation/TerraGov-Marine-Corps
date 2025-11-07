@@ -213,16 +213,15 @@
 		if(!W.remove_fuel(0, user))
 			return
 
-		balloon_alert_to_viewers("Starts [blocked ? "unwelding" : "welding"]")
+		balloon_alert_to_viewers("[blocked ? "unwelding" : "welding"]...")
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
-			balloon_alert_to_viewers("Stops welding")
+			balloon_alert_to_viewers("interrupted!")
 			return
 
 		blocked = !blocked
-		balloon_alert_to_viewers("[blocked ? "welds" : "unwelds"] the firedoor")
-		user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
-		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
-		"You hear something being welded.")
+		user.visible_message(span_alert("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
+		span_notice("You [blocked ? "weld" : "unweld"] \the [src] with \the [W]."),\
+		span_hear("You hear something being welded."))
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		update_icon()
 

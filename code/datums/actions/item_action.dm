@@ -34,7 +34,7 @@
 	var/obj/item/I = target
 	return I.ui_action_click(owner, src, holder_item)
 
-/datum/action/item_action/can_use_action()
+/datum/action/item_action/can_use_action(silent, override_flags, selecting)
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
 	return TRUE

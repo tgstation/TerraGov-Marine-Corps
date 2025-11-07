@@ -422,7 +422,7 @@
 			E.take_damage(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/dylovene/ai_should_use(mob/living/target, inject_vol)
-	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+	if(target.reagents.get_reagent_amount(type) > 5) //it has downsides so lets not spam it
 		return FALSE
 	return ..()
 
@@ -967,7 +967,7 @@
 	if(prob(10))
 		to_chat(L, span_warning("[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustStaminaLoss(35)
 		L.Stun(2 SECONDS)
 	if(prob(20))
@@ -978,7 +978,7 @@
 	if(prob(10))
 		to_chat(L, span_warning("[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(3 SECONDS)
 	if(prob(20))
 		L.hallucination += 20
@@ -990,7 +990,7 @@
 	if(prob(10))
 		to_chat(L, span_danger("[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.Stun(8 SECONDS)
 		L.do_jitter_animation(200)
 	if(prob(20))

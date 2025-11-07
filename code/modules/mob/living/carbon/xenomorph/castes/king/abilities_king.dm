@@ -112,7 +112,7 @@
 		human.overlays += stone_overlay
 		petrified_humans[human] = stone_overlay
 
-	if(!length(petrified_humans))
+	if(!length(petrified_humans) && !length(viewing_xenomorphs))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		return
@@ -294,11 +294,10 @@
 			if(ishitbox(victim))
 				hitbox_penalty = 20
 			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
-		continue
+			continue
 		if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
-			if(window_victim.damageable)
-				window_victim.ex_act(EXPLODE_DEVASTATE)
+			window_victim.ex_act(EXPLODE_DEVASTATE)
 			continue
 		if(isfire(victim))
 			var/obj/fire/fire = victim
@@ -378,7 +377,7 @@
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
-/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -536,7 +535,7 @@
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
-/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

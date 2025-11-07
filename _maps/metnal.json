@@ -2,6 +2,7 @@
     "map_name": "Metnal Mining Operation",
     "map_path": "map_files/Metnal_Operation",
     "map_file": "Metnal_Operation.dmm",
+	"parallax_icon": "rock",
 	"environment_traits": {
     },
 	"disk_sets": {

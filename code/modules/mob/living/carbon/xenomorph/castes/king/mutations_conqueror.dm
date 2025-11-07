@@ -53,7 +53,7 @@
 /datum/mutation_upgrade/spur/telefrag/get_desc_for_alert(new_amount)
 	if(!new_amount)
 		return ..()
-	return "Domination's radius is reduced by [-radius_initial], but knocked down for [get_duration(new_amount)] seconds longer."
+	return "Domination's radius is reduced by [-radius_initial], but knocked down for [get_duration(new_amount) / 10] seconds longer."
 
 /datum/mutation_upgrade/spur/telefrag/on_mutation_enabled()
 	. = ..()

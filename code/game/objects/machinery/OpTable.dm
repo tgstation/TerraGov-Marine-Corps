@@ -143,6 +143,9 @@
 	else if(ismob(A))
 		..(A, user)
 
+/obj/machinery/optable/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE //nurse, hold him down
+
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, loc))
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
@@ -201,7 +204,7 @@
 		if(carry_obj.is_rider(user))
 			return
 		if(victim)
-			balloon_alert(user, "already has patient!")
+			balloon_alert(user, "already has a patient!")
 			return
 		if(!take_victim(carry_obj.rider, user))
 			return

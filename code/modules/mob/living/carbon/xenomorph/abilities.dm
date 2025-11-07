@@ -32,13 +32,21 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS,
 	)
 	use_state_flags = ABILITY_USE_LYING
-	///the maximum range of the ability
+	/// The multiplier of ability cost. This is seperate of the weed type's ability cost multiplier.
+	var/cost_multiplier = 1
+	/// How far can weeds be placed? 0: On use, plants on your tile. 1+: On use, select the ability and right-click to plant at target tile.
 	var/max_range = 0
-	///The seleted type of weeds
+	/// List of weeds that can be selected.
+	var/list/obj/alien/weeds/node/selectable_weed_typepaths = list(
+		/obj/alien/weeds/node,
+		/obj/alien/weeds/node/sticky,
+		/obj/alien/weeds/node/resting
+	)
+	/// The selected type of weeds that will be planted.
 	var/obj/alien/weeds/node/weed_type = /obj/alien/weeds/node
-	///Whether automatic weeding is active
+	/// Whether automatic weeding is active.
 	var/auto_weeding = FALSE
-	///The turf that was last weeded
+	/// The turf that was last weeded. Used for auto weeding.
 	var/turf/last_weeded_turf
 
 /datum/action/ability/activable/xeno/plant_weeds/New(Target)
@@ -47,10 +55,10 @@
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE), PROC_REF(update_ability_cost))
 		update_ability_cost()
 
-///Updates the ability cost based on gamestate
+/// Updates the ability cost.
 /datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost(datum/source)
 	SIGNAL_HANDLER
-	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult) * ((SSmonitor.gamestate == SHUTTERS_CLOSED) ? 0.5 : 1)
+	ability_cost = initial(ability_cost) * cost_multiplier * weed_type.ability_cost_mult * (SSmonitor.gamestate == SHUTTERS_CLOSED ? 0.5 : 1)
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/plant_weeds/action_activate()
@@ -62,7 +70,7 @@
 /datum/action/ability/activable/xeno/plant_weeds/use_ability(atom/A)
 	plant_weeds(max_range ? A : get_turf(owner))
 
-////Plant a weeds node on the selected atom
+/// Plant a weeds node on the selected atom.
 /datum/action/ability/activable/xeno/plant_weeds/proc/plant_weeds(atom/A)
 	var/turf/T = get_turf(A)
 
@@ -98,11 +106,20 @@
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
 	return COMSIG_KB_ACTIVATED
 
-///Chose which weed will be planted by the xeno owner or toggle automatic weeding
+/// Choose which weed will be planted by the xeno owner or toggle automatic weeding.
 /datum/action/ability/activable/xeno/plant_weeds/proc/choose_weed()
-	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 35)
+	var/list/available_weeds = list()
+	for(var/obj/alien/weeds/node/weed_type_possible AS in selectable_weed_typepaths)
+		var/weed_image = GLOB.weed_images_list[initial(weed_type_possible.name)]
+		if(!weed_image)
+			continue
+		available_weeds[initial(weed_type_possible.name)] = weed_image
+	available_weeds[AUTOMATIC_WEEDING] = GLOB.weed_images_list[AUTOMATIC_WEEDING] // For automatic weeding.
+
+	var/weed_choice = show_radial_menu(xeno_owner, xeno_owner, available_weeds, radius = 48)
 	if(!weed_choice)
 		return
+
 	if(weed_choice == AUTOMATIC_WEEDING)
 		toggle_auto_weeding()
 	else
@@ -178,7 +195,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent, override_flags, selecting)
 	if (owner?.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
@@ -232,7 +249,7 @@
 	SIGNAL_HANDLER
 	dragging = FALSE
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
 
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/ability/activable/xeno/secrete_resin/give_action(mob/living/L)
@@ -249,14 +266,14 @@
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(preshutter_resin_drag))
 	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_resin_drag))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
 
 /// Extra handling to remove the stuff needed for dragging
 /datum/action/ability/activable/xeno/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
 	if(!CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD))
 		return ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
 	update_button_icon() //reason for the double return ..() here is owner gets unassigned in one of the parent procs, so we can't call parent before unregistering signals here
 	return ..()
 
@@ -287,7 +304,7 @@
 	var/i = GLOB.resin_images_list.Find(resin_choice)
 	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
-	X.balloon_alert(X, initial(A.name))
+	X.balloon_alert(X, lowertext(A::name))
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/secrete_resin/alternate_action_activate()
@@ -301,7 +318,7 @@
 	else
 		X.selected_resin = buildable_structures[i+1]
 	var/atom/A = X.selected_resin
-	X.balloon_alert(X, initial(A.name))
+	X.balloon_alert(X, lowertext(A::name))
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/secrete_resin/use_ability(atom/A)
@@ -357,7 +374,7 @@
 	if(istype(T, /turf/closed/wall/resin))
 		costs_points = FALSE
 	if(costs_points && CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS) && SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()] <= 0)
-		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
+		to_chat(owner, span_xenouserdanger("The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!"))
 		return fail_activate()
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
@@ -394,22 +411,22 @@
 		if(NO_ERROR)
 			return TRUE
 		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			owner.balloon_alert(owner, "this spot can't hold weeds!")
 			return FALSE
 		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			owner.balloon_alert(owner, "this spot doesn't have weeds!")
 			return FALSE
 		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			owner.balloon_alert(owner, "no adjacent structure for support!")
 			return FALSE
 		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			owner.balloon_alert(owner, "the queen mother prohibits building here!")
 			return FALSE
 		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			owner.balloon_alert(owner, "a xeno is blocking this spot!")
 			return FALSE
 		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			owner.balloon_alert(owner, "the fog won't let the resin grow!")
 			return FALSE
 		// it fails a lot here when dragging , so its to prevent spam
 		if(ERROR_CONSTRUCT)
@@ -431,7 +448,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
-		X.balloon_alert(X, "Stop emitting")
+		X.balloon_alert(X, "no longer emitting")
 		QDEL_NULL(X.current_aura)
 		if(X.hive?.living_xeno_ruler == X)
 			X.hive?.update_leader_pheromones()
@@ -439,7 +456,7 @@
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
 	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + (X.xeno_caste.aura_strength * 2) + bonus_flat_range, X.xeno_caste.aura_strength + bonus_flat_strength, -1, X.faction, X.hivenumber)
-	X.balloon_alert(X, "[phero_choice]")
+	X.balloon_alert(X, "[lowertext(phero_choice)]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
 	if(X.hive?.living_xeno_ruler == X)
@@ -600,20 +617,20 @@
 		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
-			owner.balloon_alert(owner, "[A] is too far away")
+			owner.balloon_alert(owner, "too far away!")
 		return FALSE
 	if(ismob(A))
 		if(!silent)
-			owner.balloon_alert(owner, "We can't melt [A]")
+			owner.balloon_alert(owner, "can't melt that!")
 		return FALSE
 	switch(A.should_apply_acid(current_acid_type::acid_strength))
 		if(ATOM_CANNOT_ACID)
 			if(!silent)
-				owner.balloon_alert(owner, "We cannot dissolve [A]")
+				owner.balloon_alert(owner, "can't dissolve that!")
 			return FALSE
 		if(ATOM_STRONGER_ACID)
 			if(!silent)
-				owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
+				owner.balloon_alert(owner, "current acid is equal or higher in power!")
 			return FALSE
 
 /datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)
@@ -867,7 +884,7 @@
 	UnregisterSignal(L, COMSIG_XENOMORPH_POUNCE)
 	return ..()
 
-/datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags, selecting)
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
 		if(!silent)
 			owner.balloon_alert(owner, "cannot while on vehicle")
@@ -1026,6 +1043,8 @@
 	)
 	/// Should the egg contain the owner's selected_hugger_type instead?
 	var/use_selected_hugger = FALSE
+	/// The amount to multiply the created hugger's hand attach time by.
+	var/hand_attach_time_multiplier = 1
 
 /datum/action/ability/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1047,7 +1066,8 @@
 	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
-	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null)
+	new /obj/alien/egg/hugger(current_turf, xeno.hivenumber, use_selected_hugger ? xeno_owner.selected_hugger_type : null, hand_attach_time_multiplier)
+
 	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
@@ -1395,7 +1415,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	//if its not prep, remove the ability instantly
 	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
 		remove_action(owner)
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
 
 ///Seperate proc that calls remove_action, to block any signal shenanigans.
 /datum/action/ability/activable/xeno/place_pattern/proc/toggle_off()
@@ -1404,7 +1424,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 
 /datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
 	. = ..()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
 
 /datum/action/ability/activable/xeno/place_pattern/on_selection()
 	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))

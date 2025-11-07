@@ -2,6 +2,8 @@
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
+///List of all living face huggers
+GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 /**
  *Facehuggers
@@ -66,6 +68,8 @@
 	var/fire_immune = FALSE
 	/// How far can they leap?
 	var/leap_range = 4
+	/// How long in decisecond should it take to manually attach a facehugger to someone?
+	var/hand_attach_time = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source, new_fire_immunity)
 	. = ..()
@@ -80,6 +84,10 @@
 
 	if(new_fire_immunity)
 		set_fire_immunity(new_fire_immunity)
+
+	if((stat != DEAD) && (!sterile || combat_hugger))
+		GLOB.alive_hugger_list += src
+		notify_ai_hazard()
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -110,6 +118,7 @@
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
+	GLOB.alive_hugger_list -= src
 	remove_danger_overlay() //Remove the danger overlay
 	if(source)
 		clear_hugger_source()
@@ -174,7 +183,7 @@
 	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
 	span_warning("We attempt to plant [src] on [M]'s face!"))
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 1 SECONDS, NONE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, hand_attach_time, NONE, M, BUSY_ICON_DANGER))
 			return
 	if(!try_attach(M))
 		go_idle()
@@ -320,10 +329,10 @@
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
-		if(T && !T.hugger)
+		if(T && (T.hugger_limit > length(T.huggers)))
 			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
-			T.hugger = src
+			T.huggers += src
 			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
@@ -611,8 +620,10 @@
 
 	if(stat == DEAD)
 		return
+	SEND_SIGNAL(src, COMSIG_FACE_HUGGER_DEATH)
 	stat = DEAD
 
+	GLOB.alive_hugger_list -= src
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	deltimer(activetimer)
@@ -843,6 +854,16 @@
 		if(hivenumber == X.hive.hivenumber) //No friendly fire
 			return FALSE
 
+	return TRUE
+
+
+/obj/item/clothing/mask/facehugger/combat/harmless
+	name = "harmless hugger"
+	color = COLOR_BROWN
+
+/obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/M, mob/user)
+	if(!combat_hugger_check_target(M))
+		return FALSE
 	return TRUE
 
 #undef FACEHUGGER_DEATH

@@ -357,7 +357,7 @@
 	if(istype(new_eye, /obj/machinery/camera))
 		current = new_eye
 	if(client)
-		if(ismovableatom(new_eye))
+		if(ismovable(new_eye))
 			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
@@ -542,7 +542,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 
-/datum/action/innate/squad_message/can_use_action()
+/datum/action/innate/squad_message/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))

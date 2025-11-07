@@ -313,7 +313,7 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
+		if(L.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		if(pulling != L)
@@ -483,11 +483,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	if(resting)
 		if(!COOLDOWN_FINISHED(src, xeno_resting_cooldown))
-			balloon_alert(src, "Cannot get up so soon after resting!")
+			balloon_alert(src, "can't get up so soon!")
 			return
 
 	if(!COOLDOWN_FINISHED(src, xeno_unresting_cooldown))
-		balloon_alert(src, "Cannot rest so soon after getting up!")
+		balloon_alert(src, "can't rest so soon!")
 		return
 	return ..()
 
@@ -587,18 +587,23 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)
 
-///updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
+/// Updates the xenomorph's light based on their stored corrosive and neurotoxin ammo. The range, power, and color scales accordingly. More corrosive ammo = more green color; more neurotoxin ammo = more yellow color.
 /mob/living/carbon/xenomorph/proc/update_ammo_glow()
-	var/current_ammo = corrosive_ammo + neuro_ammo
+	var/current_ammo = corrosive_ammo + neurotoxin_ammo
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
 	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
 	var/color = BOILER_LUMINOSITY_BASE_COLOR
 	if(current_ammo)
-		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
-		color = BlendRGB(color, ammo_color, (ammo_glow*2)/glow)
-	if(!light_on && glow >= BOILER_LUMINOSITY_THRESHOLD)
+		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neurotoxin_ammo / current_ammo)
+		color = BlendRGB(color, ammo_color, (ammo_glow * 2) / glow)
+	if(!glob_luminosity_slowing && current_ammo > glob_luminosity_threshold)
 		set_light_on(TRUE)
-	else if(glow < BOILER_LUMINOSITY_THRESHOLD && !fire_luminosity)
-		set_light_range_power_color(0, 0)
-		set_light_on(FALSE)
-	set_light_range_power_color(glow, 4, color)
+		set_light_range_power_color(glow, 4, color) //
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_BOILER_GLOB_GLOW)
+	var/excess_globs = current_ammo - glob_luminosity_threshold
+	if(glob_luminosity_slowing && excess_globs > 0)
+		add_movespeed_modifier(MOVESPEED_ID_BOILER_GLOB_GLOW, TRUE, 0, NONE, TRUE, excess_globs * glob_luminosity_slowing)
+	// Light from being on fire is not from us, but from an overlay attached to us. Therefore, we don't need to worry about it.
+	set_light_range_power_color(0, 0)
+	set_light_on(FALSE)

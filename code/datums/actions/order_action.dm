@@ -35,7 +35,7 @@
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
-/datum/action/innate/order/can_use_action()
+/datum/action/innate/order/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

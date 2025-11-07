@@ -136,6 +136,8 @@
 		attackby(behavior_datum.melee_weapon, interactor)
 
 /obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(!isturf(loc))
+		return
 	behavior_datum.pick_up_item(src)
 
 /obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
@@ -188,7 +190,7 @@
 			coverlocked = FALSE
 			crowbar_act(interactor, crowbar)
 		if(cell)
-			balloon_alert_to_viewers("Removes [cell] from [src]")
+			balloon_alert_to_viewers("removes [cell]")
 			interactor.put_in_hands(cell)
 			cell.update_appearance()
 			set_cell(null)
@@ -325,6 +327,15 @@
 		return null
 	return 0
 
+/obj/item/clothing/mask/facehugger/get_ai_hazard_radius(mob/living/victim)
+	if(stat == DEAD)
+		return null
+	if(!isturf(loc))
+		return null
+	if(!victim.can_be_facehugged())
+		return null
+	return leap_range
+
 //Obstacle handling
 ///Handles the obstacle or tells AI behavior how to interact with it
 /obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???
@@ -364,14 +375,16 @@
 	toggle_open(null, user)
 	return AI_OBSTACLE_RESOLVED
 
-/obj/machinery/door/airlock/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(!.)
-		return
-	if(operating) //Airlock already doing something
+/obj/machinery/door/ai_handle_obstacle(mob/living/user, move_dir)
+	if(operating) //Airlock already doing something, probably opening
 		return null
-	if(welded || locked) //It's welded or locked, can't force that open
-		return
+	if(welded || locked)
+		return ..()
+	if(isxeno(user))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attack_alien), user)
+		return AI_OBSTACLE_RESOLVED
+	if(hasPower() && ishuman(user) && requiresID() && !(allowed(user) || emergency || unrestricted_side(user)))
+		return ..()
 	open(TRUE)
 	return AI_OBSTACLE_RESOLVED
 

@@ -198,6 +198,11 @@
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 
+/obj/item/storage/backpack/satchel/pmc
+	name = "PMC chestrig"
+	desc = "A heavy-duty chestrig used by Nanotrasen PMC contractors."
+	icon_state = "pmc_chestrig"
+
 //ERT backpacks.
 /obj/item/storage/backpack/ert
 	name = "emergency response team backpack"
@@ -849,6 +854,11 @@
 	icon_state = "marinepack"
 	storage_type = /datum/storage/backpack/captain
 
+/obj/item/storage/backpack/lightpack/pmc
+	name = "PMC bag"
+	desc = "A heavy-duty bag used by Nanotrasen PMC contractors."
+	icon_state = "pmc_bag"
+
 /obj/item/storage/backpack/lightpack/som
 	name = "mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies."
@@ -869,3 +879,14 @@
 	name = "\improper Crasher branded combat backpack"
 	desc = "A backpack design from 21st century still proves to be a good design in the 25th century."
 	icon_state = "vsd_bag0"
+
+/obj/item/storage/backpack/lightpack/freelancer
+	name = "\improper Freelancer lightweight combat pack"
+	desc = "A small lightweight pack for expeditions and short-range operations. This one was made by MAGNUM mercenaries."
+	icon_state = "freelancer_satchel"
+
+/obj/item/storage/backpack/marine/corpsman/freelancer
+	name = "\improper Freelancer corpsman pack"
+	desc = "The backpack worn by MAGNUM corpsmen. It is significantly lighter than its Terran counterpart. You can recharge defibrillators by plugging them in."
+	icon_state = "freelancer_packm"
+	storage_type = /datum/storage/backpack/no_delay
