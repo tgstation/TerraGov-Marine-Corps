@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points each."
