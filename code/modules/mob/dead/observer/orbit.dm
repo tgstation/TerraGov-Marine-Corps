@@ -25,14 +25,15 @@
 		if("orbit")
 			var/ref = params["ref"]
 			var/atom/movable/poi = locate(ref) in GLOB.mob_list
+			if (poi == null)
+				. = TRUE
+				return
 			if(poi.faction != FACTION_NEUTRAL && !(check_other_rights(owner.client, R_ADMIN, FALSE)))
 				if(owner.faction != poi.faction && !GLOB.observer_freedom)
 					to_chat(owner, span_warning("Can't teleport to other factions."))
 					return
-			if (poi == null)
-				. = TRUE
+			if(!(owner.ManualFollow(poi)))
 				return
-			owner.ManualFollow(poi)
 			owner.reset_perspective(null)
 			if(auto_observe)
 				owner.do_observe(poi)

@@ -522,6 +522,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
 	if(!istype(target))
 		return
+	if(!(check_other_rights(client, R_ADMIN, FALSE)))
+		if(faction != target.faction && !GLOB.observer_freedom)
+			to_chat(src, span_warning("Can't teleport to other factions."))
+			return
 
 	var/orbitsize = (target.get_cached_width() + target.get_cached_height()) * 0.5
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
@@ -540,7 +544,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else //Circular
 			rot_seg = 36
 
-	orbit(target, orbitsize, FALSE, 20, rot_seg)
+	. = orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 
 /mob/dead/observer/orbit()
@@ -680,6 +684,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	reset_perspective(null)
 
+	var/list/available_targets = GLOB.mob_living_list.Copy()
+	if(!(check_other_rights(client, R_ADMIN, FALSE)))
+		for(var/mob/possible_target AS in available_targets)
+			if(!istype(possible_target) || possible_target.faction != faction)
+				available_targets -= possible_target
 	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_living_list)
 	if(!target)
 		return
@@ -690,6 +699,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/proc/do_observe(mob/target)
 	if(!client || !target || !isliving(target))
 		return
+
+	if(!(check_other_rights(client, R_ADMIN, FALSE)))
+		if(faction != target.faction && !GLOB.observer_freedom)
+			to_chat(src, span_warning("Can't observe other factions."))
+			return
 
 	client.set_eye(target)
 
