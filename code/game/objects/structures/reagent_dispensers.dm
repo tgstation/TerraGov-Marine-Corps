@@ -44,8 +44,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
+	setup_reagents()
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
@@ -59,6 +58,9 @@
 			if (prob(5))
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
+
+/obj/structure/reagent_dispensers/proc/setup_reagents()
+	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
@@ -83,6 +85,9 @@
 	var/obj/item/assembly_holder/rig
 	//Whether the tank is already exploding to prevent chain explosions
 	var/exploding = FALSE
+
+/obj/structure/reagent_dispensers/fueltank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
 	QDEL_NULL(rig)

@@ -42,22 +42,6 @@
 	to_chat(M, "<span class='warning'>[user] drenches you in fuel from [src]!<span>")
 	log_attack("[key_name(user)] has doused [M] in fuel in [AREACOORD(user)]")
 
-/obj/item/reagent_containers/jerrycan/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity)
-		return
-	if(!istype(O, /obj/structure/reagent_dispensers/fueltank))
-		return ..()
-	var/obj/structure/reagent_dispensers/fueltank/FT = O
-	if(FT.reagents.total_volume == 0)
-		to_chat(user, span_warning("Out of fuel!"))
-		return
-
-	var/fuel_transfer_amount = min(FT.reagents.total_volume, (reagents.total_volume - volume)*-1)
-	FT.reagents.trans_to(src, fuel_transfer_amount)
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, span_notice("You refill [src] with [fuel_transfer_amount] units of fuel."))
-	return ..()
-
 /obj/item/reagent_containers/jerrycan/attack_obj(obj/target_object, mob/living/user)
 	if(istype(target_object, /obj/alien/weeds))
 		return attack_turf(get_turf(target_object), user)

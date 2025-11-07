@@ -59,7 +59,7 @@
 	if(fuel_tank.total_volume >= fuel_tank.maximum_volume)
 		user?.balloon_alert(user, "already full!")
 		return
-	if(!istype(target, /obj/structure/reagent_dispensers/fueltank))
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank)) //kill this eventually
 		return
 	if(target.reagents.get_reagent_amount(fuel_type) != target.reagents.total_volume)
 		user?.balloon_alert(user, "wrong fuel!")
@@ -93,11 +93,12 @@
 	if(reagents?.total_volume == reagents?.maximum_volume)
 		return FALSE
 	if(fuel_type != get_fueltype()) //should this be in the component proc?
+		user.balloon_alert(user, "wrong fuel")
 		return FALSE
 
 	refueler.reagents.trans_to(src, reagents.maximum_volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, span_notice("[src] refilled!"))
+	user.balloon_alert(user, "refilled")
 	return TRUE
 
 /obj/item/tool/weldingtool/do_refuel(atom/refueler, fuel_type, mob/user)
@@ -108,7 +109,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_type != get_fueltype())
-		to_chat(user, span_warning("Not the right kind of fuel!"))
+		user.balloon_alert(user, "wrong fuel")
 		return FALSE
 	if(current_rounds == max_rounds)
 		return FALSE
@@ -118,5 +119,5 @@
 	current_rounds += fuel_transfer_amount
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	caliber = CALIBER_FUEL
-	to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
+	user.balloon_alert(user, "refilled")
 	update_appearance(UPDATE_ICON)
