@@ -77,6 +77,10 @@
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
 #define MODE_INFESTATION_X_MINOR "Xenomorph Minor Victory"
 #define MODE_INFESTATION_M_MINOR "Marine Minor Victory"
+
+#define MODE_ZOMBIE_Z_MAJOR "Zombie Major Victory"
+#define MODE_ZOMBIE_Z_MINOR "Zombie Minor Victory"
+
 #define MODE_INFESTATION_DRAW_DEATH "DRAW: Mutual Annihilation"
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
@@ -90,6 +94,8 @@
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
+///Initial delay before crash landing
+#define CRASH_DELAY_TIME 10 MINUTES
 
 #define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
 #define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"

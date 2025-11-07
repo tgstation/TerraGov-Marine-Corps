@@ -876,6 +876,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if((wear_id?.iff_signal & proj.iff_signal))
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE
+	if((proj.ammo.ammo_behavior_flags & AMMO_SKIPS_ZOMBIE) && iszombie(src))
+		return FALSE
 	return ..()
 
 
@@ -988,7 +990,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
-		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
+		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE, attacker = proj.firer) //This could potentially delete the source.
 	else
 		bullet_message(proj, feedback_flags)
 

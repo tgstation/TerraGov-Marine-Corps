@@ -332,7 +332,7 @@
 		return null
 	if(!isturf(loc))
 		return null
-	if(!victim.can_be_facehugged())
+	if(!victim.can_be_facehugged(src))
 		return null
 	return leap_range
 
@@ -364,7 +364,7 @@
 		return
 	if(. == AI_OBSTACLE_JUMP)
 		return //jumping is always best
-	if(!climbable)
+	if(!can_climb(user))
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 	return AI_OBSTACLE_RESOLVED

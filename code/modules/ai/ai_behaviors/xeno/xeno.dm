@@ -33,8 +33,8 @@
 		if(!action.ai_should_use(atom_to_walk_to))
 			continue
 		//xeno_action/activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
-		if(istype(action, /datum/action/ability/activable/xeno))
-			var/datum/action/ability/activable/xeno/xeno_action = action
+		if(istype(action, /datum/action/ability/activable))
+			var/datum/action/ability/activable/xeno_action = action
 			xeno_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
@@ -122,7 +122,7 @@
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 
 ///Called each time the ai takes damage; if we are below a certain health threshold, try to retreat
-/datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage)
+/datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	var/mob/living/living_mob = mob_parent
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)

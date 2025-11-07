@@ -64,10 +64,7 @@
 		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
-	if(starting_faction == FACTION_TERRAGOV)
-		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
-	else if(starting_faction == FACTION_SOM)
-		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
+	attacking_team.add_asset(GLOB.campaign_cas_disabler_by_faction[starting_faction])
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/load_mission_brief()
 	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. \

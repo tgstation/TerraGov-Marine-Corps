@@ -1,5 +1,5 @@
 
-#define MAXIMUM_DEFAULT_SPAWN 120
+#define MAXIMUM_DEFAULT_SPAWN 400
 
 SUBSYSTEM_DEF(spawning)
 	name = "Spawning"
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(spawning)
 		for(var/b = 0 to spawnerdata[spawner].spawnamount)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
-			var/spawntype = pick(spawnerdata[spawner].spawntypes)
+			var/spawntype = pickweight(spawnerdata[spawner].spawntypes)
 			var/mob/newmob = new spawntype(spawnpoint)
 
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
