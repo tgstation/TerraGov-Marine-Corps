@@ -18,6 +18,27 @@
 	///The type of fuel we refuel with
 	var/fuel_type = DEFAULT_FUEL_TYPE
 
+/obj/item/ammo_magazine/flamer_tank/get_fueltype()
+	return fuel_type
+
+/obj/item/ammo_magazine/flamer_tank/can_refuel(atom/refueler, fuel_type, mob/user)
+	if(fuel_type != get_fueltype())
+		user?.balloon_alert(user, "wrong fuel")
+		return FALSE
+	if(current_rounds == max_rounds)
+		user?.balloon_alert(user, "full")
+		return FALSE
+	return TRUE
+
+/obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, fuel_type, mob/user)
+	var/fuel_transfer_amount = min(refueler.reagents.total_volume, (max_rounds - current_rounds))
+	refueler.reagents.remove_reagent(fuel_type, fuel_transfer_amount)
+	current_rounds += fuel_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	caliber = CALIBER_FUEL
+	user?.balloon_alert(user, "refilled")
+	update_appearance(UPDATE_ICON)
+
 /obj/item/ammo_magazine/flamer_tank/mini
 	name = "mini incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."

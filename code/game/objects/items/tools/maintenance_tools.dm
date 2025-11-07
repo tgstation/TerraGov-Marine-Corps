@@ -202,6 +202,12 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
+/obj/item/tool/weldingtool/can_refuel(atom/refueler, fuel_type, mob/user)
+	if(welding)
+		to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
+		return FALSE
+	return ..()
+
 ///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")

@@ -126,7 +126,7 @@
 	if(flamer.chamber_items.len == 0)
 		return
 	var/obj/item/tank = flamer.chamber_items[1]
-	tank.do_refuel(holster, holster.fuel_type, user)
+	tank.try_refuel(holster, holster.fuel_type, user)
 	flamer.update_ammo_count()
 
 /datum/storage/holster/t19

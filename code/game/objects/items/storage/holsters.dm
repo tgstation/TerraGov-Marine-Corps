@@ -230,8 +230,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
 	storage_type = /datum/storage/holster/backholster/flamer
-	var/fuel_type = DEFAULT_FUEL_TYPE
-
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',

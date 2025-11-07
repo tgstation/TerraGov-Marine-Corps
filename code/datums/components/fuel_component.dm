@@ -4,7 +4,7 @@
 
 /datum/component/fuel_storage
 	var/datum/reagents/fuel_tank
-
+	///The specific fueltype we use
 	var/fuel_type
 
 /datum/component/fuel_storage/Initialize(_max_fuel, _fuel_type = DEFAULT_FUEL_TYPE)
@@ -27,48 +27,29 @@
 
 /datum/component/fuel_storage/RegisterWithParent()
 	RegisterSignals(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOUSEDROPPED_ONTO), PROC_REF(attempt_refuel))
-	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_afterattack))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_OBJ_GET_FUELTYPE, PROC_REF(return_fueltype))
 
 /datum/component/fuel_storage/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACKBY,
-		COMSIG_ITEM_AFTERATTACK,
 		COMSIG_ATOM_EXAMINE,
 		COMSIG_OBJ_GET_FUELTYPE,
 	))
 
+///Returns the fueltype parent will accept
 /datum/component/fuel_storage/proc/return_fueltype(obj/source, list/return_list)
 	SIGNAL_HANDLER
 	return_list += fuel_type
 
+///Attempts to refuel something
 /datum/component/fuel_storage/proc/attempt_refuel(obj/source, obj/item/attacking, mob/user)
 	SIGNAL_HANDLER
-	//todo: stop this sig from causing storing of attacking
 	if(!fuel_tank.total_volume)
 		user?.balloon_alert(user, "no fuel!")
 		return
-	attacking.do_refuel(parent, fuel_type, user)
+	attacking.try_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK
-
-/datum/component/fuel_storage/proc/on_afterattack(obj/source, atom/target, mob/user, proximity, click_params)
-	SIGNAL_HANDLER
-	if(!proximity)
-		return
-	if(fuel_tank.total_volume >= fuel_tank.maximum_volume)
-		user?.balloon_alert(user, "already full!")
-		return
-	if(!istype(target, /obj/structure/reagent_dispensers/fueltank)) //kill this eventually
-		return
-	if(target.reagents.get_reagent_amount(fuel_type) != target.reagents.total_volume)
-		user?.balloon_alert(user, "wrong fuel!")
-		return
-
-	target.reagents.trans_to(source, fuel_tank.maximum_volume)
-	to_chat(user, span_notice("You crack the cap off the top of the pack and fill it back up again from the tank."))
-	playsound(source.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	return
 
 ///Shows remaining fuel on examine
 /datum/component/fuel_storage/proc/on_examine(datum/source, mob/user, list/details)
@@ -76,9 +57,7 @@
 	details += span_notice("[fuel_tank.total_volume] units of fuel left!")
 
 
-
-//////////////////////
-
+///Returns the fueltype that this obj uses
 /obj/proc/get_fueltype()
 	var/list/return_list = list()
 	SEND_SIGNAL(src, COMSIG_OBJ_GET_FUELTYPE, return_list)
@@ -86,38 +65,25 @@
 		return return_list[1]
 	return DEFAULT_FUEL_TYPE
 
-/obj/item/ammo_magazine/flamer_tank/get_fueltype()
-	return fuel_type
-
-/obj/proc/do_refuel(atom/refueler, fuel_type, mob/user)
-	if(reagents?.total_volume == reagents?.maximum_volume)
+///Attempts to refuel src from a reagent container
+/obj/proc/try_refuel(atom/refueler, fuel_type, mob/user)
+	if(!can_refuel(refueler, fuel_type, user))
 		return FALSE
-	if(fuel_type != get_fueltype()) //should this be in the component proc?
-		user.balloon_alert(user, "wrong fuel")
-		return FALSE
-
-	refueler.reagents.trans_to(src, reagents.maximum_volume)
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	user.balloon_alert(user, "refilled")
+	do_refuel(refueler, fuel_type, user)
 	return TRUE
 
-/obj/item/tool/weldingtool/do_refuel(atom/refueler, fuel_type, mob/user)
-	if(welding)
-		to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
-		return FALSE
-	return ..()
-
-/obj/item/ammo_magazine/flamer_tank/do_refuel(atom/refueler, fuel_type, mob/user)
+///Checks if src can be refueled by a container
+/obj/proc/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_type != get_fueltype())
-		user.balloon_alert(user, "wrong fuel")
+		user?.balloon_alert(user, "wrong fuel")
 		return FALSE
-	if(current_rounds == max_rounds)
+	if(reagents?.total_volume == reagents?.maximum_volume)
+		user?.balloon_alert(user, "full")
 		return FALSE
+	return TRUE
 
-	var/fuel_transfer_amount = min(refueler.reagents.total_volume, (max_rounds - current_rounds))
-	refueler.reagents.remove_reagent(fuel_type, fuel_transfer_amount)
-	current_rounds += fuel_transfer_amount
+///Actually refills src with fuel from a container
+/obj/proc/do_refuel(atom/refueler, fuel_type, mob/user)
+	refueler.reagents.trans_to(src, reagents.maximum_volume)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	caliber = CALIBER_FUEL
-	user.balloon_alert(user, "refilled")
-	update_appearance(UPDATE_ICON)
+	user?.balloon_alert(user, "refilled")

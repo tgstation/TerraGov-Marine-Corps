@@ -52,17 +52,21 @@
 	. = ..()
 	toggle_action.remove_action(user)
 
-/obj/item/jetpack_marine/do_refuel(atom/refueler, fuel_type, mob/user)
-	if(fuel_type != get_fueltype())
-		user.balloon_alert(user, "wrong fuel")
-		return FALSE
+/obj/item/jetpack_marine/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_left == fuel_max)
+		user?.balloon_alert(user, "full")
 		return FALSE
+	if(fuel_type != get_fueltype())
+		user?.balloon_alert(user, "wrong fuel")
+		return FALSE
+	return TRUE
+
+/obj/item/jetpack_marine/do_refuel(atom/refueler, fuel_type, mob/user)
 	var/fuel_transfer_amount = min(refueler.reagents.total_volume, (fuel_max - fuel_left))
 	refueler.reagents.remove_reagent(fuel_type, fuel_transfer_amount)
 	fuel_left += fuel_transfer_amount
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	user.balloon_alert(user, "refilled")
+	user?.balloon_alert(user, "refilled")
 	change_fuel_indicator()
 	update_icon()
 
