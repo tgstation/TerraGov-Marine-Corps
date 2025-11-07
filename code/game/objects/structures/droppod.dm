@@ -232,8 +232,10 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		podder.forceMove(src)
 
 	if(user)
+		faction = user.faction
 		log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
-	deadchat_broadcast(" has been launched", src, turf_target = target)
+		message_admins("[key_name_admin(user)][ADMIN_QUE(user)] launched pod [src] at [AREACOORD(target)]")
+	deadchat_broadcast(" has been launched[user ? " by [user][FOLLOW_LINK(null, user)]" : ""] towards [AREACOORD(target)]", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	if(!GLOB.droppod_reservation)
@@ -312,7 +314,8 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
-	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
+	var/turf/user_turf = get_turf(user)
+	deadchat_broadcast(" has landed at [AREACOORD(targetturf)][user ? " (Launched by [user][FOLLOW_OR_TURF_LINK(null, user, user_turf)])":""]!", src, src, targetturf)
 	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
@@ -556,7 +559,9 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		ejectee.forceMove(loc)
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
-	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
+	var/turf/user_turf = user ? get_turf(user) : null
+	var/turf/mech_turf = stored_object ? get_turf(stored_object) : null
+	deadchat_broadcast(" has landed at [AREACOORD(targetturf)][user ? "(launched by [user][FOLLOW_OR_TURF_LINK(null, user, user_turf)])": ""][stored_object ? "(carrying [stored_object][FOLLOW_OR_TURF_LINK(null, stored_object, mech_turf)])":""]!", src, src, targetturf)
 	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect

@@ -75,7 +75,7 @@
 		mind.store_memory("Time of death: [worldtime2text()]", 0)
 		if(mind.active && is_gameplay_level(z))
 			var/turf/T = get_turf(src)
-			deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type = DEADCHAT_DEATHRATTLE)
+			deadchat_broadcast(" has died at <b>[AREACOORD(T)]</b>[TURF_LINK(null, T)].", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type = DEADCHAT_DEATHRATTLE)
 
 	GLOB.dead_mob_list |= src
 	GLOB.offered_mob_list -= src
