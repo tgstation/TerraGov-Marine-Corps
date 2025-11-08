@@ -56,3 +56,7 @@
   - bugfix: Fixes Zombies being able to open cades
   - bugfix: Fixes Zombie claw icon being an error
   - bugfix: Fixes Zombies AI breaking on reanimation
+2025-11-08:
+  blackdav123:
+  - rscadd: Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points
+      each.
