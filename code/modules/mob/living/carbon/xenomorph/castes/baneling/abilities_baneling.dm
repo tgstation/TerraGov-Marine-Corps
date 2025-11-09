@@ -20,11 +20,12 @@
 
 /datum/action/ability/xeno_action/baneling_explode/handle_button_status_visuals()
 	var/mob/living/carbon/xenomorph/baneling = owner
-	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
 	var/mutable_appearance/number = visual_references[VREF_MUTABLE_BANE_CHARGES]
-	number.maptext = MAPTEXT("[baneling.stored_charge]")
-	visual_references[VREF_MUTABLE_BANE_CHARGES] = number
-	button.add_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	if(number)
+		button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+		number.maptext = MAPTEXT("[baneling.stored_charge]")
+		visual_references[VREF_MUTABLE_BANE_CHARGES] = number
+		button.add_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
 	return ..()
 
 /datum/action/ability/xeno_action/baneling_explode/give_action(mob/living/L)
