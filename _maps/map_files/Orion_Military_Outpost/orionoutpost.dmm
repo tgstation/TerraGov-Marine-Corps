@@ -1844,7 +1844,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "js" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
 "jt" = (
@@ -2373,7 +2373,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "lV" = (
 /obj/structure/platform,
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
 "lW" = (
@@ -2574,7 +2574,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
 "mT" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "mU" = (
@@ -4149,7 +4149,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "uc" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/atc)
 "ud" = (
