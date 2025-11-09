@@ -120,7 +120,7 @@
 	languages = list(/datum/language/common, /datum/language/machine)
 
 /datum/language_holder/synthetic
-	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
+	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon, /datum/language/zombie)
 
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
