@@ -52,7 +52,11 @@
 
 
 /datum/mind/Destroy(force, ...)
-	SSticker.minds -= src
+	var/occurences = SSticker.minds.RemoveAll(src)
+	if(occurences > 1)
+		stack_trace("[logdetails(src)][REF(src)] found more than once in SSticker.minds while deleting!")
+	else if (occurences < 1)
+		stack_trace("[logdetails(src)][REF(src)] not found in SSticker.minds while deleting!")
 	current = null
 	return ..()
 
@@ -130,7 +134,7 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
-	SSticker.minds += mind
+	SSticker.minds |= mind
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
