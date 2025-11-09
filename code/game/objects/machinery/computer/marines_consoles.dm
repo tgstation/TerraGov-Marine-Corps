@@ -227,18 +227,18 @@
 		if ("scan")
 			if (scan)
 				if(ishuman(usr))
-					modify.forceMove(drop_location())
+					modify?.forceMove(drop_location())
 					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					scan = null
 				else
-					modify.forceMove(drop_location())
+					modify?.forceMove(drop_location())
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
-					modify.forceMove(src)
+					modify?.forceMove(src)
 					scan = I
 			authenticated = 0
 		if ("auth")

@@ -131,10 +131,11 @@
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	var/datum/job/previewJob
 	var/highest_pref = JOBS_PRIORITY_NEVER
-	for(var/job in job_preferences)
-		if(job_preferences[job] > highest_pref)
-			previewJob = SSjob.GetJob(job)
-			highest_pref = job_preferences[job]
+	if(LAZYLEN(SSjob.occupations))
+		for(var/job in job_preferences)
+			if(job_preferences[job] > highest_pref)
+				previewJob = SSjob.GetJob(job)
+				highest_pref = job_preferences[job]
 
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)

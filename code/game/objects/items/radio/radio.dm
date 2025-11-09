@@ -430,6 +430,9 @@
 			independent = TRUE
 	channels += inherent_channels
 
+	if(!LAZYLEN(GLOB.radiochannels)) //happens for dummies early in initialization
+		return
+
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 

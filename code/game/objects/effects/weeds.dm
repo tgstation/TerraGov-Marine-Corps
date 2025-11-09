@@ -370,7 +370,7 @@
 		span_xenonotice("We start to scoop up \the [src]."))
 		if(!do_after(xeno_attacker, 2 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
 			return
-		if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
+		if(!istype(src) || QDELING(src)) // Prevent jumping to other turfs if do_after completes with the object already gone
 			return
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] scoops up \the [src]!"), \
