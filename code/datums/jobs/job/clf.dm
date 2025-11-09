@@ -6,6 +6,7 @@
 	shadow_languages = list(/datum/language/xenocommon)
 	job_category = JOB_CAT_MARINE
 	supervisors = "the xenomorphs and CLF Leaders"
+	minimap_icon = "CLF1"
 
 /datum/job/clf/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
@@ -44,6 +45,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	title = "CLF Medic"
 	paygrade = "CLF2"
 	comm_title = "CLF2"
+	minimap_icon = "CLF2"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/clf/medic/uzi
@@ -61,6 +63,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	title = "CLF Specialist"
 	paygrade = "CLF4"
 	comm_title = "CLF4"
+	minimap_icon = "CLF4"
 	skills_type = /datum/skills/specialist
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	outfit = /datum/outfit/job/clf/specialist
@@ -77,6 +80,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	title = "CLF Leader"
 	paygrade = "CLF3"
 	comm_title = "CLF3"
+	minimap_icon = "CLF3"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	skills_type = /datum/skills/sl/clf
 	outfit = /datum/outfit/job/clf/leader/assault_rifle
@@ -94,6 +98,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	title = "CLF Breeder"
 	paygrade = "CLF0"
 	comm_title = "CLF0"
+	minimap_icon = "CLF0"
 	outfit = /datum/outfit/job/clf/breeder
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	multiple_outfits = FALSE
@@ -175,6 +180,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	title = "CLF Base Technician"
 	paygrade = "CLF5"
 	comm_title = "CLF4"
+	minimap_icon = "CLF4"
 	skills_type = /datum/skills/st
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	outfit = /datum/outfit/job/clf/tech
