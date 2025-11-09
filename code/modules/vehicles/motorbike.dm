@@ -35,7 +35,9 @@
 	/// A list of potential sounds played when the bike is revved via AltClick
 	var/list/rev_sounds = list(
 		'sound/vehicles/bikerev-1.ogg',
-		'sound/vehicles/bikerev-2.ogg'
+		'sound/vehicles/bikerev-2.ogg',
+		'sound/vehicles/bikerev-3.ogg',
+		'sound/vehicles/bikerev-4.ogg',
 	)
 	/// Cooldown for revving the bike, to prevent spamming
 	COOLDOWN_DECLARE(rev_cooldown)
