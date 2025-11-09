@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted)
 		. += image(icon, src, "overlay_corrupted", layer)
 	else
-		SSminimaps.add_marker(owner_marker, MINIMAP_FLAG_XENO, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator_on", MINIMAP_BLIPS_LAYER+0.1))
+		SSminimaps.add_marker(owner_marker, MINIMAP_FLAG_XENO, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, "generator_on", MINIMAP_BLIPS_LAYER_HIGH))
 
 /obj/machinery/power/geothermal/power_change()
 	return
