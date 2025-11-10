@@ -42,6 +42,8 @@
 		return FALSE
 
 	loc.visible_message(span_warning("[src] begins to shake. Stand back!"))
+	var/expand_time = rand(3 SECONDS, 5 SECONDS)
+	Shake(duration = expand_time)
 	primed = TRUE
 	addtimer(CALLBACK(src, PROC_REF(expand), user), 5 SECONDS)
 	return TRUE
@@ -108,9 +110,9 @@
 		else if(dir_to_center & (EAST|WEST))
 			throw_dist = base_x_throw_distance - x_component + 1
 
-		did_not_stand_back.Paralyze(3 SECONDS)
-		did_not_stand_back.Knockdown(6 SECONDS)
-		did_not_stand_back.safe_throw_at(get_edge_target_turf(did_not_stand_back, dir_to_center), throw_dist, 3, force = MOVE_FORCE_VERY_STRONG)
+		if(!isxeno(did_not_stand_back))
+			did_not_stand_back.Paralyze(2 SECONDS)
+		did_not_stand_back.safe_throw_at(get_edge_target_turf(did_not_stand_back, dir_to_center), throw_dist, 3, force = MOVE_FORCE_OVERPOWERING)
 
 //Non-default pods
 
