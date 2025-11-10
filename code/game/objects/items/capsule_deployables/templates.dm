@@ -1,8 +1,5 @@
 ///Map templates used for bluespace survival capsules.
 /datum/map_template/capsule
-	//has_ceiling = TRUE
-	//ceiling_turf = /turf/open/floor/engine/hull
-	//ceiling_baseturfs = list(/turf/open/floor/plating)
 	///The id of the shelter template in the relative list from the mapping subsystem
 	var/shelter_id
 	///The description of the shelter, shown when examining survival capsule.
@@ -50,10 +47,3 @@
 	shelter_id = "barricade_capsule"
 	description = "A simple barricade field fortification, good in a pinch."
 	mappath = "_maps/templates/capsule_1.dmm"
-
-/*
-/datum/map_template/capsule/barricade/New()
-	. = ..()
-	blacklisted_turfs -= typesof(/turf/closed/mineral)
-	banned_objects = typecacheof(/obj/structure/stone_tile)
-*/
