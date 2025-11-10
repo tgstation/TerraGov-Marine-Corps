@@ -45,41 +45,14 @@
 
 	return SHELTER_DEPLOY_ALLOWED
 
-/datum/map_template/capsule/alpha
-	name = "Shelter Alpha"
-	shelter_id = "shelter_alpha"
-	description = "A cosy self-contained pressurized shelter, with \
-		built-in navigation, entertainment, medical facilities and a \
-		sleeping area! Order now, and we'll throw in a TINY FAN, \
-		absolutely free!"
+/datum/map_template/capsule/barricade
+	name = "Barricade Capsule"
+	shelter_id = "barricade_capsule"
+	description = "A simple barricade field fortification, good in a pinch."
 	mappath = "_maps/templates/capsule_1.dmm"
 
 /*
-/datum/map_template/capsule/alpha
-	name = "Shelter Alpha"
-	shelter_id = "shelter_alpha"
-	description = "A cosy self-contained pressurized shelter, with \
-		built-in navigation, entertainment, medical facilities and a \
-		sleeping area! Order now, and we'll throw in a TINY FAN, \
-		absolutely free!"
-	mappath = "_maps/templates/shelter_1.dmm"
-
-/datum/map_template/capsule/alpha/New()
-	. = ..()
-	blacklisted_turfs -= typesof(/turf/closed/mineral)
-	banned_objects = typecacheof(/obj/structure/stone_tile)
-
-/datum/map_template/capsule/beta
-	name = "Shelter Beta"
-	shelter_id = "shelter_beta"
-	description = "An extremely luxurious shelter, containing all \
-		the amenities of home, including carpeted floors, hot and cold \
-		running water, a gourmet three course meal, cooking facilities, \
-		and a deluxe companion to keep you from getting lonely during \
-		an ash storm."
-	mappath = "_maps/templates/shelter_2.dmm"
-
-/datum/map_template/capsule/beta/New()
+/datum/map_template/capsule/barricade/New()
 	. = ..()
 	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
