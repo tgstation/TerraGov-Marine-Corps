@@ -1,12 +1,3 @@
-/*****************************Survival Pod********************************/
-/area/misc/survivalpod
-	name = "\improper Emergency Shelter"
-	icon_state = "away"
-	static_lighting = TRUE
-	requires_power = FALSE
-	//area_flags = BLOBS_ALLOWED | UNIQUE_AREA
-
-//Survival Capsule
 /obj/item/deploy_capsule
 	name = "bluespace shelter capsule"
 	desc = "An emergency shelter stored within a pocket of bluespace."
@@ -18,7 +9,7 @@
 	///The template datum we use to load the shelter
 	var/datum/map_template/capsule/template
 	///If true, this capsule is active and will deploy the area if conditions are met.
-	var/used = FALSE
+	var/active = FALSE
 	///Will this capsule yeet mobs back once the area is deployed?
 	var/yeet_back = TRUE
 
@@ -47,17 +38,20 @@
 
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
-	if(used)
+	if(active)
 		return FALSE
 
 	loc.visible_message(span_warning("[src] begins to shake. Stand back!"))
-	used = TRUE
+	active = TRUE
 	addtimer(CALLBACK(src, PROC_REF(expand), user), 5 SECONDS)
-	//:check nade behavior //
-	//if(iscarbon(user))
-	//	var/mob/living/carbon/carbon = user
-	//	carbon.throw_mode_on(THROW_MODE_TOGGLE)
 	return TRUE
+
+/obj/item/deploy_capsule/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(!active || user.next_move > world.time)
+		return
+	if(user.throw_item(target))
+		user.changeNext_move(CLICK_CD_THROWING)
 
 /// Expands the capsule into a full shelter, placing the template at the item's location (NOT triggerer's location)
 /obj/item/deploy_capsule/proc/expand(mob/triggerer)
@@ -68,14 +62,17 @@
 	var/status = template.check_deploy(deploy_location, src, get_ignore_flags())
 	if(status != SHELTER_DEPLOY_ALLOWED)
 		fail_feedback(status)
-		used = FALSE
+		active = FALSE
 		return
 
 	if(yeet_back)
 		yote_nearby(deploy_location)
 	template.load(deploy_location, centered = TRUE)
-	//playsound(src, 'sound/effects/phasein.ogg', 100, TRUE) //check if this exists
-	//new /obj/effect/particle_effect/fluid/smoke(get_turf(src))
+	playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
+	var/datum/effect_system/smoke_spread/bad/smoke = new
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	smoke.set_up(floor((template.width + template.height) * 0.5), loc, 2)
+	smoke.start()
 	qdel(src)
 
 /// Returns a bitfield used to ignore some checks in template.check_deploy()
@@ -113,14 +110,7 @@
 
 		did_not_stand_back.Paralyze(3 SECONDS)
 		did_not_stand_back.Knockdown(6 SECONDS)
-		/*
-		did_not_stand_back.throw_at(
-			target = get_edge_target_turf(did_not_stand_back, dir_to_center),
-			range = throw_dist,
-			speed = 3,
-			force = MOVE_FORCE_VERY_STRONG,
-		)
-		*/
+		did_not_stand_back.safe_throw_at(get_edge_target_turf(did_not_stand_back, dir_to_center), throw_dist, 3, force = MOVE_FORCE_VERY_STRONG)
 
 //Non-default pods
 
