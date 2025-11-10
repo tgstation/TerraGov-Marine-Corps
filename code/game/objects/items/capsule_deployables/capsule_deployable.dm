@@ -2,14 +2,14 @@
 	name = "bluespace shelter capsule"
 	desc = "An emergency shelter stored within a pocket of bluespace."
 	icon_state = "capsule"
-	icon = 'icons/obj/item/capsules.dmi'
+	icon = 'icons/obj/items/capsules.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	///The id we use to fetch the template datum
 	var/template_id = "shelter_alpha"
 	///The template datum we use to load the shelter
 	var/datum/map_template/capsule/template
-	///If true, this capsule is active and will deploy the area if conditions are met.
-	var/active = FALSE
+	///If true, this capsule is primed and will deploy the area if conditions are met.
+	var/primed = FALSE
 	///Will this capsule yeet mobs back once the area is deployed?
 	var/yeet_back = TRUE
 
@@ -38,17 +38,17 @@
 
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
-	if(active)
+	if(primed)
 		return FALSE
 
 	loc.visible_message(span_warning("[src] begins to shake. Stand back!"))
-	active = TRUE
+	primed = TRUE
 	addtimer(CALLBACK(src, PROC_REF(expand), user), 5 SECONDS)
 	return TRUE
 
 /obj/item/deploy_capsule/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
-	if(!active || user.next_move > world.time)
+	if(!primed || user.next_move > world.time)
 		return
 	if(user.throw_item(target))
 		user.changeNext_move(CLICK_CD_THROWING)
@@ -62,7 +62,7 @@
 	var/status = template.check_deploy(deploy_location, src, get_ignore_flags())
 	if(status != SHELTER_DEPLOY_ALLOWED)
 		fail_feedback(status)
-		active = FALSE
+		primed = FALSE
 		return
 
 	if(yeet_back)
