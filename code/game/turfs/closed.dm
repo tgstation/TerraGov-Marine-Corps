@@ -275,6 +275,28 @@
 /turf/closed/mineral/smooth/jungletree/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_LEAF, -40, 5)
 
+// asteroid rocks, moon walls, lunar things yea
+
+/turf/closed/mineral/smooth/spacewall
+    icon = 'icons/turf/walls/asteroidwall.dmi'
+    icon_state = "asteroidwall-0"
+    walltype = "asteroidwall"
+    base_icon_state = "asteroidwall"
+
+/turf/closed/mineral/smooth/spacewall/indestructible
+    resistance_flags = RESIST_ALL
+    icon_state = "wall-invincible"
+
+/turf/closed/mineral/smooth/shipwall
+    icon = 'icons/turf/walls/cwall.dmi'
+    icon_state = "cwall-0"
+    walltype = "cwall"
+    base_icon_state = "cwall"
+
+/turf/closed/mineral/smooth/shipwall/indestructible
+    resistance_flags = RESIST_ALL
+    icon_state = "wall-invincible"
+
 //Ground map dense jungle
 /turf/closed/gm
 	icon = 'icons/turf/walls/jungle.dmi'

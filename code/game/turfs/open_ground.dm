@@ -140,3 +140,23 @@
 
 /turf/open/ground/empty/is_weedable()
 	return FALSE
+
+// moon ground, lunar ground
+
+/turf/open/floor/ground/asteroid
+    name = "cratered surface"
+    icon_state = "asteroidsurface"
+    base_icon_state = "asteroidsurface"
+
+/turf/open/floor/ground/asteroid/Initialize(mapload)
+    . = ..()
+    icon_state = base_icon_state += rand(1,5)
+
+/turf/open/floor/ground/asteroid/dusty
+    name = "cratered surface"
+    icon_state = "asteroidsurfacevariant_1"
+    base_icon_state = "asteroidsurfacevariant"
+
+/turf/open/floor/ground/asteroid/dusty/Initialize(mapload)
+    . = ..()
+    icon_state = base_icon_state += rand(1,3)
