@@ -1,5 +1,5 @@
 /obj/item/deploy_capsule
-	name = "bluespace shelter capsule"
+	name = "mystery capsule"
 	desc = "An emergency shelter stored within a pocket of bluespace."
 	icon_state = "capsule"
 	icon = 'icons/obj/items/capsules.dmi'
@@ -12,14 +12,6 @@
 	var/primed = FALSE
 	///Will this capsule yeet mobs back once the area is deployed?
 	var/yeet_back = TRUE
-
-/obj/item/deploy_capsule/proc/get_template()
-	if(template)
-		return
-	template = SSmapping.capsule_templates[template_id] //todo
-	if(!template)
-		WARNING("Shelter template ([template_id]) not found!")
-		qdel(src)
 
 /obj/item/deploy_capsule/Destroy()
 	template = null // without this, capsules would be one use. per round.
@@ -54,6 +46,15 @@
 		return
 	if(user.throw_item(target))
 		user.changeNext_move(CLICK_CD_THROWING)
+
+///Gets the correct template for this capsule
+/obj/item/deploy_capsule/proc/get_template()
+	if(template)
+		return
+	template = SSmapping.capsule_templates[template_id]
+	if(!template)
+		WARNING("Shelter template ([template_id]) not found!")
+		qdel(src)
 
 /// Expands the capsule into a full shelter, placing the template at the item's location (NOT triggerer's location)
 /obj/item/deploy_capsule/proc/expand(mob/triggerer)
@@ -117,8 +118,8 @@
 //Non-default pods
 
 /obj/item/deploy_capsule/barricade
-	name = "luxury bluespace shelter capsule"
-	desc = "An exorbitantly expensive luxury suite stored within a pocket of bluespace."
+	name = "barricade fort capsule"
+	desc = "A basic barricade fort in a convenient capsule form. Requires a 5x5 open area to deploy."
 	template_id = "barricade_capsule"
 
 /obj/item/deploy_capsule/barricade/get_ignore_flags()
