@@ -55,7 +55,7 @@
 	var/occurences = SSticker.minds.RemoveAll(src)
 	if(occurences > 1)
 		stack_trace("[logdetails(src)][REF(src)] found more than once in SSticker.minds while deleting!")
-	else if (occurences < 1)
+	else if (occurences < 1 && !isnewplayer(current))
 		stack_trace("[logdetails(src)][REF(src)] not found in SSticker.minds while deleting!")
 	current = null
 	return ..()
