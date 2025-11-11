@@ -406,7 +406,7 @@
 ///For the Sizzler Boiler's primo
 /datum/ammo/xeno/acid/heavy/high_pressure_spit
 	name = "pressurized steam glob"
-	icon_state = "boiler_gas"
+	icon_state = "boiler_corrosive"
 	damage = 50
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	max_range = 16

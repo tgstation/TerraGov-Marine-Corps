@@ -683,12 +683,18 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
 	)
 	/// The amount of time for the do_after.
-	var/cast_time = 2 SECONDS
+	var/cast_time = 3 SECONDS
 	/// The ammo type the ability fires.
 	var/datum/ammo/xeno/ammo_type = /datum/ammo/xeno/acid/smokescreen
+	/// Timer for increasing light range while channeling.
+	var/channel_light_timer
+	/// Current light range while channeling.
+	var/light_range = 0
 
 /datum/action/ability/activable/xeno/smokescreen_spit/use_ability(atom/target)
+	manage_channel_glow(TRUE)
 	if(cast_time > 0 && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER))
+		manage_channel_glow(FALSE)
 		add_cooldown(15 SECONDS) // Short cooldown on fail
 		return fail_activate()
 
@@ -697,8 +703,24 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	newspit.def_zone = xeno_owner.get_limbzone_target()
 
 	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
+	manage_channel_glow(FALSE)
 	succeed_activate()
 	add_cooldown()
+
+/// Turns on/off the light glow while channeling the spit and increases the light range every half second.
+/datum/action/ability/activable/xeno/smokescreen_spit/proc/manage_channel_glow(continue_light = FALSE)
+	if(!continue_light)
+		light_range = 0
+		if(xeno_owner)
+			xeno_owner.set_light_on(FALSE)
+			xeno_owner.set_light_range_power_color(0, 0)
+		deltimer(channel_light_timer)
+		return
+	if(light_range < 6)
+		light_range += 1
+	xeno_owner.set_light_on(TRUE)
+	xeno_owner.set_light_range_power_color(light_range, 4, BOILER_LUMINOSITY_BASE_COLOR)
+	channel_light_timer = addtimer(CALLBACK(src, PROC_REF(manage_channel_glow), TRUE), 0.5 SECONDS, TIMER_STOPPABLE)
 
 /datum/action/ability/activable/xeno/smokescreen_spit/ai_should_start_consider()
 	return TRUE
@@ -817,7 +839,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/ability/activable/xeno/high_pressure_spit
 	name = "High-Pressure Spit"
-	action_icon_state = "corrosive_lance_glob"
+	action_icon_state = "corrosive_glob_lance"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Fire a high pressure glob of acid that knocks back, stuns, and shatters the target."
 	ability_cost = 75
