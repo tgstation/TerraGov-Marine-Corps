@@ -386,7 +386,7 @@ WEAPONS
 /datum/supply_packs/weapons/thermobaric_wp
 	name = "RL-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 50
+	cost = 70
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
@@ -416,13 +416,13 @@ WEAPONS
 /datum/supply_packs/weapons/rpg_wp
 	name = "RL-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
-	cost = 125
+	cost = 175
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp_unguided
 	name = "RL-152 SADAR WP rocket (Unguided)"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp/unguided)
-	cost = 125
+	cost = 175
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/zx76
