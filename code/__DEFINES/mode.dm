@@ -70,9 +70,11 @@
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
 /// Should xenomorphs be allowed to buy mutations (including its structures)?
 #define MODE_MUTATIONS_OBTAINABLE (1<<17)
-#define MODE_BIOMASS_POINTS (1<<18)
-#define MODE_SURVIVAL (1<<19)
-#define MODE_NO_GHOSTS (1<<20)
+///Alamo only, no tad or pods. Sovl.
+#define MODE_ALAMO_ONLY (1<<18)
+#define MODE_BIOMASS_POINTS (1<<19)
+#define MODE_SURVIVAL (1<<20)
+#define MODE_NO_GHOSTS (1<<21)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Ninetails Major Victory"

@@ -197,6 +197,8 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/proc/start_launch_pod(mob/user, commanded_drop = FALSE)
 	if(!(LAZYLEN(buckled_mobs) || LAZYLEN(contents)))
 		return
+	if(SSticker?.mode?.round_type_flags & MODE_ALAMO_ONLY)
+		return
 	#ifndef TESTING
 	if(!operation_started)
 		var/time_until_ready = SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY - world.time
