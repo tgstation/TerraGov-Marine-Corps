@@ -358,15 +358,15 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += "You are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat. You can serve your Division in a variety of roles, so choose carefully."
 
-/* NTF removal
 /datum/job/terragov/command/mech_pilot/on_pre_setup()
 	if(total_positions)
+		return
+	if((!istype(SSticker.mode, /datum/game_mode/infestation/nuclear_war)) && (!istype(SSticker.mode, /datum/game_mode/infestation/sovl_war)))
 		return
 	var/client_count = length(GLOB.clients)
 	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
 		client_count = 1 + FLOOR((client_count - NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED) / NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT, 1)
 		add_job_positions(client_count)
-*/
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
