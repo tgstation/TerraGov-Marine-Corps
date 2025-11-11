@@ -17,3 +17,7 @@
 	vary = TRUE
 	volume = 30
 	frequency = 49000
+
+/datum/looping_sound/looping_launch_announcement_alarm
+	mid_length = 2 SECONDS
+	mid_sounds = list('sound/misc/ds_signalled_alarm.ogg' = 1)

@@ -155,10 +155,18 @@
 	var/time_between_cycle = 0
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
+	/// The cooldown for a `priority_announcement` when we start the alarm sound loop
+	COOLDOWN_DECLARE(takeoff_alarm_announcement_start)
+	/// The cooldown for a `priority_announcement` when we stop the alarm sound loop
+	COOLDOWN_DECLARE(takeoff_alarm_announcement_stop)
+	/// If this dropship is playing the alarm sound loop
+	var/playing_takeoff_alarm = FALSE
+	/// Looping sound for the takeoff alarm
+	var/datum/looping_sound/looping_launch_announcement_alarm/alarm_sound_loop
+	/// The timer ID for the alarm auto-shutoff timer
+	var/alarm_autoshutoff_timerid
 	///If first landing is false intro sequence wont play
 	var/static/first_landing = TRUE
-	///If this dropship can play the takeoff announcement
-	var/takeoff_alarm_locked = FALSE
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -170,7 +178,10 @@
 		return
 	// pull the shuttle from datum/source, and state info from the shuttle itself
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
-	takeoff_alarm_locked = FALSE // Allow the alarm to be used again
+	alarm_sound_loop?.stop()
+	playing_takeoff_alarm = FALSE
+	if(alarm_autoshutoff_timerid)
+		deltimer(alarm_autoshutoff_timerid)
 	if(first_landing)
 		first_landing = FALSE
 		var/op_name = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -263,6 +274,10 @@
 	name = "Alamo"
 	id = SHUTTLE_ALAMO
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
+
+/obj/docking_port/mobile/marine_dropship/one/Initialize(mapload)
+	. = ..()
+	alarm_sound_loop = new(list(src), FALSE, FALSE, /* _skip_starting_sounds = */ TRUE) // we'll be playing it in a priority_announce
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
@@ -543,6 +558,7 @@
 	data["ship_status"] = shuttle.getStatusText()
 	data["automatic_cycle_on"] = shuttle.automatic_cycle_on
 	data["time_between_cycle"] = shuttle.time_between_cycle
+	data["takeoff_alarm"] = shuttle.playing_takeoff_alarm
 
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 	if(istype(infestation_mode))
@@ -623,6 +639,7 @@
 	switch(action)
 		if("move")
 			Topic(null, list("move" = params["move"]))
+			stop_takeoff_alarm()
 			return
 		if("lockdown")
 			shuttle.lockdown_all()
@@ -643,7 +660,9 @@
 		if("cycle_time_change")
 			shuttle.time_between_cycle = params["cycle_time_change"]
 		if("signal_departure")
-			// Weird cases where the alarm shouldn't be used.
+			if(!shuttle.alarm_sound_loop)
+				to_chat(usr, span_warning("This dropship doesn't seem to support that."))
+				return
 			switch(shuttle.mode)
 				if(SHUTTLE_RECHARGING)
 					to_chat(usr, span_warning("The dropship is recharging."))
@@ -658,28 +677,37 @@
 					to_chat(usr, span_warning("The dropship is about to land."))
 					return
 
-			// It's too early to launch it.
 			#ifndef TESTING
 			if(!(shuttle.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 				to_chat(usr, span_warning("It's too early to use the alarm right now."))
 				return TRUE
 			#endif
 
-			// Prevent spamming the alarm.
-			if(shuttle.takeoff_alarm_locked)
-				to_chat(usr, span_boldwarning("The dropship takeoff alarm is locked. To unlock it, the dropship must be cycled."))
-				return
+			if(!shuttle.playing_takeoff_alarm)
+				if(COOLDOWN_FINISHED(shuttle, takeoff_alarm_announcement_start))
+					COOLDOWN_START(shuttle, takeoff_alarm_announcement_start, 60 SECONDS)
+					priority_announce(
+						type = ANNOUNCEMENT_PRIORITY,
+						title = "Dropship Takeoff Imminent",
+						message = "[usr.real_name] has started signalling that the Alamo will take off soon.",
+						color_override = "yellow",
+						playing_sound = FALSE,
+					)
+				start_takeoff_alarm()
+				. = TRUE
+			else
+				if(COOLDOWN_FINISHED(shuttle, takeoff_alarm_announcement_stop))
+					COOLDOWN_START(shuttle, takeoff_alarm_announcement_stop, 60 SECONDS)
+					priority_announce(
+						type = ANNOUNCEMENT_PRIORITY,
+						title = "Dropship Takeoff Cancelled",
+						message = "[usr.real_name] has stopped the Alamo takeoff alarm.",
+						color_override = "yellow",
+						playing_sound = FALSE,
+					)
+				stop_takeoff_alarm()
+				. = TRUE
 
-			priority_announce(
-				type = ANNOUNCEMENT_PRIORITY,
-				title = "Dropship Takeoff Imminent",
-				message = "[usr.real_name] has signalled that the Alamo will take off soon.",
-				sound = 'sound/misc/ds_signalled_alarm.ogg',
-				channel_override = SSsounds.random_available_channel(), // Probably important enough to avoid interruption?
-				color_override = "yellow"
-			)
-			to_chat(usr, span_warning("You slam your palm on the alarm button, locking it until the dropship lands again."))
-			shuttle.takeoff_alarm_locked = TRUE
 		//These are actions for the Xeno dropship UI
 		if("hijack")
 			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
@@ -708,6 +736,7 @@
 				to_chat(xeno, span_xenowarning("The shuttle is already at the ship!"))
 				return
 
+			stop_takeoff_alarm()
 			do_hijack(shuttle, CT, xeno)
 
 		if("abduct")
@@ -731,7 +760,40 @@
 
 			priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "Alamo Captured", color_override = "orange")
 			infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
+			stop_takeoff_alarm()
 			return
+
+/// Starts the takeoff alarm (wrapper to keep effects under control)
+/obj/machinery/computer/shuttle/marine_dropship/proc/start_takeoff_alarm()
+	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
+	if(!shuttle)
+		return
+	shuttle.alarm_sound_loop?.start()
+	shuttle.playing_takeoff_alarm = TRUE
+	shuttle.alarm_autoshutoff_timerid = addtimer(CALLBACK(src, PROC_REF(alarm_autoshutoff)), 90 SECONDS, TIMER_STOPPABLE)
+
+/// Stops the takeoff alarm (wrapper to keep effects under control)
+/obj/machinery/computer/shuttle/marine_dropship/proc/stop_takeoff_alarm(kill_timer = TRUE)
+	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
+	if(!shuttle)
+		return
+	shuttle.alarm_sound_loop?.stop()
+	shuttle.playing_takeoff_alarm = FALSE
+	if(kill_timer)
+		deltimer(shuttle.alarm_autoshutoff_timerid)
+
+/// Turn off the linked shuttle's alarm sound loop after a period of inactivity
+/obj/machinery/computer/shuttle/marine_dropship/proc/alarm_autoshutoff()
+	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
+	if(!shuttle)
+		return
+	stop_takeoff_alarm(FALSE)
+	COOLDOWN_START(shuttle, takeoff_alarm_announcement_stop, 60 SECONDS)
+	minor_announce(
+		title = "Dropship Takeoff Alarm Disabled",
+		message = "The Alamo takeoff alarm has been automatically disabled.",
+		should_play_sound = FALSE,
+	)
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
@@ -743,8 +805,13 @@
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
-	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", title = "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/hijack.ogg', color_override = "red")
-	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
+	priority_announce(
+		type = ANNOUNCEMENT_PRIORITY,
+		title = "Critical Dropship Alert",
+		message = "Unscheduled dropship departure detected from operational area. Hijack likely.",
+		sound = 'sound/AI/hijack.ogg',
+		color_override = "red")
+	to_chat(user, span_userdanger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	crashing_dropship.silicon_lock_airlocks(TRUE)
