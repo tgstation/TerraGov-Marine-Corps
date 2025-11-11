@@ -198,6 +198,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	if(!(LAZYLEN(buckled_mobs) || LAZYLEN(contents)))
 		return
 	if(SSticker?.mode?.round_type_flags & MODE_ALAMO_ONLY)
+		to_chat(user, span_warning("Drop pods are not usable in this operation."))
 		return
 	#ifndef TESTING
 	if(!operation_started)
