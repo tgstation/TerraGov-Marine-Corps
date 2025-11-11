@@ -221,7 +221,8 @@ SUBSYSTEM_DEF(vote)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:End round vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.", sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN), TRUE)
-
+			if(!("Democracy" in SSticker.mode.round_end_states))
+				SSticker.mode.round_end_states.Insert(1, "Democracy")
 
 
 /// Register the vote of one player
