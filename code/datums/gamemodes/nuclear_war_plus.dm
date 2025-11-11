@@ -35,3 +35,5 @@
 		/datum/job/xenomorph/corrupted = FREE_XENO_AT_START_CORRUPT,
 		/datum/job/xenomorph/queen = 1
 	)
+	factions = list(FACTION_TERRAGOV, FACTION_XENO, FACTION_CLF)
+	human_factions = list(FACTION_TERRAGOV, FACTION_CLF)
