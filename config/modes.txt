@@ -12,6 +12,17 @@ endmode
 
 mode Sovl War
 	requiredplayers 12
+	votable 1
+endmode
+
+mode Nuclear War Plus
+	requiredplayers 8
+	votable 1
+endmode
+
+mode Sovl War Plus
+	requiredplayers 12
+	votable 1
 endmode
 
 mode Extended
