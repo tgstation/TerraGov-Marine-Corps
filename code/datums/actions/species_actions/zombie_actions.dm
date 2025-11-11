@@ -18,7 +18,7 @@
 	///radius this smoke grenade will encompass
 	var/smokeradius = 4
 	///The duration of the smoke in 2 second ticks
-	var/smoke_duration = 5
+	var/smoke_duration = 3
 
 /datum/action/ability/emit_gas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
@@ -240,7 +240,7 @@
 	action_icon_state = "spray_acid"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Hurl a glob of bile at your foes."
-	cooldown_duration = 6 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
