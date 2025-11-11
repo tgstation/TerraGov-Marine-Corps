@@ -155,9 +155,9 @@
 	var/time_between_cycle = 0
 	///The timer to launch the dropship in automatic mode
 	var/cycle_timer
-	/// The cooldown for a `priority_announcement` when we start the alarm sound loop
+	/// The cooldown for an announcement when we start the alarm sound loop
 	COOLDOWN_DECLARE(takeoff_alarm_announcement_start)
-	/// The cooldown for a `priority_announcement` when we stop the alarm sound loop
+	/// The cooldown for an announcement when we stop the alarm sound loop
 	COOLDOWN_DECLARE(takeoff_alarm_announcement_stop)
 	/// If this dropship is playing the alarm sound loop
 	var/playing_takeoff_alarm = FALSE
