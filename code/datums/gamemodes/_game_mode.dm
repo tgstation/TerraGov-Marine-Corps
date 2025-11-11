@@ -42,7 +42,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
 	 * after the end of the last round with the gamemode type
 	 */
-	var/time_between_round = 0
+	var/time_between_round = 1 HOURS
+	/** group for purpose of time_between_round
+	 */
+	var/time_between_round_group = "GROUP_Combat"
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_XENO)
 	///Factions that are used in this gamemode and which should have human members
@@ -226,6 +229,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	SSdbcore.SetRoundEnd()
 	if(time_between_round)
 		SSpersistence.last_modes_round_date[name] = world.realtime
+		SSpersistence.last_modes_round_date[time_between_round_group] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
