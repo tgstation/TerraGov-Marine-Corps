@@ -5,12 +5,6 @@
 	icon_state = "ebilunboxer_inactive"
 	max_fill_amount = 150
 
-	var/obj/item/factory_part/production_type_antag = /obj/item/factory_part
-
-/obj/machinery/unboxer/syndicate/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	. += "It is currently facing [dir2text(dir)], and is outputting [initial(production_type_antag.name)]. It has [production_amount_left] resources remaining."
-
 /obj/machinery/unboxer/syndicate/update_icon_state()
 	. = ..()
 	if(datum_flags & DF_ISPROCESSING)
@@ -18,22 +12,15 @@
 		return
 	icon_state = "ebilunboxer_inactive"
 
-/obj/machinery/unboxer/syndicate/process()
-	if(production_amount_left <= 0)
-		change_state()
-		return
-	new production_type_antag (get_step(src, dir))
-	production_amount_left--
-
 /obj/machinery/unboxer/syndicate/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!isfactoryrefill(I) || user.a_intent == INTENT_HARM)
 		return ..()
 	var/obj/item/factory_refill/refill = I
-	if(refill.antag_refill_type != production_type_antag)
+	if(refill.antag_refill_type != production_type)
 		if(production_amount_left)
 			balloon_alert(user, "Filler incompatible")
 			return
-		production_type_antag = refill.antag_refill_type
+		production_type = refill.antag_refill_type
 	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
 	production_amount_left += to_refill
 	refill.refill_amount -= to_refill
