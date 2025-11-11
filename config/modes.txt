@@ -11,7 +11,7 @@ mode Nuclear War
 endmode
 
 mode Sovl War
-	requiredplayers 2
+	requiredplayers 12
 endmode
 
 mode Extended
