@@ -1,0 +1,34 @@
+/datum/game_mode/infestation/sovl_war/plus
+	name = "Sovl War Plus"
+	config_tag = "Sovl War Plus"
+	valid_job_types = list(
+		/datum/job/terragov/command/captain = 1,
+		/datum/job/terragov/command/fieldcommander = 1,
+		/datum/job/terragov/command/staffofficer = 4,
+		/datum/job/terragov/command/pilot = 1,
+		/datum/job/terragov/engineering/chief = 1,
+		/datum/job/terragov/engineering/tech = 2,
+		/datum/job/terragov/requisitions/officer = 1,
+		/datum/job/terragov/medical/professor = 1,
+		/datum/job/terragov/medical/medicalofficer = 4,
+		/datum/job/terragov/medical/researcher = 2,
+		/datum/job/terragov/civilian/liaison = 2,
+		/datum/job/terragov/silicon/synthetic = 1,
+		/datum/job/terragov/command/transport_crewman = 1,
+		/datum/job/terragov/silicon/ai = 1,
+		/datum/job/terragov/squad/engineer = 1,
+		/datum/job/terragov/squad/corpsman = 1,
+		/datum/job/terragov/squad/smartgunner = 1,
+		/datum/job/terragov/squad/specialist = 1,
+		/datum/job/terragov/squad/leader = 1,
+		/datum/job/terragov/squad/standard = -1,
+		/datum/job/clf/breeder = -1,
+		/datum/job/clf/standard = -1,
+		/datum/job/clf/medic = 2,
+		/datum/job/clf/specialist = 1,
+		/datum/job/clf/tech = 2,
+		/datum/job/clf/leader = 1,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
+		/datum/job/xenomorph/corrupted = FREE_XENO_AT_START_CORRUPT,
+		/datum/job/xenomorph/queen = 1
+	)
