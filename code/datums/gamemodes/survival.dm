@@ -86,7 +86,7 @@
 	if(world.time < (SSticker.round_start_time + 5 MINUTES))
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD| COUNT_CLF_TOWARDS_XENOS | COUNT_GREENOS_TOWARDS_MARINES )
 	var/num_humans = living_player_list[1]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/num_xenos = xeno_job.total_positions

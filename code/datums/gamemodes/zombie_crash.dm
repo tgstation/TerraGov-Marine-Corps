@@ -99,7 +99,7 @@
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD| COUNT_GREENOS_TOWARDS_MARINES )
 	var/num_humans = living_player_list[1]
 	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
