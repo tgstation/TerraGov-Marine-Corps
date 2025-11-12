@@ -12,7 +12,14 @@ SUBSYSTEM_DEF(silo)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
-	var/active_humans = length(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"])
+	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
+	var/active_humans = length(GLOB.humans_by_zlevel["[current_z]"])
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(tank.z != current_z)
+			continue
+		if(tank.armored_flags & ARMORED_IS_WRECK)
+			continue
+		active_humans += tank.larva_value
 	for(var/hivenumber in GLOB.hive_datums)
 		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 		var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
@@ -30,7 +37,7 @@ SUBSYSTEM_DEF(silo)
 		current_larva_spawn_rate *= SSmonitor.gamestate == SHIPSIDE ? 3 : 1
 		current_larva_spawn_rate *= SSticker.mode.silo_scaling
 		//We scale the rate based on the current ratio of humans to xenos
-		var/current_human_to_xeno_ratio = active_xenos ? active_humans / active_xenos : INFINITY
+		var/current_human_to_xeno_ratio = active_humans / max(active_xenos,1)
 		current_larva_spawn_rate *= clamp(current_human_to_xeno_ratio / XENO_MARINE_RATIO , 0.7, 1)
 
 		GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
