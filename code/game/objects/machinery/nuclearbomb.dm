@@ -72,7 +72,7 @@
 ///Handles if the nuke is specifically defused
 /obj/machinery/nuclearbomb/proc/do_defused(mob/user)
 	disable(key_name(user))
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, user)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DEFUSED, src, user)
 
 	user.visible_message(span_boldwarning("[user] disabled the nuke"),
 	"You disabled the nuke.")
