@@ -287,7 +287,9 @@ SUBSYSTEM_DEF(vote)
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
-					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.time_between_round_group]) < mode.time_between_round)
+					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
+						continue
+					if(mode.time_between_round_group && (world.realtime - SSpersistence.last_modes_round_date[mode.time_between_round_group_name]) < mode.time_between_round_group)
 						continue
 					if(players > mode.maximum_players)
 						continue
