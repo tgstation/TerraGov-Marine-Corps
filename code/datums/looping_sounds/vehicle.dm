@@ -21,3 +21,6 @@
 /datum/looping_sound/looping_launch_announcement_alarm
 	mid_length = 2 SECONDS
 	mid_sounds = list('sound/misc/ds_signalled_alarm.ogg' = 1)
+
+/datum/looping_sound/looping_launch_announcement_alarm/tadpole
+	range = 11 // 1-2.5 screends based on tadpole size

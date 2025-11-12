@@ -112,8 +112,14 @@ const NormalOperation = (props) => {
       </Section>
       <Section title="Additional Controls">
         <LabeledList>
-          <LabeledList.Item label="Takeoff Alarm" labelColor="red">
-            <Button onClick={() => act('signal_departure')} color="red">
+          <LabeledList.Item
+            label="Takeoff Alarm"
+            labelColor={data.takeoff_alarm ? 'red' : 'yellow'}
+          >
+            <Button
+              onClick={() => act('signal_departure')}
+              color={data.takeoff_alarm ? 'red' : 'yellow'}
+            >
               {data.takeoff_alarm ? 'Stop' : 'Start'}
             </Button>
             <Icon ml="5px" name="circle-info" color="grey" />
