@@ -69,6 +69,14 @@
 	message_admins("[reason] has enabled the nuke at [ADMIN_VERBOSEJMP(src)]")
 	global_rally_zombies(src, TRUE)
 
+///Handles if the nuke is specifically defused
+/obj/machinery/nuclearbomb/proc/do_defused(mob/user)
+	disable(key_name(user))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, user)
+
+	user.visible_message(span_boldwarning("[user] disabled the nuke"),
+	"You disabled the nuke.")
+
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable(reason)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
@@ -106,13 +114,6 @@
 	anchored = FALSE
 	if(timer_enabled)
 		disable("Alamo hijack")
-
-/obj/machinery/nuclearbomb/proc/do_defused(mob/user)
-	disable(key_name(user))
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, user)
-
-	user.visible_message(span_boldwarning("[user] disabled the nuke"),
-	"You disabled the nuke.")
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
