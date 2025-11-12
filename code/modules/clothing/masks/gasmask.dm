@@ -66,7 +66,7 @@
 
 /obj/item/clothing/mask/gas/pmc/leader
 	name = "\improper M8 pattern armored balaclava"
-	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
+	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. Additionally has soft white syntethic edge for face cutout, you definetly will not get cold with this one."
 	icon_state = "officer_mask"
 
 /obj/item/clothing/mask/gas/wolves

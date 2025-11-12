@@ -301,7 +301,7 @@
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
-			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = owner)
 			if(QDELETED(crushed_living))
 				charger.visible_message(span_danger("[charger] annihilates [preserved_name]!"),
 				span_xenodanger("We annihilate [preserved_name]!"))

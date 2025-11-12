@@ -125,7 +125,7 @@
 		return
 
 	if(!xeno_owner.check_weeds(turf_to_teleport_to, TRUE))
-		owner.balloon_alert(owner, "No weeds in selected location")
+		owner.balloon_alert(owner, "no weeds in selected location!")
 		return
 	if(!(xeno_owner.status_flags & INCORPOREAL) && isxenohivemind(xeno_owner))
 		var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = xeno_owner
@@ -150,7 +150,7 @@
 		return
 	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "no xeno artillery found")
+			xeno_owner.balloon_alert(xeno_owner, "no xeno artillery found!")
 		return FALSE
 	if(!selected_artillery || QDELING(selected_artillery))
 		if(!silent)
@@ -177,7 +177,7 @@
 		return
 	if(length(GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber]) == 1)
 		selected_artillery = GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber][1]
-		xeno_owner.balloon_alert(xeno_owner, "artillery selected!")
+		xeno_owner.balloon_alert(xeno_owner, "artillery selected")
 		update_button_icon()
 		return
 	INVOKE_ASYNC(src, PROC_REF(select_artillery_from_input_list))
@@ -186,5 +186,5 @@
 	selected_artillery = tgui_input_list(xeno_owner, "Which artillery to use?", "Artillery List",  GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
 	if(!selected_artillery)
 		return
-	xeno_owner.balloon_alert(xeno_owner, "artillery selected!")
+	xeno_owner.balloon_alert(xeno_owner, "artillery selected")
 	update_button_icon()

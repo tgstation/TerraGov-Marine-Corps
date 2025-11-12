@@ -1,7 +1,5 @@
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#define ismovableatom(A) ismovable(A)
-
 #define isatom(A) (isloc(A))
 
 #define isclient(A) (istype(A, /client))
@@ -316,6 +314,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isresinjelly(A) (istype(A, /obj/item/resin_jelly))
 
+#define isfacehugger(A) (istype(A, /obj/item/clothing/mask/facehugger))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
@@ -335,10 +335,13 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 //Gamemode
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
+#define iszombiecrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash/zombie))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 #define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol))
 #define issensorcapturegamemode(O) (istype(O, /datum/game_mode/hvh/combat_patrol/sensor_capture))
 #define iscampaigngamemode(O) (istype(O, /datum/game_mode/hvh/campaign))
+///is a campaign destruction objective
+#define isdestroobjective(O) (istype(O, /obj/structure/campaign_objective/destruction_objective))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

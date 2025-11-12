@@ -1560,6 +1560,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "bPP" = (
@@ -2189,7 +2190,6 @@
 /area/mainship/hull/lower_hull)
 "cLc" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -3429,15 +3429,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"eho" = (
-/obj/effect/ai_node,
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/white{
-	dir = 4
-	},
-/area/mainship/living/pilotbunks)
 "ehJ" = (
 /turf/open/floor/plating,
 /area/mainship/shipboard/firing_range)
@@ -4248,11 +4239,6 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
-"fiq" = (
-/obj/structure/closet/secure_closet/pilot_officer,
-/obj/effect/ai_node,
-/turf/open/floor/wood,
-/area/mainship/living/pilotbunks)
 "fku" = (
 /obj/effect/ai_node,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -7946,12 +7932,9 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "kcC" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/pilotbunks)
 "kcJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10063,6 +10046,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "mwj" = (
@@ -11234,6 +11218,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "nPF" = (
@@ -43588,7 +43573,7 @@ eWJ
 kLK
 kLK
 kLK
-kcC
+amE
 rKn
 vZa
 rKn
@@ -44578,7 +44563,7 @@ xSb
 wFY
 rSA
 gZf
-xzF
+nbC
 yjx
 giW
 tMy
@@ -55089,7 +55074,7 @@ izJ
 fmN
 fmN
 fmN
-fmN
+izJ
 ecb
 fmN
 fmN
@@ -56374,7 +56359,7 @@ rKn
 fAP
 vPH
 scb
-vPH
+kcC
 vPH
 jDG
 gKG
@@ -57146,11 +57131,11 @@ hvY
 mFy
 cLc
 dTj
-eho
+mFy
 abX
 vou
 nIj
-fiq
+mds
 vou
 vXQ
 xQB

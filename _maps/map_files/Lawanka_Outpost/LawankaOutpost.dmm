@@ -1694,6 +1694,10 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/hydroponics)
+"buJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/full,
+/area/lawankaoutpost/colony/hydroponics)
 "buU" = (
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
 	dir = 8
@@ -5295,6 +5299,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/southeast)
 "eur" = (
@@ -27532,6 +27537,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/southeast)
 "wwK" = (
@@ -57712,7 +57718,7 @@ fTV
 dkO
 eSx
 dkO
-dkO
+bUA
 dkO
 aMU
 dkO
@@ -57760,7 +57766,7 @@ wIV
 gtK
 rfn
 gtK
-mCO
+buJ
 rkw
 rCJ
 wIV
@@ -76644,7 +76650,7 @@ wEk
 wEk
 hYh
 wEk
-wEk
+hYh
 wEk
 wEk
 wEk

@@ -89,6 +89,12 @@
 /datum/ai_behavior/spiderling/set_escort()
 	return FALSE //we don't automatically reset our escort
 
+/datum/ai_behavior/spiderling/should_hold()
+	//We don't move if we're riding mum
+	if(current_action == ESCORTING_ATOM && (mob_parent.buckled = escorted_atom))
+		return TRUE
+	return ..()
+
 /// Decides what to do when widow uses spiderling mark ability
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
 	SIGNAL_HANDLER

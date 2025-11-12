@@ -344,10 +344,16 @@
 
 /obj/machinery/door/airlock/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
-	if(. && is_mainship_level(z)) //log shipside greytiders
-		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
-		if(SSmonitor.gamestate != SHIPSIDE)
-			msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
+	if(!.)
+		return
+	if(!is_mainship_level(z))
+		return
+	if(!proj.firer)
+		return
+	//log shipside greytiders
+	log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
+	if(SSmonitor.gamestate != SHIPSIDE)
+		msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attacked_by(obj/item/I, mob/living/user, def_zone)
 	. = ..()

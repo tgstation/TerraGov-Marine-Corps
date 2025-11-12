@@ -74,6 +74,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
 		/datum/campaign_mission/capture_mission/asat = 12,
 		/datum/campaign_mission/raiding_base/som = 6,
+		/datum/campaign_mission/destroy_mission/airbase/som = 12,
 	),
 ))
 

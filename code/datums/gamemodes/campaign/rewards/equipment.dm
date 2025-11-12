@@ -321,3 +321,20 @@
 	equipment_to_spawn = list(
 		/obj/item/binoculars/fire_support/campaign/som,
 	)
+
+/datum/campaign_asset/equipment/bike
+	name = "Assault bike"
+	desc = "A rugged assault bike"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a rugged two seater assault bike, available at your request. Provided excellent mobility and firepower."
+	ui_icon = "light_mech"
+	uses = 1
+	equipment_to_spawn = list(/obj/vehicle/ridden/big_bike)
+
+/datum/campaign_asset/equipment/som_bike
+	name = "Hover bike"
+	desc = "A powerful hover bike"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a sophisticated 2 seater hover bike, available at your request. Provided excellent mobility and firepower."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
+	ui_icon = "light_mech"
+	uses = 1
+	equipment_to_spawn = list(/obj/vehicle/ridden/hover_bike)

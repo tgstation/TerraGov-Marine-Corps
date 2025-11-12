@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
 	if(!pipes || !length(pipes))
-		balloon_alert(src, "No pipes in range!")
+		balloon_alert(src, "no pipes in range!")
 		return
 	if(length(pipes) == 1)
 		pipe = pipes[1]

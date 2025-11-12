@@ -190,7 +190,7 @@
 			coverlocked = FALSE
 			crowbar_act(interactor, crowbar)
 		if(cell)
-			balloon_alert_to_viewers("Removes [cell] from [src]")
+			balloon_alert_to_viewers("removes [cell]")
 			interactor.put_in_hands(cell)
 			cell.update_appearance()
 			set_cell(null)
@@ -327,6 +327,15 @@
 		return null
 	return 0
 
+/obj/item/clothing/mask/facehugger/get_ai_hazard_radius(mob/living/victim)
+	if(stat == DEAD)
+		return null
+	if(!isturf(loc))
+		return null
+	if(!victim.can_be_facehugged(src))
+		return null
+	return leap_range
+
 //Obstacle handling
 ///Handles the obstacle or tells AI behavior how to interact with it
 /obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???
@@ -355,7 +364,7 @@
 		return
 	if(. == AI_OBSTACLE_JUMP)
 		return //jumping is always best
-	if(!climbable)
+	if(!can_climb(user))
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 	return AI_OBSTACLE_RESOLVED

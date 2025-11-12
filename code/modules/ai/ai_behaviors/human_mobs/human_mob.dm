@@ -140,6 +140,8 @@
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_SHRAP_REMOVING))
+		return TRUE
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return TRUE //lets players wrangle NPC's
 	return FALSE
@@ -209,8 +211,7 @@
 	if(prob(50))
 		try_speak(pick(new_target_chat))
 	set_run()
-	if(gun)
-		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
+	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))

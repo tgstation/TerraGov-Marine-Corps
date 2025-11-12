@@ -66,6 +66,6 @@
 /mob/living/point_to(atom/pointed_atom as mob|obj|turf in view(client.view, src))
 	if(!..())
 		return FALSE
-	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH))
+	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return FALSE
 	visible_message(span_infoplain("[span_name("[src]")] points at [pointed_atom]."), span_notice("You point at [pointed_atom]."))

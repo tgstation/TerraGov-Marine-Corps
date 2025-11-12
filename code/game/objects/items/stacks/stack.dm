@@ -279,16 +279,16 @@
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(!isopenturf(dest_turf))
-			builder.balloon_alert(builder, "cannot be made on a wall!")
+			builder.balloon_alert(builder, "can't be made on a wall!")
 			return FALSE
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
-			builder.balloon_alert(builder, "cant build here!")
+			builder.balloon_alert(builder, "can't build here!")
 			return FALSE
 
 	var/area/area = get_area(dest_turf)
 	if(area.area_flags & NO_CONSTRUCTION)
-		builder.balloon_alert(builder, "cannot be made in this area!")
+		builder.balloon_alert(builder, "can't be made in this area!")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)

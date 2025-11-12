@@ -61,7 +61,7 @@
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	purchase_cost = 25
-	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
+	item_typepath = /obj/item/weapon/gun/shotgun/som/back_slot
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 

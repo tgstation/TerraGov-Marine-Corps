@@ -383,17 +383,13 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(!has_working_organs())
-		on_fire = TRUE
-		fire_stacks = 15
-		update_fire()
-		QDEL_IN(src, 1 MINUTES)
+	if(!species.can_revive_to_crit(src))
 		return
 	if(health > 0)
 		return
 	var/mob/dead/observer/ghost = get_ghost()
 	if(istype(ghost))
-		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
 	do_jitter_animation(1000)
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))
@@ -404,11 +400,7 @@
 
 ///Check if we have a mind, and finish the revive if we do
 /mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(!has_working_organs())
-		on_fire = TRUE
-		fire_stacks = 15
-		update_icon()
-		QDEL_IN(src, 1 MINUTES)
+	if(!species.can_revive_to_crit(src))
 		return
 	do_jitter_animation(1000)
 	if(!client)
@@ -416,17 +408,13 @@
 			offer_mob()
 			addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
 			return
-		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-		if(should_zombify || istype(species, /datum/species/zombie))
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
-			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Strong zombie")
-		faction = FACTION_ZOMBIE
-	heal_limbs(- health)
+		if(!iszombie(src))
+			set_species("Strong zombie")
+		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling)
+	heal_limbs(-health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
-

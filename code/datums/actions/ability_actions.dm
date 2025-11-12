@@ -60,43 +60,43 @@
 
 	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_finished())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
+			carbon_owner.balloon_alert(carbon_owner, "wait [cooldown_remaining()] seconds!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
+			carbon_owner.balloon_alert(carbon_owner, "incapacitated!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
+			carbon_owner.balloon_alert(carbon_owner, "lying down!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
+			carbon_owner.balloon_alert(carbon_owner, "buckled!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
+			carbon_owner.balloon_alert(carbon_owner, "staggered!")
 		return FALSE
 
 
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
+			carbon_owner.balloon_alert(carbon_owner, "not right here!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
+			carbon_owner.balloon_alert(carbon_owner, "busy!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
+			carbon_owner.balloon_alert(carbon_owner, "burrowed!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))

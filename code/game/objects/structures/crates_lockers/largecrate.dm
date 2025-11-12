@@ -12,7 +12,7 @@
 	allow_pass_flags = PASSABLE|PASS_WALKOVER|PASS_LOW_STRUCTURE
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 

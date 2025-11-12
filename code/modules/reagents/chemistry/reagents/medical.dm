@@ -422,7 +422,7 @@
 			E.take_damage(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/dylovene/ai_should_use(mob/living/target, inject_vol)
-	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+	if(target.reagents.get_reagent_amount(type) > 5) //it has downsides so lets not spam it
 		return FALSE
 	return ..()
 
@@ -967,7 +967,7 @@
 	if(prob(10))
 		to_chat(L, span_warning("[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustStaminaLoss(35)
 		L.Stun(2 SECONDS)
 	if(prob(20))
@@ -978,7 +978,7 @@
 	if(prob(10))
 		to_chat(L, span_warning("[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(3 SECONDS)
 	if(prob(20))
 		L.hallucination += 20
@@ -990,7 +990,7 @@
 	if(prob(10))
 		to_chat(L, span_danger("[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]"))
 	if(prob(5))
-		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
+		L.emote("me", EMOTE_TYPE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.Stun(8 SECONDS)
 		L.do_jitter_animation(200)
 	if(prob(20))
@@ -1497,3 +1497,55 @@
 /datum/reagent/medicine/regrow/overdose_crit_process(mob/living/L, metabolism)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
 	L.apply_damages(effect_str, effect_str, effect_str * 4)
+
+/datum/reagent/medicine/experimental_medical_salve
+	name = "Experimental Medical Salve"
+	description = "A new drug made by BioCourse Pharmaceuticals. Quickly restores health and stamina initially, then lesser healing before purging itself."
+	color = COLOR_REAGENT_EMSALVE
+	custom_metabolism = REAGENTS_METABOLISM * 0.1 //since it purges itself this prevents people from using one unit to spam the early healing
+	reagent_ui_priority = REAGENT_UI_UNIQUE
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/reagent/medicine/experimental_medical_salve/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
+	if(!(method in list(TOUCH, VAPOR)))
+		return
+	return ..()
+
+/datum/reagent/medicine/experimental_medical_salve/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier += PAIN_REDUCTION_HEAVY
+	switch(current_cycle)
+		if(1 to 5) // big burst of healing + stamina initially
+			if(!particle_holder)
+				particle_holder = new(L, /particles/healing_cross)
+			L.heal_overall_damage(4*effect_str, 4*effect_str)
+			L.adjustStaminaLoss(-4*effect_str)
+		if(6 to 25) // smaller gradual healing
+			L.heal_overall_damage(1.5*effect_str, 1.5*effect_str)
+		if(26 to INFINITY) // purges itself quickly
+			if(particle_holder)
+				qdel(particle_holder)
+				particle_holder = null
+			holder.remove_reagent(/datum/reagent/medicine/experimental_medical_salve, 10)
+	return ..()
+
+/datum/reagent/medicine/experimental_medical_salve/on_mob_delete(mob/living/L, metabolism)
+	if(particle_holder)
+		qdel(particle_holder)
+		particle_holder = null
+	return ..()
+
+/particles/healing_cross
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "cross"
+	width = 500
+	height = 500
+	count = 10
+	spawning = 1
+	gravity = list(0, 0.1)
+	color = LIGHT_COLOR_WHITE
+	lifespan = 13
+	fade = 5
+	fadein = 5
+	friction = generator(GEN_NUM, 0.1, 0.15)
+	position = generator(GEN_SQUARE, 0, 16)

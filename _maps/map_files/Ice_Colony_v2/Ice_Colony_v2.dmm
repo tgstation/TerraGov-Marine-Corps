@@ -27481,6 +27481,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/security/hallway)
+"pWh" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/underground/caves/ice_se)
 "pWo" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/wood,
@@ -67579,11 +67584,11 @@ nWj
 uSg
 bTp
 vZw
-vZw
+pWh
 bTp
 bTp
 nWj
-trX
+sWT
 nWj
 uSg
 qFy
@@ -68847,7 +68852,7 @@ lfF
 biy
 uSg
 uSg
-trX
+sWT
 nWj
 trX
 tro

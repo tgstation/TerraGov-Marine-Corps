@@ -12,8 +12,7 @@
 	name = "Shrapnel"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
-	accuracy_var_high = 5
+	accuracy_variation = 10
 	max_range = 6
 	damage = 30
 	penetration = 20

@@ -58,11 +58,14 @@
 	volume = 10
 
 /datum/looping_sound/som_tank_drive
+	mid_sounds = list(
+		'sound/vehicles/hover_tank/hover_1.ogg'=1,
+		'sound/vehicles/hover_tank/hover_2.ogg'=1,
+		'sound/vehicles/hover_tank/hover_3.ogg'=1,
+		'sound/vehicles/hover_tank/hover_4.ogg'=1,
+	)
 	mid_length = 12
 	volume = 50
-
-/datum/looping_sound/som_tank_drive/get_sound(starttime, _mid_sounds)
-	return get_sfx(SFX_HOVER_TANK)
 
 /datum/looping_sound/som_tank_drive_interior
 	mid_sounds = list(

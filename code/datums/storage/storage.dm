@@ -849,14 +849,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
-		user.balloon_alert(user, "[refiller] is empty.")
+		user.balloon_alert(user, "refilling container is empty!")
 		return
 
 	if(!can_be_inserted(refiller.contents[1], user))
-		user.balloon_alert(user, "[parent.name] is full.")
+		user.balloon_alert(user, "receiving container is full!")
 		return
 
-	user.balloon_alert(user, "Refilling.")
+	user.balloon_alert(user, "refilling...")
 
 	if(!do_after(user, 1.5 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 		return
@@ -1025,7 +1025,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!ishuman(user) || user.incapacitated())
 		return
 	if(!length(parent.contents))
-		return user.balloon_alert(user, "Empty")
+		return user.balloon_alert(user, "empty!")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents

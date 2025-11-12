@@ -32,3 +32,51 @@
 	name = "carp delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
+
+/obj/item/explosive/grenade/human_spawner
+	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the vicinity."
+	name = "delivery grenade"
+	icon_state = "delivery"
+	worn_icon_state = "flashbang"
+	///List of jobs that are spawned by this item
+	var/list/job_list
+
+/obj/item/explosive/grenade/human_spawner/prime()
+	var/turf/spawn_loc = get_turf(src)
+	if(!spawn_loc)
+		qdel(src)
+		return
+	spawn_npc_squad(spawn_loc, job_list)
+	qdel(src)
+
+/obj/item/explosive/grenade/human_spawner/marine
+	job_list = list(
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/standard/npc,
+	)
+
+/obj/item/explosive/grenade/human_spawner/marine/Initialize(mapload)
+	job_list += pickweight(list(
+		/datum/job/terragov/squad/standard/npc = 20,
+		/datum/job/terragov/squad/engineer/npc = 30,
+		/datum/job/terragov/squad/corpsman/npc = 30,
+		/datum/job/terragov/squad/smartgunner/npc = 20,
+		/datum/job/terragov/squad/leader/npc = 10,
+	))
+	return ..()
+
+/obj/item/explosive/grenade/human_spawner/som
+	job_list = list(
+		/datum/job/som/ert/standard,
+		/datum/job/som/ert/standard,
+	)
+
+/obj/item/explosive/grenade/human_spawner/som/Initialize(mapload)
+	job_list += pickweight(list(
+		/datum/job/som/ert/standard = 20,
+		/datum/job/som/ert/medic = 30,
+		/datum/job/som/ert/veteran = 30,
+		/datum/job/som/ert/specialist = 20,
+		/datum/job/som/ert/leader = 10,
+	))
+	return ..()

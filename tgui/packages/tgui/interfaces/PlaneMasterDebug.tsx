@@ -782,8 +782,9 @@ const PlaneWindow = (props) => {
           maxValue={255}
           step={1}
           stepPixelSize={1.9}
-          onDrag={setAlpha}
-          onChange={setAlpha}
+          onChange={(_event, value) =>
+            act('set_alpha', { edit: workingPlane.plane, alpha: value })
+          }
         >
           Alpha ({workingPlane.alpha})
         </Slider>

@@ -16,7 +16,7 @@
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list(), spawn_empty = FALSE)
 	. = ..()
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -34,6 +34,9 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
+			if(ispath(starting_attachment_type, /obj/item/weapon/gun))
+				attach_without_user(attachment = new starting_attachment_type(parent_object, spawn_empty))
+				continue
 			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()

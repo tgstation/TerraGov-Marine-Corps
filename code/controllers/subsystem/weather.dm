@@ -88,6 +88,12 @@ SUBSYSTEM_DEF(weather)
 	eligible_zlevels[z] = possible_weather
 	next_hit_by_zlevel["[z]"] = null
 
+///Removes a z level from the weather SS
+/datum/controller/subsystem/weather/proc/remove_eligible(z)
+	eligible_zlevels -= "[z]"
+	deltimer(next_hit_by_zlevel["[z]"])
+	next_hit_by_zlevel -= "[z]"
+
 /datum/controller/subsystem/weather/proc/get_weather(z, area/active_area)
 	var/datum/weather/A
 	for(var/V in processing)

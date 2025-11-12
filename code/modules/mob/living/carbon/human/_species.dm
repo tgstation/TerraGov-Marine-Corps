@@ -281,6 +281,12 @@
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
 
+///Called in revival procs, useful for special species behaviour like zombie revival
+/datum/species/proc/can_revive_to_crit(mob/living/carbon/human/H)
+	if(H.has_working_organs())
+		return TRUE
+	return FALSE
+
 ///Called on Life(), used for special behavior when the carbon human with this species is alive
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
@@ -494,7 +500,7 @@
 		equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker, mob/living/carbon/human/victim)
 	var/datum/limb/organ = null
 	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
 		organ = def_zone

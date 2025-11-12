@@ -27,6 +27,9 @@
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
+/datum/action/minimap/lone
+	minimap_flags = MINIMAP_FLAG_LONE
+
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

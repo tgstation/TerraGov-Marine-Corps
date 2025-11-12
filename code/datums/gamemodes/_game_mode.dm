@@ -588,6 +588,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.faction == FACTION_XENO)
 				continue
+			if(H.faction == FACTION_ZOMBIE)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -1007,13 +1009,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
 	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
 		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
-	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+	for(var/obj/machinery/computer/disk_generator AS in GLOB.nuke_disk_generator_types)
 		var/spawn_loc
 		if(length(forced_disks))
 			spawn_loc = pick_n_take(forced_disks)
 		else
 			spawn_loc = pick_n_take(viable_disks)
-		new nuke_disk_generator(get_turf(spawn_loc))
+		new disk_generator(get_turf(spawn_loc))
 		qdel(spawn_loc)
 
 /// Add gamemode related items to statpanel

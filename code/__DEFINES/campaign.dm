@@ -53,9 +53,10 @@
 #define MISSION_DEFENDING_FACTION "mission_defending_faction"
 
 #define MISSION_DISALLOW_DROPPODS (1<<0)
-#define MISSION_DISALLOW_FIRESUPPORT (1<<1)
+#define MISSION_DISALLOW_MORTAR (1<<1)
 #define MISSION_CRITICAL (1<<2)
 #define MISSION_DISALLOW_TELEPORT (1<<3)
+#define MISSION_DISALLOW_CAS (1<<4)
 
 #define MISSION_CODE_BLUE "blue"
 #define MISSION_CODE_RED "red"
@@ -63,3 +64,10 @@
 
 ///Pauses campaign mission timer
 #define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"
+
+///Objective is disabled
+#define CAMPAIGN_OBJECTIVE_DISABLED (1<<0)
+///qdels when disabled
+#define CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE (1<<1)
+///Explodes when disabled
+#define CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE (1<<2)

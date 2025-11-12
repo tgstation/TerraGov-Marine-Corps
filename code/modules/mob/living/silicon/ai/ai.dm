@@ -357,7 +357,7 @@
 	if(istype(new_eye, /obj/machinery/camera))
 		current = new_eye
 	if(client)
-		if(ismovableatom(new_eye))
+		if(ismovable(new_eye))
 			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE

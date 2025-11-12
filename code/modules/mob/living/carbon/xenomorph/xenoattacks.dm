@@ -8,12 +8,12 @@
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)
 			M.do_attack_animation(src)
-			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
+			S.emote("me", EMOTE_TYPE_VISIBLE, "[S.friendly] [src]")
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[S] [S.attacktext] [src]!"), null, null, 5)
 			var/damage = S.melee_damage
-			apply_damage(damage, BRUTE, blocked = MELEE)
+			apply_damage(damage, BRUTE, blocked = MELEE, attacker = M)
 			UPDATEHEALTH(src)
 			log_combat(S, src, "attacked")
 
@@ -64,7 +64,7 @@
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
 			visible_message(span_danger("[H] [pick(attack.attack_verb)] [src]!"), null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = user)
 
 
 //Hot hot Aliens on Aliens action.

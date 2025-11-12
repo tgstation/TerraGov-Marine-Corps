@@ -25,6 +25,9 @@
 	. = ..()
 	if(bioscan_interval)
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)
 		weed_type = pickweight(GLOB.weed_prob_list)
