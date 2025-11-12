@@ -125,7 +125,7 @@
 	"Starts slashing at the nuke.")
 	if(!do_after(zombie, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
-	do_defused(zombie)
+	do_defuse(zombie)
 
 /mob/living/carbon/human/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(stat == DEAD)
