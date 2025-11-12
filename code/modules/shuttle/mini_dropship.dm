@@ -309,9 +309,9 @@
 		if("takeoff_alarm")
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
 			if(!shuttle.playing_takeoff_alarm)
-				shuttle.start_takeoff_alarm(usr, FALSE)
+				. = shuttle.start_takeoff_alarm(usr, FALSE) // will fast-track a UI update if successful
 			else
-				shuttle.stop_takeoff_alarm(usr, FALSE)
+				. = shuttle.stop_takeoff_alarm(usr, FALSE)
 		if("equip_interact")
 			var/base_tag = text2num(params["equip_interact"])
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
