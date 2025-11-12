@@ -28,6 +28,11 @@
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
 
+	if(deployer)
+		faction = deployer.faction
+	else if(new_internal_item.faction)
+		faction = new_internal_item.faction
+
 	prepare_huds()
 	if(istype(deployer))
 		ownerflag = GLOB.faction_to_minimap_flag[deployer.faction] || ownerflag
