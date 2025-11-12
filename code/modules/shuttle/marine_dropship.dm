@@ -164,7 +164,7 @@
 	/// Type to use for `alarm_sound_loop`
 	var/alarm_loop_type = /datum/looping_sound/looping_launch_announcement_alarm
 	/// Looping sound for the takeoff alarm
-	var/datum/looping_sound/looping_launch_announcement_alarm/alarm_sound_loop
+	var/datum/looping_sound/alarm_sound_loop
 	/// The timer ID for the alarm auto-shutoff timer
 	var/alarm_autoshutoff_timerid
 	///If first landing is false intro sequence wont play
