@@ -221,7 +221,8 @@ SUBSYSTEM_DEF(vote)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:End round vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.", sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN), TRUE)
-
+			if(!("Democracy" in SSticker.mode.round_end_states))
+				SSticker.mode.round_end_states.Insert(1, "Democracy")
 
 
 /// Register the vote of one player
@@ -287,6 +288,8 @@ SUBSYSTEM_DEF(vote)
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
+						continue
+					if(mode.time_between_round_group && (world.realtime - SSpersistence.last_modes_round_date[mode.time_between_round_group_name]) < mode.time_between_round_group)
 						continue
 					if(players > mode.maximum_players)
 						continue

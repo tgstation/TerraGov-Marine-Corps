@@ -43,6 +43,14 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	 * after the end of the last round with the gamemode type
 	 */
 	var/time_between_round = 0
+	/** The time between two rounds of this gamemode group. If it's zero, this mode group i always votable.
+	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
+	 * after the end of the last round with the gamemode type
+	 */
+	var/time_between_round_group = 1 HOURS
+	/** group for purpose of time_between_round_group
+	 */
+	var/time_between_round_group_name = "GROUP_Combat"
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_XENO)
 	///Factions that are used in this gamemode and which should have human members
@@ -226,6 +234,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	SSdbcore.SetRoundEnd()
 	if(time_between_round)
 		SSpersistence.last_modes_round_date[name] = world.realtime
+		SSpersistence.last_modes_round_date[time_between_round_group_name] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
@@ -626,12 +635,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
-			if(H.faction == FACTION_XENO)
-				continue
-			if(H.faction == FACTION_ZOMBIE)
-				continue
 			if(isspaceturf(H.loc))
 				continue
+			if(count_flags & COUNT_CLF_TOWARDS_XENOS)
+				if(H.faction == FACTION_CLF)
+					num_xenos += 1/XENO_MARINE_RATIO
+					continue
+			if(count_flags & COUNT_IGNORE_ALTERNATE_FACTION_MARINES)
+				if(H.faction != FACTION_TERRAGOV)
+					continue
+			else
+				if(H.faction == FACTION_XENO)
+					continue
+				if(H.faction == FACTION_ZOMBIE)
+					continue
+
 			num_humans++
 			if (is_mainship_level(z))
 				num_humans_ship++
@@ -654,6 +672,28 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 
 			num_xenos++
+
+	if(count_flags & COUNT_GREENOS_TOWARDS_MARINES)
+		for(var/z in z_levels)
+			for(var/i in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
+				var/mob/living/carbon/xenomorph/X = i
+				if(!istype(X)) // Small fix?
+					continue
+				if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
+					continue
+				if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+					continue
+				if(isspaceturf(X.loc))
+					continue
+				if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+					continue
+				// Never count hivemind
+				if(isxenohivemind(X))
+					continue
+
+			num_humans += XENO_MARINE_RATIO
+			if (is_mainship_level(z))
+				num_humans_ship += XENO_MARINE_RATIO
 
 	return list(num_humans, num_xenos, num_humans_ship)
 

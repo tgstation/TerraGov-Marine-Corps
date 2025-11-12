@@ -208,10 +208,10 @@
 					to_chat(usr, span_warning("The distress beacon is currently recalibrating."))
 					return FALSE
 
-				var/Ship[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+				var/Ship[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP), COUNT_CLF_TOWARDS_XENOS | COUNT_GREENOS_TOWARDS_MARINES )
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/All[] = SSticker.mode.count_humans_and_xenos()
+				var/All[] = SSticker.mode.count_humans_and_xenos(null, COUNT_CLF_TOWARDS_XENOS | COUNT_GREENOS_TOWARDS_MARINES)
 				var/AllMarines[] = All[1]
 				var/AllXenos[] = All[2]
 				if((AllXenos < round(AllMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage

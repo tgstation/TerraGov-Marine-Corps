@@ -1105,7 +1105,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
 
 	// Add extra xenos based on the difference of xenos / marines
-	var/players = SSticker.mode.count_humans_and_xenos()
+	var/players = SSticker.mode.count_humans_and_xenos(null, COUNT_CLF_TOWARDS_XENOS | COUNT_GREENOS_TOWARDS_MARINES)
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
@@ -1125,8 +1125,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] severed connection due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
 		xeno_job.add_job_positions(left_behind)
 	if(difference < 0)
-		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
-			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+		if(xeno_job.total_positions < floor(-difference + xeno_job.current_positions))
+			xeno_job.set_job_positions(floor(-difference + xeno_job.current_positions))
 	update_tier_limits()
 
 /**

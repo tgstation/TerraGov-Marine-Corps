@@ -1,7 +1,7 @@
 ///Base item used in factories, only changes icon and stage for the item then creates a new item when its done
 ///in order to set a recipe set recipe = GLOB.myrecipe in Initialize
 /obj/item/factory_part
-	name = "test part"
+	name = "nothing"
 	desc = "you shouldnt be seeing this"
 	icon = 'icons/obj/factory/factoryparts.dmi'
 	icon_state = "implant_evil"

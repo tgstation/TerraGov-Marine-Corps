@@ -46,6 +46,8 @@
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
+	time_between_round_group = 0
+	time_between_round_group_name = "GROUP_Extended"
 
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
