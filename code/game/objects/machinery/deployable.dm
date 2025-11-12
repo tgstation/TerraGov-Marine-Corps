@@ -29,8 +29,8 @@
 
 	if(deployer)
 		faction = deployer.faction
-	else if(_internal_item.faction)
-		faction = _internal_item.faction
+	else if(new_internal_item.faction)
+		faction = new_internal_item.faction
 
 	prepare_huds()
 	if(istype(deployer))
