@@ -264,7 +264,7 @@
 		return
 	cycle_timer = addtimer(CALLBACK(src, PROC_REF(go_to_previous_destination)), 20 SECONDS, TIMER_STOPPABLE)
 	minor_announce(
-		title = "[src.name] Automatic Departure",
+		title = "[src] Automatic Departure",
 		message = "The [src] will depart towards [previous.name] in 20 seconds.",
 		should_play_sound = FALSE,
 	)
