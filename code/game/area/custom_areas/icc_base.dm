@@ -29,3 +29,7 @@
 /area/antag_ship/icc/medical_room
 	name = "CM Base Medical Room"
 	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+
+/area/antag_ship/icc/requisition
+	name = "CM Base Requisitions"
+	minimap_color = MINIMAP_AREA_REQ
