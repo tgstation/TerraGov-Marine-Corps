@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Autodoc now correctly queues up bone fixing surgery on Automatic mode."
