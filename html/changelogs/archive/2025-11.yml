@@ -60,3 +60,6 @@
   blackdav123:
   - rscadd: Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points
       each.
+2025-11-13:
+  Runian:
+  - bugfix: Autodoc now correctly queues up bone fixing surgery on Automatic mode.
