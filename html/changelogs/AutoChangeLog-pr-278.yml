@@ -1,0 +1,5 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - balance: "Firearm skills no longer magically make your bullets more powerful, now only providing better handling, recoil control and reload speed."
+  - rscadd: "Added a placeholder specialist kit for NTF, the hybrid class, featuring sneaking boots from the infiltrator and thermals from recon, along with a rifle skill pamphlet."
