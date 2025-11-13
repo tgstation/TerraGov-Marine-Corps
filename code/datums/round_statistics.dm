@@ -111,6 +111,10 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/drone_essence_link = 0
 	/// The amount of sunder removed via Essence Link status effect and Salve Regen status effect.
 	var/drone_essence_link_sunder = 0
+	/// The amount of health points restored via Healing Infusion status effect.
+	var/hivelord_healing_infusion = 0
+	/// The amount of sunder removed via Healing Infusion status effect.
+	var/hivelord_healing_infusion_sunder = 0
 	var/warrior_flings = 0
 	var/warrior_punches = 0
 	var/warrior_lunges = 0

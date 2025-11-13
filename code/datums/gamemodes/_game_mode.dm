@@ -490,6 +490,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
 	if(GLOB.round_statistics.drone_essence_link_sunder)
 		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
+	if(GLOB.round_statistics.hivelord_healing_infusion)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion] health points restored through Hivelord's Healing Infusion."
+	if(GLOB.round_statistics.hivelord_healing_infusion_sunder)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion_sunder] sunder removed through Hivelord's Healing Infusion."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
