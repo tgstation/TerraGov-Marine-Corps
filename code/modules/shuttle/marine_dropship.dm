@@ -266,6 +266,7 @@
 	minor_announce(
 		title = "[src] Automatic Departure",
 		message = "The [src] will depart towards [previous.name] in 20 seconds.",
+		receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list),
 		should_play_sound = FALSE,
 	)
 	start_takeoff_alarm(null, FALSE, FALSE, TRUE) // no timer needed, every outcome here stops the alarm anyway
