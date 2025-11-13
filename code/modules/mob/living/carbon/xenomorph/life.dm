@@ -103,7 +103,7 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 20, 1)
 		amount *= regen_power
-	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+	amount *= multiplier * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
 	var/list/heal_data = list(amount, amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data, seconds_per_tick)
