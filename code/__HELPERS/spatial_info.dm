@@ -174,9 +174,9 @@
 		. = list()
 		for(var/atom/movable/target as anything in center_turf)
 			var/list/hearing_contents = target.important_recursive_contents?[contents_type]
-			if(!COOLDOWN_FINISHED(GLOB, null_in_hearers_cooldown) && list_clear_nulls(hearing_contents))
-				stack_trace("null in [logdetails(target)] important_recursive_contents\[[contents_type]\]")
 			if(hearing_contents)
+				if(COOLDOWN_FINISHED(GLOB, null_in_hearers_cooldown) && list_clear_nulls(hearing_contents))
+					stack_trace("null in [logdetails(target)] important_recursive_contents\[[contents_type]\]")
 				. += hearing_contents
 		return
 
