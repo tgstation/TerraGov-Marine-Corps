@@ -51,6 +51,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 0
 	height = 1
 
+/obj/docking_port/stationary/supplyicc
+	id = "supply_icc"
+	roundstart_template = /datum/map_template/shuttle/supplyicc
+	dir = 1
+	width = 1
+	dwidth = 0
+	dheight = 1
+	height = 3
+
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -591,6 +601,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	home_id = "supply_clf"
 	req_access = list(ACCESS_CLF_CARGO)
 
+/obj/machinery/computer/supplycomp/icc
+	shuttle_id = "supplyicc"
+	faction = FACTION_ICC
+	home_id = "supply_icc"
+	req_access = list(ACCESS_ICC_CARGO)
+
 /obj/docking_port/mobile/supply/som
 	dir = 1
 	height = 1
@@ -614,6 +630,18 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	width = 3
 	faction = FACTION_CLF
 	railing_gear_name = "supply_clf"
+
+/obj/docking_port/mobile/supply/icc
+	dir = 2
+	height = 3
+	home_id = "supply_icc"
+	id = "supplyicc"
+	name = "CM supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 1
+	faction = FACTION_ICC
+	railing_gear_name = "supply_icc"
 
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"

@@ -224,6 +224,10 @@
 	shuttle_id = "supplysom"
 	name = "Som Supply Shuttle"
 
+/datum/map_template/shuttle/supplyicc
+	shuttle_id = "supplyicc"
+	name = "CM Supply Shuttle"
+
 /datum/map_template/shuttle/shipelevator
 	shuttle_id = SHUTTLE_SHIPELEVATOR
 	name = "Ship Elevator"

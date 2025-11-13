@@ -1,0 +1,14 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply/icc)
+"b" = (
+/obj/docking_port/mobile/supply/icc,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply/icc)
+
+(1,1,1) = {"
+a
+b
+a
+"}

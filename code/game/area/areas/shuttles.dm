@@ -119,6 +119,9 @@
 /area/shuttle/supply/clf
 	name = "CLF Supply Shuttle"
 
+/area/shuttle/supply/icc
+	name = "CM Supply Shuttle"
+
 /area/shuttle/vehicle_supply
 	name = "Vehicle Supply Shuttle"
 
