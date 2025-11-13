@@ -1,0 +1,5 @@
+author: "Grinch5008"
+delete-after: True
+changes:
+  - rscadd: "A requisitions area for the CM faction with a working elevator"
+  - code_imp: "added a new shuttle map file & edited shuttle.dm and supply.dm"
