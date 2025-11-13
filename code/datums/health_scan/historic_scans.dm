@@ -25,6 +25,7 @@
 	var/list/data
 
 /datum/historic_scan/New(mob/living/carbon/human/patient)
+	. = ..()
 	if(!ishuman(patient))
 		stack_trace("[type] created with an invalid patient")
 		return qdel(src)

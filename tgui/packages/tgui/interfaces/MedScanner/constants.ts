@@ -1,3 +1,5 @@
+import { MedColors, OrganStatuses, RevivableStates, TempLevels } from './data';
+
 // Sizing
 /** Font size for the limit of counters like chem units and organ health */
 export const COUNTER_MAX_SIZE = '75%';
@@ -27,6 +29,61 @@ export const COLOR_DARKER_YELLOW = 'hsl(52, 97%, 40%)';
 export const COLOR_DARKER_ORANGE = 'hsl(24, 89%, 40%)';
 /** Saturation and Luminance for `getLimbColor` */
 export const LIMB_DAMAGE_HSL = {
-  sat: '100%',
-  lum: '62%',
+  hue: 44,
+  sat: 100,
+  lum: 62,
+};
+
+// Mappings
+/** Revivable states tied to colors */
+export const REVIVABLE_STATES_TO_COLORS: Record<RevivableStates, string> = {
+  [RevivableStates.Never]: 'red',
+  [RevivableStates.NotYet]: 'orange',
+  [RevivableStates.Ready]: 'yellow',
+};
+
+/** Temperature levels tied to text colors */
+export const TEMP_LEVELS_TO_DATA: Record<
+  TempLevels,
+  MedColors & { tag: string }
+> = {
+  [TempLevels.OK]: {
+    foreground: 'black',
+    background: 'white',
+    tag: 'OK',
+  },
+  [TempLevels.T1Heat]: {
+    foreground: 'black',
+    background: 'yellow',
+    tag: 'MODERATE',
+  },
+  [TempLevels.T2Heat]: {
+    foreground: 'white',
+    background: 'orange',
+    tag: 'SEVERE',
+  },
+  [TempLevels.T3Heat]: {
+    foreground: 'white',
+    background: 'red',
+    tag: 'CRITICAL',
+  },
+};
+
+/** Organ statuses tied to colors */
+export const ORGAN_STATUSES_TO_COLORS: Record<OrganStatuses, MedColors> = {
+  [OrganStatuses.OK]: {
+    background: 'grey',
+    foreground: 'white',
+    darker: COLOR_MID_GREY,
+  },
+  [OrganStatuses.Bruised]: {
+    background: 'orange',
+    foreground: 'white',
+    darker: COLOR_DARKER_ORANGE,
+  },
+  [OrganStatuses.Broken]: {
+    background: 'red',
+    foreground: 'white',
+    darker: COLOR_DARKER_RED,
+  },
 };
