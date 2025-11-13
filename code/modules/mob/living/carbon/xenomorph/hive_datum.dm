@@ -803,7 +803,6 @@
 	if(living_xeno_ruler) /// Remove the old ruler if T4 or queen is taking over
 		living_xeno_ruler.remove_ruler_abilities()
 		living_xeno_ruler.update_leader_icon(FALSE)
-		living_xeno_ruler.generate_name()
 		UnregisterSignal(living_xeno_ruler, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 
 	var/mob/living/carbon/xenomorph/prev = living_xeno_ruler // ref to the ruler we're replacing
@@ -812,6 +811,7 @@
 	successor.give_ruler_abilities()
 	successor.hud_set_queen_overwatch()
 	if(prev)
+		prev.generate_name()
 		prev.hud_set_queen_overwatch() // we want to remove the ruler star from the previous ruler
 		prev = null // instantly null it
 		successor.update_leader_icon(FALSE) // We dont want to call this if its the first xeno
