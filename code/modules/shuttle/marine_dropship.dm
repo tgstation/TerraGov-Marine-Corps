@@ -269,43 +269,57 @@
 		receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list),
 		should_play_sound = FALSE,
 	)
-	start_takeoff_alarm(null, FALSE, FALSE, TRUE) // no timer needed, every outcome here stops the alarm anyway
+	addtimer(CALLBACK(src, PROC_REF(start_takeoff_alarm), null, FALSE, FALSE, TRUE), 15 SECONDS)
 
 ///Send the dropship to its previous dock
 /obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
 	SSshuttle.moveShuttle(id, previous.id, TRUE)
 
-/// Checks to see if we're good to turn on the takeoff alarm
+/**
+ * Checks to see that we're ready to turn on the takeoff alarm.
+ *
+ * Returns false in several common sense scenarios (too early/too late to use).
+ *
+ * Arguments:
+ * * `user` - *Optional,* the living mob we're giving feedback to
+ */
 /obj/docking_port/mobile/marine_dropship/proc/can_use_takeoff_alarm(mob/living/user)
 	switch(mode)
 		if(SHUTTLE_RECHARGING)
 			if(user)
 				to_chat(user, span_warning("The [src] is recharging."))
-			return
+			return FALSE
 		if(SHUTTLE_CALL)
 			if(user)
 				to_chat(user, span_warning("The [src] is in flight."))
-			return
+			return FALSE
 		if(SHUTTLE_IGNITING)
 			if(user)
 				to_chat(user, span_warning("The [src] is about to take off."))
-			return
+			return FALSE
 		if(SHUTTLE_PREARRIVAL)
 			if(user)
 				to_chat(user, span_warning("The [src] is about to land."))
-			return
+			return FALSE
 
 	#ifndef TESTING
 	if(!(shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		if(user)
 			to_chat(user, span_warning("It's too early to use the takeoff alarm right now."))
-		return
+		return FALSE
 	#endif
 
 	return TRUE
 
-/// Starts the takeoff alarm (wrapper to keep effects under control).
-/// Use `skip_checks` if this is being forced by something like automatic departure.
+/**
+ * Initializes the alarm sound loop if it doesn't exist, and starts playing it.
+ *
+ * Arguments:
+ * * `user` - Used for failure feedback and required for `announce` to have any effect
+ * * `announce` - Announces that the alarm has started with a yellow announcement (no effect without a `user`)
+ * * `autoshutoff_timer` - Creates a timer to turn this off after [TAKEOFF_ALARM_AUTOSHUTOFF_TIME]
+ * * `skip_checks` - Skips calling `can_use_takeoff_alarm`, for forced calls of this proc
+ */
 /obj/docking_port/mobile/marine_dropship/proc/start_takeoff_alarm(mob/living/user, announce = TRUE, autoshutoff_timer = TRUE, skip_checks = FALSE)
 	if(!skip_checks && !can_use_takeoff_alarm(user))
 		return FALSE
@@ -324,9 +338,16 @@
 	alarm_sound_loop.start()
 	playing_takeoff_alarm = TRUE
 	if(autoshutoff_timer)
-		alarm_autoshutoff_timerid = addtimer(CALLBACK(src, PROC_REF(alarm_autoshutoff), announce), 90 SECONDS, TIMER_STOPPABLE)
+		alarm_autoshutoff_timerid = addtimer(CALLBACK(src, PROC_REF(alarm_autoshutoff), announce), TAKEOFF_ALARM_AUTOSHUTOFF_TIME, TIMER_STOPPABLE)
 
-/// Stops the takeoff alarm (wrapper to keep effects under control)
+/**
+ * Stops the alarm sound loop if it exists and is playing.
+ *
+ * Arguments:
+ * * `user` - Required for `announce` to have any effect
+ * * `announce` - Announces that the alarm has stopped with a yellow announcement (no effect without a `user`)
+ * * `kill_timer` - Deletes the autoshutoff timer if it exists. *Set to false if this is being passed to a timer.*
+ */
 /obj/docking_port/mobile/marine_dropship/proc/stop_takeoff_alarm(mob/living/user, announce = TRUE, kill_timer = TRUE)
 	if(!alarm_sound_loop || !playing_takeoff_alarm)
 		return FALSE
@@ -353,8 +374,9 @@
 		return
 	COOLDOWN_START(src, takeoff_alarm_announcement_stop, TAKEOFF_ALARM_ANNOUNCEMENT_COOLDOWN)
 	minor_announce(
-		title = "[src]] Takeoff Alarm Disabled",
+		title = "[src] Takeoff Alarm Disabled",
 		message = "The [src] takeoff alarm has been automatically disabled.",
+		receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list),
 		should_play_sound = FALSE,
 	)
 

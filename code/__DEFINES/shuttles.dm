@@ -117,3 +117,5 @@
 
 /// Announcement cooldown for marine dropship takeoff alarms
 #define TAKEOFF_ALARM_ANNOUNCEMENT_COOLDOWN (60 SECONDS)
+/// The takeoff alarm will shut off after inactivity for this long
+#define TAKEOFF_ALARM_AUTOSHUTOFF_TIME (90 SECONDS)
