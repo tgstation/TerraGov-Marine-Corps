@@ -1,0 +1,6 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - refactor: "Health analyzers have had their TGUI refactored significantly, again. Please report any issues—colors are most likely to be bugged in this update."
+  - qol: "Health scans now include blood flow rate."
+  - qol: "Chemical contents in health scans are sorted based on internal priority rather than order the chemical entered the patient."

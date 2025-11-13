@@ -102,20 +102,21 @@
 /datum/health_scan/proc/autoupdate_checks(mob/living/user, mob/living/patient)
 	if(!track_distance) // checking being disabled should go first
 		return FALSE
+	if(patient == user) // this is also quite common
+		return FALSE
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
 	if(get_turf(owner) != get_turf(user))
 		return FALSE
 	if(get_dist(get_turf(user), get_turf(patient)) > track_distance)
 		return FALSE
-	if(patient == user)
-		return FALSE
 	return TRUE
 
 /**
  * A wrapper proc, so this datum can be used by signals/its parent/whatever.
+ * Do not call `ui_interact` directly.
  *
- * * `patient_candidate`—Currently, only carbon humans are supported. This is who we will be scanning.
+ * * `patient_candidate`—Only carbon humans are supported. This is who we will be scanning.
  * * `user`—Any mob is supported. This is who the scan is shown to, unless `show_patient` is active.
  * * `show_patient`—If this is TRUE, we'll show the scan to `patient_candidate` instead of `user`.
  */
@@ -192,9 +193,9 @@
 		"dead_threshold" = patient.get_death_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
-		"toxin" = round(patient.getToxLoss()),
-		"oxy" = round(patient.getOxyLoss()),
-		"clone" = round(patient.getCloneLoss()),
+		"total_tox" = round(patient.getToxLoss()),
+		"total_oxy" = round(patient.getOxyLoss()),
+		"total_clone" = round(patient.getCloneLoss()),
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.get_blood_volume(),
@@ -208,23 +209,22 @@
 			"is_synthetic" = issynth(patient),
 			"is_combat_robot" = isrobot(patient),
 			// for the robot umbrella which shares a lot of traits
-			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS)
+			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS),
 		),
 
 		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes,
 	)
 
-	var/temp_color = "white"
+	var/level = 0
 	if(patient.bodytemperature > patient.species?.heat_level_1)
-		temp_color = "yellow"
+		level = 1
 	if(patient.bodytemperature > patient.species?.heat_level_2)
-		temp_color = "orange"
+		level = 2
 	if(patient.bodytemperature > patient.species?.heat_level_3)
-		temp_color = "red"
+		level = 3
 	data["body_temperature"] = list(
 		"current" = "[round(patient.bodytemperature*1.8-459.67, 0.1)]°F ([round(patient.bodytemperature-T0C, 0.1)]°C)",
-		"color" = temp_color,
-		"warning" = temp_color != "white"
+		"level" = level,
 	)
 
 	data["has_unknown_chemicals"] = FALSE
@@ -242,22 +242,22 @@
 			"od_threshold" = reagent.overdose_threshold,
 			"crit_od_threshold" = reagent.overdose_crit_threshold,
 			"color" = reagent.color,
-			"metabolism_factor" = reagent.custom_metabolism
+			"metabolism_factor" = reagent.custom_metabolism,
+			"ui_priority" = reagent.reagent_ui_priority,
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
-
-	if(!ishuman(patient)) // Non humans are not supported, though they should be in the future
-		return
 
 	var/list/limb_data_lists = list()
 	var/infection_message
 	var/internal_bleeding
 
 	var/total_unknown_implants = 0
+	var/total_flow_rate = 0
 	for(var/datum/limb/limb AS in patient.limbs)
 		if((limb.parent?.limb_status & LIMB_DESTROYED) && !(istype(limb.parent, /datum/limb/groin) && istype(limb.parent, /datum/limb/chest) && istype(limb.parent, /datum/limb/head)))
-			// avoid showing right arm and right hand as missing, for example
+			// don't show children of missing limbs
+			// no showing right arm and right hand as missing—just right arm
 			continue
 		var/infected = FALSE
 		var/necrotized = FALSE
@@ -267,7 +267,7 @@
 				if(!istype(wound, /datum/wound/internal_bleeding))
 					continue
 				internal_bleeding = TRUE
-				break
+				total_flow_rate += round(patient.get_blood_volume() - INTERNAL_BLEEDING_FLOW_RATE(patient.get_blood_volume(), wound.damage), 0.1)
 		if(limb.germ_level > INFECTION_LEVEL_ONE)
 			infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
 			infected = TRUE
@@ -285,7 +285,7 @@
 				total_unknown_implants++
 				implants++
 
-		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implants && !infected )
+		if(!limb.brute_dam && !limb.burn_dam && !(limb.limb_status & LIMB_DESTROYED) && !(limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_BLEEDING) && !(limb.limb_status & LIMB_NECROTIZED) && !implants && !infected)
 			continue
 		var/list/current_list = list(
 			"name" = limb.display_name,
@@ -293,10 +293,10 @@
 			"burn" = round(limb.burn_dam),
 			"bandaged" = limb.is_bandaged(),
 			"salved" = limb.is_salved(),
-			"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
+			"missing" = !!(limb.limb_status & LIMB_DESTROYED),
 			"limb_status" = null,
 			"limb_type" = null,
-			"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
+			"bleeding" = !!(limb.limb_status & LIMB_BLEEDING),
 			"open_incision" = limb.surgery_open_stage,
 			"necrotized" = necrotized,
 			"infected" = infected,
@@ -304,21 +304,23 @@
 			"max_damage" = limb.max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO,
 		)
 		var/limb_type = ""
-		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))
+		if(limb.limb_status & LIMB_ROBOT)
 			limb_type = "Robotic"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_BIOTIC))
+		else if(limb.limb_status & LIMB_BIOTIC)
 			limb_type = "Biotic"
 
 		var/limb_status = ""
-		if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+		if((limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_STABILIZED) && !(limb.limb_status & LIMB_SPLINTED))
 			limb_status = "Fracture"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
+		else if(limb.limb_status & LIMB_STABILIZED)
 			limb_status = "Stable"
-		else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
+		else if(limb.limb_status & LIMB_SPLINTED)
 			limb_status = "Splint"
 		current_list["limb_type"] = limb_type
 		current_list["limb_status"] = limb_status
 		limb_data_lists["[limb.name]"] = current_list
+		total_flow_rate += round(LIMB_FLOW_RATE(limb.brute_dam), 0.1)
+	data["total_flow_rate"] = total_flow_rate
 	data["limb_data_lists"] = limb_data_lists
 	data["limbs_damaged"] = length(limb_data_lists)
 	data["internal_bleeding"] = internal_bleeding
@@ -342,29 +344,29 @@
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
-	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
-	var/revivable_patient = FALSE
-
-	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
-		revivable_patient = TRUE
-	else if(issynth(patient))
-		if(patient.health >= patient.get_death_threshold())
-			revivable_patient = TRUE
-	else if(patient.health + patient.getOxyLoss() + (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) >= patient.get_death_threshold())
-		revivable_patient = TRUE
-
-	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
-		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
-	else if(organic_patient && !patient.has_working_organs())
-		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
-		data["revivable_boolean"] = FALSE
-	else if(revivable_patient)
-		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
-		data["revivable_boolean"] = TRUE
-	else
-		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
-		data["revivable_boolean"] = FALSE
+	if(patient.stat == DEAD)
+		var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+		var/status
+		var/reason // in tgui, will be displayed as "Revivable: Status (reason)"
+		var/state = patient.check_defib(DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE))
+		if(state & DEFIB_PREVENT_REVIVE_STATES)
+			status = ((state & DEFIB_FAIL_DECAPITATED) && !organic_patient) ? "Not ready" : "Impossible"
+		else if((state & DEFIB_REVIVABLE_STATES) && !(state & DEFIB_POSSIBLE))
+			status = "Not ready"
+		else
+			status = "Ready"
+		switch(state)
+			if(DEFIB_FAIL_DECAPITATED)
+				reason = organic_patient ? "decapitated" : "reattach head surgically"
+			if(DEFIB_FAIL_BRAINDEAD)
+				reason = "braindead"
+			if(DEFIB_FAIL_BAD_ORGANS)
+				reason = "repair heart surgically"
+			if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
+				reason = "repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
+			// DEFIB_POSSIBLE intentionally leaves reason null
+		data["revivable_status"] = status
+		data["revivable_reason"] = reason
 
 	var/list/advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
@@ -386,14 +388,14 @@
 	if(length(advice))
 		data["advice"] = advice
 	else
-		data["advice"] = null
+		data["advice"] = null // tgui will reuse this if it isn't overwritten
 
 	var/ssd = null
 	if(patient.has_brain() && patient.stat != DEAD)
 		if(!patient.key)
-			ssd = "No soul detected." // Catatonic- NPC, or ghosted
+			ssd = "No soul detected." // NPC or ghosted
 		else if(!patient.client)
-			ssd = "Space Sleep Disorder detected." // SSD
+			ssd = "Space Sleep Disorder detected." // disconnected player
 	data["ssd"] = ssd
 
 	SEND_SIGNAL(src, COMSIG_HEALTH_SCAN_DATA, patient, data.Copy())

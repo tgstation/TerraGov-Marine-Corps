@@ -13,7 +13,7 @@
 		ADVICE_TEXT = "Paracetamol detected—do NOT administer Tramadol.",
 		ADVICE_TOOLTIP = "The patient has Paracetamol in their system. If Tramadol is administered, it will combine with Paracetamol to make a debilitating chemical.",
 		ADVICE_ICON = FA_ICON_WINDOW_CLOSE,
-		ADVICE_ICON_COLOR = "red"
+		ADVICE_ICON_COLOR = "red",
 	)
 
 /datum/scanner_advice/chem_mix_warning/has_helpful_nanites/can_show(mob/living/carbon/human/patient, mob/user)
@@ -24,5 +24,5 @@
 		ADVICE_TEXT = "Nanites detected.",
 		ADVICE_TOOLTIP = "Watch blood levels carefully, nanites consume blood of their user to reproduce.",
 		ADVICE_ICON = FA_ICON_WINDOW_CLOSE,
-		ADVICE_ICON_COLOR = COLOR_REAGENT_MEDICALNANITES
+		ADVICE_ICON_COLOR = COLOR_REAGENT_MEDICALNANITES,
 	)
