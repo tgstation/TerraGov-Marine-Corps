@@ -348,7 +348,8 @@
 
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
-	if(clicked_turf.ceiling >= CEILING_UNDERGROUND)
+	var/area/clicked_area = clicked_turf.loc
+	if(clicked_area.ceiling >= CEILING_UNDERGROUND)
 		balloon_alert(xeno_shooter, "underground!")
 		return FALSE
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_shooter), ammo.impact_time-2 SECONDS)
