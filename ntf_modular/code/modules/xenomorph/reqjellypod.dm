@@ -95,7 +95,7 @@
 			return
 
 		balloon_alert(xeno_attacker, "Retrieved jelly")
-		new /obj/item/resin_jelly/reqjelly(xeno_attacker.loc, hivenumber)
+		new /obj/item/resin_jelly/req_jelly(xeno_attacker.loc, hivenumber)
 		chargesleft--
 	while(do_mob(xeno_attacker, src, 1 SECONDS))
 
@@ -103,7 +103,7 @@
 	if(loc && (chargesleft > 0))
 		for(var/i = 1 to chargesleft)
 			if(prob(95))
-				new /obj/item/resin_jelly/reqjelly(loc, hivenumber)
+				new /obj/item/resin_jelly/req_jelly(loc, hivenumber)
 	GLOB.hive_datums[hivenumber].req_jelly_pods -= src
 	. = ..()
 
@@ -111,7 +111,7 @@
 /// Requisition Jelly//
 ///////////////////////
 
-/obj/item/resin_jelly/reqjelly
+/obj/item/resin_jelly/req_jelly
 	name = "alien ambrosia"
 	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price."
 	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'

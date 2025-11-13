@@ -97,5 +97,5 @@
 				return FALSE
 			return TRUE
 
-/obj/item/resin_jelly/reqjelly/get_export_value()
+/obj/item/resin_jelly/req_jelly/get_export_value()
 	return list(100, 25)
