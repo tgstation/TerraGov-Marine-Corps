@@ -63,3 +63,20 @@
 2025-11-13:
   Runian:
   - bugfix: Autodoc now correctly queues up bone fixing surgery on Automatic mode.
+2025-11-14:
+  DrCrawler:
+  - balance: Firearm skills no longer magically make your bullets more powerful, now
+      only providing better handling, recoil control and reload speed.
+  - rscadd: Added a placeholder specialist kit for NTF, the hybrid class, featuring
+      sneaking boots from the infiltrator and thermals from recon, along with a rifle
+      skill pamphlet.
+  Grinch5008:
+  - rscadd: A requisitions area for the CM faction with a working elevator
+  - code_imp: added a new shuttle map file & edited shuttle.dm and supply.dm
+  Neocloudy:
+  - refactor: "Health analyzers have had their TGUI refactored significantly, again.\
+      \ Please report any issues\u2014colors are most likely to be bugged in this\
+      \ update."
+  - qol: Health scans now include blood flow rate.
+  - qol: Chemical contents in health scans are sorted based on internal priority rather
+      than order the chemical entered the patient.
