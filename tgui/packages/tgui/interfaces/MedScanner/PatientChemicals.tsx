@@ -149,8 +149,9 @@ export function PatientChemicals() {
                         ? 'Harmful chemical. Purge immediately.'
                         : `Purge below ${chemical.od_threshold}u to stabilize.
                         ${
-                          !!(chemical.amount > chemical.crit_od_threshold) &&
-                          `This is a critical OD. Its effects are worse than normal. `
+                          chemical.amount > chemical.crit_od_threshold
+                            ? `This is a critical OD. Its effects are worse than normal. `
+                            : ``
                         }${Math.trunc(
                           (chemical.amount - chemical.od_threshold) /
                             chemical.metabolism_factor,
@@ -165,7 +166,7 @@ export function PatientChemicals() {
                       ml={SPACING_PIXELS}
                     >
                       {chemical.od
-                        ? `OD${!!(chemical.amount > chemical.crit_od_threshold) && ', CRIT'}`
+                        ? `OD${chemical.amount > chemical.crit_od_threshold ? ', CRIT' : ''}`
                         : 'HARMFUL'}
                     </MedBoxedTag>
                   </Tooltip>
