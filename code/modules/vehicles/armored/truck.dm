@@ -6,6 +6,7 @@
 	damage_icon_path = 'icons/obj/armored/2x3/apc_damage_overlay.dmi'
 	hitbox = /obj/hitbox/mrap
 	interior = /datum/interior/armored/transport
+	permitted_weapons = NONE
 	permitted_mods = NONE
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_WRECKABLE
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
