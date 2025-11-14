@@ -448,29 +448,29 @@
 			bound_width = vehicle_width
 			bound_x = 0
 			bound_y = -32
-			root.pixel_w = 8
-			root.pixel_z = -32
+			root.pixel_x = 8
+			root.pixel_y = -32
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -24
-			root.pixel_z = -32
+			root.pixel_x = -24
+			root.pixel_y = -32
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = 0
-			root.pixel_w = -40
-			root.pixel_z = 0
+			root.pixel_x = -40
+			root.pixel_y = 0
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -40
-			root.pixel_z = -32
+			root.pixel_x = -40
+			root.pixel_y = -32
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
@@ -482,7 +482,7 @@
 	for(var/mob/living/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
-		var/new_x //todo: check and sort this
+		var/new_x
 		var/new_y
 		if(angle_change > 0) //clockwise turn
 			new_x = root.x + (desant.y - root.y)
