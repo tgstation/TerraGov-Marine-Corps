@@ -430,14 +430,14 @@
 	return get_step(get_step(src, root.dir), root.dir)
 
 //2x3
-/obj/hitbox/truck
+/obj/hitbox/mrap
 
 	bound_x = -32 //left middle tile
 	bound_y = -32
 	vehicle_length = 96
 	vehicle_width = 64
 
-/obj/hitbox/truck/owner_turned(datum/source, old_dir, new_dir)
+/obj/hitbox/mrap/owner_turned(datum/source, old_dir, new_dir)
 	. = ..()
 	if(!.)
 		return
@@ -495,7 +495,7 @@
 
 	SEND_SIGNAL(src, COMSIG_MULTITILE_VEHICLE_ROTATED, loc, new_dir, null, old_locs)
 
-/obj/hitbox/truck/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
+/obj/hitbox/mrap/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
 	var/obj/vehicle/sealed/armored/armor = root
 	var/movement_dir
 	var/facing_dir = armor.dir

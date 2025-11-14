@@ -1,11 +1,12 @@
-/obj/vehicle/sealed/armored/multitile/truck
+/obj/vehicle/sealed/armored/multitile/mrap
 	name = "\improper MRAP - Sambar"
 	desc = "An unarmed MRAP designed to transport troops across the battlefield quickly and safely."
 	icon = 'icons/obj/armored/2x3/apc.dmi'
 	icon_state = "apc"
 	damage_icon_path = 'icons/obj/armored/2x3/apc_damage_overlay.dmi'
-	hitbox = /obj/hitbox/truck
+	hitbox = /obj/hitbox/mrap
 	interior = /datum/interior/armored/transport
+	permitted_mods = NONE
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_WRECKABLE
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
@@ -26,16 +27,16 @@
 		/obj/structure/closet/crate,
 	)
 
-/obj/vehicle/sealed/armored/multitile/truck/setDir(newdir)
+/obj/vehicle/sealed/armored/multitile/mrap/setDir(newdir)
 	. = ..()
 	if(armored_flags & ARMORED_IS_WRECK)
 		update_smoke_dir(null, null, newdir)
 
-/obj/vehicle/sealed/armored/multitile/truck/wreck_vehicle()
+/obj/vehicle/sealed/armored/multitile/mrap/wreck_vehicle()
 	. = ..()
 	update_smoke_dir(newdir = dir)
 
-/obj/vehicle/sealed/armored/multitile/truck/update_smoke_dir(datum/source, dir, newdir)
+/obj/vehicle/sealed/armored/multitile/mrap/update_smoke_dir(datum/source, dir, newdir)
 	switch(newdir)
 		if(SOUTH)
 			smoke_holder.particles.position = list(20, 16, 0)
@@ -46,7 +47,7 @@
 		if(WEST)
 			smoke_holder.particles.position = list(10, 35, 0)
 
-/obj/vehicle/sealed/armored/multitile/truck/campaign
+/obj/vehicle/sealed/armored/multitile/mrap/campaign
 	max_integrity = 1100
 	soft_armor = list(MELEE = 90, BULLET = 90 , LASER = 90, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 100, FIRE = 0, ACID = 0)
