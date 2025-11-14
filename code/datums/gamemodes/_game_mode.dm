@@ -232,9 +232,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	end_round_fluff()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
-	if(time_between_round)
-		SSpersistence.last_modes_round_date[name] = world.realtime
-		SSpersistence.last_modes_round_date[time_between_round_group_name] = world.realtime
+	SSpersistence.last_modes_round_date[name] = world.realtime
+	SSpersistence.last_modes_round_date[time_between_round_group_name] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()

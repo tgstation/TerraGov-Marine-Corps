@@ -112,6 +112,8 @@
 	respawn_time = 5 MINUTES
 	bioscan_interval = 30 MINUTES
 	deploy_time_lock = 15 SECONDS
+	time_between_round_group = 0
+	time_between_round_group_name = "GROUP_Extended"
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
 	. = ..()

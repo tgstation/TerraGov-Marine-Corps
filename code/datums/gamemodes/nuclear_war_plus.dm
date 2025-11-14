@@ -32,7 +32,7 @@
 		/datum/job/clf/tech = 2,
 		/datum/job/clf/leader = 1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
-		/datum/job/xenomorph/corrupted = FREE_XENO_AT_START_CORRUPT,
+		/datum/job/xenomorph/green = FREE_XENO_AT_START_CORRUPT,
 		/datum/job/xenomorph/queen = 1
 	)
 	factions = list(FACTION_TERRAGOV, FACTION_XENO, FACTION_CLF)

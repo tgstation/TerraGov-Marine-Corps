@@ -72,12 +72,18 @@ SUBSYSTEM_DEF(persistence)
 		last_modes_round_date = list()
 		return
 	last_modes_round_date = json_decode(file2text(json_file))
+	for(var/key in last_modes_round_date)
+		if(istext(last_modes_round_date[key]))
+			last_modes_round_date[key] = text2num(last_modes_round_date[key])
 
 ///Save the date of the last gamemode's round
 /datum/controller/subsystem/persistence/proc/save_last_game_mode_round_time()
+	var/list/last_modes_round_date_text = list()
+	for(var/key in last_modes_round_date)
+		last_modes_round_date_text[key] = num2text(last_modes_round_date[key], 20)
 	var/json_file = file("data/last_modes_round_date.json")
 	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_modes_round_date))
+	WRITE_FILE(json_file, json_encode(last_modes_round_date_text))
 
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()

@@ -287,13 +287,20 @@ SUBSYSTEM_DEF(vote)
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
-					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
-						continue
-					if(mode.time_between_round_group && (world.realtime - SSpersistence.last_modes_round_date[mode.time_between_round_group_name]) < mode.time_between_round_group)
+					var/timeleft = 0
+					timeleft = max(timeleft, mode.time_between_round - (world.realtime - SSpersistence.last_modes_round_date[mode.name]))
+					timeleft = max(timeleft, mode.time_between_round_group - (world.realtime - SSpersistence.last_modes_round_date[mode.time_between_round_group_name]))
+					if(timeleft)
+						to_chat(world, "[mode.name] unavailable for another [DisplayTimeText(timeleft)].")
+						log_game("[mode.name] unavailable for another [DisplayTimeText(timeleft)].")
 						continue
 					if(players > mode.maximum_players)
+						to_chat(world, "[mode.name] unavailable - requires at most [mode.maximum_players] online, currently [players] online.")
+						log_game("[mode.name] unavailable - requires at most [mode.maximum_players] online, currently [players] online.")
 						continue
 					if(players < mode.required_players)
+						to_chat(world, "[mode.name] unavailable - requires at least [mode.required_players] online, currently [players] online.")
+						log_game("[mode.name] unavailable - requires at least [mode.required_players] online, currently [players] online.")
 						continue
 					choices.Add(mode.config_tag)
 			if("groundmap")
