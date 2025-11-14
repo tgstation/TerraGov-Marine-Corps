@@ -365,6 +365,12 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 
+/datum/hive_upgrade/building/tunnel/on_buy(mob/living/carbon/xenomorph/buyer)
+	. = ..()
+	if(!.)
+		return
+	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 
