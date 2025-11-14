@@ -184,6 +184,80 @@
 		LIST.Insert(__BIN_MID, IN);\
 	}
 
+
+/**
+ * Custom binary search sorted insert utilising comparison procs instead of vars.
+ * INPUT: Object to be inserted
+ * LIST: List to insert object into
+ * TYPECONT: The typepath of the contents of the list
+ * COMPARE: The object to compare against, usualy the same as INPUT
+ * COMPARISON: The plaintext name of a proc on INPUT that takes a single argument to accept a single element from LIST and returns a positive, negative or zero number to perform a comparison.
+ * COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.
+ */
+#define BINARY_INSERT_PROC_COMPARE(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
+	do {\
+		var/list/__BIN_LIST = LIST;\
+		var/__BIN_CTTL = length(__BIN_LIST);\
+		if(!__BIN_CTTL) {\
+			__BIN_LIST += INPUT;\
+		} else {\
+			var/__BIN_LEFT = 1;\
+			var/__BIN_RIGHT = __BIN_CTTL;\
+			var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			var ##TYPECONT/__BIN_ITEM;\
+			while(__BIN_LEFT < __BIN_RIGHT) {\
+				__BIN_ITEM = COMPTYPE;\
+				if(__BIN_ITEM.##COMPARISON(COMPARE) <= 0) {\
+					__BIN_LEFT = __BIN_MID + 1;\
+				} else {\
+					__BIN_RIGHT = __BIN_MID;\
+				};\
+				__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			};\
+			__BIN_ITEM = COMPTYPE;\
+			__BIN_MID = __BIN_ITEM.##COMPARISON(COMPARE) > 0 ? __BIN_MID : __BIN_MID + 1;\
+			__BIN_LIST.Insert(__BIN_MID, INPUT);\
+		};\
+	} while(FALSE)
+
+#define SORT_FIRST_INDEX(list) (list[1])
+#define SORT_COMPARE_DIRECTLY(thing) (thing)
+#define SORT_VAR_NO_TYPE(varname) var/varname
+/****
+	* Even more custom binary search sorted insert, using defines instead of vars
+	* INPUT: Item to be inserted
+	* LIST: List to insert INPUT into
+	* TYPECONT: A define setting the var to the typepath of the contents of the list
+	* COMPARE: The item to compare against, usualy the same as INPUT
+	* COMPARISON: A define that takes an item to compare as input, and returns their comparable value
+	* COMPTYPE: How should the list be compared? Either COMPARE_KEY or COMPARE_VALUE.
+	*/
+#define BINARY_INSERT_DEFINE(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
+	do {\
+		var/list/__BIN_LIST = LIST;\
+		var/__BIN_CTTL = length(__BIN_LIST);\
+		if(!__BIN_CTTL) {\
+			__BIN_LIST += INPUT;\
+		} else {\
+			var/__BIN_LEFT = 1;\
+			var/__BIN_RIGHT = __BIN_CTTL;\
+			var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			##TYPECONT(__BIN_ITEM);\
+			while(__BIN_LEFT < __BIN_RIGHT) {\
+				__BIN_ITEM = COMPTYPE;\
+				if(##COMPARISON(__BIN_ITEM) <= ##COMPARISON(COMPARE)) {\
+					__BIN_LEFT = __BIN_MID + 1;\
+				} else {\
+					__BIN_RIGHT = __BIN_MID;\
+				};\
+				__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			};\
+			__BIN_ITEM = COMPTYPE;\
+			__BIN_MID = ##COMPARISON(__BIN_ITEM) > ##COMPARISON(COMPARE) ? __BIN_MID : __BIN_MID + 1;\
+			__BIN_LIST.Insert(__BIN_MID, INPUT);\
+		};\
+	} while(FALSE)
+
 //Returns a list in plain english as a string
 /proc/english_list(list/L, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 	var/total = length(L)
@@ -312,6 +386,11 @@
 		. = L[1]
 		L.Cut(1,2)
 
+/// Returns the top (last) element from the list, does not remove it from the list. Stack functionality.
+/proc/peek(list/target_list)
+	var/list_length = length(target_list)
+	if(list_length != 0)
+		return target_list[list_length]
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
@@ -570,33 +649,44 @@
 	)
 
 
-//Like typesof() or subtypesof(), but returns a typecache instead of a list
-/proc/typecacheof(path, ignore_root_path, only_root_path = FALSE)
+/**
+ * Like typesof() or subtypesof(), but returns a typecache instead of a list.
+ *
+ * Arguments:
+ * - path: A typepath or list of typepaths.
+ * - ignore_root_path: Whether to ignore the root path when caching subtypes.
+ * - only_root_path: Whether the typecache should be specifically of the passed types.
+ */
+/proc/typecacheof(path, ignore_root_path = FALSE, only_root_path = FALSE)
+	if(isnull(path))
+		return
+
 	if(ispath(path))
-		var/list/types = list()
+		. = list()
 		if(only_root_path)
-			types = list(path)
-		else
-			types = ignore_root_path ? subtypesof(path) : typesof(path)
-		var/list/L = list()
-		for(var/T in types)
-			L[T] = TRUE
-		return L
-	else if(islist(path))
-		var/list/pathlist = path
-		var/list/L = list()
-		if(ignore_root_path)
-			for(var/P in pathlist)
-				for(var/T in subtypesof(P))
-					L[T] = TRUE
-		else
-			for(var/P in pathlist)
-				if(only_root_path)
-					L[P] = TRUE
-				else
-					for(var/T in typesof(P))
-						L[T] = TRUE
-		return L
+			.[path] = TRUE
+			return
+
+		for(var/subtype in (ignore_root_path ? subtypesof(path) : typesof(path)))
+			.[subtype] = TRUE
+		return
+
+	if(!islist(path))
+		CRASH("Tried to create a typecache of [path] which is neither a typepath nor a list.")
+
+	. = list()
+	var/list/pathlist = path
+	if(only_root_path)
+		for(var/current_path in pathlist)
+			.[current_path] = TRUE
+	else if(ignore_root_path)
+		for(var/current_path in pathlist)
+			for(var/subtype in subtypesof(current_path))
+				.[subtype] = TRUE
+	else
+		for(var/current_path in pathlist)
+			for(var/subpath in typesof(current_path))
+				.[subpath] = TRUE
 
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type

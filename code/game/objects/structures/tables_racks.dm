@@ -9,10 +9,10 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	obj_flags = CAN_BE_HIT | IGNORE_DENSITY
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	smoothing_flags = SMOOTH_BITMASK
@@ -274,6 +274,7 @@
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE
+	obj_flags ^= BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	coverage = 60
 	atom_flags |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
@@ -296,6 +297,7 @@
 	coverage = 10
 	climbable = initial(climbable)
 	atom_flags &= ~ON_BORDER
+	obj_flags ^= BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T?.flipped && T.dir == src.dir)
@@ -336,7 +338,7 @@
 	parts = /obj/item/frame/table/wood
 	base_icon_state = "wood_table_reinforced"
 	table_prefix = "wood"
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	max_integrity = 20
 
 /obj/structure/table/wood/add_debris_element()
@@ -372,7 +374,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	max_integrity = 20
 
 /obj/structure/table/wood/gambling/urban
@@ -583,7 +585,7 @@
 	icon = 'icons/obj/metnal_objects.dmi'
 	icon_state = "lectern"
 	dropmetal = FALSE
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 
 /obj/structure/rack/wood
 	color = "#8B7B5B"

@@ -69,6 +69,11 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
+"ar" = (
+/obj/effect/decal/cleanable/blood/writing,
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
 "as" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 1
@@ -943,6 +948,7 @@
 /area/whiskey_outpost)
 "eB" = (
 /obj/item/storage/box/crate/sentry,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "eC" = (
@@ -2748,7 +2754,9 @@
 /area/whiskey_outpost/outside/north)
 "nK" = (
 /obj/structure/barricade/sandbags,
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2961,6 +2969,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "oE" = (
@@ -3613,6 +3622,10 @@
 /obj/structure/platform,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
+"rz" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass,
+/area/whiskey_outpost/outside/south)
 "rC" = (
 /obj/item/storage/donut_box,
 /obj/item/tool/lighter/zippo,
@@ -4035,6 +4048,11 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
+"uF" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
 "uI" = (
 /obj/effect/ai_node,
 /obj/effect/turf_decal/lvsanddecal{
@@ -4157,11 +4175,9 @@
 /turf/open/floor,
 /area/whiskey_outpost)
 "vg" = (
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
-/obj/effect/turf_decal/grassdecal{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "vh" = (
 /obj/item/weapon/gun/hsg_102/hsg_nest,
@@ -4237,7 +4253,6 @@
 /obj/item/storage/box/visual/magazine/compact/standard_br/full,
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full,
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol/full,
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full,
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full,
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/full,
 /turf/open/ground/grass,
@@ -4715,10 +4730,8 @@
 	},
 /area/whiskey_outpost/outside/north)
 "yK" = (
+/obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
-/obj/effect/turf_decal/grassdecal/corner2{
-	dir = 8
-	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yN" = (
@@ -5185,6 +5198,13 @@
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
+"BI" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "BM" = (
 /obj/structure/barricade/solid,
 /obj/structure/barricade/solid{
@@ -5323,6 +5343,13 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
+"CG" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "CI" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -5443,6 +5470,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/grassdecal/corner2,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Dl" = (
@@ -5507,7 +5535,7 @@
 	dir = 4
 	},
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
@@ -5773,12 +5801,18 @@
 "Gn" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/spawner/random/weaponry/melee,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Gp" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
+"Gt" = (
+/obj/effect/turf_decal/grassdecal/corner,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "Gx" = (
 /obj/effect/turf_decal/lvsanddecal/full,
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -5855,7 +5889,9 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "GZ" = (
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
@@ -6065,10 +6101,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "IK" = (
-/obj/effect/ai_node,
 /obj/effect/turf_decal/grassdecal{
-	dir = 4
+	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "IW" = (
@@ -6575,7 +6611,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "MO" = (
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "MQ" = (
@@ -6870,14 +6908,18 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "OQ" = (
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "OR" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/whiskey_outpost/outside/north)
 "OS" = (
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "Pc" = (
@@ -7043,7 +7085,9 @@
 /area/whiskey_outpost/outside/north)
 "QS" = (
 /obj/structure/barricade/solid,
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "QV" = (
@@ -7202,6 +7246,11 @@
 /turf/open/ground/grass/beach{
 	dir = 1
 	},
+/area/whiskey_outpost/outside/south)
+"Sg" = (
+/obj/effect/decal/remains/xeno,
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "Si" = (
 /obj/structure/cable,
@@ -7529,6 +7578,13 @@
 "Va" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
+/area/whiskey_outpost/outside/south)
+"Vb" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Ve" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -13004,7 +13060,7 @@ fj
 fj
 fS
 Hq
-Hq
+mb
 Hq
 Sz
 Sz
@@ -13135,7 +13191,7 @@ NW
 Bc
 Ie
 Id
-vi
+BI
 fS
 Bc
 Sz
@@ -13409,7 +13465,7 @@ Ie
 Bc
 Hq
 Hq
-Hq
+mb
 Hq
 RJ
 Sz
@@ -14360,31 +14416,31 @@ Il
 Na
 Na
 Im
-Na
-Bq
+rz
+Im
 WW
 Im
 Im
-Hq
+mb
 rN
 xZ
-pY
-mb
+CG
 Hq
 Hq
 Hq
 Hq
-ep
 Hq
-mb
+uF
+Hq
+Hq
 Hq
 Hq
 Hq
 Hq
 rN
 pY
-Hq
 mb
+Hq
 Hq
 Hq
 Hq
@@ -14591,7 +14647,7 @@ DZ
 um
 TP
 yx
-ET
+sB
 Fj
 gF
 kf
@@ -15045,7 +15101,7 @@ Il
 Na
 Na
 Na
-Im
+Bq
 Im
 WW
 Im
@@ -15059,7 +15115,7 @@ aF
 Hq
 Hq
 LM
-Hq
+mb
 Hi
 KA
 IE
@@ -15068,7 +15124,7 @@ KA
 bR
 KA
 KA
-KA
+ar
 Hq
 Hq
 Hq
@@ -15349,7 +15405,7 @@ wI
 Dz
 vi
 fn
-kn
+jX
 CV
 NW
 NW
@@ -15593,12 +15649,12 @@ Il
 Na
 Na
 Na
-Im
+Bq
 Im
 WW
 Hq
 vi
-fn
+Vb
 Gj
 CV
 Hq
@@ -16567,7 +16623,7 @@ Hq
 RJ
 RJ
 Hq
-Hq
+mb
 Hq
 Hq
 Hq
@@ -16961,24 +17017,24 @@ Rg
 Pv
 ws
 KO
-vg
+CV
 Na
-rN
+Gt
 pY
 Im
 KO
 CV
-Hq
 mb
 Hq
-rN
+Hq
+Gt
 cm
 kn
 ss
 lq
-IK
+xZ
 cm
-CV
+IK
 Hq
 Hq
 KO
@@ -16993,12 +17049,12 @@ jX
 LO
 kn
 kn
-kn
-yK
+jX
+lq
 xZ
 cm
 kn
-Gj
+yK
 kn
 kn
 vv
@@ -17526,7 +17582,7 @@ Hq
 BB
 KA
 KA
-KA
+ar
 KA
 KA
 Ys
@@ -17922,7 +17978,7 @@ vh
 Na
 Na
 Na
-Im
+Bq
 Im
 WW
 Hq
@@ -17930,7 +17986,7 @@ Hq
 Hq
 Hq
 Hq
-Hq
+mb
 RJ
 zc
 Rf
@@ -18500,7 +18556,7 @@ xZ
 pY
 Hq
 Hq
-Hq
+mb
 Hq
 NW
 NW
@@ -18839,7 +18895,7 @@ um
 um
 TP
 TP
-ET
+sB
 Fj
 gF
 kf
@@ -18885,7 +18941,7 @@ Bq
 Im
 WW
 Im
-rN
+Gt
 xZ
 pY
 Hq
@@ -18963,7 +19019,7 @@ XA
 yw
 yw
 yw
-sB
+ET
 um
 yT
 um
@@ -19844,18 +19900,18 @@ NW
 Im
 WW
 Im
-Im
+Bq
 Hq
 Hq
 Hq
-Uf
+Sg
 rN
 cm
 kn
 Gj
 GQ
 fS
-iu
+vg
 aF
 aL
 Sz

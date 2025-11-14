@@ -1,6 +1,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	layer = LOW_FLOOR_LAYER
 	minimap_color = MINIMAP_AREA_COLONY
 	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
@@ -10,7 +11,7 @@
 	var/barefootstep = FOOTSTEP_HARD
 	var/mediumxenofootstep = FOOTSTEP_HARD
 	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
-	smoothing_groups = list(SMOOTH_GROUP_OPEN_FLOOR)
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN)
 
 /turf/open/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //todo refactor this entire proc is garbage
 	if(iscarbon(arrived))
@@ -50,6 +51,24 @@
 /turf/open/do_acid_melt()
 	. = ..()
 	ScrapeAway()
+
+//direction is direction of travel of A
+/turf/open/zPassIn(direction)
+	if(direction != DOWN)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_IN_DOWN)
+			return FALSE
+	return TRUE
+
+//direction is direction of travel of an atom
+/turf/open/zPassOut(direction)
+	if(direction != UP)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_OUT_UP)
+			return FALSE
+	return TRUE
 
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)

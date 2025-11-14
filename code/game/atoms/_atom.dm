@@ -1,7 +1,7 @@
 /atom
 	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND
+	appearance_flags = TILE_BOUND|LONG_GLIDE
 	var/level = 2
 
 	var/atom_flags = NONE
@@ -34,7 +34,6 @@
 	var/explosion_block = 0
 
 	var/datum/component/orbiter/orbiters
-	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
 
@@ -116,6 +115,8 @@
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
 	var/datum/storage/storage_datum
+	/// All sources that affect or modify our alpha.
+	var/alpha_sources = list()
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -312,7 +313,7 @@ directive is properly returned.
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
 /atom/proc/relaymove(mob/living/user, direct)
-	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+	if(COOLDOWN_FINISHED(src, buckle_message_cooldown))
 		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
 		balloon_alert(user, "Can't move while buckled!")
 	return
@@ -350,7 +351,7 @@ directive is properly returned.
 
 /atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
-		AM.stop_throw()
+		AM.set_throwing(FALSE)
 		return TRUE
 
 ///Psionic interaction with this atom
@@ -391,11 +392,6 @@ directive is properly returned.
 		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
-
-/obj/item/update_filters() // tivi todo move this to items
-	. = ..()
-	for(var/datum/action/A AS in actions)
-		A.update_button_icon()
 
 /*
 	Atom Colour Priority System
@@ -771,6 +767,10 @@ directive is properly returned.
 	return
 
 
+/atom/proc/intercept_zImpact(list/falling_movables, levels = 1)
+	SHOULD_CALL_PARENT(TRUE)
+	. |= SEND_SIGNAL(src, COMSIG_ATOM_INTERCEPT_Z_FALL, falling_movables, levels)
+
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
 	return
@@ -866,7 +866,11 @@ directive is properly returned.
 	return TRUE
 
 /atom/proc/prepare_huds()
-	hud_list = new
+	for(var/key in hud_list)
+		var/image/removee = hud_list[key]
+		LAZYREMOVE(update_on_z, removee)
+	hud_list = list()
+	var/static/list/higher_hud_list = HUDS_LAYERING_HIGH
 	for(var/hud in hud_possible) //Providing huds.
 		var/hint = hud_possible[hud]
 		switch(hint)
@@ -875,6 +879,9 @@ directive is properly returned.
 			else
 				var/image/I = image('icons/mob/hud/human.dmi', src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
+				if(hud in higher_hud_list)
+					SET_PLANE_EXPLICIT(I, POINT_PLANE, src)
+					LAZYADD(update_on_z, I)
 				hud_list[hud] = I
 
 /**
@@ -888,7 +895,7 @@ directive is properly returned.
  * distance_max: used to check if originated_turf is close to obj.loc
 */
 /atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
 		cooldown = 1 SECONDS
@@ -998,3 +1005,25 @@ directive is properly returned.
 /atom/proc/do_acid_melt()
 	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
 	playsound(src, SFX_ACID_HIT, 25)
+
+/// Sets an alpha source before updating our alpha.
+/atom/proc/set_alpha_source(source, desired_alpha)
+	alpha_sources[source] = desired_alpha
+	update_alpha()
+
+/// Removes an alpha source before updating alpha.
+/atom/proc/remove_alpha_source(source)
+	if(!(source in alpha_sources))
+		return
+	alpha_sources -= source
+	update_alpha()
+
+/// Updates our alpha based on alpha sources.
+/atom/proc/update_alpha()
+	alpha = initial(alpha)
+	for(var/source_name AS in alpha_sources)
+		var/new_alpha = alpha_sources[source_name]
+		if(new_alpha >= alpha)
+			continue
+		alpha = new_alpha
+

@@ -20,7 +20,7 @@
 	if(_anchor && !_anchor_time || !_anchor && _anchor_time)
 		stack_trace("The beacon component has been added to [parent.type] and is missing either the anchor var or the time to anchor")
 		return COMPONENT_INCOMPATIBLE
-	if(!ismovableatom(parent)) //if some goober admin tries to add it to a turf or something
+	if(!ismovable(parent)) //if some goober admin tries to add it to a turf or something
 		return COMPONENT_INCOMPATIBLE
 	anchor = _anchor
 	anchor_time = _anchor_time
@@ -64,7 +64,7 @@
 		return
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(toggle_activation), source, user)
@@ -75,7 +75,7 @@
 		return
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(deactivate), source, user)
@@ -95,7 +95,7 @@
 		return FALSE
 
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		active = FALSE
 		return
 
@@ -104,7 +104,7 @@
 		user.visible_message(span_notice("[user] starts setting up [source] on the ground."),
 		span_notice("You start setting up [source] on the ground and inputting all the data it needs."))
 		if(!do_after(user, delay, NONE, source))
-			user.balloon_alert(user, "Keep still!")
+			user.balloon_alert(user, "keep still!")
 			active = FALSE
 			return
 
@@ -124,9 +124,9 @@
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
-	user.visible_message("[user] activates [source]'s signal.")
-	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
-	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", get_turf(source), user.faction)
+	user.visible_message(span_notice("[user] activates [source]'s signal."))
+	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_TYPE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
+	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", source, user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_BEACON_CREATED, src)
 	source.update_appearance()
@@ -134,7 +134,7 @@
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
 	if(length(user?.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		active = TRUE
 		return
 	if(source.anchored)
@@ -143,11 +143,11 @@
 			user.visible_message(span_notice("[user] starts removing [source] from the ground."),
 			span_notice("You start removing [source] from the ground, deactivating it."))
 			if(!do_after(user, delay, NONE, source, BUSY_ICON_GENERIC))
-				user.balloon_alert(user, "Keep still!")
+				user.balloon_alert(user, "keep still!")
 				active = TRUE
 				return
 			user.put_in_active_hand(source)
-			user.show_message(span_warning("The [source] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
+			user.show_message(span_warning("The [source] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_TYPE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
 		source.anchored = FALSE
 		source.layer = initial(source.layer)
 		source.set_light(0)
@@ -207,11 +207,11 @@
 	/// Name printed on the supply console
 	var/name = ""
 	/// Where the supply drops will land
-	var/turf/drop_location
+	var/atom/drop_location
 	/// The faction of the beacon
 	var/faction = ""
 
-/datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
+/datum/supply_beacon/New(_name, atom/_drop_location, _faction, life_time = 0 SECONDS)
 	name = _name
 	drop_location = _drop_location
 	faction = _faction

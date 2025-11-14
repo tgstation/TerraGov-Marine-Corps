@@ -66,9 +66,9 @@
 				continue
 			if(isliving(target))
 				var/mob/living/living_target = target
-				living_target.apply_damage(80, BURN, blocked = ENERGY, penetration = armor_pen)
+				living_target.apply_damage(80, BURN, blocked = ENERGY, penetration = armor_pen, attacker = current_firer)
 				if(!QDELETED(living_target))
-					living_target.apply_damage(80, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
+					living_target.apply_damage(80, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE, attacker = current_firer)
 				living_target.flash_act(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 3 : 2)
@@ -83,7 +83,7 @@
 		beam_turfs.Cut(beam_turfs.Find(impacted_turf))
 		stop_beam_turfs = RANGE_TURFS(1, impacted_turf)
 
-	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4)
+	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4, explosion_cause=current_firer)
 
 	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
 	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)

@@ -21,9 +21,7 @@
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize(mapload)
-	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, PROC_REF(on_becoming_ruler))
 	. = ..()
-	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, TYPE_PROC_REF(/datum/hive_status, on_queen_death))
 	playsound(loc, 'sound/voice/alien/queen_command.ogg', 75, 0)
 
 // ***************************************
@@ -35,28 +33,6 @@
 		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
-
-/mob/living/carbon/xenomorph/reset_perspective(atom/A)
-	if (!client)
-		return
-
-	if(observed_xeno && !stat)
-		client.perspective = EYE_PERSPECTIVE
-		client.eye = observed_xeno
-		return
-
-	if (ismovableatom(A))
-		client.perspective = EYE_PERSPECTIVE
-		client.eye = A
-		return
-
-	if (isturf(loc))
-		client.eye = client.mob
-		client.perspective = MOB_PERSPECTIVE
-		return
-
-	client.perspective = EYE_PERSPECTIVE
-	client.eye = loc
 
 /mob/living/carbon/xenomorph/queen/upgrade_xeno(newlevel, silent = FALSE)
 	. = ..()

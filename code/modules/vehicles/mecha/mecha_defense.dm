@@ -60,8 +60,11 @@
 	user.visible_message(span_danger("[user] hits [src]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
-/obj/vehicle/sealed/mecha/bullet_act(obj/projectile/proj, def_zone, piercing_hit) //wrapper
-	log_message("Hit by projectile. Type: [proj]([proj.ammo.damage_type]).", LOG_MECHA, color="red")
+/obj/vehicle/sealed/mecha/bullet_act(atom/movable/projectile/proj, def_zone, piercing_hit) //wrapper
+	var/known_firer = key_name(proj.firer)
+	if(known_firer)
+		known_firer += " fired by [known_firer]"
+	log_message("Hit by projectile [known_firer]. Type: [proj]([proj.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
 	try_damage_component(
 		modify_by_armor(proj.damage, proj.ammo.armor_type, proj.ammo.penetration, attack_dir = REVERSE_DIR(proj.dir)),
@@ -151,7 +154,7 @@
 	if(time_left)
 		disable_time += time_left
 		deltimer(emp_timer)
-	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
+	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, emp_restore)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 

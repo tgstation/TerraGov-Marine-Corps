@@ -166,7 +166,7 @@
 	return
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
-	hud_set_pheromone()
+	update_aura_overlay()
 
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
@@ -188,6 +188,7 @@
 	var/static/image/intoxicated_high_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud/human.dmi', icon_state = "silence_debuff")
 	var/static/image/dancer_marked_image = image('icons/mob/hud/human.dmi', icon_state = "marked_debuff")
+	var/static/image/lifedrain = image('icons/mob/hud/human.dmi', icon_state = "lifedrain")
 	var/static/image/hive_target_image = image('icons/mob/hud/human.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
@@ -233,6 +234,9 @@
 
 	if(has_status_effect(STATUS_EFFECT_DANCER_TAGGED))
 		xeno_debuff.overlays += dancer_marked_image
+
+	if(has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		xeno_debuff.overlays += lifedrain
 
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
@@ -313,7 +317,7 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "dead"
 				return TRUE
-			if(!mind)
+			if(!mind && !is_bot)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost) // No ghost detected. DNR player or NPC
 					status_hud.icon_state = "dead_dnr"
@@ -509,26 +513,6 @@
 	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
 	holder.overlays += "wrath[wrath_amount]"
 
-/mob/living/carbon/xenomorph/proc/hud_set_pheromone()
-	var/image/holder = hud_list[PHEROMONE_HUD]
-	if(!holder)
-		return
-	holder.icon_state = ""
-	if(stat != DEAD)
-		var/tempname = ""
-		if(frenzy_aura)
-			tempname += AURA_XENO_FRENZY
-		if(warding_aura)
-			tempname += AURA_XENO_WARDING
-		if(recovery_aura)
-			tempname += AURA_XENO_RECOVERY
-		if(tempname)
-			holder.icon = 'icons/mob/hud/aura.dmi'
-			holder.icon_state = "[tempname]"
-
-	hud_list[PHEROMONE_HUD] = holder
-
-//Only called when an aura is added or removed
 /mob/living/carbon/xenomorph/update_aura_overlay()
 	var/image/holder = hud_list[PHEROMONE_HUD]
 	if(!holder)
@@ -536,22 +520,47 @@
 	holder.overlays.Cut()
 	if(stat == DEAD)
 		return
+
+	var/list/pheromone_strengths_by_type = list(AURA_XENO_FRENZY = frenzy_aura, AURA_XENO_WARDING = warding_aura, AURA_XENO_RECOVERY = recovery_aura)
 	for(var/aura_type in GLOB.pheromone_images_list)
 		if(emitted_auras.Find(aura_type))
 			holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
+
+		var/phero_strength = pheromone_strengths_by_type[aura_type]
+		if(!phero_strength)
+			continue
+
+		var/phero_label
+		switch(phero_strength)
+			if(-INFINITY to 1.0)
+				phero_label = "vweak"
+			if(1.1 to 2.0)
+				phero_label = "weak"
+			if(2.1 to 2.9)
+				phero_label = "medium"
+			if(3.0 to 3.9)
+				phero_label = "strong"
+			if(4.0 to INFINITY)
+				phero_label = "vstrong"
+
+		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_[phero_label]")
 
 /mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
 	holder.overlays.Cut()
 	holder.icon_state = ""
 	if(stat != DEAD)
-		if(hive?.living_xeno_queen)
-			if(hive.living_xeno_queen.observed_xeno == src)
+		if(hive?.living_xeno_ruler)
+			if(hive.living_xeno_ruler.observed_xeno == src)
 				holder.icon = 'icons/mob/hud/xeno.dmi'
 				holder.icon_state = "queen_overwatch"
 			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud/xeno.dmi',src, "leader")
 				holder.overlays += I
+			if(hive.living_xeno_ruler == src)
+				var/image/I = image('icons/mob/hud/xeno.dmi',src, "ruler")
+				holder.overlays += I
+
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
@@ -756,8 +765,7 @@
 	var/image/holder = hud_list[ORDER_HUD]
 	if(!holder)
 		return
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = get_cached_height() - world.icon_size
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null

@@ -344,7 +344,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, explosion_cause=blame_mob)
 	return ..()
 
 
@@ -363,7 +363,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt, explosion_cause=src)
 
 
 
@@ -394,7 +394,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, explosion_cause=src)
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss

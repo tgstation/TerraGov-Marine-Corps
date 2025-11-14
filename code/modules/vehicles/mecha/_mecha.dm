@@ -1,3 +1,36 @@
+/particles/mech_land
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke3"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 10
+	fade = 25
+	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
+	color = generator(GEN_NUM, 0, 0.25)
+	color_change = generator(GEN_NUM, 0.08, 0.07)
+	velocity = generator(GEN_CIRCLE, 5, 15)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.1
+	grow = 0.02
+	friction = 0.25
+
+/particles/mech_land_water
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke4"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 10
+	fade = 25
+	velocity = generator(GEN_CIRCLE, 5, 15)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.1
+	grow = 0.02
+	friction = 0.25
+
 /***************** WELCOME TO MECHA.DM, ENJOY YOUR STAY *****************/
 
 /**
@@ -24,8 +57,8 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
-	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM|DIRLOCK
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -207,6 +240,8 @@
 	var/dash_range = 1
 	///cooldown time between dashes on greyscale mechs
 	var/dash_cooldown = 10 SECONDS
+	///determines if the mech does the footstep particles
+	var/no_footstep_particle = FALSE
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -218,6 +253,7 @@
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
+	RegisterSignal(src, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(on_jump_start))
 	RegisterSignal(src, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(on_jump_land))
 
 	spark_system.set_up(2, 0, src)
@@ -243,14 +279,13 @@
 	hud_set_mecha_battery()
 	update_icon()
 
-	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 	for(var/key in equip_by_category)
-		if(key == MECHA_L_ARM || key == MECHA_R_ARM)
+		if(key == MECHA_L_ARM || key == MECHA_R_ARM || key == MECHA_L_BACK || key == MECHA_R_BACK)
 			var/path = equip_by_category[key]
 			if(!path)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/thing = new path
-			thing.attach(src, key == MECHA_R_ARM)
+			thing.attach(src, (key == MECHA_R_ARM || key == MECHA_R_BACK))
 			continue
 		for(var/path in equip_by_category[key])
 			var/obj/item/mecha_parts/mecha_equipment/thing = new path
@@ -420,7 +455,7 @@
 	return TRUE
 
 ///Restores the mech after EMP
-/obj/vehicle/sealed/mecha/proc/restore_equipment()
+/obj/vehicle/sealed/mecha/proc/emp_restore()
 	emp_timer = null
 	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
@@ -557,7 +592,7 @@
 	if(phasing)
 		balloon_alert(user, "not while [phasing]!")
 		return
-	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
+	if(user.incapacitated(TRUE))
 		return
 	if(construction_state)
 		balloon_alert(user, "end maintenance first!")
@@ -595,7 +630,7 @@
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
 		return
-	var/on_cooldown = TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MELEE_ATTACK)
+	var/on_cooldown = TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_MELEE_ATTACK)
 	var/adjacent = Adjacent(target)
 	if(SEND_SIGNAL(src, COMSIG_MECHA_MELEE_CLICK, livinguser, target, on_cooldown, adjacent) & COMPONENT_CANCEL_MELEE_CLICK)
 		return
@@ -628,9 +663,24 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 ///Stuff that happens when a mech finishes a jump
+/obj/vehicle/sealed/mecha/proc/on_jump_start()
+	SIGNAL_HANDLER
+	playsound(loc, 'sound/mecha/mechturn.ogg', 30, TRUE)
+	no_footstep_particle = TRUE
+
+///Stuff that happens when a mech finishes a jump
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
+	no_footstep_particle = FALSE
 	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
+	var/obj/effect/abstract/particle_holder/landing_particles
+	var/turf/current_turf = get_turf(src)
+	if(iswater(current_turf))
+		landing_particles = new(current_turf, /particles/mech_land_water)
+	else
+		landing_particles = new(current_turf, /particles/mech_land)
+	landing_particles.layer = layer - 0.01
+	QDEL_IN(landing_particles, 1 SECONDS)
 
 /////////////////////////
 ////// Access stuff /////

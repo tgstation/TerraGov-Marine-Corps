@@ -45,6 +45,7 @@
 /datum/beam/proc/Start()
 	visuals = new beam_type()
 	visuals.icon = icon
+	visuals.vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	visuals.icon_state = icon_state
 	Draw()
 	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
@@ -68,7 +69,8 @@
 
 /datum/beam/Destroy()
 	QDEL_LIST(elements)
-	qdel(visuals)
+	if(visuals)
+		QDEL_NULL(visuals)
 	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	target = null
@@ -169,7 +171,7 @@
 		if(!living)
 			xenos -= living
 			continue
-		if(living.stat == DEAD)
+		if(living.stat == DEAD || (living.status_flags & (INCORPOREAL|GODMODE)))
 			xenos -= living
 			continue
 		if(living in blacklistmobs)

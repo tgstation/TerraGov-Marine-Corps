@@ -29,7 +29,8 @@
 	else
 		showpipe = FALSE
 		SET_PLANE_IMPLICIT(src, FLOOR_PLANE)
-
+		//layer handled in update_layer
+	update_layer() // idk man we dont have the tgcode for this ok
 	if(!showpipe)
 		return ..()
 
@@ -50,6 +51,9 @@
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
 	return ..()
+
+/obj/machinery/atmospherics/components/update_layer()
+	layer = (showpipe ? initial(layer) : EXPOSED_ATMOS_LAYER) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)

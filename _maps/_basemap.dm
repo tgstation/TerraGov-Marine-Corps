@@ -18,6 +18,7 @@
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#include "map_files\kutjevo\kutjevo.dmm"
+		#include "map_files\fiorina\fiorina.dmm"
 		#include "map_files\Orion_Military_Outpost\orionoutpost.dmm"
 		#include "map_files\Arachne\TGS_Arachne.dmm"
 		#include "map_files\gelida_iv\gelida_iv.dmm"
@@ -32,6 +33,7 @@
 		#include "map_files\corsat\corsat.dmm"
 		#include "map_files\Bluesummers\bluesummers.dmm"
 		#include "map_files\Metnal_Operation\Metnal_Operation.dmm"
+		#include "map_files\Blue_Moon\bluemoon.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

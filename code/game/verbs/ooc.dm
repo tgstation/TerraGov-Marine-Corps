@@ -220,7 +220,7 @@
 			display_name = display_key
 
 		var/avoid_highlight = recv_client == src
-		to_chat(recv_client, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_client, "<font color='#a330a7'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
@@ -236,7 +236,7 @@
 			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#a330a7'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -327,7 +327,7 @@
 			display_name = display_key
 
 		var/avoid_highlight = recv_client == src
-		to_chat(recv_client, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_client, "<font color='#ca6200'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
@@ -343,7 +343,7 @@
 			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#ca6200'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
@@ -674,7 +674,7 @@
 	prefs.ignoring.Add(selection)
 	prefs.save_preferences()
 
-	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+	to_chat(src, span_info("You are now ignoring [selection] on the OOC channel."))
 
 /client/verb/select_unignore()
 	set name = "Unignore"
@@ -697,4 +697,67 @@
 	prefs.ignoring.Remove(selection)
 	prefs.save_preferences()
 
-	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))
+	to_chat(src, span_info("You are no longer ignoring [selection] on the OOC channel."))
+
+/client/verb/linkforumaccount()
+	set category = "OOC"
+	set name = "Link Forum Account"
+	set desc = "Validates your byond account to your forum account. Required to post on the forums."
+
+	var/uri = CONFIG_GET(string/forum_link_uri)
+	if(!uri)
+		to_chat(src, span_warning("This feature is disabled."))
+		return
+
+	if (!SSdbcore.Connect())
+		to_chat(src, span_danger("No connection to the database."))
+		return
+
+	if  (IsGuestKey(ckey))
+		to_chat(src, span_danger("Guests can not link accounts."))
+		return
+
+	var/token = generate_account_link_token()
+
+	var/datum/db_query/query_set_token = SSdbcore.NewQuery("INSERT INTO phpbb.tg_byond_oauth_tokens (`token`, `key`) VALUES (:token, :key)", list("token" = token, "key" = key))
+	if(!query_set_token.Execute())
+		to_chat(src, span_danger("Failed to insert account link token into database, please try again later."))
+		qdel(query_set_token)
+		return
+
+	qdel(query_set_token)
+
+	to_chat(src, "Now opening a window to login to your forum account, your account will automatically be linked the moment you log in. If this window doesn't load, Please go to <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> - This link will expire in 30 minutes.")
+	src << link("[uri]?token=[token]")
+
+/client/proc/generate_account_link_token()
+	var/static/entropychain
+	if (!entropychain)
+		if (fexists("data/entropychain.txt"))
+			entropychain = file2text("entropychain.txt")
+		else
+			entropychain = "LOL THERE IS NO ENTROPY #HEATDEATH"
+	else if (prob(rand(1,15)))
+		text2file("data/entropychain.txt", entropychain)
+
+	var/datum/db_query/query_get_token = SSdbcore.NewQuery("SELECT [random_string()], [random_string()]", list(random_string_args(entropychain), random_string_args(entropychain)))
+
+	if(!query_get_token.Execute())
+		to_chat(src, span_danger("Failed to get random string token from database. (Error #1)"))
+		qdel(query_get_token)
+		return
+
+	if(!query_get_token.NextRow())
+		to_chat(src, span_danger("Could not locate your token in the database. (Error #2)"))
+		qdel(query_get_token)
+		return
+
+	entropychain = "[query_get_token.item[2]]"
+	return query_get_token.item[1]
+
+
+/client/proc/random_string()
+	return "SHA2(CONCAT(RAND(),UUID(),?,RAND(),UUID()), 512)"
+
+/client/proc/random_string_args(entropychain)
+	return "[entropychain][GUID()][rand()*rand(999999)][world.time][GUID()][rand()*rand(999999)][world.timeofday][GUID()][rand()*rand(999999)][world.realtime][GUID()][rand()*rand(999999)][time2text(world.timeofday)][GUID()][rand()*rand(999999)][world.tick_usage][computer_id][address][ckey][key][GUID()][rand()*rand(999999)]"

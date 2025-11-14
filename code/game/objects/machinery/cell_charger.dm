@@ -45,7 +45,7 @@
 
 	if(istype(I, /obj/item/cell) && anchored)
 		if(istype(I, /obj/item/cell/night_vision_battery))
-			balloon_alert(user, "Not rechargeable")
+			balloon_alert(user, "can't be recharged!")
 			return
 
 		if(charging)

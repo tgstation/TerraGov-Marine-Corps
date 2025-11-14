@@ -20,6 +20,8 @@
 	for(var/mob/living/carbon/human/nearby_human AS in GLOB.humans_by_zlevel["[source_turf.z]"])
 		if(isnull(nearby_human))
 			continue
+		if(nearby_human.z != source_turf.z)
+			continue
 		if(get_dist(source_turf, nearby_human) > distance)
 			continue
 		. += nearby_human
@@ -93,6 +95,20 @@
 			nearest_target = nearby_human
 			shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
+		for(var/obj/item/clothing/mask/facehugger/hugger AS in GLOB.alive_hugger_list)
+			if(hugger.z != source.z)
+				continue
+			if(!isturf(hugger.loc))
+				continue
+			if(attacker_hive == hugger.get_xeno_hivenumber())
+				continue
+			if(get_dist(source, hugger) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, hugger))
+				continue
+			nearest_target = hugger
+			shorter_distance = get_dist(source, hugger)
+
 		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
 		for(var/mob/nearby_xeno AS in nearby_xeno_list)
 			if(attacker_hive == nearby_xeno.get_xeno_hivenumber())
@@ -107,11 +123,27 @@
 				continue
 			nearest_target = nearby_xeno
 			shorter_distance = get_dist(source, nearby_xeno)
+
+		for(var/hive in GLOB.xeno_resin_turrets_by_hive) //we could check all xeno structures, but most of them are not shootable
+			for(var/obj/structure/xeno/xeno_turret/xeno_structure AS in GLOB.xeno_resin_turrets_by_hive[hive])
+				if(xeno_structure.z != source.z)
+					continue
+				if(attacker_hive == xeno_structure.get_xeno_hivenumber())
+					continue
+				if(get_dist(source, xeno_structure) >= shorter_distance)
+					continue
+				if(need_los && !line_of_sight(source, xeno_structure))
+					continue
+				nearest_target = xeno_structure
+				shorter_distance = get_dist(source, xeno_structure)
+
 	if(target_flags & TARGET_HUMAN_TURRETS)
 		for(var/obj/machinery/deployable/mounted/sentry/nearby_turret AS in GLOB.marine_turrets)
 			if(source.z != nearby_turret.z)
 				continue
 			if((GLOB.faction_to_iff[attacker_faction] == nearby_turret.iff_signal))
+				continue
+			if(nearby_turret.faction == attacker_faction)
 				continue
 			if(get_dist(source, nearby_turret) >= shorter_distance)
 				continue
@@ -130,8 +162,10 @@
 			nearest_target = nearby_vehicle
 			shorter_distance = get_dist(source, nearby_vehicle)
 	if(target_flags & TARGET_UNMANNED_VEHICLE)
-		for(var/atom/nearby_unmanned AS in GLOB.unmanned_vehicles)
+		for(var/obj/vehicle/unmanned/nearby_unmanned AS in GLOB.unmanned_vehicles)
 			if(source.z != nearby_unmanned.z)
+				continue
+			if(nearby_unmanned.faction == attacker_faction)
 				continue
 			if(get_dist(source, nearby_unmanned) >= shorter_distance)
 				continue

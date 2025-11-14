@@ -177,7 +177,7 @@ KEYBINDINGS
 /datum/action/proc/fail_activate()
 	return
 
-/datum/action/proc/can_use_action()
+/datum/action/proc/can_use_action(silent, override_flags, selecting)
 	if(!QDELETED(owner))
 		return TRUE
 

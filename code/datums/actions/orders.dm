@@ -21,11 +21,11 @@
 		return FALSE
 	return TRUE
 
-/datum/action/skill/issue_order/can_use_action()
+/datum/action/skill/issue_order/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
-	if(owner.stat || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_SKILL_ORDERS))
+	if(owner.stat || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_SKILL_ORDERS))
 		return FALSE
 
 /datum/action/skill/issue_order/action_activate()
@@ -47,7 +47,7 @@
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-	if(TIMER_COOLDOWN_CHECK(human, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(human, COOLDOWN_SKILL_ORDERS))
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
@@ -134,7 +134,7 @@
 		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
@@ -146,7 +146,7 @@
 		if(!command_aura)
 			return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 

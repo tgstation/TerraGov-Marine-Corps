@@ -35,7 +35,7 @@
 	///Buller type we fire, declared as type but set to a reference in Initialize
 	var/datum/ammo/bullet/ammo
 	///The currently loaded and ready to fire projectile
-	var/obj/projectile/in_chamber = null
+	var/atom/movable/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
 	var/gunnoise = SFX_GUN_SMARTGUN
 	/// Serial number of the vehicle
@@ -261,16 +261,16 @@
 		return TRUE //Already set!
 	if(current_rounds <= 0)
 		return FALSE
-	in_chamber = new /obj/projectile(src) //New bullet!
+	in_chamber = new /atom/movable/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return TRUE
 
 
 ///Check if we have/create a new bullet and fire it at an atom target
 /obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
-	if(!COOLDOWN_CHECK(src, fire_cooldown))
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
 		return FALSE
-	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
+	if(load_into_chamber() && istype(in_chamber, /atom/movable/projectile))
 		//Setup projectile
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")

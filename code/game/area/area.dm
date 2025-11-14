@@ -351,8 +351,7 @@
 		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)
 
-
-/area/update_icon_state()
+/area/update_overlays()
 	. = ..()
 	var/I //More important == bottom. Fire normally takes priority over everything.
 	if(alarm_state_flags && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
@@ -366,10 +365,8 @@
 			I = "alarm_fire" //Fire happening.
 		if(alarm_state_flags & ALARM_WARNING_DOWN)
 			I = "alarm_down" //Area is shut down.
-
-	if(icon_state != I)
-		icon_state = I //If the icon state changed, change it. Otherwise do nothing.
-
+	for(var/offset in 0 to SSmapping.max_plane_offset)
+		. += mutable_appearance('icons/turf/areas.dmi', I, plane=ABOVE_LIGHTING_PLANE, alpha=60, offset_const = offset)
 
 /area/proc/powered(chan)
 	if(!requires_power)

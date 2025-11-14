@@ -133,9 +133,7 @@
 /turf/open/floor/tile,
 /area/deathmatch)
 "lK" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/industrial,
 /area/deathmatch)
 "md" = (
@@ -343,9 +341,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "BI" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "BV" = (
@@ -394,9 +390,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "HM" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/structure/desertdam/decals/loose_sand_overlay,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
@@ -500,7 +494,7 @@
 /area/deathmatch)
 "Qj" = (
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/industrial,
 /area/deathmatch)

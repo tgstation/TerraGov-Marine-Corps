@@ -108,7 +108,7 @@
 	action_icon_state = "larva_queue"
 	action_type = ACTION_TOGGLE
 
-/datum/action/join_larva_queue/can_use_action()
+/datum/action/join_larva_queue/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE

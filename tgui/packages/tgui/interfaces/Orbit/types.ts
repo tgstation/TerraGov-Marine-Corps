@@ -22,5 +22,6 @@ export type Observable = {
   full_name: string;
   nickname?: string;
   orbiters?: number;
+  ckey?: string;
   ref: string;
 };

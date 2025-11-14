@@ -260,7 +260,7 @@
 	. = ..()
 	set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/explosive/grenade/flare/civilian,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -274,6 +274,11 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks,
 	))
+
+/datum/storage/internal/satchel
+	storage_slots = null
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/internal/engineering
 	max_storage_space = 15
@@ -382,8 +387,8 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/stack/throwing_knife,
 		/obj/item/storage/box/MRE,
 	))

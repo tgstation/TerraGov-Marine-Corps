@@ -35,7 +35,7 @@
 	uid++
 	src.personal_uid = uid
 
-	render_source_atom.appearance_flags |= KEEP_APART
+	render_source_atom.appearance_flags |= (KEEP_APART|RESET_ALPHA)
 
 	render_source_atom.vis_flags |= (VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
 
@@ -54,13 +54,10 @@
 	SIGNAL_HANDLER
 
 	var/mob/fool = parent
-	var/icon/current_mob_icon = icon(fool.icon, fool.icon_state)
 	var/datum/hud/our_hud = fool.hud_used
 	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
 		seethrough.unhide_plane(fool)
 
-	render_source_atom.pixel_x = -fool.pixel_x
-	render_source_atom.pixel_y = ((current_mob_icon.Height() - ICON_SIZE_Y) * 0.5)
 	render_source_atom.name = "seethrough" //So our name is not just "movable" when looking at VVs
 
 	initial_render_target_value = fool.render_target
@@ -132,7 +129,7 @@
 	COOLDOWN_DECLARE(toggle_cooldown)
 
 /datum/action/toggle_seethrough/action_activate(atom/t)
-	if(!COOLDOWN_CHECK(src, toggle_cooldown))
+	if(!COOLDOWN_FINISHED(src, toggle_cooldown))
 		return
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target

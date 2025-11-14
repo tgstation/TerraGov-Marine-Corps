@@ -163,16 +163,17 @@ GLOBAL_PROTECT(exp_specialmap)
 	return TRUE
 
 /// The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]
-/datum/job/proc/radio_help_message(mob/new_player)
-	var/list/message = list()
-	message += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
+/datum/job/proc/get_spawn_message_information(mob/new_player)
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	. += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		message += separator_hr("[span_role_body("<b>Radio</b>")]")
-		message += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel, in most cases this is your squad radio. For additional prefixes, examine your headset.")
+		. += separator_hr("[span_role_header("<b>Radio</b>")]")
+		. += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel—in most cases this is your squad radio if you are playing a Squad role, \
+							if you are playing a role without a Squad like Field Commander it will use the Common radio. For additional prefixes, examine your headset.")
 	if(req_admin_notify)
-		message += separator_hr("[span_role_header("This is an important job.")]")
-		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
-	to_chat(new_player, fieldset_block("[span_role_header("You are the [title].")]", jointext(message, ""), "examine_block"))
+		. += separator_hr("[span_role_header("<big>You Are Playing an Important Job</big>")]")
+		. += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
 
 
 /datum/job/proc/get_special_name(client/preference_source)
@@ -306,7 +307,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		equip_preference_gear(player)
 
 	if(!src.assigned_squad && assigned_squad)
-		job.equip_spawning_squad(src, assigned_squad, player)
+		job.equip_spawning_squad(src, assigned_squad, player, admin_action)
 
 	hud_set_job(faction)
 
@@ -327,14 +328,14 @@ GLOBAL_PROTECT(exp_specialmap)
 	chosen_variant.equip(src)
 
 
-/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	return
 
-/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	if(!assigned_squad)
 		SSjob.JobDebug("Failed to put marine role in squad. Player: [player.key] Job: [title]")
 		return
-	assigned_squad.insert_into_squad(new_character)
+	assigned_squad.insert_into_squad(new_character, FALSE, forced)
 
 
 /datum/job/proc/on_late_spawn(mob/living/late_spawner)

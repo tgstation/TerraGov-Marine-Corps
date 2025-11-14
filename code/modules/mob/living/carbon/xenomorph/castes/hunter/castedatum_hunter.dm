@@ -26,7 +26,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 310
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -35,8 +35,8 @@
 	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -65,6 +65,18 @@
 	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/fleeting_mirage,
+		/datum/mutation_upgrade/shell/splitting_mirage,
+		/datum/mutation_upgrade/shell/cloaking_mirage,
+		/datum/mutation_upgrade/spur/debilitating_strike,
+		/datum/mutation_upgrade/spur/ambush,
+		/datum/mutation_upgrade/spur/maul,
+		/datum/mutation_upgrade/veil/one_target,
+		/datum/mutation_upgrade/veil/mirage_flood,
+		/datum/mutation_upgrade/veil/faceblind
+	)
 
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -111,8 +123,9 @@
 	sunder_recover = 1
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS|CASTE_EXCLUDE_STRAINS
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HEAL_WITHOUT_QUEEN
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS|CASTE_EXCLUDE_STRAINS
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_HEAL_WITHOUT_QUEEN
+	caste_traits = list(TRAIT_CAN_VENTCRAWL, TRAIT_INNATE_HEALING)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 50, ACID = 30)

@@ -305,6 +305,7 @@
 	name = "Kutjevo - Central Colony Elevator"
 	icon_state = "colony_caves_0"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
+	ceiling = CEILING_UNDERGROUND
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/kutjevo/exterior/colony_north
@@ -314,12 +315,18 @@
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
+/area/kutjevo/exterior/colony_north/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/kutjevo/exterior/colony_S_East
 	name = "Kutjevo - North East Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_2"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+
+/area/kutjevo/exterior/colony_S_east/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/exterior/colony_N_East
 	name = "Kutjevo - South East Colony Caves"
@@ -328,12 +335,18 @@
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
+/area/kutjevo/exterior/colony_N_east/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/kutjevo/exterior/colony_South
 	name = "Kutjevo - South Colony Caves"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	icon_state = "colony_caves_3"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambicave2.ogg', 'sound/effects/rocksfalling1.ogg', 'sound/effects/rocksfalling2.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+
+/area/kutjevo/exterior/colony_South/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/kutjevo/interior/colony_South/power2
 	name = "Kutjevo - South Colony Treatment Plant"

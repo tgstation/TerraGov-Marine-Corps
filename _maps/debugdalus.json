@@ -2,5 +2,8 @@
     "map_name": "Debugdalus",
     "map_path": "map_files/debugdalus",
     "map_file": "tgs_debugdalus.dmm",
-    "traits": [{"Marine Main Ship": true}]
+    "traits": [{
+		"Marine Main Ship": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
 }

@@ -12,8 +12,8 @@
 	reload_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	opened_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
 	icon = 'icons/obj/items/guns/pistols.dmi'
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
@@ -57,7 +57,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -237,7 +237,7 @@
 	)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -272,7 +272,7 @@
 	force = 8
 	actions_types = null
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -301,7 +301,7 @@
 /obj/item/weapon/gun/revolver/standard_magnum/fancy
 	starting_attachment_types = list()
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -357,11 +357,11 @@
 	worn_icon_state = "m44"
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
-	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
+	default_ammo_type = /obj/item/ammo_magazine/revolver/single_action/m44
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/single_action/m44, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,

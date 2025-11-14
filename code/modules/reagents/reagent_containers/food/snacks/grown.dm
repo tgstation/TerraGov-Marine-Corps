@@ -340,7 +340,6 @@
 	name = "killer-tomato"
 	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
 	icon_state = "killertomato"
-	potency = 10
 	filling_color = "#FF0000"
 	potency = 30
 	plantname = "killertomato"

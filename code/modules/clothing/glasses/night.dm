@@ -69,6 +69,26 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
 
+/obj/item/clothing/glasses/night/m56_goggles/activate(mob/user)
+	. = ..()
+	if(!user)
+		return
+	if(active)
+		SEND_SIGNAL(user, COMSIG_KTLD_ACTIVATED, src)
+		RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(activate))
+	else
+		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
+
+/obj/item/clothing/glasses/night/m56_goggles/equipped(mob/user, slot)
+	. = ..()
+	if(!active)
+		return
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(activate))
+
+/obj/item/clothing/glasses/night/m56_goggles/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_ITEM_ZOOM)
+
 /obj/item/clothing/glasses/night/sunglasses
 	name = "\improper KTLD sunglasses"
 	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
@@ -106,12 +126,19 @@
 
 /obj/item/clothing/glasses/night/vsd
 	name = "\improper CM-12 night vision goggles"
-	desc = "V.S.D's standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
+	desc = "VSDs standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
 	icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "vsd_nvg"
 	worn_icon_state = "vsd_nvg"
 	deactive_state = "vsd_nvg_off"
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	tint = COLOR_GREEN
+	tint = COLOR_VERY_SOFT_YELLOW
 	worn_layer = COLLAR_LAYER
+
+/obj/item/clothing/glasses/night/vsd/alt
+	name = "\improper CM-13 night vision faceplate"
+	desc = "VSDs night vision Faceplate, made for attachments to the Medium armor variant of their armor. Crash Core and your superior officers are not responsible for blindness and burning."
+	icon_state = "vsd_alt"
+	worn_icon_state = "vsd_alt"
+	deactive_state = "vsd_alt_off"

@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	pixel_y = -120
 	pixel_z = -480
 
-/obj/effect/temp_visual/dropship_flyby/Initialize()
+/obj/effect/temp_visual/dropship_flyby/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_z = 960, time = 3 SECONDS)
 
@@ -221,3 +221,20 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/gib_particles/proc/stop_spawning()
 	blood.particles.count = 0
 	gib_splatter.particles.count = 0
+
+/obj/effect/temp_visual/leap_dust
+	name = "dust"
+	desc = "It's just a dust cloud!"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "leap_cloud"
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE
+	pixel_x = -16
+	pixel_y = -16
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/leap_dust/small
+
+/obj/effect/temp_visual/leap_dust/small/Initialize(mapload)
+	. = ..()
+	transform = transform.Scale(0.5)

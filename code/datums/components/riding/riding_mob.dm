@@ -69,7 +69,7 @@
 	return ..()
 
 /datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
-	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
+	if(!COOLDOWN_FINISHED(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(!keycheck(user))
 		if(ispath(keytype, /obj/item))
@@ -82,6 +82,19 @@
 	. = ..()
 	step(movable_parent, direction)
 	COOLDOWN_START(src, vehicle_move_cooldown, new_delay)
+
+/datum/component/riding/creature/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS))
+		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
+	if(!can_be_driven)
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	if(!ride_check(rider, FALSE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+		return COMPONENT_RIDDEN_STOP_Z_MOVE
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /// Yeets the rider off, used for animals and cyborgs, redefined for humans who shove their piggyback rider off
 /datum/component/riding/creature/proc/force_dismount(mob/living/rider, gentle = FALSE)

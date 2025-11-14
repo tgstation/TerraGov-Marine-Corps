@@ -2,6 +2,7 @@
     "map_name": "Meridian Riptide",
     "map_path": "map_files/riptide",
     "map_file": "riptide.dmm",
+	"parallax_icon": "jungle",
 	"disk_sets": {
 		"set1": 1,
 		"set2": 1,
@@ -11,5 +12,7 @@
 	"quickbuilds": 2500,
 	"announce_text": "We have received a faint distress signal originating from a sandy island with a dense jungle. The ship has jumped within range of what looks like a beach resort. TGMC, gear up, don't forget your sunscreen and get ready to respond!",
 	"traits":[{
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
 	}]
 }

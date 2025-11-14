@@ -217,6 +217,8 @@
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE)
 	if(!M)
 		return 0	//feckin mechs are dumb
+	if(TIMER_COOLDOWN_RUNNING(M, COOLDOWN_ELECTROCUTED))
+		return
 	if(dist_check)
 		if(!in_range(source,M))
 			return 0
@@ -267,6 +269,7 @@
 		power_source = C
 		shock_damage = cell_damage
 	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
+	TIMER_COOLDOWN_START(M, COOLDOWN_ELECTROCUTED, 2 SECONDS)
 	log_combat(source, M, "electrocuted")
 
 	var/drained_energy = drained_hp*20

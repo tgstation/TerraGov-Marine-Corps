@@ -19,6 +19,8 @@
 
 #define STATUS_EFFECT_XENO_ESSENCE_LINK /datum/status_effect/stacking/essence_link
 
+#define STATUS_EFFECT_XENO_ESSENCE_LINK_REVENGE /datum/status_effect/essence_link_revenge
+
 #define STATUS_EFFECT_XENO_SALVE_REGEN /datum/status_effect/salve_regen
 
 #define STATUS_EFFECT_XENO_ENHANCEMENT /datum/status_effect/drone_enhancement
@@ -78,6 +80,8 @@
 
 #define STATUS_EFFECT_DANCER_TAGGED /datum/status_effect/incapacitating/dancer_tagged //Additional damage/effects by Praetorian Dancer's abilities.
 
+#define STATUS_EFFECT_LIFEDRAIN /datum/status_effect/incapacitating/lifedrain // Lifesteal for every xeno that hits this mob, applied by globadier
+
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
@@ -89,6 +93,12 @@
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
 ///recenly hit by a sniper round
 #define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
+// Applies a movement speed multiplier of 0.4 for 6 seconds.
+#define STATUS_EFFECT_DREAD  /datum/status_effect/dread
+/// Deals a variable amount of stamina damage for 6 seconds.
+#define STATUS_EFFECT_DRAINING_DREAD  /datum/status_effect/draining_dread
+/// Cloaked by xenomorph variant of tactical smoke (aka gas that both has SMOKE_XENO and SMOKE_CAMO).
+#define STATUS_EFFECT_XENOMORPH_CLOAKING  /datum/status_effect/xenomorph_cloaking
 
 /////////////
 // NEUTRAL //

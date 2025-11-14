@@ -19,7 +19,7 @@
 	penetration = 10
 	sundering = 0.5
 
-/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/mech/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 3, slowdown = 0.2)
 
 /*
@@ -28,13 +28,22 @@
 //================================================
 */
 /datum/ammo/rocket/mech
-	name = "large high-explosive rocket"
-	damage = 75
-	penetration = 50
+	name = "large light explosive rocket"
+	damage = 10
+	penetration = 15
 	max_range = 30
+	sundering = 15
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 5, 0, 5)
+	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
+
+/datum/ammo/rocket/mech/heavy
+	name = "large heavy explosive rocket"
+	damage = 30
+	penetration = 30
+
+/datum/ammo/rocket/mech/heavy/drop_nade(turf/T)
+	explosion(T, 0, 2, 4, 0, 0, explosion_cause=src)
 
 /*
 //================================================
@@ -72,7 +81,7 @@
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
-	damage = 30
+	damage = 35
 	penetration = 10
 	sundering = 1
 	damage_falloff = 0.2
@@ -88,9 +97,10 @@
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
-	damage = 20
+	damage = 25
 	sundering = 0.5
 	penetration = 5
+	damage_falloff = 0.4
 
 /datum/ammo/bullet/shotgun/mech
 	name = "super-heavy shotgun buckshot shell"
@@ -99,24 +109,23 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
-	sundering = 0
+	sundering = 5
 	penetration = 15
-	damage = 50
-	damage_falloff = 10
+	damage = 75
+	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 50
-	sundering = 0
+	damage = 60
+	sundering = 2.5
 	penetration = 15
-	damage_falloff = 10
+	damage_falloff = 8
 
-/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/energy/lasgun/marine/mech

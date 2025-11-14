@@ -26,6 +26,7 @@
 #define LOG_MECHA (1 << 17)
 #define LOG_SPEECH_INDICATORS (1 << 18)
 #define LOG_VICTIM (1 << 19)
+#define LOG_TRANSPORT (1<<20)
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)
@@ -69,6 +70,7 @@
 #define LOG_CATEGORY_FILTER "filter"
 #define LOG_CATEGORY_MANIFEST "manifest"
 #define LOG_CATEGORY_MECHA "mecha"
+#define LOG_CATEGORY_TRANSPORT "transport"
 #define LOG_CATEGORY_PAPER "paper"
 #define LOG_CATEGORY_QDEL "qdel"
 #define LOG_CATEGORY_RUNTIME "runtime"
@@ -112,6 +114,7 @@
 #define LOG_CATEGORY_GAME_XOOC "game-xooc"
 #define LOG_CATEGORY_GAME_MOOC "game-mooc"
 #define LOG_CATEGORY_GAME_PRAYER "game-prayer"
+#define LOG_CATEGORY_GAME_INTERNET_REQUEST "game-internet-request"
 #define LOG_CATEGORY_GAME_SAY "game-say"
 #define LOG_CATEGORY_GAME_TOPIC "game-topic"
 #define LOG_CATEGORY_GAME_VOTE "game-vote"

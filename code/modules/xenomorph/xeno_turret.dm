@@ -109,7 +109,7 @@
 		if(last_hostile)
 			set_last_hostile(null)
 		return
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
+	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_XENO_TURRETS_ALERT))
 		GLOB.hive_datums[hivenumber].xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/help1.ogg', FALSE, null, /atom/movable/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
@@ -173,7 +173,7 @@
 		distance = buffer_distance
 		. = nearby_hostile
 
-///Return TRUE if a possible target is near
+///Populates the target list on process
 /obj/structure/xeno/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
@@ -182,17 +182,17 @@
 		if(nearby_human.get_xeno_hivenumber() == hivenumber)
 			continue
 		potential_hostiles += nearby_human
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, TURRET_SCAN_RANGE))
 		if(GLOB.hive_datums[hivenumber] == nearby_xeno.hive)
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
-		if(vehicle.z == z && get_dist(vehicle, src) <= range)
+		if(vehicle.z == z && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
 			potential_hostiles += vehicle
 	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
-		if(mech.z == z && get_dist(mech, src) <= range)
+		if(mech.z == z && get_dist(mech, src) <= TURRET_SCAN_RANGE)
 			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
@@ -204,7 +204,7 @@
 		update_minimap_icon()
 		return
 	face_atom(hostile)
-	var/obj/projectile/newshot = new(loc)
+	var/atom/movable/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, null, src, ammo.max_range, ammo.shell_speed)

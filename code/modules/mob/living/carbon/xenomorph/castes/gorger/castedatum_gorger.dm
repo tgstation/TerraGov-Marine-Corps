@@ -33,9 +33,8 @@
 	deevolves_to = /datum/xeno_caste/warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
@@ -59,6 +58,12 @@
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/devour,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/unmoving_link,
+		/datum/mutation_upgrade/spur/necrotic_link,
+		/datum/mutation_upgrade/veil/burst_healing
 	)
 
 /datum/xeno_caste/gorger/normal

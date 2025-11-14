@@ -527,6 +527,9 @@
 /turf/open/space/is_weedable()
 	return FALSE
 
+/turf/open/openspace/is_weedable()
+	return FALSE
+
 /turf/open/ground/grass/is_weedable()
 	return FALSE
 
@@ -540,6 +543,68 @@
 	return TRUE
 
 /turf/open/ground/grass/weedable/is_weedable()
+	return TRUE
+
+//The zpass procs exist to be overridden, not directly called
+//use can_z_pass for that
+///If we'd allow anything to travel into us
+/turf/proc/zPassIn(direction)
+	return FALSE
+
+///If we'd allow anything to travel out of us
+/turf/proc/zPassOut(direction)
+	return FALSE
+
+/// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()
+/turf/proc/zFall(atom/movable/falling, levels = 1, force = FALSE, falling_from_move = FALSE)
+	var/direction = DOWN
+	var/turf/target = get_step_multiz(src, direction)
+	if(!target)
+		return FALSE
+	var/isliving = isliving(falling)
+	if(!isliving && !isobj(falling))
+		return
+	if(isliving)
+		var/mob/living/falling_living = falling
+		//relay this mess to whatever the mob is buckled to.
+		if(falling_living.buckled)
+			falling = falling_living.buckled
+	if(!falling_from_move && falling.currently_z_moving)
+		return
+	if(!force && !falling.can_z_move(direction, src, target, ZMOVE_FALL_FLAGS))
+		falling.set_currently_z_moving(FALSE, TRUE)
+		return FALSE
+
+	// So it doesn't trigger other zFall calls. Cleared on zMove.
+	falling.set_currently_z_moving(CURRENTLY_Z_FALLING)
+
+	falling.zMove(null, target, ZMOVE_CHECK_PULLEDBY)
+	target.zImpact(falling, levels, src)
+	return TRUE
+
+///Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.
+/turf/proc/zImpact(atom/movable/falling, levels = 1, turf/prev_turf, flags = NONE)
+	var/list/falling_movables = falling.get_z_move_affected()
+	var/list/falling_mov_names
+	for(var/atom/movable/falling_mov as anything in falling_movables)
+		falling_mov_names += falling_mov.name
+	for(var/i in contents)
+		var/atom/thing = i
+		flags |= thing.intercept_zImpact(falling_movables, levels)
+		if(flags & FALL_STOP_INTERCEPTING)
+			break
+	if(prev_turf && !(flags & FALL_NO_MESSAGE))
+		for(var/mov_name in falling_mov_names)
+			prev_turf.visible_message(span_danger("[mov_name] falls through [prev_turf]!"))
+	if(!(flags & FALL_INTERCEPTED) && zFall(falling, levels + 1))
+		return FALSE
+	for(var/atom/movable/falling_mov as anything in falling_movables)
+		if(!(flags & FALL_RETAIN_PULL))
+			falling_mov.stop_pulling()
+		if(!(flags & FALL_INTERCEPTED))
+			falling_mov.onZImpact(src, levels)
+		if(falling_mov.pulledby && (falling_mov.z != falling_mov.pulledby.z || get_dist(falling_mov, falling_mov.pulledby) > 1))
+			falling_mov.pulledby.stop_pulling()
 	return TRUE
 
 /**
@@ -973,3 +1038,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 ///Returns the number that shows how far an AM is offset when submerged in this turf
 /turf/proc/get_submerge_depth()
 	return 0
+
+///Checks if the turf is covered by something, like a catwalk
+/turf/proc/is_covered()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED) & TURF_COVERED)
+		return TRUE
+	return FALSE

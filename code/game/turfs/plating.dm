@@ -48,18 +48,19 @@
 	icon_state = "plating"
 	name = "airless plating"
 
-/turf/open/floor/plating/fake_space
+/turf/open/floor/plating/fake_space //todo: kill mappers that use dodgy fake tiles that are basically just varedits
 	icon = 'icons/turf/space.dmi'
 	name = "\proper shielded space"
 	icon_state = "0"
 	plane = PLANE_SPACE
+	hull_floor = TRUE
 
 /turf/open/floor/plating/icefloor
 	icon_state = "plating"
 	name = "ice colony plating"
 
 
-/turf/open/floor/plating/icefloor/New()
+/turf/open/floor/plating/icefloor/Initialize(mapload)
 	. = ..()
 	name = "plating"
 
@@ -120,10 +121,13 @@
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'
 
-
-/turf/open/floor/plating/ironsand/New()
-	. = ..()
+/turf/open/floor/plating/ironsand
 	name = "Iron Sand"
+/turf/open/floor/plating/plating_catwalk/prison/alt
+	icon_state = "plating_catwalk_alt"
+
+/turf/open/floor/plating/ironsand/Initialize(mapload)
+	. = ..()
 	icon_state = "ironsand[rand(1,15)]"
 
 /turf/open/floor/plating/warning

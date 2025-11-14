@@ -22,7 +22,8 @@
 
 */
 /datum/component/suit_autodoc
-	var/obj/item/healthanalyzer/integrated/analyzer
+	/// The health scanner functionality
+	var/datum/health_scan/analyzer
 
 	var/chem_cooldown = 2.5 MINUTES
 
@@ -71,7 +72,7 @@
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
 
-	analyzer = new
+	analyzer = new(parent, SKILL_MEDICAL_UNTRAINED)
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
 
@@ -130,19 +131,19 @@
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_BRUTE))
 		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_OXY))
 		details += "Its oxygenating injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_TOX))
 		details += "Its anti-toxin injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
 
 
@@ -182,7 +183,7 @@
 	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite deactivates")
+		wearer.balloon_alert(wearer, "deactivated")
 		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
 
 /**
@@ -198,7 +199,7 @@
 	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite activates")
+		wearer.balloon_alert(wearer, "activated")
 		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
 
 
@@ -222,7 +223,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
+	if(!length(chems) || TIMER_COOLDOWN_RUNNING(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs
@@ -312,7 +313,7 @@
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
 	SIGNAL_HANDLER
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TOGGLE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
 	if(enabled)
@@ -325,7 +326,7 @@
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item, attack), wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/health_scan, analyze_vitals), wearer, wearer)
 
 /**
 	Proc to show the suit configuration page
@@ -391,7 +392,7 @@
 		action_toggle()
 
 	else if(href_list["analyzer"]) //Integrated scanner
-		analyzer.attack(wearer, wearer, TRUE)
+		analyzer.analyze_vitals(wearer, wearer)
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
@@ -405,7 +406,7 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc/can_use_action()
+/datum/action/suit_autodoc/can_use_action(silent, override_flags, selecting)
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
 	return TRUE

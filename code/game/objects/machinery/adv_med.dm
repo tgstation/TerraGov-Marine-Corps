@@ -96,10 +96,10 @@
 /obj/machinery/bodyscanner/proc/go_out()
 	if (!occupant || locked)
 		return
-	for(var/obj/O in src)
-		O.loc = loc
 	occupant.forceMove(loc)
 	occupant = null
+	for(var/obj/O in src)
+		O.forceMove(loc)
 	update_icon()
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
@@ -169,14 +169,14 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
 			if (prob(50))
 				for(var/atom/movable/A AS in src)
-					A.loc = src.loc
+					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -184,7 +184,7 @@
 			if(!prob(75))
 				return
 			for(var/atom/movable/A AS in src)
-				A.loc = src.loc
+				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 
@@ -197,13 +197,20 @@
 	idle_power_usage = 3
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	dir = EAST
+	/// The connected body scanner pod
 	var/obj/machinery/bodyscanner/connected
-	var/delete
-	var/temphtml
+	/// The health scan functionality
+	var/datum/health_scan/scanner
 
 /obj/machinery/computer/body_scanconsole/Initialize(mapload)
 	. = ..()
 	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, REVERSE_DIR(dir))))
+	scanner = new(src, SKILL_MEDICAL_UNTRAINED, SKILL_MEDICAL_UNTRAINED, TRACK_DISTANCE_DISABLED)
+	RegisterSignal(scanner, COMSIG_HEALTH_SCAN_DATA, PROC_REF(on_scanner_data))
+
+/obj/machinery/computer/body_scanconsole/Destroy()
+	QDEL_NULL(scanner)
+	return ..()
 
 /obj/machinery/computer/body_scanconsole/ex_act(severity)
 	switch(severity)
@@ -226,43 +233,21 @@
 
 	return TRUE
 
-
 /obj/machinery/computer/body_scanconsole/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	var/dat
-	if(connected?.occupant) //Is something connected?
-		var/mob/living/carbon/human/H = connected.occupant
-		dat = med_scan(H, dat, GLOB.known_implants)
-	else
-		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
-
-	var/datum/browser/popup = new(user, "scanconsole", "<div align='center'>Body Scanner Console</div>", 430, 600)
-	popup.set_content(dat)
-	popup.open(FALSE)
-
+	scanner.analyze_vitals(connected.occupant, user)
 
 /obj/machinery/bodyscanner/examine(mob/living/user)
 	. = ..()
 	if(!occupant)
 		return
-	if(!hasHUD(user,"medical"))
-		. += span_notice("It contains: [occupant].")
-		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical) //Again, for consistency with other medical machines/devices
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			. += span_deptradio("No scan report on record")
-		else
-			. += span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
-		break
+	. += span_notice("It contains: [occupant].")
+	. += span_notice("Scans performed will be archived and viewable when someone with a medical HUD examines a previous patient.")
 
-
-///Wrapper to guarantee connected bodyscanner references are properly nulled and avoid hard deletes.
+/// Wrapper to guarantee connected bodyscanner references are properly nulled and avoid hard deletions
 /obj/machinery/computer/body_scanconsole/proc/set_connected(obj/machinery/bodyscanner/new_connected)
 	if(connected)
 		UnregisterSignal(connected, COMSIG_QDELETING)
@@ -270,8 +255,17 @@
 	if(connected)
 		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(on_bodyscanner_deletion))
 
-
-///Called by the deletion of the connected bodyscanner.
+/// Called by the deletion of the connected bodyscanner
 /obj/machinery/computer/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
 	SIGNAL_HANDLER
 	set_connected(null)
+
+/// Called by the scan datum finishing `ui_data`, updates or creates
+/// a historic scan for the connected pod's occupant
+/obj/machinery/computer/body_scanconsole/proc/on_scanner_data(datum/health_scan/source, mob/living/carbon/human/patient, list/data)
+	SIGNAL_HANDLER
+	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
+	var/datum/historic_scan/historic_scan = (medical_record.fields["historic_scan"] ||= new /datum/historic_scan(patient))
+	historic_scan.data = data
+	medical_record.fields["historic_scan_time"] = worldtime2text()
+	medical_record.fields["autodoc_data"] = generate_autodoc_surgery_list(connected.occupant)

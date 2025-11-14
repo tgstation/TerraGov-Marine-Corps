@@ -32,9 +32,9 @@
 	deevolves_to = /datum/xeno_caste/defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
@@ -51,6 +51,12 @@
 		/datum/action/ability/activable/xeno/warrior/fling,
 		/datum/action/ability/activable/xeno/warrior/grapple_toss,
 		/datum/action/ability/activable/xeno/warrior/punch,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/zoomies,
+		/datum/mutation_upgrade/spur/enhanced_strength,
+		/datum/mutation_upgrade/veil/friendly_toss
 	)
 
 /datum/xeno_caste/warrior/normal

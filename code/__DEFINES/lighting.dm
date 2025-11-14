@@ -39,12 +39,16 @@
 /// Don't block any emissives. Useful for things like, pieces of paper?
 #define EMISSIVE_BLOCK_NONE 2
 
-#define _EMISSIVE_COLOR(val) list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, val,val,val,0)
+#define _EMISSIVE_COLOR(val) list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, val,0,0,0)
+#define _EMISSIVE_COLOR_NO_BLOOM(val) list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,val,0,0)
 
 /// The color matrix applied to all emissive overlays. Should be solely dependent on alpha and not have RGB overlap with [EM_BLOCK_COLOR].
 #define EMISSIVE_COLOR _EMISSIVE_COLOR(1)
+#define EMISSIVE_COLOR_NO_BLOOM _EMISSIVE_COLOR_NO_BLOOM(1)
 /// A globaly cached version of [EMISSIVE_COLOR] for quick access.
 GLOBAL_LIST_INIT(emissive_color, EMISSIVE_COLOR)
+GLOBAL_LIST_INIT(emissive_color_no_bloom, EMISSIVE_COLOR_NO_BLOOM)
+
 #define _EM_BLOCK_COLOR(val) list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,val, 0,0,0,0)
 /// The color matrix applied to all emissive blockers. Should be solely dependent on alpha and not have RGB overlap with [EMISSIVE_COLOR].
 #define EM_BLOCK_COLOR _EM_BLOCK_COLOR(1)
@@ -52,6 +56,8 @@ GLOBAL_LIST_INIT(emissive_color, EMISSIVE_COLOR)
 GLOBAL_LIST_INIT(em_block_color, EM_BLOCK_COLOR)
 /// A set of appearance flags applied to all emissive and emissive blocker overlays.
 #define EMISSIVE_APPEARANCE_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
+/// A set of appearance flags applied to all emissive and emissive blocker overlays that transform with the atom its attached to.
+#define EMISSIVE_APPEARANCE_TRANSFORM_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR)
 /// The color matrix used to mask out emissive blockers on the emissive plane. Alpha should default to zero, be solely dependent on the RGB value of [EMISSIVE_COLOR], and be independant of the RGB value of [EM_BLOCK_COLOR].
 #define EM_MASK_MATRIX list(0,0,0,1/3, 0,0,0,1/3, 0,0,0,1/3, 0,0,0,0, 1,1,1,0)
 /// A globaly cached version of [EM_MASK_MATRIX] for quick access.
@@ -105,6 +111,9 @@ do { \
 		1, 1, 1, 0, \
 		0, 0, 0, 1           \
 	)                        \
+
+/// Weight of overlay lighting, in percentage of contribution towards total light
+#define OVERLAY_LIGHTING_WEIGHT 0.4
 
 #define LIGHTING_NO_UPDATE 0
 #define LIGHTING_VIS_UPDATE 1

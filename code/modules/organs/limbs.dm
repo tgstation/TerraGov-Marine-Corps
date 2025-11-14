@@ -1,5 +1,3 @@
-#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
-
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -454,7 +452,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
+				if (COOLDOWN_FINISHED(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
 					to_chat(owner, span_notice("Your [display_name] itches and feels warm..."))
 					COOLDOWN_START(src, next_infection_message, rand(60 SECONDS, 90 SECONDS))
 
@@ -466,7 +464,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
+				if (COOLDOWN_FINISHED(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
 					to_chat(owner, span_warning("Your infected [display_name] is turning off-color and stings like hell!"))
 					COOLDOWN_START(src, next_infection_message, rand(25 SECONDS, 40 SECONDS))
 
@@ -662,7 +660,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_to_drop?.droplimb(TRUE, TRUE)
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
+/datum/limb/proc/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 
@@ -689,7 +687,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// If any organs are attached to this, destroy them
 	for(var/c in children)
 		var/datum/limb/appendage = c
-		appendage.droplimb(amputation, delete_limb)
+		appendage.droplimb(amputation, delete_limb, TRUE)
 
 	//Clear out any internal and external wounds, damage the parent limb
 	QDEL_LIST(wounds)
@@ -758,7 +756,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(delete_limb)
 		QDEL_NULL(organ)
-	else
+	else if(!silent)
 		owner.visible_message(span_warning("[owner.name]'s [display_name] flies off in an arc!"),
 		span_userdanger("<b>Your [display_name] goes flying off!</b>"),
 		span_warning("You hear a terrible sound of ripping tendons and flesh!"), 3)
@@ -777,7 +775,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.death()
 	return TRUE
 
-/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE)
+/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -898,7 +896,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		e_icon = E.icon_name
 
-	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.physique, icon_name, e_icon)]")
 
 
 /datum/limb/proc/is_usable()
@@ -1155,7 +1153,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	face_surgery_stage = 0
 
 
-/datum/limb/head/droplimb(amputation, delete_limb = FALSE)
+/datum/limb/head/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return

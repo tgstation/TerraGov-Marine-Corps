@@ -31,8 +31,8 @@
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -50,6 +50,19 @@
 		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/upfront_evasion,
+		/datum/mutation_upgrade/shell/borrowed_time,
+		/datum/mutation_upgrade/shell/ingrained_evasion,
+		/datum/mutation_upgrade/spur/sneak_attack,
+		/datum/mutation_upgrade/spur/right_here,
+		/datum/mutation_upgrade/spur/mutilate,
+		/datum/mutation_upgrade/veil/headslam,
+		/datum/mutation_upgrade/veil/frenzy,
+		/datum/mutation_upgrade/veil/passing_glance
+	)
+
 
 /datum/xeno_caste/runner/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -80,12 +93,20 @@
 
 	acid_spray_damage = 16
 
-	// -12 melee damage. Attacking does a second instance of melee damage as burn damage + status effect.
+	// -12 melee damage. Attacking does a second instance of melee damage as brute damage (vs. melee) + melting acid status effect.
 	melee_damage = 11
+	melee_damage_type = BURN
+	melee_damage_armor = ACID
 
 	// Gain acid blood for less speed (0.2).
 	speed = -1.2
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+
+	// +50 health
+	max_health = 350
+
+	// +5 armor across the board
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 10, FIRE = 25, ACID = 10)
 
 	// Loses pounce and evasion for acid-themed abilities.
 	actions = list(
@@ -96,6 +117,12 @@
 		/datum/action/ability/activable/xeno/charge/acid_dash/melter,
 		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/xeno_action/xenohide,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/acid_release,
+		/datum/mutation_upgrade/spur/fully_acid,
+		/datum/mutation_upgrade/veil/acid_reserves
 	)
 
 /datum/xeno_caste/runner/melter/normal

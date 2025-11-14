@@ -75,7 +75,7 @@
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
 	action_icon = 'icons/obj/structures/barricades/plasteel.dmi'
-	action_icon_state = "plasteel_0"
+	action_icon_state = "folding_plasteel_0"
 
 /datum/action/innate/remote_fob/plast_cade/Activate()
 	. = ..()
@@ -103,8 +103,6 @@
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/folding(buildplace)
 	cade.setDir(fobdrone.dir)
-	cade.closed = FALSE
-	cade.density = TRUE
 	cade.update_icon()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)

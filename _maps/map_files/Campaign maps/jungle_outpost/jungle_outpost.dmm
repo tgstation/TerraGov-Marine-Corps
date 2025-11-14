@@ -42,7 +42,7 @@
 /area/campaign/jungle_outpost/outpost/command)
 "al" = (
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 8
@@ -2795,7 +2795,9 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "na" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "nc" = (
@@ -2825,6 +2827,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags,
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle)
 "nj" = (
@@ -2939,6 +2942,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
@@ -2996,6 +3000,7 @@
 /obj/structure/platform{
 	dir = 6
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "nX" = (
@@ -4078,9 +4083,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "sI" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
@@ -4270,6 +4273,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "tC" = (
@@ -4773,7 +4777,9 @@
 /turf/open/floor/tile/neutral/full,
 /area/campaign/jungle_outpost/outpost/living/canteen)
 "wh" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
 "wk" = (
@@ -4970,7 +4976,9 @@
 	},
 /area/campaign/jungle_outpost/outpost/security)
 "xh" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "xi" = (
@@ -5221,6 +5229,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 8
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "ye" = (
@@ -5267,6 +5276,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags,
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "yp" = (
@@ -5676,7 +5686,7 @@
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "Ai" = (
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
@@ -7098,7 +7108,9 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle)
 "Hd" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "He" = (
@@ -7636,6 +7648,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 8
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
 	},
@@ -8439,6 +8452,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags{
 	dir = 4
 	},
+/obj/effect/landmark/campaign_structure/sentry/som,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "Nm" = (
@@ -9047,9 +9061,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north)
 "Qf" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
@@ -9905,7 +9917,7 @@
 /area/campaign/jungle_outpost/outpost/living)
 "TY" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -10463,7 +10475,7 @@
 /area/campaign/jungle_outpost/outpost/req)
 "WA" = (
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south)

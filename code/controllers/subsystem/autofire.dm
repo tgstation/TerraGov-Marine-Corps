@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(automatedfire)
 ///Create the projectile
 /obj/structure/turret_debug/proc/shoot()
 	SIGNAL_HANDLER
-	var/obj/projectile/newshot = new(loc)
+	var/atom/movable/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.fire_at(target, null, src, ammo.max_range, ammo.shell_speed)
 

@@ -91,7 +91,7 @@
 
 	if(!current_mission)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
 		return
 	announce_bioscans_marine_som(ztrait = ZTRAIT_AWAY) //todo: make this faction neutral
 
@@ -162,14 +162,16 @@
 	tgmc_track = sound(tgmc_track, channel = CHANNEL_CINEMATIC)
 	ghost_track = sound(ghost_track, channel = CHANNEL_CINEMATIC)
 
-	for(var/mob/mob AS in GLOB.player_list)
-		switch(mob.faction)
+	for(var/mob/hearer AS in GLOB.player_list)
+		if(hearer.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		switch(hearer.faction)
 			if(FACTION_SOM)
-				SEND_SOUND(mob, som_track)
+				SEND_SOUND(hearer, som_track)
 			if(FACTION_TERRAGOV)
-				SEND_SOUND(mob, tgmc_track)
+				SEND_SOUND(hearer, tgmc_track)
 			else
-				SEND_SOUND(mob, ghost_track)
+				SEND_SOUND(hearer, ghost_track)
 
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
@@ -404,8 +406,8 @@
 				qdel(candidate)
 			else if(ishuman(candidate))
 				human_current = candidate
-
-			human_current?.set_undefibbable(TRUE)
+			if(human_current)
+				human_current.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able

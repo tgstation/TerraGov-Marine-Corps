@@ -1,9 +1,5 @@
 //for all defines that doesn't fit in any other file.
 
-//Fullscreen overlay resolution in tiles.
-#define FULLSCREEN_OVERLAY_RESOLUTION_X 15
-#define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
-
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
 //Force the log directory to be something specific in the data/logs folder
@@ -62,9 +58,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
-
-#define AREASELECT_CORNERA "corner A"
-#define AREASELECT_CORNERB "corner B"
 
 
 #define CHECKBOX_NONE 0

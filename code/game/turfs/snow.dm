@@ -19,6 +19,10 @@
 	update_appearance()
 	update_sides()
 
+/turf/open/floor/plating/ground/snow/Destroy(force)
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT)
+	return ..()
+
 /turf/open/floor/plating/ground/snow/fire_act(burn_level)
 	if(!slayer || !burn_level)
 		return

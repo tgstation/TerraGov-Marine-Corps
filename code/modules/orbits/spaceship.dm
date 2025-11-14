@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(!silent)
 			to_chat(usr, span_warning("The ship is already at the lowest orbit!"))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ORBIT_CHANGE))
 		if(!silent)
 			to_chat(usr, span_warning("The ship is currently recalculating based on previous selection."))
 		return FALSE

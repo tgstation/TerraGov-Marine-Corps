@@ -173,6 +173,7 @@
 	desc = "A packet containing 42 rounds of .454 casull."
 	icon_state = "454"
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_454
 	current_rounds = 42
 	max_rounds = 42
@@ -209,13 +210,19 @@
 
 /obj/item/ammo_magazine/packet/p10x20mm
 	name = "packet of 10x20mm"
-	desc = "A packet containing 125 rounds of 10x20mm caseless."
+	desc = "A packet containing 240 rounds of 10x20mm caseless."
 	icon_state = "10x20mm"
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 240
 	max_rounds = 240
+
+/obj/item/ammo_magazine/packet/p10x20mm/ap
+	name = "packet of 10x20mm AP"
+	desc = "A packet containing 240 rounds of 10x20mm armor-piercing caseless."
+	icon_state = "10x20mm_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -232,7 +239,7 @@
 	name = "packet of .380 ACP"
 	desc = "A packet containing 210 rounds of .380 ACP."
 	caliber = CALIBER_380ACP
-	icon_state = "380acp"
+	icon_state = "380_acp"
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 210

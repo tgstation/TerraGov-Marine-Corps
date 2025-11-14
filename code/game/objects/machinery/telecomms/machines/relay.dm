@@ -66,6 +66,7 @@
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"
 	autolinkers = list("relay")
+	use_power = NO_POWER_USE
 
 //proper cicbackup relay
 /obj/machinery/telecomms/relay/preset/telecomms/cicbackup
@@ -78,4 +79,4 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense
-	density = FALSE 
+	density = FALSE

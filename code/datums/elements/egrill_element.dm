@@ -38,7 +38,7 @@
 	if(shock(source, attacker))
 		return COMPONENT_NO_AFTERATTACK
 
-/datum/element/egrill/proc/attack_alien(obj/source, mob/living/carbon/xenomorph/attacker)
+/datum/element/egrill/proc/attack_alien(obj/source, mob/living/carbon/xenomorph/attacker, damage_amount)
 	SIGNAL_HANDLER
 	if(attacker.status_flags & INCORPOREAL)
 		return FALSE

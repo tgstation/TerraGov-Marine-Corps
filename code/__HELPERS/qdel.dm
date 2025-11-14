@@ -9,6 +9,7 @@
 #define QDEL_LIST_IN(L, time) addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(______qdel_list_wrapper), L), time, TIMER_STOPPABLE)
 #define QDEL_LIST_ASSOC(L) for(var/I in L) { qdel(L[I]); qdel(I); } L?.Cut();
 #define QDEL_LIST_ASSOC_VAL(L) for(var/I in L) qdel(L[I]); L?.Cut();
+#define QDEL_LIST_NULL(L) for(var/I in L) qdel(I); L = null;
 #define QDEL_NULL_IN(obj, var, time) addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(______qdel_null_wrapper), obj, #var), time, TIMER_STOPPABLE)
 
 /proc/______qdel_list_wrapper(list/L) //the underscores are to encourage people not to use this directly.

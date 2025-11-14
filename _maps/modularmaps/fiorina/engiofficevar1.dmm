@@ -1,0 +1,367 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/prison,
+/area/fiorina/tumor/civres)
+"e" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/civres)
+"h" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"k" = (
+/obj/structure/sign/poster{
+	pixel_y = 29
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"l" = (
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"n" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"o" = (
+/turf/closed/mineral/smooth/resin_hard,
+/area/fiorina/oob)
+"s" = (
+/turf/open/floor/prison/green/full{
+	dir = 9
+	},
+/area/fiorina/tumor/civres)
+"u" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"x" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/cell/super{
+	pixel_y = 12
+	},
+/obj/item/cell/super,
+/obj/item/storage/pill_bottle/happy{
+	pixel_y = -7
+	},
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell{
+	pixel_y = 12
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"y" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/green/full{
+	dir = 9
+	},
+/area/fiorina/tumor/civres)
+"z" = (
+/obj/structure/coatrack,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/storage/bomber,
+/obj/item/clothing/head/beret{
+	pixel_x = -2;
+	pixel_y = 13
+	},
+/obj/structure/coatrack,
+/obj/item/clothing/head/bowlerhat{
+	pixel_y = 15
+	},
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"B" = (
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"D" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"E" = (
+/obj/machinery/photocopier,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/paper{
+	desc = "The image appears to be someone's backside, the page number is labled as 259."
+	},
+/obj/machinery/photocopier,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"F" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -1;
+	pixel_y = 11
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1
+	},
+/obj/structure/sign/poster{
+	pixel_y = 29
+	},
+/obj/item/weapon/butterfly{
+	pixel_x = 17
+	},
+/obj/effect/spawner/random/weaponry/melee,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"H" = (
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"O" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"Q" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "Residential Apartment"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"S" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 14
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"T" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"V" = (
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"W" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "Residential Apartment"
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/civres)
+"X" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"Z" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/clothing/head/beret/eng{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/book/manual/engineering_guide{
+	pixel_x = -4
+	},
+/obj/item/clothing/head/beret/eng{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/book/manual/engineering_guide{
+	pixel_x = -4
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+
+(1,1,1) = {"
+a
+H
+B
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+Q
+h
+n
+a
+F
+S
+W
+"}
+(3,1,1) = {"
+H
+O
+D
+a
+x
+z
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+W
+u
+Z
+a
+V
+H
+W
+"}
+(6,1,1) = {"
+a
+k
+X
+a
+l
+E
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+o
+o
+o
+o
+o
+e
+e
+"}
+(9,1,1) = {"
+T
+o
+T
+s
+s
+y
+s
+"}

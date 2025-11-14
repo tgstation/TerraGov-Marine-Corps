@@ -9,7 +9,6 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
@@ -40,9 +39,9 @@
 	icon_state = "t19"
 	worn_icon_state = "t19"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
-	caliber = CALIBER_10X20_CASELESS //codex
+	caliber = CALIBER_10X20_CASELESS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	max_shells = 45 //codex
+	max_shells = 30
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -110,7 +109,7 @@
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg, /obj/item/ammo_magazine/smg/standard_smg/ap)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -150,6 +149,9 @@
 /obj/item/weapon/gun/smg/standard_smg/tactical
 	starting_attachment_types = list(/obj/item/attachable/compensator, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
+/obj/item/weapon/gun/smg/standard_smg/freelancer
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg/ap
 //-------------------------------------------------------
 //Da slapper.
 
@@ -707,7 +709,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
-// C17 Riot PDW
+// C17 Riot PDW, no longer in use with the VSD
 
 /obj/item/weapon/gun/smg/vsd_pdw
 	name = "\improper C17 Riot PDW"
@@ -765,3 +767,53 @@
 
 /obj/item/weapon/gun/smg/vsd_pdw/medic
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight, /obj/item/attachable/extended_barrel)
+
+//-------------------------------------------------------
+// RA-VAL, PMC smg
+
+/obj/item/weapon/gun/smg/val
+	name = "\improper RA-VAL submachine gun"
+	desc = "The RA-VAL is a heavier than usual subgun used by the Nanotrasen Contractors. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch. However, it suffers at long range due to heavy bullet of 9x39mm caliber."
+	icon = 'icons/obj/items/guns/submachineguns64.dmi'
+	icon_state = "val"
+	worn_icon_state = "val"
+	caliber = CALIBER_9X39 //codex
+	max_shells = 50 //codex
+	aim_slowdown = 0.25
+	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
+	equip_slot_flags = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/val
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/val,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/gyro,
+	)
+
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 23, "under_x" = 22, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
+
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	fire_delay = 0.2 SECONDS
+	burst_delay =  0.15 SECONDS
+	burst_amount = 4
+	scatter = 2
+	scatter_unwielded = 11
+
+/obj/item/weapon/gun/smg/val/pmc_standard
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under,)

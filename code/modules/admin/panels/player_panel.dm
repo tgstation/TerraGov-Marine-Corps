@@ -175,7 +175,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 		<table width='650' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					Hover over a line to see more information.
+					Hover over a line to see more information - Kick <a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=0'>everyone</a>/<a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=1'>AFKers</a> in lobby
 					<p>
 				</td>
 			</tr>
@@ -417,6 +417,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 			<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC) ? "#ff5e5e" : "white"]'>LOOC</font></a> |
 			<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY) ? "#ff5e5e" : "white"]'>PRAY</font></a> |
 			<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP) ? "#ff5e5e" : "white"]'>ADMINHELP</font></a> |
+			<A href='byond://?src=[ref];mute=[ref(M)];mute_type=[MUTE_INTERNET_REQUEST]'><font color='[(muted & MUTE_INTERNET_REQUEST)?"#ff5e5e" : "white"]'>WEBREQ</font></a> |
 			<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a> |
 			<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_TTS]'><font color='[(muted & MUTE_TTS) ? "#ff5e5e" : "white"]'>TEXT TO SPEECH</font></a>
 			(<a href='byond://?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>ALL</font></a>)
@@ -482,6 +483,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		<a href='byond://?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='byond://?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
 		<a href='byond://?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
+		<a href='byond://?src=[ref];transform=dragon;mob=[REF(M)]'>Dragon</a> |
 		<br>
 	"}
 

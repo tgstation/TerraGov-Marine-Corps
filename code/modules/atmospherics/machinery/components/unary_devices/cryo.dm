@@ -11,12 +11,11 @@
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
-	light_range = 2
-	light_power = 0.5
+	light_range = 3
+	light_power = 0.6
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 
 	var/autoeject = FALSE
-	var/release_notice = FALSE
 
 	var/temperature = 100
 
@@ -45,7 +44,7 @@
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -153,7 +152,7 @@
 	if(!( occupant ))
 		return
 	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
+		occupant.client.set_eye(occupant.client.mob)
 		occupant.client.perspective = MOB_PERSPECTIVE
 	if(occupant in contents)
 		occupant.forceMove(get_step(loc, dir))
@@ -161,12 +160,11 @@
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
 		turn_off()
-		if(release_notice) //If auto-release notices are on as it should be, let the doctors know what's up
-			playsound(src.loc, 'sound/machines/ping.ogg', 100, 14)
-			var/reason = "Reason for release:</b> Patient recovery."
-			if(dead)
-				reason = "<b>Reason for release:</b> Patient death."
-			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+		playsound(loc, 'sound/machines/ping.ogg', 100, 14)
+		var/reason = "Reason for release:</b> Patient recovery."
+		if(dead)
+			reason = "<b>Reason for release:</b> Patient death."
+		radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant.record_time_in_cryo()
 	occupant = null
 	update_icon()
@@ -323,29 +321,6 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if (!href_list["scanreport"])
-		return
-	if(!hasHUD(usr,"medical"))
-		return
-	if(get_dist(usr, src) > 7)
-		to_chat(usr, span_warning("[src] is too far away."))
-		return
-	if(!ishuman(occupant))
-		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-			popup.set_content(R.fields["last_scan_result"])
-			popup.open(FALSE)
-		break
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -362,9 +337,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
 	var/list/data = list()
 	data["isOperating"] = on
-	data["hasOccupant"] = occupant ? TRUE : FALSE
 	data["autoEject"] = autoeject
-	data["notify"] = release_notice
 
 	data["occupant"] = list()
 	if(occupant)
@@ -429,9 +402,6 @@
 					usr.put_in_hands(beaker)
 				beaker = null
 				. = TRUE
-		if("notice")
-			release_notice = !release_notice
-			. = TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))

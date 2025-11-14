@@ -240,6 +240,14 @@
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 
+/turf/open/floor/glass/Initialize(mapload)
+	icon_state = "" //Prevent the normal icon from appearing behind the smooth overlays
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/floor/glass/LateInitialize()
+	ADD_TURF_TRANSPARENCY(src, INNATE_TRAIT)
+
 /turf/open/floor/glass/reinforced
 	name = "reinforced glass floor"
 	desc = "Do jump on it, it can take it."

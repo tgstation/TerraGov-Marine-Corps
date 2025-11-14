@@ -81,7 +81,7 @@
 	if(!.)
 		return
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
-		explosion(loc, light_impact_range = 1, flash_range = 2)
+		explosion(loc, light_impact_range = 1, flash_range = 2, explosion_cause="thrown by someone")
 		qdel(src)
 
 /obj/item/explosive/grenade/creampie

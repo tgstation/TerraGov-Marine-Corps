@@ -87,7 +87,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		balloon_alert(user, "Frequency copied over")
+		balloon_alert(user, "frequency copied")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
 	. = ..()
@@ -96,7 +96,7 @@
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		balloon_alert(user, "Disarm it first!")
+		balloon_alert(user, "disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
@@ -110,7 +110,7 @@
 
 /obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
 	if(!armed && !on)
-		balloon_alert(user, "Inactive")
+		balloon_alert(user, "inactive!")
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -120,7 +120,7 @@
 			return
 
 		if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
-			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this."))
+			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <i>very</i> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
 	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
@@ -129,11 +129,11 @@
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 
-	balloon_alert_to_viewers("Disarmed")
+	balloon_alert_to_viewers("disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
-	if(ismovableatom(plant_target) && plant_target.loc)
+	if(ismovable(plant_target) && plant_target.loc)
 		var/atom/movable/T = plant_target
 		if(T.drag_delay == 3)
 			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
@@ -269,7 +269,7 @@
 			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(!W.damageable)
+		if(!(W.resistance_flags & INDESTRUCTIBLE))
 			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
@@ -301,11 +301,10 @@
 
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
-		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		balloon_alert(user, "Timer set for [timer] seconds")
+		target.balloon_alert_to_viewers("[timer] seconds", vision_distance = COMBAT_MESSAGE_RANGE)
 
 		plant_target = target
-		if(ismovableatom(plant_target))
+		if(ismovable(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
@@ -369,11 +368,11 @@
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(det_location, 0, 7, 9, 0, 7)
+		explosion(det_location, 0, 7, 9, 0, 7, explosion_cause=src) // TODO PASS THE USER HERE
 	else //if we're not, focused boom.
 		if(iswallturf(det_location)) //Breach the other side of the wall if planted on one
 			det_location = get_step(det_location, boom_direction)
-		explosion(det_location, 3, 4, 4, 0, 4)
+		explosion(det_location, 3, 4, 4, 0, 4, explosion_cause=src) // TODO PASS THE USER HERE
 	qdel(src)
 
 /obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)

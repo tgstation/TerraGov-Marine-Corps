@@ -410,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
@@ -566,46 +583,6 @@
 		else
 			turfs += pull_from.get_turfs_by_zlevel(target_z)
 	return turfs
-
-
-/proc/DuplicateObject(atom/original, atom/newloc)
-	RETURN_TYPE(original.type)
-	if(!original || !newloc)
-		return
-
-	var/atom/O = new original.type(newloc)
-	if(!O)
-		return
-
-	O.contents.Cut()
-
-	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
-			continue // this would reference the original's object, that will break when it is used or deleted.
-		else if(islist(original.vars[V]))
-			var/list/L = original.vars[V]
-			O.vars[V] = L.Copy()
-		else
-			O.vars[V] = original.vars[V]
-
-	for(var/atom/A in original.contents)
-		O.contents += new A.type
-
-	if(isobj(O))
-		var/obj/N = O
-
-		N.update_icon()
-		if(ismachinery(O))
-			var/obj/machinery/M = O
-			M.power_change()
-
-	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
-		var/mob/M = O
-		M.cut_overlays()
-		M.regenerate_icons()
-
-	return O
-
 
 /proc/get_cardinal_dir(atom/A, atom/B)
 	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
@@ -1015,52 +992,63 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null
 
-/*
+/**
+ * Lets the turf this atom's *ICON* appears to inhabit
+ * it takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+ * NOTE: if your atom has non-standard bounds then this proc
+ * will handle it, but:
+ * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+ * this may seem bad, but you're at least as close to the center of the atom as possible, better than byond's default loc being all the way off)
+ * if the bounds are odd, the true middle turf of the atom is returned
+**/
+/proc/get_turf_pixel(atom/checked_atom)
+	var/turf/atom_turf = get_turf(checked_atom) //use checked_atom's turfs, as its coords are the same as checked_atom's AND checked_atom's coords are lost if it is inside another atom
+	if(!atom_turf)
+		return null
 
-Gets the turf this atom's *ICON* appears to inhabit
-It takes into account:
-* Pixel_x/y
-* Matrix x/y
+	var/list/offsets = get_visual_offset(checked_atom)
+	return pixel_offset_turf(atom_turf, offsets)
 
-NOTE: if your atom has non-standard bounds then this proc
-will handle it, but:
-* if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
-(this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
-* if the bounds are odd, the true middle turf of the atom is returned
+/**
+ * Returns how visually "off" the atom is from its source turf as a list of x, y (in pixel steps)
+ * it takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+ * Icon width/height
+**/
+/proc/get_visual_offset(atom/checked_atom)
+	//Find checked_atom's matrix so we can use its X/Y pixel shifts
+	var/matrix/atom_matrix = matrix(checked_atom.transform)
 
-*/
-
-/proc/get_turf_pixel(atom/AM)
-	if(!istype(AM))
-		return
-
-	//Find AM's matrix so we can use it's X/Y pixel shifts
-	var/matrix/M = matrix(AM.transform)
-
-	var/pixel_x_offset = AM.pixel_x + M.get_x_shift()
-	var/pixel_y_offset = AM.pixel_y + M.get_y_shift()
+	var/pixel_x_offset = checked_atom.pixel_x + checked_atom.pixel_w + atom_matrix.get_x_shift()
+	var/pixel_y_offset = checked_atom.pixel_y + checked_atom.pixel_z + atom_matrix.get_y_shift()
 
 	//Irregular objects
-	var/icon/AMicon = icon(AM.icon, AM.icon_state)
-	var/AMiconheight = AMicon.Height()
-	var/AMiconwidth = AMicon.Width()
-	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
-		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
-		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
+	var/list/icon_dimensions = get_icon_dimensions(checked_atom.icon)
+	var/checked_atom_icon_height = icon_dimensions["height"]
+	var/checked_atom_icon_width = icon_dimensions["width"]
+	if(checked_atom_icon_height != ICON_SIZE_Y || checked_atom_icon_width != ICON_SIZE_X)
+		pixel_x_offset += ((checked_atom_icon_width / ICON_SIZE_X) - 1) * (ICON_SIZE_X * 0.5)
+		pixel_y_offset += ((checked_atom_icon_height / ICON_SIZE_Y) - 1) * (ICON_SIZE_Y * 0.5)
 
+	return list(pixel_x_offset, pixel_y_offset)
+
+/**
+ * Takes a turf, and a list of x and y pixel offsets and returns the turf that the offset position best lands in
+**/
+/proc/pixel_offset_turf(turf/offset_from, list/offsets)
 	//DY and DX
-	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
-	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
+	var/rough_x = round(round(offsets[1], ICON_SIZE_X) / ICON_SIZE_X)
+	var/rough_y = round(round(offsets[2], ICON_SIZE_Y) / ICON_SIZE_Y)
 
-	//Find coordinates
-	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
-	if(!T)
-		return null
-	var/final_x = T.x + rough_x
-	var/final_y = T.y + rough_y
+	var/final_x = clamp(offset_from.x + rough_x, 1, world.maxx)
+	var/final_y = clamp(offset_from.y + rough_y, 1, world.maxy)
 
 	if(final_x || final_y)
-		return locate(final_x, final_y, T.z)
+		return locate(final_x, final_y, offset_from.z)
+	return offset_from
 
 /proc/animate_speech_bubble(image/I, list/show_to, duration)
 	var/matrix/M = matrix()
@@ -1113,10 +1101,9 @@ will handle it, but:
 	return pois
 
 ///Returns the left and right dir of the input dir, used for AI stutter step while attacking
-/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
-	if(diagonal_check)
-		if(ISDIAGONALDIR(direction))
-			return list(turn(direction, 45), turn(direction, -45))
+/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE, always_diag = FALSE)
+	if(always_diag || (diagonal_check && ISDIAGONALDIR(direction)))
+		return list(turn(direction, 45), turn(direction, -45))
 	return list(turn(direction, 90), turn(direction, -90))
 
 /proc/CallAsync(datum/source, proctype, list/arguments)
@@ -1124,7 +1111,7 @@ will handle it, but:
 	return call(source, proctype)(arglist(arguments))
 
 ///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype, subtypes=TRUE)
+/proc/get_areas(areatype, subtypes = TRUE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
 	else if(isarea(areatype))
@@ -1136,15 +1123,13 @@ will handle it, but:
 	var/list/areas = list()
 	if(subtypes)
 		var/list/cache = typecacheof(areatype)
-		for(var/V in GLOB.sorted_areas)
-			var/area/A = V
-			if(cache[A.type])
-				areas += V
+		for(var/area/area_to_check AS in GLOB.areas)
+			if(cache[area_to_check.type])
+				areas += area_to_check
 	else
-		for(var/V in GLOB.sorted_areas)
-			var/area/A = V
-			if(A.type == areatype)
-				areas += V
+		for(var/area/area_to_check AS in GLOB.areas)
+			if(area_to_check.type == areatype)
+				areas += area_to_check
 	return areas
 
 ///Returns a list of all locations (except the area) the movable is within.
@@ -1250,3 +1235,40 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 
 	return FALSE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

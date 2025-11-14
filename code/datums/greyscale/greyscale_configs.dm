@@ -117,6 +117,20 @@
 	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
 	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
 
+//VSD variant for hardsuits! Very fat hardsuits!
+/datum/greyscale_config/vsd_hardsuit
+	prefix = "superheavy_"
+	icon_file = 'icons/mob/modular/vsd_hardsuit.dmi'
+	json_config = 'code/datums/greyscale/json_configs/vsd_hardsuit.json'
+
+/datum/greyscale_config/vsd_hardsuit/alt
+	prefix = "superheavy_alt_"
+
+/datum/greyscale_config/vsd_hardsuit/alt_two
+	prefix = "superheavy_alt_two_"
+
+/datum/greyscale_config/vsd_hardsuit/exoskeleton
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
@@ -323,3 +337,35 @@
 /datum/greyscale_config/broken_man
 	icon_file = 'icons/mob/human_face.dmi'
 	json_config = 'code/datums/greyscale/json_configs/broken_man.json'
+
+
+
+
+//
+// BENCHES
+//
+
+/datum/greyscale_config/bench_solo
+	name = "Bench Solo"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_solo.json'
+
+/datum/greyscale_config/bench_middle
+	name = "Bench Middle"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_middle.json'
+
+/datum/greyscale_config/bench_left
+	name = "Bench Left"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_left.json'
+
+/datum/greyscale_config/bench_right
+	name = "Bench Right"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_right.json'
+
+/datum/greyscale_config/bench_corner
+	name = "Bench Corner"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_corner.json'

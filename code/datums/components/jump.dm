@@ -94,7 +94,7 @@
 ///Checks if you can actually jump right now
 /datum/component/jump/proc/can_jump(atom/movable/jumper)
 	SIGNAL_HANDLER
-	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
+	if(TIMER_COOLDOWN_RUNNING(jumper, JUMP_COMPONENT_COOLDOWN))
 		return FALSE
 	var/mob/living/living_jumper
 	if(isliving(jumper))

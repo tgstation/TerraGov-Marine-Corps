@@ -20,7 +20,7 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	var/turf/oldTurf //Keeps track of where the user was at if they use the "teleport to centcom" button, so they can go back
 	var/client/holder //client of whoever is using this datum
 	var/area/bay //What bay we're using to launch shit from.
-	var/launchClone = FALSE //If true, then we don't actually launch the thing in the bay. Instead we call duplicateObject() and send the result
+	var/launchClone = FALSE //If true, then we don't actually launch the thing in the bay. Instead we call duplicate_object() and send the result
 	var/launchChoice = 1 //Determines if we launch all at once (0) , in order (1), or at random(2)
 	var/explosionChoice = 0 //Determines if there is no explosion (0), custom explosion (1), or just do a maxcap (2)
 	var/damageChoice = 0 //Determines if we do no damage (0), custom amnt of damage (1), or gib + 5000dmg (2)
@@ -43,8 +43,8 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	else
 		var/mob/M = H
 		holder = M.client //if its a mob, assign the mob's client to holder
-	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //Locate the default bay (one) from the centcom map
-	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
+	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.areas //Locate the default bay (one) from the centcom map
+	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
 /datum/centcom_podlauncher/ui_state(mob/user)
@@ -102,29 +102,29 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("bay1")
-			bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //set the "bay" variable to the corresponding room in centcom
+			bay = locate(/area/centcom/supplypod/loading/one) in GLOB.areas //set the "bay" variable to the corresponding room in centcom
 			refreshBay() //calls refreshBay() which "recounts" the bay to see what items we can launch (among other things).
 			. = TRUE
 		if("bay2")
-			bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/two) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay3")
-			bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/three) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay4")
-			bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/four) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay5")
-			bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
 			var/mob/M = holder.mob //We teleport whatever mob the client is attached to at the point of clicking
 			oldTurf = get_turf(M) //Used for the "teleportBack" action
-			var/area/A = locate(bay) in GLOB.sorted_areas
+			var/area/A = locate(bay) in GLOB.areas
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T) //Fill a list with turfs in the area
@@ -518,14 +518,14 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 /datum/centcom_podlauncher/proc/launch(turf/A) //Game time started
 	if (isnull(A))
 		return
-	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod, temp_pod.loc) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
-	toLaunch.bay = bay //Bay is currently a nonstatic expression, so it cant go into toLaunch using DuplicateObject
+	var/obj/structure/closet/supplypod/centcompod/toLaunch = duplicate_object(temp_pod, temp_pod.loc) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
+	toLaunch.bay = bay //Bay is currently a nonstatic expression, so it cant go into toLaunch using duplicate_object
 	toLaunch.update_icon()//we update_icon() here so that the door doesnt "flicker on" right after it lands
 	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/flyMeToTheMoon]
 	toLaunch.forceMove(shippingLane)
 	if (launchClone) //We arent launching the actual items from the bay, rather we are creating clones and launching those
 		for (var/atom/movable/O in launchList)
-			DuplicateObject(O).forceMove(toLaunch) //Duplicate each atom/movable in launchList and forceMove them into the supplypod
+			duplicate_object(O).forceMove(toLaunch) //Duplicate each atom/movable in launchList and forceMove them into the supplypod
 		new /obj/effect/DPtarget(A, toLaunch) //Create the DPTarget, which will eventually forceMove the temp_pod to it's location
 	else
 		for (var/atom/movable/O in launchList) //If we aren't cloning the objects, just go through the launchList

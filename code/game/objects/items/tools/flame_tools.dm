@@ -111,7 +111,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/match/process()
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		burn_out()
 		return
 
@@ -185,12 +185,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
 	standing.overlays.Add(emissive_overlay)
-
-/obj/item/clothing/mask/cigarette/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -282,7 +276,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	lit = TRUE
-	turn_light(null, TRUE)
 	heat = 1000
 	name = "lit [name]"
 	attack_verb = list("burns", "singes")
@@ -324,7 +317,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(isliving(loc))
 		M.IgniteMob()
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		if(ismob(loc))
 			to_chat(M, span_notice("Your [name] goes out."))
 			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
@@ -490,14 +483,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/pipe/process()
 	var/turf/location = get_turf(src)
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		new /obj/effect/decal/cleanable/ash(location)
 		if(ismob(loc))
 			var/mob/living/M = loc
 			to_chat(M, span_notice("Your [name] goes out, and you empty the ash."))
 			heat = 0
 			lit = FALSE
-			turn_light(null, FALSE)
 			icon_state = icon_off
 			worn_icon_state = icon_off
 			M.update_inv_wear_mask(0)
@@ -509,7 +501,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message(span_notice("[user] puts out [src]."))
 		heat = 0
 		lit = FALSE
-		turn_light(user, FALSE)
 		icon_state = icon_off
 		worn_icon_state = icon_off
 		STOP_PROCESSING(SSobj, src)

@@ -15,8 +15,8 @@
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-	pixel_w = -65
-	pixel_z = -80
+	pixel_x = -65
+	pixel_y = -80
 	max_integrity = 1200
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 80, BIO = 100, FIRE = 100, ACID = 70)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 10, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
@@ -40,6 +40,7 @@
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, SOM_TANK_HOVER_HEIGHT, 1))
 	animate_hover()
+	RegisterSignal(src, COMSIG_MOVABLE_PATROL_DEPLOYED, PROC_REF(animate_hover))
 	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
 	module.on_equip(src)
 

@@ -1,6 +1,5 @@
 /*
 	Screen objects
-	Todo: improve/re-implement
 
 	Screen objects are only used for the hud and should not appear anywhere "in-game".
 	They are used with the client/screen list and the screen_loc var.
@@ -44,8 +43,9 @@
 
 /atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	if(hud_owner && istype(hud_owner))
-		hud = hud_owner
+	if(isnull(hud_owner)) //some screens set their hud owners on /new, this prevents overriding them with null post atoms init
+		return
+	set_new_hud(hud_owner)
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -61,11 +61,23 @@
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
+///setter used to set our new hud
+/atom/movable/screen/proc/set_new_hud(datum/hud/hud_owner)
+	if(hud)
+		UnregisterSignal(hud, COMSIG_QDELETING)
+	if(isnull(hud_owner))
+		hud = null
+		return
+	hud = hud_owner
+	RegisterSignal(hud, COMSIG_QDELETING, PROC_REF(on_hud_delete))
 
+/atom/movable/screen/proc/on_hud_delete(datum/source)
+	SIGNAL_HANDLER
+
+	set_new_hud(hud_owner = null)
 
 /atom/movable/screen/swap_hand
 	name = "swap hand"
-	name = "swap"
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -513,9 +525,9 @@
 		return
 	var/mob/living/living_user = usr
 	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina)
-		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
+		living_user.balloon_alert(living_user, "stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
 		return
-	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
+	living_user.balloon_alert(living_user, "you have [living_user.getStaminaLoss()] stamina loss")
 
 
 /atom/movable/screen/component_button
@@ -788,3 +800,36 @@
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 	color = COLOR_ORANGE
+
+/atom/movable/screen/combo
+	icon_state = ""
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_combo
+	plane = ABOVE_HUD_PLANE
+	/// Timer ID. After a set duration, the tracked combo streak will reset.
+	var/reset_timer
+
+/atom/movable/screen/combo/proc/clear_streak()
+	animate(src, alpha = 0, 2 SECONDS, SINE_EASING)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/atom/movable/screen/combo/proc/reset_icons()
+	cut_overlays()
+	icon_state = initial(icon_state)
+
+/atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
+	reset_icons()
+	if(reset_timer)
+		deltimer(reset_timer)
+	alpha = 255
+	if(!combo_streak)
+		return ..()
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	icon_state = "combo"
+	for(var/i = 1; i <= length(combo_streak); ++i)
+		var/click_text = copytext(combo_streak, i, i + 1)
+		var/image/click_icon = image(icon, src, "combo_[click_text]")
+		click_icon.pixel_x = 16 * (i - 1) - 8 * length(combo_streak)
+		click_icon.pixel_y = -16
+		add_overlay(click_icon)
+	return ..()

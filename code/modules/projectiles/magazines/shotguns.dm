@@ -133,7 +133,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = CALIBER_6G
 	icon_state = "heavy_shotgun_buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/heavy_buckshot
-	icon_state_mini = "buckshot"
+	icon_state_mini = "buckshot_heavy"
 
 /obj/item/ammo_magazine/shotgun/barrikada
 	name = "box of 6 gauge 'Barrikada' shells"
@@ -141,4 +141,4 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = CALIBER_6G
 	icon_state = "heavy_shotgun_barrikada"
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
-	icon_state_mini = "buckshot"
+	icon_state_mini = "barrikada"

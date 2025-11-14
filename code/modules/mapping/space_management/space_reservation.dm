@@ -38,6 +38,24 @@
 	turf_type = /turf/open/space/transit
 	pre_cordon_distance = 7
 
+/area/drop_transition
+	base_lighting_alpha = 255
+
+/datum/turf_reservation/transit/droppod
+	turf_type = /turf/open/space/transit/north
+	///turfs that have currently been reserved for use by drop pods
+	var/list/turf/taken_turfs = list()
+
+/datum/turf_reservation/transit/droppod/reserve(width, height, z_size, z_reservation)
+	. = ..()
+	if(!.)
+		return
+	//make this area safe for usage by humans
+	for(var/turf/floor AS in reserved_turfs)
+		var/area/old_area = floor.loc
+		new /area/drop_transition(floor)
+		floor.change_area(old_area, floor.loc)
+
 /datum/turf_reservation/proc/Release()
 	bottom_left_turfs.Cut()
 	top_right_turfs.Cut()

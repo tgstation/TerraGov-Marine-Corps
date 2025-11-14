@@ -1,8 +1,11 @@
 ///The base healing number for a defibrillator.
 #define DEFIBRILLATOR_BASE_HEALING_VALUE 8
+
+///How often you can defib someone
+#define DEFIBRILLATOR_COOLDOWN 1 SECONDS
 /**
  * A macro for healing with a defibrillator.
- * 
+ *
  * * `skill_input` - What to multiply `healing_value` by. If this is less than `SKILL_MEDICAL_PRACTICED`, will be 8.
  * * `healing_value` - The number to multiply. Should be `DEFIBRILLATOR_BASE_HEALING_VALUE` unless you want to change the base healing value
  */

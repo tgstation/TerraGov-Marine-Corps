@@ -34,7 +34,7 @@
 		/datum/action/suit_autodoc/scan = PROC_REF(scan_user)
 	)
 	///Instant analyzer for the chemsuit
-	var/obj/item/healthanalyzer/integrated/analyzer
+	var/datum/health_scan/analyzer
 	///Determines whether the suit is on
 	var/boost_on = FALSE
 	///Stores the current effect strength
@@ -97,7 +97,7 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	update_boost(boost_tier1)
-	analyzer = new
+	analyzer = new(parent, SKILL_MEDICAL_UNTRAINED)
 	meds_beaker = new
 	setup_reagent_info()
 	var/list/new_actions = list()
@@ -172,6 +172,8 @@
 	wearer.overlays -= resource_overlay
 	wearer = null
 
+	UnregisterSignal(wearer, list(COMSIG_XENO_DRAIN_HIT, COMSIG_XENO_CARNAGE_HIT))
+
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -184,6 +186,8 @@
 
 	wearer.overlays += resource_overlay
 	update_resource(0)
+
+	RegisterSignals(wearer, list(COMSIG_XENO_DRAIN_HIT, COMSIG_XENO_CARNAGE_HIT), PROC_REF(steal_greenblood))
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
@@ -205,7 +209,7 @@
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
 	if(vali_necro_timer > 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /atom/movable/screen/fullscreen/animated/infection, 1)
-		to_chat(wearer, span_userdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
+		to_chat(wearer, span_userdanger("The process of necrosis begins to set in! Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything
@@ -246,14 +250,14 @@
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(!boost_on)
-		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
+		if(!COOLDOWN_FINISHED(src, chemboost_activation_cooldown))
+			wearer.balloon_alert(wearer, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown))]!")
 			return
 		if(resource_storage_current < resource_drain_amount)
-			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
+			wearer.balloon_alert(wearer, "insufficient green blood!")
 			return
 		if(wearer.stat)
-			wearer.balloon_alert(wearer, "Not conscious")
+			to_chat(wearer, span_warning("You can't do that in your current state."))
 			return
 	boost_on = !boost_on
 	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
@@ -271,7 +275,7 @@
 				if(necrotized_counter < 1)
 					break
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
-		wearer.balloon_alert(wearer, "Halting green blood injection")
+		wearer.balloon_alert(wearer, "halting injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
 		return
@@ -280,7 +284,7 @@
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
-	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
+	to_chat(wearer, span_notice("Commencing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
 		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
@@ -289,7 +293,7 @@
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount = amount
-	wearer?.balloon_alert(wearer, "Enhancement level set to [boost_amount]")
+	wearer?.balloon_alert(wearer, "enhancement lvl. [boost_amount]")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
@@ -321,7 +325,7 @@
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item/healthanalyzer, attack), wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/health_scan, analyze_vitals), wearer, wearer)
 
 /datum/component/chem_booster/proc/vali_connect(datum/source)
 	SIGNAL_HANDLER
@@ -333,33 +337,33 @@
 		return
 
 	if(wearer.do_actions)
-		wearer.balloon_alert(wearer, "You're already occupied with something")
+		wearer.balloon_alert(wearer, "busy!")
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if(!held_item)
-		wearer.balloon_alert(wearer, "You need to be holding a harvester")
+		wearer.balloon_alert(wearer, "hold a harvester weapon!")
 		return
 
 	if(!held_item.GetComponent(/datum/component/harvester))
-		wearer.balloon_alert(wearer, "You need to be holding a harvester")
+		wearer.balloon_alert(wearer, "hold a harvester weapon!")
 		return
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
-	wearer.balloon_alert(wearer, "You begin connecting [held_item]")
+	wearer.balloon_alert(wearer, "connecting...")
 	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
-		wearer.balloon_alert(wearer, "You were interrupted")
+		wearer.balloon_alert(wearer, "disrupted!")
 		return
 
-	wearer.balloon_alert(wearer, "Finished connecting [held_item]")
+	wearer.balloon_alert(wearer, "connected")
 	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 	manage_weapon_connection(held_item)
 
 ///Handles the setting up and removal of signals and vars related to connecting an item to the suit
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
-		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
+		wearer.balloon_alert(wearer, "disconnected")
 		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
 		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
@@ -400,23 +404,23 @@
 		return
 
 	if(resource_storage_current < volume)
-		wearer.balloon_alert(wearer, "Insufficient green blood for extraction")
+		wearer.balloon_alert(wearer, "insufficient green blood!")
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if(!held_item)
-		wearer.balloon_alert(wearer, "You must be holding a glass reagent container")
+		wearer.balloon_alert(wearer, "not a glass container!")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers/glass))
-		wearer.balloon_alert(wearer, "You must be holding a glass reagent container")
+		wearer.balloon_alert(wearer, "not a glass container!")
 		return
 
 	if((held_item.reagents.maximum_volume-held_item.reagents.total_volume) < volume)
-		wearer.balloon_alert(wearer, "Held container lacks required space for extraction")
+		wearer.balloon_alert(wearer, "container too small!")
 		return
 
-	wearer.balloon_alert(wearer, "You begin filling [held_item]")
+	wearer.balloon_alert(wearer, "filling...")
 	if(!do_after(wearer, 1 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
@@ -431,21 +435,21 @@
 
 	var/obj/item/held_item = wearer.get_held_item()
 	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume))
-		wearer.balloon_alert(wearer, "You must be holding a suitable reagent container")
+		wearer.balloon_alert(wearer, "hold a reagent container!")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
-		var/pick = tgui_input_list(wearer, "Automatic reagent injection on system activate:", "Vali system", list("Yes", "No"))
+		var/pick = tgui_input_list(wearer, "Automatic reagent injection on system activation:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			automatic_meds_use = TRUE
 		else if(pick == "No")
 			automatic_meds_use = FALSE
-		wearer.balloon_alert(wearer, "The chemical system [automatic_meds_use ? "will" : "won't"] inject loaded reagents on activation")
+		wearer.balloon_alert(wearer, "[automatic_meds_use ? "now" : "no longer"] injecting loaded reagents")
 		return
 
 	var/obj/item/reagent_containers/held_beaker = held_item
 	if(!held_beaker.reagents.total_volume && !meds_beaker.reagents.total_volume)
-		wearer.balloon_alert(wearer, "Both the held reagent container and the system's reagent storage are empty")
+		wearer.balloon_alert(wearer, "both held and system containers are empty!")
 		return
 
 	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
@@ -458,14 +462,14 @@
 		return
 
 	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
-		wearer.balloon_alert(wearer, "The system's reagent storage is full")
+		wearer.balloon_alert(wearer, "system reagent storage is full!")
 		return
 
 	if(!do_after(wearer, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
-	wearer.balloon_alert(wearer, "Loaded [trans] units")
+	wearer.balloon_alert(wearer, "loaded [trans]u")
 	to_chat(wearer, get_meds_beaker_contents())
 	if(istype(held_beaker, /obj/item/reagent_containers/pill))
 		qdel(held_beaker)
@@ -476,7 +480,7 @@
 		return span_notice("The system's reagent storage is empty.")
 	. = span_notice("The system's reagent storage contains:\n")
 	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
-		. += span_rose("[R.name] - [R.volume]u\n")
+		. += span_rose("• [R.name] - [R.volume]u\n")
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
@@ -523,6 +527,22 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
 	)
+
+///handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.
+/datum/component/chem_booster/proc/steal_greenblood(owner, drain_plasma_gain, drainer)
+	SIGNAL_HANDLER
+
+	//steals a % of total greenblood held plus a small flat bonus
+	var/drain_value = resource_storage_current * (GORGER_GREENBLOOD_STEAL_PERCENTAGE / 100) + GORGER_GREENBLOOD_STEAL_FLAT
+
+	//if there's only a tiny amount in the tank, we take only that much.
+	if(drain_value > resource_storage_current)
+		drain_value = resource_storage_current
+	to_chat(wearer, span_boldwarning("Unregistered user accessing green blood reserves!"))
+	update_resource(-drain_value)
+
+	var/mob/living/carbon/xenomorph/xeno_drainer = drainer
+	xeno_drainer.gain_plasma(drain_value * GORGER_GREENBLOOD_CONVERSION)
 
 #undef EXTRACT
 #undef LOAD

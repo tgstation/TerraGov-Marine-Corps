@@ -6,7 +6,7 @@
 
 /obj/item/tool/multitool
 	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	icon_state = "multitool"
 	atom_flags = CONDUCT
 	force = 5
@@ -14,7 +14,6 @@
 	throwforce = 5
 	throw_range = 15
 	throw_speed = 3
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	tool_behaviour = TOOL_MULTITOOL
 
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
@@ -22,7 +21,7 @@
 /obj/item/tool/multitool/attack_self(mob/user)
 	. = ..()
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
 		return
 
 	var/area/current_area = get_area(src)

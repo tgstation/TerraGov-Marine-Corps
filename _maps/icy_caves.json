@@ -2,6 +2,7 @@
     "map_name": "Icy Caves",
     "map_path": "map_files/icy_caves",
     "map_file": "icy_caves.dmm",
+	"parallax_icon": "ice",
     "environment_traits": {
         "COLD": true
     },
@@ -12,6 +13,8 @@
 	"quickbuilds": 1200,
 	"announce_text": "A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a mining outpost, located on an ice cold planet. The ship is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!",
 	"traits":[{
-		"weather_snowstorm": true
+		"weather_snowstorm": true,
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
 	}]
 }

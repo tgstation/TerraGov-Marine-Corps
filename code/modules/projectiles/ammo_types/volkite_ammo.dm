@@ -15,8 +15,7 @@
 	max_range = 14
 	accurate_range = 5 //for charger
 	shell_speed = 4
-	accuracy_var_low = 5
-	accuracy_var_high = 5
+	accuracy_variation = 5
 	accuracy = 5
 	point_blank_range = 2
 	damage = 20
@@ -32,15 +31,14 @@
 	sound_miss = SFX_BALLISTIC_MISS
 	sound_bounce = SFX_BALLISTIC_BOUNCE
 
-/datum/ammo/energy/volkite/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/energy/volkite/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	deflagrate(target_mob, proj)
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
 	damage = 30
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	fire_burst_damage = 20
 	deflagrate_multiplier = 0.9
 
@@ -57,8 +55,7 @@
 /datum/ammo/energy/volkite/light
 	max_range = 25
 	accurate_range = 12
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	penetration = 5
 	deflagrate_multiplier = 0.9
 

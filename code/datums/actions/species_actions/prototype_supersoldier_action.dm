@@ -32,7 +32,7 @@
 	return ..()
 
 
-/datum/action/supersoldier_stims/can_use_action()
+/datum/action/supersoldier_stims/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -213,11 +213,11 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/datum/action/supersoldier_stims/stim AS in action.active_stims)
 		if((type == stim.type) && !(stim_flags & STIM_ALLOW_DUPE))
 			if(!silent)
-				owner.balloon_alert(owner, "cannot duplicate stim")
+				owner.balloon_alert(owner, "cannot duplicate stim!")
 			return FALSE
 	if(length(action.active_stims) >= MAX_ACTIVE_STIMS)
 		if(!silent)
-			owner.balloon_alert(owner, "too many stims")
+			owner.balloon_alert(owner, "too many stims!")
 		return FALSE
 	return TRUE
 
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/skill in max_skills)
 		if(owner.skills.getRating(skill) >= max_skills[skill])
 			if(!silent)
-				owner.balloon_alert(owner, "skill already too high")
+				owner.balloon_alert(owner, "skill already too high!")
 			return FALSE
 
 /datum/stim/skills/finish_cast(mob/living/owner)
@@ -433,3 +433,23 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /particles/stims/speed
 	icon_state = "square"
 	gradient = list(1, "#001eff", 2, "#00ffc3", "loop")
+
+/datum/stim/better_throw
+	name = "Longer Throw"
+	desc = "Increases your throwing strength, making you throw things further."
+	cast_say = "Administering muscle enhancers..."
+	stim_uid = "throwstrength"
+	stim_flags = NONE
+
+/datum/stim/better_throw/finish_cast(mob/living/owner)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_THROW, PROC_REF(on_throw))
+
+/datum/stim/better_throw/end_effects(mob/living/owner)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_THROW)
+
+/datum/stim/better_throw/proc/on_throw(mob/living/owner, atom/target, atom/movable/thrown_thing, list/throw_modifiers)
+	SIGNAL_HANDLER
+	throw_modifiers["range_modifier"] += 4
+	throw_modifiers["targetted_throw"] = FALSE

@@ -1,6 +1,8 @@
-#define TESLA_TURRET_MAX_RANGE 7
+#define TESLA_TURRET_MAX_RANGE 6
+///How many targets it can hit per activation
+#define TESLA_TURRET_MAX_TARGETS 3
 #define TESLA_TURRET_COST_PASSIVE 25
-#define TESLA_TURRET_COST_ACTIVE 75
+#define TESLA_TURRET_COST_ACTIVE 100
 
 /obj/item/tesla_turret
 	name = "tesla turret"
@@ -50,7 +52,7 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -61,7 +63,7 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -72,10 +74,10 @@
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -145,10 +147,10 @@
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -163,10 +165,10 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(active)
-		balloon_alert(user, "turn off first")
+		balloon_alert(user, "turn it off first!")
 		return
 	user.put_in_hands(battery)
 	battery = null
@@ -178,10 +180,10 @@
 	if(isdead(user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(!battery.use(0))
-		balloon_alert(user, "no power")
+		balloon_alert(user, "no power!")
 		return
 	toggle(!active)
 
@@ -200,32 +202,33 @@
 
 /obj/machinery/deployable/tesla_turret/process()
 	if(!battery || !active || !battery.use(0))
-		balloon_alert_to_viewers("shuts off!")
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
 		return
-	if(battery.use(passive_cost))
-		/// Needs to have enough charge to hit at least one xeno
-		var/max_targets = max(trunc(battery.charge / active_cost), 0)
-		if(!max_targets)
-			hud_set_tesla_battery()
-			return
-		var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_targets))
-		if(!xeno_amount)
-			hud_set_tesla_battery()
-			return
-		battery.use(active_cost * xeno_amount)
-		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
-	else
-		balloon_alert_to_viewers("shuts off!")
+	if(!battery.use(passive_cost))
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
+		hud_set_tesla_battery()
+		return
+	/// Needs to have enough charge to hit at least one xeno
+	var/max_zap_targets = clamp(trunc(battery.charge / active_cost), 0, TESLA_TURRET_MAX_TARGETS)
+	if(!max_zap_targets)
+		hud_set_tesla_battery()
+		return
+	var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_zap_targets))
+	if(!xeno_amount)
+		hud_set_tesla_battery()
+		return
+	battery.use(active_cost * xeno_amount)
+	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	hud_set_tesla_battery()
 
 /obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
 	if(active)
 		if(shock(marine, 70))
-			balloon_alert_to_viewers("sparks!")
+			to_chat(marine, span_userdanger("You're shocked by \the [src]!"))
 		else
-			balloon_alert(marine, "turn off first!")
+			balloon_alert(marine, "turn it off first!")
 		return
 	return ..()
 
@@ -255,7 +258,7 @@
 	hud_set_tesla_battery()
 
 /// I hate this so much, thank you for having a flag called pass_projectile but it only does so up to proj.ammo.barricade_clear_distance
-/obj/machinery/deployable/tesla_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/machinery/deployable/tesla_turret/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(src != proj.original_target)
 		return FALSE
 

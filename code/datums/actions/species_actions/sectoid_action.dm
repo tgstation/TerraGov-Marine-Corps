@@ -30,7 +30,7 @@
 	end_ability()
 	return ..()
 
-/datum/action/ability/activable/sectoid/mindmeld/can_use_action()
+/datum/action/ability/activable/sectoid/mindmeld/can_use_action(silent, override_flags, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(melded_mob)
 		return FALSE
@@ -44,7 +44,7 @@
 		return
 	if(!iscarbon(A))
 		if(!silent)
-			A.balloon_alert(owner, "not living")
+			A.balloon_alert(owner, "not living!")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
 	if(owner.faction != carbon_target.faction)
@@ -57,11 +57,11 @@
 		return FALSE
 	if((A.z != owner.z) || !line_of_sight(owner, A, max_range))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 	if(carbon_target.stat == DEAD)
 		if(!silent)
-			carbon_target.balloon_alert(owner, "already dead")
+			carbon_target.balloon_alert(owner, "already dead!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/mindmeld/use_ability(atom/target)
@@ -119,27 +119,27 @@
 		return
 	if(!iscarbon(A))
 		if(!silent)
-			A.balloon_alert(owner, "not living")
+			A.balloon_alert(owner, "not living!")
 		return FALSE
 	if(!line_of_sight(owner, A, 9))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 	if((A.z != owner.z) || get_dist(owner, A) > MINDFRAY_RANGE)
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			A.balloon_alert(owner, "too far!")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
 	if(carbon_target.stat == DEAD)
 		if(!silent)
-			carbon_target.balloon_alert(owner, "already dead")
+			carbon_target.balloon_alert(owner, "already dead!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/mindfray/use_ability(atom/target)
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECONDS)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
-	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
+	carbon_target.apply_damage(damage, BURN, updating_health = TRUE, attacker = owner)
 	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
 	carbon_target.balloon_alert_to_viewers("confused")
 	playsound(carbon_target, 'sound/effects/off_guard_ability.ogg', 50)
@@ -174,20 +174,20 @@
 		return
 	if(!iscarbon(A))
 		if(!silent)
-			A.balloon_alert(owner, "not living")
+			A.balloon_alert(owner, "not living!")
 		return FALSE
 	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_STASIS_RANGE)
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			A.balloon_alert(owner, "too far!")
 		return FALSE
 	if(!line_of_sight(owner, A, SECTOID_STASIS_RANGE))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
 	if(carbon_target.stat == DEAD)
 		if(!silent)
-			carbon_target.balloon_alert(owner, "already dead")
+			carbon_target.balloon_alert(owner, "already dead!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/stasis/use_ability(atom/target)
@@ -198,7 +198,7 @@
 	particle_holder.particles.gravity = list(0, 2)
 
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
-		owner.balloon_alert(owner, "Our focus is disrupted")
+		owner.balloon_alert(owner, "focus disrupted!")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
@@ -264,15 +264,15 @@
 		return
 	if(!isliving(A))
 		if(!silent)
-			A.balloon_alert(owner, "not living")
+			A.balloon_alert(owner, "not living!")
 		return FALSE
 	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_REKNIT_RANGE)
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			A.balloon_alert(owner, "too far!")
 		return FALSE
 	if(!line_of_sight(owner, A, SECTOID_REKNIT_RANGE))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/reknit_form/use_ability(atom/target)
@@ -283,7 +283,7 @@
 	particle_holder.particles.gravity = list(0, 2)
 
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
-		owner.balloon_alert(owner, "Our focus is disrupted")
+		owner.balloon_alert(owner, "focus disrupted!")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
@@ -322,11 +322,11 @@
 		return
 	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_FUSE_RANGE)
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			A.balloon_alert(owner, "too far!")
 		return FALSE
 	if(!line_of_sight(owner, A, SECTOID_FUSE_RANGE))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/fuse/use_ability(atom/target)
@@ -337,7 +337,7 @@
 	particle_holder.particles.gravity = list(0, 2)
 
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
-		owner.balloon_alert(owner, "Our focus is disrupted")
+		owner.balloon_alert(owner, "focus disrupted!")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
@@ -348,7 +348,7 @@
 	else
 		grenade_target = locate(/obj/item/explosive/grenade) in target.GetAllContents()
 		if(!grenade_target)
-			target.balloon_alert(owner, "no grenade found")
+			target.balloon_alert(owner, "no grenade found!")
 			return fail_activate()
 
 	grenade_target.activate(owner)
@@ -385,11 +385,11 @@
 		return
 	if((A.z != owner.z) || get_dist(owner, A) > range)
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			A.balloon_alert(owner, "too far!")
 		return FALSE
 	if(!line_of_sight(owner, A, range))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 
 /datum/action/ability/activable/psionic_interact/use_ability(atom/target)
@@ -400,7 +400,7 @@
 	particle_holder.particles.gravity = list(0, 2)
 
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
-		owner.balloon_alert(owner, "Our focus is disrupted")
+		owner.balloon_alert(owner, "focus disrupted!")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
@@ -496,19 +496,19 @@
 	var/mob/living/carbon/human/human_target = A
 	if(!istype(A))
 		if(!silent)
-			human_target.balloon_alert(owner, "Invalid target")
+			human_target.balloon_alert(owner, "invalid target!")
 		return FALSE
 	if(human_target.stat != DEAD)
 		if(!silent)
-			human_target.balloon_alert(owner, "Still alive!")
+			human_target.balloon_alert(owner, "still alive!")
 		return FALSE
 	if((human_target.z != owner.z) || get_dist(owner, human_target) > SECTOID_REANIMATE_RANGE)
 		if(!silent)
-			human_target.balloon_alert(owner, "too far")
+			human_target.balloon_alert(owner, "too far!")
 		return FALSE
 	if(!line_of_sight(owner, human_target, SECTOID_REANIMATE_RANGE))
 		if(!silent)
-			owner.balloon_alert(owner, "Out of sight!")
+			owner.balloon_alert(owner, "out of sight!")
 		return FALSE
 
 /datum/action/ability/activable/sectoid/reanimate/use_ability(atom/target)
@@ -522,7 +522,7 @@
 	target.add_filter("psi_reanimation", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 
 	if(!do_after(owner, SECTOID_REANIMATE_CHANNEL_TIME, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
-		owner.balloon_alert(owner, "Our focus is disrupted")
+		owner.balloon_alert(owner, "focus disrupted!")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
@@ -541,7 +541,7 @@
 		if(istype(radio))
 			radio.safety_protocol(src)
 	else
-		owner.balloon_alert(owner, "Unrevivable")
+		owner.balloon_alert(owner, "unrevivable!")
 
 	QDEL_NULL(particle_holder)
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)

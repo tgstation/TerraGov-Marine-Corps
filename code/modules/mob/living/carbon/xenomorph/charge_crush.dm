@@ -206,7 +206,7 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src) * plasma_use_multiplier) //Eats up plasma the faster you go. //now uses a multiplier
+		charger.use_plasma(round(CHARGE_SPEED(src) * plasma_use_multiplier)) //Eats up plasma the faster you go. //now uses a multiplier
 
 		switch(charge_type)
 			if(CHARGE_CRUSH) //Xeno Crusher
@@ -270,6 +270,12 @@
 
 	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
+		if(charge_type & CHARGE_BEHEMOTH)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(istype(crushed, /obj/structure/razorwire))
+			var/obj/structure/razorwire/crushed_wire = crushed
+			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
@@ -295,7 +301,7 @@
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
-			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = owner)
 			if(QDELETED(crushed_living))
 				charger.visible_message(span_danger("[charger] annihilates [preserved_name]!"),
 				span_xenodanger("We annihilate [preserved_name]!"))
@@ -312,6 +318,13 @@
 		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
 			obj_damage_mult = 5
+		else if(isgreyscalemecha(crushed)) // dont oneshot mechs... thats bad. should be punishing though
+			var/obj/vehicle/sealed/mecha/combat/greyscale/mech = crushed
+			var/datum/mech_limb/legs/legs = mech.limbs[MECH_GREY_LEGS]
+			if(legs?.part_health)
+				legs.take_damage(precrush)
+				do_stop_momentum()
+				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		crushed_obj.take_damage(precrush * obj_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
@@ -349,7 +362,10 @@
 	max_steps_buildup = 10
 	crush_living_damage = 37
 	plasma_use_multiplier = 2
-
+	// How many steps below the maximum (`max_steps_buildup`) must be reached before the owner gets complete stagger immunity?
+	var/stagger_immunity_steps = 0
+	/// Has the trait TRAIT_STAGGERIMMUNE been given yet?
+	var/currently_stagger_immune = FALSE
 
 /datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
@@ -383,9 +399,32 @@
 			crush_sound = SFX_ALIEN_TAIL_ATTACK
 			to_chat(owner, span_notice("Now goring on impact."))
 
+/datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
+	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = TRUE
+	return ..()
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
+	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+		agile_charge = FALSE
+	return ..()
+
 /datum/action/ability/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
+	. = ..()
+	agile_charge = (xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
+
+/datum/action/ability/xeno_action/ready_charge/bull_charge/handle_momentum()
+	. = ..()
+	if(!stagger_immunity_steps)
+		return
+	var/reached_stagger_immunity_steps = valid_steps_taken >= (max_steps_buildup - stagger_immunity_steps)
+	if(!currently_stagger_immune && reached_stagger_immunity_steps)
+		ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, BULL_ABILITY_TRAIT)
+		currently_stagger_immune = TRUE
+		return
+	if(currently_stagger_immune && !reached_stagger_immunity_steps)
+		REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, BULL_ABILITY_TRAIT)
+		currently_stagger_immune = FALSE
 
 /datum/action/ability/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"

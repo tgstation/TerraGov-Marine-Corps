@@ -20,6 +20,7 @@ All ShuttleMove procs go here
 	if(!(. & (MOVE_TURF|MOVE_CONTENTS)))
 		return
 
+	SEND_SIGNAL(src, COMSIG_TURF_PRE_SHUTTLE_CRUSH)
 //	var/shuttle_dir = shuttle.dir
 	for(var/atom/thing AS in contents)
 		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
@@ -107,12 +108,6 @@ All ShuttleMove procs go here
 
 // Called on atoms after everything has been moved
 /atom/movable/proc/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
-
-	var/turf/newT = get_turf(src)
-	if (newT.z != oldT.z)
-		var/same_z_layer = (GET_TURF_PLANE_OFFSET(oldT) == GET_TURF_PLANE_OFFSET(newT))
-		on_changed_z_level(oldT, newT, same_z_layer)
-
 	if(light)
 		update_light()
 	if(rotation)

@@ -35,18 +35,20 @@ export const SupplyDropConsole = (_props) => {
             <Divider />
             <LabeledList.Item label="X Offset">
               <NumberInput
+                expensive
                 minValue={-255}
                 maxValue={255}
                 value={data.x_offset}
-                onChange={(e, value) => act('set_x', { set_x: `${value}` })}
+                onChange={(value) => act('set_x', { set_x: `${value}` })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Y Offset">
               <NumberInput
+                expensive
                 minValue={-255}
                 maxValue={255}
                 value={data.y_offset}
-                onChange={(e, value) => act('set_y', { set_y: `${value}` })}
+                onChange={(value) => act('set_y', { set_y: `${value}` })}
               />
             </LabeledList.Item>
           </LabeledList>

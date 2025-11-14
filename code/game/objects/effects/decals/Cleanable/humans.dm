@@ -1,4 +1,4 @@
-#define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
+#define DRYING_TIME 5 MINUTES
 
 /obj/effect/decal/cleanable/blood
 	name = "blood"
@@ -21,7 +21,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
 	if(istype(src, /obj/effect/decal/cleanable/blood/tracks))
@@ -48,6 +48,11 @@
 /obj/effect/decal/cleanable/blood/update_icon_state()
 	. = ..()
 	color = basecolor
+	pixel_x = rand(-16, 16)
+	pixel_y = rand(-16, 16)
+	var/matrix/rotate = matrix()
+	rotate.Turn(rand(0, 359))
+	transform = rotate
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -125,13 +130,20 @@
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
-	layer = BELOW_OBJ_LAYER
+	amount = 1
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid/update_overlays()
+	. = ..()
+	if(!amount)
+		return
+	. += emissive_appearance(icon, icon_state, src, reset_transform = FALSE)
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
 	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
 	color = adjust_brightness(color, -75)
 	amount = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"

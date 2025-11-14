@@ -9,6 +9,7 @@
 
 // Core styles
 @include meta.load-css('./reset.scss');
+@include meta.load-css('./css-variables.scss');
 
 // Atomic classes
 @include meta.load-css('./atomic/candystripe.scss');
@@ -28,11 +29,7 @@
 @include meta.load-css('./interfaces/Mecha.scss');
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
-@include meta.load-css('./interfaces/Paper.scss');
-@include meta.load-css('./interfaces/Roulette.scss');
-@include meta.load-css('./interfaces/Safe.scss');
 @include meta.load-css('./interfaces/StripMenu.scss');
-@include meta.load-css('./interfaces/UtilityModulesPane.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
@@ -47,4 +44,9 @@
   background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+// A default, in case someone uses the vp() function outside of a <Window>
+:root {
+  --scaling-amount: 1;
 }

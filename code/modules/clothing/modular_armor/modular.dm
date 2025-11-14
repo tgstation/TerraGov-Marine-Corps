@@ -10,7 +10,7 @@
 
 */
 /obj/item/clothing/suit/modular
-	name = "Jaeger XM-02 combat exoskeleton"
+	name = "\improper Jaeger XM-02 combat exoskeleton"
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
@@ -45,7 +45,7 @@
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
 
-	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/light)
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,
@@ -157,7 +157,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
@@ -258,7 +258,7 @@
 	worn_icon_state = "exoskeleton"
 	greyscale_config = /datum/greyscale_config/exoskeleton
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
@@ -280,6 +280,55 @@
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/modular/vsd_exoskeleton
+	name = "\improper CrashCore MT/P modular exoskeleton"
+	desc = "CrashCore Industries modular hardsuit exoskeleton, made to lift up the 'Super-Heavy' armor system and designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeleton"
+	worn_icon_state = "exoskeleton"
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	colorable_colors = ARMOR_PALETTES_LIST
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/clementia,
+
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus,
+		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus,
+
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
@@ -347,7 +396,7 @@
 
 
 
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
@@ -403,7 +452,7 @@
 	item_state_worn = TRUE
 	greyscale_colors = ARMOR_PALETTE_BLACK
 
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 
 

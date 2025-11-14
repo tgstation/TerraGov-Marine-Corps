@@ -130,7 +130,7 @@
 			name = "body bag"
 
 	else if(iswirecutter(I))
-		balloon_alert(user, "cuts the tag off")
+		balloon_alert(user, "tag cut off")
 		name = "body bag"
 		overlays.Cut()
 
@@ -218,25 +218,25 @@
 		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 
-/obj/structure/closet/bodybag/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/structure/closet/bodybag/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
 	if(src != proj.original_target) //You miss unless you click directly on the bodybag
 		return FALSE
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
+		to_chat(bodybag_occupant, span_userdanger("[proj] hits you through \the [src] and exposes you!"))
 		open()
 
 /obj/structure/closet/bodybag/fire_act(burn_level)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "The fire forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The fire burns you through \the [src] and exposes you!"))
 		bodybag_occupant.fire_act(burn_level)
 		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "The explosion blows you out")
+		to_chat(bodybag_occupant, span_userdanger("The shockwave passes into you through \the [src] and exposes you!"))
 		bodybag_occupant.ex_act(severity)
 		open()
 	switch(severity)
@@ -251,7 +251,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		balloon_alert(bodybag_occupant, "acid forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The acid burns you through \the [src] and exposes you!"))
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -261,9 +261,8 @@
 
 	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		balloon_alert(bodybag_occupant, "smoke forces you out")
+		to_chat(bodybag_occupant, span_userdanger("The smoke burns you through \the [src] and exposes you!"))
 		open() //Get out
-
 
 /obj/item/storage/box/bodybags
 	name = "body bags"
@@ -273,7 +272,6 @@
 	spawn_type = /obj/item/bodybag
 	spawn_number = 7
 
-
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
@@ -282,7 +280,6 @@
 	unfoldedbag_path = /obj/structure/closet/bodybag/cryobag
 	var/used = FALSE
 
-
 /obj/structure/closet/bodybag/cryobag
 	name = "stasis bag"
 	bag_name = "stasis bag"
@@ -290,19 +287,17 @@
 	icon = 'icons/obj/cryobag.dmi'
 	foldedbag_path = /obj/item/bodybag/cryobag
 
-
 /obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/healthanalyzer))
 		return ..()
 
 	if(!bodybag_occupant)
-		balloon_alert(user, "empty")
+		balloon_alert(user, "empty!")
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
 	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut // TODO
 	return TRUE
-
 
 /obj/structure/closet/bodybag/cryobag/open()
 	if(bodybag_occupant)
@@ -311,12 +306,10 @@
 		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
-
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
 	return TRUE
-
 
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()
@@ -331,7 +324,6 @@
 		visible_message(span_notice("\The [src] rejects the corpse."))
 	open()
 
-
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
 	. = ..()
 	var/mob/living/carbon/human/occupant = bodybag_occupant
@@ -339,14 +331,11 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
-		if(medical_record.fields["name"] != occupant.real_name)
-			continue
-		if(!(medical_record.fields["last_scan_time"]))
-			. += "<span class = 'deptradio'>No scan report on record</span>"
-		else
-			. += "<span class = 'deptradio'><a href='byond://?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
-		break
+	var/datum/data/record/medical_record = find_medical_record(bodybag_occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
+	else
+		. += "[span_deptradio("No body scan report on record for occupant")]"
 	if(occupant.stat != DEAD)
 		return
 	var/timer = 0 // variable for DNR timer check
@@ -362,7 +351,6 @@
 	else
 		. += span_scanner("Patient have [timer] seconds left before DNR")
 
-
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -373,22 +361,17 @@
 		if(get_dist(usr, src) > WORLD_VIEW_NUM)
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
-		for(var/datum/data/record/R in GLOB.datacore.medical)
-			if(R.fields["name"] != bodybag_occupant.real_name)
-				continue
-			if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-				popup.set_content(R.fields["last_scan_result"])
-				popup.open(FALSE)
-			break
-
+		var/datum/data/record/medical_record = find_medical_record(bodybag_occupant)
+		if(isnull(medical_record))
+			return
+		var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+		scan.ui_interact(usr)
 
 /obj/item/trash/used_stasis_bag
 	name = "used stasis bag"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"
 	desc = "It's been ripped open. You will need to find a machine capable of recycling it."
-
 
 //MARINE SNIPER TARPS
 
@@ -435,8 +418,8 @@
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
 	icon_opened = "jungletarp_open"
-	open_sound = 'sound/effects/vegetation_walk_1.ogg'
-	close_sound = 'sound/effects/vegetation_walk_2.ogg'
+	open_sound = 'sound/effects/natural/vegetation_walk_1.ogg'
+	close_sound = 'sound/effects/natural/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	display_name = FALSE

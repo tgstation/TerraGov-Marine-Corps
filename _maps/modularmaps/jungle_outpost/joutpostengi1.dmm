@@ -329,7 +329,9 @@
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/engineering)
 "FS" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/east)
@@ -439,7 +441,7 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "Nw" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4

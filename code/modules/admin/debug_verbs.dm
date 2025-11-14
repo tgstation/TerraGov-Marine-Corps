@@ -263,6 +263,7 @@ ADMIN_VERB(spatial_agent, R_FUN, "Spatial Agent", "Become a spatial agent", ADMI
 		M.mind.transfer_to(H, TRUE)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/spatial_agent)
 		H.apply_assigned_role_to_spawn(J)
+		J.after_spawn(H)
 		qdel(M)
 
 		log_admin("[key_name(H)] became a spatial agent.")
@@ -458,7 +459,9 @@ ADMIN_VERB(cmd_display_del_log, R_DEBUG, "Display del() Log", "Display del's log
 
 	dellog += "</ol>"
 
-	user << browse(dellog.Join(), "window=dellog")
+	var/datum/browser/browser = new(usr, "dellog", "Del Log", 00, 400)
+	browser.set_content(dellog.Join())
+	browser.open()
 
 
 ADMIN_VERB(debug_plane_masters, R_DEBUG, "Edit/Debug Planes", "Edit and visualize plane masters and their connections (relays).", ADMIN_CATEGORY_DEBUG)

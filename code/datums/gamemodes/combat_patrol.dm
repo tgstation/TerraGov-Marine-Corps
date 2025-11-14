@@ -68,7 +68,7 @@
 	if(round_finished)
 		return PROCESS_KILL
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
 	announce_bioscans_marine_som()
 

@@ -7,7 +7,7 @@
 	anchored = TRUE
 	layer = LATTICE_LAYER
 	plane = FLOOR_PLANE
-	//	flags = CONDUCT
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
@@ -86,6 +86,7 @@
 	base_icon_state = "catwalk"
 	plane = FLOOR_PLANE
 	layer = CATWALK_LAYER
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	resistance_flags = XENO_DAMAGEABLE|DROPSHIP_IMMUNE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
@@ -108,9 +109,9 @@
 /obj/structure/catwalk/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(xeno_attacker.a_intent != INTENT_HARM)
+	if(xeno_attacker.a_intent != INTENT_DISARM)
 		return
-	xeno_attacker.balloon_alert(xeno_attacker, "Destroying")
+	xeno_attacker.balloon_alert(xeno_attacker, "destroying...")
 	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)

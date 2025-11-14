@@ -41,7 +41,7 @@
 
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_BLACK
 
 
@@ -114,7 +114,7 @@
 
 	greyscale_colors = ARMOR_PALETTE_DRAB
 	colorable_allowed = PRESET_COLORS_ALLOWED
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 
 
@@ -149,6 +149,9 @@
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
 		/obj/item/armor_module/armor/visor/marine/markonevisor,
+		/obj/item/armor_module/armor/visor/marine/phobos,
+		/obj/item/armor_module/armor/visor/marine/clementia,
+		/obj/item/armor_module/armor/visor/marine/hephaestus,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -251,5 +254,25 @@
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Raider markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/markonevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
+
+// VSD hardsuit helms!
+
+/obj/item/clothing/head/modular/marine/vsd_hardsuit
+	name = "Crasher MT/41 'Phobos' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Phobos' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/phobos, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit
+
+/obj/item/clothing/head/modular/marine/vsd_hardsuit/clementia
+	name = "Crasher MT/41 'Clementia' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Clementia' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/clementia, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt
+
+/obj/item/clothing/head/modular/marine/vsd_hardsuit/hephaestus
+	name = "Crasher MT/41 'Hephaestus' helmet"
+	desc = "Usually paired with the CrashCore MT/P modular exoskeleton. Can mount utility functions on the helmet hard points. Has 'Hephaestus' markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/hephaestus, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
 
 

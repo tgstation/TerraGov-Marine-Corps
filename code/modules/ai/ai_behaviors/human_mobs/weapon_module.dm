@@ -17,51 +17,33 @@
 	///Chat lines when target dies or is destroyed
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+/datum/ai_behavior/human/melee_interact(datum/source, atom/interactee, melee_tool = melee_weapon) //specifies the arg value
+	return ..()
+
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
-	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
+	if((human_ai_state_flags & HUMAN_AI_NEED_WEAPONS) && !(human_ai_state_flags & HUMAN_AI_BUSY_ACTION))
 		equip_weaponry()
-
 	if(!gun)
 		return
+
 	var/fire_result = can_shoot_target(combat_target)
-	if(!(human_ai_state_flags & HUMAN_AI_FIRING))
-		if(fire_result == AI_FIRE_NO_AMMO)
-			INVOKE_ASYNC(src, PROC_REF(reload_gun))
-			return
+	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		if(fire_result != AI_FIRE_CAN_HIT)
-			return
-		if(prob(90))
-			try_speak(pick(start_fire_chat))
-		if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
-			gun.unique_action(mob_parent)
-		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
-			human_ai_state_flags |= HUMAN_AI_FIRING
+			stop_fire(fire_result)
 		return
 
-	if(fire_result == AI_FIRE_CAN_HIT)
+	if(fire_result == AI_FIRE_NO_AMMO)
+		INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		return
-
-	stop_fire()
-
-	//already firing
-	switch(fire_result)
-		if(AI_FIRE_INVALID_TARGET)
-			return //how'd you do this?
-		if(AI_FIRE_TARGET_DEAD)
-			if(prob(75))
-				try_speak(pick(dead_target_chat))
-		if(AI_FIRE_NO_AMMO)
-			INVOKE_ASYNC(src, PROC_REF(reload_gun))
-		if(AI_FIRE_OUT_OF_RANGE)
-			if(prob(50))
-				try_speak(pick(out_range_chat))
-		if(AI_FIRE_NO_LOS)
-			if(prob(50))
-				try_speak(pick(no_los_chat))
-		if(AI_FIRE_FRIENDLY_BLOCKED)
-			if(prob(50))
-				try_speak(pick(friendly_blocked_chat))
+	if(fire_result != AI_FIRE_CAN_HIT)
+		return
+	if(prob(90))
+		try_speak(pick(start_fire_chat))
+	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
+		gun.unique_action(mob_parent)
+	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
+		human_ai_state_flags |= HUMAN_AI_FIRING
 
 ///Tries to equip weaponry from inventory, or find some if none are available
 /datum/ai_behavior/human/proc/equip_weaponry(datum/source)
@@ -90,6 +72,8 @@
 
 ///Tries to equip weaponry, and updates behavior appropriately
 /datum/ai_behavior/human/proc/do_equip_weaponry()
+	store_hands()
+
 	var/obj/item/weapon/primary
 	var/obj/item/weapon/secondary
 
@@ -112,6 +96,8 @@
 			shield_choice = melee_option
 
 	for(var/obj/item/weapon/gun/gun_option AS in mob_inventory.gun_list)
+		if(!gun_option.ai_should_use(user = mob_parent))
+			continue
 		if((gun_option.w_class >= 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (big_gun_choice?.fire_delay * 0.1 * big_gun_choice?.ammo_datum_type::damage)))
 			big_gun_choice = gun_option
 		if((gun_option.w_class < 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (small_gun_choice?.fire_delay * 0.1 * small_gun_choice?.ammo_datum_type::damage)))
@@ -231,10 +217,16 @@
 			var/obj/machinery/machinery_target = target
 			if(machinery_target.machine_stat & BROKEN)
 				return AI_FIRE_TARGET_DEAD
+		if(isfacehugger(target))
+			var/obj/item/clothing/mask/facehugger/hugger = target
+			if(hugger.stat == DEAD || !isturf(hugger.loc))
+				return AI_FIRE_TARGET_DEAD //dead or nothing we can do about it
 
-	if(get_dist(target, mob_parent) > target_distance)
+	var/dist = get_dist(target, mob_parent)
+	if(dist > target_distance)
 		return AI_FIRE_OUT_OF_RANGE
-	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
+	//dist 1 has issues with LOS checks, causing failure to fire when being hit diagonally past a wall
+	if((dist > 1) && !line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
 	//ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
@@ -243,9 +235,28 @@
 	return AI_FIRE_CAN_HIT
 
 ///Stops gunfire
-/datum/ai_behavior/human/proc/stop_fire()
+/datum/ai_behavior/human/proc/stop_fire(stop_reason)
 	human_ai_state_flags &= ~HUMAN_AI_FIRING
 	gun?.stop_fire()
+
+	if(!stop_reason)
+		return
+
+	switch(stop_reason)
+		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
+			if(prob(75))
+				try_speak(pick(dead_target_chat))
+		if(AI_FIRE_NO_AMMO)
+			INVOKE_ASYNC(src, PROC_REF(reload_gun))
+		if(AI_FIRE_OUT_OF_RANGE)
+			if(prob(50))
+				try_speak(pick(out_range_chat))
+		if(AI_FIRE_NO_LOS)
+			if(prob(50))
+				try_speak(pick(no_los_chat))
+		if(AI_FIRE_FRIENDLY_BLOCKED)
+			if(prob(50))
+				try_speak(pick(friendly_blocked_chat))
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()

@@ -12,8 +12,7 @@
 	name = "Shrapnel"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
-	accuracy_var_high = 5
+	accuracy_variation = 10
 	max_range = 6
 	damage = 30
 	penetration = 20
@@ -27,7 +26,7 @@
 	penetration = 10
 	sundering = 1.5
 
-/datum/ammo/bullet/atgun_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/atgun_spread/incendiary/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	return
 
 /datum/ammo/bullet/atgun_spread/incendiary/drop_flame(turf/T)
@@ -35,7 +34,7 @@
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/atgun_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/atgun_spread/incendiary/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_flame(target_turf)
 
 /*
@@ -60,7 +59,7 @@
 	///Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 25
 
-/datum/ammo/bullet/pepperball/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pepperball/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
 		var/mob/living/carbon/xenomorph/X = target_mob
 		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
@@ -109,16 +108,16 @@
 		return
 	T.ignite(burntime, burnlevel, fire_color)
 
-/datum/ammo/flamethrower/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/flamethrower/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_flame(get_turf(target_mob))
 
-/datum/ammo/flamethrower/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/flamethrower/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_flame(get_turf(target_obj))
 
-/datum/ammo/flamethrower/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/flamethrower/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_flame(get_turf(target_turf))
 
-/datum/ammo/flamethrower/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/flamethrower/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_flame(get_turf(target_turf))
 
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
@@ -127,9 +126,12 @@
 	flame_radius(2, T)
 
 /datum/ammo/flamethrower/mech_flamer
-	name = "spraying flames"
-	icon_state = "spray_flamer"
 	damage = 15
+
+/datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	flame_radius(1, T)
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
@@ -177,32 +179,32 @@
 			caught_mob.ExtinguishMob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
-/datum/ammo/water/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/water/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	splash(get_turf(target_mob), proj.dir)
 
-/datum/ammo/water/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/water/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	splash(get_turf(target_obj), proj.dir)
 
-/datum/ammo/water/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/water/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	splash(get_turf(target_turf), proj.dir)
 
-/datum/ammo/water/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/water/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	splash(get_turf(target_turf), proj.dir)
 
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1
 
-/datum/ammo/rocket/toy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/rocket/toy/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	to_chat(target_mob, "<font size=6 color=red>NO BUGS</font>")
 
-/datum/ammo/rocket/toy/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/rocket/toy/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	return
 
-/datum/ammo/rocket/toy/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/toy/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
-/datum/ammo/rocket/toy/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/rocket/toy/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 /datum/ammo/grenade_container
@@ -216,16 +218,16 @@
 	accuracy = 15
 	max_range = 10
 
-/datum/ammo/grenade_container/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/grenade_container/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
 
-/datum/ammo/grenade_container/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/grenade_container/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/grenade_container/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/grenade_container/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/grenade_container/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/grenade_container/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/grenade_container/drop_nade(turf/T)

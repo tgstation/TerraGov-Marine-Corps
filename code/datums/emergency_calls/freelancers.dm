@@ -3,9 +3,13 @@
 	base_probability = 26
 	alignement_factor = -1
 	///Number of current Grenadiers in this squad.
-	var/grenadiers
+	var/grenadiers = 0
 	///Max amount of Grenadiers allowed in this squad.
 	var/max_grenadiers = 2
+	///Number of current Specialists in this squad.
+	var/specialists = 0
+	///Max amount of Specialists allowed in this squad.
+	var/max_specialists = 1
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
@@ -39,6 +43,12 @@
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the Freelancer mercenary assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece to make sure they earn their payment!</notice></p>")
 		return
 
+	if(specialists < max_specialists)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/specialist)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer mercenary specialist assigned to this group to respond to the TGMC distress signal sent nearby. Support your team with issued heavy equipment!</notice></p>")
+		return
+
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/medic)
 		H.apply_assigned_role_to_spawn(J)
@@ -49,8 +59,8 @@
 	if(grenadiers < max_grenadiers)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/grenadier)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, span_notice("You are a Grenadier of the local resistance group, the Colonial Liberation Front."))
 		grenadiers++
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer veteran mercenary assigned to this group to respond to the TGMC distress signal sent nearby. Become the first line of attack, and support your team with extra firepower!</notice></p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)

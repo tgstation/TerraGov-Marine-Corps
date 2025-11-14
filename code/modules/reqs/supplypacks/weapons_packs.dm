@@ -42,7 +42,7 @@ WEAPONS
 	cost = 600
 
 /datum/supply_packs/weapons/sentry_sniper_ammo
-	name = "SST-571 sniper sentry ammunition"
+	name = "SST-574 sniper sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry/sniper)
 	cost = 100
 
@@ -203,13 +203,13 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
-/datum/supply_packs/weapons/heayvlaser_emplacement
+/datum/supply_packs/weapons/heavy_laser_emplacement
 	name = "TE-9001 mounted heavy laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
-	cost = 800
+	cost = 400
 
 
-/datum/supply_packs/weapons/heayvlaser_ammo
+/datum/supply_packs/weapons/heavy_laser_ammo
 	name = "TE-9001 mounted heavy laser cell"
 	contains = list(/obj/item/cell/lasgun/heavy_laser)
 	cost = 15

@@ -8,7 +8,7 @@
 
 /obj/item/clothing/tie/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/attachment, ATTACHMENT_SLOT_UNIFORM_TIE, 'icons/obj/clothing/ties_overlay.dmi', attach_features_flags = (ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB), mob_overlay_icon = 'icons/mob/ties.dmi')
+	AddElement(/datum/element/attachment, ATTACHMENT_SLOT_UNIFORM_TIE, 'icons/obj/clothing/ties_overlay.dmi', attach_features_flags = (ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB), mob_overlay_icon = 'icons/mob/ties.dmi', attach_sound = SFX_RUSTLE)
 
 /obj/item/clothing/tie/blue
 	name = "blue tie"

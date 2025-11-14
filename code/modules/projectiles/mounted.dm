@@ -139,7 +139,7 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans [src]!")]",
 		span_notice("You man the gun!"))
 
 	return ..()
@@ -292,26 +292,26 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
-		gun.toggle_aim_mode(operator)
-	gun?.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
+	if(gun)
+		if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
+			gun.toggle_aim_mode(operator)
+		gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
-	for(var/datum/action/action AS in gun.actions)
-		action.remove_action(operator)
+		for(var/datum/action/action AS in gun.actions)
+			action.remove_action(operator)
 
-	for(var/key in gun?.attachments_by_slot)
-		var/obj/item/attachable = gun.attachments_by_slot[key]
-		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
-			continue
-		var/obj/item/attachable/scope/scope = attachable
-		if(!scope.zoom)
-			continue
-		scope.zoom_item_turnoff(operator, operator)
+		for(var/key in gun.attachments_by_slot)
+			var/obj/item/attachable = gun.attachments_by_slot[key]
+			if(!attachable || !istype(attachable, /obj/item/attachable/scope))
+				continue
+			var/obj/item/attachable/scope/scope = attachable
+			if(!scope.zoom)
+				continue
+			scope.zoom_item_turnoff(operator, operator)
+		gun.set_gun_user(null)
 
 	operator.client?.view_size.reset_to_default()
-
 	operator = null
-	gun?.set_gun_user(null)
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0

@@ -51,7 +51,7 @@
 
 /obj/machinery/deployable/disassemble(mob/user)
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return
 	return ..()
 

@@ -35,6 +35,8 @@
 
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
+	if(!(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
+		QDEL_NULL(proximity_monitor)
 	var/siloprefix = GLOB.hive_datums[hivenumber].name
 	number_silo = length(GLOB.xeno_resin_silos_by_hive[hivenumber]) + 1
 	name = "[siloprefix == "Normal" ? "" : "[siloprefix] "][name] [number_silo]"
@@ -51,11 +53,6 @@
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
-
-/obj/structure/xeno/silo/set_proximity_warning()
-	if(!(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
-		return
-	return ..()
 
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(GLOB.hive_datums[hivenumber])

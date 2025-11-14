@@ -28,7 +28,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	. = ..()
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
-		actions += new path(null, editing_z, minimap_flag)
+		actions += new path(null, null, editing_z, minimap_flag)
 	drawing_tools = actions
 
 /obj/item/minimap_tablet/Destroy()
@@ -44,10 +44,10 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	if(!user.client)
 		return
 	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
-		user.balloon_alert(user, "Can't use that!")
+		user.balloon_alert(user, "can't use that!")
 		return
 	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
-		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
+		to_chat(user, span_warning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
 		return
 	var/atom/movable/screen/minimap/mini = SSminimaps.fetch_minimap_object(editing_z, minimap_flag)
 	if(locate(mini) in user.client.screen)
@@ -85,7 +85,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	/// reference to the icon we are manipulating when drawing, fetched during initialize
 	var/image/drawn_image
 
-/atom/movable/screen/minimap_tool/Initialize(mapload, zlevel, minimap_flag)
+/atom/movable/screen/minimap_tool/Initialize(mapload, datum/hud/hud_owner, zlevel, minimap_flag)
 	. = ..()
 	src.minimap_flag = minimap_flag
 	src.zlevel = zlevel

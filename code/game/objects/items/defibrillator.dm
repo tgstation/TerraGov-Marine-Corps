@@ -96,9 +96,6 @@
 		return
 	if(!istype(user))
 		return
-	if(!COOLDOWN_CHECK(src, defib_cooldown))
-		balloon_alert(user, "toggled too recently")
-		return
 
 	//Job knowledge requirement
 	var/skill = user.skills.getRating(SKILL_MEDICAL)
@@ -108,7 +105,6 @@
 		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	COOLDOWN_START(src, defib_cooldown, 2 SECONDS)
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
@@ -141,10 +137,10 @@
 ///Proc for checking that the defib is ready to operate
 /obj/item/defibrillator/proc/defib_ready(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(!ready)
-		balloon_alert(user, "take the paddles out")
+		balloon_alert(user, "take the paddles out!")
 		return FALSE
 	if(!ishuman(patient))
-		to_chat(user, span_warning("The instructions on [src] don't mention how to resuscitate that..."))
+		balloon_alert(user, "that's not a human!")
 		return FALSE
 	if(patient.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
@@ -157,14 +153,12 @@
 ///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
-		balloon_alert(user, "busy")
+		balloon_alert(user, "busy!")
 		return
 
-	if(!COOLDOWN_CHECK(src, defib_cooldown))
-		balloon_alert(user, "recharging")
+	if(!COOLDOWN_FINISHED(src, defib_cooldown))
+		balloon_alert(user, "recharging!")
 		return
-
-	COOLDOWN_START(src, defib_cooldown, 2 SECONDS) // 2 seconds before you can try again, initially
 
 	//job knowledge requirement
 	var/medical_skill = user.skills.getRating(SKILL_MEDICAL)
@@ -224,6 +218,7 @@
 		return
 
 	// do the defibrillation effects now and check revive parameters in a moment
+	. = TRUE
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
@@ -232,7 +227,7 @@
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
 
-	COOLDOWN_START(src, defib_cooldown, 1 SECONDS) // 1 second before you can try again if you finish the do_after
+	COOLDOWN_START(src, defib_cooldown, DEFIBRILLATOR_COOLDOWN)
 
 	var/datum/internal_organ/heart/heart = patient.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
@@ -290,7 +285,7 @@
 		ghost.reenter_corpse()
 
 	if(!patient.client)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected. Patient may not appear alert temporarily or permanently."))
 
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))

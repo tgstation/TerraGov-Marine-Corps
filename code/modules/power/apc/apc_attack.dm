@@ -31,6 +31,30 @@
 	if(.)
 		return
 
+	if(istype(I, /obj/item/weapon/zombie_claw) || ispath(I, /obj/item/weapon/zombie_claw))
+		if(user.status_flags & INCORPOREAL)
+			return
+
+		user.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		user.visible_message(span_danger("[user] slashes \the [src]!"), \
+		span_danger("We slash \the [src]!"), null, 5)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+
+		var/allcut = wires.is_all_cut()
+
+		if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+			update_appearance()
+			visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
+
+		else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
+			wires.cut_all()
+			update_appearance()
+			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+		else
+			beenhit += 1
+		return
+
 	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fit [I] into [src]."),
@@ -221,3 +245,32 @@
 		return
 
 	interact(user)
+
+//Alternate attack with hand - lock/unlock the interface
+/obj/machinery/power/apc/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!can_use(user))
+		return
+
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
+		return
+
+	if(opened)
+		balloon_alert(user, "Close the cover first")
+		return
+
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		balloon_alert(user, "Close the panel first")
+		return
+
+	if(machine_stat & (BROKEN|MAINT))
+		balloon_alert(user, "Nothing happens")
+		return
+
+	if(!allowed(user))
+		balloon_alert(user, "Access denied")
+		return
+
+	locked = !locked
+	balloon_alert_to_viewers("[locked ? "locked" : "unlocked"]")
+	update_appearance()

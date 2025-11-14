@@ -27,6 +27,9 @@
 #define XENO_BLESSING_HUD "xeno_blessing_hud" //indicates what blessings the xeno has
 #define XENO_EVASION_HUD "xeno_extra_hud" // displays anything extra or additional such as runner's evasion duration
 
+/// huds that layer on a higher plane in an attempt to ALWAYS show
+#define HUDS_LAYERING_HIGH list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, XENO_RANK_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
+
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
 //by default everything in the hud_list of an atom is an image

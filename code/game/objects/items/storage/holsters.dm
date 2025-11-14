@@ -158,6 +158,21 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
 	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
 
+/obj/item/storage/holster/backholster/rpg/freelancer
+	name = "\improper Freelancer rocket bag"
+	desc = "This backpack can hold 6 67mm shells, in addition to a recoiless launcher."
+	icon_state = "freelancer_rocket"
+	storage_type = /datum/storage/holster/backholster/rpg/freelancer
+
+/obj/item/storage/holster/backholster/rpg/freelancer/full/PopulateContents()
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
 	desc = "This backpack can hold 4 RPGs, in addition to a RPG launcher."
@@ -609,10 +624,10 @@
 	new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
 
 /obj/item/storage/holster/belt/mateba
 	name = "\improper M276 pattern Mateba holster rig"

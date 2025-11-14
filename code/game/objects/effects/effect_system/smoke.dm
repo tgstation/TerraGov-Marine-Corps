@@ -59,7 +59,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/smoke/Destroy()
-	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
+	if(smoke_traits && SMOKE_CAMO)
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
@@ -103,15 +103,30 @@
 	if(isliving(O))
 		O.effect_smoke(src)
 		return
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /atom/movable/projectile))
 		O.effect_smoke(src)
 
+/// Called when an atom leaves the turf containing the smoke.
 /obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)
 	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && istype(M))
-		var/obj/effect/particle_effect/smoke/S = locate() in get_turf(M)
-		if(!CHECK_BITFIELD(S?.smoke_traits, SMOKE_CAMO))
+	if(!istype(M))
+		return
+	var/should_turn_off_cloak = TRUE
+	var/turf/new_turf = get_turf(M)
+	for(var/obj/effect/particle_effect/smoke/smoke_inside_new_turf in new_turf?.contents)
+		if(smoke_inside_new_turf.smoke_traits & SMOKE_CAMO)
+			if(!isxeno(M) && !(smoke_inside_new_turf.smoke_traits & SMOKE_XENO))
+				should_turn_off_cloak = FALSE
+				break
+			if(isxeno(M) && (smoke_inside_new_turf.smoke_traits & SMOKE_XENO))
+				should_turn_off_cloak = FALSE
+				break
+	if(should_turn_off_cloak)
+		if(!isxeno(M))
 			M.smokecloak_off()
+			return
+		if(M.has_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING))
+			M.remove_status_effect(STATUS_EFFECT_XENOMORPH_CLOAKING)
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
 	T.effect_smoke(src)
@@ -240,7 +255,9 @@
 	var/turf/_location = location?.resolve()
 	if(!QDELETED(_holder))
 		_location = get_turf(_holder)
-	new smoke_type(_location, range, lifetime)
+	var/obj/effect/particle_effect/smoke/S = new smoke_type(_location, range, lifetime)
+	S.apply_smoke_effect(get_turf(S))
+
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -257,7 +274,14 @@
 /obj/effect/particle_effect/smoke/tactical
 	alpha = 40
 	opacity = FALSE
-	smoke_traits = SMOKE_CAMO
+	smoke_traits = SMOKE_CAMO // Only affects humans.
+
+/obj/effect/particle_effect/smoke/tactical_xeno
+	alpha = 40
+	opacity = FALSE
+	color = "#282e36"
+	minimum_effect_delay = 0
+	smoke_traits = SMOKE_CAMO|SMOKE_XENO // Only affects xenomorphs.
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -365,6 +389,9 @@
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
 
+/obj/effect/particle_effect/smoke/xeno/burn/fast
+	lifetime = 1
+
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	alpha = 255
@@ -374,13 +401,23 @@
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
 	alpha = 120
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
+/// With much less alpha, but can extinguish fire.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
+	alpha = 60
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+
+/// Can extinguish fire, but has significantly less lifetime.
+/obj/effect/particle_effect/smoke/xeno/neuro/light/fast
+	lifetime = 1
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
 
 /obj/effect/particle_effect/smoke/xeno/toxic
 	lifetime = 2
@@ -393,9 +430,17 @@
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/hemodile/light
+	alpha = 60
+	opacity = FALSE
+
 /obj/effect/particle_effect/smoke/xeno/transvitox
 	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+/obj/effect/particle_effect/smoke/xeno/transvitox/light
+	alpha = 60
+	opacity = FALSE
 
 //Toxic smoke when the Defiler successfully uses Defile
 /obj/effect/particle_effect/smoke/xeno/sanguinal
@@ -407,6 +452,9 @@
 	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+/obj/effect/particle_effect/smoke/xeno/ozelomelyn/light
+	alpha = 60
+	opacity = FALSE
 
 /// Smoke that constantly makes pyrogen fire.
 /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
@@ -414,6 +462,9 @@
 	opacity = FALSE
 	color = "#cff1ee" // Blueish.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
+	lifetime = 4 //Lasts for less time
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -424,6 +475,9 @@
 
 /datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/tactical
+
+/datum/effect_system/smoke_spread/tactical_xeno
+	smoke_type = /obj/effect/particle_effect/smoke/tactical_xeno
 
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
@@ -467,6 +521,9 @@
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
+/datum/effect_system/smoke_spread/xeno/acid/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/fast
+
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
@@ -476,14 +533,26 @@
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
+/datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/extinguishing
+
+/datum/effect_system/smoke_spread/xeno/neuro/light/fast
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light/fast
+
 /datum/effect_system/smoke_spread/xeno/toxic
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/toxic
 
 /datum/effect_system/smoke_spread/xeno/hemodile
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
 
+/datum/effect_system/smoke_spread/xeno/hemodile/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile/light
+
 /datum/effect_system/smoke_spread/xeno/transvitox
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
+
+/datum/effect_system/smoke_spread/xeno/transvitox/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox/light
 
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
@@ -491,10 +560,14 @@
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
+/datum/effect_system/smoke_spread/xeno/ozelomelyn/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn/light
 
 /datum/effect_system/smoke_spread/xeno/pyrogen_fire
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
 
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire/light
 
 /////////////////////////////////////////////
 // Chem smoke

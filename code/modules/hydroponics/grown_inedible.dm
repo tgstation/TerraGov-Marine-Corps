@@ -34,7 +34,6 @@
 		reagents.add_reagent(rid,max(1,rtotal))
 
 /obj/item/grown/log
-	name = "towercap"
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
 	icon_state = "logs"

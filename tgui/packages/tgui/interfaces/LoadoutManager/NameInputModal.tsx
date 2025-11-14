@@ -17,11 +17,12 @@ export const NameInputModal = (props: NameInputModalData) => {
         <Flex.Item mr={2} mb={1}>
           <TextArea
             fluid
+            autoFocus
             height="10vh"
             width="70vw"
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setInput(value.substring(0, 150));
             }}
             value={input}

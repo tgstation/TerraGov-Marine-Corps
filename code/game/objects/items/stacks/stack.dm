@@ -196,89 +196,99 @@
 		create_object(usr, R, multiplier)
 
 
-/// Creates multiplier amount of objects based off of stack recipe R. Most creation variables are changed through stack recipe datum's variables
-/obj/item/stack/proc/create_object(mob/user, datum/stack_recipe/R, multiplier)
-	if(user.get_active_held_item() != src)
+/// Creates multiplier amount of objects based off of stack recipe recipe. Most creation variables are changed through stack recipe datum's variables
+/obj/item/stack/proc/create_object(mob/user, datum/stack_recipe/recipe, multiplier, turf/build_loc, build_dir, ignore_stack_loc = FALSE)
+	if(!ignore_stack_loc && user.get_active_held_item() != src)
 		return
 	if(!can_interact(user))
-		return TRUE
-	if(!building_checks(user, R, multiplier))
+		return //TRUE
+	if(!building_checks(user, recipe, multiplier, build_loc, build_dir))
 		return
 	if(user.do_actions)
 		return
-	var/building_time = R.time
-	if(R.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) < R.skill_req)
-		building_time += R.time * ( R.skill_req - user.skills.getRating(SKILL_CONSTRUCTION) ) * 0.5 // +50% time each skill point lacking.
-	if(R.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) > R.skill_req)
-		building_time -= clamp(R.time * ( user.skills.getRating(SKILL_CONSTRUCTION) - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+	var/building_time = recipe.time
+	if(recipe.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) < recipe.skill_req)
+		building_time += recipe.time * ( recipe.skill_req - user.skills.getRating(SKILL_CONSTRUCTION) ) * 0.5 // +50% time each skill point lacking.
+	if(recipe.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) > recipe.skill_req)
+		building_time -= clamp(recipe.time * ( user.skills.getRating(SKILL_CONSTRUCTION) - recipe.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 	if(building_time)
-		balloon_alert_to_viewers("building [R.title]")
-		if(!do_after(user, building_time, NONE, src, (building_time > R.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
+		balloon_alert_to_viewers("building [recipe.title]")
+		if(!do_after(user, building_time, NONE, src, (building_time > recipe.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
 			return
-		if(!building_checks(user, R, multiplier))
+		if(!building_checks(user, recipe, multiplier, build_loc, build_dir))
 			return
 
-	var/obj/O
-	if(R.max_res_amount > 1) //Is it a stack?
-		O = new R.result_type(get_turf(user), R.res_amount * multiplier)
-	else if(ispath(R.result_type, /turf))
-		var/turf/T = get_turf(user)
-		if(!isturf(T))
+	return do_create_object(user, recipe, multiplier, build_loc, build_dir)
+
+///Actually creates and places the object
+/obj/item/stack/proc/do_create_object(mob/user, datum/stack_recipe/recipe, multiplier, turf/build_loc, build_dir)
+	var/obj/new_obj
+	if(!build_loc)
+		build_loc = get_turf(user)
+	if(recipe.max_res_amount > 1) //Is it a stack?
+		new_obj = new recipe.result_type(build_loc, recipe.res_amount * multiplier)
+	else if(ispath(recipe.result_type, /turf))
+		if(!isturf(build_loc))
 			return
-		T.PlaceOnTop(R.result_type)
+		build_loc.PlaceOnTop(recipe.result_type)
 	else
-		O = new R.result_type(get_turf(user), user)
-	if(O)
-		O.setDir(user.dir)
-		O.color = color
-	use(R.req_amount * multiplier)
+		new_obj = new recipe.result_type(build_loc, user)
+	if(new_obj)
+		new_obj.setDir(build_dir ? build_dir : user.dir)
+		new_obj.color = color
+	use(recipe.req_amount * multiplier)
 
-	if(isitemstack(O))
-		var/obj/item/stack/stack = O
+	if(isitemstack(new_obj))
+		var/obj/item/stack/stack = new_obj
 		stack.merge_with_stack_in_hands(user)
 
-	if(QDELETED(O))
+	if(QDELETED(new_obj))
 		return //It's a stack and has already been merged
 
-	if(isitem(O))
-		user.put_in_hands(O)
+	if(isitem(new_obj))
+		user.put_in_hands(new_obj)
 
 	//BubbleWrap - so newly formed boxes are empty
-	if(istype(O, /obj/item/storage))
-		for(var/obj/item/I in O)
-			qdel(I)
+	if(istype(new_obj, /obj/item/storage))
+		for(var/obj/item/item in new_obj)
+			qdel(item)
 	//BubbleWrap END
 
-	if(istype(O, /obj/structure))
+	if(istype(new_obj, /obj/structure))
 		user.record_structures_built()
 
-/obj/item/stack/proc/building_checks(mob/builder, datum/stack_recipe/recipe, multiplier)
+	return TRUE
+
+/obj/item/stack/proc/building_checks(mob/builder, datum/stack_recipe/recipe, multiplier, turf/dest_turf, build_dir)
 	if (get_amount() < recipe.req_amount * multiplier)
 		builder.balloon_alert(builder, "not enough material!")
 		return FALSE
-	var/turf/dest_turf = get_turf(builder)
+	if(!dest_turf)
+		dest_turf =  get_turf(builder)
+	if(!build_dir)
+		build_dir = builder.dir
 
 	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
 		builder.balloon_alert(builder, "already one here!")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
-		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
+		if(!valid_build_direction(dest_turf, build_dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
 			builder.balloon_alert(builder, "won't fit here!")
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(!isopenturf(dest_turf))
-			builder.balloon_alert(builder, "cannot be made on a wall!")
+			builder.balloon_alert(builder, "can't be made on a wall!")
 			return FALSE
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
-			builder.balloon_alert(builder, "cant build here!")
+			builder.balloon_alert(builder, "can't build here!")
 			return FALSE
 
 	var/area/area = get_area(dest_turf)
 	if(area.area_flags & NO_CONSTRUCTION)
-		builder.balloon_alert(builder, "cannot be made in this area!")
+		builder.balloon_alert(builder, "can't be made in this area!")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)

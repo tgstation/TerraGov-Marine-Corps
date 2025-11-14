@@ -81,7 +81,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter
 	name = "plasma cutter"
-	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
+	desc = "A self-charging tool that uses superheated plasma to cut through anything with ease. You could use it to slice off limbs! Or, you know, cut apart walls or mine through stone. Eye protection is strongly recommended."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "plasma_cutter_off"
 	worn_icon_state = "plasmacutter"
@@ -146,11 +146,11 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
 	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 	if(!cell)
-		balloon_alert(user, "No battery installed")
+		balloon_alert(user, "no battery installed!")
 	else if(!powered)
-		balloon_alert(user, "Turned off")
+		balloon_alert(user, "turned off!")
 	else
-		balloon_alert(user, "Insufficient charge")
+		balloon_alert(user, "insufficient charge!")
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge, or attack a living creature! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
@@ -169,7 +169,7 @@
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
-			balloon_alert(user, "Starts cutting apart")
+			balloon_alert(user, "cutting apart...")
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -181,7 +181,7 @@
 	spark_system.attach(source)
 	spark_system.start(source)
 	use_charge(user, charge_amount, FALSE)
-	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
+	balloon_alert(user, "charge remaining: [cell.charge]/[cell.maxcharge]")
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
 
@@ -204,7 +204,7 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = PLASMACUTTER_BASE_COST, mention_charge = TRUE)
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
+		balloon_alert(user, "charge remaining: [cell.charge]/[cell.maxcharge]")
 	update_plasmacutter()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
@@ -225,7 +225,7 @@
 			powered = FALSE
 			if(!silent)
 				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
-				balloon_alert(user, "Insufficient charge")
+				balloon_alert(user, "insufficient charge!")
 				to_chat(user, span_warning("The plasma cutter abruptly shuts down due to a lack of power!"))
 		force = 5
 		damtype = BRUTE

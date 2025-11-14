@@ -135,8 +135,8 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper"
 	density = TRUE
-	light_range = 1
-	light_power = 0.5
+	light_range = 3
+	light_power = 1
 	light_color = LIGHT_COLOR_BLUE
 	dir = EAST
 	var/mob/living/carbon/human/occupant = null
@@ -154,7 +154,7 @@
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -201,15 +201,11 @@
 	if(!hasHUD(user,"medical"))
 		. += span_notice("It contains: [occupant].[feedback]")
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			. += span_deptradio("No scan report on record")
-		else
-			. += span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	if(!isnull(medical_record?.fields["historic_scan"]))
+		. += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Occupant's body scan from [medical_record.fields["historic_scan_time"]]...</a>"
+	else
+		. += "[span_deptradio("No body scan report on record for occupant")]"
 
 /obj/machinery/sleeper/Topic(href, href_list)
 	. = ..()
@@ -224,15 +220,9 @@
 		return
 	if(!ishuman(occupant))
 		return
-	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-			popup.set_content(R.fields["last_scan_result"])
-			popup.open(FALSE)
-		break
+	var/datum/data/record/medical_record = find_medical_record(occupant)
+	var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+	scan.ui_interact(usr)
 
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -273,7 +263,7 @@
 		return
 	if(!occupant)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)

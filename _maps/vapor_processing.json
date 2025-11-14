@@ -5,5 +5,9 @@
 	"disk_sets": {
 		"basic": 1
 	},
-    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a Vapor Processing colony, known as LV-984. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!"
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a Vapor Processing colony, known as LV-984. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!",
+	"traits":[{
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
 }

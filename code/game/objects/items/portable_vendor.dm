@@ -107,11 +107,11 @@
 	switch(action)
 		if("vend")
 			if(!allowed(user))
-				balloon_alert(user, "Access denied.")
+				balloon_alert(user, "access denied!")
 				return
 
 			if(fabricating)
-				balloon_alert(user, "already fabricating")
+				balloon_alert(user, "already fabricating!")
 				return
 			var/idx = text2num(params["vend"])
 
@@ -119,18 +119,18 @@
 			var/cost = L[2]
 
 			if(use_points && points < cost)
-				balloon_alert(user, "Not enough points")
+				balloon_alert(user, "not enough points!")
 
 			var/turf/T = get_turf(src)
 			if(length(T.contents) > 25)
-				balloon_alert(user, "not enough space")
+				balloon_alert(user, "not enough space!")
 				return
 
 			if(use_points)
 				points -= cost
 
 			playsound(src, "sound/machines/fax.ogg", 5)
-			balloon_alert(user, "fabricating")
+			balloon_alert(user, "fabricating...")
 			fabricating = TRUE
 			update_appearance()
 			addtimer(CALLBACK(src, PROC_REF(do_vend), L[3], user), 1 SECONDS)

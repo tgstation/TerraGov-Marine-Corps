@@ -56,10 +56,10 @@
 		return
 	var/mob/living/carbon/xenomorph/runner/rouny = target
 	if(rouny.back)
-		balloon_alert(user,"This runner already has a saddle on!")
+		balloon_alert(user, "it has a saddle on already!")
 		return
 	if(rouny.stat == DEAD)
-		balloon_alert(user,"This runner is dead!")
+		balloon_alert(user, "it's dead!")
 		return
 	if(!do_after(user, 3 SECONDS, NONE, target))
 		return

@@ -1,6 +1,7 @@
 //click cooldowns, in tenths of a second, used for various combat actions
 #define CLICK_CD_FASTEST 1
 #define CLICK_CD_RAPID 2
+#define CLICK_CD_LOOK_UP 5
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_CLICK_ABILITY 6
 #define CLICK_CD_MELEE 8
@@ -75,6 +76,8 @@
 #define AMMO_SOUND_PITCH (1<<16)
 ///Is this projectile considered sniper ammo, used for the anti sniper stacking status effect
 #define AMMO_SNIPER (1<<17)
+///Ammo type entirely ignores xenos
+#define AMMO_SKIPS_ZOMBIE (1<<18)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //gun_features_flags

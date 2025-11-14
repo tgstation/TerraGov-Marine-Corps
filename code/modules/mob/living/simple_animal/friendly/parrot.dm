@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		icon_state = icon_living
 
 
-/mob/living/simple_animal/parrot/bullet_act(obj/projectile/proj)
+/mob/living/simple_animal/parrot/bullet_act(atom/movable/projectile/proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)

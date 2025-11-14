@@ -1,3 +1,4 @@
+#define INVISIBILITY_NONE 0
 
 #define SEE_INVISIBLE_MINIMUM 5
 

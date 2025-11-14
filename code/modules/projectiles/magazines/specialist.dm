@@ -27,16 +27,6 @@
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "t26_flak"
 
-//SR-42 magazine
-
-/obj/item/ammo_magazine/sniper/elite
-	name = "\improper SR-42 marksman magazine (10x99mm)"
-	default_ammo = /datum/ammo/bullet/sniper/elite
-	caliber = CALIBER_10X99
-	icon_state = "m42c"
-	icon_state_mini = "mag_rifle_big_white"
-	max_rounds = 6
-
 //SVD //Based on the actual Dragunov sniper rifle.
 
 /obj/item/ammo_magazine/sniper/svd
@@ -345,26 +335,33 @@
 //VSD RPG
 
 /obj/item/ammo_magazine/rocket/vsd/he
-	name = "\improper 84mm HE 'Anti-Personnel' case"
-	desc = "84mm Anti Personnel case. The label reads: 'Makes big boom'."
+	name = "\improper 84mm HE 'Anti-Personnel' rocket"
+	desc = "84mm High Explosive Anti Personnel case. Designed for clearing out enemy personnel with a bang."
 	icon_state = "c153_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
 	bonus_overlay = "c153_he"
 
 /obj/item/ammo_magazine/rocket/vsd/incendiary
-	name = "\improper 84mm Incendiary 'Anti-Personnel' case"
-	desc = "84mm Incendiary Anti Personnel case. The label reads: 'Makes people go AAAAAAAHH'."
+	name = "\improper 84mm Incendiary 'Anti-Personnel' rocket"
+	desc = "84mm Incendiary Anti Personnel case. Designed for clearing out enemy personnel with some heat."
 	icon_state = "c153_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
 	bonus_overlay = "c153_incendiary"
 
 /obj/item/ammo_magazine/rocket/vsd/chemical
-	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
-	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
+	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' rocket"
+	desc = "Chemical Capped 84mm Anti Personnel case. Designed for clearing out enemy personnel with choking air."
 	icon_state = "c153_chemical"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
 	bonus_overlay = "c153_chemical"
+
+/obj/item/ammo_magazine/rocket/vsd/heat
+	name = "\improper 84mm HEAT 'Anti-Tank' rocket"
+	desc = "A 84mm High Explosive Anti-Tank case. Designed to penetrate, and or spall enemy tanks."
+	icon_state = "c153_at"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "c153_at"
 
 // railgun
 
@@ -394,6 +391,33 @@
 	icon_state = "railgun_smart"
 	icon_state_mini = "mag_railgun_green"
 	default_ammo = /datum/ammo/bullet/railgun/smart
+
+// SRX-42 PMC sniper railgun
+
+/obj/item/ammo_magazine/railgun/pmc
+	name = "SRX-42 magazine (Armor Piercing Discarding Sabot)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. APDS is written across the magazine. This round will penetrate through most armor, but will not leave much of a hole."
+	icon = 'icons/obj/items/ammo/sniper.dmi'
+	icon_state = "m42r"
+	icon_state_mini = "mag_rifle_big"
+	max_rounds = 4
+
+/obj/item/ammo_magazine/railgun/pmc/smart
+	name = "SRX-42 magazine (Smart Armor Piericing)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. SAP is written across the magazine. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
+	icon_state = "m42r_smart"
+	icon_state_mini = "mag_rifle_big_green"
+	default_ammo = /datum/ammo/bullet/railgun/smart
+	bonus_overlay = "m42r_smart"
+
+/obj/item/ammo_magazine/railgun/pmc/hvap
+	name = "SRX-42 magazine (High Velocity Armor Piericing)"
+	desc = "A magazine holding a tungsten projectiles to be used inside a SRX-42 railgun. HVAP is written across the magazine. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
+	icon_state = "m42r_hvap"
+	icon_state_mini = "mag_rifle_big_blue"
+	default_ammo = /datum/ammo/bullet/railgun/hvap
+	bonus_overlay = "m42r_hvap"
+
 
 // pepperball
 
@@ -452,7 +476,7 @@
 
 //"External magazine" for the wheelchair-mounted minigun
 /obj/item/ammo_magazine/minigun_wheelchair
-	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	name = "mounted MG-100 Vindicator ammo rack"
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
@@ -466,7 +490,7 @@
 	reload_delay = 0.75 SECONDS
 
 /obj/item/ammo_magazine/bike_minigun
-	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	name = "mounted MG-100 Vindicator ammo rack"
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
@@ -474,6 +498,17 @@
 	default_ammo = /datum/ammo/bullet/minigun_light
 	current_rounds = 750
 	max_rounds = 750
+	reload_delay = 0.75 SECONDS
+
+/obj/item/ammo_magazine/bike_autocannon
+	name = "mounted AC-32 autocannon ammo rack"
+	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
+	icon = 'icons/obj/items/ammo/misc.dmi'
+	icon_state = "minigun"
+	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/bike_autocannon
+	current_rounds = 150
+	max_rounds = 150
 	reload_delay = 0.75 SECONDS
 
 // ICC coilgun
@@ -485,5 +520,38 @@
 	icon_state = "coilgun"
 	default_ammo = /datum/ammo/bullet/coilgun
 	max_rounds = 5
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+// VSD autocannon
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon
+	name = "CC/AT32 Autocannon canister"
+	desc = "A canister holding 20mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state = "at32"
+	default_ammo = /datum/ammo/bullet/auto_cannon
+	max_rounds = 100
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive
+	name = "CC/AT32 Autocannon High Explosive canister"
+	desc = "A canister holding 40mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_he"
+	default_ammo = /datum/ammo/bullet/auto_cannon/flak
+	max_rounds = 100
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/at
+	name = "CC/AT32 Autocannon Solid Shot canister"
+	desc = "A canister holding a couple rounds of special 20mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_at"
+	default_ammo = /datum/ammo/bullet/auto_cannon/anti_tank
+	max_rounds = 30
 	reload_delay = 10
 	icon_state_mini = "mag_dmr"

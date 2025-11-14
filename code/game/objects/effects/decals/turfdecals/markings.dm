@@ -260,3 +260,60 @@
 
 /obj/effect/turf_decal/strata_decals/grime/grime4
 	icon_state = "grime4"
+
+/obj/effect/turf_decal/tape
+	name = "tape"
+	desc = "It's some tape cordoning off an area"
+	icon = 'icons/obj/policetape.dmi'
+	icon_state = "police_h"
+
+/obj/effect/turf_decal/tape/vertical
+	icon_state = "police_v"
+
+/obj/effect/turf_decal/tape/damaged
+	icon_state = "police_h_c"
+
+/obj/effect/turf_decal/tape/damaged/vertical
+	icon_state = "police_v_c"
+
+/obj/effect/turf_decal/tape/door
+	icon_state = "police_door"
+
+/obj/effect/turf_decal/tape/door/damaged
+	icon_state = "police_door_c"
+
+/obj/effect/turf_decal/tape/engineering
+	icon_state = "engineering_h"
+
+/obj/effect/turf_decal/tape/engineering/vertical
+	icon_state = "engineering_v"
+
+/obj/effect/turf_decal/tape/engineering/damaged
+	icon_state = "engineering_h_c"
+
+/obj/effect/turf_decal/tape/engineering/damaged/vertical
+	icon_state = "engineering_v_c"
+
+/obj/effect/turf_decal/tape/engineering/door
+	icon_state = "engineering_door"
+
+/obj/effect/turf_decal/tape/engineering/door/damaged
+	icon_state = "engineering_door_c"
+
+/obj/effect/turf_decal/tape/atmos
+	icon_state = "atmos_h"
+
+/obj/effect/turf_decal/tape/atmos/vertical
+	icon_state = "atmos_v"
+
+/obj/effect/turf_decal/tape/atmos/damaged
+	icon_state = "atmos_h_c"
+
+/obj/effect/turf_decal/tape/atmos/damaged/vertical
+	icon_state = "atmos_v_c"
+
+/obj/effect/turf_decal/tape/atmos/door
+	icon_state = "atmos_door"
+
+/obj/effect/turf_decal/tape/atmos/door/damaged
+	icon_state = "atmos_door_c"

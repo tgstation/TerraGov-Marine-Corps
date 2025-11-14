@@ -105,7 +105,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
 	if(laser_target)
-		var/obj/projectile/projectile_to_fire = object_to_fire
+		var/atom/movable/projectile/projectile_to_fire = object_to_fire
 		projectile_to_fire.projectile_behavior_flags |= PROJECTILE_PRECISE_TARGET
 	return ..()
 
@@ -213,28 +213,28 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return TRUE
 
 
-/obj/item/weapon/gun/rifle/sniper/elite
-	name = "\improper SR-42 anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
-	icon_state = "m42c"
-	worn_icon_state = "m42c"
+/obj/item/weapon/gun/rifle/sniper/pmc_railgun
+	name = "\improper SRX-42 anti-tank rail rifle"
+	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available. Trigger discipline is highly recommended."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "m42r"
+	worn_icon_state = "m42r"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
-	max_shells = 6 //codex
-	caliber = CALIBER_10X99
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	max_shells = 4 //codex
+	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/sniper/elite
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sniper/elite)
-	force = 17
-	attachable_allowed = list()
-	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
+	default_ammo_type = /obj/item/ammo_magazine/railgun/pmc
+	allowed_ammo_types = list(/obj/item/ammo_magazine/railgun/pmc, /obj/item/ammo_magazine/railgun/pmc/smart, /obj/item/ammo_magazine/railgun/pmc/hvap)
+	force = 35
 	item_map_variant_flags = NONE
 	attachable_allowed = list(
 		/obj/item/attachable/foldable/bipod,
@@ -242,13 +242,22 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/sniperbarrel,
-		/obj/item/attachable/scope/pmc,
+		/obj/item/attachable/scope/nightvision
 	)
-	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
+	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 1.5 SECONDS
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 25, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 15)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1 SECONDS
+	aim_speed_modifier = 2
+
+	windup_delay = 0.5 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/laser_charge_up.ogg'
+	fire_delay = 2 SECONDS
 	accuracy_mult = 1.2
-	recoil = 5
+	recoil = 3
 	burst_amount = 1
 	movement_acc_penalty_mult = 7
 
@@ -316,7 +325,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
 	max_shells = 25 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_10X28_CASELESS //codex
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
@@ -341,9 +349,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -625,11 +633,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
-/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(atom/movable/projectile/projectile_to_fire, atom/target)
 	. = ..()
 	var/turf/blast_source = get_turf(src)
 	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
@@ -979,20 +988,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
-	)
-	inhand_x_dimension = 64
-	inhand_y_dimension = 32
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
-	load_method = MAGAZINE //codex
+	load_method = SINGLE_CASING //codex
 	default_ammo_type = /obj/item/ammo_magazine/rocket/vsd/he
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/vsd/he,
 		/obj/item/ammo_magazine/rocket/vsd/incendiary,
 		/obj/item/ammo_magazine/rocket/vsd/chemical,
+		/obj/item/ammo_magazine/rocket/vsd/heat,
 	)
 	wield_delay = 1 SECONDS
 	aim_slowdown = 1
@@ -1001,7 +1005,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	fire_sound = "rpg_fire"
 
-	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 44, "rail_y" = 21, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 22, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	windup_delay = 0.6 SECONDS
 	scatter = -1
@@ -1103,3 +1107,34 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/minigun/vsd_autocannon
+	name = "\improper CC/AT32 Handheld Autocannon"
+	desc = "The CC/AT32, a new handheld Autocannon of the Vyacheslav Security Detail. Firing 20mm rounds and 40mm grenades. Its ammo variety goes from Armor Piercing, Anti-Tank, and Explosives."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "at32"
+	worn_icon_state = "at32"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	fire_animation = "at32"
+	max_shells = 100 //codex
+	caliber = CALIBER_20 //codex
+	load_method = MAGAZINE //codex
+	fire_sound = 'sound/weapons/guns/fire/autocannon_1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_autocannon
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/vsd_autocannon,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/at,
+		)
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
+
+	fire_delay = 0.45 SECONDS
+	wield_delay = 0.85 SECONDS
+	windup_delay = 0 SECONDS

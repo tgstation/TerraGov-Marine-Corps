@@ -32,10 +32,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"cg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -846,10 +842,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Mg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "Ml" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engine Reactor Control"
@@ -932,10 +924,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
-"Qw" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "QE" = (
 /obj/machinery/light{
 	dir = 4
@@ -1198,7 +1186,7 @@ xG
 xG
 xG
 xG
-Mg
+Uf
 ZJ
 wW
 vr
@@ -1290,7 +1278,7 @@ zn
 bJ
 bJ
 bJ
-Qw
+xG
 xG
 xG
 Ft
@@ -1343,7 +1331,7 @@ Uf
 os
 Uf
 Uf
-Mg
+Uf
 zF
 wg
 Wq
@@ -1377,7 +1365,7 @@ JM
 vr
 vr
 bR
-Qw
+xG
 xG
 xG
 Qo
@@ -1518,7 +1506,7 @@ jR
 bJ
 Gu
 UO
-cg
+pu
 pu
 pu
 Ml
@@ -1544,7 +1532,7 @@ Ft
 (14,1,1) = {"
 vr
 Pz
-Mg
+Uf
 JM
 Nb
 pu
@@ -1631,7 +1619,7 @@ Ft
 (17,1,1) = {"
 Uf
 Uf
-Mg
+Uf
 CU
 Ib
 pu
@@ -1692,7 +1680,7 @@ jy
 LO
 Iu
 WA
-cg
+pu
 pu
 pu
 Ml
@@ -1804,7 +1792,7 @@ Ft
 "}
 (23,1,1) = {"
 pu
-cg
+pu
 lE
 YK
 sS

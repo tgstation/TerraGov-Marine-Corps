@@ -60,7 +60,7 @@ export const CampaignMissions = (props) => {
           ))}
         </Stack>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={
             selectedMission ? (

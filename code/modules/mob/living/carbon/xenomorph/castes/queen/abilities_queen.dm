@@ -48,7 +48,7 @@
 		switch(xeno_owner.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
 			if(/datum/xeno_caste/queen, /datum/xeno_caste/shrike)
 				SEND_SOUND(xeno, queen_sound)
-			if(/datum/xeno_caste/king)
+			if(/datum/xeno_caste/king, /datum/xeno_caste/dragon)
 				SEND_SOUND(xeno, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
 		xeno.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
@@ -61,7 +61,10 @@
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/ability/xeno_action/hive_message/free
+	ability_cost = 0
 
+#define SCREECH_RANGE WORLD_VIEW_NUM
 // ***************************************
 // *********** Screech
 // ***************************************
@@ -79,6 +82,16 @@
 	)
 	// The type of screech that this ability will be doing.
 	var/selected_screech = "screech"
+	/// Should allied xenomorphs in a 20-tile radius get a movement speed modifier for 4 seconds after using Screech? If so, what amount should be it?
+	var/movement_speed_modifier = 0
+	/// All xenomorphs that were given the movement speed modifier.
+	var/list/mob/living/carbon/xenomorph/speedy_xenomorphs = list()
+	/// The id of the timer that will remove the movement speed modifier.
+	var/timer_id
+
+/datum/action/ability/activable/xeno/screech/remove_action(mob/living/L)
+	revoke_movespeed_modifier()
+	return ..()
 
 /datum/action/ability/activable/xeno/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -101,19 +114,23 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 			xeno_owner.create_shriekwave() // Adds the visual effect. Wom wom wom.
 
-			for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
-				if(get_dist(tank, xeno_owner) > WORLD_VIEW_NUM)
+			// If you're a hearer, you get effected more severely.
+			// Remember, your affected thing needs to be hearing sensitive
+			var/list/nearby_living = list()
+			for(var/atom/victim in get_hearers_in_LOS(SCREECH_RANGE, xeno_owner))
+				if(ismob(victim))
+					nearby_living += victim
 					continue
-				if(tank.z != owner.z)
-					continue
-				for(var/mob/living/living_victim AS in tank.occupants)
-					living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM) // Todo: The effects of screech are weird due to relying on get_dist for a mob on a diff z-level.
+				if(isvehicle(victim))
+					var/obj/vehicle/sealed = victim
+					nearby_living += sealed.occupants
 
-			var/list/nearby_living = list() // If you're a hearer, you get effected more severely.
-			for(var/mob/living/living_victim in hearers(WORLD_VIEW, xeno_owner))
-				nearby_living.Add(living_victim)
-			for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, WORLD_VIEW_NUM))
-				living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM, living_victim in nearby_living)
+			for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, SCREECH_RANGE))
+				living_victim.screech_act(get_dist(living_victim, xeno_owner), SCREECH_RANGE, living_victim in nearby_living)
+			for(var/obj/vehicle/sealed/vehicle in cheap_get_mechs_near(xeno_owner, SCREECH_RANGE)|cheap_get_tanks_near(xeno_owner, SCREECH_RANGE))
+				for(var/mob/living/living_victim AS in vehicle.occupants)
+					living_victim.screech_act(get_dist(vehicle, xeno_owner), SCREECH_RANGE, living_victim in nearby_living)
+
 		if("heal_screech")
 			succeed_activate()
 			add_cooldown(30 SECONDS)
@@ -150,6 +167,11 @@
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+	if(movement_speed_modifier)
+		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
+			affected_xeno.add_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH, TRUE, 0, NONE, TRUE, movement_speed_modifier)
+			speedy_xenomorphs += affected_xeno
+		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 4 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
@@ -191,6 +213,15 @@
 			desc = "A beneficial screech that grants an increase of 10% melee damage to you and nearby allies."
 			to_chat(owner, span_xenonotice("Our screech will bolster the damage of nearby allies."))
 	update_button_icon()
+
+/// Removes the movement speed modifier, if any.
+/datum/action/ability/activable/xeno/screech/proc/revoke_movespeed_modifier()
+	for(var/mob/living/carbon/xenomorph/speed_xenomorph AS in speedy_xenomorphs)
+		speed_xenomorph.remove_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH)
+	speedy_xenomorphs.Cut()
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
 
 /datum/action/ability/activable/xeno/screech/update_button_icon()
 	action_icon_state = selected_screech
@@ -248,7 +279,7 @@
 	watcher.observed_xeno = target
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
-	watcher.reset_perspective()
+	watcher.reset_perspective(target)
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
 	RegisterSignals(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
@@ -260,6 +291,7 @@
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
 	watcher.observed_xeno = null
+	watcher.reset_perspective()
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 		if(isxenoqueen(watcher)) // Only queen has to reset the eye overlay.
@@ -293,7 +325,7 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
@@ -399,9 +431,12 @@
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
 		xeno_owner.balloon_alert(xeno_owner, "Xeno cannot lead")
 		return
+	if(selected_xeno == xeno_owner)
+		xeno_owner.balloon_alert(xeno_owner, "You are already a ruler")
+		return
 	xeno_owner.balloon_alert(xeno_owner, "Xeno promoted")
 	selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
-	to_chat(selected_xeno, span_xenoannounce("[xeno_owner] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
+	to_chat(selected_xeno, span_xenoannounce("[xeno_owner] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Ruler's pheromones."))
 
 	xeno_owner.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
@@ -477,9 +512,15 @@
 	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
 	)
 	use_state_flags = ABILITY_USE_LYING
 	target_flags = ABILITY_MOB_TARGET
+	var/mob/living/carbon/xenomorph/last_xenomorph_transferred_to
+
+/datum/action/ability/activable/xeno/queen_give_plasma/Destroy()
+	last_xenomorph_transferred_to = null
+	return ..()
 
 /datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -505,7 +546,6 @@
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
-
 /datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
@@ -514,7 +554,13 @@
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
-/// Signal handler for the queen_give_plasma action that checks can_use
+/datum/action/ability/activable/xeno/queen_give_plasma/alternate_action_activate()
+	if(!last_xenomorph_transferred_to)
+		return
+	try_use_ability(null, last_xenomorph_transferred_to)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler for the queen_give_plasma action that checks can_use.
 /datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
@@ -522,15 +568,26 @@
 	use_ability(target)
 
 /datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/receiver = target
-	add_cooldown()
-	receiver.gain_plasma(300)
-	succeed_activate()
-	receiver.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
-	if (get_dist(owner, receiver) > 7)
+	if(!last_xenomorph_transferred_to)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
+		last_xenomorph_transferred_to = target
+	else if(last_xenomorph_transferred_to != target)
+		UnregisterSignal(last_xenomorph_transferred_to, COMSIG_QDELETING)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
+		last_xenomorph_transferred_to = target
+
+	last_xenomorph_transferred_to.gain_plasma(300)
+	last_xenomorph_transferred_to.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
+	if(get_dist(owner, last_xenomorph_transferred_to) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
+	add_cooldown()
+	succeed_activate()
 
+/// Should the last xenomorph get deleted, removes them from the ability as the last target.
+/datum/action/ability/activable/xeno/queen_give_plasma/proc/on_target_qdeleted(datum/source, force)
+	SIGNAL_HANDLER
+	last_xenomorph_transferred_to = null
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4
@@ -546,57 +603,109 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
 	)
-	/// assoc list xeno = armor_diff
-	var/list/armor_mod_keys = list()
+	/// The multiplier of the soft armor from the affected's base caste. This amount will be added ontop of the affected's current soft armor.
+	var/armor_multiplier = BULWARK_ARMOR_MULTIPLIER
+	/// Associative list: [xeno] == armor_difference
+	var/list/armor_keys = list()
+	/// The flat amount of overheal to give to the affected. If it cannot be given, then it won't be subtracted from later.
+	var/flat_overheal = 0
+	/// Associative list: [xeno] == overheal_difference
+	var/list/overheal_keys = list()
+	/// Is the owner required to channel to use this ability? They will need to stay in the radius for the ability to continue.
+	var/channel_required = TRUE
+	/// If any, the timer ID to check if the ability should end / maintain the ability.
+	var/timer_id
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// List of turfs that are affected by this ability.
+	var/list/affected_turfs
+
+/datum/action/ability/xeno_action/bulwark/remove_action(mob/living/L)
+	if(particle_holder)
+		remove_affected_area()
+	return ..()
 
 /datum/action/ability/xeno_action/bulwark/action_activate()
-	var/list/turf/affected_turfs = RANGE_TURFS(BULWARK_RADIUS, owner)
+	if(particle_holder)
+		return
 	add_cooldown()
-
-	for(var/turf/target AS in affected_turfs)
-		//yes I realize this adds and removes it every move but its simple
-		//also we use this and not aura because we want speedy updates on entering
-		RegisterSignal(target, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
-		RegisterSignal(target, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
-		ADD_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
-		for(var/mob/living/carbon/xenomorph/xeno in target)
-			apply_buff(null, xeno)
-
-	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
-	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
+	create_affected_area()
+	if(!channel_required)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(continue_or_end)), BULWARK_LOOP_TIME, TIMER_UNIQUE)
+		return
 	while(do_after(owner, BULWARK_LOOP_TIME, IGNORE_HELD_ITEM, user_display = BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY)))
 		succeed_activate()
+	remove_affected_area()
 
-	aoe_particles.particles.spawning = 0
-	QDEL_IN(aoe_particles, 4 SECONDS)
+/// Creates the area in which the effects caused by the ability can be triggered from.
+/datum/action/ability/xeno_action/bulwark/proc/create_affected_area()
+	particle_holder = new(owner.loc, /particles/bulwark_aoe)
+	particle_holder.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS - 1) * 32, LINEAR_RAND)
+	affected_turfs = RANGE_TURFS(BULWARK_RADIUS, xeno_owner)
+	for(var/turf/affected_turf AS in affected_turfs)
+		//yes I realize this adds and removes it every move but its simple
+		//also we use this and not aura because we want speedy updates on entering
+		RegisterSignal(affected_turf, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
+		RegisterSignal(affected_turf, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
+		ADD_TRAIT(affected_turf, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+		for(var/mob/living/carbon/xenomorph/affected_xeno in affected_turf)
+			apply_buff(null, affected_xeno)
 
-	for(var/turf/target AS in affected_turfs)
-		UnregisterSignal(target, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
-		REMOVE_TRAIT(target, TRAIT_BULWARKED_TURF, XENO_TRAIT)
-		for(var/mob/living/carbon/xenomorph/xeno AS in armor_mod_keys)
-			remove_buff(null, xeno)
+/// Reverts any changes caused by the ability.
+/datum/action/ability/xeno_action/bulwark/proc/remove_affected_area()
+	QDEL_IN(particle_holder, 4 SECONDS)
+	particle_holder.particles.spawning = 0
+	particle_holder = null
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	for(var/turf/affected_turf AS in affected_turfs)
+		UnregisterSignal(affected_turf, list(COMSIG_ATOM_EXITED, COMSIG_ATOM_ENTERED))
+		REMOVE_TRAIT(affected_turf, TRAIT_BULWARKED_TURF, XENO_TRAIT)
+	for(var/mob/living/carbon/xenomorph/affected_xeno in armor_keys)
+		remove_buff(null, affected_xeno)
+	for(var/mob/living/carbon/xenomorph/affected_xeno in overheal_keys)
+		remove_buff(null, affected_xeno)
+	armor_keys.Cut()
+	overheal_keys.Cut()
 	affected_turfs = null
 
-///adds buff to xenos
+/// Checks if the owner can still use the ability. If yes, pay the plasma and continue. If not, end the ability.
+/datum/action/ability/xeno_action/bulwark/proc/continue_or_end()
+	if(particle_holder && can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY))
+		succeed_activate()
+		timer_id = addtimer(CALLBACK(src, PROC_REF(continue_or_end)), BULWARK_LOOP_TIME, TIMER_UNIQUE)
+		return
+	remove_affected_area()
+
+/// Adds any buffs to the affected xenomorph.
 /datum/action/ability/xeno_action/bulwark/proc/apply_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
-	if(!isxeno(xeno) || armor_mod_keys[xeno] || !owner.issamexenohive(xeno))
+	if(!isxeno(xeno) || !owner.issamexenohive(xeno))
 		return
-	var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
-	var/datum/armor/armordiff = basearmor.scaleAllRatings(BULWARK_ARMOR_MULTIPLIER)
-	xeno.soft_armor = xeno.soft_armor.attachArmor(armordiff)
-	armor_mod_keys[xeno] = armordiff
+	if(armor_multiplier && !armor_keys[xeno])
+		var/datum/armor/basearmor = getArmor(arglist(xeno.xeno_caste.soft_armor))
+		var/datum/armor/armor_difference = basearmor.scaleAllRatings(armor_multiplier)
+		xeno.soft_armor = xeno.soft_armor.attachArmor(armor_difference)
+		armor_keys[xeno] = armor_difference
+	if(flat_overheal && overheal_keys[xeno] == null) // Only want to grant overheal for the first time getting buffed.
+		overheal_keys[xeno] = xeno.adjustOverheal(flat_overheal)
 
-///removes the buff from xenos
+/// Removes any buffs from the affected xenomorph.
 /datum/action/ability/xeno_action/bulwark/proc/remove_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
 	if(direction) // triggered by moving signal, check if next turf is in bulwark
 		var/turf/next = get_step(source, direction)
 		if(HAS_TRAIT(next, TRAIT_BULWARKED_TURF))
 			return
-	if(armor_mod_keys[xeno])
-		xeno.soft_armor = xeno.soft_armor.detachArmor(armor_mod_keys[xeno])
-		armor_mod_keys -= xeno
+	if(armor_keys[xeno])
+		xeno.soft_armor = xeno.soft_armor.detachArmor(armor_keys[xeno])
+		armor_keys -= xeno
+	if(overheal_keys[xeno])
+		xeno.adjustOverheal(-overheal_keys[xeno])
+		overheal_keys -= xeno
+	if(xeno == xeno_owner && !channel_required && timer_id) // Owner left the area early.
+		remove_affected_area()
 
 /particles/bulwark_aoe
 	icon = 'icons/effects/particles/generic_particles.dmi'

@@ -65,11 +65,6 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
-	if(human_user.buckled)
-		balloon_alert(human_user, "Cannot fly while buckled")
-		return FALSE
-	if(human_user.do_actions)
-		return FALSE
 	if(!do_after(human_user, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, A))
 		return FALSE
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
@@ -136,7 +131,7 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		balloon_alert(user, "No fuel")
+		balloon_alert(user, "no fuel!")
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -146,7 +141,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	balloon_alert(user, "Refilled")
+	balloon_alert(user, "refilled")
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -156,7 +151,7 @@
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
-		balloon_alert(user, "No fuel")
+		balloon_alert(user, "no fuel!")
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
@@ -165,7 +160,7 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "Refilled")
+	balloon_alert(user, "refilled")
 	update_icon()
 
 /datum/action/ability/activable/item_toggle/jetpack
@@ -184,9 +179,11 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
+	if(carbon_owner.do_actions)
+		return FALSE
 	var/obj/item/jetpack_marine/jetpack = holder_item
 	if(jetpack.fuel_left < FUEL_USE)
-		carbon_owner.balloon_alert(carbon_owner, "No fuel")
+		carbon_owner.balloon_alert(carbon_owner, "no fuel!")
 		return
 	return ..()
 
@@ -268,7 +265,7 @@
 	else
 		hit_mob.Knockdown(knockdown_duration)
 		human_user.forceMove(get_turf(hit_mob))
-	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = human_user)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 
 	human_user.set_throwing(FALSE)

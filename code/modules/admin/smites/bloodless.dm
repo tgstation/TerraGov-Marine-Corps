@@ -11,9 +11,9 @@
 		to_chat(user, span_warning("Xenomorph blood is protected by the Queen Mother you silly goose. Aborting."), confidential = TRUE)
 		return
 
-	var/bloodlossamount = tgui_alert(usr, "How much blood should [target] lose?", "Bloodloss amount", list("A little", "A lot", "So fucking much", "FUCK THIS DUDE"))
+	var/bloodlossamount = tgui_input_list(usr, "How much blood should [target] lose?", "Bloodloss amount", list("A little", "A lot", "So fucking much", "FUCK THIS DUDE"))
 	to_chat(target, span_userdanger("You feel your skin growing pale as your blood drains away..."), confidential = TRUE)
-	
+
 	switch (bloodlossamount)
 		if("A little")
 			target.set_blood_volume(BLOOD_VOLUME_NOT_IDEAL) //80% blood

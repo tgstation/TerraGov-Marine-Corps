@@ -20,11 +20,6 @@
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 
-	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set
-		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE) //minions and tier fours have no respawn timer
-				GLOB.key_to_time_of_xeno_death[key] = world.time
-
 	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 

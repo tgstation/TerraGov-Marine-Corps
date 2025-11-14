@@ -14,3 +14,5 @@
 /datum/unit_test/focus_only/topdown_filtering
 
 /datum/unit_test/focus_only/invalid_overlays
+
+/datum/unit_test/focus_only/openspace_clear

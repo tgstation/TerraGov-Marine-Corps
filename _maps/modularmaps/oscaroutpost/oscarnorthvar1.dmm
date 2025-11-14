@@ -1723,7 +1723,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "sY" = (
@@ -3561,7 +3563,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "OI" = (
@@ -3992,7 +3996,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "SH" = (
@@ -4039,7 +4045,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Tx" = (

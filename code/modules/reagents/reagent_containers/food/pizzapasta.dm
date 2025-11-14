@@ -203,7 +203,7 @@
 	. = ..()
 	if(open && pizza)
 		var/image/pizzaimg = image("pizzaspaghetti.dmi", icon_state = pizza.icon_state)
-		pizzaimg.pixel_y = -3
+		pizzaimg.pixel_z = -3
 		. += pizzaimg
 		return
 	// Stupid code because byondcode sucks - imagine blaming the engine for you being bad at coding. TODO: clean this up
@@ -218,7 +218,7 @@
 
 	if(doimgtag)
 		var/image/tagimg = image("pizzaspaghetti.dmi", icon_state = "pizzabox_tag")
-		tagimg.pixel_y = boxes.len * 3
+		tagimg.pixel_z = boxes.len * 3
 		. += tagimg
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -402,7 +402,6 @@
 	desc = "Now that's a nic'e meatball!"
 	icon_state = "meatballspaghetti"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("pasta" = 1, "meat" = 1)
 	trash = /obj/item/trash/plate
 	filling_color = "#DE4545"
 	bitesize = 3

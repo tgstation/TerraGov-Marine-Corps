@@ -54,6 +54,10 @@
 	},
 /turf/closed/interior/apc/two,
 /area/interior/apc)
+"u" = (
+/obj/machinery/vending/nanoammo/directional/south,
+/turf/open/interior/apc/eight,
+/area/interior/apc)
 "B" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /turf/closed/interior/apc/six,
@@ -137,7 +141,7 @@ a
 "}
 (2,1,1) = {"
 e
-s
+u
 J
 T
 R

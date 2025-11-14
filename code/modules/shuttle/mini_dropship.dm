@@ -133,7 +133,7 @@
 		to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
 		return
 	#endif
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TADPOLE_LAUNCHING))
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay) // To stop spamming
@@ -148,6 +148,10 @@
 		next_fly_state = SHUTTLE_IN_SPACE
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
+
+// Toggle the podlock shutters from the shuttle computer
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_shutters()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_SHUTTER)
 
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
@@ -168,6 +172,7 @@
 		to_chat(ui_user, span_warning("Can not toggle night vision mode in caves"))
 		return
 	nvg_vision_mode = !nvg_vision_mode
+	ui_user?.update_sight()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
@@ -293,6 +298,8 @@
 	switch(action)
 		if("take_off")
 			take_off()
+		if("toggle_shutters")
+			toggle_shutters()
 		if("return_to_ship")
 			return_to_ship()
 		if("toggle_nvg")
@@ -306,7 +313,7 @@
 
 /datum/action/innate/shuttledocker_land
 	name = "Land"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/shuttledocker_land/Activate()

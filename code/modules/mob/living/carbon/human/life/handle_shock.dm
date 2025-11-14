@@ -54,7 +54,7 @@
 			add_slowdown(12)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb", "You feel like you could die any moment now")]!"))
-			if(!COOLDOWN_CHECK(src, last_shock_effect)) //Check to see if we're on cooldown
+			if(!COOLDOWN_FINISHED(src, last_shock_effect)) //Check to see if we're on cooldown
 				return
 			if(!lying_angle)
 				emote("me", 1, "can no longer stand, collapsing!")

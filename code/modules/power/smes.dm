@@ -260,7 +260,6 @@
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacity" = capacity,
 		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
 		"inputAttempt" = input_attempt,
@@ -376,7 +375,7 @@
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)
 			smoke.start()
-			explosion(loc, light_impact_range = 2, flash_range = 3)
+			explosion(loc, light_impact_range = 2, flash_range = 3, explosion_cause=src)
 			qdel(src)
 			return
 		if(prob(15)) //Power drain
@@ -406,8 +405,8 @@
 	outputting = initial(outputting)
 
 /obj/machinery/power/smes/preset
-	input_level = 180000
-	output_level = 100000
+	input_level = SMESMAXCHARGELEVEL
+	output_level = SMESMAXOUTPUT
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

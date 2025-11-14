@@ -1,10 +1,12 @@
+// glob whitelist of permitted bodytypes in the menu
+GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_MEDIUM))
 GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 ///generates the static list data containig all printable mech equipment modules for greyscale
 /proc/generate_greyscale_weapons_data()
-	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
+	. = list("weapons" = list(), "back_weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
-		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 			continue
 		if(initial(type.mech_flags) == ALL)
 			continue
@@ -32,6 +34,29 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
 					weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
 				.["weapons"] += list(weapon_representation)
+			if(MECHA_BACK)
+				var/list/weapon_representation = list(
+					"type" = type,
+					"name" = initial(type.name),
+					"desc" = initial(type.desc),
+					"icon_state" = initial(type.icon_state),
+					"health" = initial(type.max_integrity),
+					"firerate" = initial(type.projectile_delay),
+					"burst_count" = initial(type.burst_amount),
+					"scatter" = initial(type.variance),
+					"slowdown" = initial(type.slowdown),
+					"burst_amount" = initial(type.burst_amount)
+				)
+				var/datum/ammo/ammotype = initial(type.ammotype)
+				if(ispath(ammotype, /datum/ammo))
+					weapon_representation["damage"] = initial(ammotype.damage)
+					weapon_representation["armor_pierce"] = initial(ammotype.penetration)
+				if(ispath(type, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+					var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/ballistic_type = type
+					weapon_representation["projectiles"] = initial(ballistic_type.projectiles)
+					weapon_representation["cache_max"] = initial(ballistic_type.projectiles_cache_max)
+					weapon_representation["ammo_type"] = initial(ballistic_type.ammo_type)
+				.["back_weapons"] += list(weapon_representation)
 			if(MECHA_ARMOR)
 				.["armor"] += list(list(
 					"type" = type,
@@ -92,16 +117,18 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/selected_visor = MECH_GREY_VISOR_DEFAULT
 	///STRING-STRING list of mech_slot-part_type
 	var/selected_variants = list(
-		MECH_GREY_TORSO = MECH_ASSAULT,
-		MECH_GREY_HEAD = MECH_ASSAULT,
-		MECH_GREY_LEGS = MECH_ASSAULT,
-		MECH_GREY_R_ARM = MECH_ASSAULT,
-		MECH_GREY_L_ARM = MECH_ASSAULT,
+		MECH_GREY_TORSO = MECH_MEDIUM,
+		MECH_GREY_HEAD = MECH_MEDIUM,
+		MECH_GREY_LEGS = MECH_MEDIUM,
+		MECH_GREY_R_ARM = MECH_MEDIUM,
+		MECH_GREY_L_ARM = MECH_MEDIUM,
 	)
 	/// Currently selected equipment, maxes are determined by equipment_max
 	var/selected_equipment = list(
 		MECHA_L_ARM = null,
 		MECHA_R_ARM = null,
+		MECHA_L_BACK = null,
+		MECHA_R_BACK = null,
 		MECHA_UTILITY = list(),
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),
@@ -122,7 +149,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	. = ..()
 	mech_view = new
 	mech_view.generate_view("mech_builder_view_[REF(src)]")
-	update_ui_view()
 	current_stats = list()
 	var/list/datum/mech_limb/limbs = list()
 	for(var/slot in selected_variants)
@@ -130,31 +156,32 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		limbs[slot] = new path(TRUE)
 	var/datum/mech_limb/head/head_limb = limbs[MECH_GREY_HEAD]
 	current_stats["accuracy"] = head_limb.accuracy_mod
-	current_stats["light_mod"]= head_limb.light_range
+	current_stats["light_mod"] = head_limb.light_range
 	var/datum/mech_limb/arm/arm_limb = limbs[MECH_GREY_L_ARM]
 	current_stats["left_scatter"] = arm_limb.scatter_mod
 	arm_limb = limbs[MECH_GREY_R_ARM]
 	current_stats["right_scatter"] = arm_limb.scatter_mod
 
 	var/power_calc = 0
+	var/power_gen = 0
 	for(var/obj/item/mecha_parts/mecha_equipment/generator/greyscale/gen AS in selected_equipment[MECHA_POWER])
 		if(ispath(gen, /obj/item/mecha_parts/mecha_equipment/generator/greyscale))
 			var/obj/item/cell/cell_type = initial(gen.cell_type)
 			power_calc += initial(cell_type.maxcharge)
+			power_gen += initial(cell_type.charge_amount)
 	current_stats["power_max"] = power_calc
+	current_stats["power_gen"] = power_gen
 
 	var/health = 0
 	var/slowdown = 0
-	var/list/armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
-		health += limb.health_mod
+		if(istype(limb, /datum/mech_limb/torso))
+			var/datum/mech_limb/torso/torso_limb = limb
+			health = torso_limb.health_set
 		slowdown += limb.slowdown_mod
-		for(var/armor_type in limb.soft_armor_mod)
-			armor[armor_type] += limb.soft_armor_mod[armor_type]
 	current_stats["health"] = health
 	current_stats["slowdown"] = slowdown
-	current_stats["armor"] = armor
 
 /obj/machinery/computer/mech_builder/can_interact(mob/user)
 	. = ..()
@@ -165,11 +192,12 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
+	update_ui_view()
 	if(ui)
 		return
 	ui = new(user, src, "MechVendor", name)
 	ui.open()
-	mech_view.display_to(user)
+	mech_view.display_to(user, ui.window)
 
 /obj/machinery/computer/mech_builder/ui_close(mob/user)
 	. = ..()
@@ -227,8 +255,10 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
 		return FALSE // non valid body parts
-
 	switch(action)
+		if("rotate_doll")
+			mech_view.setDir(turn(mech_view.dir, 90))
+			return TRUE
 		if("set_primary")
 			var/new_color_name = params["new_color"]
 			for(var/key in available_colors)
@@ -245,6 +275,23 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				if(!(new_color_name in available_colors[key]))
 					continue
 				selected_secondary[selected_part] = available_colors[key][new_color_name]
+				update_ui_view()
+				return TRUE
+			return FALSE
+
+		if("set_all")
+			var/new_primary_color_name = params["new_primary"]
+			var/new_secondary_color_name = params["new_secondary"]
+			var/num_set = 0
+			for(var/part in selected_primary)
+				for(var/key in available_colors)
+					if(new_primary_color_name in available_colors[key])
+						selected_primary[part] = available_colors[key][new_primary_color_name]
+						num_set++
+					if(new_secondary_color_name in available_colors[key])
+						selected_secondary[part] = available_colors[key][new_secondary_color_name]
+						num_set++
+			if(num_set)
 				update_ui_view()
 				return TRUE
 			return FALSE
@@ -297,8 +344,11 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(initial(legs_type.max_weight) < get_current_weight())
 				tgui_alert(user, "Your mech is too heavy to deploy!")
 				return FALSE
+			if(!length(selected_equipment[MECHA_POWER]))
+				tgui_alert(user, "No power equipped")
+				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
-			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
+			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
 				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
 				ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
@@ -308,38 +358,47 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/weapon/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(initial(new_type.equipment_slot) != MECHA_WEAPON)
+			if(initial(new_type.equipment_slot) != MECHA_WEAPON && initial(new_type.equipment_slot) != MECHA_BACK)
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
-			if(params["is_right_weapon"])
-				selected_equipment[MECHA_R_ARM] = new_type
-				return TRUE
-			selected_equipment[MECHA_L_ARM] = new_type
+			var/slot
+			if(initial(new_type.equipment_slot) == MECHA_BACK)
+				slot = params["is_right_weapon"] ? MECHA_R_BACK : MECHA_L_BACK
+			else
+				slot = params["is_right_weapon"] ? MECHA_R_ARM : MECHA_L_ARM
+
+			if(selected_equipment[slot] == new_type)
+				selected_equipment[slot] = null
+			else
+				selected_equipment[slot] = new_type
 			return TRUE
 
 		if("add_power")
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
 				return FALSE
 			selected_equipment[MECHA_POWER] += new_type
 			var/power_calc = 0
+			var/power_gen = 0
 			for(var/obj/item/mecha_parts/mecha_equipment/generator/greyscale/gen AS in selected_equipment[MECHA_POWER])
 				if(ispath(gen, /obj/item/mecha_parts/mecha_equipment/generator/greyscale))
 					var/obj/item/cell/cell_type = initial(gen.cell_type)
 					power_calc += initial(cell_type.maxcharge)
+					power_gen += initial(cell_type.charge_amount)
 			current_stats["power_max"] = power_calc
+			current_stats["power_gen"] = power_gen
 			return TRUE
 
 		if("add_armor")
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
 				return FALSE
@@ -350,7 +409,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
 				return FALSE
@@ -358,6 +417,12 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			return TRUE
 
 		if("remove_weapon")
+			if(params["back_slot"])
+				if(params["is_right_weapon"])
+					selected_equipment[MECHA_R_BACK] = null
+					return TRUE
+				selected_equipment[MECHA_L_BACK] = null
+				return TRUE
 			if(params["is_right_weapon"])
 				selected_equipment[MECHA_R_ARM] = null
 				return TRUE
@@ -388,7 +453,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///Actually deploys mech after a short delay to let people spot it coming down
 /obj/machinery/computer/mech_builder/proc/deploy_mech()
 	var/turf/assemble_turf = get_step(src, dir)
-	var/obj/vehicle/sealed/mecha/combat/greyscale/mech = new(assemble_turf)
+	var/obj/vehicle/sealed/mecha/combat/greyscale/core/mech = new(assemble_turf)
 	mech.name = selected_name
 	for(var/slot in selected_primary)
 		var/limb_type = get_mech_limb(slot, selected_variants[slot])
@@ -403,12 +468,20 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/new_type = selected_equipment[MECHA_R_ARM]
 		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
 		new_gun.attach(mech, TRUE)
+	if(selected_equipment[MECHA_L_BACK])
+		var/new_type = selected_equipment[MECHA_L_BACK]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech)
+	if(selected_equipment[MECHA_R_BACK])
+		var/new_type = selected_equipment[MECHA_R_BACK]
+		var/obj/item/mecha_parts/mecha_equipment/weapon/new_gun = new new_type
+		new_gun.attach(mech, TRUE)
 	for(var/equipment in (selected_equipment[MECHA_POWER]|selected_equipment[MECHA_ARMOR]|selected_equipment[MECHA_UTILITY]))
 		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
 		new_equip.attach(mech)
 
-	mech.pixel_y = 240
-	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+	mech.pixel_z = 240
+	animate(mech, time=4 SECONDS, pixel_z=initial(mech.pixel_z), easing=SINE_EASING|EASE_OUT)
 
 	balloon_alert_to_viewers("Beep. Mecha ready for use.")
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
@@ -430,8 +503,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(MECH_GREY_R_ARM)
 			var/datum/mech_limb/arm/arm_limb = new_limb
 			current_stats["right_scatter"] = arm_limb.scatter_mod
-
-	current_stats["health"] = current_stats["health"] - old_limb.health_mod + new_limb.health_mod
+	if(istype(new_limb, /datum/mech_limb/torso))
+		var/datum/mech_limb/torso/torso_limb = new_limb
+		current_stats["health"] = torso_limb.health_set
 	current_stats["slowdown"] = current_stats["slowdown"] - old_limb.slowdown_mod + new_limb.slowdown_mod
 	for(var/armor_type in old_limb.soft_armor_mod)
 		current_stats["armor"][armor_type] -= old_limb.soft_armor_mod[armor_type]
@@ -441,7 +515,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
 	var/new_overlays = list()
-	for(var/slot in selected_variants)
+	for(var/slot in get_greyscale_render_order(mech_view.dir))
+		if(!(slot in selected_variants))
+			continue
 		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_variants[slot])
 		if(slot == MECH_GREY_L_ARM || slot == MECH_GREY_R_ARM)
 			var/iconstate = "left"
@@ -449,7 +525,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				iconstate = "right"
 			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]), iconstate)
 			continue
-		new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]))
+		new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.greyscale_type), selected_primary[slot] + selected_secondary[slot]), initial(typepath.icon_state))
 		if(slot == MECH_GREY_HEAD)
-			new_overlays += icon2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor))
+			new_overlays += iconstate2appearance(SSgreyscale.GetColoredIconByType(initial(typepath.visor_config), selected_visor), initial(typepath.visor_icon_state))
 	mech_view.overlays = new_overlays

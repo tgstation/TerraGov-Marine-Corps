@@ -89,13 +89,16 @@
 	if(!client)
 		return FALSE
 
+/// Updates the `health` variable and anything associated with it.
 /mob/living/proc/updatehealth()
+	SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_HEALTH)
 	if(status_flags & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
-		return
+		return FALSE
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
+	return TRUE
 
 /mob/living/update_stat()
 	. = ..()
@@ -251,7 +254,7 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RESIST))
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
@@ -262,7 +265,7 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RESIST))
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
@@ -391,10 +394,10 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
-	if(ismovableatom(A))
+	if(ismovable(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
+			if(!COOLDOWN_FINISHED(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
 		if(PushAM(A))
@@ -769,9 +772,126 @@ below 100 is not dizzy
 	return D == src || D.Adjacent(src)
 
 /mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
-	set_jump_component()
+	if(!same_z_layer && new_turf?.z) // we moved to null z
+		set_jump_component()
 	. = ..()
 	update_z(new_turf?.z)
+
+/**
+ * We want to relay the zmovement to the buckled atom when possible
+ * and only run what we can't have on buckled.zMove() or buckled.can_z_move() here.
+ * This way we can avoid esoteric bugs, copypasta and inconsistencies.
+ */
+/mob/living/zMove(dir, turf/target, z_move_flags = ZMOVE_FLIGHT_FLAGS)
+	if(buckled)
+		if(buckled.currently_z_moving)
+			return FALSE
+		if(!(z_move_flags & ZMOVE_ALLOW_BUCKLED))
+			buckled.unbuckle_mob(src, force = TRUE, can_fall = FALSE)
+		else
+			if(!target)
+				target = can_z_move(dir, get_turf(src), null, z_move_flags, src)
+				if(!target)
+					return FALSE
+			return buckled.zMove(dir, target, z_move_flags) // Return value is a loc.
+	return ..()
+
+/mob/living/can_z_move(direction, turf/start, turf/destination, z_move_flags = ZMOVE_FLIGHT_FLAGS, mob/living/rider)
+	if(z_move_flags & ZMOVE_INCAPACITATED_CHECKS && incapacitated())
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider || src, span_warning("[rider ? src : "You"] can't do that right now!"))
+		return FALSE
+	if(!buckled || !(z_move_flags & ZMOVE_ALLOW_BUCKLED))
+		if(!(z_move_flags & ZMOVE_FALL_CHECKS) && (status_flags & INCORPOREAL) && (!rider || rider.status_flags & INCORPOREAL))
+			//An incorporeal mob will ignore obstacles unless it's a potential fall (it'd suck hard) or is carrying corporeal mobs.
+			//Coupled with flying/floating, this allows the mob to move up and down freely.
+			//By itself, it only allows the mob to move down.
+			z_move_flags |= ZMOVE_IGNORE_OBSTACLES
+		return ..()
+	switch(SEND_SIGNAL(buckled, COMSIG_BUCKLED_CAN_Z_MOVE, direction, start, destination, z_move_flags, src))
+		if(COMPONENT_RIDDEN_ALLOW_Z_MOVE) // Can be ridden.
+			return buckled.can_z_move(direction, start, destination, z_move_flags, src)
+		if(COMPONENT_RIDDEN_STOP_Z_MOVE) // Is a ridable but can't be ridden right now. Feedback messages already done.
+			return FALSE
+		else
+			if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS) && !buckled.anchored)
+				return buckled.can_z_move(direction, start, destination, z_move_flags, src)
+			if(z_move_flags & ZMOVE_FEEDBACK)
+				to_chat(src, span_warning("Unbuckle from [buckled] first."))
+			return FALSE
+
+/mob/set_currently_z_moving(value)
+	if(buckled)
+		return buckled.set_currently_z_moving(value)
+	return ..()
+
+/mob/living/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	if(!isgroundlessturf(impacted_turf))
+		impact_flags |= ZImpactDamage(impacted_turf, levels)
+
+	return ..()
+
+/**
+ * Called when this mob is receiving damage from falling
+ *
+ * * impacted_turf - the turf we are falling onto
+ * * levels - the number of levels we are falling
+ */
+/mob/living/proc/ZImpactDamage(turf/impacted_turf, levels)
+	. = SEND_SIGNAL(src, COMSIG_LIVING_Z_IMPACT, levels, impacted_turf)
+	if(. & ZIMPACT_CANCEL_DAMAGE)
+		return .
+	// multiplier for the damage taken from falling
+	var/damage_softening_multiplier = 1
+
+	// If you are incapped, you probably can't brace yourself
+	var/can_help_themselves = !incapacitated(TRUE)
+	if(levels <= 1 && can_help_themselves)
+		if(HAS_TRAIT(src, TRAIT_FREERUNNING)) // the power of parkour or wings allows falling short distances unscathed
+			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
+
+			if(!graceful_landing)
+				Knockdown(levels * 4 SECONDS)
+				emote("spin")
+
+			visible_message(
+				span_notice("[src] makes a hard landing on [impacted_turf] but remains unharmed from the fall[graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"]."),
+				span_notice("You brace for the fall. You make a hard landing on [impacted_turf], but remain unharmed[graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"]."),
+			)
+			return . | ZIMPACT_NO_MESSAGE
+
+	var/incoming_damage = (levels * 5) ** 1.5
+	// Smaller mobs with catlike grace can ignore damage (EG: cats)
+	var/small_surface_area = mob_size <= MOB_SIZE_SMALL
+	var/skip_knockdown = FALSE
+	if(HAS_TRAIT(src, TRAIT_CATLIKE_GRACE) && can_help_themselves && !lying_angle) // todo should check for broken legs?
+		. |= ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
+		skip_knockdown = TRUE
+		if(small_surface_area)
+			visible_message(
+				span_notice("[src] makes a hard landing on [impacted_turf], but lands safely on [p_their()] feet!"),
+				span_notice("You make a hard landing on [impacted_turf], but land safely on your feet!"),
+			)
+			new /obj/effect/temp_visual/leap_dust/small(impacted_turf)
+			return .
+
+		incoming_damage *= 1.66
+		visible_message(
+			span_danger("[src] makes a hard landing on [impacted_turf], landing on [p_their()] feet painfully!"),
+			span_userdanger("You make a hard landing on [impacted_turf], and instinctively land on your feet - painfully!"),
+		)
+		new /obj/effect/temp_visual/leap_dust(impacted_turf)
+
+	if(!lying_angle)
+		var/damage_for_each_leg = round((incoming_damage / 2) * damage_softening_multiplier)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_L_LEG)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_R_LEG)
+	else
+		apply_damage(incoming_damage, BRUTE)
+
+	if(!skip_knockdown)
+		Knockdown(levels * 2 SECONDS)
+	return .
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
@@ -935,6 +1055,132 @@ below 100 is not dizzy
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
+/atom/movable/looking_holder
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	///the direction we are operating in
+	var/look_direction
+	///actual atom on the turf, usually the owner
+	var/atom/movable/container
+	///the actual owner who is "looking"
+	var/mob/living/owner
+
+/atom/movable/looking_holder/Initialize(mapload, mob/living/owner, direction)
+	. = ..()
+	look_direction = direction
+	src.owner = owner
+	update_container()
+
+/atom/movable/looking_holder/Destroy()
+	owner = null
+	return ..()
+
+///called to find and set the atom on the actual turf to be the container and all relevant effects
+/atom/movable/looking_holder/proc/update_container()
+	SIGNAL_HANDLER
+	var/new_container = get_atom_on_turf(owner)
+	if(new_container == container)
+		return
+	if(container != owner)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	if(container)
+		UnregisterSignal(container, COMSIG_MOVABLE_MOVED)
+
+	container = new_container
+
+	RegisterSignal(new_container, COMSIG_MOVABLE_MOVED, PROC_REF(mirror_move))
+	if(new_container != owner)
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(update_container))
+
+/atom/movable/looking_holder/proc/mirror_move(mob/living/source, atom/oldloc, direction, Forced, old_locs)
+	SIGNAL_HANDLER
+	if(!isturf(owner.loc))
+		update_container()
+	set_glide_size(container.glide_size)
+	var/turf/looking_turf = owner.get_looking_turf(look_direction)
+	if(!looking_turf)
+		owner.end_look()
+		return
+	abstract_move(looking_turf)
+
+///Checks if the user is incapacitated or on cooldown.
+/mob/living/proc/can_look_up()
+	if(next_move > world.time)
+		return FALSE
+	if(incapacitated(TRUE))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/end_look()
+	reset_perspective()
+	looking_vertically = NONE
+	QDEL_NULL(looking_holder)
+
+
+/**
+ * look_up Changes the perspective of the mob to any openspace turf above the mob
+ *
+ * This also checks if an openspace turf is above the mob before looking up or resets the perspective if already looking up
+ *
+ */
+/mob/living/proc/look_up()
+	if(looking_vertically == UP)
+		return
+	if(looking_vertically == DOWN)
+		end_look()
+		return
+	if(!can_look_up())
+		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	var/turf/above_turf = get_looking_turf(UP)
+	if(!above_turf)
+		return
+	looking_vertically = UP
+	looking_holder = new(above_turf, src, UP)
+	reset_perspective(looking_holder)
+
+/mob/living/proc/get_looking_turf(direction)
+	//down needs to check this floor
+	var/turf/check_turf = get_step_multiz(src, direction == DOWN ? NONE : direction)
+	if(!get_step_multiz(src, direction)) //We are at the edge z-level.
+		to_chat(src, span_warning("There's nothing interesting there."))
+		return
+	else if(!istransparentturf(check_turf)) //There is no turf we can look through above us
+		var/turf/front_hole = get_step(check_turf, dir)
+		if(istransparentturf(front_hole))
+			check_turf = front_hole
+		else
+			for(var/turf/checkhole in TURF_NEIGHBORS(check_turf))
+				if(istransparentturf(checkhole))
+					check_turf = checkhole
+					break
+		if(!istransparentturf(check_turf))
+			to_chat(src, span_warning("You can't see through the floor [direction == DOWN ? "below" : "above"] you."))
+			return
+	return direction == DOWN ? get_step_multiz(check_turf, DOWN) : check_turf
+
+/**
+ * look_down Changes the perspective of the mob to any openspace turf below the mob
+ *
+ * This also checks if an openspace turf is below the mob before looking down or resets the perspective if already looking up
+ *
+ */
+/mob/living/proc/look_down()
+	if(looking_vertically == UP)
+		end_look()
+		return
+	if(looking_vertically == DOWN)
+		return
+	if(!can_look_up()) //if we cant look up, we cant look down.
+		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	var/turf/below_turf = get_looking_turf(DOWN)
+	if(!below_turf)
+		return
+	looking_vertically = DOWN
+	looking_holder = new(get_looking_turf(DOWN), src, DOWN)
+	reset_perspective(looking_holder)
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)

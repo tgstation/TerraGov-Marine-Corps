@@ -181,7 +181,7 @@
 	f_style = "Shaved"
 	if(ishumanbasic(src))
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	if(gender == MALE)
+	if(physique == MALE)
 		underwear = GLOB.underwear_m.Find("None")
 		undershirt = GLOB.undershirt_m.Find("None")
 	else

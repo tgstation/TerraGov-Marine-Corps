@@ -8,6 +8,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = PASS_AIR
 
 /obj/structure/bookcase/add_debris_element()

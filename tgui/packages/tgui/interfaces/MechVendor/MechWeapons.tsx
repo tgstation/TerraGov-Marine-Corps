@@ -32,6 +32,13 @@ const SelectedEquipment = (props) => {
     (o) => o.type === selected_equipment.mecha_r_arm,
   );
 
+  const selected_left_back = all_equipment.back_weapons.find(
+    (o) => o.type === selected_equipment.mecha_l_back,
+  );
+  const selected_right_back = all_equipment.back_weapons.find(
+    (o) => o.type === selected_equipment.mecha_r_back,
+  );
+
   let utility_modules = selected_equipment.mecha_utility
     .map((type) => all_equipment.utility.find((o) => o.type === type))
     .filter((x): x is MechUtility => x !== undefined);
@@ -56,7 +63,9 @@ const SelectedEquipment = (props) => {
                 <Button
                   icon="minus"
                   color="red"
-                  onClick={() => act('remove_weapon', { is_right_weapon: 0 })}
+                  onClick={() =>
+                    act('remove_weapon', { is_right_weapon: 0, back_slot: 0 })
+                  }
                 />
               }
             >
@@ -84,7 +93,9 @@ const SelectedEquipment = (props) => {
                 <Button
                   icon="minus"
                   color="red"
-                  onClick={() => act('remove_weapon', { is_right_weapon: 1 })}
+                  onClick={() =>
+                    act('remove_weapon', { is_right_weapon: 1, back_slot: 0 })
+                  }
                 />
               }
             >
@@ -92,6 +103,76 @@ const SelectedEquipment = (props) => {
                 className={classes([
                   'mech_builder64x32',
                   selected_right ? selected_right.icon_state : 'assaultrifle',
+                ])}
+                ml={3}
+                mt={3}
+                mb={4}
+                style={{
+                  transform: 'scale(2) translate(10%, 10%)',
+                }}
+              />
+            </Section>
+          </Stack.Item>
+        </Stack>
+        <Stack>
+          <Stack.Item>
+            <Section
+              title={
+                selected_left_back
+                  ? selected_left_back.name.split(' ')[0]
+                  : 'None'
+              }
+              width={'145px'}
+              buttons={
+                <Button
+                  icon="minus"
+                  color="red"
+                  onClick={() =>
+                    act('remove_weapon', { is_right_weapon: 0, back_slot: 1 })
+                  }
+                />
+              }
+            >
+              <Box
+                className={classes([
+                  'mech_builder64x32',
+                  selected_left_back
+                    ? selected_left_back.icon_state
+                    : 'assaultrifle',
+                ])}
+                ml={3}
+                mt={3}
+                mb={4}
+                style={{
+                  transform: 'scale(2) translate(10%, 10%)',
+                }}
+              />
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <Section
+              title={
+                selected_right_back
+                  ? selected_right_back.name.split(' ')[0]
+                  : 'None'
+              }
+              width={'145px'}
+              buttons={
+                <Button
+                  icon="minus"
+                  color="red"
+                  onClick={() =>
+                    act('remove_weapon', { is_right_weapon: 1, back_slot: 1 })
+                  }
+                />
+              }
+            >
+              <Box
+                className={classes([
+                  'mech_builder64x32',
+                  selected_right_back
+                    ? selected_right_back.icon_state
+                    : 'assaultrifle',
                 ])}
                 ml={3}
                 mt={3}
@@ -216,24 +297,19 @@ const EquipPanelContent = (props) => {
 
 const WeaponsTab = (props) => {
   const { act, data } = useBackend<MechVendData>();
-  const { weapons } = data.all_equipment;
+  const { weapons, back_weapons } = data.all_equipment;
   const { setShowDesc } = props;
-  const midway = Math.ceil(weapons.length / 2);
-  const firstweapons = weapons.slice(0, midway);
-  const secondweapons = weapons.slice(midway);
   return (
-    <Stack.Item>
-      <Stack>
-        <Stack.Item>
-          <WeaponModuleList
-            listtoshow={firstweapons}
-            setShowDesc={setShowDesc}
-          />
+    <Stack.Item grow>
+      <Stack fill>
+        <Stack.Item grow>
+          <WeaponModuleList listtoshow={weapons} setShowDesc={setShowDesc} />
         </Stack.Item>
-        <Stack.Item>
+        <Stack.Item grow>
           <WeaponModuleList
-            listtoshow={secondweapons}
+            listtoshow={back_weapons}
             setShowDesc={setShowDesc}
+            useback
           />
         </Stack.Item>
       </Stack>
@@ -333,8 +409,14 @@ const UtilityTab = (props) => {
 
 const WeaponModuleList = (props) => {
   const { act, data } = useBackend<MechVendData>();
-  const { listtoshow, setShowDesc } = props;
+  const { listtoshow, setShowDesc, useback } = props;
   const { all_equipment, selected_equipment } = data;
+  const rightequip = useback
+    ? selected_equipment.mecha_r_back
+    : selected_equipment.mecha_r_arm;
+  const leftequip = useback
+    ? selected_equipment.mecha_l_back
+    : selected_equipment.mecha_l_arm;
   return (
     <Section>
       {listtoshow.map((module) => {
@@ -345,10 +427,11 @@ const WeaponModuleList = (props) => {
           <Collapsible
             key={module.type}
             title={module.name}
+            icon={useback ? 'person' : 'hand'}
             buttons={
               <>
                 <Button
-                  selected={module.type === selected_equipment.mecha_l_arm}
+                  selected={module.type === leftequip}
                   onClick={() =>
                     act('add_weapon', { type: module.type, is_right_weapon: 0 })
                   }
@@ -356,7 +439,7 @@ const WeaponModuleList = (props) => {
                   Left
                 </Button>
                 <Button
-                  selected={module.type === selected_equipment.mecha_r_arm}
+                  selected={module.type === rightequip}
                   onClick={() =>
                     act('add_weapon', { type: module.type, is_right_weapon: 1 })
                   }
@@ -415,12 +498,12 @@ export const MechWeapons = (props) => {
   const [equipmentTab, setequipmentTab] = useState(equipTabs[0]);
   const { setShowDesc } = props;
   return (
-    <Stack>
+    <Stack fill>
       <Stack.Item>
         <SelectedEquipment />
       </Stack.Item>
-      <Stack.Item>
-        <Section lineHeight={1.75} maxWidth={'1120px'} fontSize={'13px'}>
+      <Stack.Item grow>
+        <Section lineHeight={1.75} fontSize={'13px'}>
           <Tabs fluid>
             {equipTabs.map((tabname) => {
               return (

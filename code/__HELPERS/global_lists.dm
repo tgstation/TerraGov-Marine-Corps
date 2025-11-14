@@ -109,26 +109,9 @@ GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
 			else
 				GLOB.crafting_recipes += recipe
 
-	var/list/global_stack_recipes = list(
-		//sheet recipes
-		/obj/item/stack/sheet/metal = GLOB.metal_recipes,
-		/obj/item/stack/sheet/glass = GLOB.glass_recipes,
-		/obj/item/stack/sheet/plasteel = GLOB.plasteel_recipes,
-		/obj/item/stack/sheet/wood = GLOB.wood_recipes,
-		/obj/item/stack/sheet/cardboard = GLOB.cardboard_recipes,
-		//sheet/mineral recipes
-		/obj/item/stack/sheet/mineral/iron = GLOB.iron_recipes,
-		/obj/item/stack/sheet/mineral/sandstone = GLOB.sandstone_recipes,
-		/obj/item/stack/sheet/mineral/diamond = GLOB.diamond_recipes,
-		/obj/item/stack/sheet/mineral/uranium = GLOB.uranium_recipes,
-		/obj/item/stack/sheet/mineral/phoron = GLOB.phoron_recipes,
-		/obj/item/stack/sheet/mineral/plastic = GLOB.plastic_recipes,
-		/obj/item/stack/sheet/mineral/gold = GLOB.gold_recipes,
-		/obj/item/stack/sheet/mineral/silver = GLOB.silver_recipes,
-	)
-
-	for(var/stack in global_stack_recipes)
-		for(var/stack_recipe in global_stack_recipes[stack])
+	for(var/stack in GLOB.stack_recipes)
+		for(var/item in GLOB.stack_recipes[stack])
+			var/stack_recipe = GLOB.stack_recipes[stack][item]
 			if(istype(stack_recipe, /datum/stack_recipe_list))
 				var/datum/stack_recipe_list/stack_recipe_list = stack_recipe
 				for(var/nested_recipe in stack_recipe_list.recipes)

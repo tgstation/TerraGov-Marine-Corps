@@ -35,7 +35,8 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
-		personal_statistics.mission_integrity_repaired += repair_amount
+		if(!is_ground_level(user.z)) //Can't trust players
+			personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	obj_integrity += repair_amount
 
@@ -97,13 +98,12 @@
 	take_damage(tforce, BRUTE, MELEE, 1, get_dir(src, AM))
 
 
-/obj/bullet_act(obj/projectile/proj)
+/obj/bullet_act(atom/movable/projectile/proj)
 	if(istype(proj.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()
 	if(proj.damage < 1)
 		return
-	playsound(loc, proj.hitsound, 50, 1)
 	if(proj.damage > 30)
 		visible_message(span_warning("\The [src] is damaged by \the [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration, isliving(proj.firer) ? proj.firer : null)
@@ -134,7 +134,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL) //Ghosts can't attack machines
 		return FALSE
 	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
-	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
+	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker, damage_amount) & COMPONENT_NO_ATTACK_ALIEN)
 		return FALSE
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(xeno_attacker, span_warning("We stare at \the [src] cluelessly."))

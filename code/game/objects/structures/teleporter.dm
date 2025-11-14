@@ -42,7 +42,7 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
-	if(!COOLDOWN_CHECK(kit, teleport_cooldown))
+	if(!COOLDOWN_FINISHED(kit, teleport_cooldown))
 		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
 		return
 
@@ -198,13 +198,13 @@
 
 	var/obj/item/teleporter_kit/gadget = I
 	if(linked_teleporter)
-		balloon_alert(user, "The teleporter is already linked with another!")
+		balloon_alert(user, "already linked!")
 		return
 	if(linked_teleporter == src)
-		balloon_alert(user, "You can't link the teleporter with itself!")
+		balloon_alert(user, "can't link this to itself!")
 		return
 	linked_teleporter = linked_teleporter
-	balloon_alert(user, "You link both teleporters to each others.")
+	balloon_alert(user, "linked")
 
 	set_linked_teleporter(gadget)
 	gadget.set_linked_teleporter(src)

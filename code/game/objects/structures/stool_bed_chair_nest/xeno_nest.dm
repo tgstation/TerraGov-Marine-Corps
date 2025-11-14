@@ -40,7 +40,7 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
+		if(TIMER_COOLDOWN_RUNNING(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
 		if(!H.lying_angle)

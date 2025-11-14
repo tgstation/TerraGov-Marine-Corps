@@ -114,6 +114,8 @@
 			log_mentorsay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_TRANSPORT)
+			log_transport(log_text)
 		if(LOG_MECHA)
 			log_mecha(log_text)
 		if(LOG_SPEECH_INDICATORS)

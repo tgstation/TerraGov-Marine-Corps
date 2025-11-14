@@ -289,13 +289,13 @@
 	export_points = 50
 
 /obj/item/research_product/money/common
-	name = "credits - 150"
-	export_points = 150
+	name = "credits - 100"
+	export_points = 100
 
 /obj/item/research_product/money/uncommon
-	name = "credits - 250"
-	export_points = 250
+	name = "credits - 200"
+	export_points = 200
 
 /obj/item/research_product/money/rare
-	name = "credits - 800"
-	export_points = 800
+	name = "credits - 400"
+	export_points = 400

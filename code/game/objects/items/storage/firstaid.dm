@@ -285,7 +285,7 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		user.balloon_alert(user, "Need an empty hand")
+		user.balloon_alert(user, "need an empty off-hand!")
 		return
 	if(length(contents))
 		var/obj/item/I = contents[1]
@@ -310,7 +310,7 @@
 	if(!description_overlay)
 		return
 	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
-	desc.pixel_x = 16
+	desc.pixel_w = 16
 	desc.maptext = MAPTEXT(description_overlay)
 	desc.maptext_width = 16
 	. += desc
@@ -411,7 +411,6 @@
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
-	greyscale_colors = "#cac5c5#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
 	description_overlay = "Pa"

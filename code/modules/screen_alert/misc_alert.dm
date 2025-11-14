@@ -176,3 +176,9 @@
 	vis_contents += holding_movable
 
 #undef MAX_NON_COMMTITLE_LEN
+
+/atom/movable/screen/text/screen_text/rightaligned
+	screen_loc = "RIGHT,TOP-3"
+	maptext_width = 480
+	//equal to the width-32
+	maptext_x = -448

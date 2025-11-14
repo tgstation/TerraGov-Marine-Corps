@@ -27,7 +27,7 @@
 				return TRUE
 
 			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(burning)
+			if(burning && human_user != src)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
@@ -67,7 +67,7 @@
 
 			human_user.visible_message(span_danger("[human_user] is trying perform CPR on [src]!"), null, null, 4)
 
-			if(!do_after(human_user, HUMAN_STRIP_DELAY, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			if(!do_after(human_user, 4 SECONDS, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return TRUE
 
 			if(health > get_death_threshold() && health < get_crit_threshold())
@@ -78,7 +78,7 @@
 					span_boldnotice("You feel a breath of fresh air enter your lungs. It feels good."),
 					vision_distance = 3)
 				to_chat(human_user, span_warning("Repeat at least every 7 seconds."))
-			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				dead_ticks -= 5
 				visible_message(span_warning("[human_user] performs CPR on [src]!"), vision_distance = 3)
@@ -137,7 +137,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE, attacker = user)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -222,7 +222,7 @@
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	var/list/final_msg = list()
-	balloon_alert_to_viewers("Examines [p_them()]self.", "You examine yourself")
+	visible_message(span_notice("[src] examines [p_them()]sel[gender == PLURAL ? "ves" : "f"]."))
 	final_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	for(var/datum/limb/org in limbs)
@@ -333,4 +333,4 @@
 		else
 			final_msg += span_info(pick("There's a full layer of dirt covering you. Maybe it'll work as camo?", "You could go for a shower.", "You've reached a more complete understanding of grime."))
 
-	to_chat(src, examine_block(final_msg.Join("\n")))
+	to_chat(src, custom_boxed_message("blue_box", final_msg.Join("\n")))

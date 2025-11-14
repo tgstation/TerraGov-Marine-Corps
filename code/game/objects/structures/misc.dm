@@ -216,15 +216,24 @@
 
 
 
-//stairs
-
+/**
+ * TODO FIXME FIX ME ETC FUCK KNOWS
+ * So guess what stairs are super fucked
+ * Instead of doing something sane like right and left handrail variants cm/bay lumped everything into
+ * ONE ICONSTATE FOR N/S AND ONE FOR E/W
+ * WHY
+ * WHAT IS WRONG WITH YOU
+ * WE USE DIRS FOR SHIT LIKE STAIRS THAT ACTUALLY MOVE YOU
+ * FIX THIS SHIT FUCKING PLEASE USE THE UPDATEPATHS TOOL I HAVE FIXED rampbottom FOR YOU BECAUSE OTHERWISE MULTIZSTAIRS JUST DIE
+ * DUMBASSES
+ */
 /obj/structure/stairs
 	name = "Stairs"
 	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
 	plane = FLOOR_PLANE // we want this to render below walls if we place them on top
-	layer = ABOVE_OPEN_TURF_LAYER
+	layer = LOWER_RUNE_LAYER
 	density = FALSE
 	opacity = FALSE
 

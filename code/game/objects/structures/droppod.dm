@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
+GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
@@ -18,6 +19,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
@@ -26,6 +28,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	faction = FACTION_TERRAGOV
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -39,8 +42,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/launch_allowed = TRUE
 	///If true, you can launch the droppod before drop pod delay
 	var/operation_started = FALSE
-	///3x3 transit reservation for immersion as if flying through space
-	var/datum/turf_reservation/reserved_area
 	///Action to actually launch the drop pod
 	var/list/datum/action/innate/interaction_actions
 	///after the pod finishes it's travelhow long it spends falling
@@ -52,7 +53,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS), PROC_REF(disable_launching))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	GLOB.droppod_list += src
 	update_icon()
@@ -66,16 +67,21 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
 	for(var/atom/movable/ejectee AS in contents)
 		ejectee.forceMove(loc)
-	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src
 	return ..()
 
+/obj/structure/droppod/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
 
 /obj/structure/droppod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	return ..()
+
+/obj/structure/droppod/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 ///Disables launching
 /obj/structure/droppod/proc/disable_launching()
@@ -90,7 +96,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	operation_started = TRUE
 	launch_allowed = TRUE
 	update_icon()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/update_icon()
 	. = ..()
@@ -121,7 +127,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(drop_state != DROPPOD_READY)
 		if(!silent)
-			balloon_alert(buckling_mob, "Already used")
+			balloon_alert(buckling_mob, "already used!")
 		return FALSE
 	setDir(SOUTH) //this is dirty but supply elevator still tehnically being a shuttle forced my hand TODO: undirty this
 	. = ..()
@@ -131,10 +137,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		action.give_action(buckling_mob)
 	buckling_mob.pixel_y = 7
 
-/obj/structure/droppod/unbuckle_mob(mob/living/buckled_mob, force)
+/obj/structure/droppod/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	if(!.)
-		return
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.remove_action(buckled_mob)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
@@ -146,7 +150,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/mob/notified_user = LAZYACCESS(buckled_mobs, 1)
 	. = checklanding(notified_user)
 	if(notified_user && .)
-		balloon_alert(notified_user, "Coordinates updated")
+		balloon_alert(notified_user, "coordinates updated")
 
 ///Updates the z-level this pod drops to
 /obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
@@ -162,29 +166,29 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, target_z)
 	if(target.density)
 		if(user)
-			balloon_alert(user, "Dense area")
+			balloon_alert(user, "dense area!")
 		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
 		if(user)
-			balloon_alert(user, "Hazardous zone")
+			balloon_alert(user, "hazardous zone!")
 		return FALSE
 	var/area/targetarea = get_area(target)
 	if(targetarea.area_flags & NO_DROPPOD) // Thou shall not pass!
 		if(user)
-			balloon_alert(user, "Invalid area")
+			balloon_alert(user, "invalid area!")
 		return FALSE
 	if(!targetarea.outside)
 		if(user)
-			balloon_alert(user, "Roofed area")
+			balloon_alert(user, "roofed area!")
 		return FALSE
 	if(targetarea.ceiling > CEILING_METAL)
 		if(user)
-			balloon_alert(user, "Area underground")
+			balloon_alert(user, "area underground!")
 		return FALSE
 	for(var/atom/movable/object AS in target.contents)
 		if(object.density)
 			if(user)
-				balloon_alert(user, "Dense object detected")
+				balloon_alert(user, "dense object detected!")
 			return FALSE
 	return TRUE
 
@@ -229,7 +233,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
-	reserved_area = SSmapping.request_turf_block_reservation(3,3)
+	if(!GLOB.droppod_reservation)
+		GLOB.droppod_reservation = SSmapping.request_turf_block_reservation(10, 8, 1, reservation_type=/datum/turf_reservation/transit/droppod)
 
 	drop_state = DROPPOD_ACTIVE
 	GLOB.droppod_list -= src
@@ -267,17 +272,23 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
-	forceMove(pick(reserved_area.reserved_turfs))
-	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+	var/list/free_spaces = GLOB.droppod_reservation.reserved_turfs - GLOB.droppod_reservation.taken_turfs
+	free_spaces -= GLOB.droppod_reservation.pre_cordon_turfs
+	var/turf/selectedturf = pick(free_spaces)
+	if(!selectedturf)
+		CRASH("No droppod free turf found")
+	GLOB.droppod_reservation.taken_turfs += selectedturf
+	forceMove(selectedturf)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 
 	var/turf/target = locate(target_x, target_y, 2)
-	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new /obj/effect/overlay/blinking_laser/marine/pod_warning(target)
+	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new (target)
 	laserpod.dir = target
 	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
 
 /// Moves the droppod into its target turf, which it updates if needed
-/obj/structure/droppod/proc/finish_drop(mob/user)
+/obj/structure/droppod/proc/finish_drop(mob/user, turf/reservedturf)
+	GLOB.droppod_reservation.taken_turfs -= reservedturf
 	var/turf/targetturf = locate(target_x, target_y, target_z)
 	for(var/atom/target AS in targetturf.contents)
 		if(!target.density)
@@ -296,9 +307,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
-	explosion(targetturf, light_impact_range = 2)
+	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
@@ -317,7 +327,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
+		balloon_alert(buckling_mob, "can't use that!") // basically squad lead+ cant touch this
 		return FALSE
 	return ..()
 
@@ -325,7 +335,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	. = ..()
 	if(!.)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DROPPOD_TARGETTING))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_DROPPOD_TARGETTING))
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment cooldown"), 7)
 		return
 	// this isnt the cheapest thing in the world so lets not let players spam it
@@ -449,7 +459,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(istype(attached_clamp.loaded, /obj/structure/droppod))
 			return //no recursive pods please
 		if(stored_object)
-			balloon_alert(user, "Occupied")
+			balloon_alert(user, "occupied!")
 			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -539,14 +549,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
-	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
+	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/launch_droppod/Activate()
@@ -556,12 +565,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /datum/action/innate/set_drop_target
 	name = "Set drop pod target"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
-	action_icon_state = "mech_zoom_on"
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
+	action_icon_state = "mech_zoom_off"
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 
-/datum/action/innate/set_drop_target/can_use_action()
+/datum/action/innate/set_drop_target/can_use_action(silent, override_flags, selecting)
 	if(choosing)
 		return FALSE
 	return ..()

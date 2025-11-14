@@ -3700,7 +3700,9 @@
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/security)
 "rY" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/tunnel)
@@ -4630,7 +4632,7 @@
 /area/campaign/som_raiding/outpost/engineering)
 "wA" = (
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/campaign/som_raiding/outpost/req)
@@ -6000,7 +6002,9 @@
 /area/campaign/som_raiding/outpost/req)
 "DO" = (
 /obj/structure/cable,
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/campaign/som_raiding/outpost/maintenance/req)
 "DP" = (
@@ -30090,7 +30094,7 @@ vT
 HV
 NS
 Eq
-WK
+hs
 WK
 vT
 ky

@@ -12312,13 +12312,17 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bAO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "bAP" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -22507,7 +22511,9 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "cKO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cKX" = (
@@ -38554,6 +38560,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
 /area/desert_dam/building/medical/east_wing_hallway)
 "kjO" = (
@@ -40589,6 +40596,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_hydro)
+"lxq" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/desert_dam/interior/caves/east_caves)
 "lyk" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tech_supply,
@@ -65208,7 +65219,7 @@ bKf
 bgz
 bgz
 bNN
-bNK
+bOz
 aTZ
 ceA
 ceA
@@ -65910,7 +65921,7 @@ bKf
 sQb
 bgz
 bNN
-bOz
+bNK
 aTZ
 ceA
 ceA
@@ -113962,7 +113973,7 @@ vTh
 wtW
 wPQ
 yhL
-uop
+ulI
 xLK
 hgC
 rCV
@@ -116559,7 +116570,7 @@ bcH
 rvU
 pTa
 aRx
-aRx
+lxq
 aRT
 bGp
 bAw

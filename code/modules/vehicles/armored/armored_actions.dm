@@ -98,9 +98,10 @@
 	chassis.armored_flags ^= ARMORED_LIGHTS_ON
 	if(chassis.armored_flags & ARMORED_LIGHTS_ON)
 		action_icon_state = "mech_lights_on"
+		chassis.set_light(initial(chassis.light_range))
 	else
 		action_icon_state = "mech_lights_off"
-	chassis.set_light_on(chassis.armored_flags & ARMORED_LIGHTS_ON)
+		chassis.set_light(0)
 	chassis.balloon_alert(owner, "toggled lights [chassis.armored_flags & ARMORED_LIGHTS_ON ? "on":"off"]")
 	playsound(chassis,'sound/mecha/brass_skewer.ogg', 40, TRUE)
 	chassis.log_message("Toggled lights [(chassis.armored_flags & ARMORED_LIGHTS_ON)?"on":"off"].", LOG_MECHA)
@@ -144,7 +145,7 @@
 /datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_HORN))
 		return
 
 	chassis.visible_message("[chassis] honks its horn!")
@@ -186,7 +187,7 @@
 /datum/action/vehicle/sealed/armored/smoke_screen/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_SMOKE))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_SMOKE))
 		return
 	if(!shots_remaining)
 		playsound(chassis.loc, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)
@@ -205,7 +206,7 @@
 	var/datum/ammo/ammo_type = /datum/ammo/bullet/micro_rail/smoke_burst/tank
 	for(var/turf/source_turf in source_turfs)
 		var/turf/target_turf = get_ranged_target_turf(source_turf, get_dir(chassis, source_turf), 5)
-		var/obj/projectile/projectile_to_fire = new /obj/projectile(source_turf)
+		var/atom/movable/projectile/projectile_to_fire = new /atom/movable/projectile(source_turf)
 		projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 		if(chassis.hitbox?.tank_desants)
 			projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants

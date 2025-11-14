@@ -1,12 +1,32 @@
+
+/atom/movable/screen/map_view/preference_preview
+	/// All the plane masters that need to be applied.
+	var/atom/movable/screen/background/screen_bg
+
+/atom/movable/screen/map_view/preference_preview/Destroy()
+	QDEL_NULL(screen_bg)
+	return ..()
+
+/atom/movable/screen/map_view/preference_preview/generate_view(map_key)
+	. = ..()
+	screen_bg = new
+	screen_bg.del_on_map_removal = FALSE
+	screen_bg.assigned_map = assigned_map
+	screen_bg.icon_state = "clear"
+	screen_bg.fill_rect(1, 1, 4, 1)
+
+/atom/movable/screen/map_view/preference_preview/display_to_client(client/show_to)
+	show_to.register_map_obj(screen_bg)
+	return ..()
+
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		user.client.register_map_obj(screen_main)
-		user.client.register_map_obj(screen_bg)
 
 		ui = new(user, src, "PlayerPreferences", "Preferences")
 		ui.set_autoupdate(FALSE)
 		ui.open()
+		screen_main.display_to(user, ui.window)
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
@@ -59,6 +79,7 @@
 			data["ai_name"] = ai_name
 			data["age"] = age
 			data["gender"] = gender
+			data["physique"] = physique
 			data["ethnicity"] = ethnicity
 			data["species"] = species || "Human"
 			data["good_eyesight"] = good_eyesight
@@ -89,7 +110,7 @@
 			data["undershirt"] = undershirt
 			data["underwear"] = underwear
 			data["backpack"] = backpack
-			data["gender"] = gender
+			data["physique_used"] = get_physique()
 		if(JOB_PREFERENCES)
 			data["job_preferences"] = job_preferences
 			data["preferred_squad"] = preferred_squad
@@ -108,8 +129,10 @@
 			data["volume_tts"] = volume_tts
 			data["radio_tts_flags"] = radio_tts_flags
 			data["accessible_tgui_themes"] = accessible_tgui_themes
+			data["allow_being_shown_health_scan"] = allow_being_shown_health_scan
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
+			data["ui_scale"] = ui_scale
 			data["tgui_input"] = tgui_input
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
@@ -118,6 +141,7 @@
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
 			data["see_rc_emotes"] = see_rc_emotes
+			data["toggle_bump_attacking"] = toggle_bump_attacking
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
@@ -137,6 +161,7 @@
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["directional_attacks"] = !!(toggles_gameplay & DIRECTIONAL_ATTACKS)
 			data["toggle_clickdrag"] = !(toggles_gameplay & TOGGLE_CLICKDRAG)
+			data["toggle_xeno_move_intent_keybind"] = !!(toggles_gameplay & TOGGLE_XENO_MOVE_INTENT_KEYBIND)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
@@ -181,12 +206,10 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = list(
 					"male" = GLOB.undershirt_m,
 					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
 				),
 				"backpack" = GLOB.backpacklist,
 				)
@@ -219,7 +242,8 @@
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
 				"End of Round Deathmatch" = BE_DEATHMATCH,
-				"Prefer Squad over Role" = BE_SQUAD_STRICT
+				"Prefer Squad over Role" = BE_SQUAD_STRICT,
+				"Use random name when taking SSD mobs" = BE_SSD_RANDOM_NAME
 			)
 		if(KEYBIND_SETTINGS)
 			.["all_keybindings"] = list()
@@ -328,12 +352,17 @@
 
 		if("toggle_gender")
 			gender = params["newgender"]
-			if(gender == FEMALE)
+			if(physique == USE_GENDER)
+				update_preview_icon()
+
+		if("toggle_physique")
+			physique = params["newphysique"]
+			var/physique_to_check = get_physique()
+			if(physique_to_check == FEMALE)
 				f_style = "Shaved"
 			else
 				underwear = 1
 			update_preview_icon()
-
 
 		if("ethnicity")
 			var/choice = tgui_input_list(ui.user, "What ethnicity do you want to play with?", "Ethnicity choice", GLOB.ethnicities_list)
@@ -375,7 +404,8 @@
 
 		if("underwear")
 			var/list/underwear_options
-			if(gender == MALE)
+			var/physique_to_check = get_physique()
+			if(physique_to_check == MALE)
 				underwear_options = GLOB.underwear_m
 			else
 				underwear_options = GLOB.underwear_f
@@ -388,7 +418,8 @@
 
 		if("undershirt")
 			var/list/undershirt_options
-			if(gender == MALE)
+			var/physique_to_check = physique == USE_GENDER ? gender : physique
+			if(physique_to_check == MALE)
 				undershirt_options = GLOB.undershirt_m
 			else
 				undershirt_options = GLOB.undershirt_f
@@ -510,7 +541,7 @@
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
-				if(gender == FEMALE && S.gender == MALE)
+				if(physique == FEMALE && S.gender == MALE)
 					continue
 				if(!(species in S.species_allowed))
 					continue
@@ -566,14 +597,14 @@
 			if(!choice)
 				return
 			tts_voice = choice
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
 
 		if("tts_pitch")
 			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
@@ -673,11 +704,20 @@
 		if("accessible_tgui_themes")
 			accessible_tgui_themes = !accessible_tgui_themes
 
+		if("allow_being_shown_health_scan")
+			allow_being_shown_health_scan = !allow_being_shown_health_scan
+
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("ui_scale")
+			ui_scale = !ui_scale
+
+			INVOKE_ASYNC(usr.client, TYPE_VERB_REF(/client, refresh_tgui))
+			usr.client.tgui_say?.load()
 
 		if("tgui_input")
 			tgui_input = !tgui_input
@@ -709,6 +749,9 @@
 
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
+
+		if("toggle_bump_attacking")
+			toggle_bump_attacking = !toggle_bump_attacking
 
 		if("mute_self_combat_messages")
 			mute_self_combat_messages = !mute_self_combat_messages
@@ -815,7 +858,7 @@
 				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
 
 		if("multiz_performance")
-			multiz_performance = WRAP(multiz_performance + 1, MAX_EXPECTED_Z_DEPTH-1, MULTIZ_PERFORMANCE_DISABLE + 1)
+			multiz_performance = WRAP(multiz_performance + 1, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH)
 			var/datum/hud/my_hud = parent.mob?.hud_used
 			if(!my_hud)
 				return
@@ -938,6 +981,9 @@
 
 		if("toggle_clickdrag")
 			toggles_gameplay ^= TOGGLE_CLICKDRAG
+
+		if("toggle_xeno_move_intent_keybind")
+			toggles_gameplay ^= TOGGLE_XENO_MOVE_INTENT_KEYBIND
 
 		if("pixel_size")
 			switch(pixel_size)

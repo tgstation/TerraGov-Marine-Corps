@@ -273,6 +273,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -287,28 +294,66 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
 		return FALSE
 
-/datum/hive_upgrade/building/acid_maw
-	name = "Acid Maw"
-	desc = "Constructs an acid maw that allows the hive to unleash its most devastating bombardments from any location. This structure's acid is strong enough to eat through any ceiling above it, but it requires ten minutes to prepare each shot."
-	psypoint_cost = 1200
-	icon = "maw"
-	gamemode_flags = ABILITY_NUCLEARWAR
-	building_type = /obj/structure/xeno/acid_maw
+/datum/hive_upgrade/building/mutation_chamber
+	/// The maximum amount of buildings that can exist before being disallowed from buying more.
+	var/max_chambers = MUTATION_CHAMBER_MAXIMUM
 
-/datum/hive_upgrade/building/acid_maw/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+/datum/hive_upgrade/building/mutation_chamber/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!.)
-		return
-
-	var/turf/buildloc = get_turf(buyer)
-	if(!buildloc)
 		return FALSE
-
-	if(buildloc.density)
+	if(!(SSticker.mode?.round_type_flags & MODE_MUTATIONS_OBTAINABLE) && !HAS_TRAIT(buyer, TRAIT_VALHALLA_XENO))
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+			to_chat(buyer, span_xenowarning("The hive isn't permitted to buy this structure."))
 		return FALSE
 
+/datum/hive_upgrade/building/mutation_chamber/shell
+	name = "Shell Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy survival mutations. Build up to 3 structures to increase mutation power."
+	icon = "shell"
+	psypoint_cost = MUTATION_SHELL_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/shell
+
+/datum/hive_upgrade/building/mutation_chamber/shell/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(length(buyer.hive.shell_chambers) >= max_chambers)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active shell chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/mutation_chamber/spur
+	name = "Spur Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy attack mutations. Build up to 3 structures to increase mutation power."
+	icon = "spur"
+	psypoint_cost = MUTATION_SPUR_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/spur
+
+/datum/hive_upgrade/building/mutation_chamber/spur/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(length(buyer.hive.spur_chambers) >= max_chambers)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active spur chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/mutation_chamber/veil
+	name = "Veil Mutation Chamber"
+	desc = "Constructs a chamber that allows xenos to buy utility mutations. Build up to 3 structures to increase mutation power."
+	icon = "veil"
+	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
+	building_type = /obj/structure/xeno/mutation_chamber/veil
+
+/datum/hive_upgrade/building/mutation_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(length(buyer.hive.veil_chambers) >= max_chambers)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
+		return FALSE
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -421,22 +466,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
-	return ..()
-
-/datum/hive_upgrade/defence/special_walls
-	name = "Special Resin Walls"
-	desc = "Gives your hive 50 special resin walls to build."
-	psypoint_cost = 125
-	icon = "specialresin"
-	gamemode_flags = ABILITY_NUCLEARWAR
-	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
-
-/datum/hive_upgrade/defence/special_walls/on_buy(mob/living/carbon/xenomorph/buyer)
-	GLOB.hive_datums[buyer.get_xeno_hivenumber()].special_build_points += 50
-	to_chat(buyer, span_notice("We buy 50 special resin points for [psypoint_cost] psy points."))
-	log_game("[buyer] has purchased 50 special resin points, spending [psypoint_cost] psy points in the process.")
-	xeno_message("[buyer] has purchased 50 special resin points!", "xenoannounce", 5, buyer.hivenumber)
-
 	return ..()
 
 /datum/hive_upgrade/xenos

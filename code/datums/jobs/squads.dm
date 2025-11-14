@@ -175,9 +175,14 @@
 /datum/squad/proc/get_total_members()
 	return length(marines_list)
 
+///Offers the squad lead as an NPC escort option
+/datum/squad/proc/get_escort_target(mob/living/carbon/human/source, list/goal_list)
+	SIGNAL_HANDLER
+	if(squad_leader && squad_leader.stat != DEAD)
+		goal_list[squad_leader] = AI_ESCORT_RATING_SQUAD_LEAD
 
-/datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)
-	if(!(new_squaddie.job in SSjob.active_occupations))
+/datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE, forced = FALSE)
+	if(!forced && !(new_squaddie.job in SSjob.active_occupations))
 		CRASH("attempted to insert marine [new_squaddie] from squad [name] while having job [isnull(new_squaddie.job) ? "null" : new_squaddie.job.title]")
 
 	var/obj/item/card/id/idcard = new_squaddie.get_idcard()
@@ -189,6 +194,8 @@
 
 	if(!(new_squaddie.job.title in current_positions))
 		return FALSE
+
+	RegisterSignal(new_squaddie, COMSIG_NPC_FIND_NEW_ESCORT, PROC_REF(get_escort_target))
 
 	current_positions[new_squaddie.job.title]++
 
@@ -230,18 +237,13 @@
 
 
 /datum/squad/proc/remove_from_squad(mob/living/carbon/human/leaving_squaddie)
-	if(!(leaving_squaddie.job in SSjob.active_occupations))
-		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while having job [isnull(leaving_squaddie.job) ? "null" : leaving_squaddie.job.title]")
-
 	if(!leaving_squaddie.assigned_squad)
 		return FALSE
 
 	if(leaving_squaddie.assigned_squad != src)
 		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while being a member of squad [leaving_squaddie.assigned_squad.name]")
 
-	var/obj/item/card/id/id_card = leaving_squaddie.get_idcard()
-	if(!istype(id_card))
-		return FALSE
+	UnregisterSignal(leaving_squaddie, COMSIG_NPC_FIND_NEW_ESCORT)
 
 	if(leaving_squaddie == squad_leader)
 		demote_leader()
@@ -263,9 +265,11 @@
 			sheet.fields["squad"] = null
 			break
 
-	id_card.access -= access
-	id_card.assignment = leaving_squaddie.job.title
-	id_card.update_label()
+	var/obj/item/card/id/id_card = leaving_squaddie.get_idcard()
+	if(istype(id_card))
+		id_card.access -= access
+		id_card.assignment = leaving_squaddie.job.title
+		id_card.update_label()
 
 	marines_list -= leaving_squaddie
 
@@ -391,10 +395,8 @@
 //This reserves a player a spot in the squad by using a mind variable.
 //It is necessary so that they can smoothly reroll a squad role in case of the strict preference.
 /datum/squad/proc/assign_initial(mob/new_player/player, datum/job/job, latejoin = FALSE)
-	if(!(job.title in current_positions))
-		CRASH("Attempted to insert [job.title] into squad [name]")
-	if(!latejoin)
-		current_positions[job.title]++
+	if(!check_entry(job))
+		return FALSE
 	player.assigned_squad = src
 	return TRUE
 

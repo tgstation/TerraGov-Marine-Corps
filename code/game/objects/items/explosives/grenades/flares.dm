@@ -10,6 +10,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	hud_state = "grenade_frag"
 	light_system = MOVABLE_LIGHT
+	light_power = 1.5
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
 	var/fuel = 0
@@ -18,6 +19,9 @@
 
 /obj/item/explosive/grenade/flare/dissolvability(acid_strength)
 	return 2
+
+/obj/item/explosive/grenade/flare/get_acid_delay()
+	return 0.5 SECONDS
 
 /obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
@@ -99,6 +103,7 @@
 	damtype = initial(damtype)
 	update_icon()
 	set_light_on(FALSE)
+	GLOB.activated_flares -= src
 	STOP_PROCESSING(SSobj, src)
 
 ///Activates the flare
@@ -112,6 +117,7 @@
 	update_icon()
 	set_light_on(TRUE)
 	playsound(src,'sound/items/flare.ogg', 15, 1)
+	GLOB.activated_flares += src
 	START_PROCESSING(SSobj, src)
 
 //Starts on

@@ -87,6 +87,15 @@
 	trigger_size = 2
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
+	/// The amount to multiply the hugger's hand attach time, if any, by.
+	var/hand_attach_time_multiplier = 1
+
+/obj/alien/egg/hugger/Initialize(mapload, hivenumber, new_hugger_type, new_hand_attach_time_multiplier)
+	. = ..()
+	if(new_hugger_type)
+		hugger_type = new_hugger_type
+	if(new_hand_attach_time_multiplier)
+		hand_attach_time_multiplier = new_hand_attach_time_multiplier
 
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()
@@ -111,6 +120,7 @@
 	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
+	hugger.hand_attach_time = initial(hugger.hand_attach_time) * hand_attach_time_multiplier
 	hugger_type = null
 	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
 	hugger.go_active()

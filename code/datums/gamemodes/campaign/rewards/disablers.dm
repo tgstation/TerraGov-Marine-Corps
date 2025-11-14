@@ -62,7 +62,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_CAS
 
 /datum/campaign_asset/asset_disabler/tgmc_cas/instant
 	uses = 1
@@ -75,7 +75,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/som_cas)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_CAS
 
 /datum/campaign_asset/asset_disabler/som_cas/instant
 	uses = 1
@@ -88,7 +88,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/mortar)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_MORTAR
 
 /datum/campaign_asset/asset_disabler/tgmc_mortar/long
 	uses = 3
@@ -104,7 +104,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_asset/fire_support/som_mortar)
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_MORTAR
 
 /datum/campaign_asset/asset_disabler/som_mortar/long
 	uses = 3

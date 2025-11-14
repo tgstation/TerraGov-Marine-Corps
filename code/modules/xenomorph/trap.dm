@@ -8,23 +8,27 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = BELOW_OBJ_LAYER
+	layer = BELOW_TABLE_LAYER
 	destroy_sound = SFX_ALIEN_RESIN_BREAK
 	///defines for trap type to trigger on activation
 	var/trap_type
-	///The hugger inside our trap
-	var/obj/item/clothing/mask/facehugger/hugger = null
+	/// All huggers inside of our trap.
+	var/list/obj/item/clothing/mask/facehugger/huggers = list()
 	///smoke effect to create when the trap is triggered
 	var/datum/effect_system/smoke_spread/smoke
 	///connection list for huggers
 	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
+	/// The amount of huggers that can be stored in this trap.
+	var/hugger_limit = 1
 
-/obj/structure/xeno/trap/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/trap/Initialize(mapload, _hivenumber, _hugger_limit)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
+	if(_hugger_limit)
+		hugger_limit = _hugger_limit
 
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
@@ -56,7 +60,7 @@
 			icon_state = "trap"
 
 /obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	if((damage_amount || damage_flag) && hugger && loc)
+	if((damage_amount || damage_flag) && trap_type && loc)
 		trigger_trap()
 	return ..()
 
@@ -66,8 +70,8 @@
 	trap_type = new_trap_type
 	update_icon()
 
-///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
-/obj/structure/xeno/trap/proc/shuttle_crush()
+/// Deletes this first before it can get crushed by a shuttle.
+/obj/structure/xeno/trap/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
 
@@ -78,7 +82,8 @@
 	. += "A hole for a little one to hide in ambush for or for spewing acid."
 	switch(trap_type)
 		if(TRAP_HUGGER)
-			. += "There's a little one inside."
+			var/hugger_amount = length(huggers)
+			. += hugger_amount == 1 ? "There's a little one inside." : "There's [hugger_amount] little ones inside."
 		if(TRAP_SMOKE_NEURO)
 			. += "There's pressurized neurotoxin inside."
 		if(TRAP_SMOKE_ACID)
@@ -93,7 +98,9 @@
 			. += "It's empty."
 
 /obj/structure/xeno/trap/fire_act(burn_level)
-	hugger?.kill_hugger()
+	for(var/obj/item/clothing/mask/facehugger/hugger AS in huggers)
+		hugger.kill_hugger()
+	huggers.Cut()
 	trigger_trap()
 	set_trap_type(null)
 
@@ -108,38 +115,44 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
-		crosser.ParalyzeNoChain(4 SECONDS)
+		crosser.ParalyzeNoChain(4 SECONDS / max(1, length(huggers))) // Don't want to divide by 0.
 	switch(trap_type)
 		if(TRAP_HUGGER)
 			if(!AM)
-				drop_hugger()
+				drop_huggers()
 				return
 			if(!iscarbon(AM))
 				return
 			var/mob/living/carbon/crosser = AM
-			if(!crosser.can_be_facehugged(hugger))
+			var/could_be_hugged = FALSE
+			for(var/obj/item/clothing/mask/facehugger/hugger AS in huggers) // In case of: 4 larval huggers vs. (unfacehuggable) robot.
+				if(crosser.can_be_facehugged(hugger))
+					could_be_hugged = TRUE
+					break
+			if(!could_be_hugged)
 				return
-			drop_hugger()
+			drop_huggers()
 		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_ACID)
 			smoke.start()
 		if(TRAP_ACID_WEAK)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				xenomorph_spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_NORMAL)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				xenomorph_spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_STRONG)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				xenomorph_spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hivenumber,  FALSE, get_turf(src), 'sound/voice/alien/talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
 
-/// Move the hugger out of the trap
-/obj/structure/xeno/trap/proc/drop_hugger()
-	hugger.forceMove(loc)
-	hugger.go_active(TRUE, TRUE) //Removes stasis
-	visible_message(span_warning("[hugger] gets out of [src]!") )
-	hugger = null
+/// Move all huggers out of the trap.
+/obj/structure/xeno/trap/proc/drop_huggers()
+	for(var/obj/item/clothing/mask/facehugger/hugger AS in huggers)
+		hugger.forceMove(loc)
+		hugger.go_active(TRUE, TRUE) // Removes stasis.
+	visible_message(span_warning((length(huggers) == 1 ? "[huggers[1]] gets out of [src]!" : "Huggers swarm out of [src]!")))
+	huggers.Cut()
 	set_trap_type(null)
 
 /obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -151,13 +164,15 @@
 	if(trap_type == TRAP_HUGGER)
 		if(!(xeno_attacker.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
-		if(!hugger)
+		if(!length(huggers))
 			balloon_alert(xeno_attacker, "It is empty")
 			return
-		xeno_attacker.put_in_active_hand(hugger)
-		hugger.go_active(TRUE)
-		hugger = null
-		set_trap_type(null)
+		var/obj/item/clothing/mask/facehugger/first_hugger = huggers[1]
+		xeno_attacker.put_in_active_hand(first_hugger)
+		first_hugger.go_active(TRUE)
+		huggers -= first_hugger
+		if(!length(huggers))
+			set_trap_type(null)
 		balloon_alert(xeno_attacker, "Removed facehugger")
 		return
 	var/datum/action/ability/activable/xeno/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno/corrosive_acid) in xeno_attacker.actions
@@ -187,17 +202,20 @@
 
 	if(!istype(I, /obj/item/clothing/mask/facehugger) || !isxeno(user))
 		return
-	var/obj/item/clothing/mask/facehugger/FH = I
+	var/obj/item/clothing/mask/facehugger/hugger = I
+	if(hugger.stat == DEAD)
+		balloon_alert(user, "Cannot insert dead facehugger")
+		return
 	if(trap_type)
-		balloon_alert(user, "Already occupied")
-		return
+		if(trap_type != TRAP_HUGGER)
+			balloon_alert(user, "Already occupied")
+			return
+		if(length(huggers) >= hugger_limit)
+			balloon_alert(user, "Already full")
+			return
 
-	if(FH.stat == DEAD)
-		balloon_alert(user, "Cannot insert facehugger")
-		return
-
-	user.transferItemToLoc(FH, src)
-	FH.go_idle(TRUE)
-	hugger = FH
+	user.transferItemToLoc(hugger, src)
+	hugger.go_idle(TRUE)
+	huggers += hugger
 	set_trap_type(TRAP_HUGGER)
 	balloon_alert(user, "Inserted facehugger")

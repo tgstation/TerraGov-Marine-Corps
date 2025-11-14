@@ -144,6 +144,7 @@
 /datum/loadout_item/secondary/gun/marine/db_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_IN_HOLSTER)
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
+	default_load(wearer, loadout, holder)
 
 //non-standard
 /datum/loadout_item/secondary/machete
@@ -279,13 +280,14 @@
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/razorburn
 	name = "Razorburn"
-	desc = "Three razorburn cannisters, able to make huge fields of razorwire quickly. 'Everyone laughs at razorwire, until they're trying to get through it while being shot to pieces.' Unknown"
+	desc = "Three razorburn cannisters, able to make large fields of razorwire quickly. 'Everyone laughs at razorwire, until they're trying to get through it while being shot to pieces.' Unknown"
 	ui_icon = "default"
+	purchase_cost = 15
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/razorburn/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/iguana
@@ -299,6 +301,19 @@
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/uav_turret, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/skink
+	name = "Skink"
+	desc = "A deployable Skink remote control vehicle. While lacking any weaponry, this speedy vehicle is perfect for slipping past enemy forces and gathering information. Comes with a spare and remote. \
+	WARNING: exceedingly fragile. Keep away from open flames or explosives."
+	ui_icon = "default"
+	purchase_cost = 15
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/skink/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)

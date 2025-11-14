@@ -2,6 +2,8 @@
 #define MINE_VEHICLE_ONLY (1<<1)
 #define MINE_LIVING_OR_VEHICLE MINE_LIVING_ONLY|MINE_VEHICLE_ONLY
 
+#define MINE_ALT_APPEARANCE_KEY "mine_alt_appearance_key"
+
 /**
 Mines
 
@@ -99,6 +101,16 @@ Stepping directly on the mine will also blow it up
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 
+	var/image/alt_image = image(icon, src, "[initial(icon_state)]_friendly")
+	alt_image.appearance_flags = RESET_ALPHA|RESET_COLOR
+	var/list/friendly_factions = list()
+	for(var/faction in GLOB.faction_to_iff)
+		if(GLOB.faction_to_iff[faction] != iff_signal)
+			continue
+		friendly_factions += faction
+
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/multi_faction, MINE_ALT_APPEARANCE_KEY, alt_image, friendly_factions)
+
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -121,6 +133,7 @@ Stepping directly on the mine will also blow it up
 	anchored = FALSE
 	armed = FALSE
 	update_icon()
+	remove_alt_appearance(MINE_ALT_APPEARANCE_KEY)
 	QDEL_NULL(tripwire)
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
@@ -188,7 +201,7 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3)
+	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
 
@@ -252,7 +265,7 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
+	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
 

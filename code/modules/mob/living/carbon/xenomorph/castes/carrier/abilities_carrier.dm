@@ -46,6 +46,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
 	)
 	cooldown_duration = 3 SECONDS
+	/// If the owner has the Resin Jelly Coating status effect, how much deciseconds should its duration be decreased by to grant thrown huggers fire immunity?
+	var/fire_immunity_transfer = 0 SECONDS
+	/// The mulitplier to modify the Facehugger's impact_time, activate_time, and proximity_time by.
+	var/activation_time_multiplier = 1
+	/// The range in which the Facehugger can leap.
+	var/leapping_range = 4
+	/// Should a fake facehugger be created as well? If so, what percentage should be used for the gradiant between fake facehugger's color and thrown facehugger's color?
+	var/fake_hugger_gradiant_percentage = 0
 
 /datum/action/ability/activable/xeno/throw_hugger/get_cooldown()
 	return xeno_owner.xeno_caste.hugger_delay
@@ -58,8 +66,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 
 /datum/action/ability/activable/xeno/throw_hugger/use_ability(atom/A)
-	//target a hugger on the ground to store it directly
-	if(istype(A, /obj/item/clothing/mask/facehugger))
+	//target a hugger on the ground to store it directly (unless its a fake/harmless hugger)
+	if(istype(A, /obj/item/clothing/mask/facehugger) && !istype(A, /obj/item/clothing/mask/facehugger/combat/harmless))
 		if(isturf(get_turf(A)) && xeno_owner.Adjacent(A))
 			if(!xeno_owner.issamexenohive(A))
 				to_chat(xeno_owner, span_warning("That facehugger is tainted!"))
@@ -82,12 +90,34 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		to_chat(xeno_owner, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [xeno_owner.huggers] / [xeno_owner.xeno_caste.huggers_max]."))
 
 	if(!cooldown_timer)
+		if(fire_immunity_transfer > 0)
+			var/datum/status_effect/resin_jelly_coating/fire_immunity_effect = xeno_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
+			if(fire_immunity_effect)
+				fire_immunity_effect.duration = max(1, fire_immunity_effect.duration - fire_immunity_transfer)
+				fire_immunity_effect.check_duration()
+				F.set_fire_immunity(TRUE)
+		F.impact_time = max(0.5 SECONDS, initial(F.impact_time) * activation_time_multiplier)
+		F.activate_time = max(0.5 SECONDS, initial(F.activate_time) * activation_time_multiplier)
+		F.proximity_time = max(0.5 SECONDS, initial(F.proximity_time) * activation_time_multiplier)
+		F.leap_range = leapping_range
 		xeno_owner.dropItemToGround(F)
 		playsound(xeno_owner, 'sound/effects/throw.ogg', 30, TRUE)
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
 		F.facehugger_register_source(xeno_owner) //Set us as the source
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+		if(fake_hugger_gradiant_percentage > 0 && !istype(F, /obj/item/clothing/mask/facehugger/combat/harmless))
+			var/obj/item/clothing/mask/facehugger/combat/harmless/fake = new(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
+			fake.set_fire_immunity(F.fire_immune)
+			fake.impact_time = F.impact_time
+			fake.activate_time = F.activate_time
+			fake.proximity_time = F.proximity_time
+			fake.leap_range = F.leap_range
+			fake.stat = F.stat
+			fake.leaping = F.leaping
+			fake.facehugger_register_source(xeno_owner)
+			fake.throw_at(get_step(A, pick(CARDINAL_ALL_DIRS)), CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+			fake.color = gradient(initial(fake.color), initial(F.color), fake_hugger_gradiant_percentage)
 		xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] throws something towards \the [A]!"), \
 		span_xenowarning("We throw a facehugger towards \the [A]!"))
 		add_cooldown()
@@ -119,8 +149,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
 	use_state_flags = ABILITY_USE_LYING
+	/// The amount of huggers that can be stored in the created trap.
+	var/trap_hugger_limit = 1
 
-/datum/action/ability/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/place_trap/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -145,7 +177,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	owner.record_traps_created()
-	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber(), trap_hugger_limit)
+
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -162,13 +195,15 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
 	use_state_flags = ABILITY_USE_LYING
+	/// The amount of damage dealt to the owner for using the ability.
+	var/health_cost = 0
 
 /datum/action/ability/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another facehugger."))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -181,6 +216,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	xeno_owner.huggers++
 	to_chat(xeno_owner, span_xenowarning("We spawn a facehugger via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [xeno_owner.huggers] / [xeno_owner.xeno_caste.huggers_max]."))
 	playsound(xeno_owner, 'sound/voice/alien/drool2.ogg', 50, 0, 1)
+	if(health_cost)
+		xeno_owner.adjustBruteLoss(health_cost, TRUE)
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
@@ -191,7 +228,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 // *********** Drop all hugger, panic button
 // ***************************************
 /datum/action/ability/xeno_action/carrier_panic
-	name = "Drop All Facehuggers"
+	name = "Carrier Panic"
 	action_icon_state = "carrier_panic"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
 	desc = "Drop all stored facehuggers in a fit of panic. Uses all remaining plasma!"
@@ -201,6 +238,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
 	use_state_flags = ABILITY_USE_LYING
+	/// What percentage of the owner's maximum plasma should be consumed? 1 = 100%.
+	var/succeed_cost = 1
 
 /datum/action/ability/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
@@ -215,7 +254,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
-/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/carrier_panic/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -238,8 +277,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		step_away(new_hugger, xeno_owner, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_owner.huggers--
-	succeed_activate(INFINITY) //Consume all remaining plasma
+	succeed_activate(succeed_cost * xeno_owner.xeno_caste.plasma_max)
 	add_cooldown()
+
+/datum/action/ability/xeno_action/carrier_panic/update_button_icon()
+	desc = "Drop all stored facehuggers in a fit of panic."
+	if(succeed_cost > 0)
+		desc += (succeed_cost == 1 ? " Uses all remaining plasma!" : " Uses [PERCENT(succeed_cost)]% of your maximum plasma!")
+	return ..()
 
 // ***************************************
 // *********** Choose Hugger Type
@@ -304,7 +349,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
 	)
 
-/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/build_hugger_turret/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
@@ -365,24 +410,24 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!ishuman(A))
 		if(!silent)
-			A.balloon_alert(owner, "Not human")
+			A.balloon_alert(owner, "not human!")
 		return FALSE
 
 	var/mob/living/carbon/human/target = A
 
 	if(!(locate(/obj/item/alien_embryo) in target))
 		if(!silent)
-			target.balloon_alert(owner, "Not infected")
+			target.balloon_alert(owner, "not infected!")
 		return FALSE
 
 	if(target.stat == DEAD)
 		if(!silent)
-			target.balloon_alert(owner, "Dead")
+			target.balloon_alert(owner, "you're dead!")
 		return FALSE
 
 	if(!line_of_sight(owner, target, 9))
 		if(!silent)
-			target.balloon_alert(owner, "Need line of sight")
+			target.balloon_alert(owner, "need line of sight!")
 		return FALSE
 	return TRUE
 
@@ -410,7 +455,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.apply_effects(2 SECONDS, 1 SECONDS)
 	victim.adjust_stagger(debuff SECONDS)
 	victim.adjust_slowdown(debuff)
-	victim.apply_damage(stamina_dmg, STAMINA)
+	victim.apply_damage(stamina_dmg, STAMINA, attacker = owner)
 
 	var/datum/internal_organ/O
 	for(var/i in list(ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_LIVER))

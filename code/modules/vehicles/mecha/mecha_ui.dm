@@ -7,7 +7,7 @@
 	if(!ui)
 		ui = new(user, src, "Mecha", name, ui_x, ui_y)
 		ui.open()
-		ui_view.display_to(user)
+		ui_view.display_to(user, ui.window)
 
 /obj/vehicle/sealed/mecha/ui_status(mob/user)
 	if(contains(user))

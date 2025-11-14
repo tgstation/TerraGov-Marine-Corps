@@ -92,7 +92,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		browser.set_content(dat.Join("<br>"))
+		browser.open()
 
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
@@ -191,7 +193,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/atom/movable/AM = locate(href_list["observefollow"])
 		var/client/C = usr.client
 
-		if(!ismovableatom(AM))
+		if(!ismovable(AM))
 			return
 
 		if(isnewplayer(C.mob) || isnewplayer(AM))
@@ -442,6 +444,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
+			if("dragon")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/dragon, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("puppeteer")
@@ -863,8 +867,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
-		usr << browse(dat, "window=fax")
-
+		var/datum/browser/browser = new(usr, "fax", "Fax")
+		browser.set_content(dat)
+		browser.open()
 
 	else if(href_list["faxmark"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
@@ -990,10 +995,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!fax_message)
 					return
 
-		usr << browse(fax_message, "window=faxpreview;size=600x600")
+		var/datum/browser/browser = new(usr, "faxpreview", "New Fax", 600, 600)
+		browser.set_content(fax_message)
+		browser.open()
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-			usr << browse(null, "window=faxpreview")
+			browser.close()
 			return
 
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
@@ -1027,6 +1034,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		return usr.client.holder.create_mob(usr)
 
+	else if(href_list["dupe_marked_datum"])
+		if(!check_rights(R_SPAWN))
+			return
+		return duplicate_object(marked_datum, spawning_location = get_turf(usr))
 
 	else if(href_list["modemenu"])
 		if(!check_rights(R_SERVER))
@@ -1725,7 +1736,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["playtime"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_ADMIN|R_MENTOR))
 			return
 
 		var/mob/M = locate(href_list["playtime"]) in GLOB.mob_list
@@ -1853,6 +1864,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				previous = H.gender
 				H.gender = change
+			if("physique")
+				change = input("Select the physique.", "Edit Appearance") as null|anything in list(MALE, FEMALE)
+				if(!change || !istype(H))
+					return
+				previous = H.physique
+				H.physique = change
 			if("ethnicity")
 				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
 				if(!change || !istype(H))
@@ -2181,3 +2198,32 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!datum_to_mark)
 			return
 		return usr.client?.mark_datum(datum_to_mark)
+
+	else if(href_list["kick_all_from_lobby"])
+		if(!check_rights(R_ADMIN))
+			return
+		if(!SSticker.IsRoundInProgress())
+			to_chat(usr, "You may only use this when the game is running.", confidential = TRUE)
+			return
+		var/afkonly = text2num(href_list["afkonly"])
+		if(tgui_alert(usr,"Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby?", "Message", list("Yes", "No")) != "Yes")
+			to_chat(usr, "Kick clients from lobby aborted", confidential = TRUE)
+			return
+		var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
+
+		var/strkicked = ""
+		for(var/name in listkicked)
+			strkicked += "[name], "
+		message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+		log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+
+	else if(href_list["play_internet"])
+		if(!check_rights(R_SOUND))
+			return
+
+		var/credit = href_list["credit"]
+		var/link_url = href_list["play_internet"]
+		if(!link_url)
+			return
+
+		web_sound(usr, link_url, credit)

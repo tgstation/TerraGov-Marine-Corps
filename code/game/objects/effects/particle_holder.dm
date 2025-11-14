@@ -66,3 +66,6 @@
 		particle_mob.vis_contents += src
 	//readd to ourselves
 	attached_to.vis_contents |= src
+
+/obj/effect/abstract/particle_holder/reset_transform
+	appearance_flags = KEEP_APART|TILE_BOUND|RESET_TRANSFORM

@@ -63,3 +63,9 @@
 	name = "helm secondary color"
 	icon_state = "helm_secondary_color"
 	slot = ATTACHMENT_SLOT_HELM_SECONDARY_COLOR
+
+/obj/item/armor_module/armor/secondary_color/chest/visor_color
+	name = "chest secondary color"
+	icon_state = "chest_secondary_color"
+	colorable_colors = VISOR_PALETTES_LIST
+

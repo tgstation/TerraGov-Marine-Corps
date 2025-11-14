@@ -41,9 +41,11 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_CLOSED_TURFS,
+		SMOOTH_GROUP_WALLS,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 	canSmoothWith = list(
+		SMOOTH_GROUP_WALLS,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
@@ -71,7 +73,7 @@
 	QDEL_NULL(bullethole_overlay)
 	return ..()
 
-/turf/closed/wall/ChangeTurf(newtype)
+/turf/closed/wall/ChangeTurf(path, list/new_baseturfs, flags)
 	if(acided_hole)
 		qdel(acided_hole)
 		acided_hole = null
@@ -99,7 +101,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/alien/weeds))
+			if(!(flags & CHANGETURF_KEEP_WEEDS) && istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
@@ -115,7 +117,7 @@
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+	if(acided_hole && HAS_TRAIT(xeno_attacker, TRAIT_CAN_TEAR_HOLE)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(xeno_attacker)
 	else
 		return ..()
@@ -507,7 +509,7 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
 			user.drop_held_item()
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, SFX_SLAM, 40)
 	return TRUE

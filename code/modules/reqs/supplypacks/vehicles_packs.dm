@@ -109,7 +109,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Dropship mounted TE-9001 heavy laser"
 	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
-	cost = 900
+	cost = 400
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Dropship mounted HSG-102 mounted heavy smartgun ammo"
@@ -162,6 +162,16 @@ VEHICLES
 /datum/supply_packs/vehicles/ltaap_rounds
 	name = "LTAAP tank magazine"
 	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/vehicles/autocannon_ap_rounds
+	name = "Bushwhacker Autocannon Armor Piercing ammo box"
+	contains = list(/obj/item/ammo_magazine/tank/autocannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/autocannon_he_rounds
+	name = "Bushwhacker Autocannon High Explosive ammo box"
+	contains = list(/obj/item/ammo_magazine/tank/autocannon/high_explosive)
 	cost = 10
 
 /datum/supply_packs/vehicles/cupola_rounds

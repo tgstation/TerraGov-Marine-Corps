@@ -77,23 +77,23 @@
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
-		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
+		if(type == EMOTE_TYPE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
 				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 
-		if(type == EMOTE_AUDIBLE && isdeaf(src)) //Hearing related
+		if(type == EMOTE_TYPE_AUDIBLE && isdeaf(src)) //Hearing related
 			if(!alt_msg)
 				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
-				if(type == EMOTE_VISIBLE && eye_blind)
+				if(type == EMOTE_TYPE_VISIBLE && eye_blind)
 					return FALSE
 
-	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
+	if(stat == UNCONSCIOUS && type == EMOTE_TYPE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
 		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlight)
@@ -150,7 +150,7 @@
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
-		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
+		M.show_message(msg, EMOTE_TYPE_VISIBLE, blind_message, EMOTE_TYPE_AUDIBLE)
 
 
 ///Returns the client runechat visible messages preference according to the message type.
@@ -161,7 +161,7 @@
 		return FALSE
 	return TRUE
 
-/mob/rc_vc_msg_prefs_check(mob/target, message, visible_message_flags = NONE)
+/mob/rc_vc_msg_prefs_check(mob/target, visible_message_flags = NONE)
 	if(!target.client?.prefs.chat_on_map)
 		return FALSE
 	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
@@ -190,7 +190,7 @@
 			msg = self_message
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags) && !isdeaf(M))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
-		M.show_message(msg, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
+		M.show_message(msg, EMOTE_TYPE_AUDIBLE, deaf_message, EMOTE_TYPE_VISIBLE)
 
 
 /**
@@ -210,7 +210,7 @@
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
-		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
+		M.show_message(message, EMOTE_TYPE_AUDIBLE, deaf_message, EMOTE_TYPE_VISIBLE)
 
 
 ///This proc is called whenever someone clicks an inventory ui slot.
@@ -353,7 +353,7 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
 	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
 
 /mob/vv_do_topic(list/href_list)
@@ -361,6 +361,10 @@
 
 	if(!.)
 		return
+
+	if(href_list[VV_HK_PLAYER_PANEL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
+
 	if(href_list[VV_HK_VIEW_PLANES])
 		if(!check_rights(R_DEBUG))
 			return
@@ -410,7 +414,7 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infowindow.changelog", "font-style=;")
+		winset(src, "infobuttons.changelog", "font-style=;")
 
 /client/verb/hotkeys_help()
 	set name = "Hotkeys"
@@ -621,9 +625,11 @@
 	. = ..()
 	if(!.)
 		return
+	if(currently_z_moving)
+		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle_mob(src)
+	if(buckled && !HAS_TRAIT(src, TRAIT_CANNOT_BE_UNBUCKLED))
+		buckled.unbuckle_mob(src, TRUE)
 
 
 /mob/proc/trainteleport(atom/destination)
@@ -751,28 +757,30 @@
 			//Set the new eye unless it's us
 			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else if(isturf(new_eye))
 			//Set to the turf unless it's our current turf
 			if(new_eye != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
-			client.eye = client.mob
+			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = loc
+			client.set_eye(loc)
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
 
 /mob/proc/update_joined_player_list(newname, oldname)
@@ -855,10 +863,10 @@
 
 /mob/set_throwing(new_throwing)
 	. = ..()
-	if(isnull(.))
+	if(!.)
 		return
 	if(throwing)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT) // Prevents moving during the throw.
 	else
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
@@ -893,20 +901,12 @@
 	clear_important_client_contents()
 	canon_client = null
 
-/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
-	. = ..()
-	if(!client || !hud_used)
-		return
-	if(old_turf?.z == new_turf?.z)
-		return
-	if(is_ground_level(new_turf.z))
-		hud_used.remove_parallax(src)
-		return
-	hud_used.create_parallax(src)
-
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)
 	if(!tile)
+		return FALSE
+	if (pointed_atom in src)
+		create_point_bubble(pointed_atom)
 		return FALSE
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0)
@@ -915,6 +915,51 @@
 	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
 	return TRUE
 
+/atom/movable/proc/create_point_bubble(atom/pointed_atom, include_arrow = TRUE)
+	var/mutable_appearance/thought_bubble = mutable_appearance(
+		'icons/effects/effects.dmi',
+		"thought_bubble",
+		offset_spokesman = src,
+		plane = POINT_PLANE,
+		appearance_flags = KEEP_APART,
+	)
+
+	var/mutable_appearance/pointed_atom_appearance = new(pointed_atom.appearance)
+	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
+	pointed_atom_appearance.plane = FLOAT_PLANE
+	pointed_atom_appearance.layer = FLOAT_LAYER
+	pointed_atom_appearance.pixel_x = 0
+	pointed_atom_appearance.pixel_y = 0
+	thought_bubble.overlays += pointed_atom_appearance
+/* // tg has hover outlines reenable this if we ever port them
+	var/hover_outline_index = pointed_atom.get_filter_index(HOVER_OUTLINE_FILTER)
+	if (!isnull(hover_outline_index))
+		pointed_atom_appearance.filters.Cut(hover_outline_index, hover_outline_index + 1)
+*/
+	thought_bubble.pixel_w = 16
+	thought_bubble.pixel_z = 32
+	thought_bubble.alpha = 200
+
+	if(include_arrow)
+		var/mutable_appearance/point_visual = mutable_appearance(
+			'icons/mob/screen/generic.dmi',
+			"arrow"
+		)
+
+		thought_bubble.overlays += point_visual
+
+	add_overlay(thought_bubble)
+	LAZYADD(update_overlays_on_z, thought_bubble)
+	addtimer(CALLBACK(src, PROC_REF(clear_point_bubble), thought_bubble), POINT_TIME)
+
+/atom/movable/proc/clear_point_bubble(mutable_appearance/thought_bubble)
+	LAZYREMOVE(update_overlays_on_z, thought_bubble)
+	cut_overlay(thought_bubble)
+
 /// Side effects of being sent to the end of round deathmatch zone
 /mob/proc/on_eord(turf/destination)
 	return
+
+/mob/key_down(key, client/client, full_key)
+	..()
+	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)

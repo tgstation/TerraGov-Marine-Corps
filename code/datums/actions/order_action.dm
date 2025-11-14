@@ -35,13 +35,13 @@
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
-/datum/action/innate/order/can_use_action()
+/datum/action/innate/order/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
 	if(!should_show())
 		return FALSE
-	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_CIC_ORDERS))
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint

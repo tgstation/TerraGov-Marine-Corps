@@ -414,7 +414,9 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "JS" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/east)
@@ -433,7 +435,7 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "LN" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8

@@ -28,8 +28,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
-	//The respawn time for Xenomorphs
-	var/xenorespawn_time = 5 MINUTES
 	///How many points do you need to win in a point gamemode
 	var/win_points_needed = 0
 	///The points per faction, assoc list
@@ -45,8 +43,12 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
-	///Increases the amount of xenos needed to evolve to tier three by the value.
+	///Reduces the number of T3 slots xenos get by the value.
 	var/tier_three_penalty = 0
+	///Includes T3 xenos in the calculation for maximum T3 slots.
+	var/tier_three_inclusion = FALSE
+	///How often you can caste swap
+	var/caste_swap_cooldown = 15 MINUTES
 	///List of castes we dont want to be evolvable depending on gamemode.
 	var/list/restricted_castes
 
@@ -68,6 +70,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
+
+	var/roundstart_players = 0
 
 
 /datum/game_mode/New()
@@ -106,6 +110,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		GLOB.landmarks_round_start.len--
 		L.after_round_start()
 
+	// Determine roundstart player count, used for population locks.
+	SSticker.mode.roundstart_players = length(GLOB.clients)
+	to_chat(world, "Round initialized with a Population of [SSticker.mode.roundstart_players]")
+	SSblackbox.record_feedback("text", "initial_players", 1, SSticker.mode.roundstart_players)
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
@@ -391,7 +399,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.total_projectile_hits[FACTION_XENO])
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 	if(GLOB.round_statistics.grenades_thrown)
-		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
+		parts += "[GLOB.round_statistics.grenades_thrown] total grenades exploded."
 	else
 		parts += "No grenades exploded."
 	if(GLOB.round_statistics.mortar_shells_fired)
@@ -416,19 +424,55 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.warrior_lunges)
 		parts += "[GLOB.round_statistics.warrior_lunges] Warriors lunges."
 	if(GLOB.round_statistics.crusher_stomp_victims)
-		parts += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by crushers."
+		parts += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by Crushers."
 	if(GLOB.round_statistics.praetorian_spray_direct_hits)
-		parts += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+		parts += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by a Praetorian acid spray."
+	if(GLOB.round_statistics.behemoth_rock_victims)
+		parts += "[GLOB.round_statistics.behemoth_rock_victims] people hit directly by a Behemoth boulder."
 	if(GLOB.round_statistics.weeds_planted)
 		parts += "[GLOB.round_statistics.weeds_planted] weed nodes planted."
 	if(GLOB.round_statistics.weeds_destroyed)
 		parts += "[GLOB.round_statistics.weeds_destroyed] weed tiles removed."
+	if(GLOB.round_statistics.all_acid_applied)
+		parts += "[GLOB.round_statistics.all_acid_applied] objects vomitted on with corrosive acid."
 	if(GLOB.round_statistics.trap_holes)
 		parts += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
+	if(GLOB.round_statistics.drone_acidic_salve)
+		parts += "[GLOB.round_statistics.drone_acidic_salve] health points restored through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_acidic_salve_sunder)
+		parts += "[GLOB.round_statistics.drone_acidic_salve_sunder] sunder removed through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_essence_link)
+		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
+	if(GLOB.round_statistics.drone_essence_link_sunder)
+		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
 	if(GLOB.round_statistics.sentinel_drain_stings)
-		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times sentinel drain sting was used."
+		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
+	if(GLOB.round_statistics.defender_charge_victims)
+		parts += "[GLOB.round_statistics.defender_charge_victims] number of times people were charged down by Defenders."
+	if(GLOB.round_statistics.defender_tail_sweeps)
+		parts += "[GLOB.round_statistics.defender_tail_sweeps] number of times people were tail swept by Defenders, knocking down [GLOB.round_statistics.defender_tail_sweep_hits] people."
+	if(GLOB.round_statistics.runner_pounce_victims)
+		parts += "[GLOB.round_statistics.runner_pounce_victims] number of times Runners and Hunters pounced on people, out of which [GLOB.round_statistics.runner_savage_attacks] were savage attacks."
+	if(GLOB.round_statistics.runner_evasions)
+		parts += "[GLOB.round_statistics.runner_evasions] number of times Runners began to evade."
+	if(GLOB.round_statistics.runner_items_stolen)
+		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by Runners."
+	if(GLOB.round_statistics.melter_acid_shrouds)
+		parts += "[GLOB.round_statistics.melter_acid_shrouds] number of times Melters created an acid shroud."
+	if(GLOB.round_statistics.melter_acidic_missiles)
+		parts += "[GLOB.round_statistics.melter_acidic_missiles] number of times Melters became an acidic missile."
+	if(GLOB.round_statistics.psychic_flings)
+		parts += "[GLOB.round_statistics.psychic_flings] number of times Shrikes used psychic fling."
+	if(GLOB.round_statistics.psychic_cures)
+		parts += "[GLOB.round_statistics.psychic_cures] number of times Shrikes healed a Xenomorph with psychic cure."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		parts += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
+	if(GLOB.round_statistics.pyrogen_fireballs)
+		parts += "[GLOB.round_statistics.pyrogen_fireballs] number of times Pyrogens conjured a fireball."
+	if(GLOB.round_statistics.pyrogen_infernos)
+		parts += "[GLOB.round_statistics.pyrogen_infernos] number of times Pyrogens erupted into an inferno."
+	if(GLOB.round_statistics.pyrogen_firestorms)
+		parts += "[GLOB.round_statistics.pyrogen_firestorms] number of times Pyrogens conjured a firestorm."
 	if(GLOB.round_statistics.ozelomelyn_stings)
 		parts += "[GLOB.round_statistics.ozelomelyn_stings] number of times ozelomelyn sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
@@ -442,25 +486,49 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.xeno_rally_hive)
 		parts += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
-		parts += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
+		parts += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used healing infusion."
 	if(GLOB.round_statistics.spitter_acid_sprays)
-		parts += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an Acid Spray."
+		parts += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an acid spray."
 	if(GLOB.round_statistics.spitter_scatter_spits)
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
+	if(GLOB.round_statistics.globadier_grenades_thrown)
+		parts += "[GLOB.round_statistics.globadier_grenades_thrown] number of times grenades were thrown by Globadiers."
+	if(GLOB.round_statistics.globadier_mines_placed)
+		parts += "[GLOB.round_statistics.globadier_mines_placed] number of times Globadiers placed a mine."
+	if(GLOB.round_statistics.globadier_XADAR_fired)
+		parts += "[GLOB.round_statistics.globadier_XADAR_fired] number of times Globadiers fired an acid rocket."
 	if(GLOB.round_statistics.ravager_endures)
-		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
+		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used endure."
 	if(GLOB.round_statistics.bull_crush_hit)
 		parts += "[GLOB.round_statistics.bull_crush_hit] number of times Bulls crushed marines."
 	if(GLOB.round_statistics.bull_gore_hit)
 		parts += "[GLOB.round_statistics.bull_gore_hit] number of times Bulls gored marines."
 	if(GLOB.round_statistics.bull_headbutt_hit)
 		parts += "[GLOB.round_statistics.bull_headbutt_hit] number of times Bulls headbutted marines."
-	if(GLOB.round_statistics.hunter_marks)
-		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
-	if(GLOB.round_statistics.ravager_rages)
-		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		parts += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
+	if(GLOB.round_statistics.hunter_marks)
+		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
+	if(GLOB.round_statistics.hunter_cloaks)
+		parts += "[GLOB.round_statistics.hunter_cloaks] number of times Hunters cloaked themselves in darkness, resulting in [GLOB.round_statistics.hunter_cloak_victims] successful stealth attacks."
+	if(GLOB.round_statistics.ravager_rages)
+		parts += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
+	if(GLOB.round_statistics.boiler_acid_smokes)
+		parts += "[GLOB.round_statistics.boiler_acid_smokes] number of times Boilers spat out a glob of acid."
+	if(GLOB.round_statistics.boiler_neuro_smokes)
+		parts += "[GLOB.round_statistics.boiler_neuro_smokes] number of times Boilers spat out a glob of neurotoxin."
+	if(GLOB.round_statistics.psy_crushes)
+		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used psychic crush."
+	if(GLOB.round_statistics.psy_blasts)
+		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used psychic blast."
+	if(GLOB.round_statistics.psy_lances)
+		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used psychic lance."
+	if(GLOB.round_statistics.psy_shields)
+		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used psychic shield."
+	if(GLOB.round_statistics.psy_shield_blasts)
+		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a psychic shield."
+	if(GLOB.round_statistics.transfusion_overheal)
+		parts += "[GLOB.round_statistics.transfusion_overheal] points of overhealing were given by Gorgers through Transfusion."
 	if(GLOB.round_statistics.larva_from_psydrain)
 		parts += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
 	if(GLOB.round_statistics.larva_from_silo)
@@ -471,24 +539,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		parts += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
-	if(GLOB.round_statistics.psy_crushes)
-		parts += "[GLOB.round_statistics.psy_crushes] number of times Warlocks used Psychic Crush."
-	if(GLOB.round_statistics.psy_blasts)
-		parts += "[GLOB.round_statistics.psy_blasts] number of times Warlocks used Psychic Blast."
-	if(GLOB.round_statistics.psy_lances)
-		parts += "[GLOB.round_statistics.psy_lances] number of times Warlocks used Psychic Lance."
-	if(GLOB.round_statistics.psy_shields)
-		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
-	if(GLOB.round_statistics.psy_shield_blasts)
-		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
+	if(GLOB.round_statistics.points_from_objectives)
+		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(GLOB.round_statistics.points_from_xenos)
 		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
-	if(GLOB.round_statistics.runner_items_stolen)
-		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
 	if(GLOB.round_statistics.acid_maw_fires)
 		parts += "[GLOB.round_statistics.acid_maw_fires] Acid Maw uses."
 	if(GLOB.round_statistics.acid_jaw_fires)
@@ -529,6 +587,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			if(H.status_flags & XENO_HOST)
 				continue
 			if(H.faction == FACTION_XENO)
+				continue
+			if(H.faction == FACTION_ZOMBIE)
 				continue
 			if(isspaceturf(H.loc))
 				continue
@@ -949,13 +1009,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
 	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
 		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
-	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+	for(var/obj/machinery/computer/disk_generator AS in GLOB.nuke_disk_generator_types)
 		var/spawn_loc
 		if(length(forced_disks))
 			spawn_loc = pick_n_take(forced_disks)
 		else
 			spawn_loc = pick_n_take(viable_disks)
-		new nuke_disk_generator(get_turf(spawn_loc))
+		new disk_generator(get_turf(spawn_loc))
 		qdel(spawn_loc)
 
 /// Add gamemode related items to statpanel
@@ -973,7 +1033,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-		handle_xeno_respawn_timer(dcs, source, items)
 
 /// Displays the orphan hivemind collapse timer, if applicable
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
@@ -997,15 +1056,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(stored_larva)
 		items += "Burrowed larva: [stored_larva]"
-
-/// Displays your xeno respawn timer, if applicable
-/datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
-	if(GLOB.respawn_allowed)
-		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
-		if(status_value <= 0)
-			items += "Xeno respawn timer: READY"
-		else
-			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)

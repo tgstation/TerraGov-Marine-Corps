@@ -68,6 +68,12 @@
 	var/evolution_threshold = 0
 	///Threshold amount of upgrade points to next maturity
 	var/upgrade_threshold = 0
+	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
+	var/evolve_min_xenos = 0
+	// Starting Population lock, equivalent to assault crewman availability.
+	var/evolve_population_lock = 0
+	// How many of this caste may be alive at once
+	var/maximum_active_caste = INFINITY
 
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
@@ -76,9 +82,9 @@
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/can_flags = CASTE_CAN_BE_LEADER
 	///list of traits granted to the owner by becoming this caste
-	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
+	var/list/caste_traits = list()
 	// How long the hive must wait before a new one of this caste can evolve
 	var/death_evolution_delay = 0
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
@@ -103,8 +109,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -130,8 +134,6 @@
 	var/max_ammo = 0
 	///Multiplier to the effectiveness of the boiler glob. 1 by default.
 	var/bomb_strength = 0
-	///Delay between firing the bombard ability for boilers
-	var/bomb_delay = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -156,8 +158,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -206,21 +206,22 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
-	var/evolve_min_xenos = 0
-	// How many of this caste may be alive at once
-	var/maximum_active_caste = INFINITY
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
+
+	/// All mutations that this caste can view and potentially purchase.
+	var/list/datum/mutation_upgrade/mutations = list()
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -229,6 +230,12 @@
 	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
 		current_type = current_type::parent_type
 	return current_type
+
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	return root_type
 
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
@@ -347,7 +354,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Use `set_selected_reagent` when changing this.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -388,15 +395,34 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Boiler vars *** //
+	/// If their stored globs (corrosive + neurotoxin) surpasses this amount, they begin to glow at an increasing intensity.
+	var/glob_luminosity_threshold = BOILER_LUMINOSITY_THRESHOLD
+	/// Should the glow be replaced with a movement modifier? If so, how much for each glob above the threshold?
+	var/glob_luminosity_slowing = 0
+	/// Stored corrosive globs created from Boiler's Create Bomb.
+	var/corrosive_ammo = 0
+	/// Stored neurotoxin globs created from Boiler's Create Bomb.
+	var/neurotoxin_ammo = 0
+
+	// *** Globadier vars *** //
+	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
+
 	// *** Behemoth vars *** //
 	/// Whether we are currently charging or not.
 	var/behemoth_charging = FALSE
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
-	// *** Boiler vars *** //
-	///When true the boiler gains speed and resets the duration on attack
-	var/steam_rush = FALSE
+	// *** Conqueror vars *** //
+	/// If Endurance is currently active.
+	var/endurance_active = FALSE
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -414,10 +440,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/list/tunnels = list()
 	///Number of huggers the xeno is currently carrying
 	var/huggers = 0
-	///Boiler acid ammo
-	var/corrosive_ammo = 0
-	///Boiler Neuro ammo
-	var/neuro_ammo = 0
+
+	/// All active mutations they own.
+	var/list/datum/mutation_upgrade/owned_mutations = list()
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
@@ -425,3 +450,22 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
+
+///Called whenever a xeno slashes a human
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+	SIGNAL_HANDLER
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		return
+	var/mob/living/carbon/xenomorph/xeno = attacker
+	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+/// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	if(selected_reagent == new_reagent_typepath)
+		return
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, selected_reagent, new_reagent_typepath)
+	selected_reagent = new_reagent_typepath

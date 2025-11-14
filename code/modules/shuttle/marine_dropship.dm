@@ -8,7 +8,7 @@
 	width = 11
 	height = 21
 
-/obj/docking_port/stationary/marine_dropship/Initialize()
+/obj/docking_port/stationary/marine_dropship/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -493,6 +493,9 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
 	if(!(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
+	if(xeno_attacker.hive.living_xeno_ruler != xeno_attacker) //If we aren't the actual hive leader, prevent us from controling alamo
+		to_chat(xeno_attacker, span_xenowarning("We must be the hive leader!"))
+		return
 	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(xeno_attacker, span_xenowarning("It's too early to do this!"))
@@ -544,6 +547,8 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 	if(istype(infestation_mode))
 		data["shuttle_hijacked"] = (infestation_mode.round_stage == INFESTATION_MARINE_CRASHING) //If we hijacked, our capture button greys out
+	data["hijack_disabled"] = data["shuttle_hijacked"] || !(SSticker.mode.round_type_flags & MODE_HIJACK_POSSIBLE) // Disable if already hijacking or hijacking not allowed.
+
 
 	var/locked = 0
 	var/reardoor = 0
@@ -677,6 +682,12 @@
 			shuttle.takeoff_alarm_locked = TRUE
 		//These are actions for the Xeno dropship UI
 		if("hijack")
+			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+			if(!istype(infestation_mode) || infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
+				return
+			if(!(infestation_mode.round_type_flags & MODE_HIJACK_POSSIBLE))
+				to_chat(usr, span_warning("Hijacking is not possible."))
+				return
 			var/mob/living/carbon/xenomorph/xeno = usr
 			if(!(xeno.hive.hive_flags & HIVE_CAN_HIJACK))
 				to_chat(xeno, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
@@ -723,17 +734,17 @@
 			return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
+	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+	if(!istype(infestation_mode))
+		return
+	infestation_mode.round_stage = INFESTATION_MARINE_CRASHING
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
-	if(SSticker.mode?.round_type_flags & MODE_HIJACK_POSSIBLE)
-		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
-		infestation_mode.round_stage = INFESTATION_MARINE_CRASHING
 	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", title = "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/hijack.ogg', color_override = "red")
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
-	GLOB.hive_datums[XENO_HIVE_NORMAL].special_build_points = 25 //resets special build points
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	crashing_dropship.silicon_lock_airlocks(TRUE)

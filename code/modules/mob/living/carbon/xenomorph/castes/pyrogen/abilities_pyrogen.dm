@@ -5,12 +5,23 @@
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
-	cooldown_duration = 4 SECONDS
-	ability_cost = 30
+	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage and restores plasma depending on how many fire stacks they have."
+	cooldown_duration = 12 SECONDS
+	ability_cost = 75
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
 	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
+	// Should they also slash upon hitting a mob?
+	var/should_slash = TRUE
+	/// How much damage is dealt for hitting through a mob?
+	var/charge_damage = PYROGEN_FIRECHARGE_DAMAGE
+	/// How much damage to add for each consumed melting fire stack? Only consumes melting fire stacks if it is above zero.
+	var/stack_damage = PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
+	/// How much stacks of melting fire to add? These stacks are not consumed.
+	var/stacks_to_add = 0
+	/// Upon hitting a mob, should they keep going or stop?
+	var/pierces_mobs = FALSE
 
 /datum/action/ability/activable/xeno/charge/fire_charge/use_ability(atom/target)
 	if(!target)
@@ -45,20 +56,29 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-///Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs
+/// Deals with hitting mobs. Triggered by bump instead of throw impact as we want to plow past mobs.
 /datum/action/ability/activable/xeno/charge/fire_charge/mob_hit(datum/source, mob/living/living_target)
 	. = TRUE
-	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) //we leap past xenos
+	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) // We leap past xenos.
 		return
-	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-	var/fire_damage = PYROGEN_FIRECHARGE_DAMAGE
-	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		fire_damage += debuff.stacks * PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
-		living_target.remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
-	living_target.hitby(owner)
-
+	if(should_slash)
+		living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/fire_damage = charge_damage
+	var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(!debuff)
+		if(stacks_to_add)
+			living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, stacks_to_add, xeno_owner)
+	else
+		var/stacks_to_give = stacks_to_add ? stacks_to_add : 0
+		if(stack_damage)
+			fire_damage += debuff.stacks * stack_damage
+			xeno_owner.gain_plasma(debuff.stacks * 20) // Restores plasma for each stack consumed
+			stacks_to_give -= debuff.stacks
+		debuff.add_stacks(stacks_to_give, xeno_owner)
+	if(fire_damage)
+		living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
+	if(!pierces_mobs)
+		living_target.hitby(owner)
 
 ///Cleans up after charge is finished
 /datum/action/ability/activable/xeno/charge/fire_charge/charge_complete()
@@ -73,7 +93,7 @@
 	action_icon_state = "fireball"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Release a fireball that explodes on contact."
-	ability_cost = 50
+	ability_cost = 300
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
@@ -89,11 +109,13 @@
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 
-	var/obj/projectile/magic_bullshit = new(get_turf(src))
+	var/atom/movable/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
 	magic_bullshit.fire_at(target, xeno_owner, xeno_owner, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_fireballs++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_fireballs")
 
 /datum/action/ability/activable/xeno/fireball/ai_should_start_consider()
 	return TRUE
@@ -130,7 +152,7 @@
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Unleash a fiery tornado that goes in a straight line which will set fire around it as it goes and harm marines that directly touch it."
 	target_flags = ABILITY_TURF_TARGET
-	ability_cost = 50
+	ability_cost = 300
 	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
@@ -157,6 +179,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_firestorms++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_firestorms")
 
 /datum/action/ability/activable/xeno/firestorm/ai_should_start_consider()
 	return TRUE
@@ -178,7 +202,7 @@
 	action_icon_state = "inferno"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "After a short cast time, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
-	ability_cost = 50
+	ability_cost = 125
 	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
@@ -213,6 +237,8 @@
 
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.pyrogen_infernos++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "pyrogen_infernos")
 
 // ***************************************
 // *********** Infernal Trigger
@@ -223,7 +249,7 @@
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Causes a chosen human's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area near them is set on fire."
 	target_flags = ABILITY_MOB_TARGET
-	ability_cost = 40
+	ability_cost = 100
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNAL_TRIGGER,
@@ -315,6 +341,14 @@
 	QDEL_IN(src, 2 SECONDS)
 	for(var/mob/living/living_victim in loc)
 		mob_act(living_victim)
+
+/obj/effect/xenomorph/firenado/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/effect/xenomorph/firenado/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
 
 /obj/effect/xenomorph/firenado/Bump(atom/target)
 	. = ..()

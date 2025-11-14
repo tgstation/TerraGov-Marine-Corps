@@ -21,6 +21,8 @@ The Grenade Launchers
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
+	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
@@ -52,6 +54,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/sticky/trailblazer,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
@@ -197,6 +200,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/emp,
 	)
@@ -205,6 +209,10 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	attach_features_flags = NONE
+
+/obj/item/weapon/gun/grenade_launcher/underslung/integrated
+	attach_features_flags = NONE
+	icon_state = NONE
 
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"
@@ -253,7 +261,6 @@ The Grenade Launchers
 	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
 	icon_state = "flaregun"
 	worn_icon_state = "gun"
-	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	gun_features_flags = NONE

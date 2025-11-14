@@ -1,0 +1,13 @@
+/obj/structure/stairs {dir=1;conversion_done=@UNSET} : @OLD {@OLD;dir=@SKIP;conversion_done=1}
+/obj/structure/stairs {dir=@UNSET;conversion_done=@UNSET} : @OLD {@OLD;dir=1;conversion_done=1}
+/obj/structure/stairs {dir=2;conversion_done=@UNSET} : @OLD {@OLD;dir=1;conversion_done=1}
+/obj/structure/stairs {dir=4;conversion_done=@UNSET} : @OLD {@OLD;dir=8;conversion_done=1}
+/obj/structure/stairs {dir=8;conversion_done=@UNSET} : @OLD {@OLD;dir=4;conversion_done=1}
+
+/obj/structure/stairs/edge {dir=1;conversion_done=@UNSET} : @OLD {@OLD;dir=@SKIP;conversion_done=1}
+/obj/structure/stairs/edge {dir=@UNSET;conversion_done=@UNSET} : @OLD {@OLD;dir=1;conversion_done=1}
+/obj/structure/stairs/edge {dir=2;conversion_done=@UNSET} : @OLD {@OLD;dir=1;conversion_done=1}
+/obj/structure/stairs/edge {dir=4;conversion_done=@UNSET} : @OLD {@OLD;dir=8;conversion_done=1}
+/obj/structure/stairs/edge {dir=8;conversion_done=@UNSET} : @OLD {@OLD;dir=4;conversion_done=1}
+
+/obj/structure/stairs/@SUBTYPES {conversion_done=1} : @OLD {@OLD;conversion_done=@SKIP}

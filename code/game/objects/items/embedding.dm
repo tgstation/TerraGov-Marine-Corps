@@ -162,11 +162,11 @@
 		return
 
 	if(user.stat != CONSCIOUS)
-		to_chat(user, "You are unconcious and cannot do that!")
+		to_chat(user, span_warning("You are unconscious and cannot do that!"))
 		return
 
 	if(user.restrained())
-		balloon_alert(user, "can't, restrained")
+		balloon_alert(user, "restrained!")
 		return
 
 	var/self
@@ -182,12 +182,12 @@
 		valid_objects += embedded_item
 
 	if(!length(valid_objects))
-		CRASH("yank_out_object called for empty valid_objects, lenght of embedded_objects is [length(embedded_objects)]")
+		CRASH("yank_out_object called for empty valid_objects, length of embedded_objects is [length(embedded_objects)]")
 
 	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
-		balloon_alert(user, "cannot, no empty hands")
+		balloon_alert(user, "hands are full!")
 		return FALSE
 
 	balloon_alert(user, "attempts to grip [selection]")

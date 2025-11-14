@@ -266,10 +266,9 @@
 	icon_state = ""
 	pixel_x = -64
 
-//todo this should be using immediate instead of New()
 INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
-/turf/closed/wall/indestructible/splashscreen/New()
-	..()
+/turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
+	. = ..()
 	var/prefix = "icons/misc/lobby_art/"
 	var/list/lobby_art = flist(prefix)
 	if(!length(lobby_art))
@@ -360,8 +359,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 /turf/closed/wall/vault
 	icon_state = "rockvault"
 
-/turf/closed/wall/vault/New(location,type)
-	..()
+/turf/closed/wall/vault/Initialize(mapload, type)
+	. = ..()
 	icon_state = "[type]vault"
 
 /turf/closed/wall/desertcavewall
@@ -498,3 +497,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	icon_state = "engineer_walls-0"
 	walltype = "wall"
 	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/elevator
+	name = "elevator wall"
+	desc = "Nigh indestructible walls that make up the hull of a elevator."
+	icon = 'icons/turf/walls/elevator_wall.dmi'
+	icon_state = "elevator_wall-0"
+	walltype = "wall"
+	base_icon_state = "elevator_wall"

@@ -88,8 +88,6 @@
 	var/show_storage_fullness = TRUE
 	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/use_to_pickup = FALSE
-	///Set this to make the storage item group contents of the same type and display them as a number.
-	var/display_contents_with_number
 	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
 	var/allow_quick_empty
 	///Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
@@ -567,37 +565,26 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		boxes.update_fullness(parent)
 
 ///This proc draws out the inventory and places the items on it. It uses the standard position.
-/datum/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
+/datum/storage/proc/slot_orient_objs(rows, cols)
 	var/cx = 4
 	var/cy = 2+rows
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
-	if(display_contents_with_number)
-		for(var/datum/numbered_display/ND in display_contents)
-			ND.sample_object.mouse_opacity = 2
-			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			SET_PLANE_IMPLICIT(ND.sample_object, ABOVE_HUD_PLANE)
-			cx++
-			if(cx > (4+cols))
-				cx = 4
-				cy--
-	else
-		for(var/obj/object in parent.contents)
-			object.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
-			object.screen_loc = "[cx]:16,[cy]:16"
-			object.maptext = ""
-			SET_PLANE_IMPLICIT(object, ABOVE_HUD_PLANE)
-			cx++
-			if(cx > (4+cols))
-				cx = 4
-				cy--
+	for(var/obj/object in parent.contents)
+		object.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
+		object.screen_loc = "[cx]:16,[cy]:16"
+		object.maptext = ""
+		SET_PLANE_IMPLICIT(object, ABOVE_HUD_PLANE)
+		cx++
+		if(cx > (4+cols))
+			cx = 4
+			cy--
 	closer.screen_loc = "[4+cols+1]:16,2:16"
 	if(show_storage_fullness)
 		boxes.update_fullness(parent)
 
 ///Generates a UI for slotless storage based on the objects inside of it
-/datum/storage/proc/space_orient_objs(list/obj/item/display_contents)
+/datum/storage/proc/space_orient_objs()
 	// should be equal to default backpack capacity
 	var/baseline_max_storage_space = 21
 	// length of sprite for start and end of the box representing total storage space
@@ -622,6 +609,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	var/startpoint = 0
 	var/endpoint = 1
 
+	// TODO: this is very inefficient. we should instead be adding 3 overlays offset with pixel_x to
+	// the item and remove the click border code.
+	// the matrix spam is prolly why this is one of our highest overtiming procs...
 	for(var/obj/item/object in parent.contents)
 		startpoint = endpoint + 1
 		endpoint += storage_width * object.w_class / max_storage_space
@@ -644,55 +634,23 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		storage_start.overlays += src.stored_end
 
 		object.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
-		object.maptext = ""
 		SET_PLANE_IMPLICIT(object, ABOVE_HUD_PLANE)
 
 	closer.screen_loc = "4:[storage_width+19],2:16"
 
-/datum/numbered_display
-	///Object to compare to the item inside of a slotless storage
-	var/obj/item/sample_object
-	///Used to display a number on the object inside of a storage
-	var/number
-
-/datum/numbered_display/New(obj/item/sample)
-	if(!istype(sample))
-		qdel(src)
-	sample_object = sample
-	number = 1
-
-/datum/numbered_display/Destroy()
-	sample_object = null
-	return ..()
-
 ///This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /datum/storage/proc/orient2hud()
 	var/adjusted_contents = length(parent.contents)
-	var/list/datum/numbered_display/numbered_contents //Numbered contents display
-
-	if(display_contents_with_number)
-		numbered_contents = list()
-		adjusted_contents = 0
-		for(var/obj/item/item in parent.contents)
-			var/found = FALSE
-			for(var/datum/numbered_display/numbered_display_checked in numbered_contents)
-				if(numbered_display_checked.sample_object.type == item.type)
-					numbered_display_checked.number++
-					found = TRUE
-					break
-			if(!found)
-				adjusted_contents++
-				numbered_contents.Add( new/datum/numbered_display(item) )
 
 	if(storage_slots == null)
-		space_orient_objs(numbered_contents)
+		space_orient_objs()
 		return
 
 	var/row_num = 0
 	var/col_count = min(7,storage_slots) -1
 	if(adjusted_contents > 7)
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	slot_orient_objs(row_num, col_count, numbered_contents)
+	slot_orient_objs(row_num, col_count)
 
 ///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
 /datum/storage/proc/can_be_inserted(obj/item/item_to_insert, mob/user, warning = TRUE)
@@ -891,14 +849,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
-		user.balloon_alert(user, "[refiller] is empty.")
+		user.balloon_alert(user, "refilling container is empty!")
 		return
 
 	if(!can_be_inserted(refiller.contents[1], user))
-		user.balloon_alert(user, "[parent.name] is full.")
+		user.balloon_alert(user, "receiving container is full!")
 		return
 
-	user.balloon_alert(user, "Refilling.")
+	user.balloon_alert(user, "refilling...")
 
 	if(!do_after(user, 1.5 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 		return
@@ -1067,7 +1025,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!ishuman(user) || user.incapacitated())
 		return
 	if(!length(parent.contents))
-		return user.balloon_alert(user, "Empty")
+		return user.balloon_alert(user, "empty!")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents

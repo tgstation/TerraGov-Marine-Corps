@@ -9,6 +9,8 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
+	plane = FLOOR_PLANE
+	layer = ABOVE_WEEDS_LAYER
 
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
@@ -24,10 +26,11 @@
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
-	var/static/list/connections = list(
+	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
@@ -38,11 +41,10 @@
 	SIGNAL_HANDLER
 	creator = null
 
-///Ensures that no acid gas will be released when the well is crushed by a shuttle
-/obj/structure/xeno/acidwell/proc/shuttle_crush()
+/// Deletes this first before it can get crushed by a shuttle.
+/obj/structure/xeno/acidwell/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
-
 
 /obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
@@ -163,19 +165,19 @@
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
 		if(charges_used >= charges)
 			break
-		if(sticky_bomb.stuck_to == stepper)
-			sticky_bomb.clean_refs()
+		if(sticky_bomb.active)
+			sticky_bomb.unstick_from(src)
 			sticky_bomb.forceMove(loc)
-			charges_used ++
+			charges_used++
 
 	if(stepper.on_fire && (charges_used < charges))
 		stepper.ExtinguishMob()
-		charges_used ++
+		charges_used++
 
 	if(!isxeno(stepper))
 		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID, penetration = 33)
+		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID, penetration = 33)
 		stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 		span_danger("We are immersed in [src]'s acid!") , null, 5)
 		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)

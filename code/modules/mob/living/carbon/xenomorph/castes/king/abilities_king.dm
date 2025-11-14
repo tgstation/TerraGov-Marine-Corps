@@ -12,10 +12,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
 	)
-	/// How far nightfall will have an effect
+	/// How far will Nightfall will have an effect?
 	var/range = 12
-	/// How long till the lights go on again
+	/// How long until the lights go on again?
 	var/duration = 10 SECONDS
+	/// Multiplies the remaining fuel of all active flares within range by this amount.
+	var/flare_fuel_multiplier = 1
 
 /datum/action/ability/activable/xeno/nightfall/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
@@ -29,7 +31,11 @@
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
 		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
-
+	if(flare_fuel_multiplier != 1)
+		for(var/obj/item/explosive/grenade/flare/activated_flare AS in GLOB.activated_flares)
+			if(get_dist(xeno_owner, activated_flare) >= range)
+				continue
+			activated_flare.fuel = ROUND_UP(activated_flare.fuel * flare_fuel_multiplier)
 
 // ***************************************
 // *********** Petrify
@@ -48,8 +54,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
 	)
-	///List of mobs currently petrified
+	/// List of all humans currently petrified.
 	var/list/mob/living/carbon/human/petrified_humans = list()
+	/// List of all friendly xenomorphs that were looking at the owner at the time.
+	var/list/mob/living/carbon/xenomorph/viewing_xenomorphs = list()
+	/// The amount of armor to grant to friendly xenomorphs
+	var/petrify_armor = 0
 
 /datum/action/ability/xeno_action/petrify/clean_action()
 	end_effects()
@@ -72,10 +82,17 @@
 
 	finish_charging()
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
-	for(var/mob/living/carbon/human/human in view(PETRIFY_RANGE, owner.loc))
-		if(is_blind(human))
+	for(var/mob/living/carbon/carbon_viewer in get_hearers_in_view(PETRIFY_RANGE, owner.loc))
+		if(isxeno(carbon_viewer))
+			if(!petrify_armor)
+				continue
+			var/mob/living/carbon/xenomorph/xenomorph_viewer = carbon_viewer
+			var/datum/armor/attaching_armor = getArmor(petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor)
+			xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.attachArmor(attaching_armor)
+			viewing_xenomorphs[xenomorph_viewer] = attaching_armor
+		if(!ishuman(carbon_viewer) || is_blind(carbon_viewer))
 			continue
-
+		var/mob/living/carbon/human/human = carbon_viewer
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
@@ -95,7 +112,7 @@
 		human.overlays += stone_overlay
 		petrified_humans[human] = stone_overlay
 
-	if(!length(petrified_humans))
+	if(!length(petrified_humans) && !length(viewing_xenomorphs))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		return
@@ -124,6 +141,10 @@
 		human.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 		human.overlays -= petrified_humans[human]
 	petrified_humans.Cut()
+
+	for(var/mob/living/carbon/xenomorph/xenomorph_viewer AS in viewing_xenomorphs)
+		xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.detachArmor(viewing_xenomorphs[xenomorph_viewer])
+	viewing_xenomorphs.Cut()
 
 ///callback for removing the eye from viscontents
 /datum/action/ability/xeno_action/petrify/proc/remove_eye(obj/effect/eye)
@@ -259,23 +280,28 @@
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
 				continue
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE, attacker = owner)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA, attacker = owner)
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")
-		else if(isvehicle(victim) || ishitbox(victim))
+			continue
+		if(isvehicle(victim) || ishitbox(victim))
 			var/obj/obj_victim = victim
 			var/hitbox_penalty = 0
 			if(ishitbox(victim))
 				hitbox_penalty = 20
 			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
-		else if(istype(victim, /obj/structure/window))
+			continue
+		if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
-			if(window_victim.damageable)
-				window_victim.ex_act(EXPLODE_DEVASTATE)
+			window_victim.ex_act(EXPLODE_DEVASTATE)
+			continue
+		if(isfire(victim))
+			var/obj/fire/fire = victim
+			fire.reduce_fire(10)
 
 ///cleans up when the charge up is finished or interrupted
 /datum/action/ability/activable/xeno/shattering_roar/proc/finish_charging()
@@ -312,6 +338,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
 	)
+	///last attempted move direction. we use this to allow diagonal beaming.
+	var/last_attempted_movedir
 	///list of turfs we are hitting while shooting our beam
 	var/list/turf/targets
 	///ref to beam that is currently active
@@ -331,12 +359,25 @@
 	. = ..()
 	sound_loop = new
 
+/datum/action/ability/xeno_action/zero_form_beam/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(set_attempted_movedir))
+
+/datum/action/ability/xeno_action/zero_form_beam/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
+
+/datum/action/ability/xeno_action/zero_form_beam/proc/set_attempted_movedir(atom/source, atom/newloc, direction)
+	SIGNAL_HANDLER
+	last_attempted_movedir = direction
+
 /obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
 
-/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/zero_form_beam/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -350,16 +391,17 @@
 		stop_beaming()
 		return
 
-	var/turf/check_turf = get_step(owner, owner.dir)
+	var/dirtouse = last_attempted_movedir ? last_attempted_movedir : owner.dir
+	var/turf/check_turf = get_step(owner, dirtouse)
 	LAZYINITLIST(targets)
 	while(check_turf && length(targets) < ZEROFORM_BEAM_RANGE)
 		targets += check_turf
-		check_turf = get_step(check_turf, owner.dir)
+		check_turf = get_step(check_turf, dirtouse)
 	if(!LAZYLEN(targets))
 		return
 
 	var/particles_type
-	switch(owner.dir)
+	switch(owner.dir) // todo: missing diagonal particles
 		if(WEST)
 			particles_type = /particles/zero_form/west
 		if(EAST)
@@ -476,12 +518,24 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,
 	)
+	/// Should the ability only summon minions?
+	var/minions_only = FALSE
+	/// For the summoned, the flat amount to add to their melee damage modifier by for 30 seconds.
+	var/flat_damage_multiplier = 0
+	/// Associative list of xenomorphs who got an increased melee damage modifier: [xeno] == melee_damage_modifier_increase
+	var/list/melee_damage_keys = list()
+	/// The id of the timer that will remove the melee damage modifier.
+	var/timer_id
 
-/datum/action/ability/activable/xeno/psychic_summon/on_cooldown_finish()
+/datum/action/ability/xeno_action/psychic_summon/remove_action(mob/living/L)
+	remove_flat_damage_multipliers()
+	return ..()
+
+/datum/action/ability/xeno_action/psychic_summon/on_cooldown_finish()
 	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
 	return ..()
 
-/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/psychic_summon/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -498,6 +552,8 @@ GLOBAL_LIST_EMPTY(active_summons)
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = xeno_owner.hivenumber)
 	var/list/allxenos = xeno_owner.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(minions_only && sister.tier != XENO_TIER_MINION)
+			continue
 		if(sister.z != owner.z)
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
@@ -507,16 +563,25 @@ GLOBAL_LIST_EMPTY(active_summons)
 	if(!do_after(xeno_owner, 10 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+			if(minions_only && sister.tier != XENO_TIER_MINION)
+				continue
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
 	allxenos = xeno_owner.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(minions_only && sister.tier != XENO_TIER_MINION)
+			continue
 		sister.remove_filter("summonoutline")
 		if(sister.z == owner.z)
 			sister.forceMove(get_turf(xeno_owner))
 			sisters_teleported ++
+			if(flat_damage_multiplier)
+				sister.xeno_melee_damage_modifier += flat_damage_multiplier
+				melee_damage_keys[sister] = flat_damage_multiplier
+	if(sisters_teleported)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(remove_flat_damage_multipliers)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")
 	xeno_owner.emote("roar")
@@ -540,3 +605,14 @@ GLOBAL_LIST_EMPTY(active_summons)
 /datum/action/ability/xeno_action/psychic_summon/succeed_activate()
 	. = ..()
 	GLOB.active_summons -= xeno_owner //Remove ourselves from the list once we have completed our summon
+
+/// Removes the melee damage multiplier from all of those we summoned.
+/datum/action/ability/xeno_action/psychic_summon/proc/remove_flat_damage_multipliers()
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	for(var/mob/living/carbon/xenomorph/modified_xenomorph in melee_damage_keys)
+		if(QDELETED(modified_xenomorph))
+			continue
+		modified_xenomorph.xeno_melee_damage_modifier -= melee_damage_keys[modified_xenomorph]
+	melee_damage_keys.Cut()

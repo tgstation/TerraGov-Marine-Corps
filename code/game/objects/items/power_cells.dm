@@ -71,7 +71,7 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")
 
-/obj/item/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user as mob) // todo shitcode fixme
 	if(!rigged)
 		return ..()
 
@@ -89,7 +89,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
-	overlays += new/obj/effect/overlay/danger
+	overlays += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 	spawn(rand(3,50))
 		spark_system.start(src)
 		explode()
@@ -222,13 +222,12 @@
 
 ///Explodes, scaling with cell charge
 /obj/item/cell/proc/explode()
-	var/turf/epicenter = get_turf(src)
 
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.05), -1, 4)
 
-	explosion(epicenter, 0, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(src, 0, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -363,13 +362,13 @@
 	w_class = WEIGHT_CLASS_HUGE
 	charge_overlay = null
 	self_recharge = TRUE
-	maxcharge = 1000
+	maxcharge = 1400
 	charge_amount = 150
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
 	maxcharge = 650
-	charge_amount = 175
+	charge_amount = 200
 
 /obj/item/cell/night_vision_battery
 	name = "night vision goggle battery"

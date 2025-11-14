@@ -384,6 +384,14 @@
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 
+	if(istype(wearer.belt, /obj/item/storage/belt/sparepouch))
+		wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/paracetamol, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/isotonic, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/cohiba, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/storage/box/matches, SLOT_IN_BELT)
+		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BELT)
+
 	if(!isstorageobj(wearer.back))
 		return
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)

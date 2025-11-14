@@ -768,6 +768,7 @@
 		/obj/item/tweezers,
 		/obj/item/cell/high,
 		/obj/item/circuitboard/apc,
+		/obj/item/tool/soap,
 	)
 
 /obj/effect/vendor_bundle/white_dress

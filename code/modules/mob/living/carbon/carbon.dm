@@ -59,7 +59,7 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PUKE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_PUKE))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
@@ -295,6 +295,8 @@
 	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
@@ -305,6 +307,8 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 
@@ -338,6 +342,7 @@
 
 	var/new_sight = initial(sight)
 	lighting_cutoff = initial(lighting_cutoff)
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 	set_invis_see(initial(see_invisible))
 
 	if(species)
@@ -393,10 +398,10 @@
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
 	if(new_stat == UNCONSCIOUS)
-		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, TYPE_PROC_REF(/mob/living/carbon/human, oncritdrag))
+		RegisterSignal(src, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/carbon/human, on_crit_moved))
 		return
 	if(. == UNCONSCIOUS)
-		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)
+		UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 
 /// Handles when the player clicks on themself with the grab item
 /mob/living/carbon/proc/grabbed_self_attack(mob/living/user)

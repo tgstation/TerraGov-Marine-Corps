@@ -399,6 +399,18 @@
 	no_panel = TRUE
 	opacity = TRUE
 
+/obj/machinery/door/airlock/multi_tile/prison
+	name = "elevator door"
+	icon = 'icons/obj/doors/prison/4x1_elevator.dmi'
+	icon_state = "door_closed"
+	width = 4
+	openspeed = 17
+	no_panel = TRUE
+	opacity = TRUE
+
+/obj/machinery/door/airlock/multi_tile/prison/glass
+	icon = 'icons/obj/doors/prison/4x1_elevator_access.dmi'
+
 /obj/machinery/door/airlock/multi_tile/urban
 	name = "\improper Airlock"
 	icon_state = "door_closed"

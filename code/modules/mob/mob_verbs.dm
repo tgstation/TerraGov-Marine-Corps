@@ -29,7 +29,7 @@
 					result.Cut(i, i + 1)
 					i--
 
-	var/result_combined = (atom_title ? fieldset_block("[examine_header(atom_title)]", jointext(result, ""), "examine_block") : examine_block(jointext(result, "")))
+	var/result_combined = (atom_title ? fieldset_block(atom_title, jointext(result, ""), examinify.boxed_message_style) : custom_boxed_message(examinify.boxed_message_style, jointext(result, "")))
 
 	to_chat(src, span_infoplain(result_combined))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
@@ -280,7 +280,9 @@
 		return FALSE
 	if(!pointed_atom.mouse_opacity)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_POINT))
+		return FALSE
+	if(incapacitated())
 		return FALSE
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)

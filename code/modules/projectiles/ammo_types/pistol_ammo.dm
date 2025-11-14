@@ -36,7 +36,7 @@
 	damage = 25
 	damage_type = STAMINA
 
-/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(iscarbon(target_mob))
 		var/mob/living/carbon/carbon_victim = target_mob
 		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
@@ -48,7 +48,7 @@
 	shrapnel_chance = 45
 	sundering = 2
 
-/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
@@ -75,14 +75,14 @@
 	sundering = 3
 	damage_falloff = 0.75
 
-/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
 
-/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 0.5)
 
 /datum/ammo/bullet/pistol/incendiary
@@ -114,7 +114,21 @@
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(!target_mob.stat && !ismonkey(target_mob))
 		proj.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(proj.loc)
+
+/datum/ammo/bullet/pistol/gyrojet
+	name = "Micro Rocket"
+	hud_state = "shell_heat"
+	hud_state_empty = "shell_empty"
+	damage = 40
+	penetration = 25
+	sundering = 3.75
+	damage_falloff = 0.15
+	shrapnel_chance = 65
+	shell_speed = 2
+
+/datum/ammo/bullet/pistol/gyrojet/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 0.5 SECONDS, slowdown = 1,)

@@ -151,7 +151,7 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 
 	switch(input("View (in game), Open (in your system's text editor), Download", path) as null|anything in list("View", "Open", "Download"))
 		if("View")
-			usr << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
+			usr << browse(HTML_SKELETON("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>"), list2params(list("window" = "viewfile.[path]")))
 		if("Open")
 			usr << run(file(path))
 		if("Download")
@@ -251,7 +251,7 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 
 	var/ntype = text2num(type)
 
-	var/dat = ""
+	var/list/dat = list()
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"
@@ -296,20 +296,22 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	var/log_source = M.logging;
 	if(source == LOGSRC_CLIENT && M.client)
 		log_source = M.client.player_details.logging
-
+	var/list/concatenated_logs = list()
 	for(var/log_type in log_source)
 		var/nlog_type = text2num(log_type)
 		if(nlog_type & ntype)
-			var/list/reversed = log_source[log_type]
-			if(islist(reversed))
-				reversed = reverseRange(reversed.Copy())
-				for(var/entry in reversed)
-					dat += "<font size=2px>[entry]<br>[reversed[entry]]</font><br>"
-			dat += "<hr>"
+			var/list/all_the_entrys = log_source[log_type]
+			for(var/entry in all_the_entrys)
+				concatenated_logs += "<b>[entry]</b><br>[all_the_entrys[entry]]"
+	if(length(concatenated_logs))
+		sortTim(concatenated_logs, cmp = /proc/cmp_text_dsc) //Sort by timestamp.
+		dat += "<font size=2px>"
+		dat += concatenated_logs.Join("<br>")
+		dat += "</font>"
 
-	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 700, 550)
-	browser.set_content(dat)
-	browser.open(FALSE)
+	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Individual Logs", 700, 600)
+	popup.set_content(dat.Join())
+	popup.open()
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
@@ -319,7 +321,8 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 	var/slabel = label
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b><font color='#ff8c8c'>\[[label]\]</font></b>"
-
+	//This is necessary because num2text drops digits and rounds on big numbers. If more defines get added in the future it could break again.
+	log_type = num2text(log_type, MAX_BITFLAG_DIGITS)
 	return "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
@@ -753,9 +756,12 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
 			html = "[span_notice("PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]")]</font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/new_admin_help = admin_ticket_log(src,
+			"<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>",
+			player_message = "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)]</b> to <i>External</i>: [keywordparsedmsg]</font>")
+
 		externalreplyamount--
-		send2adminchat("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
+		send2adminchat("[new_admin_help ? "#[new_admin_help.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
@@ -776,13 +782,15 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 				window_flash(src, TRUE)
 
 				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
-				admin_ticket_log(src, interaction_message)
+				var/player_interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, FALSE)]</b> to-<b>[key_name(recipient, src, FALSE)]</b>: [keywordparsedmsg]</font>"
+				admin_ticket_log(src, interaction_message, player_message = player_interaction_message)
 				if(recipient != src)
-					admin_ticket_log(recipient, interaction_message)
+					admin_ticket_log(recipient, interaction_message, player_message = player_interaction_message)
 
 			else //Recipient is a staff member, sender is not.
 				SEND_SIGNAL(current_ticket, COMSIG_ADMIN_HELP_REPLIED)
-				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>",
+					player_message = "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>" )
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = "<font size='4' color='red'><b>-- Private message --</b></font>\n[span_adminsay("Reply from- <b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]")]")
@@ -834,7 +842,7 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
-				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>", player_message = "<font color='#a7f2ef'>PM From [key_name_admin(src, FALSE)]: [keywordparsedmsg]</font>")
 
 
 			else		//neither are admins
@@ -991,7 +999,7 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 		type = MESSAGE_TYPE_ADMINPM,
 		html = "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>", player_message = "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
@@ -1200,7 +1208,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN, "Show Objective Panel",
 	target_mind.traitor_panel()
 
 ADMIN_VERB(set_xeno_stat_buffs, R_ADMIN, "Set Xeno Buffs", "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal", ADMIN_CATEGORY_MAIN)
-	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
+	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack", default = GLOB.xeno_stat_multiplicator_buff * 100)
 
 	if(!multiplicator_buff_wanted)
 		return

@@ -74,16 +74,16 @@
 	var/obj/effect/particle_effect/smoke/smoke_effecttype = smoke_type::smoke_type
 	anim.particles.color = smoke_effecttype::color
 	anim.pixel_x = (maw.bound_width/2) - 16
-	animate(anim, anim.duration, easing=EASE_IN|CUBIC_EASING, pixel_y=600)
+	animate(anim, anim.duration, easing=EASE_IN|CUBIC_EASING, pixel_z=600)
 
 /datum/maw_ammo/smoke/impact_visuals(turf/target)
 	. = ..()
 	var/obj/effect/temp_visual/maw_gas_land/anim = new(target)
 	var/obj/effect/particle_effect/smoke/smoke_effecttype = smoke_type::smoke_type
 	anim.particles.color = smoke_effecttype::color
-	anim.pixel_y = 700
-	animate(anim, anim.duration, easing=EASE_IN|CUBIC_EASING, pixel_y=0)
-	animate(alpha = 0, pixel_y = 700)
+	anim.pixel_z = 700
+	animate(anim, anim.duration, easing=EASE_IN|CUBIC_EASING, pixel_z=0)
+	animate(alpha = 0, pixel_z = 700)
 
 /datum/maw_ammo/smoke/on_impact(turf/target)
 	var/datum/effect_system/smoke_spread/smoke = new smoke_type
@@ -106,12 +106,13 @@
 /datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
 	. = ..()
 	for(var/turf/newspray in view(smokeradius*0.5, target))
-		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+		xenomorph_spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
 	cooldown_time = 10 MINUTES
+	impact_time = 12 SECONDS
 	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
@@ -130,7 +131,7 @@
 /datum/maw_ammo/hugger/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
 	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
 	anim.pixel_x = (maw.bound_width/2) - 16
-	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_z=600)
 	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
@@ -150,11 +151,11 @@
 
 			var/xoffset = (target.x - candidate.x) * 32
 			var/yoffset = (target.y - candidate.y) * 32 + 600
-			paratrooper.pixel_x = xoffset
-			paratrooper.pixel_y = yoffset
+			paratrooper.pixel_w = xoffset
+			paratrooper.pixel_z = yoffset
 
 			var/current_hugger_iconstate = paratrooper.icon_state
-			animate(paratrooper, 2 SECONDS, pixel_x=0, pixel_y=0, icon_state=initial(paratrooper.icon_state)+"_thrown", easing=EASE_OUT|CUBIC_EASING)
+			animate(paratrooper, 2 SECONDS, pixel_w=0, pixel_z=0, icon_state=initial(paratrooper.icon_state)+"_thrown", easing=EASE_OUT|CUBIC_EASING)
 			animate(icon_state=current_hugger_iconstate)
 			spawned_huggers += paratrooper
 			CHECK_TICK // not in a hurry, we have 2 sec after all :)
@@ -166,7 +167,8 @@
 /datum/maw_ammo/minion
 	name = "ball of minions"
 	radial_icon_state = "minion"
-	cooldown_time = 5 MINUTES
+	cooldown_time = 10 MINUTES
+	impact_time = 12 SECONDS
 	/// range_turfs that minions will be dropped around the target
 	var/drop_range = 7
 	/// how many minions get dropped at once, does not stack on turfs if theres not enough turfs
@@ -192,7 +194,7 @@
 	var/obj/effect/temp_visual/thrown_minion/anim = new(maw.loc, minion_options)
 	anim.pixel_x = (maw.bound_width/2) - rand(48, 30)
 	anim.transform = matrix().Turn(rand(360))
-	animate(anim, anim.duration, transform=matrix().Turn(rand(360)), easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+	animate(anim, anim.duration, transform=matrix().Turn(rand(360)), easing=EASE_OUT|CUBIC_EASING, pixel_z=600)
 
 /datum/maw_ammo/minion/impact_visuals(turf/target)
 	var/list/turf/turfs = RANGE_TURFS(drop_range, target)
@@ -214,10 +216,10 @@
 
 			var/xoffset = (target.x - candidate.x) * 32
 			var/yoffset = (target.y - candidate.y) * 32 + 600
-			paratrooper.pixel_x = xoffset
-			paratrooper.pixel_y = yoffset
+			paratrooper.pixel_w = xoffset
+			paratrooper.pixel_z = yoffset
 
-			animate(paratrooper, 2 SECONDS, pixel_x=initial(paratrooper.pixel_x), pixel_y=initial(paratrooper.pixel_y), easing=EASE_OUT|CUBIC_EASING)
+			animate(paratrooper, 2 SECONDS, pixel_w=initial(paratrooper.pixel_w), pixel_z=initial(paratrooper.pixel_z), easing=EASE_OUT|CUBIC_EASING)
 			spawned_minions += paratrooper
 			CHECK_TICK // not in a hurry, we have 2 sec after all :)
 
@@ -247,14 +249,14 @@
 	var/obj/effect/temp_visual/fireball/fireball = new
 	maw.vis_contents += fireball
 	fireball.pixel_x = (maw.bound_width/2) - 16
-	animate(fireball, fireball.duration, easing=EASE_IN|CUBIC_EASING, pixel_y=600)
+	animate(fireball, fireball.duration, easing=EASE_IN|CUBIC_EASING, pixel_z=600)
 	animate(icon=null)
 
 /datum/maw_ammo/xeno_fire/impact_visuals(turf/target)
 	var/obj/effect/temp_visual/fireball/fireball = new(target)
 	fireball.transform = matrix().Turn(180)
-	fireball.pixel_y = 800
-	animate(fireball, 2 SECONDS, easing=EASE_IN|CUBIC_EASING, pixel_y=0)
+	fireball.pixel_z = 800
+	animate(fireball, 2 SECONDS, easing=EASE_IN|CUBIC_EASING, pixel_z=0)
 	animate(icon=null)
 
 /datum/maw_ammo/xeno_fire/on_impact(turf/target)
@@ -312,7 +314,7 @@
 		if(!slient)
 			balloon_alert(xeno_shooter, "must be leader")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
@@ -322,7 +324,7 @@
 	if(!selected_type)
 		return FALSE
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
@@ -338,7 +340,7 @@
 		if(!slient)
 			balloon_alert(xeno_shooter, "moved too far away")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")

@@ -94,6 +94,11 @@
 
 
 /mob/living/carbon/human/adjustBruteLoss(amount, updating_health = FALSE)
+	var/list/amount_mod = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_BRUTE_DAMAGE, amount, amount_mod)
+	for(var/i in amount_mod)
+		amount -= i
+
 	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
@@ -102,8 +107,12 @@
 	else
 		heal_overall_damage(-amount, 0, updating_health = updating_health)
 
-
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
+	var/list/amount_mod = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_BURN_DAMAGE, amount, amount_mod)
+	for(var/i in amount_mod)
+		amount -= i
+
 	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
@@ -326,7 +335,7 @@ This function restores all limbs.
 		UpdateDamageIcon()
 
 
-/mob/living/carbon/proc/get_limb(zone)
+/mob/living/proc/get_limb(zone)
 	return
 
 /mob/living/carbon/human/get_limb(zone)
@@ -337,10 +346,10 @@ This function restores all limbs.
 			continue
 		return EO
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker)
 	if(status_flags & (GODMODE))
 		return
-	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)
+	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, attacker, src)
 
 /mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
 	if(!proj_def_zone)

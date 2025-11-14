@@ -29,14 +29,14 @@
 	worn_icon_state = "fingerless"
 
 /obj/item/clothing/gloves/marine/hyperscale
-	name = "8E Chameleon TGMC combat gloves"
+	name = "\improper 8E Chameleon TGMC combat gloves"
 	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
 	icon_state = "hyperscale_glove_inhand"
 	worn_icon_state = "hyperscale_glove_mob"
 	worn_icon_list = list(slot_gloves = /datum/greyscale_config/marine_uniform)
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 
@@ -99,6 +99,14 @@
 	siemens_coefficient = 0
 	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 15)
+
+/obj/item/clothing/gloves/marine/veteran/pmc_elite
+	name = "PMC elite gloves"
+	desc = "A pair of black gloves armored with pure white plates, used by Nanotrasen PMC contractors."
+	icon_state = "armored_pmc"
+	siemens_coefficient = 0
+	item_flags = SYNTH_RESTRICTED
+	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/gloves/marine/veteran/pmc/commando
 	name = "\improper PMC commando gloves"

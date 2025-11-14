@@ -16,6 +16,10 @@
 #define BLOCKS_CONSTRUCTION_DIR (1<<6)
 ///! Can we ignore density when building on this object? (for example, directional windows and grilles)
 #define IGNORE_DENSITY (1<<7)
+#define BLOCK_Z_OUT_DOWN (1<<8)  // Should this object block z falling from loc?
+#define BLOCK_Z_OUT_UP (1<<9) // Should this object block z uprise from loc?
+#define BLOCK_Z_IN_DOWN (1<<10) // Should this object block z falling from above?
+#define BLOCK_Z_IN_UP (1<<11) // Should this object block z uprise from below?
 
 
 //Fire and Acid stuff, for resistance_flags

@@ -3,7 +3,7 @@
 	name = "acid rain"
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
-	telegraph_duration = 400
+	telegraph_duration = 600
 	telegraph_message = span_userdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
 	telegraph_overlay = "rain_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
@@ -20,9 +20,9 @@
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ACIDRAIN
-
+	use_glow = FALSE
 	barometer_predictable = TRUE
-
+	play_screen_indicator = TRUE
 	probability = 40
 	repeatable = FALSE
 
@@ -60,6 +60,7 @@
 /datum/weather/acid_rain/harmless
 	target_trait = ZTRAIT_RAIN
 
+	telegraph_duration = 400
 	telegraph_message = span_danger("Thunder rumbles far above. You hear droplets drumming against the canopy.")
 	telegraph_overlay = "rain_med"
 	telegraph_sound = null
@@ -69,6 +70,8 @@
 
 	end_message = span_danger("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"
+
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE

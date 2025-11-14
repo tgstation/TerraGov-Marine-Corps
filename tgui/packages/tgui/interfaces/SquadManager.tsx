@@ -51,8 +51,9 @@ export const SquadManager = (props) => {
                   <Stack.Item>
                     <TextArea
                       autoFocus
+                      expensive
                       placeholder={'New name'}
-                      onChange={(e, value) => setSquadName(value)}
+                      onChange={setSquadName}
                       width="180px"
                       height="20px"
                     >
@@ -96,8 +97,9 @@ export const SquadManager = (props) => {
               <Stack.Item>
                 <TextArea
                   fluid
+                  expensive
                   placeholder="Set Description for squad"
-                  onChange={(e, value) => setSquadDesc(value)}
+                  onChange={setSquadDesc}
                   width="180px"
                   height="200px"
                 >

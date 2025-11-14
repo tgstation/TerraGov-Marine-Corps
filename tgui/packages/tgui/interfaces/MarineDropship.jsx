@@ -161,7 +161,7 @@ const CorruptedOperation = (props) => {
           Status: {data.ship_status}
         </Box>
         <Box mt={1}>
-          <Button onClick={() => act('hijack')}>
+          <Button onClick={() => act('hijack')} disabled={data.hijack_disabled}>
             Launch to {data.current_map}
           </Button>
         </Box>

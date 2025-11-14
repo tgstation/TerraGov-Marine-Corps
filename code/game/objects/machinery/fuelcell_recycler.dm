@@ -99,9 +99,9 @@
 
 	if(machine_stat & (BROKEN|NOPOWER))
 		if(cell_left != null)
-			src.overlays += "recycler-left-cell"
+			. += "recycler-left-cell"
 		if(cell_right != null)
-			src.overlays += "recycler-right-cell"
+			. += "recycler-right-cell"
 		return
 
 	var/overlay_builder = "recycler-"

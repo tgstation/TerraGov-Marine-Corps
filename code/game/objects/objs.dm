@@ -40,6 +40,9 @@
 	var/list/req_one_access = null
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
+	/// Map tag for something.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
+	/// Next pr after the network fix will have me refactor door interactions, so help me god.
+	var/id_tag = null
 
 /obj/Initialize(mapload)
 	. = ..()
@@ -88,7 +91,7 @@
 		.["indestructible"] = "It's completely invulnerable to damage or complete destruction. Some objects still have special interactions for xenos."
 		return // we do not want to say it's indestructible and then list 500 fucktillion things that are implied by the word "indestructible"
 	if(resistance_flags & UNACIDABLE)
-		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Acid does not stick to or affect this object."
+		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Corrosive acid does not stick to or affect this object."
 	if(resistance_flags & PLASMACUTTER_IMMUNE)
 		.["plasma cutter-proof"] = "Plasma cutters cannot destroy this object."
 	if(!isitem(src) && (resistance_flags & PROJECTILE_IMMUNE))
@@ -325,7 +328,7 @@
 ///Handles welder based repair of objects, normally called by welder_act
 /obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_DEFAULT, fuel_req = 2, fumble_time)
 	if(user.do_actions)
-		balloon_alert(user, "busy")
+		balloon_alert(user, "busy!")
 		return FALSE
 
 	if(user.a_intent == INTENT_HARM)
@@ -337,7 +340,7 @@
 		return FALSE
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
@@ -393,7 +396,7 @@
 		user.drop_held_item()
 	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
-	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE, attacker = user)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
@@ -415,7 +418,7 @@
 		return FALSE
 	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
 		if(user)
-			balloon_alert(user, "Cannot disassemble")
+			balloon_alert(user, "can't disassemble!")
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE

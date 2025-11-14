@@ -5,9 +5,8 @@
 	turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	turret_icon_state = "apc_turret"
 	icon_state = "apc"
-	armored_flags = NONE
 	move_delay = 0.3 SECONDS
 	armored_flags = NONE
-	pixel_w = -16
-	pixel_z = -8
+	pixel_x = -16
+	pixel_y = -8
 	max_occupants = 3

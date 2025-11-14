@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/queen/primordial,
 	/mob/living/carbon/xenomorph/king,
 	/mob/living/carbon/xenomorph/king/primordial,
+	/mob/living/carbon/xenomorph/king/conqueror,
+	/mob/living/carbon/xenomorph/king/conqueror/primordial,
 	/mob/living/carbon/xenomorph/wraith,
 	/mob/living/carbon/xenomorph/wraith/primordial,
 	/mob/living/carbon/xenomorph/ravager,
@@ -128,6 +130,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/pyrogen,
 	/mob/living/carbon/xenomorph/pyrogen/primordial,
 	/mob/living/carbon/xenomorph/baneling,
+	/mob/living/carbon/xenomorph/dragon,
+	/mob/living/carbon/xenomorph/dragon/primordial,
 	))
 
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
@@ -213,4 +217,5 @@ GLOBAL_LIST_INIT(human_init_actions, list(
 	/datum/action/innate/order/retreat_order/personal,
 	/datum/action/innate/order/rally_order/personal,
 	/datum/action/innate/message_squad,
+	/datum/action/ability/activable/build_designator,
 ))

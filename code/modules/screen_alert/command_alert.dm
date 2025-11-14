@@ -33,13 +33,13 @@
 		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/message_squad/can_use_action()
+/datum/action/innate/message_squad/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
 	if(!should_show())
 		return FALSE
-	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HUD_ORDER))
 		return FALSE
 	if(owner.skills.getRating(skill_name) < skill_min)
 		return FALSE

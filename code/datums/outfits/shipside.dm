@@ -167,6 +167,14 @@
 	gloves = /obj/item/clothing/gloves/marine
 	l_pocket = /obj/item/pamphlet/tank_loader
 
+/datum/outfit/job/command/assault_crewman/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+
+
 /datum/outfit/job/command/assault_crewman/fallen
 	ears = null
 
@@ -240,6 +248,12 @@
 	r_pocket = /obj/item/storage/pouch/general/large
 	l_pocket = /obj/item/supplytablet
 
+/datum/outfit/job/requisitions/officer/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER

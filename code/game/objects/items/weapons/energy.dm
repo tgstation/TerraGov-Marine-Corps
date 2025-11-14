@@ -141,18 +141,12 @@
 	force_activated = 50
 	sword_color = "on"
 
-/obj/item/weapon/energy/sword/som/Initialize(mapload)
-	. = ..()
-	set_light_range_power_color(2, 1, COLOR_ORANGE)
-
 /obj/item/weapon/energy/sword/som/switch_state(datum/source, mob/living/user)
 	. = ..()
 	if(active)
 		flick("som_sword_open", src)
-		set_light_on(TRUE)
 	else
 		flick("som_sword_close", src)
-		set_light_on(FALSE)
 
 /obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()

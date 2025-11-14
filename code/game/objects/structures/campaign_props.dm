@@ -5,12 +5,32 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
+	bound_height = 64
+	bound_width = 96
 	density = TRUE
-	allow_pass_flags = PASS_AIR
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/prop/som_fighter/empty
 	icon_state = "SOM_fighter_empty"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
+
+/obj/structure/prop/tgmc_fighter
+	name = "viper"
+	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+	icon_state = "fighter_loaded"
+	pixel_x = -33
+	pixel_y = -10
+	bound_height = 64
+	bound_width = 96
+	density = TRUE
+	allow_pass_flags = PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
+
+/obj/structure/prop/tgmc_fighter/empty
+	icon_state = "fighter"
+	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades. This one seems to be unarmed currently."
 
 /obj/structure/prop/train
 	name = "locomotive"
@@ -20,15 +40,6 @@
 	density = TRUE
 	allow_pass_flags = PASS_AIR
 	bound_width = 128
-
-/obj/structure/prop/train/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/structure/prop/train/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
 
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
@@ -84,6 +95,13 @@
 	desc = "A heavy duty maglev railcar. This one is currently empty."
 	icon_state = "empty"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+
+/obj/structure/prop/train/empty/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/prop/nt_computer
 	name = "server rack"

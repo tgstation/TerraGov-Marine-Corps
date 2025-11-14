@@ -181,7 +181,9 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "K" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "L" = (
@@ -260,7 +262,9 @@
 /turf/closed/gm/dense,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "Z" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/west)
 

@@ -1,3 +1,6 @@
+#define ICON_STATE_CHECKED 1 /// this dmi is checked. We don't check this one anymore.
+#define ICON_STATE_NULL 2 /// this dmi has null-named icon_state, allowing it to show a sprite on vv editor.
+
 ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View the variables of a datum.", ADMIN_CATEGORY_DEBUG, datum/thing in world)
 	user.debug_variables(thing)
 
@@ -17,7 +20,9 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/vv)
 	asset_cache_datum.send(usr)
 
-	var/islist = islist(thing) || (!isdatum(thing) && hascall(thing, "Cut")) // Some special lists dont count as lists, but can be detected by if they have list procs
+	if(isappearance(thing))
+		thing = get_vv_appearance(thing) // this is /mutable_appearance/our_bs_subtype
+	var/islist = islist(thing) || (!isdatum(thing) && hascall(thing, "Cut")) // Some special lists don't count as lists, but can be detected by if they have list procs
 	if(!islist && !isdatum(thing))
 		return
 
@@ -26,7 +31,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 	var/icon/sprite
 	var/hash
 
-	var/type = islist? /list : thing.type
+	var/type = islist ? /list : thing.type
 	var/no_icon = FALSE
 
 	if(isatom(thing))
@@ -35,8 +40,25 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 			no_icon = TRUE
 
 	else if(isimage(thing))
+		// icon_state=null shows first image even if dmi has no icon_state for null name.
+		// This list remembers which dmi has null icon_state, to determine if icon_state=null should display a sprite
+		// (NOTE: icon_state="" is correct, but saying null is obvious)
+		var/static/list/dmi_nullstate_checklist = list()
 		var/image/image_object = thing
-		sprite = icon(image_object.icon, image_object.icon_state)
+		var/icon_filename_text = "[image_object.icon]" // "icon(null)" type can exist. textifying filters it.
+		if(icon_filename_text)
+			if(image_object.icon_state)
+				sprite = icon(image_object.icon, image_object.icon_state)
+
+			else // it means: icon_state=""
+				if(!dmi_nullstate_checklist[icon_filename_text])
+					dmi_nullstate_checklist[icon_filename_text] = ICON_STATE_CHECKED
+					if(icon_exists(image_object.icon, ""))
+						// this dmi has nullstate. We'll allow "icon_state=null" to show image.
+						dmi_nullstate_checklist[icon_filename_text] = ICON_STATE_NULL
+
+				if(dmi_nullstate_checklist[icon_filename_text] == ICON_STATE_NULL)
+					sprite = icon(image_object.icon, image_object.icon_state)
 
 	var/sprite_text
 	if(sprite)
@@ -90,6 +112,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 			names += varname
 
 	sleep(1 TICKS)
+	var/ui_scale = prefs?.ui_scale
 
 	var/list/variable_html = list()
 	if(islist)
@@ -112,6 +135,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 		<title>[title]</title>
 		<link rel="stylesheet" type="text/css" href="[SSassets.transport.get_asset_url("view_variables.css")]">
+		[!ui_scale && window_scaling ? "<style>body {zoom: [100 / window_scaling]%;}</style>" : ""]
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -280,7 +304,14 @@ datumrefresh=[refid];[HrefToken()]'>Refresh</a>
 	</body>
 </html>
 "}
-	src << browse(html, "window=variables[refid];size=475x650")
+	var/size_string = "size=475x650";
+	if(ui_scale && window_scaling)
+		size_string = "size=[475 * window_scaling]x[650 * window_scaling]"
+
+	src << browse(html, "window=variables[refid];[size_string]")
 
 /client/proc/vv_update_display(datum/thing, span, content)
 	src << output("[span]:[content]", "variables[REF(thing)].browser:replace_span")
+
+#undef ICON_STATE_CHECKED
+#undef ICON_STATE_NULL

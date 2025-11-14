@@ -122,7 +122,7 @@
 					for(var/obj/O in src)
 						O.forceMove(new_machine)
 						new_machine.component_parts += O
-					circuit.loc = new_machine
+					circuit.forceMove(new_machine)
 					new_machine.RefreshParts()
 					qdel(src)
 

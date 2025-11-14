@@ -76,8 +76,9 @@
 	for(var/obj/item/P in src)
 		dat += "<tr><td><a href='byond://?src=[text_ref(src)];retrieve=[text_ref(P)]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
-
+	var/datum/browser/browser = new(user, "filingcabinet", name, 350, 300)
+	browser.set_content(dat)
+	browser.open()
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	. = ..()

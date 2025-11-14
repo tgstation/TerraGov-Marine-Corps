@@ -130,6 +130,7 @@
 	name = "offhand"
 	item_flags = DELONDROP|TWOHANDED|WIELDED
 	resistance_flags = RESIST_ALL
+	layer = BELOW_OBJ_LAYER
 
 /obj/item/weapon/twohanded/offhand/Destroy()
 	if(ismob(loc))
@@ -269,7 +270,7 @@
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.lying_angle)
 			continue
-		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, attacker = owner)
 		human_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		human_victim.adjust_stagger(1 SECONDS)
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
@@ -392,9 +393,9 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -439,7 +440,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
-	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Unique Action to change modes."
 	icon_state = "rocketsledge"
 	worn_icon_state = "rocketsledge"
 	force = 30
@@ -534,14 +535,14 @@
 		stun = crush_stun_amount
 		paralyze = crush_paralyze_amount
 		knockback = 0
-		balloon_alert(user, "Selected mode: CRUSH.")
+		balloon_alert(user, "mode: CRUSH")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
 	stun = knockback_stun_amount
 	paralyze = knockback_paralyze_amount
 	knockback = 1
-	balloon_alert(user, "Selected mode: KNOCKBACK.")
+	balloon_alert(user, "mode: KNOCKBACK")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
@@ -556,8 +557,8 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE)
-	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
+	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE, attacker = user)
+	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("[user]'s rocket sledge smashes you!"))
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
@@ -575,7 +576,7 @@
 
 	if(isxeno(M))
 		var/mob/living/carbon/xenomorph/xeno_victim = M
-		if(xeno_victim.fortify || xeno_victim.endure || HAS_TRAIT_FROM(xeno_victim, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)) //If we're fortified or use endure we don't give a shit about staggerstun.
+		if(xeno_victim.fortify || xeno_victim.endure || xeno_victim.endurance_active || HAS_TRAIT_FROM(xeno_victim, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)) //If we're fortified or use endure we don't give a shit about staggerstun.
 			return
 
 		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
@@ -673,17 +674,16 @@
 	if(!active)
 		force = initial(force)
 		hitsound = initial(hitsound)
-		balloon_alert(user, "The motor died down!")
+		balloon_alert(user, "the motor is dead!")
 		update_icon()
 		update_item_state()
 		return
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
-		balloon_alert(user, "Not enough fuel!")
+		balloon_alert(user, "no fuel!")
 		return
 	force += additional_damage
 	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 	hitsound = 'sound/weapons/chainsawhit.ogg'
-	balloon_alert(user, "The motor whirr to lifel!")
 	update_icon()
 	update_item_state()
 
@@ -747,13 +747,12 @@
 		return
 	var/obj/structure/reagent_dispensers/fueltank/saw = target
 	if(saw.reagents.total_volume == 0)
-		balloon_alert(user, "Out of fuel!")
+		balloon_alert(user, "no fuel!")
 		return ..()
 	var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
 	saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "You refill it with fuel.")
 	update_icon()
 
 	return ..()
@@ -769,7 +768,7 @@
 		return
 
 	if(user.do_actions)
-		target_object.balloon_alert(user, "already busy")
+		target_object.balloon_alert(user, "busy!")
 		return TRUE
 
 	if(user.incapacitated() || get_dist(user, target_object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword

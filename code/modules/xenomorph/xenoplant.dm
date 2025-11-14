@@ -71,8 +71,8 @@
 
 /obj/structure/xeno/plant/heal_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled && mature)
-		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
-		plant_explosion.set_up(3,src)
+		var/datum/effect_system/smoke_spread/xeno/acid/light/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(1,src)
 		plant_explosion.start()
 		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
 	return ..()
@@ -112,10 +112,10 @@
 					break
 				far_away_lands = next_turf
 
-			nearby_human.throw_at(far_away_lands, 20, spin = TRUE)
+			nearby_human.throw_at(far_away_lands, 7, spin = TRUE)
 			to_chat(nearby_human, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
-			nearby_human.adjust_stagger(3 SECONDS)
-			nearby_human.apply_damage(30, BRUTE, "chest", BOMB)
+			nearby_human.adjust_stagger(1.5 SECONDS)
+			nearby_human.apply_damage(15, BRUTE, "chest", BOMB, attacker = blame_mob)
 	return ..()
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
@@ -145,8 +145,8 @@
 
 /obj/structure/xeno/plant/plasma_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled && mature)
-		var/datum/effect_system/smoke_spread/xeno/pyrogen_fire/plant_explosion = new(get_turf(src))
-		plant_explosion.set_up(4, src)
+		var/datum/effect_system/smoke_spread/xeno/pyrogen_fire/light/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(1, src)
 		plant_explosion.start()
 		visible_message(span_warning("[src] bursts, releasing blue hot gas!"))
 	return ..()
@@ -248,7 +248,7 @@
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
 				continue
-			X.alpha = HUNTER_STEALTH_RUN_ALPHA
+			X.set_alpha_source(ALPHA_SOURCE_NIGHTSHADE, HUNTER_STEALTH_RUN_ALPHA)
 			new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(X))
 			balloon_alert(X, "We now blend in")
 			to_chat(X, span_xenowarning("The pollen from [src] reacts with our scales, we are blending with our surroundings!"))
@@ -265,6 +265,6 @@
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
 	for(var/mob/living/carbon/xenomorph/X AS in camouflaged_xenos)
-		X.alpha = initial(X.alpha)
+		X.remove_alpha_source(ALPHA_SOURCE_NIGHTSHADE)
 		balloon_alert(X, "Effect wears off")
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))

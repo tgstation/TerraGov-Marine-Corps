@@ -74,6 +74,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
 		/datum/campaign_mission/capture_mission/asat = 12,
 		/datum/campaign_mission/raiding_base/som = 6,
+		/datum/campaign_mission/destroy_mission/airbase/som = 12,
 	),
 ))
 
@@ -208,10 +209,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Sets the faction leader
 /datum/faction_stats/proc/set_faction_leader(mob/living/new_leader)
+	if(faction_leader == new_leader)
+		return
 	var/old_leader = faction_leader
 	faction_leader = new_leader
+	RegisterSignals(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(unset_faction_leader))
 
 	if(old_leader && old_leader != faction_leader)
+		UnregisterSignal(old_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
 			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[old_leader] has been demoted from the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	if(!faction_leader)
@@ -223,6 +228,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	to_chat(faction_leader, span_userdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal. \
 	Attrition must be set BEFORE a mission starts ensure you team has access to respawns. Check this in the Faction UI screen. \
 	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
+
+///Unsets the faction leader and finds a new one after a delay
+/datum/faction_stats/proc/unset_faction_leader(mob/source, mystery_arg, timer_delay = 15 SECONDS) //COMSIG_QDELETING has a mystery arg and I don't want to delete it in case it actually does something
+	SIGNAL_HANDLER
+	if(faction_leader)
+		UnregisterSignal(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
+		faction_leader = null
+	addtimer(CALLBACK(src, PROC_REF(get_selector)), timer_delay)
 
 ///Adds a new asset to the faction for use
 /datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
@@ -275,14 +288,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	generate_new_mission()
 	update_static_data_for_all_viewers()
+	unset_faction_leader(timer_delay = AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 	addtimer(CALLBACK(src, PROC_REF(return_to_base), completed_mission), AFTER_MISSION_TELEPORT_DELAY)
-	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
 ///applies cash rewards to the faction and all individuals
 /datum/faction_stats/proc/apply_cash(amount)
 	if(!amount)
 		return
-	amount *= 1 + loss_bonus
+	amount *= (1 + loss_bonus)
 	accumulated_mission_reward += amount
 	for(var/i in individual_stat_list)
 		var/datum/individual_stats/player_stats = individual_stat_list[i]
@@ -487,6 +500,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			var/combined_attrition = total_attrition_points + active_attrition_points
 			var/choice = tgui_input_number(user, "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, combined_attrition, 0, 60 SECONDS)
+			if(isnull(choice))
+				return
 			//check again so you can't just hold the window open
 			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, span_warning("Current mission already ongoing, unable to assign more personnel at this time."))

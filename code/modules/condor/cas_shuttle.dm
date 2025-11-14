@@ -216,7 +216,6 @@
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(fire_weapons_at))
 	RegisterSignal(user, COMSIG_TOPIC, PROC_REF(handle_topic))
 
-	user.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 
 ///Ends the CAS mission
 /obj/docking_port/mobile/marine_dropship/casplane/proc/end_cas_mission(mob/living/user)
@@ -268,7 +267,7 @@
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, span_warning("No ammo remaining!"))
 		return
-	if(!COOLDOWN_CHECK(active_weapon, last_fired))
+	if(!COOLDOWN_FINISHED(active_weapon, last_fired))
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
 	active_weapon.open_fire(target, attackdir)

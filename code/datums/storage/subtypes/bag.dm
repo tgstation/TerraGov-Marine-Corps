@@ -1,7 +1,6 @@
 /datum/storage/bag
 	allow_quick_gather = TRUE
 	allow_quick_empty = TRUE
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
 	use_to_pickup = TRUE
 
 /datum/storage/bag/trash
@@ -119,22 +118,11 @@
 	var/obj/item/storage/bag/sheetsnatcher/sheetsnatcher = parent
 	var/adjusted_contents = length(sheetsnatcher.contents)
 
-	//Numbered contents display
-	var/list/datum/numbered_display/numbered_contents
-	if(display_contents_with_number)
-		numbered_contents = list()
-		adjusted_contents = 0
-		for(var/obj/item/stack/sheet/I in sheetsnatcher.contents)
-			adjusted_contents++
-			var/datum/numbered_display/D = new/datum/numbered_display(I)
-			D.number = I.amount
-			numbered_contents.Add( D )
-
 	var/row_num = 0
 	var/col_count = min(7,storage_slots) -1
 	if (adjusted_contents > 7)
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	slot_orient_objs(row_num, col_count, numbered_contents)
+	slot_orient_objs(row_num, col_count)
 
 /datum/storage/bag/sheetsnatcher/quick_empty(datum/source, mob/user) // Modified quick_empty verb drops appropriate sized stacks
 	var/obj/item/storage/bag/sheetsnatcher/sheetsnatcher = parent

@@ -1,3 +1,5 @@
+#define DEFAULT_MAP_SIZE 15
+
 /obj/machinery/computer/camera
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
@@ -15,8 +17,7 @@
 
 	// Stuff needed to render the map
 	var/const/default_map_size = 15
-	var/atom/movable/screen/map_view/cam_screen
-	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/map_view/camera/cam_screen
 
 /obj/machinery/computer/camera/Initialize(mapload)
 	. = ..()
@@ -33,13 +34,8 @@
 	cam_screen = new
 	cam_screen.generate_view(map_name)
 
-	cam_background = new
-	cam_background.assigned_map = map_name
-	cam_background.del_on_map_removal = FALSE
-
 /obj/machinery/computer/camera/Destroy()
 	QDEL_NULL(cam_screen)
-	QDEL_NULL(cam_background)
 	return ..()
 
 /obj/machinery/computer/camera/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
@@ -52,7 +48,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
-		show_camera_static()
+		cam_screen.show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
 		var/is_living = isliving(user)
@@ -64,12 +60,11 @@
 		if(length(concurrent_users) == 1 && is_living)
 			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 			use_power(active_power_usage)
-		// Register map objects
-		cam_screen.display_to(user)
-		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
 		ui.open()
+		// Register map objects
+		cam_screen.display_to(user, ui.window)
 
 /obj/item/hud_tablet/ui_close(mob/user)
 	. = ..()
@@ -113,7 +108,7 @@
 
 		// Show static if can't use the camera
 		if(!active_camera?.can_use())
-			show_camera_static()
+			cam_screen.show_camera_static()
 			return TRUE
 
 		var/list/visible_turfs = list()
@@ -124,9 +119,7 @@
 		var/size_x = bbox[3] - bbox[1] + 1
 		var/size_y = bbox[4] - bbox[2] + 1
 
-		cam_screen.vis_contents = visible_turfs
-		cam_background.icon_state = "clear"
-		cam_background.fill_rect(1, 1, size_x, size_y)
+		cam_screen.show_camera(visible_turfs, size_x, size_y)
 
 		return TRUE
 
@@ -143,10 +136,33 @@
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 		use_power(0)
 
-/obj/machinery/computer/camera/proc/show_camera_static()
-	cam_screen.vis_contents.Cut()
+/atom/movable/screen/map_view/camera
+	/// All the plane masters that need to be applied.
+	var/atom/movable/screen/background/cam_background
+
+/atom/movable/screen/map_view/camera/Destroy()
+	QDEL_NULL(cam_background)
+	return ..()
+
+/atom/movable/screen/map_view/camera/generate_view(map_key)
+	. = ..()
+	cam_background = new
+	cam_background.del_on_map_removal = FALSE
+	cam_background.assigned_map = assigned_map
+
+/atom/movable/screen/map_view/camera/display_to_client(client/show_to)
+	show_to.register_map_obj(cam_background)
+	. = ..()
+
+/atom/movable/screen/map_view/camera/proc/show_camera(list/visible_turfs, size_x, size_y)
+	vis_contents = visible_turfs
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, size_x, size_y)
+
+/atom/movable/screen/map_view/camera/proc/show_camera_static()
+	vis_contents.Cut()
 	cam_background.icon_state = "scanline2"
-	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
+	cam_background.fill_rect(1, 1, DEFAULT_MAP_SIZE, DEFAULT_MAP_SIZE)
 
 // Returns the list of cameras accessible from this computer
 /obj/machinery/computer/camera/proc/get_available_cameras()
@@ -166,3 +182,5 @@
 		if(length(tempnetwork))
 			valid_cams["[C.c_tag]"] = C
 	return valid_cams
+
+#undef DEFAULT_MAP_SIZE

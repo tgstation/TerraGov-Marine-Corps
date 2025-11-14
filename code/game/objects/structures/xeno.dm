@@ -69,7 +69,7 @@
 
 
 /obj/alien/resin/attack_hand(mob/living/user)
-	balloon_alert(user, "You only scrape at it")
+	balloon_alert(user, "need a weapon!")
 	return TRUE
 
 
@@ -80,7 +80,8 @@
 	density = FALSE
 	opacity = FALSE
 	max_integrity = 36
-	layer = BELOW_OBJ_LAYER
+	plane = FLOOR_PLANE
+	layer = ABOVE_WEEDS_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
@@ -100,9 +101,9 @@
 	if(crosser.throwing || crosser.buckled)
 		return
 
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += slow_amt
+	if(issealedvehicle(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
 		return
 
 	if(!ishuman(crosser))
@@ -133,6 +134,14 @@
 		deconstruct(TRUE)
 		return
 
+	return ..()
+
+/obj/alien/resin/sticky/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/alien/resin/sticky/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
 	return ..()
 
 // Hivelord Sticky Resin spit uses this.
@@ -207,11 +216,16 @@
 		qdel(src)
 		return TRUE
 
-	src.balloon_alert(xeno_attacker, "Destroying...")
+	src.balloon_alert(xeno_attacker, "destroying...")
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
-		src.balloon_alert(xeno_attacker, "Destroyed")
+		src.balloon_alert(xeno_attacker, "destroyed")
 		qdel(src)
+
+/obj/structure/mineral_door/resin/take_damage(damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, mob/living/blame_mob)
+	if(damage_type != BRUTE && damage_type != BURN)
+		return
+	return ..()
 
 /obj/structure/mineral_door/resin/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
@@ -272,7 +286,7 @@
 			. = TRUE
 			break
 	if(!.)
-		src.balloon_alert_to_viewers("Collapsed")
+		src.balloon_alert_to_viewers("collapsed")
 		qdel(src)
 
 /obj/structure/mineral_door/resin/thick
@@ -284,24 +298,17 @@
 	icon = 'icons/Xeno/xeno_materials.dmi'
 	icon_state = "resin_jelly"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
-	var/immune_time = 15 SECONDS
-	///Holder to ensure only one user per resin jelly.
+	/// The amount of deciseconds to give the Resin Coating status effect.
+	var/immune_time = 30 SECONDS
+	/// Holder to ensure only one user per resin jelly.
 	var/current_user
+	/// If thrown, should it create a 3x3 when it lands? If so, how long in deciseconds if it impacts a human?
+	var/combustive_duration = 0 SECONDS
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
-
-	if(xeno_attacker.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
-		return attack_hand(xeno_attacker)
-	if(xeno_attacker.do_actions || !isnull(current_user))
-		return
-	current_user = xeno_attacker
-	xeno_attacker.balloon_alert(xeno_attacker, "Applying...")
-	if(!do_after(xeno_attacker, RESIN_SELF_TIME, NONE, xeno_attacker, BUSY_ICON_MEDICAL))
-		current_user = null
-		return
-	activate_jelly(xeno_attacker)
+	return attack_hand(xeno_attacker)
 
 /obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
 	//Activates if the item itself is clicked in hand.
@@ -310,7 +317,7 @@
 	if(user.do_actions || !isnull(current_user))
 		return
 	current_user = user
-	user.balloon_alert(user, "Applying...")
+	user.balloon_alert(user, "applying...")
 	if(!do_after(user, RESIN_SELF_TIME, NONE, user, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
@@ -322,14 +329,14 @@
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
-		M.balloon_alert(user, "Cannot apply")
+		M.balloon_alert(user, "that's not a xeno!")
 		return FALSE
 	if(user.do_actions || !isnull(current_user))
 		return FALSE
 	current_user = M
-	M.balloon_alert(user, "Applying...")
+	M.balloon_alert(user, "applying...")
 	if(M != user)
-		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
+		user.balloon_alert(M, "applying jelly...") //Notify recipient to not move.
 	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), NONE, M, BUSY_ICON_MEDICAL))
 		current_user = null
 		return FALSE
@@ -346,19 +353,51 @@
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	if(isxenohivelord(thrower))
-		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(jelly_throw_hit))
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
+		RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_ended))
 	. = ..()
 
-/obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
+/// Applies the jelly effect for xenomorphs. Otherwise, may explode into sticky resin against everyone else.
+/obj/item/resin_jelly/proc/on_throw_impact(datum/source, atom/hit_atom, speed)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	if(!isliving(hit_atom))
+		return
+	UnregisterSignal(source, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW))
+	var/mob/living/hit_living = hit_atom
+	if(combustive_duration)
+		for(var/turf/sticky_tile AS in RANGE_TURFS(1, get_turf(hit_living)))
+			if(!locate(/obj/alien/resin/sticky/thin) in sticky_tile.contents)
+				var/obj/alien/resin/sticky/thin/temporary_resin = new(sticky_tile)
+				QDEL_IN(temporary_resin, 15 SECONDS)
+		if(!hit_living.issamexenohive(thrower))
+			hit_living.adjust_stagger(combustive_duration)
+		playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
+		qdel(src)
+		return
 	if(!isxeno(hit_atom))
 		return
-	var/mob/living/carbon/xenomorph/X = hit_atom
-	if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+	var/mob/living/carbon/xenomorph/hit_xenomorph = hit_atom
+	if(hit_xenomorph.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	X.visible_message(span_notice("[X] is splattered with jelly!"))
-	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)
+	hit_xenomorph.visible_message(span_notice("[hit_xenomorph] is splattered with jelly!"))
+	INVOKE_ASYNC(src, PROC_REF(activate_jelly), hit_xenomorph)
+
+/// Possibly explode into sticky resin upon finishing the throw.
+/obj/item/resin_jelly/proc/on_throw_ended(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW))
+	if(!combustive_duration)
+		return
+	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
+		if(!locate(/obj/alien/resin/sticky/thin) in sticky_tile.contents)
+			var/obj/alien/resin/sticky/thin/temporary_resin = new(sticky_tile)
+			QDEL_IN(temporary_resin, 15 SECONDS)
+	playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
+	qdel(src)
+
+///////////////////////
+/// Globadier Mines ///
+///////////////////////
 
 /obj/structure/xeno/acid_mine
 	name = "acid mine"
@@ -370,7 +409,7 @@
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
-	/// The damage dealt to mobs nearby the detonation point of the mine
+	///The amount of acid damage this deals
 	var/acid_damage = 30
 
 /obj/structure/xeno/acid_mine/Initialize(mapload)
@@ -381,20 +420,19 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	detonate()
+	detonate(blame_mob)
 	return ..()
 
-/// Checks if the mob walking over the mine is human, and calls detonate if so
+// Checks if the mob walking over the mine is human, and calls detonate if so
 /obj/structure/xeno/acid_mine/proc/oncrossed(datum/source, atom/movable/A, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!ishuman(A))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	INVOKE_ASYNC(src, PROC_REF(detonate))
+	INVOKE_ASYNC(src, PROC_REF(detonate), A)
 
-///Handles detonating the mine, and dealing damage to those nearby
-/obj/structure/xeno/acid_mine/proc/detonate()
+/obj/structure/xeno/acid_mine/proc/detonate(triggerer)
 	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
@@ -403,14 +441,102 @@
 		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
 	qdel(src)
 
+////////////////
+/// Gas Mine ///
+////////////////
+
 /obj/structure/xeno/acid_mine/gas_mine
 	name = "gas mine"
 	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
 	icon_state = "gas_mine"
 	acid_damage = 40
 
-/obj/structure/xeno/acid_mine/gas_mine/detonate()
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
-	A.set_up(1,src)
-	A.start()
+/obj/structure/xeno/acid_mine/gas_mine/detonate(triggerer)
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smog = new(get_turf(src))
+	smog.set_up(1,src)
+	smog.start()
 	return ..()
+
+//////////////////
+/// Incen Mine ///
+//////////////////
+
+/obj/structure/xeno/acid_mine/incen_mine
+	name = "incendiary mine"
+	desc = "A purple blob that sparks like lightning."
+	icon_state = "incen_mine"
+
+/obj/structure/xeno/acid_mine/incen_mine/detonate(triggerer)
+	flame_radius(1, get_turf(src), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "violet")
+	qdel(src)
+
+//////////////////
+/// Resin Mine ///
+//////////////////
+
+/obj/structure/xeno/acid_mine/resin_mine
+	name = "resin mine"
+	desc = "A translucent purple blob, insides lined with clear ampoules of resin."
+	icon_state = "resin_mine"
+
+/obj/structure/xeno/acid_mine/resin_mine/detonate(triggerer)
+	var/cannotbuild = FALSE
+	for(var/turf/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", pass_flags_checked = PASS_AIR))
+		cannotbuild = FALSE
+		if((resin_tile.density || istype(resin_tile, /turf/open/space))) // No structures in space
+			continue
+
+		for(var/obj/O in resin_tile.contents)
+			if(istype(O, /obj/alien/resin))
+				cannotbuild = TRUE
+
+		if(!cannotbuild)
+			new /obj/alien/resin/sticky(resin_tile)
+
+	for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
+		if(affected.stat == DEAD)
+			continue
+		var/throwloc = affected.loc
+		for(var/x in 1 to 6)
+			throwloc = get_step(throwloc, REVERSE_DIR(affected.dir))
+		affected.throw_at(throwloc, 12, 2.5, src, TRUE)
+	qdel(src)
+
+//////////////////
+/// Neuro Mine ///
+//////////////////
+
+/obj/structure/xeno/acid_mine/neuro_mine
+	name = "neurotoxin mine"
+	desc = "An oddly colored weed sac, filled with dense orange gas."
+	icon_state = "neuro_mine"
+
+/obj/structure/xeno/acid_mine/neuro_mine/detonate(triggerer)
+	var/datum/effect_system/smoke_spread/xeno/neuro/medium/gas = new(get_turf(src))
+	gas.set_up(2, src)
+	gas.start()
+
+	if(ishuman(triggerer))
+		var/mob/living/carbon/human/victim = triggerer
+		victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 5)
+		to_chat(victim, span_userdanger("You are pricked by a spike on the mine!"))
+	qdel(src)
+
+//////////////////////
+/// Lifetrade Mine ///
+//////////////////////
+
+/obj/structure/xeno/acid_mine/drain_mine
+	name = "drain mine"
+	desc = "A cyan blob that crackles with lifeblood."
+	icon_state = "emp_mine"
+
+/obj/structure/xeno/acid_mine/drain_mine/detonate(triggerer)
+	if(ishuman(triggerer))
+		var/mob/living/carbon/human/victim = triggerer
+		victim.apply_status_effect(STATUS_EFFECT_LIFEDRAIN)
+		new /obj/effect/temp_visual/telekinesis(get_turf(victim))
+	var/datum/effect_system/smoke_spread/xeno/hemodile/gas = new(get_turf(src))
+	gas.set_up(2, src)
+	gas.start()
+	qdel(src)

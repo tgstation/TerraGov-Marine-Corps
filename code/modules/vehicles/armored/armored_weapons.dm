@@ -20,6 +20,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target
@@ -72,7 +73,9 @@
 	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(source.incapacitated(TRUE))
+		return
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
@@ -83,7 +86,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30)
-		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -96,12 +99,13 @@
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
+			current_firer.say("On the way!")
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_ARMORED_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /// do after checks for the mecha equipment do afters
 /obj/item/armored_weapon/proc/do_after_checks(atom/target)
@@ -167,7 +171,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/armored_weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
@@ -187,6 +191,10 @@
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/armored_weapon/proc/fire()
 	if(!current_target)
+		return
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
+	if(current_firer.incapacitated(TRUE))
 		return
 	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
@@ -236,8 +244,8 @@
 ///The actual firing of a projectile. Overridable for different effects
 /obj/item/armored_weapon/proc/do_fire(turf/source_turf, ammo_override)
 	var/datum/ammo/ammo_type = ammo_override ? ammo_override : ammo.default_ammo
-	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
+	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -350,6 +358,20 @@
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 5 SECONDS
 	hud_state_empty = "rifle_empty"
+
+/obj/item/armored_weapon/tank_autocannon
+	name = "\improper Bushwhacker Autocannon"
+	desc = "A Bushwhacker 30mm Autocannon for vehicular use."
+	icon_state = "tank_autocannon"
+	fire_sound = SFX_AC_FIRE
+	interior_fire_sound = list('sound/vehicles/weapons/tank_autocannon_interior_fire_1.ogg', 'sound/vehicles/weapons/tank_autocannon_interior_fire_2.ogg')
+	ammo = /obj/item/ammo_magazine/tank/autocannon
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/autocannon, /obj/item/ammo_magazine/tank/autocannon/high_explosive)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	variance = 2
+	projectile_delay = 0.45 SECONDS
+	rearm_time = 9 SECONDS
+	hud_state_empty = "hivelo_empty"
 
 /obj/item/armored_weapon/apc_cannon
 	name = "\improper MKV-7 utility payload launcher"

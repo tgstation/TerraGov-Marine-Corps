@@ -58,7 +58,7 @@ As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barr
 As a ravager, you passively gain rage while on fire.
 As a ravager, don't get overconfident.
 As a ravager, you will regenerate your rage, up to a point.
-As a ravager or gorger, you will not be affected by tanglefoot or the tesla rifle. However, pepperballs and the smartgunner's tanglefoot DMR ammo still will.
+Ravagers, gorgers and puppeteers are unaffected by plasma drain. This includes tanglefoot, pepperballs and tesla rifle drain.
 As a gorger, your drain ability can be used on corpses to heal incredibly fast, and scales up with pheromones.
 As a gorger, you have very little armour. You do not have to consider sunder as much as other castes.
 As a gorger, overheal will let you drain corpses even if you're taking damage! This also applies to anyone else that you've overhealed.

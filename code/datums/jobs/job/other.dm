@@ -25,6 +25,10 @@
 	skills_type = /datum/skills/spatial_agent
 	outfit = /datum/outfit/job/other/spatial_agent
 
+/datum/job/spatial_agent/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+	. = ..()
+	H.grant_language(/datum/language/xenocommon)
+
 /datum/job/spatial_agent/galaxy_red
 	outfit = /datum/outfit/job/other/spatial_agent/galaxy_red
 

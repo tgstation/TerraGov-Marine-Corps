@@ -15,3 +15,9 @@
 	description = "Toggles your blink drive on, allowing you to instantly teleport short distances."
 	keybind_signal = COMSIG_ITEM_TOGGLE_BLINKDRIVE
 	hotkey_keys = list("G")
+
+/datum/keybinding/item/toggle_strap
+	name = "item_toggle_strap"
+	full_name = "Activates item strap"
+	description = "Tightens or loosens the strap on your held item, if it has one."
+	keybind_signal = COMSIG_ITEM_TOGGLE_STRAP

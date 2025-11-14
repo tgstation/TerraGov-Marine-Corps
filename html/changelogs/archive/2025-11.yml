@@ -1,0 +1,73 @@
+2025-11-01:
+  Lumipharon:
+  - balance: 'Campaign: Some objectives explode violently on destruction'
+  - balance: Focus order slightly reduces scatter
+  - rscadd: Improved overlay lighting
+  - qol: Bike mounted weapons can be unequipped by dropping them
+  - rscadd: NPCs will shoot xeno turrets
+  - bugfix: fixed facehuggers not properly registering as hazards to NPCs
+2025-11-02:
+  Atropos:
+  - bugfix: fixed music requests not showing who requested music
+  - admin: Music request is now purple colored (from cyan)
+  - bugfix: CIC spotlights now say how much time they last
+  GregorMN:
+  - imageadd: Updated zombie sprites
+  Lumipharon:
+  - bugfix: fixed some visual issues with HvH deploy points
+  - bugfix: Mobs riding vehicles as they deploy in HvH get spawn protection as well.
+  - refactor: refactored nuke disk and NT access computer code into a single type
+  - bugfix: 'Campaign: fixed destroy objectives on a couple of missions having the
+      wrong faction'
+  - balance: 'Crash: After 60 minutes, the marine player count is effectively increased
+      by 1 every 10 minutes, for larva gen calculations'
+  Runian:
+  - rscadd: Xenomorph variant of tactical smoke.
+  - rscadd: 6 more mutations for Hunter.
+  - code_imp: Atoms can now track where and how their alpha is changed; xenomorphs
+      are the only ones that do this right now.
+  Scav:
+  - rscadd: Added a sleeper to Canterbury medical
+  breadhunt:
+  - rscadd: Pheromone HUD indicators now change depending on the strength of each
+      pheromone
+2025-11-03:
+  Lumipharon:
+  - rscadd: Baseball bats can bounce back thrown things
+  - bugfix: fixed defender and praetorian reflect abilities
+  - imageadd: Ported TG light sprites
+2025-11-04:
+  Neocloudy:
+  - qol: The zombie revive sound now uses the same alert noise as being defibrillated,
+      rather than reusing an admin sound.
+2025-11-07:
+  mudzbe:
+  - rscadd: Fully implement zombie crash gamemode
+  - rscadd: Corpse spawns will spawn zombies on zombie crash
+  - rscadd: Zombie spawners have markers on the minimap
+  - rscadd: Boomer Zombie
+  - rscadd: Hunter Zombie
+  - rscadd: Zombie minimap
+  - rscadd: Zombie tunnels icon, which blinks when under attack
+  - rscadd: Zombie tunnels spawn extra defenders when under threat
+  - rscadd: All minions rally to the nuke when it activates
+  - rscadd: Zombies can disable APCs
+  - rscadd: Zombies can disable nukes
+  - bugfix: Fixes Zombies being able to open cades
+  - bugfix: Fixes Zombie claw icon being an error
+  - bugfix: Fixes Zombies AI breaking on reanimation
+2025-11-08:
+  blackdav123:
+  - rscadd: Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points
+      each.
+2025-11-13:
+  Runian:
+  - bugfix: Autodoc now correctly queues up bone fixing surgery on Automatic mode.
+2025-11-14:
+  Neocloudy:
+  - refactor: "Health analyzers have had their TGUI refactored significantly, again.\
+      \ Please report any issues\u2014colors are most likely to be bugged in this\
+      \ update."
+  - qol: Health scans now include blood flow rate.
+  - qol: Chemical contents in health scans are sorted based on internal priority rather
+      than order the chemical entered the patient.

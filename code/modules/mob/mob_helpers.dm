@@ -418,9 +418,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	A.target = source
 	if(!alert_overlay)
 		alert_overlay = new(source)
-		var/icon/I = icon(source.icon)
-		var/iheight = I.Height()
-		var/iwidth = I.Width()
+		var/iheight = source.get_cached_height()
+		var/iwidth = source.get_cached_width()
 		var/higher_power = (iheight > iwidth) ? iheight : iwidth
 		if(higher_power > 32)
 			var/diff = 32 / higher_power

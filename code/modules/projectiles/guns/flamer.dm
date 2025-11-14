@@ -55,9 +55,6 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
-	light_range = 0.1
-	light_power = 0.1
-	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -122,10 +119,8 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
 	if(CHECK_BITFIELD(flamer_features_flags, FLAMER_NO_LIT_OVERLAY))
@@ -139,15 +134,9 @@
 		return
 
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
-	lit_overlay.pixel_x += lit_overlay_offset_x
-	lit_overlay.pixel_y += lit_overlay_offset_y
+	lit_overlay.pixel_w += lit_overlay_offset_x
+	lit_overlay.pixel_z += lit_overlay_offset_y
 	. += lit_overlay
-
-/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -158,7 +147,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/do_fire(atom/movable/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
@@ -197,7 +186,9 @@
 		turf_to_check = path_to_target[iteration - 1]
 	if(LinkBlocked(turf_to_check, path_to_target[iteration], PASS_AIR|PASS_XENO)) //checks if it's actually possible to get to the next tile in the line
 		return
-	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
+	if(turf_to_check.density)
+		if(!(turf_to_check.allow_pass_flags & PASS_FIRE))
+			return
 		walls_penetrated -= 1
 	//how many resin walls we've penetrated check
 	if(walls_penetrated <= 0)
@@ -221,7 +212,9 @@
 	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
 			//Checks if turf is resin wall
-			if(turf.density && istype(turf, /turf/closed/wall/resin))
+			if(turf.density)
+				if(!(turf.allow_pass_flags & PASS_FIRE))
+					break
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
 			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
@@ -422,7 +415,7 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(atom/movable/projectile/projectile_to_fire)
 	if(!target)
 		return
 	if(gun_user?.skills.getRating(SKILL_COMBAT) < 0)
@@ -551,3 +544,29 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	return
 
 #undef FLAMER_WATER
+
+/obj/item/weapon/gun/flamer/vsd
+	name = "\improper CC/21 flamer"
+	desc = "The CC/21 flamer, a new design made by CrashCore and is truly a sight to behold. For its heavy duty look, it makes up for it with its firepower. Canister fed and fueled by X-fuel."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "c21"
+	worn_icon_state = "c21"
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	lit_overlay_icon_state = "c21_lit"
+	lit_overlay_offset_x = 0
+	flame_max_range = 9
+	cone_angle = 40
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/vsd
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/vsd
+	)
+	attachable_offset = list("rail_x" = 11, "rail_y" = 25, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flamer_nozzle/wide,
+	)

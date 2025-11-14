@@ -88,7 +88,7 @@
 /area/deathmatch)
 "bN" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -384,9 +384,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/space)
 "eO" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "eP" = (
@@ -793,7 +791,7 @@
 	dir = 1
 	},
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -883,7 +881,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -950,9 +948,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "uS" = (
@@ -1152,9 +1148,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "DT" = (
@@ -1394,7 +1388,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -1593,9 +1587,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "Tx" = (
@@ -2056,7 +2048,7 @@ fI
 fI
 fI
 Bs
-dT
+si
 dG
 dG
 fI
@@ -2197,7 +2189,7 @@ pj
 fI
 Bs
 Bs
-fs
+va
 kJ
 dG
 as
@@ -2430,7 +2422,7 @@ pj
 RZ
 fI
 Bs
-va
+fs
 eZ
 fI
 fI
@@ -2440,7 +2432,7 @@ Bs
 aH
 dG
 Jm
-va
+fs
 tr
 YJ
 dG
@@ -2474,11 +2466,11 @@ pG
 Bs
 fI
 Bs
-va
+fs
 eZ
 Bs
 Bs
-va
+fs
 fI
 Bs
 Bs
@@ -2522,7 +2514,7 @@ pN
 fI
 Bs
 Bs
-va
+fs
 fI
 dG
 eM
@@ -2536,7 +2528,7 @@ fI
 Bs
 dG
 kJ
-fs
+va
 tr
 UV
 zB
@@ -2649,7 +2641,7 @@ IZ
 (19,1,1) = {"
 pj
 Gb
-si
+dT
 dG
 dG
 dG
@@ -3306,11 +3298,11 @@ dG
 WV
 dt
 tr
-fs
+va
 kJ
 DM
 dt
-fs
+va
 kJ
 tr
 kJ
@@ -3354,11 +3346,11 @@ dG
 Jm
 kJ
 tr
-fs
+va
 dL
 Tw
 qV
-fs
+va
 tr
 tr
 tr
@@ -3377,7 +3369,7 @@ dZ
 fI
 Bs
 Bs
-fs
+va
 UU
 fL
 UU
@@ -3425,7 +3417,7 @@ dZ
 fI
 Bs
 fI
-fs
+va
 hG
 hG
 nu
@@ -3502,7 +3494,7 @@ fI
 fI
 fa
 DT
-dT
+si
 eM
 GE
 kJ
@@ -3535,7 +3527,7 @@ UU
 eB
 YO
 UU
-va
+fs
 Bs
 Bs
 dG
@@ -3583,7 +3575,7 @@ UU
 eB
 eB
 UU
-va
+fs
 Bs
 UN
 dG
@@ -3836,13 +3828,13 @@ pj
 pj
 Nc
 Nc
-si
+dT
 Nc
 Ga
 TX
 TX
 wb
-va
+fs
 RO
 pj
 "}
@@ -3866,7 +3858,7 @@ pj
 pj
 pj
 fI
-fs
+va
 kJ
 dG
 UV

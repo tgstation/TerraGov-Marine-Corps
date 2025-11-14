@@ -112,10 +112,6 @@
 "bc" = (
 /turf/open/ground,
 /area/lv624/ground/caves/central2)
-"bd" = (
-/obj/item/alien_embryo,
-/turf/open/ground,
-/area/space)
 "be" = (
 /obj/machinery/light{
 	dir = 4
@@ -610,7 +606,7 @@
 "eg" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "ei" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
@@ -1027,7 +1023,7 @@
 /area/lv624/lazarus/medbay)
 "gI" = (
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "gO" = (
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow/full,
@@ -3524,7 +3520,7 @@
 	name = "Colonist Jackson Martin"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "tE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -3713,7 +3709,7 @@
 	name = "Colonist Jac Mester"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "vs" = (
 /obj/effect/landmark/dropship_start_location,
 /turf/open/ground,
@@ -3760,7 +3756,7 @@
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "wa" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -3834,7 +3830,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "xc" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
@@ -4019,7 +4015,7 @@
 	name = "Colonist Drew Bellel"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "AM" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table,
@@ -4192,7 +4188,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "CO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4244,7 +4240,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "DP" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
@@ -4308,7 +4304,7 @@
 	name = "Colonist Olgin Vekin"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "EH" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -4348,7 +4344,7 @@
 	name = "Colonist Evan Kark"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Fl" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/green/whitegreen,
@@ -4399,7 +4395,7 @@
 "FX" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "FY" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -4407,7 +4403,7 @@
 "FZ" = (
 /obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Gh" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "secure_blast";
@@ -4507,11 +4503,7 @@
 	},
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/ground,
-/area/space)
-"HY" = (
-/obj/effect/landmark/weed_node,
-/turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Ic" = (
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
@@ -4586,7 +4578,7 @@
 	name = "Colonist Ellis Bark"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Jz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4628,7 +4620,7 @@
 	name = "Colonist Terrin Yin"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Km" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced{
@@ -4679,7 +4671,7 @@
 "KV" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Lj" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
@@ -4857,7 +4849,7 @@
 	},
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "NG" = (
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
@@ -4874,7 +4866,7 @@
 	name = "Colonist Wes Uvin"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "NK" = (
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
@@ -4923,10 +4915,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground,
 /area/lv624/ground/compound/sw)
-"Ou" = (
-/obj/effect/ai_node,
-/turf/open/ground,
-/area/space)
 "Ov" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -4978,7 +4966,7 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Pj" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/landinglight/lz1{
@@ -5125,7 +5113,7 @@
 "Rm" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Ry" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
@@ -5154,7 +5142,7 @@
 	name = "Colonist Ted Jarka"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "RT" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/bomb_supply,
@@ -5179,7 +5167,7 @@
 	name = "Colonist Fors Ilin"
 	},
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Sk" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/green/whitegreen,
@@ -5284,7 +5272,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Tu" = (
 /obj/effect/ai_node,
 /turf/open/floor/grass,
@@ -5407,7 +5395,7 @@
 	name = "Colonist Olin Berus"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "Vy" = (
 /obj/effect/ai_node,
 /turf/open/ground,
@@ -5450,7 +5438,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 "VS" = (
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
@@ -5459,7 +5447,7 @@
 	name = "Colonist Marko Quin"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "VV" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5473,9 +5461,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
-"Wq" = (
-/turf/closed/mineral/smooth,
-/area/space)
 "Wt" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -5525,7 +5510,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/space)
+/area/lv624/ground/caves/central2)
 "WQ" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grass,
@@ -5763,7 +5748,7 @@
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
 /turf/open/ground,
-/area/space)
+/area/lv624/ground/caves/central2)
 
 (1,1,1) = {"
 PG
@@ -13824,10 +13809,10 @@ PG
 PG
 "}
 (80,1,1) = {"
-PG
-PG
-PG
-PG
+Pr
+Pr
+Pr
+Pr
 FX
 FX
 FX
@@ -13839,7 +13824,7 @@ KV
 FX
 FX
 FX
-Wq
+IT
 BJ
 BJ
 Ww
@@ -13926,14 +13911,14 @@ PG
 PG
 "}
 (81,1,1) = {"
-PG
-PG
-PG
+Pr
+Pr
+Pr
 Fi
 FX
-bd
+bz
 Nv
-af
+bc
 VO
 CG
 Kl
@@ -14028,12 +14013,12 @@ PG
 PG
 "}
 (82,1,1) = {"
-PG
-PG
-PG
+Pr
+Pr
+Pr
 AH
 KV
-af
+bc
 Tt
 DN
 DN
@@ -14042,7 +14027,7 @@ DN
 DN
 DN
 DN
-af
+bc
 FX
 Mq
 BJ
@@ -14130,21 +14115,21 @@ PG
 PG
 "}
 (83,1,1) = {"
-PG
-PG
-PG
+Pr
+Pr
+Pr
 vi
 FX
-af
+bc
 DN
-af
-af
-af
-af
-af
-af
+bc
+bc
+bc
+bc
+bc
+bc
 DN
-af
+bc
 FX
 Lk
 BJ
@@ -14232,21 +14217,21 @@ PG
 PG
 "}
 (84,1,1) = {"
-PG
-PG
-PG
-Wq
+Pr
+Pr
+Pr
+IT
 FX
 Pi
 DN
-af
-af
-HY
+bc
+bc
+TV
 Rm
-af
-af
+bc
+bc
 Tt
-Ou
+WF
 ZX
 dR
 BJ
@@ -14334,21 +14319,21 @@ PG
 PG
 "}
 (85,1,1) = {"
-PG
-PG
-PG
-Wq
+Pr
+Pr
+Pr
+IT
 FX
 Jv
 DN
 DN
 DN
-af
-af
+bc
+bc
 DN
 DN
 DN
-af
+bc
 FX
 KQ
 bE
@@ -14436,17 +14421,17 @@ PG
 PG
 "}
 (86,1,1) = {"
-PG
-PG
-PG
-Wq
+Pr
+Pr
+Pr
+IT
 FX
 ED
 NI
 RD
 DN
-af
-af
+bc
+bc
 DN
 tD
 HG
@@ -14538,10 +14523,10 @@ PG
 PG
 "}
 (87,1,1) = {"
-PG
-PG
-PG
-Wq
+Pr
+Pr
+Pr
+IT
 FX
 FX
 FX
@@ -14640,22 +14625,22 @@ PG
 PG
 "}
 (88,1,1) = {"
-PG
-PG
-PG
-bd
-af
-af
-af
+Pr
+Pr
+Pr
+bz
+bc
+bc
+bc
 FZ
-af
-af
-af
+bc
+bc
+bc
 eg
 eg
 eg
-af
-Wq
+bc
+IT
 BJ
 BJ
 Ww
@@ -14742,22 +14727,22 @@ PG
 PG
 "}
 (89,1,1) = {"
-PG
-PG
-PG
-Ou
-HY
+Pr
+Pr
+Pr
+WF
+TV
 eg
 eg
 eg
-af
-Ou
-HY
+bc
+WF
+TV
 eg
 eg
 eg
-af
-Ou
+bc
+WF
 BJ
 BJ
 Ww
@@ -14844,22 +14829,22 @@ PG
 PG
 "}
 (90,1,1) = {"
-PG
-PG
-PG
-af
-af
+Pr
+Pr
+Pr
+bc
+bc
 eg
 eg
 eg
-af
-af
-af
+bc
+bc
+bc
 eg
 eg
 eg
-af
-af
+bc
+bc
 bE
 BJ
 BJ
@@ -14946,22 +14931,22 @@ KK
 PG
 "}
 (91,1,1) = {"
-PG
-PG
-PG
-PG
-af
+Pr
+Pr
+Pr
+Pr
+bc
 eg
 eg
 eg
-HY
-bd
-af
-af
-PG
-PG
-af
-af
+TV
+bz
+bc
+bc
+Pr
+Pr
+bc
+bc
 bE
 bE
 BJ
@@ -15048,22 +15033,22 @@ ll
 PG
 "}
 (92,1,1) = {"
-PG
-PG
-PG
-PG
-PG
-PG
-af
-af
-af
-Ou
-af
-PG
-PG
-PG
-PG
-Ou
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+bc
+bc
+bc
+WF
+bc
+Pr
+Pr
+Pr
+Pr
+WF
 bE
 Hc
 bE
@@ -15150,22 +15135,22 @@ KK
 PG
 "}
 (93,1,1) = {"
-PG
-PG
-PG
-PG
-Wq
-Wq
-PG
-PG
-PG
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-PG
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+Pr
+Pr
+Pr
+IT
+IT
+IT
+IT
+IT
+IT
+Pr
 Ww
 bE
 bE
@@ -15252,22 +15237,22 @@ ll
 PG
 "}
 (94,1,1) = {"
-PG
-PG
-PG
-PG
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
 BJ
 Ww
 Ww
@@ -15354,22 +15339,22 @@ li
 PG
 "}
 (95,1,1) = {"
-PG
-PG
-PG
-PG
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
 BJ
 BJ
 BJ
@@ -15456,22 +15441,22 @@ PG
 PG
 "}
 (96,1,1) = {"
-PG
-PG
-PG
-PG
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
-Wq
+Pr
+Pr
+Pr
+Pr
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
+IT
 BJ
 BJ
 BJ
@@ -15558,22 +15543,22 @@ PG
 PG
 "}
 (97,1,1) = {"
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
 Ww
 Ww
 Ww
@@ -15660,22 +15645,22 @@ PG
 PG
 "}
 (98,1,1) = {"
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
 Ww
 Ww
 Ww
@@ -15762,22 +15747,22 @@ PG
 PG
 "}
 (99,1,1) = {"
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
 Ww
 Ww
 Ww

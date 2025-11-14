@@ -29,8 +29,8 @@
 	deevolves_to = /datum/xeno_caste/sentinel
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -59,6 +59,12 @@
 		/datum/action/ability/activable/xeno/spray_acid/line,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/acid_sweat,
+		/datum/mutation_upgrade/spur/hit_and_run,
+		/datum/mutation_upgrade/veil/wet_claws
+	)
+
 /datum/xeno_caste/spitter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
@@ -67,7 +73,7 @@
 	caste_desc = "Master of ranged combat, this xeno knows no equal."
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD|CASTE_MUTATIONS_ALLOWED
 
 	spit_delay = 0.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
@@ -99,6 +105,12 @@
 		/datum/action/ability/activable/xeno/scatter_spit,
 		/datum/action/ability/xeno_action/acid_mine,
 		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/self_explosion,
+		/datum/mutation_upgrade/spur/blood_grenades,
+		/datum/mutation_upgrade/veil/repurposed_capacity
 	)
 
 /datum/xeno_caste/spitter/globadier/normal
