@@ -369,7 +369,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
-	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+	playsound(get_turf(buyer), 'sound/weapons/pierce.ogg', 25, 1)
 
 /datum/hive_upgrade/defence
 	category = "Defences"
