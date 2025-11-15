@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Adjusted logic for Jaws so acid and fire is placed more realistically"
