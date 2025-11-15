@@ -490,6 +490,8 @@
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/sow/update_button_icon()
+	if(QDELETED(xeno_owner) || QDELETED(button))
+		return
 	button.overlays.Cut()
 	button.overlays += image('icons/Xeno/actions/construction.dmi', button, initial(xeno_owner.selected_plant.name))
 	return ..()

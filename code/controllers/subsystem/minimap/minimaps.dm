@@ -657,8 +657,8 @@ SUBSYSTEM_DEF(minimaps)
 			owner.client.screen -= z_indicator
 			owner.client.screen -= z_up
 			owner.client.screen -= z_down
-		map.stop_polling -= owner
-		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+		map?.stop_polling -= owner
+		locator?.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	minimap_displayed = force_state
 	return TRUE
 

@@ -474,7 +474,7 @@
 
 	SSdirection.start_tracking(HS.hivenumber, src)
 	hive.update_tier_limits() //Update our tier limits.
-	INVOKE_NEXT_TICK(hive, TYPE_PROC_REF(/datum/hive_status, update_ruler))
+	INVOKE_NEXT_TICK_UNIQUE(hive, TYPE_PROC_REF(/datum/hive_status, update_ruler))
 
 	remove_abilities()
 	remove_component(/datum/component/seethrough_mob)
@@ -578,7 +578,7 @@
 
 	if(hive.living_xeno_ruler == src)
 		hive.set_ruler(null)
-		INVOKE_NEXT_TICK(hive, TYPE_PROC_REF(/datum/hive_status, update_ruler))
+		INVOKE_NEXT_TICK_UNIQUE(hive, TYPE_PROC_REF(/datum/hive_status, update_ruler))
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
@@ -749,7 +749,7 @@
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
 	ruler.hud_set_queen_overwatch()
-	INVOKE_NEXT_TICK(src, PROC_REF(update_ruler))
+	INVOKE_NEXT_TICK_UNIQUE(src, PROC_REF(update_ruler))
 	return TRUE
 
 /// If the current ruler devolves or caste_swaps we want to properly handle it
@@ -764,7 +764,7 @@
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
 		leader.update_leader_icon(FALSE)
-	INVOKE_NEXT_TICK(src, PROC_REF(update_ruler))
+	INVOKE_NEXT_TICK_UNIQUE(src, PROC_REF(update_ruler))
 
 /// This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler(mob/living/carbon/xenomorph/previous_ruler)

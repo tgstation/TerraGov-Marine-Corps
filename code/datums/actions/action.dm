@@ -202,7 +202,7 @@ KEYBINDINGS
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
-	owner.update_action_buttons()
+	INVOKE_NEXT_TICK_UNIQUE(owner, TYPE_PROC_REF(/mob, update_action_buttons))
 
 /datum/action/proc/remove_action(mob/M)
 	for(var/type in keybinding_signals)
@@ -215,7 +215,8 @@ KEYBINDINGS
 	M.actions -= src
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
-	M.update_action_buttons()
+	if(!QDELING(M))
+		M.update_action_buttons()
 
 ///Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()

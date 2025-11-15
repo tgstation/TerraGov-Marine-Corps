@@ -4,6 +4,7 @@
 
 ///Shorthand for invoking a proc next tick
 #define INVOKE_NEXT_TICK(arguments...) addtimer(CALLBACK(##arguments), 1)
+#define INVOKE_NEXT_TICK_UNIQUE(arguments...) addtimer(CALLBACK(##arguments), 1, TIMER_UNIQUE)
 
 ///Per the DM reference, spawn(-1) will execute the spawned code immediately until a block is met.
 #define MAKE_SPAWN_ACT_LIKE_WAITFOR -1
