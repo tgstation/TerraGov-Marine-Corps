@@ -40,6 +40,8 @@
 	. = ..()
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_zombie()
+	for(var/obj/structure/xenoautopsy/tank/hugger/tank_with_hugger AS in GLOB.tank_hugger_structures)
+		qdel(tank_with_hugger)
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)

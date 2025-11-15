@@ -188,6 +188,14 @@
 	desc = "There is something spider-like inside..."
 	occupant = /obj/item/clothing/mask/facehugger
 
+/obj/structure/xenoautopsy/tank/hugger/Initialize(mapload)
+	. = ..()
+	GLOB.tank_hugger_structures += src
+
+/obj/structure/xenoautopsy/tank/hugger/Destroy()
+	GLOB.tank_hugger_structures -= src
+	return ..()
+
 /obj/structure/xenoautopsy/tank/hugger/release_occupant()
 	var/obj/item/clothing/mask/facehugger/hugger = new occupant(loc)
 	hugger.go_active()

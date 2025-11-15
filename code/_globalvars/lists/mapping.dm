@@ -95,6 +95,7 @@ GLOBAL_LIST_EMPTY(map_items)
 GLOBAL_LIST_EMPTY(fog_blocker_locations)		//list of turfs marked by /obj/effect/landmark/lv624/fog_blocker
 GLOBAL_LIST_EMPTY(xeno_spawn_protection_locations)
 GLOBAL_LIST_EMPTY(fog_blockers)
+GLOBAL_LIST_EMPTY(tank_hugger_structures)		// List of all [/obj/structure/xenoautopsy/tank/hugger] to be qdel'd during [/datum/game_mode/infestation/crash/zombie/post_setup()].
 
 GLOBAL_LIST_EMPTY(huntergames_primary_spawns)
 GLOBAL_LIST_EMPTY(huntergames_secondary_spawns)
