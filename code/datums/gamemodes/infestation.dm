@@ -354,7 +354,7 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
 
-/datum/game_mode/infestation/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+/datum/game_mode/infestation/proc/on_nuclear_defuse(obj/machinery/nuclearbomb/bomb, mob/defuser)
 	SIGNAL_HANDLER
 	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Planetary Warhead Disengaged", type = ANNOUNCEMENT_PRIORITY)
 
