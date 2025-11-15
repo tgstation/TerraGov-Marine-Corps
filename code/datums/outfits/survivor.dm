@@ -425,3 +425,4 @@
 	glasses = /obj/item/clothing/glasses/m42_goggles
 	head = /obj/item/clothing/head/headband
 	ears = /obj/item/radio/headset/survivor
+	backpack_contents = list()

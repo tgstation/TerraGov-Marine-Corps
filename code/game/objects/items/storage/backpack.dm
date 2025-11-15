@@ -31,7 +31,7 @@
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-		if(storage_datum.use_sound)
+		if(storage_datum?.use_sound)
 			playsound(loc, storage_datum.use_sound, 15, 1, 6)
 	return ..()
 
