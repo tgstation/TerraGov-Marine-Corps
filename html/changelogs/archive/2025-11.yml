@@ -56,3 +56,18 @@
   - bugfix: Fixes Zombies being able to open cades
   - bugfix: Fixes Zombie claw icon being an error
   - bugfix: Fixes Zombies AI breaking on reanimation
+2025-11-08:
+  blackdav123:
+  - rscadd: Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points
+      each.
+2025-11-13:
+  Runian:
+  - bugfix: Autodoc now correctly queues up bone fixing surgery on Automatic mode.
+2025-11-14:
+  Neocloudy:
+  - refactor: "Health analyzers have had their TGUI refactored significantly, again.\
+      \ Please report any issues\u2014colors are most likely to be bugged in this\
+      \ update."
+  - qol: Health scans now include blood flow rate.
+  - qol: Chemical contents in health scans are sorted based on internal priority rather
+      than order the chemical entered the patient.

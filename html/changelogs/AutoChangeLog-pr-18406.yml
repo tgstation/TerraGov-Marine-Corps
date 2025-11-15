@@ -1,0 +1,4 @@
+author: "Joe13413"
+delete-after: True
+changes:
+  - bugfix: "Clarified an error message that pops up when you try to take an SSD mob."
