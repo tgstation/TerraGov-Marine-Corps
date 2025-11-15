@@ -1,0 +1,5 @@
+author: "GregorMN"
+delete-after: True
+changes:
+  - soundadd: "Two new bike rev sounds"
+  - imageadd: "Improved bike sprites"
