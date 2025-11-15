@@ -15,7 +15,7 @@
 
 /obj/item/deploy_capsule/Destroy()
 	template = null // without this, capsules would be one use. per round.
-	. = ..()
+	return ..()
 
 /obj/item/deploy_capsule/examine(mob/user)
 	. = ..()
