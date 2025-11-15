@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Removed some unneeded jobSS stuff when a round fails to start"
+  - admin: "Fixed a runtime with the banpanel in some instances"
