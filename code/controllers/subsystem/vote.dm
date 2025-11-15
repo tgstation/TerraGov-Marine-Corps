@@ -170,7 +170,6 @@ SUBSYSTEM_DEF(vote)
 				return
 			var/ship_change_required
 			var/ground_change_required
-			var/datum/game_mode/new_gamemode = config.pick_mode(.)
 			GLOB.master_mode = . //changes the current gamemode
 			//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
 			if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))

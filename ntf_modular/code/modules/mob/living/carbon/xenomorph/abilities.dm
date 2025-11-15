@@ -66,3 +66,263 @@
 	pod.creator_ckey = owner.ckey
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
+
+// ***************************************
+// *********** Psychic Radiance
+// ***************************************
+/datum/action/ability/xeno_action/psychic_radiance
+	name = "Psychic Radiance"
+	desc = "Use your psychic powers to send a message to all humans you can see."
+	action_icon_state = "psychic_radiance"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_RADIANCE,
+	)
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED // Proudly copypasted from psychic whisper
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/xeno_action/psychic_radiance/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
+		if(possible_target == X || !possible_target.client || isxeno(possible_target)) // Would ruin the whole point if we whisper to xenos too
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, span_warning("There's nobody nearby to radiate to."))
+		return
+
+	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
+		return
+
+	for(var/mob/living/L in target_list)
+		to_chat(L, span_psychicin("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
+		log_directed_talk(X, L, msg, LOG_SAY, "psychic radiance")
+
+	to_chat(X, span_psychicout("We radiated: \"[msg]\" to everyone nearby."))
+	message_admins("[ADMIN_LOOKUP(X)] has sent this psychic radiance: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
+
+// ***************************************
+// *********** Psychic Influence
+// ***************************************
+/datum/action/ability/xeno_action/psychic_influence
+	name = "Psychic Influence"
+	desc = "Use your psychic powers to plant a thought in the mind of an individual you can see."
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "psychic_whisper"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
+	)
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED
+	target_flags = ABILITY_MOB_TARGET
+
+
+/datum/action/ability/xeno_action/psychic_influence/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
+		if(possible_target == X || !possible_target.client) // Removed the Isxeno; time for some xeno on xeno psychic shenanigans ;
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, "<span class='warning'>There's nobody nearby to influence.</span>")
+		return
+
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Influence to whom?", target_list)
+	if(!L)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
+		return
+
+	var/msg = tgui_input_text(usr, desc, name, "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+
+	msg = copytext_char(trim(sanitize(msg)), 1, MAX_MESSAGE_LEN)
+
+	if(!msg)
+		return
+
+	if(X.stat)
+		to_chat(src, span_warning("We cannot do this while not conscious."))
+		return
+
+	log_directed_talk(X, L, msg, LOG_SAY, "psychic influence")
+	to_chat(L, "<span class='psychicin'><i>[msg]</i></span>")
+	to_chat(X, "<span class='psychicout'>We influenced: [msg] to [L]</span>")
+	for(var/_M in GLOB.observer_list) // it's the xeno's main method of S M U T, so it should be visible
+		var/mob/M = _M
+		if(M == L || M == X)
+			continue
+		if(M.stat != DEAD) //not dead, not important
+			continue
+		if(!M.client)
+			continue
+		if(get_dist(M, X) > 7 || M.z != X.z) //they're out of range of normal S M U T
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS) && !check_other_rights(M.client, R_ADMIN, FALSE))
+				continue
+		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M))) // Not sure why this is here really, but better S M U T than sorry
+			continue
+
+		if(check_other_rights(M.client, R_ADMIN, FALSE))
+			to_chat(M, "[FOLLOW_LINK(M, X)]<span class='psychicin'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
+		else
+			to_chat(M, "[FOLLOW_LINK(M, X)]<span class='psychicin'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
+
+/////////////////////////////////
+// Devour
+/////////////////////////////////
+/datum/action/ability/activable/xeno/devour
+	name = "Devour"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "abduct"
+	desc = "Devour your victim to be able to carry it faster."
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	ability_cost = 0
+	target_flags = ABILITY_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+	)
+
+/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!ismob(target))
+		if(!silent)
+			to_chat(owner, span_warning("That wouldn't taste very good."))
+		return FALSE
+	var/mob/living/carbon/human/victim = target
+	if(owner.status_flags & INCORPOREAL)
+		if(!silent)
+			to_chat(owner, span_warning("Can't do while in flight!"))
+		return FALSE
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(owner, span_warning("[victim] is buckled to something."))
+		return FALSE
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.eaten_mob)
+		if(!silent)
+			to_chat(owner_xeno, span_warning("You have already swallowed one."))
+		return FALSE
+	if(owner_xeno.on_fire)
+		if(!silent)
+			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, owner_xeno))
+		if(!silent)
+			to_chat(owner_xeno, span_warning("We are too close to the fog."))
+		return FALSE
+
+/datum/action/ability/activable/xeno/devour/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	var/mob/living/carbon/human/victim = owner_xeno.eaten_mob
+	if(!victim)
+		return
+
+	var/channel = SSsounds.random_available_channel()
+	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
+	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We moved too soon!"))
+		owner_xeno.stop_sound_channel(channel)
+		return
+	owner_xeno.eject_victim()
+	log_combat(owner_xeno, victim, "released", addition="from being devoured")
+	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+
+/datum/action/ability/activable/xeno/devour/use_ability(atom/target)
+	var/mob/living/carbon/human/victim = target
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.face_atom(victim)
+	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	log_combat(owner_xeno, victim, "started to devour")
+	var/channel = SSsounds.random_available_channel()
+	var/devour_delay = GORGER_DEVOUR_DELAY
+	if((HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || !victim.client) && !isxeno(victim))
+		devour_delay = GORGER_DEVOUR_DELAY*3
+	if(isxenogorger(owner_xeno)) //gorgers balling anyway, kidnappers.
+		devour_delay = GORGER_DEVOUR_DELAY
+	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
+	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
+		owner_xeno.stop_sound_channel(channel)
+		return
+	log_combat(owner_xeno, victim, "devoured")
+	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+	victim.forceMove(owner_xeno)
+	owner_xeno.eaten_mob = victim
+	var/obj/item/radio/headset/mainship/headset = victim.wear_ear
+	if(istype(headset))
+		headset.disable_locator(40 SECONDS)
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
+	return FALSE
+
+//Xeno Larval Growth Sting
+/datum/action/ability/activable/xeno/larval_growth_sting
+	name = "Larval Growth Sting"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "larval_growth"
+	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
+
+	ability_cost = 150
+	cooldown_duration = 30 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LARVAL_GROWTH_STING,
+	)
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/larval_growth_sting/on_cooldown_finish()
+	playsound(owner.loc, SFX_ALIEN_DROOL, 25, 1)
+	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
+	return ..()
+
+/datum/action/ability/activable/xeno/larval_growth_sting/can_use_ability(mob/living/carbon/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(QDELETED(A))
+		return FALSE
+
+	if(!A?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	if(!owner.Adjacent(A))
+		var/mob/living/carbon/xenomorph/X = owner
+		if(!silent && world.time > (X.recent_notice + X.notice_delay))
+			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+
+/datum/action/ability/activable/xeno/larval_growth_sting/use_ability(mob/living/carbon/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	succeed_activate()
+
+	add_cooldown()
+	if(locate(/obj/item/alien_embryo) in A)
+		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline,/datum/reagent/medicine/dexalin), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
+		A.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 1)
+	else
+		X.recurring_injection(A, list(/datum/reagent/toxin/xeno_neurotoxin,/datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)

@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	return TRUE
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/can_build_here(turf/T, silent = FALSE)
-	var/is_valid = is_valid_for_resin_structure(T, xeno_owner.selected_resin == /obj/structure/mineral_door/resin, xeno_owner.selected_resin, xeno_owner..get_xeno_hivenumber())
+	var/is_valid = is_valid_for_resin_structure(T, xeno_owner.selected_resin == /obj/structure/mineral_door/resin, xeno_owner.selected_resin, xeno_owner.get_xeno_hivenumber())
 	if(is_valid != NO_ERROR && silent)
 		return FALSE
 	switch(is_valid)
@@ -468,19 +468,20 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	var/datum/hive_status/X_hive = xeno_owner.get_hive()
 
 	if(xeno_owner.current_aura && xeno_owner.current_aura.aura_types[1] == phero_choice)
-		xeno_owner.balloon_alert(X, "no longer emitting")
+		xeno_owner.balloon_alert(xeno_owner, "no longer emitting")
 		QDEL_NULL(xeno_owner.current_aura)
 		if(X_hive?.living_xeno_ruler == xeno_owner)
 			X_hive?.update_leader_pheromones()
 		xeno_owner.update_aura_overlay()
 		return fail_activate()
 	QDEL_NULL(xeno_owner.current_aura)
-	xeno_owner.current_aura = SSaura.add_emitter(xeno_owner, phero_choice, 6 + (xeno_owner.xeno_caste.aura_strength * 2) + bonus_flat_range, xeno_owner.xeno_caste.aura_strength + bonus_flat_strength, -1, xeno_owner.faction, xeno_owner.hivenumber)
+	xeno_owner.current_aura = SSaura.add_emitter(xeno_owner, phero_choice, 6 + (xeno_owner.xeno_caste.aura_strength * 2) + bonus_flat_range, xeno_owner.xeno_caste.aura_strength + bonus_flat_strength, -1, xeno_owner.faction, xeno_owner.get_xeno_hivenumber())
 	xeno_owner.balloon_alert(xeno_owner, "[lowertext(phero_choice)]")
 	playsound(xeno_owner.loc, SFX_ALIEN_DROOL, 25)
 
-	if(xeno_owner.hive?.living_xeno_ruler == xeno_owner)
-		xeno_owner.hive?.update_leader_pheromones()
+	var/datum/hive_status/hive = xeno_owner.get_hive()
+	if(hive.living_xeno_ruler == xeno_owner)
+		hive.update_leader_pheromones()
 	xeno_owner.update_aura_overlay() //Visual feedback that the xeno has immediately started emitting pheromones
 	succeed_activate()
 
@@ -1046,7 +1047,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	if(!msg)
 		return
 
-	if(X.stat)
+	if(xeno_owner.stat)
 		to_chat(src, span_warning("We cannot do this while not conscious."))
 		return
 
@@ -1120,7 +1121,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
 /datum/action/ability/xeno_action/rally_hive/action_activate()
-	xeno_message("Our leader [xeno_owner] is rallying the hive to [AREACOORD_NO_Z(xeno_owner.loc)]!", "xenoannounce", 6, xeno_owner.hivenumber, FALSE, xeno_owner, 'sound/voice/alien/distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [xeno_owner] is rallying the hive to [AREACOORD_NO_Z(xeno_owner.loc)]!", "xenoannounce", 6, xeno_owner.get_xeno_hivenumber(), FALSE, xeno_owner, 'sound/voice/alien/distantroar_3.ogg',TRUE,null,/atom/movable/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [xeno_owner] is rallying the hive to [AREACOORD_NO_Z(xeno_owner.loc)]!", source = xeno_owner, action = NOTIFY_JUMP)
 
 	succeed_activate()
@@ -1270,7 +1271,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-	SSpoints.add_biomass_points(X.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN)
+	SSpoints.add_biomass_points(xeno_owner.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN)
 	GLOB.round_statistics.biomass_from_psydrains += MUTATION_BIOMASS_PER_PSYDRAIN
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
@@ -1280,7 +1281,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	GLOB.round_statistics.strategic_psypoints_from_psydrains += psy_points_reward
 	GLOB.round_statistics.psydrains++
-	var/hivenumber = X.get_xeno_hivenumber()
+	var/hivenumber = xeno_owner.get_xeno_hivenumber()
 	if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, xeno_owner, victim)
 		GLOB.round_statistics.strategic_psypoints_from_hive_target_rewards += 4*psy_points_reward
@@ -1288,8 +1289,8 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		GLOB.round_statistics.hive_target_rewards++
 		GLOB.round_statistics.biomass_from_hive_target_rewards += MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD
 		SSpoints.add_biomass_points(hivenumber, MUTATION_BIOMASS_PER_HIVE_TARGET_REWARD)
-	SSpoints.add_strategic_psy_points(xeno_owner.hivenumber, psy_points_reward)
-	SSpoints.add_tactical_psy_points(xeno_owner.hivenumber, psy_points_reward*0.25)
+	SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
+	SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
 	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 	xeno_job.add_job_points(larva_point_reward)
 	GLOB.hive_datums[hivenumber].update_tier_limits()
@@ -1472,7 +1473,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	xeno_owner.eject_victim(TRUE, starting_turf)
-	log_combat(X, victim, "cocooned")
+	log_combat(xeno_owner, victim, "cocooned")
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++
