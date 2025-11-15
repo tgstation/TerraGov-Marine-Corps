@@ -105,7 +105,7 @@
 
 /datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
 	. = ..()
-	for(var/turf/newspray in view(smokeradius*0.5, target))
+	for(var/turf/newspray AS in generate_cone(target, floor(smokeradius * 0.5), -1, 359, 359, pass_flags_checked = PASS_AIR))
 		xenomorph_spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 
 /datum/maw_ammo/hugger
@@ -269,7 +269,7 @@
 	animate(icon=null)
 
 /datum/maw_ammo/xeno_fire/on_impact(turf/target)
-	for(var/turf/affecting AS in RANGE_TURFS(4, target))
+	for(var/turf/affecting AS in generate_cone(target, 4, -1, 359, 359, pass_flags_checked = PASS_AIR))
 		new /obj/fire/melting_fire(affecting)
 		for(var/mob/living/carbon/fired in affecting)
 			fired.take_overall_damage(20, BURN, FIRE, FALSE, FALSE, TRUE, 0, , max_limbs = 2)

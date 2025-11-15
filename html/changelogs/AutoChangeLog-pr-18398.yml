@@ -1,0 +1,4 @@
+author: "Joe13413"
+delete-after: True
+changes:
+  - balance: "The pepperball underbarrel attachment now fires twice as fast (600RPM, up from 300RPM)"

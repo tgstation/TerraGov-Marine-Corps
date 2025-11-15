@@ -94,7 +94,7 @@
 		return
 
 	if((!(owner.client?.prefs?.be_special & BE_SSD_RANDOM_NAME)) && (CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name)))
-		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
+		to_chat(usr, span_warning("Someone has already joined the round with this character name. Go to 'Game Preferences' under the Preferences tab, and change your character/name."))
 		return
 
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))

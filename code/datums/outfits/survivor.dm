@@ -254,11 +254,13 @@
 
 	w_uniform = /obj/item/clothing/under/rank/miner
 	head = /obj/item/clothing/head/helmet/space/rig/mining
+	glasses = /obj/item/clothing/glasses/meson
 	shoes = /obj/item/clothing/shoes/black
+	gloves = /obj/item/clothing/gloves/ruggedgloves
 	back = /obj/item/storage/backpack/satchel/som
 	l_hand = /obj/item/weapon/twohanded/sledgehammer
 	r_pocket = /obj/item/reagent_containers/cup/glass/flask
-	r_hand = /obj/item/clothing/suit/space/rig/mining
+	wear_suit = /obj/item/clothing/suit/space/rig/mining
 	ears = /obj/item/radio/headset/survivor
 
 	backpack_contents = list(
@@ -386,7 +388,6 @@
 		/obj/item/storage/syringe_case/empty = 2,
 	)
 
-
 /datum/outfit/job/survivor/roboticist
 	name = "Roboticist Survivor"
 	jobtype = /datum/job/survivor/roboticist
@@ -404,11 +405,18 @@
 	backpack_contents = list(
 		/obj/item/stack/sheet/metal/medium_stack = 1,
 		/obj/item/stack/sheet/plasteel/small_stack = 1,
-		/obj/item/attachable/buildasentry = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 1,
 	)
+
+/datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	if(prob(50))
+		H.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
+		H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+	else
+		H.equip_to_slot_or_del(new /obj/item/attachable/buildasentry, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/survivor/rambo
 	name = "Overpowered Survivor"
@@ -426,3 +434,8 @@
 	head = /obj/item/clothing/head/headband
 	ears = /obj/item/radio/headset/survivor
 	backpack_contents = list()
+
+/datum/outfit/job/survivor/rambo/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(prob(10))
+		suit_store = /obj/item/weapon/gun/rifle/tx8/scout
+		belt = /obj/item/storage/belt/marine/tx8
