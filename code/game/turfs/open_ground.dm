@@ -20,8 +20,10 @@
 /turf/open/ground/fire_act(burn_level)
 	return
 
+/*NTF EDIT - allow cables on grass
 /turf/open/ground/attackby() //This should fix everything else. No cables, etc
 	return
+*/
 
 /turf/open/ground/grass/beach
 	icon_state = "grassbeach_edge"
