@@ -206,12 +206,18 @@
 GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		/turf/closed/wall/resin/regenerating = 75,
 		/turf/closed/wall/resin/regenerating/thick = 75,
+		/turf/closed/wall/resin/membrane = 50,
+		/turf/closed/wall/resin/membrane/thick = 50,
 		/turf/closed/wall/resin/regenerating/special/bulletproof = 125,
 		/turf/closed/wall/resin/regenerating/special/fireproof = 100,
 		/turf/closed/wall/resin/regenerating/special/hardy = 100,
 		/obj/alien/resin/sticky = 25,
 		/obj/structure/mineral_door/resin = 50,
 		/obj/structure/mineral_door/resin/thick = 50,
+		/obj/structure/bed/nest = 50,
+		/obj/structure/bed/nest/wall = 50,
+		/obj/structure/xeno/lighttower = 50,
+		/obj/structure/bed/nest/advanced = 60,
 	))
 
 // Secrete Resin
