@@ -19,9 +19,9 @@
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
 	max_occupants = 12
 	enter_delay = 0.4 SECONDS
-	ram_damage = 35
-	move_delay = 0.2 SECONDS
-	glide_size = 6.6
+	ram_damage = 30
+	move_delay = 0.15 SECONDS
+	glide_size = 8.5
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,

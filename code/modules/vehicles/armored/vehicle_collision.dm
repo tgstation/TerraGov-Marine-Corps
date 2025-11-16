@@ -29,6 +29,8 @@
 
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
+	if(istype(veh, /obj/vehicle/sealed/armored/multitile/mrap)) //TODO: only for testing, otherwise it will conflict
+		veh.take_damage(ram_damage * 0.5, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	if(stat == DEAD)
@@ -36,9 +38,9 @@
 	if(lying_angle)
 		return
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
-	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1)
+	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1, TRUE)
 	take_overall_damage(ram_damage, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
-
+	return TRUE
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	gib() //fuck you
