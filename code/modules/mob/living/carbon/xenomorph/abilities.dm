@@ -347,6 +347,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
+		var/target_turf = get_turf(A)
+		if(check_path(owner, target_turf, PASS_XENO) != target_turf)
+			owner.balloon_alert(owner, "blocked")
+			return fail_activate()
 		build_resin(get_turf(A))
 	if(heal_percentage)
 		var/health_healed = xeno_owner.maxHealth * heal_percentage
