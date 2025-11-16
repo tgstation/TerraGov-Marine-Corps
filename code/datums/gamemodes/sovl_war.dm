@@ -9,6 +9,7 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 1,
+		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
@@ -36,7 +37,7 @@
 
 	evo_requirements = list(
 		/datum/xeno_caste/queen = 8,
-		/datum/xeno_caste/king = 10,
+		/datum/xeno_caste/king = 12,
 	)
 
 /datum/game_mode/infestation/sovl_war/post_setup()
