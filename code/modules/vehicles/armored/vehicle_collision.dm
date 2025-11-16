@@ -29,8 +29,8 @@
 
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
-	if(istype(veh, /obj/vehicle/sealed/armored/multitile/mrap)) //TODO: only for testing, otherwise it will conflict
-		veh.take_damage(ram_damage * 0.5, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
+	if(istype(veh, /obj/vehicle/sealed/armored/multitile/mrap)) //TODO flags: only for testing, otherwise it will conflict with other prs
+		veh.take_damage(ram_damage * 0.4, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	if(stat == DEAD)
