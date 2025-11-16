@@ -80,3 +80,32 @@
   - qol: Health scans now include blood flow rate.
   - qol: Chemical contents in health scans are sorted based on internal priority rather
       than order the chemical entered the patient.
+2025-11-16:
+  GregorMN:
+  - soundadd: Two new bike rev sounds
+  - imageadd: Improved bike sprites
+  Joe13413:
+  - balance: The pepperball underbarrel attachment now fires twice as fast (600RPM,
+      up from 300RPM)
+  - bugfix: Clarified an error message that pops up when you try to take an SSD mob.
+  Lumipharon:
+  - admin: Gamemode votes won't trigger a restart mid game anymore
+  - balance: Secrete resin ability cost varies with resin selected
+  - balance: Smoker zombie smoke lasts for 6 seconds instead of 10
+  - balance: Boomer zombie bile spit CD increased to 12 seconds from 6
+  - code_imp: Removed some unneeded jobSS stuff when a round fails to start
+  - admin: Fixed a runtime with the banpanel in some instances
+  - balance: Minisentry price for engineers reduced to 40 from 50
+  - balance: minor tweaks to some survivor loadouts, notably roboticists only have
+      BAS 50% of the time
+  - bugfix: fixed fob drone cades and some deployables not having their faction set
+      correctly
+  - bugfix: Zombies have an attack CD applied when attacking APC's
+  - refactor: refactored some zombie attack code
+  - balance: Adjusted logic for Jaws so acid and fire is placed more realistically
+  Neocloudy:
+  - bugfix: Health scans will not show "ODfalse" if a chemical is ODing but not critically
+      ODing.
+  Runian:
+  - rscadd: The amount of health and sunder restored via Hivelord's Healing Infusion
+      is now recorded in the round statistics.

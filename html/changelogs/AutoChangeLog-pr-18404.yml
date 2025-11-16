@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Health scans will not show \"ODfalse\" if a chemical is ODing but not critically ODing."
