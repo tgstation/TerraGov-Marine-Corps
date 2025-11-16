@@ -39,6 +39,7 @@
 		/datum/xeno_caste/queen = 8,
 		/datum/xeno_caste/king = 12,
 	)
+	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 /datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
