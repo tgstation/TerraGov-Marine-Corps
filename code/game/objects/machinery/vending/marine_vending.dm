@@ -559,6 +559,7 @@
 			/obj/item/plantable_flag = 10,
 			/obj/item/campaign_beacon/npc_beacon/tgmc = 1,
 			/obj/item/campaign_beacon/npc_beacon/tgmc/big = 1,
+			/obj/item/explosive/plastique = 12,
 		),
 	)
 
