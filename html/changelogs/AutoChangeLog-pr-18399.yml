@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Zombies have an attack CD applied when attacking APC's"
-  - refactor: "refactored some zombie attack code"
