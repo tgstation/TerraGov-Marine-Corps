@@ -117,6 +117,13 @@
 	w_class = WEIGHT_CLASS_BULKY
 	uses = 1
 
+/obj/item/fulton_extraction_pack/tank/Initialize(mapload)
+	. = ..()
+	//even lower than a coder sprite
+	var/matrix/M = new
+	M.Scale(1.5, 1.5)
+	transform = M
+
 /obj/item/fulton_extraction_pack/tank/extract(atom/movable/spirited_away, mob/living/user)
 	if(!isarmoredvehicle(spirited_away))
 		return ..()
