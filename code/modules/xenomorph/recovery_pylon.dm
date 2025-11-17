@@ -65,9 +65,9 @@
 		return
 	buffed_xenos += entering_xenomorph
 	if(!damage_modifier)
-		entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
-		entering_xenomorph.regen_power = max(-entering_xenomorph.xeno_caste.regen_delay, entering_xenomorph.regen_power)
-		entering_xenomorph.xeno_caste.regen_ramp_amount *= 2
+		entering_xenomorph.regen_delay = 1 SECONDS
+		entering_xenomorph.regen_power = max(-entering_xenomorph.regen_delay, entering_xenomorph.regen_power)
+		entering_xenomorph.regen_ramp_amount *= 2
 		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_BLUE_LIGHT))
 	else
 		entering_xenomorph.xeno_melee_damage_modifier += damage_modifier
@@ -85,8 +85,8 @@
 		return
 	buffed_xenos -= leaving_xenomorph
 	if(!damage_modifier)
-		leaving_xenomorph.xeno_caste.regen_delay = initial(leaving_xenomorph.xeno_caste.regen_delay)
-		leaving_xenomorph.xeno_caste.regen_ramp_amount /= 2
+		leaving_xenomorph.regen_delay = initial(leaving_xenomorph.regen_delay)
+		leaving_xenomorph.regen_ramp_amount /= 2
 	else
 		leaving_xenomorph.xeno_melee_damage_modifier -= damage_modifier
 	leaving_xenomorph.remove_filter("recovery_pylon_outline")

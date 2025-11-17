@@ -20,6 +20,8 @@
 
 /mob/living/carbon/xenomorph/hunter/weapon_x
 	caste_base_type = /datum/xeno_caste/hunter/weapon_x
+	regen_delay = 5 SECONDS
+	regen_ramp_amount = 0.03
 
 /mob/living/carbon/xenomorph/hunter/weapon_x/Initialize(mapload)
 	. = ..()

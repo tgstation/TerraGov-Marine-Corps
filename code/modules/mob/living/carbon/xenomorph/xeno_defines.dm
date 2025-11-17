@@ -43,12 +43,6 @@
 	var/speed = 1
 	var/weeds_speed_mod = -0.4
 
-	// *** Regeneration Delay ***//
-	///Time after you take damage before a xenomorph can regen.
-	var/regen_delay = 10 SECONDS
-	///Regeneration power increases by this amount evey decisecond.
-	var/regen_ramp_amount = 0.005
-
 	// *** Plasma *** //
 	///How much plasma a caste can have at max.
 	var/plasma_max = 10
@@ -429,6 +423,11 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	///Time after you take damage before a xenomorph can regen.
+	var/regen_delay = 10 SECONDS
+	///Regeneration power increases by this amount evey decisecond.
+	var/regen_ramp_amount = 0.005
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked

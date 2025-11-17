@@ -118,8 +118,6 @@
 
 	// *** Health *** //
 	max_health = 330
-	regen_delay = 5 SECONDS
-	regen_ramp_amount = 0.03
 	sunder_recover = 1
 
 	// *** Flags *** //
