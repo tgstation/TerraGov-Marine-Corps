@@ -462,6 +462,9 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
+	if(iszombie(src))
+		return FALSE
+
 	if(!provoked)
 		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
