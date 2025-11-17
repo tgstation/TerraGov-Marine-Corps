@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/acid_pool
 	name = "Acid Pool"
 	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting."
-	psypoint_cost = 200
+	psypoint_cost = 300
 	icon = "pool"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
