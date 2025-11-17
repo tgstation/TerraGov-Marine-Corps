@@ -131,9 +131,6 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 //List of resin structure images
 GLOBAL_LIST_INIT(resin_images_list, list(
 	RESIN_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
-	BULLETPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = BULLETPROOF_WALL),
-	FIREPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = FIREPROOF_WALL),
-	HARDY_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = HARDY_WALL),
 	STICKY_RESIN = image('icons/Xeno/actions/construction.dmi', icon_state = STICKY_RESIN),
 	RESIN_DOOR = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_DOOR),
 ))
