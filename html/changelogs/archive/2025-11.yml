@@ -109,3 +109,5 @@
   Runian:
   - rscadd: The amount of health and sunder restored via Hivelord's Healing Infusion
       is now recorded in the round statistics.
+  mudzbe:
+  - balance: Add 2 more zombie tunnels to desparity

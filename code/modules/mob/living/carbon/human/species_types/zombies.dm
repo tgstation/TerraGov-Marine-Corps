@@ -33,6 +33,8 @@
 	var/can_jump = FALSE
 	///List of special actions given by this species
 	var/list/action_list
+	///Counting whether they are designated as unrevivable for stats
+	var/perma = FALSE
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -162,6 +164,9 @@
 
 /// We start fading out the human and qdel them in set time
 /datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
+	if(!perma)//Stops from having more than one stat per zombie
+		perma = TRUE
+		GLOB.round_statistics.zombies_permad++
 	fade_out(H)
 	QDEL_IN(H, time)
 

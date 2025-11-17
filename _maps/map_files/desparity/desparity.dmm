@@ -169,6 +169,10 @@
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
+"aY" = (
+/obj/effect/ai_node/spawner/zombie,
+/turf/open/floor/plating/mainship,
+/area/lv624/lazarus/crashed_ship/desparity)
 "aZ" = (
 /obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/plating,
@@ -5175,6 +5179,10 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
+"Az" = (
+/obj/effect/ai_node/spawner/zombie,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "AC" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -12253,7 +12261,7 @@ wh
 wh
 bT
 aD
-mU
+aY
 mU
 cl
 mU
@@ -19844,7 +19852,7 @@ wh
 wh
 Uq
 Uq
-Uq
+Az
 fm
 Uq
 Uq
