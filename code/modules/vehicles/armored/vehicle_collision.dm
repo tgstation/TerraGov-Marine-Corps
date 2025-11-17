@@ -38,7 +38,8 @@
 	if(lying_angle)
 		return
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
-	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1, TRUE)
+	//some dir variation so you can't chain wallsmash someone from 100 to 0... too easily
+	throw_at(get_step(get_step(loc, facing), pick(LeftAndRightOfDir(facing, TRUE) + facing)), 3, 2, veh, TRUE, TRUE)
 	take_overall_damage(ram_damage, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 	return TRUE
 
