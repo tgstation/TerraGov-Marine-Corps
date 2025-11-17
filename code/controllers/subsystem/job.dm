@@ -33,12 +33,13 @@ SUBSYSTEM_DEF(job)
 
 ///Clears jobs and resets all occupations
 /datum/controller/subsystem/job/proc/SetupOccupations()
-	QDEL_LIST(occupations)
 	joinable_occupations.Cut()
+	joinable_occupations_by_category.Cut()
 	GLOB.jobs_command.Cut()
 	squads.Cut()
 	type_occupations.Cut()
 	name_occupations.Cut()
+	QDEL_LIST(occupations)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
@@ -136,7 +137,6 @@ SUBSYSTEM_DEF(job)
 		var/mob/new_player/player = p
 		player.assigned_role = null
 		player.assigned_squad = null
-	SetupOccupations()
 	unassigned.Cut()
 
 

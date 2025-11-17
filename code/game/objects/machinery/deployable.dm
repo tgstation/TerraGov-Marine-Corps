@@ -27,6 +27,11 @@
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
 
+	if(deployer)
+		faction = deployer.faction
+	else if(new_internal_item.faction)
+		faction = new_internal_item.faction
+
 	prepare_huds()
 	if(istype(deployer))
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud

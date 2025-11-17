@@ -45,32 +45,6 @@ GLOBAL_LIST_INIT(scanner_advice, init_advice_datums())
  * * Keys are not optional. TGUI won't bluescreen if one is missing, but it is quite jarring for users if something is empty/default.
  * * The name of every entry must be kept short so it doesn't span more than one line on the default width of the UI.
  * * HTML tags like `<b>`/`<i>`/etc may not be used in names or tooltips. TGUI can't use these tags outside of compile time expressions.
- *
- * Examples:
- * ```dm
- * // single advice:
- * . = list(
- * 	ADVICE_TEXT = "Friend detected :)"
- * 	ADVICE_TOOLTIP = "FontAwesome worm please save me"
- * 	ADVICE_ICON = FA_ICON_WORM,
- * 	ADVICE_ICON_COLOR = "#FF99FF" // this can be a hex code, a tgui map color or juke map color
- * )
- * ...
- * // multiple entries:
- * . = list()
- * . += list(list(
- * 	ADVICE_TEXT = "Wormy detected :)"
- * 	ADVICE_TOOLTIP = "FontAwesome worm please save me"
- * 	ADVICE_ICON = FA_ICON_WORM,
- * 	ADVICE_ICON_COLOR = "#FF99FF"
- * ))
- * . += list(list(
- * 	ADVICE_TEXT = "Feline detected :)"
- * 	ADVICE_TOOLTIP = "FontAwesome cat please save me"
- * 	ADVICE_ICON = FA_ICON_CAT,
- * 	ADVICE_ICON_COLOR = "#FFCCFF"
- * ))
- * ```
  */
 /datum/scanner_advice/proc/get_data(mob/living/carbon/human/patient, mob/user)
 	CRASH("[type]/get_data is calling parent or has not implemented data.")

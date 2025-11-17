@@ -80,5 +80,5 @@
 		return FALSE
 	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
 	to_chat(user, span_notice("You rev the [src]'s engine."))
-	playsound(src, pick('sound/vehicles/bikerev-1.ogg', 'sound/vehicles/bikerev-2.ogg'), 50, TRUE, falloff = 3)
+	playsound(src, pick('sound/vehicles/bikerev-1.ogg', 'sound/vehicles/bikerev-2.ogg', 'sound/vehicles/bikerev-3.ogg', 'sound/vehicles/bikerev-4.ogg'), 50, TRUE, falloff = 3)
 	return TRUE
