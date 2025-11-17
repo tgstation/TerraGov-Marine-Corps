@@ -226,3 +226,12 @@
 	real_name = S.random_name(gender)
 	age = rand(AGE_MIN, AGE_MAX)
 	h_style = pick("Crewcut", "Bald", "Short Hair")
+
+///Create a random character of the specified species
+/datum/preferences/proc/random_character_set_species(datum/species/selected)
+	gender = pick(MALE, FEMALE)
+	var/datum/species/S = GLOB.all_species[selected.name]
+	species = S.name
+	real_name = S.random_name(gender)
+	age = rand(AGE_MIN, AGE_MAX)
+	h_style = pick("Crewcut", "Bald", "Short Hair")
