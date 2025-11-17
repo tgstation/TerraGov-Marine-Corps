@@ -53,6 +53,12 @@
 	QDEL_NULL(mob_inventory)
 	return ..()
 
+/datum/ai_behavior/human/register_action_signals(action_type)
+	. = ..()
+	switch(action_type)
+		if(MOVING_TO_SAFETY)
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
+
 /datum/ai_behavior/human/start_ai()
 	. = ..()
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
