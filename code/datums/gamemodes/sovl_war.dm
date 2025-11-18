@@ -42,6 +42,11 @@
 	)
 	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
+/datum/game_mode/infestation/sovl_war/setup()
+	. = ..()
+	//testing only
+	addtimer(CALLBACK(src, PROC_REF(enable_pods)), deploy_time_lock)
+
 /datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
 
@@ -135,3 +140,7 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
+
+/datum/game_mode/infestation/sovl_war/proc/enable_pods()
+	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
+		pod.allow_sovl_drop()
