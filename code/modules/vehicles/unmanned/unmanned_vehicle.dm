@@ -405,7 +405,7 @@
 /obj/structure/closet/crate/uav_crate/PopulateContents()
 	new /obj/vehicle/unmanned(src)
 	new /obj/item/unmanned_vehicle_remote(src)
-
+/* NTF edit - UVs with turrets are annoying to fight
 /obj/structure/closet/crate/uav_crate/turret
 	name = "\improper Light UV Machinegun Crate"
 	desc = "A crate containing a light unmanned vehicle machinegun and some spare ammo."
@@ -415,4 +415,4 @@
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
-
+*/

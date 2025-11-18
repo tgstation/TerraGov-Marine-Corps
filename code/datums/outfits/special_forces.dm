@@ -114,7 +114,7 @@
 		/obj/item/tool/weldingtool/largetank = 1,
 		/obj/item/tool/wrench = 1,
 		/obj/item/ammo_magazine/box11x35mm = 2,
-		/obj/item/uav_turret = 1,
+		/obj/item/uav_turret/claw = 1,
 		/obj/item/deployable_vehicle = 1,
 		/obj/item/unmanned_vehicle_remote = 1,
 	)
