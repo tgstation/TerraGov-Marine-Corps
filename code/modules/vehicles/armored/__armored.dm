@@ -88,8 +88,12 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
+	///How many humans this is worth for silo gen calcs
+	var/larva_value = 5
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
+		larva_value = 0
 	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
