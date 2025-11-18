@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - admin: "Gamemode votes won't trigger a restart mid game anymore"

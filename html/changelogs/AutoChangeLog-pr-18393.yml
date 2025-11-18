@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Smoker zombie smoke lasts for 6 seconds instead of 10"
-  - balance: "Boomer zombie bile spit CD increased to 12 seconds from 6"

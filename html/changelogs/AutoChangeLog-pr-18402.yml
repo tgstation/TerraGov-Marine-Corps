@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "The amount of health and sunder restored via Hivelord's Healing Infusion is now recorded in the round statistics."
