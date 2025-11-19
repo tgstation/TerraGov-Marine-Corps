@@ -11,6 +11,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/shuttle_templates = list()
 	var/list/minidropship_templates = list()
 
+	var/list/capsule_templates = list()
+
 	///list of all modular mapping templates
 	var/list/modular_templates = list()
 
@@ -226,6 +228,7 @@ SUBSYSTEM_DEF(mapping)
 	map_templates = SSmapping.map_templates
 	minidropship_templates = SSmapping.minidropship_templates
 	shuttle_templates = SSmapping.shuttle_templates
+	capsule_templates = SSmapping.capsule_templates
 	modular_templates = SSmapping.modular_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
@@ -383,6 +386,7 @@ SUBSYSTEM_DEF(mapping)
 
 	preloadShuttleTemplates()
 	preloadModularTemplates()
+	preloadShelterTemplates()
 
 /proc/generateMapList(filename)
 	. = list()
@@ -443,6 +447,16 @@ SUBSYSTEM_DEF(mapping)
 		else if (last_round_player_count >= M.min_player_num && last_round_player_count <= M.max_player_num) //if we exceed the minimum or maximum players numbers for a modular map don't add it to our list of valid modules that can be loaded
 			modular_templates[M.modular_id] += M
 		map_templates[M.type] = M
+
+/datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
+	for(var/item in subtypesof(/datum/map_template/capsule))
+		var/datum/map_template/capsule/shelter_type = item
+		if(!(initial(shelter_type.mappath)))
+			continue
+		var/datum/map_template/capsule/S = new shelter_type()
+
+		capsule_templates[S.shelter_id] = S
+		map_templates[S.shelter_id] = S
 
 /// Adds a new reservation z level. A bit of space that can be handed out on request
 /// Of note, reservations default to transit turfs, to make their most common use, shuttles, faster

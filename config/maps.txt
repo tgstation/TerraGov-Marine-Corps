@@ -128,7 +128,6 @@ map metnal
 	minplayers 1
   endmap
 
-
 map fiorina
 	minplayers 1
 endmap
