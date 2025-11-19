@@ -139,7 +139,7 @@
 
 /obj/machinery/door/airlock/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	if(welded)
-		behavior_datum.try_speak("Its welded [density ? "shut!" : "open!"]")
+		behavior_datum.custom_speak("It's welded [density ? "shut!" : "open!"]")
 		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
 		if(!welder && density)
 			behavior_datum.set_combat_target(src)
@@ -155,7 +155,7 @@
 		behavior_datum.store_tool(welder)
 
 	if(locked)
-		behavior_datum.try_speak("Its locked!")
+		behavior_datum.custom_speak("It's locked!")
 		if(density)
 			behavior_datum.set_combat_target(src)
 		return
@@ -165,7 +165,7 @@
 
 	var/obj/item/tool/crowbar/crowbar = behavior_datum.equip_tool(TOOL_CROWBAR)
 	if(!crowbar)
-		behavior_datum.try_speak("No power!")
+		behavior_datum.custom_speak("No power!")
 		if(density)
 			behavior_datum.set_combat_target(src)
 		return
@@ -202,9 +202,9 @@
 			return
 		ammo_count ++
 	if(!ammo_count)
-		behavior_datum.try_speak("No ammo for me here!")
+		behavior_datum.custom_speak("No ammo for me here!")
 		return
-	behavior_datum.try_speak("Loaded up [ammo_count] mags!")
+	behavior_datum.custom_speak("Loaded up [ammo_count] mags!")
 
 /obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	//we get these separately since we might use them multiple times
@@ -247,7 +247,7 @@
 				new_cell = candidate_cell
 				break
 		if(!new_cell)
-			behavior_datum.try_speak("Someone get me a new cell!")
+			behavior_datum.custom_speak("Someone get me a new cell!")
 			interactor.a_intent = INTENT_HARM
 			return
 		attackby(new_cell, interactor)
@@ -280,7 +280,7 @@
 	if(miner_status == MINER_DESTROYED)
 		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
 		if(!welder)
-			behavior_datum.try_speak("No welder!")
+			behavior_datum.custom_speak("No welder!")
 			behavior_datum.on_engineering_end(src)
 			return
 		welder.toggle()
@@ -297,7 +297,7 @@
 	if(miner_status == MINER_MEDIUM_DAMAGE)
 		var/obj/item/tool/wirecutters/cutters = behavior_datum.equip_tool(TOOL_WIRECUTTER)
 		if(!cutters)
-			behavior_datum.try_speak("No wirecutters!")
+			behavior_datum.custom_speak("No wirecutters!")
 			behavior_datum.on_engineering_end(src)
 			return
 		wirecutter_act(interactor, cutters)
@@ -306,7 +306,7 @@
 	if(miner_status == MINER_SMALL_DAMAGE)
 		var/obj/item/tool/wrench/wrench = behavior_datum.equip_tool(TOOL_WRENCH)
 		if(!wrench)
-			behavior_datum.try_speak("No wrench!")
+			behavior_datum.custom_speak("No wrench!")
 			behavior_datum.on_engineering_end(src)
 			return
 		wrench_act(interactor, wrench)
