@@ -364,7 +364,7 @@
 	///how much fuel we can hold
 	var/max_fuel = 500
 
-/obj/item/tool/weldpack/Initialize(mapload, ...)
+/obj/item/tool/weldpack/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fuel_storage, max_fuel)
 
