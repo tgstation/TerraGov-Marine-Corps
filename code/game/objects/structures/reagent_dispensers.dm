@@ -59,6 +59,7 @@
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
 
+///Sets up the correct reagents for the dispenser type
 /obj/structure/reagent_dispensers/proc/setup_reagents()
 	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 

@@ -3,6 +3,8 @@
  */
 
 /datum/component/fuel_storage
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+	///ref to parents reagents
 	var/datum/reagents/fuel_tank
 	///The specific fueltype we use
 	var/fuel_type
@@ -15,13 +17,12 @@
 		return COMPONENT_INCOMPATIBLE
 
 	fuel_type = _fuel_type
-	var/list/test = list(fuel_type)
-	test[fuel_type] = _max_fuel
-	obj_parent.create_reagents(_max_fuel, init_reagents = test)
+	var/list/reagent_list = list()
+	reagent_list[fuel_type] = _max_fuel
+	obj_parent.create_reagents(_max_fuel, init_reagents = reagent_list)
 	fuel_tank = obj_parent.reagents
 
 /datum/component/fuel_storage/Destroy(force, silent)
-	fuel_tank = null
 	QDEL_NULL(fuel_tank)
 	return ..()
 
