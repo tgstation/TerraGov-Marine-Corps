@@ -429,8 +429,6 @@
 	if(should_zombify)
 		if(!iszombie(src))
 			set_species("Strong zombie")
-			faction = FACTION_ZOMBIE
-			hivenumber = FACTION_ZOMBIE
 		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling)
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)

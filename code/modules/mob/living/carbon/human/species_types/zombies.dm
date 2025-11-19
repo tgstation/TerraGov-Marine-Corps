@@ -28,6 +28,7 @@
 	///How much burn and burn damage can you heal every Life tick (half a sec)
 	var/heal_rate = 10
 	var/faction = FACTION_ZOMBIE
+	var/hivenumber = FACTION_ZOMBIE
 	var/claw_type = /obj/item/weapon/zombie_claw
 	///Whether this zombie type can jump
 	var/can_jump = FALSE
@@ -40,6 +41,7 @@
 	. = ..()
 	H.set_undefibbable()
 	H.faction = faction
+	H.transfer_to_hive(hivenumber)
 	H.language_holder = new default_language_holder()
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
@@ -223,6 +225,7 @@
 	heal_rate = 20
 	total_health = 200
 	faction = FACTION_SECTOIDS
+	hivenumber = FACTION_SECTOIDS
 	claw_type = /obj/item/weapon/zombie_claw/no_zombium
 
 /datum/species/zombie/smoker

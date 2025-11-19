@@ -186,7 +186,7 @@
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	faction = FACTION_TERRAGOV
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
+	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
 	turret_range = 9

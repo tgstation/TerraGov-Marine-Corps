@@ -398,8 +398,8 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()
-	if(iszombie(user))
-		to_chat(user, span_warning("You shouldn't rip out another zombie's heart."))
+	if(issamexenohive(user) || (!hivenumber && (faction == user.faction)))
+		to_chat(user, span_warning("You shouldn't rip out an allied zombie's heart."))
 		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))

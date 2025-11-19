@@ -24,7 +24,7 @@
 	attachable_allowed = list()
 	turret_range = 11
 	w_class = WEIGHT_CLASS_SMALL //disposable drones take little space too.
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	faction = FACTION_TERRAGOV
 
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 100, ACID = 50)
 
@@ -63,9 +63,9 @@
 	if(active)
 		return
 
-	if(ishuman(user) && sentry_iff_signal)
+	if(ishuman(user) && faction)
 		var/mob/living/carbon/human/human_user = user
-		if(!human_user.wear_id?.iff_signal || human_user.wear_id?.iff_signal != sentry_iff_signal)
+		if(!human_user.faction || human_user.faction != faction)
 			balloon_alert_to_viewers("Unauthorized user, self destruct engaged!")
 			explosion(loc, light_impact_range = 3, explosion_cause=human_user)
 			qdel(src)
@@ -91,9 +91,7 @@
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
-	var/obj/item/card/id/user_id = user?.get_idcard(TRUE)
-	if(user_id)
-		sentry_iff_signal = user_id?.iff_signal
+	faction = user?.faction || faction
 	addtimer(CALLBACK(src, PROC_REF(prime), user), det_time)
 
 ///Deploys the weapon into a sentry after activation
