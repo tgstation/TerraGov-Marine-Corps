@@ -336,6 +336,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
+	///A mob the xeno is trying to eat
+	var/mob/living/devouring_mob
 	///How much evolution they have stored
 	var/evolution_stored = 0
 	///How much upgrade points they have stored.

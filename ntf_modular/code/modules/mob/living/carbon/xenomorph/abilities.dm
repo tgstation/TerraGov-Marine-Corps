@@ -259,10 +259,13 @@
 	if(isxenogorger(owner_xeno)) //gorgers balling anyway, kidnappers.
 		devour_delay = GORGER_DEVOUR_DELAY
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
+	owner_xeno.devouring_mob = victim
 	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+		owner_xeno.devouring_mob = null
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
+	owner_xeno.devouring_mob = null
 	log_combat(owner_xeno, victim, "devoured")
 	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)

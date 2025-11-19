@@ -1005,6 +1005,24 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(issamexenohive(proj.shot_from) && (isxeno(proj.shot_from) || istype(proj.shot_from, /obj/structure/xeno))) //Aliens won't be harming allied aliens.
 		return
 
+	var/mob/prey = eaten_mob || devouring_mob
+	if(ismob(prey))
+		var/effect = max(0,proj.ammo.plasma_drain + proj.damage + proj.sundering)
+		if(effect)
+			if(prey.stat == DEAD)
+				add_slowdown(SLOWDOWN_ARMOR_VERY_HEAVY)
+				apply_status_effect(/datum/status_effect/shatter, 5 SECONDS)
+				apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
+				if(!CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+					use_plasma(effect)
+			else
+				add_slowdown(SLOWDOWN_ARMOR_MEDIUM)
+				if(prob(30))
+					apply_status_effect(/datum/status_effect/shatter, 0.1 SECONDS)
+					apply_status_effect(/datum/status_effect/noplasmaregen, 1 SECONDS)
+				if(!CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+					use_plasma(effect/5)
+
 	if(proj.ammo.plasma_drain && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
 		use_plasma(proj.ammo.plasma_drain)
 
