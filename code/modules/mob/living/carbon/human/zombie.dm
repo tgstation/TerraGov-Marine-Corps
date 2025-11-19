@@ -1,11 +1,15 @@
+///Rallies nearby zombies
+/proc/global_rally_zombies(atom/rally_point, global_rally = FALSE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_ZOMBIE_RALLY, rally_point, global_rally)
+
 /datum/action/rally_zombie
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
 	action_icon = 'icons/Xeno/actions/leader.dmi'
 
 /datum/action/rally_zombie/action_activate()
-	owner.emote("roar")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+	owner.balloon_alert(owner, "Zombies Rallied!")
+	global_rally_zombies(owner)
 	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
 	if(set_agressivity)
 		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
@@ -13,6 +17,7 @@
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
 	action_icon_state = "minion_agressive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	///If zombies should be agressive
 	var/zombies_agressive = TRUE
 
@@ -28,7 +33,8 @@
 /obj/item/weapon/zombie_claw
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
-	icon_state = ""
+	icon_state = "zombie_claw_left"
+	base_icon_state = "zombie_claw"
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
@@ -36,7 +42,7 @@
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
-	///How much zombium are transferred per hit. Set to zero to remove transmission
+	///How much zombium is transferred per hit. Set to zero to remove transmission
 	var/zombium_per_hit = 5
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
@@ -44,112 +50,86 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
-	if(ishuman(target))
-		var/mob/living/carbon/human/human_target = target
-		if(human_target.stat == DEAD)
-			return
-		human_target.reagents.add_reagent(/datum/reagent/zombium, zombium_per_hit)
+	if(target.attack_zombie(user, src, params, rightclick))
+		return
 	return ..()
 
-/obj/item/weapon/zombie_claw/afterattack(atom/target, mob/user, has_proximity, click_parameters)
-	. = ..()
-	if(!has_proximity)
-		return
-	if(!istype(target, /obj/machinery/door/airlock))
-		return
-	if(user.do_actions)
-		return
+/obj/item/weapon/zombie_claw/strong
+	force = 30
 
-	target.balloon_alert_to_viewers("prying open [target]...")
-	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
-		return
-	var/obj/machinery/door/airlock/door = target
-	playsound(user.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	if(door.locked)
-		to_chat(user, span_warning("\The [target] is bolted down tight."))
-		return FALSE
-	if(door.welded)
-		to_chat(user, span_warning("\The [target] is welded shut."))
-		return FALSE
-	if(door.density) //Make sure it's still closed
-		door.open(TRUE)
+/obj/item/weapon/zombie_claw/tank
+	attack_speed = 12
+	force = 40
 
 /obj/item/weapon/zombie_claw/no_zombium
 	zombium_per_hit = 0
 
-// ***************************************
-// *********** Emit Gas
-// ***************************************
-/datum/action/ability/emit_gas
-	name = "Emit Gas"
-	action_icon_state = "emit_neurogas"
-	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "Use to emit a cloud of blinding smoke."
-	cooldown_duration = 40 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
-	)
-	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
-	var/obj/effect/abstract/particle_holder/particle_holder
-	/// smoke type created when the grenade is primed
-	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
-	///radius this smoke grenade will encompass
-	var/smokeradius = 4
-	///The duration of the smoke in 2 second ticks
-	var/smoke_duration = 9
+/**
+ * Any special attack by zombie behavior
+ * Return FALSE if normal melee_attack_chain should occur
+*/
+/atom/proc/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	return FALSE
 
-/datum/action/ability/emit_gas/on_cooldown_finish()
-	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
-	to_chat(owner, span_xenodanger("We feel our smoke filling us once more. We can emit gas again."))
-	toggle_particles(TRUE)
-	return ..()
-
-/datum/action/ability/emit_gas/action_activate()
-	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	var/turf/owner_turf = get_turf(owner)
-	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
-	smoke.set_up(smokeradius, owner_turf, smoke_duration)
-	smoke.start()
-	toggle_particles(FALSE)
-
-	add_cooldown()
-	succeed_activate()
-
-	owner.record_war_crime()
-
-/datum/action/ability/emit_gas/ai_should_start_consider()
-	return TRUE
-
-/datum/action/ability/emit_gas/ai_should_use(atom/target)
-	var/mob/living/L = owner
-	if(!iscarbon(target))
-		return FALSE
-	if(get_dist(target, owner) > 2 && L.health > 50)
-		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	if(!line_of_sight(owner, target))
-		return FALSE
-	return TRUE
-
-/// Toggles particles on or off
-/datum/action/ability/emit_gas/proc/toggle_particles(activate)
-	if(!activate)
-		QDEL_NULL(particle_holder)
+/obj/machinery/door/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(!density)
+		return
+	if(zombie.do_actions)
 		return
 
-	particle_holder = new(owner, /particles/smoker_zombie)
-	particle_holder.pixel_y = 6
+	balloon_alert_to_viewers("prying open [src]...")
+	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
+		return
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	if(locked)
+		to_chat(zombie, span_warning("\The [src] is bolted down tight."))
+		return
+	if(welded)
+		to_chat(zombie, span_warning("\The [src] is welded shut."))
+		return
+	if(density || operating) //Make sure it's still closed
+		return
+	zombie.changeNext_move(claw.attack_speed)
+	open(TRUE)
+	return TRUE
 
-/datum/action/ability/emit_gas/give_action(mob/living/L)
-	. = ..()
-	toggle_particles(TRUE)
+/obj/machinery/power/apc/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	zombie.visible_message(span_danger("[zombie] slashes \the [src]!"), \
+	span_danger("We slash \the [src]!"), null, 5)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 
-/datum/action/ability/emit_gas/remove_action(mob/living/L)
-	. = ..()
-	QDEL_NULL(particle_holder)
+	var/allcut = wires.is_all_cut()
 
-/datum/action/ability/emit_gas/Destroy()
-	. = ..()
-	QDEL_NULL(particle_holder)
+	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+		update_appearance()
+		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
+
+	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
+		wires.cut_all()
+		update_appearance()
+		visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
+	else
+		beenhit += 1
+	zombie.changeNext_move(claw.attack_speed)
+	zombie.do_attack_animation(src, used_item = claw)
+	return TRUE
+
+/obj/machinery/nuclearbomb/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(!timer_enabled)
+		to_chat(zombie, span_warning("\The [name] isn't active."))
+		return
+
+	zombie.visible_message(span_boldwarning("[zombie.name] begins to slash at the nuke."),
+	"Starts slashing at the nuke.")
+	if(!do_after(zombie, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		return
+	do_defuse(zombie)
+
+/mob/living/carbon/human/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(stat == DEAD)
+		return
+	if(!claw.zombium_per_hit)
+		return
+	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)

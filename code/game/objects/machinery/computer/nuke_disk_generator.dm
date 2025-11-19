@@ -56,6 +56,8 @@
 	say("Program run has concluded! Standing by...")
 
 	if(iscrashgamemode(SSticker.mode))
+		if(iszombiecrashgamemode(SSticker.mode))
+			global_rally_zombies(src, TRUE)
 		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
 			if(!human.job)
 				continue

@@ -83,6 +83,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	interact_target = null
 	return ..()
 
+///Whether this ai behavior should start
+/datum/ai_behavior/proc/should_start_ai()
+	if(mob_parent.stat == DEAD)
+		return FALSE
+	return TRUE
+
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
 	START_PROCESSING(SSprocessing, src)
@@ -502,9 +508,12 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	var/dir_to_target = angle2dir(Get_Angle(get_turf(mob_parent), get_turf(atom_to_walk_to)))
 	var/list/dir_options = list()
 
-	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range
+	var/in_optimal = (dist_to_target >= min_range) && (dist_to_target <= max_range)
+	if(in_optimal || (current_action == MOVING_TO_SAFETY && (dist_to_target >= lower_engage_dist) && (dist_to_target <= upper_engage_dist)))
+	//in optimal range or the specific scenario of running away from something we can still hurt
 		if((SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION))
 			return
+	if(in_optimal)
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			return CARDINAL_ALL_DIRS
 		if(prob(atom_to_walk_to == escorted_atom ? 80 : 50)) //If we're holding around an escort target, we don't move too much

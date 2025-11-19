@@ -246,6 +246,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 /// If the limb's total damage percent is higher than this, it can be severed.
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+/// Factor for limb blood flow rate
+#define LIMB_FLOW_FACTOR 60
+/// Macro for a limb's blood flow rate based on its brute damage
+#define LIMB_FLOW_RATE(limb_brute) (limb_brute / LIMB_FLOW_FACTOR)
+/// Factor for IB wound flow rate
+#define INTERNAL_BLEEDING_FLOW_FACTOR 30
+/// Macro for an IB wound's blood flow rate based on blood volume and wound severity
+#define INTERNAL_BLEEDING_FLOW_RATE(blood_volume, intensity) (blood_volume - intensity / INTERNAL_BLEEDING_FLOW_FACTOR)
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -808,6 +816,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
+#define DEFENDER_REFLECT_TIME 0.6 SECONDS
 
 //Baneling defines
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so

@@ -29,7 +29,7 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
-#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_NUKE_DEFUSED "!nuke_defused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
@@ -63,6 +63,9 @@
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 #define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
+
+///from proc/global_rally_zombies()
+#define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -156,6 +159,8 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!ZOMBIE_TUNNEL_DESTROYED"
+
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -169,6 +174,9 @@
 ///from /datum/element/jump when a jump has started and ended
 #define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
+
+///From /datum/component/throw_parry/parry_check() when a parry is successful
+#define COMSIG_ELEMENT_PARRY_TRIGGERED "element_parry_triggered"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
@@ -887,10 +895,6 @@
 #define COMSIG_ABILITY_STASIS "ability_stasis"
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
 #define COMSIG_ABILITY_REANIMATE "ability_reanimate"
-
-// throw parry signals
-#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
-#define COMSIG_PARRY_TRIGGER "parry_trigger"
 
 // xeno iff tag signals
 #define COMSIG_XENO_IFF_CHECK "xeno_iff_check" //! Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.

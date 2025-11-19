@@ -375,6 +375,32 @@
 		return
 	return ..()
 
+/obj/item/explosive/grenade/chem_grenade/healing_foam
+	name = "\improper EMS-02 Healing Foam Grenade"
+	desc = "An advanced foam grenade designed by BioCourse Pharmaceuticals. Deploys a foam that quickly rejuvenates those inside."
+	stage = CG_READY
+	dangerous = FALSE
+	icon_state = "grenade_healfoam"
+	worn_icon_state = "grenade_healfoam"
+
+/obj/item/explosive/grenade/chem_grenade/healing_foam/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B1.reagents.add_reagent(/datum/reagent/medicine/experimental_medical_salve, 15)
+	B2.reagents.add_reagent(/datum/reagent/water, 30)
+	B2.reagents.add_reagent(/datum/reagent/medicine/experimental_medical_salve, 15)
+
+	beakers += B1
+	beakers += B2
+
+	icon_state = initial(icon_state) +"_locked"
+
+/obj/item/explosive/grenade/chem_grenade/healing_foam/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 #undef CG_READY
 #undef CG_WIRED

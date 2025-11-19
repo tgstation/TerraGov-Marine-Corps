@@ -1,6 +1,7 @@
 /mob/living/carbon/human/Initialize(mapload)
 	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
+	set_jump_component()
 	if(!species)
 		set_species()
 
@@ -27,7 +28,6 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
 	AddComponent(/datum/component/anti_juggling)
-	set_jump_component()
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
