@@ -323,7 +323,7 @@
 	return list(0, 1)
 
 /obj/item/weapon/twohanded/spear/get_ai_combat_range()
-	return 2
+	return list(0, 2)
 
 /obj/item/weapon/gun/get_ai_combat_range()
 	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))

@@ -18,7 +18,13 @@
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
 /datum/ai_behavior/human/melee_interact(datum/source, atom/interactee, melee_tool = melee_weapon) //specifies the arg value
-	return ..()
+	var/toggle_intent = FALSE
+	if(!melee_tool && current_action == MOVING_TO_SAFETY) //this exists so npcs will melee on retreat, even if unarmed
+		toggle_intent = TRUE
+		mob_parent.a_intent = INTENT_HARM
+	. = ..()
+	if(toggle_intent)
+		mob_parent.a_intent = INTENT_HELP
 
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
