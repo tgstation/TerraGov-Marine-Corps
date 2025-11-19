@@ -28,11 +28,10 @@ SUBSYSTEM_DEF(monitor)
 	var/is_automatic_balance_on = TRUE
 	///Maximum record of how many players were concurrently playing this round
 	var/maximum_connected_players_count = 0
-	var/req_points_from_items = 0
-
+	/// An associative list of all items with the component [/datum/component/autobalance_monitor]. Association: [item] = value in requisition points.
+	var/list/requisition_item_keys = list()
 
 /datum/monitor_statistics
-	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
@@ -88,10 +87,9 @@ SUBSYSTEM_DEF(monitor)
 			// Humans
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.b17_in_use) * B17_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.b18_in_use) * B18_PRICE * REQ_POINTS_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+			for(var/item_key in requisition_item_keys)
+				. += requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 			// Xenomorphs
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
