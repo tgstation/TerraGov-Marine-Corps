@@ -432,6 +432,7 @@
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/explosive/plastique = 12,
 		),
 	)
 
