@@ -85,13 +85,17 @@ SUBSYSTEM_DEF(monitor)
 /// Calculate the points used to determine which side is winning at the moment.
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	// Humans
-	if(gamestate == SHIPSIDE)
-		. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
-		// Unspent supply points during hijack aren't important as they are likely to stay unspent.
-	else
-		. += human_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
-		. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
-		. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+	switch(gamestate)
+		if(SHUTTERS_CLOSED)
+			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+		if(GROUNDSIDE)
+			. += human_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
+			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+		if(SHIPSIDE)
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			// Unspent supply points during hijack aren't important as they are likely to stay unspent.
 	for(var/item_key in requisition_item_keys)
 		. += requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
 	// Xenomorphs
