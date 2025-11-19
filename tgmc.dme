@@ -430,6 +430,7 @@
 #include "code\datums\chat_payload.dm"
 #include "code\datums\chatmessage.dm"
 #include "code\datums\cinematic.dm"
+#include "code\datums\codex.dm"
 #include "code\datums\custom_emotes.dm"
 #include "code\datums\datacore.dm"
 #include "code\datums\datum.dm"
