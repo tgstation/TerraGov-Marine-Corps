@@ -282,7 +282,6 @@
 		return
 	//maybe radio arg in the future for some things
 	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), message)
-	//mob_parent.say(message)
 	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
 ///Reacts if the mob is below the min health threshold
@@ -342,12 +341,20 @@
 	if(!equip_tool)
 		return
 	pick_up_item(equip_tool)
+	equip_tool.ai_use(user = mob_parent)
 	mob_parent.a_intent = INTENT_HELP
 	return equip_tool
 
 ///Stores a tool and resets intent
 /datum/ai_behavior/human/proc/store_tool(old_tool)
 	mob_parent.a_intent = INTENT_HARM
+	if(iswelder(old_tool))
+		var/obj/item/tool/weldingtool/welder = old_tool
+		if(welder.isOn())
+			welder.toggle()
+		var/mob/living/carbon/human/human_owner = mob_parent
+		if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
+			human_owner.back.attackby(welder, human_owner)
 	try_store_item(old_tool)
 
 ///Tries to store an item
