@@ -15,13 +15,19 @@ type MiniDropshipProps = {
   fly_state: string;
   take_off_locked: BooleanLike;
   return_to_ship_locked: BooleanLike;
+  takeoff_alarm: BooleanLike;
   equipment_data: EquipmentData[];
 };
 
 export const Minidropship = (_props) => {
   const { act, data } = useBackend<MiniDropshipProps>();
-  const { fly_state, take_off_locked, return_to_ship_locked, equipment_data } =
-    data;
+  const {
+    fly_state,
+    take_off_locked,
+    return_to_ship_locked,
+    takeoff_alarm,
+    equipment_data,
+  } = data;
   return (
     <Window width={220} height={340} title={'Navigation'}>
       <Window.Content scrollable>
@@ -40,6 +46,13 @@ export const Minidropship = (_props) => {
           </Button>
           <Button onClick={() => act('toggle_nvg')}>
             Toggle night vision mode
+          </Button>
+          <Button
+            onClick={() => act('takeoff_alarm')}
+            tooltip="This will alert everyone nearby. Use with care. Sending the dropship to a new destination will turn this off automatically."
+            color={takeoff_alarm ? 'red' : 'yellow'}
+          >
+            {takeoff_alarm ? 'Stop' : 'Start'} takeoff alarm
           </Button>
         </Section>
         <Section title="Equipment Installed">
