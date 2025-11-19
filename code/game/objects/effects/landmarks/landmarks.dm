@@ -188,6 +188,11 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/zombie_spawner/Initialize(mapload)
+	GLOB.zombie_spawner_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"
