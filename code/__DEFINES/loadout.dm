@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "engi-explosive"),
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "engi-explosive"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
-		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
+		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 40, "engi-other"),
 		/obj/item/tesla_turret = list(CAT_ENGSUP, "Tesla Turret", 30, "engi-other"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
 		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Unmanned Vehicle", 5, "engi-other"),
