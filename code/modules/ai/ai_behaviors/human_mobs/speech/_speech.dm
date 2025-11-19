@@ -60,6 +60,7 @@ GLOBAL_LIST_INIT(ai_speech, init_ai_speech_datums())
 /// Where the work actually happens (saying and possibly other effects).
 /// This should call parent if anyone adds an override for it in the future.
 /datum/ai_speech/proc/speak(mob/living/carbon/human/speaker, datum/ai_behavior/human/ai_behavior)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!can_speak(speaker, ai_behavior))
 		return
 	INVOKE_ASYNC(speaker, TYPE_PROC_REF(/atom/movable, say), pick_line(speaker, ai_behavior))

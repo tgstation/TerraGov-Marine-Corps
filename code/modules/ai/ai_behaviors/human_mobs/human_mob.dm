@@ -199,7 +199,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		custom_speak(pick(new_target_chat))
+		key_speak(AI_SPEECH_NEW_TARGET)
 	set_run()
 	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 

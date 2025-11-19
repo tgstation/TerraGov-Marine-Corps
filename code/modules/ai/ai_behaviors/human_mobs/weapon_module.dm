@@ -4,18 +4,6 @@
 	var/obj/item/weapon/gun/gun
 	///Currently equipped and ready melee weapon - could also be the gun
 	var/obj/item/weapon/melee_weapon
-	///Chat lines when opening fire
-	var/list/start_fire_chat = list("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!")
-	///Chat lines when reloading
-	var/list/reloading_chat = list("Reloading!", "Cover me, reloading!", "Changing mag!", "Out of ammo!")
-	///Chat lines when target goes out of range
-	var/list/out_range_chat = list("Target out of range.", "Out of range.", "I lost them.", "Where'd they go?", "They're running!")
-	///Chat lines when LOS broken
-	var/list/no_los_chat = list("Target lost!", "Where'd they go?", "I lost sight of them!", "Where'd they go?", "They're running!", "Stop hiding!")
-	///Chat lines when some asshole on your team is in the way
-	var/list/friendly_blocked_chat = list("Get out of the way!", "You're in my line!", "Clear the firing lane!", "Move!", "Holding fire!", "Stop blocking me damn it!")
-	///Chat lines when target dies or is destroyed
-	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
 /datum/ai_behavior/human/melee_interact(datum/source, atom/interactee, melee_tool = melee_weapon) //specifies the arg value
 	return ..()
@@ -39,7 +27,7 @@
 	if(fire_result != AI_FIRE_CAN_HIT)
 		return
 	if(prob(90))
-		custom_speak(pick(start_fire_chat))
+		key_speak(AI_SPEECH_START_FIRE)
 	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
 		gun.unique_action(mob_parent)
 	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
@@ -245,18 +233,18 @@
 	switch(stop_reason)
 		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
 			if(prob(75))
-				custom_speak(pick(dead_target_chat))
+				key_speak(AI_SPEECH_DEAD_TARGET)
 		if(AI_FIRE_NO_AMMO)
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
-				custom_speak(pick(out_range_chat))
+				key_speak(AI_SPEECH_OUT_OF_RANGE)
 		if(AI_FIRE_NO_LOS)
 			if(prob(50))
-				custom_speak(pick(no_los_chat))
+				key_speak(AI_SPEECH_NO_LINE_OF_SIGHT)
 		if(AI_FIRE_FRIENDLY_BLOCKED)
 			if(prob(50))
-				custom_speak(pick(friendly_blocked_chat))
+				key_speak(AI_SPEECH_FRIENDLY_BLOCKING)
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()
@@ -281,7 +269,7 @@
 		//insert messaging etc
 		return
 	if(prob(90))
-		custom_speak(pick(reloading_chat))
+		key_speak(AI_SPEECH_RELOADING)
 	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
 		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))

@@ -1,14 +1,6 @@
 /datum/ai_behavior/human
 	///A list of mobs that might need healing
 	var/list/heal_list = list()
-	///Chat lines for trying to heal
-	var/list/healing_chat = list("Healing you.", "Healing you, hold still.", "Stop moving!", "Fixing you up.", "Healing.", "Treating wounds.", "I'll have you patched up in no time.", "Quit your complaining, it's just a fleshwound.", "Cover me!", "Give me some room!")
-	///Chat lines for trying to heal
-	var/list/self_heal_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
-	///Chat lines for someone being perma
-	var/list/unrevivable_chat = list("We lost them!", "I lost them!", "Damn it, they're gone!", "Perma!", "No longer revivable.", "I can't help this one.", "I'm sorry.")
-	///Chat lines for getting a new heal target
-	var/list/move_to_heal_chat = list("Hold on, I'm coming!", "Cover me, I'm moving!", "Moving to assist!", "I'm gonna fix you up.", "They need help!", "Cover me!", "Getting them up.", "Quit your complaining, it's just a fleshwound.", "On the move!", "Helping out here.")
 
 /datum/ai_behavior/human/late_initialize()
 	if(should_hold())
@@ -42,7 +34,7 @@
 		return
 
 	set_interact_target(patient)
-	custom_speak(pick(move_to_heal_chat))
+	key_speak(AI_SPEECH_MOVE_TO_HEAL)
 	return TRUE
 
 ///Someone is healing us
@@ -72,7 +64,7 @@
 	if(get_dist(mob_parent, crit_mob) > 5)
 		return
 	set_interact_target(crit_mob)
-	custom_speak(pick(move_to_heal_chat))
+	key_speak(AI_SPEECH_MOVE_TO_HEAL)
 	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_interactee_stat_change))
 
 ///Unregisters a friendly target when their stat changes
@@ -107,7 +99,7 @@
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	set_interact_target(patient)
-	custom_speak(pick(move_to_heal_chat))
+	key_speak(AI_SPEECH_MOVE_TO_HEAL)
 
 ///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
@@ -135,7 +127,7 @@
 		return
 
 	if(prob(75))
-		custom_speak(pick(self_heal_chat))
+		key_speak(AI_SPEECH_SELF_HEAL)
 
 	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
 
@@ -155,13 +147,13 @@
 	do_unset_target(patient, FALSE)
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		remove_from_heal_list(patient)
-		custom_speak(pick(unrevivable_chat))
+		key_speak(AI_SPEECH_UNREVIVABLE)
 		return
 
 	if(!mob_parent.CanReach(patient))
 		return
 
-	custom_speak(pick(healing_chat))
+	key_speak(AI_SPEECH_HEALING)
 	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib

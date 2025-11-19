@@ -20,7 +20,7 @@
 	chat_lines = list(
 		FACTION_NEUTRAL = list(
 			GENERIC_HAZARD,
-			"Well, I've never seen a hazard like this before."
+			"Well, I've never seen a hazard like this before.",
 		),
 	)
 
@@ -56,16 +56,18 @@
 	key = AI_SPEECH_HAZARD_ACID
 	chat_lines = list(
 		FACTION_NEUTRAL = list(
-			"Don't step in that bubbling stuff!",
-			"Stay away from that goo!",
-			"Green shit!",
-			"ACID!!",
-			"GOO!!",
+			GENERIC_ACID,
 			GENERIC_HAZARD,
 		),
-		FACTION_TERRAGOV = list(SOLDIER_ACID),
-		FACTION_NANOTRASEN = list(SOLDIER_ACID),
-		FACTION_SPECFORCE = list(SOLDIER_ACID),
+		FACTION_TERRAGOV = list(
+			SOLDIER_ACID,
+		),
+		FACTION_NANOTRASEN = list(
+			SOLDIER_ACID,
+		),
+		FACTION_SPECFORCE = list(
+			SOLDIER_ACID,
+		),
 	)
 
 /datum/ai_speech/hazard/shuttle
@@ -77,7 +79,7 @@
 			"Get clear!",
 			"Make way!",
 			GENERIC_HAZARD,
-		)
+		),
 	)
 
 /datum/ai_speech/hazard/cas
@@ -96,11 +98,11 @@
 	key = AI_SPEECH_HAZARD_FACEHUGGER
 	chat_lines = list(
 		FACTION_NEUTRAL = list(
-			"RUN AWAY FROM THAT FACEHUGGER!!",
 			"SHOOT THAT FACEHUGGER!!",
+			"FACEHUGGER! RUN!!",
 			"FACEHUGGER!!",
 			GENERIC_HAZARD,
-		)
+		),
 	)
 
 /datum/ai_speech/hazard/xeno_aoe
@@ -109,9 +111,8 @@
 		FACTION_NEUTRAL = list(
 			"Watch out, that xeno's doing something!",
 			"Stay away from the xeno!",
-			"What's it doing?",
 			GENERIC_HAZARD,
-		)
+		),
 	)
 
 #undef GENERIC_HAZARD

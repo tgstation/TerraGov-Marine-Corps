@@ -73,8 +73,9 @@
 
 	return ..()
 
+/// Sends a signal to nearby AI-controlled humans so they can react accordingly
 /mob/living/carbon/human/proc/nearby_npcs_witness_death(gibbing)
-	for(var/mob/living/carbon/human/nearby in viewers(src))
+	for(var/mob/living/carbon/human/nearby in oviewers(src))
 		if(!nearby.has_ai())
 			continue
 		if(nearby.incapacitated() || is_blind(nearby))
