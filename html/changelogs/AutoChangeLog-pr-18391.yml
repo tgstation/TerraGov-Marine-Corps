@@ -1,0 +1,6 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscadd: "The Alamo's takeoff alarm has received an upgrade into a looping alarm rather than a one-time use alarm."
+  - rscadd: "The alarm can be started/stopped as long as the dropship is ready to fly somewhere. It retains its priority announcement, but with a 1-minute cooldown for starting and stopping respectively."
+  - rscadd: "The Tadpole also has this looping alarm, but with a significantly reduced range and no announcement."
