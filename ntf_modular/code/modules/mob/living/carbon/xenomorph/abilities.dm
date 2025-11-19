@@ -268,9 +268,10 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim
-	var/obj/item/radio/headset/mainship/headset = victim.wear_ear
-	if(istype(headset))
-		headset.disable_locator(40 SECONDS)
+	if(ishuman(victim))
+		var/obj/item/radio/headset/mainship/headset = victim.wear_ear
+		if(istype(headset))
+			headset.disable_locator(40 SECONDS)
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
