@@ -188,6 +188,11 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/zombie_spawner
+	name = "zombie tunnel spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+
 /obj/effect/landmark/zombie_spawner/Initialize(mapload)
 	GLOB.zombie_spawner_turfs += loc
 	. = ..()
