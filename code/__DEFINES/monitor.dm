@@ -23,7 +23,7 @@
 #define GROUNDSIDE "groundside"
 #define SHIPSIDE "shipside"
 
-// Weights for state calculator related to xenomorphs while GROUNDSIDE.
+// Weights for state calculator related to xenomorphs.
 #define PSY_STRATEGIC_POINT_WEIGHT -0.125
 #define PSY_TACTICAL_POINT_WEIGHT PSY_STRATEGIC_POINT_WEIGHT * 4
 #define RESIN_SILO_WEIGHT RESIN_SILO_PRICE * PSY_STRATEGIC_POINT_WEIGHT
@@ -45,18 +45,11 @@
 #define T4_XENO_LIFE_WEIGHT -260
 #define PRIMO_XENO_BONUS_WEIGHT -40
 
-// Weights for the state calculator related to humans while GROUNDSIDE.
+// Weights for the state calculator related to humans.
 #define REQ_POINTS_WEIGHT 0.2
-#define HUMAN_LIFE_ON_GROUND_WEIGHT 100
-#define HUMAN_LIFE_ON_SHIP_WEIGHT 70
-
-//The weight of each statistics in the state calculator before shutters drop
-#define XENOS_LIFE_WEIGHT_PREGAME -300
-#define HUMAN_LIFE_WEIGHT_PREGAME 100
-
-//The weight of each statistics in the state calculator when shipside
-#define XENOS_LIFE_WEIGHT_SHIPSIDE -200
-#define HUMAN_LIFE_WEIGHT_SHIPSIDE 100
+#define SHIPSIDE_HUMAN_LIFE_WEIGHT 100
+#define GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT 100
+#define GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT 70
 
 //Minimum proportion of burrowed larvas compared to live xenos for the unbalance join detector to show up
 #define TOO_MUCH_BURROWED_PROPORTION 0.2

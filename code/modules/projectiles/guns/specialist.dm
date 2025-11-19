@@ -72,7 +72,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "antimat"
 
-
+	autobalance_monitor_value = AMR_PRICE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize(mapload)
 	. = ..()
@@ -212,6 +212,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla
+	autobalance_monitor_value = null
 
 /obj/item/weapon/gun/rifle/sniper/pmc_railgun
 	name = "\improper SRX-42 anti-tank rail rifle"
@@ -374,12 +376,17 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.1
 	scatter = -3
 
+	autobalance_monitor_value = TX8_PRICE
+
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
+
+/obj/item/weapon/gun/rifle/tx8/valhalla
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 // MINIGUN
