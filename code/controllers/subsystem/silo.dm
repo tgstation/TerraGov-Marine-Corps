@@ -15,13 +15,20 @@ SUBSYSTEM_DEF(silo)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
 
-	var/active_humans = length(GLOB.humans_by_zlevel["[current_z]"])
+	var/active_humans = 0
+	var/list/human_list = GLOB.humans_by_zlevel["[current_z]"].Copy()
 	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
 		if(tank.z != current_z)
 			continue
 		if(tank.armored_flags & ARMORED_IS_WRECK)
 			continue
 		active_humans += tank.larva_value
+		human_list += tank.occupants
+
+	for(var/mob/living/carbon/human/human AS in human_list)
+		if(!human.key && !human.has_ai())
+			continue
+		active_humans ++
 
 	var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])

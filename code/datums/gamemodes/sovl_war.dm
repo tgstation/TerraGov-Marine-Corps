@@ -1,7 +1,10 @@
+#define SOVL_WAR_SILO_SCALE 2
+#define SOVL_WAR_MIN_SILO_SCALE 1.4
+#define SOVL_WAR_MIN_POP_BASE 50
 /datum/game_mode/infestation/sovl_war
 	name = "Sovl War"
 	config_tag = "Sovl War"
-	silo_scaling = 2
+	silo_scaling = SOVL_WAR_SILO_SCALE
 	round_type_flags = MODE_ALAMO_ONLY|MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
@@ -66,6 +69,11 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DEFUSED, PROC_REF(on_nuclear_defuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
+
+/datum/game_mode/infestation/sovl_war/process()
+	//attempt to combat xeno scaling at higher pop levels - silo scale is 2 at 50 pop or under, and scales down to 1.4 at 100+ pop
+	silo_scaling = LERP(SOVL_WAR_SILO_SCALE, SOVL_WAR_MIN_SILO_SCALE, clamp((length(GLOB.player_list) / SOVL_WAR_MIN_POP_BASE) - 1, 0, 1))
+	return ..()
 
 /datum/game_mode/infestation/sovl_war/orphan_hivemind_collapse()
 	if(round_finished)
