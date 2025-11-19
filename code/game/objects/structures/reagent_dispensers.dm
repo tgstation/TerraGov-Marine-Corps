@@ -131,16 +131,6 @@
 /obj/structure/reagent_dispensers/fueltank/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
-		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			balloon_alert(user, "already full!")
-			return
-		if(!reagents.has_reagent(/datum/reagent/fuel, 1))
-			balloon_alert(user, "no valid fuel")
-			return
-		reagents.trans_to(W, W.max_fuel)
-		W.weld_tick = 0
-		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
