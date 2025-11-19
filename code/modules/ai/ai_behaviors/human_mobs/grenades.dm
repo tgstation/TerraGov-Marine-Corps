@@ -34,7 +34,7 @@
 		return
 	grenade.attack_self(mob_parent)
 	if(prob(85))
-		try_speak(pick(nade_throw_chat))
+		custom_speak(pick(nade_throw_chat))
 	return mob_parent.throw_item(target, grenade)
 
 ///Finds a suitable grenade to throw

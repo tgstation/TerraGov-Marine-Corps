@@ -42,7 +42,7 @@
 		return
 
 	set_interact_target(patient)
-	try_speak(pick(move_to_heal_chat))
+	custom_speak(pick(move_to_heal_chat))
 	return TRUE
 
 ///Someone is healing us
@@ -72,7 +72,7 @@
 	if(get_dist(mob_parent, crit_mob) > 5)
 		return
 	set_interact_target(crit_mob)
-	try_speak(pick(move_to_heal_chat))
+	custom_speak(pick(move_to_heal_chat))
 	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_interactee_stat_change))
 
 ///Unregisters a friendly target when their stat changes
@@ -107,7 +107,7 @@
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	set_interact_target(patient)
-	try_speak(pick(move_to_heal_chat))
+	custom_speak(pick(move_to_heal_chat))
 
 ///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
@@ -135,7 +135,7 @@
 		return
 
 	if(prob(75))
-		try_speak(pick(self_heal_chat))
+		custom_speak(pick(self_heal_chat))
 
 	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
 
@@ -155,13 +155,13 @@
 	do_unset_target(patient, FALSE)
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		remove_from_heal_list(patient)
-		try_speak(pick(unrevivable_chat))
+		custom_speak(pick(unrevivable_chat))
 		return
 
 	if(!mob_parent.CanReach(patient))
 		return
 
-	try_speak(pick(healing_chat))
+	custom_speak(pick(healing_chat))
 	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib

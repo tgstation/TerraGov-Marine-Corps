@@ -16,18 +16,6 @@
 	var/engineer_rating = AI_ENGIE_DEFAULT
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
-	///Chat lines when moving to a new target
-	var/list/new_move_chat = list("Moving.", "On the way.", "Moving out.", "On the move.", "Changing position.", "Watch your spacing!", "Let's move.", "Move out!", "Go go go!!", "moving.", "Mobilising.", "Hoofing it.")
-	///Chat lines when following a new target
-	var/list/new_follow_chat = list("Following.", "Following you.", "I got your back!", "Take the lead.", "Let's move!", "Let's go!", "Group up!.", "In formation.", "Where to?",)
-	///Chat lines when engaging a new target
-	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
-	///Chat lines for retreating on low health
-	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Cover me!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.", "Taking fire!", "Taking heavy fire!", "Run for it!")
-	///General acknowledgement of receiving an order
-	var/receive_order_chat = list("Understood.", "Moving.", "Moving out", "Got it.", "Right away.", "Roger", "You got it.", "On the move.", "Acknowledged.", "Affirmative.", "Who put you in charge?", "Ok.", "I got it sorted.", "On the double.",)
-	///Cooldown on chat lines, to reduce spam
-	COOLDOWN_DECLARE(ai_chat_cooldown)
 	///Cooldown on running, so we can recover stam and make the most of it
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	///Cooldown on taking any damage (this could include DOT etc)
@@ -55,6 +43,7 @@
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 	RegisterSignal(mob_parent, COMSIG_MOB_INTERACTION_DESIGNATED, PROC_REF(interaction_designated))
+	RegisterSignal(mob_parent, COMSIG_HUMAN_WITNESSED_DEATH, PROC_REF(witness_death))
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_DESIGNATED_TARGET_SET, PROC_REF(interaction_designated))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
@@ -83,6 +72,7 @@
 		COMSIG_AI_HEALING_MOB,
 		COMSIG_MOB_TOGGLEMOVEINTENT,
 		COMSIG_MOB_INTERACTION_DESIGNATED,
+		COMSIG_HUMAN_WITNESSED_DEATH,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC, COMSIG_GLOB_DESIGNATED_TARGET_SET, COMSIG_GLOB_HOLO_BUILD_INITIALIZED))
@@ -193,7 +183,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		try_speak(pick(new_move_chat))
+		custom_speak(pick(new_move_chat))
 	set_run()
 
 /datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
@@ -201,7 +191,7 @@
 	if(!.)
 		return
 	if(prob(50) && isliving(escorted_atom))
-		try_speak(pick(new_follow_chat))
+		custom_speak(pick(new_follow_chat))
 	set_run()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
@@ -209,7 +199,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		try_speak(pick(new_target_chat))
+		custom_speak(pick(new_target_chat))
 	set_run()
 	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 
@@ -274,7 +264,7 @@
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
 			set_interact_target(target) //todo: Other option might be redundant?
-			try_speak(pick(receive_order_chat))
+			custom_speak(pick(receive_order_chat))
 			return
 		set_atom_to_walk_to(target)
 		return
@@ -284,7 +274,7 @@
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
-		try_speak(pick(receive_order_chat))
+		custom_speak(pick(receive_order_chat))
 		return
 	if(movable_target.faction != mob_parent.faction)
 		set_combat_target(movable_target)
@@ -294,7 +284,7 @@
 		if(!living_target.stat)
 			set_escorted_atom(null, living_target)
 	set_interact_target(movable_target)
-	try_speak(pick(receive_order_chat))
+	custom_speak(pick(receive_order_chat))
 
 ///Attempts to pickup an item
 /datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
@@ -302,16 +292,6 @@
 	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item())
 		return
 	mob_parent.UnarmedAttack(new_item, TRUE)
-
-///Says an audible message
-/datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
-	if(mob_parent.incapacitated())
-		return
-	if(!COOLDOWN_FINISHED(src, ai_chat_cooldown))
-		return
-	//maybe radio arg in the future for some things
-	mob_parent.say(message)
-	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
@@ -351,7 +331,7 @@
 		return
 
 	if(prob(50))
-		try_speak(pick(retreating_chat))
+		custom_speak(pick(retreating_chat))
 	set_run(TRUE)
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)

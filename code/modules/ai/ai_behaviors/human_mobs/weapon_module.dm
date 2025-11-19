@@ -39,7 +39,7 @@
 	if(fire_result != AI_FIRE_CAN_HIT)
 		return
 	if(prob(90))
-		try_speak(pick(start_fire_chat))
+		custom_speak(pick(start_fire_chat))
 	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
 		gun.unique_action(mob_parent)
 	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
@@ -245,18 +245,18 @@
 	switch(stop_reason)
 		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
 			if(prob(75))
-				try_speak(pick(dead_target_chat))
+				custom_speak(pick(dead_target_chat))
 		if(AI_FIRE_NO_AMMO)
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
-				try_speak(pick(out_range_chat))
+				custom_speak(pick(out_range_chat))
 		if(AI_FIRE_NO_LOS)
 			if(prob(50))
-				try_speak(pick(no_los_chat))
+				custom_speak(pick(no_los_chat))
 		if(AI_FIRE_FRIENDLY_BLOCKED)
 			if(prob(50))
-				try_speak(pick(friendly_blocked_chat))
+				custom_speak(pick(friendly_blocked_chat))
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()
@@ -281,7 +281,7 @@
 		//insert messaging etc
 		return
 	if(prob(90))
-		try_speak(pick(reloading_chat))
+		custom_speak(pick(reloading_chat))
 	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
 		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
