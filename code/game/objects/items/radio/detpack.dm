@@ -319,8 +319,8 @@
 			movable.vis_contents += src
 			layer = ABOVE_ALL_MOB_LAYER
 			//We use w and z due to sidemap, but need to take into account x/y and w/z pixel shifts, to get a roughly reliable center point
-			pixel_w = -(mover.pixel_x + mover.pixel_w)
-			pixel_z = -(mover.pixel_y + mover.pixel_z)
+			pixel_w = -(movable.pixel_x + movable.pixel_w)
+			pixel_z = -(movable.pixel_y + movable.pixel_z)
 			if(movable.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
 				target_drag_delay = movable.drag_delay
 				movable.drag_delay = 3
