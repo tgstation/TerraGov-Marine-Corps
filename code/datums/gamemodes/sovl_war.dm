@@ -47,13 +47,14 @@
 		/datum/xeno_caste/queen = 8,
 		/datum/xeno_caste/king = 12,
 	)
+/* NTF edit
 	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 /datum/game_mode/infestation/sovl_war/setup()
 	. = ..()
 	//testing only
 	addtimer(CALLBACK(src, PROC_REF(enable_pods)), deploy_time_lock)
-
+*/
 /datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
 

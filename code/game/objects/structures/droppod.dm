@@ -57,8 +57,10 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	//testing only
+	/* NTF edit
 	if(SSticker.mode && istype(SSticker.mode, /datum/game_mode/infestation/sovl_war) && SSmonitor.gamestate != SHUTTERS_CLOSED)
 		disable_sovl_launching()
+	*/
 	GLOB.droppod_list += src
 	update_icon()
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
