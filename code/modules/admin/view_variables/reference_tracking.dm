@@ -22,7 +22,7 @@
 	if(usr?.client)
 		usr.client.running_find_references = type
 
-	log_reftracker("Beginning search for references to a [type].")
+	log_reftracker("Beginning search for references to [logdetails(src)].")
 
 	var/starting_time = world.time
 
@@ -40,21 +40,21 @@
 	log_reftracker("Finished searching native globals")
 
 	for(var/datum/thing in world) //atoms (don't beleive its lies)
-		DoSearchVar(thing, "World -> [thing.type]", search_time = starting_time)
+		DoSearchVar(thing, "World -> [logdetails(thing)]", search_time = starting_time)
 	log_reftracker("Finished searching atoms")
 
 	for(var/datum/thing) //datums
-		DoSearchVar(thing, "Datums -> [thing.type]", search_time = starting_time)
+		DoSearchVar(thing, "Datums -> [logdetails(thing)]", search_time = starting_time)
 	log_reftracker("Finished searching datums")
 
 	//Warning, attempting to search clients like this will cause crashes if done on live. Watch yourself
 #ifndef REFERENCE_DOING_IT_LIVE
 	for(var/client/thing) //clients
-		DoSearchVar(thing, "Clients -> [thing.type]", search_time = starting_time)
+		DoSearchVar(thing, "Clients -> [logdetails(thing)]", search_time = starting_time)
 	log_reftracker("Finished searching clients")
 #endif
 
-	log_reftracker("Completed search for references to a [type].")
+	log_reftracker("Completed search for references to [logdetails(src)].")
 
 	if(usr?.client)
 		usr.client.running_find_references = null
@@ -105,7 +105,7 @@
 					found_refs[varname] = TRUE
 					continue //End early, don't want these logging
 				#endif
-				log_reftracker("Found [type] \ref[src] in [datum_container.type]'s [container_print] [varname] var. [container_name]")
+				log_reftracker("Found [logdetails(src)] \ref[src] in [logdetails(datum_container)]'s [container_print] [varname] var. [container_name]")
 				continue
 
 			if(islist(variable))
@@ -125,7 +125,7 @@
 					found_refs[potential_cache] = TRUE
 					continue //End early, don't want these logging
 				#endif
-				log_reftracker("Found [type] \ref[src] in list [container_name].")
+				log_reftracker("Found [logdetails(src)] \ref[src] in list [container_name].")
 				continue
 
 			var/assoc_val = null
@@ -138,7 +138,7 @@
 					found_refs[potential_cache] = TRUE
 					continue //End early, don't want these logging
 				#endif
-				log_reftracker("Found [type] \ref[src] in list [container_name]\[[element_in_list]\]")
+				log_reftracker("Found [logdetails(src)] \ref[src] in list [container_name]\[[element_in_list]\]")
 				continue
 			//We need to run both of these checks, since our object could be hiding in either of them
 			//Check normal sublists
