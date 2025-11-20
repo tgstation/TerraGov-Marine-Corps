@@ -103,9 +103,12 @@
 		span_notice("You begin unsecuring [src] from [plant_target]."))
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
+		if(QDELETED(src))
+			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
 		nullvars()
+		setAnchored(FALSE)
 	return ..()
 
 /obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
@@ -127,6 +130,8 @@
 	span_notice("You begin disarming [src] with [I]."))
 
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+		return
+	if(QDELETED(src))
 		return
 
 	balloon_alert_to_viewers("disarmed")
@@ -294,6 +299,7 @@
 		var/location
 		location = target
 		forceMove(location)
+		setAnchored(TRUE)
 		boom_direction = get_dir(user, location)
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")

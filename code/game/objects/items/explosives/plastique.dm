@@ -105,6 +105,7 @@
 				pixel_y = -32
 	else
 		forceMove(location)
+	setAnchored(TRUE)
 	armed = TRUE
 	timer = target.plastique_time_mod(timer)
 	last_user = user
@@ -126,6 +127,8 @@
 /obj/item/explosive/plastique/proc/remove_plastique(mob/living/user)
 	if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 		return
+	if(QDELETED(src))
+		return
 
 	UnregisterSignal(plant_target, COMSIG_ATOM_TRY_PLASTIQUE)
 
@@ -134,6 +137,7 @@
 		T.vis_contents -= src
 		layer = initial(layer)
 
+	setAnchored(FALSE)
 	forceMove(get_turf(user))
 	pixel_y = 0
 	pixel_x = 0
