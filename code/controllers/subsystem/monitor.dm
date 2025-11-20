@@ -42,7 +42,14 @@ SUBSYSTEM_DEF(monitor)
 	var/list/b17_in_use = list()
 
 /datum/controller/subsystem/monitor/Initialize()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ, COMSIG_GLOB_CRASH_SHIP_LANDED), PROC_REF(set_groundside_calculation))
+	RegisterSignals(SSdcs, list(
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,
+		COMSIG_GLOB_OPEN_SHUTTERS_EARLY,
+		COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,
+		COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,
+		COMSIG_GLOB_CRASH_SHIP_LANDED,
+		COMSIG_GLOB_DROPPOD_LANDED,
+	), PROC_REF(set_groundside_calculation))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 	return SS_INIT_SUCCESS
@@ -73,9 +80,17 @@ SUBSYSTEM_DEF(monitor)
 			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
-/datum/controller/subsystem/monitor/proc/set_groundside_calculation()
+///Sets the gamestate to groundside
+/datum/controller/subsystem/monitor/proc/set_groundside_calculation(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ, COMSIG_GLOB_CRASH_SHIP_LANDED))
+	UnregisterSignal(SSdcs, list(
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,
+		COMSIG_GLOB_OPEN_SHUTTERS_EARLY,
+		COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,
+		COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,
+		COMSIG_GLOB_CRASH_SHIP_LANDED,
+		COMSIG_GLOB_DROPPOD_LANDED,
+	))
 	gamestate = GROUNDSIDE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 
