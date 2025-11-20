@@ -22,8 +22,6 @@ SUBSYSTEM_DEF(monitor)
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
 	var/FOB_hugging = FALSE
-	///List of all int stats
-	var/datum/monitor_statistics/stats = new
 	///If the game is currently before shutters drop, after, or shipside
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
@@ -32,11 +30,6 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 	/// An associative list of all items with the component [/datum/component/autobalance_monitor]. Association: [item] = value in requisition points.
 	var/list/requisition_item_keys = list()
-
-/datum/monitor_statistics
-	var/list/sadar_in_use = list()
-	var/list/b18_in_use = list()
-	var/list/b17_in_use = list()
 
 /datum/controller/subsystem/monitor/Initialize()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ, COMSIG_GLOB_CRASH_SHIP_LANDED), PROC_REF(set_groundside_calculation))
