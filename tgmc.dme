@@ -740,6 +740,7 @@
 #include "code\datums\keybinding\mob.dm"
 #include "code\datums\keybinding\movement.dm"
 #include "code\datums\keybinding\sectoid.dm"
+#include "code\datums\keybinding\vehicle_keybinds.dm"
 #include "code\datums\keybinding\weapons.dm"
 #include "code\datums\keybinding\xeno.dm"
 #include "code\datums\loadout\loadout.dm"
