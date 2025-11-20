@@ -121,7 +121,7 @@
 /// Doubles the given regen power.
 /obj/structure/xeno/recovery_pylon/proc/on_pre_health_regen_scaling(datum/source, new_regen_power, previous_regen_power)
 	var/mob/living/carbon/xenomorph/affected_xenomorph = source
-	affected_xenomorph.regen_power = max(0, affected_xenomorph.regen_power + new_regen_power - previous_regen_power)
+	affected_xenomorph.regen_power = clamp(ffected_xenomorph.regen_power + new_regen_power - previous_regen_power, 0, 1)
 
 /particles/recovery_pylon_aoe
 	icon = 'icons/effects/particles/generic_particles.dmi'
