@@ -325,6 +325,7 @@
 		job.free_job_positions(1)
 
 	for(var/obj/item/W in src)
+		temporarilyRemoveItemFromInventory(W)
 		W.store_in_cryo()
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)
