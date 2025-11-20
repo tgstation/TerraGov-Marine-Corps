@@ -12,11 +12,17 @@ SUBSYSTEM_DEF(silo)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
-	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
+	var/list/active_zs = list()
+	if(SSmonitor.gamestate == SHIPSIDE)
+		active_zs += SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+	else
+		active_zs += SSmapping.levels_by_trait(ZTRAIT_GROUND)
 	var/active_humans = 0
-	var/list/human_list = GLOB.humans_by_zlevel["[current_z]"].Copy()
+	var/list/human_list = list()
+	for(var/active_z in active_zs)
+		human_list += GLOB.humans_by_zlevel["[active_z]"]
 	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
-		if(tank.z != current_z)
+		if(!(tank.z in active_zs))
 			continue
 		if(tank.armored_flags & ARMORED_IS_WRECK)
 			continue
