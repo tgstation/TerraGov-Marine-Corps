@@ -41,4 +41,4 @@
 /// Called whenever the parent changes z-levels.
 /datum/component/autobalance_monitor/proc/changed_zlevel(atom/source, old_zlevel, new_zlevel, is_same_zlayer)
 	SIGNAL_HANDLER
-	SSmonitor.requisition_item_keys[parent] = (SSmonitor.gamestate == SHIPSIDE && !(new_zlevel in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))) ? 0 : point_value
+	SSmonitor.requisition_item_keys[parent] = (SSmonitor.gamestate == SHIPSIDE && !is_mainship_level(ZTRAIT_MARINE_MAIN_SHIP)) ? 0 : point_value
