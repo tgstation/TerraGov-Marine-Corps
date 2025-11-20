@@ -34,7 +34,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_SHIPSIDE)
 	var/obj/item/item_parent = parent
-	if(item_parent.z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+	if(is_mainship_level(item_parent.z))
 		return
 	SSmonitor.requisition_item_keys[item_parent] = 0
 
