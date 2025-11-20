@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "King requires 12 pop hive to evo, no longer has minimum roundstart pop requirements"
