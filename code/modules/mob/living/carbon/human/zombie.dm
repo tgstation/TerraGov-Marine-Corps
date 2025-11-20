@@ -132,4 +132,6 @@
 		return
 	if(!claw.zombium_per_hit)
 		return
+	if(shield_active())
+		return
 	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)
