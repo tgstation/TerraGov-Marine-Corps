@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - bugfix: "fixed desparity zombie tunnel spawning on other gamemodes"
