@@ -130,9 +130,16 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "Gross! The large creature is venting a hot steam."
 
-		// *** Ranged Attack *** //
-	spit_delay = 0.75 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/airburst)
+	// *** Melee Attacks *** //
+	attack_delay = 7
+
+	// *** Speed *** //
+	speed = -0.7
+
+	max_health = 450
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 40, ACID = 40)
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
@@ -144,9 +151,8 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
-		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/xeno_action/smokescreen_spit,
-		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/smokescreen_spit,
+		/datum/action/ability/activable/xeno/charge/acid_dash,
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
@@ -174,9 +180,8 @@
 		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
-		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/xeno_action/smokescreen_spit,
-		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/smokescreen_spit,
+		/datum/action/ability/activable/xeno/charge/acid_dash,
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/activable/xeno/high_pressure_spit,
 		/datum/action/ability/xeno_action/create_edible_jelly,

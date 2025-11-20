@@ -11,6 +11,7 @@
 	width = 7
 	height = 9
 	rechargeTime = 0
+	alarm_loop_type = /datum/looping_sound/looping_launch_announcement_alarm/tadpole
 
 /obj/docking_port/stationary/marine_dropship/minidropship/som
 	name = "SOM Minidropship hangar pad"
@@ -327,6 +328,7 @@
 	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
 	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+	.["takeoff_alarm"] = shuttle?.playing_takeoff_alarm
 	.["equipment_data"] = list()
 	var/element_nbr = 1
 	for(var/X in shuttle?.equipments)
@@ -346,6 +348,12 @@
 			return_to_ship()
 		if("toggle_nvg")
 			toggle_nvg()
+		if("takeoff_alarm")
+			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+			if(!shuttle.playing_takeoff_alarm)
+				. = shuttle.start_takeoff_alarm(usr, FALSE) // will fast-track a UI update if successful
+			else
+				. = shuttle.stop_takeoff_alarm(usr, FALSE)
 		if("equip_interact")
 			var/base_tag = text2num(params["equip_interact"])
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port

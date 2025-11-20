@@ -299,6 +299,13 @@
 	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
 	hotkey_keys = list("Space")
 
+/datum/keybinding/xeno/acid_dash
+	name = "acid_dash"
+	full_name = "Sizzler: Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Gain another cast if hitting a marine."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/high_pressure_spit
 	name = "high_pressure_spit"
 	full_name = "Sizzler: High Pressure Spit"
@@ -787,13 +794,6 @@
 	full_name = "Conqueror: Obliteration (Toggle)"
 	description = "Unleash your latent power. While enabled, you will create an area of effect that will slowly expand. Using the ability again will attack everyone caught within it."
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE
-
-/datum/keybinding/xeno/acid_dash
-	name = "acid_dash"
-	full_name = "Praetorian: Acid Dash"
-	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
-	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
-	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/acid_dash_melter
 	name = "Melter: Acid Dash"

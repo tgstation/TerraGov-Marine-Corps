@@ -121,3 +121,8 @@
 #define SHUTTLE_SOM_VEHICLE_SUPPLY "som_vehicle_supply"
 #define SHUTTLE_CAS_SOM "casplane_som"
 #define SHUTTLE_CAS_DOCK_SOM "som_cas_dock"
+
+/// Announcement cooldown for marine dropship takeoff alarms
+#define TAKEOFF_ALARM_ANNOUNCEMENT_COOLDOWN (60 SECONDS)
+/// The takeoff alarm will shut off after inactivity for this long
+#define TAKEOFF_ALARM_AUTOSHUTOFF_TIME (90 SECONDS)
