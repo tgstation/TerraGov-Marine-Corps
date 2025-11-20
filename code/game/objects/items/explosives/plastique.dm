@@ -120,6 +120,9 @@
 		var/atom/movable/mover = plant_target
 		mover.vis_contents += src
 		layer = ABOVE_ALL_MOB_LAYER
+		//We use w and z due to sidemap, but need to take into account x/y and w/z pixel shifts, to get a roughly reliable center point
+		pixel_w = -(mover.pixel_x + mover.pixel_w)
+		pixel_z = -(mover.pixel_y + mover.pixel_z)
 	detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 	update_appearance(UPDATE_ICON)
 
@@ -136,10 +139,12 @@
 		var/atom/movable/T = plant_target
 		T.vis_contents -= src
 		layer = initial(layer)
+		pixel_w = initial(pixel_w)
+		pixel_z = initial(pixel_z)
 
 	setAnchored(FALSE)
-	pixel_y = 0
-	pixel_x = 0
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
 	forceMove(get_turf(user))
 	deltimer(detonation_pending)
 
