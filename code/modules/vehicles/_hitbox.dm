@@ -556,4 +556,5 @@
 		armor.forceMove(get_step(armor.loc, turn(armor.dir, -135)))
 
 	root.setDir(facing_dir)
+	COOLDOWN_START(root, cooldown_vehicle_move, root.move_delay * 2)  //turns are essentially making two moves
 	return COMPONENT_DRIVER_BLOCK_MOVE
