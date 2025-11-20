@@ -10,8 +10,10 @@
 
 #define GIB_LINES_ANGRY \
 	"WOAH, LOOK OUT!!",\
+	"OH MY GOD!!",\
 	"HOLY SHIT!!",\
-	"OH NOOO!!"
+	"OH NOOO!!",\
+	"FUCK!!"
 
 /// When witnessing death and engaged in combat
 /datum/ai_speech/witnessing_death

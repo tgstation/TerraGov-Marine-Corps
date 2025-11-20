@@ -20,7 +20,7 @@
 	chat_lines = list(
 		FACTION_NEUTRAL = list(
 			GENERIC_HAZARD,
-			"Well, I've never seen a hazard like this before.",
+			"I've never seen shit like this before!",
 		),
 	)
 

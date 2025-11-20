@@ -12,13 +12,31 @@
 	"Moving in.",\
 	"Engaging!",\
 	"Engaging.",\
-	"Hostiles!"
+	"Hostiles!",\
+	"Contact!"
+
+/datum/ai_speech/retreating
+	key = AI_SPEECH_RETREATING
+	chat_lines = list(
+		FACTION_NEUTRAL = list(
+			"Cover me, I'm hit!",
+			"I need help here!",
+			"Falling back!",
+			"Disengaging!",
+			"HELP!!",
+			"RUN!!",
+		),
+	)
 
 /datum/ai_speech/initiating_combat
 	key = AI_SPEECH_NEW_TARGET
 	chat_lines = list(
 		FACTION_NEUTRAL = list(
 			COMBAT_HIGH_ENERGY,
+		),
+		FACTION_TERRAGOV = list(
+			COMBAT_HIGH_ENERGY,
+			"CONTACT!!",
 		),
 		FACTION_NANOTRASEN = list(
 			COMBAT_COLD,
