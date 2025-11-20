@@ -899,3 +899,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!(M.client))
 		qdel(M)
 		return
+
+/mob/dead/observer/abstract_move(atom/new_loc)
+	if(ismob(loc))
+		moveToNullspace()
+	. = ..()
