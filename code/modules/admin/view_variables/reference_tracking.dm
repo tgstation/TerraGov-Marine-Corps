@@ -166,3 +166,6 @@
 
 /datum/callback/ref_search_details()
 	return "[text_ref(src)] (obj: [object] proc: [delegate] args: [json_encode(arguments)] user: [user?.resolve() || "null"])"
+
+/datum/component/ref_search_details()
+	return "[text_ref(src)] (parent: [logdetails(parent)][isdatum(parent) ? parent.ref_search_details() : ""])"
