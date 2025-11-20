@@ -140,7 +140,7 @@
 	setAnchored(FALSE)
 	pixel_y = 0
 	pixel_x = 0
-	user.put_in_hands(src)
+	forceMove(get_turf(user))
 	deltimer(detonation_pending)
 
 	user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
