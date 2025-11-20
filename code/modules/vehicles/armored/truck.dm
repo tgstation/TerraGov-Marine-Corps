@@ -5,7 +5,7 @@
 	icon_state = "apc"
 	damage_icon_path = 'icons/obj/armored/2x3/apc_damage_overlay.dmi'
 	hitbox = /obj/hitbox/mrap
-	interior = /datum/interior/armored/transport
+	interior = /datum/interior/armored/mrap
 	permitted_weapons = NONE
 	permitted_mods = list(/obj/item/tank_module/ability/tesla)
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_WRECKABLE|ARMORED_PURCHASABLE_TRANSPORT
