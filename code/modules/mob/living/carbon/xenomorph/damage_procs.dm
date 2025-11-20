@@ -89,7 +89,7 @@
 	if(updating_health)
 		updatehealth()
 
-	regen_power = -regen_delay //Remember, this is in deciseconds.
+	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 
 	if(isobj(pulling))
 		stop_pulling()
