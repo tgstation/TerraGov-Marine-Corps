@@ -550,7 +550,7 @@
 /datum/reagents/proc/attack_add_reagent(mob/living/carbon/human/human, reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE)
 	if(istype(human.wear_suit, /obj/item/clothing))
 		var/obj/item/clothing/c = human.wear_suit
-		amount = amount * c.soft_armor.bio/100
+		amount = amount - amount * c.soft_armor.bio/100
 	add_reagent(reagent, amount, data, reagtemp, no_react, safety, no_overdose)
 
 /datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE)
