@@ -176,7 +176,7 @@
 /datum/action/vehicle/sealed/armored/smoke_screen
 	name = "Smokescreen"
 	action_icon_state = "mech_smoke"
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_MECHABILITY_SMOKE)
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_VEHICLEABILITY_SMOKE)
 	///Uses of this ability remaining
 	var/shots_remaining = 6
 
@@ -227,7 +227,7 @@
 /datum/action/vehicle/sealed/armored/tesla
 	name = "Tesla"
 	action_icon_state = "pulsearmor"
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_MECHABILITY_SMOKE)
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_VEHICLEABILITY_TESLA)
 	COOLDOWN_DECLARE(tesla_cooldown)
 
 /datum/action/vehicle/sealed/armored/tesla/remove_action(mob/M)
