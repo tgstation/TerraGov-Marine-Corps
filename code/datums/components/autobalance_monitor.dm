@@ -21,7 +21,7 @@
 	if(SSmonitor.gamestate != SHIPSIDE)
 		RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_SHIPSIDE, PROC_REF(changed_to_shipside_gamestate))
 	var/obj/item/item_parent = parent
-	SSmonitor.requisition_item_keys[item_parent] = (SSmonitor.gamestate == SHIPSIDE && !(item_parent.z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))) ? 0 : point_value
+	SSmonitor.requisition_item_keys[item_parent] = (SSmonitor.gamestate == SHIPSIDE && !is_mainship_level(item_parent.z)) ? 0 : point_value
 
 /datum/component/autobalance_monitor/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED)
