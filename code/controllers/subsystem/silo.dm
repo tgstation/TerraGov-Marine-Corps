@@ -13,13 +13,20 @@ SUBSYSTEM_DEF(silo)
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
-	var/active_humans = length(GLOB.humans_by_zlevel["[current_z]"])
+	var/active_humans = 0
+	var/list/human_list = GLOB.humans_by_zlevel["[current_z]"].Copy()
 	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
 		if(tank.z != current_z)
 			continue
 		if(tank.armored_flags & ARMORED_IS_WRECK)
 			continue
 		active_humans += tank.larva_value
+		human_list += tank.occupants
+
+	for(var/mob/living/carbon/human/human AS in human_list)
+		if(!human.key && !human.has_ai())
+			continue
+		active_humans ++
 	for(var/hivenumber in GLOB.hive_datums)
 		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
 		var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
