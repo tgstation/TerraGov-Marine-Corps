@@ -151,8 +151,8 @@
 
 //Marine armor defines
 #define MARINE_ARMOR_LIGHT list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
-#define MARINE_ARMOR_MEDIUM list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 60, FIRE = 50, ACID = 55)
-#define MARINE_ARMOR_HEAVY list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 70, FIRE = 55, ACID = 60)
+#define MARINE_ARMOR_MEDIUM list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+#define MARINE_ARMOR_HEAVY list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 //=================================================
 

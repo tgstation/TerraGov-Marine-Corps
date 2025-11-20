@@ -311,7 +311,7 @@
 	icon_state = "mod_eshield"
 	worn_icon_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
-	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -20, FIRE = 0, ACID = -5)
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = null, /obj/item/clothing/suit/modular/tdf = "")
 
 	///Current shield Health
