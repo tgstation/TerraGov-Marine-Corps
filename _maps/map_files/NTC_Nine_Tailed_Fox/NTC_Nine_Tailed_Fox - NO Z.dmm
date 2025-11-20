@@ -20253,8 +20253,7 @@
 	dir = 8
 	},
 /obj/item/weapon/gun/sentry/premade{
-	dir = 8;
-	sentry_iff_signal = 1
+	dir = 8
 	},
 /obj/structure/barricade/solid{
 	dir = 8
