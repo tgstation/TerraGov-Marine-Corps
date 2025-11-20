@@ -53,6 +53,7 @@
 	end_cas_mission(chair?.occupant)
 	QDEL_NULL(off_action)
 	QDEL_NULL(cas_mini)
+	QDEL_NULL(jump_action)
 	return ..()
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
