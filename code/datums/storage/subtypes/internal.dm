@@ -313,6 +313,7 @@
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
 		/obj/item/minerupgrade,
+		/obj/item/deploy_capsule/barricade,
 	))
 
 /datum/storage/internal/medical

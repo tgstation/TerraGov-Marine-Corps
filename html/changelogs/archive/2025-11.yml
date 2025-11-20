@@ -120,6 +120,12 @@
   - rscadd: Added some more NPC interactions
   - bugfix: fixed a couple of broken NPC interactions
   - bugfix: fixed alamo sentries not deploying
+  - code_imp: Cleared some bad whiskey outpost var edits
+  - rscadd: Added some more NPC interactions
+  - bugfix: fixed a couple of broken NPC interactions
+  - bugfix: fixed alamo sentries not deploying
+  - balance: King requires 12 pop hive to evo, no longer has minimum roundstart pop
+      requirements
   - bugfix: Firesupport binos use true LOS instead of viewers()
   - bugfix: Sentries will broadcast alerts on radio correctly, and will broadcast
       on faction appropriate channels
@@ -130,5 +136,20 @@
   - bugfix: NPC's will try melee attack even when retreating
   PibeCantina:
   - config: Rises metnal minumum pop to 55
+  Neocloudy:
+  - rscadd: The Alamo's takeoff alarm has received an upgrade into a looping alarm
+      rather than a one-time use alarm.
+  - rscadd: The alarm can be started/stopped as long as the dropship is ready to fly
+      somewhere. It retains its priority announcement, but with a 1-minute cooldown
+      for starting and stopping respectively.
+  - rscadd: The Tadpole also has this looping alarm, but with a significantly reduced
+      range and no announcement.
+  PibeCantina:
+  - config: Rises metnal minumum pop to 55
+  Rug-Dealer:
+  - qol: Field utility pouch now opens its inventory on left click instead of drawing
+      the rightmost item.
+  blackdav123:
+  - balance: Sizzler has been completely reworked, check the github for details.
   mudzbe:
   - bugfix: Zombies cant rip out other zombies' hearts

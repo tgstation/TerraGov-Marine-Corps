@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Cade capsule fits in engi storage module"

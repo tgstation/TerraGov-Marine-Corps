@@ -30,8 +30,7 @@
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
 /* NTF EDIT - No minimum for evolution
-	evolve_min_xenos = 8
-	evolve_population_lock = 40 // Mech
+	evolve_min_xenos = 12
 */
 	deevolves_to = /mob/living/carbon/xenomorph/drone //NTF Edit - allow evolution/regression
 	death_evolution_delay = 7 MINUTES
