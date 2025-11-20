@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(monitor)
 	// Humans
 	switch(gamestate)
 		if(SHUTTERS_CLOSED)
-			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 		if(GROUNDSIDE)
 			. += human_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
