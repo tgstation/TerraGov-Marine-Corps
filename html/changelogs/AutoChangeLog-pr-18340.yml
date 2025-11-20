@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added some more NPC interactions"
-  - bugfix: "fixed a couple of broken NPC interactions"

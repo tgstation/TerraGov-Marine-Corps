@@ -114,3 +114,21 @@
 2025-11-19:
   blackdav123:
   - spellcheck: Fixed various mistakes on the beginner loadout tutorials.
+2025-11-20:
+  Lumipharon:
+  - qol: Crash weapon vendors start with 12 C4 charges
+  - rscadd: Added some more NPC interactions
+  - bugfix: fixed a couple of broken NPC interactions
+  - bugfix: fixed alamo sentries not deploying
+  - bugfix: Firesupport binos use true LOS instead of viewers()
+  - bugfix: Sentries will broadcast alerts on radio correctly, and will broadcast
+      on faction appropriate channels
+  - code_imp: Sentry IFF uses faction instead of sentry_iff_signal where relevant
+  - code_imp: various bits of code listen to the correct signal for knowing when the
+      gamestate is groundside
+  - balance: Engineers can buy barricade capsules, for rapid fortification
+  - bugfix: NPC's will try melee attack even when retreating
+  PibeCantina:
+  - config: Rises metnal minumum pop to 55
+  mudzbe:
+  - bugfix: Zombies cant rip out other zombies' hearts
