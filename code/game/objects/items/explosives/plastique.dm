@@ -105,6 +105,7 @@
 				pixel_y = -32
 	else
 		forceMove(location)
+	setAnchored(TRUE)
 	armed = TRUE
 	timer = target.plastique_time_mod(timer)
 	last_user = user
@@ -119,12 +120,17 @@
 		var/atom/movable/mover = plant_target
 		mover.vis_contents += src
 		layer = ABOVE_ALL_MOB_LAYER
+		//We use w and z due to sidemap, but need to take into account x/y and w/z pixel shifts, to get a roughly reliable center point
+		pixel_w = -(mover.pixel_x + mover.pixel_w)
+		pixel_z = -(mover.pixel_y + mover.pixel_z)
 	detonation_pending = addtimer(CALLBACK(src, PROC_REF(warning_sound), target, 'sound/items/countdown.ogg', 20, TRUE), ((timer*10) - 27), TIMER_STOPPABLE)
 	update_appearance(UPDATE_ICON)
 
 ///Removes from a target
 /obj/item/explosive/plastique/proc/remove_plastique(mob/living/user)
 	if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+		return
+	if(QDELETED(src))
 		return
 
 	UnregisterSignal(plant_target, COMSIG_ATOM_TRY_PLASTIQUE)
@@ -133,10 +139,13 @@
 		var/atom/movable/T = plant_target
 		T.vis_contents -= src
 		layer = initial(layer)
+		pixel_w = initial(pixel_w)
+		pixel_z = initial(pixel_z)
 
+	setAnchored(FALSE)
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
 	forceMove(get_turf(user))
-	pixel_y = 0
-	pixel_x = 0
 	deltimer(detonation_pending)
 
 	user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
