@@ -43,7 +43,7 @@
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium is transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 9
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -132,4 +132,4 @@
 		return
 	if(!claw.zombium_per_hit)
 		return
-	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)
+	reagents.attack_add_reagent(zombie, src, /datum/reagent/zombium, claw.zombium_per_hit - shield_active() * 0.1 * claw.zombium_per_hit)
