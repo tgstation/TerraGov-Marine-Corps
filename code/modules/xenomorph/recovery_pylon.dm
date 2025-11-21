@@ -65,6 +65,7 @@
 		return
 	buffed_xenos += entering_xenomorph
 	if(!damage_modifier)
+		entering_xenomorph.regen_power = max(0, entering_xenomorph.regen_power)
 		RegisterSignal(entering_xenomorph, COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING, PROC_REF(on_pre_health_regen_scaling))
 		RegisterSignal(entering_xenomorph, COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING, PROC_REF(on_post_health_regen_scaling))
 		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_BLUE_LIGHT))
