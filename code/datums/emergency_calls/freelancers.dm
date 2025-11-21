@@ -47,6 +47,7 @@
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/specialist)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer mercenary specialist assigned to this group to respond to the NTF distress signal sent nearby. Support your team with issued heavy equipment!</notice></p>")
+		specialists++
 		return
 
 	if(medics < max_medics)

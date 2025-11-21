@@ -56,6 +56,7 @@
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/sniper)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a PMC heavy sniper assigned to this team to respond to the NTC distress signal sent out nearby. Support your squad with long ranged firepower!")]</p>")
+		snipers++
 		return
 
 	if(prob(30))
