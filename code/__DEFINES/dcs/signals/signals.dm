@@ -34,6 +34,8 @@
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
 
+#define COMSIG_GLOB_SILOLESS_COLLAPSE "!siloless_collapse"
+
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
 /// called after a successful var edit somewhere in the world: (list/args)
