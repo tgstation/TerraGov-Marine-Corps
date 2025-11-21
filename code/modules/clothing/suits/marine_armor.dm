@@ -423,6 +423,7 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 60, BIO = 55, FIRE = 55, ACID = 55)
 	armor_features_flags = ARMOR_LAMP_OVERLAY
+	item_map_variant_flags = NONE
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_MODULE,
@@ -884,6 +885,7 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_protection_flags = CHEST|GROIN
 	armor_features_flags = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/specops/support
 	name = "Ballistic vest"
