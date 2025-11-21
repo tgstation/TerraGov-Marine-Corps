@@ -22,7 +22,7 @@
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	action_icon = 'icons/Xeno/actions/construction.dmi'
-	ability_cost = 75
+	ability_cost = 150
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
@@ -51,6 +51,21 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE), PROC_REF(update_ability_cost))
 		update_ability_cost()
+
+/datum/action/ability/activable/xeno/plant_weeds/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
+	var/turf/turf = get_turf(owner)
+	if(!turf?.is_weedable() || turf.density)
+		if(!silent)
+			to_chat(owner, span_warning("We can't do that here."))
+		return FALSE
+
+	if(!xeno_owner.loc_weeds_type && (SSmonitor.gamestate != SHUTTERS_CLOSED))
+		if(!silent)
+			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
 
 /// Updates the ability cost.
 /datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost(datum/source)

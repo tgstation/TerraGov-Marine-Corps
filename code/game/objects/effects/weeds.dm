@@ -20,6 +20,9 @@
 	max_integrity = 25
 	ignore_weed_destruction = TRUE
 
+	resistance_flags = RESIST_ALL
+	obj_flags = NONE
+
 	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
 	var/color_variant = NORMAL_COLOR
@@ -71,6 +74,11 @@
 	if(isfloorturf(T))
 		. += T.ceiling_desc()
 
+/obj/alien/weeds/fire_act(burn_level)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
+	return ..()
+
 /obj/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
 		U = loc
@@ -87,6 +95,9 @@
 
 /obj/alien/weeds/ex_act(severity)
 	if(severity == EXPLODE_WEAK)
+		return
+	if(severity == EXPLODE_DEVASTATE)
+		qdel(src)
 		return
 	return ..()
 
@@ -252,11 +263,13 @@
 	name = WEED
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
+	resistance_flags = UNACIDABLE
+	obj_flags = CAN_BE_HIT
 	var/node_icon = "weednode"
 	/// list of all potential turfs that we can expand to
 	var/node_turfs = list()
 	/// How far this node can spread weeds
-	var/node_range = 2
+	var/node_range = 4
 	/// What type of weeds this node spreads
 	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
