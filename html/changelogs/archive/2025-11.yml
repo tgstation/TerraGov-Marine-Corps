@@ -139,3 +139,9 @@
   - balance: Sizzler has been completely reworked, check the github for details.
   mudzbe:
   - bugfix: Zombies cant rip out other zombies' hearts
+2025-11-21:
+  Atropos:
+  - balance: Cade capsule fits in engi storage module
+  - balance: surgery tables are now acidable by xenos
+  mudzbe:
+  - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
