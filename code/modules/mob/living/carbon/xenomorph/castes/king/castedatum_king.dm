@@ -60,7 +60,7 @@
 		/datum/action/ability/xeno_action/petrify,
 		/datum/action/ability/activable/xeno/off_guard,
 		/datum/action/ability/activable/xeno/shattering_roar,
-		/datum/action/ability/xeno_action/psychic_summon,
+		// datum/action/ability/xeno_action/psychic_summon, -- Disabled for Sovl war balance reasons.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -100,7 +100,7 @@
 		/datum/action/ability/activable/xeno/off_guard,
 		/datum/action/ability/activable/xeno/shattering_roar,
 		/datum/action/ability/xeno_action/zero_form_beam,
-		/datum/action/ability/xeno_action/psychic_summon,
+		// datum/action/ability/xeno_action/psychic_summon, -- Disabled for Sovl war balance reasons.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
