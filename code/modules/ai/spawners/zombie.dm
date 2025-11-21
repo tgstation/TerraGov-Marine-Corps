@@ -32,6 +32,7 @@
 
 /obj/effect/ai_node/spawner/zombie/Destroy()
 	. = ..()
+	spawn_defenders()
 	GLOB.zombie_spawners -= src
 	SSminimaps.remove_marker(src)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED)
