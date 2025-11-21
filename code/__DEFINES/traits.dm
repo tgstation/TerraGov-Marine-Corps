@@ -305,6 +305,8 @@
 #define TRAIT_IS_RELOADING "is_reloading"
 ///is removing shrapnel
 #define TRAIT_IS_SHRAP_REMOVING "is_shrap_removing"
+///is equipping some item, probably clothing
+#define TRAIT_IS_EQUIPPING_ITEM "is_equipping_item"
 
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
