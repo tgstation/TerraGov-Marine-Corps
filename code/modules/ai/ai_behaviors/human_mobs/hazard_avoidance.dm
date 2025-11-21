@@ -1,20 +1,6 @@
 /datum/ai_behavior/human
-		///assoc list of hazards to avoid and the range to stay away from them
+	/// Assoc list of hazards to avoid and the range to stay away from them
 	var/list/hazard_list = list()
-	///Chat lines for avoiding uncategorized hazards
-	var/list/default_avoid_chat = list("Watch out!", "Watch out, hazard!", "hazard!", "Keep away from the hazard!", "Well I've never seen a hazard like this before.")
-	///Chat lines for avoiding a live nade
-	var/list/nade_avoid_chat = list("Watch out!", "Watch out, grenade!", "Grenade!", "Run!", "Get out of the way!", "Grenade, move!")
-	///Chat lines for avoiding fire
-	var/list/fire_avoid_chat = list("Watch out!", "Watch out, fire!", "fire!", "Keep away from the fire!", "Someone put out that fire!", "Clear that fire!", "Keep clear of the flames!", "It's only a bit of fire!")
-	///Chat lines for avoiding acid
-	var/list/acid_avoid_chat = list("Watch out!", "Watch out, acid!", "acid!", "Keep away from the acid!", "Don't step in that acid.", "They're spraying acid!")
-	///Chat lines for avoiding shuttles
-	var/list/shuttle_avoid_chat = list("Watch out!", "Watch out, it's landing!", "Landing!", "Keep away from landing zone!", "Don't step in under that ship!", "They're landing, keep clear!", "Keep clear!", "Make way!")
-	///Chat lines for avoiding cas
-	var/list/cas_avoid_chat = list("Watch out!", "Watch out, CAS!", "CAS!", "Keep away from the CAS!", "Don't get bombed!.", "They're dropping CAS!", "CAS, move!", "Take cover!")
-	///Chat lines for avoiding xeno warnings
-	var/list/xeno_avoid_chat = list("Watch out!", "Watch out, xeno!", "xeno!", "Keep away from the xeno!", "Don't step get hit by that xeno!", "They're doing something here!")
 
 /datum/ai_behavior/human/find_next_dirs()
 	. = ..()
@@ -93,31 +79,35 @@
 		return
 	if(isgrenade(hazard))
 		if(prob(85))
-			try_speak(pick(nade_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_GRENADE)
 		return
 	if(isfire(hazard))
 		if(prob(20))
-			try_speak(pick(fire_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_FIRE)
 		return
 	if(istype(hazard, /obj/effect/xenomorph/spray))
 		if(prob(20))
-			try_speak(pick(acid_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_ACID)
 		return
 	if(istype(hazard, /obj/effect/abstract/ripple))
 		if(prob(20))
-			try_speak(pick(shuttle_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_SHUTTLE)
 		return
 	if(istype(hazard, /obj/effect/overlay/blinking_laser/marine))
 		if(prob(20))
-			try_speak(pick(cas_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_CAS)
 		return
-	if(isfacehugger(hazard) || istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
+	if(isfacehugger(hazard))
 		if(prob(20))
-			try_speak(pick(xeno_avoid_chat))
+			key_speak(AI_SPEECH_HAZARD_FACEHUGGER)
+		return
+	if(istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
+		if(prob(20))
+			key_speak(AI_SPEECH_HAZARD_XENO_AOE)
 		return
 
 	if(prob(20))
-		try_speak(pick(default_avoid_chat))
+		key_speak(AI_SPEECH_HAZARD_GENERIC)
 
 ///Removes a hazard
 /datum/ai_behavior/human/proc/remove_hazard(atom/old_hazard)
