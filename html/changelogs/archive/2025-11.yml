@@ -134,8 +134,6 @@
       gamestate is groundside
   - balance: Engineers can buy barricade capsules, for rapid fortification
   - bugfix: NPC's will try melee attack even when retreating
-  PibeCantina:
-  - config: Rises metnal minumum pop to 55
   Neocloudy:
   - rscadd: The Alamo's takeoff alarm has received an upgrade into a looping alarm
       rather than a one-time use alarm.
@@ -153,3 +151,8 @@
   - balance: Sizzler has been completely reworked, check the github for details.
   mudzbe:
   - bugfix: Zombies cant rip out other zombies' hearts
+2025-11-21:
+  Atropos:
+  - balance: Cade capsule fits in engi storage module
+  mudzbe:
+  - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
