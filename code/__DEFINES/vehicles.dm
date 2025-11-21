@@ -24,10 +24,11 @@
 ///Will this car kidnap people by ramming into them?
 #define CAN_KIDNAP (1<<0)
 
-#define TURRET_TYPE_DROIDLASER 3
-#define TURRET_TYPE_HEAVY 2
-#define TURRET_TYPE_LIGHT 1
 #define TURRET_TYPE_EXPLOSIVE 0
+#define TURRET_TYPE_LIGHT 1
+#define TURRET_TYPE_HEAVY 2
+#define TURRET_TYPE_DROIDLASER 3
+#define TURRET_TYPE_CLAW 4
 
 #define CLOAK_ABILITY 0
 #define CARGO_ABILITY 1
