@@ -103,9 +103,12 @@
 		span_notice("You begin unsecuring [src] from [plant_target]."))
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
+		if(QDELETED(src))
+			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
 		nullvars()
+		setAnchored(FALSE)
 	return ..()
 
 /obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
@@ -128,16 +131,22 @@
 
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
+	if(QDELETED(src))
+		return
 
 	balloon_alert_to_viewers("disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
 	if(ismovable(plant_target) && plant_target.loc)
-		var/atom/movable/T = plant_target
-		if(T.drag_delay == 3)
-			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
-		T.vis_contents -= src
+		var/atom/movable/movable = plant_target
+		if(movable.drag_delay == 3)
+			movable.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
+		movable.vis_contents -= src
+		layer = initial(layer)
+		pixel_w = initial(pixel_w)
+		pixel_z = initial(pixel_z)
+
 	plant_target = null //null everything out now
 	target_drag_delay = null
 	armed = FALSE
@@ -294,6 +303,7 @@
 		var/location
 		location = target
 		forceMove(location)
+		setAnchored(TRUE)
 		boom_direction = get_dir(user, location)
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
@@ -305,11 +315,15 @@
 
 		plant_target = target
 		if(ismovable(plant_target))
-			var/atom/movable/T = plant_target
-			T.vis_contents += src
-			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
-				target_drag_delay = T.drag_delay
-				T.drag_delay = 3
+			var/atom/movable/movable = plant_target
+			movable.vis_contents += src
+			layer = ABOVE_ALL_MOB_LAYER
+			//We use w and z due to sidemap, but need to take into account x/y and w/z pixel shifts, to get a roughly reliable center point
+			pixel_w = -(movable.pixel_x + movable.pixel_w)
+			pixel_z = -(movable.pixel_y + movable.pixel_z)
+			if(movable.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
+				target_drag_delay = movable.drag_delay
+				movable.drag_delay = 3
 		if(radio_connection == null)
 			set_frequency(frequency)
 		update_icon()
