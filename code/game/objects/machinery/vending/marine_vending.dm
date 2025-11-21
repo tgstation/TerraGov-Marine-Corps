@@ -1094,14 +1094,6 @@
 			/obj/item/clothing/head/modular/marine/assault = -1,
 			/obj/item/clothing/head/modular/marine/eod = -1,
 		),
-		"Combat Robot" = list(
-			/obj/item/clothing/suit/modular/robot/light = -1,
-			/obj/item/clothing/suit/modular/robot = -1,
-			/obj/item/clothing/suit/modular/robot/heavy = -1,
-			/obj/item/clothing/head/modular/robot/light = -1,
-			/obj/item/clothing/head/modular/robot = -1,
-			/obj/item/clothing/head/modular/robot/heavy = -1,
-		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
