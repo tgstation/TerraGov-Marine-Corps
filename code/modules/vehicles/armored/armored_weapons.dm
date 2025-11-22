@@ -356,7 +356,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	projectile_delay = 0.1 SECONDS
-	rearm_time = 5 SECONDS
+	rearm_time = 3 SECONDS
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/tank_autocannon
