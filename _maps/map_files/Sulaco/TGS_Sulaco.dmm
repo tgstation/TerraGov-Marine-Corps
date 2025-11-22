@@ -11560,11 +11560,11 @@
 /area/sulaco/hallway/evac)
 "ehl" = (
 /obj/structure/cable,
+/obj/effect/soundplayer/deltaplayer,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/soundplayer/deltaplayer,
-/turf/closed/banish_space,
+/turf/open/floor/mainship_hull/gray,
 /area/space)
 "eho" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -14704,13 +14704,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"hZo" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/closed/banish_space,
-/area/space)
 "hZq" = (
 /obj/machinery/air_alarm{
 	dir = 1
@@ -16584,7 +16577,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/closed/banish_space,
+/turf/open/floor/mainship_hull/gray,
 /area/space)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -16976,13 +16969,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
-"kDB" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship_hull/gray/dir{
-	dir = 6
-	},
-/area/space)
 "kEZ" = (
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/cobweb{
@@ -23936,15 +23922,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
-"tjy" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull/gray/dir{
-	dir = 4
-	},
-/area/space)
 "tjE" = (
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
@@ -24994,11 +24971,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"uzL" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/closed/banish_space,
-/area/space)
 "uAc" = (
 /obj/structure/closet/crate,
 /obj/structure/cable,
@@ -75442,9 +75414,9 @@ mDu
 mDu
 mDu
 mDu
-mDu
+qDO
 osr
-mDu
+nzi
 mDu
 mDu
 mDu
@@ -75699,9 +75671,9 @@ vDU
 vDU
 vDU
 vDU
-vDU
-tjy
-vDU
+wFA
+osr
+tZr
 vDU
 vDU
 vDU
@@ -76214,7 +76186,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76471,7 +76443,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76728,7 +76700,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76909,82 +76881,82 @@ vGn
 vGn
 vGn
 vGn
-kDB
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
 hxe
 hxe
 hxe
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
 kbV
 aaa
 cyv
