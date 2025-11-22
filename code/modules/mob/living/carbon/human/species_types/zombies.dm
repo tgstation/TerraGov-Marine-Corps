@@ -139,10 +139,11 @@
 	H.updatehealth()
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
+	var/datum/limb/head/head = H.get_limb("head")
 	if(H.on_fire)
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
-	if(!H.has_working_organs())
+	if(!H.has_working_organs() || (head.limb_status & LIMB_DESTROYED))
 		SSmobs.stop_processing(H) // stopping the processing extinguishes the fire that is already on, to stop from doubling up
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
@@ -158,7 +159,8 @@
 		return
 
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
-	if((!SSticker.mode.zombie_rebirth) || human.on_fire || !human.has_working_organs() || isspaceturf(get_turf(human)))
+	var/datum/limb/head/head = human.get_limb("head")
+	if((!SSticker.mode?.zombie_rebirth) || human.on_fire || !human.has_working_organs() || (head.limb_status & LIMB_DESTROYED) || isspaceturf(get_turf(human)))
 		SSmobs.stop_processing(human)
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), human), 20 SECONDS)
 		return FALSE
