@@ -132,6 +132,8 @@
 		return
 	if(QDELETED(src))
 		return
+	if(QDELETED(src))
+		return
 
 	UnregisterSignal(plant_target, COMSIG_ATOM_TRY_PLASTIQUE)
 
