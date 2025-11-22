@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Special zombies types now spawn much less often from zombie tunnels"
