@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "C4 and detpacks are now more or less centered on what they're placed on, instead of in the corner of large sprited atoms"
-  - bugfix: "fixed C4 and detpacks being draggable when placed"
