@@ -22646,7 +22646,6 @@
 	},
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/table/mainship/nometal,
-/obj/item/clothing/head/modular/robot/heavy,
 /obj/machinery/light/mainship/small,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)

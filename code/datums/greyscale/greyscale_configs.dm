@@ -191,17 +191,6 @@
 /datum/greyscale_config/xenonaut/helm/heavy
 	prefix = "heavy_"
 
-/datum/greyscale_config/robot
-	icon_file = 'icons/mob/modular/robot_armor.dmi'
-	json_config = 'code/datums/greyscale/json_configs/robot_armor.json'
-	prefix = "medium_"
-
-/datum/greyscale_config/robot/light
-	prefix = "light_"
-
-/datum/greyscale_config/robot/heavy
-	prefix = "heavy_"
-
 //style hats
 
 /datum/greyscale_config/style_hat

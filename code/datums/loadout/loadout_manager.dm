@@ -264,11 +264,11 @@
 			var/datum/item_representation/old_hat = loadout.item_list[slot_head_str]
 			var/datum/item_representation/hat/modular_helmet/new_hat = new
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/light")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot/light
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			if("[old_hat.item_type]" == "/obj/item/clothing/head/helmet/marine/robot/heavy")
-				new_hat.item_type = /obj/item/clothing/head/modular/robot/heavy
+				new_hat.item_type = /obj/item/clothing/head/modular/m10x
 			new_hat.bypass_vendor_check = old_hat.bypass_vendor_check
 			new_hat.current_variant = "black"
 			loadout.item_list[slot_head_str] = new_hat
@@ -303,11 +303,11 @@
 			var/datum/item_representation/suit_with_storage/old_armor = loadout.item_list[slot_wear_suit_str]
 			var/datum/item_representation/armor_suit/modular_armor/new_armor = new
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/light")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot/light
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten/light
 			if("[old_armor.item_type]" == "/obj/item/clothing/suit/storage/marine/robot/heavy")
-				new_armor.item_type = /obj/item/clothing/suit/modular/robot/heavy
+				new_armor.item_type = /obj/item/clothing/suit/modular/xenonauten/heavy
 			new_armor.bypass_vendor_check = old_armor.bypass_vendor_check
 			new_armor.current_variant = "black"
 			loadout.item_list[slot_wear_suit_str] = new_armor

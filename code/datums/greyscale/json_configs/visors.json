@@ -71,24 +71,6 @@
 			"icon_state": "mjolnir_open"
 		}
 	],
-	"r_light": [
-		{
-			"type": "hyperscale",
-			"icon_state": "r_light"
-		}
-	],
-	"r_medium": [
-		{
-			"type": "hyperscale",
-			"icon_state": "r_medium"
-		}
-	],
-	"r_heavy": [
-		{
-			"type": "hyperscale",
-			"icon_state": "r_heavy"
-		}
-	],
 	"xenonaut": [
 		{
 			"type": "hyperscale",
