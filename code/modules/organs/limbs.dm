@@ -849,7 +849,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	playsound(owner,soundeffect, 45, 1)
 	if(!(owner.species?.species_flags & NO_PAIN))
 		owner.emote("scream")
-		owner.flash_pain()
 
 	add_limb_flags(LIMB_BROKEN)
 	remove_limb_flags(LIMB_REPAIRED)
