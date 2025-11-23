@@ -62,6 +62,9 @@
 	if (thingtocall)
 		object = thingtocall
 	delegate = proctocall
+	if(thingtocall != GLOBAL_PROC)
+		if(!hascall(object, delegate))
+			stack_trace("Callback appears invalid on creation! Object = \[[logdetails(object)]\], Delegate = \[[logdetails(delegate)]\]")
 	if (length(args) > 2)
 		arguments = args.Copy(3)
 	if(usr)
