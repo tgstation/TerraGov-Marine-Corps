@@ -127,9 +127,7 @@
 
 /// We start fading out the human and qdel them in set time
 /datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
-	if(!H.perma)//Stops from having more than one stat per zombie
-		H.perma = TRUE
-		GLOB.round_statistics.zombies_permad++
+	GLOB.round_statistics.zombies_permad++
 	fade_out(H)
 	QDEL_IN(H, time)
 
