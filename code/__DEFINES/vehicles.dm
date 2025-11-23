@@ -64,7 +64,7 @@
 ///Is currently a wreck
 #define ARMORED_IS_WRECK (1<<10)
 ///Wreck can be prepped for extraction
-#define ARMORED_WRECK_PREP_INITIATED (1<<11)
+#define ARMORED_WRECK_PREP_STAGE_ONE (1<<11)
 ///Wreck has a fulton attached
 #define ARMORED_WRECK_PREP_STAGE_TWO (1<<12)
 
