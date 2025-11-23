@@ -848,8 +848,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/soundeffect = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
 	playsound(owner,soundeffect, 45, 1)
 	if(!(owner.species?.species_flags & NO_PAIN))
-		if(prob(40))
-			owner.emote("scream")
+		owner.emote("scream")
 		owner.flash_pain()
 
 	add_limb_flags(LIMB_BROKEN)
