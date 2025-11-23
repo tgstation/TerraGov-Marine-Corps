@@ -43,11 +43,9 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-	if(!isnull(node))
-		if(!istype(node))
-			CRASH("Weed created with non-weed node. Type: [node.type]")
-		set_parent_node(node)
-		color_variant = node.color_variant
+	if(!set_parent_node(node))
+		return
+
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
@@ -85,6 +83,13 @@
 			if(W)
 				W.update_icon()
 
+///Replaces src with a new weed type. New type is typecast for checks
+/obj/alien/weeds/proc/replace_weed(new_weed_type)
+	if(!ispath(new_weed_type, /obj/alien/weeds))
+		qdel(src)
+	new new_weed_type(loc, parent_node)
+	qdel(src)
+
 /obj/alien/weeds/ex_act(severity)
 	if(severity == EXPLODE_WEAK)
 		return
@@ -120,10 +125,16 @@
 
 ///Set the parent_node to node
 /obj/alien/weeds/proc/set_parent_node(atom/node)
+	if(!istype(node))
+		if(!parent_node)
+			qdel(src)
+		return FALSE
 	if(parent_node)
 		UnregisterSignal(parent_node, COMSIG_QDELETING)
 	parent_node = node
+	color_variant = parent_node.color_variant
 	RegisterSignal(parent_node, COMSIG_QDELETING, PROC_REF(clean_parent_node))
+	return TRUE
 
 ///Clean the parent node var
 /obj/alien/weeds/proc/clean_parent_node()
@@ -187,7 +198,7 @@
 // weed wall
 /obj/alien/weeds/weedwall
 	layer = WEEDWALL_LAYER
-	plane = WALL_PLANE
+	plane = GAME_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
 
@@ -212,8 +223,8 @@
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
 	. = ..()
-	var/obj/structure/window/framed/F = locate() in loc
-	icon_state = F?.smoothing_junction ? "weedwall-[F.smoothing_junction]" : initial(icon_state)
+	var/obj/structure/window = locate(window_type) in loc
+	icon_state = window?.smoothing_junction ? "weedwall-[window.smoothing_junction]" : initial(icon_state)
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
 	if(color_variant == RESTING_COLOR)
@@ -278,7 +289,8 @@
 	swapped = FALSE
 
 /obj/alien/weeds/node/set_parent_node(atom/node)
-	CRASH("set_parent_node was called on a /obj/alien/weeds/node, node are not supposed to have node themselves")
+	//nodes are not supposed to have node themselves
+	return TRUE
 
 /obj/alien/weeds/node/update_icon_state()
 	. = ..()
