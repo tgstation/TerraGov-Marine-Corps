@@ -1,39 +1,8 @@
+/// Default cooldown for AI speech
 #define COOLDOWN_AI_SPEECH (2 SECONDS)
 
+/// Monkey specific AI speech lines
 GLOBAL_LIST_INIT(ai_monkey_lines, list("EEK!!", "OOP!!", "ACK!!", "CHEE!!"))
-
-#define AI_SPEECH_WITNESSING_DEATH "witnessing_death"
-#define AI_SPEECH_WITNESSING_GIBBING "witnessing_gibbing"
-
-#define AI_SPEECH_BUILD_FAIL "unable_to_build"
-#define AI_SPEECH_BUILDING "building"
-
-#define AI_SPEECH_HAZARD_GENERIC "default_avoid"
-#define AI_SPEECH_HAZARD_GRENADE "nade_avoid"
-#define AI_SPEECH_HAZARD_FIRE "fire_avoid"
-#define AI_SPEECH_HAZARD_ACID "acid_avoid"
-#define AI_SPEECH_HAZARD_SHUTTLE "shuttle_avoid"
-#define AI_SPEECH_HAZARD_CAS "cas_avoid"
-#define AI_SPEECH_HAZARD_XENO_AOE "xeno_avoid_aoe"
-#define AI_SPEECH_HAZARD_FACEHUGGER "xeno_avoid_facehugger"
-
-#define AI_SPEECH_MOVE_TO_HEAL "move_to_heal"
-#define AI_SPEECH_SELF_HEAL "self_heal"
-#define AI_SPEECH_UNREVIVABLE "unrevivable"
-#define AI_SPEECH_HEALING "healing"
-
-#define AI_SPEECH_NEW_MOVE "new_move"
-#define AI_SPEECH_NEW_FOLLOW "new_follow"
-#define AI_SPEECH_NEW_TARGET "new_target"
-#define AI_SPEECH_RECEIVE_ORDER "receive_order"
-#define AI_SPEECH_RETREATING "retreating"
-
-#define AI_SPEECH_START_FIRE "start_fire"
-#define AI_SPEECH_DEAD_TARGET "dead_target"
-#define AI_SPEECH_OUT_OF_RANGE "out_range"
-#define AI_SPEECH_NO_LINE_OF_SIGHT "no_los"
-#define AI_SPEECH_FRIENDLY_BLOCKING "friendly_blocked"
-#define AI_SPEECH_RELOADING "reloading"
 
 ///The AI component has finished moving towards a node, change the state because of that certain thing happening
 #define REASON_FINISHED_NODE_MOVE "finished_moving_to_node"

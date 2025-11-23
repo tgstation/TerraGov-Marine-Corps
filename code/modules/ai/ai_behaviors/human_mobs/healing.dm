@@ -1,6 +1,72 @@
+#define UNREVIVABLE_GENERIC \
+	"Damn it, they're gone!",\
+	"I've lost them!",\
+	"We lost them!",\
+	"Braindead!",\
+	"I'm sorry.",\
+	"Goodnight."
+
+#define MOVE_TO_HEAL_GENERIC \
+	"Hang in there, I'm coming!",\
+	"Cover me, I'm moving up!",\
+	"Coming, coming, coming!",\
+	"Hold on, I'm coming!",\
+	"Helping out here.",\
+	"I'm on the way!"
+
 /datum/ai_behavior/human
 	///A list of mobs that might need healing
 	var/list/heal_list = list()
+	/// Lines when healing self and in need of a medic
+	var/list/self_heal_lines = list(
+		FACTION_NEUTRAL = list(
+			"I'm fixing myself up here, help!",
+			"No pain, no gain...",
+			"Healing over here!",
+			"Cover me, man!",
+			"I need help!",
+		),
+		FACTION_TERRAGOV = list(
+			"I'm fixin' myself here, CORPSMAN!!",
+			"CORPSMAN! OVER HERE!!",
+			"I NEED A CORPSMAN!!",
+			"CORPSMAN UP!!",
+			"CORPSMAN!!",
+			"Would you please cover me?!",
+		),
+	)
+	/// Lines when unable to revive someone else
+	var/list/unrevivable_lines = list(
+		FACTION_NEUTRAL = list(
+			UNREVIVABLE_GENERIC,
+		),
+		FACTION_TERRAGOV = list(
+			"What'd you call me for? This one's COLD!",
+			"Gone forever! Move along!",
+			"They're not coming back.",
+			UNREVIVABLE_GENERIC,
+		),
+	)
+	/// Lines when moving to heal someone else
+	var/list/move_to_heal_lines = list(
+		FACTION_NEUTRAL = list(
+			MOVE_TO_HEAL_GENERIC,
+		),
+		FACTION_TERRAGOV = list(
+			"Quit your yapping, I'm on the way!",
+			"You don't even look that bad!",
+			MOVE_TO_HEAL_GENERIC,
+		),
+	)
+	/// Lines when actively healing someone else
+	var/list/healing_lines = list(
+		FACTION_NEUTRAL = list(
+			"Don't stop shooting, I'll heal you!",
+			"Wait up, I have something for you!",
+			"Healing you, don't stop shooting!",
+			"Hold on, I'm gonna fix you up!",
+		),
+	)
 
 /datum/ai_behavior/human/late_initialize()
 	if(should_hold())
@@ -34,7 +100,7 @@
 		return
 
 	set_interact_target(patient)
-	key_speak(AI_SPEECH_MOVE_TO_HEAL)
+	list_speak(move_to_heal_lines)
 	return TRUE
 
 ///Someone is healing us
@@ -64,7 +130,7 @@
 	if(get_dist(mob_parent, crit_mob) > 5)
 		return
 	set_interact_target(crit_mob)
-	key_speak(AI_SPEECH_MOVE_TO_HEAL)
+	list_speak(move_to_heal_lines)
 	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_interactee_stat_change))
 
 ///Unregisters a friendly target when their stat changes
@@ -99,7 +165,7 @@
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	set_interact_target(patient)
-	key_speak(AI_SPEECH_MOVE_TO_HEAL)
+	list_speak(move_to_heal_lines)
 
 ///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
@@ -127,7 +193,7 @@
 		return
 
 	if(prob(75))
-		key_speak(AI_SPEECH_SELF_HEAL)
+		list_speak(self_heal_lines)
 
 	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
 
@@ -147,13 +213,13 @@
 	do_unset_target(patient, FALSE)
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		remove_from_heal_list(patient)
-		key_speak(AI_SPEECH_UNREVIVABLE)
+		list_speak(unrevivable_lines)
 		return
 
 	if(!mob_parent.CanReach(patient))
 		return
 
-	key_speak(AI_SPEECH_HEALING)
+	list_speak(healing_lines)
 	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
@@ -171,3 +237,6 @@
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
 	on_heal_end(mob_parent)
 	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
+
+#undef UNREVIVABLE_GENERIC
+#undef MOVE_TO_HEAL_GENERIC

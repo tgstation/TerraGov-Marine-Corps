@@ -768,7 +768,8 @@
 ///From mob/living/carbon/human/has_ai()
 #define COMSIG_HUMAN_HAS_AI "human_has_ai"
 	#define MOB_HAS_AI (1<<0)
-#define COMSIG_HUMAN_WITNESSED_DEATH "witnessed_death" // from mob/living/carbon/human/death(): (gibbing)
+#define COMSIG_HUMAN_VIEW_DEATH "witnessed_death" // from mob/living/carbon/human/death(): (gibbing)
+	#define HUMAN_VIEW_DEATH_STOP_LOOP (1<<0) //! Will break from the witness death loop
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE "human_melee_unarmed_attack_alternate"	//same as above, but right click
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)

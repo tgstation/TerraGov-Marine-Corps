@@ -12,6 +12,9 @@
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
+			// FIXME: vital limbs dropping ahead of parent call will cause death to be called with gibbing = FALSE
+			// and prevent anything hooking into a human's death from knowing that they were gibbed
+			E.vital = FALSE
 			E.droplimb(silent = TRUE)
 	return ..()
 
@@ -47,7 +50,7 @@
 		deathmessage = species.death_message
 	if(!silent && species.death_sound)
 		playsound(loc, species.death_sound, 50, TRUE)
-	nearby_npcs_witness_death(gibbing)
+	nearby_humans_witness_death(gibbing)
 	return ..()
 
 
@@ -73,15 +76,13 @@
 
 	return ..()
 
-/// Sends a signal to nearby AI-controlled humans so they can react accordingly
-/mob/living/carbon/human/proc/nearby_npcs_witness_death(gibbing)
+/// Sends a signal to viewing humans with `src` and `gibbing`
+/mob/living/carbon/human/proc/nearby_humans_witness_death(gibbing)
 	for(var/mob/living/carbon/human/nearby in oviewers(src))
-		if(!nearby.has_ai())
-			continue
 		if(nearby.incapacitated() || is_blind(nearby))
 			continue
-		SEND_SIGNAL(nearby, COMSIG_HUMAN_WITNESSED_DEATH, src, gibbing)
-		break // one npc per death
+		if(SEND_SIGNAL(nearby, COMSIG_HUMAN_VIEW_DEATH, src, gibbing) & HUMAN_VIEW_DEATH_STOP_LOOP)
+			break
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	if(f_style)

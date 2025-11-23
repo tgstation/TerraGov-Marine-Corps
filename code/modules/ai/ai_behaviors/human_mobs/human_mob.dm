@@ -24,6 +24,64 @@
 	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
 	///Cooldown on retreating, so we don't get stuck running forever if pursued
 	COOLDOWN_DECLARE(ai_retreat_cooldown)
+	/// Cooldown on chat lines, to reduce spam
+	COOLDOWN_DECLARE(global_chat_cooldown)
+	/// Cooldown for specific chat lines, if applicable
+	var/list/specific_chat_cooldowns
+	/// Chat lines when moving to a new target
+	var/list/new_move_lines = list(
+		FACTION_NEUTRAL = list(
+			"Watch your spacing!",
+			"Changing position!",
+			"I'm on the way!",
+			"I'm hoofin' it!",
+			"Go, go, go!",
+			"Moving out!",
+			"Let's move.",
+			"Moving!",
+		),
+	)
+	/// General acknowledgement of receiving an order
+	var/list/receive_order_lines = list(
+		FACTION_NEUTRAL = list(
+			"Affirmative.",
+			"You got it.",
+			"Understood.",
+			"Right away.",
+			"Of course.",
+			"Roger.",
+			"Okay.",
+		),
+		FACTION_TERRAGOV = list(
+			"Who put you in charge?",
+			"I have it sorted.",
+			"On the double.",
+			"Affirmative.",
+			"Roger.",
+		),
+	)
+	/// Chat lines when following a new target
+	var/list/new_follow_chat = list(
+		FACTION_NEUTRAL = list(
+			"Yeah, I'll follow you.",
+			"I got your back!",
+			"Following you.",
+			"In formation!",
+			"Where to?",
+		),
+	)
+	/// Chat lines for retreating on low health
+	var/list/retreating_lines = list(
+		FACTION_NEUTRAL = list(
+			"RUN FOR YOUR LIFE!!",
+			"Cover me, I'm hit!",
+			"I need help here!",
+			"Falling back!",
+			"Disengaging!",
+			"HELP!!",
+			"RUN!!",
+		),
+	)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	. = ..()
@@ -49,7 +107,7 @@
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 	RegisterSignal(mob_parent, COMSIG_MOB_INTERACTION_DESIGNATED, PROC_REF(interaction_designated))
-	RegisterSignal(mob_parent, COMSIG_HUMAN_WITNESSED_DEATH, PROC_REF(witness_death))
+	RegisterSignal(mob_parent, COMSIG_HUMAN_VIEW_DEATH, PROC_REF(witness_death))
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_DESIGNATED_TARGET_SET, PROC_REF(interaction_designated))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
@@ -78,7 +136,7 @@
 		COMSIG_AI_HEALING_MOB,
 		COMSIG_MOB_TOGGLEMOVEINTENT,
 		COMSIG_MOB_INTERACTION_DESIGNATED,
-		COMSIG_HUMAN_WITNESSED_DEATH,
+		COMSIG_HUMAN_VIEW_DEATH,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC, COMSIG_GLOB_DESIGNATED_TARGET_SET, COMSIG_GLOB_HOLO_BUILD_INITIALIZED))
@@ -189,7 +247,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		custom_speak(pick(new_move_chat))
+		list_speak(new_move_lines)
 	set_run()
 
 /datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
@@ -197,7 +255,7 @@
 	if(!.)
 		return
 	if(prob(50) && isliving(escorted_atom))
-		custom_speak(pick(new_follow_chat))
+		list_speak(new_follow_chat)
 	set_run()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
@@ -205,7 +263,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		key_speak(AI_SPEECH_NEW_TARGET)
+		list_speak(new_target_lines)
 	set_run()
 	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 
@@ -270,7 +328,7 @@
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
 			set_interact_target(target) //todo: Other option might be redundant?
-			custom_speak(pick(receive_order_chat))
+			list_speak(receive_order_lines)
 			return
 		set_atom_to_walk_to(target)
 		return
@@ -280,7 +338,7 @@
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
-		custom_speak(pick(receive_order_chat))
+		list_speak(receive_order_lines)
 		return
 	if(movable_target.faction != mob_parent.faction)
 		set_combat_target(movable_target)
@@ -290,7 +348,7 @@
 		if(!living_target.stat)
 			set_escorted_atom(null, living_target)
 	set_interact_target(movable_target)
-	custom_speak(pick(receive_order_chat))
+	list_speak(receive_order_lines)
 
 ///Attempts to pickup an item
 /datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
@@ -337,7 +395,7 @@
 		return
 
 	if(prob(50))
-		custom_speak(pick(retreating_chat))
+		list_speak(retreating_lines)
 	set_run(TRUE)
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
@@ -389,3 +447,9 @@
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
+
+/// Monkeys are locked to saying primitive lines
+/datum/ai_behavior/human/monkey_business
+
+/datum/ai_behavior/human/monkey_business/list_speak(list/chat_lines, cooldown, unique_cooldown_key, unique_cooldown_time, force)
+	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))

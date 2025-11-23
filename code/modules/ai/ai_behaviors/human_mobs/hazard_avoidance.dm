@@ -1,6 +1,107 @@
+#define GENERIC_HAZARD \
+	"Watch your ass!",\
+	"Look out!",\
+	"Watch out!"
+
+#define GENERIC_ACID \
+	"Don't step in that bubbling stuff!",\
+	"Green shit!",\
+	"ACID!!",\
+	"GOO!!"
+
+#define SOLDIER_ACID \
+	"Stay away from that acid!",\
+	"Don't step in the acid!",\
+	"They're spraying acid!",\
+	"Watch out, acid!"
+
 /datum/ai_behavior/human
 	/// Assoc list of hazards to avoid and the range to stay away from them
 	var/list/hazard_list = list()
+	/// Lines when spotting any miscellaneous hazards
+	var/list/generic_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"I've never seen shit like this before!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting a grenade
+	var/list/grenade_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"Let's get away from the grenade!",
+			"Grenade, get out of the way!",
+			"Grenade, look out!",
+			"Grenade, move!",
+			"Grenade!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting fire
+	var/list/fire_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"Someone put those flames out!",
+			"Stay away from that fire!",
+			"It's only a bit of fire.",
+			"Clear those flames!",
+			"Move, move, fire!",
+			"Look out, fire!",
+			"Fire!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting acid spray
+	var/list/acid_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			GENERIC_ACID,
+			GENERIC_HAZARD,
+		),
+		FACTION_TERRAGOV = list(
+			SOLDIER_ACID,
+		),
+		FACTION_NANOTRASEN = list(
+			SOLDIER_ACID,
+		),
+		FACTION_SPECFORCE = list(
+			SOLDIER_ACID,
+		),
+	)
+	/// Lines when spotting a shuttle's landing effect
+	var/list/shuttle_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"Stay away from under that ship!",
+			"Look out, something's landing!",
+			"Get clear!",
+			"Make way!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting a CAS laser
+	var/list/cas_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"They're dropping CAS!",
+			"Don't get bombed!",
+			"Take cover!",
+			"CAS!!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting a facehugger
+	var/list/facehugger_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"SHOOT THAT FACEHUGGER!!",
+			"FACEHUGGER! SHOOT!!",
+			"FACEHUGGER!!",
+			GENERIC_HAZARD,
+		),
+	)
+	/// Lines when spotting atoms related to xeno abilities
+	var/list/xeno_aoe_hazard_lines = list(
+		FACTION_NEUTRAL = list(
+			"Watch out, that xeno's doing something!",
+			"Stay away from the xeno!",
+			GENERIC_HAZARD,
+		),
+	)
 
 /datum/ai_behavior/human/find_next_dirs()
 	. = ..()
@@ -79,35 +180,35 @@
 		return
 	if(isgrenade(hazard))
 		if(prob(85))
-			key_speak(AI_SPEECH_HAZARD_GRENADE)
+			list_speak(grenade_hazard_lines)
 		return
 	if(isfire(hazard))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_FIRE)
+			list_speak(fire_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/xenomorph/spray))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_ACID)
+			list_speak(acid_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/abstract/ripple))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_SHUTTLE)
+			list_speak(shuttle_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/overlay/blinking_laser/marine))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_CAS)
+			list_speak(cas_hazard_lines)
 		return
 	if(isfacehugger(hazard))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_FACEHUGGER)
+			list_speak(facehugger_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
 		if(prob(20))
-			key_speak(AI_SPEECH_HAZARD_XENO_AOE)
+			list_speak(xeno_aoe_hazard_lines)
 		return
 
 	if(prob(20))
-		key_speak(AI_SPEECH_HAZARD_GENERIC)
+		list_speak(generic_hazard_lines)
 
 ///Removes a hazard
 /datum/ai_behavior/human/proc/remove_hazard(atom/old_hazard)
@@ -121,3 +222,7 @@
 		if(get_dist(mob_parent, thing) <= hazard_list[thing])
 			return FALSE
 	return TRUE
+
+#undef GENERIC_HAZARD
+#undef GENERIC_ACID
+#undef SOLDIER_ACID
