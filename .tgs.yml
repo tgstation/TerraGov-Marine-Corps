@@ -3,7 +3,7 @@
 version: 1
 # The BYOND version to use (kept in sync with dependencies.sh by the "TGS Test Suite" CI job)
 # Must be interpreted as a string, keep quoted
-byond: "515.1637"
+byond: "516.1659"
 # Folders to create in "<instance_path>/Configuration/GameStaticFiles/"
 static_files:
   # Config directory should be static
@@ -15,9 +15,10 @@ static_files:
 # String dictionary. The value is the location of the file in the repo to upload to TGS. The key is the name of the file to upload to "<instance_path>/Configuration/EventScripts/"
 # This one is for Linux hosted servers
 linux_scripts:
-  PreCompile.sh: tools/tgs4_scripts/PreCompile.sh
-# Same as above for Windows hosted servers
+  PreCompile.sh: tools/tgs_scripts/PreCompile.sh
+  WatchdogLaunch.sh: tools/tgs_scripts/WatchdogLaunch.sh
+  InstallDeps.sh: tools/tgs_scripts/InstallDeps.sh# Same as above for Windows hosted servers
 windows_scripts:
-  PreCompile.bat: tools/tgs4_scripts/PreCompile.bat
+  PreCompile.bat: tools/tgs_scripts/PreCompile.bat
 # The security level the game should be run at
 security: Trusted
