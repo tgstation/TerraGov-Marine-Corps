@@ -6,14 +6,13 @@
 	invisibility = 0
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE
 	spawntypes = list(
-		/mob/living/carbon/human/species/zombie/ai/patrol = 70,
-		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 5,
+		/mob/living/carbon/human/species/zombie/ai/patrol = 100,
+		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
 		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/stay = 10 // defenders, and lets player zombies build hordes from a central location
+		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 2,
+		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 2,
+		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 2,
+		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2,
 	)
 	spawnamount = 2
 	spawndelay = 15 SECONDS
@@ -38,6 +37,7 @@
 	QDEL_NULL(proximity_monitor)
 
 /obj/effect/ai_node/spawner/zombie/plastique_act()
+	spawn_defenders()
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)
 	qdel(src)
 
