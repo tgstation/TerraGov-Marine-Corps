@@ -117,6 +117,9 @@
 	///How long the human is dead, in life ticks, which is 2 seconds
 	var/dead_ticks = 0
 
+	///Counting whether they are designated as unrevivable for zombie stats
+	var/perma = FALSE
+
 	///Which color type of holocard is printed on us
 	var/holo_card_color = ""
 
