@@ -17,7 +17,8 @@ static_files:
 linux_scripts:
   PreCompile.sh: tools/tgs_scripts/PreCompile.sh
   WatchdogLaunch.sh: tools/tgs_scripts/WatchdogLaunch.sh
-  InstallDeps.sh: tools/tgs_scripts/InstallDeps.sh# Same as above for Windows hosted servers
+  InstallDeps.sh: tools/tgs_scripts/InstallDeps.sh
+# Same as above for Windows hosted servers
 windows_scripts:
   PreCompile.bat: tools/tgs_scripts/PreCompile.bat
 # The security level the game should be run at
