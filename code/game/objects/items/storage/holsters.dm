@@ -630,6 +630,7 @@
 
 /obj/item/storage/holster/belt/revolver/standard_revolver/Initialize(mapload, ...)
 	. = ..()
+	AddComponent(/datum/component/tac_reload_storage)
 	storage_datum.storage_type_limits = list(
 		/obj/item/weapon/gun/revolver,
 	)
