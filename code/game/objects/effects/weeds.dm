@@ -39,7 +39,7 @@
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 	if(!set_parent_node(node))
-		return
+		return INITIALIZE_HINT_QDEL
 
 	var/static/list/connections = list(
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
@@ -154,6 +154,8 @@
 
 /obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
+	if(QDELETED(src))
+		return
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
@@ -329,6 +331,8 @@
 
 /obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
+	if(QDELETED(src))
+		return
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
