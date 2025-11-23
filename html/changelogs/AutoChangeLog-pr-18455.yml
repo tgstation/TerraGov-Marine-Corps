@@ -1,0 +1,4 @@
+author: "PibeCantina"
+delete-after: True
+changes:
+  - balance: "Makes LTAAP do more damage at the cost of it's IFF"
