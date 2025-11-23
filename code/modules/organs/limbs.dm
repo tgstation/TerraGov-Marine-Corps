@@ -256,7 +256,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
-	if(!(limb_status & LIMB_BROKEN) && CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
+	if(owner.stat != DEAD && !(limb_status & LIMB_BROKEN) && CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
 		fracture()
 
 	if(body_part == CHEST || body_part == GROIN)
