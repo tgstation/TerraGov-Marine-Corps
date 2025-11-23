@@ -12,9 +12,6 @@
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
-			// FIXME: vital limbs dropping ahead of parent call will cause death to be called with gibbing = FALSE
-			// and prevent anything hooking into a human's death from knowing that they were gibbed
-			E.vital = FALSE
 			E.droplimb(silent = TRUE)
 	return ..()
 
