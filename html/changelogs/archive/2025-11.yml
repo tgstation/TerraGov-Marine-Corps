@@ -157,3 +157,17 @@
   - balance: surgery tables are now acidable by xenos
   mudzbe:
   - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
+2025-11-23:
+  Lumipharon:
+  - qol: C4 and detpacks are now more or less centered on what they're placed on,
+      instead of in the corner of large sprited atoms
+  - bugfix: fixed C4 and detpacks being draggable when placed
+  - balance: MG-27 has aimmode, but only when deployed
+  - bugfix: fixed freelancer and spec op ERTs having invisible armour sprites
+  - bugfix: fixed freelancer and PMC ERT compositions
+  - balance: Hivelords cannot build through barricades anymore
+  - balance: Special zombies types now spawn much less often from zombie tunnels
+  - bugfix: fixed puppets going rogue on recall mode
+  PibeCantina:
+  - rscdel: Removed soul
+  - bugfix: fixed sulaco disposals spacing you

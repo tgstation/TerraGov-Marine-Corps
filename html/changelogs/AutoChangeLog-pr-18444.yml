@@ -1,5 +1,0 @@
-author: "PibeCantina"
-delete-after: True
-changes:
-  - rscdel: "Removed soul"
-  - bugfix: "fixed sulaco disposals spacing you"
