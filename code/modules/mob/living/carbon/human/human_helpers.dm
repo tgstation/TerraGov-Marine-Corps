@@ -182,7 +182,8 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(get_organ_slot(ORGAN_SLOT_BRAIN))
+	var/datum/limb/head/head = get_limb("head")
+	if(get_organ_slot(ORGAN_SLOT_BRAIN) && !(head.limb_status & LIMB_DESTROYED))//How do brains exist in headless bodies?
 		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain && istype(brain))
 			return TRUE
