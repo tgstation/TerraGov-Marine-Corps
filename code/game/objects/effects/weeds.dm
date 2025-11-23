@@ -38,13 +38,13 @@
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
+	if(!set_parent_node(node))
+		return
+
 	var/static/list/connections = list(
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-	if(!set_parent_node(node))
-		return
 
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
