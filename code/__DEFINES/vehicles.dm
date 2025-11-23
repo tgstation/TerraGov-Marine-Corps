@@ -66,7 +66,7 @@
 ///Wreck can be prepped for extraction
 #define ARMORED_WRECK_PREP_INITIATED (1<<11)
 ///Wreck has a fulton attached
-#define ARMORED_WRECK_PREPPED (1<<12)
+#define ARMORED_WRECK_PREP_STAGE_TWO (1<<12)
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)

@@ -269,19 +269,19 @@
 	if(!istype(I, /obj/item/fulton_extraction_pack/tank))
 		user.balloon_alert(user, "needs a bigger fulton!")
 		return
-	if((armored_flags & ARMORED_WRECK_PREPPED))
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
 		user.balloon_alert(user, "already attached!")
 		return
-	if(!(armored_flags & ARMORED_WRECK_PREP_INITIATED))
+	if(!(armored_flags & ARMORED_WRECK_PREP_STAGE_ONE))
 		user.balloon_alert(user, "needs [ARMORED_WRECK_PLASTEEL_REQ] plasteel")
 		return
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
-	if((armored_flags & ARMORED_WRECK_PREPPED))
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
 		user.balloon_alert(user, "already attached!")
 		return
 
-	armored_flags |= ARMORED_WRECK_PREPPED
+	armored_flags |= ARMORED_WRECK_PREP_STAGE_TWO
 	var/obj/item/fulton_extraction_pack/ext_pack = I
 	ext_pack.extract(src, user)
 	return TRUE

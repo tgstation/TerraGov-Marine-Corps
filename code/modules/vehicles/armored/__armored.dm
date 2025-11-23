@@ -88,8 +88,8 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-
-	var/wreck_stage = 0
+	///How close a wrecked vehicle is to being prepared for repair
+	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -647,7 +647,7 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	if((armored_flags & ARMORED_WRECK_PREPPED))
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
 		prep_wreck(user)
 		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
