@@ -17,7 +17,7 @@
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
 	var/stack_amount = 5
-	/// The amount of `stack_type` to drop when destroyed. If this is null, it will always drop an amount based on remaining integrity.
+	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
 	var/base_acid_damage = 2
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
@@ -145,12 +145,9 @@
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
-		var/stack_amt
-		if(disassembled || isnull(destroyed_stack_amount))
-			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) // Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0.
-		else
-			stack_amt = destroyed_stack_amount
-
+		var/stack_amt = round(stack_amount * (obj_integrity/max_integrity)) // Get an amount of sheets back equivalent to remaining health.
+		if(!disassembled && destroyed_stack_amount)
+			stack_amt = min(stack_amt, destroyed_stack_amount)
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
 	return ..()
@@ -1031,7 +1028,7 @@
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
 	can_wire = TRUE
-	destroyed_stack_amount = null
+	destroyed_stack_amount = 2
 
 /obj/structure/barricade/sandbags/setDir(newdir)
 	. = ..()
