@@ -174,10 +174,10 @@
 ///Gives the beacon broadcaster object the appropriate, descriptive name
 /datum/component/beacon/proc/on_update_name(atom/source, updates)
 	SIGNAL_HANDLER
+	source.name = initial(source.name)
 	if(active)
 		source.name += " - [get_area(source)] - [activator]"
 		return
-	source.name = initial(source.name)
 
 ///Updates the icon state of the object to an active state, if it has one
 /datum/component/beacon/proc/on_update_icon_state(atom/source, updates)
