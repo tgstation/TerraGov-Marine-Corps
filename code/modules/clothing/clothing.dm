@@ -38,7 +38,8 @@
 
 
 /obj/item/clothing/equipped(mob/user, slot)
-	faction = user.faction
+	if(ismovable(user))
+		faction = user.faction
 	. = ..()
 	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 		return
