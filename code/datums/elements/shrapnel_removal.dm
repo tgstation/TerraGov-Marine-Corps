@@ -25,6 +25,8 @@
 	return COMPONENT_ITEM_NO_ATTACK
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
+	if(user.do_actions)
+		return
 	if(!ishuman(M))
 		M.balloon_alert(user, "that's not a human!")
 		REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
@@ -37,8 +39,6 @@
 	if(!has_shrapnel(targetlimb))
 		M.balloon_alert(user, "nothing in that limb!")
 		REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
-		return
-	if(user.do_actions)
 		return
 	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
