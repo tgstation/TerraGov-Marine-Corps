@@ -1031,7 +1031,6 @@
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
 	can_wire = TRUE
-	destroyed_stack_amount = 2
 
 /obj/structure/barricade/sandbags/setDir(newdir)
 	. = ..()
