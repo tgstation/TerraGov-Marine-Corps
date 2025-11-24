@@ -141,7 +141,7 @@
 	reload_delay = 4 SECONDS
 	default_ammo = /datum/ammo/flamethrower
 	icon_state_mini = "tank_orange"
-	dispenser_type = /obj/structure/reagent_dispensers/fueltank
+	fuel_type = DEFAULT_FUEL_TYPE
 
 
 /obj/item/ammo_magazine/flamer_tank/vsd/blue
