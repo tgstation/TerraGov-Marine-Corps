@@ -394,6 +394,21 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
+	if(SSticker.mode?.round_type_flags && MODE_INFESTATION)
+		var/text = "Monitor's Report: "
+		switch(SSmonitor.current_state)
+			if(XENOS_DELAYING)
+				text += "Marines Winning (High)"
+			if(XENOS_LOSING)
+				text += "Marines Winning (Moderate)"
+			if(STATE_BALANCED)
+				text += "None (Balanced)"
+			if(MARINES_LOSING)
+				text += "Xenomorphs Winning (Moderate)"
+			if(MARINES_DELAYING)
+				text += "Xenomorphs Winning (High)"
+		. += "[text] @ Adjusted: [SSmonitor.current_points] | Raw: [SSmonitor.raw_points]"
+
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
 	set name = "Re-enter Corpse"

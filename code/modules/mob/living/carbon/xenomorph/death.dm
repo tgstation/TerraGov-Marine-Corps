@@ -48,24 +48,6 @@
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
-	switch (upgrade)
-		if(XENO_UPGRADE_NORMAL)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.normal_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.normal_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.normal_T4--
-		if(XENO_UPGRADE_PRIMO)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.primo_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.primo_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.primo_T4--
-
 	eject_victim()
 
 	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p>")]</b>")

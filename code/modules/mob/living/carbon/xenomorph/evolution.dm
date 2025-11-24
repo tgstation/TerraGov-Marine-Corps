@@ -214,15 +214,6 @@
 
 		new_xeno.update_leader_icon(TRUE)
 
-	if(upgrade == XENO_UPGRADE_PRIMO)
-		switch(tier)
-			if(XENO_TIER_TWO)
-				SSmonitor.stats.primo_T2--
-			if(XENO_TIER_THREE)
-				SSmonitor.stats.primo_T3--
-			if(XENO_TIER_FOUR)
-				SSmonitor.stats.primo_T4--
-
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //This return shouldn't be possible to trigger, unless you varedit upgrade right on the tick the xeno evos

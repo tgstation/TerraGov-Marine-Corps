@@ -159,6 +159,8 @@
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
+	/// Should [/datum/component/autobalance_monitor] be given? If so, what value should it use?
+	var/autobalance_monitor_value
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -188,6 +190,9 @@
 
 	if(current_variant)
 		update_icon()
+
+	if(autobalance_monitor_value)
+		AddComponent(/datum/component/autobalance_monitor, autobalance_monitor_value)
 
 /obj/item/Destroy()
 	if(ismob(loc))

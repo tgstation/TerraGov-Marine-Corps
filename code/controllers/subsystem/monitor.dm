@@ -10,6 +10,8 @@ SUBSYSTEM_DEF(monitor)
 	var/last_state = STATE_BALANCED
 	///The current state points. Negative means xenos are winning, positive points correspond to marine winning
 	var/current_points = 0
+	/// The raw amount of state points unadjusted for player count.
+	var/raw_points = 0
 	///The number of humans on ground
 	var/human_on_ground = 0
 	///The number of humans being in either lz1 or lz2
@@ -20,26 +22,14 @@ SUBSYSTEM_DEF(monitor)
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
 	var/FOB_hugging = FALSE
-	///List of all int stats
-	var/datum/monitor_statistics/stats = new
 	///If the game is currently before shutters drop, after, or shipside
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
 	///Maximum record of how many players were concurrently playing this round
 	var/maximum_connected_players_count = 0
-
-/datum/monitor_statistics
-	var/primo_T4 = 0
-	var/normal_T4 = 0
-	var/primo_T3 = 0
-	var/normal_T3 = 0
-	var/primo_T2 = 0
-	var/normal_T2 = 0
-	var/list/miniguns_in_use = list()
-	var/list/sadar_in_use = list()
-	var/list/b18_in_use = list()
-	var/list/b17_in_use = list()
+	/// An associative list of all items with the component [/datum/component/autobalance_monitor]. Association: [item] = value in requisition points.
+	var/list/requisition_item_keys = list()
 
 /datum/controller/subsystem/monitor/Initialize()
 	RegisterSignals(SSdcs, list(
@@ -54,8 +44,9 @@ SUBSYSTEM_DEF(monitor)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	var/total_living_players = length(GLOB.alive_human_list) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
+	var/total_living_players = length(GLOB.alive_human_list) + length(GLOB.alive_xeno_list)
+	raw_points = calculate_state_points()
+	current_points = raw_points / max(total_living_players, 10)//having less than 10 players gives bad results
 	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
 		process_human_positions()
@@ -97,33 +88,61 @@ SUBSYSTEM_DEF(monitor)
 	gamestate = SHIPSIDE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_SHIPSIDE)
 
-///Calculate the points supposedly representating of the situation
+/// Calculate the points used to determine which side is winning at the moment.
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	// Humans
 	switch(gamestate)
-		if(GROUNDSIDE)
-			. += stats.primo_T2 * PRIMO_T2_WEIGHT
-			. += stats.primo_T3 * PRIMO_T3_WEIGHT
-			. += stats.normal_T2 * NORMAL_T2_WEIGHT
-			. += stats.normal_T3 * NORMAL_T3_WEIGHT
-			. += stats.primo_T4 * PRIMO_T4_WEIGHT
-			. += stats.normal_T4 * NORMAL_T4_WEIGHT
-			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (length(GLOB.alive_human_list) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT
-			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.b17_in_use) * B17_PRICE * REQ_POINTS_WEIGHT
-			. += length(stats.b18_in_use) * B18_PRICE * REQ_POINTS_WEIGHT
-			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
-			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 		if(SHUTTERS_CLOSED)
-			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_PREGAME
-			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+		if(GROUNDSIDE)
+			. += human_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
+			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
 		if(SHIPSIDE)
-			. += length(GLOB.alive_human_list) * HUMAN_LIFE_WEIGHT_SHIPSIDE
-			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			// Unspent supply points during hijack aren't important as they are likely to stay unspent.
+	for(var/item_key in requisition_item_keys)
+		. += requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
+	// Xenomorphs
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
+	for(var/mob/living/carbon/xenomorph/normal_xenomorph in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		if(normal_xenomorph.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			. += MINION_XENO_LIFE_WEIGHT
+			continue
+		switch(normal_xenomorph.tier)
+			if(XENO_TIER_MINION)
+				. += MINION_XENO_LIFE_WEIGHT
+				continue // Shouldn't ever happen, but you never know.
+			if(XENO_TIER_ZERO)
+				. += T0_XENO_LIFE_WEIGHT
+				continue // Shouldn't have access to primos.
+			if(XENO_TIER_ONE)
+				. += T1_XENO_LIFE_WEIGHT
+			if(XENO_TIER_TWO)
+				. += T2_XENO_LIFE_WEIGHT
+			if(XENO_TIER_THREE)
+				. += T3_XENO_LIFE_WEIGHT
+			if(XENO_TIER_FOUR)
+				. += T4_XENO_LIFE_WEIGHT
+		if(normal_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+			. += PRIMO_XENO_BONUS_WEIGHT
+	. += SSpoints.xeno_strategic_points_by_hive[XENO_HIVE_NORMAL] * PSY_STRATEGIC_POINT_WEIGHT
+	. += SSpoints.xeno_tactical_points_by_hive[XENO_HIVE_NORMAL] * PSY_TACTICAL_POINT_WEIGHT
+	. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * RESIN_SILO_WEIGHT
+	. += length(GLOB.hive_datums[XENO_HIVE_NORMAL].evotowers) * EVOLUTION_TOWER_WEIGHT
+	. += length(GLOB.hive_datums[XENO_HIVE_NORMAL].psychictowers) * PSYCHIC_RELAY_WEIGHT
+	. += length(GLOB.hive_datums[XENO_HIVE_NORMAL].pherotowers) * PHEROMONE_TOWER_WEIGHT
+	. += length(GLOB.xeno_spawners_by_hive[XENO_HIVE_NORMAL]) * SPAWNER_WEIGHT
+	. += length(GLOB.xeno_acid_pools_by_hive[XENO_HIVE_NORMAL]) * ACID_POOL_WEIGHT
+	. += length(GLOB.xeno_acid_jaws_by_hive[XENO_HIVE_NORMAL]) * ACID_JAWS_WEIGHT
+	for(var/obj/structure/xeno/xeno_turret/xeno_turret AS in GLOB.xeno_resin_turrets_by_hive[XENO_HIVE_NORMAL])
+		if(xeno_turret.type == /obj/structure/xeno/xeno_turret) // Strict because we want the base acid turret.
+			. += XENO_ACID_TURRET_WEIGHT
+			continue
+		if(istype(xeno_turret, /obj/structure/xeno/xeno_turret/sticky))
+			. += XENO_RESIN_TURRET_WEIGHT
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()

@@ -156,23 +156,16 @@
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 80, ENERGY = 85, BOMB = 85, BIO = 70, FIRE = 85, ACID = 70)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	resistance_flags = UNACIDABLE
-	item_flags = AUTOBALANCE_CHECK
+	autobalance_monitor_value = B18_PRICE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support)
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.b18_in_use += src
-
-/obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.b18_in_use -= src
-	return ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
-	item_flags = NONE
+	autobalance_monitor_value = null
 
 /obj/item/clothing/suit/storage/marine/specialist/tdf
 	name = "\improper Ace class hardsuit"
@@ -186,6 +179,7 @@
 	icon_state = "tdf_hardsuit"
 	worn_icon_state = "tdf_hardsuit"
 	item_map_variant_flags = NONE
+	autobalance_monitor_value = null
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -195,19 +189,10 @@
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	item_flags = AUTOBALANCE_CHECK
-
-/obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
-	. = ..()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.b17_in_use += src
-
-/obj/item/clothing/suit/storage/marine/B17/Destroy()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.b17_in_use -= src
-	return ..()
+	autobalance_monitor_value = B17_PRICE
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
-	item_flags = NONE
+	autobalance_monitor_value = null
 
 ////////////////////////////////
 
