@@ -60,3 +60,123 @@
   blackdav123:
   - rscadd: Added EMS-02 Healing Foam grenades to the Corpsman vendor for 8 points
       each.
+2025-11-13:
+  Runian:
+  - bugfix: Autodoc now correctly queues up bone fixing surgery on Automatic mode.
+2025-11-14:
+  Neocloudy:
+  - refactor: "Health analyzers have had their TGUI refactored significantly, again.\
+      \ Please report any issues\u2014colors are most likely to be bugged in this\
+      \ update."
+  - qol: Health scans now include blood flow rate.
+  - qol: Chemical contents in health scans are sorted based on internal priority rather
+      than order the chemical entered the patient.
+2025-11-16:
+  GregorMN:
+  - soundadd: Two new bike rev sounds
+  - imageadd: Improved bike sprites
+  Joe13413:
+  - balance: The pepperball underbarrel attachment now fires twice as fast (600RPM,
+      up from 300RPM)
+  - bugfix: Clarified an error message that pops up when you try to take an SSD mob.
+  Lumipharon:
+  - admin: Gamemode votes won't trigger a restart mid game anymore
+  - balance: Secrete resin ability cost varies with resin selected
+  - balance: Smoker zombie smoke lasts for 6 seconds instead of 10
+  - balance: Boomer zombie bile spit CD increased to 12 seconds from 6
+  - code_imp: Removed some unneeded jobSS stuff when a round fails to start
+  - admin: Fixed a runtime with the banpanel in some instances
+  - balance: Minisentry price for engineers reduced to 40 from 50
+  - balance: minor tweaks to some survivor loadouts, notably roboticists only have
+      BAS 50% of the time
+  - bugfix: fixed fob drone cades and some deployables not having their faction set
+      correctly
+  - bugfix: Zombies have an attack CD applied when attacking APC's
+  - refactor: refactored some zombie attack code
+  - balance: Adjusted logic for Jaws so acid and fire is placed more realistically
+  Neocloudy:
+  - bugfix: Health scans will not show "ODfalse" if a chemical is ODing but not critically
+      ODing.
+  Runian:
+  - rscadd: The amount of health and sunder restored via Hivelord's Healing Infusion
+      is now recorded in the round statistics.
+  mudzbe:
+  - balance: Add 2 more zombie tunnels to desparity
+2025-11-19:
+  blackdav123:
+  - spellcheck: Fixed various mistakes on the beginner loadout tutorials.
+2025-11-20:
+  Lumipharon:
+  - qol: Crash weapon vendors start with 12 C4 charges
+  - code_imp: Cleared some bad whiskey outpost var edits
+  - rscadd: Added some more NPC interactions
+  - bugfix: fixed a couple of broken NPC interactions
+  - bugfix: fixed alamo sentries not deploying
+  - balance: King requires 12 pop hive to evo, no longer has minimum roundstart pop
+      requirements
+  - bugfix: Firesupport binos use true LOS instead of viewers()
+  - bugfix: Sentries will broadcast alerts on radio correctly, and will broadcast
+      on faction appropriate channels
+  - code_imp: Sentry IFF uses faction instead of sentry_iff_signal where relevant
+  - code_imp: various bits of code listen to the correct signal for knowing when the
+      gamestate is groundside
+  - balance: Engineers can buy barricade capsules, for rapid fortification
+  - bugfix: NPC's will try melee attack even when retreating
+  Neocloudy:
+  - rscadd: The Alamo's takeoff alarm has received an upgrade into a looping alarm
+      rather than a one-time use alarm.
+  - rscadd: The alarm can be started/stopped as long as the dropship is ready to fly
+      somewhere. It retains its priority announcement, but with a 1-minute cooldown
+      for starting and stopping respectively.
+  - rscadd: The Tadpole also has this looping alarm, but with a significantly reduced
+      range and no announcement.
+  PibeCantina:
+  - config: Rises metnal minumum pop to 55
+  Rug-Dealer:
+  - qol: Field utility pouch now opens its inventory on left click instead of drawing
+      the rightmost item.
+  blackdav123:
+  - balance: Sizzler has been completely reworked, check the github for details.
+  mudzbe:
+  - bugfix: Zombies cant rip out other zombies' hearts
+2025-11-21:
+  Atropos:
+  - balance: Cade capsule fits in engi storage module
+  - balance: surgery tables are now acidable by xenos
+  mudzbe:
+  - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
+2025-11-23:
+  Lumipharon:
+  - qol: C4 and detpacks are now more or less centered on what they're placed on,
+      instead of in the corner of large sprited atoms
+  - bugfix: fixed C4 and detpacks being draggable when placed
+  - balance: MG-27 has aimmode, but only when deployed
+  - bugfix: fixed freelancer and spec op ERTs having invisible armour sprites
+  - bugfix: fixed freelancer and PMC ERT compositions
+  - balance: Hivelords cannot build through barricades anymore
+  - balance: Special zombies types now spawn much less often from zombie tunnels
+  - bugfix: fixed puppets going rogue on recall mode
+  PibeCantina:
+  - rscdel: Removed soul
+  - bugfix: fixed sulaco disposals spacing you
+2025-11-24:
+  Neocloudy:
+  - bugfix: The chat volume slider should work now
+  PibeCantina:
+  - balance: Makes LTAAP do more damage at the cost of it's IFF
+  Runian:
+  - rscadd: Monitor now displays to all observers which side it believes to be winning
+      at the moment.
+  - balance: SR-26, TX8, and ZX-76 are now included in Monitor's calculations.
+  - balance: Many xenomorph structures and unused psychic points are now included
+      in Monitor's calculations.
+  - balance: Various xenomorph weights have adjusted in Monitor to account for the
+      power difference between tiers and minions.
+  - bugfix: B17 and B18 suits no longer can be worn by Synths & now correctly reduce
+      Jetpack effectiveness.
+  - bugfix: CC/AT32 Handheld Autocannon (from Valhalla) is correctly not included
+      in Monitor's calculations.
+  - code_imp: New component that makes items add certain point values to the Monitor
+      depending on gamestate & z-level.
+  mudzbe:
+  - balance: Destroying a tunnel spawns a wave of defenders

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Icon,
   LabeledList,
   NoticeBox,
   Section,
@@ -111,10 +112,22 @@ const NormalOperation = (props) => {
       </Section>
       <Section title="Additional Controls">
         <LabeledList>
-          <LabeledList.Item label="Takeoff Alarm">
-            <Button onClick={() => act('signal_departure')}>
-              Play Takeoff Alarm
+          <LabeledList.Item
+            label="Takeoff Alarm"
+            labelColor={data.takeoff_alarm ? 'red' : 'yellow'}
+          >
+            <Button
+              onClick={() => act('signal_departure')}
+              color={data.takeoff_alarm ? 'red' : 'yellow'}
+            >
+              {data.takeoff_alarm ? 'Stop' : 'Start'}
             </Button>
+            <Icon ml="5px" name="circle-info" color="grey" />
+            <Box ml="5px" mt="5px" inline color="grey">
+              {data.takeoff_alarm
+                ? 'Selecting a destination disables automatically'
+                : 'This will alert all marines—use with care'}
+            </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Lock All">
             <Button
