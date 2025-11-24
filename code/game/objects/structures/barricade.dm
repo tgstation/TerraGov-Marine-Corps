@@ -145,12 +145,9 @@
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
-		var/stack_amt
+		var/stack_amt = round(stack_amount * (obj_integrity/max_integrity)) // Get an amount of sheets back equivalent to remaining health.
 		if(!disassembled && destroyed_stack_amount)
-			stack_amt = destroyed_stack_amount
-		else
-			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
-
+			stack_amt = min(stack_amt, destroyed_stack_amount)
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
 	return ..()
