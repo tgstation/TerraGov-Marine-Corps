@@ -4,6 +4,7 @@
 	// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 	inventory_flags = NOQUICKEQUIP
+	resistance_flags = parent_type::resistance_flags | UNACIDABLE
 
 	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
 	var/list/attachments_by_slot = list()
