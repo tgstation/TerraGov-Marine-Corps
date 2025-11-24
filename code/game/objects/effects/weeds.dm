@@ -256,7 +256,7 @@
 	/// list of all potential turfs that we can expand to
 	var/node_turfs = list()
 	/// How far this node can spread weeds
-	var/node_range = 2
+	var/node_range = 4
 	/// What type of weeds this node spreads
 	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
