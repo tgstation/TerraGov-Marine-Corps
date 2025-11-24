@@ -18,6 +18,10 @@ SUBSYSTEM_DEF(monitor)
 	var/human_in_FOB = 0
 	///The number of humans on the ship
 	var/human_on_ship = 0
+	///The number of clf on ground
+	var/clf_on_ground = 0
+	///The number of clf on the ship
+	var/clf_on_ship = 0
 	///The number of time most of humans are in FOB consecutively
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
@@ -102,7 +106,9 @@ SUBSYSTEM_DEF(monitor)
 		if(SHIPSIDE)
 			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
 			// Unspent supply points during hijack aren't important as they are likely to stay unspent.
-	for(var/item_key in requisition_item_keys)
+	for(var/atom/movable/item_key in requisition_item_keys)
+		if(item_key.faction != FACTION_TERRAGOV)
+			continue
 		. += requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
 	// Xenomorphs
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -144,18 +150,81 @@ SUBSYSTEM_DEF(monitor)
 		if(istype(xeno_turret, /obj/structure/xeno/xeno_turret/sticky))
 			. += XENO_RESIN_TURRET_WEIGHT
 
+	switch(gamestate)
+		if(SHUTTERS_CLOSED)
+			. -= length(GLOB.alive_human_list_faction[FACTION_CLF]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. -= SSpoints.supply_points[FACTION_CLF] * REQ_POINTS_WEIGHT
+		if(GROUNDSIDE)
+			. -= clf_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
+			. -= (length(GLOB.alive_human_list_faction[FACTION_CLF]) - clf_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
+			. -= SSpoints.supply_points[FACTION_CLF] * REQ_POINTS_WEIGHT
+		if(SHIPSIDE)
+			. -= length(GLOB.alive_human_list_faction[FACTION_CLF]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			// Unspent supply points during hijack aren't important as they are likely to stay unspent.
+	for(var/atom/movable/item_key in requisition_item_keys)
+		if(item_key.faction != FACTION_CLF)
+			continue
+		. -= requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
+	// Xenomorphs
+	xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	. -= (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
+	for(var/mob/living/carbon/xenomorph/normal_xenomorph in GLOB.alive_xeno_list_hive[XENO_HIVE_CORRUPTED])
+		if(normal_xenomorph.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			. -= MINION_XENO_LIFE_WEIGHT
+			continue
+		switch(normal_xenomorph.tier)
+			if(XENO_TIER_MINION)
+				. -= MINION_XENO_LIFE_WEIGHT
+				continue // Shouldn't ever happen, but you never know.
+			if(XENO_TIER_ZERO)
+				. -= T0_XENO_LIFE_WEIGHT
+				continue // Shouldn't have access to primos.
+			if(XENO_TIER_ONE)
+				. -= T1_XENO_LIFE_WEIGHT
+			if(XENO_TIER_TWO)
+				. -= T2_XENO_LIFE_WEIGHT
+			if(XENO_TIER_THREE)
+				. -= T3_XENO_LIFE_WEIGHT
+			if(XENO_TIER_FOUR)
+				. -= T4_XENO_LIFE_WEIGHT
+		if(normal_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
+			. -= PRIMO_XENO_BONUS_WEIGHT
+	. -= SSpoints.xeno_strategic_points_by_hive[XENO_HIVE_CORRUPTED] * PSY_STRATEGIC_POINT_WEIGHT
+	. -= SSpoints.xeno_tactical_points_by_hive[XENO_HIVE_CORRUPTED] * PSY_TACTICAL_POINT_WEIGHT
+	. -= length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_CORRUPTED]) * RESIN_SILO_WEIGHT
+	. -= length(GLOB.hive_datums[XENO_HIVE_CORRUPTED].evotowers) * EVOLUTION_TOWER_WEIGHT
+	. -= length(GLOB.hive_datums[XENO_HIVE_CORRUPTED].psychictowers) * PSYCHIC_RELAY_WEIGHT
+	. -= length(GLOB.hive_datums[XENO_HIVE_CORRUPTED].pherotowers) * PHEROMONE_TOWER_WEIGHT
+	. -= length(GLOB.xeno_spawners_by_hive[XENO_HIVE_CORRUPTED]) * SPAWNER_WEIGHT
+	. -= length(GLOB.xeno_acid_pools_by_hive[XENO_HIVE_CORRUPTED]) * ACID_POOL_WEIGHT
+	. -= length(GLOB.xeno_acid_jaws_by_hive[XENO_HIVE_CORRUPTED]) * ACID_JAWS_WEIGHT
+	for(var/obj/structure/xeno/xeno_turret/xeno_turret AS in GLOB.xeno_resin_turrets_by_hive[XENO_HIVE_CORRUPTED])
+		if(xeno_turret.type == /obj/structure/xeno/xeno_turret) // Strict because we want the base acid turret.
+			. -= XENO_ACID_TURRET_WEIGHT
+			continue
+		if(istype(xeno_turret, /obj/structure/xeno/xeno_turret/sticky))
+			. -= XENO_RESIN_TURRET_WEIGHT
+
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
 	human_on_ground = 0
 	human_in_FOB = 0
 	human_on_ship = 0
-	for(var/human in GLOB.alive_human_list)
+	clf_on_ground = 0
+	clf_on_ship = 0
+	for(var/human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
 			human_on_ground++
 			if(myarea.area_flags & NEAR_FOB)
 				human_in_FOB++
+		else if(is_mainship_level(TU.z))
+			human_on_ship++
+	for(var/human in GLOB.alive_human_list_faction[FACTION_CLF])
+		var/turf/TU = get_turf(human)
+		if(is_ground_level(TU.z))
+			human_on_ground++
 		else if(is_mainship_level(TU.z))
 			human_on_ship++
 

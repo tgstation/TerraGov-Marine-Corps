@@ -459,6 +459,8 @@
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
+	if(!istype(src, /obj/item/weapon/gun/rifle/drone))
+		faction = user.faction
 	active_attachable?.set_gun_user(user)
 	if(user == gun_user)
 		return
