@@ -5,7 +5,7 @@
 	name = "Toggle Stealth"
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
+	desc = "Become harder to see, even harder to see when stalking, and almost invisible if you stand still. While invisible you sneak attack for a 1 second stun. Uses plasma to move and lowers plasma gain."
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
@@ -246,7 +246,7 @@
 	name = "Disguise"
 	action_icon_state = "xenohide"
 	action_icon = 'icons/Xeno/actions/general.dmi'
-	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
+	desc = "Disguise yourself as a mob or an object. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
@@ -296,7 +296,7 @@
 
 /datum/action/ability/activable/xeno/pounce
 	name = "Pounce"
-	desc = "Leap at your target, tackling and disarming them."
+	desc = "Leap at your target up to 7 tiles away, stunning them for 2 seconds."
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
@@ -550,7 +550,7 @@
 	name = "Mirage"
 	action_icon_state = "mirror_image"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
+	desc = "Create 3 mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,

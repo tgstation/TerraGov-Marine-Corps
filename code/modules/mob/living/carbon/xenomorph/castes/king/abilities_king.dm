@@ -47,7 +47,7 @@
 	name = "Petrify"
 	action_icon_state = "petrify"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+	desc = "After a 2 second windup, petrifies all humans looking at you for 6 seconds. Petrified humans are immune to damage, but also can't attack."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -158,7 +158,7 @@
 	name = "Off-guard"
 	action_icon_state = "off_guard"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim and movement for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET

@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
-	desc = "Spray a line of dangerous acid at your target."
+	desc = "Spray a line of dangerous acid at your target up to 8 tiles away."
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 	/// If the owner makes use of and has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.

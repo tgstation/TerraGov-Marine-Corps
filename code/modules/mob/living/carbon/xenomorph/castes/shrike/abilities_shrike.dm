@@ -60,7 +60,7 @@
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "Sends an enemy or an item flying. A close ranged ability."
+	desc = "Sends an enemy or an item flying 3 tiles away. A 3 tile ranged ability. Stuns for 2 seconds."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
@@ -208,7 +208,7 @@
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
-	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for 6 tiles. Stuns for 2 seconds."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
@@ -537,7 +537,7 @@
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+	desc = "After a 2 second windup, channel a sizable vortex of psychic energy, drawing any items and enemies 4 tiles away."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY

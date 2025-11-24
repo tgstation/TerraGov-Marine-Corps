@@ -642,7 +642,7 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance
 	name = "Endurance"
-	desc = "Block attacks with your forearms, reducing damage received."
+	desc = "Block attacks with your forearms, slowing you down and reducing damage received by 50%."
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	action_icon_state = "fortify"

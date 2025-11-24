@@ -5,7 +5,7 @@
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Hit all adjacent units around you, knocking them away and down."
+	desc = "Hit all adjacent units around you, knocking them away and stunning for .5 seconds. You can parry thrown objects with this."
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
@@ -100,7 +100,7 @@
 	name = "Forward Charge"
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Charge up to 4 tiles and knockdown any targets in our way."
+	desc = "Charge up to 4 tiles and stun any targets in our way for 4 seconds."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
@@ -175,7 +175,7 @@
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
+	desc = "Increase your resistance to projectiles at the cost of slower move speed. Can use abilities while in crest defense."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -251,7 +251,7 @@
 	name = "Fortify"
 	action_icon_state = "fortify"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Plant yourself for a large defensive boost."
+	desc = "Plant yourself for a large defensive boost and stun resistance. Can use forward charge and regeneration in this state."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -469,7 +469,7 @@
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+	desc = "Rapidly tail sweep and hit all adjacent humans around you. Uses double plasma when crest is active."
 	ability_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 30 SECONDS
