@@ -164,6 +164,22 @@
 /obj/effect/supply_drop/xenomorph/proc/spawn_larva()
 	var/mob/picked = get_alien_candidate()
 	var/mob/living/carbon/xenomorph/larva/new_xeno
+	var/datum/job/xenomorph/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/free_xenos = xeno_job.total_positions - xeno_job.current_positions
+	if(free_xenos > 2)
+		new /mob/living/carbon/human/species/monkey(loc)
+		return
+	for(var/mob/living/carbon/xenomorph/ssd_xeno in GLOB.ssd_living_mobs)
+		if(ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		if(ssd_xeno.get_xeno_hivenumber() != XENO_HIVE_NORMAL)
+			continue
+		if((GLOB.tier_as_number[ssd_xeno.tier]) < 1 && ssd_xeno.caste_base_type != /datum/xeno_caste/larva)
+			continue
+		free_xenos++
+		if(free_xenos > 2)
+			new /mob/living/carbon/human/species/monkey(loc)
+			return
 
 	new_xeno = new(loc)
 
