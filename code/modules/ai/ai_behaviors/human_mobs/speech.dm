@@ -1,8 +1,6 @@
 /**
  * Says a custom audible message from a string you provide.
  *
- * More flexible than [/datum/ai_behavior/human/proc/list_speak].
- *
  * Arguments:
  * * `message`—What to speak
  * * `cooldown`—How long the global cooldown should last, to reduce spam from very quick speech
