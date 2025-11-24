@@ -38,6 +38,8 @@
 		M.balloon_alert(user, "nothing in that limb!")
 		REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))
 		return
+	if(user.do_actions)
+		return
 	var/skill = user.skills.getRating(SKILL_MEDICAL)
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
