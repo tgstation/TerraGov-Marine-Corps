@@ -152,28 +152,28 @@
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			//Accidental gun discharge
-			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP)
-				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
-					var/obj/item/weapon/gun/W = null
-					var/chance = 0
+			// Accidental gun discharge!
+			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP && (isgun(r_hand) || isgun(l_hand)))
+				var/obj/item/weapon/gun/active_gun = null
+				var/chance = 20
 
-					if (istype(l_hand,/obj/item/weapon/gun))
-						W = l_hand
-						chance = hand ? 40 : 20
+				var/obj/item/item_in_hand = get_active_held_item()
+				if(isgun(item_in_hand))
+					active_gun = item_in_hand
+					chance *= 2 // 2x chance to go off if it is in their active hand.
+				else
+					active_gun = get_inactive_held_item()
 
-					if (istype(r_hand,/obj/item/weapon/gun))
-						W = r_hand
-						chance = !hand ? 40 : 20
-
-					if(prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
-						log_combat(human_user, src, "disarmed", "making their [W.name] go off")
-						var/list/turfs = list()
-						for(var/turf/T in view())
-							turfs += T
-						var/turf/target = pick(turfs)
-						return W.afterattack(target,src)
+				if(active_gun && prob(chance))
+					visible_message(span_danger("[src]'s [active_gun.name] goes off during struggle!"), vision_distance = 5)
+					log_combat(human_user, src, "disarmed", "making their [active_gun.name] go off")
+					var/list/viewable_turfs = list()
+					for(var/turf/viewed_turf in view())
+						viewable_turfs += viewed_turf
+					var/turf/random_turf = pick(viewable_turfs)
+					. = active_gun.start_fire(active_gun.gun_user, random_turf, random_turf, bypass_checks = TRUE)
+					active_gun.stop_fire() // Otherwise, they will keep firing endlessly.
+					return
 
 			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 
