@@ -59,6 +59,11 @@
 	for(var/obj/machinery/computer/camera_advanced/remote_fob/computer AS in GLOB.remote_fob_computers)
 		computer.metal_remaining += 100
 		computer.plasteel_remaining += 50
+	var/turf/T = get_turf(GLOB.remote_fob_computers[1])
+	if(istype(T))
+		new /obj/item/storage/box/crate/sentry_sniper(T)
+		new /obj/item/storage/box/crate/sentry_sniper(T)
+		new /obj/item/storage/box/crate/sentry_sniper(T)
 
 /datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
