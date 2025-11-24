@@ -7,7 +7,7 @@
 #define RUNNER_SAVAGE_PLASMA_CONVERSION_RATE 0.15
 
 /datum/action/ability/activable/xeno/pounce/runner
-	desc = "Leap at a target up to 6 tiles away, stunning them for 2 seconds. Alternate use toggles Savage off or on. When on do an additional slash when pouncing."
+	desc = "Leap at a target up to 6 tiles away, stunning them for 2 seconds. Alternate use toggles Savage off or on. When on, do an additional slash when pouncing."
 	action_icon_state = "pounce_savage_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
