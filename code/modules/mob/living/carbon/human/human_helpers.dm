@@ -189,7 +189,6 @@
 	if(braincase.limb_status & LIMB_DESTROYED)
 		return FALSE
 	return TRUE
-	return FALSE
 
 /mob/living/carbon/human/has_eyes()
 	if(get_organ_slot(ORGAN_SLOT_EYES))
