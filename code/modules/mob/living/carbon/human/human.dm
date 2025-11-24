@@ -850,7 +850,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/smokecloak_on()
+/mob/living/carbon/human/smokecloak_on(smokecloak_alpha)
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
 	if(istype(S) && S.camo_active)
 		return FALSE
