@@ -166,7 +166,7 @@
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = 40,
-			/obj/item/explosive/grenade/phosphorus = 15,
+			/obj/item/explosive/grenade/phosphorus = 5,
 			/obj/item/explosive/grenade/chem_grenade/metalfoam = 10,
 			/obj/item/explosive/grenade/smokebomb/neuro = 15,
 			/obj/item/explosive/grenade/smokebomb/acid = 15,
