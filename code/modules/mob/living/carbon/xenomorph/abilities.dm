@@ -762,6 +762,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	return ..()
 
 /datum/action/ability/activable/xeno/xeno_spit/update_button_icon()
+	if(!button)
+		return
+	if(QDELETED(owner))
+		return FALSE
 	action_icon_state = "shift_spit_[initial(xeno_owner.ammo.icon_state)]"
 	return ..()
 
