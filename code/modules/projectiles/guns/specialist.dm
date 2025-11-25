@@ -72,7 +72,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "antimat"
 
-
+	autobalance_monitor_value = AMR_PRICE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize(mapload)
 	. = ..()
@@ -212,6 +212,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla
+	autobalance_monitor_value = null
 
 /obj/item/weapon/gun/rifle/sniper/pmc_railgun
 	name = "\improper SRX-42 anti-tank rail rifle"
@@ -374,12 +376,17 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.1
 	scatter = -3
 
+	autobalance_monitor_value = TX8_PRICE
+
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
+
+/obj/item/weapon/gun/rifle/tx8/valhalla
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 // MINIGUN
@@ -428,23 +435,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
 
-	item_flags = TWOHANDED|AUTOBALANCE_CHECK
-
-/obj/item/weapon/gun/minigun/Initialize(mapload)
-	. = ..()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.miniguns_in_use += src
-
-/obj/item/weapon/gun/minigun/Destroy()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.miniguns_in_use -= src
-	return ..()
+	autobalance_monitor_value = MINIGUN_PRICE
 
 /obj/item/weapon/gun/minigun/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/minigun/valhalla
-	item_flags = TWOHANDED
+	autobalance_monitor_value = null
 
 //A minigun that requires only one hand. Meant for use with vehicles
 /obj/item/weapon/gun/minigun/one_handed
@@ -467,6 +464,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	windup_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 0
+
+	autobalance_monitor_value = null
 
 //So that it displays the minigun on the mob as if always wielded
 /obj/item/weapon/gun/minigun/one_handed/update_item_state()
@@ -495,7 +494,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -5
 	recoil_unwielded = 4
 
-	item_flags = TWOHANDED
+	autobalance_monitor_value = null
 
 /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	starting_attachment_types = list(/obj/item/attachable/motiondetector)
@@ -566,7 +565,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_features_flags = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.1 SECONDS
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 18
@@ -713,17 +712,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1 SECONDS
 	scatter = -100
 
-	item_flags = TWOHANDED|AUTOBALANCE_CHECK
+	item_flags = TWOHANDED
 
-/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
-	. = ..()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.sadar_in_use += src
-
-/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
-	if(item_flags & AUTOBALANCE_CHECK)
-		SSmonitor.stats.sadar_in_use -= src
-	return ..()
+	autobalance_monitor_value = SADAR_PRICE
 
 /obj/item/weapon/gun/launcher/rocket/sadar/do_fire(obj/object_to_fire)
 	. = ..()
@@ -732,7 +723,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
-	item_flags = TWOHANDED
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -1138,3 +1129,5 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 0.45 SECONDS
 	wield_delay = 0.85 SECONDS
 	windup_delay = 0 SECONDS
+
+	autobalance_monitor_value = null

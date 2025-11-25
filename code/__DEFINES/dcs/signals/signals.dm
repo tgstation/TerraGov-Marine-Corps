@@ -29,7 +29,7 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
-#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_NUKE_DEFUSED "!nuke_defused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
@@ -470,6 +470,8 @@
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 #define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
+
+#define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
 
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
