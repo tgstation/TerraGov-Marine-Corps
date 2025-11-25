@@ -161,7 +161,7 @@
 	if(prob(1))
 		playsound(src, shake_sound, 25, TRUE)
 	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+	addtimer(CALLBACK(src, PROC_REF(stop_shake), old_pixel_x), duration)
 
 /// Stop the shaking animation
 /obj/structure/xeno/silo/proc/stop_shake(old_px)
