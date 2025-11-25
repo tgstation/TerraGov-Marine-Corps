@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "refactored code for refueling objects such as welder bags and fuel tanks"
