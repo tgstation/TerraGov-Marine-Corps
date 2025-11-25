@@ -1,12 +1,14 @@
 #define DEATH_LINES_ANGRY \
 	"You're gonna pay for that!",\
 	"You're dead, asshole!",\
+	"%THEIR_FIRST_NAME%!",\
 	"You're fucked now!",\
 	"MOTHERFUCKER!!"
 
 #define DEATH_LINES_SOLDIER_ANGRY \
 	"Man down... I'm coming for you!",\
-	"Man down... you piece of shit!"
+	"Man down... you piece of shit!",\
+	"%THEIR_TITLE%!"
 
 #define GIB_LINES_ANGRY \
 	"WOAH, LOOK OUT!!",\
@@ -53,8 +55,12 @@
 		if(dead.faction != source.faction)
 			return
 	. = HUMAN_VIEW_DEATH_STOP_LOOP
-	faction_list_speak(
-		chat_lines = gibbing ? witnessing_gibbing_lines : witnessing_death_lines,
+	var/line = pick_faction_line(gibbing ? witnessing_gibbing_lines : witnessing_death_lines)
+	line = replacetext(line, "%THEIR_FIRST_NAME%", get_last_or_first_name(dead, FALSE, FALSE))
+	line = replacetext(line, "%THEIR_LAST_NAME%", get_last_or_first_name(dead, FALSE, TRUE))
+	line = replacetext(line, "%THEIR_TITLE%", dead.get_paygrade(0) || get_last_or_first_name(dead, FALSE, TRUE))
+	custom_speak(
+		message = line,
 		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",
 		unique_cooldown_time = 15 SECONDS,
 	)

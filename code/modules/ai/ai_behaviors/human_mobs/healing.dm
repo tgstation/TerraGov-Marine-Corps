@@ -7,6 +7,7 @@
 	"Goodnight."
 
 #define MOVE_TO_HEAL_GENERIC \
+	"%MY_FIRST_NAME% on the way!",\
 	"Hang in there, I'm coming!",\
 	"Cover me, I'm moving up!",\
 	"Coming, coming, coming!",\
@@ -53,8 +54,8 @@
 			MOVE_TO_HEAL_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			"Quit your yapping, I'm on the way!",
-			"You don't even look that bad!",
+			//"Quit your yapping, I'm on the way!",
+			//"You don't even look that bad!",
 			MOVE_TO_HEAL_GENERIC,
 		),
 	)

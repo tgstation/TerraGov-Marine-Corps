@@ -15,6 +15,14 @@
 		LAZYREMOVE(specific_chat_cooldowns, unique_cooldown_key)
 	. = TRUE
 
+/// Handles simple text replacement for things that need to be constant
+/// (things in type definitions, etc)
+/datum/ai_behavior/human/proc/text_replacement(text)
+	. = text
+	. = replacetext(., "%MY_FIRST_NAME%", get_last_or_first_name(mob_parent, FALSE, FALSE))
+	. = replacetext(., "%MY_LAST_NAME", get_last_or_first_name(mob_parent, FALSE, TRUE))
+	. = replacetext(., "%MY_TITLE%", mob_parent.get_paygrade(0))
+
 /**
  * Says a custom audible message from the provided `message`.
  *
@@ -35,6 +43,8 @@
 	if(!force && !can_speak(unique_cooldown_key, unique_cooldown_time))
 		return
 
+	message = text_replacement(message)
+
 	// maybe radio arg in the future for some things
 	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), message)
 	COOLDOWN_START(src, global_chat_cooldown, cooldown)
@@ -42,8 +52,16 @@
 	if(unique_cooldown_key)
 		LAZYSET(specific_chat_cooldowns, unique_cooldown_key, world.time + unique_cooldown_time)
 
-/// Internal proc that actually gets a suitable line from a faction list
-/datum/ai_behavior/human/proc/handle_faction_lines_list(list/chat_lines)
+/**
+ * Internal proc that gets a suitable line from the provided `chat_lines` list.
+ *
+ * Exists so you can call this yourself, modify the returned text, and pass it to `custom_speak`
+ * for more advanced/stateful string replacement than what exists in `text_replacement`.
+ *
+ * Arguments:
+ * * `chat_lines`—Associative list of (faction strings -> (lines)) to pick from
+ */
+/datum/ai_behavior/human/proc/pick_faction_line(list/chat_lines)
 	. = pick(chat_lines[mob_parent.faction] || chat_lines[FACTION_NEUTRAL])
 	if(!.)
 		CRASH("[type]/faction_list_speak was not able to find a chat line. For bare minimum functionality, all speech lists should have lines for FACTION_NEUTRAL.")
@@ -73,7 +91,7 @@
 	if(!islist(chat_lines))
 		CRASH("[type]/faction_list_speak called without a list.")
 
-	var/line = handle_faction_lines_list(chat_lines)
+	var/line = pick_faction_line(chat_lines)
 	if(!line)
 		CRASH("[type]/faction_list_speak was not able to find a chat line. For bare minimum functionality, all speech lists should have lines for FACTION_NEUTRAL.")
 

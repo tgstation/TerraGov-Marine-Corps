@@ -1272,3 +1272,34 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			continue
 		acceptable_turfs += possible_turf
 	return acceptable_turfs
+
+/// Max length of non-commtitle names
+#define MAX_NON_COMMTITLE_LEN 9
+
+/**
+ * Returns the mob's first or last name
+ *
+ * Arguments:
+ * * `mob`—Mob whose name we will parse
+ * * `allow_prefixes`—Allows the mob's `comm_title` to prefix their name
+ * * `allow_last_name`—Allows the mob's last name to be used first if they have one
+ */
+/proc/get_last_or_first_name(mob/living/mob, allow_prefixes = TRUE, allow_last_name = TRUE)
+	var/real_name = mob.real_name
+	var/first_name = copytext(real_name, 1, findtext(real_name, " "))
+	var/last_name = trim(copytext(real_name, findtext(real_name, " ")))
+	var/name_to_use
+	if(allow_last_name && length(last_name) >= 1 && length(last_name) <= MAX_NON_COMMTITLE_LEN)
+		name_to_use = last_name
+	else if(length(first_name) >= 1 && length(first_name) <= MAX_NON_COMMTITLE_LEN)
+		name_to_use = first_name
+	else if(length(real_name) >= 1)
+		if(length(real_name) > MAX_NON_COMMTITLE_LEN)
+			// cleans too long clone names down to a better fitting length
+			real_name = replacetext(real_name, GLOB.vatborn_regex, "")
+		name_to_use = copytext(real_name, 1, MAX_NON_COMMTITLE_LEN+1)
+	else
+		name_to_use = "UNKNOWN"
+	. = "[allow_prefixes ? "[mob.comm_title] " : ""][name_to_use]"//trim(mob.comm_title + " " + name_to_use)
+
+#undef MAX_NON_COMMTITLE_LEN

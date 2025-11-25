@@ -47,8 +47,8 @@
 		deathmessage = species.death_message
 	if(!silent && species.death_sound)
 		playsound(loc, species.death_sound, 50, TRUE)
-	nearby_humans_witness_death(gibbing)
-	return ..()
+	. = ..()
+	nearby_humans_witness_death(gibbing) // should happen after any deathgasping
 
 
 /mob/living/carbon/human/on_death()
