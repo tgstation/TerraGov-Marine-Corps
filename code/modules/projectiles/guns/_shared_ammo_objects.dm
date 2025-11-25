@@ -23,7 +23,7 @@
 	var/flame_color = "red"
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
 	var/burn_level = 20
-	/// How many burn ticks we lose per process
+	/// How many burn ticks we lose per process? Useful to make it appear as if fire is intense (early) but quick to dissipate (later).
 	var/burn_decay = 1
 
 /obj/fire/Initialize(mapload, new_burn_ticks = burn_ticks, new_burn_level = burn_level, f_color, fire_stacks = 0, fire_damage = 0)
@@ -154,15 +154,16 @@
 /obj/fire/proc/affect_atom(atom/affected)
 	return
 
-///Reduces duration of fire
+/// Reduces duration of the fire after multiplying for burn_decay. Returns true if the fire still exists after being reduced.
 /obj/fire/proc/reduce_fire(amount = 1)
 	if(amount <= 0)
-		return
-	burn_ticks -= amount
+		return FALSE
+	burn_ticks -= amount * burn_decay
 	if(burn_ticks > 0)
 		update_appearance(UPDATE_ICON)
-	else
-		qdel(src)
+		return TRUE
+	qdel(src)
+	return FALSE
 
 /////////////////////////////
 //      FLAMER FIRE        //
@@ -202,6 +203,17 @@
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire!"), \
 		span_notice("We extinguished the fire."), null, 5)
 	qdel(src)
+
+/// Reduces duration of the fire, then the strength multiplied by 2. Returns true if the fire still exists after being reduced.
+/obj/fire/flamer/proc/reduce_fire(amount = 1)
+	if(!..())
+		return
+	burn_level -= amount * 2
+	if(burn_ticks > 0)
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	qdel(src)
+	return FALSE
 
 ///////////////////////////////
 //        MELTING FIRE       //
