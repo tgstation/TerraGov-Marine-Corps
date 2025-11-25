@@ -247,7 +247,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		list_speak(new_move_lines)
+		faction_list_speak(new_move_lines)
 	set_run()
 
 /datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
@@ -255,7 +255,7 @@
 	if(!.)
 		return
 	if(prob(50) && isliving(escorted_atom))
-		list_speak(new_follow_chat)
+		faction_list_speak(new_follow_chat)
 	set_run()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
@@ -263,7 +263,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		list_speak(new_target_lines)
+		faction_list_speak(new_target_lines)
 	set_run()
 	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 
@@ -328,7 +328,7 @@
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
 			set_interact_target(target) //todo: Other option might be redundant?
-			list_speak(receive_order_lines)
+			faction_list_speak(receive_order_lines)
 			return
 		set_atom_to_walk_to(target)
 		return
@@ -338,7 +338,7 @@
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
-		list_speak(receive_order_lines)
+		faction_list_speak(receive_order_lines)
 		return
 	if(movable_target.faction != mob_parent.faction)
 		set_combat_target(movable_target)
@@ -348,7 +348,7 @@
 		if(!living_target.stat)
 			set_escorted_atom(null, living_target)
 	set_interact_target(movable_target)
-	list_speak(receive_order_lines)
+	faction_list_speak(receive_order_lines)
 
 ///Attempts to pickup an item
 /datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
@@ -395,7 +395,7 @@
 		return
 
 	if(prob(50))
-		list_speak(retreating_lines)
+		faction_list_speak(retreating_lines)
 	set_run(TRUE)
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
@@ -454,5 +454,5 @@
 /datum/ai_behavior/human/monkey_business/custom_speak(message, cooldown, unique_cooldown_key, unique_cooldown_time, force)
 	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))
 
-/datum/ai_behavior/human/monkey_business/list_speak(list/chat_lines, cooldown, unique_cooldown_key, unique_cooldown_time, force)
+/datum/ai_behavior/human/monkey_business/faction_list_speak(list/chat_lines, cooldown, unique_cooldown_key, unique_cooldown_time, force)
 	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))

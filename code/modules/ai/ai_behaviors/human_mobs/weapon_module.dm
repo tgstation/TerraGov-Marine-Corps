@@ -131,7 +131,7 @@
 	if(fire_result != AI_FIRE_CAN_HIT)
 		return
 	if(prob(90))
-		list_speak(start_fire_lines)
+		faction_list_speak(start_fire_lines)
 	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
 		gun.unique_action(mob_parent)
 	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
@@ -338,18 +338,18 @@
 	switch(stop_reason)
 		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
 			if(prob(75))
-				list_speak(dead_target_lines)
+				faction_list_speak(dead_target_lines)
 		if(AI_FIRE_NO_AMMO)
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
-				list_speak(out_of_range_lines)
+				faction_list_speak(out_of_range_lines)
 		if(AI_FIRE_NO_LOS)
 			if(prob(50))
-				list_speak(no_line_of_sight_lines)
+				faction_list_speak(no_line_of_sight_lines)
 		if(AI_FIRE_FRIENDLY_BLOCKED)
 			if(prob(50))
-				list_speak(friendly_blocking_lines)
+				faction_list_speak(friendly_blocking_lines)
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()
@@ -374,7 +374,7 @@
 		//insert messaging etc
 		return
 	if(prob(90))
-		list_speak(reloading_lines)
+		faction_list_speak(reloading_lines)
 	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
 		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))

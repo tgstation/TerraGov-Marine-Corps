@@ -180,35 +180,35 @@
 		return
 	if(isgrenade(hazard))
 		if(prob(85))
-			list_speak(grenade_hazard_lines)
+			faction_list_speak(grenade_hazard_lines)
 		return
 	if(isfire(hazard))
 		if(prob(20))
-			list_speak(fire_hazard_lines)
+			faction_list_speak(fire_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/xenomorph/spray))
 		if(prob(20))
-			list_speak(acid_hazard_lines)
+			faction_list_speak(acid_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/abstract/ripple))
 		if(prob(20))
-			list_speak(shuttle_hazard_lines)
+			faction_list_speak(shuttle_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/overlay/blinking_laser/marine))
 		if(prob(20))
-			list_speak(cas_hazard_lines)
+			faction_list_speak(cas_hazard_lines)
 		return
 	if(isfacehugger(hazard))
 		if(prob(20))
-			list_speak(facehugger_hazard_lines)
+			faction_list_speak(facehugger_hazard_lines)
 		return
 	if(istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
 		if(prob(20))
-			list_speak(xeno_aoe_hazard_lines)
+			faction_list_speak(xeno_aoe_hazard_lines)
 		return
 
 	if(prob(20))
-		list_speak(generic_hazard_lines)
+		faction_list_speak(generic_hazard_lines)
 
 ///Removes a hazard
 /datum/ai_behavior/human/proc/remove_hazard(atom/old_hazard)

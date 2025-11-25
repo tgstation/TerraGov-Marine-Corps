@@ -29,6 +29,10 @@
 			INCEND_GRENADE_LINES,
 			GENERIC_GRENADE_LINES,
 		),
+		/obj/item/explosive/grenade/sticky/trailblazer = list(
+			INCEND_GRENADE_LINES,
+			GENERIC_GRENADE_LINES,
+		),
 		// Specialized bullet bomb types -> base bullet bomb
 		/obj/item/explosive/grenade/bullet/laser = list(
 			"Lasburster out, watch your ass!",
@@ -97,7 +101,7 @@
 		if(is_type_in_list(grenade, special_nade_lines))
 			custom_speak(pick(special_nade_lines[grenade.type]), force = TRUE)
 		else
-			list_speak(nade_throw_lines, force = TRUE)
+			faction_list_speak(nade_throw_lines, force = TRUE)
 	return mob_parent.throw_item(target, grenade)
 
 ///Finds a suitable grenade to throw

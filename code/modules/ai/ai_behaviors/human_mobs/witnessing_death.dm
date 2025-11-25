@@ -53,7 +53,7 @@
 		if(dead.faction != source.faction)
 			return
 	. = HUMAN_VIEW_DEATH_STOP_LOOP
-	list_speak(
+	faction_list_speak(
 		chat_lines = gibbing ? witnessing_gibbing_lines : witnessing_death_lines,
 		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",
 		unique_cooldown_time = 15 SECONDS,
