@@ -61,6 +61,7 @@ GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
 
 		if(length(D.required_reagents))
 			for(var/result in D.results)
+				EMPTY_BLOCK_GUARD
 
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction
