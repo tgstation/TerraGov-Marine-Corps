@@ -208,7 +208,7 @@
 /obj/fire/flamer/reduce_fire(amount = 1)
 	if(!..())
 		return
-	burn_level -= amount * 2
+	burn_level -= amount * 2 // 2 because that is the same as value from process().
 	if(burn_ticks > 0)
 		update_appearance(UPDATE_ICON)
 		return TRUE
