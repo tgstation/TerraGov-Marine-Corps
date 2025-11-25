@@ -180,3 +180,6 @@
       depending on gamestate & z-level.
   mudzbe:
   - balance: Destroying a tunnel spawns a wave of defenders
+2025-11-25:
+  Lumipharon:
+  - refactor: refactored code for refueling objects such as welder bags and fuel tanks
