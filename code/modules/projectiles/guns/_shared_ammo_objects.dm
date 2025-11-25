@@ -205,7 +205,7 @@
 	qdel(src)
 
 /// Reduces duration of the fire, then the strength multiplied by 2. Returns true if the fire still exists after being reduced.
-/obj/fire/flamer/proc/reduce_fire(amount = 1)
+/obj/fire/flamer/reduce_fire(amount = 1)
 	if(!..())
 		return
 	burn_level -= amount * 2
