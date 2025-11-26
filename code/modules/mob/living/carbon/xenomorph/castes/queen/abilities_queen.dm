@@ -323,6 +323,10 @@
 			speedy_xenomorphs += affected_xeno
 		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 4 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
+/datum/action/ability/activable/xeno/screech/succeed_activate(ability_cost_override)
+	. = ..()
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob/living/carbon, apply_status_effect), /datum/status_effect/shatter, 20 SECONDS), 10 SECONDS)
+
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 	if(xeno_owner.upgrade != XENO_UPGRADE_PRIMO)
