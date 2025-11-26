@@ -77,16 +77,16 @@
 	if(lead && !(locate(/datum/action/ability/xeno_action/set_xeno_lead) in xeno_caste.actions))
 		lead.remove_action(src)
 	var/datum/action/ability/xeno_action/blessing_menu/bless = actions_by_path[/datum/action/ability/xeno_action/blessing_menu]
-	if(bless !(locate(/datum/action/ability/xeno_action/blessing_menu) in xeno_caste.actions))
+	if(bless && !(locate(/datum/action/ability/xeno_action/blessing_menu) in xeno_caste.actions))
 		bless.remove_action(src)
 	var/datum/action/ability/xeno_action/hive_message/message = actions_by_path[/datum/action/ability/xeno_action/hive_message]
-	if(message !(locate(/datum/action/ability/xeno_action/hive_message) in xeno_caste.actions))
+	if(message && !(locate(/datum/action/ability/xeno_action/hive_message) in xeno_caste.actions))
 		message.remove_action(src)
 	var/datum/action/ability/xeno_action/rally_hive/hive = actions_by_path[/datum/action/ability/xeno_action/rally_hive]
-	if(hive !(locate(/datum/action/ability/xeno_action/rally_hive) in xeno_caste.actions))
+	if(hive && !(locate(/datum/action/ability/xeno_action/rally_hive) in xeno_caste.actions))
 		hive.remove_action(src)
 	var/datum/action/ability/xeno_action/rally_minion/minion = actions_by_path[/datum/action/ability/xeno_action/rally_minion]
-	if(minion !(locate(/datum/action/ability/xeno_action/rally_minion) in xeno_caste.actions))
+	if(minion && !(locate(/datum/action/ability/xeno_action/rally_minion) in xeno_caste.actions))
 		minion.remove_action(src)
 
 
