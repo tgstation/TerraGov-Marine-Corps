@@ -388,13 +388,3 @@
 		inactive_hand.attack_hand(src)
 		return
 	inactive_hand.attackby(active_hand, src)
-
-///Checks if a shield is actively protecting the human
-/mob/living/carbon/human/proc/shield_active()
-	if(istype(wear_suit, /obj/item/clothing/suit/modular))
-		var/obj/item/clothing/suit/modular/m = wear_suit
-		if(istype(m.attachments_by_slot[ATTACHMENT_SLOT_MODULE], /obj/item/armor_module/module/eshield))
-			var/obj/item/armor_module/module/eshield/e = m.attachments_by_slot[ATTACHMENT_SLOT_MODULE]
-			if(e.shield_health > 0)
-				return TRUE
-	return FALSE
