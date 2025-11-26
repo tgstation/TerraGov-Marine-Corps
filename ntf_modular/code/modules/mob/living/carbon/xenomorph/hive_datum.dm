@@ -21,9 +21,9 @@
 		return
 	COOLDOWN_START(src, silo_shock_cooldown, 1 MINUTES)
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[hivenumber])
-		xeno.Paralyze(15 SECONDS) // 3 seconds after xeno stun resistance
+		xeno.Paralyze(50 SECONDS) // 10 seconds after xeno stun resistance
 		xeno.apply_status_effect(/datum/status_effect/shatter, 60 SECONDS)
-		xeno.apply_status_effect(/datum/status_effect/nohealthregen, 20 SECONDS)
+		xeno.apply_status_effect(/datum/status_effect/nohealthregen, 40 SECONDS)
 	xeno_message("Our last silo [last_silo] is besieged at [AREACOORD_NO_Z(last_silo)]! The shock of sustaining it brings us to our knees!", "xenoannounce", 7, TRUE, last_silo.loc, 'sound/voice/alien/help2.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 /datum/hive_status/corrupted
