@@ -18,10 +18,10 @@
 /// Handles simple text replacement for things that need to be constant
 /// (things in type definitions, etc)
 /datum/ai_behavior/human/proc/text_replacement(text)
-	. = text
-	. = replacetext(., "%MY_FIRST_NAME%", get_last_or_first_name(mob_parent, FALSE, FALSE))
-	. = replacetext(., "%MY_LAST_NAME", get_last_or_first_name(mob_parent, FALSE, TRUE))
-	. = replacetext(., "%MY_TITLE%", mob_parent.get_paygrade(0))
+	text = replacetext(text, "%MY_FIRST_NAME%", get_last_or_first_name(mob_parent, FALSE, FALSE))
+	text = replacetext(text, "%MY_LAST_NAME", get_last_or_first_name(mob_parent, FALSE, TRUE))
+	text = replacetext(text, "%MY_TITLE%", mob_parent.get_paygrade_or_last_name())
+	return text
 
 /**
  * Says a custom audible message from the provided `message`.
@@ -40,7 +40,7 @@
 	unique_cooldown_time,
 	force = FALSE,
 )
-	if(!force && !can_speak(unique_cooldown_key, unique_cooldown_time))
+	if(!force && !can_speak(unique_cooldown_key))
 		return
 
 	message = text_replacement(message)
@@ -55,8 +55,9 @@
 /**
  * Internal proc that gets a suitable line from the provided `chat_lines` list.
  *
- * Exists so you can call this yourself, modify the returned text, and pass it to `custom_speak`
- * for more advanced/stateful string replacement than what exists in `text_replacement`.
+ * This is passed to `faction_list_speak` but you can also call this yourself,
+ * modify its returned text, and pass it to `custom_speak` for more robust string
+ * replacement than what exists in `text_replacement`.
  *
  * Arguments:
  * * `chat_lines`—Associative list of (faction strings -> (lines)) to pick from
@@ -93,6 +94,6 @@
 
 	var/line = pick_faction_line(chat_lines)
 	if(!line)
-		CRASH("[type]/faction_list_speak was not able to find a chat line. For bare minimum functionality, all speech lists should have lines for FACTION_NEUTRAL.")
+		return
 
 	custom_speak(line, cooldown, unique_cooldown_key, unique_cooldown_time, force)

@@ -1,18 +1,16 @@
 #define UNREVIVABLE_GENERIC \
-	"Damn it, they're gone!",\
-	"I've lost them!",\
-	"We lost them!",\
-	"Braindead!",\
-	"I'm sorry.",\
-	"Goodnight."
+	"Damn it, %THEIR_FIRST_NAME% is cold!",\
+	"Goodnight, %THEIR_FIRST_NAME%",\
+	"We lost %THEIR_FIRST_NAME%!",\
+	"%THEIR_FIRST_NAME%'s gone.",\
+	"Ah... %THEIR_FIRST_NAME%.",\
+	"I'm sorry."
 
 #define MOVE_TO_HEAL_GENERIC \
+	"%THEIR_FIRST_NAME%, I have something for you!",\
 	"%MY_FIRST_NAME% on the way!",\
 	"Hang in there, I'm coming!",\
-	"Cover me, I'm moving up!",\
-	"Coming, coming, coming!",\
 	"Hold on, I'm coming!",\
-	"Helping out here.",\
 	"I'm on the way!"
 
 /datum/ai_behavior/human
@@ -42,11 +40,35 @@
 			UNREVIVABLE_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			"What'd you call me for? This one's COLD!",
-			"Gone forever! Move along!",
-			"They're not coming back.",
-			UNREVIVABLE_GENERIC,
+			"I'll see you around, %THEIR_LAST_NAME%",
+			"Goodnight, %THEIR_LAST_NAME%.",
+			"We lost %THEIR_LAST_NAME%.",
+			"%THEIR_LAST_NAME% is cold.",
+			"Ah... %THEIR_LAST_NAME%.",
 		),
+	)
+	/// Lines when moving to help someone up who's in crit
+	var/list/move_to_crit_lines = list(
+		FACTION_NEUTRAL = list(
+			"Cover me, I'm helping %THEIR_FIRST_NAME% up!",
+			"Cover me while I get %THEIR_FIRST_NAME%!",
+			"Someone help %THEIR_FIRST_NAME% up!",
+			"Shit, %THEIR_FIRST_NAME% is down!",
+			"Getting %THEIR_FIRST_NAME% up!",
+			"%THEIR_FIRST_NAME% needs help!",
+			"%THEIR_FIRST_NAME% is down!",
+			"%THEIR_FIRST_NAME%!",
+		),
+		FACTION_TERRAGOV = list(
+			"Cover me, I'm helping %THEIR_LAST_NAME% up!",
+			"Cover me while I get %THEIR_LAST_NAME%!",
+			"Someone help %THEIR_LAST_NAME% up!",
+			"Shit, %THEIR_LAST_NAME% is down!",
+			"Getting %THEIR_LAST_NAME% up!",
+			"%THEIR_LAST_NAME% needs help!",
+			"%THEIR_LAST_NAME% is down!",
+			"%THEIR_LAST_NAME%!",
+		)
 	)
 	/// Lines when moving to heal someone else
 	var/list/move_to_heal_lines = list(
@@ -54,9 +76,11 @@
 			MOVE_TO_HEAL_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			//"Quit your yapping, I'm on the way!",
-			//"You don't even look that bad!",
-			MOVE_TO_HEAL_GENERIC,
+			"%THEIR_TITLE%, I have something for you!",
+			"I hear you, %THEIR_TITLE%!",
+			"Wait up, %THEIR_TITLE%!",
+			"Corpsman on the way!",
+			"%THEIR_TITLE%!",
 		),
 	)
 	/// Lines when actively healing someone else
@@ -101,7 +125,7 @@
 		return
 
 	set_interact_target(patient)
-	faction_list_speak(move_to_heal_lines)
+	speak_move_to_heal(patient)
 	return TRUE
 
 ///Someone is healing us
@@ -131,7 +155,10 @@
 	if(get_dist(mob_parent, crit_mob) > 5)
 		return
 	set_interact_target(crit_mob)
-	faction_list_speak(move_to_heal_lines)
+	if(prob(33))
+		var/line = pick_faction_line(move_to_crit_lines)
+		AI_REPLACE_THEIR_NAME(line, crit_mob)
+		custom_speak(line)
 	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_interactee_stat_change))
 
 ///Unregisters a friendly target when their stat changes
@@ -166,7 +193,7 @@
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	set_interact_target(patient)
-	faction_list_speak(move_to_heal_lines)
+	speak_move_to_heal(patient)
 
 ///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
@@ -214,7 +241,9 @@
 	do_unset_target(patient, FALSE)
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
 		remove_from_heal_list(patient)
-		faction_list_speak(unrevivable_lines)
+		var/line = pick_faction_line(unrevivable_lines)
+		AI_REPLACE_THEIR_NAME(line, patient)
+		custom_speak(line)
 		return
 
 	if(!mob_parent.CanReach(patient))
@@ -238,6 +267,14 @@
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
 	on_heal_end(mob_parent)
 	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
+
+/// Speaks our `move_to_heal_lines`: wrapper to reduce copypasta
+/datum/ai_behavior/human/proc/speak_move_to_heal(mob/living/carbon/human/patient)
+	if(!prob(33))
+		return
+	var/line = pick_faction_line(move_to_heal_lines)
+	AI_REPLACE_THEIR_NAME(line, patient)
+	custom_speak(line)
 
 #undef UNREVIVABLE_GENERIC
 #undef MOVE_TO_HEAL_GENERIC

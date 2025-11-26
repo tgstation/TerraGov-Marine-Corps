@@ -1,70 +1,14 @@
-#define GENERIC_GRENADE_LINES \
-	"Fire in the hole!",\
-	"Here it comes!",\
-	"Grenade out!",\
-	"Catch this!",\
-	"This is it!"
-
-#define INCEND_GRENADE_LINES \
-	"Burn, you piece of shit!",\
-	"You're gonna burn!",\
-	"Burn!"
-
 /datum/ai_behavior/human
 	///Probability of trying to throw a grenade during process
 	var/nade_throw_prob = 15
 	/// Lines when throwing a grenade
 	var/list/nade_throw_lines = list(
 		FACTION_NEUTRAL = list(
-			GENERIC_GRENADE_LINES,
-		),
-	)
-	/// Overrides `nade_throw_lines`, list of specific grenade types -> special lines for them
-	var/static/list/special_nade_lines = list(
-		/obj/item/explosive/grenade/incendiary = list(
-			INCEND_GRENADE_LINES,
-			GENERIC_GRENADE_LINES,
-		),
-		/obj/item/explosive/grenade/phosphorus = list(
-			INCEND_GRENADE_LINES,
-			GENERIC_GRENADE_LINES,
-		),
-		/obj/item/explosive/grenade/sticky/trailblazer = list(
-			INCEND_GRENADE_LINES,
-			GENERIC_GRENADE_LINES,
-		),
-		// Specialized bullet bomb types -> base bullet bomb
-		/obj/item/explosive/grenade/bullet/laser = list(
-			"Lasburster out, watch your ass!",
-			"Lasburster out!",
-			INCEND_GRENADE_LINES,
-			GENERIC_GRENADE_LINES,
-		),
-		/obj/item/explosive/grenade/bullet/hefa = list(
-			"HEFA out, watch your ass!",
-			"HEFA out!",
-			GENERIC_GRENADE_LINES,
-		),
-		// Specialized smoke bomb types -> base smoke bomb
-		/obj/item/explosive/grenade/smokebomb/drain = list(
-			"Tanglefoot out!",
-		),
-		/obj/item/explosive/grenade/smokebomb/antigas = list(
-			"Anti-gas bomb out!",
-		),
-		/obj/item/explosive/grenade/smokebomb/acid = list(
-			INCEND_GRENADE_LINES,
-			GENERIC_GRENADE_LINES,
-		),
-		/obj/item/explosive/grenade/smokebomb/satrapine = list(
-			"SATRAPINE GOING OUT!!",
-			"SATRAPINE OUT!!",
-			GENERIC_GRENADE_LINES,
-		),
-		/obj/item/explosive/grenade/smokebomb = list(
-			"Throwing a smoke bomb!",
-			"Smoke bomb out!",
-			"Smoke!",
+			"Fire in the hole!",
+			"Here it comes!",
+			"Grenade out!",
+			"Catch this!",
+			"This is it!",
 		),
 	)
 
@@ -98,10 +42,7 @@
 		return
 	grenade.attack_self(mob_parent)
 	if(prob(85))
-		if(is_type_in_list(grenade, special_nade_lines))
-			custom_speak(pick(special_nade_lines[grenade.type]), force = TRUE)
-		else
-			faction_list_speak(nade_throw_lines, force = TRUE)
+		faction_list_speak(nade_throw_lines, force = TRUE)
 	return mob_parent.throw_item(target, grenade)
 
 ///Finds a suitable grenade to throw
@@ -116,6 +57,3 @@
 		nade_options += option
 
 	return pick(nade_options)
-
-#undef GENERIC_GRENADE_LINES
-#undef INCEND_GRENADE_LINES

@@ -56,9 +56,7 @@
 			return
 	. = HUMAN_VIEW_DEATH_STOP_LOOP
 	var/line = pick_faction_line(gibbing ? witnessing_gibbing_lines : witnessing_death_lines)
-	line = replacetext(line, "%THEIR_FIRST_NAME%", get_last_or_first_name(dead, FALSE, FALSE))
-	line = replacetext(line, "%THEIR_LAST_NAME%", get_last_or_first_name(dead, FALSE, TRUE))
-	line = replacetext(line, "%THEIR_TITLE%", dead.get_paygrade(0) || get_last_or_first_name(dead, FALSE, TRUE))
+	AI_REPLACE_THEIR_NAME(line, dead)
 	custom_speak(
 		message = line,
 		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",

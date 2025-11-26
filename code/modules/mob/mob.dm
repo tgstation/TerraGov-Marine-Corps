@@ -566,8 +566,14 @@
 	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
 	return .
 
+/// Returns our paygrade. Can be empty.
 /mob/proc/get_paygrade()
 	return ""
+
+/// Returns our paygrade OR last name as the next most professional thing.
+/// Cannot be empty.
+/mob/proc/get_paygrade_or_last_name()
+	return get_paygrade() || get_last_or_first_name(src, FALSE, TRUE)
 
 // facing verbs
 /mob/proc/canface()

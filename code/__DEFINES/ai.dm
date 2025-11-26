@@ -1,6 +1,12 @@
 /// Default cooldown for AI speech
 #define COOLDOWN_AI_SPEECH (2 SECONDS)
 
+/// Macro for applying text replacements for other mobs to a string
+#define AI_REPLACE_THEIR_NAME(line, other_mob) \
+	##line = replacetext(##line, "%THEIR_FIRST_NAME%", get_last_or_first_name(##other_mob, FALSE, FALSE));\
+	##line = replacetext(##line, "%THEIR_LAST_NAME%", get_last_or_first_name(##other_mob, FALSE, TRUE));\
+	##line = replacetext(##line, "%THEIR_TITLE%", ##other_mob.get_paygrade_or_last_name(0));
+
 /// Monkey specific AI speech lines
 GLOBAL_LIST_INIT(ai_monkey_lines, list("EEK!!", "OOP!!", "ACK!!", "CHEE!!"))
 
