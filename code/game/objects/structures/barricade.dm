@@ -27,7 +27,7 @@
 	var/is_open = FALSE
 	///Can this barricade type be wired
 	var/can_wire = FALSE
-	///is this barriade wired?
+	///Is this barricade wired?
 	var/is_wired = FALSE
 
 /obj/structure/barricade/Initialize(mapload, mob/user)

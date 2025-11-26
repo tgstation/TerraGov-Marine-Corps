@@ -135,6 +135,7 @@
 	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)
 
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	if(is_wired)
-		balloon_alert(zombie, "barbed wire slices into you!")
-		zombie.apply_damage(40, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
+	if(!is_wired)
+		return
+	balloon_alert(zombie, "barbed wire slices into you!")
+	zombie.apply_damage(40, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
