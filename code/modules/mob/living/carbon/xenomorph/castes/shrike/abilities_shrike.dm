@@ -56,11 +56,12 @@
 // ***************************************
 // *********** Psychic Fling
 // ***************************************
+#define SHRIKE_FLING_RANGE 3
+#define SHRIKE_FLING_DISTANCE 3
 /datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "Sends an enemy or an item flying 3 tiles away. A 3 tile ranged ability. Stuns for 2 seconds."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
@@ -78,6 +79,10 @@
 	/// Should the collusion duration/multiplier only register for xenomorphs; also allows targetting of other xenos. This means that only flung xenomorphs can deal its effects to collided things.
 	var/collusion_xenos_only = FALSE
 
+/datum/action/ability/activable/xeno/psychic_fling/New(Target)
+	. = ..()
+	desc = "Sends an enemy or an item flying [SHRIKE_FLING_DISTANCE] tiles away. A [SHRIKE_FLING_RANGE] tile ranged ability. Stuns for [stun_duration / (1 SECONDS)] seconds."
+
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
@@ -94,7 +99,7 @@
 		return FALSE
 	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
-	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
+	var/max_dist = SHRIKE_FLING_RANGE //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
@@ -143,7 +148,7 @@
 		else
 			xenomorph_target.add_pass_flags(PASS_MOB, THROW_TRAIT)
 	var/facing = xeno_owner == movable_target ? xeno_owner.dir : get_dir(xeno_owner, movable_target)
-	var/fling_distance = (isitem(movable_target)) ? 4 : 3 // Objects get flung further away.
+	var/fling_distance = (isitem(movable_target)) ? 4 : SHRIKE_FLING_DISTANCE // Objects get flung further away.
 	var/turf/T = movable_target.loc
 	var/turf/temp
 	for(var/x in 1 to fling_distance)
@@ -208,7 +213,6 @@
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
-	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for 6 tiles. Stuns for 2 seconds."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
@@ -224,6 +228,12 @@
 	var/rebound_throwing = FALSE
 	/// What direction was the owner facing at the start of the ability? Kept around to reuse for rebound signals.
 	var/starting_direction
+	/// How long affected mobs are paralyzed for
+	var/paralyze_duration = 2 SECONDS
+
+/datum/action/ability/activable/xeno/unrelenting_force/New(Target)
+	. = ..()
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for [throwing_distance] tiles. Stuns for [paralyze_duration / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
@@ -273,7 +283,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(paralyze = 2 SECONDS)
+				H.apply_effects(paralyze = paralyze_duration)
 				shake_camera(H, 2, 1)
 			things_to_throw += affected
 
@@ -537,7 +547,6 @@
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "After a 2 second windup, channel a sizable vortex of psychic energy, drawing any items and enemies 4 tiles away."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -548,6 +557,10 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
 	var/channel_particle = /particles/warlock_charge
+
+/datum/action/ability/activable/xeno/psychic_vortex/New(Target)
+	. = ..()
+	desc = "After a [VORTEX_INITIAL_CHARGE / (1 SECONDS)] second windup, channel a sizable vortex of psychic energy, drawing in any items and enemies [VORTEX_RANGE] tiles away."
 
 /datum/action/ability/activable/xeno/psychic_vortex/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))

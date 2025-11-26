@@ -3,11 +3,15 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
-	desc = "Spray a line of dangerous acid at your target up to 8 tiles away."
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 	/// If the owner makes use of and has this much stored globs, non-opaque gas is created along with the acid. Must be non-zero.
 	var/gaseous_spray_threshold = 0
+	var/acid_spray_distance = 7
+
+/datum/action/ability/activable/xeno/spray_acid/line/New(Target)
+	. = ..()
+	desc = "Spray a line of dangerous acid at your target up to [acid_spray_distance + 1] tiles away." // Check uses > therefore the actual distance is + 1
 
 /datum/action/ability/activable/xeno/spray_acid/line/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -97,7 +101,7 @@
 				smoke.start()
 
 		distance++
-		if(distance > 7 || blocked)
+		if(distance > acid_spray_distance || blocked)
 			break
 
 		prev_turf = T

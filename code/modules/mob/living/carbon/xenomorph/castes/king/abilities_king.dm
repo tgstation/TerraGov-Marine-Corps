@@ -47,7 +47,7 @@
 	name = "Petrify"
 	action_icon_state = "petrify"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "After a 2 second windup, petrifies all humans looking at you for 6 seconds. Petrified humans are immune to damage, but also can't attack."
+
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -60,6 +60,10 @@
 	var/list/mob/living/carbon/xenomorph/viewing_xenomorphs = list()
 	/// The amount of armor to grant to friendly xenomorphs
 	var/petrify_armor = 0
+
+/datum/action/ability/xeno_action/petrify/New(Target)
+	. = ..()
+	desc = "After a [PETRIFY_WINDUP_TIME / (1 SECONDS)] second windup, petrifies all humans looking at you for [PETRIFY_DURATION / (1 SECONDS)] seconds. Petrified humans are immune to damage, but also can't attack."
 
 /datum/action/ability/xeno_action/petrify/clean_action()
 	end_effects()

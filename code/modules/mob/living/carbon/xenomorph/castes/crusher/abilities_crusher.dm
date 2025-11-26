@@ -12,7 +12,6 @@
 	name = "Stomp"
 	action_icon_state = "stomp"
 	action_icon = 'icons/Xeno/actions/crusher.dmi'
-	desc = "Knocks adjacent targets away and down, targets take increased damage and stun when stomped on. Stuns for .5 seconds, 3 when stomped on."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -27,6 +26,10 @@
 	var/stomp_falloff = CRUSHER_STOMP_FALLOFF
 	/// Should this ability deal additional effects / have more potent effects for victims that the owner is standing ontop of?
 	var/distance_bonus_allowed = TRUE
+
+/datum/action/ability/activable/xeno/stomp/New(Target)
+	. = ..()
+	desc = "Knocks adjacent targets away and down, targets take increased damage and stun when stomped on. Stuns for [CRUSHER_STOMP_PARALYZE / (1 SECONDS)] seconds, [CRUSHER_STOMP_PARALYZE_LONG / (1 SECONDS)] when stomped on."
 
 /datum/action/ability/activable/xeno/stomp/use_ability(atom/A)
 	succeed_activate()
@@ -80,7 +83,7 @@
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
 	action_icon = 'icons/Xeno/actions/crusher.dmi'
-	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Non-huge targets are flung 6 tiles away, also works over barricades."
+	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_cost = 75
 	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(

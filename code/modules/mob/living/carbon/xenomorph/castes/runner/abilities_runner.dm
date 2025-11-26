@@ -7,7 +7,6 @@
 #define RUNNER_SAVAGE_PLASMA_CONVERSION_RATE 0.15
 
 /datum/action/ability/activable/xeno/pounce/runner
-	desc = "Leap at a target up to 6 tiles away, stunning them for 2 seconds. Alternate use toggles Savage off or on. When on, do an additional slash when pouncing."
 	action_icon_state = "pounce_savage_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
@@ -36,6 +35,10 @@
 	var/savage_buff_amount
 	/// Savage's cooldown.
 	COOLDOWN_DECLARE(savage_cooldown)
+
+/datum/action/ability/activable/xeno/pounce/runner/New(Target)
+	. = ..()
+	desc = "Leap at a target up to [pounce_range] tiles away, stunning them for [XENO_POUNCE_STUN_DURATION / (1 SECONDS)] seconds. Alternate use toggles Savage off or on. When on, do an additional slash when pouncing."
 
 /datum/action/ability/activable/xeno/pounce/runner/give_action(mob/living/L)
 	. = ..()
@@ -506,7 +509,6 @@
 	acid_speed_multiplier = 0.75 // 50% faster
 
 /datum/action/ability/activable/xeno/charge/acid_dash/melter
-	desc = "Instantly dash for 7 tiles, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
@@ -515,6 +517,10 @@
 	charge_range = 7
 	do_acid_spray_act = FALSE
 	stun_duration = 0.5 SECONDS
+
+/datum/action/ability/activable/xeno/charge/acid_dash/melter/New(Target)
+	. = ..()
+	desc = "Instantly dash for [charge_range] tiles, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
 
 /datum/action/ability/activable/xeno/melter_shroud
 	name = "Melter Shroud"

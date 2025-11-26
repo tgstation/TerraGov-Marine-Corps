@@ -5,7 +5,6 @@
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Hit all adjacent units around you, knocking them away and stunning for .5 seconds. You can parry thrown objects with this."
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
@@ -23,6 +22,10 @@
 	var/damage_type = BRUTE
 	/// The multiplier of the damage to be applied.
 	var/damage_multiplier = 1
+
+/datum/action/ability/xeno_action/tail_sweep/New(Target)
+	. = ..()
+	desc = "Hit all adjacent units around you, knocking them away and stunning for [paralyze_duration / (1 SECONDS)] seconds. You can parry thrown objects with this."
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -100,7 +103,6 @@
 	name = "Forward Charge"
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Charge up to 4 tiles and stun any targets in our way for 4 seconds."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
@@ -111,6 +113,10 @@
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
+
+/datum/action/ability/activable/xeno/charge/forward_charge/New(Target)
+	. = ..()
+	desc = "Charge up to [charge_range] tiles and stun any targets in our way for [paralyze_duration / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)

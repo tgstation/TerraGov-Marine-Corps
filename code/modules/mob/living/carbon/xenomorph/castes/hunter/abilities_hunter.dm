@@ -5,7 +5,6 @@
 	name = "Toggle Stealth"
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Become harder to see, even harder to see when stalking, and almost invisible if you stand still. While invisible you sneak attack for a 1 second stun. Uses plasma to move and lowers plasma gain."
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
@@ -26,6 +25,10 @@
 	var/bonus_maximum_stealth_ap = 0
 	/// How much does a successful sneak attack blind for?
 	var/blinding_stacks = 0
+
+/datum/action/ability/xeno_action/stealth/New(Target)
+	. = ..()
+	desc = "Become harder to see, even harder to see when stalking, and almost invisible if you stand still. While invisible you sneak attack for a [sneak_attack_stun_duration / (1 SECONDS)] second stun. Uses plasma to move and lowers plasma gain."
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -296,7 +299,6 @@
 
 /datum/action/ability/activable/xeno/pounce
 	name = "Pounce"
-	desc = "Leap at your target up to 7 tiles away, stunning them for 2 seconds."
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
@@ -315,6 +317,9 @@
 	var/attack_on_pounce = FALSE
 	/// Pass_flags given when leaping.
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+
+/datum/action/ability/activable/xeno/pounce/New(Target)
+	desc = "Leap at your target up to [HUNTER_POUNCE_RANGE] tiles away, stunning them for [XENO_POUNCE_STUN_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "pounce ready")
@@ -550,7 +555,6 @@
 	name = "Mirage"
 	action_icon_state = "mirror_image"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Create 3 mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
@@ -572,6 +576,9 @@
 	var/mob/illusion/xeno/prioritized_illusion
 	/// The timer ID of the timer that clear all illusions.
 	var/timer_id
+
+/datum/action/ability/xeno_action/mirage/New(Target)
+	desc = "Create [illusion_count] mirror images of ourselves. Reactivate to swap with an illusion."
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	clean_illusions(FALSE) // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.
