@@ -183,7 +183,7 @@
 
 /mob/living/carbon/human/has_brain()
 	var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-	if(!brain || !istype(brain))
+	if(!istype(brain))
 		return FALSE
 	var/datum/limb/braincase = get_limb(brain.parent_limb)
 	if(braincase.limb_status & LIMB_DESTROYED)
