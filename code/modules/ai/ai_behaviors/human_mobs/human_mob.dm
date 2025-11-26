@@ -453,6 +453,3 @@
 
 /datum/ai_behavior/human/monkey_business/custom_speak(message, cooldown, unique_cooldown_key, unique_cooldown_time, force)
 	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))
-
-/datum/ai_behavior/human/monkey_business/faction_list_speak(list/chat_lines, cooldown, unique_cooldown_key, unique_cooldown_time, force)
-	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))

@@ -21,5 +21,5 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 GLOBAL_DATUM_INIT(filename_forbidden_chars, /regex, regex(@{""|[\\\n\t/?%*:|<>]|\.\."}, "g"))
 // had to use the OR operator for quotes instead of putting them in the character class because it breaks the syntax highlighting otherwise.
 
-/// Regex for detecting a vatborn name
-GLOBAL_DATUM_INIT(vatborn_regex, /regex, regex(@"CS-."))
+/// Detects vatborn names
+GLOBAL_DATUM_INIT(vatborn_regex, /regex, regex(@"CS-.-"))
