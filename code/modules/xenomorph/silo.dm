@@ -10,7 +10,8 @@
 	bound_y = -32
 	pixel_x = -32
 	pixel_y = -24
-	max_integrity = 1000
+	max_integrity = 1001
+	integrity_failure = 1
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | XENO_DAMAGEABLE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE|XENO_STRUCT_WARNING_RADIUS|XENO_STRUCT_DAMAGE_ALERT
 	///How many larva points one silo produce in one minute
@@ -52,6 +53,14 @@
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
+
+/obj/structure/xeno/silo/obj_break(damage_flag)
+	if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
+		obj_integrity = max_integrity
+		GLOB.hive_datums[hivenumber].trigger_silo_shock(src)
+		return
+	obj_integrity = 0
+	. = ..()
 
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(GLOB.hive_datums[hivenumber])
