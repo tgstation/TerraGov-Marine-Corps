@@ -46,10 +46,8 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 	if(deployer)
 		faction = deployer.faction
-		var/mob/living/carbon/human/_deployer = deployer
-		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
-		iff_signal = id?.iff_signal
-		hivenumber = _deployer.get_xeno_hivenumber()
+		iff_signal = deployer.get_iff_signal()
+		hivenumber = deployer.get_xeno_hivenumber()
 	else if(gun?.faction && (gun.faction in GLOB.faction_to_iff))
 		faction = gun.faction
 		iff_signal = GLOB.faction_to_iff[gun.faction]

@@ -34,8 +34,7 @@
 	if(.)
 		return
 	var/turf/turf_list = RANGE_TURFS(range, loc)
-	var/obj/item/card/id/id = user.get_idcard()
-	iff_signal = id?.iff_signal
+	iff_signal = user.get_iff_signal()
 	playsound(loc, 'sound/machines/click.ogg', 25, 1)
 	addtimer(CALLBACK(src, PROC_REF(throw_mine), turf_list), 2 SECONDS)
 

@@ -83,8 +83,7 @@ Stepping directly on the mine will also blow it up
 		return
 	user.visible_message(span_notice("[user] finishes deploying [src]."), \
 	span_notice("You finish deploying [src]."))
-	var/obj/item/card/id/id = user.get_idcard()
-	deploy_mine(user, id?.iff_signal)
+	deploy_mine(user, user.get_iff_signal())
 	user.record_traps_created()
 
 ///this proc is used to deploy a mine
@@ -171,8 +170,7 @@ Stepping directly on the mine will also blow it up
 		return FALSE
 	if(living_victim.stat == DEAD)
 		return FALSE
-	var/obj/item/card/id/id = living_victim.get_idcard()
-	if(id?.iff_signal & iff_signal)
+	if(living_victim.get_iff_signal() & iff_signal)
 		return FALSE
 
 	living_victim.visible_message(span_danger("[icon2html(src, viewers(living_victim))] \The [src] clicks as [victim] moves in front of it."), \

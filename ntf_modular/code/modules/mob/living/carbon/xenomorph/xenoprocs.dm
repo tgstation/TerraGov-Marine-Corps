@@ -76,3 +76,6 @@
 
 /mob/living/carbon/xenomorph/update_cloak()
 	return
+
+/mob/living/carbon/xenomorph/get_iff_signal()
+	return xeno_iff_check()

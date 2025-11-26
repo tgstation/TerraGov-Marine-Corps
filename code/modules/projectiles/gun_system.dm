@@ -1818,10 +1818,9 @@
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(gun_features_flags & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF)
 		var/iff_signal
-		if(ishuman(firer))
-			var/mob/living/carbon/human/_firer = firer
-			var/obj/item/card/id/id = _firer.get_idcard()
-			iff_signal = id?.iff_signal
+		if(ismob(firer))
+			var/mob/firing_mob = firer
+			iff_signal = firing_mob.get_iff_signal()
 		else if(istype(firer, /obj/machinery/deployable/mounted/sentry))
 			var/obj/machinery/deployable/mounted/sentry/sentry = firer
 			iff_signal = sentry.iff_signal

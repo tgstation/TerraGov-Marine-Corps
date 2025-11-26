@@ -738,7 +738,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	bullet_act(proj)
 
 /obj/machinery/deployable/mounted/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
-	if(operator?.wear_id?.iff_signal & proj.iff_signal)
+	if(operator?.get_iff_signal() & proj.iff_signal)
 		return FALSE
 	if(src == proj.original_target)
 		return TRUE

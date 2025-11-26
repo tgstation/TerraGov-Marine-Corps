@@ -258,10 +258,8 @@
 			ADD_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
 		else
 			REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, UNMANNED_VEHICLE)
-	var/mob/living/carbon/human/human_controller = user
-	if(ishuman(human_controller))
-		iff_signal = human_controller.wear_id?.iff_signal || 0
-		faction = human_controller.faction
+	iff_signal = user.get_iff_signal()
+	faction = user.faction
 
 ///Checks if we can or already have a bullet loaded that we can shoot
 /obj/vehicle/unmanned/proc/load_into_chamber()
