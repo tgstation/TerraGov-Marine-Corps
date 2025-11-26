@@ -15,29 +15,32 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE
-	///Spark system for making sparks
+	/// Spark system for making sparks.
 	var/datum/effect_system/spark_spread/spark_system
-	///Camera for viewing with cam consoles
+	/// Camera for viewing with cam consoles.
 	var/obj/machinery/camera/camera
-	///View and fire range of the sentry
+	/// View and fire range of the sentry.
 	var/range = 7
-	///Damage required to knock the sentry over and disable it
+	/// Damage required to knock the sentry over and disable it.
 	var/knockdown_threshold = 150
-	///List of targets that can be shot at
+	/// List of targets that can be shot at.
 	var/list/atom/potential_targets = list()
-	///Time of last alert
+	/// Target that we are currently shooting at.
+	var/current_target
+	/// Time of last alert.
 	var/last_alert = 0
-	///Time of last damage alert
+	/// Time of last damage alert.
 	var/last_damage_alert = 0
-	///Radio so that the sentry can scream for help
+	/// Radio so that the sentry can scream for help.
 	var/obj/item/radio/radio
-	///Iff signal of the sentry. Set by the deployer or internal gun fation
+	/// IFF signal of the sentry. Set by the deployer or internal gun fation.
 	var/iff_signal = NONE
-	///For minimap icon change if sentry is firing
-	var/firing
+	/// For minimap icon change if sentry is firing.
+	var/firing = FALSE
 
-//------------------------------------------------------------------
-//Setup and Deletion
+// ------------------------------------------------------------------
+// 							Setup and Deletion
+// ------------------------------------------------------------------
 
 /obj/machinery/deployable/mounted/sentry/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
@@ -72,7 +75,44 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	GLOB.marine_turrets += src
 	set_on(TRUE)
 
-///Change minimap icon if its firing or not firing
+/obj/machinery/deployable/mounted/sentry/Destroy()
+	QDEL_NULL(radio)
+	QDEL_NULL(camera)
+	QDEL_NULL(spark_system)
+	STOP_PROCESSING(SSobj, src)
+	if(get_internal_item())
+		var/obj/item/internal_sentry = get_internal_item()
+		if(internal_sentry)
+			UnregisterSignal(internal_sentry, COMSIG_MOB_GUN_FIRED)
+	GLOB.marine_turrets -= src
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	if(!disassembled)
+		explosion(loc, light_impact_range = 3, explosion_cause=blame_mob)
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/on_deconstruction()
+	sentry_alert(SENTRY_ALERT_DESTROYED)
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+	if(!match_iff(user)) // You can't steal sentries that belong to other factions.
+		to_chat(user, span_notice("Access denied."))
+		return
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	. = ..()
+	if(!.)
+		return
+	if(internal_gun?.turret_flags & TURRET_INACCURATE)
+		internal_gun.accuracy_mult += 0.15
+		internal_gun.scatter -= 10
+
+// ------------------------------------------------------------------
+// 							Graphics
+// ------------------------------------------------------------------
+
+/// Change the minimap icon based on if it is firing or not.
 /obj/machinery/deployable/mounted/sentry/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(!z)
@@ -98,87 +138,15 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(machine_stat & EMPED)
 		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
 
-/obj/machinery/deployable/mounted/sentry/Destroy()
-	QDEL_NULL(radio)
-	QDEL_NULL(camera)
-	QDEL_NULL(spark_system)
-	STOP_PROCESSING(SSobj, src)
-	if(get_internal_item())
-		var/obj/item/internal_sentry = get_internal_item()
-		if(internal_sentry)
-			UnregisterSignal(internal_sentry, COMSIG_MOB_GUN_FIRED)
-	GLOB.marine_turrets -= src
-	return ..()
-
-/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(!disassembled)
-		explosion(loc, light_impact_range = 3, explosion_cause=blame_mob)
-	return ..()
-
-/obj/machinery/deployable/mounted/sentry/on_deconstruction()
-	sentry_alert(SENTRY_ALERT_DESTROYED)
-	return ..()
-
 /obj/machinery/deployable/mounted/sentry/AltClick(mob/user)
 	if(!match_iff(user))
 		to_chat(user, span_notice("Access denied."))
 		return
 	return ..()
 
-//-----------------------------------------------------------------
-// Interaction
-
-/obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
-	. = ..()
-	to_chat(user, span_notice("You disable the [src]'s automatic to operate it manually."))
-	set_on(FALSE)
-
-/obj/machinery/deployable/mounted/sentry/on_unset_interaction(mob/user)
-	. = ..()
-	to_chat(user, span_notice("You stop using the [src] and its automatic functions re-activate"))
-	set_on(TRUE)
-
-/obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
-	. = ..()
-	if(!. || !CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
-		return
-	user.visible_message(span_notice("[user] begins to set [src] upright."),
-		span_notice("You begin to set [src] upright.</span>"))
-
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		return
-
-	user.visible_message(span_notice("[user] sets [src] upright."),
-		span_notice("You set [src] upright."))
-
-	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
-	density = initial(density)
-	set_on(TRUE)
-
-/obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
-	if(!match_iff(user)) //You can't pull the ammo out of hostile turrets
-		to_chat(user, span_notice("Access denied."))
-		return
-	. = ..()
-	update_static_data(user)
-
-/obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
-	if(!match_iff(user)) //You can't mess with hostile turrets
-		to_chat(user, span_notice("Access denied."))
-		return
-	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(manual_mode)
-		return ..()
-
-	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
-		return TRUE
-
-	if(CHECK_BITFIELD(gun?.turret_flags, TURRET_IMMOBILE))
-		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
-		return TRUE
-
-	ui_interact(user)
-	update_static_data(user)
+// ------------------------------------------------------------------
+// 									UI
+// ------------------------------------------------------------------
 
 /obj/machinery/deployable/mounted/sentry/ui_interact(mob/user, datum/tgui/ui)
 
@@ -271,6 +239,62 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			. = TRUE
 
 	attack_hand(user)
+
+// ------------------------------------------------------------------
+// 								Interaction
+// ------------------------------------------------------------------
+
+/obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
+	. = ..()
+	to_chat(user, span_notice("You disable the [src]'s automatic to operate it manually."))
+	set_on(FALSE)
+
+/obj/machinery/deployable/mounted/sentry/on_unset_interaction(mob/user)
+	. = ..()
+	to_chat(user, span_notice("You stop using the [src] and its automatic functions re-activate."))
+	set_on(TRUE)
+
+/obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
+	. = ..()
+	if(!. || (machine_stat & KNOCKED_DOWN))
+		return
+	user.visible_message(span_notice("[user] begins to set [src] upright."),
+		span_notice("You begin to set [src] upright.</span>"))
+
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return
+
+	user.visible_message(span_notice("[user] sets [src] upright."),
+		span_notice("You set [src] upright."))
+
+	machine_stat &= ~KNOCKED_DOWN
+	density = initial(density)
+	set_on(TRUE)
+
+/obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
+	if(!match_iff(user)) // You can't pull the ammo out of hostile sentries.
+		to_chat(user, span_notice("Access denied."))
+		return
+	. = ..()
+	update_static_data(user)
+
+/obj/machinery/deployable/mounted/sentry/interact(mob/user, manual_mode = FALSE)
+	if(!match_iff(user)) // You can't mess with hostile sentries.
+		to_chat(user, span_notice("Access denied."))
+		return
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(manual_mode)
+		return ..()
+
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		return TRUE
+
+	if(CHECK_BITFIELD(gun?.turret_flags, TURRET_IMMOBILE))
+		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
+		return TRUE
+
+	ui_interact(user)
+	update_static_data(user)
 
 ///Handles turning the sentry ON and OFF. new_state is a bool
 /obj/machinery/deployable/mounted/sentry/proc/set_on(new_state)
@@ -423,6 +447,11 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		sentry_stop_fire()
 		return
+	if(isliving(gun_target))
+		var/mob/living/living_target = gun_target
+		if(living_target.stat == DEAD)
+			sentry_stop_fire()
+			return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
 	addtimer(CALLBACK(src, PROC_REF(sentry_start_fire)), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
