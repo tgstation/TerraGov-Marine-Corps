@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Zombies can now be damaged by wired barricades"
