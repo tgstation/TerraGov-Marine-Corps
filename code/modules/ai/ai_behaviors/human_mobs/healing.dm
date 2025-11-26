@@ -1,6 +1,6 @@
 #define UNREVIVABLE_GENERIC \
 	"Damn it, %THEIR_FIRST_NAME% is cold!",\
-	"Goodnight, %THEIR_FIRST_NAME%",\
+	"Goodnight, %THEIR_FIRST_NAME%.",\
 	"We lost %THEIR_FIRST_NAME%!",\
 	"%THEIR_FIRST_NAME%'s gone.",\
 	"Ah... %THEIR_FIRST_NAME%.",\
@@ -40,7 +40,7 @@
 			UNREVIVABLE_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			"I'll see you around, %THEIR_LAST_NAME%",
+			"I'll see you around, %THEIR_LAST_NAME%.",
 			"Goodnight, %THEIR_LAST_NAME%.",
 			"We lost %THEIR_LAST_NAME%.",
 			"%THEIR_LAST_NAME% is cold.",
