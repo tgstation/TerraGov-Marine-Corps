@@ -578,6 +578,7 @@
 	var/timer_id
 
 /datum/action/ability/xeno_action/mirage/New(Target)
+	. = ..()
 	desc = "Create [illusion_count] mirror images of ourselves. Reactivate to swap with an illusion."
 
 /datum/action/ability/xeno_action/mirage/remove_action()
