@@ -369,6 +369,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 75
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
+	build_flags = NONE
 
 /datum/hive_upgrade/building/tunnel/on_buy(mob/living/carbon/xenomorph/buyer)
 	. = ..()
