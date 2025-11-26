@@ -19,7 +19,7 @@
 /datum/hive_status/proc/trigger_silo_shock(obj/structure/xeno/silo/last_silo)
 	if(!COOLDOWN_FINISHED(src, silo_shock_cooldown))
 		return
-	COOLDOWN_START(src, silo_shock_cooldown, 1 MINUTES)
+	COOLDOWN_START(src, silo_shock_cooldown, 4 MINUTES)
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[hivenumber])
 		xeno.Paralyze(50 SECONDS) // 10 seconds after xeno stun resistance
 		xeno.apply_status_effect(/datum/status_effect/shatter, 60 SECONDS)
