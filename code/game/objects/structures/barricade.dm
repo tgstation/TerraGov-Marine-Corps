@@ -87,6 +87,18 @@
 
 	return ..()
 
+/obj/structure/barricade/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(zombie.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(is_wired)
+		balloon_alert(zombie, "barbed wire slicing into you!")
+		if(istype(zombie, /mob/living))
+			var/mob/living/z = zombie
+			z.apply_damage(30, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate
+
+	return ..()
+
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
