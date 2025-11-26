@@ -806,9 +806,6 @@
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 
-	if(debuff_owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
-		return
-
 	debuff_owner.apply_damage(STATUS_EFFECT_MELTING_DAMAGE, BURN, null, FIRE)
 
 	if(!isxeno(debuff_owner))
