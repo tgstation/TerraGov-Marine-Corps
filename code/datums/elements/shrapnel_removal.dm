@@ -26,6 +26,8 @@
 		return COMPONENT_ITEM_NO_ATTACK
 
 /datum/element/shrapnel_removal/proc/attempt_remove(obj/item/removaltool, mob/living/M, mob/living/user)
+	if(user.do_actions)
+		return
 	if(!ishuman(M))
 		M.balloon_alert(user, "that's not a human!")
 		REMOVE_TRAIT(user, TRAIT_IS_SHRAP_REMOVING, REF(removaltool))

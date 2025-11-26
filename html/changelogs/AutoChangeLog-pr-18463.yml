@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "You no longer can remove shrapnel if you're already doing an action."
