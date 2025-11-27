@@ -88,6 +88,8 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
+	///How close a wrecked vehicle is to being prepared for repair
+	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -536,6 +538,9 @@
 	. = ..()
 	if(.)
 		return
+	if((armored_flags & ARMORED_IS_WRECK) && istype(I, /obj/item/stack/sheet/plasteel))
+		start_wreck_prep(user, I)
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.type in permitted_weapons))
@@ -642,6 +647,9 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
+		prep_wreck(user)
+		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
 		return
