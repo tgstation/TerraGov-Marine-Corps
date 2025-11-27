@@ -431,7 +431,6 @@
 
 //2x3
 /obj/hitbox/mrap
-
 	bound_x = -32 //left middle tile
 	bound_y = -32
 	vehicle_length = 96
