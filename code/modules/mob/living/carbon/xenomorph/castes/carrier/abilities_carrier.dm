@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Appeals to the larva inside the Marine. The Marine loses their balance, and the larva's growth progress accelerates."
+	desc = "Appeals to the larva inside a hugged target. The target loses their balance, gets pulled towards you, and their larva's growth progress accelerates."
 	ability_cost = 150
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
