@@ -139,3 +139,57 @@
   - balance: Sizzler has been completely reworked, check the github for details.
   mudzbe:
   - bugfix: Zombies cant rip out other zombies' hearts
+2025-11-21:
+  Atropos:
+  - balance: Cade capsule fits in engi storage module
+  - balance: surgery tables are now acidable by xenos
+  mudzbe:
+  - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
+2025-11-23:
+  Lumipharon:
+  - qol: C4 and detpacks are now more or less centered on what they're placed on,
+      instead of in the corner of large sprited atoms
+  - bugfix: fixed C4 and detpacks being draggable when placed
+  - balance: MG-27 has aimmode, but only when deployed
+  - bugfix: fixed freelancer and spec op ERTs having invisible armour sprites
+  - bugfix: fixed freelancer and PMC ERT compositions
+  - balance: Hivelords cannot build through barricades anymore
+  - balance: Special zombies types now spawn much less often from zombie tunnels
+  - bugfix: fixed puppets going rogue on recall mode
+  PibeCantina:
+  - rscdel: Removed soul
+  - bugfix: fixed sulaco disposals spacing you
+2025-11-24:
+  Neocloudy:
+  - bugfix: The chat volume slider should work now
+  PibeCantina:
+  - balance: Makes LTAAP do more damage at the cost of it's IFF
+  Runian:
+  - rscadd: Monitor now displays to all observers which side it believes to be winning
+      at the moment.
+  - balance: SR-26, TX8, and ZX-76 are now included in Monitor's calculations.
+  - balance: Many xenomorph structures and unused psychic points are now included
+      in Monitor's calculations.
+  - balance: Various xenomorph weights have adjusted in Monitor to account for the
+      power difference between tiers and minions.
+  - bugfix: B17 and B18 suits no longer can be worn by Synths & now correctly reduce
+      Jetpack effectiveness.
+  - bugfix: CC/AT32 Handheld Autocannon (from Valhalla) is correctly not included
+      in Monitor's calculations.
+  - code_imp: New component that makes items add certain point values to the Monitor
+      depending on gamestate & z-level.
+  mudzbe:
+  - balance: Destroying a tunnel spawns a wave of defenders
+2025-11-25:
+  Lumipharon:
+  - refactor: refactored code for refueling objects such as welder bags and fuel tanks
+2025-11-27:
+  Runian:
+  - balance: Sandbags that are not carefully disassembled (e.g. acid) no longer drop
+      any sandbags.
+  - balance: You no longer can remove shrapnel if you're already doing an action.
+  mudzbe:
+  - rscadd: Added loadout vendors to spec rooms in Arachne
+  - bugfix: Decapped zombies dont revive
+  - rscadd: Zombies can now be damaged by wired barricades
+  - rscadd: Adds zombies permanantly killed stat
