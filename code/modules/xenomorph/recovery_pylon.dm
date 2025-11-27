@@ -68,9 +68,9 @@
 		return
 	buffed_xenos += entering_xenomorph
 	if(!damage_modifier)
-		entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
-		entering_xenomorph.regen_power = max(-entering_xenomorph.xeno_caste.regen_delay, entering_xenomorph.regen_power)
-		entering_xenomorph.xeno_caste.regen_ramp_amount *= 2
+		entering_xenomorph.regen_power = max(0, entering_xenomorph.regen_power)
+		RegisterSignal(entering_xenomorph, COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING, PROC_REF(on_pre_health_regen_scaling))
+		RegisterSignal(entering_xenomorph, COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING, PROC_REF(on_post_health_regen_scaling))
 		entering_xenomorph.add_filter("recovery_pylon_outline", 2, outline_filter(1, COLOR_BLUE_LIGHT))
 	else
 		entering_xenomorph.xeno_melee_damage_modifier += damage_modifier
@@ -88,8 +88,7 @@
 		return
 	buffed_xenos -= leaving_xenomorph
 	if(!damage_modifier)
-		leaving_xenomorph.xeno_caste.regen_delay = initial(leaving_xenomorph.xeno_caste.regen_delay)
-		leaving_xenomorph.xeno_caste.regen_ramp_amount /= 2
+		UnregisterSignal(leaving_xenomorph, list(COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING, COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING))
 	else
 		leaving_xenomorph.xeno_melee_damage_modifier -= damage_modifier
 	leaving_xenomorph.remove_filter("recovery_pylon_outline")
@@ -117,6 +116,16 @@
 		REMOVE_TRAIT(affected_turf, TRAIT_RECOVERY_PYLON_TURF, XENO_TRAIT)
 		for(var/mob/living/carbon/xenomorph/affected_xeno AS in buffed_xenos)
 			remove_buff(null, affected_xeno)
+
+/// Begins regeneration immediately by setting regen power to a certain threshold.
+/obj/structure/xeno/recovery_pylon/proc/on_pre_health_regen_scaling(datum/source)
+	var/mob/living/carbon/xenomorph/affected_xenomorph = source
+	affected_xenomorph.regen_power = max(0, affected_xenomorph.regen_power)
+
+/// Doubles the given regen power.
+/obj/structure/xeno/recovery_pylon/proc/on_post_health_regen_scaling(datum/source, new_regen_power, previous_regen_power)
+	var/mob/living/carbon/xenomorph/affected_xenomorph = source
+	affected_xenomorph.regen_power = clamp(affected_xenomorph.regen_power + new_regen_power - previous_regen_power, 0, 1)
 
 /particles/recovery_pylon_aoe
 	icon = 'icons/effects/particles/generic_particles.dmi'

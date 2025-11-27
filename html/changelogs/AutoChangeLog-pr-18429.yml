@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Claw Unmanned Vehicle attachment, capable of dragging objects or corpses. Available in req for 50 points or engi vendor for 5."
+  - balance: "Engi Iguana crate has been split in two with a lower price, the Iguana now costing 25 points and the Light machinegun costing 15."

@@ -130,6 +130,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You need [points_requirement] more [(upgrade_flags & UPGRADE_FLAG_USES_TACTICAL) ? "tactical" : "strategic"] points to request this blessing!"))
 		return FALSE
+	var/datum/hive_status/buyer_hive = GLOB.hive_datums[buyer.hivenumber]
+	if((upgrade_flags & UPGRADE_FLAG_MUST_BE_HIVE_RULER) && buyer_hive.living_xeno_ruler != buyer)
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
+		return FALSE
 	return TRUE
 
 /datum/hive_upgrade/building
