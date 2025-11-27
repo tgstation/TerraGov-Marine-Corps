@@ -63,6 +63,9 @@
 	///The signal for this module if it can toggled
 	var/toggle_signal
 
+	///added to armor's stamina regen mod
+	var/stamina_regen_mod = 0
+
 /obj/item/armor_module/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer, attach_sound = 'sound/machines/click.ogg')
@@ -81,6 +84,7 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
+	parent.stamina_regen_mod += stamina_regen_mod
 	if(CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(handle_unequip_actions))
@@ -100,6 +104,7 @@
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
+	parent.stamina_regen_mod -= stamina_regen_mod
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	parent = null
 	icon_state = initial(icon_state)

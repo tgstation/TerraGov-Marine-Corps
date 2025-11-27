@@ -74,6 +74,9 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(accuracy_mod)
 		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
+	if(stamina_regen_mod)
+		armor_strings += "<br>This will alter your stamina recovery by [100*stamina_regen_mod]% when worn."
+
 	if(inventory_flags & NOPRESSUREDMAGE)
 		armor_strings += "Wearing this will protect you from the vacuum of space."
 
@@ -120,6 +123,8 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		for(var/X in storage_datum.storage_type_limits)
 			var/obj/B = X
 			. += "<br>[initial(B.name)]"
+	if(stamina_regen_mod)
+		. += "<br>This will alter your stamina recovery by [100*stamina_regen_mod]% when worn."
 
 /obj/item/clothing/suit/armor/pcarrier/get_mechanics_info()
 	. = ..()

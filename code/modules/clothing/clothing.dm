@@ -25,6 +25,9 @@
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
 
+	///Increases your stamina regen by 100*this%.  Can be negative.
+	var/stamina_regen_mod = 0
+
 	var/shows_bottom_genital = FALSE
 	var/shows_top_genital = FALSE
 
@@ -48,6 +51,8 @@
 	var/mob/living/carbon/human/human_user = user
 	if(accuracy_mod)
 		human_user.adjust_mob_accuracy(accuracy_mod)
+	if(stamina_regen_mod)
+		human_user.add_stamina_regen_modifier("Clothing:[slot_flag_to_fluff(slot)]", stamina_regen_mod)
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
 	if(armor_features_flags & MELEE_ONLY_ARMOR)
@@ -67,6 +72,7 @@
 	var/mob/living/carbon/human/human_unequipper = unequipper
 	if(accuracy_mod)
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
+	human_unequipper.remove_stamina_regen_modifier("Clothing:[slot_flag_to_fluff(slot)]")
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
 	if(armor_features_flags & MELEE_ONLY_ARMOR)
