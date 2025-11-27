@@ -114,13 +114,11 @@
 ///Called when a claw vehicle clicks and tries to grab/pull something
 /datum/component/remote_control/proc/uv_handle_click_claw(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
-	log_attack("[key_name(user)] used claw while remote controlling [controlled] at [AREACOORD(controlled)]")
 	T.use_claw(target, user)
 	return TRUE
 
 /datum/component/remote_control/proc/uv_handle_right_click_claw(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
-	log_attack("[key_name(user)] used claw right-click while remote controlling [controlled] at [AREACOORD(controlled)]")
 	T.claw_shove(target, user)
 	return TRUE
 
