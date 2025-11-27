@@ -158,7 +158,7 @@
 				gun_in_hand = r_hand
 			else if(isgun(l_hand))
 				gun_in_hand = l_hand
-			if(gun_in_hand?.handle_disarm_misfire())
+			if(gun_in_hand?.handle_disarm_misfire(src, human_user))
 				return
 
 			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
