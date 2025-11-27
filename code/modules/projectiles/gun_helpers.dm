@@ -145,7 +145,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/handle_disarm_misfire(mob/living/carbon/human/disarmed, mob/living/carbon/human/disarmer)
 	if(disarmer.skills.getRating(SKILL_UNARMED) >= SKILL_UNARMED_MP)
 		return
-	if(windup_delay) // Must be instant to successfully work; otherwise we'll have misfiring rocket launchers!
+	if(windup_delay) // Must be instant to do anything meaningful.
 		return
 	var/chance = disarmed.get_active_held_item() == src ? 40 : 20
 	if(!prob(chance))
