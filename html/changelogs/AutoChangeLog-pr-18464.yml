@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Added loadout vendors to spec rooms in Arachne"
