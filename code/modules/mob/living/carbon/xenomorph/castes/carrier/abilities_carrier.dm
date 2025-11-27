@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.get_xeno_hivenumber()])
-		if(get_dist(turret, owner) < 6)
+		if(get_dist(turret, owner) < XENO_TURRET_EXCLUSION_RANGE)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE

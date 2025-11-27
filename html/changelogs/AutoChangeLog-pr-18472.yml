@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Having the Resin Jelly status effect now prevents you from getting more Melting stacks."

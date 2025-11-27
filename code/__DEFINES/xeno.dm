@@ -256,3 +256,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define XENO_STRUCTURE_DETECTION_COOLDOWN 30 SECONDS
 ///Proxy detection radius
 #define XENO_STRUCTURE_DETECTION_RANGE 10
+
+///Turrets cannot be build closer than this range to another
+#define XENO_TURRET_EXCLUSION_RANGE 6

@@ -201,6 +201,7 @@
       any sandbags.
   - balance: You no longer can remove shrapnel if you're already doing an action.
   mudzbe:
+  - rscadd: Added loadout vendors to spec rooms in Arachne
   - bugfix: Decapped zombies dont revive
   - rscadd: Zombies can now be damaged by wired barricades
   - rscadd: Adds zombies permanantly killed stat
