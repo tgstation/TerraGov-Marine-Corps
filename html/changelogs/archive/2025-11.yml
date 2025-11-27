@@ -183,3 +183,13 @@
 2025-11-25:
   Lumipharon:
   - refactor: refactored code for refueling objects such as welder bags and fuel tanks
+2025-11-27:
+  Runian:
+  - balance: Sandbags that are not carefully disassembled (e.g. acid) no longer drop
+      any sandbags.
+  - balance: You no longer can remove shrapnel if you're already doing an action.
+  mudzbe:
+  - rscadd: Added loadout vendors to spec rooms in Arachne
+  - bugfix: Decapped zombies dont revive
+  - rscadd: Zombies can now be damaged by wired barricades
+  - rscadd: Adds zombies permanantly killed stat
