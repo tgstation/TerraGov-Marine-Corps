@@ -148,12 +148,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	var/chance = disarmed.get_active_held_item() == src ? 40 : 20
 	if(!prob(chance))
 		return
-	disarmed.visible_message(span_danger("[disarmed]'s [name] goes off during struggle!"), vision_distance = 5)
-	log_combat(disarmer, disarmed, "disarmed", "making their [name] go off")
 	var/turf/random_nearby_turf = pick(RANGE_TURFS(3, get_turf(src)))
 	. = start_fire(gun_user, random_nearby_turf, random_nearby_turf, bypass_checks = TRUE) // Will return true if it successfully fired.
-	if(.)
-		stop_fire() // Otherwise, they will keep firing endlessly.
+	if(!.)
+		return
+	disarmed.visible_message(span_danger("[disarmed]'s [name] goes off during struggle!"), vision_distance = 5)
+	log_combat(disarmer, disarmed, "disarmed", "making their [name] go off")
+	stop_fire() // Otherwise, they will keep firing endlessly.
 
 //----------------------------------------------------------
 				//						 \\
