@@ -106,17 +106,13 @@
 		remove_from_engineering_list(repair_target)
 		on_engineering_end(repair_target)
 		return
-	var/obj/item/tool/weldingtool/welder = mob_inventory.find_tool(TOOL_WELDER)
+	var/obj/item/tool/weldingtool/welder = equip_tool(TOOL_WELDER)
 	if(!welder)
 		remove_from_engineering_list(repair_target)
 		on_engineering_end(repair_target)
 		return
 
-	human_ai_state_flags |= (HUMAN_AI_BUILDING|HUMAN_AI_NEED_WEAPONS)
-	store_hands()
-	mob_parent.a_intent = INTENT_HELP
-	welder.do_ai_interact(mob_parent, src)
-
+	human_ai_state_flags |= HUMAN_AI_BUILDING
 	var/repair_success = FALSE
 	if(repair_target.welder_act(mob_parent, welder))
 		repair_success = TRUE

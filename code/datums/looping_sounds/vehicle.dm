@@ -17,3 +17,13 @@
 	vary = TRUE
 	volume = 30
 	frequency = 49000
+
+/datum/looping_sound/looping_launch_announcement_alarm
+	volume = 100 // in case the base datum's volume ever changes
+	falloff = 10 // harsh but this is still being drowned out, so...
+	range = 30
+	mid_length = 2 SECONDS
+	mid_sounds = list('sound/misc/ds_signalled_alarm.ogg' = 1)
+
+/datum/looping_sound/looping_launch_announcement_alarm/tadpole
+	range = 11 // 1 screen away

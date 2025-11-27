@@ -41,6 +41,9 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_zombie()
 
+	for(var/i in GLOB.zombie_spawner_turfs)
+		new /obj/effect/ai_node/spawner/zombie(i)
+
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)

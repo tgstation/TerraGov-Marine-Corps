@@ -513,6 +513,7 @@
 	)
 	charge_range = 7
 	do_acid_spray_act = FALSE
+	stun_duration = 0.5 SECONDS
 
 /datum/action/ability/activable/xeno/melter_shroud
 	name = "Melter Shroud"

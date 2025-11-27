@@ -775,6 +775,8 @@
 /datum/status_effect/stacking/melting/can_gain_stacks()
 	if(owner.status_flags & GODMODE || owner.stat == DEAD)
 		return FALSE
+	if(owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
+		return
 	return ..()
 
 /datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)

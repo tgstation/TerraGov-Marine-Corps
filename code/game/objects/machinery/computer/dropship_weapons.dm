@@ -34,7 +34,7 @@
 	shuttle_equipments = shuttle.equipments
 	var/equipment_index = 1
 	for(var/obj/structure/dropship_equipment/equipment in shuttle.equipments)
-		.["equipment_data"] += list(list("name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "equipment_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
+		.["equipment_data"] += list(list("name" = sanitize(copytext(equipment.name, 1, MAX_MESSAGE_LEN)), "eqp_tag" = equipment_index, "is_interactable" = (equipment.dropship_equipment_flags & IS_INTERACTABLE)))
 		equipment_index++
 
 	.["selected_eqp_name"] = ""

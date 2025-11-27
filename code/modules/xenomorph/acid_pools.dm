@@ -17,8 +17,13 @@
 
 /obj/structure/xeno/acid_pool/Initialize(mapload, _hivenumber)
 	. = ..()
+	LAZYADDASSOC(GLOB.xeno_acid_pools_by_hive, hivenumber, src)
 	START_PROCESSING(SSprocessing, src)
 	update_icon()
+
+/obj/structure/xeno/acid_pool/Destroy()
+	GLOB.xeno_acid_pools_by_hive[hivenumber] -= src
+	return ..()
 
 /obj/structure/xeno/acid_pool/update_overlays()
 	. = ..()
