@@ -76,18 +76,19 @@
 		return
 	if(zombie.do_actions)
 		return
-
-	balloon_alert_to_viewers("prying open [src]...")
-	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
-		return
-	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(locked)
 		to_chat(zombie, span_warning("\The [src] is bolted down tight."))
 		return
 	if(welded)
 		to_chat(zombie, span_warning("\The [src] is welded shut."))
 		return
-	if(density || operating) //Make sure it's still closed
+
+	balloon_alert_to_viewers("prying open [src]...")
+	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
+		return
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+
+	if(!density || operating) //Make sure it's still closed
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
