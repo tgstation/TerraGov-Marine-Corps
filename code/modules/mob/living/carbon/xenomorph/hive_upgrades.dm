@@ -484,7 +484,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a gargoyle that alerts you when enemies approach."
 	psypoint_cost = GARGOYLE_PRICE
 	icon = "gargoyle"
-	gamemode_flags = NONE
+	//gamemode_flags = NONE
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 
 /datum/hive_upgrade/defence/gargoyle/can_buy(mob/living/carbon/xenomorph/buyer, silent)
