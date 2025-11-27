@@ -355,6 +355,22 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
 		return FALSE
 
+/datum/hive_upgrade/building/tunnel
+	building_type = /obj/structure/xeno/tunnel
+
+	name = "Tunnel"
+	desc = "Places a tunnel entrance, allowing for rapid repositioning"
+	icon = "tunnel"
+	psypoint_cost = 75
+	gamemode_flags = ABILITY_NUCLEARWAR
+	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
+
+/datum/hive_upgrade/building/tunnel/on_buy(mob/living/carbon/xenomorph/buyer)
+	. = ..()
+	if(!.)
+		return
+	playsound(get_turf(buyer), 'sound/weapons/pierce.ogg', 25, 1)
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 
@@ -392,8 +408,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.check_alien_construction(buyer, silent, /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
-		if(get_dist(turret, buyer) < 6)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[buyer.hivenumber])
+		if(get_dist(turret, buyer) < XENO_TURRET_EXCLUSION_RANGE)
 			if(!silent)
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))
 			return FALSE
@@ -427,7 +443,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a gargoyle that alerts you when enemies approach."
 	psypoint_cost = GARGOYLE_PRICE
 	icon = "gargoyle"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = NONE
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 
 /datum/hive_upgrade/defence/gargoyle/can_buy(mob/living/carbon/xenomorph/buyer, silent)
