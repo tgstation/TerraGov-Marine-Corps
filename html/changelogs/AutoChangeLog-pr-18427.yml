@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Recovery Pylon now only affects those inside of it instead of all castes inside of it."
