@@ -43,7 +43,7 @@
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium is transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 9
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -132,7 +132,7 @@
 		return
 	if(!claw.zombium_per_hit)
 		return
-	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)
+	reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
 
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!is_wired)
