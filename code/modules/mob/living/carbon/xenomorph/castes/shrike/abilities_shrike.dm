@@ -210,6 +210,7 @@
 // *********** Unrelenting Force
 // ***************************************
 /datum/action/ability/activable/xeno/unrelenting_force
+#define SHRIKE_PARALYZE_DURATION 2 SECONDS /// How long affected mobs are paralyzed for
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
@@ -228,12 +229,10 @@
 	var/rebound_throwing = FALSE
 	/// What direction was the owner facing at the start of the ability? Kept around to reuse for rebound signals.
 	var/starting_direction
-	/// How long affected mobs are paralyzed for
-	var/paralyze_duration = 2 SECONDS
 
 /datum/action/ability/activable/xeno/unrelenting_force/New(Target)
 	. = ..()
-	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for [throwing_distance] tiles. Stuns for [paralyze_duration / (1 SECONDS)] seconds."
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for [throwing_distance] tiles. Stuns for [SHRIKE_PARALYZE_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
@@ -283,7 +282,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(paralyze = paralyze_duration)
+				H.apply_effects(paralyze = SHRIKE_PARALYZE_DURATION)
 				shake_camera(H, 2, 1)
 			things_to_throw += affected
 
