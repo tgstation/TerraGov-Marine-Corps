@@ -194,8 +194,8 @@
 	scatter = -1
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb
-	name = "\improper NT 'Halter-CQB' hybrid assault rifle"
-	desc = "A variant of Halter series standardized NTC bullpup AR design made to be used as their default primary firearm Chambered in 7.62x38mm. This one is altered for close combat, a SMG hybrid AR... The smaller frame make it lighter and easier to handle in close range encounters but it suffers from range reduction and overall accuracy."
+	name = "\improper NT 'Halter-CQB' carbine"
+	desc = "A variant of Halter series standardized NTC bullpup AR design made into a carbine, Chambered in 7.62x38mm. This one is altered for close combat. The smaller frame make it lighter and easier to handle in close range encounters but it suffers from range reduction and overall accuracy."
 	icon = 'ntf_modular/icons/obj/items/guns/rifles64.dmi'
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 23, "under_x" = 29, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	icon_state = "haltercqb"
@@ -211,7 +211,7 @@
 	damage_falloff_mult = 0.7
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb/elite
-	name = "\improper NT 'Halter-CQB-E' hybrid assault rifle"
+	name = "\improper NT 'Halter-CQB-E' carbine"
 	desc = "A custom variant of Halter series though not obvious from the outside, Chambered in 7.62x38mm. This one is retrofitted with custom, expensive materials and modifications that allow it to be more accurate and shoot at more devastating velocities despite it's size and lightness."
 	accuracy_mult = 1.10
 	scatter = 3
