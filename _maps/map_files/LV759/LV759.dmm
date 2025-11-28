@@ -84873,7 +84873,7 @@
 /turf/open/floor/urban/carpet/carpetbeige,
 /area/lv759/indoors/spaceport/cuppajoes)
 "pjO" = (
-/obj/machinery/power/geothermal,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "pjQ" = (
@@ -93287,8 +93287,8 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "qKo" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/electical_systems/substation2)
 "qKr" = (
