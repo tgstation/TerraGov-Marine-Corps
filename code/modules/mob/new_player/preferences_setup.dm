@@ -222,7 +222,8 @@
 	var/datum/species/S
 	gender = pick(MALE, FEMALE)
 	if(!selected)
-		S = pick(GLOB.roundstart_species)
+		var/speciestype = pick(GLOB.roundstart_species)
+		S = GLOB.roundstart_species[speciestype]
 	else
 		S = GLOB.all_species[selected.name]
 	species = S.name
