@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Wrecked tanks can be fulton'd back to the ship via a series of new repair steps"

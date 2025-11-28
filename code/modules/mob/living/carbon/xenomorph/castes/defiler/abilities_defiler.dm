@@ -571,7 +571,7 @@
 		var/mob/living/livingtarget = A
 		if(livingtarget.stat == DEAD)
 			if(!silent)
-				livingtarget.balloon_alert(owner, "you're dead!")
+				livingtarget.balloon_alert(owner, "it's dead!")
 			return FALSE
 	var/atom/movable/target = A
 	if(target.anchored)

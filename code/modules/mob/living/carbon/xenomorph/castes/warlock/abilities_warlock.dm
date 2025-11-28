@@ -53,7 +53,7 @@
 
 	action_icon_state = "psy_shield"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
-	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
+	desc = "Channel a psychic shield at your current location that can reflect most projectiles, the shield can only hold so much though... Activate again while active to detonate the shield forcibly, producing knockback. Must remain stationary to use."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 200
 	keybinding_signals = list(
