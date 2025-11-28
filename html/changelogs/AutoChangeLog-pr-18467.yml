@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Trying to disarm someone that has an active gun while not having enough CQC skill now correctly has a chance to cause a misfire."

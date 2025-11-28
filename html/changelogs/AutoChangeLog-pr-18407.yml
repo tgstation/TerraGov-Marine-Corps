@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Xeno tunnels are a 75 point tac psy purchase instead of a hivelord ability"
-  - balance: "Gargoyles cannot be purchased"
-  - balance: "Acid pools cost 300 from 200 tac psy"
-  - balance: "Hivelords cannot create recovery pylons"

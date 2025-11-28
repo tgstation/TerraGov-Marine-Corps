@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Primordial can correctly now be purchased by the Hive Ruler, instead of only Shrike/Queen/King."
