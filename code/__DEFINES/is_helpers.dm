@@ -302,8 +302,6 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
-#define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
-
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
 
 #define isfire(A) istype(A, /obj/fire)

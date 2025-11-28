@@ -373,14 +373,12 @@
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
 
-#define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
-#define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
-#define COMSIG_XENOABILITY_CANCEL_LANDSLIDE "xenoability_cancel_landslide"
 #define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
 #define COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE "xenoability_earth_riser_alternate"
-#define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
-#define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
-#define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+#define COMSIG_XENOABILITY_BEHEMOTH_SEIZE "xenoability_behemoth_seize"
+#define COMSIG_XENOABILITY_BEHEMOTH_SEIZE_ALTERNATE "xenoability_behemoth_seize_alternate"
+#define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
+#define COMSIG_XENOABILITY_GEOCRUSH "xenoability_geocrush"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
