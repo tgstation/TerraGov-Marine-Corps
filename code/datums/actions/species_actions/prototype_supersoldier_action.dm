@@ -213,11 +213,11 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/datum/action/supersoldier_stims/stim AS in action.active_stims)
 		if((type == stim.type) && !(stim_flags & STIM_ALLOW_DUPE))
 			if(!silent)
-				owner.balloon_alert(owner, "cannot duplicate stim")
+				owner.balloon_alert(owner, "cannot duplicate stim!")
 			return FALSE
 	if(length(action.active_stims) >= MAX_ACTIVE_STIMS)
 		if(!silent)
-			owner.balloon_alert(owner, "too many stims")
+			owner.balloon_alert(owner, "too many stims!")
 		return FALSE
 	return TRUE
 
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/skill in max_skills)
 		if(owner.skills.getRating(skill) >= max_skills[skill])
 			if(!silent)
-				owner.balloon_alert(owner, "skill already too high")
+				owner.balloon_alert(owner, "skill already too high!")
 			return FALSE
 
 /datum/stim/skills/finish_cast(mob/living/owner)

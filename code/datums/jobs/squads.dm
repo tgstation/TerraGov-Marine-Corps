@@ -181,8 +181,8 @@
 	if(squad_leader && squad_leader.stat != DEAD)
 		goal_list[squad_leader] = AI_ESCORT_RATING_SQUAD_LEAD
 
-/datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)
-	if(!(new_squaddie.job in SSjob.active_occupations))
+/datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE, forced = FALSE)
+	if(!forced && !(new_squaddie.job in SSjob.active_occupations))
 		CRASH("attempted to insert marine [new_squaddie] from squad [name] while having job [isnull(new_squaddie.job) ? "null" : new_squaddie.job.title]")
 
 	var/obj/item/card/id/idcard = new_squaddie.get_idcard()
@@ -237,9 +237,6 @@
 
 
 /datum/squad/proc/remove_from_squad(mob/living/carbon/human/leaving_squaddie)
-	if(!(leaving_squaddie.job in SSjob.active_occupations))
-		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while having job [isnull(leaving_squaddie.job) ? "null" : leaving_squaddie.job.title]")
-
 	if(!leaving_squaddie.assigned_squad)
 		return FALSE
 

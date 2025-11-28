@@ -67,6 +67,15 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	log_game("[reason] has enabled the nuke at [AREACOORD(src)]")
 	message_admins("[reason] has enabled the nuke at [ADMIN_VERBOSEJMP(src)]")
+	global_rally_zombies(src, TRUE)
+
+///Handles if the nuke is specifically defused
+/obj/machinery/nuclearbomb/proc/do_defuse(mob/user)
+	disable(key_name(user))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DEFUSED, src, user)
+
+	user.visible_message(span_boldwarning("[user] disabled the nuke"),
+	"You disabled the nuke.")
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable(reason)
@@ -134,15 +143,11 @@
 		to_chat(xeno_attacker, span_warning("\The [src] is soundly asleep. We better not disturb it."))
 		return
 
-	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the nuke",
+	xeno_attacker.visible_message(span_boldwarning("[xeno_attacker] begins to slash delicately at the nuke."),
 	"You start slashing delicately at the nuke.")
 	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
-	xeno_attacker.visible_message("[xeno_attacker] disabled the nuke",
-	"You disabled the nuke.")
-
-	disable(key_name(xeno_attacker))
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, xeno_attacker)
+	do_defuse(xeno_attacker)
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
 	. = ..()
@@ -258,14 +263,14 @@
 	if(exploded)
 		return
 	if(safety)
-		balloon_alert(user, "safety is still on")
+		balloon_alert(user, "safety is still on!")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchors not set")
+		balloon_alert(user, "anchors not set!")
 		return
 	var/area/area = get_area(src)
 	if(get_area_name(area) in GLOB.nuke_ineligible_site)
-		balloon_alert(user, "ineligible detonation site")
+		balloon_alert(user, "ineligible detonation site!")
 		return
 	if(!timer_enabled)
 		enable(key_name(user))
@@ -298,7 +303,7 @@
 		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		return
 	if(istype(get_area(loc), /area/shuttle))
-		balloon_alert(user, "unsuitable location")
+		balloon_alert(user, "unsuitable location!")
 		return
 
 	anchored = !anchored

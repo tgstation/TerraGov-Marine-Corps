@@ -25,7 +25,7 @@
 /datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	return ..()
 
@@ -175,7 +175,7 @@
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 			if(!silent)
-				xeno_owner.balloon_alert(xeno_owner, "already landing")
+				xeno_owner.balloon_alert(xeno_owner, "already landing!")
 			return FALSE
 		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
 		var/found_los_xenos = FALSE
@@ -191,13 +191,13 @@
 		if(!weeds_found && !found_los_xenos)
 			if(!silent)
 				if(nearby_xenos.len > 1)
-					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight!")
 				else
-					xeno_owner.balloon_alert(xeno_owner, "no weeds")
+					xeno_owner.balloon_alert(xeno_owner, "no weeds!")
 			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already lifting")
+			xeno_owner.balloon_alert(xeno_owner, "already lifting!")
 		return FALSE
 	return ..()
 
@@ -578,7 +578,7 @@
 /datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	return ..()
 
@@ -683,11 +683,11 @@
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	if(grabbed_human)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone")
+			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone!")
 		return FALSE
 	return ..()
 
@@ -820,7 +820,7 @@
 /datum/action/ability/activable/xeno/scorched_land/can_use_ability(atom/A, silent, override_flags)
 	if(!(xeno_owner.status_flags & INCORPOREAL))
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while landed")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while landed!")
 		return FALSE
 	var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
 	var/found_los_xenos = FALSE
@@ -836,9 +836,9 @@
 	if(!weeds_found && !found_los_xenos)
 		if(!silent)
 			if(nearby_xenos.len > 1)
-				xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+				xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight!")
 			else
-				xeno_owner.balloon_alert(xeno_owner, "no weeds")
+				xeno_owner.balloon_alert(xeno_owner, "no weeds!")
 		return FALSE
 	return ..()
 

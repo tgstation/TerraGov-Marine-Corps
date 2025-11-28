@@ -106,11 +106,11 @@
 
 /obj/machinery/griddle/wrench_act(mob/living/user, obj/item/I)
 	..()
-	balloon_alert(user, "You begin [anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "un" : ""]securing...")
 	I.play_tool_sound(src, 50)
 	if(!I.use_tool(src, user, 2 SECONDS))
 		return FALSE
-	balloon_alert(user, "You [anchored ? "un" : ""]secure.")
+	balloon_alert(user, "[anchored ? "un" : ""]secured")
 	anchored = !anchored
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TRUE

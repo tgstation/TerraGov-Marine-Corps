@@ -53,7 +53,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS), PROC_REF(disable_launching))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	GLOB.droppod_list += src
 	update_icon()
@@ -96,7 +96,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	operation_started = TRUE
 	launch_allowed = TRUE
 	update_icon()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 
 /obj/structure/droppod/update_icon()
 	. = ..()
@@ -127,7 +127,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(drop_state != DROPPOD_READY)
 		if(!silent)
-			balloon_alert(buckling_mob, "Already used")
+			balloon_alert(buckling_mob, "already used!")
 		return FALSE
 	setDir(SOUTH) //this is dirty but supply elevator still tehnically being a shuttle forced my hand TODO: undirty this
 	. = ..()
@@ -150,7 +150,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	var/mob/notified_user = LAZYACCESS(buckled_mobs, 1)
 	. = checklanding(notified_user)
 	if(notified_user && .)
-		balloon_alert(notified_user, "Coordinates updated")
+		balloon_alert(notified_user, "coordinates updated")
 
 ///Updates the z-level this pod drops to
 /obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
@@ -166,29 +166,29 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, target_z)
 	if(target.density)
 		if(user)
-			balloon_alert(user, "Dense area")
+			balloon_alert(user, "dense area!")
 		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
 		if(user)
-			balloon_alert(user, "Hazardous zone")
+			balloon_alert(user, "hazardous zone!")
 		return FALSE
 	var/area/targetarea = get_area(target)
 	if(targetarea.area_flags & NO_DROPPOD) // Thou shall not pass!
 		if(user)
-			balloon_alert(user, "Invalid area")
+			balloon_alert(user, "invalid area!")
 		return FALSE
 	if(!targetarea.outside)
 		if(user)
-			balloon_alert(user, "Roofed area")
+			balloon_alert(user, "roofed area!")
 		return FALSE
 	if(targetarea.ceiling > CEILING_METAL)
 		if(user)
-			balloon_alert(user, "Area underground")
+			balloon_alert(user, "area underground!")
 		return FALSE
 	for(var/atom/movable/object AS in target.contents)
 		if(object.density)
 			if(user)
-				balloon_alert(user, "Dense object detected")
+				balloon_alert(user, "dense object detected!")
 			return FALSE
 	return TRUE
 
@@ -327,7 +327,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
+		balloon_alert(buckling_mob, "can't use that!") // basically squad lead+ cant touch this
 		return FALSE
 	return ..()
 
@@ -459,7 +459,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		if(istype(attached_clamp.loaded, /obj/structure/droppod))
 			return //no recursive pods please
 		if(stored_object)
-			balloon_alert(user, "Occupied")
+			balloon_alert(user, "occupied!")
 			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)

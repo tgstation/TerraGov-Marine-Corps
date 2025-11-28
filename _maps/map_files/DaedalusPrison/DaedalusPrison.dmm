@@ -1571,6 +1571,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/bed/chair/comfy,
+/obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
 "brn" = (
@@ -11053,6 +11054,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/daedalusprison/inside/medical)
 "jgJ" = (
@@ -14219,6 +14221,15 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/bar)
+"lDk" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/daedalusprison/inside/habitationnorth)
 "lEZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -41930,7 +41941,7 @@ eFJ
 eFJ
 eFJ
 lHo
-xQp
+tiw
 hNa
 qFR
 buk
@@ -42778,7 +42789,7 @@ skY
 dEU
 gQC
 lHo
-xQp
+tiw
 aoJ
 uCq
 dmi
@@ -44035,7 +44046,7 @@ fNQ
 isn
 qTg
 lHo
-tNK
+lDk
 igY
 gQC
 lzc
@@ -44671,7 +44682,7 @@ fNQ
 isn
 qTg
 dCv
-xQp
+tiw
 hNa
 gQC
 jBm
@@ -45110,7 +45121,7 @@ eFJ
 eFJ
 eFJ
 lHo
-xQp
+tiw
 igY
 qFR
 buk
@@ -45307,7 +45318,7 @@ ajK
 jGD
 eZX
 lHo
-xQp
+tiw
 hNa
 gQC
 jBm

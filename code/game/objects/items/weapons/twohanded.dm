@@ -270,7 +270,7 @@
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.lying_angle)
 			continue
-		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, attacker = owner)
 		human_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		human_victim.adjust_stagger(1 SECONDS)
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
@@ -513,36 +513,20 @@
 	else
 		icon_state = "rocketsledge"
 
-/obj/item/weapon/twohanded/rocketsledge/afterattack(obj/target, mob/user, flag)
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		var/obj/structure/reagent_dispensers/fueltank/RS = target
-		if(RS.reagents.total_volume == 0)
-			to_chat(user, span_warning("Out of fuel!"))
-			return ..()
-
-		var/fuel_transfer_amount = min(RS.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
-		RS.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [src] with fuel."))
-		update_icon()
-
-	return ..()
-
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if(knockback)
 		stun = crush_stun_amount
 		paralyze = crush_paralyze_amount
 		knockback = 0
-		balloon_alert(user, "Selected mode: CRUSH.")
+		balloon_alert(user, "mode: CRUSH")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
 	stun = knockback_stun_amount
 	paralyze = knockback_paralyze_amount
 	knockback = 1
-	balloon_alert(user, "Selected mode: KNOCKBACK.")
+	balloon_alert(user, "mode: KNOCKBACK")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
@@ -557,8 +541,8 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE)
-	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
+	M.apply_damage(additional_damage, BRUTE, user.zone_selected, updating_health = TRUE, attacker = user)
+	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("[user]'s rocket sledge smashes you!"))
 
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
@@ -674,17 +658,16 @@
 	if(!active)
 		force = initial(force)
 		hitsound = initial(hitsound)
-		balloon_alert(user, "The motor died down!")
+		balloon_alert(user, "the motor is dead!")
 		update_icon()
 		update_item_state()
 		return
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
-		balloon_alert(user, "Not enough fuel!")
+		balloon_alert(user, "no fuel!")
 		return
 	force += additional_damage
 	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 	hitsound = 'sound/weapons/chainsawhit.ogg'
-	balloon_alert(user, "The motor whirr to lifel!")
 	update_icon()
 	update_item_state()
 
@@ -742,23 +725,6 @@
 	. = ..()
 	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
 
-///Refueling with fueltank
-/obj/item/weapon/twohanded/chainsaw/afterattack(obj/target, mob/user, flag)
-	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) || get_dist(user,target) > 1)
-		return
-	var/obj/structure/reagent_dispensers/fueltank/saw = target
-	if(saw.reagents.total_volume == 0)
-		balloon_alert(user, "Out of fuel!")
-		return ..()
-	var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
-	saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-	reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "You refill it with fuel.")
-	update_icon()
-
-	return ..()
-
 /obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M, mob/living/carbon/user)
 	rip_apart(user)
 	return ..()
@@ -770,7 +736,7 @@
 		return
 
 	if(user.do_actions)
-		target_object.balloon_alert(user, "already busy")
+		target_object.balloon_alert(user, "busy!")
 		return TRUE
 
 	if(user.incapacitated() || get_dist(user, target_object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword

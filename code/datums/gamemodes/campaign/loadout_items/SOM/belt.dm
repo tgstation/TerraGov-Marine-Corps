@@ -35,7 +35,7 @@
 	item_whitelist = list(
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+		/obj/item/weapon/gun/shotgun/som/back_slot = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/belt/som/shotgun_flechette
@@ -46,7 +46,7 @@
 	item_whitelist = list(
 		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/shotgun/som/support = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/shotgun/som/standard = ITEM_SLOT_BACK,
+		/obj/item/weapon/gun/shotgun/som/back_slot = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/belt/som/grenades

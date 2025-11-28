@@ -77,23 +77,23 @@
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
-		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
+		if(type == EMOTE_TYPE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
 				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
 
-		if(type == EMOTE_AUDIBLE && isdeaf(src)) //Hearing related
+		if(type == EMOTE_TYPE_AUDIBLE && isdeaf(src)) //Hearing related
 			if(!alt_msg)
 				return FALSE
 			else
 				msg = alt_msg
 				type = alt_type
-				if(type == EMOTE_VISIBLE && eye_blind)
+				if(type == EMOTE_TYPE_VISIBLE && eye_blind)
 					return FALSE
 
-	if(stat == UNCONSCIOUS && type == EMOTE_AUDIBLE)
+	if(stat == UNCONSCIOUS && type == EMOTE_TYPE_AUDIBLE)
 		to_chat(src, "<i>... You can almost hear something ...</i>")
 		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlight)
@@ -150,7 +150,7 @@
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
-		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
+		M.show_message(msg, EMOTE_TYPE_VISIBLE, blind_message, EMOTE_TYPE_AUDIBLE)
 
 
 ///Returns the client runechat visible messages preference according to the message type.
@@ -161,7 +161,7 @@
 		return FALSE
 	return TRUE
 
-/mob/rc_vc_msg_prefs_check(mob/target, message, visible_message_flags = NONE)
+/mob/rc_vc_msg_prefs_check(mob/target, visible_message_flags = NONE)
 	if(!target.client?.prefs.chat_on_map)
 		return FALSE
 	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
@@ -190,7 +190,7 @@
 			msg = self_message
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags) && !isdeaf(M))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
-		M.show_message(msg, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
+		M.show_message(msg, EMOTE_TYPE_AUDIBLE, deaf_message, EMOTE_TYPE_VISIBLE)
 
 
 /**
@@ -210,7 +210,7 @@
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
-		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
+		M.show_message(message, EMOTE_TYPE_AUDIBLE, deaf_message, EMOTE_TYPE_VISIBLE)
 
 
 ///This proc is called whenever someone clicks an inventory ui slot.

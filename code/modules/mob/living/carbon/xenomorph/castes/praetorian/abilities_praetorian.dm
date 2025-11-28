@@ -3,11 +3,14 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/cone
 	name = "Spray Acid Cone"
-	desc = "Spray a cone of dangerous acid at your target."
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
 	/// How will far can the acid go? Tile underneath starts at 1.
 	var/range = 5
+
+/datum/action/ability/activable/xeno/spray_acid/cone/New(Target)
+	. = ..()
+	desc = "Spray a [range - 1] tile cone of dangerous acid at your target."
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -133,6 +136,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		else
 			do_acid_cone_spray(xeno_owner.loc, range, direction, CONE_PART_MIDDLE_DIAG, xeno_owner, TRUE)
 
+#undef CONE_PART_MIDDLE
+#undef CONE_PART_LEFT
+#undef CONE_PART_RIGHT
+#undef CONE_PART_DIAG_LEFT
+#undef CONE_PART_DIAG_RIGHT
+#undef CONE_PART_MIDDLE_DIAG
+
 // ***************************************
 // *********** Slime Grenade
 // ***************************************
@@ -140,7 +150,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Slime grenade"
 	action_icon_state = "gas mine"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
-	desc = "Throws a lump of compressed acid to stick to a target, which will leave a trail of acid behind them."
+	desc = "Throws a lump of compressed acid to stick to a target, which will then leave a trail of acid behind them. Will explode in a 3x3 of acid if not stuck."
 	ability_cost = 75
 	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
@@ -167,84 +177,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	nade.activate(owner)
 
 // ***************************************
-// *********** Acid dash
-// ***************************************
-/datum/action/ability/activable/xeno/charge/acid_dash
-	name = "Acid Dash"
-	action_icon_state = "pounce"
-	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
-	ability_cost = 250
-	cooldown_duration = 30 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
-	)
-	charge_range = PRAE_CHARGEDISTANCE
-	///Can we use the ability again
-	var/recast_available = FALSE
-	///Is this the recast
-	var/recast = FALSE
-	/// If we should do acid_spray_act on those we pass over.
-	var/do_acid_spray_act = TRUE
-	///List of pass_flags given by this action
-	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-
-/datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
-	if(!A)
-		return
-	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through
-
-	xeno_owner.visible_message(span_danger("[xeno_owner] slides towards \the [A]!"), \
-	span_danger("We dash towards \the [A], spraying acid down our path!") )
-	xeno_owner.emote("roar")
-	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-	succeed_activate()
-
-	xeno_owner.add_pass_flags(charge_pass_flags, type)
-	owner.throw_at(A, charge_range, 2, owner)
-
-/datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
-	. = TRUE
-	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
-		return
-	recast_available = TRUE
-	var/mob/living/carbon/carbon_victim = living_target
-	carbon_victim.ParalyzeNoChain(0.5 SECONDS)
-
-	to_chat(carbon_victim, span_userdanger("The [owner] tackles us, sending us behind them!"))
-	owner.visible_message(span_xenodanger("\The [owner] tackles [carbon_victim], swapping location with them!"), \
-		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
-
-/datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
-	. = ..()
-	if(recast_available)
-		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
-		recast = TRUE
-	else
-		recast = FALSE
-		add_cooldown()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	xeno_owner.remove_pass_flags(charge_pass_flags, type)
-	recast_available = FALSE
-
-///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
-/datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
-	SIGNAL_HANDLER
-	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
-
-
-
-// ***************************************
 // *********** Dodge
 // ***************************************
 /datum/action/ability/xeno_action/dodge
 	name = "Dodge"
 	action_icon_state = "dodge"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	ability_cost = 100
 	cooldown_duration = 18 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
@@ -260,6 +198,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///List of pass_flags given by this action
 	var/dodge_pass_flags = PASS_MOB|PASS_XENO
+
+/datum/action/ability/xeno_action/dodge/New(Target)
+	. = ..()
+	desc = "Flood your body with adrenaline for [duration / (1 SECONDS)] seconds, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
@@ -365,7 +307,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/marked = human_victim.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		var/buff_multiplier = min(DANCER_MAX_IMPALE_MULT, determine_buff_mult(human_victim))
 		var/adj_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * buff_multiplier)
-		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0))
+		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0), attacker = owner)
 		human_victim.Shake(duration = 0.5 SECONDS)
 		//you got shishkebabbed really bad
 		if(buff_multiplier > 1.70)
@@ -427,9 +369,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_swing/swing = new
 	xeno_owner.vis_contents += swing
 
-	xeno_owner.spin(0.6 SECONDS, 1)
+	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
 	xeno_owner.emote("tail")
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
@@ -453,7 +395,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			shake_camera(living_target, 2, 1)
 		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
 		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
-		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+		living_target.apply_damage(damage, STAMINA, updating_health = TRUE, attacker = owner)
 		if(melting_fire_stacks)
 			var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(melting_fire)
@@ -461,7 +403,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else
 				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), DEFENDER_REFLECT_TIME)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
@@ -487,7 +429,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Hook"
 	action_icon_state = "tail_hook"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
+	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and get briefly knocked over."
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	ability_cost = 100
@@ -507,7 +449,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_hook/hook = new
 	xeno_owner.vis_contents += hook
 	xeno_owner.spin(0.8 SECONDS, 1)
-	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
@@ -531,7 +473,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into your flesh and yanks you towards it!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		living_target.Shake(duration = 0.1 SECONDS)
 		living_target.spin(2 SECONDS, 1)
 
@@ -641,7 +583,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!wallbang_multiplier || !isclosedturf(hit_atom))
 		return
 	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
-	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 
 /datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
@@ -735,7 +677,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
-			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
+			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
 		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
@@ -821,7 +763,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 	carbon_target.throw_at(get_step(carbon_target, get_dir(xeno_owner, carbon_target)), 2, 2, xeno_owner, TRUE)
-	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
+	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE, attacker = owner)
 
 	succeed_activate()
 	add_cooldown()
@@ -1023,7 +965,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				continue
 			RegisterSignal(affected_human, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 			RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
-			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
+			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE, attacker = owner)
 			var/throwlocation = affected_human.loc
 			for(var/x in 1 to 2)
 				throwlocation = get_step(throwlocation, owner.dir)
@@ -1115,7 +1057,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(living_hit, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(living_hit, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), FLOOR(throw_range, 1), 5, xeno_owner, TRUE)
-	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
+	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE, FALSE, FALSE, TRUE, 0, owner)
 
 /// Cleans up after charge is finished.
 /datum/action/ability/activable/xeno/oppressor/advance/proc/charge_complete()

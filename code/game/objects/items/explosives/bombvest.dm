@@ -29,19 +29,19 @@
 /obj/item/clothing/suit/storage/marine/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		balloon_alert(user, "Can't wear this")
+		balloon_alert(user, "against your programming!")
 		return TRUE
 	if(user.alpha != 255)
-		balloon_alert(user, "Can't, your cloak prevents you")
+		balloon_alert(user, "disable your cloak!")
 		return TRUE
 	if(activator.wear_suit != src)
-		balloon_alert(user, "Can only be detonated while worn")
+		balloon_alert(user, "not wearing it!")
 		return FALSE
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))
-		balloon_alert(user, "Can't, your shield prevents you")
+		balloon_alert(user, "drop your shield and wait!")
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BOMBVEST_SHIELD_DROP))
-		balloon_alert(user, "Can't, dropped shield too recently")
+		balloon_alert(user, "dropped a shield too recently!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
@@ -97,7 +97,7 @@
 /obj/item/clothing/suit/storage/marine/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(activator.wear_suit != src)
-		balloon_alert(user, "Can only be detonated while worn")
+		balloon_alert(user, "not wearing it!")
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return

@@ -41,7 +41,7 @@
 	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 	target_human.emote("scream")
 	xeno_owner.emote("roar")
-	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15)
+	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15, attacker = owner)
 	target_human.Paralyze(0.8 SECONDS)
 
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.flay_plasma_gain)
@@ -313,7 +313,7 @@
 	name = "Articulate"
 	action_icon_state = "mimicry"
 	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
-	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
+	desc = "Takes direct control of a Puppet's vocal chords. Allows you to speak directly through your puppet to humans."
 	cooldown_duration = 10 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	///Whether we should cancel instead of doing the thing when activated

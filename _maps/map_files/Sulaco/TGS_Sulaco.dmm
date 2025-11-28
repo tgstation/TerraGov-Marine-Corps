@@ -11560,11 +11560,11 @@
 /area/sulaco/hallway/evac)
 "ehl" = (
 /obj/structure/cable,
+/obj/effect/soundplayer/deltaplayer,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/soundplayer/deltaplayer,
-/turf/open/space/basic,
+/turf/open/floor/mainship_hull/gray,
 /area/space)
 "eho" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -14704,13 +14704,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"hZo" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space)
 "hZq" = (
 /obj/machinery/air_alarm{
 	dir = 1
@@ -16038,7 +16031,7 @@
 	},
 /area/sulaco/marine)
 "jzZ" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "jAp" = (
@@ -16584,7 +16577,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship_hull/gray,
 /area/space)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -16976,13 +16969,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
-"kDB" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship_hull/gray/dir{
-	dir = 6
-	},
-/area/space)
 "kEZ" = (
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/cobweb{
@@ -19395,10 +19381,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "nJV" = (
-/obj/machinery/vending/armor_supply,
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nKb" = (
@@ -21458,7 +21444,7 @@
 /area/sulaco/bridge)
 "qpD" = (
 /obj/machinery/door_control/mainship/mech{
-	id = "mech_shutters_3"
+	id = "mech_shutters_2"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -22344,9 +22330,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"rrU" = (
-/turf/closed/wall/mainship,
-/area/space)
 "rso" = (
 /obj/vehicle/ridden/wheelchair{
 	dir = 4
@@ -23940,15 +23923,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
-"tjy" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull/gray/dir{
-	dir = 4
-	},
-/area/space)
 "tjE" = (
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship/gray,
@@ -24998,11 +24972,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"uzL" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/space/basic,
-/area/space)
 "uAc" = (
 /obj/structure/closet/crate,
 /obj/structure/cable,
@@ -25056,24 +25025,7 @@
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
 "uDh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/frame/rack,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 50
-	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "uEO" = (
@@ -25573,7 +25525,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "vlG" = (
@@ -26391,7 +26343,24 @@
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
 "whV" = (
-/obj/effect/spawner/random/machinery/machine_frame,
+/obj/structure/table/mainship/nometal,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
+/obj/item/frame/rack,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "wie" = (
@@ -61999,7 +61968,7 @@ aaa
 aaa
 aaa
 aaa
-rrU
+aaa
 aaa
 aaa
 aaa
@@ -75446,9 +75415,9 @@ mDu
 mDu
 mDu
 mDu
-mDu
+qDO
 osr
-mDu
+nzi
 mDu
 mDu
 mDu
@@ -75703,9 +75672,9 @@ vDU
 vDU
 vDU
 vDU
-vDU
-tjy
-vDU
+wFA
+osr
+tZr
 vDU
 vDU
 vDU
@@ -76218,7 +76187,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76475,7 +76444,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76732,7 +76701,7 @@ aaa
 aaa
 aaa
 aaa
-hZo
+osr
 aaa
 aaa
 aaa
@@ -76913,85 +76882,85 @@ vGn
 vGn
 vGn
 vGn
-kDB
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
 hxe
 hxe
 hxe
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
-uzL
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
+vGn
 kbV
 aaa
-aaa
+cyv
 aaa
 aaa
 aaa
@@ -77503,7 +77472,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+cyv
 aaa
 aaa
 aaa

@@ -9,8 +9,7 @@
 	hud_state = "smg"
 	hud_state_empty = "smg_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_variation = 7
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
@@ -86,3 +85,10 @@
 	damage = 27.5
 	penetration = 10
 	sundering = 1
+
+/datum/ammo/bullet/smg/val
+	name = "heavy submachinegun bullet"
+	damage = 30
+	penetration = 27.5
+	sundering = 2
+	damage_falloff = 1.5

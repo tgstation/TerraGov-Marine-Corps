@@ -31,12 +31,15 @@ SUBSYSTEM_DEF(job)
 	overflow_role = GetJobType(overflow_role)
 	return SS_INIT_SUCCESS
 
-
+///Clears jobs and resets all occupations
 /datum/controller/subsystem/job/proc/SetupOccupations()
-	occupations.Cut()
 	joinable_occupations.Cut()
+	joinable_occupations_by_category.Cut()
 	GLOB.jobs_command.Cut()
 	squads.Cut()
+	type_occupations.Cut()
+	name_occupations.Cut()
+	QDEL_LIST(occupations)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
@@ -52,7 +55,8 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())
 			continue
 		occupations += job
-		name_occupations[job.title] = job
+		if(!name_occupations[job.title]) //we have multiple jobs with the same title, such as vatborn
+			name_occupations[job.title] = job
 		type_occupations[J] = job
 	sortTim(occupations, GLOBAL_PROC_REF(cmp_job_display_asc))
 
@@ -133,7 +137,6 @@ SUBSYSTEM_DEF(job)
 		var/mob/new_player/player = p
 		player.assigned_role = null
 		player.assigned_squad = null
-	SetupOccupations()
 	unassigned.Cut()
 
 

@@ -320,7 +320,7 @@
 		return
 	while(miner_status != MINER_DESTROYED)
 		if(xeno_attacker.do_actions)
-			return balloon_alert(xeno_attacker, "busy")
+			return balloon_alert(xeno_attacker, "busy!")
 		if(!do_after(xeno_attacker, 1.5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)

@@ -146,7 +146,7 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_INCENDIARY|AMMO_TARGET_TURF
 	armor_type = FIRE
 	damage_type = BURN
-	accuracy_var_low = 7
+	accuracy_variation = 7
 	accurate_range = 15
 	damage = 200
 	penetration = 75

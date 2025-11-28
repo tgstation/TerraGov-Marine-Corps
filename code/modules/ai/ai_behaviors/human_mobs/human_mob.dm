@@ -49,6 +49,12 @@
 	QDEL_NULL(mob_inventory)
 	return ..()
 
+/datum/ai_behavior/human/register_action_signals(action_type)
+	. = ..()
+	switch(action_type)
+		if(MOVING_TO_SAFETY)
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
+
 /datum/ai_behavior/human/start_ai()
 	. = ..()
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
@@ -140,6 +146,8 @@
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_SHRAP_REMOVING))
+		return TRUE
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return TRUE //lets players wrangle NPC's
 	return FALSE
@@ -209,8 +217,7 @@
 	if(prob(50))
 		try_speak(pick(new_target_chat))
 	set_run()
-	if(gun)
-		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
+	INVOKE_ASYNC(src, PROC_REF(weapon_process))
 
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
@@ -355,6 +362,28 @@
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
+
+/**
+ * Does all the setup to equip and use a tool by an NPC
+ * new_tool can either be the tool itself, or a tool define to find a type of tool in the NPC's inventory
+ */
+
+/datum/ai_behavior/human/proc/equip_tool(new_tool)
+	var/obj/item/equip_tool
+	if(isitem(new_tool))
+		equip_tool = new_tool
+	else
+		equip_tool = mob_inventory.find_tool(new_tool)
+	if(!equip_tool)
+		return
+	pick_up_item(equip_tool)
+	mob_parent.a_intent = INTENT_HELP
+	return equip_tool
+
+///Stores a tool and resets intent
+/datum/ai_behavior/human/proc/store_tool(old_tool)
+	mob_parent.a_intent = INTENT_HARM
+	try_store_item(old_tool)
 
 ///Tries to store an item
 /datum/ai_behavior/human/proc/try_store_item(obj/item/item)

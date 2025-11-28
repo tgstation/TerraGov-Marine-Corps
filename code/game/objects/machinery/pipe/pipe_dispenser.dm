@@ -124,7 +124,7 @@
 	if(user.incapacitated() || !istype(pipe) || get_dist(user, src) > 1 || get_dist(src, pipe) > 1 || pipe.anchored)
 		return
 
-	user.balloon_alert(user, "Recycled pipe.")
+	user.balloon_alert(user, "recycled pipe")
 	qdel(pipe)
 
 /obj/machinery/pipedispenser/disposal/interact(mob/user)

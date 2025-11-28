@@ -76,6 +76,8 @@
 #define AMMO_SOUND_PITCH (1<<16)
 ///Is this projectile considered sniper ammo, used for the anti sniper stacking status effect
 #define AMMO_SNIPER (1<<17)
+///Ammo type entirely ignores xenos
+#define AMMO_SKIPS_ZOMBIE (1<<18)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //gun_features_flags

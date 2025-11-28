@@ -53,21 +53,21 @@
 /obj/machinery/space_heater/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	open = !open
-	balloon_alert_to_viewers("[user] [open ? "opens" : "closes"] the hatch on the [src]")
+	balloon_alert_to_viewers("hatch [open ? "opened" : "closed"]")
 	update_icon()
 
 /obj/machinery/space_heater/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(on)
-		balloon_alert(user, "Turn [src] off first")
+		balloon_alert(user, "turn it off first!")
 		return
 	if(!open)
-		balloon_alert(user, "The hatch is closed")
+		balloon_alert(user, "the hatch is closed!")
 		return
 	if(!cell)
-		balloon_alert(user, "There isn't a cell to pry out")
+		balloon_alert(user, "there isn't a cell to pry out!")
 		return
-	balloon_alert(user, "You pry the cell out")
+	balloon_alert(user, "cell pried out")
 	cell.forceMove(user.drop_location())
 	cell = null
 
@@ -78,11 +78,11 @@
 	if(!istype(I, /obj/item/cell))
 		return
 	if(!open)
-		balloon_alert(user, "Open the hatch")
+		balloon_alert(user, "open the hatch!")
 		return
 
 	if(cell)
-		balloon_alert(user, "[src] already has a cell.")
+		balloon_alert(user, "it already has a cell!")
 		return
 
 	var/obj/item/cell/user_cell = I
@@ -94,7 +94,7 @@
 
 	cell = user_cell
 
-	balloon_alert_to_viewers("[user] inserts a cell into [src]")
+	balloon_alert_to_viewers("cell inserted")
 
 /obj/machinery/space_heater/attack_hand(mob/living/user)
 	. = ..()
@@ -107,13 +107,13 @@
 	else
 		stop_processing()
 
-	balloon_alert_to_viewers("[user] switches [src] [on ? "on" : "off"]")
+	balloon_alert_to_viewers("switched [on ? "on" : "off"]")
 	update_icon()
 
 
 /obj/machinery/space_heater/process()
 	if(!on || !cell || !cell.charge)
-		balloon_alert_to_viewers("[src] shuts off")
+		balloon_alert_to_viewers("shuts off")
 		update_icon()
 		stop_processing()
 		return

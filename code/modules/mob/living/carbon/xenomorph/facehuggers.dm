@@ -2,6 +2,8 @@
 #define FACEHUGGER_DEATH 10 SECONDS
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
+///List of all living face huggers
+GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 /**
  *Facehuggers
@@ -83,6 +85,10 @@
 	if(new_fire_immunity)
 		set_fire_immunity(new_fire_immunity)
 
+	if((stat != DEAD) && (!sterile || combat_hugger))
+		GLOB.alive_hugger_list += src
+		notify_ai_hazard()
+
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
@@ -112,6 +118,7 @@
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
+	GLOB.alive_hugger_list -= src
 	remove_danger_overlay() //Remove the danger overlay
 	if(source)
 		clear_hugger_source()
@@ -613,8 +620,10 @@
 
 	if(stat == DEAD)
 		return
+	SEND_SIGNAL(src, COMSIG_FACE_HUGGER_DEATH)
 	stat = DEAD
 
+	GLOB.alive_hugger_list -= src
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	deltimer(activetimer)

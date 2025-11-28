@@ -32,7 +32,7 @@
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/veteran/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /**
  * Mini autodoc module
@@ -45,7 +45,7 @@
 	worn_icon_state = "mod_autodoc_a"
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/veteran/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -80,7 +80,7 @@
 	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = -10)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/tdf/heavy = "mod_fire_tdf", /obj/item/clothing/suit/storage/marine/veteran/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/tdf/heavy = "mod_fire_tdf", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -195,7 +195,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/veteran/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -259,7 +259,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/storage/marine/veteran/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /*
 	chemical enhancement module
@@ -507,7 +507,7 @@
 
 /obj/item/armor_module/module/mirage/activate(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, mirage_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
+		balloon_alert(user, "wait [COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds!")
 		return
 	var/alpha_mod = user.alpha * 0.95
 	user.alpha -= alpha_mod
@@ -550,7 +550,7 @@
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, armorlock_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
+		balloon_alert(user, "wait [COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds!")
 		return
 
 	user.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
@@ -788,7 +788,7 @@
 		return
 	if(comms_setup == COMMS_SETUP)
 		var/turf/location = get_turf(user)
-		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_TYPE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 
 ///Begins the startup sequence.
@@ -802,7 +802,7 @@
 ///Finishes startup, rendering the module effective.
 /obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
 	comms_setup = COMMS_SETUP
-	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
+	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_TYPE_AUDIBLE, span_notice("[src] vibrates twice."))
 	startup_timer_id = null
 
 
@@ -903,3 +903,4 @@
 /obj/item/armor_module/module/night_vision/Destroy()
 	QDEL_NULL(attached_goggles)
 	return ..()
+

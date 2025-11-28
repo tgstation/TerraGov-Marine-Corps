@@ -386,7 +386,7 @@ export const EntryIconState = (props: EntryIconStateProps) => {
                   maxValue={Infinity}
                   step={1}
                   value={icon_state[iconstate]}
-                  onDrag={(value) =>
+                  onChange={(value) =>
                     act('edit', {
                       var: var_name,
                       new_value: editWeightOf(icon_state, iconstate, value),

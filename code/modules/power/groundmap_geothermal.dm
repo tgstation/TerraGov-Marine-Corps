@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
 	if(is_ground_level(z))
@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 
 /obj/machinery/power/geothermal/proc/activate_corruption(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 	corruption_on = TRUE
 	start_processing()
 

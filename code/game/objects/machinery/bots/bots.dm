@@ -114,7 +114,7 @@
 
 ///handles bot deactivation process
 /obj/machinery/bot/proc/bot_shutdown()
-	balloon_alert_to_viewers("Powers off")
+	balloon_alert_to_viewers("powers off")
 	if(deactivation_animation)
 		flick("[deactivation_animation]", src)
 	if(length(shutdownsentences))
@@ -125,7 +125,7 @@
 
 ///handles bot activation process
 /obj/machinery/bot/proc/bot_startup()
-	balloon_alert_to_viewers("Powers on")
+	balloon_alert_to_viewers("powers on")
 	if(activation_animation)
 		flick("[activation_animation]", src)
 	if(length(awakeningsentences))

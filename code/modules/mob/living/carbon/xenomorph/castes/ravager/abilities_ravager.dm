@@ -15,7 +15,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
-	///charge distance
+	/// The amount of deciseconds that carbons will be paralyze if hit.
+	var/paralyze_duration = 2 SECONDS
+	/// The maximum range/distance that can be charged.
 	var/charge_range = RAV_CHARGEDISTANCE
 
 /datum/action/ability/activable/xeno/charge/use_ability(atom/A)
@@ -89,9 +91,9 @@
 	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25 * multiplier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_ranged_target_turf(living_target, get_dir(src, living_target), rand(1, 3)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	if(iscarbon(living_target))
+	if(iscarbon(living_target) && paralyze_duration)
 		var/mob/living/carbon/carbon_victim = living_target
-		carbon_victim.Paralyze(2 SECONDS)
+		carbon_victim.Paralyze(paralyze_duration)
 	living_target.throw_at(get_turf(target_turf), charge_range, RAV_CHARGESPEED, src)
 
 ///Cleans up after charge is finished
@@ -116,68 +118,123 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
 	)
 	/// The amount of armor penetration that all slash attacks caused by Ravage to have.
-	var/armor_penetration
-	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
-	var/obj/effect/abstract/particle_holder/particle_holder
+	var/armor_penetration = 0
+	/// The amount of deciseconds that the owner must wait to successfully use this ability.
+	var/cast_time = 0 SECONDS
+	/// Does the ability affect all directions? If not, it will affect the direction the owner is facing.
+	var/aoe = FALSE
 
 /datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
+#define CONE_PART_MIDDLE (1<<0)
+#define CONE_PART_LEFT (1<<1)
+#define CONE_PART_RIGHT (1<<2)
+#define CONE_PART_DIAG_LEFT (1<<3)
+#define CONE_PART_DIAG_RIGHT (1<<4)
+#define CONE_PART_MIDDLE_DIAG (1<<5)
+
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
+	xeno_owner.face_atom(A)
+
+	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
+		return
+
 	xeno_owner.emote("roar")
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] thrashes about in a murderous frenzy!"), \
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
-	xeno_owner.face_atom(A)
-	activate_particles(xeno_owner.dir)
-
-	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
-	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
-	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
-	///actual target we will check adjacency with
-	var/atom/adjacent_relative = xeno_owner
+	var/range = 2 // 1 = turf underneath only.
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
-		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
-			if(!far.density)
-				atoms_to_ravage += far.contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
-				var/turf/temptstep = get_step(owner, owner.dir)
-				if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
-					adjacent_relative = far
-					var/turf/furthest = get_step(far, owner.dir)
-					if(!furthest.density)
-						atoms_to_ravage += furthest.contents
-						atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
-						atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
+		if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST)
+			range = 3
+		else if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
+			range = 4
 
-	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without causing everything.
+	var/turf/current_turf = get_turf(xeno_owner)
+	var/facing = xeno_owner.dir
+	var/list/turf/ravaged_turfs = list()
+	if(!aoe)
+		activate_particles(facing)
+		switch(facing)
+			if(NORTH, SOUTH, EAST, WEST)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, facing, CONE_PART_MIDDLE|CONE_PART_LEFT|CONE_PART_RIGHT)
+			if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, facing, CONE_PART_MIDDLE_DIAG)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT)
+	else
+		for(var/direction in GLOB.alldirs)
+			if(direction in GLOB.cardinals)
+				activate_particles(direction)
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, direction, CONE_PART_MIDDLE)
+			else
+				add_valid_turfs_from_cone(current_turf, ravaged_turfs, range, direction, CONE_PART_MIDDLE_DIAG)
+	ravaged_turfs -= current_turf // Don't want to hit the turf underneath us.
+
+	var/list/atom/movable/atoms_to_ravage = list()
+	for(var/turf/ravaged_turf AS in ravaged_turfs)
+		ravaged_turf.Shake(duration = 0.2 SECONDS) // To visually indicate what turfs are hit. Mainly for Bloodthirster as they could be hitting more than 3 tiles.
+		atoms_to_ravage += ravaged_turf.contents
+
+	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without changing everything.
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
-	for(var/atom/movable/ravaged AS in atoms_to_ravage)
-		if(ishitbox(ravaged) || isvehicle(ravaged))
-			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage) //Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
+	for(var/atom/movable/ravaged_atom AS in atoms_to_ravage)
+		if(ishitbox(ravaged_atom) || isvehicle(ravaged_atom))
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration) // Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
 			continue
-		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !adjacent_relative.Adjacent(ravaged))
+		if(!(ravaged_atom.resistance_flags & XENO_DAMAGEABLE))
 			continue
-		if(!ishuman(ravaged))
-			ravaged.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = armor_penetration)
-			ravaged.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+		if(!ishuman(ravaged_atom))
+			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration)
+			ravaged_atom.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
-		var/mob/living/carbon/human/human_victim = ravaged
-		if(human_victim.stat == DEAD)
+		var/mob/living/carbon/human/ravaged_human = ravaged_atom
+		if(ravaged_human.stat == DEAD)
 			continue
-		human_victim.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-		human_victim.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
-		shake_camera(human_victim, 2, 1)
-		human_victim.Paralyze(1 SECONDS)
+		ravaged_human.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE) // The reason why we have to add armor peneration as a signal.
+		ravaged_human.knockback(xeno_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+		shake_camera(ravaged_human, 2, 1)
+		ravaged_human.Paralyze(1 SECONDS)
 	if(armor_penetration)
 		UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 	succeed_activate()
 	add_cooldown()
+
+/// Gets all valid turfs to hit with Ravage. Valid turfs are any turfs that have no density.
+/datum/action/ability/activable/xeno/ravage/proc/add_valid_turfs_from_cone(turf/current_turf, list/turf/valid_turfs_so_far = list(), distance_left, facing, direction_flag)
+	if(distance_left <= 0 || current_turf.density)
+		return
+	if(!(current_turf in valid_turfs_so_far))
+		valid_turfs_so_far += current_turf
+
+	keep_getting_valid_turf_in_cone(current_turf, get_step(current_turf, facing), valid_turfs_so_far, distance_left, facing, direction_flag)
+	return valid_turfs_so_far
+
+/// Performs the next step of getting valid turfs.
+/datum/action/ability/activable/xeno/ravage/proc/keep_getting_valid_turf_in_cone(turf/current_turf, turf/next_turf, list/turf/valid_turfs_so_far, distance_left, facing, direction_flag)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE))
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 1 , facing, CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_RIGHT))
+		add_valid_turfs_from_cone(get_step(next_turf, turn(facing, 90)), valid_turfs_so_far, distance_left - 1, facing, CONE_PART_RIGHT|CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_LEFT))
+		add_valid_turfs_from_cone(get_step(next_turf, turn(facing, -90)), valid_turfs_so_far, distance_left - 1, facing, CONE_PART_LEFT|CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_DIAG_LEFT))
+		add_valid_turfs_from_cone(get_step(current_turf, turn(facing, 45)), valid_turfs_so_far, distance_left - 1, turn(facing, 45), CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_DIAG_RIGHT))
+		add_valid_turfs_from_cone(get_step(current_turf, turn(facing, -45)), valid_turfs_so_far, distance_left - 1, turn(facing, -45), CONE_PART_MIDDLE)
+	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT)
+		add_valid_turfs_from_cone(next_turf, valid_turfs_so_far, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG)
+
+#undef CONE_PART_MIDDLE
+#undef CONE_PART_LEFT
+#undef CONE_PART_RIGHT
+#undef CONE_PART_DIAG_LEFT
+#undef CONE_PART_DIAG_RIGHT
+#undef CONE_PART_MIDDLE_DIAG
 
 /// Adds armor penetration to attacked living beings.
 /datum/action/ability/activable/xeno/ravage/proc/on_attack_living(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
@@ -186,8 +243,8 @@
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
 /datum/action/ability/activable/xeno/ravage/proc/activate_particles(direction) // This could've been an animate()!
-	particle_holder = new(get_turf(owner), /particles/ravager_slash)
-	QDEL_NULL_IN(src, particle_holder, 5)
+	var/obj/effect/abstract/particle_holder/particle_holder = new(get_turf(xeno_owner), /particles/ravager_slash)
+	QDEL_IN(particle_holder, 0.5 SECONDS)
 	particle_holder.particles.rotation += dir2angle(direction)
 	switch(direction) // There's no shared logic here because sprites are magical.
 		if(NORTH) // Gotta define stuff for each angle so it looks good.
@@ -245,16 +302,26 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT // Can use this while staggered.
+	/// The amount of deciseconds Endure should last.
+	var/endure_duration = RAVAGER_ENDURE_DURATION
 	/// While this ability is active, what amount should the owner's `get_crit_threshold` and `get_death_threshold` return?
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	/// While this ability is active, what amount should be added to the number returned by `get_crit_threshold` and `get_death_threshold`? This is reset to zero when the ability ends.
-	var/bonus_endure_threshold = 0
-	/// Timer for Endure's duration.
-	var/endure_duration
-	/// Timer for Endure's warning.
-	var/endure_warning_duration
+	var/endure_threshold_bonus = 0
+	/// While this ability is active, how much all soft armor should be given?
+	var/endure_armor = 0
+	/// While this ability is active, should the owner be given stagger immunity?
+	var/endure_stagger_immunity = TRUE
+	/// The timer for Endure's duration.
+	var/endure_timer
+	/// The timer for Endure's warning message.
+	var/endure_warning_timer
+	/// If they do not have enough to pay the ability cost, should they consume health instead?
+	var/uses_health_as_necessary
 	/// When this ability ends and the owner's health is under the reverted `get_death_threshold`, should they die instead?
 	var/death_beyond_threshold = FALSE
+	/// The attached armor that been given, if any.
+	var/datum/armor/attached_armor
 
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
@@ -270,20 +337,28 @@
 
 	xeno_owner.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	xeno_owner.set_stagger(0) //Remove stagger
 	xeno_owner.set_slowdown(0) //Remove slowdown
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(bomb = 20) //Improved explosion resistance
-	ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
+	if(endure_stagger_immunity)
+		ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 	ADD_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
+
+	if(endure_armor)
+		attached_armor = new(endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor, endure_armor)
+		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
+	var/plasma_cost = min(ability_cost, xeno_owner.plasma_stored)
+	if(uses_health_as_necessary && ability_cost > plasma_cost)
+		xeno_owner.adjustBruteLoss(min((xeno_owner.health - xeno_owner.get_death_threshold() - 1), (ability_cost - plasma_cost))) // Non-lethal. Worst case, one health point from death.
 	xeno_owner.updatehealth() // To get them back up if they happen to activate the ability while in critical.
-	succeed_activate()
+	succeed_activate(plasma_cost)
 	add_cooldown()
 
 	GLOB.round_statistics.ravager_endures++ //Statistics
@@ -293,7 +368,7 @@
 /datum/action/ability/xeno_action/endure/proc/endure_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_userdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_timer) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -309,11 +384,16 @@
 	xeno_owner.remove_filter("ravager_endure_outline")
 
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(bomb = -20) //Remove resistances  immunities.
-	REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+	if(endure_stagger_immunity)
+		REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
-	bonus_endure_threshold = 0 // Reset the endure vars to their initial states.
-	endure_duration = initial(endure_duration)
-	endure_warning_duration = initial(endure_warning_duration)
+	endure_threshold_bonus = 0 // Reset the endure vars to their initial states.
+	endure_timer = null
+	endure_warning_timer = null
+
+	if(attached_armor)
+		xeno_owner.soft_armor = xeno_owner.soft_armor.detachArmor(attached_armor)
+		attached_armor = null
 
 	xeno_owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 	if(xeno_owner.health >= xeno_owner.get_crit_threshold())
@@ -333,7 +413,7 @@
 /datum/action/ability/xeno_action/endure/proc/damage_taken(mob/living/carbon/xenomorph/xeno_owner, damage_taken)
 	SIGNAL_HANDLER
 	if(xeno_owner.health < 0)
-		to_chat(xeno_owner, "<span class='xenouserdanger' style='color: red;'>We are critically wounded! We can only withstand [-(endure_threshold + bonus_endure_threshold - xeno_owner.health)] more damage before we perish!</span>")
+		to_chat(xeno_owner, "<span class='xenouserdanger' style='color: red;'>We are critically wounded! We can only withstand [-(endure_threshold + endure_threshold_bonus - xeno_owner.health)] more damage before we perish!</span>")
 		xeno_owner.overlay_fullscreen("endure", /atom/movable/screen/fullscreen/animated/bloodlust)
 	else
 		xeno_owner.clear_fullscreen("endure", 0.7 SECONDS)
@@ -379,6 +459,8 @@
 	var/rage_sunder
 	/// Determines the Plasma to remove when Rage ends.
 	var/rage_plasma
+	/// Should the power to extend Endure's duration be granted to normal Rage?
+	var/extends_via_normal_rage = FALSE
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -413,12 +495,14 @@
 		var/datum/action/ability/xeno_action/charge = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
 		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-		if(endure_ability && !endure_ability.bonus_endure_threshold)
-			endure_ability.bonus_endure_threshold = RAVAGER_ENDURE_HP_LIMIT * rage_power
+		if(endure_ability && !endure_ability.endure_threshold_bonus)
+			endure_ability.endure_threshold_bonus = RAVAGER_ENDURE_HP_LIMIT * rage_power
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
+	else if(extends_via_normal_rage)
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
 	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius / 2, xeno_owner.loc))
@@ -481,29 +565,31 @@
 ///Warns the user when his rage is about to end.
 /datum/action/ability/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/xeno_owner = owner
-	var/brute_damage = xeno_owner.getBruteLoss()
-	var/burn_damage = xeno_owner.getFireLoss()
-	if(!brute_damage && !burn_damage) //If we have no healable damage, don't bother proceeding
-		return
-	var/health_recovery = rage_power * damage //Amount of health we leech per slash
-	var/health_modifier
-	if(brute_damage) //First heal Brute damage, then heal Burn damage with remainder
-		health_modifier = min(brute_damage, health_recovery)*-1 //Get the lower of our Brute Loss or the health we're leeching
-		xeno_owner.adjustBruteLoss(health_modifier)
-		health_recovery += health_modifier //Decrement the amount healed from our total healing pool
-	if(burn_damage)
-		health_modifier = min(burn_damage, health_recovery)*-1
-		xeno_owner.adjustFireLoss(health_modifier)
+	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD)
+		var/mob/living/xeno_owner = owner
+		var/brute_damage = xeno_owner.getBruteLoss()
+		var/burn_damage = xeno_owner.getFireLoss()
+		if(!brute_damage && !burn_damage) //If we have no healable damage, don't bother proceeding
+			return
+		var/health_recovery = rage_power * damage //Amount of health we leech per slash
+		var/health_modifier
+		if(brute_damage) //First heal Brute damage, then heal Burn damage with remainder
+			health_modifier = min(brute_damage, health_recovery)*-1 //Get the lower of our Brute Loss or the health we're leeching
+			xeno_owner.adjustBruteLoss(health_modifier)
+			health_recovery += health_modifier //Decrement the amount healed from our total healing pool
+		if(burn_damage)
+			health_modifier = min(burn_damage, health_recovery)*-1
+			xeno_owner.adjustFireLoss(health_modifier)
 
-	var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
-	if(endure_ability.endure_duration) //Check if Endure is active
-		var/new_duration = min(RAVAGER_ENDURE_DURATION, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
-		deltimer(endure_ability.endure_duration) //Reset timers
-		deltimer(endure_ability.endure_warning_duration)
-		endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
-		if(new_duration > 3 SECONDS) //Check timing
-			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+	if(extends_via_normal_rage || rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
+		if(endure_ability.endure_timer) //Check if Endure is active
+			var/new_duration = min(endure_ability.endure_duration, (timeleft(endure_ability.endure_timer) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
+			deltimer(endure_ability.endure_timer) //Reset timers
+			deltimer(endure_ability.endure_warning_timer)
+			endure_ability.endure_timer = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+			if(new_duration > 3 SECONDS) //Check timing
+				endure_ability.endure_warning_timer = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/ability/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 ///Called when we want to end the Rage effect
 /datum/action/ability/xeno_action/rage/proc/rage_deactivate()
@@ -614,7 +700,7 @@
 #define MAX_DAMAGE_PER_DISINTEGRATING 25
 
 /datum/action/ability/xeno_action/bloodthirst
-	name = "bloodthirst"
+	name = "Bloodthirst"
 	desc = "Passive ability for generating bloodthirst"
 	hidden = TRUE
 	///tick time of last time we attacked a human
@@ -650,7 +736,7 @@
 	last_fight_time = world.time
 
 ///sig handler to track last attacked for bloodthirst
-/datum/action/ability/xeno_action/bloodthirst/proc/on_take_damage(datum/source, damage)
+/datum/action/ability/xeno_action/bloodthirst/proc/on_take_damage(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	last_fight_time = world.time
 
@@ -680,7 +766,7 @@
 #define DEATHMARK_MESSAGE_COOLDOWN 2 SECONDS
 
 /datum/action/ability/xeno_action/deathmark
-	name = "deathmark"
+	name = "Deathmark"
 	desc = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	action_icon_state = "deathmark"

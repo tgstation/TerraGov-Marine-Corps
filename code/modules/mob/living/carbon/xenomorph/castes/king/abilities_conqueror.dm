@@ -528,7 +528,7 @@
 	new /obj/effect/temp_visual/conqueror/hook/jab/initial(living_target.loc)
 	living_target.do_attack_animation(get_step(living_target, REVERSE_DIR(get_dir(living_target, xeno_owner))))
 	if(jab_damage_multiplier)
-		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * jab_damage_multiplier, BRUTE, xeno_owner.get_limb(xeno_owner.zone_selected), MELEE, TRUE, TRUE, TRUE, CONQUEROR_WILL_JAB_PENETRATION)
+		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * jab_damage_multiplier, BRUTE, xeno_owner.get_limb(xeno_owner.zone_selected), MELEE, TRUE, TRUE, TRUE, CONQUEROR_WILL_JAB_PENETRATION, owner)
 	if(jab_heal_percentage)
 		var/health_to_heal = xeno_owner.xeno_caste.max_health * jab_heal_percentage
 		HEAL_XENO_DAMAGE(xeno_owner, health_to_heal, FALSE)
@@ -558,7 +558,7 @@
 		return
 	INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(hit_living, 'sound/weapons/punch1.ogg', 30, TRUE)
-	hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
+	hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, owner)
 	hit_living.Knockdown(CONQUEROR_WILL_COMBO_DEBUFF * 2)
 	hit_living.knockback(living_target, 1, 1)
 
@@ -642,7 +642,6 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance
 	name = "Endurance"
-	desc = "Block attacks with your forearms, reducing damage received."
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	action_icon_state = "fortify"
@@ -654,6 +653,10 @@
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/xeno_action/conqueror_endurance/New(Target)
+	. = ..()
+	desc = "Block attacks with your forearms, slowing you down and reducing damage received by [CONQUEROR_ENDURANCE_DAMAGE_REDUCTION * 100]%."
 
 /datum/action/ability/xeno_action/conqueror_endurance/give_action(mob/living/L)
 	. = ..()
@@ -1084,7 +1087,7 @@
 		living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF SECONDS)
 		living_target.adjust_stagger(CONQUEROR_OBLITERATION_DEBUFF)
 		living_target.adjust_slowdown(CONQUEROR_OBLITERATION_DEBUFF)
-		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
+		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, owner)
 		INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
 	else
 		///not a mob so its an obj

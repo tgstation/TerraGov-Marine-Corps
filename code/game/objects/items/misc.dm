@@ -132,13 +132,6 @@
 	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/paper_map
-	name = "\improper paper map"
-	desc = "An ancient tool used by primitives to help them navigate."
-	icon = 'icons/obj/items/paper.dmi'
-	icon_state = "map"
-	w_class = WEIGHT_CLASS_SMALL
-
 /obj/item/album
 	name = "\improper photo album"
 	desc = "An album book full of someone's important memories."

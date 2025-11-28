@@ -1,3 +1,12 @@
+///Loops through healing someone
+/datum/ai_behavior/human/proc/heal_loop(mob/living/carbon/human/patient)
+	if(heal_damage(patient))
+		. = TRUE
+	if(heal_secondaries(patient))
+		. = TRUE
+	if(heal_organs(patient))
+		. = TRUE
+
 ///Cycles through and heals the normal damage types
 /datum/ai_behavior/human/proc/heal_damage(mob/living/carbon/human/patient)
 	var/list/dam_list = list(
@@ -12,10 +21,20 @@
 	dam_list = sortTim(dam_list, /proc/cmp_numeric_dsc, TRUE)
 	for(var/dam_type in dam_list)
 		if(dam_list[dam_type] <= 10)
+			if(dam_type == TOX)
+				address_toxins(patient)
 			continue
 		if(heal_by_type(patient, dam_type))
 			. = TRUE
 			continue
+
+///Deals with toxins in the patient if required
+/datum/ai_behavior/human/proc/address_toxins(mob/living/carbon/human/patient)
+	for(var/datum/reagent/toxin/tox in patient.reagents.reagent_list)
+		if(tox.volume < 10) //arbitrary magic number, but there's no simple way to determine an appropriate threshold
+			continue
+		heal_by_type(patient, TOX)
+		return
 
 ///Heal other ailments
 /datum/ai_behavior/human/proc/heal_secondaries(mob/living/carbon/human/patient)
@@ -87,6 +106,8 @@
 
 ///Tries to heal damage of a given type
 /datum/ai_behavior/human/proc/heal_by_type(mob/living/carbon/human/patient, dam_type)
+	if(!mob_parent.CanReach(patient))
+		return
 	var/obj/item/heal_item
 	var/list/med_list
 
@@ -135,33 +156,53 @@
 		. = TRUE
 	mob_parent?.zone_selected = BODY_ZONE_CHEST
 
+///Attempts to revive a patient, healing them first if required
+/datum/ai_behavior/human/proc/attempt_revive(mob/living/carbon/human/patient)
+	if(!defib_check(patient))
+		return FALSE
+	var/obj/item/defibrillator/defib = locate(/obj/item/defibrillator) in mob_inventory.medical_list
+	if(!defib)
+		return FALSE
+	if(!defib.ready)
+		defib.attack_self(mob_parent)
+	if(!HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) && (patient.health + patient.getOxyLoss() + (2 * DEFIBRILLATOR_HEALING_TIMES_SKILL(mob_parent.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) <= patient.get_death_threshold()))
+		heal_loop(patient) //we only loop once because you generally can't rekit
+
+	return do_defib(patient, defib)
+
+///Returns FALSE if the patient is impossible to revive, or already alive
+/datum/ai_behavior/human/proc/defib_check(mob/living/carbon/human/patient)
+	if(patient.stat != DEAD)
+		return FALSE
+	if(!(patient.check_defib() & (DEFIB_POSSIBLE|DEFIB_FAIL_TOO_MUCH_DAMAGE))) //can't be revived
+		return FALSE
+	return TRUE
+
 ///Tries to revive a dead dude
 /datum/ai_behavior/human/proc/do_defib(mob/living/carbon/human/patient, obj/item/defibrillator/defib)
-	if(patient.stat != DEAD)
+	if(!defib_check(patient))
+		return FALSE
+
+	if(!mob_parent.CanReach(patient))
 		return
-	if(!(patient.check_defib() & (DEFIB_POSSIBLE|DEFIB_FAIL_TOO_MUCH_DAMAGE))) //can't be revived
-		return
-	if(!defib)
-		defib = locate(/obj/item/defibrillator) in mob_inventory.medical_list
-	if(!defib)
-		return
-	if(!defib.ready)
-		defib.attack_self(mob_parent) //do it early so the cooldown can happen while we do other shit
-	if(!HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) && patient.health + patient.getOxyLoss() + (2 * DEFIBRILLATOR_HEALING_TIMES_SKILL(mob_parent.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) <= patient.get_death_threshold())
-		try_heal_other(patient, TRUE)
+
 	if(patient.wear_suit)
 		if(!do_after(mob_parent, patient.wear_suit.strip_delay, NONE, patient, BUSY_ICON_FRIENDLY))
-			return
+			return FALSE
 		patient.dropItemToGround(patient.wear_suit)
 		if(patient.stat != DEAD) //someone else got them
-			return
+			return FALSE
+
+	if(!mob_parent.CanReach(patient))
+		return
+
 	if(!defib.defibrillate(patient, mob_parent)) //we were unable to defib for whatever reason
-		return
-	if(patient.stat != DEAD)
-		if(patient.InCritical())
-			try_heal_other(patient, TRUE)
-		return TRUE
-	if(!do_after(mob_parent, DEFIBRILLATOR_COOLDOWN + 1, NONE, patient, BUSY_ICON_FRIENDLY))
-		return
-	return do_defib(patient, defib)
+		return FALSE
+
+	if(patient.stat == DEAD)
+		if(!do_after(mob_parent, DEFIBRILLATOR_COOLDOWN + 1, NONE, patient, BUSY_ICON_FRIENDLY))
+			return FALSE
+		return do_defib(patient, defib)
+
+	return TRUE
 

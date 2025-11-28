@@ -58,6 +58,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/weak_escort = FALSE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
+	///Count of how many times we've failed to form a path to our goal node
+	var/fail_goal_path_count = 0
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -67,7 +69,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	mob_parent = parent_to_assign
 	set_escorted_atom(null, escorted_atom)
-	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(is_offered_on_creation)
@@ -82,6 +83,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	interact_target = null
 	return ..()
 
+///Whether this ai behavior should start
+/datum/ai_behavior/proc/should_start_ai()
+	if(mob_parent.stat == DEAD)
+		return FALSE
+	return TRUE
+
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
 	START_PROCESSING(SSprocessing, src)
@@ -94,6 +101,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Set behaviour to base behavior
 /datum/ai_behavior/proc/late_initialize()
+	refresh_abilities()
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()
@@ -115,7 +123,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	look_for_next_node(FALSE)
+	look_for_next_node(NONE)
 	return COMSIG_MAINTAIN_POSITION
 
 ///Cleans up signals related to the action and element(s)
@@ -176,12 +184,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HARM
 	return TRUE
 
-///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
-/datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
+///Try to find a node to go to
+/datum/ai_behavior/proc/look_for_next_node(blacklist_node = current_node, should_reset_goal_nodes = FALSE)
 	if(should_reset_goal_nodes)
 		set_current_node(null)
-	if(ignore_current_node || QDELETED(current_node) || !length(current_node.adjacent_nodes)) //We don't have a current node, let's find the closest in our LOS
-		var/new_node = find_closest_node(mob_parent, current_node)
+	//We don't have a current node, or we specifically want to avoid one, let's find the closest in our LOS
+	if(blacklist_node || QDELETED(current_node) || !length(current_node.adjacent_nodes))
+		var/new_node = find_closest_node(mob_parent, blacklist_node)
 		if(!new_node)
 			return
 		set_current_node(new_node)
@@ -347,13 +356,19 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/look_for_node_path()
 	if(QDELETED(goal_node) || QDELETED(current_node))
 		return
+	//we blacklist our current node in case its orphaned or otherwise not linked to our goal. This is not foolproof for mapping issues however
+	var/previous_current_node = current_node
 	var/goal_nodes_serialized = rustg_generate_path_astar("[current_node.unique_id]", "[goal_node.unique_id]")
 	if(rustg_json_is_valid(goal_nodes_serialized))
 		goal_nodes = json_decode(goal_nodes_serialized)
 	else
 		goal_nodes = list()
 		set_current_node(null)
-	look_for_next_node()
+		fail_goal_path_count ++
+		if(fail_goal_path_count >= AI_MAX_GOAL_PATH_FAILS) //Failure usually means a mapping issue, or the mob/goal is outside of the normal game area
+			message_admins("[mob_parent] at [ADMIN_VERBOSEJMP(mob_parent)] failed to path to [goal_node] at [ADMIN_VERBOSEJMP(goal_node)].")
+			do_unset_target(goal_node)
+	look_for_next_node(previous_current_node)
 
 ///Signal handler when we reached our current tile goal
 /datum/ai_behavior/proc/finished_path_move()
@@ -394,7 +409,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 				change_action(ESCORTING_ATOM, escorted_atom)
 		if(ESCORTING_ATOM)
 			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-				look_for_next_node(FALSE)
+				look_for_next_node(NONE)
 
 ///Returns true if a combat target is no longer valid
 /datum/ai_behavior/proc/need_new_combat_target()
@@ -414,6 +429,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	if(new_goal_node.faction && new_goal_node.faction != mob_parent.faction)
 		return
+	fail_goal_path_count = 0
 	if(goal_node)
 		do_unset_target(goal_node)
 	goal_node = new_goal_node
@@ -431,12 +447,12 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(finished_node_move))
 			if(SStime_track.time_dilation_avg > CONFIG_GET(number/ai_anti_stuck_lag_time_dilation_threshold))
-				anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(look_for_next_node), TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
+				anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(look_for_next_node), current_node, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 				return
 			anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(ask_for_pathfinding), TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 		if(FOLLOWING_PATH)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(finished_path_move))
-			anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(look_for_next_node), TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
+			anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(look_for_next_node), current_node, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 
 ///Cleans up sigs for the current action
 /datum/ai_behavior/proc/unregister_action_signals(action_type)
@@ -473,9 +489,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		return
 	if(should_hold())
 		return
-	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
-	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
-		return
 	mob_parent.next_move_slowdown = 0
 	var/list/dir_options = find_next_dirs()
 	if(!length(dir_options))
@@ -495,15 +508,18 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	var/dir_to_target = angle2dir(Get_Angle(get_turf(mob_parent), get_turf(atom_to_walk_to)))
 	var/list/dir_options = list()
 
-	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range
+	var/in_optimal = (dist_to_target >= min_range) && (dist_to_target <= max_range)
+	if(in_optimal || (current_action == MOVING_TO_SAFETY && (dist_to_target >= lower_engage_dist) && (dist_to_target <= upper_engage_dist)))
+	//in optimal range or the specific scenario of running away from something we can still hurt
 		if((SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION))
 			return
+	if(in_optimal)
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			return CARDINAL_ALL_DIRS
 		if(prob(atom_to_walk_to == escorted_atom ? 80 : 50)) //If we're holding around an escort target, we don't move too much
 			return
 		if(prob(sidestep_prob)) //shuffle about
-			dir_options += LeftAndRightOfDir(dir_to_target)
+			dir_options += LeftAndRightOfDir(dir_to_target, TRUE)
 	if(dist_to_target > min_range) //above min range, its valid to come closer
 		dir_options += dir_to_target
 	if(dist_to_target < max_range) //less than max range, its valid to walk away
@@ -515,13 +531,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)
 	var/turf/new_loc = get_step(mob_parent, move_dir)
 	if(new_loc?.atom_flags & AI_BLOCKED)
-		move_dir = pick(LeftAndRightOfDir(move_dir))
+		move_dir = pick(LeftAndRightOfDir(move_dir, always_diag = TRUE))
 		new_loc = get_step(mob_parent, move_dir)
 		if(new_loc?.atom_flags & AI_BLOCKED || !can_cross_lava_turf(new_loc))
 			return
 	if(!mob_parent.Move(new_loc, move_dir))
 		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)
-			ai_complete_move(pick(LeftAndRightOfDir(move_dir)), FALSE)
+			ai_complete_move(pick(LeftAndRightOfDir(move_dir, always_diag = TRUE)), FALSE)
 		return
 	if(ISDIAGONALDIR(move_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
@@ -538,7 +554,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 ///Finds the most suitable thing to escort
 /datum/ai_behavior/proc/get_atom_to_escort()
 	var/list/goal_list = list()
-	if(GLOB.goal_nodes[mob_parent.faction])
+	if(GLOB.goal_nodes[mob_parent.faction] && (fail_goal_path_count < AI_MAX_GOAL_PATH_FAILS))
 		goal_list[GLOB.goal_nodes[mob_parent.faction]] = AI_ESCORT_RATING_FACTION_GOAL
 	var/mob/living/escorted_mob = escorted_atom
 	if(ismob(escorted_mob) && !QDELETED(escorted_mob) && (escorted_mob.stat != DEAD) && (escorted_mob.z == mob_parent.z) && (get_dist(mob_parent, escorted_mob) <= (AI_ESCORTING_BREAK_DISTANCE)))
@@ -557,6 +573,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			continue
 		if(candidate.z != mob_parent.z)
 			continue
+		if(candidate == mob_parent)
+			continue
 		return candidate
 
 ///Set the escorted atom.
@@ -570,7 +588,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	weak_escort = new_escort_is_weak
 	if(!weak_escort)
 		base_action = ESCORTING_ATOM
-	RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
 	change_action(ESCORTING_ATOM, escorted_atom)
 	return TRUE
@@ -595,7 +613,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(atom_to_walk_to)
 		do_unset_target(atom_to_walk_to, FALSE)
 	atom_to_walk_to = new_target
-	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	if(!registered_for_move)
 		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
 	return TRUE
@@ -607,7 +625,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(combat_target)
 		do_unset_target(combat_target, FALSE)
 	combat_target = new_target
-	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	return TRUE
 
 ///Sets an interaction target
@@ -617,7 +635,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(interact_target)
 		do_unset_target(interact_target, FALSE)
 	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
 	return TRUE
 
@@ -628,10 +646,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
-	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH))
 	if(goal_node == old_target)
 		goal_node = null
-		goal_nodes = null
+		goal_nodes = list()
 		if(current_action == MOVING_TO_NODE && need_new_state)
 			look_for_next_node(should_reset_goal_nodes = TRUE)
 	if(current_node == old_target)

@@ -34,7 +34,7 @@
 	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
 	X.remove_filter("resin_jelly_outline")
-	owner.balloon_alert(owner, "We are vulnerable again")
+	owner.balloon_alert(owner, "you're vulnerable again")
 	return ..()
 
 /datum/status_effect/resin_jelly_coating/tick(delta_time)
@@ -97,7 +97,7 @@
 /datum/status_effect/stacking/essence_link/add_stacks(stacks_added)
 	. = ..()
 	essence_link_action.update_button_icon()
-	link_owner.balloon_alert(link_owner, "Attunement: [stacks]/[max_stacks]")
+	link_owner.balloon_alert(link_owner, "attunement: [stacks]/[max_stacks]")
 	COOLDOWN_START(src, attunement_increase, essence_link_action.attunement_cooldown)
 	update_beam()
 
@@ -118,8 +118,8 @@
 	if(within_range != was_within_range) // Toggles the link depending on whether the linked xenos are still in range or not.
 		was_within_range = within_range
 		toggle_link(was_within_range)
-		link_owner.balloon_alert(link_owner, was_within_range ? ("Link reestablished") : ("Link faltering"))
-		link_target.balloon_alert(link_target, was_within_range ? ("Link reestablished") : ("Link faltering"))
+		link_owner.balloon_alert(link_owner, was_within_range ? ("link reestablished") : ("link faltering!"))
+		link_target.balloon_alert(link_target, was_within_range ? ("link reestablished") : ("link faltering!"))
 
 	if(stacks < max_stacks && COOLDOWN_FINISHED(src, attunement_increase))
 		add_stacks(1)
@@ -132,8 +132,8 @@
 	if(link_owner.plasma_stored < ability_cost)
 		if(!COOLDOWN_FINISHED(src, plasma_warning))
 			return
-		link_owner.balloon_alert(link_owner, "No plasma for link")
-		link_target.balloon_alert(link_target, "No plasma for link")
+		link_owner.balloon_alert(link_owner, "no plasma for link!")
+		link_target.balloon_alert(link_target, "no plasma for link!")
 		COOLDOWN_START(src, plasma_warning, plasma_warning_cooldown)
 		return
 	var/leftover_healing = heal_amount
@@ -157,8 +157,8 @@
 		buff_owner = link_owner
 		buff_target = link_target
 
-	buff_owner.balloon_alert(buff_owner, "Buff shared")
-	buff_target.balloon_alert(buff_target, "Buff shared")
+	buff_owner.balloon_alert(buff_owner, "buff shared")
+	buff_target.balloon_alert(buff_target, "buff shared")
 	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
 		span_xenonotice("Through the Essence Link, [buff_owner] has shared their resin jelly with us."))
 	INVOKE_ASYNC(buff_target, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar")
@@ -186,7 +186,7 @@
 
 	GLOB.round_statistics.drone_essence_link += (heal_amount - leftover_healing)
 	GLOB.round_statistics.drone_essence_link_sunder += -sunder_change
-	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
+	heal_target.balloon_alert(heal_target, "shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
 /datum/status_effect/stacking/essence_link/proc/toggle_link(toggle)
@@ -265,11 +265,11 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	buff_owner.balloon_alert(buff_owner, "Salve regeneration")
+	buff_owner.balloon_alert(buff_owner, "salve regenerationg starting")
 	return TRUE
 
 /datum/status_effect/salve_regen/on_remove()
-	buff_owner.balloon_alert(buff_owner, "Salve regeneration ended")
+	buff_owner.balloon_alert(buff_owner, "salve regeneration ended")
 	return ..()
 
 /datum/status_effect/salve_regen/tick(delta_time)
@@ -337,8 +337,8 @@
 	return ..()
 
 /datum/status_effect/drone_enhancement/on_remove()
-	buffed_xeno.balloon_alert(buffed_xeno, "Enhancement inactive")
-	buffing_xeno.balloon_alert(buffing_xeno, "Enhancement inactive")
+	buffed_xeno.balloon_alert(buffed_xeno, "enhancement inactive")
+	buffing_xeno.balloon_alert(buffing_xeno, "enhancement inactive")
 	UnregisterSignal(buffed_xeno, COMSIG_MOB_DEATH)
 	UnregisterSignal(buffing_xeno, COMSIG_MOB_DEATH)
 	toggle_buff(FALSE)
@@ -720,7 +720,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
 	new /obj/effect/temp_visual/healing(get_turf(owner))
 
-	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
+	owner.balloon_alert(owner, "regeneration inactive")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()
@@ -741,19 +741,9 @@
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
-	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
-	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
-		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
-
-	if(!total_heal_amount) //no healing left, no need to continue
-		return
-
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
-	if(burn_amount)
-		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
-
+	var/leftover_healing = total_heal_amount
+	HEAL_XENO_DAMAGE(patient, leftover_healing, FALSE)
+	GLOB.round_statistics.hivelord_healing_infusion += (total_heal_amount - leftover_healing)
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
 /datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient, seconds_per_tick)
@@ -770,7 +760,8 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD) //5% bonus per rank of our recovery aura
+	var/restored_sunder = patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD) //5% bonus per rank of our recovery aura
+	GLOB.round_statistics.hivelord_healing_infusion_sunder += -restored_sunder
 
 /atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
@@ -1032,3 +1023,21 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
 	xeno_owner.remove_filter("[id]_outline")
+
+// ***************************************
+// *********** Cloaking
+// ***************************************
+/datum/status_effect/xenomorph_cloaking
+	id = "xenomorph_cloaking"
+	alert_type = null
+
+/datum/status_effect/xenomorph_cloaking/on_apply()
+	. = ..()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.set_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING, HUNTER_STEALTH_STILL_ALPHA)
+
+/datum/status_effect/xenomorph_cloaking/on_remove()
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.remove_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING)

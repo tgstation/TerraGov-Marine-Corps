@@ -47,7 +47,7 @@
 	name = "Petrify"
 	action_icon_state = "petrify"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -60,6 +60,10 @@
 	var/list/mob/living/carbon/xenomorph/viewing_xenomorphs = list()
 	/// The amount of armor to grant to friendly xenomorphs
 	var/petrify_armor = 0
+
+/datum/action/ability/xeno_action/petrify/New(Target)
+	. = ..()
+	desc = "After a [PETRIFY_WINDUP_TIME / (1 SECONDS)] second windup, petrifies all humans looking at you for [PETRIFY_DURATION / (1 SECONDS)] seconds. Petrified humans are immune to damage, but also can't attack."
 
 /datum/action/ability/xeno_action/petrify/clean_action()
 	end_effects()
@@ -158,7 +162,7 @@
 	name = "Off-guard"
 	action_icon_state = "off_guard"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim and movement for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -280,8 +284,8 @@
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
 				continue
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
-			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE, attacker = owner)
+			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA, attacker = owner)
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
@@ -294,11 +298,10 @@
 			if(ishitbox(victim))
 				hitbox_penalty = 20
 			obj_victim.take_damage((SHATTERING_ROAR_DAMAGE - hitbox_penalty) * 5 * severity, BRUTE, MELEE)
-		continue
+			continue
 		if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
-			if(window_victim.damageable)
-				window_victim.ex_act(EXPLODE_DEVASTATE)
+			window_victim.ex_act(EXPLODE_DEVASTATE)
 			continue
 		if(isfire(victim))
 			var/obj/fire/fire = victim

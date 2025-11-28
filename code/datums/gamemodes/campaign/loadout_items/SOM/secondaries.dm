@@ -138,6 +138,19 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/som_engineer/probe
+	name = "Probe"
+	desc = "A deployable Seraphim's Eye probe, along with remote control. While lacking any weaponry, it is able to fly over enemy cades and scout their position. Capable of cloaking when not in motion. \
+	WARNING: while fireproof, it is still fragile. Avoid explosions."
+	purchase_cost = 15
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/som_engineer/probe/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny/martian, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny/martian, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/som_engineer/detpack
 	name = "Detpacks"
 	desc = "Detpacks, for blowing things up."

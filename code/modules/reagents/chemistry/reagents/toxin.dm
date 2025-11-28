@@ -650,6 +650,11 @@
 	overdose_crit_threshold = 50
 	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
+/datum/reagent/zombium/on_mob_life(mob/living/L, metabolism)
+	. = ..()
+	if(prob(10))
+		L.emote("cough")
+
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
 	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(zombify))
 

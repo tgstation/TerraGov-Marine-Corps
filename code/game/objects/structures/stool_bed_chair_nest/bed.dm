@@ -139,10 +139,10 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "Brakes on")
+		balloon_alert(user, "brakes on")
 		anchored = TRUE
 	else
-		balloon_alert(user, "Brakes off")
+		balloon_alert(user, "brakes off")
 		anchored = FALSE
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	timer_cooldown = max(last_teleport - world.time, 0)
 	if(!timer_cooldown)
 		if(holder)
-			balloon_alert(holder, "Medevac charged!")
+			balloon_alert(holder, "medevac charged")
 		playsound(loc,'sound/machines/ping.ogg', 10, FALSE)
 		STOP_PROCESSING(SSprocessing, src)
 	update_icon()
@@ -748,7 +748,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(rollerbed in linked_beds)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
+					balloon_alert(user, "already linked!")
 				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
 			return TRUE
 		if(rollerbed.linked_beacon)
@@ -757,7 +757,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		rollerbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
+				balloon_alert(user, "linked")
 			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return TRUE
 
@@ -766,7 +766,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(stretcherbed in linked_beds_deployed)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
+					balloon_alert(user, "already linked!")
 				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
 			return TRUE
 		if(stretcherbed.linked_beacon)
@@ -775,7 +775,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		stretcherbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
+				balloon_alert(user, "linked")
 			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return TRUE
 

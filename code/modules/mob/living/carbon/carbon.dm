@@ -295,6 +295,8 @@
 	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
@@ -305,6 +307,8 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 

@@ -52,7 +52,7 @@
 	name = "Psychic Shield"
 	action_icon_state = "psy_shield"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
-	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
+	desc = "Channel a psychic shield at your current location that can reflect most projectiles, the shield can only hold so much though... Activate again while active to detonate the shield forcibly, producing knockback. Must remain stationary to use."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 200
 	keybinding_signals = list(
@@ -460,8 +460,8 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB)
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB, attacker = owner)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB, attacker = owner)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 				continue

@@ -192,22 +192,22 @@
 		return
 
 	if(firing)
-		user.balloon_alert(user, "The barrel is steaming hot. Wait till it cools off")
+		user.balloon_alert(user, "barrel too hot—wait a while!")
 		return
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(length(chamber_items) >= max_rounds)
-			user.balloon_alert(user, "You cannot fit more")
+			user.balloon_alert(user, "you cannot fit more!")
 			return
 
 		if(!(I.type in allowed_shells))
-			user.balloon_alert(user, "This shell doesn't fit")
+			user.balloon_alert(user, "this shell doesn't fit!")
 			return
 
 		if(busy)
-			user.balloon_alert(user, "Someone else is using this")
+			user.balloon_alert(user, "someone else is using this!")
 			return
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
@@ -223,7 +223,7 @@
 		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		chamber_items += mortar_shell
-		user.balloon_alert(user, "Right click to fire")
+		user.balloon_alert(user, "right click to fire!")
 		mortar_shell.forceMove(src)
 		user.temporarilyRemoveItemFromInventory(mortar_shell)
 
@@ -344,37 +344,37 @@
 		return
 
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		user.balloon_alert(user, "Your programming restricts operating this")
+		user.balloon_alert(user, "you can't operate this!")
 		return
 
 	if(firing)
-		user.balloon_alert(user, "The gun is still firing.")
+		user.balloon_alert(user, "the gun is still firing!")
 		return
 
 	if(length(chamber_items) <= 0)
-		user.balloon_alert(user, "There is nothing loaded.")
+		user.balloon_alert(user, "there is nothing loaded!")
 		return
 
 	if(!is_ground_level(z))
-		user.balloon_alert(user, "You can't fire the gun here.")
+		user.balloon_alert(user, "you can't fire the gun here!")
 		return
 
 	if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-		user.balloon_alert(user, "The gun needs to be aimed first.")
+		user.balloon_alert(user, "the gun needs to be aimed first!")
 		return
 
 	var/turf/target = locate(coords["targ_x"] + coords["dial_x"], coords["targ_y"]  + coords["dial_y"], z)
 	if(get_dist(loc, target) < minimum_range)
-		user.balloon_alert(user, "The target is too close to the gun.")
+		user.balloon_alert(user, "the target is too close to the gun!")
 		return
 	if(!isturf(target))
-		user.balloon_alert(user, "You cannot fire the gun to this target.")
+		user.balloon_alert(user, "you can't fire the gun at this target!")
 		return
 	setDir(get_cardinal_dir(src, target))
 
 	var/area/A = get_area(target)
 	if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-		user.balloon_alert(user, "The target is underground.")
+		user.balloon_alert(user, "the target is underground!")
 		return
 
 	visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")

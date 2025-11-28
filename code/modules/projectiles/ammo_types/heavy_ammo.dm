@@ -23,8 +23,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	accurate_range = 5
 	damage = 25
 	penetration = 15
@@ -44,10 +43,10 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 15
-	penetration = 20
+	damage = 30
+	penetration = 35
 	sundering = 1
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_IFF
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG
 	damage_falloff = 1
 	accurate_range = 7
 	accuracy = 10
@@ -66,8 +65,7 @@
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	accurate_range_min = 6
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+	accuracy_variation = 3
 	damage = 30
 	penetration = 50
 	sundering = 1
@@ -88,6 +86,16 @@
 
 /datum/ammo/bullet/auto_cannon/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	proj.proj_max_range -= 5
+
+/datum/ammo/bullet/bike_autocannon
+	name = "autocannon high-velocity bullet"
+	hud_state = "minigun"
+	hud_state_empty = "smartgun_empty"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 30
+	penetration = 25
+	sundering = 1
+	max_range = 15
 
 /datum/ammo/bullet/auto_cannon/flak
 	name = "autocannon smart-detonating bullet"
@@ -168,6 +176,7 @@
 	damage = 150
 	penetration = 100
 	sundering = 0
+	accuracy = -10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 

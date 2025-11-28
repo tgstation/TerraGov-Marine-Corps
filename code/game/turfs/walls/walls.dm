@@ -509,7 +509,7 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
 			user.drop_held_item()
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, SFX_SLAM, 40)
 	return TRUE

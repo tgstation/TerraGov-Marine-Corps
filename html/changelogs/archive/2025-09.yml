@@ -106,3 +106,100 @@
   - bugfix: Carrier traps and acid wells no longer activate when crushed by a shuttle.
   - bugfix: Carrier traps that are filled with gas now trigger if the weeds underneath
       are destroyed.
+2025-09-22:
+  Helg2:
+  - bugfix: Fixed the layer of pipes.
+  Runian:
+  - bugfix: 'Mutations: Rapid Fire''s fast cooldown duration now correctly scales
+      at 50/40/30% instead of 50/30/10%.'
+  blackdav123:
+  - bugfix: Quickbuild mode now properly turns off on crash when the ship lands.
+2025-09-23:
+  Atropos:
+  - rscadd: Added loadout vendors in req on sulaco
+  - bugfix: fixed incorrectly wired button on sulaco
+  Scav:
+  - balance: Added chemistry equipment to canterbury, rearranged mebay layout
+  - rscdel: Deleted the body scanner in canterbury medical
+  TheRealMrN:
+  - balance: Moved a Canterbury LZ on Blue Moon
+  - balance: Moved a silo on Blue Moon
+  blackdav123:
+  - balance: Moved crash landing sites on Orion Outpost to have better shutter positions
+      to exit and siege.
+2025-09-24:
+  Lumipharon:
+  - qol: 0 stamina HUD icon should be clearer
+  - balance: NPC's are now aware to the threat of facehuggers
+  Runian:
+  - bugfix: Guns vended by the automated weapons rack now have their gun-attachments
+      start empty.
+  blackdav123:
+  - rscadd: Added paper maps to the Utility tab of the marine vendor, these show groundside
+      like a map table would.
+2025-09-26:
+  Barnet2:
+  - rscdel: Prison Station can no longer be voted on Crash.
+  Lumipharon:
+  - code_imp: Updated typecacheof() to current TG code
+  - bugfix: 'Campaign: Fixed shotgun belts not being valid with shotgun primaries'
+2025-09-27:
+  RIPGrayson, TheRealMrN:
+  - bugfix: fixed NPC node issues across almost all maps
+2025-09-28:
+  Lumipharon:
+  - bugfix: Ungas can no longer remotely upgrade barricades with their megamind powers
+  - balance: NPC medics will now treat toxins in your system, not just toxin damage
+  - balance: Mech heavy cannon is slightly less accurate, and always aims chest
+  Runian:
+  - qol: Queen's Plasma Transfer ability can be reactivated via right-click/keybind
+      to use it again on the previous target.
+  - qol: If you have a medical hud, you can now examine the autodoc to see how many
+      seconds until the next surgery step happens.
+  - balance: Autodoc now accounts and can handle surgeries that are already started.
+  - balance: Autodoc's internal bleeding surgery now repairs all internal bleeding
+      at once just like its non-autodoc variant.
+  - balance: Autodoc now does the surgery step first and then waits rather than the
+      other way around.
+  - bugfix: Dragging or forcibly putting someone else into an autodoc now displays
+      correct chat message saying so.
+  - bugfix: Autodoc now only consumes as much metal required to fill it rather than
+      all of it.
+  - bugfix: Autodoc is now consistent in preventing people with abiotic items from
+      entering it.
+  - spellcheck: Corrects autodoc's many "avaliable" to "available".
+  - code_imp: Autodoc no longer uses sleep(). It now uses a timer.
+  - bugfix: The gamestate is now correctly changed to groundside if the Tadpole is
+      used to start the operation; this prevented AI from using their railgun.
+  Vany3045:
+  - rscadd: remastered the Nanotrasen PMC
+  - balance: A lot of tweaks for the PMC ERT. Details are here [#18044](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18044#issue-3196882371)
+  - imageadd: new sprites for the PMC equipment
+  blackdav123:
+  - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
+      the object's tile.
+2025-09-29:
+  Lumipharon:
+  - code_imp: Ammo accuracy variation consolidated into a single var instead of two
+  - bugfix: fixed NPC's occasionally having their usable abilities set incorrectly
+  blackdav123:
+  - rscadd: Added Skink and Seraphim's Eye drones to campaign as options for engineer
+      secondaries.
+  - balance: Skink drone can now be shot when clicked on.
+2025-09-30:
+  Neocloudy:
+  - qol: Gibbing no longer sends a chat message for each limb dropped.
+  - qol: Humans won't stop pulling other humans when the pulled human dies.
+  Runian:
+  - rscadd: Setting Autodoc to automatic mode while someone is already inside now
+      begins the automatic surgery process.
+  - bugfix: Autodoc no longer can switch between manual/automatic modes while it is
+      active; prevents automatic mode from benefiting from manual mode speed.
+  - bugfix: Information from examining Autodoc is correctly given to those with medihuds
+      instead of the other way around.
+  Vany3045:
+  - bugfix: fixes SG-60 inhand sprites.
+  - bugfix: fixes typepaths for freelancer armor.
+  - bugfix: PMC SG-25 is now available in valhalla vendor.
+  - bugfix: Fixes replicating MK90M4 pistol magazine in valhalla vendor.
+  - bugfix: fixes missing items for freelancer loadouts.

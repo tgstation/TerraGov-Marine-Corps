@@ -246,6 +246,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 /// If the limb's total damage percent is higher than this, it can be severed.
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+/// Factor for limb blood flow rate
+#define LIMB_FLOW_FACTOR 60
+/// Macro for a limb's blood flow rate based on its brute damage
+#define LIMB_FLOW_RATE(limb_brute) (limb_brute / LIMB_FLOW_FACTOR)
+/// Factor for IB wound flow rate
+#define INTERNAL_BLEEDING_FLOW_FACTOR 30
+/// Macro for an IB wound's blood flow rate based on blood volume and wound severity
+#define INTERNAL_BLEEDING_FLOW_RATE(blood_volume, intensity) (blood_volume - intensity / INTERNAL_BLEEDING_FLOW_FACTOR)
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -635,6 +643,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 10 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_MIRAGE_ILLUSION_LIFETIME 10 SECONDS
 #define HUNTER_SILENCE_STAGGER_DURATION 1 SECONDS //Silence imposes this much stagger
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
 #define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
@@ -781,6 +790,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 SECONDS
 /// Amount of stored globs needed to start glowing.
 #define	BOILER_LUMINOSITY_THRESHOLD 2
+/// Charge distance for Sizzler's acid dash
+#define BOILER_CHARGEDISTANCE 5
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -808,6 +819,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
+#define DEFENDER_REFLECT_TIME 0.6 SECONDS
 
 //Baneling defines
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so
@@ -842,9 +854,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
-
-//Praetorian defines
-#define PRAE_CHARGEDISTANCE 5
 
 //Dancer defines
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets

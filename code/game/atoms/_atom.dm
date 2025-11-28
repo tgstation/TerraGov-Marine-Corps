@@ -115,6 +115,8 @@
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
 	var/datum/storage/storage_datum
+	/// All sources that affect or modify our alpha.
+	var/alpha_sources = list()
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -1003,3 +1005,25 @@ directive is properly returned.
 /atom/proc/do_acid_melt()
 	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
 	playsound(src, SFX_ACID_HIT, 25)
+
+/// Sets an alpha source before updating our alpha.
+/atom/proc/set_alpha_source(source, desired_alpha)
+	alpha_sources[source] = desired_alpha
+	update_alpha()
+
+/// Removes an alpha source before updating alpha.
+/atom/proc/remove_alpha_source(source)
+	if(!(source in alpha_sources))
+		return
+	alpha_sources -= source
+	update_alpha()
+
+/// Updates our alpha based on alpha sources.
+/atom/proc/update_alpha()
+	alpha = initial(alpha)
+	for(var/source_name AS in alpha_sources)
+		var/new_alpha = alpha_sources[source_name]
+		if(new_alpha >= alpha)
+			continue
+		alpha = new_alpha
+

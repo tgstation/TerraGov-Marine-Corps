@@ -92,7 +92,9 @@
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING)
 		var/time_modifier = seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+		var/previous_regen_power = regen_power
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 30, 0, 1) //Ignores the cooldown, and gives a 50% boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
@@ -100,6 +102,7 @@
 			return
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 20, 1)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING, regen_power, previous_regen_power)
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
@@ -120,7 +123,7 @@
 		if(plasma_stored < pheromone_cost)
 			use_plasma(plasma_stored, FALSE)
 			QDEL_NULL(current_aura)
-			src.balloon_alert(src, "Stop emitting, no plasma")
+			src.balloon_alert(src, "no plasma, emitting stopped!")
 		else
 			use_plasma(pheromone_cost * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD, FALSE)
 
@@ -170,7 +173,7 @@
 
 	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
 
-	hud_set_pheromone()
+	update_aura_overlay()
 	..()
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()

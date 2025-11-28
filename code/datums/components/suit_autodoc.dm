@@ -183,7 +183,7 @@
 	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite deactivates")
+		wearer.balloon_alert(wearer, "deactivated")
 		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
 
 /**
@@ -199,7 +199,7 @@
 	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite activates")
+		wearer.balloon_alert(wearer, "activated")
 		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
 
 

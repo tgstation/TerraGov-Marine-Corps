@@ -137,10 +137,10 @@
 ///Proc for checking that the defib is ready to operate
 /obj/item/defibrillator/proc/defib_ready(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(!ready)
-		balloon_alert(user, "take the paddles out")
+		balloon_alert(user, "take the paddles out!")
 		return FALSE
 	if(!ishuman(patient))
-		to_chat(user, span_warning("The instructions on [src] don't mention how to resuscitate that..."))
+		balloon_alert(user, "that's not a human!")
 		return FALSE
 	if(patient.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
@@ -153,11 +153,11 @@
 ///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
 /obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
-		balloon_alert(user, "busy")
+		balloon_alert(user, "busy!")
 		return
 
 	if(!COOLDOWN_FINISHED(src, defib_cooldown))
-		balloon_alert(user, "recharging")
+		balloon_alert(user, "recharging!")
 		return
 
 	//job knowledge requirement
@@ -285,7 +285,7 @@
 		ghost.reenter_corpse()
 
 	if(!patient.client)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected. Patient may not appear alert temporarily or permanently."))
 
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))

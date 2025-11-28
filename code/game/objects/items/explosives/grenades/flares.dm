@@ -10,6 +10,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	hud_state = "grenade_frag"
 	light_system = MOVABLE_LIGHT
+	light_power = 1.5
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
 	var/fuel = 0

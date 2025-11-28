@@ -6,6 +6,7 @@
 
 /datum/action/ability/xeno_action/empower
 	name = "Empower"
+	desc = "You can be empowered by a primordial drone link."
 	/// Holds the fade-out timer.
 	var/fade_timer
 	/// The amount of abilities we've chained together.
@@ -129,13 +130,13 @@
 	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
 	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
 	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
-	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE, attacker = owner)
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
 		if(hit_living.issamexenohive(xeno_owner))
 			return
 		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
-		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE, attacker = owner)
 		hit_living.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 		step_away(hit_living, living_target, 1, 1)
 	if(isobj(hit_atom))
@@ -206,7 +207,7 @@
 
 /datum/action/ability/activable/xeno/warrior/lunge/New(Target)
 	. = ..()
-	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies."
+	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies and targets directly behind cover."
 
 /datum/action/ability/activable/xeno/warrior/lunge/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
@@ -351,7 +352,7 @@
 	playsound(living_target, 'sound/weapons/alien_claw_block.ogg', 75, 1)
 	shake_camera(living_target, 1, 1)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_DISARM2)
-	var/fling_distance = WARRIOR_FLING_DISTANCE
+	var/fling_distance = starting_fling_distance
 	if(living_target.mob_size >= MOB_SIZE_BIG) // Penalize fling distance for big creatures.
 		fling_distance--
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
@@ -654,8 +655,8 @@
 	add_slowdown(slowdown_stacks)
 	adjust_stagger(stagger_stacks)
 	adjust_blurriness(slowdown_stacks)
-	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE)
-	apply_damage(punch_damage, STAMINA, updating_health = TRUE)
+	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE, attacker = xeno)
+	apply_damage(punch_damage, STAMINA, updating_health = TRUE, attacker = xeno)
 	var/turf_behind = get_step(src, REVERSE_DIR(get_dir(src, xeno)))
 	if(!push)
 		return
@@ -694,7 +695,7 @@
 	name = "Flurry"
 	action_icon_state = "flurry"
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
-	desc = "Strike at your target with blinding speed."
+	desc = "Strike at your target with blinding speed. Dealing less damage but blinding your target."
 	ability_cost = 10
 	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(

@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	goal_image.pixel_y += 10
 	animate(goal_image, pixel_y = pixel_y - 3, time = 7, loop = -1, easing = EASE_OUT)
 	animate(pixel_y = pixel_y + 3, time = 7, loop = -1, easing = EASE_OUT)
-	creator.client.images += goal_image
+	creator?.client?.images += goal_image
 
 /obj/effect/ai_node/goal/LateInitialize()
 	make_adjacents(TRUE)
@@ -174,13 +174,13 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 /obj/effect/ai_node/goal/Destroy()
 	GLOB.goal_nodes -= faction
 	if(creator)
-		creator.client.images -= goal_image
+		creator?.client?.images -= goal_image
 	return ..()
 
 ///Null creator to prevent harddel
 /obj/effect/ai_node/goal/proc/clean_creator()
 	SIGNAL_HANDLER
-	creator.client.images -= goal_image
+	creator?.client?.images -= goal_image
 	creator = null
 
 ///Delete this ai_node goal

@@ -111,13 +111,13 @@
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
 	if(user.do_actions)
-		balloon_alert_to_viewers("Busy")
+		balloon_alert_to_viewers("busy!")
 		return
 	if(is_mainship_level(user.z))
-		user.balloon_alert(user, "Can't use here")
+		user.balloon_alert(user, "can't use these here!")
 		return
 	if(faction && user.faction != faction)
-		balloon_alert_to_viewers("Security locks engaged")
+		balloon_alert_to_viewers("security locks engaged")
 		return
 	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
@@ -125,7 +125,7 @@
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		balloon_alert_to_viewers("No clear view")
+		balloon_alert_to_viewers("no clear view!")
 		return
 
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
@@ -148,16 +148,16 @@
 ///Internal bino checks, mainly around firemode
 /obj/item/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	if(!mode)
-		balloon_alert_to_viewers("Select a mode!")
+		balloon_alert_to_viewers("select a mode!")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
+		balloon_alert_to_viewers("[lowertext(mode.name)] unavailable!")
 		return FALSE
 	if(!mode.uses)
-		balloon_alert_to_viewers("[mode.name] expended")
+		balloon_alert_to_viewers("[lowertext(mode.name)] expended!")
 		return FALSE
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown")
+		balloon_alert_to_viewers("on cooldown!")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(isspacearea(targ_area))
@@ -174,7 +174,7 @@
 		return FALSE
 	if(target.z != user.z)
 		return FALSE
-	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 3, target)))
+	if(!line_of_sight(user, target, 30, TRUE))
 		return FALSE
 	return TRUE
 

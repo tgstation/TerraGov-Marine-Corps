@@ -8,7 +8,7 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Devour your victim to be able to carry it faster."
+	desc = "Devour your victim to be able to carry it around."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
 	target_flags = ABILITY_MOB_TARGET
@@ -147,7 +147,7 @@
 		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"));
 		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE);
 		target_human.emote("scream");
-		target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);
+		target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, attacker = owner)
 		var/drain_healing = GORGER_DRAIN_HEAL
 		HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE)
 		xeno_owner.adjustOverheal(drain_healing)

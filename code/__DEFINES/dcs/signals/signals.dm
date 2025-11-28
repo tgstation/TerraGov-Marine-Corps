@@ -10,7 +10,6 @@
 #define COMSIG_GLOB_NEW_Z "!new_z"
 #define COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED "!deploy_timelock_ended"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
-#define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 ///Marine ship in Crash gamemode has landed
@@ -30,7 +29,7 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
-#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_NUKE_DEFUSED "!nuke_defused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
@@ -66,6 +65,9 @@
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 #define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
+
+///from proc/global_rally_zombies()
+#define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -159,6 +161,8 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!ZOMBIE_TUNNEL_DESTROYED"
+
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -172,6 +176,9 @@
 ///from /datum/element/jump when a jump has started and ended
 #define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
+
+///From /datum/component/throw_parry/parry_check() when a parry is successful
+#define COMSIG_ELEMENT_PARRY_TRIGGERED "element_parry_triggered"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
@@ -355,6 +362,10 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///From base of atom/get_self_acid
 #define COMSIG_ATOM_GET_SELF_ACID "atom_get_self_acid"
+///From base of atom/can_plastique()
+#define COMSIG_ATOM_TRY_PLASTIQUE "atom_try_plastique"
+	///Do not allow planting
+	#define COMSIG_ATOM_CANCEL_PLASTIQUE	(1<<0)
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)
@@ -462,6 +473,8 @@
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 #define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
 
+#define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
+
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -547,6 +560,9 @@
 // /obj/item/cell
 #define COMSIG_CELL_SELF_RECHARGE "cell_self_recharge"
 
+///SG goggles toggled on
+#define COMSIG_KTLD_ACTIVATED "ktld_activated"
+
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 #define COMSIG_MOB_GUN_FIRE "mob_gun_fire"
@@ -573,6 +589,8 @@
 
 #define COMSIG_ARMORED_FIRE "armored_fire"
 #define COMSIG_ARMORED_STOP_FIRE "armored_stop_fire"
+
+#define COMSIG_ARMORED_DO_EXTRACT "armored_do_extract"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -749,6 +767,9 @@
 // From [/mob/living/updatehealth()]
 #define COMSIG_LIVING_UPDATE_HEALTH "living_update_health"
 
+// Sent when a /living is dealing with being on fire & is still on fire. From [/mob/living/proc/handle_fire]: ()
+#define COMSIG_LIVING_HANDLE_FIRE "living_handle_fire"
+
 //mob/living/carbon signals
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
@@ -790,6 +811,8 @@
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+#define COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING "xenomorph_pre_health_regen_scaling"
+#define COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING "xenomorph_post_health_regen_scaling"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 #define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
@@ -858,6 +881,8 @@
 #define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
 #define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
 
+#define COMSIG_FACE_HUGGER_DEATH "face_hugger_death"
+
 // Mutations:
 #define COMSIG_GLOB_MUTATION_CHAMBER_SHELL "!mutation_chamber_shell" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
 #define COMSIG_GLOB_MUTATION_CHAMBER_SPUR "!mutation_chamber_spur" // From: [/obj/structure/xeno/mutation_chamber/shell] (previous_amount, new_amount)
@@ -878,10 +903,6 @@
 #define COMSIG_ABILITY_STASIS "ability_stasis"
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
 #define COMSIG_ABILITY_REANIMATE "ability_reanimate"
-
-// throw parry signals
-#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
-#define COMSIG_PARRY_TRIGGER "parry_trigger"
 
 // xeno iff tag signals
 #define COMSIG_XENO_IFF_CHECK "xeno_iff_check" //! Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.

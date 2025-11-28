@@ -137,20 +137,20 @@
 /datum/strippable_item/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
 	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
 		return
-	
+
 	if(length(user.do_actions))
-		user.balloon_alert(user, "Busy!")
+		user.balloon_alert(user, "busy!")
 		return
 
 	var/strapped = HAS_TRAIT_FROM(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
-	user.balloon_alert_to_viewers("[strapped ? "Loosening" : "Tightening"] strap...")
+	user.balloon_alert_to_viewers("[strapped ? "loosening" : "tightening"] strap...")
 
 	if(!do_after(user, 3 SECONDS, NONE, source, BUSY_ICON_FRIENDLY))
 		return
 
 	if(!strapped)
 		ADD_TRAIT(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
-		user.balloon_alert_to_viewers("Tightened strap")
+		user.balloon_alert_to_viewers("tightened strap")
 	else
 		REMOVE_TRAIT(item, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT)
-		user.balloon_alert_to_viewers("Loosened strap")
+		user.balloon_alert_to_viewers("loosened strap")

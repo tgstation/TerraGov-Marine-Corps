@@ -5,12 +5,13 @@
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
+	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage and restores plasma depending on how many fire stacks they have."
 	cooldown_duration = 12 SECONDS
-	ability_cost = 30
+	ability_cost = 75
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
 	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	// Should they also slash upon hitting a mob?
 	var/should_slash = TRUE
 	/// How much damage is dealt for hitting through a mob?
@@ -71,6 +72,7 @@
 		var/stacks_to_give = stacks_to_add ? stacks_to_add : 0
 		if(stack_damage)
 			fire_damage += debuff.stacks * stack_damage
+			xeno_owner.gain_plasma(debuff.stacks * 20) // Restores plasma for each stack consumed
 			stacks_to_give -= debuff.stacks
 		debuff.add_stacks(stacks_to_give, xeno_owner)
 	if(fire_damage)
@@ -90,8 +92,8 @@
 	name = "Fireball"
 	action_icon_state = "fireball"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Release a fireball that explodes on contact."
-	ability_cost = 50
+	desc = "Release a fireball that explodes in a 3x3 area on contact."
+	ability_cost = 300
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
@@ -148,9 +150,9 @@
 	name = "Fire Storm"
 	action_icon_state = "whirlwind"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Unleash a fiery tornado that goes in a straight line which will set fire around it as it goes and harm marines that directly touch it."
+	desc = "Unleash a fiery tornado that goes in a straight line which will set fire around it randomly as it goes. Harms marines that directly touch it."
 	target_flags = ABILITY_TURF_TARGET
-	ability_cost = 50
+	ability_cost = 300
 	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
@@ -200,7 +202,7 @@
 	action_icon_state = "inferno"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "After a short cast time, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
-	ability_cost = 50
+	ability_cost = 125
 	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
@@ -245,9 +247,9 @@
 	name = "Infernal Trigger"
 	action_icon_state = "infernaltrigger"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Causes a chosen human's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area near them is set on fire."
+	desc = "Causes a chosen target's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area adjacent to them is set on fire."
 	target_flags = ABILITY_MOB_TARGET
-	ability_cost = 40
+	ability_cost = 100
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNAL_TRIGGER,

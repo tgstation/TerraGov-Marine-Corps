@@ -2,7 +2,7 @@
 // *********** Resin building
 // ***************************************
 /datum/action/ability/activable/xeno/secrete_resin/widow
-	ability_cost = 100
+	ability_cost = 25
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/turf/closed/wall/resin/regenerating/special/bulletproof,
@@ -308,7 +308,7 @@
 	succeed_activate()
 
 /// Burrow code for xenomorphs
-/datum/action/ability/xeno_action/burrow/proc/xeno_burrow()
+/datum/action/ability/xeno_action/burrow/proc/xeno_burrow(datum/source, damage_amount, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(xeno_owner, TRAIT_BURROWED))
 		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))

@@ -182,11 +182,13 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(get_organ_slot(ORGAN_SLOT_BRAIN))
-		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-		if(brain && istype(brain))
-			return 1
-	return 0
+	var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!istype(brain))
+		return FALSE
+	var/datum/limb/braincase = get_limb(brain.parent_limb)
+	if(braincase.limb_status & LIMB_DESTROYED)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/has_eyes()
 	if(get_organ_slot(ORGAN_SLOT_EYES))
@@ -319,7 +321,7 @@
 	if(!has_working_organs())
 		return DEFIB_FAIL_BAD_ORGANS
 
-	if(health + getOxyLoss() + additional_health_increase <= get_death_threshold())
+	if((health + getOxyLoss() + additional_health_increase <= get_death_threshold()) && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB))
 		return DEFIB_FAIL_TOO_MUCH_DAMAGE
 
 	return DEFIB_POSSIBLE

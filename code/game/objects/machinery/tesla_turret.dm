@@ -52,7 +52,7 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -63,7 +63,7 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -74,10 +74,10 @@
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -147,10 +147,10 @@
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -165,10 +165,10 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(active)
-		balloon_alert(user, "turn off first")
+		balloon_alert(user, "turn it off first!")
 		return
 	user.put_in_hands(battery)
 	battery = null
@@ -180,10 +180,10 @@
 	if(isdead(user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(!battery.use(0))
-		balloon_alert(user, "no power")
+		balloon_alert(user, "no power!")
 		return
 	toggle(!active)
 
@@ -202,11 +202,11 @@
 
 /obj/machinery/deployable/tesla_turret/process()
 	if(!battery || !active || !battery.use(0))
-		balloon_alert_to_viewers("shuts off!")
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
 		return
 	if(!battery.use(passive_cost))
-		balloon_alert_to_viewers("shuts off!")
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
 		hud_set_tesla_battery()
 		return
@@ -226,9 +226,9 @@
 /obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
 	if(active)
 		if(shock(marine, 70))
-			balloon_alert_to_viewers("sparks!")
+			to_chat(marine, span_userdanger("You're shocked by \the [src]!"))
 		else
-			balloon_alert(marine, "turn off first!")
+			balloon_alert(marine, "turn it off first!")
 		return
 	return ..()
 

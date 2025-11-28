@@ -579,6 +579,96 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
+//MK90M4, standard PMC pistol
+
+/obj/item/weapon/gun/pistol/mk90
+	name = "\improper MK90 Mod 4 combat pistol"
+	desc = "Standard issue pistol for Nanotrasen Contractors, based on MK88. Has inbuilt barrel charger. Lost it's inbuilt burst fire mode, but in exchange got much heavier punch. Fires 9mm armor piercing rounds."
+	icon_state = "90m4"
+	worn_icon_state = "90m4"
+	caliber = CALIBER_9X19 //codex
+	max_shells = 20 //codex
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_88mod4.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/mk90
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/mk90, /obj/item/ammo_magazine/pistol/mk90/extended)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 22,"rail_x" = 10, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = 0
+	aim_slowdown = 0.2
+	scatter = 0
+	scatter_unwielded = 5
+	akimbo_additional_delay = 2
+	damage_mult = 1.25
+	shell_speed_mod = 2
+	damage_falloff_mult = 0.8
+
+/obj/item/weapon/gun/pistol/mk90/pmc_standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/pistol/mk90/pmc_sniper
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/burstfire_assembly, /obj/item/attachable/lace)
+	default_ammo_type = /obj/item/ammo_magazine/pistol/mk90/extended
+
+//-------------------------------------------------------
+//MK100M5, PMC heavy gyrojet pistol
+
+/obj/item/weapon/gun/pistol/mk100_gyrojet
+	name = "\improper MK100 mod 5 'Suppresor' gyrojet pistol"
+	desc = "A massive, formidable automatic handgun chambered with 15x50mm rocket propelled rounds. Commonly seen in the hands of wealthy Nanotrasen members, not because this weapon is expensive, but because you better have a power armor on, to not break your arm while firing this thing. Due to shell's rupture in target's body, high chance of causing shrapnel."
+	icon_state = "100m5"
+	worn_icon_state = "100m5"
+	caliber = CALIBER_15X50 //codex
+	max_shells = 10 //codex
+	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/mk100_gyrojet
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/mk100_gyrojet)
+	force = 12
+	attachable_allowed = list(,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+
+	fire_delay = 0.45 SECONDS
+	burst_amount = 3
+	burst_delay = 0.2 SECONDS
+	extra_delay = 0.25 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.75
+	recoil = 2
+	recoil_unwielded = 4
+
+/obj/item/weapon/gun/pistol/mk100_gyrojet/pmc_leader
+
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+//-------------------------------------------------------
 //SOM pistol
 
 /obj/item/weapon/gun/pistol/som
@@ -867,3 +957,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter = 0
 	scatter_unwielded = 8
 	recoil_unwielded = 2
+
+/obj/item/weapon/gun/pistol/smart_pistol/pmc
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+	)

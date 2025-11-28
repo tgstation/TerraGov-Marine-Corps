@@ -813,6 +813,10 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
 
+/obj/item/weapon/gun/shotgun/pump/t35/back_slot //we need an apparent dupe due to uses in assoc lists
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
+
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
@@ -869,9 +873,13 @@
 	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+	autobalance_monitor_value = ZX_PRICE
 
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/shotgun/zx76/valhalla
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 //V-51 SOM shotgun
@@ -901,7 +909,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight/under,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 38, "under_y" = 12, "stock_x" = 14, "stock_y" = 16)
 
@@ -917,14 +924,17 @@
 	wield_delay = 0.85 SECONDS
 
 /obj/item/weapon/gun/shotgun/som/pointman
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/standard
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+
+/obj/item/weapon/gun/shotgun/som/back_slot
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 /obj/item/weapon/gun/shotgun/som/support
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/shotgun/som/burst
 	name = "\improper V-51B assault shotgun"
@@ -938,11 +948,11 @@
 
 /obj/item/weapon/gun/shotgun/som/burst/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/burst/ert
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

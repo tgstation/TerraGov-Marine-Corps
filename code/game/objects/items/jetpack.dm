@@ -52,8 +52,45 @@
 	. = ..()
 	toggle_action.remove_action(user)
 
+/obj/item/jetpack_marine/can_refuel(atom/refueler, fuel_type, mob/user)
+	if(fuel_left == fuel_max)
+		user?.balloon_alert(user, "full")
+		return FALSE
+	if(fuel_type != get_fueltype())
+		user?.balloon_alert(user, "wrong fuel")
+		return FALSE
+	return TRUE
+
+/obj/item/jetpack_marine/do_refuel(atom/refueler, fuel_type, mob/user)
+	var/fuel_transfer_amount = min(refueler.reagents.total_volume, (fuel_max - fuel_left))
+	refueler.reagents.remove_reagent(fuel_type, fuel_transfer_amount)
+	fuel_left += fuel_transfer_amount
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	user?.balloon_alert(user, "refilled")
+	change_fuel_indicator()
+	update_icon()
+
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action, target)
 	return use_jetpack(target, user)
+
+/obj/item/jetpack_marine/update_overlays()
+	. = ..()
+	switch(fuel_indicator)
+		if(FUEL_INDICATOR_FULL)
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
+		if(FUEL_INDICATOR_HALF_FULL)
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
+		if(FUEL_USE)
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
+		else
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
+
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
+	. = ..()
+	if(lit)
+		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
@@ -92,25 +129,6 @@
 		if(1.2 to INFINITY)//heavy armor with shield and tyr mk2
 			return 2
 
-/obj/item/jetpack_marine/update_overlays()
-	. = ..()
-	switch(fuel_indicator)
-		if(FUEL_INDICATOR_FULL)
-			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
-		if(FUEL_INDICATOR_HALF_FULL)
-			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
-		if(FUEL_USE)
-			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
-		else
-			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
-
-/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
-	if(inhands)
-		return
-	. = ..()
-	if(lit)
-		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")
-
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()
 	if(fuel_left-fuel_indicator > 0)
@@ -125,43 +143,6 @@
 		fuel_indicator = FUEL_USE
 		return
 	fuel_indicator = 0
-
-/obj/item/jetpack_marine/afterattack(obj/target, mob/user, proximity_flag) //refuel at fueltanks when we run out of fuel
-	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) || !proximity_flag)
-		return ..()
-	var/obj/structure/reagent_dispensers/fueltank/FT = target
-	if(FT.reagents.total_volume == 0)
-		balloon_alert(user, "No fuel")
-		return
-
-	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
-	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-	fuel_left += fuel_transfer_amount
-	fuel_indicator = FUEL_INDICATOR_FULL
-	change_fuel_indicator()
-	update_icon()
-	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	balloon_alert(user, "Refilled")
-
-/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
-		return
-	var/obj/item/ammo_magazine/flamer_tank/FT = I
-	if(FT.current_rounds == 0)
-		balloon_alert(user, "No fuel")
-		return
-
-	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
-	FT.current_rounds -= fuel_transfer_amount
-	fuel_left += fuel_transfer_amount
-	fuel_indicator = FUEL_INDICATOR_FULL
-	change_fuel_indicator()
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "Refilled")
-	update_icon()
 
 /datum/action/ability/activable/item_toggle/jetpack
 	name = "Use jetpack"
@@ -183,7 +164,7 @@
 		return FALSE
 	var/obj/item/jetpack_marine/jetpack = holder_item
 	if(jetpack.fuel_left < FUEL_USE)
-		carbon_owner.balloon_alert(carbon_owner, "No fuel")
+		carbon_owner.balloon_alert(carbon_owner, "no fuel!")
 		return
 	return ..()
 
@@ -265,7 +246,7 @@
 	else
 		hit_mob.Knockdown(knockdown_duration)
 		human_user.forceMove(get_turf(hit_mob))
-	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE, attacker = human_user)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 
 	human_user.set_throwing(FALSE)

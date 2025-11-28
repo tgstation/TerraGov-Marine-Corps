@@ -120,12 +120,14 @@
 /datum/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
 	var/obj/item/storage/holster/backholster/flamer/holster = parent
-	if(holster.holstered_item == item)
-		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
-		if(flamer.chamber_items.len == 0)
-			return
-		holster.refuel(flamer.chamber_items[1], user)
-		flamer.update_ammo_count()
+	if(holster.holstered_item != item)
+		return
+	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
+	if(flamer.chamber_items.len == 0)
+		return
+	var/obj/item/tank = flamer.chamber_items[1]
+	tank.try_refuel(holster, holster.fuel_type, user)
+	flamer.update_ammo_count()
 
 /datum/storage/holster/t19
 	storage_slots = 4

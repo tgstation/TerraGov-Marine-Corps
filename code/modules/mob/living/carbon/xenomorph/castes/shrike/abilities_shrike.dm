@@ -56,11 +56,12 @@
 // ***************************************
 // *********** Psychic Fling
 // ***************************************
+#define SHRIKE_FLING_RANGE 3
+#define SHRIKE_FLING_DISTANCE 3
 /datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
@@ -78,6 +79,10 @@
 	/// Should the collusion duration/multiplier only register for xenomorphs; also allows targetting of other xenos. This means that only flung xenomorphs can deal its effects to collided things.
 	var/collusion_xenos_only = FALSE
 
+/datum/action/ability/activable/xeno/psychic_fling/New(Target)
+	. = ..()
+	desc = "Sends an enemy or an item flying [SHRIKE_FLING_DISTANCE] tiles away. A [SHRIKE_FLING_RANGE] tile ranged ability. Stuns for [stun_duration / (1 SECONDS)] seconds."
+
 /datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
@@ -94,7 +99,7 @@
 		return FALSE
 	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
-	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
+	var/max_dist = SHRIKE_FLING_RANGE //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
@@ -128,7 +133,7 @@
 			human_target.Stun(stun_duration)
 			human_target.drop_all_held_items()
 		if(damage_multiplier)
-			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE)
+			human_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * damage_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		shake_camera(human_target, 2, 1)
 		RegisterSignal(human_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 		if(!collusion_xenos_only && (collusion_paralyze_duration || collusion_damage_multiplier))
@@ -143,7 +148,7 @@
 		else
 			xenomorph_target.add_pass_flags(PASS_MOB, THROW_TRAIT)
 	var/facing = xeno_owner == movable_target ? xeno_owner.dir : get_dir(xeno_owner, movable_target)
-	var/fling_distance = (isitem(movable_target)) ? 4 : 3 // Objects get flung further away.
+	var/fling_distance = (isitem(movable_target)) ? 4 : SHRIKE_FLING_DISTANCE // Objects get flung further away.
 	var/turf/T = movable_target.loc
 	var/turf/temp
 	for(var/x in 1 to fling_distance)
@@ -179,7 +184,7 @@
 		if(!xeno_owner.issamexenohive(living_hit))
 			INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob, emote), isxeno(living_hit) ? "hiss1" : "scream")
 			if(damage)
-				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+				living_hit.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 			if(collusion_paralyze_duration)
 				living_hit.Paralyze(collusion_paralyze_duration)
 	if(isobj(hit_atom))
@@ -197,7 +202,7 @@
 	if(!xeno_owner.issamexenohive(living_source))
 		INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), isxeno(living_source) ? "hiss1" : "scream")
 		if(damage)
-			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			living_source.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 		if(collusion_paralyze_duration)
 			living_source.Paralyze(collusion_paralyze_duration)
 
@@ -205,10 +210,10 @@
 // *********** Unrelenting Force
 // ***************************************
 /datum/action/ability/activable/xeno/unrelenting_force
+#define SHRIKE_PARALYZE_DURATION 2 SECONDS /// How long affected mobs are paralyzed for
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
-	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
@@ -224,6 +229,10 @@
 	var/rebound_throwing = FALSE
 	/// What direction was the owner facing at the start of the ability? Kept around to reuse for rebound signals.
 	var/starting_direction
+
+/datum/action/ability/activable/xeno/unrelenting_force/New(Target)
+	. = ..()
+	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path for [throwing_distance] tiles. Stuns for [SHRIKE_PARALYZE_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
@@ -273,7 +282,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(paralyze = 2 SECONDS)
+				H.apply_effects(paralyze = SHRIKE_PARALYZE_DURATION)
 				shake_camera(H, 2, 1)
 			things_to_throw += affected
 
@@ -537,7 +546,6 @@
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
-	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -548,6 +556,10 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
 	var/channel_particle = /particles/warlock_charge
+
+/datum/action/ability/activable/xeno/psychic_vortex/New(Target)
+	. = ..()
+	desc = "After a [VORTEX_INITIAL_CHARGE / (1 SECONDS)] second windup, channel a sizable vortex of psychic energy, drawing in any items and enemies [VORTEX_RANGE] tiles away."
 
 /datum/action/ability/activable/xeno/psychic_vortex/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
@@ -728,7 +740,7 @@
 	succeed_activate()
 
 /// Keeps track of how much damage has been taken so far by the owner and the choked human.
-/datum/action/ability/activable/xeno/psychic_choke/proc/on_damage_taken(datum/source, damage_amount)
+/datum/action/ability/activable/xeno/psychic_choke/proc/on_damage_taken(datum/source, damage_amount, mob/living/attacker)
 	damage_taken_so_far += damage_amount
 	if(damage_taken_so_far >= damage_threshold)
 		end_choke()

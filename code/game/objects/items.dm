@@ -157,6 +157,8 @@
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
+	/// Should [/datum/component/autobalance_monitor] be given? If so, what value should it use?
+	var/autobalance_monitor_value
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -186,6 +188,9 @@
 
 	if(current_variant)
 		update_icon()
+
+	if(autobalance_monitor_value)
+		AddComponent(/datum/component/autobalance_monitor, autobalance_monitor_value)
 
 /obj/item/Destroy()
 	if(ismob(loc))
@@ -739,7 +744,7 @@
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
 	if(HAS_TRAIT(src, TRAIT_NODROP))
-		stripper.balloon_alert(stripper, "[src] is stuck!")
+		stripper.balloon_alert(stripper, "it's stuck!")
 		return FALSE
 	return TRUE
 
@@ -991,21 +996,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
-	if(zoom_allow_movement)
-		RegisterSignal(user, COMSIG_LIVING_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
-	else
-		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
+	if(!zoom_allow_movement)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(zoom_item_turnoff))
+	RegisterSignals(user, list(COMSIG_LIVING_SWAPPED_HANDS, COMSIG_KTLD_ACTIVATED), PROC_REF(zoom_item_turnoff))
 	RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
 	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 
-
 ///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
-	if(zoom_allow_movement)
-		UnregisterSignal(user, list(COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
-	else
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
-
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR, COMSIG_KTLD_ACTIVATED))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
@@ -1152,7 +1151,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks, user_display=PROGRESS_GENERIC)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks, user_display = BUSY_ICON_GENERIC)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -1446,7 +1445,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/color_item(obj/item/facepaint/paint, mob/user)
 
 	if(paint.uses < 1)
-		balloon_alert(user, "\the [paint] is out of color!")
+		balloon_alert(user, "it's dry!")
 		return
 
 	var/list/selection_list = list()
@@ -1539,9 +1538,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/refill(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(item_flags & CAN_REFILL))
-		user.balloon_alert(user, "Can't refill this")
+		user.balloon_alert(user, "can't be refilled!")
 		return FALSE
-	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
+	user.balloon_alert(user, "refilled") //If all checks passed, it's safe to throw the balloon alert
 	return TRUE
 
 /// Returns the strip delay of the item.

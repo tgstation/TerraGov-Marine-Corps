@@ -803,6 +803,69 @@
 /obj/structure/prop/mainship/som_scientist/alt
 	icon_state = "SOM_scientist_2"
 
+/obj/structure/prop/tdfcorpse
+	name = "TDF marine"
+	desc = "A Terra Defense Force soldier. They don't seem to be doing very well."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "tdfcorpse"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	anchored = FALSE
+	layer = ABOVE_OBJ_LAYER
+	max_integrity = 100
+	hit_sound = list('sound/effects/bone_break1.ogg','sound/weapons/wristblades_hit.ogg')
+	coverage = 0
+
+/obj/structure/prop/tdfcorpse/headshot
+	desc = "A Terra Defense Force soldier. This one seems to have lost their mind."
+	icon_state = "tdfcorpseheadshot"
+
+/obj/structure/prop/tdfcorpse/decap
+	desc = "Where's your head at? (Where's yo head at?) (Where's yo head at?)"
+	icon_state = "tdfcorpsedecap"
+
+/obj/structure/prop/manhole
+	name = "manhole"
+	desc = "This would be a hole, except it's got a big piece of metal covering it."
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+	icon_state = "wymanhole"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	resistance_flags = PROJECTILE_IMMUNE
+
+/obj/structure/prop/fueltank
+	name = "\improper jet fuel container"
+	desc = "A container used to store high quantities of fuel."
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+	icon_state = "fueltank"
+	bound_width = 96
+	bound_height = 32
+	density = TRUE
+	layer = ABOVE_OBJ_LAYER
+	allow_pass_flags = NONE
+	resistance_flags = UNACIDABLE
+	max_integrity = 500
+
+/obj/structure/prop/fueltank/broken
+	name = "\improper broken jet fuel container"
+	desc = "A container that used to store high quantities of fuel."
+	icon_state = "fueltank_broken"
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
+
+/obj/structure/prop/flag
+	name = "\improper Terragov flag"
+	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_tgmc_planted"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	max_integrity = 100
+	layer = ABOVE_OBJ_LAYER
+	coverage = 0
+
+/obj/structure/prop/flag/som
+	name = "\improper Sons of Mars flag"
+	desc = "A flag bearing the symbol of the Sons of Mars. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_som_planted"
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
@@ -1380,6 +1443,67 @@
 /obj/structure/prop/vehicle/big_truck/enclosed_wrecked_tread
 	icon_state = "truck_enclosed_treads_wrecked"
 
+/obj/structure/prop/vehicle/land_rover
+	name = "land rover"
+	desc = "A light armored all terrain vehicle. Beats walking."
+	icon = 'icons/obj/vehicles/4x4.dmi'
+	icon_state = "land_rover"
+	density = TRUE
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 500
+
+/obj/structure/prop/vehicle/land_rover/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/prop/vehicle/land_rover/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 64
+			bound_height = 96
+		if(WEST, EAST)
+			bound_width = 96
+			bound_height = 64
+
+/obj/structure/prop/vehicle/land_rover/machinegun
+	name = "armored land rover"
+	desc = "An all terrain vehicle with some armor plating and an attached machinegun. Unfortunately, the machinegun has no ammo, and you don't have your drivers license."
+	icon_state = "land_rover_machinegun"
+	max_integrity = 500
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, FIRE = 0, ACID = 50)
+
+/obj/structure/prop/vehicle/apc_new
+	name = "APC - Athena"
+	desc = "An unarmed APC designed to command and transport troops in the battlefield. For some reason, it bears the same name as its predecessor. Its doors are locked, and you probably don't know how to drive this thing anyways."
+	icon = 'icons/obj/armored/3x3/apc.dmi'
+	icon_state = "apc"
+	density = TRUE
+	allow_pass_flags = PASSABLE|PASS_WALKOVER
+	max_integrity = 500
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 25, BIO = 0, FIRE = 0, ACID = 75)
+
+/obj/structure/prop/vehicle/apc_new/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/prop/vehicle/apc_new/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH, SOUTH)
+			bound_width = 96
+			bound_height = 128
+		if(WEST, EAST)
+			bound_width = 128
+			bound_height = 96
 
 /obj/structure/prop/vehicle/tank
 	name = "Decommissioned TAV - Rhino"
@@ -2348,6 +2472,57 @@
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "error"
+
+/obj/structure/prop/trashpile
+	name = "trash pile"
+	desc = "A disgusting pile of trash. Maybe you could use this as cover if you were desperate."
+	icon = 'icons/obj/structures/misc.dmi'
+	icon_state = "trashpile"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	hit_sound = 'sound/weapons/heavyhit.ogg'
+	coverage = 30
+	max_integrity = 75
+
+/obj/structure/prop/casammo
+	name = "30mm ammo crate"
+	desc = "A crate full of 30mm bullets, standard issue for Terragov fighters. Unfortunately, it is welded to the floor and it doesn't look like you can move it."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "30mm_crate"
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	coverage = 30
+	max_integrity = 150
+
+/obj/structure/prop/casammo/incendiary_minirocket
+	name = "incendiary mini rocket stack"
+	desc = "A pack of laser guided incendiary mini rockets. Unfortunately, it's reaaaaaally heavy, so you can't lift it with a powerloader."
+	icon_state = "minirocket_inc"
+
+/obj/structure/prop/casammo/minirocket
+	name = "mini-rocket stack"
+	desc = "A pack of explosive, laser-guided mini-rockets. Unfortunately, these rockets have set into the ground below, and can't be moved with a powerloader."
+	icon_state = "minirocket"
+
+/obj/structure/prop/casammo/monarch
+
+	name = "\improper PHGM-7 'Monarch'"
+	desc = "The PHGM-7 'Monarch' is a well tried and tested dumb rocket design due to being a mere dumb rocket. Its payload is designed to devastate areas for cheap. Unfortunately, this missile is too slippery to be moved with a powerloader."
+	icon_state = "monarch"
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
+	bound_width = 64
+	bound_height = 32
+	coverage = 40
+	max_integrity = 300
+
+/obj/structure/prop/casammo/battery
+	name = "high-capacity laser battery"
+	icon_state = "laser_battery"
+	desc = "A high-capacity laser battery used to power laser beam weapons. Unfortunately, you're too dumb to know how to lift this, even if you were in a powerloader."
 
 /obj/prop/mainship/prop/news_tv
 	name = "TV"

@@ -69,7 +69,7 @@
 
 
 /obj/alien/resin/attack_hand(mob/living/user)
-	balloon_alert(user, "You only scrape at it")
+	balloon_alert(user, "need a weapon!")
 	return TRUE
 
 
@@ -216,10 +216,10 @@
 		qdel(src)
 		return TRUE
 
-	src.balloon_alert(xeno_attacker, "Destroying...")
+	src.balloon_alert(xeno_attacker, "destroying...")
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
-		src.balloon_alert(xeno_attacker, "Destroyed")
+		src.balloon_alert(xeno_attacker, "destroyed")
 		qdel(src)
 
 /obj/structure/mineral_door/resin/take_damage(damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, mob/living/blame_mob)
@@ -286,7 +286,7 @@
 			. = TRUE
 			break
 	if(!.)
-		src.balloon_alert_to_viewers("Collapsed")
+		src.balloon_alert_to_viewers("collapsed")
 		qdel(src)
 
 /obj/structure/mineral_door/resin/thick
@@ -317,7 +317,7 @@
 	if(user.do_actions || !isnull(current_user))
 		return
 	current_user = user
-	user.balloon_alert(user, "Applying...")
+	user.balloon_alert(user, "applying...")
 	if(!do_after(user, RESIN_SELF_TIME, NONE, user, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
@@ -329,14 +329,14 @@
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
-		M.balloon_alert(user, "Cannot apply")
+		M.balloon_alert(user, "that's not a xeno!")
 		return FALSE
 	if(user.do_actions || !isnull(current_user))
 		return FALSE
 	current_user = M
-	M.balloon_alert(user, "Applying...")
+	M.balloon_alert(user, "applying...")
 	if(M != user)
-		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
+		user.balloon_alert(M, "applying jelly...") //Notify recipient to not move.
 	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), NONE, M, BUSY_ICON_MEDICAL))
 		current_user = null
 		return FALSE

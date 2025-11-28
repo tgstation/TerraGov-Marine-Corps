@@ -54,6 +54,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/sticky/trailblazer,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
@@ -199,6 +200,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/emp,
 	)

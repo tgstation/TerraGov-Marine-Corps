@@ -282,6 +282,8 @@
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_POINT))
 		return FALSE
+	if(incapacitated())
+		return FALSE
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 	point_to_atom(pointed_atom)

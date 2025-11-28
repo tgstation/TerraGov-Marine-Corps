@@ -25,7 +25,7 @@
 	accuracy = 0
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_BETTER_COVER_RNG|AMMO_SNIPER
-	accuracy_var_high = 7
+	accuracy_variation = 7
 	max_range = 20
 	damage = 70
 	penetration = 30

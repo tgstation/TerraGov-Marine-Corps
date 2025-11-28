@@ -79,7 +79,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	. = ..()
 	if(!.)
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+	if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 		smokecloak_on()
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
@@ -156,7 +156,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(weapon_sharp)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
-	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE, attacker = user)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -328,6 +328,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 	if(stat || (species.species_flags & NO_PAIN))
 		return
+	if(soft_armor.getRating(FIRE) > 80) //Lets not spam screams if you are barely taking any damage
+		return
 	if(prob(75))
 		return
 	emote("scream")
@@ -396,6 +398,9 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()
+	if(iszombie(user))
+		to_chat(user, span_warning("You shouldn't rip out another zombie's heart."))
+		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
@@ -414,6 +419,9 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
+	if(iszombie(src))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), heart), 9.5 SECONDS)
+		QDEL_IN(heart, 10 SECONDS)
 	chestburst = CARBON_CHEST_BURSTED
 	update_burst()
 
@@ -429,15 +437,15 @@ Contains most of the procs that are called when a mob is attacked by something
 		return TRUE
 
 	if(!(affecting.limb_status & LIMB_ROBOT))
-		balloon_alert(user, "Limb not robotic")
+		balloon_alert(user, "limb not robotic!")
 		return TRUE
 
 	if(!affecting.brute_dam)
-		balloon_alert(user, "Nothing to fix!")
+		balloon_alert(user, "nothing to fix!")
 		return TRUE
 
 	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
+		balloon_alert(user, "busy!")
 		return TRUE
 
 	if(!I.tool_use_check(user, 2))
@@ -468,6 +476,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				affecting = checked_limb
 				break
 			if(previous_limb == affecting)
-				balloon_alert(user, "Dents fully repaired.")
+				balloon_alert(user, "dents fully repaired")
 				break
 	return TRUE

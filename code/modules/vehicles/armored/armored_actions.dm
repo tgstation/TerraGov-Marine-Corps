@@ -98,9 +98,10 @@
 	chassis.armored_flags ^= ARMORED_LIGHTS_ON
 	if(chassis.armored_flags & ARMORED_LIGHTS_ON)
 		action_icon_state = "mech_lights_on"
+		chassis.set_light(initial(chassis.light_range))
 	else
 		action_icon_state = "mech_lights_off"
-	chassis.set_light_on(chassis.armored_flags & ARMORED_LIGHTS_ON)
+		chassis.set_light(0)
 	chassis.balloon_alert(owner, "toggled lights [chassis.armored_flags & ARMORED_LIGHTS_ON ? "on":"off"]")
 	playsound(chassis,'sound/mecha/brass_skewer.ogg', 40, TRUE)
 	chassis.log_message("Toggled lights [(chassis.armored_flags & ARMORED_LIGHTS_ON)?"on":"off"].", LOG_MECHA)

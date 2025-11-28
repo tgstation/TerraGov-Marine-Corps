@@ -43,34 +43,34 @@
 	if(!isxeno(target) || target.get_xeno_hivenumber() != xeno_owner.get_xeno_hivenumber())
 		return FALSE
 	if(!xeno_owner.Adjacent(target))
-		xeno_owner.balloon_alert(xeno_owner, "Not adjacent")
+		xeno_owner.balloon_alert(xeno_owner, "not adjacent!")
 		return FALSE
 	if(target.tier == XENO_TIER_ZERO || target.tier == XENO_TIER_MINION)
-		target.balloon_alert(xeno_owner, "We cannot link to her.")
+		target.balloon_alert(xeno_owner, "we can't link to her!")
 		return FALSE
 	if(HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
-		target.balloon_alert(xeno_owner, "We are already linked")
+		target.balloon_alert(xeno_owner, "we're already linked!")
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_ESSENCE_LINKED))
-		target.balloon_alert(xeno_owner, "She is already linked")
+		target.balloon_alert(xeno_owner, "she's already linked!")
 		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/essence_link/use_ability(atom/target)
 	if(!HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
-		target.balloon_alert(xeno_owner, "Linking...")
+		target.balloon_alert(xeno_owner, "linking...")
 		if(!do_after(xeno_owner, DRONE_ESSENCE_LINK_WINDUP, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
-			xeno_owner.balloon_alert(xeno_owner, "Link cancelled")
+			xeno_owner.balloon_alert(xeno_owner, "link cancelled!")
 			return
 		xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target, lifesteal_percentage, revenge_modifier)
 		existing_link = xeno_owner.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
 		linked_target = target
-		target.balloon_alert(target, "Essence Link established")
+		target.balloon_alert(target, "essence link established")
 	succeed_activate()
 
 /datum/action/ability/activable/xeno/essence_link/alternate_action_activate()
 	if(!HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
-		xeno_owner.balloon_alert(xeno_owner, "No link to cancel")
+		xeno_owner.balloon_alert(xeno_owner, "no link to cancel!")
 		return
 	end_ability(TRUE)
 	return COMSIG_KB_ACTIVATED
@@ -158,7 +158,7 @@
 	name = "Enhancement"
 	action_icon_state = "enhancement"
 	action_icon = 'icons/Xeno/actions/drone.dmi'
-	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
+	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits. You can see if a xeno can be empowered by checking their codex."
 	cooldown_duration = 120 SECONDS
 	ability_cost = 0
 	keybinding_signals = list(

@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ae" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/lavaland/basalt,
@@ -162,6 +169,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"bM" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/engie/one)
 "bP" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -397,13 +409,6 @@
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northeast)
-"fq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "fs" = (
 /obj/machinery/light{
 	dir = 1
@@ -635,6 +640,10 @@
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"hv" = (
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "hw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -702,6 +711,11 @@
 /obj/item/clothing/suit/storage/CMB,
 /turf/open/floor/tile/lightred/full,
 /area/lavaland/security/storage)
+"if" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ih" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/tile/bar,
@@ -1098,10 +1112,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"lV" = (
-/obj/effect/landmark/xeno_spawner_spawn,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/southeast)
 "lW" = (
 /obj/machinery/landinglight/lz2{
 	dir = 4
@@ -1224,6 +1234,11 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"nb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "nf" = (
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark2,
@@ -1451,15 +1466,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
-"pz" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "pA" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/white,
@@ -1541,6 +1547,11 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"qF" = (
+/obj/structure/cable,
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "qK" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1587,14 +1598,6 @@
 /obj/item/binoculars,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
-"rk" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lavaland/engie/two)
 "rl" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1737,11 +1740,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"st" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lavaland/engie/one)
 "sw" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/lavaland/basalt,
@@ -1954,6 +1952,10 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"uK" = (
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt/glowing,
+/area/lavaland/cave/west)
 "uM" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 8;
@@ -1985,6 +1987,10 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"vc" = (
+/obj/effect/landmark/xeno_spawner_spawn,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "vi" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -2412,6 +2418,12 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"zQ" = (
+/obj/structure/barricade/solid{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "zY" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -2619,11 +2631,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
-"BJ" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lavaland/engie/two)
 "BL" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/ai_node,
@@ -2792,10 +2799,6 @@
 	},
 /turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/northeast)
-"DE" = (
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "DF" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -2870,9 +2873,20 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lavaland/cave/central)
+"Ew" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/engie/three)
 "Ey" = (
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"Ez" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/lavaland/engie/three)
 "EB" = (
 /turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/east)
@@ -3042,6 +3056,12 @@
 "Ge" = (
 /turf/closed/wall,
 /area/lavaland/cave/west)
+"Gg" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/lavaland/engie/one)
 "Gh" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/pistol/g22tranq,
@@ -3196,11 +3216,6 @@
 "HR" = (
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"HY" = (
-/obj/structure/cable,
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "Ih" = (
 /obj/machinery/mineral/processing_unit,
 /turf/open/floor/tile/dark2,
@@ -3275,12 +3290,6 @@
 /obj/machinery/mineral/unloading_machine,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
-"IS" = (
-/obj/structure/barricade/solid{
-	dir = 1
-	},
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/north)
 "IY" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -3337,6 +3346,13 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
+"Ju" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Jw" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/orange,
@@ -3344,12 +3360,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
-"Jy" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/lavaland/engie/one)
 "JC" = (
 /obj/machinery/landinglight/lz2{
 	dir = 1
@@ -3380,12 +3390,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
-"JT" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/lavaland/engie/three)
 "JU" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
@@ -3774,6 +3778,15 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
+"Ow" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Ox" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
@@ -3867,11 +3880,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
-"Pw" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "Pz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -3911,10 +3919,23 @@
 "Qb" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
+"Qc" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/engie/two)
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/liquid/lava/autosmoothing,
 /area/lavaland/lava)
+"Qm" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/lavaland/engie/two)
 "Qt" = (
 /obj/machinery/light{
 	dir = 1
@@ -4438,22 +4459,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical)
-"Vj" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/lavaland/engie/three)
-"Vm" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/geothermal,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
-"Vu" = (
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt/glowing,
-/area/lavaland/cave/west)
 "Vv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/asteroidfloor,
@@ -4853,11 +4858,6 @@
 "ZS" = (
 /turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southeast)
-"ZT" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "ZU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -23241,7 +23241,7 @@ EO
 aZ
 bc
 jo
-IS
+zQ
 aZ
 ZW
 EY
@@ -25567,7 +25567,7 @@ Dw
 Ix
 Ix
 Dw
-HY
+qF
 Ix
 ZN
 ZW
@@ -26081,7 +26081,7 @@ ZW
 ZN
 BD
 ZN
-Vu
+uK
 Ix
 ZN
 ZN
@@ -26338,7 +26338,7 @@ ZW
 ZW
 ZN
 ZN
-DE
+hv
 Ix
 BD
 ZN
@@ -28068,9 +28068,9 @@ aY
 aY
 aY
 aY
-Pw
-pz
-Pw
+if
+Ow
+if
 aY
 aY
 aY
@@ -28325,9 +28325,9 @@ kx
 kx
 kx
 at
-Vm
-ZT
-fq
+Ju
+nb
+ad
 Kr
 mI
 mI
@@ -28582,9 +28582,9 @@ aY
 aY
 aY
 aY
-Pw
-pz
-Pw
+if
+Ow
+if
 aY
 aY
 aY
@@ -35143,7 +35143,7 @@ Yy
 sS
 SU
 jc
-st
+bM
 sS
 ZK
 ZK
@@ -35400,7 +35400,7 @@ WT
 yj
 QW
 vn
-Jy
+Gg
 sS
 ZK
 ZK
@@ -35657,7 +35657,7 @@ Yy
 sS
 tE
 jc
-st
+bM
 sS
 ZK
 ZK
@@ -36093,7 +36093,7 @@ CY
 Dg
 DF
 Eq
-Vj
+Ew
 Dg
 YL
 YL
@@ -36350,7 +36350,7 @@ dU
 Dr
 DU
 Es
-JT
+Ez
 Dg
 YL
 YL
@@ -36607,7 +36607,7 @@ aZ
 Dg
 Ep
 Eq
-Vj
+Ew
 Dg
 YL
 YL
@@ -43579,7 +43579,7 @@ EF
 EF
 EF
 PL
-BJ
+Qc
 QN
 Rb
 PL
@@ -43836,7 +43836,7 @@ EF
 EF
 EB
 PL
-rk
+Qm
 QQ
 Re
 Rn
@@ -44093,7 +44093,7 @@ rR
 Pd
 EB
 PL
-BJ
+Qc
 QN
 Rg
 PL
@@ -45717,7 +45717,7 @@ wj
 wj
 wj
 wj
-lV
+vc
 wj
 wj
 ZS

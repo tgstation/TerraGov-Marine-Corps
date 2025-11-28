@@ -317,6 +317,10 @@
 	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
+	. = ..()
+	projectile_to_fire.def_zone = BODY_ZONE_CHEST //no delimb spam
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
 	name = "\improper Rhea vulcan cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'

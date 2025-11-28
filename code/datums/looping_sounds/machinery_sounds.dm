@@ -30,7 +30,7 @@
 	ambient_sound = TRUE
 
 /datum/looping_sound/water_res_loop
-	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1)
+	mid_sounds = list('sound/effects/natural/wave1.ogg' = 1, 'sound/effects/natural/wave2.ogg' = 1, 'sound/effects/natural/wave3.ogg' = 1)
 	mid_length = 4 SECONDS
 	volume = 28
 	range = 7

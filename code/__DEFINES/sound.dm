@@ -106,6 +106,7 @@
 #define SFX_ALLOY_BOUNCE "alloy_bounce"
 #define SFX_GUN_SILENCED "gun_silenced"
 #define SFX_GUN_SMARTGUN "gun_smartgun"
+#define SFX_GUN_SMARTGPMG "gun_smartgun_gpmg"
 #define SFX_GUN_FLAMETHROWER "gun_flamethrower"
 #define SFX_GUN_AR12 "gun_ar12"
 #define SFX_GUN_FB12 "gun_fb12"
@@ -165,4 +166,3 @@
 #define SFX_ROBOT_SCREAM "robot_scream"
 #define SFX_ROBOT_PAIN "robot_pain"
 #define SFX_ROBOT_WARCRY "robot_warcry"
-#define SFX_HOVER_TANK "hover_tank"

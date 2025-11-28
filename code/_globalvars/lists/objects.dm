@@ -114,9 +114,12 @@ GLOBAL_LIST_EMPTY(xeno_jelly_pod_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
+GLOBAL_LIST_EMPTY(xeno_acid_pools_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
+
+GLOBAL_LIST_EMPTY(zombie_spawner_turfs)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 

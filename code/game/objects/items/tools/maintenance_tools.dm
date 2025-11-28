@@ -111,6 +111,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
 
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_FIRE
+
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
@@ -157,11 +161,11 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		balloon_alert(user, "not on")
+		balloon_alert(user, "not on!")
 		return FALSE
 
 	if(get_fuel() < amount)
-		balloon_alert(user, "low fuel")
+		balloon_alert(user, "low fuel!")
 		return FALSE
 
 	return TRUE
@@ -198,6 +202,12 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
+/obj/item/tool/weldingtool/can_refuel(atom/refueler, fuel_type, mob/user)
+	if(welding)
+		to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
+		return FALSE
+	return ..()
+
 ///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
@@ -213,7 +223,7 @@
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)
-		balloon_alert(user, "Can't, unsecured!")
+		balloon_alert(user, "not secured!")
 		return
 	toggle()
 
@@ -235,7 +245,7 @@
 		return 1
 	else
 		if(M)
-			balloon_alert(M, "Out of welding fuel")
+			balloon_alert(M, "no fuel!")
 		return 0
 
 //Returns whether or not the blowtorch is currently on.
@@ -259,9 +269,7 @@
 		if(get_fuel() > 0)
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
-			if(M)
-				balloon_alert(M, "Turns on")
-			set_light(1, LIGHTER_LUMINOSITY)
+			set_light_on(TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN
@@ -271,7 +279,7 @@
 			START_PROCESSING(SSobj, src)
 		else
 			if(M)
-				balloon_alert(M, "Out of fuel")
+				balloon_alert(M, "no fuel!")
 			return
 	else
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
@@ -282,27 +290,25 @@
 		w_class = initial(w_class)
 		heat = 0
 		if(M)
-			if(!message)
-				balloon_alert(M, "Switches off")
-			else
-				balloon_alert(M, "Out of fuel")
+			if(message)
+				balloon_alert(M, "no fuel!")
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		set_light(0)
+		set_light_on(FALSE)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
 	if(welding)
-		balloon_alert(user, "Turn it off first")
+		balloon_alert(user, "turn it off first!")
 		return
 	status = !status
 	if(status)
-		balloon_alert(user, "Resecures and closes")
+		balloon_alert(user, "secured and closed")
 		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	else
-		balloon_alert(user, "Ready to be refueled")
+		balloon_alert(user, "ready for refueling")
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 /obj/item/tool/weldingtool/largetank
@@ -355,108 +361,12 @@
 	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "welderpack"
 	w_class = WEIGHT_CLASS_BULKY
-	var/max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
+	///how much fuel we can hold
+	var/max_fuel = 500
 
 /obj/item/tool/weldpack/Initialize(mapload)
 	. = ..()
-	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
-	reagents = R
-	R.my_atom = WEAKREF(src)
-	R.add_reagent(/datum/reagent/fuel, max_fuel)
-
-/obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(reagents.total_volume == 0)
-		balloon_alert(user, "Out of fuel")
-		return
-
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/T = I
-		if(T.welding)
-			balloon_alert(user, "That was stupid")
-			log_bomber(user, "triggered a weldpack explosion", src)
-			explosion(src, light_impact_range = 3, explosion_cause=user)
-			qdel(src)
-		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
-			return ..()
-
-		reagents.trans_to(I, T.max_fuel)
-		balloon_alert(user, "Welder refilled")
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-
-	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
-			return ..()
-		if(FT.default_ammo != /datum/ammo/flamethrower)
-			balloon_alert(user, "Wrong fuel")
-			return ..()
-
-		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = CALIBER_FUEL
-		balloon_alert(user, "Refills with [lowertext(FT.caliber)]")
-		FT.update_icon()
-
-	else if(istype(I, /obj/item/storage/holster/backholster/flamer))
-		var/obj/item/storage/holster/backholster/flamer/flamer_bag = I
-		var/obj/item/ammo_magazine/flamer_tank/internal/internal_tank = flamer_bag.tank
-		if(internal_tank.current_rounds == internal_tank.max_rounds)
-			return ..()
-		var/fuel_to_transfer = min(reagents.total_volume, (internal_tank.max_rounds - internal_tank.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_to_transfer)
-		internal_tank.current_rounds += fuel_to_transfer
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "Refills")
-
-	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
-		var/obj/item/weapon/twohanded/rocketsledge/RS = I
-		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.reagents.get_reagent_amount(/datum/reagent/fuel)))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "Refills")
-		RS.update_icon()
-
-	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
-		var/obj/item/weapon/twohanded/chainsaw/saw = I
-		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [saw] with fuel."))
-		saw.update_icon()
-
-	else
-		balloon_alert(user, "Only works with welders and flamethrowers")
-
-
-/obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
-		return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
-		O.reagents.trans_to(src, max_fuel)
-		balloon_alert(user, "Refills pack from the tank")
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		balloon_alert(user, "Already full")
-		return
-
-/obj/item/tool/weldpack/examine(mob/user)
-	. = ..()
-	. += "[reagents.total_volume] units of welding fuel left!"
+	AddComponent(/datum/component/fuel_storage, max_fuel)
 
 /obj/item/tool/weldpack/marinestandard
 	name = "M-22 welding kit"
@@ -496,26 +406,26 @@
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
-		balloon_alert(user, "Needs a cell")
+		balloon_alert(user, "you need a cell!")
 		return
 
 	if(cell.charge >= cell.maxcharge)
-		balloon_alert(user, "Fully charged")
+		balloon_alert(user, "fully charged!")
 		return
 
 	if(user.do_actions)
-		balloon_alert(user, "Too busy")
+		balloon_alert(user, "busy!")
 		return
 
 	while(do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		cell.charge = min(cell.charge + 200, cell.maxcharge)
-		balloon_alert(user, "Charges the cell")
+		balloon_alert(user, "continuing...")
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
 		flick("handheldcharger_black_pumping", src)
 		if(cell.charge >= cell.maxcharge)
-			balloon_alert(user, "Fully charged")
+			balloon_alert(user, "fully charged")
 			return
-	balloon_alert(user, "Stops charging")
+	balloon_alert(user, "stopping")
 
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
@@ -526,7 +436,7 @@
 	if(!istype(I, /obj/item/cell))
 		return
 	if(I.w_class > WEIGHT_CLASS_NORMAL)
-		balloon_alert(user, "Too large")
+		balloon_alert(user, "too large!")
 		return
 	if(!user.drop_held_item())
 		return
@@ -539,7 +449,7 @@
 	I.forceMove(src)
 	cell = I
 	cell.update_icon()
-	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
+	balloon_alert(user, "charge remaining: [cell.charge]/[cell.maxcharge]")
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger_black"
 
@@ -550,7 +460,6 @@
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
-	balloon_alert(user, "Removes the cell")
 	update_appearance()
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
@@ -562,7 +471,6 @@
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
-	balloon_alert(user, "Removes the cell")
 	update_appearance()
 
 /obj/item/tool/handheld_charger/Destroy()

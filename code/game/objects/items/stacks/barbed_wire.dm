@@ -109,4 +109,4 @@
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 		M.update_icon()
 		use(1)
-	user.record_structures_built()
+		user.record_structures_built()
