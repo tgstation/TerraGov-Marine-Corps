@@ -42,6 +42,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
 		/datum/season_datum/weapons/guns/heavy_explosions,
+		/datum/season_datum/weapons/guns/heavy_remote,
 		),
 	)
 	///The saved list of custom outfits names
