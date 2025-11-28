@@ -986,5 +986,5 @@
 	stamina_regen_mod = - 0.4
 	icon_state = "vsd_juggernaut_flamer"
 	worn_icon_state = "vsd_juggernaut_flamer"
-	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 55, FIRE = 90, ACID = 75)
+	soft_armor = list(MELEE = 70, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 40, FIRE = 90, ACID = 60)
 	armor_features_flags = ARMOR_FIRE_RESISTANT
