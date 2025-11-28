@@ -249,10 +249,12 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 GLOBAL_LIST_INIT(vanguard_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/vanguard = list(CAT_ESS, "Essential Vanguard Set", 0, "white"),
-	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_CDSUP, "M64 Thermal Goggles", 25, "black"),
+	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_CDSUP, "M64 Thermal Goggles", 25, "orange"),
 	/obj/item/clothing/glasses/night/m42_night_goggles = list(CAT_CDSUP, "M42 Night Vision Goggles", 20, "orange"),
-	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_CDSUP, "Smartpistol Pack (Smartpistol + mags)", 5, "orange"),
+	/obj/item/storage/holster/belt/mateba/officer/full = list(CAT_CDSUP, "Mateba Revolver Belt (Full)", 15, "orange"),
+	/obj/item/armor_module/module/ballistic_armor = list(CAT_CDSUP, "Hod Combat Plating", 5,"orange"),
 	/obj/item/ammo_magazine/packet/mateba = list(CAT_CDSUP, "Mateba .454 casull Packet", 1, "black"),
+	/obj/item/ammo_magazine/rifle/nt_halter/smart = list(CAT_CDSUP, "NT-Halter Smart magazine", 1, "black"),
 	/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 	/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 	/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -288,7 +290,6 @@ GLOBAL_LIST_INIT(vanguard_gear_listed_products, list(
 	/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0,"black"),
 	/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
 	/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
-	/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
 	/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 	/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 	/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),

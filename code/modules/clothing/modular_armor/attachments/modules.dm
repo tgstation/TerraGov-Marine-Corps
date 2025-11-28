@@ -325,8 +325,8 @@
 	chemical enhancement module
 */
 /obj/item/armor_module/module/ballistic_armor
-	name = "\improper Hod Accident Prevention Plating"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility. Made by ArcherCorp."
+	name = "\improper Hod Combat Plating"
+	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to increase survival in a humanoid versus humanoid combat situation, will lessen the affects of bullets and lasers. Will impact mobility. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	worn_icon_state = "mod_ff_a"

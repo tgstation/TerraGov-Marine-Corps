@@ -160,12 +160,6 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/modular/xenonauten/light/vanguard
-	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/medical,
-	)
-
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
