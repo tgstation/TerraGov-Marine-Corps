@@ -5,8 +5,6 @@
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Hit all adjacent units around you, knocking them away and down."
-
 	ability_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 12 SECONDS
@@ -24,6 +22,10 @@
 	var/damage_type = BRUTE
 	/// The multiplier of the damage to be applied.
 	var/damage_multiplier = 1
+
+/datum/action/ability/xeno_action/tail_sweep/New(Target)
+	. = ..()
+	desc = "Hit all adjacent units around you, knocking them away and stunning for [paralyze_duration / (1 SECONDS)] seconds. You can parry thrown objects with this."
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -103,8 +105,6 @@
 	name = "Forward Charge"
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Charge up to 4 tiles and knockdown any targets in our way."
-
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
@@ -115,6 +115,10 @@
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
 	var/windup_time = 0.5 SECONDS
+
+/datum/action/ability/activable/xeno/charge/forward_charge/New(Target)
+	. = ..()
+	desc = "Charge up to [charge_range] tiles and stun any targets in our way for [paralyze_duration / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
@@ -179,8 +183,7 @@
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
-
+	desc = "Increase your resistance to projectiles at the cost of slower move speed. Can use abilities while in crest defense."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED // duh
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -256,7 +259,7 @@
 	name = "Fortify"
 	action_icon_state = "fortify"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Plant yourself for a large defensive boost."
+	desc = "Plant yourself for a large defensive boost and stun resistance. Can use forward charge and regeneration in this state."
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED
 	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
@@ -474,8 +477,7 @@
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
-	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
-
+	desc = "Rapidly tail sweep and hit all adjacent humans around you. Uses double plasma when crest is active."
 	ability_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_duration = 30 SECONDS

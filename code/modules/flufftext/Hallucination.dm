@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			qdel(src)
 			return
 		person = pick(humans)
-		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",list(person.speech_span),face_name = TRUE)
+		var/message = target.compose_message(person,understood_language,chosen,FREQ_COMMON,list(person.speech_span),face_name = TRUE)
 		to_chat(target, message)
 	qdel(src)
 

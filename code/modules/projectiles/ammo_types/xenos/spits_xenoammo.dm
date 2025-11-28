@@ -307,7 +307,7 @@
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 35
+	damage = 32
 	ammo_behavior_flags = AMMO_XENO
 
 /datum/ammo/xeno/acid/auto

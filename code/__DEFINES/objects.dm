@@ -280,3 +280,5 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///Amount of fire stacks removed by extinguishers or similar effects
 #define EXTINGUISH_AMOUNT 20
+
+#define DEFAULT_FUEL_TYPE /datum/reagent/fuel

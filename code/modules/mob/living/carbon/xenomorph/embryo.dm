@@ -28,8 +28,10 @@
 	. = ..()
 	if(!isliving(loc))
 		return
-	if(istype(loc, /mob/living/carbon/xenomorph/puppet))
-		return INITIALIZE_HINT_QDEL //letting puppets be larva farms makes it too easy to get larva.
+	if(isxeno(loc))
+		var/mob/living/carbon/xenomorph/xeno_loc = loc
+		if(xeno_loc.xeno_caste.tier == XENO_TIER_MINION || xeno_loc.xeno_caste.caste_type_path == /datum/xeno_caste/larva)
+			return INITIALIZE_HINT_QDEL //letting these be larva farms makes it too easy to get larva.
 	affected_mob = loc
 	affected_mob.status_flags |= XENO_HOST
 	log_combat(affected_mob, null, "been infected with an embryo")

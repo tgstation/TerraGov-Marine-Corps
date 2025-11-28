@@ -59,3 +59,66 @@ GLOBAL_LIST_INIT(remotely_linked_teleporter_pairs, list())
 /obj/effect/remote_teleporter_linker/pair4
 	name = "Remote Teleporter Pair Linker - Pair 4"
 	id = "Teleporter Pair 4"
+
+/obj/machinery/deployable/teleporter/disassemble(mob/user)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	log_combat(user, src, "deconstructed", addition=" linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
+	. = ..()
+
+/obj/machinery/deployable/teleporter/hitby(atom/movable/AM, speed = 5)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(AM.thrower, src, "thrown at", AM, " linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
+
+/obj/machinery/deployable/teleporter/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]), linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
+
+/obj/machinery/deployable/teleporter/bullet_act(atom/movable/projectile/proj)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	. = ..()
+	log_combat(proj.firer, src, "shot", proj, " linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
+
+/obj/item/teleporter_kit/hitby(atom/movable/AM, speed = 5)
+	. = ..()
+	log_combat(AM.thrower, src, "thrown at", AM, " linked teleporter is \[logdetails(linked_teleporter)]\]")
+
+
+/obj/item/teleporter_kit/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
+	. = ..()
+	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]) in linked teleporter is \[[logdetails(linked_teleporter)]\]")
+
+
+/obj/item/teleporter_kit/bullet_act(atom/movable/projectile/proj)
+	. = ..()
+	log_combat(proj.firer, src, "shot", proj, " linked teleporter is \[[logdetails(linked_teleporter)]\]")
+
+/obj/item/teleporter_kit/indestructible
+	name = "\improper ASRS Reinforced Bluespace teleporter"
+	resistance_flags = RESIST_ALL
+
+/obj/item/teleporter_kit/indestructible/Initialize(mapload)
+	. = ..()
+	name = "\improper ASRS Reinforced Bluespace teleporter #[self_tele_tag]"
+
+/obj/item/teleporter_kit/indestructible/toggle_deployment_flag(deployed)
+	. = ..()
+	if(deployed)
+		var/obj/machinery/deployable/teleporter/deployed_tele = loc
+		if(!istype(deployed_tele))
+			CRASH("Teleporter kit deployed to wrong type")
+		deployed_tele.resistance_flags = RESIST_ALL
+
+/obj/effect/teleporter_linker/indestructible/Initialize(mapload, skip)
+	if(skip > 0)
+		skip--
+		return ..()
+	skip++
+	. = ..()
+	var/obj/item/teleporter_kit/indestructible/teleporter_a = new(loc)
+	var/obj/item/teleporter_kit/indestructible/teleporter_b = new(loc)
+	teleporter_a.set_linked_teleporter(teleporter_b)
+	teleporter_b.set_linked_teleporter(teleporter_a)
+	log_combat(src,teleporter_a,"linked",object=teleporter_b)
+	qdel(src)

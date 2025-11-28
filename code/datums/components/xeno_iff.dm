@@ -38,7 +38,7 @@
 	examine_list += "[parent.p_they(TRUE)] seems to have a small smart-IFF tag clamped onto [parent.p_them()]!"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(!H.wear_id || !CHECK_BITFIELD(iff_type, H.wear_id.iff_signal))
+		if(!CHECK_BITFIELD(iff_type, H.get_iff_signal()))
 			examine_list += "Your IFF recognizes [parent.p_their()] tag as hostile."
 		else
 			examine_list += "[parent.p_their(TRUE)] tag's IFF recognizes you as friendly."

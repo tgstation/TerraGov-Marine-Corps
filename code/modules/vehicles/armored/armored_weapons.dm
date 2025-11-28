@@ -181,10 +181,8 @@
 	var/mob/living/living_firer = firer
 	if(living_firer.IsStaggered())
 		projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
-	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
-		var/mob/living/carbon/human/human_firer = firer
-		var/obj/item/card/id/id = human_firer.get_idcard()
-		projectile_to_fire.iff_signal = id?.iff_signal
+	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF))
+		projectile_to_fire.iff_signal = firer.get_iff_signal()
 	if(firer)
 		projectile_to_fire.def_zone = firer.zone_selected
 
@@ -356,7 +354,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	projectile_delay = 0.1 SECONDS
-	rearm_time = 5 SECONDS
+	rearm_time = 3 SECONDS
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/tank_autocannon

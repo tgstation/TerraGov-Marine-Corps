@@ -21,7 +21,7 @@
 	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 630
+	max_health = 600
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8
@@ -33,7 +33,7 @@
 	evolve_min_xenos = 12
 */
 	deevolves_to = /mob/living/carbon/xenomorph/drone //NTF Edit - allow evolution/regression
-	death_evolution_delay = 7 MINUTES
+	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
 /* NTF Edit - allow evolution/regression, building
@@ -163,7 +163,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 585
+	max_health = 560
 
 	// *** Sunder *** //
 	sunder_multiplier = 1.0

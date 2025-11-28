@@ -221,8 +221,7 @@
 	name = "Screech"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
-	desc = "A large area knockdown that causes pain and screen-shake."
-
+	desc = "A large area knockdown that deafens nearby enemies and disorentates them. Stun and stagger amount depends on distance from the target, maximum stun of 1.5 seconds. Comes at the cost of shattering your armor for 20 seconds, starting 10 seconds after you use it."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -322,6 +321,10 @@
 			affected_xeno.add_movespeed_modifier(MOVESPEED_ID_QUEEN_SCREECH, TRUE, 0, NONE, TRUE, movement_speed_modifier)
 			speedy_xenomorphs += affected_xeno
 		timer_id = addtimer(CALLBACK(src, PROC_REF(revoke_movespeed_modifier)), 4 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/datum/action/ability/activable/xeno/screech/succeed_activate(ability_cost_override)
+	. = ..()
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob/living/carbon, apply_status_effect), /datum/status_effect/shatter, 20 SECONDS), 10 SECONDS)
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner

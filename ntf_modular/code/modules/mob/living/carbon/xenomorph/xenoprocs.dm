@@ -73,3 +73,9 @@
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
 		apply_overlay(GENITAL_LAYER)
 	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
+
+/mob/living/carbon/xenomorph/update_cloak()
+	return
+
+/mob/living/carbon/xenomorph/get_iff_signal()
+	return xeno_iff_check()

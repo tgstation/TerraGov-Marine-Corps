@@ -883,7 +883,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "fE" = (
@@ -1984,7 +1984,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/antag_ship/icc/hangar/east)
 "ly" = (
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "lz" = (
@@ -7145,7 +7145,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/starboard/spaceport)
 "Mk" = (
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/pmc_ntf/aft/spaceport)
@@ -8022,7 +8022,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -8798,7 +8798,7 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Uw" = (
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/inside)
 "Ux" = (

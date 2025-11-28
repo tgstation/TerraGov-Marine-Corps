@@ -27,7 +27,7 @@
 	var/is_open = FALSE
 	///Can this barricade type be wired
 	var/can_wire = FALSE
-	///is this barriade wired?
+	///Is this barricade wired?
 	var/is_wired = FALSE
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
@@ -145,12 +145,9 @@
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
-		var/stack_amt
-		if(!disassembled && destroyed_stack_amount)
-			stack_amt = destroyed_stack_amount
-		else
+		var/stack_amt = destroyed_stack_amount
+		if(disassembled)
 			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
-
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
 	return ..()

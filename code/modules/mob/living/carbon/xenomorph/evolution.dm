@@ -180,6 +180,8 @@
 		INVOKE_NEXT_TICK_UNIQUE(new_xeno.hive, TYPE_PROC_REF(/datum/hive_status, update_ruler)) // Since ruler wasn't set during initialization, update ruler now.
 	transfer_observers_to(new_xeno)
 
+	new_xeno.sunder = sunder
+
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = bruteloss //Transfers the damage over.
 		new_xeno.fireloss = fireloss //Transfers the damage over.
@@ -213,15 +215,6 @@
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_ruler)
 
 		new_xeno.update_leader_icon(TRUE)
-
-	if(upgrade == XENO_UPGRADE_PRIMO)
-		switch(tier)
-			if(XENO_TIER_TWO)
-				SSmonitor.stats.primo_T2--
-			if(XENO_TIER_THREE)
-				SSmonitor.stats.primo_T3--
-			if(XENO_TIER_FOUR)
-				SSmonitor.stats.primo_T4--
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)

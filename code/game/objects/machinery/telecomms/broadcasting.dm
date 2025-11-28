@@ -111,7 +111,11 @@
 	spans  // the list of spans applied to the message
 )
 	src.source = source
-	src.frequency = frequency
+	if(isnum(frequency))
+		src.frequency = frequency
+	else
+		stack_trace("Invalid frequency! [logdetails(frequency)][istext(frequency) ? " \[AS TEXT\]" :""]")
+		src.frequency = text2num(frequency) || 0
 	src.language = language
 	virt = speaker
 	var/datum/language/lang_instance = GLOB.language_datum_instances[language]

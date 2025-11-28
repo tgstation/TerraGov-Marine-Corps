@@ -934,9 +934,13 @@
 	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+	autobalance_monitor_value = ZX_PRICE
 
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/shotgun/zx76/valhalla
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 //V-51 SOM shotgun

@@ -20,8 +20,8 @@
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, loc, 7)
 	smoke.start()
-	flame_radius(4, get_turf(src))
-	flame_radius(1, get_turf(src), burn_intensity = 75, burn_duration = 45, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
+	flame_radius(4, get_turf(src), burn_intensity = 20, burn_duration = 20, burn_damage = 20, fire_stacks = 10)
+	flame_radius(1, get_turf(src), burn_intensity = 70, burn_duration = 40, burn_damage = 15, fire_stacks = 70)	//The closer to the middle you are the more it hurts
 	qdel(src)
 
 /obj/item/explosive/grenade/phosphorus/activate(mob/user)

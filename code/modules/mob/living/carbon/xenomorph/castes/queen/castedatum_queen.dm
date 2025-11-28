@@ -22,7 +22,7 @@
 	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 540
+	max_health = 520
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8
@@ -30,7 +30,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	death_evolution_delay = 5 MINUTES
+	death_evolution_delay = 10 MINUTES
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //

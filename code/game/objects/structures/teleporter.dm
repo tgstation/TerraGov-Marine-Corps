@@ -154,27 +154,6 @@
 		return
 	icon_state = default_icon_state
 
-/obj/machinery/deployable/teleporter/disassemble(mob/user)
-	var/obj/item/teleporter_kit/kit = get_internal_item()
-	log_combat(user, src, "deconstructed", addition=" linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
-	. = ..()
-
-/obj/machinery/deployable/teleporter/hitby(atom/movable/AM, speed = 5)
-	var/obj/item/teleporter_kit/kit = get_internal_item()
-	. = ..()
-	log_combat(AM.thrower, src, "thrown at", AM, " linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
-
-/obj/machinery/deployable/teleporter/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
-	var/obj/item/teleporter_kit/kit = get_internal_item()
-	. = ..()
-	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]), linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
-
-/obj/machinery/deployable/teleporter/bullet_act(atom/movable/projectile/proj)
-	var/obj/item/teleporter_kit/kit = get_internal_item()
-	. = ..()
-	log_combat(proj.firer, src, "shot", proj, " linked teleporter is \[[logdetails(kit?.linked_teleporter)]\]")
-
-
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
 	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy, use a crowbar to remove the power cell."
@@ -263,26 +242,14 @@
 		return
 	user.forceMove(get_turf(linked_teleporter))
 
-/obj/item/teleporter_kit/hitby(atom/movable/AM, speed = 5)
-	. = ..()
-	log_combat(AM.thrower, src, "thrown at", AM, " linked teleporter is \[logdetails(linked_teleporter)]\]")
-
-
-/obj/item/teleporter_kit/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
-	. = ..()
-	log_combat(user, src, "attacked", "(DAMTYPE: [uppertext(damage_type)]) (RAW DMG: [damage_amount]) in linked teleporter is \[[logdetails(linked_teleporter)]\]")
-
-
-/obj/item/teleporter_kit/bullet_act(atom/movable/projectile/proj)
-	. = ..()
-	log_combat(proj.firer, src, "shot", proj, " linked teleporter is \[[logdetails(linked_teleporter)]\]")
-
-
 /obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
 	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
-/obj/effect/teleporter_linker/Initialize(mapload)
+/obj/effect/teleporter_linker/Initialize(mapload, skip)
+	if(skip > 0)
+		skip--
+		return ..()
 	. = ..()
 	var/obj/item/teleporter_kit/teleporter_a = new(loc)
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)

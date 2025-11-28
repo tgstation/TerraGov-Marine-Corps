@@ -80,7 +80,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!.)
 		return
 	if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
-		smokecloak_on()
+		smokecloak_on(S.smokecloak_alpha)
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

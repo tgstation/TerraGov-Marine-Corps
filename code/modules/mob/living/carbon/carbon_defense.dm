@@ -25,7 +25,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_PYROGEN))
 		adjustFireLoss(12)
 		blur_eyes(2)
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS) && ((!CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO)) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO)))
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		adjustOxyLoss(4 + S.strength * 2)

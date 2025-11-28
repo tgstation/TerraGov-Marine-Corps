@@ -37,7 +37,7 @@
 	max_shots = 300
 	rounds_per_shot = 2
 	scatter = 2
-	fire_delay = 0.1 SECONDS
+	fire_delay = 0.3 SECONDS
 	accuracy_mult = 0.8
 	ammo_datum_type = /datum/ammo/bullet/rifle/nut
 	default_ammo_type = /obj/item/ammo_magazine/rifle/nut_ammo

@@ -16,6 +16,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 100
 
+/datum/supply_packs/operations/tank_fulton
+	name = "Heavy vehicle Fulton extraction pack"
+	contains = list(/obj/item/fulton_extraction_pack/tank)
+	cost = 400
+
 /datum/supply_packs/operations/autominer
 	name = "Autominer upgrade"
 	contains = list(/obj/item/minerupgrade/automatic)

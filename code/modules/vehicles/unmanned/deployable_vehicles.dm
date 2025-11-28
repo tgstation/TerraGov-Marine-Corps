@@ -36,9 +36,7 @@
 		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
-	if(ishuman(deployer))
-		var/mob/living/carbon/human/human_deployer = deployer
-		iff_signal = human_deployer?.wear_id?.iff_signal
+	iff_signal = deployer.get_iff_signal() || iff_signal
 	. = ..()
 	current_rounds = internal_item.stored_ammo
 
