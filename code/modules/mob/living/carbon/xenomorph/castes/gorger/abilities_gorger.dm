@@ -8,7 +8,7 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Devour your victim to be able to carry it faster."
+	desc = "Devour your victim to be able to carry it around."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
 	target_flags = ABILITY_MOB_TARGET

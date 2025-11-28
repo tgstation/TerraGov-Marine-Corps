@@ -92,7 +92,7 @@
 	name = "Fireball"
 	action_icon_state = "fireball"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Release a fireball that explodes on contact."
+	desc = "Release a fireball that explodes in a 3x3 area on contact."
 	ability_cost = 300
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
@@ -150,7 +150,7 @@
 	name = "Fire Storm"
 	action_icon_state = "whirlwind"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Unleash a fiery tornado that goes in a straight line which will set fire around it as it goes and harm marines that directly touch it."
+	desc = "Unleash a fiery tornado that goes in a straight line which will set fire around it randomly as it goes. Harms marines that directly touch it."
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 300
 	cooldown_duration = 12 SECONDS
@@ -247,7 +247,7 @@
 	name = "Infernal Trigger"
 	action_icon_state = "infernaltrigger"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Causes a chosen human's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area near them is set on fire."
+	desc = "Causes a chosen target's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area adjacent to them is set on fire."
 	target_flags = ABILITY_MOB_TARGET
 	ability_cost = 100
 	cooldown_duration = 6 SECONDS

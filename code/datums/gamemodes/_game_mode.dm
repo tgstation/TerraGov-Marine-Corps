@@ -412,6 +412,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.zombies_permad)
+		parts += "[GLOB.round_statistics.zombies_permad] zombies were permanently killed."
 	if(SSevacuation.human_escaped)
 		parts += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
@@ -445,6 +447,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
 	if(GLOB.round_statistics.drone_essence_link_sunder)
 		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
+	if(GLOB.round_statistics.hivelord_healing_infusion)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion] health points restored through Hivelord's Healing Infusion."
+	if(GLOB.round_statistics.hivelord_healing_infusion_sunder)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion_sunder] sunder removed through Hivelord's Healing Infusion."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)

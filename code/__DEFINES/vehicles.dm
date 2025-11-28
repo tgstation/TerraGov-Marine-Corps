@@ -24,10 +24,11 @@
 ///Will this car kidnap people by ramming into them?
 #define CAN_KIDNAP (1<<0)
 
-#define TURRET_TYPE_DROIDLASER 3
-#define TURRET_TYPE_HEAVY 2
-#define TURRET_TYPE_LIGHT 1
 #define TURRET_TYPE_EXPLOSIVE 0
+#define TURRET_TYPE_LIGHT 1
+#define TURRET_TYPE_HEAVY 2
+#define TURRET_TYPE_DROIDLASER 3
+#define TURRET_TYPE_CLAW 4
 
 #define CLOAK_ABILITY 0
 #define CARGO_ABILITY 1
@@ -63,6 +64,10 @@
 #define ARMORED_WRECKABLE (1<<9)
 ///Is currently a wreck
 #define ARMORED_IS_WRECK (1<<10)
+///Wreck can be prepped for extraction
+#define ARMORED_WRECK_PREP_STAGE_ONE (1<<11)
+///Wreck has a fulton attached
+#define ARMORED_WRECK_PREP_STAGE_TWO (1<<12)
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
@@ -73,5 +78,10 @@
 
 ///Not available in the tank fab
 #define TANK_MOD_NOT_FABRICABLE (1<<0)
+
+///Plasteel required to start vehicle wreck repair
+#define ARMORED_WRECK_PLASTEEL_REQ 30
+///Number of times a tank fulton needs to be fastened
+#define ARMORED_WRECK_STAGE_MAX 8
 
 #define IGUANA_MAX_INTEGRITY 150

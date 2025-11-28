@@ -3,11 +3,14 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/cone
 	name = "Spray Acid Cone"
-	desc = "Spray a cone of dangerous acid at your target."
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
 	/// How will far can the acid go? Tile underneath starts at 1.
 	var/range = 5
+
+/datum/action/ability/activable/xeno/spray_acid/cone/New(Target)
+	. = ..()
+	desc = "Spray a [range - 1] tile cone of dangerous acid at your target."
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -147,7 +150,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Slime grenade"
 	action_icon_state = "gas mine"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
-	desc = "Throws a lump of compressed acid to stick to a target, which will leave a trail of acid behind them."
+	desc = "Throws a lump of compressed acid to stick to a target, which will then leave a trail of acid behind them. Will explode in a 3x3 of acid if not stuck."
 	ability_cost = 75
 	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
@@ -174,85 +177,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	nade.activate(owner)
 
 // ***************************************
-// *********** Acid dash
-// ***************************************
-/datum/action/ability/activable/xeno/charge/acid_dash
-	name = "Acid Dash"
-	action_icon_state = "pounce"
-	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
-	ability_cost = 250
-	cooldown_duration = 30 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
-	)
-	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
-	charge_range = PRAE_CHARGEDISTANCE
-	///Can we use the ability again
-	var/recast_available = FALSE
-	///Is this the recast
-	var/recast = FALSE
-	/// If we should do acid_spray_act on those we pass over.
-	var/do_acid_spray_act = TRUE
-	///List of pass_flags given by this action
-	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-
-/datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
-	if(!A)
-		return
-	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through
-
-	xeno_owner.visible_message(span_danger("[xeno_owner] slides towards \the [A]!"), \
-	span_danger("We dash towards \the [A], spraying acid down our path!") )
-	xeno_owner.emote("roar")
-	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-	succeed_activate()
-
-	xeno_owner.add_pass_flags(charge_pass_flags, type)
-	owner.throw_at(A, charge_range, 2, owner)
-
-/datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
-	. = TRUE
-	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
-		return
-	recast_available = TRUE
-	var/mob/living/carbon/carbon_victim = living_target
-	carbon_victim.ParalyzeNoChain(0.5 SECONDS)
-
-	to_chat(carbon_victim, span_userdanger("The [owner] tackles us, sending us behind them!"))
-	owner.visible_message(span_xenodanger("\The [owner] tackles [carbon_victim], swapping location with them!"), \
-		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
-
-/datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
-	. = ..()
-	if(recast_available)
-		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
-		recast = TRUE
-	else
-		recast = FALSE
-		add_cooldown()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	xeno_owner.remove_pass_flags(charge_pass_flags, type)
-	recast_available = FALSE
-
-///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
-/datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
-	SIGNAL_HANDLER
-	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
-
-
-
-// ***************************************
 // *********** Dodge
 // ***************************************
 /datum/action/ability/xeno_action/dodge
 	name = "Dodge"
 	action_icon_state = "dodge"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	ability_cost = 100
 	cooldown_duration = 18 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
@@ -268,6 +198,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///List of pass_flags given by this action
 	var/dodge_pass_flags = PASS_MOB|PASS_XENO
+
+/datum/action/ability/xeno_action/dodge/New(Target)
+	. = ..()
+	desc = "Flood your body with adrenaline for [duration / (1 SECONDS)] seconds, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
@@ -495,7 +429,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Hook"
 	action_icon_state = "tail_hook"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
+	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and get briefly knocked over."
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	ability_cost = 100
