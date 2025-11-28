@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Losing Hive Ruler status no longer removes leader/ruler abilities if your caste has the abilities by default."

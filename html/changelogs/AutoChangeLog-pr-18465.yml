@@ -1,6 +1,0 @@
-author: "DaTruRiZZoB"
-delete-after: True
-changes:
-  - bugfix: "All xeno abilities show in their respective codex"
-  - qol: "Xeno abilities have gotten further clarification"
-  - spellcheck: "Unified target language in xeno descriptions"

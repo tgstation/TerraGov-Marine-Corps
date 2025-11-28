@@ -1,5 +1,0 @@
-author: "Isy232"
-delete-after: True
-changes:
-  - balance: "Queen Respawn Timer: 5 Minutes => 10 Minutes"
-  - balance: "King Respawn Timer: 7 Minutes => 15 Minutes"
