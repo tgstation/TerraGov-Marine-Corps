@@ -372,7 +372,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/vehicle/unmanned/heavy = 1,
 		/obj/item/deployable_vehicle/tiny = 3,
 		/obj/item/uav_turret = 1,
-		/obj/item/ammo_magazine/box11x35mm = 3.
+		/obj/item/ammo_magazine/box11x35mm = 3,
 		/obj/item/uav_turret/heavy = 1,
 		/obj/item/ammo_magazine/box12x40mm = 3,
 		/obj/item/uav_turret/claw = 1,
