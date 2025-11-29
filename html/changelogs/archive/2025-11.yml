@@ -238,3 +238,9 @@
       now costing 25 points and the Light machinegun costing 15.
   mudzbe:
   - rscadd: Zombium is reduced by bio armor stat, more zombium to compensate
+2025-11-29:
+  Runian:
+  - balance: Sunder now carries over through evolutions.
+  mudzbe:
+  - bugfix: Zombies can pry open doors again
+  - bugfix: Zombie AI wont try to pry open bolted doors
