@@ -1,14 +1,16 @@
 #define UNREVIVABLE_GENERIC \
-	"Damn it, %THEIR_FIRST_NAME% is cold!",\
-	"Goodnight, %THEIR_FIRST_NAME%.",\
-	"We lost %THEIR_FIRST_NAME%!",\
-	"%THEIR_FIRST_NAME%'s gone.",\
-	"Ah... %THEIR_FIRST_NAME%.",\
+	"Damn it, %AFFECTED_FIRST_NAME% is cold!",\
+	"%A_AFFECTED_THEYRE% not coming back.",\
+	"Goodnight, %AFFECTED_FIRST_NAME%.",\
+	"%AFFECTED_FIRST_NAME%'s gone.",\
+	"Ah... %AFFECTED_FIRST_NAME%.",\
+	"%A_AFFECTED_THEYRE% dead.",\
+	"We lost %AFFECTED_THEM%!",\
 	"I'm sorry."
 
 #define MOVE_TO_HEAL_GENERIC \
-	"%THEIR_FIRST_NAME%, I have something for you!",\
-	"%MY_FIRST_NAME% on the way!",\
+	"%AFFECTED_FIRST_NAME%, I have something for you!",\
+	"%SELF_FIRST_NAME% on the way!",\
 	"Hang in there, I'm coming!",\
 	"Hold on, I'm coming!",\
 	"I'm on the way!"
@@ -40,34 +42,33 @@
 			UNREVIVABLE_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			"I'll see you around, %THEIR_LAST_NAME%.",
-			"Goodnight, %THEIR_LAST_NAME%.",
-			"We lost %THEIR_LAST_NAME%.",
-			"%THEIR_LAST_NAME% is cold.",
-			"Ah... %THEIR_LAST_NAME%.",
+			"Goodnight, %AFFECTED_LAST_NAME%.",
+			"We lost %AFFECTED_LAST_NAME%.",
+			"%AFFECTED_LAST_NAME% is cold.",
+			UNREVIVABLE_GENERIC,
 		),
 	)
 	/// Lines when moving to help someone up who's in crit
 	var/list/move_to_crit_lines = list(
 		FACTION_NEUTRAL = list(
-			"Cover me, I'm helping %THEIR_FIRST_NAME% up!",
-			"Cover me while I get %THEIR_FIRST_NAME%!",
-			"Someone help %THEIR_FIRST_NAME% up!",
-			"Shit, %THEIR_FIRST_NAME% is down!",
-			"Getting %THEIR_FIRST_NAME% up!",
-			"%THEIR_FIRST_NAME% needs help!",
-			"%THEIR_FIRST_NAME% is down!",
-			"%THEIR_FIRST_NAME%!",
+			"Cover me, I'm helping %AFFECTED_FIRST_NAME% up!",
+			"Cover me while I get %AFFECTED_FIRST_NAME%!",
+			"Someone help %AFFECTED_FIRST_NAME% up!",
+			"Shit, %AFFECTED_FIRST_NAME% is down!",
+			"Getting %AFFECTED_FIRST_NAME% up!",
+			"%AFFECTED_FIRST_NAME% needs help!",
+			"%AFFECTED_FIRST_NAME% is down!",
+			"%AFFECTED_FIRST_NAME%!",
 		),
 		FACTION_TERRAGOV = list(
-			"Cover me, I'm helping %THEIR_LAST_NAME% up!",
-			"Cover me while I get %THEIR_LAST_NAME%!",
-			"Someone help %THEIR_LAST_NAME% up!",
-			"Shit, %THEIR_LAST_NAME% is down!",
-			"Getting %THEIR_LAST_NAME% up!",
-			"%THEIR_LAST_NAME% needs help!",
-			"%THEIR_LAST_NAME% is down!",
-			"%THEIR_LAST_NAME%!",
+			"Cover me, I'm helping %AFFECTED_LAST_NAME% up!",
+			"Cover me while I get %AFFECTED_LAST_NAME%!",
+			"Someone help %AFFECTED_LAST_NAME% up!",
+			"Shit, %AFFECTED_LAST_NAME% is down!",
+			"Getting %AFFECTED_LAST_NAME% up!",
+			"%AFFECTED_LAST_NAME% needs help!",
+			"%AFFECTED_LAST_NAME% is down!",
+			"%AFFECTED_LAST_NAME%!",
 		)
 	)
 	/// Lines when moving to heal someone else
@@ -76,11 +77,11 @@
 			MOVE_TO_HEAL_GENERIC,
 		),
 		FACTION_TERRAGOV = list(
-			"%THEIR_TITLE%, I have something for you!",
-			"I hear you, %THEIR_TITLE%!",
-			"Wait up, %THEIR_TITLE%!",
+			"%AFFECTED_TITLE%, I have something for you!",
+			"I hear you, %AFFECTED_TITLE%!",
+			"Wait up, %AFFECTED_TITLE%!",
 			"Corpsman on the way!",
-			"%THEIR_TITLE%!",
+			"%AFFECTED_TITLE%!",
 		),
 	)
 	/// Lines when actively healing someone else
@@ -125,7 +126,7 @@
 		return
 
 	set_interact_target(patient)
-	speak_move_to_heal(patient)
+	faction_list_speak(move_to_heal_lines, talking_with = patient)
 	return TRUE
 
 ///Someone is healing us
@@ -156,9 +157,7 @@
 		return
 	set_interact_target(crit_mob)
 	if(prob(33))
-		var/line = pick_faction_line(move_to_crit_lines)
-		AI_REPLACE_THEIR_NAME(line, crit_mob)
-		custom_speak(line)
+		faction_list_speak(move_to_crit_lines, talking_with = crit_mob)
 	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_interactee_stat_change))
 
 ///Unregisters a friendly target when their stat changes
@@ -193,7 +192,7 @@
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	set_interact_target(patient)
-	speak_move_to_heal(patient)
+	faction_list_speak(move_to_heal_lines, talking_with = patient)
 
 ///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
@@ -240,16 +239,13 @@
 
 	do_unset_target(patient, FALSE)
 	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
-		remove_from_heal_list(patient)
-		var/line = pick_faction_line(unrevivable_lines)
-		AI_REPLACE_THEIR_NAME(line, patient)
-		custom_speak(line)
+		faction_list_speak(unrevivable_lines, talking_with = patient)
 		return
 
 	if(!mob_parent.CanReach(patient))
 		return
 
-	faction_list_speak(healing_lines)
+	faction_list_speak(healing_lines, talking_with = patient)
 	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
@@ -272,9 +268,7 @@
 /datum/ai_behavior/human/proc/speak_move_to_heal(mob/living/carbon/human/patient)
 	if(!prob(33))
 		return
-	var/line = pick_faction_line(move_to_heal_lines)
-	AI_REPLACE_THEIR_NAME(line, patient)
-	custom_speak(line)
+	faction_list_speak(move_to_heal_lines, talking_with = patient)
 
 #undef UNREVIVABLE_GENERIC
 #undef MOVE_TO_HEAL_GENERIC

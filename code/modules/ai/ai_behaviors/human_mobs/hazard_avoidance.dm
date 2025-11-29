@@ -4,7 +4,7 @@
 	"Watch out!"
 
 #define GENERIC_ACID \
-	"Don't step in that bubbling stuff!",\
+	"Don't step in that bubbling shit!",\
 	"Green shit!",\
 	"ACID!!",\
 	"GOO!!"
@@ -41,7 +41,6 @@
 		FACTION_NEUTRAL = list(
 			"Someone put those flames out!",
 			"Stay away from that fire!",
-			"It's only a bit of fire.",
 			"Clear those flames!",
 			"Move, move, fire!",
 			"Look out, fire!",
@@ -57,6 +56,7 @@
 		),
 		FACTION_TERRAGOV = list(
 			SOLDIER_ACID,
+			GENERIC_HAZARD,
 		),
 		FACTION_NANOTRASEN = list(
 			SOLDIER_ACID,
@@ -91,7 +91,9 @@
 			"SHOOT THAT FACEHUGGER!!",
 			"FACEHUGGER! SHOOT!!",
 			"FACEHUGGER!!",
-			GENERIC_HAZARD,
+			"WATCH YOUR ASS!!",
+			"WATCH OUT!!",
+			"LOOK OUT!!",
 		),
 	)
 	/// Lines when spotting atoms related to xeno abilities

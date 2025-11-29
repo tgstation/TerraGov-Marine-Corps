@@ -1,14 +1,14 @@
 #define DEATH_LINES_ANGRY \
 	"You're gonna pay for that!",\
+	"%AFFECTED_FIRST_NAME%!",\
 	"You're dead, asshole!",\
-	"%THEIR_FIRST_NAME%!",\
 	"You're fucked now!",\
 	"MOTHERFUCKER!!"
 
 #define DEATH_LINES_SOLDIER_ANGRY \
 	"Man down... I'm coming for you!",\
 	"Man down... you piece of shit!",\
-	"%THEIR_TITLE%!"
+	"%AFFECTED_TITLE%!"
 
 #define GIB_LINES_ANGRY \
 	"WOAH, LOOK OUT!!",\
@@ -49,18 +49,17 @@
 	SIGNAL_HANDLER
 	if(!prob(25))
 		return
-	if(!gibbing) // gibbing is cool so it gets to bypass needing to be in combat and share a faction
+	if(!gibbing) // gibbing is cool so it gets to bypass these things
 		if(!combat_target)
 			return
 		if(dead.faction != source.faction)
 			return
 	. = HUMAN_VIEW_DEATH_STOP_LOOP
-	var/line = pick_faction_line(gibbing ? witnessing_gibbing_lines : witnessing_death_lines)
-	AI_REPLACE_THEIR_NAME(line, dead)
-	custom_speak(
-		message = line,
+	faction_list_speak(
+		chat_lines = gibbing ? witnessing_gibbing_lines : witnessing_death_lines,
 		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",
 		unique_cooldown_time = 15 SECONDS,
+		talking_with = dead,
 	)
 
 #undef DEATH_LINES_ANGRY

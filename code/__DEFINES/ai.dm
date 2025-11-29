@@ -1,11 +1,20 @@
 /// Default cooldown for AI speech
 #define COOLDOWN_AI_SPEECH (2 SECONDS)
 
-/// Macro for applying text replacements for other mobs to a string
-#define AI_REPLACE_THEIR_NAME(line, other_mob) \
-	##line = replacetext(##line, "%THEIR_FIRST_NAME%", get_last_or_first_name(##other_mob, FALSE, FALSE));\
-	##line = replacetext(##line, "%THEIR_LAST_NAME%", get_last_or_first_name(##other_mob, FALSE, TRUE));\
-	##line = replacetext(##line, "%THEIR_TITLE%", ##other_mob.get_paygrade_or_last_name(0));
+/// Macro for applying text replacements for certain mobs to a string
+#define AI_STANDARD_TEXT_REPLACEMENT(key, text, mob) \
+	##text = replacetext(##text, "%" + key + "_FIRST_NAME%", get_last_or_first_name(##mob, FALSE, FALSE));\
+	##text = replacetext(##text, "%" + key + "_LAST_NAME%", get_last_or_first_name(##mob, FALSE, TRUE));\
+	##text = replacetext(##text, "%" + key + "_TITLE%", ##mob.get_paygrade_or_last_name(0));\
+	##text = replacetext(##text, "%A_" + key + "_THEY%", ##mob.p_they(TRUE));\
+	##text = replacetext(##text, "%" + key + "_THEY%", ##mob.p_they());\
+	##text = replacetext(##text, "%A_" + key + "_THEM%", ##mob.p_them(TRUE));\
+	##text = replacetext(##text, "%" + key + "_THEM%", ##mob.p_them());\
+	##text = replacetext(##text, "%A_" + key + "_THEYRE%", ##mob.p_theyre(TRUE));\
+	##text = replacetext(##text, "%" + key + "_THEYRE%", ##mob.p_theyre());\
+	##text = replacetext(##text, "%A_" + key + "_THEIR%", ##mob.p_their(TRUE));\
+	##text = replacetext(##text, "%" + key + "_THEIR%", ##mob.p_their());\
+	##text = replacetext(##text, "%" + key + "_ARE%", ##mob.p_are());
 
 /// Monkey specific AI speech lines
 GLOBAL_LIST_INIT(ai_monkey_lines, list("EEK!!", "OOP!!", "ACK!!", "CHEE!!"))
