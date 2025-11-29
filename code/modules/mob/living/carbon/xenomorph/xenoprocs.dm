@@ -624,7 +624,8 @@
 	var/mob/living/carbon/victim = eaten_mob
 	eaten_mob = null
 	if(make_cocoon)
-		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		if(victim.stat == DEAD)
+			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 			victim.med_hud_set_status()
 		new /obj/structure/cocoon(loc, hivenumber, victim)

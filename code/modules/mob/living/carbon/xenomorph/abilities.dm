@@ -1237,9 +1237,9 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	if(victim.stat != DEAD)
+	if(victim.ckey == null && victim.stat != DEAD && victim.buckled)
 		if(!silent)
-			to_chat(xeno_owner, span_warning("This creature is struggling too much for us to drain its life force."))
+			to_chat(owner, span_warning("This creature is struggling too much for us to drain its life force."))
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
@@ -1287,8 +1287,8 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	victim.adjustCloneLoss(20)
 	SSpoints.add_biomass_points(xeno_owner.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN)
 	GLOB.round_statistics.biomass_from_psydrains += MUTATION_BIOMASS_PER_PSYDRAIN
-
-	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	if(victim.stat == DEAD)
+		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
 	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
@@ -1427,7 +1427,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	if(!owner.Adjacent(victim)) //checks if owner next to target
 		return FALSE
-	if(victim.stat != DEAD)
+	if(victim.ckey == null && victim.stat != DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
 		return FALSE
