@@ -198,25 +198,25 @@
 	max_rounds = 18
 
 //-------------------------------------------------------
-//MK90M5 standard PMC pistol
+//RA-P-90 standard PMC pistol
 
-/obj/item/ammo_magazine/pistol/mk90
-	name = "\improper MK90M4 AP magazine (9mm)"
+/obj/item/ammo_magazine/pistol/vp90
+	name = "\improper RA-P-90 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "90m4"
 	icon_state_mini = "mag_pistol"
 	max_rounds = 20
 
-/obj/item/ammo_magazine/pistol/mk90/extended
-	name = "\improper MK90M4 extended AP magazine (9mm)"
+/obj/item/ammo_magazine/pistol/vp90/extended
+	name = "\improper RA-P-90 extended AP magazine (9mm)"
 	icon_state = "90m4_extended"
 	max_rounds = 35
 //-------------------------------------------------------
-//MK100M5 PMC gyrojet pistol
+//RA-JAR-100 PMC gyrojet pistol
 
-/obj/item/ammo_magazine/pistol/mk100_gyrojet
-	name = "\improper MK100M5 'Suppresor' magazine (15x50mm)"
+/obj/item/ammo_magazine/pistol/vp100_gyrojet
+	name = "\improper RA-JAR-100 'Suppresor' magazine (15x50mm)"
 	desc = "A gyrojet handgun magazine."
 	default_ammo = /datum/ammo/bullet/pistol/gyrojet
 	caliber = CALIBER_15X50

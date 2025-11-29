@@ -372,7 +372,7 @@
 	icon_state = "pmc_heavyhelmet_officer"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
-	name = "\improper PMC commando helmet"
+	name = "\improper PMC MX Apocryph pattern commando helmet"
 	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
 	armor_protection_flags = HEAD|FACE|EYES
@@ -382,6 +382,13 @@
 	eye_protection = 2
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/head/helmet/marine/veteran/pmc/commando/heavy
+	name = "\improper PMC MX-H Cathaphract commando helmet"
+	desc = "A fully enclosed, armored helmet with hardened cameras, made for Nanotrasen elite commandos."
+	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
+	icon_state = "commando_helmet_heavy"
+	hard_armor = list(MELEE = 20, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 50, FIRE = 50, ACID = 50)
 
 /*==========================DISTRESS=================================
 =======================================================================*/

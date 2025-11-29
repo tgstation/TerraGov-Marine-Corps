@@ -25,7 +25,7 @@
 		/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread = 1,
 		/obj/item/stack/medical/heal_pack/gauze = 1,
 		/obj/item/stack/medical/heal_pack/ointment = 1,
-		/obj/item/ammo_magazine/pistol/mk90 = 1
+		/obj/item/ammo_magazine/pistol/vp90 = 1
 	)
 
 	head_contents = list(
@@ -34,8 +34,8 @@
 	)
 
 	webbing_contents = list(
-		/obj/item/ammo_magazine/pistol/mk90 = 3,
-		/obj/item/weapon/gun/pistol/mk90/pmc_standard = 1,
+		/obj/item/ammo_magazine/pistol/vp90 = 3,
+		/obj/item/weapon/gun/pistol/vp90/pmc_standard = 1,
 	)
 
 // SMG RA-VAL
@@ -286,8 +286,8 @@
 	)
 
 	belt_contents = list(
-		/obj/item/ammo_magazine/pistol/mk90/extended = 6,
-		/obj/item/weapon/gun/pistol/mk90/pmc_sniper = 1,
+		/obj/item/ammo_magazine/pistol/vp90/extended = 6,
+		/obj/item/weapon/gun/pistol/vp90/pmc_sniper = 1,
 	)
 
 	webbing_contents = list(
@@ -320,8 +320,8 @@
 
 
 	webbing_contents = list(
-		/obj/item/ammo_magazine/pistol/mk100_gyrojet = 3,
-		/obj/item/weapon/gun/pistol/mk100_gyrojet/pmc_leader = 1,
+		/obj/item/ammo_magazine/pistol/vp100_gyrojet = 3,
+		/obj/item/weapon/gun/pistol/vp100_gyrojet/pmc_leader = 1,
 	)
 
 	backpack_contents = list(
@@ -333,7 +333,7 @@
 		/obj/item/stack/medical/heal_pack/ointment = 1,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/explosive/grenade/pmc = 2,
-		/obj/item/ammo_magazine/pistol/mk100_gyrojet = 2,
+		/obj/item/ammo_magazine/pistol/vp100_gyrojet = 2,
 	)
 
 //RA-SHA-416M protag mode

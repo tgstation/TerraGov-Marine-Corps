@@ -338,13 +338,13 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader
 	name = "\improper M7-H Cathaphract pattern PMC officer exo-armor"
-	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer, with integrated energy shield system."
+	desc = "A newest generation of Nanotrasen Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. This particular set looks like it belongs to a high-ranking officer."
 	icon_state = "pmc_heavyarmor_officer"
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
-	name = "\improper PMC commando armor"
-	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
+	name = "\improper PMC MX Apocryph pattern commando armor"
+	desc = "A heavily armored suit built by Nanotrasen armory for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
 	soft_armor = list(MELEE = 90, BULLET = 120, LASER = 200, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
@@ -358,6 +358,11 @@
 	AddComponent(/datum/component/suit_autodoc)
 	AddElement(/datum/element/limb_support)
 
+/obj/item/clothing/suit/storage/marine/veteran/pmc/commando/heavy
+	name = "\improper PMC MX-H Cathaphract pattern commando exo-armor"
+	desc = "A heavily armored exosuit built by Nanotrasen armory for elite operations. It is a fully self-contained system and is heavily corrosion resistant. Original model of Cathaphract exo-armor, developed in Nanotrasen R&D as the answer to the requirement of heavily armored equipment in the TrasenGuard. It has successfully passed all technical tests, but was lately labeled as 'overpriced', and the production of downgraded model, we all know, has started. However, despise this state, a regiment value amount of exo-armor has been produced for Nanotrasen elite commandos personal use, and for this day is issued only for the best of the best."
+	icon_state = "commando_armor_heavy"
+	hard_armor = list(MELEE = 20, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 50, FIRE = 50, ACID = 50)
 /*===========================I.o.M================================*/
 
 /obj/item/clothing/suit/storage/marine/imperial

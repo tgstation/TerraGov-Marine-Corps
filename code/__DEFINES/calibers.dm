@@ -43,7 +43,6 @@
 #define CALIBER_3006 ".30-06"
 #define CALIBER_492X34_CASELESS "4.92x34mm caseless"
 #define CALIBER_10X28_CASELESS "10x28mm caseless" //Spec scout and OG Smartgun
-#define CALIBER_127X55 "12.7x55mm"
 #define CALIBER_762X51 "7.62x51mm" //Minigun
 #define CALIBER_10X27_INCENDIARY_CASELESS "10x27mm incendiary caseless"
 #define CALIBER_10x26_CASELESS "10x26mm caseless" //GPMG and SG

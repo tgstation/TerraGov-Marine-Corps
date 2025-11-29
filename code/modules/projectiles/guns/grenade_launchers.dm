@@ -210,10 +210,6 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	attach_features_flags = NONE
 
-/obj/item/weapon/gun/grenade_launcher/underslung/integrated
-	attach_features_flags = NONE
-	icon_state = NONE
-
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."

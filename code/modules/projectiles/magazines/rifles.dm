@@ -339,8 +339,13 @@
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 250
+	max_rounds = 200
 	reload_delay = 3 SECONDS
+
+/obj/item/ammo_magazine/smart_gpmg/extended
+	name = "\improper SG-60 extended box magazine (10x26mm HP)"
+	icon_state = "sg60_extended"
+	max_rounds = 300
 
 //-------------------------------------------------------
 //SMART TARGET RIFLE AMMUNITION

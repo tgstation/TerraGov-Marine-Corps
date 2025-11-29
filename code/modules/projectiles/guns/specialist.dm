@@ -244,7 +244,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/sniperbarrel,
 		/obj/item/attachable/scope/nightvision
 	)
-	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
+	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial)
 
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
@@ -257,6 +257,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_sound = 'sound/weapons/guns/fire/laser_charge_up.ogg'
 	fire_delay = 2 SECONDS
 	accuracy_mult = 1.2
+	scatter = 0
 	recoil = 3
 	burst_amount = 1
 	movement_acc_penalty_mult = 7

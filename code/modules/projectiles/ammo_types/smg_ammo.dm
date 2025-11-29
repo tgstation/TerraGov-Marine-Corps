@@ -88,7 +88,7 @@
 
 /datum/ammo/bullet/smg/val
 	name = "heavy submachinegun bullet"
-	damage = 30
-	penetration = 27.5
-	sundering = 2
-	damage_falloff = 1.5
+	damage = 35
+	penetration = 7.5
+	sundering = 1
+	damage_falloff = 2

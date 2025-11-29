@@ -166,6 +166,20 @@
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
 	shake_camera(target_mob, 0.2 SECONDS, 1)
 
+// PMC sniper railgun
+
+/datum/ammo/bullet/railgun/longrange
+	accurate_range = 30
+	max_range = 40
+
+/datum/ammo/bullet/railgun/hvap/longrange
+	accurate_range = 30
+	max_range = 40
+
+/datum/ammo/bullet/railgun/smart/longrange
+	accurate_range = 30
+	max_range = 40
+
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
 	hud_state = "alloy_spike"
