@@ -3,6 +3,8 @@
 	upper_escort_dist = 1
 	base_action = IDLE
 	identifier = IDENTIFIER_XENO
+	///Current order type for AI control
+	var/current_order = PUPPET_RECALL
 	///should we go back to escorting the puppeteer if we stray too far
 	var/too_far_escort = TRUE
 	///weakref to our puppeteer
@@ -55,8 +57,7 @@
 	mob_parent.face_atom(target)
 	mob_parent.UnarmedAttack(target, mob_parent)
 
-///looks for a new state, handles recalling if too far and some AI shenanigans
-/datum/ai_behavior/puppet/look_for_new_state()
+/datum/ai_behavior/puppet/look_for_new_state(atom/next_target)
 	switch(current_action)
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			if(get_dist(mob_parent, escorted_atom) > PUPPET_WITHER_RANGE && too_far_escort)
@@ -74,6 +75,11 @@
 		if(MOVING_TO_ATOM)
 			if(!atom_to_walk_to) //edge case
 				late_initialize()
+	return ..()
+
+/datum/ai_behavior/puppet/need_new_combat_target()
+	if(current_order == PUPPET_RECALL)
+		return FALSE
 	return ..()
 
 ///attack the first closest human, by moving towards it
@@ -105,7 +111,8 @@
 	if(!order)
 		stack_trace("puppet AI was somehow passed a null order")
 		return FALSE
-	switch(order)
+	current_order = order
+	switch(current_order)
 		if(PUPPET_SEEK_CLOSEST) //internal order, to attack closest enemy
 			return seek_and_attack_closest()
 		if(PUPPET_RECALL) //reset our escorted atom to master_ref and change our action to escorting it, and turn on recalling if out of range.
