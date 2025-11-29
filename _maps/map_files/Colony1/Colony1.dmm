@@ -4974,6 +4974,10 @@
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
 	})
+"gLS" = (
+/obj/item/storage/box/crate/minisentry,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/lazarus/armory)
 "gMZ" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship,
@@ -34684,7 +34688,7 @@ hKj
 slm
 oZE
 vym
-mCl
+gLS
 mCl
 mCl
 mCl
