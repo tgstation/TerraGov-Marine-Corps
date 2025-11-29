@@ -1240,7 +1240,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	if(victim.ckey == null && victim.stat != DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("This creature is struggling too much for us to drain its life force."))
+			to_chat(xeno_owner, span_warning("This creature is struggling too much for us to drain its life force."))
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
