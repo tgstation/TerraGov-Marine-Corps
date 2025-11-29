@@ -1332,6 +1332,7 @@
 	full_name = "Behemoth: Earth Riser"
 	description = "Create an Earth Pillar in the target location. If holding one, you will throw it there instead."
 	keybind_signal = COMSIG_XENOABILITY_EARTH_RISER
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/earth_riser_alternate
 	name = "Destroy Earth Pillar"
@@ -1348,20 +1349,30 @@
 /datum/keybinding/xeno/behemoth_seize_alternate
 	name = "Seize Nearest"
 	full_name = "Behemoth: Seize (Nearest)"
-	description = "Dash towards the nearest Earth Pillar in range and grab it.
+	description = "Dash towards the nearest Earth Pillar in range and grab it."
 	keybind_signal = COMSIG_XENOABILITY_BEHEMOTH_SEIZE_ALTERNATE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/landslide
 	name = "Landslide"
 	full_name = "Behemoth: Landslide"
 	description = "Rush forward in the selected direction, damaging eligible targets in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/geocrush
 	name = "Geocrush"
 	full_name = "Behemoth: Geocrush"
 	description = "Imbue one of your claws with powerful energies and attack a target. Deals damage and applies slowdown, stagger, knockdown, and knockback."
 	keybind_signal = COMSIG_XENOABILITY_GEOCRUSH
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/primal_wrath
+	name = "Primal Wrath"
+	full_name = "Behemoth: Primal Wrath"
+	description = "Restore all damage taken in the past few seconds, but gain a stacking debuff that reduces your combat capabilities."
+	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/firecharge
 	name = "Fire Charge"

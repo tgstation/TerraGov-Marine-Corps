@@ -3,10 +3,9 @@
 	duration = 10 SECONDS
 
 
-/* ***************************************
+// ***************************************
 // *********** Earth Pillar
 // ***************************************
-*/
 #define isearthpillar(A) (istype(A, /obj/structure/xeno/earth_pillar)) // So that we don't need to repeat the type path.
 #define EARTH_PILLAR_REPAIR_DELAY 1.4 SECONDS
 #define EARTH_PILLAR_REPAIR_PERCENT 0.1 // 10%
@@ -29,7 +28,6 @@
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
 	hit_sound = SFX_BEHEMOTH_EARTH_PILLAR_HIT
 	destroy_sound = 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg'
-	interaction_flags = INTERACT_CHECK_INCAPACITATED|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	obj_flags = CAN_BE_HIT|BLOCKS_CONSTRUCTION
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_THROW|PASS_AIR|PASS_WALKOVER
@@ -105,6 +103,8 @@
 		while(do_after(xeno_attacker, EARTH_PILLAR_REPAIR_DELAY, NONE, src, BUSY_ICON_CLOCK))
 			var/repair_amount = max_integrity * EARTH_PILLAR_REPAIR_PERCENT
 			repair_damage(repair_amount, xeno_attacker)
+			var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_attacker.ckey]
+			xeno_stats.earth_pillar_repairs += repair_amount
 			playsound(src, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 15, TRUE, 5)
 			if(obj_integrity >= max_integrity)
 				balloon_alert(xeno_attacker, "Fully repaired ([obj_integrity]/[max_integrity])")
@@ -138,7 +138,7 @@
 	L.add_slowdown(EARTH_PILLAR_THROW_SLOWDOWN)
 	L.Knockdown(EARTH_PILLAR_THROW_KNOCKDOWN)
 	L.knockback(xeno_owner, EARTH_PILLAR_THROW_KNOCKBACK, 1)
-	L.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.zone_selected, xeno_owner.xeno_caste.melee_damage_armor, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+	L.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 	INVOKE_ASYNC(L, TYPE_PROC_REF(/mob, emote), "pain")
 
 /// Cleans up after this object is thrown.
@@ -246,7 +246,7 @@
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	action_icon_state = "pounce"
 	ability_cost = 30
-	cooldown_duration = 10 SECONDS
+	cooldown_duration = 15 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BEHEMOTH_SEIZE,
@@ -300,13 +300,15 @@
 	if(!target_pillar)
 		return
 	if(xeno_owner.held_pillar) // If we're already holding a pillar, drop it so we can grab the targetted one.
-		if(!xeno_owner.held_pillar.dummy_item) // to do explanation here
+		if(!xeno_owner.held_pillar.dummy_item) // Not having the dummy item means it was thrown by Earth Riser. We're not ready for grabbing another.
 			return
 		xeno_owner.held_pillar.when_dropped(xeno_owner)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_pre_move))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
 	xeno_owner.throw_at(target_pillar, action_range, SEIZE_SPEED, xeno_owner, targetted_throw = TRUE)
 	target_pillar.warning_flash()
+	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.seize_uses++
 	add_cooldown()
 	succeed_activate()
 
@@ -362,8 +364,7 @@
 	. = ..()
 	LAZYINITLIST(active_pillars)
 	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(clear_pillars))
-	visual_references[VREF_MUTABLE_EARTH_PILLAR] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT)
-	update_button_icon()
+	visual_references[VREF_MUTABLE_EARTH_PILLAR] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, appearance_flags = RESET_COLOR)
 
 /datum/action/ability/activable/xeno/earth_riser/remove_action(mob/living/L)
 	clear_pillars()
@@ -375,26 +376,20 @@
 
 /datum/action/ability/activable/xeno/earth_riser/update_button_icon()
 	. = ..()
-	if(!.)
+	if(!. || !visual_references[VREF_MUTABLE_EARTH_PILLAR])
 		return
-	var/mutable_appearance/pillar_counter = visual_references[VREF_MUTABLE_EARTH_PILLAR]
-	button.cut_overlay(pillar_counter)
-	if(!pillar_counter || !creation_limit)
+	var/mutable_appearance/counter = visual_references[VREF_MUTABLE_EARTH_PILLAR]
+	button.cut_overlay(counter)
+	if(!creation_limit)
 		return
-	if(creation_limit > 2)
-		pillar_counter.icon = null
-		pillar_counter.icon_state = null
-		pillar_counter.pixel_x = 16
-		pillar_counter.pixel_y = -4
-		pillar_counter.maptext = MAPTEXT("["[length(active_pillars)]/[creation_limit]"]")
-	else
-		pillar_counter.icon = action_icon
-		pillar_counter.icon_state = "pillar_counter_[creation_limit][length(active_pillars)]" // f.ex pillar_counter_11 means we have 1 pillar as a limit and 1 active pillar
-		pillar_counter.pixel_x = initial(pillar_counter.pixel_x)
-		pillar_counter.pixel_y = initial(pillar_counter.pixel_y)
-		pillar_counter.maptext = null
-	visual_references[VREF_MUTABLE_EARTH_PILLAR] = pillar_counter
-	button.add_overlay(pillar_counter)
+	var/condition = creation_limit > 2 ? TRUE : FALSE
+	counter.icon = condition ? null : action_icon
+	counter.icon_state = condition ? null : "pillar_counter_[creation_limit][LAZYLEN(active_pillars)]" // f.ex pillar_counter_11 means we have 1 pillar as a limit and 1 active pillar
+	counter.pixel_x = condition ? 16 : initial(counter.pixel_x)
+	counter.pixel_y = condition ? -4 : initial(counter.pixel_y)
+	counter.maptext = condition ? MAPTEXT("["[LAZYLEN(active_pillars)]/[creation_limit]"]") : null
+	visual_references[VREF_MUTABLE_EARTH_PILLAR] = counter
+	button.add_overlay(counter)
 
 // Handles ability checks instead, mostly because we need the final target in the event of target correction.
 // We also check for plasma costs and cooldowns here because some parts of this ability ignore them.
@@ -466,9 +461,11 @@
 	var/obj/structure/xeno/earth_pillar/P = new(target, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
 	active_pillars += P
 	RegisterSignal(P, COMSIG_QDELETING, PROC_REF(pillar_deleted))
+	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.earth_pillars_created++
 	var/animation_time = 0.6 SECONDS
 	animate(P, animation_time / 2, easing = SINE_EASING|EASE_OUT, pixel_y = P.pixel_y + 15)
-	animate(animation_time / 2, easing = SINE_EASING|EASE_IN, flags = ANIMATION_CONTINUE, pixel_y = initial(P.pixel_y))
+	animate(animation_time / 2, easing = SINE_EASING|EASE_IN, pixel_y = initial(P.pixel_y))
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/earth_pillar_landing.ogg', 30, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/creation(target)
 	add_cooldown(1 SECONDS)
@@ -480,7 +477,7 @@
 	active_pillars -= source
 	add_cooldown()
 
-/// Tries to throw our currently held pillar towards a target.
+/// Throws our currently held pillar towards a target.
 /datum/action/ability/activable/xeno/earth_riser/proc/throw_pillar(atom/target)
 	xeno_owner.held_pillar.alpha = 0
 	qdel(xeno_owner.held_pillar.dummy_item)
@@ -497,6 +494,8 @@
 			affected_turfs += filled_circle_turfs(M, EARTH_RISER_THROW_EXPLOSION_SIZE) // Other pillars will mirror the explosion, and we'd like to include them in warnings.
 			var/obj/structure/xeno/earth_pillar/P = M
 			P.warning_flash()
+	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.earth_pillars_thrown++
 	xeno_warning(affected_turfs, EARTH_RISER_THROW_DURATION, COLOR_DARK_MODERATE_ORANGE)
 	addtimer(CALLBACK(src, PROC_REF(post_throw), target), EARTH_RISER_THROW_DURATION)
 	add_cooldown(EARTH_RISER_THROW_COOLDOWN)
@@ -524,7 +523,7 @@
 				L.Knockdown(EARTH_RISER_THROW_EXPLOSION_KNOCKDOWN)
 			L.Stagger(EARTH_RISER_THROW_EXPLOSION_STAGGER)
 			L.add_slowdown(EARTH_RISER_THROW_EXPLOSION_SLOWDOWN)
-			L.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * EARTH_RISER_THROW_EXPLOSION_DAMAGE_MULTIPLIER, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+			L.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * EARTH_RISER_THROW_EXPLOSION_DAMAGE_MULTIPLIER, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			step_towards(L, target, get_dist(L, target) - 1) // Drags you in.
 
 /obj/effect/temp_visual/behemoth/earth_pillar
@@ -610,6 +609,13 @@
 	/// Stores the visual effect for when we're charging.
 	var/obj/effect/landslide_charge/charge_visual
 
+/datum/action/ability/activable/xeno/landslide/on_cooldown_finish()
+	. = ..()
+	if(xeno_owner.stat >= DEAD) // If we're dead, we don't really care.
+		return
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 20, 0)
+	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
+
 /datum/action/ability/activable/xeno/landslide/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
@@ -681,7 +687,10 @@
 			end_charge()
 			var/obj/structure/razorwire/R = M
 			playsound(R.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-			R.take_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, REVERSE_DIR(xeno_owner.dir), xeno_owner.xeno_caste.melee_ap, xeno_owner)
+			var/razorwire_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+			R.take_damage(razorwire_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, REVERSE_DIR(xeno_owner.dir), xeno_owner.xeno_caste.melee_ap, xeno_owner)
+			var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+			xeno_stats.landslide_damage += razorwire_damage
 			R.update_icon()
 			xeno_owner.forceMove(R.loc) // This automatically entangles us. Refer to razorwire's on_cross proc.
 			xeno_owner.Paralyze(0.5 SECONDS)
@@ -711,7 +720,10 @@
 					L.buckled.unbuckle_mob(L, TRUE)
 				INVOKE_ASYNC(L, TYPE_PROC_REF(/mob, emote), "scream")
 				playsound(T, 'sound/effects/alien/behemoth/landslide_hit.ogg', 30, TRUE)
-				L.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * LANDSLIDE_DAMAGE_LIVING_MULTIPLIER, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+				var/living_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * LANDSLIDE_DAMAGE_LIVING_MULTIPLIER
+				L.apply_damage(living_damage, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+				var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+				xeno_stats.landslide_damage += living_damage
 				L.Knockdown(LANDSLIDE_KNOCKDOWN_DURATION)
 				atoms_hit += L
 				continue
@@ -722,10 +734,15 @@
 					var/obj/structure/xeno/earth_pillar/P = M
 					P.throw_at(get_ranged_target_turf(P, movement_dir, LANDSLIDE_RANGE), LANDSLIDE_RANGE, 1, xeno_owner)
 					atoms_hit += P
+					var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+					xeno_stats.earth_pillars_thrown++
 					continue
 				if(isvehicle(M)) // Vehicles take increased damage.
 					var/obj/vehicle/V = M
-					V.take_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * (ismecha(V) ? LANDSLIDE_DAMAGE_MECHA_MODIFIER : LANDSLIDE_DAMAGE_VEHICLE_MODIFIER), xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, null, get_dir(V, xeno_owner), xeno_owner.xeno_caste.melee_ap, xeno_owner)
+					var/vehicle_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * (ismecha(V) ? LANDSLIDE_DAMAGE_MECHA_MODIFIER : LANDSLIDE_DAMAGE_VEHICLE_MODIFIER)
+					V.take_damage(vehicle_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, null, get_dir(V, xeno_owner), xeno_owner.xeno_caste.melee_ap, xeno_owner)
+					var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+					xeno_stats.landslide_damage += vehicle_damage
 					atoms_hit += V
 					continue
 				var/obj/O = M
@@ -849,8 +866,8 @@
 	desc = "Imbue one of your claws with powerful energies and attack a target. Deals damage and applies slowdown, stagger, knockdown, and knockback."
 	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	action_icon_state = "geocrush"
-	//ability_cost = 60 // RESTORE AFTER DEBUGGING
-	//cooldown_duration = 15 SECONDS
+	ability_cost = 30
+	cooldown_duration = 12 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
 	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
@@ -858,6 +875,13 @@
 	)
 	/// Whether the Spur mutation is currently enabled.
 	var/spur_mutation = FALSE
+
+/datum/action/ability/activable/xeno/geocrush/on_cooldown_finish()
+	. = ..()
+	if(xeno_owner.stat >= DEAD)
+		return
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 20, 0)
+	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
 // Handles ability checks instead because we need the final target in the event of target correction.
 /datum/action/ability/activable/xeno/geocrush/use_ability(atom/target)
@@ -896,16 +920,18 @@
 	for(var/atom/movable/M AS in target.loc)
 		if(!isliving(M) || xeno_owner.issamexenohive(M))
 			continue
-		var/mob/living/living_target = M
-		INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "scream")
-		living_target.apply_damage(damage, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
-		living_target.apply_damage(damage, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
-		living_target.Knockdown(GEOCRUSH_KNOCKDOWN)
-		living_target.add_slowdown(GEOCRUSH_SLOWDOWN)
-		living_target.Stagger(GEOCRUSH_STAGGER)
-		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_impact))
-		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
-		living_target.knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
+		var/mob/living/L = M
+		INVOKE_ASYNC(L, TYPE_PROC_REF(/mob, emote), "scream")
+		L.apply_damage(damage, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+		L.apply_damage(damage, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
+		var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+		xeno_stats.geocrush_damage += damage
+		L.Knockdown(GEOCRUSH_KNOCKDOWN)
+		L.add_slowdown(GEOCRUSH_SLOWDOWN)
+		L.Stagger(GEOCRUSH_STAGGER)
+		RegisterSignal(L, COMSIG_MOVABLE_IMPACT, PROC_REF(on_impact))
+		RegisterSignal(L, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+		L.knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
 	add_cooldown()
 	succeed_activate()
 
@@ -952,25 +978,239 @@
 // ***************************************
 // *********** Primal Wrath
 // ***************************************
+#define PRIMAL_WRATH_ACTIVATION_DURATION 3 SECONDS
+#define PRIMAL_WRATH_ROAR_RANGE 12 // tiles
+#define PRIMAL_WRATH_DAMAGE_TIME 5 SECONDS // Amount of time after which we remove a registered instance of damage.
+#define PRIMAL_WRATH_DEBUFF_LIMIT 2 // Limits the debuff's stacking mechanic.
+#define PRIMAL_WRATH_DAMAGE_REDUCTION 0.1 // 10%
+#define PRIMAL_WRATH_HEALTH_REDUCTION 50 // flat
+#define PRIMAL_WRATH_SLOWDOWN 0.2 // flat
+#define PRIMAL_WRATH_DEBUFF_DURATION 3 MINUTES
+
 /datum/action/ability/xeno_action/primal_wrath
 	name = "Primal Wrath"
 	action_icon = 'icons/Xeno/actions/behemoth.dmi'
 	action_icon_state = "primal_wrath"
-	desc = "Hit all adjacent units around you, knocking them away and down."
-	ability_cost = 35
-	use_state_flags = ABILITY_USE_CRESTED
-	cooldown_duration = 12 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	desc = "Restore all damage taken in the past few seconds, but gain a stacking debuff that reduces your combat capabilities."
+	ability_cost = 100
+	cooldown_duration = 90 SECONDS
+	action_type = ACTION_TOGGLE
+	use_state_flags = ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,
 	)
-	/// How far does it knockback?
-	var/knockback_distance = 1
-	/// How long does it stagger?
-	var/stagger_duration = 0 SECONDS
-	/// How long does it paralyze?
-	var/paralyze_duration = 0.5 SECONDS
-	/// If this deals damage, what type of damage is it?
-	var/damage_type = BRUTE
-	/// The multiplier of the damage to be applied.
-	var/damage_multiplier = 1
+	/// Visual effect that is used to indicate various things.
+	var/obj/effect/primal_wrath/visual_effect
+	/// List containing another list that specifies damage taken, and includes a timer that will remove it.
+	var/list/damage_taken
+	/// Counter reflecting the amount of stacks for this action's debuff.
+	var/debuff_counter = 0
+
+/datum/action/ability/xeno_action/primal_wrath/give_action(mob/living/L)
+	. = ..()
+	visual_references[VREF_MUTABLE_PRIMAL_WRATH] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, appearance_flags = RESET_COLOR)
+	var/mutable_appearance/counter = visual_references[VREF_MUTABLE_PRIMAL_WRATH]
+	counter.pixel_x = 16
+	counter.pixel_y = -4
+	prepare_action()
+
+/datum/action/ability/xeno_action/primal_wrath/remove_action(mob/living/L)
+	clean_up()
+	return ..()
+
+/datum/action/ability/xeno_action/primal_wrath/clean_action()
+	clean_up()
+	return ..()
+
+/datum/action/ability/xeno_action/primal_wrath/update_button_icon()
+	. = ..()
+	if(!. || !visual_references[VREF_MUTABLE_PRIMAL_WRATH])
+		return
+	var/mutable_appearance/counter = visual_references[VREF_MUTABLE_PRIMAL_WRATH]
+	button.cut_overlay(counter)
+	if(!debuff_counter)
+		return
+	counter.maptext = MAPTEXT("x[debuff_counter]")
+	visual_references[VREF_MUTABLE_PRIMAL_WRATH] = counter
+	button.add_overlay(counter)
+
+/datum/action/ability/xeno_action/primal_wrath/on_cooldown_finish()
+	. = ..()
+	if(xeno_owner.stat >= DEAD)
+		return
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 20, 0)
+	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
+	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+
+/datum/action/ability/xeno_action/primal_wrath/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
+	if(debuff_counter >= PRIMAL_WRATH_DEBUFF_LIMIT)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "[initial(name)]'s limit reached")
+		return FALSE
+
+/datum/action/ability/xeno_action/primal_wrath/action_activate()
+	. = ..()
+	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	toggled = TRUE
+	set_toggle(TRUE)
+	xeno_owner.status_flags |= GODMODE
+	xeno_owner.set_canmove(FALSE)
+	xeno_owner.fortify = TRUE
+	playsound(xeno_owner.loc, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE, 40)
+	do_roar()
+	addtimer(CALLBACK(src, PROC_REF(end_roar)), PRIMAL_WRATH_ACTIVATION_DURATION)
+	var/heal_amount = 0
+	for(var/i in damage_taken) // Could also have been a backward loop using length but I'm way too lazy to figure it out.
+		var/list/params = params2list(i)
+		if(text2num(params["time"]) + PRIMAL_WRATH_DAMAGE_TIME < world.time)
+			LAZYREMOVE(damage_taken, i)
+			continue
+		heal_amount += text2num(params["damage"])
+	xeno_owner.balloon_alert(xeno_owner, "+[heal_amount]")
+	HEAL_XENO_DAMAGE(xeno_owner, heal_amount, FALSE)
+	xeno_owner.updatehealth()
+	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.self_heals++
+	xeno_stats.primal_wrath_healing += heal_amount
+	handle_debuff()
+	addtimer(CALLBACK(src, PROC_REF(handle_debuff), FALSE), PRIMAL_WRATH_DEBUFF_DURATION)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/xeno_action/primal_wrath/process()
+	var/animation_time = 0.8 SECONDS
+	animate(visual_effect, 0, alpha = 230)
+	animate(animation_time, easing = CUBIC_EASING|EASE_OUT, alpha = 0)
+
+/// Prepares the action for its usage.
+/datum/action/ability/xeno_action/primal_wrath/proc/prepare_action()
+	visual_effect = new(null, xeno_owner)
+	xeno_owner.vis_contents += visual_effect
+	LAZYINITLIST(damage_taken)
+	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(on_death))
+	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(on_damage))
+
+/// Cleans up signals and vars.
+/datum/action/ability/xeno_action/primal_wrath/proc/clean_up()
+	UnregisterSignal(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_MOB_REVIVE, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	handle_debuff(cleaning = TRUE)
+	LAZYNULL(damage_taken)
+	xeno_owner.vis_contents -= visual_effect
+	QDEL_NULL(visual_effect)
+
+/// Cleans up on death, and starts listening in case of revival, so that we can prepare the action again.
+/datum/action/ability/xeno_action/primal_wrath/proc/on_death(datum/source, gibbing)
+	SIGNAL_HANDLER
+	clean_up()
+	RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(on_revive))
+
+/// Prepares the action again after being revived.
+/datum/action/ability/xeno_action/primal_wrath/proc/on_revive(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, COMSIG_MOB_REVIVE)
+	prepare_action()
+
+/// Registers the amount of damage taken, and the current time. Also cleans up older entries.
+/datum/action/ability/xeno_action/primal_wrath/proc/on_damage(datum/source, amount, list/amount_mod, passive)
+	SIGNAL_HANDLER
+	LAZYADD(damage_taken, list2params(list(time = world.time, damage = amount)))
+
+/// Distorts the screen of nearby enemies. Huge shoutout to Tivi for providing this code a while back.
+/datum/action/ability/xeno_action/primal_wrath/proc/do_roar()
+	if(!toggled)
+		return
+	new /obj/effect/temp_visual/shockwave/primal_wrath(xeno_owner.loc, 4, xeno_owner.dir)
+	for(var/mob/living/carbon/human/H AS in cheap_get_humans_near(xeno_owner, PRIMAL_WRATH_ROAR_RANGE))
+		if(!H.hud_used)
+			continue
+		var/atom/movable/plane_master_controller/game_plane = H.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+		var/filter_size = 0.01
+		game_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
+		for(var/dm_filter/F AS in game_plane.get_filters("primal_wrath"))
+			animate(F, size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
+		roar_check(H, game_plane)
+	addtimer(CALLBACK(src, PROC_REF(do_roar)), 0.1 SECONDS)
+
+/// Checks if the victim's screen should still be distorted.
+/datum/action/ability/xeno_action/primal_wrath/proc/roar_check(mob/living/carbon/human/H, atom/movable/plane_master_controller/game_plane)
+	if(!game_plane.get_filter("primal_wrath"))
+		return
+	if(!toggled || get_dist(H, xeno_owner) > PRIMAL_WRATH_ROAR_RANGE)
+		var/resolve_time = 0.2 SECONDS
+		for(var/dm_filter/F AS in game_plane.get_filters("primal_wrath"))
+			animate(F, size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
+		addtimer(CALLBACK(game_plane, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
+		return
+	addtimer(CALLBACK(src, PROC_REF(roar_check), H, game_plane), 0.2 SECONDS)
+
+/// Resets changes made to accomodate for roaring.
+/datum/action/ability/xeno_action/primal_wrath/proc/end_roar()
+	toggled = FALSE // This stops the roar loop.
+	set_toggle(FALSE)
+	xeno_owner.status_flags &= ~GODMODE
+	xeno_owner.set_canmove(TRUE)
+	xeno_owner.fortify = FALSE
+
+/// Handles the addition or removal of any changes related to this action's debuff.
+/// Uses a lot of conditionals to cut down on coding lines at the expense of readability. Might be a bad idea?
+/datum/action/ability/xeno_action/primal_wrath/proc/handle_debuff(applying = TRUE, cleaning = FALSE)
+	debuff_counter = cleaning ? initial(debuff_counter) : debuff_counter + (applying ? 1 : -1)
+	xeno_owner.xeno_melee_damage_modifier = cleaning ? initial(xeno_owner.xeno_melee_damage_modifier) : xeno_owner.xeno_melee_damage_modifier + (applying ? -PRIMAL_WRATH_DAMAGE_REDUCTION : PRIMAL_WRATH_DAMAGE_REDUCTION)
+	xeno_owner.xeno_caste.max_health = cleaning ? initial(xeno_owner.xeno_caste.max_health) : xeno_owner.xeno_caste.max_health + (applying ? -PRIMAL_WRATH_HEALTH_REDUCTION : PRIMAL_WRATH_HEALTH_REDUCTION)
+	xeno_owner.maxHealth = xeno_owner.xeno_caste.max_health
+	xeno_owner.health = min(xeno_owner.health, xeno_owner.xeno_caste.max_health)
+	if(xeno_owner.has_movespeed_modifier(MOVESPEED_ID_PRIMAL_WRATH) && (cleaning || !applying && xeno_owner.get_movespeed_modifier(MOVESPEED_ID_PRIMAL_WRATH) <= PRIMAL_WRATH_SLOWDOWN))
+		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_PRIMAL_WRATH)
+		STOP_PROCESSING(SSslowprocess, src)
+		return
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_PRIMAL_WRATH, TRUE, 0, NONE, TRUE, PRIMAL_WRATH_SLOWDOWN * debuff_counter)
+	if(!(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSslowprocess, src)
+
+/obj/effect/temp_visual/shockwave/primal_wrath/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
+	. = ..()
+	switch(direction)
+		if(NORTH)
+			pixel_y += 16
+		if(WEST)
+			pixel_x -= 34
+			pixel_y += 6
+		if(EAST)
+			pixel_x += 39
+			pixel_y += 6
+
+// TO DO: Primal Wrath shows up on Examine. How do I stop that?
+/obj/effect/primal_wrath
+	alpha = 0
+	color = COLOR_NEARLY_BLACK_VIOLET
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	/// The owner of this effect.
+	var/atom/owner
+
+/obj/effect/primal_wrath/Initialize(mapload, atom/target)
+	. = ..()
+	add_filter("primal_wrath_overlay", 2, radial_blur_filter(0.04))
+	owner = target
+	icon = owner.icon
+	icon_state = owner.icon_state
+	layer = owner.layer + 0.4 // Layers over wounds.
+	dir = owner.dir
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_REMOVETRAIT(TRAIT_FLOORED)), PROC_REF(copy_state))
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(copy_dir))
+
+/obj/effect/primal_wrath/Destroy()
+	owner = null
+	return ..()
+
+/// Copies the target's icon state.
+/obj/effect/primal_wrath/proc/copy_state(datum/source)
+	SIGNAL_HANDLER
+	icon_state = owner.icon_state
+
+/// Copies the target's dir.
+/obj/effect/primal_wrath/proc/copy_dir(datum/source, dir, newdir)
+	SIGNAL_HANDLER
+	setDir(newdir)

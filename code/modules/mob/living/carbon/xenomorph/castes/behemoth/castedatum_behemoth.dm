@@ -61,7 +61,7 @@
 
 /datum/xeno_caste/behemoth/primordial
 	upgrade_name = "Primordial"
-	//primordial_message = "" // to do
+	primordial_message = "In the ancient embrace of the earth, we have honed our art to perfection. Our might will crush the feeble pleas of our enemies before they can escape their lips."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** ///
@@ -73,5 +73,5 @@
 		/datum/action/ability/activable/xeno/behemoth_seize,
 		/datum/action/ability/activable/xeno/landslide,
 		/datum/action/ability/activable/xeno/geocrush,
-		// to do primo ability
+		/datum/action/ability/xeno_action/primal_wrath
 	)

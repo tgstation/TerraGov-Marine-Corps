@@ -379,6 +379,7 @@
 #define COMSIG_XENOABILITY_BEHEMOTH_SEIZE_ALTERNATE "xenoability_behemoth_seize_alternate"
 #define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
 #define COMSIG_XENOABILITY_GEOCRUSH "xenoability_geocrush"
+#define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
