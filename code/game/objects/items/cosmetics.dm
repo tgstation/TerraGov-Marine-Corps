@@ -9,24 +9,24 @@
 	var/uses = 100
 
 /obj/item/facepaint/green
-	name = "Green face paint"
+	name = "Green customization kit"
 	paint_color = "green"
 	icon_state = "green_camo"
 
 
 /obj/item/facepaint/brown
-	name = "Brown face paint"
+	name = "Brown customization kit"
 	paint_color = "brown"
 	icon_state = "brown_camo"
 
 /obj/item/facepaint/black
-	name = "Eye black face paint"
+	name = "Black customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with eye black!"
 	paint_color = "black"
 	icon_state = "black_camo"
 
 /obj/item/facepaint/sniper
 	name = "Fullbody customization kit"
-	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with fullbody paint!"
 	paint_color = "full"
 	icon_state = "full_camo"
 

@@ -105,22 +105,22 @@
 		examine(M)
 		return
 
-	if(user.zone_selected == "head") // facepaint wiping
+	if(user.zone_selected == "head") // face paint wiping
 		if(!ishuman(M))
 			return
 		var/mob/living/carbon/human/H = M
 		if(H == user)
-			to_chat(user, span_notice("You wipe off the facepaint with [src]."))
+			to_chat(user, span_notice("You wipe off the face paint with [src]."))
 			H.makeup_style = null
 			H.update_body()
 			return
 
-		user.visible_message(span_warning("[user] begins to wipe [H]'s facepaint off with \the [src]."), \
-							span_notice("You begin to wipe off [H]'s facepaint."))
+		user.visible_message(span_warning("[user] begins to wipe [H]'s face paint off with \the [src]."), \
+							span_notice("You begin to wipe off [H]'s face paint."))
 		if(!do_after(user, 10, NONE, H, BUSY_ICON_FRIENDLY))
 			return
-		user.visible_message(span_notice("[user] wipes [H]'s facepaint off with \the [src]."), \
-							span_notice("You wipe off [H]'s facepaint."))
+		user.visible_message(span_notice("[user] wipes [H]'s face paint off with \the [src]."), \
+							span_notice("You wipe off [H]'s face paint."))
 		H.makeup_style = null
 		H.update_body()
 
