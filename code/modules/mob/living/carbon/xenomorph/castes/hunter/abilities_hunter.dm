@@ -60,6 +60,10 @@
 	/// How much does a successful sneak attack blind for?
 	var/blinding_stacks = 0
 
+/datum/action/ability/xeno_action/stealth/New(Target)
+	. = ..()
+	desc = "Become harder to see, even harder to see when stalking, and almost invisible if you stand still. While invisible you sneak attack for a [sneak_attack_stun_duration / (1 SECONDS)] second stun. Uses plasma to move and lowers plasma gain."
+
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
 		cancel_stealth()
@@ -301,7 +305,7 @@
 	name = "Disguise"
 	action_icon_state = "xenohide"
 	action_icon = 'icons/Xeno/actions/general.dmi'
-	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
+	desc = "Disguise yourself as a mob or an object. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
@@ -371,6 +375,9 @@
 	var/attack_on_pounce = FALSE
 	/// Pass_flags given when leaping.
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+
+/datum/action/ability/activable/xeno/pounce/New(Target)
+	desc = "Leap at your target up to [HUNTER_POUNCE_RANGE] tiles away, stunning them for [XENO_POUNCE_STUN_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "[lowertext("[src]")] ready")
@@ -632,6 +639,10 @@
 	var/mob/illusion/xeno/prioritized_illusion
 	/// The timer ID of the timer that clear all illusions.
 	var/timer_id
+
+/datum/action/ability/xeno_action/mirage/New(Target)
+	. = ..()
+	desc = "Create [illusion_count] mirror images of ourselves. Reactivate to swap with an illusion."
 
 /datum/action/ability/xeno_action/mirage/remove_action()
 	clean_illusions(FALSE) // No need to manually delete the illusions as the illusions will delete themselves once their life time expires.

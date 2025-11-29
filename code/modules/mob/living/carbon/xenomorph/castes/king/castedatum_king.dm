@@ -33,7 +33,7 @@
 	evolve_min_xenos = 12
 */
 	deevolves_to = /mob/living/carbon/xenomorph/drone //NTF Edit - allow evolution/regression
-	death_evolution_delay = 7 MINUTES
+	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
 /* NTF Edit - allow evolution/regression, building

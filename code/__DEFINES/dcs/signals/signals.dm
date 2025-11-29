@@ -593,6 +593,8 @@
 #define COMSIG_ARMORED_FIRE "armored_fire"
 #define COMSIG_ARMORED_STOP_FIRE "armored_stop_fire"
 
+#define COMSIG_ARMORED_DO_EXTRACT "armored_do_extract"
+
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
 
@@ -812,6 +814,8 @@
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+#define COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING "xenomorph_pre_health_regen_scaling"
+#define COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING "xenomorph_post_health_regen_scaling"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 #define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"

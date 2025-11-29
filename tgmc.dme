@@ -2486,6 +2486,7 @@
 #include "code\modules\vehicles\armored\armored_actions.dm"
 #include "code\modules\vehicles\armored\armored_modules.dm"
 #include "code\modules\vehicles\armored\armored_weapons.dm"
+#include "code\modules\vehicles\armored\armored_wreck.dm"
 #include "code\modules\vehicles\armored\icc_armored_weapons.dm"
 #include "code\modules\vehicles\armored\icc_recontank.dm"
 #include "code\modules\vehicles\armored\medium_apc.dm"

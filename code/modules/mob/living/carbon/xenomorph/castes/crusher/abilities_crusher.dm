@@ -29,6 +29,10 @@
 	/// Should this ability deal additional effects / have more potent effects for victims that the owner is standing on top of?
 	var/distance_bonus_allowed = TRUE
 
+/datum/action/ability/activable/xeno/stomp/New(Target)
+	. = ..()
+	desc = "Knocks adjacent targets away and down, targets take increased damage and stun when stomped on. Stuns for [CRUSHER_STOMP_PARALYZE / (1 SECONDS)] seconds, [CRUSHER_STOMP_PARALYZE_LONG / (1 SECONDS)] when stomped on."
+
 /datum/action/ability/activable/xeno/stomp/use_ability(atom/A)
 	succeed_activate()
 	add_cooldown()
