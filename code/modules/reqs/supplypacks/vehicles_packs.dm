@@ -84,6 +84,12 @@ VEHICLES
 	cost = 50
 	containertype = /obj/structure/closet/crate/weapon
 
+/datum/supply_packs/vehicles/uv_claw
+	name = "UV Claw module"
+	contains = list(/obj/item/uav_turret/claw)
+	cost = 50
+	containertype = /obj/structure/closet/crate/weapon
+
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo - 11x35mm"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)

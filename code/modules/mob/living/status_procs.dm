@@ -953,7 +953,3 @@
 	else if(amount > 0)
 		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
 	return irradiated
-
-///Returns whether the mob has been recently hit by a sniper round
-/mob/living/proc/is_recently_sniped()
-	return has_status_effect(STATUS_EFFECT_SNIPED)

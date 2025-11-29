@@ -141,6 +141,27 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)
 
+/// Occurs whenever the holder of the gun is attempted to be disarmed. Returns true if successful.
+/obj/item/weapon/gun/proc/handle_disarm_misfire(mob/living/carbon/human/disarmed, mob/living/carbon/human/disarmer)
+/*
+	if(disarmer.skills.getRating(SKILL_UNARMED) >= SKILL_UNARMED_MP)
+		return
+*/
+	if(windup_delay) // Must be instant to do anything meaningful.
+		return
+	var/chance = disarmed.get_active_held_item() == src ? 40 : 20
+	chance *= (disarmed.skills.getRating(SKILL_UNARMED) - disarmer.skills.getRating(SKILL_UNARMED))/2
+	chance = clamp(chance, 0, 100)
+	if(!prob(chance))
+		return
+	var/turf/random_nearby_turf = pick(RANGE_TURFS(3, get_turf(src)))
+	. = start_fire(gun_user, random_nearby_turf, random_nearby_turf, bypass_checks = TRUE) // Will return true if it successfully fired.
+	if(!.)
+		return
+	disarmed.visible_message(span_danger("[disarmed]'s [name] goes off during struggle!"), vision_distance = 5)
+	log_combat(disarmer, disarmed, "disarmed", "making their [name] go off")
+	stop_fire() // Otherwise, they will keep firing endlessly.
+
 //----------------------------------------------------------
 				//						 \\
 				// GENERIC HELPER PROCS  \\

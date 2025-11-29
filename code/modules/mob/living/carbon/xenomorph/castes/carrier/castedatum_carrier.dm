@@ -93,7 +93,7 @@
 	upgrade_name = "Primordial"
 	caste_desc = "It's literally crawling with 11 huggers."
 	upgrade = XENO_UPGRADE_PRIMO
-	primordial_message = "Not one tall will be left uninfected."
+	primordial_message = "Not one human will be left uninfected."
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

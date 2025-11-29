@@ -255,9 +255,6 @@
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.creator = xeno_owner
-	newt.RegisterSignal(xeno_owner, COMSIG_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
-
 	xeno_owner.tunnels.Add(newt)
 
 	add_cooldown()

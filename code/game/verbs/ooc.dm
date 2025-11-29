@@ -366,12 +366,21 @@
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use XMOOC.")
 		return
-	if(mob.stat == DEAD && !admin)
-		to_chat(src, span_warning("You must be alive to use XMOOC."))
-		return
-	if(!((mob in GLOB.human_mob_list) || (mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list)) && !admin)
-		to_chat(src, span_warning("You must be a human or xeno to use XMOOC."))
-		return
+	var/mob/living/original_corpse
+	var/mob/dead/observer/ghost
+	if(isobserver(mob) && !admin)
+		ghost = mob
+		original_corpse = ghost.can_reenter_corpse?.resolve()
+		if(!ishuman(original_corpse) || HAS_TRAIT(original_corpse, TRAIT_UNDEFIBBABLE))
+			to_chat(src, span_warning("You must be alive or defibbable to use XMOOC."))
+			return
+	else
+		if(mob.stat == DEAD && !admin)
+			to_chat(src, span_warning("You must be alive or defibbable to use XMOOC."))
+			return
+		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list)) && !admin)
+			to_chat(src, span_warning("You must be a human or xeno to use XMOOC."))
+			return
 	if(!msg)
 		msg = tgui_input_text(usr, "Send an out-of-character message to all humans and xenos. Shows your character's name and not your key (byond username).", "XMOOC", "", MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
@@ -433,10 +442,12 @@
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
-		var/display_name = mob.name
+		var/display_name = mob.real_name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
+		if(ishuman(original_corpse))
+			display_name = "[original_corpse.real_name](DEAD)"
 
 		var/avoid_highlight = recv_client == src
 		to_chat(recv_client, "<font color='#c7594B'>[span_ooc("<span class='prefix'>XMOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)

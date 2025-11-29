@@ -188,6 +188,7 @@ GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<1)
 #define UPGRADE_FLAG_USES_TACTICAL (1<<2)
+#define UPGRADE_FLAG_MUST_BE_HIVE_RULER (1<<3)
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
@@ -256,3 +257,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define XENO_STRUCTURE_DETECTION_COOLDOWN 30 SECONDS
 ///Proxy detection radius
 #define XENO_STRUCTURE_DETECTION_RANGE 10
+
+///Turrets cannot be build closer than this range to another
+#define XENO_TURRET_EXCLUSION_RANGE 6

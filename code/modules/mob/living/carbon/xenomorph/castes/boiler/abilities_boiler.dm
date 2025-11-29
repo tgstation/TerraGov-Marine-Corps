@@ -752,7 +752,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Acid Dash"
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
-	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -772,6 +771,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/stun_duration = 1 SECONDS
 	/// The duration in deciseconds in which a trail of opaque gas will last.
 	var/gas_trail_duration = 0
+
+/datum/action/ability/activable/xeno/charge/acid_dash/New(Target)
+	. = ..()
+	desc = "Instantly dash for [charge_range] tiles, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
 
 /datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
 	if(!A)

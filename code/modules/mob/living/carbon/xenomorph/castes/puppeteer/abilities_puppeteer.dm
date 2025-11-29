@@ -314,7 +314,7 @@
 	name = "Articulate"
 	action_icon_state = "mimicry"
 	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
-	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
+	desc = "Takes direct control of a Puppet's vocal chords. Allows you to speak directly through your puppet to humans."
 	cooldown_duration = 10 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	///Whether we should cancel instead of doing the thing when activated

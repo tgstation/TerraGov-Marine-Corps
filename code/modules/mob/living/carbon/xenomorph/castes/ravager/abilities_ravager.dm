@@ -705,7 +705,7 @@
 #define MAX_DAMAGE_PER_DISINTEGRATING 25
 
 /datum/action/ability/xeno_action/bloodthirst
-	name = "bloodthirst"
+	name = "Bloodthirst"
 	desc = "Passive ability for generating bloodthirst"
 	hidden = TRUE
 	///tick time of last time we attacked a human
@@ -771,7 +771,7 @@
 #define DEATHMARK_MESSAGE_COOLDOWN 2 SECONDS
 
 /datum/action/ability/xeno_action/deathmark
-	name = "deathmark"
+	name = "Deathmark"
 	desc = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	action_icon_state = "deathmark"
