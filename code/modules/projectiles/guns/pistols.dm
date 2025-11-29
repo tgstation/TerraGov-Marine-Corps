@@ -626,7 +626,7 @@
 
 /obj/item/weapon/gun/pistol/vp90/pmc_sniper
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/burstfire_assembly, /obj/item/attachable/lace)
-	default_ammo_type = /obj/item/ammo_magazine/pistol/mk90/extended
+	default_ammo_type = /obj/item/ammo_magazine/pistol/vp90/extended
 
 //-------------------------------------------------------
 //MK100M5, PMC heavy gyrojet pistol
