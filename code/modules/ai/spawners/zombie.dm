@@ -18,6 +18,8 @@
 	spawndelay = 15 SECONDS
 	maxamount = 50
 	var/threat_warning = FALSE
+	///The old spawning cap from before the spawner was threatened
+	var/old_cap = 30
 
 	var/datum/proximity_monitor/proximity_monitor
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
@@ -64,6 +66,9 @@
 			return
 
 	if(COOLDOWN_FINISHED(src, proxy_alert_cooldown))
+		if(old_cap != ZOMBIE_THREATENED_CAP)
+			old_cap = SSspawning.spawnerdata[src].max_allowed_mobs
+		SSspawning.spawnerdata[src].max_allowed_mobs = ZOMBIE_THREATENED_CAP
 		threat_warning = TRUE
 		addtimer(CALLBACK(src, PROC_REF(clear_warning)), ZOMBIE_STRUCTURE_DETECTION_COOLDOWN)
 		update_minimap_icon()
@@ -76,6 +81,7 @@
 /obj/effect/ai_node/spawner/zombie/proc/clear_warning()
 	threat_warning = FALSE
 	update_minimap_icon()
+	SSspawning.spawnerdata[src].max_allowed_mobs = old_cap
 
 ///Updates minimap icon when a threat is detected
 /obj/effect/ai_node/spawner/zombie/proc/update_minimap_icon()
