@@ -3181,7 +3181,7 @@
 
 /obj/item/weapon/gun/rifle/pmc_gpmg/deathsquad
 	name = "\improper SG-60 Raummetall-KT 'Reaper' smart machine gun"
-	desc = "The Raummetall-KT SG-60 is the Nanotrasen's newest model of smartgun, mounted on general purpose MG-60. In comparison to the known SG-29, When fired at max firerate, it's performance is severely degraded unless used with additional support such as bipods, while the lower rate of fire can still be effectively used on march. mostly seen in hands of Nanotrasen Contractors in heavy exo-armor. Comes with inbuilt modified barrel charger, greatly increasing firepower of the weapon. Requires special training and it cannot turn off IFF. This model was developed for the usage by elite operatives with the smartgun experience. It uses 10x26mm ammunition."
+	desc = "The Raummetall-KT SG-60 is the Nanotrasen's newest model of smartgun, mounted on general purpose MG-60. In comparison to the known SG-29, this weapon has much higher rate of fire, however, paying for it with accuracy. Mostly seen in hands of Nanotrasen Contractors in heavy exo-armor. Comes with inbuilt modified barrel charger. Requires special training and it cannot turn off IFF. This model was developed for the usage by elite operatives with the smartgun experience. It uses 10x26mm ammunition."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "sg60ds"
 	worn_icon_state = "sg60ds"
