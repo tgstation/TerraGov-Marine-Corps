@@ -239,11 +239,15 @@
 	character.update_body()
 	character.update_hair()
 
-
-/datum/preferences/proc/random_character()
+///Create a random character. Uses a specified species if set.
+/datum/preferences/proc/random_character(datum/species/selected)
+	var/datum/species/S
 	gender = pick(MALE, FEMALE)
-	var/speciestype = pick(GLOB.roundstart_species)
-	var/datum/species/S = GLOB.roundstart_species[speciestype]
+	if(!selected)
+		var/speciestype = pick(GLOB.roundstart_species)
+		S = GLOB.roundstart_species[speciestype]
+	else
+		S = GLOB.all_species[selected.name]
 	species = S.name
 	real_name = S.random_name(gender)
 	age = rand(AGE_MIN, AGE_MAX)

@@ -29,6 +29,8 @@ type InputPack = {
   hive_tactical_psy_points: number;
   hive_orphan_collapse: number;
   hive_orphan_max: number;
+  hive_silo_collapse: number;
+  hive_silo_collapse_max: number;
   hive_minion_count: number;
   hive_primos: PrimoUpgrades[];
   hive_death_timers: DeathTimer[];
@@ -233,6 +235,8 @@ const GeneralInfo = (_props: any) => {
     hive_orphan_collapse,
     hive_death_timers,
     hive_orphan_max,
+    hive_silo_collapse,
+    hive_silo_collapse_max,
   } = data;
 
   return (
@@ -297,6 +301,14 @@ const GeneralInfo = (_props: any) => {
             max={hive_orphan_max}
             tooltip="Hive must evolve a ruler!"
             left_side="Orphan Hivemind:"
+          />
+        </Flex.Item>
+        <Flex.Item>
+          <XenoCountdownBar
+            time={hive_silo_collapse}
+            max={hive_silo_collapse_max}
+            tooltip="Hive must build a silo or recorrupt generators!"
+            left_side="Siloless Collapse:"
           />
         </Flex.Item>
       </Flex>

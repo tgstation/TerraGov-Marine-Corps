@@ -48,6 +48,7 @@
 		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
+	SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	var/turf/tunnel_turf = get_step(src, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
@@ -66,6 +67,7 @@
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
+		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien/egg_burst.ogg', 75)
 	return ..()

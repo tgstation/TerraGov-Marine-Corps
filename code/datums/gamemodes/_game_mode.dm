@@ -385,6 +385,15 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
+	return
+
+/datum/game_mode/proc/get_siloless_collapse_countdown()
+	return
+
 ///Provides the amount of time left before the game ends, used for the stat panel
 /datum/game_mode/proc/game_end_countdown()
 	return

@@ -152,4 +152,4 @@
 	if(!is_wired)
 		return
 	balloon_alert(zombie, "barbed wire slices into you!")
-	zombie.apply_damage(40, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
+	zombie.apply_damage(20, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands

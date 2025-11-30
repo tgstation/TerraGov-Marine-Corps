@@ -126,6 +126,7 @@
 
 //Nuclear war mode collapse duration
 #define NUCLEAR_WAR_ORPHAN_HIVEMIND 5 MINUTES
+#define NUCLEAR_WAR_SILO_COLLAPSE 5 MINUTES
 
 #define SHUTTLE_HIJACK_LOCK 30 MINUTES
 
