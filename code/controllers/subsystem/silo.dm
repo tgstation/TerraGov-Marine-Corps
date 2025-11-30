@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(silo)
 		active_humans += tank.larva_value
 		human_list += tank.occupants
 
+	list_clear_nulls(human_list)
 	for(var/mob/living/carbon/human/human AS in human_list)
 		if(!human.key && !human.has_ai())
 			continue

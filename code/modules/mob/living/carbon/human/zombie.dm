@@ -50,9 +50,9 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
-	if(target.attack_zombie(user, src, params, rightclick))
-		return
-	return ..()
+	..()
+	if(!user.lying_angle)
+		target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
 	force = 30
