@@ -967,7 +967,7 @@
 
 /obj/machinery/marine_selector/zcrash
 	name = "\improper heart conversion vendor"
-	desc = "A mysterious vendor that trades hearts for gear."
+	desc = "A mysterious vendor that keeps track of permamently killed zombies and grants rewards for these efforts."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
 	icon_deny = "marineuniform-deny"
@@ -984,10 +984,8 @@
 		CAT_WEAPONS,
 		CAT_FUN
 	)
-	/// The total amount of points that have been ever obtained.
-	var/total_points = 0
-	/// The remaining amount of points that can be used.
-	var/remaining_points = 0
+	/// The amount of points that have been used.
+	var/used_points = 0
 
 /obj/machinery/marine_selector/zcrash/Initialize(mapload)
 	. = ..()
@@ -1067,13 +1065,16 @@
 		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 15 * POINTS_PER_HEART, "engi-other"),
 	)
 
+/obj/machinery/marine_selector/zcrash/proc/get_remaining_points()
+	return (GLOB.round_statistics.zombies_permad * POINTS_PER_HEART) - used_points
+
 /obj/machinery/marine_selector/zcrash/ui_data(mob/user)
 	. = list()
 	.["cats"] = list()
 	for(var/category in categories)
 		.["cats"][category] = list(
-			"remaining_points" = remaining_points,
-			"total_points" = max(total_points, 1),
+			"remaining_points" = get_remaining_points(),
+			"total_points" = max( (GLOB.round_statistics.zombies_permad * POINTS_PER_HEART), 1),
 			"choice" = "points",
 			)
 
@@ -1084,51 +1085,42 @@
 			flick(icon_deny, src)
 		return
 
-	var/idx = text2path(params["vend"])
+	var/product_typepath = text2path(params["vend"])
+	var/list/product_information = listed_products[type_path]
+	var/product_cost = product_information[3]
 
-	var/list/L = listed_products[idx]
-	var/cost = L[3]
-
-	if(use_points && remaining_points < cost)
+	var/remaining_points = get_remaining_points()
+	if(use_points && remaining_points < product_cost)
 		to_chat(vending_mob, span_warning("Not enough points."))
 		if(icon_deny)
 			flick(icon_deny, src)
 		return
 
-	var/turf/T = loc
-	if(length(T.contents) > 25)
+	var/turf/current_turf = loc
+	if(length(current_turf.contents) > 25)
 		to_chat(vending_mob, span_warning("The floor is too cluttered, make some space."))
 		if(icon_deny)
 			flick(icon_deny, src)
 		return
 
 	var/list/vended_items = list()
-	if (ispath(idx, /obj/effect/vendor_bundle))
-		var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
+	if(ispath(product_typepath, /obj/effect/vendor_bundle))
+		var/obj/effect/vendor_bundle/bundle = new product_typepath(loc, FALSE)
 		vended_items += bundle.spawned_gear
 		qdel(bundle)
 	else
 		vended_items += new idx(loc)
 
 	playsound(src, SFX_VENDING, 25, 0)
-
 	if(icon_vend)
 		flick(icon_vend, src)
-
 	use_power(active_power_usage)
 
 	for (var/obj/item/vended_item in vended_items)
 		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
 
 	if(use_points && remaining_points)
-		remaining_points -= cost
+		used_points += product_cost
 	. = TRUE
-
-/obj/machinery/marine_selector/zcrash/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/organ/heart))
-		return ..()
-	total_points += POINTS_PER_HEART
-	remaining_points += POINTS_PER_HEART
-	qdel(I)
 
 #undef POINTS_PER_HEART
