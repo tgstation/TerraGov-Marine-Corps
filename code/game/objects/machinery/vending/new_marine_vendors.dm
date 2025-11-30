@@ -15,16 +15,21 @@
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 
-	var/gives_webbing = FALSE
-	var/vendor_role //to be compared with job.type to only allow those to use that machine.
-	var/squad_tag = ""
-	var/use_points = FALSE
+	/// Bitflags that regulates who can access this machine.
 	var/lock_flags = SQUAD_LOCK|JOB_LOCK
-
+	/// Enabled by JOB_LOCK, only allows people with this particular /datum/job to use this machine if this is not empty.
+	var/vendor_role
+	/// Enabled by SQUAD_LOCK, only allows people with this particular squad tag (e.g. "Alpha") to use this machine if this is not empty.
+	var/squad_tag = ""
+	/// Should points be displayed and consumed upon vending an item?
+	var/use_points = FALSE
+	/// The icon to `flick` when an item was vended.
 	var/icon_vend
+	/// The icon to `flick` when an item was denied.
 	var/icon_deny
-
+	/// A list of all category names.
 	var/list/categories
+	/// An associative list of: [/obj] = list(category, product_name, point_cost, product_color)
 	var/list/listed_products
 
 /obj/machinery/marine_selector/Initialize(mapload)
@@ -252,7 +257,6 @@
 	name = "\improper GHMME Automated Engineer Closet"
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	vendor_role = /datum/job/terragov/squad/engineer
-	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/engi/Initialize(mapload)
 	. = ..()
@@ -283,8 +287,6 @@
 	name = "\improper GHMME Automated Corpsman Closet"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	vendor_role = /datum/job/terragov/squad/corpsman
-	gives_webbing = FALSE
-
 
 /obj/machinery/marine_selector/clothes/medic/Initialize(mapload)
 	. = ..()
@@ -315,7 +317,6 @@
 	name = "\improper GHMME Automated Smartgunner Closet"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 	vendor_role = /datum/job/terragov/squad/smartgunner
-	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/smartgun/Initialize(mapload)
 	. = ..()
@@ -346,7 +347,6 @@
 	name = "\improper GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
 	vendor_role = /datum/job/terragov/squad/leader
-	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/leader/Initialize(mapload)
 	. = ..()
@@ -383,7 +383,6 @@
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	vendor_role = /datum/job/terragov/command/fieldcommander
 	lock_flags = JOB_LOCK
-	gives_webbing = FALSE
 
 /obj/machinery/marine_selector/clothes/commander/valhalla
 	vendor_role = /datum/job/fallen/marine/fieldcommander
