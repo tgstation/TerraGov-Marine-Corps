@@ -1080,10 +1080,10 @@
 	add_cooldown()
 
 /datum/action/ability/xeno_action/primal_wrath/process()
-	var/initial_time = 0 // Integration tests BEGONE.
-	var/animation_time = 0.8 SECONDS
-	animate(visual_effect, initial_time, alpha = 230)
-	animate(animation_time, easing = CUBIC_EASING|EASE_OUT, alpha = 0)
+	if(!visual_effect)
+		return
+	animate(visual_effect, 0, alpha = 230)
+	animate(0.8 SECONDS, easing = CUBIC_EASING|EASE_OUT, alpha = 0)
 
 /// Prepares the action for its usage.
 /datum/action/ability/xeno_action/primal_wrath/proc/prepare_action()
