@@ -997,10 +997,10 @@
 		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 3 * POINTS_PER_HEART, "engi-artillery"),
 		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Inc. Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 4 * POINTS_PER_HEART, "engi-artillery"),
 		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Inc. Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", POINTS_PER_HEART, "engi-artillery-ammo"),
 		// Vehicles + Vehicle Ammo
 		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 1/3 * POINTS_PER_HEART, "engi-tool"),
