@@ -33,7 +33,7 @@
 	caste_traits = list(TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_TEAR_HOLE)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 40, ENERGY = 40, BOMB = 80, BIO = 0, FIRE = 80, ACID = 0)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 0, FIRE = 60, ACID = 0)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "behemoth"

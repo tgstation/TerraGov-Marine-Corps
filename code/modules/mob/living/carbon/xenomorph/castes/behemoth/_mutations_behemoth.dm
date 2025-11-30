@@ -1,4 +1,5 @@
 // I need this to load first because I wanna use the defines here, which is why it has an underscore in the file name.
+// Also, I didn't place much care into these because mutations were soft removed at the time.
 
 // ***************************************
 // *********** SHELL: Foundations
@@ -59,7 +60,7 @@
 // ***************************************
 // *********** VEIL: Guided Claim
 // ***************************************
-#define GUIDED_CLAIM_ADDITIONAL_RANGE 3
+#define GUIDED_CLAIM_ADDITIONAL_RANGE 2
 
 /datum/mutation_upgrade/veil/guided_claim
 	name = "Guided Claim"
