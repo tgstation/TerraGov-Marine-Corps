@@ -298,21 +298,6 @@
 				return
 
 
-/turf/closed/wall/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	if(resistance_flags & INDESTRUCTIBLE)
-		return
-
-	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	zombie.visible_message(span_danger("[zombie] slashes \the [src]!"), \
-	span_danger("We slash \the [src]!"), null, 5)
-	playsound(src, 'sound/weapons/smash.ogg', 25, 1) // The loc is an area. Sounds do not work with areas.
-
-	take_damage(claw.force, claw.damtype, MELEE, claw.penetration)
-
-	zombie.changeNext_move(claw.attack_speed)
-	zombie.do_attack_animation(src, used_item = claw)
-	return TRUE
-
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
