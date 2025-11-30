@@ -16,17 +16,17 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
 	)
 	worn_icon_state = "grenade"
-	max_integrity = 100
+	max_integrity = 50
 	deploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL|TURRET_INACCURATE
 	deployable_item = /obj/machinery/deployable/mounted/sentry/nut
 	starting_attachment_types = list()
 	attachable_allowed = list()
-	turret_range = 11
-	w_class = WEIGHT_CLASS_SMALL //disposable drones take little space too.
+	turret_range = 9
+	w_class = WEIGHT_CLASS_NORMAL //same as copes
 	faction = FACTION_TERRAGOV
 
-	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 100, ACID = 50)
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 30, BIO = 100, FIRE = 100, ACID = 30)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_IFF|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
@@ -36,7 +36,7 @@
 
 	max_shots = 300
 	rounds_per_shot = 2
-	scatter = 2
+	scatter = 4
 	fire_delay = 0.3 SECONDS
 	accuracy_mult = 0.8
 	ammo_datum_type = /datum/ammo/bullet/rifle/nut
@@ -50,10 +50,11 @@
 
 /datum/ammo/bullet/rifle/nut
 	//lil peashooter
-	damage = 15
+	damage = 10
 	penetration = 5
+	scatter = 2
 	bonus_projectiles_amount = 1 //dual guns
-	bonus_projectiles_scatter = 1
+	bonus_projectiles_scatter = 2
 	bonus_projectiles_type = /datum/ammo/bullet/rifle/nut/second
 
 /datum/ammo/bullet/rifle/nut/second
@@ -135,7 +136,7 @@
 	light_range = 3
 	anchored = FALSE
 	drag_delay = 0.5
-	knockdown_threshold = 75
+	knockdown_threshold = 25
 	allow_pass_flags = PASSABLE|HOVERING
 	/* add this if those shit are too hard to fight.
 	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
@@ -149,9 +150,11 @@
 	//it has limited lifespan
 	addtimer(CALLBACK(src, PROC_REF(self_destruct_warning)), 4 MINUTES, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, PROC_REF(self_destruct)), 5 MINUTES, TIMER_STOPPABLE)
+	/*
 	if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
 		playsound(loc, 'sound/effects/pred_cloakon.ogg', 15, TRUE)
 		become_warped_invisible(100) //100 is most visible.
+	*/
 
 /obj/machinery/deployable/mounted/sentry/nut/proc/self_destruct_warning()
 	radio.talk_into(src, "NUT at [AREACOORD_NO_Z(src)] will be self destructing in 1 minute due low power.")
@@ -174,17 +177,19 @@
 				return
 			notice = "<b>ALERT! [src] detected Hostile/Unknown: [mob.name] at: [AREACOORD_NO_Z(src)].</b>"
 			last_alert = world.time
-			walk_towards(src, get_adjacent_open_turfs(mob), 3, 1)
+			walk_towards(src, get_adjacent_open_turfs(mob), 4, 1)
+			/*
 			if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
 				playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
 				stop_warped_invisible()
+			*/
 		if(SENTRY_ALERT_AMMO)
 			if(world.time < (last_damage_alert + SENTRY_ALERT_DELAY))
 				return
 			var/atom/target = get_target()
 			if(target)
 				notice = "<b>ALERT! [src] at [AREACOORD_NO_Z(src)] attempting to kamikaze [target.name] due running out of ammo.</b>"
-				walk_towards(src, target, 3, 1) //suicide bomb les go
+				walk_towards(src, target, 4, 1) //suicide bomb les go
 				addtimer(CALLBACK(src, PROC_REF(self_destruct)), 3 SECONDS, TIMER_STOPPABLE)
 				last_damage_alert = world.time
 			else
@@ -210,9 +215,11 @@
 	walk(src,0) //stop walking
 	var/atom/target = get_target()
 	if(target)
+	/*
 		if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
 			playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
 			stop_warped_invisible()
+	*/
 		switch(rand(1,2))
 			if(1)
 				walk_rand(src, movement_delay) //start walking randomly
@@ -220,9 +227,11 @@
 				walk_towards(src, pick(get_adjacent_open_turfs(target)),  movement_delay)
 	else
 		walk_rand(src,  movement_delay*1.334)
+		/*
 		if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
 			playsound(loc, 'sound/effects/pred_cloakon.ogg', 25, TRUE)
 			become_warped_invisible(100) //100 is most visible.
+		*/
 
 /obj/machinery/deployable/mounted/sentry/nut/disassemble(mob/user)
 	balloon_alert(user, "Not reusable.")

@@ -591,6 +591,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 //Throwable turret
 /obj/machinery/deployable/mounted/sentry/cope
+	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 
 /obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
