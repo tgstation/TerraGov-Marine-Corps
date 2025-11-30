@@ -1049,7 +1049,7 @@
 		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 4 * POINTS_PER_HEART, "armor-module"),
 		/obj/item/armor_module/module/tyr_extra_armor = list(CAT_ARMOR_MODULE, "\"Tyr\" Armor Module", 4 * POINTS_PER_HEART, "armor-module"),
 		/obj/item/armor_module/module/mimir_environment_protection = list(CAT_ARMOR_MODULE, "\"Mimir\" Bio-Armor Module", 4 * POINTS_PER_HEART, "armor-module"),
-		/obj/item/armor_module/module/fire_proof = list(CAT_ARMOR_MODULE, "\"Surt\" Fireproof Module", 8 * POINTS_PER_HEART, "armor-module"),
+		/obj/item/armor_module/module/fire_proof = list(CAT_ARMOR_MODULE, "\"Surt\" Fireproof Module", 10 * POINTS_PER_HEART, "armor-module"),
 		// Grenades
 		/obj/item/explosive/grenade = list(CAT_GRENADE, "M40 HEDP grenade", 1 * POINTS_PER_HEART, "grenade"),
 		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 2 * POINTS_PER_HEART, "grenade"),
@@ -1058,8 +1058,8 @@
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_BUILDING_SUPPLIES, "Razorburn grenade", 3 * POINTS_PER_HEART, "grenade"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_BUILDING_SUPPLIES, "Razorburn canister", 6 * POINTS_PER_HEART, "grenade"),
 		// Attachments
-		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 12 * POINTS_PER_HEART, "attachment"),
-		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 4 * POINTS_PER_HEART, "attachment"),
+		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 15 * POINTS_PER_HEART, "attachment"),
+		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5 * POINTS_PER_HEART, "attachment"),
 		// Weapons + Weapon Ammo
 		/obj/item/weapon/twohanded/chainsaw = list(CAT_WEAPONS, "Chainsaw", 2 * POINTS_PER_HEART, "melee"), // Immersive for a planet full of zombies.
 		/obj/item/weapon/twohanded/rocketsledge  = list(CAT_WEAPONS, "Rocketsledge", 6 * POINTS_PER_HEART, "melee"),
