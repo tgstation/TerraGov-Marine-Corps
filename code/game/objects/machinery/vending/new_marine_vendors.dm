@@ -1073,9 +1073,6 @@
 		/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_WEAPONS, "\"BR-8\" impact magazine", 4/3 * POINTS_PER_HEART, "gun-ammo"),
 		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 8 * POINTS_PER_HEART, "gun"),
 		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 8 * POINTS_PER_HEART, "gun-ammo"),
-		// Chemicals
-		// Smartgunner stuff
-		// Medical stuff
 		// Fun
 		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 15 * POINTS_PER_HEART, "engi-other"),
 	)
