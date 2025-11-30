@@ -195,7 +195,7 @@ const ItemLine = (props) => {
     ),
     emplacement: (
       <Box inline mr="6px" ml="6px" color="#ffe600ff">
-        Gun
+        Emplacement
       </Box>
     ),
     'emplacement-ammo': (
