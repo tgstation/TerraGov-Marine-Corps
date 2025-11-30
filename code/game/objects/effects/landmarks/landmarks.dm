@@ -198,6 +198,16 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/zombie_heart_vendor
+	name = "zombie heart vendor landmark"
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "marineuniform"
+
+/obj/effect/landmark/zombie_heart_vendor/Initialize(mapload)
+	GLOB.zombie_heart_vendors += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"
