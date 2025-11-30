@@ -1173,9 +1173,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.45 SECONDS
 	wield_delay = 0.85 SECONDS
-	windup_delay = 0 SECONDS
+	windup_delay = 0.1 SECONDS
 	aim_slowdown = 2.75
-	accuracy_mult = 2
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 10
 	scatter = 0
 	autobalance_monitor_value = null
