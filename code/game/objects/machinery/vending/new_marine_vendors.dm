@@ -992,21 +992,21 @@
 	listed_products = list(
 		// Artillery & Mortar
 		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", POINTS_PER_HEART, "engi-tool"),
-		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 3 * POINTS_PER_HEART, "engi-artillery"),
-		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 4 * POINTS_PER_HEART, "engi-artillery"),
-		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 5 * POINTS_PER_HEART, "engi-artillery"),
+		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 4/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 5 * POINTS_PER_HEART, "engi-artillery"),
+		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 1 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 2 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 5/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		// Vehicles + Vehicle Ammo
 		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 1/3 * POINTS_PER_HEART, "engi-tool"),
 		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 2/3 * POINTS_PER_HEART, "engi-vehicle"),
 		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "\"Claw\" Unmanned Vehicle", 2/3 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 3 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 4 * POINTS_PER_HEART, "engi-vehicle"),
+		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 3 * POINTS_PER_HEART, "engi-vehicle"),
+		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 4 * POINTS_PER_HEART, "engi-vehicle"),
+		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 5 * POINTS_PER_HEART, "engi-vehicle"),
 		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 4/3 * POINTS_PER_HEART, "engi-vehicle-gun"),
 		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4/3 * POINTS_PER_HEART, "engi-vehicle-ammo"),
 		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 4/3 * POINTS_PER_HEART, "engi-vehicle-gun"),
@@ -1086,7 +1086,7 @@
 		return
 
 	var/product_typepath = text2path(params["vend"])
-	var/list/product_information = listed_products[type_path]
+	var/list/product_information = listed_products[product_typepath]
 	var/product_cost = product_information[3]
 
 	var/remaining_points = get_remaining_points()
@@ -1109,7 +1109,7 @@
 		vended_items += bundle.spawned_gear
 		qdel(bundle)
 	else
-		vended_items += new idx(loc)
+		vended_items += new product_typepath(loc)
 
 	playsound(src, SFX_VENDING, 25, 0)
 	if(icon_vend)
