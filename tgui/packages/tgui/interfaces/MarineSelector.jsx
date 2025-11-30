@@ -179,7 +179,7 @@ const ItemLine = (props) => {
       </Box>
     ),
     melee: (
-      <Box inline mr="6px" ml="6px" color="#ff0080ff">
+      <Box inline mr="6px" ml="6px" color="#ff0015ff">
         Melee
       </Box>
     ),
