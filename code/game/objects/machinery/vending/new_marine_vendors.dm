@@ -1008,7 +1008,7 @@
 		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 5 * POINTS_PER_HEART, "engi-artillery"),
 		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell",* POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 5 * POINTS_PER_HEART, "engi-artillery"),
 		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 1 * POINTS_PER_HEART, "engi-artillery-ammo"),
 		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 4/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
