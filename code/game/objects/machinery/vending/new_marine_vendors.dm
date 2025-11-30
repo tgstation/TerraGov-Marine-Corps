@@ -101,7 +101,6 @@
 	.["vendor_name"] = name
 	.["show_points"] = use_points
 
-
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
 		var/category = myprod[1]
@@ -141,74 +140,78 @@
 		return
 	switch(action)
 		if("vend")
-			if(!allowed(usr))
-				to_chat(usr, span_warning("Access denied."))
-				if(icon_deny)
-					flick(icon_deny, src)
+			return on_ui_vend_action(usr, params)
+
+/// Called from `ui_act` when the action is 'vend'.
+/obj/machinery/marine_selector/proc/on_ui_vend_action(mob/vending_mob, list/params)
+	if(!allowed(vending_mob))
+		to_chat(vending_mob, span_warning("Access denied."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	var/idx = text2path(params["vend"])
+	var/obj/item/card/id/user_id = vending_mob.get_idcard()
+
+	var/list/L = listed_products[idx]
+	var/item_category = L[1]
+	var/cost = L[3]
+
+	if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+		to_chat(vending_mob, span_warning("Access denied. You have already vended a loadout."))
+		return FALSE
+	if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
+		to_chat(vending_mob, span_warning("Not enough points."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	var/turf/T = loc
+	if(length(T.contents) > 25)
+		to_chat(vending_mob, span_warning("The floor is too cluttered, make some space."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	if(item_category in user_id.marine_buy_choices)
+		if(user_id.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
+			user_id.marine_buy_choices[item_category] -= 1
+		else
+			if(cost == 0)
+				to_chat(vending_mob, span_warning("You can't buy things from this category anymore."))
 				return
 
-			var/idx = text2path(params["vend"])
-			var/obj/item/card/id/user_id = usr.get_idcard()
+	var/list/vended_items = list()
 
-			var/list/L = listed_products[idx]
-			var/item_category = L[1]
-			var/cost = L[3]
+	if (ispath(idx, /obj/effect/vendor_bundle))
+		var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
+		vended_items += bundle.spawned_gear
+		qdel(bundle)
+	else
+		vended_items += new idx(loc)
 
-			if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
-				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
-				return FALSE
-			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
-				to_chat(usr, span_warning("Not enough points."))
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
+	playsound(src, SFX_VENDING, 25, 0)
 
-			var/turf/T = loc
-			if(length(T.contents) > 25)
-				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
+	if(icon_vend)
+		flick(icon_vend, src)
 
-			if(item_category in user_id.marine_buy_choices)
-				if(user_id.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
-					user_id.marine_buy_choices[item_category] -= 1
-				else
-					if(cost == 0)
-						to_chat(usr, span_warning("You can't buy things from this category anymore."))
-						return
+	use_power(active_power_usage)
 
-			var/list/vended_items = list()
+	if(item_category == CAT_STD && !issynth(vending_mob))
+		var/mob/living/carbon/human/H = vending_mob
+		if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
+			vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+			if(istype(H.job, /datum/job/terragov/squad/leader))
+				vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+				vended_items += new /obj/item/squad_transfer_tablet(loc)
 
-			if (ispath(idx, /obj/effect/vendor_bundle))
-				var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
-				vended_items += bundle.spawned_gear
-				qdel(bundle)
-			else
-				vended_items += new idx(loc)
+	for (var/obj/item/vended_item in vended_items)
+		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
 
-			playsound(src, SFX_VENDING, 25, 0)
-
-			if(icon_vend)
-				flick(icon_vend, src)
-
-			use_power(active_power_usage)
-
-			if(item_category == CAT_STD && !issynth(usr))
-				var/mob/living/carbon/human/H = usr
-				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
-					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-					if(istype(H.job, /datum/job/terragov/squad/leader))
-						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
-						vended_items += new /obj/item/squad_transfer_tablet(loc)
-
-			for (var/obj/item/vended_item in vended_items)
-				vended_item.on_vend(usr, faction, auto_equip = TRUE)
-
-			if(use_points && (item_category in user_id.marine_points))
-				user_id.marine_points[item_category] -= cost
-			. = TRUE
-			user_id.id_flags |= USED_GHMME
+	if(use_points && (item_category in user_id.marine_points))
+		user_id.marine_points[item_category] -= cost
+	. = TRUE
+	user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
 	name = "\improper GHMME Automated Closet"
@@ -953,11 +956,128 @@
 		/obj/item/clothing/head/modular/robot/heavy,
 	)
 
-
-
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
 #undef ENGINEER_TOTAL_BUY_POINTS
 #undef COMMANDER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK
+
+/obj/machinery/marine_selector/zcrash
+	name = "\improper Zombie Heart Vendor"
+	desc = "A mysterious vendor that trades hearts for gear."
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform-vend"
+	icon_deny = "marineuniform-deny"
+	use_points = TRUE
+	lock_flags = NONE
+	categories = list(
+		CAT_STD = 1,
+		CAT_GLA = 1,
+		CAT_HEL = 1,
+		CAT_AMR = 1,
+		CAT_BAK = 1,
+		CAT_WEB = 1,
+		CAT_BEL = 1,
+		CAT_POU = 1,
+		CAT_MOD = 1,
+		CAT_ARMMOD = 1,
+		CAT_MAS = 1,
+		CAT_LEDSUP = 1,
+	)
+	/// The amount of hearts that been deposited.
+	var/hearts_so_far = 0
+	/// The amount of hearts that haven't been used yet.
+	var/unused_hearts = 0
+
+/obj/machinery/marine_selector/zcrash/Initialize(mapload)
+	. = ..()
+	listed_products = list(
+		/obj/effect/vendor_bundle/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
+		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
+		/obj/item/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
+		/obj/structure/closet/crate/uvt_crate = list(CAT_LEDSUP, "Skink Unmanned Vehicle", 10, "orange"),
+		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
+		/obj/item/megaphone = list(CAT_LEDSUP, "Megaphone", 5, "orange"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
+		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 2, "black"),
+		/obj/item/detpack = list(CAT_LEDSUP, "Detonation pack", 5, "black"),
+		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
+		/obj/item/explosive/grenade/smokebomb/cloak = list(CAT_LEDSUP, "Cloak grenade", 7, "black"),
+		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
+		/obj/item/storage/pouch/explosive/razorburn = list(CAT_LEDSUP, "Pack of Razorburn grenades", 24, "orange"),
+		/obj/item/storage/pouch/explosive/antigas = list(CAT_LEDSUP, "Pack of M40-AG Antigas grenades", 16, "orange"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_LEDSUP, "Razorburn canister", 21, "black"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_LEDSUP, "Razorburn grenade", 6, "black"),
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_LEDSUP, "FL-84 flamethrower", 12, "black"),
+		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
+		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
+		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
+	)
+
+/obj/machinery/marine_selector/zcrash/ui_data(mob/user)
+	. = list()
+	.["cats"] = list()
+	for(var/category in categories)
+		.["cats"][category] = list(
+			"remaining_points" = unused_hearts,
+			"total_points" = max(hearts_so_far, 1),
+			"choice" = "points",
+			)
+
+/obj/machinery/marine_selector/zcrash/on_ui_vend_action(mob/vending_mob, list/params)
+	if(!allowed(vending_mob))
+		to_chat(vending_mob, span_warning("Access denied."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	var/idx = text2path(params["vend"])
+
+	var/list/L = listed_products[idx]
+	var/cost = L[3]
+
+	if(use_points && unused_hearts < cost)
+		to_chat(vending_mob, span_warning("Not enough points."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	var/turf/T = loc
+	if(length(T.contents) > 25)
+		to_chat(vending_mob, span_warning("The floor is too cluttered, make some space."))
+		if(icon_deny)
+			flick(icon_deny, src)
+		return
+
+	var/list/vended_items = list()
+	if (ispath(idx, /obj/effect/vendor_bundle))
+		var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
+		vended_items += bundle.spawned_gear
+		qdel(bundle)
+	else
+		vended_items += new idx(loc)
+
+	playsound(src, SFX_VENDING, 25, 0)
+
+	if(icon_vend)
+		flick(icon_vend, src)
+
+	use_power(active_power_usage)
+
+	for (var/obj/item/vended_item in vended_items)
+		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
+
+	if(use_points && unused_hearts)
+		unused_hearts -= cost
+	. = TRUE
+
+/obj/machinery/marine_selector/zcrash/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /datum/internal_organ/heart))
+		return ..()
+	hearts_so_far += 1
+	unused_hearts += 1
+	qdel(I)
