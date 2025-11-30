@@ -966,7 +966,7 @@
 #define POINTS_PER_HEART 3
 
 /obj/machinery/marine_selector/zcrash
-	name = "\improper heart conversion vendor"
+	name = "\improper kill rewards vendor"
 	desc = "A mysterious vendor that keeps track of permamently killed zombies and grants rewards for these efforts."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
@@ -984,8 +984,8 @@
 		CAT_WEAPONS,
 		CAT_FUN
 	)
-	/// The amount of points that have been used.
-	var/used_points = 0
+	/// The amount of points that have been used. Shared across all vendors.
+	var/static/used_points = 0
 
 /obj/machinery/marine_selector/zcrash/Initialize(mapload)
 	. = ..()
