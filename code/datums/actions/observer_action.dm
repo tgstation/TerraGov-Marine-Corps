@@ -38,7 +38,7 @@
 /datum/action/observer_action/take_ssd_mob/action_activate()
 	var/mob/dead/observer/dead_owner = owner
 
-	if(!GLOB.ssd_posses_allowed)
+	if(!GLOB.ssd_possess_allowed)
 		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
 		return
 
@@ -58,6 +58,10 @@
 
 	var/mob/living/new_mob = tgui_input_list(owner, "Pick a mob", "Available Mobs", free_ssd_mobs)
 	if(!istype(new_mob) || !owner.client)
+		return FALSE
+
+	if(iszombie(new_mob) && !GLOB.zombie_possess_allowed)
+		to_chat(owner, span_warning("There are too few marines so controlling zombies is currently disabled."))
 		return FALSE
 
 	if(new_mob.stat == DEAD)

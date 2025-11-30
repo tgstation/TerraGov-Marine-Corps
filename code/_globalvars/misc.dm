@@ -38,3 +38,5 @@ GLOBAL_PROTECT(key_to_time_of_strain_swap)
 
 ///List of ssd living mobs
 GLOBAL_LIST_EMPTY(ssd_living_mobs)
+///Whether players are allowed to possess new zombies, due to balancing
+GLOBAL_VAR_INIT(zombie_possess_allowed, FALSE)
