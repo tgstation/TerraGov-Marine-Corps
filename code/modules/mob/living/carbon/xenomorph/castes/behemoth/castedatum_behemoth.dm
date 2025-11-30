@@ -14,7 +14,7 @@
 	melee_ap = 10
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 300
@@ -30,6 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_STAGGER_RESISTANT|CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = list(TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_TEAR_HOLE)
 
 	// *** Defense *** //
