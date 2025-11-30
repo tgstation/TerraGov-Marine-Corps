@@ -1042,6 +1042,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/marine_selector/zcrash,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "Ui" = (
