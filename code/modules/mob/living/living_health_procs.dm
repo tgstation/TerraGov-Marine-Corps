@@ -404,7 +404,7 @@
 		return
 	do_jitter_animation(1000)
 	if(!client)
-		if(should_offer_to_ghost && !(iszombie(src) && GLOB.zombie_possess_allowed))
+		if(should_offer_to_ghost && !((iszombie(src) || should_zombify) && GLOB.zombie_possess_allowed))
 			offer_mob()
 			addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
 			return

@@ -1,4 +1,4 @@
-///How many marines need to be alive before players are allowed to control zombie
+///How many marines need to be alive before players are allowed to control zombies
 #define ZOMBIE_SENTIENT_POPLOCK_AMOUNT 8
 ///How frequently the proximity alert can go off
 #define ZOMBIE_STRUCTURE_DETECTION_COOLDOWN 1 MINUTES
