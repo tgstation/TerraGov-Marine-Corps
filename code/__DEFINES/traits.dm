@@ -245,6 +245,7 @@
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
+#define TRAIT_NO_STUN_ATTACK "no_stun_attack"
 #define TRAIT_BATONIMMUNE "baton_immunity"
 #define TRAIT_SLEEPIMMUNE "sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE "flashbang_immunity"
