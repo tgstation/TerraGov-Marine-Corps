@@ -1191,7 +1191,8 @@
 
 /obj/effect/primal_wrath/Initialize(mapload, atom/target)
 	. = ..()
-	add_filter("primal_wrath_overlay", 2, radial_blur_filter(0.04))
+	if(!target)
+		return
 	owner = target
 	icon = owner.icon
 	icon_state = owner.icon_state
@@ -1199,6 +1200,7 @@
 	dir = owner.dir
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_REMOVETRAIT(TRAIT_FLOORED)), PROC_REF(copy_state))
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(copy_dir))
+	add_filter("primal_wrath_overlay", 2, radial_blur_filter(0.04))
 
 /obj/effect/primal_wrath/Destroy()
 	owner = null
