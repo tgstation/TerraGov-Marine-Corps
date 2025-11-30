@@ -143,7 +143,7 @@
 	*/
 	density = FALSE //so it wont block people.
 	atom_flags = BUMP_ATTACKABLE
-	var/movement_delay = 0.6 SECONDS
+	var/movement_delay = 0.7 SECONDS
 
 /obj/machinery/deployable/mounted/sentry/nut/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
@@ -177,7 +177,7 @@
 				return
 			notice = "<b>ALERT! [src] detected Hostile/Unknown: [mob.name] at: [AREACOORD_NO_Z(src)].</b>"
 			last_alert = world.time
-			walk_towards(src, get_adjacent_open_turfs(mob), 4, 1)
+			walk_towards(src, get_adjacent_open_turfs(mob), movement_delay, 1)
 			/*
 			if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
 				playsound(loc, 'sound/effects/pred_cloakoff.ogg', 25, TRUE)
@@ -189,7 +189,7 @@
 			var/atom/target = get_target()
 			if(target)
 				notice = "<b>ALERT! [src] at [AREACOORD_NO_Z(src)] attempting to kamikaze [target.name] due running out of ammo.</b>"
-				walk_towards(src, target, 4, 1) //suicide bomb les go
+				walk_towards(src, target, movement_delay, 1) //suicide bomb les go
 				addtimer(CALLBACK(src, PROC_REF(self_destruct)), 3 SECONDS, TIMER_STOPPABLE)
 				last_damage_alert = world.time
 			else
