@@ -111,7 +111,7 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 150
-	allow_pass_flags = PASS_GLASS
+	allow_pass_flags = PASS_GLASS|PASS_FIRE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
