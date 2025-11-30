@@ -165,7 +165,7 @@ const ItemLine = (props) => {
     ),
     'armor-module': (
       <Box inline mr="6px" ml="6px" color="#ae00ffff">
-        Armor Module
+        Module
       </Box>
     ),
     grenade: (
