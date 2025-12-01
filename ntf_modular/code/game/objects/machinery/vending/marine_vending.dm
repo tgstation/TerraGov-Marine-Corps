@@ -1403,6 +1403,7 @@
 			/obj/item/attachable/burstfire_assembly = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
+			/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
