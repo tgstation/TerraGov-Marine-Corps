@@ -1,0 +1,8 @@
+2025-12-01:
+  Runian:
+  - balance: Sentries now immediately stops shoot when their target dies.
+  blackdav123:
+  - rscadd: New player characters will now be human by default.
+  mudzbe:
+  - balance: Reduce wired barricade damage to zombies
+  - bugfix: Zombies cant strip things anymore
