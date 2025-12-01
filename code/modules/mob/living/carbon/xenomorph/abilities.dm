@@ -1257,7 +1257,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We can't drain something that is not human."))
 		return FALSE
-	if(victim.cloneloss >= 20) // So xenomorphs don't spam it on people
+	if(victim.getCloneLoss() >= 20) // So xenomorphs don't spam it on people
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We can't drain something thats lifeforce is already weak."))
 		return FALSE
@@ -1286,7 +1286,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 /datum/action/ability/activable/xeno/psydrain/use_ability(mob/M)
 	var/mob/living/carbon/victim = M
 
-	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED) || victim.cloneloss >= 20)
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED) || victim.getCloneLoss() >= 20)
 		to_chat(xeno_owner, span_warning("Someone drained the life force of our victim before we could do it!"))
 		return fail_activate()
 
@@ -1458,7 +1458,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		if(!silent)
 			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
-	if(victim.cloneloss >= 20) // So xenomorphs don't spam it on people
+	if(victim.getCloneLoss() >= 20) // So xenomorphs don't spam it on people
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We can't cacoon something thats lifeforce is already weak."))
 		return FALSE
@@ -1489,7 +1489,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		xeno_owner.stop_sound_channel(channel)
 		return fail_activate()
-	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED) || victim.cloneloss >= 20)
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED) || victim.getCloneLoss() >= 20)
 		to_chat(owner, span_warning("Someone drained the life force of our victim before we could devour it!"))
 		return fail_activate()
 	owner.visible_message(span_warning("[xeno_owner] devours [victim]!"), \
