@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - rscadd: "New player characters will now be human by default."
