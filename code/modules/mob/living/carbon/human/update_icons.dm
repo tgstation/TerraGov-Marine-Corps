@@ -454,8 +454,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 		stand_icon.Blend(eyes, ICON_OVERLAY)
 
-		//Mouth	(lipstick!)
-		if(makeup_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		//Face (Face paint)
+		if(makeup_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear face paint no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[makeup_style]_s"), ICON_OVERLAY)
 
 	/*NTF Removal

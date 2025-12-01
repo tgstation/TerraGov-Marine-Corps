@@ -1261,6 +1261,8 @@
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/facepaint/brown = -1,
+			/obj/item/facepaint/black = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
