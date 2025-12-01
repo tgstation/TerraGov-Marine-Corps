@@ -1297,14 +1297,15 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-	SSpoints.add_biomass_points(xeno_owner.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN)
-	GLOB.round_statistics.biomass_from_psydrains += MUTATION_BIOMASS_PER_PSYDRAIN
+	var/multiplier = (victim.stat != DEAD && !HAS_TRAIT(victim, TRAIT_HIVE_TARGET)) ? 0.25 : 1
+	SSpoints.add_biomass_points(xeno_owner.get_xeno_hivenumber(), MUTATION_BIOMASS_PER_PSYDRAIN * multiplier)
+	GLOB.round_statistics.biomass_from_psydrains += MUTATION_BIOMASS_PER_PSYDRAIN * multiplier
 	if(victim.stat == DEAD)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
 	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
-	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
+	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX) * multiplier
 	GLOB.round_statistics.strategic_psypoints_from_psydrains += psy_points_reward
 	GLOB.round_statistics.psydrains++
 	var/hivenumber = xeno_owner.get_xeno_hivenumber()
@@ -1318,9 +1319,9 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	SSpoints.add_strategic_psy_points(hivenumber, psy_points_reward)
 	SSpoints.add_tactical_psy_points(hivenumber, psy_points_reward*0.25)
 	var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
-	xeno_job.add_job_points(larva_point_reward)
+	xeno_job.add_job_points(larva_point_reward * multiplier)
 	GLOB.hive_datums[hivenumber].update_tier_limits()
-	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed
+	GLOB.round_statistics.larva_from_psydrain += larva_point_reward * multiplier / xeno_job.job_points_needed
 
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
