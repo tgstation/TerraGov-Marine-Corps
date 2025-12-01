@@ -1,4 +1,0 @@
-author: "mudzbe"
-delete-after: True
-changes:
-  - bugfix: "Zombies cant strip things anymore"

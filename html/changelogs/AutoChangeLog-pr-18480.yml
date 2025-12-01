@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Sentries now immediately stops shoot when their target dies."
