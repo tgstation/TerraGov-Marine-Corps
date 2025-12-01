@@ -379,18 +379,23 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
+///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
 /datum/game_mode/proc/siloless_hive_collapse()
 	return
 
+///This is overridden on the child types. Called to start/stop the silo death timer.
 /datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
 	return
 
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
 /datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 

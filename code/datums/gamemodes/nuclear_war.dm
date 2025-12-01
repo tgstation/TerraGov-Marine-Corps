@@ -44,6 +44,7 @@
 NTF removal end*/
 	)
 
+///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
 	var/siloless_hive_timer
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
@@ -72,6 +73,7 @@ NTF removal end*/
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DEFUSED, PROC_REF(on_nuclear_defuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
+///Called by [/datum/hive_status/normal/handle_ruler_timer()] after [NUCLEAR_WAR_HIVEMIND_COLLAPSE] elapses to end the round
 /datum/game_mode/infestation/nuclear_war/orphan_hivemind_collapse()
 	if(round_finished)
 		return
@@ -79,11 +81,12 @@ NTF removal end*/
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
 
+///Returns the time left before the hivemind collapses due to being orphaned
 /datum/game_mode/infestation/nuclear_war/get_hivemind_collapse_countdown()
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
 
-/// Checks if the conditions for silo collapse have been met and starts/stops the countdown timer accordingly
+///Checks if the conditions for silo collapse have been met and starts/stops the countdown timer accordingly
 /datum/game_mode/infestation/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
 	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
@@ -112,7 +115,7 @@ NTF removal end*/
 	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
 
-///called by [/proc/update_silo_death_timer] after [NUCLEAR_WAR_SILO_COLLAPSE] elapses to end the round
+///Called by [/proc/update_silo_death_timer] after [NUCLEAR_WAR_SILO_COLLAPSE] elapses to end the round
 /datum/game_mode/infestation/nuclear_war/siloless_hive_collapse()
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
@@ -122,7 +125,7 @@ NTF removal end*/
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
-/// Returns the time left before the hive collapses due to lack of silos or corrupted generators
+///Returns the time left before the hive collapses due to lack of silos or corrupted generators
 /datum/game_mode/infestation/nuclear_war/get_siloless_collapse_countdown()
 	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
