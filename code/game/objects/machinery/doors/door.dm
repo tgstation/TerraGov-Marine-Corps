@@ -72,6 +72,9 @@
 	if(glass)
 		allow_pass_flags |= PASS_GLASS
 
+	if(name == "autoname")
+		name = get_area_name(src)
+
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
 		qdel(o)
