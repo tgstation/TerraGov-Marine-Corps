@@ -42,7 +42,7 @@
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		. += span_notice("There seems to be someone inside it. You think you can open it with a sharp object.")
+		. += span_notice("There seems to be someone inside it.")
 
 /obj/structure/cocoon/process()
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
@@ -127,6 +127,24 @@
 		return
 	return ..()
 
+/obj/structure/cocoon/attack_hand(mob/living/user)
+	if(!anchored && victim)
+		if(busy)
+			return
+		busy = TRUE
+		var/channel = SSsounds.random_available_channel()
+		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
+		if(!do_after(user, 1 MINUTES, TRUE, src))
+			busy = FALSE
+			user.stop_sound_channel(channel)
+			return
+		release_victim()
+		update_icon()
+		busy = FALSE
+		return
+	unanchor_from_nest()
+
+
 /obj/structure/cocoon/update_icon_state()
 	. = ..()
 	if(anchored)
@@ -137,10 +155,11 @@
 		return
 	icon_state = "xeno_cocoon_open"
 
+/* //Its kinda hot to be pulled around by an evil cacoon mommy
 /obj/structure/cocoon/can_be_pulled(user, force)
 	if(isxeno(user))
 		return FALSE
-	return ..()
+	return ..() */
 
 /obj/structure/cocoon/opened_cocoon
 	icon_state = "xeno_cocoon_open"
