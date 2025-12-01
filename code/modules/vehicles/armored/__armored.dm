@@ -88,13 +88,10 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-<<<<<<< HEAD
 	///How many humans this is worth for silo gen calcs
 	var/larva_value = 5
-=======
 	///How close a wrecked vehicle is to being prepared for repair
 	var/wreck_repair_stage = 0
->>>>>>> eb9a9b90609f2d4cb2e89be3e37558a1b7d9ceb2
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
