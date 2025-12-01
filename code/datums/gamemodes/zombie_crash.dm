@@ -20,6 +20,8 @@
 		/datum/job/terragov/squad/engineer = 5,
 	)
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	/// The total amount of vendor points that have been ever gained.
+	var/total_vendor_points = 0
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)

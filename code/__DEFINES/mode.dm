@@ -191,3 +191,10 @@
 #define NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED 40 // This amount of clients must be connected at gamemode setup to get the first mech pilot slot.
 #define NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT 20 // After meeting NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED, a mech pilot slot is open for each set of X clients.
 #define NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED 50 // This amount of clients must be connected at gamemode setup to get two assault crewman jobs (and thus tank).
+
+#define ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN 15
+#define ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX 45
+#define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN 25
+#define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX 75
+/// The marine pop considered to be high pop, only for Zombie Crash.
+#define HIGH_MARINE_POP_ZOMBIE_CRASH 20

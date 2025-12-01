@@ -58,6 +58,12 @@
 	if(iscrashgamemode(SSticker.mode))
 		if(iszombiecrashgamemode(SSticker.mode))
 			global_rally_zombies(src, TRUE)
+
+			var/datum/game_mode/infestation/crash/zombie/zombie_crash_gamemode = SSticker.mode
+			var/list/living_player_list = zombie_crash_gamemode.count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
+			var/num_humans = living_player_list[1]
+			var/vendor_points_to_reward = ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN + ((ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX - ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN) * (num_humans / HIGH_MARINE_POP_ZOMBIE_CRASH))
+			zombie_crash_gamemode.total_vendor_points += ROUND_UP(clamp(vendor_points_to_reward, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX))
 		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
 			if(!human.job)
 				continue

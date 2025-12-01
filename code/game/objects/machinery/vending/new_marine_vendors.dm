@@ -963,11 +963,9 @@
 #undef SQUAD_LOCK
 #undef JOB_LOCK
 
-#define POINTS_PER_HEART 3
-
 /obj/machinery/marine_selector/zcrash
-	name = "\improper kill rewards vendor"
-	desc = "A mysterious vendor that keeps track of permamently killed zombies and grants rewards for these efforts."
+	name = "\improper progression rewards vendor"
+	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
 	icon_deny = "marineuniform-deny"
@@ -984,104 +982,111 @@
 		CAT_WEAPONS,
 		CAT_FUN
 	)
-	/// The amount of points that have been used. Shared across all vendors.
-	var/static/used_points = 0
+	/// The total amount of vendor points that have been spent. Shared across all vendors.
+	var/static/spent_vendor_points = 0
 
 /obj/machinery/marine_selector/zcrash/Initialize(mapload)
 	. = ..()
+	if(!iszombiecrashgamemode(SSticker.mode))
+		return INITIALIZE_HINT_QDEL
 	/*
 		Prices is done as following:
 		- Cheap:
-			- Tools that do (mostly) nothing by themselves.
-			- Consumed frequently and easily.
+			- Tools that do nothing by themselves / need to be paired with something else to work.
+			- Guns that aren't prefilled with ammo / aren't capable of infinite ammo.
+			- Ammo consumed easily.
 			- Requires marines to enter melee range.
 			- Requires teamwork in some way.
 		- Expensive:
+			- Guns that have IFF.
 			- Capable of permanently killing zombies.
-			- Comes pre-filled with ammo.
-			- Construction-related (because we want people to shoot stuff, not hold out forever).
-			- Has IFF.
+			- Things that encourage marines to hold out, rather than shoot zombies.
 	*/
 	listed_products = list(
 		// Artillery & Mortar
-		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", POINTS_PER_HEART, "engi-tool"),
-		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 5 * POINTS_PER_HEART, "engi-artillery"),
-		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 1/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 2/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 5 * POINTS_PER_HEART, "engi-artillery"),
-		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 1 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 4/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 5/3 * POINTS_PER_HEART, "engi-artillery-ammo"),
+		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", 1, "engi-tool"),
+		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 1, "engi-artillery"),
+		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 0.5, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 0.75, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 1.5, "engi-artillery-ammo"),
+		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 1, "engi-artillery"),
+		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 0.75, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 1.5, "engi-artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 2, "engi-artillery-ammo"),
 		// Vehicles + Vehicle Ammo
-		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 1/3 * POINTS_PER_HEART, "engi-tool"),
-		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 2/3 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "\"Claw\" Unmanned Vehicle", 2/3 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 3 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 4 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 5 * POINTS_PER_HEART, "engi-vehicle"),
-		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 8/3 * POINTS_PER_HEART, "engi-vehicle-gun"),
-		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4/3 * POINTS_PER_HEART, "engi-vehicle-ammo"),
-		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 8/3 * POINTS_PER_HEART, "engi-vehicle-gun"),
-		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4/3 * POINTS_PER_HEART, "engi-vehicle-ammo"),
+		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 0.5, "engi-tool"),
+		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 1, "engi-vehicle"),
+		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2, "engi-vehicle"),
+		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 2.5, "engi-vehicle"),
+		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 3, "engi-vehicle"),
+		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "Claw Module", 1, "engi-vehicle-attachable"),
+		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 5, "engi-vehicle-attachable"),
+		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
+		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 5, "engi-vehicle-attachable"),
+		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
 		// Emplacements + Emplacement Ammo
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 12 * POINTS_PER_HEART, "emplacement"), // Makes fire. Low ammo capacity.
-		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6 * POINTS_PER_HEART, "emplacement-ammo"),
-		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 15 * POINTS_PER_HEART, "emplacement"), // IFF.
-		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10 * POINTS_PER_HEART, "emplacement-ammo"),
-		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 15 * POINTS_PER_HEART, "emplacement"), // Non-IFF, more damage than HSG-102.
-		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10 * POINTS_PER_HEART, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 15 * POINTS_PER_HEART, "emplacement"), // Non-IFF, roughly same damage as HSG-102.
-		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10 * POINTS_PER_HEART, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 15 * POINTS_PER_HEART, "emplacement"),
-		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 8 * POINTS_PER_HEART, "emplacement-ammo"),
-		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 12 * POINTS_PER_HEART, "emplacement-ammo"), // Can decap zombies.
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 5.5, "emplacement"),
+		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 5, "emplacement-ammo"),
+		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 10.5, "emplacement"), // IFF.
+		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-ammo"),
+		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 10.5, "emplacement"), // Non-IFF, more damage than HSG-102.
+		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-ammo"),
+		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 10.5, "emplacement"), // Non-IFF, roughly same damage as HSG-102 with more ammo.
+		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-ammo"),
+		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 6.5, "emplacement"), // Cheap because it is bulky and can't be picked up.
+		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 6, "emplacement-ammo"),
+		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 10, "emplacement-ammo"), // Can potentially decapitate zombies.
 		// Building Supplies
-		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 2/3 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 4/3 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2 * POINTS_PER_HEART, "engi-construction"),
-		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 12 * POINTS_PER_HEART, "engi-construction"),
+		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2, "engi-construction"),
+		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4, "engi-construction"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3, "engi-construction"),
+		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 2, "engi-construction"),
+		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 4, "engi-construction"),
+		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2, "engi-construction"),
+		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 12, "engi-construction"),
 		// Armor Modules
-		/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_ARMOR_MODULE, "\"Hlin\" Explosive-Armor Module", 3 * POINTS_PER_HEART, "armor-module"),
-		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 4 * POINTS_PER_HEART, "armor-module"),
-		/obj/item/armor_module/module/tyr_extra_armor = list(CAT_ARMOR_MODULE, "\"Tyr\" Armor Module", 4 * POINTS_PER_HEART, "armor-module"),
-		/obj/item/armor_module/module/mimir_environment_protection = list(CAT_ARMOR_MODULE, "\"Mimir\" Bio-Armor Module", 4 * POINTS_PER_HEART, "armor-module"),
-		/obj/item/armor_module/module/fire_proof = list(CAT_ARMOR_MODULE, "\"Surt\" Fireproof Module", 10 * POINTS_PER_HEART, "armor-module"),
+		/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_ARMOR_MODULE, "\"Hlin\" Explosive-Armor Module", 6, "armor-module"),
+		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 10, "armor-module"),
+		/obj/item/armor_module/module/tyr_extra_armor = list(CAT_ARMOR_MODULE, "\"Tyr\" Armor Module", 10, "armor-module"),
+		/obj/item/armor_module/module/mimir_environment_protection = list(CAT_ARMOR_MODULE, "\"Mimir\" Bio-Armor Module", 10, "armor-module"),
+		/obj/item/armor_module/module/fire_proof = list(CAT_ARMOR_MODULE, "\"Surt\" Fireproof Module", 30, "armor-module"),
 		// Grenades
-		/obj/item/explosive/grenade = list(CAT_GRENADE, "M40 HEDP grenade", 1 * POINTS_PER_HEART, "grenade"),
-		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 2 * POINTS_PER_HEART, "grenade"),
-		/obj/item/explosive/grenade/incendiary  = list(CAT_GRENADE, "M40 HIDP Incendiary grenade", 3 * POINTS_PER_HEART, "grenade"),
-		/obj/item/explosive/grenade/smokebomb/antigas = list(CAT_GRENADE, "M40-AG Antigas grenade", 4/3 * POINTS_PER_HEART, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_BUILDING_SUPPLIES, "Razorburn grenade", 3 * POINTS_PER_HEART, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_BUILDING_SUPPLIES, "Razorburn canister", 6 * POINTS_PER_HEART, "grenade"),
+		/obj/item/explosive/grenade = list(CAT_GRENADE, "M40 HEDP grenade", 0.5, "grenade"),
+		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 1, "grenade"),
+		/obj/item/explosive/grenade/incendiary  = list(CAT_GRENADE, "M40 HIDP Incendiary grenade", 2, "grenade"),
+		/obj/item/explosive/grenade/smokebomb/antigas = list(CAT_GRENADE, "M40-AG Antigas grenade", 1, "grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_BUILDING_SUPPLIES, "Razorburn grenade", 4, "grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_BUILDING_SUPPLIES, "Razorburn canister", 8, "grenade"),
 		// Attachments
-		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 15 * POINTS_PER_HEART, "attachment"),
-		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5 * POINTS_PER_HEART, "attachment"),
+		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 30, "attachment"),
+		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5, "attachment"),
 		// Weapons + Weapon Ammo
-		/obj/item/weapon/twohanded/chainsaw = list(CAT_WEAPONS, "Chainsaw", 2 * POINTS_PER_HEART, "melee"), // Immersive for a planet full of zombies.
-		/obj/item/weapon/twohanded/rocketsledge  = list(CAT_WEAPONS, "Rocketsledge", 6 * POINTS_PER_HEART, "melee"),
-		/obj/item/weapon/shield/riot/marine  = list(CAT_WEAPONS, "TL-172 defensive shield", 6 * POINTS_PER_HEART, "melee"),
-		/obj/item/weapon/gun/revolver/mateba = list(CAT_WEAPONS, "Mateba", 3 * POINTS_PER_HEART, "gun"),
-		/obj/item/ammo_magazine/revolver/mateba = list(CAT_WEAPONS, "Mateba Speedloader", 2/3 * POINTS_PER_HEART, "gun-ammo"),
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg = list(CAT_WEAPONS, "\"PL-51\" smg", 6 * POINTS_PER_HEART, "gun"),
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = list(CAT_WEAPONS, "\"PL-38\" plasma rifle", 6 * POINTS_PER_HEART, "gun"),
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = list(CAT_WEAPONS, "\"PL-96\" plasma cannon", 12 * POINTS_PER_HEART, "gun"), // Makes fire.
-		/obj/item/cell/lasgun/plasma = list(CAT_WEAPONS, "Plasma cell", 1 * POINTS_PER_HEART, "gun-ammo"),
-		/obj/item/weapon/gun/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" scout rifle", 6 * POINTS_PER_HEART, "gun"),
-		/obj/item/ammo_magazine/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" magazine", 1 * POINTS_PER_HEART, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_WEAPONS, "\"BR-8\" incendiary magazine", 2 * POINTS_PER_HEART, "gun-ammo"), // Makes fire & pierces.
-		/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_WEAPONS, "\"BR-8\" impact magazine", 4/3 * POINTS_PER_HEART, "gun-ammo"),
-		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 10 * POINTS_PER_HEART, "gun"),
-		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 20 * POINTS_PER_HEART, "gun-ammo"),
+		/obj/item/weapon/twohanded/chainsaw = list(CAT_WEAPONS, "Chainsaw", 4, "melee"),
+		/obj/item/weapon/twohanded/rocketsledge  = list(CAT_WEAPONS, "Rocketsledge", 8, "melee"),
+		/obj/item/weapon/shield/riot/marine  = list(CAT_WEAPONS, "TL-172 defensive shield", 10, "melee"),
+		/obj/item/weapon/gun/revolver/mateba = list(CAT_WEAPONS, "Mateba", 3, "gun"),
+		/obj/item/ammo_magazine/revolver/mateba = list(CAT_WEAPONS, "Mateba Speedloader", 0.5, "gun-ammo"),
+		/obj/item/ammo_magazine/packet/mateba = list(CAT_WEAPONS, "Mateba Packet", 2, "gun-ammo"), // 1x packet = 7x speedloaders; discount of 1.5 points.
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg = list(CAT_WEAPONS, "\"PL-51\" smg", 10, "gun"), // Plasma ammo is infinite with handheld recharger, so most of the costs is shifted onto the gun.
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = list(CAT_WEAPONS, "\"PL-38\" plasma rifle", 10, "gun"),
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = list(CAT_WEAPONS, "\"PL-96\" plasma cannon", 20, "gun"),
+		/obj/item/cell/lasgun/plasma = list(CAT_WEAPONS, "Plasma cell", 0.5, "gun-ammo"),
+		/obj/item/weapon/gun/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" scout rifle", 2, "gun"), // Gun itself is cheap because it can be found normally.
+		/obj/item/ammo_magazine/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" magazine", 1, "gun-ammo"),
+		/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_WEAPONS, "\"BR-8\" incendiary magazine", 1.5, "gun-ammo"), // Can pierce through multiple zombies to set them on fire.
+		/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_WEAPONS, "\"BR-8\" impact magazine", 0.5, "gun-ammo"),
+		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 5, "gun"),
+		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 15, "gun-ammo"),
 		// Fun
-		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 30 * POINTS_PER_HEART, "engi-other"),
+		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 60, "engi-other"),
 	)
 
+/obj/machinery/marine_selector/zcrash/proc/get_total_points()
+	var/datum/game_mode/infestation/crash/zombie/zombie_crash_gamemode = SSticker.mode
+	return zombie_crash_gamemode.total_vendor_points
+
 /obj/machinery/marine_selector/zcrash/proc/get_remaining_points()
-	return (GLOB.round_statistics.zombies_permad * POINTS_PER_HEART) - used_points
+	return get_total_points() - spent_vendor_points
 
 /obj/machinery/marine_selector/zcrash/ui_data(mob/user)
 	. = list()
@@ -1089,7 +1094,7 @@
 	for(var/category in categories)
 		.["cats"][category] = list(
 			"remaining_points" = get_remaining_points(),
-			"total_points" = max( (GLOB.round_statistics.zombies_permad * POINTS_PER_HEART), 1),
+			"total_points" = max(get_total_points(), 1),
 			"choice" = "points",
 			)
 
@@ -1135,7 +1140,5 @@
 		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
 
 	if(use_points && remaining_points)
-		used_points += product_cost
+		spent_vendor_points += product_cost
 	. = TRUE
-
-#undef POINTS_PER_HEART

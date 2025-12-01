@@ -238,9 +238,9 @@ const ItemLine = (props) => {
         Vehicle
       </Box>
     ),
-    'engi-vehicle-gun': (
+    'engi-vehicle-attachable': (
       <Box inline mr="6px" ml="6px" color="#7df0ffff">
-        Attachable Gun
+        Attachable
       </Box>
     ),
     'engi-vehicle-ammo': (
