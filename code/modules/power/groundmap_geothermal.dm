@@ -303,7 +303,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 
 		if(is_ground_level(z) && hive?.hivenumber == XENO_HIVE_NORMAL)
 			GLOB.corrupted_generators -= 1
-			SSticker.mode?.update_silo_death_timer(GLOB.hive_datums[corrupted])
+			SSticker.mode?.update_silo_death_timer(hive)
 
 		stop_processing()
 		update_icon()
