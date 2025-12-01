@@ -22,6 +22,7 @@
 		/datum/job/terragov/squad/specialist = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/terragov/squad/slut = -1,
 		/datum/job/clf/breeder = -1,
 		/datum/job/clf/standard = -1,
 		/datum/job/clf/medic = 2,
