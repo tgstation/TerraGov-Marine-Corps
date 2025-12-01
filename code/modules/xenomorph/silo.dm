@@ -56,7 +56,7 @@
 		newt.name += " [name]"
 
 /obj/structure/xeno/silo/obj_break(damage_flag)
-	if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
+	if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1 && !istype(SSticker.mode, /datum/game_mode/infestation/nuclear_war) && !istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
 		obj_integrity = max_integrity
 		GLOB.hive_datums[hivenumber].trigger_silo_shock(src)
 		return
