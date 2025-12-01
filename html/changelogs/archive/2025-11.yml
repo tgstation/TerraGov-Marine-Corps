@@ -145,3 +145,90 @@
   - balance: surgery tables are now acidable by xenos
   mudzbe:
   - bugfix: fixed desparity zombie tunnel spawning on other gamemodes
+2025-11-23:
+  Lumipharon:
+  - qol: C4 and detpacks are now more or less centered on what they're placed on,
+      instead of in the corner of large sprited atoms
+  - bugfix: fixed C4 and detpacks being draggable when placed
+  - balance: MG-27 has aimmode, but only when deployed
+  - bugfix: fixed freelancer and spec op ERTs having invisible armour sprites
+  - bugfix: fixed freelancer and PMC ERT compositions
+  - balance: Hivelords cannot build through barricades anymore
+  - balance: Special zombies types now spawn much less often from zombie tunnels
+  - bugfix: fixed puppets going rogue on recall mode
+  PibeCantina:
+  - rscdel: Removed soul
+  - bugfix: fixed sulaco disposals spacing you
+2025-11-24:
+  Neocloudy:
+  - bugfix: The chat volume slider should work now
+  PibeCantina:
+  - balance: Makes LTAAP do more damage at the cost of it's IFF
+  Runian:
+  - rscadd: Monitor now displays to all observers which side it believes to be winning
+      at the moment.
+  - balance: SR-26, TX8, and ZX-76 are now included in Monitor's calculations.
+  - balance: Many xenomorph structures and unused psychic points are now included
+      in Monitor's calculations.
+  - balance: Various xenomorph weights have adjusted in Monitor to account for the
+      power difference between tiers and minions.
+  - bugfix: B17 and B18 suits no longer can be worn by Synths & now correctly reduce
+      Jetpack effectiveness.
+  - bugfix: CC/AT32 Handheld Autocannon (from Valhalla) is correctly not included
+      in Monitor's calculations.
+  - code_imp: New component that makes items add certain point values to the Monitor
+      depending on gamestate & z-level.
+  mudzbe:
+  - balance: Destroying a tunnel spawns a wave of defenders
+2025-11-25:
+  Lumipharon:
+  - refactor: refactored code for refueling objects such as welder bags and fuel tanks
+2025-11-27:
+  Runian:
+  - balance: Sandbags that are not carefully disassembled (e.g. acid) no longer drop
+      any sandbags.
+  - balance: You no longer can remove shrapnel if you're already doing an action.
+  mudzbe:
+  - rscadd: Added loadout vendors to spec rooms in Arachne
+  - bugfix: Decapped zombies dont revive
+  - rscadd: Zombies can now be damaged by wired barricades
+  - rscadd: Adds zombies permanantly killed stat
+2025-11-28:
+  DaTruRiZZoB:
+  - bugfix: All xeno abilities show in their respective codex
+  - qol: Xeno abilities have gotten further clarification
+  - spellcheck: Unified target language in xeno descriptions
+  Isy232:
+  - balance: 'Queen Respawn Timer: 5 Minutes => 10 Minutes'
+  - balance: 'King Respawn Timer: 7 Minutes => 15 Minutes'
+  Lumipharon:
+  - balance: Xeno tunnels are a 75 point tac psy purchase instead of a hivelord ability
+  - balance: Gargoyles cannot be purchased
+  - balance: Acid pools cost 300 from 200 tac psy
+  - balance: Hivelords cannot create recovery pylons
+  - balance: Wrecked tanks can be fulton'd back to the ship via a series of new repair
+      steps
+  Runian:
+  - bugfix: Recovery Pylon now only affects those inside of it instead of all castes
+      inside of it.
+  - bugfix: Having the Resin Jelly status effect now prevents you from getting more
+      Melting stacks.
+  - bugfix: Losing Hive Ruler status no longer removes leader/ruler abilities if your
+      caste has the abilities by default.
+  - bugfix: Trying to disarm someone that has an active gun while not having enough
+      CQC skill now correctly has a chance to cause a misfire.
+  - bugfix: Primordial can correctly now be purchased by the Hive Ruler, instead of
+      only Shrike/Queen/King.
+  blackdav123:
+  - rscadd: Claw Unmanned Vehicle attachment, capable of dragging objects or corpses.
+      Available in req for 50 points or engi vendor for 5.
+  - balance: Engi Iguana crate has been split in two with a lower price, the Iguana
+      now costing 25 points and the Light machinegun costing 15.
+  mudzbe:
+  - rscadd: Zombium is reduced by bio armor stat, more zombium to compensate
+2025-11-29:
+  Runian:
+  - balance: Sunder now carries over through evolutions.
+  mudzbe:
+  - bugfix: Zombies can pry open doors again
+  - bugfix: Zombie AI wont try to pry open bolted doors

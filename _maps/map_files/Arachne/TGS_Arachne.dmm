@@ -2202,12 +2202,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
 "bYm" = (
-/obj/structure/table/reinforced,
-/obj/item/facepaint/green,
-/obj/item/tool/hand_labeler,
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -4326,9 +4324,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "dHS" = (
-/obj/structure/table/reinforced,
-/obj/item/facepaint/green,
-/obj/item/tool/hand_labeler,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},

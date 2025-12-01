@@ -360,10 +360,24 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
+///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
+	return
+
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+///This is overridden on the child types. Called to start/stop the silo death timer.
+/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
+	return
+
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
+/datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
 ///Provides the amount of time left before the game ends, used for the stat panel
@@ -412,6 +426,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.zombies_permad)
+		parts += "[GLOB.round_statistics.zombies_permad] zombies were permanently killed."
 	if(SSevacuation.human_escaped)
 		parts += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
