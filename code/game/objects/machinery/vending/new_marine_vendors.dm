@@ -1017,33 +1017,33 @@
 		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 0.5, "engi-tool"),
 		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 1, "engi-vehicle"),
 		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2, "engi-vehicle"),
-		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 2.5, "engi-vehicle"),
-		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 3, "engi-vehicle"),
+		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 3, "engi-vehicle"),
+		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 4, "engi-vehicle"),
 		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "Claw Module", 1, "engi-vehicle-attachable"),
 		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 5, "engi-vehicle-attachable"),
 		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
 		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 5, "engi-vehicle-attachable"),
 		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
 		// Emplacements + Emplacement Ammo
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 5.5, "emplacement"),
-		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 5, "emplacement-ammo"),
-		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 10.5, "emplacement"), // IFF.
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 8, "emplacement"),
+		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-ammo"),
+		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 12, "emplacement"), // IFF.
 		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 10.5, "emplacement"), // Non-IFF, more damage than HSG-102.
+		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 12, "emplacement"), // Non-IFF, more damage than HSG-102.
 		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 10.5, "emplacement"), // Non-IFF, roughly same damage as HSG-102 with more ammo.
+		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 12, "emplacement"), // Non-IFF, roughly same damage as HSG-102 with more ammo.
 		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 6.5, "emplacement"), // Cheap because it is bulky and can't be picked up.
+		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 8, "emplacement"), // Cheap because it is bulky and can't be picked up.
 		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 6, "emplacement-ammo"),
 		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 10, "emplacement-ammo"), // Can potentially decapitate zombies.
 		// Building Supplies
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2, "engi-construction"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4, "engi-construction"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3, "engi-construction"),
-		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 2, "engi-construction"),
-		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 4, "engi-construction"),
+		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 1, "engi-construction"),
+		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 2, "engi-construction"),
 		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2, "engi-construction"),
-		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 12, "engi-construction"),
+		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 10, "engi-construction"),
 		// Armor Modules
 		/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_ARMOR_MODULE, "\"Hlin\" Explosive-Armor Module", 6, "armor-module"),
 		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 10, "armor-module"),
