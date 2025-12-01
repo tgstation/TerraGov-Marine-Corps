@@ -18017,8 +18017,7 @@
 	name = "Lower Power"
 	})
 "qte" = (
-/obj/item/teleporter_kit,
-/obj/item/teleporter_kit,
+/obj/effect/teleporter_linker,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "qtj" = (
