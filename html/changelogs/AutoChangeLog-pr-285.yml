@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - balance: "psydrain and cacoon no longer require the target to be dead to use"
