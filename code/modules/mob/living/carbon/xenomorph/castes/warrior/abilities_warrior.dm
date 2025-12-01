@@ -6,6 +6,7 @@
 
 /datum/action/ability/xeno_action/empower
 	name = "Empower"
+	desc = "You can be empowered by a primordial drone link."
 	/// Holds the fade-out timer.
 	var/fade_timer
 	/// The amount of abilities we've chained together.
@@ -206,7 +207,7 @@
 
 /datum/action/ability/activable/xeno/warrior/lunge/New(Target)
 	. = ..()
-	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies."
+	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies and targets directly behind cover."
 
 /datum/action/ability/activable/xeno/warrior/lunge/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
@@ -694,7 +695,7 @@
 	name = "Flurry"
 	action_icon_state = "flurry"
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
-	desc = "Strike at your target with blinding speed."
+	desc = "Strike at your target with blinding speed. Dealing less damage but blinding your target."
 	ability_cost = 10
 	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(

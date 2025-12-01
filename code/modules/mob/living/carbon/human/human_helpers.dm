@@ -182,11 +182,13 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(get_organ_slot(ORGAN_SLOT_BRAIN))
-		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-		if(brain && istype(brain))
-			return TRUE
-	return FALSE
+	var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!istype(brain))
+		return FALSE
+	var/datum/limb/braincase = get_limb(brain.parent_limb)
+	if(braincase.limb_status & LIMB_DESTROYED)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/has_eyes()
 	if(get_organ_slot(ORGAN_SLOT_EYES))

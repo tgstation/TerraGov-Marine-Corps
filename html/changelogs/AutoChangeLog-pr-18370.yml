@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Sentries will broadcast alerts on radio correctly, and will broadcast on faction appropriate channels"
-  - code_imp: "Sentry IFF uses faction instead of sentry_iff_signal where relevant"

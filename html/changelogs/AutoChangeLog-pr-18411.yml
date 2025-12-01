@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - qol: "Field utility pouch now opens its inventory on left click instead of drawing the rightmost item."
