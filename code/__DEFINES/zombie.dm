@@ -6,3 +6,5 @@
 #define ZOMBIE_STRUCTURE_DETECTION_RANGE 15
 ///Defender spawn amount
 #define ZOMBIE_DEFENDER_AMOUNT 13
+///Determines how much burn damage cringe robots and synths should take per zombium
+#define ZOMBIUM_ROBOT_EFFECT_MULTIPLIER 1.5
