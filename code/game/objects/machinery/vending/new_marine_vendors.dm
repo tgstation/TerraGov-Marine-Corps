@@ -1056,8 +1056,8 @@
 		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 1, "grenade"),
 		/obj/item/explosive/grenade/incendiary  = list(CAT_GRENADE, "M40 HIDP Incendiary grenade", 2, "grenade"),
 		/obj/item/explosive/grenade/smokebomb/antigas = list(CAT_GRENADE, "M40-AG Antigas grenade", 1, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_BUILDING_SUPPLIES, "Razorburn grenade", 4, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_BUILDING_SUPPLIES, "Razorburn canister", 8, "grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_GRENADE, "Razorburn grenade", 4, "grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_GRENADE, "Razorburn canister", 8, "grenade"),
 		// Attachments
 		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 30, "attachment"),
 		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5, "attachment"),
