@@ -83,8 +83,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/can_start(bypass_checks = FALSE)
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
-		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || (SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps)) && !bypass_checks)
+		log_world("Attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		to_chat(world, "<b>Unable to start [name].</b> [SSmapping.configs[GROUND_MAP].map_name] isn't supported on [name].")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
