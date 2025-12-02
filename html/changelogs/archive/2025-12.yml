@@ -6,3 +6,6 @@
   mudzbe:
   - balance: Reduce wired barricade damage to zombies
   - bugfix: Zombies cant strip things anymore
+2025-12-02:
+  Colfer1:
+  - balance: psydrain and cacoon no longer require the target to be dead to use
