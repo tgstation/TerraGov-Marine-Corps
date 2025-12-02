@@ -1,0 +1,5 @@
+author: "DaTruRiZZoB"
+delete-after: True
+changes:
+  - rscadd: "Added brown and black customization kits to the armor vendors"
+  - qol: "Face paint is wiped off by aiming head now"
