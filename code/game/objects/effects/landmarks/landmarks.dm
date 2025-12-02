@@ -204,7 +204,7 @@
 	icon_state = "marineuniform"
 
 /obj/effect/landmark/zombie_vendor/Initialize(mapload)
-	GLOB.zombie_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
+	GLOB.zombie_crash_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
 	..()
 
 /obj/effect/landmark/nuke_spawn
