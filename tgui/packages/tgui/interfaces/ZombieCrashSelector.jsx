@@ -36,7 +36,7 @@ export const ZombieCrashSelector = (props) => {
         <Section title="Points">
           <PointsBar
             bar_name="Pooled Points"
-            tooltip_content="These points are gained when your points overflown your limit or by hitting the vendor with your ID."
+            tooltip_content="These points are gained when your personal points reaches its limit or by hitting the vendor with your ID."
             remaining_points={data.pooled_points_remaining}
             total_points={data.pooled_points_total}
           />

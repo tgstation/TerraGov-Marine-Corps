@@ -204,9 +204,8 @@
 	icon_state = "marineuniform"
 
 /obj/effect/landmark/zombie_vendor/Initialize(mapload)
-	GLOB.zombie_vendor_turfs += loc
+	GLOB.zombie_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
 	..()
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
