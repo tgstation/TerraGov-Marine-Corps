@@ -44,6 +44,10 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/nut_ammo
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/nut_ammo)
 
+/obj/item/weapon/gun/rifle/drone/nut/unload(mob/living/user, drop, after_fire)
+	to_chat(user, span_warning("You can't remove the disposable drone's fixed ammo canisters!"))
+	return FALSE
+
 /obj/item/ammo_magazine/rifle/nut_ammo
 	name = "\improper NUT Dual Ammo Canisters (10x24mm)"
 	max_rounds = 300
