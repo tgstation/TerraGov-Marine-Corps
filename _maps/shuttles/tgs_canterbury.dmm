@@ -45,7 +45,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "ai" = (
-/obj/machinery/marine_selector/zcrash,
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},

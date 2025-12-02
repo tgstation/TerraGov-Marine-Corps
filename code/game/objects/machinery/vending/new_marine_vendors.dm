@@ -29,7 +29,7 @@
 	var/icon_deny
 	/// A list of all category names.
 	var/list/categories
-	/// An associative list of: [/obj] = list(category, product_name, point_cost, product_color)
+	/// An associative list of: [typepath] = list(category_name, product_name, product_cost, product_color)
 	var/list/listed_products
 
 /obj/machinery/marine_selector/Initialize(mapload)
@@ -140,78 +140,74 @@
 		return
 	switch(action)
 		if("vend")
-			return on_ui_vend_action(usr, params)
-
-/// Called from `ui_act` when the action is 'vend'.
-/obj/machinery/marine_selector/proc/on_ui_vend_action(mob/vending_mob, list/params)
-	if(!allowed(vending_mob))
-		to_chat(vending_mob, span_warning("Access denied."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	var/idx = text2path(params["vend"])
-	var/obj/item/card/id/user_id = vending_mob.get_idcard()
-
-	var/list/L = listed_products[idx]
-	var/item_category = L[1]
-	var/cost = L[3]
-
-	if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
-		to_chat(vending_mob, span_warning("Access denied. You have already vended a loadout."))
-		return FALSE
-	if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
-		to_chat(vending_mob, span_warning("Not enough points."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	var/turf/T = loc
-	if(length(T.contents) > 25)
-		to_chat(vending_mob, span_warning("The floor is too cluttered, make some space."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	if(item_category in user_id.marine_buy_choices)
-		if(user_id.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
-			user_id.marine_buy_choices[item_category] -= 1
-		else
-			if(cost == 0)
-				to_chat(vending_mob, span_warning("You can't buy things from this category anymore."))
+			if(!allowed(usr))
+				to_chat(usr, span_warning("Access denied."))
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
-	var/list/vended_items = list()
+			var/idx = text2path(params["vend"])
+			var/obj/item/card/id/user_id = usr.get_idcard()
 
-	if (ispath(idx, /obj/effect/vendor_bundle))
-		var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
-		vended_items += bundle.spawned_gear
-		qdel(bundle)
-	else
-		vended_items += new idx(loc)
+			var/list/L = listed_products[idx]
+			var/item_category = L[1]
+			var/cost = L[3]
 
-	playsound(src, SFX_VENDING, 25, 0)
+			if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
+				return FALSE
+			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
+				to_chat(usr, span_warning("Not enough points."))
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-	if(icon_vend)
-		flick(icon_vend, src)
+			var/turf/T = loc
+			if(length(T.contents) > 25)
+				to_chat(usr, span_warning("The floor is too cluttered, make some space."))
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-	use_power(active_power_usage)
+			if(item_category in user_id.marine_buy_choices)
+				if(user_id.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
+					user_id.marine_buy_choices[item_category] -= 1
+				else
+					if(cost == 0)
+						to_chat(usr, span_warning("You can't buy things from this category anymore."))
+						return
 
-	if(item_category == CAT_STD && !issynth(vending_mob))
-		var/mob/living/carbon/human/H = vending_mob
-		if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
-			vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-			if(istype(H.job, /datum/job/terragov/squad/leader))
-				vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
-				vended_items += new /obj/item/squad_transfer_tablet(loc)
+			var/list/vended_items = list()
 
-	for (var/obj/item/vended_item in vended_items)
-		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
+			if (ispath(idx, /obj/effect/vendor_bundle))
+				var/obj/effect/vendor_bundle/bundle = new idx(loc, FALSE)
+				vended_items += bundle.spawned_gear
+				qdel(bundle)
+			else
+				vended_items += new idx(loc)
 
-	if(use_points && (item_category in user_id.marine_points))
-		user_id.marine_points[item_category] -= cost
-	. = TRUE
-	user_id.id_flags |= USED_GHMME
+			playsound(src, SFX_VENDING, 25, 0)
+
+			if(icon_vend)
+				flick(icon_vend, src)
+
+			use_power(active_power_usage)
+
+			if(item_category == CAT_STD && !issynth(usr))
+				var/mob/living/carbon/human/H = usr
+				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
+					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+					if(istype(H.job, /datum/job/terragov/squad/leader))
+						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/squad_transfer_tablet(loc)
+
+			for (var/obj/item/vended_item in vended_items)
+				vended_item.on_vend(usr, faction, auto_equip = TRUE)
+
+			if(use_points && (item_category in user_id.marine_points))
+				user_id.marine_points[item_category] -= cost
+			. = TRUE
+			user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
 	name = "\improper GHMME Automated Closet"
@@ -962,196 +958,3 @@
 #undef COMMANDER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK
-
-/obj/machinery/marine_selector/zcrash
-	name = "\improper progression rewards vendor"
-	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
-	icon_state = "marineuniform"
-	icon_vend = "marineuniform-vend"
-	icon_deny = "marineuniform-deny"
-	use_points = TRUE
-	lock_flags = NONE
-	categories = list(
-		CAT_ARTILLERY,
-		CAT_VEHICLE,
-		CAT_EMPLACEMENTS,
-		CAT_BUILDING_SUPPLIES,
-		CAT_ARMOR_MODULE,
-		CAT_GRENADE,
-		CAT_ATTACHMENTS,
-		CAT_SMARTGUNNER,
-		CAT_WEAPONS,
-		CAT_FUN
-	)
-	/// The total amount of vendor points that have been spent. Shared across all vendors.
-	var/static/spent_vendor_points = 0
-
-/obj/machinery/marine_selector/zcrash/Initialize(mapload)
-	. = ..()
-	if(!iszombiecrashgamemode(SSticker.mode))
-		return INITIALIZE_HINT_QDEL
-	/*
-		Prices is done as following:
-		- Cheap:
-			- Tools that do nothing by themselves / need to be paired with something else to work.
-			- Guns that aren't prefilled with ammo / aren't capable of infinite ammo.
-			- Ammo consumed easily.
-			- Requires marines to enter melee range.
-			- Requires teamwork in some way.
-		- Expensive:
-			- Guns that have IFF.
-			- Capable of permanently killing zombies.
-			- Things that encourage marines to hold out, rather than shoot zombies.
-	*/
-	listed_products = list(
-		// Artillery & Mortar
-		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", 1, "engi-tool"),
-		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 1, "engi-artillery"),
-		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 0.5, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 0.75, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 1.5, "engi-artillery-ammo"),
-		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 1, "engi-artillery"),
-		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 0.75, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 1.5, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 2, "engi-artillery-ammo"),
-		// Vehicles + Vehicle Ammo
-		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 0.5, "engi-tool"),
-		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 1, "engi-vehicle"),
-		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2, "engi-vehicle"),
-		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 3, "engi-vehicle"),
-		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 4, "engi-vehicle"),
-		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "Claw Module", 1, "engi-vehicle-attachable"),
-		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 5, "engi-vehicle-attachable"),
-		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
-		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 5, "engi-vehicle-attachable"),
-		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
-		// Emplacements + Emplacement Ammo
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 8, "emplacement"),
-		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-ammo"),
-		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 12, "emplacement"), // IFF.
-		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 12, "emplacement"), // Non-IFF, more damage than HSG-102.
-		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 12, "emplacement"), // Non-IFF, roughly same damage as HSG-102 with more ammo.
-		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-ammo"),
-		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 8, "emplacement"), // Cheap because it is bulky and can't be picked up.
-		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 6, "emplacement-ammo"),
-		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 10, "emplacement-ammo"), // Can potentially decapitate zombies.
-		// Building Supplies
-		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2, "engi-construction"),
-		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4, "engi-construction"),
-		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3, "engi-construction"),
-		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 1, "engi-construction"),
-		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 2, "engi-construction"),
-		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2, "engi-construction"),
-		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 10, "engi-construction"),
-		// Armor Modules
-		/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_ARMOR_MODULE, "\"Hlin\" Explosive-Armor Module", 6, "armor-module"),
-		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 10, "armor-module"),
-		/obj/item/armor_module/module/tyr_extra_armor = list(CAT_ARMOR_MODULE, "\"Tyr\" Armor Module", 10, "armor-module"),
-		/obj/item/armor_module/module/mimir_environment_protection = list(CAT_ARMOR_MODULE, "\"Mimir\" Bio-Armor Module", 10, "armor-module"),
-		/obj/item/armor_module/module/fire_proof = list(CAT_ARMOR_MODULE, "\"Surt\" Fireproof Module", 30, "armor-module"),
-		// Grenades
-		/obj/item/explosive/grenade = list(CAT_GRENADE, "M40 HEDP grenade", 0.5, "grenade"),
-		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 1, "grenade"),
-		/obj/item/explosive/grenade/incendiary  = list(CAT_GRENADE, "M40 HIDP Incendiary grenade", 2, "grenade"),
-		/obj/item/explosive/grenade/smokebomb/antigas = list(CAT_GRENADE, "M40-AG Antigas grenade", 1, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_GRENADE, "Razorburn grenade", 4, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_GRENADE, "Razorburn canister", 8, "grenade"),
-		// Attachments
-		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 30, "attachment"),
-		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5, "attachment"),
-		// Smartgunner Ammo
-		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SMARTGUNNER, "SG-29 Ammo Drum", 4, "gun-ammo"),
-		/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SMARTGUNNER, "SG-85 Ammo Bin", 8, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SMARTGUNNER, "SG-62 Target Rifle Magazine", 2, "gun-ammo"),
-		/obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SMARTGUNNER, "SG-62 Target Rifle Ammo Bin", 8, "gun-ammo"), // 1x packet = 5 mags; discount of 2 points.
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Magazine", 1, "gun-ammo"),
-		/obj/item/ammo_magazine/packet/smart_spottingrifle = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Ammo Bin", 3, "gun-ammo"), // 1x packet = 5 mags; discount of 2 points.
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle High Impact Magazine", 1.5, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Heavy Rubber Magazine", 1.5, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Tungsten Magazine", 1.5, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Flak Magazine", 1.5, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Incendiary Magazine", 2, "gun-ammo"),
-		// Weapons + Weapon Ammo
-		/obj/item/weapon/twohanded/chainsaw = list(CAT_WEAPONS, "Chainsaw", 4, "melee"),
-		/obj/item/weapon/twohanded/rocketsledge  = list(CAT_WEAPONS, "Rocketsledge", 8, "melee"),
-		/obj/item/weapon/shield/riot/marine  = list(CAT_WEAPONS, "TL-172 defensive shield", 10, "melee"),
-		/obj/item/weapon/gun/revolver/mateba = list(CAT_WEAPONS, "Mateba", 3, "gun"),
-		/obj/item/ammo_magazine/revolver/mateba = list(CAT_WEAPONS, "Mateba Speedloader", 0.5, "gun-ammo"),
-		/obj/item/ammo_magazine/packet/mateba = list(CAT_WEAPONS, "Mateba Packet", 2, "gun-ammo"), // 1x packet = 7x speedloaders; discount of 1.5 points.
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg = list(CAT_WEAPONS, "\"PL-51\" smg", 10, "gun"), // Plasma ammo is infinite with handheld recharger, so most of the costs is shifted onto the gun.
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle = list(CAT_WEAPONS, "\"PL-38\" plasma rifle", 10, "gun"),
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon = list(CAT_WEAPONS, "\"PL-96\" plasma cannon", 20, "gun"),
-		/obj/item/cell/lasgun/plasma = list(CAT_WEAPONS, "Plasma cell", 0.5, "gun-ammo"),
-		/obj/item/weapon/gun/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" scout rifle", 2, "gun"), // Gun itself is cheap because it can be found normally.
-		/obj/item/ammo_magazine/rifle/tx8 = list(CAT_WEAPONS, "\"BR-8\" magazine", 1, "gun-ammo"),
-		/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_WEAPONS, "\"BR-8\" incendiary magazine", 1.5, "gun-ammo"), // Can pierce through multiple zombies to set them on fire.
-		/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_WEAPONS, "\"BR-8\" impact magazine", 0.5, "gun-ammo"),
-		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 5, "gun"),
-		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 15, "gun-ammo"),
-		// Fun
-		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 60, "engi-other"),
-	)
-
-/obj/machinery/marine_selector/zcrash/proc/get_total_points()
-	var/datum/game_mode/infestation/crash/zombie/zombie_crash_gamemode = SSticker.mode
-	return zombie_crash_gamemode.total_vendor_points
-
-/obj/machinery/marine_selector/zcrash/proc/get_remaining_points()
-	return get_total_points() - spent_vendor_points
-
-/obj/machinery/marine_selector/zcrash/ui_data(mob/user)
-	. = list()
-	.["cats"] = list()
-	for(var/category in categories)
-		.["cats"][category] = list(
-			"remaining_points" = get_remaining_points(),
-			"total_points" = max(get_total_points(), 1),
-			"choice" = "points",
-			)
-
-/obj/machinery/marine_selector/zcrash/on_ui_vend_action(mob/vending_mob, list/params)
-	if(!allowed(vending_mob))
-		to_chat(vending_mob, span_warning("Access denied."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	var/product_typepath = text2path(params["vend"])
-	var/list/product_information = listed_products[product_typepath]
-	var/product_cost = product_information[3]
-
-	var/remaining_points = get_remaining_points()
-	if(use_points && remaining_points < product_cost)
-		to_chat(vending_mob, span_warning("Not enough points."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	var/turf/current_turf = loc
-	if(length(current_turf.contents) > 25)
-		to_chat(vending_mob, span_warning("The floor is too cluttered, make some space."))
-		if(icon_deny)
-			flick(icon_deny, src)
-		return
-
-	var/list/vended_items = list()
-	if(ispath(product_typepath, /obj/effect/vendor_bundle))
-		var/obj/effect/vendor_bundle/bundle = new product_typepath(loc, FALSE)
-		vended_items += bundle.spawned_gear
-		qdel(bundle)
-	else
-		vended_items += new product_typepath(loc)
-
-	playsound(src, SFX_VENDING, 25, 0)
-	if(icon_vend)
-		flick(icon_vend, src)
-	use_power(active_power_usage)
-
-	for (var/obj/item/vended_item in vended_items)
-		vended_item.on_vend(vending_mob, faction, auto_equip = TRUE)
-
-	if(use_points && remaining_points)
-		spent_vendor_points += product_cost
-	. = TRUE

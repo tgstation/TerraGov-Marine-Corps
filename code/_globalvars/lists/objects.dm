@@ -120,6 +120,7 @@ GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
 
 GLOBAL_LIST_EMPTY(zombie_spawner_turfs)
+GLOBAL_LIST_EMPTY(zombie_vendor_turfs)
 GLOBAL_LIST_EMPTY(zombie_crash_vendors)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)

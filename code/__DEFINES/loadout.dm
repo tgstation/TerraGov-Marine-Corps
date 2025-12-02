@@ -33,6 +33,8 @@
 #define CAT_SMARTGUNNER "SMARTGUNNER"
 #define CAT_WEAPONS "WEAPONS"
 #define CAT_FUN "FUN"
+#define CAT_ZOMBIE_CRASH "ZOMBIE CRASH"
+#define MAXIMUM_PERSONAL_POINTS_ZOMBIE_CRASH 30
 
 // Synth Special Categories
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits

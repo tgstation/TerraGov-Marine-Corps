@@ -198,13 +198,13 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/zombie_heart_vendor
-	name = "zombie heart vendor landmark"
+/obj/effect/landmark/zombie_vendor
+	name = "zombie crash progression vendor landmark"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "marineuniform"
 
-/obj/effect/landmark/zombie_heart_vendor/Initialize(mapload)
-	GLOB.zombie_crash_vendors += loc
+/obj/effect/landmark/zombie_vendor/Initialize(mapload)
+	GLOB.zombie_vendor_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 

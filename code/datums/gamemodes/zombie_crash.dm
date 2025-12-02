@@ -20,8 +20,6 @@
 		/datum/job/terragov/squad/engineer = 5,
 	)
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
-	/// The total amount of vendor points that have been ever gained.
-	var/total_vendor_points = 0
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
@@ -45,8 +43,8 @@
 
 	for(var/i in GLOB.zombie_spawner_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
-	for(var/i in GLOB.zombie_crash_vendors)
-		new /obj/machinery/marine_selector/zcrash(i)
+	for(var/i in GLOB.zombie_vendor_turfs)
+		new /obj/machinery/zombie_crash_vendor(i)
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
@@ -76,6 +74,24 @@
 				continue
 			num_humans++
 	return list(num_humans, num_zombies)
+
+/// Gets all human (non-zombies) that match certain criterias.
+/datum/game_mode/infestation/crash/zombie/proc/get_all_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+	var/list/mob/living/carbon/human/human_list = list()
+	for(var/z in z_levels)
+		for(var/mob/living/carbon/human/possible_human in GLOB.humans_by_zlevel["[z]"])
+			if(!istype(possible_human))
+				continue
+			if(possible_human.faction == FACTION_ZOMBIE)
+				continue
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !possible_human.client && possible_human.afk_status == MOB_DISCONNECTED)
+				continue
+			if(possible_human.status_flags & XENO_HOST)
+				continue
+			if(isspaceturf(possible_human.loc))
+				continue
+			human_list += possible_human
+	return human_list
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
