@@ -61,7 +61,7 @@
 		return FALSE
 
 	if(iszombie(new_mob) && !GLOB.zombie_possess_allowed)
-		to_chat(owner, span_warning("There are too few marines so controlling zombies is currently disabled."))
+		to_chat(owner, span_warning("There are too few marines so possessing zombies is currently disabled."))
 		return FALSE
 
 	if(new_mob.stat == DEAD)

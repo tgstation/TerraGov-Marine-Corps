@@ -441,7 +441,7 @@ ADMIN_VERB(toggle_valhalla, R_SERVER, "Toggle Valhalla joining", "Toggle players
 	log_admin("[key_name(user)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
 
-ADMIN_VERB(toggle_sdd_possesion, R_SERVER, "Toggle taking over SSD mobs", "Allows players to take over SSD mobs.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(toggle_sdd_possession, R_SERVER, "Toggle taking over SSD mobs", "Allows players to take over SSD mobs.", ADMIN_CATEGORY_SERVER)
 	GLOB.ssd_possess_allowed = !GLOB.ssd_possess_allowed
 
 	log_admin("[key_name(user)] [GLOB.ssd_possess_allowed ? "enabled" : "disabled"] taking over SSD mobs.")
