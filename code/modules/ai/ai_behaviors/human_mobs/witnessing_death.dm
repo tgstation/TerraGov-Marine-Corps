@@ -55,6 +55,11 @@
 		if(dead.faction != source.faction)
 			return
 	. = HUMAN_VIEW_DEATH_STOP_LOOP
+	INVOKE_NEXT_TICK(src, PROC_REF(point_out_death), gibbing, source, dead)
+
+/// Wrapper for speech when witnessing a death, passed to [INVOKE_NEXT_TICK]
+/// and ensures that speech only happens after the effects of `death()`
+/datum/ai_behavior/human/proc/point_out_death(gibbing, mob/living/carbon/human/source, mob/living/carbon/human/dead)
 	faction_list_speak(
 		chat_lines = gibbing ? witnessing_gibbing_lines : witnessing_death_lines,
 		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",
