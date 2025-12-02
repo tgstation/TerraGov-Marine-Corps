@@ -979,6 +979,7 @@
 		CAT_ARMOR_MODULE,
 		CAT_GRENADE,
 		CAT_ATTACHMENTS,
+		CAT_SMARTGUNNER,
 		CAT_WEAPONS,
 		CAT_FUN
 	)
@@ -1060,6 +1061,18 @@
 		// Attachments
 		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 30, "attachment"),
 		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 5, "attachment"),
+		// Smartgunner Ammo
+		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SMARTGUNNER, "SG-29 Ammo Drum", 4, "sg-machinegun"),
+		/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SMARTGUNNER, "SG-85 Ammo Bin", 8, "sg-minigun"),
+		/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SMARTGUNNER, "SG-62 Target Rifle Magazine", 2, "sg-targetrifle"),
+		/obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SMARTGUNNER, "SG-62 Target Rifle Ammo Bin", 8, "sg-targetrifle"), // 1x packet = 5 mags; discount of 2 points.
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Magazine", 1, "sg-targetrifle"),
+		/obj/item/ammo_magazine/packet/smart_spottingrifle = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Ammo Bin", 3, "sg-targetrifle"), // 1x packet = 5 mags; discount of 2 points.
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle High Impact Magazine", 1.5, "sg-targetrifle"),
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Heavy Rubber Magazine", 1.5, "sg-targetrifle"),
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Tungsten Magazine", 1.5, "sg-targetrifle"),
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Flak Magazine", 1.5, "sg-targetrifle"),
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = list(CAT_SMARTGUNNER, "SG-153 Spotting Rifle Incendiary Magazine", 2, "sg-targetrifle"),
 		// Weapons + Weapon Ammo
 		/obj/item/weapon/twohanded/chainsaw = list(CAT_WEAPONS, "Chainsaw", 4, "melee"),
 		/obj/item/weapon/twohanded/rocketsledge  = list(CAT_WEAPONS, "Rocketsledge", 8, "melee"),
