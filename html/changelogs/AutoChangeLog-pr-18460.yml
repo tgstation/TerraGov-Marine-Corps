@@ -1,0 +1,5 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - bugfix: "Limbs handle fracturing when damage is received instead of on life ticks"
+  - bugfix: "Brain mobs inside decapitated heads won't deathgasp"
