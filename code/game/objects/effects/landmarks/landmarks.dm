@@ -204,7 +204,7 @@
 	icon_state = "marineuniform"
 
 /obj/effect/landmark/zombie_heart_vendor/Initialize(mapload)
-	GLOB.zombie_heart_vendors += loc
+	GLOB.zombie_crash_vendors += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 

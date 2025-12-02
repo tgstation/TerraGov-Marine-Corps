@@ -45,7 +45,7 @@
 
 	for(var/i in GLOB.zombie_spawner_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
-	for(var/i in GLOB.zombie_heart_vendors)
+	for(var/i in GLOB.zombie_crash_vendors)
 		new /obj/machinery/marine_selector/zcrash(i)
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
