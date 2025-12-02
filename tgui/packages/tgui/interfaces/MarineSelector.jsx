@@ -163,46 +163,6 @@ const ItemLine = (props) => {
         Recommended
       </Box>
     ),
-    'armor-module': (
-      <Box inline mr="6px" ml="6px" color="#ae00ffff">
-        Module
-      </Box>
-    ),
-    grenade: (
-      <Box inline mr="6px" ml="6px" color="#ffbb00ff">
-        Grenade
-      </Box>
-    ),
-    attachment: (
-      <Box inline mr="6px" ml="6px" color="#c8ff00ff">
-        Attachment
-      </Box>
-    ),
-    melee: (
-      <Box inline mr="6px" ml="6px" color="#ff0015ff">
-        Melee
-      </Box>
-    ),
-    gun: (
-      <Box inline mr="6px" ml="6px" color="#ff0015ff">
-        Gun
-      </Box>
-    ),
-    'gun-ammo': (
-      <Box inline mr="6px" ml="6px" color="#ff626fff">
-        Ammo
-      </Box>
-    ),
-    emplacement: (
-      <Box inline mr="6px" ml="6px" color="#ffe600ff">
-        Emplacement
-      </Box>
-    ),
-    'emplacement-ammo': (
-      <Box inline mr="6px" ml="6px" color="#fff385ff">
-        Ammo
-      </Box>
-    ),
     'engi-tool': (
       <Box inline mr="6px" ml="6px" color="#FFE4C4">
         Tools
@@ -218,11 +178,6 @@ const ItemLine = (props) => {
         Artillery
       </Box>
     ),
-    'engi-artillery-ammo': (
-      <Box inline mr="6px" ml="6px" color="#ffc0c0ff">
-        Ammo
-      </Box>
-    ),
     'engi-mining': (
       <Box inline mr="6px" ml="6px" color="#1E90FFe">
         Mining
@@ -231,21 +186,6 @@ const ItemLine = (props) => {
     'engi-explosive': (
       <Box inline mr="6px" ml="6px" color="#FF7F50">
         Explosives
-      </Box>
-    ),
-    'engi-vehicle': (
-      <Box inline mr="6px" ml="6px" color="#00e1ffff">
-        Vehicle
-      </Box>
-    ),
-    'engi-vehicle-attachable': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
-        Attachable
-      </Box>
-    ),
-    'engi-vehicle-ammo': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
-        Ammo
       </Box>
     ),
     'engi-other': (

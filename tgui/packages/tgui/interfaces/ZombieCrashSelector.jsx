@@ -127,16 +127,6 @@ const ItemLine = (props) => {
     setShowDesc,
   } = props;
   const colorToElement = {
-    white: (
-      <Box inline mr="6px" ml="6px">
-        Essential!
-      </Box>
-    ),
-    orange: (
-      <Box inline mr="6px" ml="6px" color="orange">
-        Recommended
-      </Box>
-    ),
     'armor-module': (
       <Box inline mr="6px" ml="6px" color="#ae00ffff">
         Module
@@ -177,109 +167,49 @@ const ItemLine = (props) => {
         Ammo
       </Box>
     ),
-    'engi-tool': (
+    tool: (
       <Box inline mr="6px" ml="6px" color="#FFE4C4">
         Tools
       </Box>
     ),
-    'engi-construction': (
+    materials: (
       <Box inline mr="6px" ml="6px" color="#7FFFD4">
         Materials
       </Box>
     ),
-    'engi-artillery': (
+    artillery: (
       <Box inline mr="6px" ml="6px" color="#CD5C5C">
         Artillery
       </Box>
     ),
-    'engi-artillery-ammo': (
+    'artillery-ammo': (
       <Box inline mr="6px" ml="6px" color="#ffc0c0ff">
         Ammo
       </Box>
     ),
-    'engi-mining': (
-      <Box inline mr="6px" ml="6px" color="#1E90FFe">
-        Mining
-      </Box>
-    ),
-    'engi-explosive': (
+    explosive: (
       <Box inline mr="6px" ml="6px" color="#FF7F50">
         Explosives
       </Box>
     ),
-    'engi-vehicle': (
+    vehicle: (
       <Box inline mr="6px" ml="6px" color="#00e1ffff">
         Vehicle
       </Box>
     ),
-    'engi-vehicle-attachable': (
+    'vehicle-attachable': (
       <Box inline mr="6px" ml="6px" color="#7df0ffff">
         Attachable
       </Box>
     ),
-    'engi-vehicle-ammo': (
+    'vehicle-ammo': (
       <Box inline mr="6px" ml="6px" color="#7df0ffff">
         Ammo
       </Box>
     ),
-    'engi-other': (
+    other: (
       <Box inline mr="6px" ml="6px" color="#BA55D3">
         Other
-      </Box>
-    ),
-    'corps-meds': (
-      <Box inline mr="6px" ml="6px" color="#7FFFD4">
-        Medicine
-      </Box>
-    ),
-    'corps-tools': (
-      <Box inline mr="6px" ml="6px" color="#1E90FFe">
-        Tools
-      </Box>
-    ),
-    'sg-minigun': (
-      <Box inline mr="6px" ml="6px" color="#1E90FFe">
-        Minigun
-      </Box>
-    ),
-    'sg-targetrifle': (
-      <Box inline mr="6px" ml="6px" color="#BA55D3">
-        Target Rifle
-      </Box>
-    ),
-    'sg-machinegun': (
-      <Box inline mr="6px" ml="6px" color="#00FF00">
-        Machinegun
-      </Box>
-    ),
-    'sg-smartpistol': (
-      <Box inline mr="6px" ml="6px" color="#FFE4C4">
-        Smartpistol
-      </Box>
-    ),
-    'synth-cosmetic': (
-      <Box inline mr="6px" ml="6px" color="blue">
-        Cosmetic
-      </Box>
-    ),
-    'synth-armor': (
-      <Box inline mr="6px" ml="6px" color="red">
-        Armor
-      </Box>
-    ),
-    'synth-rcarmor': (
-      <Box inline mr="6px" ml="6px" color="orange">
-        Recommended - Armor
-      </Box>
-    ),
-    'synth-arcarmstorage': (
-      <Box inline mr="6px" ml="6px" color="green">
-        Recommended - Armor and Storage
-      </Box>
-    ),
-    'synth-attachable': (
-      <Box inline mr="6px" ml="6px" color="green">
-        Recommended - Attachable to Flak Jacket
       </Box>
     ),
   };

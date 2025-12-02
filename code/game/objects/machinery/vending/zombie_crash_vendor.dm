@@ -1,3 +1,14 @@
+#define CAT_ARTILLERY "ARTILLERY"
+#define CAT_VEHICLE "VEHICLES"
+#define CAT_EMPLACEMENTS "EMPLACEMENTS"
+#define CAT_BUILDING_SUPPLIES "BUILDING SUPPLIES"
+#define CAT_ARMOR_MODULE "ARMOR MODULES"
+#define CAT_GRENADE "GRENADES"
+#define CAT_ATTACHMENTS "ATTACHMENTS"
+#define CAT_SMARTGUNNER "SMARTGUNNER"
+#define CAT_WEAPONS "WEAPONS"
+#define CAT_FUN "FUN"
+
 /obj/machinery/zombie_crash_vendor
 	name = "\improper progression rewards vendor"
 	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
@@ -18,26 +29,26 @@
 	/// An associative list of: [typepath] = list(category_name, product_name, product_cost, product_color)
 	var/list/listed_products = list(
 		// Artillery & Mortar
-		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", 1, "engi-tool"),
-		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 1, "engi-artillery"),
-		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 0.5, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 0.75, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 1.5, "engi-artillery-ammo"),
-		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 1, "engi-artillery"),
-		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 0.75, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 1.5, "engi-artillery-ammo"),
-		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 2, "engi-artillery-ammo"),
+		/obj/item/binoculars/tactical/range = list(CAT_ARTILLERY, "Range Finders", 1, "tool"),
+		/obj/item/mortar_kit = list(CAT_ARTILLERY, "Mortar", 1, "artillery"),
+		/obj/item/mortal_shell/flare = list(CAT_ARTILLERY, "Mortar Flare Shell", 0.5, "artillery-ammo"),
+		/obj/item/mortal_shell/he = list(CAT_ARTILLERY, "Mortar HE Shell", 0.75, "artillery-ammo"),
+		/obj/item/mortal_shell/incendiary = list(CAT_ARTILLERY, "Mortar Incendiary Shell", 1.5, "artillery-ammo"),
+		/obj/item/mortar_kit/howitzer = list(CAT_ARTILLERY, "Howitzer", 1, "artillery"),
+		/obj/item/mortal_shell/howitzer/he = list(CAT_ARTILLERY, "Howitzer HE Shell", 0.75, "artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/incendiary = list(CAT_ARTILLERY, "Howitzer Incendiary Shell", 1.5, "artillery-ammo"),
+		/obj/item/mortal_shell/howitzer/white_phos = list(CAT_ARTILLERY, "Howitzer WP Shell", 2, "artillery-ammo"),
 		// Vehicles + Vehicle Ammo
-		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 0.5, "engi-tool"),
-		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 1, "engi-vehicle"),
-		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2, "engi-vehicle"),
-		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 3, "engi-vehicle"),
-		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 4, "engi-vehicle"),
-		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "Claw Module", 1, "engi-vehicle-attachable"),
-		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 5, "engi-vehicle-attachable"),
-		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
-		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 5, "engi-vehicle-attachable"),
-		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4, "engi-vehicle-ammo"),
+		/obj/item/unmanned_vehicle_remote = list(CAT_VEHICLE, "Remote Control", 0.5, "tool"),
+		/obj/item/deployable_vehicle/tiny = list(CAT_VEHICLE, "\"Skink\" Unmanned Vehicle", 1, "vehicle"),
+		/obj/vehicle/unmanned = list(CAT_VEHICLE, "\"Iguana\" Unmanned Vehicle", 2, "vehicle"),
+		/obj/vehicle/unmanned/medium = list(CAT_VEHICLE, "\"Komodo\" Unmanned Vehicle", 3, "vehicle"),
+		/obj/vehicle/unmanned/heavy = list(CAT_VEHICLE, "\"Gecko\" Unmanned Vehicle", 4, "vehicle"),
+		/obj/item/uav_turret/claw = list(CAT_VEHICLE, "Claw Module", 1, "vehicle-attachable"),
+		/obj/item/uav_turret = list(CAT_VEHICLE, "Light UV Machinegun", 5, "vehicle-attachable"),
+		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light UV Machinegun Ammo", 4, "vehicle-ammo"),
+		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy UV Machinegun", 5, "vehicle-attachable"),
+		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy UV Machinegun Ammo", 4, "vehicle-ammo"),
 		// Emplacements + Emplacement Ammo
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 8, "emplacement"),
 		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-ammo"),
@@ -51,13 +62,13 @@
 		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 6, "emplacement-ammo"),
 		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 10, "emplacement-ammo"), // Can potentially decapitate zombies.
 		// Building Supplies
-		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2, "engi-construction"),
-		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4, "engi-construction"),
-		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3, "engi-construction"),
-		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 1, "engi-construction"),
-		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 2, "engi-construction"),
-		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2, "engi-construction"),
-		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 10, "engi-construction"),
+		/obj/item/stack/sheet/metal/small_stack = list(CAT_BUILDING_SUPPLIES, "Metal x10", 2, "materials"),
+		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_BUILDING_SUPPLIES, "Plasteel x10", 4, "materials"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_BUILDING_SUPPLIES, "Sandbags x25", 3, "materials"),
+		/obj/item/quikdeploy/cade = list(CAT_BUILDING_SUPPLIES, "QuikCade - Metal", 1, "materials"),
+		/obj/item/quikdeploy/cade/plasteel = list(CAT_BUILDING_SUPPLIES, "QuikCade - Plasteel", 2, "materials"),
+		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_BUILDING_SUPPLIES, "TL-182 deployable shield", 2, "materials"),
+		/obj/item/deploy_capsule/barricade = list(CAT_BUILDING_SUPPLIES, "Barricade capsule", 10, "materials"),
 		// Armor Modules
 		/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_ARMOR_MODULE, "\"Hlin\" Explosive-Armor Module", 6, "armor-module"),
 		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 10, "armor-module"),
@@ -104,7 +115,7 @@
 		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 5, "gun"),
 		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 15, "gun-ammo"),
 		// Fun
-		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 60, "engi-other"),
+		/obj/item/loot_box/tgmclootbox  = list(CAT_FUN, "Lootbox", 60, "other"),
 	)
 	/// The total amount of pooled points that have been gained. Shared across all vendors.
 	var/static/total_pooled_points = 0
@@ -185,7 +196,7 @@
 	.["pooled_points_remaining"] = total_pooled_points - spent_pooled_points
 	.["pooled_points_total"] = max(total_pooled_points, 1)
 	.["personal_points_remaining"] = get_remaining_personal_points(user)
-	.["personal_points_total"] = MAXIMUM_PERSONAL_POINTS_ZOMBIE_CRASH
+	.["personal_points_total"] = ZOMBIE_CRASH_POINTS_MAXIMUM
 
 /obj/machinery/zombie_crash_vendor/ui_act(action, list/params)
 	. = ..()
@@ -271,8 +282,19 @@
 	if(!user_id)
 		return
 	var/final_points = user_id.marine_points[CAT_ZOMBIE_CRASH] + amount
-	if(final_points <= MAXIMUM_PERSONAL_POINTS_ZOMBIE_CRASH)
+	if(final_points <= ZOMBIE_CRASH_POINTS_MAXIMUM)
 		user_id.marine_points[CAT_ZOMBIE_CRASH] = final_points
 		return
-	user_id.marine_points[CAT_ZOMBIE_CRASH] = MAXIMUM_PERSONAL_POINTS_ZOMBIE_CRASH
-	total_pooled_points += final_points - MAXIMUM_PERSONAL_POINTS_ZOMBIE_CRASH
+	user_id.marine_points[CAT_ZOMBIE_CRASH] = ZOMBIE_CRASH_POINTS_MAXIMUM
+	total_pooled_points += final_points - ZOMBIE_CRASH_POINTS_MAXIMUM
+
+#undef CAT_ARTILLERY
+#undef CAT_VEHICLE
+#undef CAT_EMPLACEMENTS
+#undef CAT_BUILDING_SUPPLIES
+#undef CAT_ARMOR_MODULE
+#undef CAT_GRENADE
+#undef CAT_ATTACHMENTS
+#undef CAT_SMARTGUNNER
+#undef CAT_WEAPONS
+#undef CAT_FUN

@@ -196,5 +196,6 @@
 #define ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX 40
 #define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN 15
 #define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX 60
+#define ZOMBIE_CRASH_POINTS_MAXIMUM 30
 /// The marine pop considered to be high pop, only for Zombie Crash.
 #define HIGH_MARINE_POP_ZOMBIE_CRASH 20
