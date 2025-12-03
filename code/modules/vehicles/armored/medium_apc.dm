@@ -10,4 +10,8 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_TRANSPORT
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS
+	ram_damage = 25
+	obj_integrity = 350
+	max_integrity = 350
 	max_occupants = 5
+	permitted_mods = list(/obj/item/tank_module/ability/zoom)

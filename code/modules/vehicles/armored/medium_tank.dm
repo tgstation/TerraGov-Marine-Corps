@@ -11,9 +11,10 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_ASSAULT
 	pixel_x = -16
 	pixel_y = -32
-	obj_integrity = 1000
-	max_integrity = 1000
+	max_integrity = 500
+	max_integrity = 500 // Go fuck yourself 1000 health having ass
 	max_occupants = 3
+	ram_damage = 80 // Itty bitty tank isn't going to kill instantly
 
 /obj/vehicle/sealed/armored/multitile/medium/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))
