@@ -95,7 +95,7 @@
 			return
 
 		balloon_alert(xeno_attacker, "Retrieved jelly")
-		new /obj/item/resin_jelly/req_jelly(xeno_attacker.loc, hivenumber)
+		new /obj/item/req_jelly(xeno_attacker.loc, hivenumber)
 		chargesleft--
 	while(do_mob(xeno_attacker, src, 1 SECONDS))
 
@@ -103,7 +103,7 @@
 	if(loc && (chargesleft > 0))
 		for(var/i = 1 to chargesleft)
 			if(prob(95))
-				new /obj/item/resin_jelly/req_jelly(loc, hivenumber)
+				new /obj/item/req_jelly(loc, hivenumber)
 	GLOB.hive_datums[hivenumber].req_jelly_pods -= src
 	. = ..()
 
@@ -111,21 +111,35 @@
 /// Requisition Jelly//
 ///////////////////////
 
-/obj/item/resin_jelly/req_jelly
+/obj/item/req_jelly
 	name = "alien ambrosia"
 	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price."
 	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'
 	icon_state = "reqjelly"
-	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
-	// Could consider giving it different soft_armor values than regular resin jelly?
-	// Currently does everything resin jelly does, so it might need custom code for doing anything special
+	var/hivenumber
+	var/current_user
 
-/obj/item/resin_jelly/req_jelly/proc/revive(mob/living/carbon/human/patient, mob/living/carbon/human/user)
+/obj/item/req_jelly/attack(mob/living/carbon/patient, mob/living/user)
+	if(!isxeno(user))
+		to_chat(user, span_warning("You don't know how to use this."))
+		return FALSE
+	jellyrevive(patient,user)
+
+/obj/item/req_jelly/proc/jellyrevive(mob/living/carbon/human/patient, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently doing something
 		balloon_alert(user, "busy!")
 		return
 
+	if(patient.stat != DEAD)
+		to_chat(user, span_warning("[icon2html(src, viewers(user))] This one is not dead."))
+		return FALSE
+
+	if(isxeno(patient))
+		to_chat(user, span_warning("[icon2html(src, viewers(user))] This would not help xenomorphs."))
+		return FALSE
+
 	var/defib_heal_amt = 40
+	var/fail_reason = null
 
 	switch(patient.check_defib())
 		// A special bit for preventing the defib do_after if they can't come back
@@ -138,13 +152,14 @@
 		if(DEFIB_FAIL_BRAINDEAD)
 			fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
 	if(fail_reason)
-		user.to_chat(span_warning("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]"))
+		to_chat(user, span_notice("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]"))
 		return
+
 
 	var/mob/dead/observer/ghost = patient.get_ghost()
 	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
 	// still be unrevivable because of too much damage.
-	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), defibrillator_healing)) == DEFIB_POSSIBLE)
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : defib_heal_amt == DEFIB_POSSIBLE))
 	if(ghost && alerting_ghost)
 		notify_ghost(ghost, assemble_alert(
 			title = "Revival Imminent!",
@@ -209,7 +224,7 @@
 			fail_reason = "Vital signs are weak. Apply another."
 
 	if(fail_reason)
-		user.to_chat(span_warning("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]"))
+		to_chat(user, span_notice("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]."))
 		playsound(src, 'sound/items/defib_failed.ogg', 45, FALSE)
 		return
 
@@ -218,13 +233,14 @@
 		ghost.reenter_corpse()
 
 	if(!patient.client)
-		user.to_chat(span_warning("[icon2html(src, viewers(user))] They have no soul, and may not appear alert temporarily or permanently."))
+		to_chat(user, span_notice("[icon2html(src, viewers(user))] They have no soul, and may not appear alert temporarily or permanently."))
 
 	to_chat(patient, span_notice("<i><font size=4>Thousands of minds will you to return to this mortal plane...</font></i>"))
-	user.to_chat(span_notice("[icon2html(src, viewers(user))] They rise from their grave."))
-	playsound(get_turf(src), 'sound/items/defib_success.ogg', 45, 0)
+	to_chat(user, span_notice("[icon2html(src, viewers(user))] They rise from their grave."))
+	playsound(get_turf(src), 'sound/effects/woosh_swoosh.ogg', 45, 0)
+	user.temporarilyRemoveItemFromInventory(src)
 	patient.updatehealth()
-	patient.revive() // time for a smoke
+	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
 	patient.flash_act()
 	patient.apply_effect(20, EFFECT_EYE_BLUR)
