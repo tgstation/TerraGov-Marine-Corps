@@ -347,7 +347,7 @@
 	if(!ishuman(crosser))
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
+	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
 		return
 
 	var/mob/living/carbon/human/victim = crosser
