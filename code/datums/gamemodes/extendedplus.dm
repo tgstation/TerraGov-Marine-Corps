@@ -56,6 +56,7 @@
 		/datum/job/survivor/prisoner = 2,
 		/datum/job/survivor/stripper = -1,
 		/datum/job/survivor/maid = 3,
+		/datum/job/survivor/synth = 1,
 		/datum/job/other/prisoner = 4,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/green = FREE_XENO_AT_START_CORRUPT,

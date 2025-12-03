@@ -277,7 +277,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/civilian/survivor/scientist
 	name = "Survivor Scientist"
-	medical = SKILL_MEDICAL_PRACTICED
+	medical = SKILL_MEDICAL_EXPERT // Survivor scientists cant do science??
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	combat = SKILL_COMBAT_UNTRAINED
 
@@ -399,7 +399,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	combat = SKILL_COMBAT_UNTRAINED
-	medical = SKILL_MEDICAL_COMPETENT
+	medical = SKILL_MEDICAL_EXPERT // Research is a valuable skill, lets let them do that too
 	unarmed = SKILL_UNARMED_MASTER
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	pilot = SKILL_PILOT_TRAINED

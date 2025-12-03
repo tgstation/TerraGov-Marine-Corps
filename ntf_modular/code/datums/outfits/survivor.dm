@@ -73,3 +73,16 @@
 		/obj/item/tool/soap/deluxe = 1,
 		/obj/item/reagent_containers/glass/bucket = 1,
 	)
+
+/datum/outfit/job/survivor/synth
+	name = "Synthetic Survivor"
+	jobtype = /datum/job/survivor/synth
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/rank/synthetic
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/insulated
+	r_pocket = /obj/item/storage/pouch/general/medium
+	l_pocket = /obj/item/storage/pouch/general/medium

@@ -314,8 +314,8 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[patient.faction]")
 
 	if(CHECK_BITFIELD(patient.status_flags, XENO_HOST))
-		var/obj/item/alien_embryo/friend = locate() in patient
-		START_PROCESSING(SSobj, friend)
+		for(var/obj/item/alien_embryo/friend in patient)
+			START_PROCESSING(SSobj, friend)
 
 	notify_ghosts("<b>[user]</b> has brought <b>[patient.name]</b> back to life!", source = patient, action = NOTIFY_ORBIT)
 
