@@ -119,3 +119,135 @@
 	w_class = WEIGHT_CLASS_TINY // 100 can fit into a box, transport by satchel is trivial
 	// Could consider giving it different soft_armor values than regular resin jelly?
 	// Currently does everything resin jelly does, so it might need custom code for doing anything special
+
+/obj/item/resin_jelly/req_jelly/proc/revive(mob/living/carbon/human/patient, mob/living/carbon/human/user)
+	if(user.do_actions) //Currently doing something
+		balloon_alert(user, "busy!")
+		return
+
+	var/defib_heal_amt = 40
+
+	switch(patient.check_defib())
+		// A special bit for preventing the defib do_after if they can't come back
+		// This will be ran again after shocking just in case their status changes
+		if(DEFIB_FAIL_DECAPITATED)
+			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
+				fail_reason = "Patient is missing their head. Reattach and try again."
+			else
+				fail_reason = "Patient is missing their head. Further attempts futile."
+		if(DEFIB_FAIL_BRAINDEAD)
+			fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
+	if(fail_reason)
+		user.to_chat(span_warning("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]"))
+		return
+
+	var/mob/dead/observer/ghost = patient.get_ghost()
+	// For robots, we want to use the more relaxed bitmask as we are doing this before their IMMEDIATE_DEFIB trait is handled and they might
+	// still be unrevivable because of too much damage.
+	var/alerting_ghost = isrobot(patient) ? (patient.check_defib() & DEFIB_REVIVABLE_STATES) : (patient.check_defib(issynth(patient) ? 0 : DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), defibrillator_healing)) == DEFIB_POSSIBLE)
+	if(ghost && alerting_ghost)
+		notify_ghost(ghost, assemble_alert(
+			title = "Revival Imminent!",
+			message = "Someone is trying to resuscitate your body! Stay in it if you want to be resurrected!",
+			color_override = "purple"
+		), ghost_sound = 'sound/effects/gladosmarinerevive.ogg')
+		ghost.reenter_corpse()
+
+	user.visible_message(span_notice("[user] starts smearing jelly onto [patient]'s chest."),
+	span_notice("You start smearing jelly [patient]'s chest."))
+	playsound(get_turf(src),'sound/effects/urban/outdoors/derelict_plateau_2.ogg', 45, 0) // Don't vary this, it should be exactly 7 seconds
+	//Haha, I varied it
+
+	if(!do_after(user, 12 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		to_chat(user, span_warning("You stop smearing jelly onto [patient]'s chest."))
+		return
+
+	// do the defibrillation effects now and check revive parameters in a moment
+	. = TRUE
+	playsound(get_turf(src), 'sound/effects/woosh_swoosh.ogg', 45, 1)
+	user.visible_message(span_notice("[user] psychically shocks [patient]."),
+	span_notice("You shock [patient] with your mind!"))
+	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
+
+	//At this point, the defibrillator is ready to work
+	//this trait allows some species to be healed to one hit from death, so the defibrillator can't fail from too much damage
+	if(HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB))
+		patient.setOxyLoss(0)
+		patient.updatehealth()
+
+		var/heal_target = patient.get_crit_threshold() - patient.health + 1
+		var/all_loss = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss()
+		if(all_loss && (heal_target > 0))
+			var/brute_ratio = patient.getBruteLoss() / all_loss
+			var/burn_ratio = patient.getFireLoss() / all_loss
+			var/tox_ratio = patient.getToxLoss() / all_loss
+			if(tox_ratio)
+				patient.adjustToxLoss(-(tox_ratio * heal_target))
+			patient.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robot parts
+
+	else if(!issynth(patient)) // TODO make me a trait :)
+		patient.adjustBruteLoss(-defib_heal_amt)
+		patient.adjustFireLoss(-defib_heal_amt)
+		patient.adjustToxLoss(-defib_heal_amt)
+		patient.setOxyLoss(0)
+
+	patient.updatehealth() // update health because it won't always update for the dead
+
+	fail_reason = null // Clear the fail reason as we check again
+	// We're keeping permadeath states from earlier here in case something changes mid revive
+	switch(patient.check_defib())
+		if(DEFIB_FAIL_DECAPITATED)
+			if(patient.species.species_flags & DETACHABLE_HEAD) // special message for synths/robots missing their head
+				fail_reason = "Patient is missing their head. Reattach and try again."
+			else
+				fail_reason = "Patient is missing their head. Further attempts futile."
+		if(DEFIB_FAIL_BRAINDEAD)
+			fail_reason = "Patient's general condition does not allow revival. Further attempts futile."
+		if(DEFIB_FAIL_BAD_ORGANS)
+			fail_reason = "Patient's heart is too damaged to sustain life. Surgical intervention required."
+		if(DEFIB_FAIL_TOO_MUCH_DAMAGE)
+			fail_reason = "Vital signs are weak. Apply another."
+
+	if(fail_reason)
+		user.to_chat(span_warning("[icon2html(src, viewers(user))] We cannot save them - [fail_reason]"))
+		playsound(src, 'sound/items/defib_failed.ogg', 45, FALSE)
+		return
+
+	ghost = patient.get_ghost(TRUE)
+	if(ghost)
+		ghost.reenter_corpse()
+
+	if(!patient.client)
+		user.to_chat(span_warning("[icon2html(src, viewers(user))] They have no soul, and may not appear alert temporarily or permanently."))
+
+	to_chat(patient, span_notice("<i><font size=4>Thousands of minds will you to return to this mortal plane...</font></i>"))
+	user.to_chat(span_notice("[icon2html(src, viewers(user))] They rise from their grave."))
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 45, 0)
+	patient.updatehealth()
+	patient.revive() // time for a smoke
+	patient.emote("gasp")
+	patient.flash_act()
+	patient.apply_effect(20, EFFECT_EYE_BLUR)
+	patient.apply_effect(30 SECONDS, EFFECT_UNCONSCIOUS)
+
+	ghost = patient.get_ghost(TRUE) // just in case they re-entered their body
+	if(ghost) // register a signal to bring them into their body on reconnect
+		ghost.RegisterSignal(ghost, COMSIG_MOB_LOGIN, TYPE_PROC_REF(/mob/dead/observer, revived_while_away))
+
+	//Checks if the patient is wearing a camera. Then it turns it on if it's off.
+	if(istype(patient.wear_ear, /obj/item/radio/headset/mainship))
+		var/obj/item/radio/headset/mainship/cam_headset = patient.wear_ear
+		if(!(cam_headset?.camera?.status))
+			cam_headset.camera.toggle_cam(null, FALSE)
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.revives++
+		personal_statistics.mission_revives++
+	GLOB.round_statistics.total_human_revives[patient.faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[patient.faction]")
+
+	if(CHECK_BITFIELD(patient.status_flags, XENO_HOST))
+		var/obj/item/alien_embryo/friend = locate() in patient
+		START_PROCESSING(SSobj, friend)
+
+	notify_ghosts("<b>[user]</b> has brought <b>[patient.name]</b> back to life!", source = patient, action = NOTIFY_ORBIT)
