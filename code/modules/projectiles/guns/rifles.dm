@@ -3137,6 +3137,7 @@
 	)
 	caliber = CALIBER_10x26_CASELESS //codex
 	fire_sound = SFX_GUN_SMARTGPMG
+	max_shells = 200 // codex
 	force = 30
 	aim_slowdown = 0.8
 	wield_delay = 1.5 SECONDS
