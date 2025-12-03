@@ -377,6 +377,7 @@
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/New(Target)
+	. = ..()
 	desc = "Leap at your target up to [HUNTER_POUNCE_RANGE] tiles away, stunning them for [XENO_POUNCE_STUN_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
