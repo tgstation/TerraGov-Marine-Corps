@@ -7,30 +7,45 @@
  * * T is the turf where the vehicle is used with-
  * * temp to check whether a mob is squished
  */
-/atom/proc/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/atom/proc/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	return
 
-/obj/structure/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/structure/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
-/obj/structure/barricade/folding/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/structure/barricade/folding/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	toggle_open(FALSE)
 
-/obj/vehicle/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)	//MONSTER TRUCKS
+/obj/vehicle/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)	//MONSTER TRUCKS
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/vehicle/sealed/mecha/combat/greyscale/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	var/datum/mech_limb/legs/legs = limbs[MECH_GREY_LEGS]
 	if(legs?.part_health)
 		legs.take_damage(ram_damage)
 
-/obj/machinery/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/machinery/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
-/turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
 
-/mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(stat == DEAD)
 		return
 	if(lying_angle)
@@ -38,15 +53,21 @@
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
 	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1)
 	//half damage to mobs since it was megabuffed.
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS) //it throws but doesnt damage
 	return take_overall_damage(ram_damage/2, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 
 
-/mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	gib() //fuck you
 
-/obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	. = ..()
+	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
+		return
+	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
 	take_damage(ram_damage/2, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
-/obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+/obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	return

@@ -86,6 +86,8 @@
 #include "code\game\objects\structures\prop.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\objects\structures\teleporter.dm"
+#include "code\game\objects\structures\crates_lockers\closets.dm"
+#include "code\modules\reqs\supplypacks\operations_packs.dm"
 #include "code\modules\client\preferences.dm"
 #include "code\modules\clothing\glasses\hypnogoggles.dm"
 #include "code\modules\clothing\head\head.dm"

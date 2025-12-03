@@ -909,6 +909,7 @@
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 			/obj/item/cell/night_vision_battery = 10,
+			/obj/structure/closet/secure_closet/xeno_cage = 5,
 		),
 		"Mining Equipment" = list(
 			/obj/item/minerupgrade/automatic = 1,

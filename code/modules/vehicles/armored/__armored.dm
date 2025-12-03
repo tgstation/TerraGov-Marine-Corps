@@ -82,6 +82,8 @@
 	var/zoom_mode = FALSE
 	/// damage done by rams
 	var/ram_damage = 20
+	///the timer used for ram cooldown
+	var/ram_cooldown = 0
 	/**
 	 * List for storing all item typepaths that we may "easy load" into the tank by attacking its entrance
 	 * This will be turned into a typeCache on  initialize

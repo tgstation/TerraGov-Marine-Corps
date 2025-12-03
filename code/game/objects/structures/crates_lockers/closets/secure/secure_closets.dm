@@ -16,7 +16,6 @@
 	max_integrity = 100
 	var/slotlocked = 0
 
-
 /obj/structure/closet/secure_closet/close()
 	if(..())
 		if(broken)
