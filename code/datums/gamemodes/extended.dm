@@ -41,6 +41,7 @@
 		/datum/job/survivor/miner = 6,
 		/datum/job/survivor/salesman = 2,
 		/datum/job/survivor/marshal = 2,
+		/datum/job/survivor/synth = 1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
