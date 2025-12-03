@@ -290,14 +290,14 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		user.balloon_alert(user, "You start carefully burning the resin off.")
 		var/datum/hive_status/hive = GLOB.hive_datums[corrupted]
 		if(istype(hive))
-			hive.xeno_message("Our [name] is being attacked by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
+			hive.xeno_message("Our [name] is being attacked by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/hiss4.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
 		log_combat(user, src, "decorrupted", addition = "from hive [corrupted]")
 		if(istype(hive))
-			hive.xeno_message("Our [name] has been stolen by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
+			hive.xeno_message("Our [name] has been stolen by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/hiss4.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 		corrupted = 0
 
