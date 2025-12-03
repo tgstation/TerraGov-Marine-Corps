@@ -598,7 +598,7 @@ ADMIN_VERB(ban_panel, R_BAN, "Ban Panel", "Opens the Ban panel.", ADMIN_CATEGORY
 ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATEGORY_MAIN)
 	user.holder.unbanpanel()
 
-/datum/admins/proc/unbanpanel(player_key, admin_key, player_ip, player_cid, page = 0)
+/datum/admins/proc/unbanpanel(player_key, admin_key, player_ip, player_cid, ban_id, page = 0)
 	if(!check_rights(R_BAN))
 		return
 
@@ -615,12 +615,13 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 	Admin Key:<input type='text' name='searchunbanadminkey' size='18' value='[admin_key]'>
 	IP:<input type='text' name='searchunbanip' size='12' value='[player_ip]'>
 	CID:<input type='text' name='searchunbancid' size='10' value='[player_cid]'>
+	BanID:<input type='text' name='searchunbanbanid' size='10' value='[ban_id]'>
 	<input type='submit' value='Search'>
 	</form>
 	</div>
 	<div class='main'>
 	"}
-	if(player_key || admin_key || player_ip || player_cid)
+	if(player_key || admin_key || player_ip || player_cid || ban_id)
 		var/bancount = 0
 		var/bansperpage = 10
 		page = text2num(page)
@@ -631,12 +632,14 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 				(:player_key IS NULL OR ckey = :player_key) AND
 				(:admin_key IS NULL OR a_ckey = :admin_key) AND
 				(:player_ip IS NULL OR ip = INET_ATON(:player_ip)) AND
-				(:player_cid IS NULL OR computerid = :player_cid)
+				(:player_cid IS NULL OR computerid = :player_cid) AND
+				(:ban_id IS NULL OR id = :ban_id)
 		"}, list(
 			"player_key" = ckey(player_key),
 			"admin_key" = ckey(admin_key),
 			"player_ip" = player_ip || null,
 			"player_cid" = player_cid || null,
+			"ban_id" = ban_id || null
 		))
 		if(!query_unban_count_bans.warn_execute())
 			qdel(query_unban_count_bans)
@@ -689,7 +692,8 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 				(:player_key IS NULL OR ckey = :player_key) AND
 				(:admin_key IS NULL OR a_ckey = :admin_key) AND
 				(:player_ip IS NULL OR ip = INET_ATON(:player_ip)) AND
-				(:player_cid IS NULL OR computerid = :player_cid)
+				(:player_cid IS NULL OR computerid = :player_cid) AND
+				(:ban_id IS NULL OR id = :ban_id)
 			ORDER BY id DESC
 			LIMIT :skip, :take
 		"}, list(
@@ -697,6 +701,7 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 			"admin_key" = ckey(admin_key),
 			"player_ip" = player_ip || null,
 			"player_cid" = player_cid || null,
+			"ban_id" = ban_id || null,
 			"skip" = bansperpage * page,
 			"take" = bansperpage,
 		))
@@ -704,7 +709,7 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 			qdel(query_unban_search_bans)
 			return
 		while(query_unban_search_bans.NextRow())
-			var/ban_id = query_unban_search_bans.item[1]
+			ban_id = query_unban_search_bans.item[1]
 			var/ban_datetime = query_unban_search_bans.item[2]
 			var/ban_round_id = query_unban_search_bans.item[3]
 			var/role = query_unban_search_bans.item[4]
@@ -725,7 +730,7 @@ ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATE
 			var/unban_key = query_unban_search_bans.item[16]
 			var/unban_round_id = query_unban_search_bans.item[17]
 			var/target = ban_target_string(player_key, player_ip, player_cid)
-			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>ADMIN</b>" : ""] banned by <b>[admin_key]</b> from <b>[role]</b> on <b>[ban_datetime]</b> during round <b>#[ban_round_id]</b>.<br>"
+			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>ADMIN</b>" : ""] banned by <b>[admin_key]</b> from <b>[role]</b> on <b>[ban_datetime]</b> during round <b>#[ban_round_id]</b>. BanID: <b>[ban_id]</b>.<br>"
 			if(!expiration_time)
 				output += "<b>Permanent ban</b>."
 			else

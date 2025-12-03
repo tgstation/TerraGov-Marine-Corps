@@ -2,4 +2,4 @@
 	name = "NUT drone assembly refill"
 	notes = "Contains enough for two NUT drones"
 	contains = list(/obj/item/factory_refill/drone_parts)
-	cost = 650
+	cost = 400

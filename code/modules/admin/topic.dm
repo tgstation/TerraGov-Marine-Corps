@@ -1464,12 +1464,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			usr.client.holder.ban_parse_href(href_list, TRUE)
 
 
-	else if(href_list["searchunbankey"] || href_list["searchunbanadminkey"] || href_list["searchunbanip"] || href_list["searchunbancid"])
+	else if(href_list["searchunbankey"] || href_list["searchunbanadminkey"] || href_list["searchunbanip"] || href_list["searchunbancid"] || href_list["searchunbanbanid"])
 		var/player_key = href_list["searchunbankey"]
 		var/admin_key = href_list["searchunbanadminkey"]
 		var/player_ip = href_list["searchunbanip"]
 		var/player_cid = href_list["searchunbancid"]
-		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid)
+		var/ban_id = href_list["searchunbanbanid"]
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid, ban_id)
 
 
 	else if(href_list["unbanpagecount"])
@@ -1478,7 +1479,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/admin_key = href_list["unbanadminkey"]
 		var/player_ip = href_list["unbanip"]
 		var/player_cid = href_list["unbancid"]
-		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid, page)
+		var/ban_id = href_list["searchunbanbanid"]
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid, ban_id, page = page)
 
 
 	else if(href_list["editbanid"])
@@ -1504,7 +1506,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/page = href_list["unbanpage"]
 		var/admin_key = href_list["unbanadminkey"]
 		usr.client.holder.unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
-		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid)
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid, ban_id)
 
 
 	else if(href_list["unbanlog"])

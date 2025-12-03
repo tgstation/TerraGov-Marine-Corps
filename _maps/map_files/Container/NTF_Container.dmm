@@ -10658,6 +10658,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
+"kDi" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/teleporter_linker,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "kDm" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
@@ -56982,7 +56989,7 @@ uUK
 ics
 fqp
 lji
-oWz
+kDi
 oAo
 oWz
 sXe

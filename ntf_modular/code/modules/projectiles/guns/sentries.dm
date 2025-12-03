@@ -16,13 +16,13 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
 	)
 	worn_icon_state = "grenade"
-	max_integrity = 50
+	max_integrity = 60
 	deploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL|TURRET_INACCURATE
 	deployable_item = /obj/machinery/deployable/mounted/sentry/nut
 	starting_attachment_types = list()
 	attachable_allowed = list()
-	turret_range = 9
+	turret_range = 11 //shit accuracy anyway
 	w_class = WEIGHT_CLASS_NORMAL //same as copes
 	faction = FACTION_TERRAGOV
 
@@ -36,12 +36,17 @@
 
 	max_shots = 300
 	rounds_per_shot = 2
-	scatter = 4
-	fire_delay = 0.3 SECONDS
+	scatter = 10
+	throw_range = 4
+	fire_delay = 0.1 SECONDS
 	accuracy_mult = 0.8
 	ammo_datum_type = /datum/ammo/bullet/rifle/nut
 	default_ammo_type = /obj/item/ammo_magazine/rifle/nut_ammo
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/nut_ammo)
+
+/obj/item/weapon/gun/rifle/drone/nut/unload(mob/living/user, drop, after_fire)
+	to_chat(user, span_warning("You can't remove the disposable drone's fixed ammo canisters!"))
+	return FALSE
 
 /obj/item/ammo_magazine/rifle/nut_ammo
 	name = "\improper NUT Dual Ammo Canisters (10x24mm)"
@@ -49,32 +54,26 @@
 	item_flags = DELONDROP
 
 /datum/ammo/bullet/rifle/nut
-	//lil peashooter
 	damage = 10
 	penetration = 5
-	scatter = 2
-	bonus_projectiles_amount = 1 //dual guns
-	bonus_projectiles_scatter = 2
-	bonus_projectiles_type = /datum/ammo/bullet/rifle/nut/second
-
-/datum/ammo/bullet/rifle/nut/second
-	bonus_projectiles_amount = 0
 
 /obj/item/weapon/gun/rifle/drone/attack_self(mob/user)
 	if(active)
 		return
 
-	if(ishuman(user) && faction)
-		var/mob/living/carbon/human/human_user = user
-		if(!human_user.faction || human_user.faction != faction)
-			balloon_alert_to_viewers("Unauthorized user, self destruct engaged!")
-			explosion(loc, light_impact_range = 3, explosion_cause=human_user)
-			qdel(src)
-			return
-
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
+
+	if(ishuman(user) && faction)
+		var/mob/living/carbon/human/human_user = user
+		if(!human_user.faction || human_user.faction != faction)
+			balloon_alert_to_viewers("Unauthorized user, self destruct engaged!", vision_distance = 4)
+			playsound(loc, arm_sound, 25, 1, 6)
+			sleep(4 SECONDS)
+			explosion(loc, light_impact_range = 3, explosion_cause=human_user)
+			qdel(src)
+			return
 
 	activate(user)
 
