@@ -311,14 +311,3 @@
 #undef CAT_SMARTGUNNER
 #undef CAT_WEAPONS
 #undef CAT_FUN
-
-/*
-Each disk cycle provides 10 points + 5.5 per marine total, capping at 120.
-Each tunnel killed provides 20 points + 11 per marine total, capping at 240.
-These points are distributed equally to all marines and then rounded up to the nearest whole number. Examples:
-
-    1 marine = 16 points as personal points (disk) / 31 points as personal points (tunnel)
-    4 marines = 8 points as personal (disk) / 16 points as personal (tunnel)
-    10 marines = 7 points as personal (disk) / 13 points as personal (tunnel)
-    20 marines = 6 points as personal (disk) / 12 points as personal (tunnel)
-*/
