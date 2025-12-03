@@ -12,7 +12,7 @@
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
-			E.droplimb(silent = TRUE)
+			E.droplimb(gibbing = TRUE, silent = TRUE)
 	return ..()
 
 /mob/living/carbon/human/gib_animation()

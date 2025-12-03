@@ -94,6 +94,8 @@ KEYBINDINGS
 /datum/action/proc/update_map_text(key_string, key_signal)
 	///The cutting needs to be done /BEFORE/ the string maptext gets changed. Since byond internally recognizes it as a different image, and doesn't cut it properly
 	var/mutable_appearance/reference = null
+	if(!(VREF_MUTABLE_ACTION_STATE in visual_references))
+		return
 	if(length(keybinding_signals) == 1)
 		reference = visual_references[VREF_MUTABLE_ACTION_STATE]
 		button.cut_overlay(reference)
