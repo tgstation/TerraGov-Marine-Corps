@@ -90,6 +90,8 @@
 	var/strafe = FALSE
 	///How many humans this is worth for silo gen calcs
 	var/larva_value = 5
+	///How close a wrecked vehicle is to being prepared for repair
+	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
@@ -540,6 +542,9 @@
 	. = ..()
 	if(.)
 		return
+	if((armored_flags & ARMORED_IS_WRECK) && istype(I, /obj/item/stack/sheet/plasteel))
+		start_wreck_prep(user, I)
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.type in permitted_weapons))
@@ -646,6 +651,9 @@
 
 /obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
+		prep_wreck(user)
+		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
 		return

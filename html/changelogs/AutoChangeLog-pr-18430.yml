@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "various bits of code listen to the correct signal for knowing when the gamestate is groundside"
