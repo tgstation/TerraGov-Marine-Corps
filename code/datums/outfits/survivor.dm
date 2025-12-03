@@ -338,10 +338,6 @@
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 1,
 	)
 
-
-
-
-
 /datum/outfit/job/survivor/chemist
 	name = "Pharmacy Technician Survivor"
 	jobtype = /datum/job/survivor/chemist
@@ -417,6 +413,7 @@
 		H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
 	else
 		H.equip_to_slot_or_del(new /obj/item/attachable/buildasentry, SLOT_IN_BACKPACK)
+
 
 /datum/outfit/job/survivor/rambo
 	name = "Overpowered Survivor"

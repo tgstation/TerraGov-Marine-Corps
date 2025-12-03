@@ -32,4 +32,5 @@
 		/datum/job/survivor/prisoner = -1,
 		/datum/job/survivor/stripper = -1,
 		/datum/job/survivor/maid = -1,
+		/datum/job/survivor/synth = -1,
 	)
