@@ -1,4 +1,0 @@
-author: "mudzbe"
-delete-after: True
-changes:
-  - bugfix: "Gamemodes cant start on maps with a blacklisted ground map (without bypass)"
