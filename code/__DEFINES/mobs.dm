@@ -548,6 +548,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -789,6 +790,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 SECONDS
 /// Amount of stored globs needed to start glowing.
 #define	BOILER_LUMINOSITY_THRESHOLD 2
+/// Charge distance for Sizzler's acid dash
+#define BOILER_CHARGEDISTANCE 5
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -851,9 +854,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 //Spiderling defines
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
-
-//Praetorian defines
-#define PRAE_CHARGEDISTANCE 5
 
 //Dancer defines
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets

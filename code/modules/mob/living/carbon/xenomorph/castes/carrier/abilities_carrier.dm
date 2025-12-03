@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
-		if(get_dist(turret, owner) < 6)
+		if(get_dist(turret, owner) < XENO_TURRET_EXCLUSION_RANGE)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Appeals to the larva inside the Marine. The Marine loses their balance, and the larva's growth progress accelerates."
+	desc = "Appeals to the larva inside a hugged target. The target loses their balance, gets pulled towards you, and their larva's growth progress accelerates."
 	ability_cost = 150
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(

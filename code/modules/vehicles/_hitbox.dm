@@ -144,6 +144,11 @@
 ///when the owner moves, let's move with them!
 /obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction, forced, list/turf/old_locs)
 	SIGNAL_HANDLER
+	if(!mover.loc) //root has been sent to nullspace for whatever reason
+		for(var/atom/movable/desant AS in tank_desants)
+			remove_desant(desant)
+		moveToNullspace()
+		return
 	//direction is null here, so we improvise
 	direction = get_dir(oldloc, mover)
 	var/move_dist = get_dist(oldloc, mover)

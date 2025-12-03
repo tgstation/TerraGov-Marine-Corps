@@ -1,0 +1,22 @@
+2025-12-01:
+  Runian:
+  - balance: Sentries now immediately stops shoot when their target dies.
+  blackdav123:
+  - rscadd: New player characters will now be human by default.
+  mudzbe:
+  - balance: Reduce wired barricade damage to zombies
+  - bugfix: Zombies cant strip things anymore
+2025-12-03:
+  DaTruRiZZoB:
+  - rscadd: Added ERP to EORD
+  - rscadd: Added VSD to EORD
+  - rscadd: Added vets to EORD
+  - rscadd: Added brown and black customization kits to the armor vendors
+  - qol: Face paint is wiped off by aiming head now
+  Neocloudy:
+  - bugfix: Limbs handle fracturing when damage is received instead of on life ticks
+  - bugfix: Brain mobs inside decapitated heads won't deathgasp
+  blackdav123:
+  - rscadd: 'Added a new heavy seasonal: Remote Weapons'
+  mudzbe:
+  - bugfix: Gamemodes cant start on maps with a blacklisted ground map (without bypass)

@@ -494,101 +494,158 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 
 /datum/action/ability/xeno_action/steam_rush
-	name = "Steam Rush"
+	name = "Toggle Steam Rush"
 	action_icon_state = "steam_rush"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Gain a short-lived speed boost. Slashes deal extra burn damage and extends the duration of the speed boost."
-	ability_cost = 100
-	cooldown_duration = 25 SECONDS
+	desc = "Gain a speed and damage boost while draining plasma. Slashes grant stacks which increase speed and damage. Creates smoke when at max stacks."
+	ability_cost = 25
+	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STEAM_RUSH,
 	)
 	/// Holds the particles instead of the mob.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	///A reference to the VREF used to display the current stacks of steam rush.
+	var/vref = VREF_MUTABLE_STEAMRUSH_STACKS
 	/// Is the ability currently being used?
 	var/active = FALSE
-	/// The increase of speed when ability is active.
-	var/speed_buff = -1
-	/// How long the ability will last?
-	var/duration = 1.5 SECONDS
-	/// Timer for steam rush's duration.
+	/// The base increase of speed when ability is active.
+	var/base_speed_buff = -0.3
+	/// The per stack increase of speed when ability is active.
+	var/stack_speed_buff = -0.03
+	/// How often we consume plasma while active.
+	var/steam_check_interval = 0.5 SECONDS
+	/// Timer for checking steam rush upkeep.
 	var/steam_rush_duration
-	/// How much extra burn damage is dealt on slash?
-	var/steam_damage = 10
-	/// The duration in deciseconds in which a trail of opaque gas will last.
-	var/gas_trail_duration = 0
+	/// How much extra burn damage is dealt on slash, per stack.
+	var/steam_damage = 1
+	/// Current stacks of steam rush. Higher stacks increase the buffs. Slashing enemies increases stacks. Max 10.
+	var/stacks = 0
+
+/datum/action/ability/xeno_action/steam_rush/can_use_action(silent, override_flags, selecting)
+	if(active)
+		return TRUE
+	return ..()
+
+/datum/action/ability/xeno_action/steam_rush/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	counter_maptext.pixel_x = 16
+	counter_maptext.pixel_y = 16
+	counter_maptext.maptext = MAPTEXT("[stacks]")
+	visual_references[vref] = counter_maptext
+
+/datum/action/ability/xeno_action/steam_rush/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	button.cut_overlay(visual_references[vref])
+	visual_references[vref] = null
 
 /datum/action/ability/xeno_action/steam_rush/action_activate()
-	var/mob/living/carbon/xenomorph/boiler/sizzler/X = xeno_owner
-
 	if(active)
-		to_chat(X, span_xenodanger("Our body is already spewing steam!"))
-		return
+		deactivate_steam_rush()
+	else
+		activate_steam_rush()
 
-	X.emote("roar")
-	X.visible_message(span_danger("[X]'s body starts to hiss with steam!"), \
-	span_xenowarning("We feel steam spraying from our body!"))
-
+/// Toggles steam rush on.
+/datum/action/ability/xeno_action/steam_rush/proc/activate_steam_rush()
 	active = TRUE
 
-	steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	xeno_owner.emote("roar")
+	xeno_owner.visible_message(span_danger("[xeno_owner]'s body starts to hiss with steam!"), \
+	span_xenowarning("We feel steam spraying from our body!"))
 
-	X.add_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH, TRUE, 0, NONE, TRUE, speed_buff)
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH, TRUE, 0, NONE, TRUE, base_speed_buff)
 
 	particle_holder = new(owner, /particles/sizzler_steam)
 	particle_holder.pixel_y = -8
 	particle_holder.pixel_x = 10
 
-	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(steam_slash))
-	if(gas_trail_duration)
-		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(steam_slash))
 
-	succeed_activate()
-	add_cooldown()
+	manage_steam_rush()
 
-///Adds burn damage and resets timer during steam rush buff
+/// Handles plasma drain and upkeep of steam rush.
+/datum/action/ability/xeno_action/steam_rush/proc/manage_steam_rush()
+	if(xeno_owner.plasma_stored < ability_cost)
+		return deactivate_steam_rush()
+	xeno_owner.use_plasma(ability_cost)
+	steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(manage_steam_rush)), steam_check_interval, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+
+/// On hit proc for steam rush slashes. Slashing increases stacks, stacks provide damage and speed buffs.
 /datum/action/ability/xeno_action/steam_rush/proc/steam_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/rusher = owner
-	var/datum/action/ability/xeno_action/steam_rush/steam_rush_ability = rusher.actions_by_path[/datum/action/ability/xeno_action/steam_rush]
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID, attacker = owner)
+	carbon_target.apply_damage(steam_damage * stacks, damagetype = BURN, blocked = ACID)
+	xenomorph_spray(get_turf(carbon_target), 5 SECONDS, steam_damage * stacks)
 	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
 	to_chat(carbon_target, span_danger("You are burned by the hot steam!")) //I'm just going to operate under the assumption that xvx combat will never be a meaningful thing.
 
-	if(steam_rush_ability.steam_rush_duration)
-		deltimer(steam_rush_ability.steam_rush_duration)
-		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	switch(stacks)
+		if(0 to 8)
+			stacks++
+			update_button_icon()
+		if(9)
+			stacks++
+			update_button_icon()
+			QDEL_NULL(particle_holder)
+			particle_holder = new(owner, /particles/sizzler_steam/intense)
+			particle_holder.pixel_y = -8
+			particle_holder.pixel_x = 10
+			xeno_owner.visible_message(span_danger("[xeno_owner]'s body is spewing steam intensely!"), \
+			span_xenowarning("Our steam reaches max intensity!"))
+		if(10)
+			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/acid/light()
+			playsound(carbon_target, 'sound/effects/smoke.ogg', 10, 1, 2)
+			smoke.set_up(0, carbon_target)
+			smoke.start()
 
-///Called when we want to end the steam rush ability
-/datum/action/ability/xeno_action/steam_rush/proc/steam_rush_deactivate()
-	if(QDELETED(owner))
-		return
-	var/mob/living/carbon/xenomorph/X = owner
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH, TRUE, 0, NONE, TRUE, (base_speed_buff + (stack_speed_buff * stacks)))
 
-	X.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH)
-
-	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
-
+/// Toggles steam rush off, removing buffs and putting the ability on cooldown.
+/datum/action/ability/xeno_action/steam_rush/proc/deactivate_steam_rush()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH)
+	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien/hiss2.ogg', 50)
+	deltimer(steam_rush_duration)
+	steam_rush_duration = null
 	active = FALSE
+	stacks = 0
+	update_button_icon()
 	QDEL_NULL(particle_holder)
-	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
-	if(gas_trail_duration)
-		UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-
-/// Creates a trail of acid smoke when moving.
-/datum/action/ability/xeno_action/steam_rush/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	if(xeno_owner.stat != CONSCIOUS)
-		return
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smoke = new()
-	smoke.set_up(0, get_turf(xeno_owner), gas_trail_duration / (2 SECONDS))
-	smoke.start()
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+	add_cooldown()
 
 /datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
 	owner.balloon_alert(owner, "steam rush ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
+
+/datum/action/ability/xeno_action/steam_rush/update_button_icon()
+	button.cut_overlay(visual_references[vref])
+	if(stacks)
+		var/mutable_appearance/number = visual_references[vref]
+		number.maptext = MAPTEXT("[stacks]")
+		visual_references[vref] = number
+		button.add_overlay(visual_references[vref])
+	return ..()
+
+/datum/action/ability/xeno_action/steam_rush/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/xeno_action/steam_rush/ai_should_use(atom/target)
+	if(active)
+		if(!iscarbon(target))
+			return TRUE
+		return FALSE
+	if(!iscarbon(target))
+		return FALSE
+	if(!line_of_sight(owner, target, 7))
+		return FALSE
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
 
 /particles/sizzler_steam
 	icon = 'icons/effects/particles/smoke.dmi'
@@ -606,59 +663,189 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	gravity = list(0, 0.95)
 	grow = 0.1
 
+/particles/sizzler_steam/intense
+	count = 300
+	spawning = 18
+	drift = generator(GEN_SPHERE, 0, 2, NORMAL_RAND)
+
 // ***************************************
 // *********** Smokescreen Spit
 // ***************************************
 
-/datum/action/ability/xeno_action/smokescreen_spit
+/datum/action/ability/activable/xeno/smokescreen_spit
 	name = "Smokescreen Spit"
 	action_icon_state = "corrosive_glob"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Empower your next spit, causing it to create a wide smokescreen."
+	desc = "Spit a steam smokescreen to cover your advance or retreat. Direct hits stagger and slow."
 	ability_cost = 350
-	cooldown_duration = 30 SECONDS
+	cooldown_duration = 75 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
 	)
-	use_state_flags = ABILITY_USE_STAGGERED
-/// Timer for the window you have to fire smokescreen spit.
-	var/smokescreen_spit_window
-	/// Duration of the window you have to fire smokescreen spit.
-	var/window_duration = 1.5 SECONDS
-	/// The ammo type to change the owner's ammo to when activated.
-	var/datum/ammo/xeno/ammo_type = /datum/ammo/xeno/acid/airburst/heavy
+	/// The amount of time for the do_after.
+	var/cast_time = 3 SECONDS
+	/// The ammo type the ability fires.
+	var/datum/ammo/xeno/ammo_type = /datum/ammo/xeno/acid/smokescreen
+	/// Timer for increasing light range while channeling.
+	var/channel_light_timer
+	/// Current light range while channeling.
+	var/light_range = 0
 
-/datum/action/ability/xeno_action/smokescreen_spit/action_activate()
-	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+/datum/action/ability/activable/xeno/smokescreen_spit/use_ability(atom/target)
+	manage_channel_glow(TRUE)
+	if(cast_time > 0 && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER))
+		manage_channel_glow(FALSE)
+		add_cooldown(15 SECONDS) // Short cooldown on fail
+		return fail_activate()
 
-	X.ammo = ammo_type
-	X.update_spits(TRUE)
-	X.balloon_alert(owner, "smokescreen prepared")
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
+	newspit.generate_bullet(ammo_type)
+	newspit.def_zone = xeno_owner.get_limbzone_target()
 
-	smokescreen_spit_window = addtimer(CALLBACK(src, PROC_REF(smokescreen_spit_deactivate)), window_duration, TIMER_UNIQUE)
-
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
+	manage_channel_glow(FALSE)
 	succeed_activate()
 	add_cooldown()
 
-///Called when smokescreen ability ends to reset our ammo
-/datum/action/ability/xeno_action/smokescreen_spit/proc/smokescreen_spit_deactivate()
-	if(QDELETED(owner))
+/// Turns on/off the light glow while channeling the spit and increases the light range every half second.
+/datum/action/ability/activable/xeno/smokescreen_spit/proc/manage_channel_glow(continue_light = FALSE)
+	if(!continue_light)
+		light_range = 0
+		if(xeno_owner)
+			xeno_owner.set_light_on(FALSE)
+			xeno_owner.set_light_range_power_color(0, 0)
+		deltimer(channel_light_timer)
 		return
-	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+	if(light_range < 6)
+		light_range += 1
+	xeno_owner.set_light_on(TRUE)
+	xeno_owner.set_light_range_power_color(light_range, 4, BOILER_LUMINOSITY_BASE_COLOR)
+	channel_light_timer = addtimer(CALLBACK(src, PROC_REF(manage_channel_glow), TRUE), 0.5 SECONDS, TIMER_STOPPABLE)
 
-	X.ammo = null // update_spits() will reselect their ammo.
-	X.update_spits(TRUE)
-	X.balloon_alert(owner, "spit back to normal")
+/datum/action/ability/activable/xeno/smokescreen_spit/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/xeno/smokescreen_spit/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) < 5 || get_dist(target, owner) > 13)
+		return FALSE
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(!line_of_sight(owner, target))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	action_activate()
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, PROC_REF(decrease_do_action), target), cast_time)
+	return TRUE
+
+///Decrease the do_actions of the owner
+/datum/action/ability/activable/xeno/smokescreen_spit/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)
+
+// ***************************************
+// *********** Acid dash
+// ***************************************
+/datum/action/ability/activable/xeno/charge/acid_dash
+	name = "Acid Dash"
+	action_icon_state = "pounce"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
+	ability_cost = 100
+	cooldown_duration = 20 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
+	)
+	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
+	charge_range = BOILER_CHARGEDISTANCE
+	///Can we use the ability again
+	var/recast_available = FALSE
+	///Is this the recast
+	var/recast = FALSE
+	/// If we should do acid_spray_act on those we pass over.
+	var/do_acid_spray_act = TRUE
+	///List of pass_flags given by this action
+	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	/// How long we stun tackled targets
+	var/stun_duration = 1 SECONDS
+	/// The duration in deciseconds in which a trail of opaque gas will last.
+	var/gas_trail_duration = 0
+
+/datum/action/ability/activable/xeno/charge/acid_dash/New(Target)
+	. = ..()
+	desc = "Instantly dash for [charge_range] tiles, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
+
+/datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
+	if(!A)
+		return
+	if(recast && cooldown_timer)
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID_DASH_ACTIVATION))
+			return
+	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) //We drop acid on every tile we pass through
+
+	xeno_owner.visible_message(span_danger("[xeno_owner] slides towards \the [A]!"), \
+	span_danger("We dash towards \the [A], spraying acid down our path!") )
+	xeno_owner.emote("roar")
+	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	if(recast)
+		succeed_activate(5) //Greatly reduced cost on recast
+	else
+		succeed_activate()
+
+	xeno_owner.add_pass_flags(charge_pass_flags, type)
+	owner.throw_at(A, charge_range, 2, owner)
+
+/datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
+	. = TRUE
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
+		return
+	if(!recast)
+		recast_available = TRUE
+	var/mob/living/carbon/carbon_victim = living_target
+	carbon_victim.ParalyzeNoChain(stun_duration)
+
+	to_chat(carbon_victim, span_userdanger("The [owner] tackles us, sending us behind them!"))
+	owner.visible_message(span_xenodanger("\The [owner] tackles [carbon_victim], swapping location with them!"), \
+		span_xenodanger("We push [carbon_victim] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
+
+/datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	if(recast_available)
+		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
+		TIMER_COOLDOWN_START(src, COOLDOWN_ACID_DASH_ACTIVATION, 0.3 SECONDS) // Small delay before you can recast, to make it harder to misfire.
+		recast = TRUE
+		recast_available = FALSE
+	else
+		recast = FALSE
+		add_cooldown()
+	xeno_owner.remove_pass_flags(charge_pass_flags, type)
+	recast_available = FALSE
+
+///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage. Creates opaque gas if gas_trail_duration is set by mutation.
+/datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
+	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
+	if(gas_trail_duration)
+		if(xeno_owner.stat != CONSCIOUS)
+			return
+		var/datum/effect_system/smoke_spread/xeno/acid/opaque/smoke = new()
+		smoke.set_up(0, get_turf(xeno_owner), gas_trail_duration / (2 SECONDS))
+		smoke.start()
 
 // ***************************************
 // *********** High-Pressure Spit
 // ***************************************
 /datum/action/ability/activable/xeno/high_pressure_spit
 	name = "High-Pressure Spit"
-	action_icon_state = "corrosive_lance_glob"
+	action_icon_state = "corrosive_glob_lance"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
 	desc = "Fire a high pressure glob of acid that knocks back, stuns, and shatters the target."
-	ability_cost = 150
+	ability_cost = 75
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT,

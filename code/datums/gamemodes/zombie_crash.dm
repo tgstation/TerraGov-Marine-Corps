@@ -22,8 +22,9 @@
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || (SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps)) && !bypass_checks)
 		log_world("attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		to_chat(world, "<b>Unable to start [name].</b> [SSmapping.configs[GROUND_MAP].map_name] isn't supported on [name].")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
@@ -40,6 +41,9 @@
 	. = ..()
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_zombie()
+
+	for(var/i in GLOB.zombie_spawner_turfs)
+		new /obj/effect/ai_node/spawner/zombie(i)
 
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/effect/ai_node/spawner/zombie(i)
