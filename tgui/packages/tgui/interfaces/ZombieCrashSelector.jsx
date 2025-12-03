@@ -164,22 +164,22 @@ const ItemLine = (props) => {
     ),
     'smartgunner-machinegun-ammo': (
       <Box inline mr="6px" ml="6px" color="#ff9900ff">
-        Machinegun Ammo
+        Machinegun
       </Box>
     ),
     'smartgunner-minigun-ammo': (
       <Box inline mr="6px" ml="6px" color="#ff9900ff">
-        Minigun Ammo
+        Minigun
       </Box>
     ),
     'smartgunner-rifle-ammo': (
       <Box inline mr="6px" ml="6px" color="#ff9900ff">
-        Rifle Ammo
+        Rifle
       </Box>
     ),
     'smartgunner-underbarrel-ammo': (
       <Box inline mr="6px" ml="6px" color="#ff9900ff">
-        Underbarrel Ammo
+        Underbarrel
       </Box>
     ),
     tool: (
