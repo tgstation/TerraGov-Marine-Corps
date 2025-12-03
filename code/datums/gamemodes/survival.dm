@@ -29,8 +29,8 @@
 /datum/game_mode/survival/process()
 	. = ..()
 
-	if(world.time > last_larva_check + larva_check_interval)
-		last_larva_check = world.time
+	if(world.time > last_balance_check + balance_check_interval)
+		last_balance_check = world.time
 		balance_scales()
 
 
@@ -45,9 +45,6 @@
 		new /obj/effect/ai_node/spawner/zombie(i)
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(check_finished))
-
-/datum/game_mode/survival/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
-	return
 
 ///Counts humans and zombies not in valhalla
 /datum/game_mode/survival/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
@@ -103,7 +100,6 @@
 	title = "Mission classification: TOP SECRET",
 	type = ANNOUNCEMENT_PRIORITY,
 	color_override = "red")
-	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 	balance_scales()
 
 /datum/game_mode/survival/end_round_fluff()
