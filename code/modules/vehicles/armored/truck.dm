@@ -4,7 +4,7 @@
 	icon = 'icons/obj/armored/2x3/apc.dmi'
 	icon_state = "apc"
 	damage_icon_path = 'icons/obj/armored/2x3/apc_damage_overlay.dmi'
-	hitbox = /obj/hitbox/2x3
+	hitbox = /obj/hitbox/two_three
 	interior = /datum/interior/armored/mrap
 	permitted_weapons = NONE
 	permitted_mods = list(/obj/item/tank_module/ability/tesla)
