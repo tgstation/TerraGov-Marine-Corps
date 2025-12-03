@@ -15,3 +15,5 @@
 	max_integrity = 350
 	max_occupants = 5
 	permitted_mods = list(/obj/item/tank_module/ability/zoom)
+	soft_armor = list(MELEE = 50, BULLET = 75 , LASER = 75, ENERGY = 60, BOMB = 40, BIO = 100, FIRE = 50, ACID = 50) // No, you don't get to have tank armor
+	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 5, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)

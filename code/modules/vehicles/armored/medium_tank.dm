@@ -16,5 +16,8 @@
 	max_occupants = 3
 	ram_damage = 80 // Itty bitty tank isn't going to kill instantly
 
+	soft_armor = list(MELEE = 50, BULLET = 90 , LASER = 85, ENERGY = 60, BOMB = 60, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 5, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
+
 /obj/vehicle/sealed/armored/multitile/medium/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))
