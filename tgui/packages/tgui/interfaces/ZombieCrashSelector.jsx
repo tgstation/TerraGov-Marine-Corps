@@ -127,6 +127,101 @@ const ItemLine = (props) => {
     setShowDesc,
   } = props;
   const colorToElement = {
+    'medical-stamina': (
+      <Box inline mr="6px" ml="6px" color="#00fff2ff">
+        Stamina
+      </Box>
+    ),
+    'medical-emergency': (
+      <Box inline mr="6px" ml="6px" color="#00fff2ff">
+        Emergency
+      </Box>
+    ),
+    'medical-antitoxin': (
+      <Box inline mr="6px" ml="6px" color="#00fff2ff">
+        Antitoxin
+      </Box>
+    ),
+    'engineering-material': (
+      <Box inline mr="6px" ml="6px" color="#fbff00ff">
+        Materials
+      </Box>
+    ),
+    'engineering-placeable': (
+      <Box inline mr="6px" ml="6px" color="#fbff00ff">
+        Placeable
+      </Box>
+    ),
+    'engineering-explosive': (
+      <Box inline mr="6px" ml="6px" color="#fbff00ff">
+        Explosive
+      </Box>
+    ),
+    'engineering-grenade': (
+      <Box inline mr="6px" ml="6px" color="#fbff00ff">
+        Grenade
+      </Box>
+    ),
+    'smartgunner-machinegun-ammo': (
+      <Box inline mr="6px" ml="6px" color="#ff9900ff">
+        Machinegun Ammo
+      </Box>
+    ),
+    'smartgunner-minigun-ammo': (
+      <Box inline mr="6px" ml="6px" color="#ff9900ff">
+        Minigun Ammo
+      </Box>
+    ),
+    'smartgunner-rifle-ammo': (
+      <Box inline mr="6px" ml="6px" color="#ff9900ff">
+        Rifle Ammo
+      </Box>
+    ),
+    'smartgunner-underbarrel-ammo': (
+      <Box inline mr="6px" ml="6px" color="#ff9900ff">
+        Underbarrel Ammo
+      </Box>
+    ),
+    tool: (
+      <Box inline mr="6px" ml="6px" color="#FFE4C4">
+        Tools
+      </Box>
+    ),
+    artillery: (
+      <Box inline mr="6px" ml="6px" color="#CD5C5C">
+        Artillery
+      </Box>
+    ),
+    'artillery-ammo': (
+      <Box inline mr="6px" ml="6px" color="#ffc0c0ff">
+        Ammo
+      </Box>
+    ),
+    vehicle: (
+      <Box inline mr="6px" ml="6px" color="#00e1ffff">
+        Vehicle
+      </Box>
+    ),
+    'vehicle-attachable': (
+      <Box inline mr="6px" ml="6px" color="#7df0ffff">
+        Attachable
+      </Box>
+    ),
+    'vehicle-ammo': (
+      <Box inline mr="6px" ml="6px" color="#7df0ffff">
+        Ammo
+      </Box>
+    ),
+    emplacement: (
+      <Box inline mr="6px" ml="6px" color="#ffe600ff">
+        Emplacement
+      </Box>
+    ),
+    'emplacement-ammo': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Ammo
+      </Box>
+    ),
     'armor-module': (
       <Box inline mr="6px" ml="6px" color="#ae00ffff">
         Module
@@ -157,54 +252,14 @@ const ItemLine = (props) => {
         Ammo
       </Box>
     ),
-    emplacement: (
-      <Box inline mr="6px" ml="6px" color="#ffe600ff">
-        Emplacement
-      </Box>
-    ),
-    'emplacement-ammo': (
-      <Box inline mr="6px" ml="6px" color="#fff385ff">
-        Ammo
-      </Box>
-    ),
-    tool: (
-      <Box inline mr="6px" ml="6px" color="#FFE4C4">
-        Tools
-      </Box>
-    ),
     materials: (
       <Box inline mr="6px" ml="6px" color="#7FFFD4">
         Materials
       </Box>
     ),
-    artillery: (
-      <Box inline mr="6px" ml="6px" color="#CD5C5C">
-        Artillery
-      </Box>
-    ),
-    'artillery-ammo': (
-      <Box inline mr="6px" ml="6px" color="#ffc0c0ff">
-        Ammo
-      </Box>
-    ),
     explosive: (
       <Box inline mr="6px" ml="6px" color="#FF7F50">
         Explosives
-      </Box>
-    ),
-    vehicle: (
-      <Box inline mr="6px" ml="6px" color="#00e1ffff">
-        Vehicle
-      </Box>
-    ),
-    'vehicle-attachable': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
-        Attachable
-      </Box>
-    ),
-    'vehicle-ammo': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
-        Ammo
       </Box>
     ),
     other: (
