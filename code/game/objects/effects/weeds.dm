@@ -39,7 +39,7 @@
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 	if(!set_parent_node(node))
-		return INITIALIZE_HINT_QDEL
+		return
 
 	var/static/list/connections = list(
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
@@ -153,13 +153,11 @@
 	color_variant = STICKY_COLOR
 
 /obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	. = ..()
-	if(QDELETED(src))
-		return
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	return ..()
 
 /obj/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
@@ -330,13 +328,11 @@
 	ability_cost_mult = 3
 
 /obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	. = ..()
-	if(QDELETED(src))
-		return
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	return ..()
 
 /obj/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
