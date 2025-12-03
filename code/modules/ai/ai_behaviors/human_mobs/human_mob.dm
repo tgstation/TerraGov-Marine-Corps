@@ -15,7 +15,7 @@
 	///To what level they will handle engineering tasks like repairs
 	var/engineer_rating = AI_ENGIE_DEFAULT
 	///List of things the NPC will try to interact with, such as gear to pick up
-	var/list/atom/atoms_of_interest = list()
+	var/list/atom/atoms_to_interact = list()
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -49,7 +49,7 @@
 	melee_weapon = null
 	hazard_list = null
 	heal_list = null
-	atoms_of_interest = null
+	atoms_to_interact = null
 	QDEL_NULL(mob_inventory)
 	return ..()
 
@@ -142,11 +142,11 @@
 		if(!grenade_process())
 			weapon_process()
 
-	if(!combat_target && !interact_target && length(atoms_of_interest) && isturf(atoms_of_interest[1].loc))
-		for(var/atom/atom AS in atoms_of_interest)
+	if(!combat_target && !interact_target && length(atoms_to_interact) && isturf(atoms_to_interact[1].loc))
+		for(var/atom/atom AS in atoms_to_interact)
 			if(atom.z != mob_parent.z)
 				continue
-			if(!isturf(atoms_of_interest[1].loc))
+			if(!isturf(atoms_to_interact[1].loc))
 				return
 			if(get_dist(mob_parent, atom) > AI_ESCORTING_BREAK_DISTANCE)
 				continue

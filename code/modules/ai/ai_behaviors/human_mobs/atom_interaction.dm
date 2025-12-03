@@ -39,15 +39,15 @@
 
 ///Adds an atom to the interest list
 /datum/ai_behavior/human/proc/add_atom_of_interest(atom/new_atom)
-	if(new_atom in atoms_of_interest)
+	if(new_atom in atoms_to_interact)
 		return
 	RegisterSignal(new_atom, COMSIG_QDELETING, PROC_REF(unset_target), TRUE) //it might already be an interaction target
-	atoms_of_interest += new_atom
+	atoms_to_interact += new_atom
 
 ///Removes an atom from the interest list
 /datum/ai_behavior/human/proc/remove_atom_of_interest(atom/old_atom)
 	UnregisterSignal(old_atom, COMSIG_QDELETING)
-	atoms_of_interest -= old_atom
+	atoms_to_interact -= old_atom
 
 ///If an item is considered important, we add it to the list to pick up later
 /datum/ai_behavior/human/proc/on_item_unequip(mob/living/source, obj/item/dropped)
