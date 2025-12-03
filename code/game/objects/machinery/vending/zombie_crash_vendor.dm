@@ -44,8 +44,8 @@
 		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_ENGINEERING_SUPPLIES, "TL-182 deployable shield", 4, "engineering-placeable"),
 		/obj/item/explosive/plastique = list(CAT_ENGINEERING_SUPPLIES, "Plastic explosive", 4, "engineering-explosive"),
 		/obj/item/detpack = list(CAT_ENGINEERING_SUPPLIES, "Detonation pack", 8, "engineering-explosive"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_GRENADE, "Razorburn grenade", 6, "engineering-grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_GRENADE, "Razorburn canister", 12, "engineering-grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_ENGINEERING_SUPPLIES, "Razorburn grenade", 6, "engineering-grenade"),
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_ENGINEERING_SUPPLIES, "Razorburn canister", 12, "engineering-grenade"),
 		// Smartgunner Supplies
 		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SMARTGUNNER_SUPPLIES, "SG-29 Ammo Drum", 6, "smartgunner-machinegun-ammo"),
 		/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SGSUP, "SG-85 Powerpack", 15, "smartgunner-minigun-ammo"),
@@ -103,8 +103,6 @@
 		/obj/item/explosive/grenade/m15 = list(CAT_GRENADE, "M15 Fragmentation grenade", 2, "grenade"),
 		/obj/item/explosive/grenade/incendiary  = list(CAT_GRENADE, "M40 HIDP Incendiary grenade", 4, "grenade"),
 		/obj/item/explosive/grenade/smokebomb/antigas = list(CAT_GRENADE, "M40-AG Antigas grenade", 2, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_GRENADE, "Razorburn grenade", 8, "grenade"),
-		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_GRENADE, "Razorburn canister", 16, "grenade"),
 		// Attachments
 		/obj/item/attachable/flamer_nozzle/wide = list(CAT_ATTACHMENTS, "Wide Flamer Nozzle", 60, "attachment"),
 		/obj/item/attachable/flamer_nozzle/long = list(CAT_ATTACHMENTS, "Long Flamer Nozzle", 10, "attachment"),
