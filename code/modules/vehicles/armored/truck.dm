@@ -4,11 +4,11 @@
 	icon = 'icons/obj/armored/2x3/apc.dmi'
 	icon_state = "apc"
 	damage_icon_path = 'icons/obj/armored/2x3/apc_damage_overlay.dmi'
-	hitbox = /obj/hitbox/mrap
+	hitbox = /obj/hitbox/2x3
 	interior = /datum/interior/armored/mrap
 	permitted_weapons = NONE
 	permitted_mods = list(/obj/item/tank_module/ability/tesla)
-	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_WRECKABLE|ARMORED_PURCHASABLE_TRANSPORT
+	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_WRECKABLE|ARMORED_PURCHASABLE_TRANSPORT|ARMORED_SELF_WALL_DAMAGE
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
 	turret_icon = null
