@@ -55,7 +55,7 @@
 
 /obj/structure/bed/chair/kz/user_buckle_mob(mob/living/affected_mob, mob/user, check_loc = TRUE)
 
-	add_fingerprint(user)
+	add_fingerprint(user, "buckle")
 
 	if(affected_mob == user)
 		if(!do_after(user, 10 SECONDS, affected_mob))
@@ -114,7 +114,6 @@
 	if(current_mob.handcuffed)
 		current_mob.handcuffed.dropped(current_mob)
 
-	current_mob.handcuffed.dropped(current_mob)
 	current_mob.update_abstract_handcuffed()
 	current_mob = null
 
@@ -137,6 +136,7 @@
 		var/obj/item/disk/kz_neurodisk/new_disk = new /obj/item/disk/kz_neurodisk(src.loc)
 		new_disk.stored_name = stored_disk.stored_name
 		new_disk.stored_skills = stored_disk.stored_skills
+		qdel(stored_disk)
 		stored_disk = null
 		to_chat(user, span_notice("You smoothly remove the neurodisk from the extractor, ready for use."))
 		return TRUE
@@ -156,9 +156,19 @@
 		return FALSE
 
 	if(user.faction == FACTION_VSD && user.a_intent == INTENT_HARM && stored_disk)
+		if(current_mob.stat == DEAD)
+			to_chat(user, span_warning("[current_mob] is dead. Extraction is impossible."))
+			return TRUE
+		if(current_mob.faction == FACTION_VSD)
+			to_chat(user, span_warning("[current_mob]'s neural implant engages a fail-safe. Extraction cannot proceed."))
+			return TRUE
 		if(HAS_TRAIT(current_mob, TRAIT_SKILLS_EXTRACTED))
 			to_chat(user, span_warning("Their neural lattice was already harvested. They’ll need cryotube recovery and proper rest before another extraction."))
 			return TRUE
+		if(current_mob.extract_count >= 2)
+			to_chat(user, span_warning("[current_mob] neural links has already been extracted twice. Further extraction is not allowed."))
+			return TRUE
+
 		to_chat(user, span_notice("You carefully start extracting the neurodisk from [current_mob]."))
 		if(!do_after(user, 60 SECONDS, current_mob))
 			to_chat(user, span_warning("Your extraction is interrupted!"))
@@ -167,10 +177,14 @@
 		stored_disk.stored_name = current_mob
 		stored_disk.stored_skills = current_mob.skills
 
+		current_mob.extract_count++
+
 		if(!HAS_TRAIT(current_mob, TRAIT_SKILLS_EXTRACTED))
 			ADD_TRAIT(current_mob, TRAIT_SKILLS_EXTRACTED, TRAIT_GENERIC)
-			current_mob.set_skills(current_mob.skills.modifyAllRatings(-1))
 			addtimer(CALLBACK(src, PROC_REF(restore_skills), current_mob), 5 MINUTES)
+
+		current_mob.adjustBrainLoss(25)
+		current_mob.adjustCloneLoss(25)
 
 		to_chat(user, span_notice("An empty neurodisk is now ready inside the extractor."))
 		to_chat(current_mob, span_userdanger("Your mind feels hollowed out... You should rest and spend some time in a cryotube to recover."))
@@ -216,15 +230,28 @@
 		var/obj/item/disk/kz_neurodisk/new_disk = new /obj/item/disk/kz_neurodisk(src.loc)
 		new_disk.stored_name = stored_disk.stored_name
 		new_disk.stored_skills = stored_disk.stored_skills
+		qdel(stored_disk)
 		stored_disk = null
 		to_chat(user, span_notice("You smoothly remove the neurodisk from the imprinter, ready for use."))
 		return TRUE
+
+	if(LAZYLEN(buckled_mobs))
+		user_unbuckle_mob(buckled_mobs[1], user)
+		return TRUE
+
+	var/mob/living/affected_mob = locate() in loc
+	if(!affected_mob)
+		return TRUE
+
+	user_buckle_mob(affected_mob, user, check_loc = TRUE)
 
 /obj/structure/bed/chair/kz/imprinter/attack_hand_alternate(mob/living/user)
 	if(!current_mob)
 		return FALSE
 
 	if(user.faction == FACTION_VSD && user.a_intent == INTENT_HARM && stored_disk)
+		if(current_mob.stat == DEAD)
+			return TRUE
 		if(HAS_TRAIT(current_mob, TRAIT_SKILLS_IMPRINTED))
 			to_chat(user, span_warning("Their neural lattice is still destabilized from the last imprint. They'll need cryotube recovery and time to stabilize before another transfer."))
 			return TRUE
@@ -233,6 +260,8 @@
 			to_chat(user, span_warning("The imprinting is interrupted!"))
 			return TRUE
 
+		current_mob.original_skills_type = current_mob.skills.type
+
 		imprint_skills()
 
 		stored_disk.stored_name = null
@@ -240,10 +269,11 @@
 
 		if(!HAS_TRAIT(current_mob, TRAIT_SKILLS_IMPRINTED))
 			ADD_TRAIT(current_mob, TRAIT_SKILLS_IMPRINTED, TRAIT_GENERIC)
+			ADD_TRAIT(current_mob, TRAIT_SKILLS_EDITED, TRAIT_GENERIC)
 			addtimer(CALLBACK(src, PROC_REF(restore_skills), current_mob), 5 MINUTES)
 
-		current_mob.adjustBrainLoss(15)
-		current_mob.adjustCloneLoss(15)
+		current_mob.adjustBrainLoss(25)
+		current_mob.adjustCloneLoss(25)
 
 		to_chat(user, span_notice("The neural data transfers successfully into [current_mob]'s cortex, the imprint complete."))
 		to_chat(current_mob, span_danger("A wave of disorientation washes over you. You should rest and stabilize in a cryotube."))
@@ -291,6 +321,7 @@
 		current_mob.set_skills(current_mob.skills.setRating(mech = stored_disk.stored_skills.mech))
 	if(stored_disk.stored_skills.stamina > current_mob.skills.stamina)
 		current_mob.set_skills(current_mob.skills.setRating(stamina = stored_disk.stored_skills.stamina))
+	current_mob.set_skills(current_mob.skills.modifyAllRatings(1))
 
 /obj/structure/bed/chair/kz/proc/restore_skills(mob/living/target)
 	target.can_restore_skills = TRUE
@@ -332,3 +363,14 @@
 		. += "<br><i>Unauthorized disclosure of this device or its operational parameters may result in immediate contract termination and or asset liquidation.</i><br>"
 		if(stored_name)
 			. += "This neurodisk contains <b>[stored_name]'s</b> scan."
+
+/obj/item/disk/kz_neurodisk/attack_self(mob/user)
+	. = ..()
+	if(user.faction == FACTION_VSD && stored_name)
+		to_chat(user, span_notice("You initiate the neurodisk wiping process."))
+		if(!do_after(user, 7 SECONDS, src))
+			to_chat(user, span_warning("Neurodisk wiping interrupted! You’ll need to start over."))
+			return TRUE
+		stored_name = null
+		stored_skills = null
+		to_chat(user, span_notice("Neurodisk successfully wiped."))
