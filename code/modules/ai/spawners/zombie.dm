@@ -65,7 +65,7 @@
 			return
 
 	if(COOLDOWN_FINISHED(src, proxy_alert_cooldown))
-		if(maxamount != ZOMBIE_THREATENED_CAP)
+		if(SSspawning.spawnerdata[src].max_allowed_mobs < ZOMBIE_THREATENED_CAP)
 			maxamount = SSspawning.spawnerdata[src].max_allowed_mobs
 		SSspawning.spawnerdata[src].max_allowed_mobs = ZOMBIE_THREATENED_CAP
 		threat_warning = TRUE
