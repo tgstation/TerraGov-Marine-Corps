@@ -1005,6 +1005,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
+	desc = "Send a message directly to a living target in view."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)

@@ -244,9 +244,12 @@
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(item_to_equip.equip_delay_self && !ignore_delay)
+		ADD_TRAIT(src, TRAIT_IS_EQUIPPING_ITEM, REF(src))
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
+			REMOVE_TRAIT(src, TRAIT_IS_EQUIPPING_ITEM, REF(src))
 			to_chat(src, "You stop putting on \the [item_to_equip].")
 			return FALSE
+		REMOVE_TRAIT(src, TRAIT_IS_EQUIPPING_ITEM, REF(src))
 		//calling the proc again with ignore_delay saves a boatload of copypaste
 		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
 	//This will unwield items -without- triggering lights.

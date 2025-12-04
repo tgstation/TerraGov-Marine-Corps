@@ -43,7 +43,7 @@
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium is transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 9
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -68,32 +68,33 @@
  * Any special attack by zombie behavior
  * Return FALSE if normal melee_attack_chain should occur
 */
-/atom/proc/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+/atom/proc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	return FALSE
 
-/obj/machinery/door/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+/obj/machinery/door/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!density)
 		return
 	if(zombie.do_actions)
 		return
-
-	balloon_alert_to_viewers("prying open [src]...")
-	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
-		return
-	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(locked)
 		to_chat(zombie, span_warning("\The [src] is bolted down tight."))
 		return
 	if(welded)
 		to_chat(zombie, span_warning("\The [src] is welded shut."))
 		return
-	if(density || operating) //Make sure it's still closed
+
+	balloon_alert_to_viewers("prying open [src]...")
+	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
+		return
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+
+	if(!density || operating) //Make sure it's still closed
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
 	return TRUE
 
-/obj/machinery/power/apc/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+/obj/machinery/power/apc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	zombie.visible_message(span_danger("[zombie] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
@@ -116,7 +117,7 @@
 	zombie.do_attack_animation(src, used_item = claw)
 	return TRUE
 
-/obj/machinery/nuclearbomb/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+/obj/machinery/nuclearbomb/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!timer_enabled)
 		to_chat(zombie, span_warning("\The [name] isn't active."))
 		return
@@ -127,9 +128,15 @@
 		return
 	do_defuse(zombie)
 
-/mob/living/carbon/human/attack_zombie(mob/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+/mob/living/carbon/human/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(stat == DEAD)
 		return
 	if(!claw.zombium_per_hit)
 		return
-	reagents.add_reagent(/datum/reagent/zombium, claw.zombium_per_hit)
+	reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
+
+/obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(!is_wired)
+		return
+	balloon_alert(zombie, "barbed wire slices into you!")
+	zombie.apply_damage(20, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
