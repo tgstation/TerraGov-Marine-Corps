@@ -58,6 +58,13 @@
 	occupant.Sleeping(20 SECONDS)
 
 	//You'll heal slowly just from being in an active pod, but chemicals speed it up.
+	if(HAS_TRAIT(occupant, TRAIT_SKILLS_EXTRACTED) && occupant.can_restore_skills)
+		occupant.set_skills(occupant.skills.modifyAllRatings(1))
+		REMOVE_TRAIT(occupant, TRAIT_SKILLS_EXTRACTED, TRAIT_GENERIC)
+		occupant.can_restore_skills = FALSE
+	if(HAS_TRAIT(occupant, TRAIT_SKILLS_IMPRINTED) && occupant.can_restore_skills)
+		REMOVE_TRAIT(occupant, TRAIT_SKILLS_EXTRACTED, TRAIT_GENERIC)
+		occupant.can_restore_skills = FALSE
 	if(occupant.getOxyLoss())
 		occupant.adjustOxyLoss(-1)
 	if (occupant.getToxLoss())

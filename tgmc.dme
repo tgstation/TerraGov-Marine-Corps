@@ -2572,4 +2572,5 @@
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "ntf_modular\include.dm"
+#include "ntf_modular\code\game\objects\structures\kz_stuff.dm"
 // END_INCLUDE
