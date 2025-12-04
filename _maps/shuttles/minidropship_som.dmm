@@ -173,6 +173,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"F" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "I" = (
 /obj/structure/dropship_piece/tadpole/tadpole_nose/left{
 	dir = 1;
@@ -377,7 +381,7 @@ T
 O
 a
 a
-b
+F
 r
 O
 "}

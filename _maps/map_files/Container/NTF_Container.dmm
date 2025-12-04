@@ -9128,7 +9128,7 @@
 	},
 /area/mainship/medical/medical_science)
 "jgo" = (
-/mob/living/simple_animal/catslug/newt,
+/obj/structure/closet/secure_closet/xeno_cage,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -17680,6 +17680,7 @@
 /area/mainship/medical/medical_science)
 "rzV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "rAS" = (
@@ -17917,6 +17918,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/xeno_cage,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},

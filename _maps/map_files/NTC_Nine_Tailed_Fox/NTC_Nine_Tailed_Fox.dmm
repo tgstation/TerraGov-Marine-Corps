@@ -2330,6 +2330,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /obj/machinery/door_display/research_cell/cell/cell1,
+/obj/item/camera,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -19884,6 +19885,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"sgM" = (
+/obj/structure/closet/secure_closet/xeno_cage,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "sgU" = (
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
@@ -21291,8 +21298,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "tux" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/camera,
+/obj/structure/closet/secure_closet/xeno_cage,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -32431,7 +32437,7 @@ mKo
 kyS
 tKP
 kyS
-cam
+sgM
 aya
 mFm
 aya

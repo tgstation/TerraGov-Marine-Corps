@@ -43,6 +43,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"j" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "k" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -369,7 +373,7 @@ T
 O
 a
 a
-b
+j
 r
 O
 "}

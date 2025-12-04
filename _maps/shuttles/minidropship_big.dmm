@@ -11,6 +11,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"d" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "e" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -300,7 +304,6 @@
 "Z" = (
 /obj/machinery/door_control/minidropship{
 	dir = 4;
-	id = "minidropship_podlock";
 	name = "inner door-control";
 	pixel_x = -25;
 	pixel_y = 3
@@ -384,7 +387,7 @@ T
 O
 a
 a
-b
+d
 r
 O
 "}

@@ -204,7 +204,7 @@
 	accurate_range = 3
 	max_range = 8
 	damage = 55
-	damage_falloff = 5
+	damage_falloff = 7
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	if(iswallturf(target_turf))
@@ -232,8 +232,8 @@
 	damage = 110
 	penetration = 25
 	sundering = 9
-	damage_falloff = 10
-	var/vehicle_stun_duration = 2 SECONDS
+	damage_falloff = 8
+	var/vehicle_stun_duration = 1.5 SECONDS
 
 /datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
@@ -265,9 +265,9 @@
 	icon_state = "buckshot"
 	accuracy_variation = 9
 	accurate_range = 3
-	max_range = 10
-	damage = 60
-	damage_falloff = 4
+	max_range = 8
+	damage = 50
+	damage_falloff = 7
 
 /datum/ammo/bullet/shotgun/heavy_flechette
 	name = "heavy flechette shell"
@@ -281,7 +281,7 @@
 	accuracy_variation = 8
 	max_range = 15
 	damage = 55
-	damage_falloff = 0.5
+	damage_falloff = 5
 	penetration = 20
 	sundering = 15
 
@@ -298,7 +298,7 @@
 /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
 	name = "additional flechette"
 	damage = 50
-	damage_falloff = 4
+	damage_falloff = 5
 
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"

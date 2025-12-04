@@ -857,6 +857,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "CA" = (
@@ -954,6 +955,10 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"MW" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "MY" = (
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
@@ -1305,7 +1310,7 @@ aI
 aA
 aA
 aA
-aA
+MW
 ap
 ah
 "}

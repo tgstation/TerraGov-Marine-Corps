@@ -78,8 +78,6 @@
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /obj/machinery/door_control/minidropship{
-	dir = 2;
-	id = "minidropship_podlock";
 	name = "inner door-control"
 	},
 /obj/machinery/camera/autoname/mainship/dropship_two,
@@ -195,6 +193,7 @@
 	dir = 1
 	},
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/template_noop,
 /area/shuttle/minidropship)
 "V" = (

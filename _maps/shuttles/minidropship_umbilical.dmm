@@ -9,6 +9,10 @@
 "b" = (
 /turf/template_noop,
 /area/template_noop)
+"c" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
 "d" = (
 /obj/machinery/computer/camera{
 	network = list("dropship2")
@@ -147,7 +151,6 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/full,
 /obj/machinery/door_control/minidropship{
 	dir = 4;
-	id = "minidropship_podlock";
 	name = "inner door-control";
 	pixel_x = -25
 	},
@@ -283,7 +286,7 @@ b
 (3,1,1) = {"
 k
 p
-F
+c
 s
 q
 l

@@ -312,10 +312,12 @@
 /area/shuttle/dropship/alamo)
 "bs" = (
 /obj/structure/dropship_piece/one/corner/middleright,
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bt" = (
 /obj/structure/dropship_piece/one/corner/middleleft,
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bu" = (

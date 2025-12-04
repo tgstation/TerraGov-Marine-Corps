@@ -185,6 +185,7 @@
 	ceiling = 2
 	})
 "ud" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/closed/shuttle/dropship2/engineone/alt,
 /area/shuttle/dropship/normandy{
 	ceiling = 2
@@ -335,6 +336,7 @@
 	ceiling = 2
 	})
 "Gg" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/closed/shuttle/dropship2/engineone/alt{
 	dir = 8
 	},

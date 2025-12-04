@@ -236,5 +236,95 @@
 	balloon_alert(user, "Not reusable.")
 	return
 
-/obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
-	return
+//Air defense system
+/obj/machinery/deployable/mounted/sentry/ads_system
+	name = "Archercorp 'ACADS01' Air Defense Sentry"
+	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. It's protection range is 11 tiles, uses about 10 rounds per shell shot down. "
+	use_power = TRUE
+	range = 0
+	var/intercept_cooldown = 0
+
+//this will make it not shoot people etc, this is barely a sentry but we want ammo things so
+/obj/machinery/deployable/mounted/sentry/ads_system/process()
+	update_icon()
+	if((machine_stat & EMPED))
+		return
+	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
+
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/movable/projectile/proj)
+	if((machine_stat & EMPED) || !COOLDOWN_FINISHED(src, intercept_cooldown))
+		return
+	COOLDOWN_START(src, intercept_cooldown, 3 SECONDS)
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(gun.rounds <= 0)
+		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
+		return FALSE
+	gun.set_target(target_turf)
+	addtimer(CALLBACK(src, PROC_REF(firing_loop)), 1) //so it works detached from the proc and doesnt delay.
+	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
+	playsound(loc, SFX_EXPLOSION_SMALL_DISTANT, 50, 1, falloff = 5)
+	gun.clean_target()
+	return TRUE
+
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop()
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	for(var/times in 1 to 10)
+		if(gun.rounds <= 0)
+			radio.talk_into(src, "<b>ALERT! [src] ran out of ammo at: [AREACOORD_NO_Z(src)].</b>")
+			break
+		gun.Fire()
+
+/obj/item/weapon/gun/sentry/ads_system
+	name = "\improper Archercorp ACADS01 Air Defense Sentry"
+	desc = "A deployable air defense sentry requiring 100 rounds drum of special flak ammunition."
+	icon = 'ntf_modular/icons/obj/machines/deployable/point-defense/point_defense.dmi'
+	icon_state = "pointdef"
+	burst_amount = 10
+	fire_delay = 0.1 SECONDS
+	burst_delay = 0.1 SECONDS
+	max_shells = 100
+
+	fire_sound = SFX_AC_FIRE
+	ammo_datum_type = /datum/ammo/bullet/turret/air_defense
+	default_ammo_type = /obj/item/ammo_magazine/sentry/ads_system
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/ads_system)
+	deployable_item = /obj/machinery/deployable/mounted/sentry/ads_system
+
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
+
+/obj/item/weapon/gun/sentry/ads_system/premade
+	faction = FACTION_TERRAGOV
+	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+
+/obj/item/storage/box/crate/sentry/ads
+	name = "\improper ACADS01 air defense sentry crate"
+	desc = "A large case containing all you need to set up an automated air defense sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_type = /datum/storage/box/crate/sentry
+
+/obj/item/storage/box/crate/sentry/ads/PopulateContents()
+	new /obj/item/weapon/gun/sentry/ads_system(src)
+	new /obj/item/ammo_magazine/sentry/ads_system(src)
+
+/datum/ammo/bullet/turret/air_defense
+	name = "flak autocannon bullet"
+	hud_state = "sniper_flak"
+	max_range = 11
+	damage = 0
+	damage_falloff = 0
+	accuracy = -100 //we dont want it to hit anything actually
+	scatter = -50
+	ammo_behavior_flags = AMMO_IFF|AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF|AMMO_BETTER_COVER_RNG
+
+/obj/item/ammo_magazine/sentry/ads_system
+	name = "\improper ACADS01 box magazine (10x28mm Flak)"
+	desc = "A drum of 100 10x28mm flak rounds for the ACADS01. Just feed it into the sentry gun's ammo port."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state = "sentry"
+	icon = 'icons/obj/items/ammo/sentry.dmi'
+	magazine_flags = NONE //can't be refilled or emptied by hand
+	caliber = CALIBER_10X28
+	max_rounds = 100
+	default_ammo = /datum/ammo/bullet/turret/air_defense
+

@@ -737,6 +737,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
+"kt" = (
+/obj/item/weapon/gun/sentry/ads_system/premade,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "nN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/red/full,
@@ -762,6 +766,7 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/obj/item/weapon/gun/sentry/ads_system/premade,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "yh" = (
@@ -776,8 +781,7 @@
 "zN" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light/small{
-	dir = 8;
-	status = 0
+	dir = 8
 	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
@@ -1111,7 +1115,7 @@ an
 bp
 bq
 bq
-aD
+kt
 an
 bu
 cy
