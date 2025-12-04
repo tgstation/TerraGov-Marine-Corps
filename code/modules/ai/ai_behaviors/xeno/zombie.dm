@@ -18,7 +18,7 @@
 	. = ..()
 	var/mob/living/living_parent = mob_parent
 	if(living_parent.is_buckled())
-		living_parent.do_resist()
+		living_parent.buckled.user_unbuckle_mob(living_parent, living_parent, FALSE)
 	if(living_parent.resting)
 		living_parent.get_up()
 
