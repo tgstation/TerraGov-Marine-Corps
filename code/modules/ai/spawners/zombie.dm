@@ -18,7 +18,6 @@
 	spawndelay = 15 SECONDS
 	maxamount = 50
 	var/threat_warning = FALSE
-	///The old spawning cap from before the spawner was threatened
 
 	var/datum/proximity_monitor/proximity_monitor
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
@@ -65,7 +64,7 @@
 			return
 
 	if(COOLDOWN_FINISHED(src, proxy_alert_cooldown))
-		if(SSspawning.spawnerdata[src].max_allowed_mobs < ZOMBIE_THREATENED_CAP)
+		if(SSspawning.spawnerdata[src].max_allowed_mobs != ZOMBIE_THREATENED_CAP)
 			maxamount = SSspawning.spawnerdata[src].max_allowed_mobs
 		SSspawning.spawnerdata[src].max_allowed_mobs = ZOMBIE_THREATENED_CAP
 		threat_warning = TRUE
