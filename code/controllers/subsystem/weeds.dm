@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(weeds)
 	priority = FIRE_PRIORITY_WEED
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY|RUNLEVEL_SETUP|RUNLEVEL_GAME|RUNLEVEL_POSTGAME
-	wait = 5 SECONDS
+	wait = 2 SECONDS
 
 	// This is a list of nodes on the map.
 	var/list/creating = list()
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, PROC_REF(create_weed), T, creating[T]), rand(1, 3 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(create_weed), T, creating[T]), rand(0.1 SECONDS, 0.3 SECONDS)) // Should always be faster than wait.
 		pending -= T
 		spawn_attempts_by_node -= T
 		creating -= T
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(weeds)
 		if(pending[T] && (get_dist_euclidean_square(node, T) >= get_dist_euclidean_square(get_step(pending[T], 0), T)))
 			continue
 		pending[T] = node
-		spawn_attempts_by_node[T] = 5 //5 attempts maximum
+		spawn_attempts_by_node[T] = (node.node_range * 2) + 1 // In theory, it only needs 2x the range as attempts to reach the maximum by itself. If it are already nearby weeds, they won't need all the attempts.
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/alien/weeds/node/node)
 	if(QDELETED(node))
