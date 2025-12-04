@@ -182,54 +182,104 @@ const ItemLine = (props) => {
         Underbarrel
       </Box>
     ),
-    tool: (
-      <Box inline mr="6px" ml="6px" color="#FFE4C4">
-        Tools
-      </Box>
-    ),
-    artillery: (
+    'artillery-tool': (
       <Box inline mr="6px" ml="6px" color="#CD5C5C">
-        Artillery
+        Tool
       </Box>
     ),
-    'artillery-ammo': (
-      <Box inline mr="6px" ml="6px" color="#ffc0c0ff">
-        Ammo
+    'artillery-mortar': (
+      <Box inline mr="6px" ml="6px" color="#CD5C5C">
+        Mortar
+      </Box>
+    ),
+    'artillery-howitzer': (
+      <Box inline mr="6px" ml="6px" color="#CD5C5C">
+        Howitzer
+      </Box>
+    ),
+    'vehicle-tool': (
+      <Box inline mr="6px" ml="6px" color="#00ff0dff">
+        Tool
       </Box>
     ),
     vehicle: (
-      <Box inline mr="6px" ml="6px" color="#00e1ffff">
+      <Box inline mr="6px" ml="6px" color="#00ff0dff">
         Vehicle
       </Box>
     ),
     'vehicle-attachable': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
+      <Box inline mr="6px" ml="6px" color="#00ff0dff">
         Attachable
       </Box>
     ),
     'vehicle-ammo': (
-      <Box inline mr="6px" ml="6px" color="#7df0ffff">
+      <Box inline mr="6px" ml="6px" color="#00ff0dff">
         Ammo
       </Box>
     ),
-    emplacement: (
-      <Box inline mr="6px" ml="6px" color="#ffe600ff">
-        Emplacement
-      </Box>
-    ),
-    'emplacement-ammo': (
+    'emplacement-laser': (
       <Box inline mr="6px" ml="6px" color="#fff385ff">
-        Ammo
+        Laser
       </Box>
     ),
-    'armor-module': (
+    'emplacement-heavysmartgun': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Heavy Smartgun
+      </Box>
+    ),
+    'emplacement-heavymachinegun': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Heavy Machinegun
+      </Box>
+    ),
+    'emplacement-minigun': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Minigun
+      </Box>
+    ),
+    'emplacement-autocannon': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Autocannon
+      </Box>
+    ),
+    'armor-module-tyr': (
       <Box inline mr="6px" ml="6px" color="#ae00ffff">
-        Module
+        Extra Armor
       </Box>
     ),
-    grenade: (
+    'armor-module-valk': (
+      <Box inline mr="6px" ml="6px" color="#ae00ffff">
+        Automatic Healing
+      </Box>
+    ),
+    'armor-module-hlin': (
+      <Box inline mr="6px" ml="6px" color="#ae00ffff">
+        Explosion Protection
+      </Box>
+    ),
+    'armor-module-mimir': (
+      <Box inline mr="6px" ml="6px" color="#ae00ffff">
+        Biological Protection
+      </Box>
+    ),
+    'armor-module-surt': (
+      <Box inline mr="6px" ml="6px" color="#ae00ffff">
+        Fire Protection
+      </Box>
+    ),
+    'grenade-explosive': (
       <Box inline mr="6px" ml="6px" color="#ffbb00ff">
-        Grenade
+        Explosive
+      </Box>
+    ),
+    'grenade-incendiary': (
+      <Box inline mr="6px" ml="6px" color="#ffbb00ff">
+        Incendiary
+      </Box>
+    ),
+    'grenade-gas': (
+      <Box inline mr="6px" ml="6px" color="#ffbb00ff">
+        Anti-Gas
       </Box>
     ),
     attachment: (
@@ -237,34 +287,39 @@ const ItemLine = (props) => {
         Attachment
       </Box>
     ),
-    melee: (
-      <Box inline mr="6px" ml="6px" color="#ff0015ff">
+    'weapon-melee': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
         Melee
       </Box>
     ),
-    gun: (
-      <Box inline mr="6px" ml="6px" color="#ff0015ff">
-        Gun
+    'weapon-shield': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Shield
       </Box>
     ),
-    'gun-ammo': (
-      <Box inline mr="6px" ml="6px" color="#ff626fff">
-        Ammo
+    'weapon-revolver': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Revolver
       </Box>
     ),
-    materials: (
-      <Box inline mr="6px" ml="6px" color="#7FFFD4">
-        Materials
+    'weapon-plasma': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Plasma
       </Box>
     ),
-    explosive: (
-      <Box inline mr="6px" ml="6px" color="#FF7F50">
-        Explosives
+    'weapon-iff': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        IFF
       </Box>
     ),
-    other: (
+    'weapon-minigun': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Minigun
+      </Box>
+    ),
+    'fun-random': (
       <Box inline mr="6px" ml="6px" color="#BA55D3">
-        Other
+        Random
       </Box>
     ),
   };
