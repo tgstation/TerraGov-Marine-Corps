@@ -262,7 +262,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 11)
 /obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/proj)
 	if((machine_stat & EMPED) || !COOLDOWN_FINISHED(src, intercept_cooldown))
 		return
-	COOLDOWN_START(src, intercept_cooldown, rand(1 SECONDS,2 SECONDS))
+	COOLDOWN_START(src, intercept_cooldown, rand(0.5 SECONDS, 1.5 SECONDS))
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun.rounds <= 0)
 		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
@@ -290,6 +290,8 @@ GLOBAL_VAR_INIT(ads_intercept_range, 11)
 	icon = 'ntf_modular/icons/obj/machines/deployable/point-defense/point_defense.dmi'
 	icon_state = "pointdef"
 	burst_amount = 10
+	max_integrity = 300 //hopefully will withstand a strafe or so cause its stupidly easy to cheese
+	integrity_failure = 50
 	fire_delay = 0.1 SECONDS
 	burst_delay = 0.1 SECONDS
 	max_shells = 100
@@ -325,7 +327,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 11)
 	damage = 0
 	damage_falloff = 0
 	accuracy = -100 //we dont want it to hit anything actually
-	scatter = 5
+	scatter = 1
 	ammo_behavior_flags = AMMO_IFF|AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF|AMMO_BETTER_COVER_RNG
 
 /obj/item/ammo_magazine/sentry/ads_system
