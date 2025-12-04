@@ -22,8 +22,6 @@
 			return
 		set_atom_to_walk_to(target)
 		return
-	if(!ismovable(target))
-		return //the fuck did you click?
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)

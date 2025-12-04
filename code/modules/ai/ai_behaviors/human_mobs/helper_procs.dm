@@ -114,6 +114,11 @@
 		attack_self(user)
 	return ..()
 
+/obj/item/tool/weldingtool/ai_use(mob/living/target, mob/living/user)
+	if(!isOn())
+		toggle()
+	return TRUE
+
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	return
@@ -141,17 +146,15 @@
 	if(welded)
 		behavior_datum.try_speak("Its welded [density ? "shut!" : "open!"]")
 		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
-		if(!welder && density)
-			behavior_datum.set_combat_target(src)
+		if(!welder)
+			if(density)
+				behavior_datum.set_combat_target(src)
+				return
+			behavior_datum.try_speak("No welder!")
+			behavior_datum.on_engineering_end(src)
 			return
 
-		welder.toggle()
 		welder_act(interactor, welder)
-		if(welder.isOn())
-			welder.toggle()
-		var/mob/living/carbon/human/human_owner = interactor
-		if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
-			human_owner.back.attackby(welder, human_owner)
 		behavior_datum.store_tool(welder)
 
 	if(locked)
@@ -187,14 +190,6 @@
 	if(loc == interactor && ishuman(interactor))
 		var/mob/living/carbon/human/human_interactor = interactor
 		human_interactor.do_quick_equip()
-
-/obj/item/tool/weldingtool/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
-	. = ..()
-	if(interactor.get_active_held_item() != src && interactor.get_inactive_held_item() != src)
-		return
-	if(welding)
-		return
-	toggle()
 
 /obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.store_hands()
@@ -297,15 +292,8 @@
 			behavior_datum.try_speak("No welder!")
 			behavior_datum.on_engineering_end(src)
 			return
-		welder.toggle()
+
 		welder_act(interactor, welder)
-		if(welder.isOn())
-			welder.toggle()
-
-		var/mob/living/carbon/human/human_owner = interactor
-		if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
-			human_owner.back.attackby(welder, human_owner)
-
 		behavior_datum.store_tool(welder)
 
 	if(miner_status == MINER_MEDIUM_DAMAGE)
