@@ -150,7 +150,7 @@
 			if(density)
 				behavior_datum.set_combat_target(src)
 				return
-			behavior_datum.try_speak("No welder!")
+			behavior_datum.custom_speak("No welder!")
 			behavior_datum.on_engineering_end(src)
 			return
 

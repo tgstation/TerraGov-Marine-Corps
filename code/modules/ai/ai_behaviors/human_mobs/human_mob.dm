@@ -333,55 +333,6 @@
 	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
 	return TRUE
 
-///Makes the mob attempt to interact with a specified atom
-/datum/ai_behavior/human/proc/interaction_designated(datum/source, atom/target)
-	SIGNAL_HANDLER
-	if(target?.z != mob_parent.z)
-		return
-	if(get_dist(target, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-		return
-	if(isturf(target))
-		if(istype(target, /turf/closed/interior/tank/door))
-			set_interact_target(target) //todo: Other option might be redundant?
-			try_speak(pick(receive_order_chat))
-			return
-		set_atom_to_walk_to(target)
-		return
-	if(!ismovable(target))
-		return //the fuck did you click?
-	//todo: AM proc to check if we should react at all
-	var/atom/movable/movable_target = target
-	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
-		set_interact_target(movable_target)
-		try_speak(pick(receive_order_chat))
-		return
-	if(movable_target.faction != mob_parent.faction)
-		set_combat_target(movable_target)
-		return
-	if(isliving(movable_target))
-		var/mob/living/living_target = target
-		if(!living_target.stat)
-			set_escorted_atom(null, living_target)
-	set_interact_target(movable_target)
-	try_speak(pick(receive_order_chat))
-
-///Attempts to pickup an item
-/datum/ai_behavior/human/proc/pick_up_item(obj/item/new_item)
-	store_hands()
-	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item())
-		return
-	mob_parent.UnarmedAttack(new_item, TRUE)
-
-///Says an audible message
-/datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
-	if(mob_parent.incapacitated())
-		return
-	if(!COOLDOWN_FINISHED(src, ai_chat_cooldown))
-		return
-	//maybe radio arg in the future for some things
-	mob_parent.say(message)
-	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
-
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
 	SIGNAL_HANDLER
