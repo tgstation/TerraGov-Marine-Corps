@@ -378,8 +378,10 @@
 
 
 /obj/item/stack/AltClick(mob/user)
+	/* NTF xenos can split stacks
 	if(isxeno(user))
 		return ..()
+	*/
 	if(!can_interact(user))
 		return ..() //Alt click on turf if not human or too far away.
 	var/stackmaterial = tgui_input_number(user, "How many sheets do you wish to take out of this stack ?)", max_value = get_amount())

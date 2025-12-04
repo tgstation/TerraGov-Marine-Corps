@@ -16,7 +16,7 @@
 	///How many actual jellies the pod has stored
 	var/chargesleft = 0
 	///Max amount of jellies the pod can hold
-	var/maxcharges = 20
+	var/maxcharges = 100
 	///Slowprocess ticks of progress towards next jelly
 	var/jelly_progress = 0
 	///info to add to desc, updated by process()
@@ -95,7 +95,8 @@
 			return
 
 		balloon_alert(xeno_attacker, "Retrieved jelly")
-		new /obj/item/req_jelly(xeno_attacker.loc, hivenumber)
+		var/obj/item/stack/req_jelly/new_jelly = new(xeno_attacker.loc, 1, hivenumber)
+		new_jelly.add_to_stacks(xeno_attacker)
 		chargesleft--
 	while(do_mob(xeno_attacker, src, 1 SECONDS))
 
@@ -103,7 +104,8 @@
 	if(loc && (chargesleft > 0))
 		for(var/i = 1 to chargesleft)
 			if(prob(95))
-				new /obj/item/req_jelly(loc, hivenumber)
+				var/obj/item/stack/req_jelly/new_jelly = new(loc, 1, hivenumber)
+				new_jelly.add_to_stacks(src)
 	GLOB.hive_datums[hivenumber].req_jelly_pods -= src
 	. = ..()
 
@@ -111,21 +113,49 @@
 /// Requisition Jelly//
 ///////////////////////
 
-/obj/item/req_jelly
+/obj/item/stack/req_jelly
 	name = "alien ambrosia"
-	desc = "A beautiful, glittering mound of honey like resin, might fetch a good price."
+	desc = "A beautiful, glittering mound of honey-like resin, might fetch a good price."
 	icon = 'ntf_modular/icons/xeno/xeno_materials.dmi'
 	icon_state = "reqjelly"
-	var/hivenumber
-	var/current_user
+	max_amount = 100
+	stack_name = "pile"
+	singular_name = "globule"
+	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/req_jelly/attack(mob/living/carbon/patient, mob/living/user)
+/obj/item/stack/req_jelly/Initialize(mapload, new_amount, _hivenumber)
+	if(_hivenumber) ///because admins can spawn them
+		hivenumber = _hivenumber
+	. = ..()
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
+	color = hive.color
+
+/obj/item/stack/req_jelly/merge(obj/item/stack/S)
+	if(!issamexenohive(S))
+		return FALSE
+	. = ..()
+
+/obj/item/stack/req_jelly/change_stack(mob/user, new_amount)
+	if(amount < 1 || amount < new_amount)
+		stack_trace("[src] tried to change_stack() by [new_amount] amount for [user] user, while having [amount] amount itself.")
+		return
+	var/obj/item/stack/S = new type(user, new_amount, hivenumber)
+	use(new_amount)
+	user.put_in_hands(S)
+
+/obj/item/stack/req_jelly/examine(mob/user)
+	. = ..()
+	var/list/value = get_export_value()
+	. += "It is worth [value[1]] supply points and [value[2]] dropship points."
+
+/obj/item/stack/req_jelly/attack(mob/living/carbon/patient, mob/living/user)
 	if(!isxeno(user))
 		to_chat(user, span_warning("You don't know how to use this."))
 		return FALSE
 	jellyrevive(patient,user)
 
-/obj/item/req_jelly/proc/jellyrevive(mob/living/carbon/human/patient, mob/living/carbon/human/user)
+/obj/item/stack/req_jelly/proc/jellyrevive(mob/living/carbon/human/patient, mob/living/carbon/user)
 	if(user.do_actions) //Currently doing something
 		balloon_alert(user, "busy!")
 		return
@@ -238,7 +268,7 @@
 	to_chat(patient, span_notice("<i><font size=4>Thousands of minds will you to return to this mortal plane...</font></i>"))
 	to_chat(user, span_notice("[icon2html(src, viewers(user))] They rise from their grave."))
 	playsound(get_turf(src), 'sound/effects/woosh_swoosh.ogg', 45, 0)
-	user.temporarilyRemoveItemFromInventory(src)
+	use(1)
 	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
@@ -263,7 +293,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives[patient.faction]")
 
 	if(CHECK_BITFIELD(patient.status_flags, XENO_HOST))
-		var/obj/item/alien_embryo/friend = locate() in patient
-		START_PROCESSING(SSobj, friend)
+		for(var/obj/item/alien_embryo/friend in patient)
+			START_PROCESSING(SSobj, friend)
 
 	notify_ghosts("<b>[user]</b> has brought <b>[patient.name]</b> back to life!", source = patient, action = NOTIFY_ORBIT)

@@ -30,7 +30,7 @@
 		. += AM.supply_export(faction_selling)
 		qdel(AM)
 
-/obj/item/req_jelly/supply_export(faction_selling)
+/obj/item/stack/req_jelly/supply_export(faction_selling)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(faction_selling in hive.allied_factions)
 		return list(new /datum/export_report(0, name, faction_selling, 0))
@@ -97,5 +97,5 @@
 				return FALSE
 			return TRUE
 
-/obj/item/req_jelly/get_export_value()
-	return list(100, 25)
+/obj/item/stack/req_jelly/get_export_value()
+	return list(100 * amount, 25 * amount)
