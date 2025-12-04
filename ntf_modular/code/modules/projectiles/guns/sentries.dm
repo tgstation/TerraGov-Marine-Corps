@@ -236,10 +236,13 @@
 	balloon_alert(user, "Not reusable.")
 	return
 
+GLOBAL_VAR_INIT(ads_intercept_range, 11)
+
 //Air defense system
 /obj/machinery/deployable/mounted/sentry/ads_system
 	name = "Archercorp 'ACADS01' Air Defense Sentry"
-	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. It's protection range is 11 tiles, uses about 10 rounds per shell shot down. "
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
+	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about 10 rounds per shell shot down. "
 	use_power = TRUE
 	range = 0
 	var/intercept_cooldown = 0
@@ -251,28 +254,35 @@
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
-/obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/movable/projectile/proj)
+/obj/machinery/deployable/mounted/sentry/ads_system/do_deploy(mob/user, turf/location)
+	. = ..()
+	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range, location))
+		QDEL_IN(new /obj/effect/overlay/blinking_laser/marine/lines(aroundplace), 3 SECONDS)
+
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/proj)
 	if((machine_stat & EMPED) || !COOLDOWN_FINISHED(src, intercept_cooldown))
 		return
-	COOLDOWN_START(src, intercept_cooldown, 3 SECONDS)
+	COOLDOWN_START(src, intercept_cooldown, rand(1 SECONDS,2 SECONDS))
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun.rounds <= 0)
 		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
 	gun.set_target(target_turf)
-	addtimer(CALLBACK(src, PROC_REF(firing_loop)), 1) //so it works detached from the proc and doesnt delay.
+	addtimer(CALLBACK(src, PROC_REF(firing_loop), target_turf), 1) //so it works detached from the proc and doesnt delay.
 	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
 	playsound(loc, SFX_EXPLOSION_SMALL_DISTANT, 50, 1, falloff = 5)
 	gun.clean_target()
 	return TRUE
 
-/obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop()
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop(turf/target_turf)
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	for(var/times in 1 to 10)
 		if(gun.rounds <= 0)
 			radio.talk_into(src, "<b>ALERT! [src] ran out of ammo at: [AREACOORD_NO_Z(src)].</b>")
 			break
+		gun.set_target(target_turf)
 		gun.Fire()
+		sleep(0.1 SECONDS)
 
 /obj/item/weapon/gun/sentry/ads_system
 	name = "\improper Archercorp ACADS01 Air Defense Sentry"
@@ -306,6 +316,7 @@
 /obj/item/storage/box/crate/sentry/ads/PopulateContents()
 	new /obj/item/weapon/gun/sentry/ads_system(src)
 	new /obj/item/ammo_magazine/sentry/ads_system(src)
+	new /obj/item/ammo_magazine/sentry/ads_system(src)
 
 /datum/ammo/bullet/turret/air_defense
 	name = "flak autocannon bullet"
@@ -314,8 +325,8 @@
 	damage = 0
 	damage_falloff = 0
 	accuracy = -100 //we dont want it to hit anything actually
-	scatter = -50
-	ammo_behavior_flags = AMMO_IFF|AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF|AMMO_BETTER_COVER_RNG
+	scatter = 5
+	ammo_behavior_flags = AMMO_IFF|AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF|AMMO_BETTER_COVER_RNG
 
 /obj/item/ammo_magazine/sentry/ads_system
 	name = "\improper ACADS01 box magazine (10x28mm Flak)"

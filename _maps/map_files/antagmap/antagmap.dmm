@@ -4765,14 +4765,6 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "xC" = (
@@ -7015,10 +7007,6 @@
 "IL" = (
 /turf/open/floor/iron/dark/small,
 /area/antag_ship/vsd/med)
-"IN" = (
-/obj/structure/closet/crate/mortar_ammo/mortar_kit,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/armory)
 "IO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -9492,11 +9480,6 @@
 "UH" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/rifle/icc_sharpshooter,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "UJ" = (
@@ -10034,11 +10017,6 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
-/obj/item/storage/box/crate/minisentry,
 /obj/item/minerupgrade/automatic,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
@@ -19386,7 +19364,7 @@ Nv
 aK
 AN
 gU
-IN
+Sk
 AN
 zW
 gW

@@ -736,6 +736,7 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/item/storage/box/crate/sentry = 4,
+			/obj/item/storage/box/crate/sentry/ads = 2,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
@@ -1386,6 +1387,15 @@
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
+		),
+		"Heavy Weapons" = list(
+			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
+			/obj/item/storage/box/crate/minisentry = 10,
+			/obj/item/storage/box/crate/sentry/ads = 4,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 5,
+			/obj/item/ammo_magazine/heavymachinegun/small = 10,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -2363,6 +2373,11 @@
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
+		),
+		"Heavy Weapons" = list(
+			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+			/obj/item/storage/box/crate/sentry/ads = 1,
+			/obj/item/storage/box/crate/minisentry = 8,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,

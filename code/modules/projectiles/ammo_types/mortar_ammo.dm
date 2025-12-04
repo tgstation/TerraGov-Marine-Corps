@@ -21,7 +21,7 @@
 	explosion(T, 1, 2, 5, 0, 3, explosion_cause=src)
 
 /datum/ammo/mortar/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(11,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range, target_turf))
 		if(ads.try_intercept(target_turf, proj))
 			return
 	drop_nade(target_turf)
