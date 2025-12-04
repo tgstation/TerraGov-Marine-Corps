@@ -190,6 +190,9 @@
 		toggle_auto_weeding()
 	return FALSE
 
+/datum/action/ability/activable/xeno/plant_weeds/cheap
+	cost_multiplier = 0.25
+
 /datum/action/ability/activable/xeno/plant_weeds/ranged
 	max_range = 4
 
