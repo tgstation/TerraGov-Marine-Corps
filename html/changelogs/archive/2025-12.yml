@@ -23,3 +23,14 @@
   - rscadd: 'Added a new heavy seasonal: Remote Weapons'
   mudzbe:
   - bugfix: Gamemodes cant start on maps with a blacklisted ground map (without bypass)
+2025-12-04:
+  Colfer1:
+  - rscadd: Requisition jelly (ambrosia jelly) now revives humans that are dead
+  - rscadd: Adds synthetic survivors to the game on a few select gamemodes
+  - balance: Gave research survivors & Early gen synths the ability to do research
+  Lewdcifer:
+  - bugfix: Runners and Hunters should get their Pounce ability again.
+  Lumipharon:
+  - rscadd: NPC's will keep track of important items they drop and try pick them up
+      later
+  - bugfix: fixed NPC's trying to pickup things with missing limbs

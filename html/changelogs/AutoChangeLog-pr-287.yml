@@ -1,5 +1,0 @@
-author: "Colfer1"
-delete-after: True
-changes:
-  - rscadd: "Adds synthetic survivors to the game on a few select gamemodes"
-  - balance: "Gave research survivors & Early gen synths the ability to do research"
