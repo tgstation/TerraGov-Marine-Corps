@@ -43,7 +43,7 @@
 			"Moving!",
 		),
 	)
-	/// General acknowledgement of receiving an order
+	/// Chat lins when receiving an order
 	var/list/receive_order_lines = list(
 		FACTION_NEUTRAL = list(
 			"Affirmative.",
