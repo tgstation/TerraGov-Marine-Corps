@@ -231,6 +231,18 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	cost = 2
 	slot = SLOT_R_HAND
 
+/datum/gear/d6
+	display_name = "d6 dice"
+	path = /obj/item/toy/dice
+	cost = 1
+	slot = SLOT_R_HAND
+
+/datum/gear/d20
+	display_name = "d20 dice"
+	path = /obj/item/toy/dice/d20
+	cost = 1
+	slot = SLOT_R_HAND
+
 /datum/gear/rosary
 	display_name = "Rosary"
 	path = /obj/item/rosary
