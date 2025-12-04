@@ -15,7 +15,7 @@
 	///To what level they will handle engineering tasks like repairs
 	var/engineer_rating = AI_ENGIE_DEFAULT
 	///List of things the NPC will try to interact with, such as gear to pick up
-	var/list/atom/atoms_of_interest = list()
+	var/list/atom/atoms_to_interact = list()
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -49,7 +49,7 @@
 	melee_weapon = null
 	hazard_list = null
 	heal_list = null
-	atoms_of_interest = null
+	atoms_to_interact = null
 	QDEL_NULL(mob_inventory)
 	return ..()
 
