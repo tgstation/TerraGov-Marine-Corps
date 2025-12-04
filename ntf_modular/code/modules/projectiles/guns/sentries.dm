@@ -236,16 +236,28 @@
 	balloon_alert(user, "Not reusable.")
 	return
 
-GLOBAL_VAR_INIT(ads_intercept_range, 11)
+GLOBAL_VAR_INIT(ads_intercept_range, 9)
 
 //Air defense system
 /obj/machinery/deployable/mounted/sentry/ads_system
 	name = "Archercorp 'ACADS01' Air Defense Sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
-	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about 10 rounds per shell shot down. "
+	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about 10 rounds per shell shot down. Alt + RClick to briefly display it's range. "
 	use_power = TRUE
 	range = 0
 	var/intercept_cooldown = 0
+	var/preview_cooldown = 0
+
+/obj/effect/overlay/blinking_laser/marine/lines/nowarning
+
+/obj/machinery/deployable/mounted/sentry/ads_system/AltRightClick(mob/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, preview_cooldown))
+		balloon_alert_to_viewers("on cooldown.")
+		return
+	COOLDOWN_START(src, preview_cooldown, 4 SECONDS)
+	balloon_alert_to_viewers("showing range now.")
+	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range, loc))
+		QDEL_IN(new /obj/effect/overlay/blinking_laser/marine/pod_warning(aroundplace), 3 SECONDS)
 
 //this will make it not shoot people etc, this is barely a sentry but we want ammo things so
 /obj/machinery/deployable/mounted/sentry/ads_system/process()
@@ -254,24 +266,21 @@ GLOBAL_VAR_INIT(ads_intercept_range, 11)
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
-/obj/machinery/deployable/mounted/sentry/ads_system/do_deploy(mob/user, turf/location)
-	. = ..()
-	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range, location))
-		QDEL_IN(new /obj/effect/overlay/blinking_laser/marine/lines(aroundplace), 3 SECONDS)
-
 /obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/proj)
 	if((machine_stat & EMPED) || !COOLDOWN_FINISHED(src, intercept_cooldown))
 		return
 	COOLDOWN_START(src, intercept_cooldown, rand(0.5 SECONDS, 1.5 SECONDS))
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun.rounds <= 0)
+		playsound(loc, 'sound/vox/ammunition.ogg', 30, FALSE)
 		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
+	face_atom(target_turf)
 	gun.set_target(target_turf)
+	playsound(loc, pick('sound/vox/alert.ogg','sound/vox/warning.ogg','sound/vox/incoming.ogg'), 30, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(firing_loop), target_turf), 1) //so it works detached from the proc and doesnt delay.
 	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
 	playsound(loc, SFX_EXPLOSION_SMALL_DISTANT, 50, 1, falloff = 5)
-	gun.clean_target()
 	return TRUE
 
 /obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop(turf/target_turf)
@@ -290,6 +299,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 11)
 	icon = 'ntf_modular/icons/obj/machines/deployable/point-defense/point_defense.dmi'
 	icon_state = "pointdef"
 	burst_amount = 10
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
 	max_integrity = 300 //hopefully will withstand a strafe or so cause its stupidly easy to cheese
 	integrity_failure = 50
 	fire_delay = 0.1 SECONDS
