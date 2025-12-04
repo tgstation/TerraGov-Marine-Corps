@@ -311,14 +311,14 @@
 #undef CAT_FUN
 
 /obj/effect/vendor_bundle/mimir_two_modules
-	desc = "Designed for mounting on modular armor. This protects you significantly more against acidic, gaseous, and biological attacks. It comes with two modules: one for your helmet and one for your suit."
+	desc = "Designed for mounting on modular armor. This protects you significantly more against acidic, gaseous, and biological attacks. It comes with two modules: one for your helmet and one for your suit. Will impact mobility."
 	gear_to_spawn = list(
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	)
 
 /obj/effect/vendor_bundle/surt_modules
-	desc = "Designed for mounting on modular armor. This makes you near-impervious against fire. It comes with two modules: one for your helmet and one for your suit."
+	desc = "Designed for mounting on modular armor. This makes you near-impervious against fire. It comes with two modules: one for your helmet and one for your suit. Will impact mobility."
 	gear_to_spawn = list(
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet
