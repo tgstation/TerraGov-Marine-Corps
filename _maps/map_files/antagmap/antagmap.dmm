@@ -3721,7 +3721,8 @@
 "sB" = (
 /obj/machinery/door/airlock/mainship/secure{
 	name = "\improper KZ Education Chamber Airlock";
-	req_access = list(239, 240)
+	req_access = null;
+	req_one_access = list(239, 240)
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
@@ -4550,10 +4551,8 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/secure{
 	name = "\improper KZ Research Airlock";
-	req_access = list(239, 240)
-	},
-/obj/structure/barricade/wooden{
-	dir = 8
+	req_access = null;
+	req_one_access = list(239, 240)
 	},
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/hall)

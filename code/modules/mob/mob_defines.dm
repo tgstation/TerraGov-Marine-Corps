@@ -36,6 +36,7 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/datum/skills/skills
+	var/original_skills_type
 
 
 	//Movement

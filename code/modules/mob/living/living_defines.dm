@@ -176,3 +176,4 @@
 	var/datum/sex_controller/sexcon
 
 	var/can_restore_skills = FALSE
+	var/extract_count = 0
