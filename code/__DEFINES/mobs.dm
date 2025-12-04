@@ -773,7 +773,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
-#define AUTO_WEEDING_MIN_DIST 8 //How far the xeno must be from the last spot to auto weed
+#define AUTO_WEEDING_MIN_DIST 5 //How far the xeno must be from the last spot to auto weed
 #define RESIN_SELF_TIME 2 SECONDS //Time it takes to apply resin jelly on themselves
 #define RESIN_OTHER_TIME 1 SECONDS //Time it takes to apply resin jelly to other xenos
 
