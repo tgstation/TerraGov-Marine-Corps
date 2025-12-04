@@ -142,14 +142,12 @@
 /// rest when puppeter does
 /datum/ai_behavior/puppet/proc/start_resting(mob/source)
 	SIGNAL_HANDLER
-	var/mob/living/living = mob_parent
-	living?.set_resting(TRUE)
+	mob_parent?.set_resting(TRUE)
 
 /// stop resting when puppeter does
 /datum/ai_behavior/puppet/proc/stop_resting(mob/source)
 	SIGNAL_HANDLER
-	var/mob/living/living = mob_parent
-	living?.set_resting(FALSE)
+	mob_parent?.set_resting(FALSE)
 
 /// resist when puppeter does
 /datum/ai_behavior/puppet/proc/do_jump()
@@ -160,5 +158,4 @@
 /// resist when puppeter does
 /datum/ai_behavior/puppet/proc/parent_resist()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/puppet/puppet_parent = mob_parent
-	puppet_parent?.do_resist()
+	mob_parent?.do_resist()

@@ -1509,6 +1509,7 @@
 #include "code\modules\admin\view_variables\view_variables.dm"
 #include "code\modules\ai\ai_node.dm"
 #include "code\modules\ai\ai_behaviors\ai_behavior.dm"
+#include "code\modules\ai\ai_behaviors\human_mobs\atom_interaction.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\engineering.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\grenades.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\hazard_avoidance.dm"
