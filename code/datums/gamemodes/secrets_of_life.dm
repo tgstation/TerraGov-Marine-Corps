@@ -97,6 +97,13 @@
 		/datum/job/icc_squad/tech = 2,
 		/datum/job/icc_squad/spec = 2,
 		/datum/job/icc_squad/leader = 2,
+		/datum/job/terragov/civilian/liaison_archercorp = 1,
+		/datum/job/terragov/civilian/liaison_novamed = 1,
+		/datum/job/terragov/civilian/liaison_transco = 1,
+		/datum/job/icc/liaison_cm = 1,
+		/datum/job/clf/liaison_clf = 1,
+		/datum/job/som/civilian/liaison_som = 1,
+		/datum/job/vsd/liaison_kaizoku = 1,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES
