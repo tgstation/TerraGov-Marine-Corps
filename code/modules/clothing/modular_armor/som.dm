@@ -133,10 +133,10 @@
 		/obj/item/armor_module/storage/general/som,
 	)
 
-/obj/item/clothing/suit/modylar/som/light/autodoc
+/obj/item/clothing/suit/modular/som/light/autodoc
 	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc/som
-		/obj/item/armor_module/storage/general/som
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/storage/general/som,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy
