@@ -204,7 +204,7 @@
 	burst_delay = 0.10 SECONDS
 	scatter_unwielded = 6
 	aim_slowdown = 0.2
-	scatter = 4
+	scatter = 3
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	wield_delay = 0.5 SECONDS
@@ -214,7 +214,7 @@
 	name = "\improper NT 'Halter-CQB-E' carbine"
 	desc = "A custom variant of Halter series though not obvious from the outside, Chambered in 7.62x38mm. This one is retrofitted with custom, expensive materials and modifications that allow it to be more accurate and shoot at more devastating velocities despite it's size and lightness."
 	accuracy_mult = 1.10
-	scatter = 3
+	scatter = 2
 	damage_mult = 1.1
 	accuracy_mult_unwielded = 0.7
 	scatter_unwielded = 5
