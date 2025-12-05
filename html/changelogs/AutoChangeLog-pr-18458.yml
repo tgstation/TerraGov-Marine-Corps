@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed several minor resin weed related bugs"
+  - bugfix: "fixed sticky weeds applying slowdown to humans that were jumping or on tanks"
