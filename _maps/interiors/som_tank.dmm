@@ -60,6 +60,12 @@
 	dir = 1
 	},
 /area/interior/tank/som)
+"E" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/turf/closed/interior/tank/som/seventeen{
+	dir = 1
+	},
+/area/interior/tank/som)
 "N" = (
 /turf/closed/interior/tank/som/eighteen{
 	dir = 1
@@ -83,7 +89,7 @@
 (1,1,1) = {"
 f
 D
-D
+E
 D
 D
 D
