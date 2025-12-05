@@ -263,11 +263,5 @@
 	on_heal_end(mob_parent)
 	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
 
-/// Speaks our `move_to_heal_lines`: wrapper to reduce copypasta
-/datum/ai_behavior/human/proc/speak_move_to_heal(mob/living/carbon/human/patient)
-	if(!prob(33))
-		return
-	faction_list_speak(move_to_heal_lines, talking_with = patient)
-
 #undef UNREVIVABLE_GENERIC
 #undef MOVE_TO_HEAL_GENERIC
