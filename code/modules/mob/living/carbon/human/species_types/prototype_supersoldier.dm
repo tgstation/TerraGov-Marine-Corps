@@ -1,7 +1,6 @@
 /datum/species/human/prototype_supersoldier
 	name = "Prototype Supersoldier"
-	max_stamina = 30
-	slowdown = 0.5
+	slowdown = 0
 	inherent_traits = list(TRAIT_TOO_TALL)
 	inherent_actions = list(/datum/action/supersoldier_stims)
 	namepool = /datum/namepool/prototype_supersoldier

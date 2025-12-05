@@ -268,6 +268,14 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_flags = NONE
 	trait_type = TRAIT_CRIT_IS_DEATH
 
+/datum/stim/trait/constructor
+	name = "Constructor"
+	desc = "Makes you build things faster by implementing according skills into your neural network."
+	cast_say = "Neural construction module loading..."
+	stim_uid = "constructor"
+	stim_flags = NONE
+	trait_type = TRAIT_SUPERIOR_BUILDER
+
 /datum/stim/trait/no_ear_damage
 	name = "Ear Resistance"
 	desc = "Reinforces your ears, making you immune to ear damage while it is active."
@@ -362,7 +370,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 
 /datum/stim/stamina_regen
 	name = "Stamina Recovery"
-	desc = "Increases your resistance to tiredness, making you use stamina more slowly."
+	desc = "Increases your resistance to tiredness, making you recover stamina faster."
 	cast_say = "Administering amphetamines..."
 	stim_uid = "stamregenincrease"
 	stim_flags = STIM_ALLOW_DUPE
@@ -403,7 +411,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 
 /datum/stim/skills/melee
 	name = "Melee Skill"
-	desc = "Enhances your strikes with magic, increasing your skill in melee."
+	desc = "Enhances your strikes with increased accuracy, increasing your skill in melee."
 	cast_say = "Neural reaction module loading..."
 	stim_uid = "meleeskillbuff"
 	stim_flags = STIM_ALLOW_DUPE
@@ -412,7 +420,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 
 /datum/stim/skills/powerloader
 	name = "Powerloader Skill"
-	desc = "Increase your skill at using power loaders."
+	desc = "Increase your skill at using power loaders, this is totally necessary."
 	cast_say = "Neural powerloader module loading..."
 	stim_uid = "powerloaderskillbuff"
 	stim_flags = STIM_ALLOW_DUPE

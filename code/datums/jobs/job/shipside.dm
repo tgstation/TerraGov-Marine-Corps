@@ -322,7 +322,7 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"Your job is to support opreatives with close air support via the Condor.
 You are expected to use the Condor as the Alamo is able to be ran automatically, though at some points you will be required to take control of the Alamo for the operation's success, though highly unlikely.
-Though you are an officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel."}
+Though you are an officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel. You are an Archercorp Personnel."}
 
 
 //Mech pilot
@@ -435,7 +435,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/assault_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are an Assault Crewman. You operate the NTF's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
+	. += "You are an Assault Crewman from Archercorp. You operate the NTF's armored assault vehicles along with your partner, and in some cases a \"willing\" loader. Make sure that you work as a team to advance the front!"
 
 /datum/job/terragov/command/assault_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -490,7 +490,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 /datum/job/terragov/command/transport_crewman/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += "You are a Transport Crewman. You operate the NTF's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
+	. += "You are a Transport Crewman from TRANSCo. You operate the NTF's transport vehciles to ensure that marines and equipment gets to the front in a timely and safe manner."
 
 /datum/job/terragov/command/transport_crewman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()

@@ -197,7 +197,7 @@
 	name = "\improper NT 'Halter-CQB' carbine"
 	desc = "A variant of Halter series standardized NTC bullpup AR design made into a carbine, Chambered in 7.62x38mm. This one is altered for close combat. The smaller frame make it lighter and easier to handle in close range encounters but it suffers from range reduction and overall accuracy."
 	icon = 'ntf_modular/icons/obj/items/guns/rifles64.dmi'
-	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 23, "under_x" = 29, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 23, "under_x" = 29, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	icon_state = "haltercqb"
 	worn_icon_state = "haltercqb"
 	fire_delay = 0.15 SECONDS
