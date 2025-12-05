@@ -34,3 +34,8 @@
   - rscadd: NPC's will keep track of important items they drop and try pick them up
       later
   - bugfix: fixed NPC's trying to pickup things with missing limbs
+2025-12-05:
+  Nokia2Student:
+  - rscadd: KZ Neural Extractor, KZ Neural Imprinter
+  - rscadd: KZ Torture Chamber
+  - balance: Nerfed neurodisks

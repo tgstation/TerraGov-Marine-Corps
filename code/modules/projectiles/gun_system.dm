@@ -1383,7 +1383,7 @@
 				playsound(src, hand_reload_sound, 25, 1)
 			else
 				var/rounds_in_chamber = CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) ? rounds : length(chamber_items)
-				if(CHECK_BITFIELD(mag.magazine_flags,MAGAZINE_REQUIRES_EMPTY_GUN) && rounds_in_chamber)
+				if(!CHECK_BITFIELD(reciever_flags,AMMO_RECIEVER_MULTICLIP) && rounds_in_chamber)
 					to_chat(user, span_warning("[src] must be completely empty to use the [mag]!"))
 					return FALSE
 				var/rounds_to_fill = min(mag.current_rounds, max_chamber_items - rounds_in_chamber)
