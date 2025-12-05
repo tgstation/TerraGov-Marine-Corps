@@ -322,17 +322,6 @@
 	if(m_intent == MOVE_INTENT_WALK)
 		COOLDOWN_START(src, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
 
-///Tries to interact with something, usually nonharmfully
-/datum/ai_behavior/human/try_interact(atom/interactee)
-	if(ishuman(interactee))
-		var/mob/living/carbon/human/human = interactee
-		if(mob_parent.faction != human.faction)
-			return
-		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
-		return TRUE
-	INVOKE_ASYNC(interactee, TYPE_PROC_REF(/atom, do_ai_interact), mob_parent, src)
-	return TRUE
-
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
 	SIGNAL_HANDLER
