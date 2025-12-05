@@ -2100,6 +2100,33 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/burst(H), SLOT_IN_HOLSTER)
 
+/datum/outfit/quick/som/veteran/dragoon
+	name = "Dragoon Veteran"
+	desc = "A lightly-armored agile class. Equipped with a Dragoon Mk1 Rapid Engagement rifle, plentiful ammo and autodoc. The rifle allows the soldier to harrass enemy units before tactically retreating, either picking off high-value targets or applying a constant pressure on the enemy. Also comes with a rifle instruction pamphlet to make up for your lack of training!"
+
+	wear_suit = /obj/item/clothing/suit/modular/som/light/autodoc
+	belt = /obj/item/storage/belt/marine/som
+	suit_store = /obj/item/wepaon/gun/rifle/dragoon
+	back = /obj/item/storage/backpack/lightpack/icc
+	r_hand = /obj/item/pamphlet/rifleman
+
+/datum/outfit/quick/som/veteran/dragoon/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+
 //Base SOM leader outfit
 /datum/outfit/quick/som/squad_leader
 	name = "SOM Squad Leader"

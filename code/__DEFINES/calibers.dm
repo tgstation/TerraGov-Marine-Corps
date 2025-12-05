@@ -47,6 +47,7 @@
 #define CALIBER_762X51 "7.62x51mm" //Minigun
 #define CALIBER_10X27_INCENDIARY_CASELESS "10x27mm incendiary caseless"
 #define CALIBER_10x26_CASELESS "10x26mm caseless" //GPMG and SG
+#define CALIBER_98x22 "9.8x22mm"
 #define CALIBER_ALIEN "alien alloy"
 
 // --- Shotguns ---

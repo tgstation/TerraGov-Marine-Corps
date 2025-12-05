@@ -711,14 +711,22 @@
 /obj/item/storage/box/crate/loot/gheist_pack_spec/Initialize(mapload)
 	. = ..()
 	new /obj/item/pamphlet/rifleman(src)
-	new /obj/item/weapon/gun/rifle/standard_dmr/specialist(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/weapon/gun/rifle/dragoon(src)
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
+	new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
 	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
 	new /obj/item/clothing/shoes/marine/sneakingboots(src)
 	new /obj/item/assembly/signaler (src)

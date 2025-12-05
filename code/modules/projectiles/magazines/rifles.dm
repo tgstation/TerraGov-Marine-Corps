@@ -631,6 +631,30 @@
 	max_rounds = 8
 
 //-------------------------------------------------------
+//Dragoon
+/obj/item/ammo_magazine/rifle/boltclip/dragoon
+	name = "clip of 9.8x22mm rifle rounds"
+	desc = "A Disposible Stripper clip filled with exotic rifle bullets."
+	icon_state = "clipdragoon"
+	default_ammo = /datum/ammo/bullet/sniper/dragoon
+	caliber = CALIBER_98x22
+	max_rounds = 5
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "clips"
+	reload_delay = 5
+
+/obj/item/ammo_magazine/rifle/boltclip/dragoon/pox //Poison rounds
+	name = "clip of green-tipped 9.8x22mm rifle rounds"
+	desc = "A Disposible Stripper clip filled with exotic rifle bullets."
+	icon_state = "clipdragoonp"
+	default_ammo = /datum/ammo/bullet/sniper/dragoon/pox
+	caliber = CALIBER_98x22
+	max_rounds = 5
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "clips"
+	reload_delay = 5
+
+//-------------------------------------------------------
 //V-31 SOM rifle
 
 /obj/item/ammo_magazine/rifle/som

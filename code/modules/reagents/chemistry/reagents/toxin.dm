@@ -910,3 +910,56 @@
 			L.Losebreath(3)
 
 	return ..()
+
+/datum/reagent/toxin/poxomelanin
+	name = "Poxomelanin"
+	description = "A synthetic nerve agent that is biochemically similar to melanin. Causes tiredness, lose of focus, weakness and painful muscle spasms, while also slowly purging common painkillers. Unlike other chemical agents, the severity of it's effects depend directly on it's concentration in an organism's blood. Metabolises relatively slowly due to it's resemblance to a natural hormone."
+	reagent_state = LIQUID
+	color = "#666666"
+	overdose_threshold = 24
+	custom_metabolism = REAGENTS_METABOLISM * 0.9
+	toxpwr = 0
+	purge_list = list(
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/oxycodone
+	)
+	purge_rate = 0.7
+
+/datum/reagent/toxin/poxomelanin/on_mob_life(mob/living/L, metabolism)
+	var/concentration = L.reagents.get_reagent_amount(/datum/reagent/toxin/poxomelanin)
+	var/slowdown_modifier = 0.5
+	var/tiredness = 0
+	switch(concentration)
+		if(1 to 5)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+			slowdown_modifier = 0.5
+			tiredness = (1*effect_str)
+		if(6 to 15)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_MEDIUM
+			slowdown_modifier = 1
+			tiredness = (5*effect_str)
+		if(16 to INFINITY)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //Kept to a fairly low cap since this is supposed to be more of a debuff chemical rather than being the primary weapon when using pox rounds.
+			slowdown_modifier = 1.5
+			tiredness = (10*effect_str)
+	L.add_movespeed_modifier(MOVESPEED_ID_POXOMELANIN, TRUE, 0, NONE, TRUE, 2 * slowdown_modifier) //Fairly light slowdowns, but still impactful. Hope you have buddies or some cover.
+	var/stamina_loss_limit = L.maxHealth * 0.3
+	var/applied_damage = clamp(tiredness, 0, (stamina_loss_limit - L.getStaminaLoss())) //Xeno neurotoxin but far less potent and cannot stamcrit
+	L.adjustStaminaLoss(applied_damage)
+
+	return ..()
+
+/datum/reagent/toxin/poxomelanin/on_mob_add(mob/living/L)
+
+	L.adjust_mob_scatter(10)
+	L.adjust_mob_accuracy(-10)
+
+/datum/reagent/toxin/poxomelanin/overdose_process(mob/living/L, metabolism)
+	L.blur_eyes(5)
+
+/datum/reagent/toxin/poxomelanin/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(MOVESPEED_ID_POXOMELANIN)
+	L.adjust_mob_scatter(-10)
+	L.adjust_mob_accuracy(10)
+	return ..()

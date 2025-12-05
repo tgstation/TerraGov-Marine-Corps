@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/storage/box/crate/loot/infiltration_lethal_pack_spec = list(CAT_SPSUP, "Infiltrator L Class (Sneaking gear, M4A3 AP Pistol, Lethal Gear, NVG, Scout Cloak)", 25, "black"),
 	/obj/item/storage/box/crate/loot/infiltration_tback_pack_spec = list(CAT_SPSUP, "Infiltrator NL Class (Nonlethal Leotard variant)", 25, "black"),
 	/obj/item/storage/box/crate/loot/infiltration_lethal_tback_pack_spec = list(CAT_SPSUP, "Assassin  L Class (Lethal Leotard variant)", 25, "black"),
-	/obj/item/storage/box/crate/loot/gheist_pack_spec = list(CAT_SPSUP, "Hybrid Class (Thermals, Sneaking Boots, Rifle Pamphlet, Lethal DMR)", 25, "black"),
+	/obj/item/storage/box/crate/loot/gheist_pack_spec = list(CAT_SPSUP, "Hybrid Class (Thermals, Sneaking Boots, Rifle Pamphlet, Dragoon Mk1 RER)", 25, "black"),
 	/obj/item/ammo_magazine/pistol/g22tranq = list(CAT_SPSUP, "G22 Tranq Magazine", 1, "black"),
 	/obj/item/ammo_magazine/pistol/m1911/ap = list(CAT_SPSUP, "M4A3 AP Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/autosniper = list(CAT_SPSUP, "SR-81 Autosniper Magazine", 1, "black"),

@@ -1180,3 +1180,61 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	movement_acc_penalty_mult = 10
 	scatter = 0
 	autobalance_monitor_value = null
+
+//The Dragoon rapid engagement rifle.
+/obj/item/weapon/gun/rifle/dragoon
+	name = "\improper Dragoon Mk1 Rapid Engagement Rifle"
+	desc = "The Dragoon Rapid Engagement rifle is a powerful, above-average capacity and agile rifle designed to be used in situations requiring frequent relocation and short engagements. Triangular casings allow it to hold a greater amount of ammo compared to similar rifles. Unfortunately it has not seen widespread adoption due to the lack of detachable magazine and a complex, delicate feeding mechanism that requires users to put additional care into every reload, lest the newly-loaded cartridges end up pushed right back up into the stripper clip. Fires an exotic 9.8x22mm cartridge with great penetration capabilities."
+	icon = 'icons/obj/items/guns/marksman64.dmi'
+	icon_state = "dragoon"
+	worn_icon_state = "l11"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
+	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
+	fire_sound = 'sound/weapons/guns/fire/mp38_1.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ml12_reload.ogg'
+	empty_sound = null
+	caliber = CALIBER_98x22 //codex
+	max_chamber_items = 10 //codex
+	default_ammo_type = /datum/ammo/bullet/sniper/dragoon
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/boltclip/dragoon,
+		/obj/item/ammo_magazine/rifle/boltclip/dragoon/pox
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/stock/dragoon,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod
+	)
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/stock/dragoon)
+
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_MULTICLIP
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 18, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1.25 SECONDS
+
+	burst_amount = 0
+	fire_delay = 0.5 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.75
+	scatter = 0
+	scatter_unwielded = 25
+	recoil = 0
+	recoil_unwielded = 4
+	aim_slowdown = 0.60
+	movement_acc_penalty_mult = 3

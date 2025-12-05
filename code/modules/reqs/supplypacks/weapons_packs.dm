@@ -625,3 +625,17 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
 	cost = 30
 
+/datum/supply_packs/weapons/dragoon
+	name = "Dragoon Mk1 Rapid Engagement Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/dragoon)
+	cost = 650
+
+/datum/supply_packs/weapons/dragoon_ammo
+	name = "Dragoon Mk1 RER stripper clip"
+	contains = list(/obj/item/ammo_magazine/rifle/boltclip/dragoon)
+	cost = 50
+
+/datum/supply_packs/weapons/dragoon_ammo_pox
+	name = "Dragoon Mk1 RER poxomelanin rounds stripper clip"
+	contains = list(/obj/item/ammo_magazine/rifle/boltclip/dragoon/pox)
+	cost = 75

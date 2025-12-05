@@ -113,6 +113,7 @@
 #define AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE (1<<10)
 #define AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE (1<<11) //The ammo stay in the magazine until the last moment
 #define AMMO_RECIEVER_AUTO_EJECT_LOCKED (1<<12) //Not allowed to turn automatic unloading off
+#define AMMO_RECIEVER_MULTICLIP (1<<13) //Able to take multiple stripper clips back-to-back
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)

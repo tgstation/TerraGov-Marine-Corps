@@ -131,9 +131,16 @@
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/icc_sharpshooter
-	name = "\improper L-1 stock"
+	name = "\improper L-11 stock"
 	desc = "A irremovable L-11 stock."
 	icon_state = "l11"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/dragoon
+	name ="\improper Dragoon stock"
+	desc = "A irremovable Dragoon stock"
+	icon_state = "dragoon"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
