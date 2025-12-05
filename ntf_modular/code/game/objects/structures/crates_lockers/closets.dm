@@ -10,6 +10,5 @@
 	max_integrity = 500
 	icon = 'ntf_modular/icons/obj/structures/xeno_cage.dmi'
 	max_mob_size = MOB_SIZE_BIG
-	req_access = list(ALL_ACCESS)
 	drag_delay = 1 //wheels yay
 	anchored = FALSE
