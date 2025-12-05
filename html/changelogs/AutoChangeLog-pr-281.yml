@@ -1,0 +1,7 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - rscadd: "Added a new req/specialist gun: The Dragoon!"
+  - rscadd: "Added a new SOM specialist quickvend kit: Dragoon Veteran."
+  - rscadd: "Replaced the MUNDANE, BORING DMR in NTF specialist's hybrid class kit with the Dragoon Mk1 RER"
+  - spellcheck: "Fixes a typo in the L-11 stock."
