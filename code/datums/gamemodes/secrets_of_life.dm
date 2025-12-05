@@ -174,6 +174,11 @@
 		/datum/job/som/squad/leader = 2,
 		/datum/job/som/squad/veteran = 3,
 		/datum/job/other/prisonersom = 2,
+		/datum/job/terragov/civilian/liaison_archercorp = 1,
+		/datum/job/terragov/civilian/liaison_novamed = 1,
+		/datum/job/terragov/civilian/liaison_transco = 1,
+		/datum/job/clf/liaison_clf = 1,
+		/datum/job/som/civilian/liaison_som = 1,
 	)
 
 //old school mode, no ship, one map with bases in it, no subfactions.
@@ -242,6 +247,11 @@
 		/datum/job/som/squad/leader = 2,
 		/datum/job/som/squad/veteran = 3,
 		/datum/job/other/prisonersom = 2,
+		/datum/job/terragov/civilian/liaison_archercorp = 1,
+		/datum/job/terragov/civilian/liaison_novamed = 1,
+		/datum/job/terragov/civilian/liaison_transco = 1,
+		/datum/job/clf/liaison_clf = 1,
+		/datum/job/som/civilian/liaison_som = 1,
 	)
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/alienonly
@@ -282,6 +292,9 @@
 		/datum/job/other/prisoner = 4,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
+		/datum/job/terragov/civilian/liaison_archercorp = 1,
+		/datum/job/terragov/civilian/liaison_novamed = 1,
+		/datum/job/terragov/civilian/liaison_transco = 1,
 	)
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/ntf_vs_clf
@@ -350,4 +363,8 @@
 		/datum/job/clf/leader = 2,
 		/datum/job/clf/silicon/synthetic/clf = 1,
 		/datum/job/other/prisonerclf = 2,
+		/datum/job/terragov/civilian/liaison_archercorp = 1,
+		/datum/job/terragov/civilian/liaison_novamed = 1,
+		/datum/job/terragov/civilian/liaison_transco = 1,
+		/datum/job/clf/liaison_clf = 1,
 	)
