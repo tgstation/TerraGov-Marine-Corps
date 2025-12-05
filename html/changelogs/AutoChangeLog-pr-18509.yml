@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed the UV machinegun option in the engineer vendor having the incorrect contents"
