@@ -7,6 +7,9 @@
 /datum/interior/armored/clone_bay
 	template = /datum/map_template/interior/clone_bay
 
+/datum/interior/armored/mrap
+	template = /datum/map_template/interior/mrap
+
 /turf/closed/interior/apc
 	name = "\improper Athena tank interior"
 	icon = 'icons/obj/armored/3x3/apc_interior.dmi'
