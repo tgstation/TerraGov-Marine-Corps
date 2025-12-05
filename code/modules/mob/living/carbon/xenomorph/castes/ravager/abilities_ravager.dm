@@ -182,6 +182,7 @@
 
 	if(armor_penetration) // Since everything references the caste for armor peneration, this is how to individually give armor peneration without changing everything.
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack_living))
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_LIVING, PROC_REF(on_attack_living))
 	for(var/atom/movable/ravaged_atom AS in atoms_to_ravage)
 		if(ishitbox(ravaged_atom) || isvehicle(ravaged_atom))
 			ravaged_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, armor_penetration = xeno_owner.xeno_caste.melee_ap + armor_penetration) // Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
