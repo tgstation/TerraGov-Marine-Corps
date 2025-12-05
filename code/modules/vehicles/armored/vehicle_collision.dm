@@ -13,7 +13,7 @@
 /obj/structure/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 1.5 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /obj/structure/barricade/folding/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
@@ -22,13 +22,13 @@
 /obj/vehicle/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)	//MONSTER TRUCKS
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 2 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 2 SECONDS)
 	var/datum/mech_limb/legs/legs = limbs[MECH_GREY_LEGS]
 	if(legs?.part_health)
 		legs.take_damage(ram_damage)
@@ -36,13 +36,13 @@
 /obj/machinery/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 2 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 1.5 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
@@ -55,7 +55,7 @@
 	//half damage to mobs since it was megabuffed.
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS) //it throws but doesnt damage
+	COOLDOWN_START(veh, ram_cooldown, 3 SECONDS) //it throws but doesnt damage
 	return take_overall_damage(ram_damage/2, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 
 
@@ -66,7 +66,7 @@
 	. = ..()
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 0.8 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 3 SECONDS)
 	take_damage(ram_damage/2, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
