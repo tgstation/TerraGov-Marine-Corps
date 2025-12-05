@@ -27,3 +27,6 @@
   - rscadd: NPC's will keep track of important items they drop and try pick them up
       later
   - bugfix: fixed NPC's trying to pickup things with missing limbs
+2025-12-05:
+  mudzbe:
+  - balance: Threatened zombie spawners have a higher spawning capacity
