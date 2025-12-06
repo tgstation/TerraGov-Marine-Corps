@@ -6,3 +6,41 @@
   mudzbe:
   - balance: Reduce wired barricade damage to zombies
   - bugfix: Zombies cant strip things anymore
+2025-12-03:
+  DaTruRiZZoB:
+  - rscadd: Added ERP to EORD
+  - rscadd: Added VSD to EORD
+  - rscadd: Added vets to EORD
+  - rscadd: Added brown and black customization kits to the armor vendors
+  - qol: Face paint is wiped off by aiming head now
+  Neocloudy:
+  - bugfix: Limbs handle fracturing when damage is received instead of on life ticks
+  - bugfix: Brain mobs inside decapitated heads won't deathgasp
+  blackdav123:
+  - rscadd: 'Added a new heavy seasonal: Remote Weapons'
+  mudzbe:
+  - bugfix: Gamemodes cant start on maps with a blacklisted ground map (without bypass)
+2025-12-04:
+  Lewdcifer:
+  - bugfix: Runners and Hunters should get their Pounce ability again.
+  Lumipharon:
+  - rscadd: NPC's will keep track of important items they drop and try pick them up
+      later
+  - bugfix: fixed NPC's trying to pickup things with missing limbs
+2025-12-05:
+  mudzbe:
+  - balance: Threatened zombie spawners have a higher spawning capacity
+2025-12-06:
+  Despong & Lumi:
+  - balance: added the Sambar MRAP - a speedy but unarmed alternative to the APC
+  Lumipharon:
+  - balance: Zombies can no longer be facehugged
+  - bugfix: fixed spiderlings, for real
+  - bugfix: fixed the UV machinegun option in the engineer vendor having the incorrect
+      contents
+  - bugfix: fixed several minor resin weed related bugs
+  - bugfix: fixed sticky weeds applying slowdown to humans that were jumping or on
+      tanks
+  - bugfix: fixed not being able to hit fuel tanks
+  - bugfix: fixed some unneeded fuel tank balloon alerts
+  - qol: chairs layer under objects

@@ -30,14 +30,10 @@
 
 /obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
-	var/weed_found
 	if(from_window_shatter)
-		for(var/obj/alien/weeds/weedwall/window/W in loc)
-			weed_found = W
+		for(var/obj/alien/weeds/weedwall/window/weed in loc)
+			weed.replace_weed(/obj/alien/weeds/weedwall/window/frame)
 			break
-	if(weed_found)
-		qdel(weed_found)
-		new /obj/alien/weeds/weedwall/window/frame(loc) //after smoothing to get the correct junction value
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
@@ -58,8 +54,7 @@
 	update_nearby_icons()
 	var/obj/alien/weeds/weedwall/window_wall_weeds = locate() in loc
 	if(window_wall_weeds)
-		qdel(window_wall_weeds)
-		new /obj/alien/weeds(loc)
+		window_wall_weeds.replace_weed(/obj/alien/weeds)
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)

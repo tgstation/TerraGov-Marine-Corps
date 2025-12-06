@@ -61,6 +61,7 @@
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
+#define COOLDOWN_ARMORED_TESLA "cooldown_armored_tesla"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
 #define COOLDOWN_PDA_PLAY "cooldown_pda_play"
 

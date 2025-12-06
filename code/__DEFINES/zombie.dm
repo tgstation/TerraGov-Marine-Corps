@@ -8,3 +8,5 @@
 #define ZOMBIE_DEFENDER_AMOUNT 13
 ///Determines how much burn damage cringe robots and synths should take per zombium
 #define ZOMBIUM_ROBOT_EFFECT_MULTIPLIER 1.5
+///Spawner threatened spawning limit
+#define ZOMBIE_THREATENED_CAP 125

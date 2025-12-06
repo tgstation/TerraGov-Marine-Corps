@@ -22,8 +22,9 @@
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || (SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps)) && !bypass_checks)
 		log_world("attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		to_chat(world, "<b>Unable to start [name].</b> [SSmapping.configs[GROUND_MAP].map_name] isn't supported on [name].")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
@@ -82,10 +83,15 @@
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-			SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
+			if(!spawner.threat_warning)
+				SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
+				spawner.maxamount = 0
 		return
 	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-		SSspawning.spawnerdata[spawner].max_allowed_mobs = round(num_humans * 8 / length(GLOB.zombie_spawners))
+		if(!spawner.threat_warning)
+			var/new_spawn_cap = round(num_humans * 8 / length(GLOB.zombie_spawners))
+			SSspawning.spawnerdata[spawner].max_allowed_mobs = new_spawn_cap
+			spawner.maxamount = new_spawn_cap
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
