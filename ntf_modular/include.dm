@@ -75,6 +75,7 @@
 #include "code\game\objects\items.dm"
 #include "code\game\objects\items\radio\ntc_listener.dm"
 #include "code\game\objects\machinery\artillery\shells.dm"
+#include "code\game\objects\machinery\camera\camera.dm"
 #include "code\game\objects\machinery\cic_maptable.dm"
 #include "code\game\objects\machinery\computer\voucher.dm"
 #include "code\game\objects\machinery\deployable.dm"
