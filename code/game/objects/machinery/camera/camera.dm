@@ -40,6 +40,9 @@
 		if(WEST)
 			pixel_x = 16
 
+	if(length(network) == 1 && network[1] == "marinemainship" && is_ground_level(z))
+		network = list("colony")
+
 	for(var/i in network)
 		network -= i
 		network += lowertext(i)
