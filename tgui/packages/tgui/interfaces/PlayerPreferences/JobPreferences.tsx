@@ -135,6 +135,7 @@ export const JobPreferences = (props) => {
     'Prisoner Survivor',
     'Stripper Survivor',
     'Maid Survivor',
+    'Synthetic Survivor',
   ];
 
   const JobList = ({ name, jobs }) => (
