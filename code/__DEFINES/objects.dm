@@ -103,16 +103,16 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //Scout cloak defines
 #define SCOUT_CLOAK_ENERGY 100
-#define SCOUT_CLOAK_STEALTH_DELAY 30
+#define SCOUT_CLOAK_STEALTH_DELAY 20
 #define SCOUT_CLOAK_RUN_DRAIN 2
 #define SCOUT_CLOAK_WALK_DRAIN 1
 #define SCOUT_CLOAK_ACTIVE_RECOVERY -5 //You only get this once every obj tick, so it'll be comparable to the inactive value
 #define SCOUT_CLOAK_INACTIVE_RECOVERY 5
 #define SCOUT_CLOAK_COOLDOWN 100
 #define SCOUT_CLOAK_TIMER 50
-#define SCOUT_CLOAK_SHOOTING 204 //80% Transparency
-#define SCOUT_CLOAK_RUN_ALPHA 166 //65% Transparency
-#define SCOUT_CLOAK_WALK_ALPHA 128 //50% Transparency, same as a Hunter
+#define SCOUT_CLOAK_SHOOTING 204 //80% Transparency (why isnt this implemented idk)
+#define SCOUT_CLOAK_RUN_ALPHA 153 //60% Transparency
+#define SCOUT_CLOAK_WALK_ALPHA 102 //40% Transparency
 #define SCOUT_CLOAK_STILL_ALPHA 51 //20% Transparency
 #define SCOUT_CLOAK_MAX_ENERGY 100
 #define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
