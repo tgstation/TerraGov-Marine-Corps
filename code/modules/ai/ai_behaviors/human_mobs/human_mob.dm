@@ -419,15 +419,3 @@
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
-
-/// Monkeys are locked to saying primitive lines and don't do any text replacement
-/datum/ai_behavior/human/monkey_business
-
-/datum/ai_behavior/human/monkey_business/self_text_replacement(text)
-	return text
-
-/datum/ai_behavior/human/monkey_business/them_text_replacement(text, mob/living/them)
-	return text
-
-/datum/ai_behavior/human/monkey_business/custom_speak(message, cooldown, unique_cooldown_key, unique_cooldown_time, force)
-	INVOKE_ASYNC(mob_parent, TYPE_PROC_REF(/atom/movable, say), pick(GLOB.ai_monkey_lines))

@@ -18,36 +18,35 @@
 	"OH NOOO!!",\
 	"FUCK!!"
 
-/datum/ai_behavior/human
-	/// Lines when witnessing faction members die in combat
-	var/list/witnessing_death_lines = list(
-		FACTION_NEUTRAL = list(
-			DEATH_LINES_ANGRY,
-		),
-		FACTION_TERRAGOV = list(
-			DEATH_LINES_ANGRY,
-			DEATH_LINES_SOLDIER_ANGRY,
-		),
-		FACTION_NANOTRASEN = list(
-			DEATH_LINES_ANGRY,
-			DEATH_LINES_SOLDIER_ANGRY,
-		),
-		FACTION_SPECFORCE = list(
-			DEATH_LINES_ANGRY,
-			DEATH_LINES_SOLDIER_ANGRY,
-		),
-	)
-	/// Lines when witnessing *anyone* be gibbed
-	var/list/witnessing_gibbing_lines = list(
-		FACTION_NEUTRAL = list(
-			GIB_LINES_ANGRY,
-		),
-	)
+/// Lines when witnessing faction members die in combat
+GLOBAL_LIST_INIT(ai_witnessing_death_lines, list(
+	FACTION_NEUTRAL = list(
+		DEATH_LINES_ANGRY,
+	),
+	FACTION_TERRAGOV = list(
+		DEATH_LINES_ANGRY,
+		DEATH_LINES_SOLDIER_ANGRY,
+	),
+	FACTION_NANOTRASEN = list(
+		DEATH_LINES_ANGRY,
+		DEATH_LINES_SOLDIER_ANGRY,
+	),
+	FACTION_SPECFORCE = list(
+		DEATH_LINES_ANGRY,
+		DEATH_LINES_SOLDIER_ANGRY,
+	),
+))
+/// Lines when witnessing *anyone* get gibbed
+GLOBAL_LIST_INIT(ai_witnessing_gibbing_lines, list(
+	FACTION_NEUTRAL = list(
+		GIB_LINES_ANGRY,
+	),
+))
 
 /// Tied to [COMSIG_HUMAN_VIEW_DEATH], when having line of sight with someone who just died
 /datum/ai_behavior/human/proc/witness_death(mob/living/carbon/human/source, mob/living/carbon/human/dead, gibbing)
 	SIGNAL_HANDLER
-	if(!prob(25))
+	if(prob(75))
 		return
 	if(!gibbing) // gibbing is cool so it gets to bypass these things
 		if(!combat_target)
@@ -61,8 +60,8 @@
 /// and ensures that speech only happens after the effects of `death()`
 /datum/ai_behavior/human/proc/point_out_death(gibbing, mob/living/carbon/human/source, mob/living/carbon/human/dead)
 	faction_list_speak(
-		chat_lines = gibbing ? witnessing_gibbing_lines : witnessing_death_lines,
-		unique_cooldown_key = gibbing ? "point_out_gibbing" : "point_out_death",
+		chat_lines = gibbing ? GLOB.ai_witnessing_gibbing_lines : GLOB.ai_witnessing_death_lines,
+		unique_cooldown_key = gibbing ? AI_COOLDOWN_POINT_OUT_GIBBING : AI_COOLDOWN_POINT_OUT_DEATH,
 		unique_cooldown_time = 15 SECONDS,
 		talking_with = dead,
 	)

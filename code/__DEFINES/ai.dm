@@ -16,8 +16,9 @@
 	##text = replacetext(##text, "%" + key + "_THEIR%", ##mob.p_their());\
 	##text = replacetext(##text, "%" + key + "_ARE%", ##mob.p_are());
 
-/// Monkey specific AI speech lines
-GLOBAL_LIST_INIT(ai_monkey_lines, list("EEK!!", "OOP!!", "ACK!!", "CHEE!!"))
+// Unique cooldowns
+#define AI_COOLDOWN_POINT_OUT_DEATH "point_out_death"
+#define AI_COOLDOWN_POINT_OUT_GIBBING "point_out_gibbing"
 
 ///The AI component has finished moving towards a node, change the state because of that certain thing happening
 #define REASON_FINISHED_NODE_MOVE "finished_moving_to_node"
