@@ -39,3 +39,11 @@
   - rscadd: KZ Neural Extractor, KZ Neural Imprinter
   - rscadd: KZ Torture Chamber
   - balance: Nerfed neurodisks
+2025-12-06:
+  DrCrawler:
+  - imageadd: The dragoon is no longer a product of schitzophrenia
+  - rscadd: 'Added a new req/specialist gun: The Dragoon!'
+  - rscadd: 'Added a new SOM specialist quickvend kit: Dragoon Veteran.'
+  - rscadd: Replaced the MUNDANE, BORING DMR in NTF specialist's hybrid class kit
+      with the Dragoon Mk1 RER
+  - spellcheck: Fixes a typo in the L-11 stock.
