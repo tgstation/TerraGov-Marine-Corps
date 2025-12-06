@@ -72,7 +72,8 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/water = 1000)
 
-
+/obj/structure/reagent_dispensers/watertank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
