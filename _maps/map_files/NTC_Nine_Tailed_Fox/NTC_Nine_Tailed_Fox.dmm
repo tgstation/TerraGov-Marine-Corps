@@ -667,9 +667,6 @@
 /turf/open/floor/mainship/green,
 /area/mainship/living/basketball)
 "aHq" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -1045,43 +1042,8 @@
 	},
 /area/mainship/living/cryo_cells)
 "aVy" = (
-/obj/structure/window/reinforced/toughened{
+/obj/machinery/door/window/secure/bridge{
 	dir = 8
-	},
-/obj/structure/table/mainship/nometal,
-/obj/machinery/light/mainship,
-/obj/machinery/door_control/old{
-	id = "ROlobby";
-	name = "Requisitions lockdown";
-	pixel_x = 5;
-	pixel_y = 10;
-	req_one_access = list(42,2)
-	},
-/obj/machinery/door_control/old/cic{
-	pixel_x = -5;
-	pixel_y = 10;
-	id = "shipside_cic_lockdown"
-	},
-/obj/machinery/door_control/old{
-	id = "floor3shipcheckpoint";
-	name = "Floor 3 Lockdown";
-	pixel_x = -5;
-	pixel_y = 3;
-	req_access = list(5)
-	},
-/obj/machinery/door_control/old{
-	id = "Lowershiplockdown";
-	name = "Floor 1 & 2 Lockdown";
-	pixel_y = 3;
-	pixel_x = 5;
-	req_access = list(5)
-	},
-/obj/machinery/door_control/old/cic{
-	pixel_x = -5;
-	id = "nukedoors";
-	name = "Nuke Blast Doors";
-	pixel_y = -4;
-	req_one_access = list(200,40)
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -2322,6 +2284,10 @@
 /obj/machinery/door/window/secure/bridge{
 	dir = 2
 	},
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "shipside_cic_lockdown";
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "bYZ" = (
@@ -2372,11 +2338,12 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "bZU" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship{
-	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "shipside_cic_lockdown";
+	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "cab" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2574,9 +2541,7 @@
 "ciJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/keycard_auth,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "ciU" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -4681,7 +4646,7 @@
 	})
 "eju" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "ejv" = (
 /turf/open/floor/mainship/black/full,
@@ -5422,10 +5387,6 @@
 "eWG" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/ids,
-/obj/structure/paper_bin{
-	pixel_x = 7;
-	pixel_y = 6
-	},
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -5535,6 +5496,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "fbt" = (
@@ -5646,17 +5608,17 @@
 	},
 /area/mainship/living/officer_study)
 "feR" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship{
-	dir = 8;
-	pixel_x = -17
-	},
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17
+	},
 /turf/open/floor/mainship/orange{
-	dir = 9
+	dir = 8
 	},
 /area/mainship/command/cic)
 "feS" = (
@@ -7913,6 +7875,14 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
+"hcd" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "hch" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
@@ -7964,17 +7934,17 @@
 	},
 /area/mainship/command/cic)
 "hcU" = (
-/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/camera/autoname,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
 	pixel_x = 17
 	},
-/obj/machinery/camera/autoname,
 /turf/open/floor/mainship/emerald{
-	dir = 5
+	dir = 4
 	},
 /area/mainship/command/cic)
 "hcV" = (
@@ -9041,11 +9011,11 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "igc" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two{
-	possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"
+/obj/structure/window/reinforced/toughened{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/obj/machinery/cic_maptable/drawable,
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "ihe" = (
 /obj/machinery/cryopod/right,
@@ -9717,9 +9687,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "iOn" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/mono,
+/obj/item/radio/ntc_listener,
+/obj/effect/spawner/random/misc/earmuffs,
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "iOs" = (
 /obj/structure/disposalpipe/segment,
@@ -10225,7 +10195,10 @@
 	},
 /area/mainship/squads/req)
 "jmW" = (
-/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"
+	},
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
@@ -12064,11 +12037,52 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball)
 "kQW" = (
-/obj/structure/table/mainship,
-/obj/machinery/keycard_auth,
-/turf/open/floor/mainship/emerald{
-	dir = 4
+/obj/structure/window/reinforced/toughened{
+	dir = 8
 	},
+/obj/structure/table/mainship/nometal,
+/obj/machinery/light/mainship,
+/obj/machinery/door_control/old{
+	id = "ROlobby";
+	name = "Requisitions lockdown";
+	pixel_x = 5;
+	pixel_y = 10;
+	req_one_access = list(42,2)
+	},
+/obj/machinery/door_control/old/cic{
+	pixel_x = -5;
+	pixel_y = 10;
+	id = "shipside_cic_lockdown"
+	},
+/obj/machinery/door_control/old{
+	id = "floor3shipcheckpoint";
+	name = "Floor 3 Lockdown";
+	pixel_x = -5;
+	pixel_y = 3;
+	req_access = list(5)
+	},
+/obj/machinery/door_control/old{
+	id = "Lowershiplockdown";
+	name = "Floor 1 & 2 Lockdown";
+	pixel_y = 3;
+	pixel_x = 5;
+	req_access = list(5)
+	},
+/obj/machinery/door_control/old/cic{
+	id = "cicprivacy";
+	name = "Privacy Shutter";
+	pixel_y = -4;
+	req_one_access = list(200,40);
+	pixel_x = 5
+	},
+/obj/machinery/door_control/old/cic{
+	pixel_x = -5;
+	id = "nukedoors";
+	name = "Nuke Blast Doors";
+	pixel_y = -4;
+	req_one_access = list(200,40)
+	},
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "kRb" = (
 /obj/machinery/door/airlock/mainship/security{
@@ -13483,8 +13497,8 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "mag" = (
-/obj/machinery/cic_maptable/droppod_maptable,
-/turf/open/floor/mainship/mono,
+/obj/structure/prop/mainship/sensor_computer3/black,
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "mbW" = (
 /turf/open/floor/mainship/black{
@@ -16436,9 +16450,10 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "oLi" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/microwave,
-/turf/open/floor/prison/kitchen,
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "oLu" = (
 /obj/structure/bed/chair/office/dark,
@@ -17460,7 +17475,10 @@
 	},
 /area/mainship/squads/req)
 "pUN" = (
-/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
+	},
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -17710,6 +17728,7 @@
 	dir = 8;
 	pixel_x = -17
 	},
+/obj/item/tool/pen,
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
@@ -18179,7 +18198,7 @@
 /area/mainship/command/telecomms)
 "qAd" = (
 /obj/structure/ladder,
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "qAC" = (
 /obj/structure/table/wood,
@@ -18198,10 +18217,7 @@
 	name = "Research"
 	})
 "qBf" = (
-/obj/effect/landmark/start/job/ceo,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "qBo" = (
 /obj/structure/sink/bathroom{
@@ -19337,6 +19353,15 @@
 /obj/machinery/landinglight/cas,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"rGg" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/ceo,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/command/cic)
 "rGT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -19634,6 +19659,15 @@
 	dir = 1
 	},
 /area/mainship/hull/upper_hull)
+"rYd" = (
+/obj/machinery/door/poddoor/mainship/open/cic{
+	id = "cicprivacy";
+	dir = 2
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "rYm" = (
 /turf/open/floor/wood,
 /area/mainship/ntf/fcroom)
@@ -20422,9 +20456,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "sIK" = (
-/obj/structure/drop_pod_launcher,
-/turf/open/shuttle/escapepod,
-/area/mainship/hallways/hangar/droppod)
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
 "sJf" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -20813,6 +20849,7 @@
 	dir = 4;
 	pixel_x = 17
 	},
+/obj/item/tool/pen,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -21629,6 +21666,12 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/table/mainship,
+/obj/structure/paper_bin{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "tLW" = (
@@ -23537,7 +23580,6 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "vBp" = (
@@ -23990,9 +24032,9 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "weP" = (
-/obj/machinery/computer/station_alert,
 /obj/machinery/light,
 /obj/structure/table/mainship,
+/obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "wfm" = (
@@ -24549,8 +24591,8 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "wDG" = (
-/obj/machinery/cic_maptable/drawable,
-/turf/open/floor/mainship/mono,
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "wDV" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -25110,7 +25152,8 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "xbI" = (
-/obj/machinery/computer/med_data,
+/obj/structure/table/mainship,
+/obj/machinery/computer/station_alert,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "xcx" = (
@@ -31425,7 +31468,7 @@ nwr
 nwr
 nwr
 gsf
-hPa
+nkx
 wqm
 pRW
 wNO
@@ -31544,7 +31587,7 @@ nwr
 nwr
 nwr
 uiM
-soj
+jba
 uTe
 ilx
 nzt
@@ -31663,7 +31706,7 @@ nwr
 nwr
 nwr
 uiM
-soj
+tej
 uTe
 rfy
 tAW
@@ -31780,11 +31823,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
+gsf
 gsf
 vBn
-uTe
 nRP
+oLi
 nRP
 dhf
 slI
@@ -31899,11 +31942,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 gsf
 wEj
 bap
 qRx
+bap
 bap
 ymf
 hnw
@@ -32018,8 +32061,8 @@ nwr
 nwr
 nwr
 nwr
-nwr
 uiM
+soj
 uTe
 neY
 bHG
@@ -32137,8 +32180,8 @@ nwr
 nwr
 nwr
 nwr
-nwr
 uiM
+soj
 uTe
 jAQ
 pAd
@@ -32256,8 +32299,8 @@ nwr
 nwr
 nwr
 nwr
-nwr
 uiM
+soj
 uTe
 oYJ
 feE
@@ -32375,12 +32418,12 @@ nwr
 nwr
 nwr
 nwr
-nwr
 gsf
-tej
-jba
+hPa
 uTe
-nkx
+uTe
+uTe
+uTe
 uTe
 aBL
 cMb
@@ -32494,10 +32537,10 @@ nwr
 nwr
 nwr
 nwr
-nwr
 gsf
 kRO
 kRO
+wlm
 wlm
 lyD
 kJv
@@ -32613,10 +32656,10 @@ nwr
 nwr
 nwr
 nwr
-nwr
-gsf
+kRO
 gZt
-oLi
+qRF
+hHn
 hHn
 aCH
 eju
@@ -32732,11 +32775,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
-uiM
-qRF
-hHn
-hHn
+gsf
+gsf
+bbZ
+iEX
+fud
 hHn
 qAd
 vFS
@@ -32853,9 +32896,9 @@ nwr
 nwr
 nwr
 uiM
-bbZ
-iEX
-fud
+wlm
+hHn
+hHn
 hHn
 hHn
 cha
@@ -43115,7 +43158,7 @@ hcn
 hcn
 hcn
 hcn
-sIK
+bye
 sIF
 fHv
 aTZ
@@ -43448,7 +43491,7 @@ vqp
 tkp
 dHm
 tkp
-bZU
+dqF
 dqF
 mRz
 pTu
@@ -43562,7 +43605,7 @@ nwr
 nwr
 nwr
 nwr
-nwr
+ntt
 ntt
 feR
 pUN
@@ -43681,11 +43724,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 ciU
+rGg
 aHq
-qBf
+dqF
 dqF
 tkp
 tkp
@@ -43800,10 +43843,10 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 hYk
 fZP
+dqF
 dqF
 kJl
 cab
@@ -43919,11 +43962,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 dqF
 llA
 tWr
+kQW
 aVy
 tkp
 tkp
@@ -44038,13 +44081,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 mpW
 dqF
 qap
 fYe
-tkp
+qBf
+bZU
 bYT
 hXu
 lDf
@@ -44052,7 +44095,7 @@ hXu
 ljl
 hXu
 hXu
-uIj
+rYd
 hXu
 rtT
 cup
@@ -44157,11 +44200,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 dqF
 vpR
 nZs
+igc
 sKw
 tkp
 tkp
@@ -44276,9 +44319,9 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 qcc
+dqF
 dqF
 dqF
 xlJ
@@ -44395,11 +44438,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 vqp
 dkt
 mxL
 wiA
+dqF
 umW
 tkp
 tkp
@@ -44514,11 +44557,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
+ntt
 ntt
 hcU
 jmW
-kQW
+ciJ
 iOa
 jFl
 tkp
@@ -44634,11 +44677,11 @@ nwr
 nwr
 nwr
 nwr
-vqp
+tkp
 tkp
 dHm
 tkp
-igc
+dqF
 cGc
 tje
 pTu
@@ -45115,7 +45158,7 @@ nwr
 nwr
 vqp
 iOn
-juR
+sIK
 weP
 pTu
 vCU
@@ -55110,8 +55153,8 @@ nwr
 yco
 sPm
 sQj
-sQj
 nlR
+sQj
 sQj
 roJ
 cfQ
@@ -55229,9 +55272,9 @@ nwr
 yco
 nYw
 tnM
-sQj
 kWN
 efM
+sQj
 rTL
 qsx
 uXI
@@ -55344,13 +55387,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
-vTw
+iqJ
+iqJ
 mhv
 dbC
-sQj
 nlR
 efM
+sQj
 roJ
 rsH
 uXI
@@ -55463,13 +55506,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
-iqJ
+vTw
 vkp
 sQj
 sQj
 kWN
 efM
+sQj
 roJ
 aeX
 uXI
@@ -55582,13 +55625,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
-yco
+iqJ
 aZa
 sQj
 sQj
 kWN
 efM
+sQj
 roJ
 kUN
 sPj
@@ -55701,13 +55744,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
 yco
 kWN
 nlR
 nlR
 kWN
 efM
+sQj
 roJ
 sQj
 dwT
@@ -55820,13 +55863,13 @@ nwr
 nwr
 nwr
 nwr
-nwr
 yco
 efM
 efM
 efM
 efM
 mGM
+sQj
 roJ
 sQj
 oIx
@@ -55939,8 +55982,8 @@ nwr
 nwr
 nwr
 nwr
-nwr
 yco
+sQj
 sQj
 sQj
 sQj
@@ -56058,10 +56101,10 @@ nwr
 nwr
 nwr
 nwr
-nwr
 yco
-sQj
-sQj
+kbb
+kbb
+kbb
 sQj
 sQj
 oyd
@@ -56177,11 +56220,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 yco
-kbb
-kbb
-kbb
+nlR
+hcd
+kWN
+sQj
 goF
 msc
 wwI
@@ -56296,11 +56339,11 @@ nwr
 nwr
 nwr
 nwr
-nwr
 iqJ
-sMc
-kWN
-kWN
+iqJ
+fAZ
+fAZ
+sQj
 sQj
 uWm
 xWP
@@ -56417,9 +56460,9 @@ nwr
 nwr
 nwr
 yco
-fAZ
-fAZ
-fAZ
+sQj
+sQj
+sQj
 sQj
 sQj
 roJ

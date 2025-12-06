@@ -5619,8 +5619,8 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/machinery/cic_maptable,
 /obj/structure/cable,
+/obj/machinery/cic_maptable/drawable,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "frP" = (
@@ -19743,7 +19743,8 @@
 	},
 /area/mainship/living/cafeteria)
 "twE" = (
-/obj/structure/prop/mainship/sensor_computer2/black,
+/obj/item/radio/ntc_listener,
+/obj/effect/spawner/random/misc/earmuffs,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "txg" = (
