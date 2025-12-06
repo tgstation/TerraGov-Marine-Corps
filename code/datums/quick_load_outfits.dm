@@ -1782,7 +1782,7 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
-	glasses = /obj/item/clothing/glasses/meson
+	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
 	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
@@ -2081,6 +2081,7 @@
 	wear_suit = /obj/item/clothing/suit/modular/som/light/shield
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	suit_store = /obj/item/weapon/energy/sword/som
+	glasses = /obj/item/clothing/glasses/meson
 	back = /obj/item/blink_drive
 
 /datum/outfit/quick/som/veteran/blinker/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2108,6 +2109,7 @@
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/wepaon/gun/rifle/dragoon
 	back = /obj/item/storage/backpack/lightpack/icc
+	glasses = /obj/item/clothing/glasses/thermal/m64_thermal_goggles
 	r_hand = /obj/item/pamphlet/rifleman
 
 /datum/outfit/quick/som/veteran/dragoon/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2693,7 +2695,7 @@
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/icc/medic/icc_sharpshooter
-	name = "L-11 ICC Medic"
+	name = "L-11 CM Medic"
 	desc = "Equipped with an L-11 sharpshooter rifle and everything you need to keep people alive."
 	suit_store = /obj/item/weapon/gun/rifle/icc_sharpshooter/medic
 	l_pocket = /obj/item/storage/pouch/magazine/large/icc
@@ -2807,6 +2809,7 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	back = /obj/item/storage/backpack/lightpack/icc/guard
+	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
 	r_pocket = /obj/item/storage/pouch/construction/icc/full
 

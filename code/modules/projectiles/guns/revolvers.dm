@@ -43,6 +43,11 @@
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
 	var/catchworking = TRUE
 
+/obj/item/weapon/gun/RightClick(mob/user)
+	. = ..()
+	var/holding = user.get_active_held_item()
+	if(holding && holding == src)
+		do_trick(user)
 //-------------------------------------------------------
 //R-44 COMBAT REVOLVER
 
