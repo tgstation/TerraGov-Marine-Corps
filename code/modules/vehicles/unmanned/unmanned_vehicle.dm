@@ -408,7 +408,7 @@
 	name = "\improper Light UV Machinegun Crate"
 	desc = "A crate containing a light unmanned vehicle machinegun and some spare ammo."
 
-/obj/structure/closet/crate/uav_crate/light_turret/PopulateContents()
+/obj/structure/closet/crate/uav_crate/turret/PopulateContents()
 	new /obj/item/uav_turret(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
