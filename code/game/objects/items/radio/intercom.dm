@@ -104,9 +104,7 @@
 /obj/item/radio/intercom/general
 	name = "General Listening Channel"
 	anyai = TRUE
-	freerange = TRUE
 	frequency = FREQ_COMMON
-
 
 /obj/item/radio/intercom/general/colony
 	freqlock = TRUE

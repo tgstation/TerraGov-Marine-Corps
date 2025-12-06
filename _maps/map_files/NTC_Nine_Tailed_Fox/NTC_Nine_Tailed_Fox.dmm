@@ -9687,8 +9687,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "iOn" = (
-/obj/item/radio/ntc_listener,
-/obj/effect/spawner/random/misc/earmuffs,
+/obj/item/radio/headset/ntc_listener,
+/obj/item/radio/headset/mainship/mcom,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "iOs" = (
