@@ -48,7 +48,7 @@
 	SIGNAL_HANDLER
 	if(user.a_intent == INTENT_HARM)
 		return
-	if(!attacking.reagents)
+	if(!attacking.is_refuelable())
 		return
 	attacking.try_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -66,6 +66,13 @@
 	if(length(return_list))
 		return return_list[1]
 	return DEFAULT_FUEL_TYPE
+
+///Returns true if this can be refueled by the fuel component
+/obj/proc/is_refuelable()
+	return reagents
+
+/obj/item/ammo_magazine/flamer_tank/is_refuelable()
+	return TRUE
 
 ///Attempts to refuel src from a reagent container
 /obj/proc/try_refuel(atom/refueler, fuel_type, mob/user)
