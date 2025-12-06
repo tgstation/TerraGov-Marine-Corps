@@ -209,10 +209,10 @@
 	density = FALSE
 	icon_state = "computer_small"
 	screen_overlay = "security_cam"
-	network = list("marinemainship")
+	network = list("marinemainship", "colony")
 
 /obj/machinery/computer/security/marinemainship_network
-	network = list("marinemainship")
+	network = list("marinemainship", "colony")
 
 /obj/machinery/computer/security/marine_network
 	network = list("marine")
