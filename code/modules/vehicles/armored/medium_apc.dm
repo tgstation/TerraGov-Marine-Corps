@@ -10,8 +10,8 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_TRANSPORT
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS
-	obj_integrity = 750
-	max_integrity = 750
+	obj_integrity = 800
+	max_integrity = 800
 	max_occupants = 5
 	permitted_mods = list(/obj/item/tank_module/ability/zoom)
 	soft_armor = list(MELEE = 50, BULLET = 75 , LASER = 75, ENERGY = 60, BOMB = 40, BIO = 100, FIRE = 50, ACID = 50) // No, you don't get to have tank armor
