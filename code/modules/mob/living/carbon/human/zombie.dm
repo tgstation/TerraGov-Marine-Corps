@@ -133,7 +133,7 @@
 		return
 	if(!claw.zombium_per_hit)
 		return
-	if(isrobot(src) || issynth(src))
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
 		apply_damage(modify_by_armor(claw.zombium_per_hit * ZOMBIUM_ROBOT_EFFECT_MULTIPLIER, BIO, 0, zombie.get_limbzone_target()), BURN, zombie.get_limbzone_target())//Zombium is corrosive to machines
 	else
 		reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
