@@ -7,8 +7,8 @@
 	turret_icon_state = "apc_turret"
 	icon_state = "apc"
 	move_delay = 0.3 SECONDS
-	obj_integrity = 150
-	max_integrity = 150 // How about we don't have the itty bitty guy have 600 hp
+	obj_integrity = 500
+	max_integrity = 500 // How about we don't have the itty bitty guy have 600 hp
 	pixel_x = -16
 	pixel_y = -8
 	max_occupants = 3
