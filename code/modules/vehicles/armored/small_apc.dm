@@ -8,7 +8,7 @@
 	icon_state = "apc"
 	move_delay = 0.3 SECONDS
 	obj_integrity = 500
-	max_integrity = 500 // How about we don't have the itty bitty guy have 600 hp
+	max_integrity = 500
 	pixel_x = -16
 	pixel_y = -8
 	max_occupants = 3
