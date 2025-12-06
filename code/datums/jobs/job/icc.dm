@@ -1,7 +1,7 @@
 /datum/job/icc
 	job_category = JOB_CAT_MARINE
-	access = ALL_ANTAGONIST_ACCESS
-	minimal_access = ALL_ANTAGONIST_ACCESS
+	access = ALL_ICC_ACCESS
+	minimal_access = ALL_ICC_ACCESS
 	skills_type = /datum/skills/craftier
 	faction = FACTION_ICC
 	minimap_icon = "icc"
@@ -12,8 +12,8 @@
 	. += {"You are part of the colonial militia that formed shortly after Xenomorph invasion,
 after ransacking the armories of the colonies owned by NTC, you took arms to fight against the Xenomorph assault.
 Though soon they turned less lethal, danger still persists, especially those that are alone, namely survivors. Which is your job to protect now.
-You are all former or current employees/colonists of Ninetails but there is still some tensions after what happened.
-For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"}
+You are all colonists hired by Ninetails, Novamed, TRANSCo and Archercorp, depending on your initial assignments. That's why you are here in this cursed planet to begin with.
+For that CM is closer to NTC and the corps than the rest, they gave your families or just you hope and funds to live comfortably back in earth and you a possibiity of a new begginning until it is all taken away. CM believes the other factions to be vultures on top of a stillborn colonization."}
 
 
 //ICC Standard

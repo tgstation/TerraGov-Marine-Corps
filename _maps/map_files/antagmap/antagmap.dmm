@@ -311,12 +311,9 @@
 	},
 /area/antag_ship/clf_base/hallways/inside)
 "ch" = (
-/obj/machinery/light/red{
-	dir = 1
-	},
-/turf/open/floor/prison/darkpurple{
-	dir = 1
-	},
+/obj/machinery/light_construct,
+/obj/structure/table/black,
+/turf/open/floor/prison/darkpurple,
 /area/antag_ship/vsd/hall)
 "ci" = (
 /obj/structure/cable,
@@ -393,8 +390,9 @@
 /area/antag_ship/clf_base/lounge)
 "cB" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/power/smes/buildable,
 /turf/open/floor/prison/darkpurple{
-	dir = 9
+	dir = 1
 	},
 /area/antag_ship/vsd/hall)
 "cC" = (
@@ -523,8 +521,14 @@
 /turf/open/floor/mainship/empty,
 /area/antag_ship/som/requisition)
 "dp" = (
-/obj/effect/turf_decal/tracks/claw1/bloody,
-/turf/open/floor/prison,
+/obj/machinery/door/airlock/mainship/security/glass{
+	req_access = list(239, 240)
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = "KZLockdown";
+	name = "Lockdown Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/vsd/hall)
 "dq" = (
 /obj/structure/sink/bathroom{
@@ -1381,12 +1385,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "hZ" = (
-/obj/structure/table/black,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/suit/straight_jacket,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = "KZPrivacy";
+	name = "Privacy Shutters"
+	},
+/obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/iron/dark,
 /area/antag_ship/vsd/hall)
 "ia" = (
@@ -2443,9 +2446,10 @@
 /turf/open/floor/iron/dark/small,
 /area/antag_ship/vsd/hall)
 "mK" = (
-/obj/machinery/light_construct,
-/obj/structure/bed/roller/hospital_empty/bigrollerbloodempty,
-/turf/open/floor/prison/darkpurple,
+/obj/structure/bed/chair,
+/obj/item/restraints/handcuffs/cable/red,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/dark/small,
 /area/antag_ship/vsd/hall)
 "mL" = (
 /obj/structure/drop_pod_launcher,
@@ -2838,7 +2842,7 @@
 /area/antag_ship/vsd/hall)
 "oq" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/mainship/black/full,
+/turf/open/floor/prison/blackfloor,
 /area/antag_ship)
 "or" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
@@ -3258,10 +3262,6 @@
 /obj/effect/landmark/start/job/vsd_spec,
 /turf/open/floor/iron/dark,
 /area/antag_ship/vsd/port)
-"qj" = (
-/obj/structure/prop/urban/misc/blood/blood2,
-/turf/open/floor/prison,
-/area/antag_ship/vsd/hall)
 "qn" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
@@ -3725,7 +3725,7 @@
 	req_one_access = list(239, 240)
 	},
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
+/turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/hall)
 "sF" = (
 /obj/structure/cable,
@@ -3890,7 +3890,7 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "tw" = (
-/obj/machinery/light_construct,
+/obj/structure/bed/roller/hospital_empty/bigrollerbloodempty,
 /turf/open/floor/prison/darkpurple,
 /area/antag_ship/vsd/hall)
 "tx" = (
@@ -3905,15 +3905,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"tC" = (
-/obj/structure/cable,
-/obj/effect/urban/decal/bloodtrail{
-	dir = 4
-	},
-/turf/open/floor/prison/darkpurple{
-	dir = 8
-	},
-/area/antag_ship/vsd/hall)
 "tD" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -4137,9 +4128,13 @@
 /obj/structure/table/black,
 /obj/item/clothing/mask/muzzle,
 /obj/item/clothing/mask/muzzle,
+/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/sunglasses/blindfold,
 /obj/item/clothing/mask/muzzle,
-/obj/item/clothing/mask/muzzle,
-/obj/item/clothing/mask/muzzle,
+/obj/item/clothing/suit/straight_jacket,
+/obj/item/clothing/suit/straight_jacket,
+/obj/item/clothing/suit/straight_jacket,
 /turf/open/floor/iron/dark,
 /area/antag_ship/vsd/hall)
 "uJ" = (
@@ -4548,13 +4543,13 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security)
 "wK" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/mainship/secure{
 	name = "\improper KZ Research Airlock";
 	req_access = null;
 	req_one_access = list(239, 240)
 	},
-/turf/open/floor/grayscale/round/black,
+/obj/structure/cable,
+/turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/hall)
 "wM" = (
 /obj/alien/egg/hugger,
@@ -4754,7 +4749,8 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/glass_command{
 	name = "\improper KZ Command Airlock";
-	req_access = list(240)
+	req_access = list(240);
+	dir = 2
 	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
@@ -5330,7 +5326,10 @@
 /turf/closed/mineral/smooth,
 /area/antag_ship/clf_base/hallways/outside)
 "Be" = (
-/turf/open/floor/iron/dark,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/vsd/hall)
 "Bf" = (
 /obj/machinery/vending/marineFood,
@@ -6006,14 +6005,11 @@
 /turf/closed/wall/r_wall/prison,
 /area/antag_ship/vsd/engi)
 "Ek" = (
-/obj/structure/table/black,
-/obj/item/clothing/glasses/sunglasses/blindfold,
-/obj/item/clothing/glasses/sunglasses/blindfold,
-/obj/item/clothing/glasses/sunglasses/blindfold,
-/obj/item/clothing/glasses/sunglasses/blindfold,
-/obj/item/clothing/glasses/sunglasses/blindfold,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/vending/security{
+	req_access = null
 	},
 /turf/open/floor/iron/dark,
 /area/antag_ship/vsd/hall)
@@ -6420,9 +6416,10 @@
 /turf/open/floor/plating,
 /area/antag_ship/som/hangar)
 "Ge" = (
-/obj/structure/cable,
-/obj/structure/prop/urban/misc/blood/blood1,
-/turf/open/floor/prison,
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/vsd/hall)
 "Gf" = (
 /obj/machinery/power/terminal{
@@ -6431,14 +6428,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
-"Gg" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/shutters/mainship/open{
-	id = "KZPrivacy";
-	name = "Privacy Shutters"
-	},
-/turf/open/space/basic,
-/area/antag_ship/vsd/hall)
 "Gj" = (
 /obj/structure/mecha_wreckage/mauler,
 /turf/open/floor/plating/platebot,
@@ -6798,10 +6787,13 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/port/spaceport)
 "HT" = (
-/obj/machinery/power/terminal{
-	dir = 1
+/obj/structure/table/black,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
 	},
-/obj/structure/cable,
+/obj/item/tool/wirecutters,
+/obj/item/tool/surgery/bonesetter,
+/obj/item/weapon/combat_knife/pmc,
 /turf/open/floor/iron/dark/small,
 /area/antag_ship/vsd/hall)
 "HW" = (
@@ -6818,9 +6810,14 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/barracks)
 "HZ" = (
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = "KZLockdown";
+	name = "Lockdown Shutters"
+	},
+/obj/machinery/door/airlock/mainship/security/glass{
+	req_access = list(239, 240)
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/vsd/hall)
 "Ia" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -7735,16 +7732,6 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
-"My" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	req_access = list(239, 240)
-	},
-/obj/machinery/door/poddoor/shutters/mainship/open{
-	id = "KZLockdown";
-	name = "Lockdown Shutters"
-	},
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/hall)
 "MB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/antag_ship/clf_base/kitchen)
@@ -7787,11 +7774,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/center/armory)
-"MQ" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/hall)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
@@ -8724,16 +8706,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/bridge)
 "Rn" = (
-/obj/structure/table/black,
-/obj/item/tool/wirecutters,
-/obj/item/weapon/combat_knife/pmc,
-/obj/item/tool/surgery/bonesetter,
-/turf/open/floor/iron/dark,
+/obj/structure/prop/urban/misc/blood/blood1,
+/turf/open/floor/prison,
 /area/antag_ship/vsd/hall)
 "Ro" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/rig/syndi,
 /obj/item/clothing/head/helmet/space/rig/syndi,
+/obj/structure/sign/prop2{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/side,
 /area/antag_ship/vsd/armory)
 "Rq" = (
@@ -8836,9 +8818,11 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "RM" = (
-/turf/open/floor/prison/darkpurple{
-	dir = 8
+/obj/machinery/power/terminal{
+	dir = 1
 	},
+/obj/structure/cable,
+/turf/open/floor/prison,
 /area/antag_ship/vsd/hall)
 "RN" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
@@ -9087,9 +9071,8 @@
 	},
 /area/antag_ship/vsd/hall)
 "SV" = (
-/turf/open/floor/prison/darkpurple{
-	dir = 10
-	},
+/obj/structure/table/black,
+/turf/open/floor/prison/darkpurple,
 /area/antag_ship/vsd/hall)
 "SW" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -9505,12 +9488,6 @@
 	dir = 10
 	},
 /area/antag_ship/pmc_ntf/starboard/medbay)
-"UO" = (
-/obj/machinery/vending/security{
-	req_access = null
-	},
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/hall)
 "UP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -9613,6 +9590,9 @@
 /obj/effect/landmark/start/job/vsd,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
+	},
+/obj/structure/sign/prop2{
+	dir = 1
 	},
 /turf/open/floor/iron/dark/smooth_corner,
 /area/antag_ship/vsd/port)
@@ -10050,9 +10030,9 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "Xg" = (
-/obj/structure/sign/prop2,
-/turf/open/space/basic,
-/area/space)
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/prison,
+/area/antag_ship)
 "Xh" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/wood,
@@ -10144,12 +10124,6 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
-"XF" = (
-/obj/machinery/light/mainship{
-	light_color = "#da2f1b"
-	},
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/hall)
 "XG" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -10452,10 +10426,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/medbay/morgue)
-"YW" = (
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/antag_ship/vsd/hall)
 "YX" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/plating/ground/concrete,
@@ -13511,13 +13481,13 @@ CN
 CN
 CN
 CN
-mg
-mg
-mg
-mg
-mg
-mg
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13606,13 +13576,13 @@ CN
 CN
 CN
 CN
-mg
-gi
-EN
-sz
-gi
-EN
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13701,13 +13671,13 @@ CN
 CN
 CN
 CN
-mg
-EN
-dr
-sz
-EN
-dr
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13796,13 +13766,13 @@ CN
 CN
 CN
 CN
-mg
-My
-Gg
-sz
-My
-Gg
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -13892,11 +13862,11 @@ CN
 CN
 CN
 mg
-sa
-wA
-Lf
-wA
-Ll
+mg
+mg
+mg
+mg
+mg
 mg
 CN
 CN
@@ -13988,11 +13958,11 @@ LH
 mg
 mg
 Be
-vN
-vN
-vN
-EE
-mg
+Ge
+sz
+gi
+EN
+mS
 CN
 CN
 CN
@@ -14082,11 +14052,11 @@ OY
 Gj
 KP
 mg
-HZ
-HT
-vN
-vN
-bR
+dr
+EN
+sz
+EN
+dr
 mg
 mg
 mg
@@ -14177,10 +14147,10 @@ fj
 jx
 VE
 mg
-AZ
-XT
-vN
-vN
+hZ
+dp
+sz
+HZ
 hZ
 mg
 QE
@@ -14253,7 +14223,7 @@ CN
 CN
 CN
 CN
-Xg
+CN
 mg
 Vj
 NU
@@ -14272,11 +14242,11 @@ pk
 Ux
 ll
 mg
-Be
-YW
-UO
-Be
-XF
+sa
+wA
+Lf
+wA
+Ll
 mg
 dW
 QE
@@ -14367,11 +14337,11 @@ Pi
 Ux
 qU
 mg
-MQ
-XT
+AZ
 vN
+mK
 vN
-Rn
+EE
 mg
 dW
 dW
@@ -14462,9 +14432,9 @@ yj
 Ux
 Ux
 mg
-Be
-XT
+bR
 vN
+HT
 vN
 uI
 mg
@@ -15129,8 +15099,8 @@ oP
 mg
 cB
 RM
-tC
-RM
+Bl
+UQ
 SV
 mg
 CN
@@ -15222,11 +15192,11 @@ dP
 dP
 Ja
 mg
-Tu
-UQ
+GO
 Bl
-dp
-on
+Rn
+UQ
+ch
 mg
 mg
 mg
@@ -15317,9 +15287,9 @@ Hn
 dP
 Th
 mg
-GO
-qj
+Zy
 Bl
+UQ
 UQ
 tw
 mg
@@ -15393,7 +15363,7 @@ CN
 CN
 CN
 CN
-Xg
+CN
 mg
 Ro
 AO
@@ -15412,11 +15382,11 @@ ki
 dP
 az
 mg
-Zy
-UQ
+Tu
 Bl
 UQ
-on
+GA
+Km
 mg
 QE
 dW
@@ -15507,9 +15477,9 @@ dP
 dP
 ur
 mg
-Tu
+XR
 Bl
-Ge
+UQ
 UQ
 on
 mg
@@ -15602,11 +15572,11 @@ xr
 df
 tk
 mg
-ch
+GO
 Bl
 UQ
 UQ
-mK
+Mc
 mg
 mg
 mg
@@ -15697,12 +15667,12 @@ LH
 LH
 mg
 mg
-Tu
-Bl
-UQ
-UQ
-on
-mg
+sf
+Ho
+kO
+kO
+rJ
+Xg
 CN
 CN
 CN
@@ -15792,11 +15762,11 @@ CN
 CN
 CN
 mg
-XR
-Bl
-UQ
-GA
-Km
+mg
+mg
+mg
+mg
+mg
 mg
 CN
 CN
@@ -15886,13 +15856,13 @@ CN
 CN
 CN
 CN
-mg
-GO
-Bl
-UQ
-UQ
-Mc
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -15981,13 +15951,13 @@ CN
 CN
 CN
 CN
-mg
-Tu
-Bl
-UQ
-UQ
-on
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16076,13 +16046,13 @@ CN
 CN
 CN
 CN
-mg
-sf
-Ho
-kO
-kO
-rJ
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN
@@ -16171,13 +16141,13 @@ CN
 CN
 CN
 CN
-mg
-mg
-mg
-mg
-mg
-mg
-mg
+CN
+CN
+CN
+CN
+CN
+CN
+CN
 CN
 CN
 CN

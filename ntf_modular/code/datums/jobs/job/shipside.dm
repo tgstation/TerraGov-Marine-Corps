@@ -355,6 +355,8 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 
 //Kaizoku Liaison
 /datum/job/vsd/liaison_kaizoku
+	job_category = JOB_CAT_CIVILIAN
+	selection_color = "#ffeedd"
 	title = "Kaizoku Liaison"
 	paygrade = "NT1"
 	comm_title = "NML"
@@ -495,6 +497,8 @@ You honestly don't know what you are even here to negoitate, AS called terrorist
 
 //Colonial Militia Liaison
 /datum/job/icc/liaison_cm
+	job_category = JOB_CAT_CIVILIAN
+	selection_color = "#ffeedd"
 	title = "Colonial Militia Representative"
 	paygrade = "NT1"
 	comm_title = "NML"
@@ -564,6 +568,8 @@ Almost all of CM members were colonisers hired by the NTC before all of this hap
 
 //Colonial Militia Liaison
 /datum/job/clf/liaison_clf
+	job_category = JOB_CAT_CIVILIAN
+	selection_color = "#ffeedd"
 	title = "CLF Representative"
 	paygrade = "NT1"
 	comm_title = "NML"
