@@ -10044,7 +10044,7 @@
 "lOc" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/machinery/door/firedoor/mainship,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "lOk" = (
 /obj/structure/disposalpipe/segment,
@@ -56645,7 +56645,7 @@ wsR
 yhG
 lJV
 fKK
-rUF
+pGb
 ukJ
 vvQ
 pqm
@@ -56901,7 +56901,7 @@ ovs
 der
 ovs
 eba
-fFv
+ovs
 lOc
 fFv
 lpn
