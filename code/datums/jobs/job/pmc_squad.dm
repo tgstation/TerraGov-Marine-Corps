@@ -7,7 +7,9 @@
 /datum/job/pmc/squad/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"You're a part of hired guns commanded by NTC. Follow orders, no screw ups. Hooah?"}
+	. += {"You're elite enforcer commandos of NTC's Nine Tailed Fox PMC, you always thought infiltrators and recons were not hands on enough so you joined as an enforcer, and outperformed your peers to become one of the elite, just before deathsquad.
+	You are usually called when things seem dire and your equipment is a great cost to the corporation (so are you to train.)
+	Make it worth the cost and earn you and your family's luxury living again."}
 
 //PMC Standard
 /datum/job/pmc/squad/standard

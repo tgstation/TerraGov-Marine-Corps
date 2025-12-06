@@ -104,6 +104,12 @@
 		/datum/job/clf/liaison_clf = 1,
 		/datum/job/som/civilian/liaison_som = 1,
 		/datum/job/vsd/liaison_kaizoku = 1,
+		/datum/job/pmc/squad/standard = 3,
+		/datum/job/pmc/squad/medic = 2,
+		/datum/job/pmc/squad/engineer = 1,
+		/datum/job/pmc/squad/gunner = 1,
+		/datum/job/pmc/squad/sniper = 1,
+		/datum/job/pmc/squad/leader = 1,
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 2 MINUTES
