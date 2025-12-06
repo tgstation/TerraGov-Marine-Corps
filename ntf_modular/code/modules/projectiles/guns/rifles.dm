@@ -335,10 +335,9 @@
 	default_ammo = /datum/ammo/energy/lasgun/halter
 
 /datum/ammo/energy/lasgun/halter
-	//slightly less damage than regular bullets but except laser standard sundering, also same bullet speed.
+	//slightly less damage than regular bullets but except laser standard sundering and bullet speed.
 	name = "halter laser bolt"
-	shell_speed = 3.5
-	damage = 23
+	damage = 27
 	bullet_color = COLOR_RED_LIGHT
 
 //extended mag
