@@ -61,9 +61,9 @@
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/marine/deathsquad
-	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc/commando
-	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
+	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando/heavy
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
@@ -122,7 +122,7 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/deathsquad
+	suit_store = /obj/item/weapon/gun/rifle/pmc_gpmg/deathsquad
 	r_pocket = /obj/item/storage/pouch/medkit
 	l_pocket = /obj/item/storage/pouch/magazine/drum
 	back = /obj/item/storage/backpack/commando
@@ -131,7 +131,7 @@
 	backpack_contents = list(
 		/obj/item/explosive/grenade/phosphorus = 1,
 		/obj/item/explosive/plastique = 4,
-		/obj/item/ammo_magazine/standard_smartmachinegun = 7,
+		/obj/item/ammo_magazine/smart_gpmg/extended = 7,
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/binoculars = 1,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 1,
@@ -155,7 +155,7 @@
 	)
 
 	l_pocket_contents = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun = 4,
+		/obj/item/ammo_magazine/smart_gpmg/extended = 4,
 	)
 
 	r_pocket_contents = list(

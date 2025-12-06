@@ -18,6 +18,9 @@
 //===========================STANDARD================================
 
 /datum/outfit/job/freelancer/standard
+	name = "Freelancer Standard"
+	jobtype = /datum/job/freelancer/standard
+
 	wear_suit = /obj/item/clothing/suit/storage/marine/freelancer
 	back = /obj/item/storage/backpack/lightpack/freelancer
 	mask = /obj/item/clothing/mask/bandanna
@@ -42,8 +45,6 @@
 
 // PR412 with UGL
 /datum/outfit/job/freelancer/standard/m412
-	name = "Freelancer Standard"
-	jobtype = /datum/job/freelancer/standard
 
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/rifle/m412/freelancer

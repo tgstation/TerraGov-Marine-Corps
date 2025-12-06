@@ -77,7 +77,7 @@
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the MAGNUM mercenaries modular armor. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
-	storage_type = /datum/storage/internal/satchel
+	storage_type = /datum/storage/internal/integrated
 	slowdown = 0.2
 
 /obj/item/armor_module/storage/engineering

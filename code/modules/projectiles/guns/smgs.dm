@@ -773,7 +773,7 @@
 
 /obj/item/weapon/gun/smg/val
 	name = "\improper RA-VAL submachine gun"
-	desc = "The RA-VAL is a heavier than usual subgun used by the Nanotrasen Contractors. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch. However, it suffers at long range due to heavy bullet of 9x39mm caliber."
+	desc = "The RA-VAL is a RivArms heavier than usual subgun used by the Nanotrasen Contractors. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while carrying a mean punch. However, it starts to suffer at long ranges due to heavy bullet of 9x39mm caliber."
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "val"
 	worn_icon_state = "val"
@@ -809,8 +809,8 @@
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	fire_delay = 0.2 SECONDS
-	burst_delay =  0.15 SECONDS
+	fire_delay = 0.25 SECONDS
+	burst_delay =  0.2 SECONDS
 	burst_amount = 4
 	scatter = 2
 	scatter_unwielded = 11
