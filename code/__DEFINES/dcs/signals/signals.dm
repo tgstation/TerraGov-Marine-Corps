@@ -925,6 +925,9 @@
 ///from /datum/action/ability/activable/build_designator/call_interaction()
 #define COMSIG_MOB_INTERACTION_DESIGNATED "mob_interaction_designated"
 
+///From /atom/add_slaved_npc()
+#define COMSIG_COMPONENT_ADD_NEW_SLAVE_NPC "component_add_new_slave_npc"
+
 // /datum/song signals
 
 ///sent to the instrument when a song starts playing
