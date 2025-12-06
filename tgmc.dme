@@ -604,6 +604,7 @@
 #include "code\datums\gamemodes\objective.dm"
 #include "code\datums\gamemodes\objective_items.dm"
 #include "code\datums\gamemodes\sensor_capture.dm"
+#include "code\datums\gamemodes\survival.dm"
 #include "code\datums\gamemodes\zombie_crash.dm"
 #include "code\datums\gamemodes\campaign\campaign_assets.dm"
 #include "code\datums\gamemodes\campaign\campaign_mission.dm"
