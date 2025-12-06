@@ -30,3 +30,17 @@
 2025-12-05:
   mudzbe:
   - balance: Threatened zombie spawners have a higher spawning capacity
+2025-12-06:
+  Despong & Lumi:
+  - balance: added the Sambar MRAP - a speedy but unarmed alternative to the APC
+  Lumipharon:
+  - balance: Zombies can no longer be facehugged
+  - bugfix: fixed spiderlings, for real
+  - bugfix: fixed the UV machinegun option in the engineer vendor having the incorrect
+      contents
+  - bugfix: fixed several minor resin weed related bugs
+  - bugfix: fixed sticky weeds applying slowdown to humans that were jumping or on
+      tanks
+  - bugfix: fixed not being able to hit fuel tanks
+  - bugfix: fixed some unneeded fuel tank balloon alerts
+  - qol: chairs layer under objects
