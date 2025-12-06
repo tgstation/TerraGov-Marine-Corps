@@ -324,7 +324,6 @@
 	name = "foxfire rifle bullet"
 	hud_state = "rifle_ap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 20
 	bullet_color = COLOR_RED_LIGHT
 
 //laser mag

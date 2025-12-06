@@ -51,7 +51,7 @@
 /datum/supply_packs/imports/halterdrum
 	name = "NT Halter drum mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/drum)
-	cost = 25
+	cost = 15
 
 /datum/supply_packs/imports/halterexlaser
 	name = "NT Halter extended laser mag (x1)"
@@ -61,22 +61,22 @@
 /datum/supply_packs/imports/halterdrumlaser
 	name = "NT Halter drum laser mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/laser/drum)
-	cost = 25
+	cost = 15
 
 /datum/supply_packs/imports/haltercharged
 	name = "NT Halter charged mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/charged)
-	cost = 100
+	cost = 30
 
 /datum/supply_packs/imports/haltersmart
-	name = "NT Halter smart mag crate (x1)"
+	name = "NT Halter smart mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/smart)
-	cost = 25
+	cost = 5 //its pretty ass and small cap anyway.
 
 /datum/supply_packs/imports/halterfoxfire
-	name = "NT Halter foxfire mag crate (x1)"
+	name = "NT Halter foxfire mag (x1)"
 	contains = list(/obj/item/ammo_magazine/rifle/nt_halter/foxfire)
-	cost = 25
+	cost = 20
 
 /datum/supply_packs/imports/antienergyshield
 	name = "NTC Anti Energy Shield"
