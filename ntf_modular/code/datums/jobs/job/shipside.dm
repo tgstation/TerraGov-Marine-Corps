@@ -171,13 +171,6 @@
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/terragov/civilian/liaison_archercorp/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -248,13 +241,6 @@ Archercorp generally takes a more isolationist approach to diplomacy and are gen
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/terragov/civilian/liaison_novamed/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -324,13 +310,6 @@ Novamed tends to be cooperative with other corporations, especially mutually wit
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/terragov/civilian/liaison_transco/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -400,13 +379,6 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/vsd/liaison_kaizoku/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -477,13 +449,6 @@ Your ranking allows you to know your corporation has vital backing from the crim
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/som/civilian/liaison_som/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -554,13 +519,6 @@ You honestly don't know what you are even here to negoitate, AS called terrorist
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/icc/liaison_cm/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -630,13 +588,6 @@ Almost all of CM members were colonisers hired by the NTC before all of this hap
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	html_description = {"
-		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Ninetails Corporate Office, the CEO.<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage the operations along with command, do paperwork, Reply if you’re called.
-	"}
 	minimap_icon = "cl"
 
 /datum/job/clf/liaison_clf/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
