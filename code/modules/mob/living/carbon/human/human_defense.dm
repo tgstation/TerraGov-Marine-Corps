@@ -178,7 +178,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
@@ -196,7 +196,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
