@@ -5,7 +5,7 @@
 	screen_overlay = "cameras"
 	broken_icon = "computer_small_red_broken"
 	circuit = /obj/item/circuitboard/computer/security
-	var/list/network = list("marinemainship")
+	var/list/network = list("colony")
 	var/list/watchers = list() //who's using the console, associated with the camera they're on.
 	var/long_ranged = FALSE
 
