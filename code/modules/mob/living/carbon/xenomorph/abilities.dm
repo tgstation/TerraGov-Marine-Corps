@@ -22,7 +22,7 @@
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	action_icon = 'icons/Xeno/actions/construction.dmi'
-	ability_cost = 75
+	ability_cost = 150
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
@@ -51,6 +51,22 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE), PROC_REF(update_ability_cost))
 		update_ability_cost()
+
+/datum/action/ability/activable/xeno/plant_weeds/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
+	if(!(override_flags & ABILITY_IGNORE_LOC))
+		var/turf/turf = get_turf(owner)
+		if(!turf?.is_weedable() || turf.density)
+			if(!silent)
+				to_chat(owner, span_warning("We can't do that here."))
+			return FALSE
+
+	if(!xeno_owner.loc_weeds_type && (SSmonitor.gamestate != SHUTTERS_CLOSED))
+		if(!silent)
+			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
 
 /// Updates the ability cost.
 /datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost(datum/source)
@@ -143,15 +159,14 @@
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
-/datum/action/ability/activable/xeno/plant_weeds/proc/weed_on_move(datum/source)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.loc_weeds_type)
+/datum/action/ability/activable/xeno/plant_weeds/proc/weed_on_move(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+	if(!xeno_owner.loc_weeds_type || istype(xeno_owner.loc_weeds_type, /obj/alien/weeds/node))
 		return
 	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
 		return
-	if(!can_use_ability(xeno_owner.loc, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(old_loc, TRUE, ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_IGNORE_LOC))
 		return
-	plant_weeds(owner)
+	plant_weeds(old_loc)
 
 /datum/action/ability/activable/xeno/plant_weeds/update_button_icon()
 	name = "Plant Weeds ([ability_cost])"
@@ -171,12 +186,12 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/plant_weeds/ai_should_use(target)
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.loc_weeds_type)
-		return FALSE
-	return TRUE
+	if(!auto_weeding)
+		toggle_auto_weeding()
+	return FALSE
+
+/datum/action/ability/activable/xeno/plant_weeds/cheap
+	cost_multiplier = 0.25
 
 /datum/action/ability/activable/xeno/plant_weeds/ranged
 	max_range = 4
