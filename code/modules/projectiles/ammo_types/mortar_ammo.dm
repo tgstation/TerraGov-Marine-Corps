@@ -102,6 +102,10 @@
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
+	if(usr)
+		log_combat(usr, mine, "deployed", src, "(IFF signal [TGMC_LOYALIST_IFF])")
+	else
+		log_attack("[logdetails(mine)] was deployed with [logdetails(src)] (IFF signal [TGMC_LOYALIST_IFF])")
 	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/smoke

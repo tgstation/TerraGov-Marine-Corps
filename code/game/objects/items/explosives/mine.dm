@@ -88,6 +88,10 @@ Stepping directly on the mine will also blow it up
 
 ///this proc is used to deploy a mine
 /obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
+	if(user)
+		log_combat(user, src, "deployed", "IFF signal [iff_sig]")
+	else
+		log_attack("[logdetails(src)] was deployed with IFF signal [iff_sig]")
 	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
