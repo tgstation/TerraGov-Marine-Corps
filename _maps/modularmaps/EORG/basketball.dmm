@@ -283,7 +283,6 @@
 /obj/effect/turf_decal/warning_stripes/nscenter,
 /obj/effect/turf_decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
-/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /obj/machinery/floodlight/landing/testroom,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -894,6 +893,11 @@
 /area/deathmatch)
 "QG" = (
 /turf/open/floor/mainship/blue,
+/area/deathmatch)
+"QW" = (
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/wood,
 /area/deathmatch)
 "Rd" = (
 /turf/open/floor/mainship/orange{
@@ -2134,7 +2138,7 @@ ad
 ad
 dt
 aN
-ad
+QW
 ad
 ad
 ad
