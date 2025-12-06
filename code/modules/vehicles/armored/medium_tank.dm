@@ -11,10 +11,9 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_ASSAULT
 	pixel_x = -16
 	pixel_y = -32
-	max_integrity = 500
-	max_integrity = 500 // Go fuck yourself 1000 health having ass
+	max_integrity = 900
+	max_integrity = 900 // Go fuck yourself 1000 health having ass
 	max_occupants = 3
-	ram_damage = 80 // Itty bitty tank isn't going to kill instantly
 
 	soft_armor = list(MELEE = 50, BULLET = 90 , LASER = 85, ENERGY = 60, BOMB = 60, BIO = 100, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 5, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
