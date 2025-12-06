@@ -70,6 +70,7 @@ export const JobPreferences = (props) => {
     'SOM Staff Officer',
     'SOM Pilot Officer',
     'SOM Assault Crewman',
+    'Sons of Mars Representative',
     'SOM Chief Medical Officer',
     'SOM Chief Engineer',
     'SOM Requisitions Officer',
@@ -78,6 +79,9 @@ export const JobPreferences = (props) => {
   ];
   const flavourJobs = [
     'Operations Officer',
+    'Archercorp Liaison',
+    'Novamed Liaison',
+    'TRANSCo Liaison',
     'Worker',
     'Morale Officer',
     'Prisoner',
@@ -92,6 +96,7 @@ export const JobPreferences = (props) => {
     'CLF Synthetic',
     'CLF Leader',
     'CLF Base Technician',
+    'CLF Representative',
   ];
   const cmJobs = [
     'CM Standard',
@@ -99,6 +104,7 @@ export const JobPreferences = (props) => {
     'CM Guardsman',
     'CM Squad Leader',
     'CM Base Technician',
+    'Colonial Militia Representative',
   ];
   const kzJobs = [
     'KZ Standard',
@@ -106,6 +112,7 @@ export const JobPreferences = (props) => {
     'KZ Engineer',
     'KZ Specialist',
     'KZ Squad Leader',
+    'Kaizoku Liaison',
   ];
   const survivorJobs = [
     'Assistant Survivor',
