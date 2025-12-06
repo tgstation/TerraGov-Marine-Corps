@@ -67,9 +67,12 @@
 #define ARMORED_WRECK_PREP_STAGE_ONE (1<<11)
 ///Wreck has a fulton attached
 #define ARMORED_WRECK_PREP_STAGE_TWO (1<<12)
-#define ARMORED_SOM_PURCHASABLE_TRANSPORT (1<<13)
+///Vehicle damages itself when ramming walls
+#define ARMORED_SELF_WALL_DAMAGE (1<<13)
+#define ARMORED_SOM_PURCHASABLE_TRANSPORT (1<<14)
 ///Turns into a wreck instead of being destroyed
-#define ARMORED_WRECKABLE (1<<14)
+#define ARMORED_WRECKABLE (1<<15)
+
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)

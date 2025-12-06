@@ -492,15 +492,14 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if((status_flags & GODMODE) || F.stat == DEAD)
 		return FALSE
 
+	if(species?.species_flags & SPECIES_NO_HUG)
+		return FALSE
+
 	var/implanted_embryos = 0
 	for(var/obj/item/alien_embryo/implanted in contents)
 		implanted_embryos++
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 			return FALSE // False if we are at the max embryos.
-
-	if(!provoked)
-		if(isrobot(src))
-			return FALSE
 
 	if(on_fire)
 		return FALSE

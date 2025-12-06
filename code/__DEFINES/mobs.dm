@@ -415,6 +415,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ROBOTIC_LIMBS (1<<18)
 #define GREYSCALE_BLOOD (1<<19)
 #define IS_INSULATED (1<<20)
+#define SPECIES_NO_HUG (1<<21)
 
 //=================================================
 

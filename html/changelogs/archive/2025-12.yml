@@ -39,3 +39,27 @@
   - rscadd: KZ Neural Extractor, KZ Neural Imprinter
   - rscadd: KZ Torture Chamber
   - balance: Nerfed neurodisks
+2025-12-06:
+  DrCrawler:
+  - imageadd: The dragoon is no longer a product of schitzophrenia
+  - rscadd: 'Added a new req/specialist gun: The Dragoon!'
+  - rscadd: 'Added a new SOM specialist quickvend kit: Dragoon Veteran.'
+  - rscadd: Replaced the MUNDANE, BORING DMR in NTF specialist's hybrid class kit
+      with the Dragoon Mk1 RER
+  - spellcheck: Fixes a typo in the L-11 stock.
+  mudzbe:
+  - balance: Threatened zombie spawners have a higher spawning capacity
+2025-12-06:
+  Despong & Lumi:
+  - balance: added the Sambar MRAP - a speedy but unarmed alternative to the APC
+  Lumipharon:
+  - balance: Zombies can no longer be facehugged
+  - bugfix: fixed spiderlings, for real
+  - bugfix: fixed the UV machinegun option in the engineer vendor having the incorrect
+      contents
+  - bugfix: fixed several minor resin weed related bugs
+  - bugfix: fixed sticky weeds applying slowdown to humans that were jumping or on
+      tanks
+  - bugfix: fixed not being able to hit fuel tanks
+  - bugfix: fixed some unneeded fuel tank balloon alerts
+  - qol: chairs layer under objects
