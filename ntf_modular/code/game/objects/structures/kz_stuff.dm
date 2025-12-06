@@ -157,7 +157,7 @@
 
 	if(user.faction == FACTION_VSD && user.a_intent == INTENT_HARM && stored_disk)
 		if(current_mob.stat == DEAD)
-			to_chat(user, span_warning("[current_mob] is dead. Extraction is impossible."))
+			to_chat(user, span_warning("[current_mob] is dead. No neural activity is detected, extraction is not possible."))
 			return TRUE
 		if(current_mob.faction == FACTION_VSD)
 			to_chat(user, span_warning("[current_mob]'s neural implant engages a fail-safe. Extraction cannot proceed."))
@@ -166,7 +166,7 @@
 			to_chat(user, span_warning("Their neural lattice was already harvested. They’ll need cryotube recovery and proper rest before another extraction."))
 			return TRUE
 		if(current_mob.extract_count >= 2)
-			to_chat(user, span_warning("[current_mob] neural links has already been extracted twice. Further extraction is not allowed."))
+			to_chat(user, span_warning("[current_mob]'s neural links has already been extracted twice and are temporarily too distorted. Further extraction is not possible this week."))
 			return TRUE
 
 		to_chat(user, span_notice("You carefully start extracting the neurodisk from [current_mob]."))
@@ -187,7 +187,7 @@
 		current_mob.adjustCloneLoss(25)
 
 		to_chat(user, span_notice("An empty neurodisk is now ready inside the extractor."))
-		to_chat(current_mob, span_userdanger("Your mind feels hollowed out... You should rest and spend some time in a cryotube to recover."))
+		to_chat(current_mob, span_userdanger("Your mind feels wrong... distorted... You should rest and spend some time in a cryotube to recover."))
 		to_chat(user, span_notice("[current_mob] will need to rest and recover in a cryotube before another extraction can be performed."))
 		return TRUE
 
