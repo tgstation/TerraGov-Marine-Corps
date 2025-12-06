@@ -184,13 +184,13 @@
 ///The effects applied to mobs in the outer_range
 /obj/item/storage/bag/trash/grinch/flashbang/proc/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(8 SECONDS, STUN)
+		M.apply_effect(8 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 3),8)
 
 ///The effects applied to mobs outside of outer_range
 /obj/item/storage/bag/trash/grinch/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(4 SECONDS, STUN)
+		M.apply_effect(4 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 1),6)
 
 /datum/action/innate/return_to_point
