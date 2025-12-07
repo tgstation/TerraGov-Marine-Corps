@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - rscadd: "Adds all laser weapons to the various factions, now you can have standardized loadouts!"
