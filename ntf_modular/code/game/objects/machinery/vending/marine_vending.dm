@@ -703,7 +703,7 @@
 		"Grenades" = list(
 			/obj/item/explosive/grenade/vsd = 200,
 			/obj/item/explosive/grenade/phosphorus/upp = 5,
-			/obj/item/explosive/grenade/upp = 15,
+			/obj/item/explosive/grenade/bullet/upp = 15,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
 			/obj/item/explosive/grenade/incendiary = 50,

@@ -32,7 +32,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(
@@ -80,7 +80,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(
@@ -126,7 +126,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(

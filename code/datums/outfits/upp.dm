@@ -17,7 +17,7 @@
 	back = /obj/item/storage/backpack/lightpack
 
 	backpack_contents = list(
-		/obj/item/explosive/grenade/upp = 1,
+		/obj/item/explosive/grenade/bullet/upp = 1,
 		/obj/item/stack/sheet/metal/medium_stack = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 2,
 		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
@@ -31,7 +31,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(
@@ -83,7 +83,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(
@@ -132,7 +132,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(
@@ -179,7 +179,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/upp = 2,
+		/obj/item/explosive/grenade/bullet/upp = 2,
 	)
 
 	shoe_contents = list(

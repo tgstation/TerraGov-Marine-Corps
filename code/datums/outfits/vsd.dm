@@ -544,7 +544,7 @@
 
 	l_pocket_contents = list(
 		/obj/item/explosive/grenade/vsd = 3,
-		/obj/item/explosive/grenade/upp = 3,
+		/obj/item/explosive/grenade/bullet/upp = 3,
 	)
 
 	head_contents = null
