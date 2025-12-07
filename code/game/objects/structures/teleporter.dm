@@ -5,7 +5,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
 	///Max teleport range
-	var/max_range = 40
+	var/max_range = 60
 	///List of all teleportable types
 	var/static/list/teleportable_types = list(
 		/obj/structure/closet,
