@@ -144,6 +144,9 @@
 	atom_flags = BUMP_ATTACKABLE
 	var/movement_delay = 0.7 SECONDS
 
+/obj/machinery/deployable/mounted/sentry/nut/lava_act()
+	return
+
 /obj/machinery/deployable/mounted/sentry/nut/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
 	//it has limited lifespan
