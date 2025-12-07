@@ -137,5 +137,7 @@
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!is_wired)
 		return
+	if(zombie.a_intent != INTENT_HARM)
+		return
 	balloon_alert(zombie, "barbed wire slices into you!")
 	zombie.apply_damage(40, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
