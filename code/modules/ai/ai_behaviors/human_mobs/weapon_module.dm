@@ -166,6 +166,7 @@
 
 	SEND_SIGNAL(new_weapon, COMSIG_AI_EQUIPPED_GUN, mob_parent) //todo: make another sig for belt strap to trigger off
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //One item can be both the gun and melee weapon for a mob
+	RegisterSignal(new_weapon, COMSIG_ITEM_UNWIELD, PROC_REF(on_unwield), TRUE) //we also check for unwielding specifically, as this can happen for a variety of reasons
 	gun = new_weapon
 	return TRUE
 
@@ -184,12 +185,20 @@
 /datum/ai_behavior/human/proc/after_equip_melee(obj/item/weapon/new_weapon)
 	SEND_SIGNAL(new_weapon, COMSIG_AI_EQUIPPED_MELEE, mob_parent)
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE)
+	RegisterSignal(new_weapon, COMSIG_ITEM_UNWIELD, PROC_REF(on_unwield), TRUE)
+
+/datum/ai_behavior/human/proc/on_unwield(obj/item/weapon/old_weapon, mob/living/user)
+	SIGNAL_HANDLER
+	UnregisterSignal(old_weapon, COMSIG_ITEM_UNWIELD)
+	unequip_weapon(old_weapon)
 
 ///Unequips a weapon
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
 	SIGNAL_HANDLER
 	UnregisterSignal(old_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	human_ai_state_flags |= HUMAN_AI_NEED_WEAPONS
+	if(!QDELETED(old_weapon) && isturf(old_weapon.loc))
+		add_atom_of_interest(old_weapon) //we want to pick it up
 	//todo: loosen straps?
 	if(gun == old_weapon)
 		stop_fire()
