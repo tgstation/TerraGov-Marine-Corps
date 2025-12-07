@@ -635,6 +635,9 @@
 			/obj/item/ammo_magazine/rifle/mpi_km/rubber = -1,
 			/obj/item/weapon/gun/rifle/type71 = -1,
 			/obj/item/ammo_magazine/rifle/type71 = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/plasma_kz/kpx = -1,
+			/obj/item/cell/lasgun/volkite = -1,
+
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/vsd_pdw = -1,
