@@ -1079,8 +1079,8 @@
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 21,"rail_x" = 19, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 
-	fire_delay = 1.8 SECONDS
-	max_chamber_items = 14
+	fire_delay = 1.5 SECONDS
+	max_chamber_items = 10
 
 	scatter = 6
 	min_scatter = 4
@@ -1089,8 +1089,7 @@
 	scatter_decay_unwielded = 1
 
 	cock_delay = 1.0 SECONDS
-	aim_slowdown = 0.55
-	damage_mult = 0.8 //fucking thing has 15 rounds.
+	aim_slowdown = 0.5
 
 /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)

@@ -335,12 +335,14 @@
 
 //VSD RPG
 
+/obj/item/ammo_magazine/rocket/vsd
+	reload_delay = 2 SECONDS
+
 /obj/item/ammo_magazine/rocket/vsd/he
 	name = "\improper 84mm HE 'Anti-Personnel' rocket"
 	desc = "84mm High Explosive Anti Personnel case. Designed for clearing out enemy personnel with a bang."
 	icon_state = "c153_he"
 	default_ammo = /datum/ammo/rocket/som
-	reload_delay = 2 SECONDS
 	bonus_overlay = "c153_he"
 
 /obj/item/ammo_magazine/rocket/vsd/incendiary
