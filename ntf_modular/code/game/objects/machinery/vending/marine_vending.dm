@@ -639,6 +639,17 @@
 			/obj/item/cell/lasgun/volkite = -1,
 
 		),
+		"Energy Weapons" = list(
+			/obj/item/cell/lasgun/lasrifle = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
+		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/vsd_pdw = -1,
 			/obj/item/ammo_magazine/smg/vsd_pdw = -1,
@@ -1294,6 +1305,17 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = 10,
 			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
+		),
+		"Energy Weapons" = list(
+			/obj/item/cell/lasgun/lasrifle = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
@@ -2277,6 +2299,17 @@
 			/obj/item/ammo_magazine/rifle/mpi_km/extended = 3,
 			/obj/item/weapon/gun/rifle/type71 = 2,
 			/obj/item/ammo_magazine/rifle/type71 = 6,
+		),
+		"Energy Weapons" = list(
+			/obj/item/cell/lasgun/lasrifle = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
