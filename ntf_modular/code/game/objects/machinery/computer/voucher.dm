@@ -128,3 +128,7 @@
 /obj/machinery/computer/voucher/vsd
 	faction = FACTION_VSD
 	req_access = list(ACCESS_VSD_CARGO)
+
+/obj/machinery/computer/voucher/pmc
+	faction = FACTION_NANOTRASEN
+	req_access = list(ACCESS_NT_PMC_COMMON)
