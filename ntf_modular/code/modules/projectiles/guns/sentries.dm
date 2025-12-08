@@ -248,6 +248,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	use_power = TRUE
 	range = 0
 	var/intercept_cooldown = 0
+	var/rocket_intercept_cooldown = 0
 	var/preview_cooldown = 0
 
 /obj/effect/overlay/blinking_laser/marine/lines/nowarning
@@ -269,26 +270,28 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
-/obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/proj)
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/try_intercept(turf/target_turf, atom/proj, cooldown_mult = 1, fired_times = 10)
 	if((machine_stat & EMPED) || !COOLDOWN_FINISHED(src, intercept_cooldown))
 		return
-	COOLDOWN_START(src, intercept_cooldown, rand(0.5 SECONDS, 1.5 SECONDS))
+	var/the_cooldown = rand(0.5 SECONDS, 1.5 SECONDS) * cooldown_mult
+	COOLDOWN_START(src, intercept_cooldown, the_cooldown)
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun.rounds <= 0)
-		playsound(loc, 'sound/vox/ammunition.ogg', 30, FALSE)
 		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
 	face_atom(target_turf)
 	gun.set_target(target_turf)
-	playsound(loc, pick('sound/vox/alert.ogg','sound/vox/warning.ogg','sound/vox/incoming.ogg'), 30, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(firing_loop), target_turf), 1) //so it works detached from the proc and doesnt delay.
+	addtimer(CALLBACK(src, PROC_REF(firing_loop), target_turf, fired_times), 1) //so it works detached from the proc and doesnt delay.
+	if(prob(10))
+		radio.talk_into(src, "<b>ALERT! [src] missed a [proj.name]! at: [AREACOORD_NO_Z(src)].</b>")
+		return FALSE
 	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
 	playsound(loc, SFX_EXPLOSION_SMALL_DISTANT, 50, 1, falloff = 5)
 	return TRUE
 
-/obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop(turf/target_turf)
+/obj/machinery/deployable/mounted/sentry/ads_system/proc/firing_loop(turf/target_turf, fired_times)
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	for(var/times in 1 to 10)
+	for(var/times in 1 to fired_times)
 		if(gun.rounds <= 0)
 			radio.talk_into(src, "<b>ALERT! [src] ran out of ammo at: [AREACOORD_NO_Z(src)].</b>")
 			break
@@ -301,7 +304,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	desc = "A deployable air defense sentry requiring 100 rounds drum of special flak ammunition."
 	icon = 'ntf_modular/icons/obj/machines/deployable/point-defense/point_defense.dmi'
 	icon_state = "pointdef"
-	burst_amount = 10
+	burst_amount = 5
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
 	max_integrity = 300 //hopefully will withstand a strafe or so cause its stupidly easy to cheese
 	integrity_failure = 50

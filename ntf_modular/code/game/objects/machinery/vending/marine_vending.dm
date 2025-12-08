@@ -614,7 +614,7 @@
 
 
 /obj/machinery/vending/weapon/vsd
-	name = "Syndicate weapons rack"
+	name = "Kaizoku weapons rack"
 	faction = FACTION_VSD
 	desc = "An automated weapon rack hooked up to a colossal storage of short amount of weapons. Deadly, no-less"
 	icon_state = "syndi"
@@ -825,7 +825,7 @@
 	)
 
 /obj/machinery/vending/uniform_supply/vsd
-	name = "\improper Syndicate Clothing Vendor"
+	name = "\improper Kaizoku Clothing Vendor"
 	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
@@ -1184,7 +1184,7 @@
 	)
 
 /obj/machinery/vending/armor_supply/vsd
-	name = "\improper Syndicate Armor Equipment Vendor"
+	name = "\improper Kaizoku Armor Equipment Vendor"
 	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"

@@ -139,11 +139,12 @@
 		to_chat(user, span_warning("You are currently on your return flight!"))
 		return
 	if(!eyeobj)
-		eyeobj.origin = src
 		if(user.faction == FACTION_SOM)
 			eyeobj = new /mob/camera/aiEye/remote/hud/som(null, GLOB.som_cameranet)
 		else
 			eyeobj = new()
+		if(eyeobj)
+			eyeobj.origin = src
 	cas_mini.minimap_flags = GLOB.faction_to_minimap_flag[user.faction]
 	cas_mini.marker_flags = GLOB.faction_to_minimap_flag[user.faction]
 	cas_mini.override_locator(eyeobj)
