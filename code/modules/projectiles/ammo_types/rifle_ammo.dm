@@ -266,4 +266,4 @@
 	max_range = 50
 	damage = 50
 	penetration = 15
-	sundering = 7
+	sundering = 3

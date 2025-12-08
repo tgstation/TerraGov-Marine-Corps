@@ -3072,9 +3072,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	burst_delay = 0.25 SECONDS
 	extra_delay = 0.15 SECONDS
-	accuracy_mult = 1.15 // On par with DMR
 	scatter = -4
 	fire_delay = 0.35 SECONDS
+	damage_mult = 0.5
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
