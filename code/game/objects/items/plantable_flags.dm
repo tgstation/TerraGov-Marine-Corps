@@ -276,3 +276,13 @@
 						00, 0, 0, 1,
 						-1, 0, 0, 0)
 
+/obj/item/plantable_flag/pmc
+	name = "\improper " + FACTION_NANOTRASEN + " flag"
+	desc = "A flag bearing the symbol of the "+ FACTION_NANOTRASEN + ". It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon_state = "flag_tgmc"
+	faction = FACTION_NANOTRASEN
+	filtercolor = list( 1  , -2.6 , 1  , 0,
+					   -2.4,  0.6 , 0  , 0,
+						2  ,  1.45, 0.4, 0,
+						0  ,  0   , 0  , 1,
+						0  ,  0   , 0  , 0)

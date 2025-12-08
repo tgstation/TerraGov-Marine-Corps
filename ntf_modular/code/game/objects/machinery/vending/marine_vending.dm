@@ -194,6 +194,7 @@
 			/obj/item/toy/dice = -1,
 			/obj/item/toy/dice/d20 = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/plantable_flag/pmc = 10,
 		),
 	)
 
