@@ -1079,8 +1079,8 @@
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 21,"rail_x" = 19, "rail_y" = 24, "under_x" = 40, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
 
-	fire_delay = 1.5 SECONDS
-	max_chamber_items = 10
+	fire_delay = 1.6 SECONDS
+	max_chamber_items = 14
 
 	scatter = 6
 	min_scatter = 4
@@ -1088,7 +1088,8 @@
 	scatter_decay = 3
 	scatter_decay_unwielded = 1
 
-	cock_delay = 1.0 SECONDS
+	aim_slowdown = 0.5
+	damage_falloff_mult = 1.3
 	aim_slowdown = 0.5
 
 /obj/item/weapon/gun/shotgun/pump/ksg/standard
