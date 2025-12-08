@@ -40,9 +40,9 @@
 	)
 
 	evo_requirements = list(
-/* NTF removal - evolution minimums
 		/datum/xeno_caste/queen = 8,
-NTF removal end*/
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/dragon = 12,
 	)
 
 ///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators

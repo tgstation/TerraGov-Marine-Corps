@@ -115,6 +115,7 @@
 	deploy_time_lock = 15 SECONDS
 	time_between_round_group = 0
 	time_between_round_group_name = "GROUP_Extended"
+	evo_requirements = list()
 
 /datum/game_mode/infestation/can_start(bypass_checks = TRUE)
 	. = ..()

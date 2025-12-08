@@ -18,9 +18,9 @@
 	 * [caste datum] = [amount of xenos needed]
 	 */
 	var/list/evo_requirements = list(
-/* NTF removal - evolution minimums
 		/datum/xeno_caste/queen = 8,
-NTF removal end*/
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/dragon = 12,
 	)
 
 /datum/game_mode/infestation/post_setup()
