@@ -10,3 +10,6 @@
 /mob/living/carbon/human/var/boobs = null
 /// Defines whether we are using ass overlay
 /mob/living/carbon/human/var/cock = null
+
+///For xeno healing bone repair
+/mob/living/carbon/human/var/xeno_heals = 0

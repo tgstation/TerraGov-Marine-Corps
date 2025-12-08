@@ -229,3 +229,29 @@
 		A.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 1)
 	else
 		X.recurring_injection(A, list(/datum/reagent/toxin/xeno_neurotoxin,/datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
+
+/mob/living/carbon/human/salve_healing()
+	. = ..()
+	xeno_heals++
+	if((xeno_heals % 3) == 0)
+		for(var/datum/limb/limb_to_fix in shuffle(limbs))
+			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				if(limb_to_fix.brute_dam > limb_to_fix.min_broken_damage)
+					continue
+				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+				visible_message("[src]'s broken [limb_to_fix.name] is repaired by the healing!", "Your broken [limb_to_fix.name] is repaired by the healing!")
+				break
+
+/mob/living/carbon/human/psychic_cure()
+	. = ..()
+	xeno_heals++
+	if((xeno_heals % 3) == 0)
+		for(var/datum/limb/limb_to_fix in shuffle(limbs))
+			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				if(limb_to_fix.brute_dam > limb_to_fix.min_broken_damage)
+					continue
+				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+				visible_message("[src]'s broken [limb_to_fix.name] is repaired by the healing!", "Your broken [limb_to_fix.name] is repaired by the healing!")
+				break

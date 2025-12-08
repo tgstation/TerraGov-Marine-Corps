@@ -155,6 +155,18 @@
 		target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 		target.adjustBruteLoss(-heal_amount)
 		target.adjust_sunder(-heal_amount/10)
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			human_target.xeno_heals++
+			if((human_target.xeno_heals % 3) == 0)
+				for(var/datum/limb/limb_to_fix in shuffle(human_target.limbs))
+					if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+						if(limb_to_fix.brute_dam > limb_to_fix.min_broken_damage)
+							continue
+						limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+						limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+						human_target.visible_message("[human_target]'s broken [limb_to_fix.name] is repaired by the healing!", "Your broken [limb_to_fix.name] is repaired by the healing!")
+						break
 	GLOB.round_statistics.drone_acidic_salve += (heal_amount - leftover_healing)
 	GLOB.round_statistics.drone_acidic_salve_sunder += -sunder_change
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
