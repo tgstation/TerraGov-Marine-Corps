@@ -1212,7 +1212,7 @@
 	)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 40
-	ammo_datum_type = /datum/ammo/energy/kz_plasma
+	ammo_datum_type = /datum/ammo/energy/volkite/kz_plasma
 	rounds_per_shot = 36
 	default_ammo_type = /obj/item/cell/lasgun/volkite
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -1230,13 +1230,10 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/som,
-		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
@@ -1251,14 +1248,14 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 24, "under_x" = 42, "under_y" = 13, "stock_x" = 22, "stock_y" = 12)
-	accuracy_mult = 1.05 // volkite counterpart with more attachments but no deflagrate effect
-	accuracy_mult_unwielded = 0.8
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.4
 	aim_slowdown = 0.6
 	damage_falloff_mult = 0.5
 	scatter = 2
-	scatter_unwielded = 25
-	recoil_unwielded = 1.5
-	wield_delay = 0.8 SECONDS
+	scatter_unwielded = 20
+	recoil_unwielded = 5
+	wield_delay = 0.9 SECONDS
 	fire_delay = 0.25 SECONDS
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin

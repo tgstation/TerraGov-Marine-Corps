@@ -65,26 +65,18 @@
 	damage = 15
 	fire_burst_damage = 15
 
-/datum/ammo/energy/kz_plasma
+/datum/ammo/energy/volkite/kz_plasma
 	name = "superheated plasma energy bolt"
 	icon_state = "disablershot"
 	hud_state = "laser_heat"
 	hud_state_empty = "battery_empty_flash"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_SOUND_PITCH
-	bullet_color = COLOR_STRONG_VIOLET
+	bullet_color = COLOR_VIOLET
 	armor_type = ENERGY
-	max_range = 25
-	accurate_range = 25
-	shell_speed = 4.5
+	max_range = 26
+	accurate_range = 15
+	shell_speed = 3.5
 	accuracy_variation = 3
-	accuracy = 5
-	point_blank_range = 2
-	damage = 25
-	penetration = 10
-	sundering = 2
-
-	ping = "ping_s"
-	sound_hit = SFX_ENERGY_HIT
-	sound_armor = SFX_BALLISTIC_ARMOR
-	sound_miss = SFX_BALLISTIC_MISS
-	sound_bounce = SFX_BALLISTIC_BOUNCE
+	damage = 30 //No fire burst so maybe fine.
+	sundering = 2.5
+	deflagrate_multiplier = 0
