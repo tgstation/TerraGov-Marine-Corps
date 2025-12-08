@@ -137,6 +137,14 @@ export const JobPreferences = (props) => {
     'Maid Survivor',
     'Synthetic Survivor',
   ];
+  const pmcJobs = [
+    'PMC Standard',
+    'PMC Medic',
+    'PMC Engineer',
+    'PMC Gunner',
+    'PMC Specialist',
+    'PMC Squad Leader',
+  ];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
@@ -269,7 +277,15 @@ export const JobPreferences = (props) => {
           <JobList name="SOM Jobs" jobs={somJobs} />
         </Stack.Item>
         <Stack.Item grow>
+          <JobList name="Survivor Jobs" jobs={survivorJobs} />
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <JobList name="CLF Jobs" jobs={clfJobs} />
+        </Stack.Item>
+        <Stack.Item grow>
+          <JobList name="PMC Jobs" jobs={pmcJobs} />
         </Stack.Item>
       </Stack>
       <Stack>
@@ -278,11 +294,6 @@ export const JobPreferences = (props) => {
         </Stack.Item>
         <Stack.Item grow>
           <JobList name="KZ Jobs" jobs={kzJobs} />
-        </Stack.Item>
-      </Stack>
-      <Stack>
-        <Stack.Item grow>
-          <JobList name="Survivor Jobs" jobs={survivorJobs} />
         </Stack.Item>
       </Stack>
     </Section>
