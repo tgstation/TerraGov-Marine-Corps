@@ -76,12 +76,12 @@
 	max_range = 25
 	accurate_range = 25
 	shell_speed = 4.5
-	accuracy_variation = 2
-	accuracy = 15
-	point_blank_range = 3
+	accuracy_variation = 3
+	accuracy = 5
+	point_blank_range = 2
 	damage = 25
-	penetration = 15
-	sundering = 5
+	penetration = 10
+	sundering = 2
 
 	ping = "ping_s"
 	sound_hit = SFX_ENERGY_HIT

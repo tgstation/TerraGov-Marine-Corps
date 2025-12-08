@@ -1251,12 +1251,12 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 24, "under_x" = 42, "under_y" = 13, "stock_x" = 22, "stock_y" = 12)
-	accuracy_mult = 1.25 // Accurate volkite counterpart with no deflagrate effect
+	accuracy_mult = 1.05 // volkite counterpart with more attachments but no deflagrate effect
 	accuracy_mult_unwielded = 0.8
 	aim_slowdown = 0.6
 	damage_falloff_mult = 0.5
 	scatter = 2
-	scatter_unwielded = 5
+	scatter_unwielded = 25
 	recoil_unwielded = 1.5
 	wield_delay = 0.8 SECONDS
 	fire_delay = 0.25 SECONDS
