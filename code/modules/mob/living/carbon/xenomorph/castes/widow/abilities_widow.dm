@@ -2,7 +2,6 @@
 // *********** Resin building
 // ***************************************
 /datum/action/ability/activable/xeno/secrete_resin/widow
-	ability_cost = 25
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/turf/closed/wall/resin/membrane,
