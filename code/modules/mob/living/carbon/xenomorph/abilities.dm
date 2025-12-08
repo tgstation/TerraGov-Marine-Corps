@@ -227,9 +227,6 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/turf/closed/wall/resin/regenerating/special/bulletproof,
-		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
 		)
