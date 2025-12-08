@@ -1253,7 +1253,7 @@
 	aim_slowdown = 0.6
 	damage_falloff_mult = 0.5
 	scatter = 2
-	scatter_unwielded = 20
+	scatter_unwielded = 25
 	recoil_unwielded = 5
 	wield_delay = 0.9 SECONDS
 	fire_delay = 0.25 SECONDS
