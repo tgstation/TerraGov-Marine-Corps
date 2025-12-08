@@ -120,6 +120,8 @@
 	///Which color type of holocard is printed on us
 	var/holo_card_color = ""
 
+	///How much the maximum health is reduced by missing limbs
+	var/limb_health_debuff = 0
 	///A list of our limb datums
 	var/list/limbs = list()
 	/// What was the last limb that was hit by an attack

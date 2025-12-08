@@ -672,6 +672,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		set_limb_flags(LIMB_DESTROYED)
 
+	if(owner.species.species_flags & LIMBS_EFFECT_HEALTH)
+		owner.limb_health_debuff += LIMB_HEALTH_DEBUFF
+
 	if(owner.species.species_flags & ROBOTIC_LIMBS)
 		limb_status |= LIMB_ROBOT
 
