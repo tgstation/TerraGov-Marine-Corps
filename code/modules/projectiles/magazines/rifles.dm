@@ -904,6 +904,10 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 	color = list(1,0,0,0, 0,1,0,0, 0,1.5,1,0, 0,0,0,1) //recolor it green.  New sprites would be better but too much work
 
+/obj/item/ammo_magazine/rifle/vsd_carbine/rubber/extended
+	name = "\improper CC/77 extended rubber magazine (10x24mm)"
+	max_rounds = 48
+
 /obj/item/ammo_magazine/rifle/vsd_carbine/extended
 	name = "\improper CC/77 extended magazine (10x24mm)"
 	icon_state = "c77_ext"

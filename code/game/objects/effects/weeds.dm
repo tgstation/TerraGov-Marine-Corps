@@ -88,7 +88,7 @@
 /obj/alien/weeds/proc/replace_weed(new_weed_type)
 	if(!ispath(new_weed_type, /obj/alien/weeds))
 		qdel(src)
-	new new_weed_type(loc, parent_node)
+	new new_weed_type(loc, hivenumber, parent_node)
 	qdel(src)
 
 /obj/alien/weeds/ex_act(severity)

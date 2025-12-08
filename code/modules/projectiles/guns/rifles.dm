@@ -3032,7 +3032,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	aim_slowdown = 0.5
-	wield_delay =  0.9 SECONDS
+	wield_delay =  1.2 SECONDS
 	max_shells = 30 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_rifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
@@ -3072,9 +3072,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	burst_delay = 0.25 SECONDS
 	extra_delay = 0.15 SECONDS
-	scatter = 0
+	accuracy_mult = 1.15 // On par with DMR
+	scatter = -4
 	fire_delay = 0.35 SECONDS
-	damage_mult = 0.5
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
@@ -3174,7 +3174,7 @@
 	wield_delay =  0.9 SECONDS
 	max_shells = 24 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_carbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine, /obj/item/ammo_magazine/rifle/vsd_carbine/rubber, /obj/item/ammo_magazine/rifle/vsd_carbine/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/ap)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine, /obj/item/ammo_magazine/rifle/vsd_carbine/rubber, /obj/item/ammo_magazine/rifle/vsd_carbine/rubber/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/extended, /obj/item/ammo_magazine/rifle/vsd_carbine/ap)
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,

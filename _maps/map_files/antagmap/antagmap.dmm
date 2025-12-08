@@ -6390,7 +6390,10 @@
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander/field)
 "FU" = (
-/obj/structure/largecrate/supply/supplies/flares,
+/obj/structure/table/reinforced,
+/obj/machinery/computer/voucher/pmc{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/center/armory)
 "FX" = (
@@ -9794,6 +9797,13 @@
 "VS" = (
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/transport)
+"VV" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/sterile/plain,
+/area/antag_ship/pmc_ntf/center/armory)
 "VY" = (
 /obj/structure/closet/secure_closet/engineering_personal/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -12239,7 +12249,7 @@ xY
 MO
 xH
 pf
-pf
+VV
 pf
 EQ
 Cc

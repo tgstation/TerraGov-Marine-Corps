@@ -450,7 +450,7 @@
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 
 /obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/grenade/upp
+	fill_type = /obj/item/explosive/grenade/bullet/upp
 	fill_number = 4
 
 /obj/item/storage/pouch/explosive/som

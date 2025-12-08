@@ -365,7 +365,7 @@
 
 /obj/effect/particle_effect/smoke/vyacheslav
 	color = "#92a94d"
-	lifetime = 6
+	lifetime = 8
 	expansion_speed = 3
 	strength = 2
 	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH

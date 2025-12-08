@@ -25,7 +25,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 
-/obj/item/explosive/grenade/upp
+/obj/item/explosive/grenade/bullet/upp
 	name = "\improper XM5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the KZ. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
@@ -33,6 +33,14 @@
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
+	rotations = -1
+	fire_sound = null
+	projectile_count = 30
+	ammo_type = /datum/ammo/bullet/hefa_buckshot
+
+/obj/item/explosive/grenade/bullet/upp/prime()
+	explosion(loc, light_impact_range = 2, heavy_impact_range = 1, explosion_cause=src)
+	return ..() // Shrap nade didn't do shrap
 
 /obj/item/explosive/grenade/som
 	name = "\improper S30 HE grenade"

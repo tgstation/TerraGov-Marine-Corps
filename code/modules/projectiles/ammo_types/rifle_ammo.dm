@@ -258,9 +258,12 @@
 	name = "heavy battle rifle bullet"
 	hud_state = "rifle_heavy"
 	//unholy offspring between dmr and AR
-	damage_falloff = 0.7
+	shell_speed = 4.5
+	damage_falloff = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
-	accurate_range = 20
+	accurate_range_min = 7
+	accurate_range = 30
+	max_range = 50
 	damage = 50
 	penetration = 15
-	sundering = 3
+	sundering = 7
