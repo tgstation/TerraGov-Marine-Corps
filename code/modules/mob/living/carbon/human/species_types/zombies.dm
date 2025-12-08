@@ -84,7 +84,6 @@
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
-			H.limb_health_debuff -= LIMB_HEALTH_DEBUFF
 			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 			else if (istype(limb, /datum/limb/hand/r_hand))

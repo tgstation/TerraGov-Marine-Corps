@@ -564,6 +564,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/changed_flags = . & to_remove_flags
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
+		if(owner.species.species_flags & LIMBS_EFFECT_HEALTH)
+			owner.limb_health_debuff -= LIMB_HEALTH_DEBUFF//remove debuff
 
 
 /datum/limb/proc/add_limb_flags(to_add_flags)
