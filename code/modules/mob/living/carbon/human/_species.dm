@@ -205,6 +205,8 @@
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human, old_species)
 	QDEL_LIST_NULL(organless_human.internal_organs)
 	QDEL_LIST_NULL(organless_human.internal_organs_by_name)
+	for(var/datum/limb/limb AS in organless_human.limbs)
+		limb.internal_organs = null
 
 	organless_human.internal_organs = list()
 	organless_human.internal_organs_by_name = list()

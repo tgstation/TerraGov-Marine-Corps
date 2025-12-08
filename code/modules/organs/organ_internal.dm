@@ -28,6 +28,7 @@
 
 /datum/internal_organ/Destroy()
 	clean_owner()
+	organ_holder = null
 	return ..()
 
 /datum/internal_organ/New(mob/living/carbon/carbon_mob)
@@ -48,11 +49,11 @@
 ///Signal handler to prevent hard del
 /datum/internal_organ/proc/clean_owner()
 	SIGNAL_HANDLER
-	if(owner)
-		var/datum/limb/limb = owner.get_limb(parent_limb)
-		LAZYREMOVE(limb.internal_organs, src)
+	if(!owner)
+		return
+	var/datum/limb/limb = owner.get_limb(parent_limb)
+	LAZYREMOVE(limb.internal_organs, src)
 	owner = null
-	organ_holder = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
 	if(SSticker.mode?.round_type_flags & MODE_NO_PERMANENT_WOUNDS)
