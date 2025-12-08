@@ -82,7 +82,7 @@
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(6))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(4))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
@@ -101,11 +101,12 @@
 	H.updatehealth()
 
 /datum/species/zombie/handle_crit(mob/living/carbon/human/H)
-	var/datum/limb/limb = pick(H.limbs)
-	if(limb.body_part == CHEST || limb.body_part == GROIN)
-		return //The zombie got lucky
-	limb.droplimb(FALSE)
-	H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] flies off in an arc!"))
+	if(!istype(H.last_limb_hit, /datum/limb))
+		return
+	if(H.last_limb_hit.body_part == CHEST || H.last_limb_hit.body_part == GROIN)
+		return //Can't lose those
+
+	H.last_limb_hit.droplimb(FALSE, FALSE, FALSE, FALSE)//WRONG WRONG WRONG WRONG!!!
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	if(H.on_fire)

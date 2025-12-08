@@ -122,6 +122,8 @@
 
 	///A list of our limb datums
 	var/list/limbs = list()
+	/// What was the last limb that was hit by an attack
+	var/datum/limb/last_limb_hit
 	///A list of internal organs by name ["organ name"] = /datum/internal_organ
 	var/list/internal_organs_by_name = list()
 	///How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.
