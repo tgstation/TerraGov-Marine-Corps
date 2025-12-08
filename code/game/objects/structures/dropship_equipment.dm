@@ -262,7 +262,7 @@
 	if(ammo_equipped)
 		balloon_alert(user, "Already loaded")
 		return
-	if(clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
+	if(clamp_ammo.ammo_type != ammo_type_used)
 		balloon_alert(user, "Wrong ammo")
 		return
 
@@ -285,7 +285,7 @@
 	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		return
-	if(attached_clamp.loaded) //you grabbed something else
+	if(attached_clamp.loaded)
 		return
 	if(!ammo_equipped)
 		return
