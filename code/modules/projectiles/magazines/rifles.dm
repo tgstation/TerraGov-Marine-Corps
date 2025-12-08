@@ -907,11 +907,15 @@
 /obj/item/ammo_magazine/rifle/vsd_carbine/rubber/extended
 	name = "\improper CC/77 extended rubber magazine (10x24mm)"
 	max_rounds = 48
+	wield_delay_mod = 0.2 SECONDS
+	scatter_mod = 2
 
 /obj/item/ammo_magazine/rifle/vsd_carbine/extended
 	name = "\improper CC/77 extended magazine (10x24mm)"
 	icon_state = "c77_ext"
 	max_rounds = 48
+	wield_delay_mod = 0.2 SECONDS
+	scatter_mod = 2
 
 /obj/item/ammo_magazine/rifle/vsd_carbine/ap
 	name = "\improper CC/77 armor-piercing magazine (10x24mm)"
