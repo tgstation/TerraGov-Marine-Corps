@@ -39,3 +39,11 @@
 	fire_delay = 0.25 SECONDS
 	current_rounds = 300
 	max_rounds = 300
+
+/obj/item/uav_turret/claw
+	name = "unmanned vehicle claw"
+	desc = "A claw module to attach on the weapon slot of an unmanned vehicle, allowing it to grab and pull objects or mobs. Right-click to shove."
+	icon_state = "claw_obj"
+	turret_type = TURRET_TYPE_CLAW
+	turret_pattern = PATTERN_TRACKED
+	fire_delay = 1 SECONDS

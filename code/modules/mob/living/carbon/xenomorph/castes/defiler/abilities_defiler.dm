@@ -525,7 +525,7 @@
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "Throw one of your tentacles forward to grab a tallhost or item."
+	desc = "Throw one of your tentacles forward to grab a target or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175
 	keybinding_signals = list(
@@ -546,7 +546,7 @@
 		var/mob/living/livingtarget = A
 		if(livingtarget.stat == DEAD)
 			if(!silent)
-				livingtarget.balloon_alert(owner, "you're dead!")
+				livingtarget.balloon_alert(owner, "it's dead!")
 			return FALSE
 	var/atom/movable/target = A
 	if(target.anchored)

@@ -64,6 +64,9 @@
 			return
 
 	if(COOLDOWN_FINISHED(src, proxy_alert_cooldown))
+		if(SSspawning.spawnerdata[src].max_allowed_mobs != ZOMBIE_THREATENED_CAP)
+			maxamount = SSspawning.spawnerdata[src].max_allowed_mobs
+		SSspawning.spawnerdata[src].max_allowed_mobs = ZOMBIE_THREATENED_CAP
 		threat_warning = TRUE
 		addtimer(CALLBACK(src, PROC_REF(clear_warning)), ZOMBIE_STRUCTURE_DETECTION_COOLDOWN)
 		update_minimap_icon()
@@ -76,6 +79,7 @@
 /obj/effect/ai_node/spawner/zombie/proc/clear_warning()
 	threat_warning = FALSE
 	update_minimap_icon()
+	SSspawning.spawnerdata[src].max_allowed_mobs = maxamount
 
 ///Updates minimap icon when a threat is detected
 /obj/effect/ai_node/spawner/zombie/proc/update_minimap_icon()

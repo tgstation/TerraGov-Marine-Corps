@@ -964,7 +964,7 @@ below 100 is not dizzy
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_LIVING_SWAPPED_HANDS)
-	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+	if(hud_used?.l_hand_hud_object && hud_used?.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()
 	return

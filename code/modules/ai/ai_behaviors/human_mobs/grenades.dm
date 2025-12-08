@@ -1,6 +1,6 @@
 /datum/ai_behavior/human
 	///Probability of trying to throw a grenade during process
-	var/nade_throw_prob = 15
+	var/nade_throw_prob = 5
 	///Chat lines for throwing a nade
 	var/list/nade_throw_chat = list("Grenade out!", "Fire in the hole!", "Grenade!", "Catch this!")
 
@@ -43,8 +43,7 @@
 	for(var/obj/item/explosive/grenade/option AS in mob_inventory.grenade_list)
 		if(isgun(option.loc))
 			continue
-		var/mob/living/living_parent = mob_parent
-		if(istype(option, /obj/item/explosive/grenade/smokebomb) && !option.dangerous && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth))
+		if(istype(option, /obj/item/explosive/grenade/smokebomb) && !option.dangerous && (mob_parent.health <= minimum_health * 2 * mob_parent.maxHealth))
 			return
 		nade_options += option
 

@@ -152,28 +152,14 @@
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			//Accidental gun discharge
-			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP)
-				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
-					var/obj/item/weapon/gun/W = null
-					var/chance = 0
-
-					if (istype(l_hand,/obj/item/weapon/gun))
-						W = l_hand
-						chance = hand ? 40 : 20
-
-					if (istype(r_hand,/obj/item/weapon/gun))
-						W = r_hand
-						chance = !hand ? 40 : 20
-
-					if(prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
-						log_combat(human_user, src, "disarmed", "making their [W.name] go off")
-						var/list/turfs = list()
-						for(var/turf/T in view())
-							turfs += T
-						var/turf/target = pick(turfs)
-						return W.afterattack(target,src)
+			// Accidental gun discharge!
+			var/obj/item/weapon/gun/gun_in_hand
+			if(isgun(r_hand))
+				gun_in_hand = r_hand
+			else if(isgun(l_hand))
+				gun_in_hand = l_hand
+			if(gun_in_hand?.handle_disarm_misfire(src, human_user))
+				return
 
 			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 

@@ -47,7 +47,7 @@
 	name = "Petrify"
 	action_icon_state = "petrify"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
+
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -60,6 +60,10 @@
 	var/list/mob/living/carbon/xenomorph/viewing_xenomorphs = list()
 	/// The amount of armor to grant to friendly xenomorphs
 	var/petrify_armor = 0
+
+/datum/action/ability/xeno_action/petrify/New(Target)
+	. = ..()
+	desc = "After a [PETRIFY_WINDUP_TIME / (1 SECONDS)] second windup, petrifies all humans looking at you for [PETRIFY_DURATION / (1 SECONDS)] seconds. Petrified humans are immune to damage, but also can't attack."
 
 /datum/action/ability/xeno_action/petrify/clean_action()
 	end_effects()
@@ -158,7 +162,7 @@
 	name = "Off-guard"
 	action_icon_state = "off_guard"
 	action_icon = 'icons/Xeno/actions/king.dmi'
-	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim and movement for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET

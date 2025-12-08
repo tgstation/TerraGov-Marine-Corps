@@ -50,9 +50,10 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
-	if(target.attack_zombie(user, src, params, rightclick))
+	. = ..()
+	if(!.)
 		return
-	return ..()
+	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
 	force = 30
@@ -76,18 +77,19 @@
 		return
 	if(zombie.do_actions)
 		return
-
-	balloon_alert_to_viewers("prying open [src]...")
-	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
-		return
-	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(locked)
 		to_chat(zombie, span_warning("\The [src] is bolted down tight."))
 		return
 	if(welded)
 		to_chat(zombie, span_warning("\The [src] is welded shut."))
 		return
-	if(density || operating) //Make sure it's still closed
+
+	balloon_alert_to_viewers("prying open [src]...")
+	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
+		return
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+
+	if(!density || operating) //Make sure it's still closed
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
@@ -137,5 +139,7 @@
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!is_wired)
 		return
+	if(zombie.a_intent != INTENT_HARM)
+		return
 	balloon_alert(zombie, "barbed wire slices into you!")
-	zombie.apply_damage(40, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
+	zombie.apply_damage(20, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands

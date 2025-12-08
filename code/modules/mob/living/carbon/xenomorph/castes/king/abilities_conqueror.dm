@@ -642,7 +642,6 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance
 	name = "Endurance"
-	desc = "Block attacks with your forearms, reducing damage received."
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	action_icon_state = "fortify"
@@ -654,6 +653,10 @@
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/xeno_action/conqueror_endurance/New(Target)
+	. = ..()
+	desc = "Block attacks with your forearms, slowing you down and reducing damage received by [CONQUEROR_ENDURANCE_DAMAGE_REDUCTION * 100]%."
 
 /datum/action/ability/xeno_action/conqueror_endurance/give_action(mob/living/L)
 	. = ..()

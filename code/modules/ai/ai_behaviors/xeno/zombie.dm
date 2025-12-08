@@ -16,9 +16,8 @@
 
 /datum/ai_behavior/xeno/zombie/process()
 	. = ..()
-	var/mob/living/living_parent = mob_parent
-	if(living_parent.resting)
-		living_parent.get_up()
+	if(mob_parent.resting)
+		mob_parent.get_up()
 
 /datum/ai_behavior/xeno/zombie/melee_interact(datum/source, atom/interactee, melee_tool)
 	melee_tool = mob_parent.r_hand ? mob_parent.r_hand : mob_parent.l_hand

@@ -46,8 +46,9 @@
 ///Attempts to refuel something
 /datum/component/fuel_storage/proc/attempt_refuel(obj/source, obj/item/attacking, mob/user)
 	SIGNAL_HANDLER
-	if(!fuel_tank.total_volume)
-		user?.balloon_alert(user, "no fuel!")
+	if(user.a_intent == INTENT_HARM)
+		return
+	if(!attacking.reagents)
 		return
 	attacking.try_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -75,10 +76,13 @@
 
 ///Checks if src can be refueled by a container
 /obj/proc/can_refuel(atom/refueler, fuel_type, mob/user)
+	if(!refueler.reagents.total_volume)
+		user?.balloon_alert(user, "no fuel!")
+		return
 	if(fuel_type != get_fueltype())
 		user?.balloon_alert(user, "wrong fuel")
 		return FALSE
-	if(reagents?.total_volume == reagents?.maximum_volume)
+	if(reagents.total_volume == reagents.maximum_volume)
 		user?.balloon_alert(user, "full")
 		return FALSE
 	return TRUE

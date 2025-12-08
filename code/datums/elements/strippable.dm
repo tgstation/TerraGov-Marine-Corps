@@ -129,6 +129,9 @@
 	if(!is_incorporeal(user))
 		return FALSE
 
+	if(!user.dextrous)
+		return
+
 	var/obj/item/item = get_item(source)
 	if(isnull(item))
 		return FALSE

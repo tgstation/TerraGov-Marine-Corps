@@ -41,10 +41,9 @@
 	return ..()
 
 /datum/ai_behavior/xeno/state_process(next_target)
-	var/mob/living/living_parent = mob_parent
 	if(current_action != MOVING_TO_NODE && current_action != FOLLOWING_PATH)
 		return
-	if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
+	if(can_heal && mob_parent.health <= minimum_health * 2 * mob_parent.maxHealth)
 		try_to_heal() //If we have some damage, look for some healing
 		return
 
@@ -80,8 +79,7 @@
 		return
 	if(!isxeno(mob_parent))
 		return
-	var/mob/living/living_mob = mob_parent
-	if(can_heal && living_mob.resting)
+	if(can_heal && mob_parent.resting)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN)
 
@@ -92,19 +90,19 @@
 
 ///Will try finding and resting on weeds
 /datum/ai_behavior/xeno/proc/try_to_heal()
-	var/mob/living/carbon/xenomorph/living_mob = mob_parent
-	if(!living_mob.loc_weeds_type)
-		if(living_mob.resting)//We are resting on no weeds
-			SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-			UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
+	var/mob/living/carbon/xenomorph/xeno_mob = mob_parent
+	if(!xeno_mob.loc_weeds_type)
+		if(xeno_mob.resting)//We are resting on no weeds
+			SEND_SIGNAL(xeno_mob, COMSIG_XENOABILITY_REST)
+			UnregisterSignal(xeno_mob, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 		return FALSE
-	if(living_mob.resting)//Already resting
-		if(living_mob.on_fire)
-			living_mob.do_resist()
+	if(xeno_mob.resting)//Already resting
+		if(xeno_mob.on_fire)
+			xeno_mob.do_resist()
 		return TRUE
-	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health), TRUE) //resting can occasionally fail, if you're stunned etc
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma), TRUE)
+	SEND_SIGNAL(xeno_mob, COMSIG_XENOABILITY_REST)
+	RegisterSignal(xeno_mob, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health), TRUE) //resting can occasionally fail, if you're stunned etc
+	RegisterSignal(xeno_mob, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma), TRUE)
 	return TRUE
 
 ///Wait for the xeno to be full life and plasma to unrest
@@ -124,8 +122,7 @@
 ///Called each time the ai takes damage; if we are below a certain health threshold, try to retreat
 /datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
-	var/mob/living/living_mob = mob_parent
-	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
+	if(!can_heal || mob_parent.health - damage > minimum_health * mob_parent.maxHealth)
 		return
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 	if(!next_target)

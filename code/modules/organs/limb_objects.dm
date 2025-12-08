@@ -109,7 +109,7 @@
 	H.regenerate_icons()
 
 	if(braindeath_on_decap)
-		brainmob.death()
+		brainmob.death(silent = TRUE)
 
 	GLOB.head_list += src
 

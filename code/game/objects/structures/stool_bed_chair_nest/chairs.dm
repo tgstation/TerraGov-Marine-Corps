@@ -19,6 +19,7 @@
 	buckle_lying = 0
 	buckling_y = 0
 	max_integrity = 20
+	layer = BELOW_TABLE_LAYER
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 //directional variants mostly used for random spawners
@@ -48,7 +49,7 @@
 	if(LAZYLEN(buckled_mobs) && dir == NORTH)
 		layer = FLY_LAYER
 	else
-		layer = OBJ_LAYER
+		layer = initial(layer)
 
 
 /obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)

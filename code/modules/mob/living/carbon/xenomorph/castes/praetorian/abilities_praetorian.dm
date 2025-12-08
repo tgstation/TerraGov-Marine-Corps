@@ -3,11 +3,14 @@
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/cone
 	name = "Spray Acid Cone"
-	desc = "Spray a cone of dangerous acid at your target."
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
 	/// How will far can the acid go? Tile underneath starts at 1.
 	var/range = 5
+
+/datum/action/ability/activable/xeno/spray_acid/cone/New(Target)
+	. = ..()
+	desc = "Spray a [range - 1] tile cone of dangerous acid at your target."
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
 	var/turf/target = get_turf(A)
@@ -147,7 +150,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Slime grenade"
 	action_icon_state = "gas mine"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
-	desc = "Throws a lump of compressed acid to stick to a target, which will leave a trail of acid behind them."
+	desc = "Throws a lump of compressed acid to stick to a target, which will then leave a trail of acid behind them. Will explode in a 3x3 of acid if not stuck."
 	ability_cost = 75
 	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
@@ -180,7 +183,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Dodge"
 	action_icon_state = "dodge"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	ability_cost = 100
 	cooldown_duration = 18 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
@@ -196,6 +198,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///List of pass_flags given by this action
 	var/dodge_pass_flags = PASS_MOB|PASS_XENO
+
+/datum/action/ability/xeno_action/dodge/New(Target)
+	. = ..()
+	desc = "Flood your body with adrenaline for [duration / (1 SECONDS)] seconds, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
@@ -423,7 +429,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Hook"
 	action_icon_state = "tail_hook"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
+	desc = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and get briefly knocked over."
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	ability_cost = 100

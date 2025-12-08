@@ -4,6 +4,7 @@
 #define GEOTHERMAL_HEAVY_DAMAGE 3
 
 GLOBAL_VAR_INIT(generators_on_ground, 0)
+GLOBAL_VAR_INIT(corrupted_generators, 0)
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
@@ -42,6 +43,9 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
 		GLOB.generators_on_ground -= 1
+	if(corrupted && is_ground_level(z))
+		GLOB.corrupted_generators -= 1
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
 	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
@@ -258,6 +262,9 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
+		if(is_ground_level(z))
+			GLOB.corrupted_generators -= 1
+			SSticker.mode?.update_silo_death_timer(GLOB.hive_datums[corrupted])
 		corrupted = 0
 		stop_processing()
 		update_icon()
@@ -333,6 +340,10 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
 	is_on = FALSE
+	if(is_ground_level(z))
+		GLOB.corrupted_generators += 1
+	if(SSticker.mode)
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	power_gen_percent = 0
 	cur_tick = 0
 	icon_state = "off"

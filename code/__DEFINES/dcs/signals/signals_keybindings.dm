@@ -143,6 +143,9 @@
 #define COMSIG_MECHABILITY_OVERBOOST "mechability_overboost"
 #define COMSIG_MECHABILITY_PULSE_ARMOR "mechability_pulse_armor"
 
+#define COMSIG_VEHICLEABILITY_TESLA "vehicleability_tesla"
+#define COMSIG_VEHICLEABILITY_SMOKE "vehicleability_smoke"
+
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 
 #define COMSIG_ABILITY_PLACE_HOLOGRAM "ability_place_hologram"
