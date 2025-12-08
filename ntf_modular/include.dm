@@ -125,6 +125,7 @@
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\pixel_shift\code\pixel_shift.dm"
+#include "code\modules\projectiles\guns\energy.dm"
 #include "code\modules\projectiles\guns\pistols.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\sentries.dm"
