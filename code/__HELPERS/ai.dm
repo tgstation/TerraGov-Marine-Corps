@@ -119,6 +119,20 @@
 			continue
 		. += nearby_sentry
 
+/proc/cheap_get_fhugger_near(atom/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/item/clothing/mask/facehugger/nearby_fhugger AS in GLOB.alive_hugger_list)
+		if(isnull(nearby_fhugger))
+			continue
+		if(source_turf.z != nearby_fhugger.z)
+			continue
+		if(get_dist(source_turf, nearby_fhugger) > distance)
+			continue
+		. += nearby_fhugger
+
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive, need_los = FALSE)
 	if(!source)

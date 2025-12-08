@@ -401,6 +401,10 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
+	for(var/obj/item/clothing/mask/facehugger/nearby_hugger AS in cheap_get_fhugger_near(src, range))
+		if(nearby_hugger.stat == DEAD || (nearby_hugger.hivenumber == XENO_HIVE_CORRUPTED && iff_signal & TGMC_LOYALIST_IFF)) //dogshit hardcode but i dont know what else to do.
+			continue
+		potential_targets += nearby_hugger
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
 		var/list/driver_list = nearby_mech.return_drivers()
 		if(!length(driver_list))

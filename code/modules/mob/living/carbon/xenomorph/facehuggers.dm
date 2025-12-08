@@ -956,15 +956,23 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		return FALSE
 
 	var/mob/living/carbon/human/victim = M
+	var/the_damage = CARRIER_SLASH_HUGGER_DAMAGE
+	var/gangbang = 0
+	for(var/obj/item/clothing/mask/facehugger/combat/slash/frens in orange(3, loc))
+		gangbang ++
+		break //we just need one confirmed rest dont matter.
+	if(gangbang) //less damage if we got frens around cause we are op.
+		the_damage *= 0.5
 	do_attack_animation(M, ATTACK_EFFECT_REDSLASH)
 	playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, MELEE) //Crap base damage after armour...
+	victim.apply_damage(the_damage, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
-	go_active() //Slashy boys recover *very* fast.
+	if(!gangbang)
+		go_active() //Slashy boys recover *very* fast (if no frens nearby.)
 	return TRUE
 
 /// See if our target is valid to be attacked
