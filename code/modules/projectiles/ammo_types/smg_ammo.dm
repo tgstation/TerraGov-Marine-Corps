@@ -11,15 +11,15 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_variation = 7
 	shell_speed = 3.5
-	damage = 25
+	damage = 20
 	accurate_range = 4
-	damage_falloff = 1.2
+	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
 
 /datum/ammo/bullet/smg/rubber
 	name = "rubber submachinegun bullet"
-	damage = 28
+	damage = 22
 	damage_type = STAMINA
 	shrapnel_chance = 0
 	plasma_drain = 6
@@ -39,7 +39,7 @@
 	name = "hollow-point submachinegun bullet"
 	hud_state = "pistol_squash"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
+	damage = 35
 	penetration = 0
 	damage_falloff = 3
 	shrapnel_chance = 45
@@ -48,7 +48,7 @@
 	name = "squash-head submachinegun bullet"
 	hud_state = "pistol_squash"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 20
+	damage = 15
 	penetration = 15
 	armor_type = BOMB
 	sundering = 1
@@ -71,13 +71,13 @@
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 23
+	damage = 18
 	penetration = 0
 
 /datum/ammo/bullet/smg/rad
 	name = "radioactive submachinegun bullet"
 	hud_state = "smg_rad"
-	damage = 20
+	damage = 15
 	penetration = 15
 	sundering = 1
 
@@ -91,20 +91,20 @@
 
 /datum/ammo/bullet/smg/heavy
 	name = "heavy submachinegun bullet"
-	damage = 32.5
+	damage = 27.5
 	penetration = 10
 	sundering = 1
 
 /datum/ammo/bullet/smg/heavy/rubber
 	name = "heavy rubber submachinegun bullet"
-	damage = 36
+	damage = 31
 	damage_type = STAMINA
 	shrapnel_chance = 0
 	plasma_drain = 8
 
 /datum/ammo/bullet/smg/val
 	name = "heavy submachinegun bullet"
-	damage = 35
+	damage = 30
 	penetration = 27.5
 	sundering = 2
 	damage_falloff = 1.5
