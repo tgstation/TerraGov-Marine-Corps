@@ -802,7 +802,8 @@
 	reagents = R
 	R.my_atom = WEAKREF(src)
 
-	species.create_organs(src)
+	species.create_limbs(src, oldspecies)
+	species.create_organs(src, oldspecies)
 
 	dextrous = TRUE
 
