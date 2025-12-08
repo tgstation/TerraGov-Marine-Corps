@@ -2482,7 +2482,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/sniper/elite
+	suit_store = /obj/item/weapon/gun/rifle/sniper/pmc_railgun
 	r_pocket = /obj/item/storage/pouch/magazine/large/pmc_sniper
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack

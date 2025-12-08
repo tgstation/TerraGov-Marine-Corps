@@ -410,8 +410,8 @@ GLOBAL_LIST_INIT(pmc_engineer_gear_listed_products, list(
 GLOBAL_LIST_INIT(pmc_sniper_gear_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/sniper = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
 		/obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread = list(CAT_STASUP, "Meatbread Loaf", 1, "white"),
-		/obj/item/weapon/gun/rifle/sniper/elite = list(CAT_SPSUP, "SR-42 Anti-Tank Sniper Rifle", 25, "orange"),
-		/obj/item/ammo_magazine/railgun/pmc = list(CAT_SPSUP, "SR-42 Marksman Magazine", 2, "black"),
+		/obj/item/weapon/gun/rifle/sniper/pmc_railgun = list(CAT_SPSUP, "SRX-42 anti-tank rail rifle", 25, "orange"),
+		/obj/item/ammo_magazine/railgun/pmc = list(CAT_SPSUP, "SRX-42 magazine (Armor Piercing Discarding Sabot)", 2, "black"),
 		/obj/item/storage/box/explosive_mines/pmc = list(CAT_SPSUP, "M20P Mine Box", 6, "black"),
 	))
 

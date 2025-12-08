@@ -105,8 +105,8 @@
 			gift_message = span_notice("It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!  What are the chances?")
 			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
 		if(10)
-			gift_message = span_notice("It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?")
-			gift_type = /obj/item/weapon/gun/rifle/sniper/elite/xmas
+			gift_message = span_notice("It's a brand new, un-restricted, ANTI-TANK RAIL RIFLE!  What are the chances?")
+			gift_type = /obj/item/weapon/gun/rifle/sniper/pmc_railgun
 		if(20)
 			gift_message = span_notice("Just what the fuck is it?")
 			gift_type = /obj/item/clothing/mask/facehugger/lamarr
@@ -139,15 +139,6 @@
 		balloon_alert(user, "can't fire that here!")
 		return FALSE
 	return TRUE
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/xmas
-	gun_features_flags = NONE
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
-	return TRUE
-
 
 /obj/effect/spresent/relaymove(mob/user)
 	if(user.stat != CONSCIOUS)
