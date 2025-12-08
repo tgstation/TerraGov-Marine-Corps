@@ -294,9 +294,10 @@
 			var/datum/job/J = squad_leader.job
 			squad_leader.comm_title = J.comm_title
 		if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
-			var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
-			R.recalculateChannels()
-			R.use_command = FALSE
+			var/obj/item/radio/headset/mainship/marine/headset = squad_leader.wear_ear
+			headset.squad_leader = FALSE
+			headset.use_command = FALSE
+			headset.recalculateChannels()
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
 			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
@@ -328,11 +329,10 @@
 			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
-		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
-		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
-		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
-		R.use_command = TRUE
-
+		var/obj/item/radio/headset/mainship/marine/headset = squad_leader.wear_ear
+		headset.squad_leader = TRUE
+		headset.use_command = TRUE
+		headset.recalculateChannels()
 	squad_leader.hud_set_job(faction)
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
