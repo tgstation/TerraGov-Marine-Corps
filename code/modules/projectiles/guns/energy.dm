@@ -56,7 +56,7 @@
 	ammo_datum_type = /datum/ammo/energy/taser
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
-	rounds_per_shot = 500
+	rounds_per_shot = 250
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_skill_category = SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
@@ -67,6 +67,7 @@
 	scatter = 2
 	scatter_unwielded = 1
 
+/* You can use guns you can use a taser.
 /obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
 	. = ..()
 	if (!.)
@@ -74,6 +75,7 @@
 	if(user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return FALSE
+	*/
 
 //-------------------------------------------------------
 //Lasguns

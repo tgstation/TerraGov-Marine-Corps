@@ -180,7 +180,7 @@
 	wield_delay = 0.9 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.4
 
 	placed_overlay_iconstate = "t12"
 
@@ -1003,7 +1003,7 @@
 
 /obj/item/weapon/gun/rifle/standard_gpmg
 	name = "\improper MG-60 Raummetall general purpose machine gun"
-	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
+	desc = "The Raummetall MG-60 general purpose machinegun is the NTC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	icon_state = "t60"
 	worn_icon_state = "t60"
@@ -1759,7 +1759,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
-	extra_delay = 0.15 SECONDS
+	extra_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.15
 	scatter = -1
@@ -1862,7 +1862,7 @@
 	scatter = -2
 	wield_delay = 0.8 SECONDS
 	aim_slowdown = 0.5
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.4
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	starting_attachment_types = list(
@@ -1973,9 +1973,9 @@
 	accuracy_mult = 1.1
 	burst_amount = 1
 	fire_delay = 0.2 SECONDS
-	scatter = 1
-	wield_delay = 0.7 SECONDS
-	movement_acc_penalty_mult = 4
+	scatter = -1
+	wield_delay = 0.5 SECONDS
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
 // GL-54 grenade launcher
@@ -2113,7 +2113,7 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	scatter = 1
+	scatter = 0
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
@@ -2215,7 +2215,7 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 0.8 SECONDS
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
 	scatter = 0
@@ -2223,7 +2223,7 @@
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 0.75
-	wield_delay = 1.2 SECONDS
+	wield_delay = 1 SECONDS
 	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------

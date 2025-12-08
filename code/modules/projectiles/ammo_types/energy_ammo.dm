@@ -495,7 +495,7 @@
 	damage_type = STAMINA
 	hitscan_effect_icon = "beam_stun"
 	bullet_color = LIGHT_COLOR_YELLOW
-	plasma_drain = 18
+	plasma_drain = 30
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"

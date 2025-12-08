@@ -271,7 +271,7 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10x26_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	default_ammo = /datum/ammo/bullet/rifle/som_machinegun //ntf change cause som mg fucks
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
 	reload_delay = 3 SECONDS
