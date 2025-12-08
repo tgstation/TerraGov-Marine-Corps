@@ -876,7 +876,12 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 /obj/item/clothing/mask/facehugger/combat/chem_injector/neuro/try_attach(mob/living/carbon/M)
 	if(!..())
 		return
-	M.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
+	var/basedamage = 100
+	basedamage = M.modify_by_armor(basedamage, BIO, 0, BODY_ZONE_HEAD)
+	var/damage = min(basedamage, max(0, 50 - M.getStaminaLoss()))
+	basedamage -= damage
+	damage += basedamage/20 //damage that would put target over 50 staminaloss is reduced by a factor of 20
+	M.apply_damage(damage, STAMINA, BODY_ZONE_HEAD, updating_health = TRUE) //This should prevent sprinting
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 	name = "ozelomelyn hugger"
@@ -942,7 +947,12 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 
 		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
-		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		var/basedamage = 100
+		basedamage = target.modify_by_armor(basedamage, BIO, 0, BODY_ZONE_HEAD)
+		var/damage = min(basedamage, max(0, 50 - target.getStaminaLoss()))
+		basedamage -= damage
+		damage += basedamage/20 //damage that would put target over 50 staminaloss is reduced by a factor of 20
+		target.apply_damage(damage, STAMINA, BODY_ZONE_HEAD, updating_health = TRUE) //This should prevent sprinting
 		target.ExtinguishMob()
 
 	kill_hugger(0.5 SECONDS)
