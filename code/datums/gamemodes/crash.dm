@@ -32,7 +32,7 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = SHUTTLE_CANTERBURY
+	var/shuttle_id = SHUTTLE_WIDEBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
@@ -77,7 +77,7 @@
 		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
-		CRASH("No valid crash sides found!")
+		CRASH("No valid crash sites found!")
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
