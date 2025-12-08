@@ -52,7 +52,8 @@
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	. = ..()
 	if(!.)
-		target.attack_zombie(user, src, params, rightclick)
+		return
+	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
 	force = 30
