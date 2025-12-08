@@ -3016,8 +3016,8 @@
 // CC/67, the new C550!
 
 /obj/item/weapon/gun/rifle/vsd_rifle
-	name = "\improper CC/67 battle rifle"
-	desc = "Crash Core's next-gen battle rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
+	name = "\improper CC/67 marksman rifle"
+	desc = "Crash Core's next-gen marksman rifle, chambered in 10x27mm. Combat and Support worthy, this will pack a kick to anyone standing infront of you."
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	icon_state = "c550"
 	worn_icon_state = "c550"
@@ -3068,13 +3068,16 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 63, "muzzle_y" = 19,"rail_x" = 27, "rail_y" = 23, "under_x" = 40, "under_y" = 15, "stock_x" = 8, "stock_y" = 13)
-	burst_amount = 3
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	burst_delay = 0.25 SECONDS
-	extra_delay = 0.15 SECONDS
-	accuracy_mult = 1.15 // On par with DMR
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	aim_time = 1 SECONDS
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
+
+	fire_delay = 0.55 SECONDS
+	accuracy_mult = 1.15
 	scatter = -4
-	fire_delay = 0.35 SECONDS
+	burst_amount = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)

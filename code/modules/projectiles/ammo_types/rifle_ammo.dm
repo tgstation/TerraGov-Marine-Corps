@@ -257,13 +257,12 @@
 /datum/ammo/bullet/rifle/vsd_rifle
 	name = "heavy battle rifle bullet"
 	hud_state = "rifle_heavy"
-	//unholy offspring between dmr and AR
-	shell_speed = 4.5
 	damage_falloff = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range_min = 7
-	accurate_range = 30
-	max_range = 50
+	accurate_range = 25
+	shell_speed = 4
+	max_range = 40
 	damage = 50
 	penetration = 15
-	sundering = 7
+	sundering = 2
