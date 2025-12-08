@@ -53,22 +53,22 @@
 	if(lying_angle)
 		return
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
-	throw_at(get_step(get_step(loc, facing), pick(LeftAndRightOfDir(facing, TRUE) + facing)), 3, 2, veh, TRUE, TRUE)
 	//half damage to mobs since it was megabuffed.
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 3 SECONDS) //it throws but doesnt damage
+	COOLDOWN_START(veh, ram_cooldown, 3 SECONDS) //it doesnt throw or damage
+	throw_at(get_step(get_step(loc, facing), pick(LeftAndRightOfDir(facing, TRUE) + facing)), 3, 2, veh, TRUE, TRUE)
 	return take_overall_damage(ram_damage/2, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	gib() //fuck you
 
-/obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+/obj/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	. = ..()
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
 	COOLDOWN_START(veh, ram_cooldown, 3 SECONDS)
 	take_damage(ram_damage/2, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
-/obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
+/obj/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	return
