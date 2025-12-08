@@ -446,7 +446,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/crash/squadmarine,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "AX" = (
 /obj/effect/landmark/start/latejoin/crash,
@@ -520,6 +520,10 @@
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"EH" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/plating,
+/area/shuttle/canterbury/medical)
 "ES" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -686,6 +690,10 @@
 /area/shuttle/canterbury/medical)
 "RV" = (
 /turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
+"Sa" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/plating,
 /area/shuttle/canterbury)
 "SR" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -869,8 +877,8 @@ ia
 ia
 ia
 ia
-hj
-hj
+EH
+EH
 hj
 hj
 YW
@@ -891,8 +899,8 @@ ia
 ia
 ia
 ia
-hj
-hj
+EH
+EH
 GV
 ri
 XW
@@ -914,7 +922,7 @@ ia
 ia
 ia
 ia
-hj
+EH
 Ip
 Zp
 PI
@@ -1006,7 +1014,7 @@ cg
 cg
 Zk
 IT
-BV
+xe
 xe
 he
 he
@@ -1029,8 +1037,8 @@ cg
 Ym
 BV
 BV
-BV
 xe
+BV
 Gu
 Gu
 eG
@@ -1052,7 +1060,7 @@ cg
 oV
 BV
 BV
-BV
+xe
 AP
 ZU
 Us
@@ -1075,7 +1083,7 @@ Uz
 uL
 BV
 BV
-BV
+xe
 AP
 Gu
 Tb
@@ -1121,7 +1129,7 @@ Uz
 uL
 BV
 BV
-BV
+xe
 AP
 Gu
 VT
@@ -1144,7 +1152,7 @@ cg
 of
 BV
 BV
-BV
+xe
 AP
 Gu
 lo
@@ -1167,8 +1175,8 @@ cg
 fF
 BV
 BV
-BV
 xe
+BV
 Gu
 Gu
 ci
@@ -1190,7 +1198,7 @@ cg
 cg
 dO
 DN
-BV
+xe
 xe
 Yu
 Yu
@@ -1282,7 +1290,7 @@ ia
 ia
 ia
 ia
-cg
+Sa
 rL
 AX
 vp
@@ -1305,8 +1313,8 @@ ia
 ia
 ia
 ia
-cg
-cg
+Sa
+Sa
 FO
 ZA
 cg
@@ -1329,8 +1337,8 @@ ia
 ia
 ia
 ia
-cg
-cg
+Sa
+Sa
 cg
 cg
 fU
