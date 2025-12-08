@@ -714,6 +714,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 	if(as_planned)
+		var/damage = 15
 		if(sterile || target.status_flags & XENO_HOST)
 			switch(targethole)
 				if(1)
@@ -723,10 +724,14 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 				if(3)
 					target.visible_message("<span class='danger'>[src] falls limp after fucking [target.gender==MALE ? "itself on [target]'s cock" : "[target]'s vagina"]!</span>")
 			if(ismonkey(target))
-				target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+				damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+				if(damage)
+					target.apply_damage(damage, BRUTE, BODY_ZONE_PRECISE_GROIN, MELEE, updating_health = TRUE)
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws and fucks [target] before falling down!"),span_danger("[src] frantically claws and fucks you before falling down! Auugh!"))
-			target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+			damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+			if(damage)
+				target.apply_damage(damage, BRUTE, BODY_ZONE_PRECISE_GROIN, MELEE, updating_health = TRUE)
 
 /// Kills the hugger, should be self explanatory
 /obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
@@ -852,7 +857,10 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		return FALSE
 
 	do_attack_animation(M)
-	M.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
+	var/damage = 1
+	damage = M.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+	if(damage)
+		M.apply_damage(damage, BRUTE, blocked = MELEE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
 	M.reagents.add_reagent(injected_chemical_type, amount_injected, no_overdose = TRUE)
 	playsound(M, 'sound/effects/spray3.ogg', 25, 1)
 	M.visible_message(span_danger("[src] penetrates [M] with its sharp probscius!"), span_danger("[src] penetrates you with a sharp probscius before falling down!"))
@@ -968,6 +976,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
+	the_damage = victim.check_shields(COMBAT_MELEE_ATTACK, the_damage, MELEE)
 	victim.apply_damage(the_damage, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
