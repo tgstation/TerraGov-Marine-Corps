@@ -78,7 +78,7 @@
 	for(var/datum/limb/limb AS in H.limbs)
 		if(!istype(limb, /datum/limb/head))
 			continue
-		limb.vital = FALSE
+		limb.vital = TRUE
 		break
 
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
