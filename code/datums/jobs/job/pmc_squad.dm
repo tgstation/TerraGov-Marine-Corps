@@ -2,7 +2,7 @@
 	job_category =  JOB_CAT_PMC
 	supervisors = "NTC command"
 	selection_color = "#ffeeee"
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NANOTRASEN
 
 /datum/job/pmc/squad/get_spawn_message_information(mob/M)
 	. = ..()
