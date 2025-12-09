@@ -8,13 +8,13 @@
 	spawntypes = list(
 		list(/mob/living/carbon/human/species/zombie/ai/patrol = 85,
 			/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
-		) = 98,
+		) = 95,
 		list(/mob/living/carbon/human/species/zombie/ai/tank/patrol = 2,
 			/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 1,
 			/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 1,
 			/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 1,
 			/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
-		) = 2,
+		) = 5,
 	)
 	spawnamount = 2
 	spawndelay = 15 SECONDS
