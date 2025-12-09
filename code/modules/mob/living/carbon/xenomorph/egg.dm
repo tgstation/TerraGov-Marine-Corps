@@ -178,6 +178,7 @@
 			to_chat(user, span_xenowarning("This one is occupied with a child."))
 		return FALSE
 	if(user)
+		user.dropItemToGround(facehugger)
 		user.visible_message(span_xenowarning("[user] slides [facehugger] back into [src]."),span_xenonotice("You place the child into [src]."))
 	hugger_type = facehugger.type
 	qdel(facehugger)

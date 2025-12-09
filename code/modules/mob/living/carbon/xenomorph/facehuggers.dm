@@ -203,6 +203,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, hand_attach_time, TRUE, M, BUSY_ICON_DANGER))
 			return
+	user.dropItemToGround(src)
 	if(!try_attach(M))
 		go_idle()
 	user.update_icons()

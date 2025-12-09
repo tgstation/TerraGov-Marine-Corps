@@ -1441,6 +1441,9 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	if(!owner.Adjacent(victim)) //checks if owner next to target
 		return FALSE
+	if(HAS_TRAIT(victim, TRAIT_TIME_SHIFTED))
+		to_chat(owner, span_warning("They are anchored in time!"))
+		return FALSE
 	if(victim.ckey == null && victim.stat != DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
