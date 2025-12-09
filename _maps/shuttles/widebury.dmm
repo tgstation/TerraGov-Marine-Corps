@@ -16,7 +16,11 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/largecrate/supply/supplies/sandbags,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aS" = (
@@ -279,10 +283,6 @@
 /obj/machinery/marine_selector/gear/leader,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"ty" = (
-/obj/machinery/marine_selector/gear/medic,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "tS" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/red/full,
@@ -431,16 +431,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
-"AL" = (
-/obj/item/lightreplacer,
-/obj/item/clothing/glasses/welding,
-/obj/item/cell/high,
-/obj/machinery/cell_charger,
-/obj/item/radio,
-/obj/item/tool/crowbar,
-/obj/structure/rack,
-/turf/open/floor/mainship/orange/full,
-/area/shuttle/canterbury)
 "AP" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -541,8 +531,8 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Gu" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/mainship/mono,
+/obj/effect/landmark/start/job/crash/squadengineer,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "GV" = (
 /obj/machinery/sleeper{
@@ -577,8 +567,8 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "Ix" = (
-/obj/machinery/marine_selector/gear/engi,
-/turf/open/floor/mainship/mono,
+/obj/effect/landmark/start/job/crash/squadcorpsman,
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury)
 "IQ" = (
 /obj/machinery/light,
@@ -632,10 +622,9 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/crash/squadcorpsman,
-/obj/effect/landmark/start/job/crash/squadcorpsman,
 /obj/machinery/light,
-/turf/open/floor/mainship/sterile,
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "MQ" = (
 /obj/machinery/power/monitor{
@@ -676,9 +665,9 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/crash/squadengineer,
 /obj/machinery/light,
-/turf/open/floor/mainship/orange/full,
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Rr" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -760,6 +749,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Wz" = (
@@ -842,9 +832,13 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "ZU" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/mainship/mono,
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/cell/high,
+/obj/item/lightreplacer,
+/obj/item/clothing/glasses/welding,
+/obj/machinery/cell_charger,
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 
 (1,1,1) = {"
@@ -1024,8 +1018,8 @@ BV
 BV
 mw
 BV
+Ix
 BP
-ty
 cg
 ia
 ia
@@ -1039,8 +1033,8 @@ BV
 BV
 xe
 BV
-Gu
-Gu
+mv
+mv
 eG
 cg
 cg
@@ -1062,7 +1056,7 @@ BV
 BV
 xe
 AP
-ZU
+mv
 Us
 BV
 ae
@@ -1085,7 +1079,7 @@ BV
 BV
 xe
 AP
-Gu
+mv
 Tb
 SR
 zg
@@ -1108,7 +1102,7 @@ xe
 xe
 xe
 aN
-Gu
+mv
 OA
 JP
 KM
@@ -1131,7 +1125,7 @@ BV
 BV
 xe
 AP
-Gu
+mv
 VT
 Ao
 Vk
@@ -1154,7 +1148,7 @@ BV
 BV
 xe
 AP
-Gu
+mv
 lo
 VY
 aS
@@ -1177,8 +1171,8 @@ BV
 BV
 xe
 BV
-Gu
-Gu
+mv
+mv
 ci
 cg
 cg
@@ -1208,8 +1202,8 @@ BV
 BV
 mw
 BV
+Gu
 rP
-Ix
 cg
 ia
 ia
@@ -1274,7 +1268,7 @@ IQ
 cg
 fj
 Rr
-AL
+Rr
 mw
 xe
 xe
@@ -1321,7 +1315,7 @@ cg
 WQ
 RV
 RV
-xF
+ZU
 cg
 BV
 xe
