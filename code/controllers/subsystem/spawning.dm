@@ -82,6 +82,8 @@ SUBSYSTEM_DEF(spawning)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
 			var/spawntype = pickweight(spawnerdata[spawner].spawntypes)
+			if(islist(spawntype)) //for nested spawn options
+				spawntype = pickweight(spawntype)
 			var/mob/newmob = new spawntype(spawnpoint)
 
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)

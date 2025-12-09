@@ -6,13 +6,15 @@
 	invisibility = 0
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE
 	spawntypes = list(
-		/mob/living/carbon/human/species/zombie/ai/patrol = 100,
-		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
-		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2,
+		list(/mob/living/carbon/human/species/zombie/ai/patrol = 85,
+			/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
+		) = 98,
+		list(/mob/living/carbon/human/species/zombie/ai/tank/patrol = 2,
+			/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
+		) = 2,
 	)
 	spawnamount = 2
 	spawndelay = 15 SECONDS
@@ -49,6 +51,8 @@
 /obj/effect/ai_node/spawner/zombie/proc/spawn_defenders()
 	for(var/i in 1 to ZOMBIE_DEFENDER_AMOUNT)
 		var/spawntype = pickweight(spawntypes)
+		if(islist(spawntype)) //for nested spawn options
+				spawntype = pickweight(spawntype)
 		new spawntype(loc)
 
 /obj/effect/ai_node/spawner/zombie/HasProximity(atom/movable/hostile)
