@@ -140,7 +140,7 @@
 			max_miner_integrity = 300
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
-			required_ticks = 60
+			required_ticks = 35
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.add_supply_points(faction, mineral_value * stored_mineral) //NTF edit. Forcibly caps req points.
