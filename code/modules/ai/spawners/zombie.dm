@@ -50,10 +50,10 @@
 ///Called by a proximity alert, spawns defenders when a threat is detected
 /obj/effect/ai_node/spawner/zombie/proc/spawn_defenders()
 	for(var/i in 1 to ZOMBIE_DEFENDER_AMOUNT)
-		var/spawntype = pickweight(spawntypes)
-		if(islist(spawntype)) //for nested spawn options
-				spawntype = pickweight(spawntype)
-		new spawntype(loc)
+		var/spawn_type = pickweight(spawntypes)
+		if(islist(spawn_type)) //for nested spawn options
+			spawn_type = pickweight(spawn_type)
+		new spawn_type(loc)
 
 /obj/effect/ai_node/spawner/zombie/HasProximity(atom/movable/hostile)
 	if(iszombie(hostile))
