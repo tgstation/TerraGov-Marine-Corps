@@ -794,6 +794,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -995,7 +996,7 @@ mw
 mw
 mw
 BV
-cg
+mv
 cg
 cg
 cg
@@ -1225,7 +1226,7 @@ mw
 mw
 mw
 BV
-cg
+mv
 cg
 cg
 cg

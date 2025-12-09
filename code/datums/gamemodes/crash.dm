@@ -32,7 +32,7 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = SHUTTLE_WIDEBURY
+	var/shuttle_id = SHUTTLE_CANTERBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
@@ -53,6 +53,8 @@
 	. = ..()
 
 	// Spawn the ship
+	if(TGS_CLIENT_COUNT >= 10 && TGS_CLIENT_COUNT < 25)
+		shuttle_id = SHUTTLE_WIDEBURY
 	if(TGS_CLIENT_COUNT >= 25)
 		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
