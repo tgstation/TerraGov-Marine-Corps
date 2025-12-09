@@ -67,10 +67,10 @@
 
 /**
  * Any special attack by zombie behavior
- * Return FALSE if normal melee_attack_chain should occur
+ * Called after melee_attack_chain if it returns true
 */
 /atom/proc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	return FALSE
+	return
 
 /obj/machinery/door/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!density)
@@ -93,7 +93,6 @@
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
-	return TRUE
 
 /obj/machinery/power/apc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -116,7 +115,6 @@
 		beenhit += 1
 	zombie.changeNext_move(claw.attack_speed)
 	zombie.do_attack_animation(src, used_item = claw)
-	return TRUE
 
 /obj/machinery/nuclearbomb/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!timer_enabled)

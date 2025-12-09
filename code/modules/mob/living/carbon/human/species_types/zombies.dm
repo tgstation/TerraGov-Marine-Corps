@@ -106,9 +106,6 @@
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
-
-
-
 	if(SSticker.mode.zombies_regrow_limbs)
 		var/datum/limb/limb = pick(H.limbs) //small chance of regrowing a limb
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(1))
