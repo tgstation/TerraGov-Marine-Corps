@@ -5,6 +5,8 @@
 	icon_state = "sheater"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	max_integrity = 150
+	obj_flags = CAN_BE_HIT
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	/// The cell inside the heater, used for making it work
 	var/obj/item/cell/high/cell
