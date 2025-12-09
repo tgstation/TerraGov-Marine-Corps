@@ -254,7 +254,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 25, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 15)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_time = 1 SECONDS
 	aim_fire_delay = 1 SECONDS
 	aim_speed_modifier = 2
 
@@ -304,7 +303,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_time = 1 SECONDS
 	aim_fire_delay = 0.8 SECONDS
 	aim_speed_modifier = 0.75
 

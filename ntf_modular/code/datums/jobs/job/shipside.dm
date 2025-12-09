@@ -152,8 +152,8 @@
 	comm_title = "ACL"
 	supervisors = "the Archercorp corporate office, and the corporate council."
 	total_positions = 1
-	access = ACCESS_NT_CORPORATE
-	minimal_access = ACCESS_NT_CORPORATE
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	outfit = /datum/outfit/job/civilian/liaison_archercorp
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
@@ -222,8 +222,8 @@ Archercorp generally takes a more isolationist approach to diplomacy and are gen
 	comm_title = "NML"
 	supervisors = "the Novamed corporate office, and the corporate council."
 	total_positions = 1
-	access = ACCESS_NT_CORPORATE
-	minimal_access = ACCESS_NT_CORPORATE
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	outfit = /datum/outfit/job/civilian/liaison_novamed
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
@@ -291,8 +291,8 @@ Novamed tends to be cooperative with other corporations, especially mutually wit
 	comm_title = "NML"
 	supervisors = "the TRANSCo corporate office, and the corporate council."
 	total_positions = 1
-	access = ACCESS_NT_CORPORATE
-	minimal_access = ACCESS_NT_CORPORATE
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	outfit = /datum/outfit/job/civilian/liaison_transco
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
