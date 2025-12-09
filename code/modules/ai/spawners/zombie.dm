@@ -5,14 +5,16 @@
 	icon_state = "hole"
 	invisibility = 0
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE
+	//Please keep the percentages updated.
+	//Total: 127
 	spawntypes = list(
-		/mob/living/carbon/human/species/zombie/ai/patrol = 100,
-		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
-		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2,
+		/mob/living/carbon/human/species/zombie/ai/patrol = 100,      //78.7%
+		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,  //11.8%
+		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 4,   //3.1%
+		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 2, //1.6%
+		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 2, //1.6%
+		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 2, //1.6%
+		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2, //1.6%
 	)
 	spawnamount = 2
 	spawndelay = 15 SECONDS
