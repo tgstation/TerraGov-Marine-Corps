@@ -19,8 +19,9 @@
 	spawnamount = 2
 	spawndelay = 15 SECONDS
 	maxamount = 50
+	///Currently is considered under threat
 	var/threat_warning = FALSE
-
+	///proxy sensor holder
 	var/datum/proximity_monitor/proximity_monitor
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
 	COOLDOWN_DECLARE(defender_spawn_cooldown)
