@@ -277,6 +277,10 @@
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H)
 	add_inherent_abilities(H)
 
+///Handles any species-specific crit events
+/datum/species/proc/handle_crit(mob/living/carbon/human/H)
+	return
+
 ///Handles any species-specific death events
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
@@ -530,6 +534,7 @@
 			if(brute_mod)
 				damage *= brute_mod
 			var/old_status = organ.limb_status
+			victim.last_limb_hit = organ
 			if(organ.take_damage_limb(damage, 0, sharp, edge))
 				victim.UpdateDamageIcon()
 				record_internal_injury(victim, attacker, old_status, organ.limb_status)
@@ -537,6 +542,7 @@
 			victim.damageoverlaytemp = 20
 			if(burn_mod)
 				damage *= burn_mod
+			victim.last_limb_hit = organ
 			if(organ.take_damage_limb(0, damage, sharp, edge))
 				victim.UpdateDamageIcon()
 				return

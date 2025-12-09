@@ -2,7 +2,7 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|SPECIES_NO_HUG
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|SPECIES_NO_HUG|LIMBS_EFFECT_HEALTH
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
@@ -99,6 +99,14 @@
 		var/datum/internal_organ/internal_organ = H.get_organ_slot(organ_slot)
 		internal_organ?.heal_organ_damage(1)
 	H.updatehealth()
+
+/datum/species/zombie/handle_crit(mob/living/carbon/human/H)
+	if(!istype(H.last_limb_hit, /datum/limb))
+		return
+	if(H.last_limb_hit.body_part == CHEST || H.last_limb_hit.body_part == GROIN)
+		return //Can't lose those
+
+	H.last_limb_hit.droplimb(FALSE, FALSE, FALSE, FALSE)//WRONG WRONG WRONG WRONG!!!
 
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	if(H.on_fire)

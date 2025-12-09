@@ -16,7 +16,7 @@
 	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 
-	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
+	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute - limb_health_debuff
 
 	update_stat()
 	med_pain_set_perceived_health()

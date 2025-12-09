@@ -8,3 +8,5 @@
 #define ZOMBIE_DEFENDER_AMOUNT 13
 ///Spawner threatened spawning limit
 #define ZOMBIE_THREATENED_CAP 125
+///How much losing a limb lowers the max health
+#define LIMB_HEALTH_DEBUFF 20
