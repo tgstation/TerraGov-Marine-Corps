@@ -782,10 +782,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
-"WZ" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/canterbury)
 "Xk" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
@@ -1323,7 +1319,7 @@ xe
 BV
 yV
 cg
-WZ
+lT
 "}
 (22,1,1) = {"
 ia
@@ -1346,7 +1342,7 @@ AG
 AG
 Kq
 cg
-WZ
+lT
 "}
 (23,1,1) = {"
 ia
