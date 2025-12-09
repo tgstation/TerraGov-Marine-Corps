@@ -243,6 +243,8 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_SPSUP, "BR-8 High Velocity Impact Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_SPSUP, "BR-8 High Velocity Incendiary Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/chamberedrifle/tranq = list(CAT_SPSUP, "Moonbeam tranq sniper magazine", 1, "black"),
+	/obj/item/ammo_magazine/rifle/boltclip/dragoon = list(CAT_SPSUP, "Dragoon RER ammunition clip", 1, "black"),
+	/obj/item/ammo_magazine/rifle/boltclip/dragoon/pox = list(CAT_SPSUP, "Dragoon RER poxomelanin ammunition clip", 3, "black"),
 	))
 
 

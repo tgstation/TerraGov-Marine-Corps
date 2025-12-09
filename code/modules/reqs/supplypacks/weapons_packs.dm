@@ -633,9 +633,9 @@ WEAPONS
 /datum/supply_packs/weapons/dragoon_ammo
 	name = "Dragoon Mk1 RER stripper clip"
 	contains = list(/obj/item/ammo_magazine/rifle/boltclip/dragoon)
-	cost = 50
+	cost = 5
 
 /datum/supply_packs/weapons/dragoon_ammo_pox
 	name = "Dragoon Mk1 RER poxomelanin rounds stripper clip"
 	contains = list(/obj/item/ammo_magazine/rifle/boltclip/dragoon/pox)
-	cost = 75
+	cost = 15
