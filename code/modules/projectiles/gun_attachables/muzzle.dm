@@ -11,7 +11,7 @@
 	scatter_mod = -2
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -2
-	damage_falloff_mod = -0.1
+	damage_falloff_mod = -0.05
 
 /obj/item/attachable/suppressor/unremovable
 	attach_features_flags = NONE
@@ -91,6 +91,7 @@
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
+	damage_falloff_mod = -0.1
 	size_mod = 1
 	variants_by_parent_type = list(
 		/obj/item/weapon/gun/rifle/som = "ebarrel_big",
