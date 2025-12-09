@@ -177,6 +177,8 @@
 		stored_disk.stored_name = current_mob
 		stored_disk.stored_skills = current_mob.skills
 
+		current_mob.set_skills(current_mob.skills.modifyAllRatings(-1))
+
 		current_mob.extract_count++
 
 		if(!HAS_TRAIT(current_mob, TRAIT_SKILLS_EXTRACTED))
@@ -321,7 +323,6 @@
 		current_mob.set_skills(current_mob.skills.setRating(mech = stored_disk.stored_skills.mech))
 	if(stored_disk.stored_skills.stamina > current_mob.skills.stamina)
 		current_mob.set_skills(current_mob.skills.setRating(stamina = stored_disk.stored_skills.stamina))
-	current_mob.set_skills(current_mob.skills.modifyAllRatings(1))
 
 /obj/structure/bed/chair/kz/proc/restore_skills(mob/living/target)
 	target.can_restore_skills = TRUE
