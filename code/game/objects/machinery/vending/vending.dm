@@ -64,7 +64,6 @@
 	anchored = TRUE
 	density = TRUE
 	coverage = 80
-	max_integrity = 100
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	layer = BELOW_OBJ_LAYER
 
