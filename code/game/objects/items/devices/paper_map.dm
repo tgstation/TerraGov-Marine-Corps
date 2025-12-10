@@ -185,3 +185,8 @@
 
 /obj/item/paper_map/shipside
 	targetted_zlevel = 4
+
+/obj/item/paper_map/excavation
+	name = "excavation site chart"
+	desc = "A map detailing the various excavation sites. Best paired with the subterrain scanner and excavator, and unreasonable levels of skill."
+	minimap_flag = MINIMAP_FLAG_EXCAVATION_ZONE
