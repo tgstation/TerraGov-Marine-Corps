@@ -198,7 +198,7 @@
 					continue
 				if(attacker_hive == xeno_structure.get_xeno_hivenumber())
 					continue
-				if(attacker_faction in GLOB.hive_datums[xeno_structure.get_xeno_hivenumber()].allied_factions)#
+				if(attacker_faction in GLOB.hive_datums[xeno_structure.get_xeno_hivenumber()].allied_factions)
 					continue
 				if(get_dist(source, xeno_structure) >= shorter_distance)
 					continue
