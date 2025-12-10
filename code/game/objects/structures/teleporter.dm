@@ -4,6 +4,7 @@
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	///Max teleport range
 	var/max_range = 60
 	///List of all teleportable types
@@ -55,7 +56,7 @@
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
 	user.put_in_hands(kit.cell)
 	kit.cell = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/deployable/teleporter/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
@@ -74,7 +75,11 @@
 	I.forceMove(kit)
 	kit.cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/deployable/teleporter/update_icon()
+	. = ..()
+	hud_set_power_level()
 
 /obj/machinery/deployable/teleporter/update_icon_state()
 	icon_state = default_icon_state
@@ -82,6 +87,25 @@
 	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(powered() || kit?.cell?.charge > TELEPORTING_COST)
 		icon_state = default_icon_state + "_on"
+
+///Updates hud power level
+/obj/machinery/deployable/teleporter/proc/hud_set_power_level()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
+	if(powered())
+		holder.icon_state = "plasma100"
+		return
+
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	if(!kit?.cell)
+		holder.icon_state = "plasma0"
+		return
+	var/amount = kit.cell.maxcharge ? round(kit.cell.charge * 100 / kit.cell.maxcharge, 10) : 0
+	holder.icon_state = "plasma[amount]"
 
 ///Tries to teleport anything on the pad
 /obj/machinery/deployable/teleporter/proc/attempt_teleport(mob/living/user)
