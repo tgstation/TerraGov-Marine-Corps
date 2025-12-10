@@ -49,7 +49,7 @@
 		playsound(loc, species.death_sound, 50, TRUE)
 	if(faction)
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
-			if(human.faction == faction)
+			if((human.faction == faction) || (GLOB.faction_to_iff[human.faction] & GLOB.faction_to_iff[faction]))
 				human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>ALERT:</u>", "[src.name] K.I.A at: [get_area_name(src)].", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order/automated/death_alert)
 				to_chat(human, span_danger("(N-UI) DeathRattle: '[src]' died at [get_area_name(src)]."))
 		playsound(loc, 'sound/effects/radiostatic.ogg', 40, TRUE)

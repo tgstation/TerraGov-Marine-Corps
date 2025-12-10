@@ -662,7 +662,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 					num_xenos += 1/XENO_MARINE_RATIO
 					continue
 			if(count_flags & COUNT_IGNORE_ALTERNATE_FACTION_MARINES)
-				if(H.faction != FACTION_TERRAGOV)
+				if((H.faction != FACTION_TERRAGOV) && (H.faction != FACTION_NANOTRASEN))
 					continue
 			else
 				if(H.faction == FACTION_XENO)

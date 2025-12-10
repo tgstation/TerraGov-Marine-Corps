@@ -75,6 +75,10 @@
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
+	if(bumper.issamexenohive(living_target))
+		return //FF
+	if(GLOB.faction_to_iff[bumper.faction] & GLOB.faction_to_iff[living_target.faction])
+		return //FF
 	if(ishuman(target) && (bumper.wear_id))
 		var/mob/living/carbon/human/human_target = target
 		if(bumper.wear_id?.iff_signal == human_target.wear_id?.iff_signal)

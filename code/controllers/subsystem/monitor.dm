@@ -95,19 +95,20 @@ SUBSYSTEM_DEF(monitor)
 /// Calculate the points used to determine which side is winning at the moment.
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	// Humans
+	var/alive_human_list_ntf = (GLOB.alive_human_list_faction[FACTION_TERRAGOV] | GLOB.alive_human_list_faction[FACTION_NANOTRASEN])
 	switch(gamestate)
 		if(SHUTTERS_CLOSED)
-			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
-			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+			. += length(alive_human_list_ntf) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. += (SSpoints.supply_points[FACTION_TERRAGOV] + SSpoints.supply_points[FACTION_NANOTRASEN]) * REQ_POINTS_WEIGHT
 		if(GROUNDSIDE)
 			. += human_on_ground * GROUNDSIDE_HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
+			. += (length(alive_human_list_ntf) - human_on_ground) * GROUNDSIDE_HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += (SSpoints.supply_points[FACTION_TERRAGOV] + SSpoints.supply_points[FACTION_NANOTRASEN]) * REQ_POINTS_WEIGHT
 		if(SHIPSIDE)
-			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * SHIPSIDE_HUMAN_LIFE_WEIGHT
+			. += length(alive_human_list_ntf) * SHIPSIDE_HUMAN_LIFE_WEIGHT
 			// Unspent supply points during hijack aren't important as they are likely to stay unspent.
 	for(var/atom/movable/item_key in requisition_item_keys)
-		if(item_key.faction != FACTION_TERRAGOV)
+		if(item_key.faction != FACTION_TERRAGOV && item_key.faction != FACTION_NANOTRASEN)
 			continue
 		. += requisition_item_keys[item_key] * REQ_POINTS_WEIGHT
 	// Xenomorphs
@@ -212,7 +213,7 @@ SUBSYSTEM_DEF(monitor)
 	human_on_ship = 0
 	clf_on_ground = 0
 	clf_on_ship = 0
-	for(var/human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+	for(var/human in (GLOB.alive_human_list_faction[FACTION_TERRAGOV] | GLOB.alive_human_list_faction[FACTION_NANOTRASEN]))
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))

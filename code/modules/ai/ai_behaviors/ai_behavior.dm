@@ -483,7 +483,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		return TRUE
 	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
 		return TRUE
-	if(mob_parent.pulledby?.faction == mob_parent.faction)
+	if(mob_parent.pulledby?.faction && (GLOB.faction_to_iff[mob_parent.pulledby.faction] == GLOB.faction_to_iff[mob_parent.faction]))
 		return TRUE //lets players wrangle NPC's
 	return FALSE
 

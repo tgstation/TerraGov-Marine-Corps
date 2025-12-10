@@ -26,6 +26,10 @@
 	var/atom/movable/movable_target = target
 	if(movable_target.faction == owner.faction)
 		return FALSE
+	if(GLOB.faction_to_iff[movable_target.faction] & GLOB.faction_to_iff[owner.faction])
+		return FALSE
+	if(owner.issamexenohive(movable_target))
+		return FALSE
 	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	return TRUE

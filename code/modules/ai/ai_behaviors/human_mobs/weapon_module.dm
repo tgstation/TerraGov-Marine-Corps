@@ -317,6 +317,6 @@
 	turf_line.Cut(1, 2) //don't count our own turf
 	for(var/turf/line_turf AS in turf_line)
 		for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
-			if(line_mob.faction == mob_parent.faction)
+			if(GLOB.faction_to_iff[line_mob.faction] & GLOB.faction_to_iff[mob_parent.faction])
 				return FALSE
 	return TRUE

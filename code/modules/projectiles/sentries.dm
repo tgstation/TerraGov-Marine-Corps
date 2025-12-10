@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			continue
 		potential_targets += nearby_xeno
 	for(var/obj/item/clothing/mask/facehugger/nearby_hugger AS in cheap_get_fhugger_near(src, range))
-		if(nearby_hugger.stat == DEAD || (nearby_hugger.hivenumber == XENO_HIVE_CORRUPTED && iff_signal & TGMC_LOYALIST_IFF)) //dogshit hardcode but i dont know what else to do.
+		if(nearby_hugger.stat == DEAD || (faction in (GLOB.hive_datums[nearby_hugger.hivenumber].allied_factions)))
 			continue
 		potential_targets += nearby_hugger
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
