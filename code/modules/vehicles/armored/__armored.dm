@@ -353,7 +353,8 @@
 		return FALSE
 	var/list/enter_locs = enter_locations(user)
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
-		user.balloon_alert(user, "not at entrance")
+		if(user != thing_to_load)
+			user.balloon_alert(user, "not at entrance")
 		return FALSE
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))

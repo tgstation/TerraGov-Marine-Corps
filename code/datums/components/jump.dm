@@ -146,7 +146,7 @@
 	var/original_layer = jumper.layer
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, effective_jump_height, effective_jump_duration)
-	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.add_traits(list(TRAIT_IS_JUMPING, TRAIT_SILENT_FOOTSTEPS), JUMP_COMPONENT)
 	jumper.add_pass_flags(effective_jumper_allow_pass_flags, JUMP_COMPONENT)
 	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
 	RegisterSignal(jumper, COMSIG_MOB_THROW, PROC_REF(jump_throw))
@@ -171,7 +171,7 @@
 /datum/component/jump/proc/end_jump(atom/movable/jumper, old_pass_flags)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.remove_pass_flags(old_pass_flags, JUMP_COMPONENT)
-	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
+	jumper.remove_traits(list(TRAIT_IS_JUMPING, TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
 	UnregisterSignal(jumper, COMSIG_MOB_THROW)
