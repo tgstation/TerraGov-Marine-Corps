@@ -284,6 +284,11 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "tS" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/smartgunner,
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
@@ -531,6 +536,11 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Gu" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/engineer,
 /obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
@@ -567,6 +577,11 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "Ix" = (
+/obj/effect/turf_decal/warning_stripes/medical,
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
 /obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury)
@@ -661,6 +676,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
+"Qa" = (
+/obj/structure/sign/prop1,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/canterbury)
 "Qu" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 8
@@ -723,6 +742,11 @@
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury)
 "VR" = (
+/obj/effect/turf_decal/warning_stripes/box/small,
+/obj/effect/turf_decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/leader,
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury)
@@ -1103,7 +1127,7 @@ mv
 OA
 JP
 KM
-cg
+Qa
 yC
 mw
 BV
