@@ -7932,6 +7932,13 @@
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
+"Nz" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/vsd/liason,
+/turf/open/floor/prison/blackfloor,
+/area/antag_ship/vsd/hall)
 "NA" = (
 /obj/structure/table/mainship,
 /obj/item/newspaper,
@@ -14909,7 +14916,7 @@ qC
 IZ
 qs
 vt
-vt
+Nz
 qs
 vt
 IZ

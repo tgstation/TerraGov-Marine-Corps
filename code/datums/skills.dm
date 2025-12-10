@@ -430,14 +430,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_MASTER
 	unarmed = SKILL_UNARMED_MASTER
-	melee_weapons = SKILL_MELEE_SUPER
 	combat = SKILL_COMBAT_TRAINED
-	pistols = SKILL_PISTOLS_TRAINED
-	shotguns = SKILL_SHOTGUNS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
-	smgs = SKILL_SMGS_TRAINED
-	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
+	//wouldnt it be niceeeee aa a a aaa
+	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_TRAINED
 
 /datum/skills/fo
 	name = FIELD_COMMANDER

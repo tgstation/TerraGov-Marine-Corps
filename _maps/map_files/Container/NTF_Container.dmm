@@ -7178,9 +7178,6 @@
 /area/mainship/medical/medical_science)
 "gWO" = (
 /obj/structure/table/mainship,
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
 	pixel_x = 17
@@ -14340,9 +14337,6 @@
 	dir = 8;
 	pixel_x = -17
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -15583,6 +15577,13 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/command/cic)
+"plI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "plT" = (
 /obj/item/storage/box/explosive_mines/antitank,
@@ -28716,7 +28717,7 @@ frI
 pcK
 wQB
 jQM
-cTA
+plI
 fvt
 iWr
 hjN
@@ -29322,7 +29323,7 @@ jQM
 ukU
 jQM
 jQM
-cTA
+plI
 hjN
 iWr
 hjN

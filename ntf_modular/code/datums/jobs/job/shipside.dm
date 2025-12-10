@@ -354,7 +354,7 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 	shoes = /obj/item/clothing/shoes/laceup
 
 //Kaizoku Liaison
-/datum/job/vsd/liaison_kaizoku
+/datum/job/vsd_squad/liaison_kaizoku
 	job_category = JOB_CAT_CIVILIAN
 	selection_color = "#ffeedd"
 	title = "Kaizoku Liaison"
@@ -424,6 +424,10 @@ Your ranking allows you to know your corporation has vital backing from the crim
 	ears = /obj/item/radio/headset/mainship/vsd
 	w_uniform = /obj/item/clothing/under/liaison_suit/outing
 	shoes = /obj/item/clothing/shoes/laceup
+
+/obj/effect/landmark/start/job/vsd/liason
+	icon_state = "MP"
+	job = /datum/job/vsd_squad/liaison_kaizoku
 
 //Sons of Mars Liaison
 /datum/job/som/civilian/liaison_som
