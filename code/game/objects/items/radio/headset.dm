@@ -633,6 +633,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
 	frequency = FREQ_PMC
+	faction = FACTION_NANOTRASEN
 
 /obj/item/radio/headset/mainship/marine/icc
 	name = "colonial militia headset"
