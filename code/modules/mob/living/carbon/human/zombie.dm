@@ -50,9 +50,10 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
-	if(target.attack_zombie(user, src, params, rightclick))
+	. = ..()
+	if(!.)
 		return
-	return ..()
+	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
 	force = 30
@@ -66,10 +67,10 @@
 
 /**
  * Any special attack by zombie behavior
- * Return FALSE if normal melee_attack_chain should occur
+ * Called after melee_attack_chain if it returns true
 */
 /atom/proc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	return FALSE
+	return
 
 /obj/machinery/door/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!density)
@@ -92,7 +93,6 @@
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
-	return TRUE
 
 /obj/machinery/power/apc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -115,7 +115,6 @@
 		beenhit += 1
 	zombie.changeNext_move(claw.attack_speed)
 	zombie.do_attack_animation(src, used_item = claw)
-	return TRUE
 
 /obj/machinery/nuclearbomb/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!timer_enabled)
@@ -138,5 +137,13 @@
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!is_wired)
 		return
+	if(zombie.a_intent != INTENT_HARM)
+		return
 	balloon_alert(zombie, "barbed wire slices into you!")
 	zombie.apply_damage(20, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
+
+/obj/structure/razorwire/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(zombie.a_intent != INTENT_HARM)
+		return
+	zombie.apply_damage(ZOMBIE_RAZORWIRE_DAMAGE, blocked = MELEE, updating_health = TRUE)//Less health but more damage
+	update_appearance(UPDATE_ICON)
