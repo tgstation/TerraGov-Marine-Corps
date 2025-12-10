@@ -637,6 +637,6 @@ To serve the xenomorphs and join the ascended ones. (willingly or not, depends o
 	jobtype = /datum/job/clf/liaison_clf
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/mainship/marine/icc
+	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine
