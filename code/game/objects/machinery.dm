@@ -34,10 +34,7 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
-	var/turf/current_turf = get_turf(src)
-	if(anchored && current_turf && density)
-		current_turf.atom_flags |= AI_BLOCKED
-
+	set_ai_block()
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src
@@ -46,10 +43,19 @@
 		QDEL_NULL(circuit)
 	operator?.unset_interaction()
 	operator = null
-	var/turf/current_turf = get_turf(src)
-	if(anchored && current_turf && density)
-		current_turf.atom_flags &= ~ AI_BLOCKED
+	set_ai_block()
 	return ..()
+
+///Sets or unsets AI_BLOCKED on our turf
+/obj/machinery/proc/set_ai_block()
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+	if(anchored && density && !QDELETED(src))
+		current_turf.atom_flags |= AI_BLOCKED
+		return
+	current_turf.atom_flags &= ~AI_BLOCKED
+	//Because different NPC's handle machinery differently, don't override this without considering all NPC types
 
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))

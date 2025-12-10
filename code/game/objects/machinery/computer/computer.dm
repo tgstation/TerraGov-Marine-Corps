@@ -118,16 +118,20 @@
 	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
+///Breaks the computer
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	density = FALSE
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
+///Unbreaks the computer
 /obj/machinery/computer/proc/repair()
 	machine_stat &= ~BROKEN
 	density = TRUE
 	durability = initial(durability)
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
