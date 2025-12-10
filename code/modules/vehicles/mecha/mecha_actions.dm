@@ -416,6 +416,7 @@
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_EQUIPMENT(type))/10
 		chassis.balloon_alert(owner, "[time] seconds")
+		return
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 90 SECONDS)
 	block_remaining = block_max
 	playsound(chassis, 'sound/items/eshield_recharge.ogg', 40)
