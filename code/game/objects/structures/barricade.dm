@@ -1,7 +1,7 @@
 // Snow, wood, sandbags, metal, plasteel
 
 /obj/structure/barricade
-	climbable = TRUE
+	climbable = FALSE
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -40,6 +40,8 @@
 	AddElement(/datum/element/connect_loc, connections)
 	if(user)
 		faction = user.faction
+
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
@@ -744,7 +746,6 @@
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "folding_plasteel"
 	can_wire = TRUE
-	climbable = TRUE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 	///What state is our barricade in for construction steps?
 	var/build_state = BARRICADE_PLASTEEL_FIRM
