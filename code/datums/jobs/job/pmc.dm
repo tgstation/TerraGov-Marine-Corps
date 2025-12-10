@@ -2,7 +2,7 @@
 	job_category = JOB_CAT_MARINE
 	access = ALL_PMC_ACCESS
 	minimal_access = ALL_PMC_ACCESS
-	skills_type = /datum/skills/pmc
+	skills_type = /datum/skills/crafty
 	faction = FACTION_NANOTRASEN
 	minimap_icon = "pmc"
 
@@ -94,7 +94,7 @@
 /datum/job/pmc/medic
 	title = "PMC Medic"
 	paygrade = "PMC2"
-	skills_type = /datum/skills/combat_medic/pmc
+	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/pmc/medic
 
 //medic loadout
@@ -144,7 +144,7 @@
 /datum/job/pmc/gunner
 	title = "PMC Gunner"
 	paygrade = "PMC2"
-	skills_type = /datum/skills/smartgunner/pmc
+	skills_type = /datum/skills/smartgunner
 	outfit = /datum/outfit/job/pmc/gunner
 	multiple_outfits = TRUE
 	outfits = list(
@@ -166,7 +166,7 @@
 /datum/job/pmc/sniper
 	title = "PMC Sniper"
 	paygrade = "PMC3"
-	skills_type = /datum/skills/specialist/pmc
+	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/pmc/sniper
 
 //PMC Leader
@@ -174,7 +174,7 @@
 	job_category = JOB_CAT_COMMAND
 	title = "PMC Leader"
 	paygrade = "PMC4"
-	skills_type = /datum/skills/sl/pmc
+	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/pmc/leader/m416
 	multiple_outfits = TRUE
 	outfits = list(

@@ -238,13 +238,15 @@
 		if("NT1")
 			. = size ? "CE" : "Corporate Employee"
 		if("NT2")
-			. = size ? "CSVSR" : "Corporate Supervisor"
+			. = size ? "CO" : "Corporate Officer"
 		if("NT3")
 			. = size ? "SNRO" : "Corporate Senior Officer"
 		if("NT4")
 			. = size ? "MNGR" : "Corporate Manager"
 		if("NT5")
-			. = size ? "CO" : "Corporate Chief Officer"
+			. = size ? "CS" : "Corporate Supervisor"
+		if("NT6")
+			. = size ? "CCO" : "Corporate Chief Officer"
 		if("E1")
 			. = size ? "PVT" : "Private"
 		if("E2")
@@ -483,5 +485,15 @@
 			. = size ? "MTH" : "Mothellian Veteran"
 		if("MTH")
 			. = size ? "MTH" : "Mothellian Leader"
+		if("LIA1")
+			. = size ? "OF" : "Officer"
+		if("LIA2")
+			. = size ? "SO" : "Senior Officer"
+		if("LIA3")
+			. = size ? "MNGR" : "Manager"
+		if("LIA4")
+			. = size ? "SV" : "Supervisor"
+		if("LIA5")
+			. = size ? "CO" : "Chief Officer"
 		else
 			. = paygrade //custom paygrade

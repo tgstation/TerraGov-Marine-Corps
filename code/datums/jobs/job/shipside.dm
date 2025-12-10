@@ -952,15 +952,15 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "NT1"
-		if(601 to 1500) // 10hrs
 			new_human.wear_id.paygrade = "NT2"
-		if(1501 to 6000) // 25 hrs
+		if(601 to 1500) // 10hrs
 			new_human.wear_id.paygrade = "NT3"
-		if(6001 to 18000) // 100 hrs
+		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "NT4"
-		if(18001 to INFINITY) // 300 hrs
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "NT5"
+		if(18001 to INFINITY) // 300 hrs
+			new_human.wear_id.paygrade = "NT6"
 	new_human.wear_id.update_label()
 
 /datum/job/terragov/civilian/liaison/get_spawn_message_information(mob/M)

@@ -66,7 +66,7 @@ Kaizoku is in the council that leads Phantom City, therefore it shares a table w
 	title = "KZ Medic"
 	paygrade = "KZ2"
 	comm_title = "SSGT"
-	skills_type = /datum/skills/combat_medic/crafty
+	skills_type = /datum/skills/combat_medic
 	access = list (ACCESS_VSD_PREP, ACCESS_VSD_MEDPREP, ACCESS_VSD_ENGPREP, ACCESS_VSD_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_SOM_MEDICAL)
 	minimal_access = list (ACCESS_VSD_PREP, ACCESS_VSD_MEDPREP, ACCESS_VSD_ENGPREP, ACCESS_VSD_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_SOM_MEDICAL)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE

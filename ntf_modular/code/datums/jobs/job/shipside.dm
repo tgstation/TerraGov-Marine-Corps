@@ -288,7 +288,7 @@ Novamed tends to be cooperative with other corporations, especially mutually wit
 /datum/job/terragov/civilian/liaison_transco
 	title = "TRANSCo Liaison"
 	paygrade = "NT1"
-	comm_title = "NML"
+	comm_title = "TCL"
 	supervisors = "the TRANSCo corporate office, and the corporate council."
 	total_positions = 1
 	access = ALL_ACCESS
@@ -359,11 +359,11 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 	selection_color = "#ffeedd"
 	title = "Kaizoku Liaison"
 	paygrade = "NT1"
-	comm_title = "NML"
+	comm_title = "KZL"
 	supervisors = "the Kaizoku corporate office, and the corporate council."
 	total_positions = 1
-	access = ALL_ANTAGONIST_ACCESS
-	minimal_access = ALL_ANTAGONIST_ACCESS
+	access = ALL_VSD_ACCESS
+	minimal_access = ALL_VSD_ACCESS
 	outfit = /datum/outfit/job/civilian/liaison_kaizoku
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
@@ -428,8 +428,8 @@ Your ranking allows you to know your corporation has vital backing from the crim
 //Sons of Mars Liaison
 /datum/job/som/civilian/liaison_som
 	title = "Sons of Mars Representative"
-	paygrade = "NT1"
-	comm_title = "NML"
+	paygrade = "LIA1"
+	comm_title = "SOML"
 	supervisors = "the Sons of Mars high command."
 	total_positions = 1
 	access = ALL_SOM_ACCESS
@@ -464,15 +464,15 @@ Your ranking allows you to know your corporation has vital backing from the crim
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "NT1"
+			new_human.wear_id.paygrade = "LIA1"
 		if(601 to 1500) // 10hrs
-			new_human.wear_id.paygrade = "NT2"
+			new_human.wear_id.paygrade = "LIA2"
 		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "NT3"
+			new_human.wear_id.paygrade = "LIA3"
 		if(6001 to 18000) // 100 hrs
-			new_human.wear_id.paygrade = "NT4"
+			new_human.wear_id.paygrade = "LIA4"
 		if(18001 to INFINITY) // 300 hrs
-			new_human.wear_id.paygrade = "NT5"
+			new_human.wear_id.paygrade = "LIA5"
 	new_human.wear_id.update_label()
 
 /datum/job/som/civilian/liaison_som/get_spawn_message_information(mob/M)
@@ -501,7 +501,7 @@ You honestly don't know what you are even here to negoitate, AS called terrorist
 	selection_color = "#ffeedd"
 	title = "Colonial Militia Representative"
 	paygrade = "NT1"
-	comm_title = "NML"
+	comm_title = "CML"
 	supervisors = "the Colonial Militia high command."
 	total_positions = 1
 	access = ALL_ICC_ACCESS
@@ -536,15 +536,15 @@ You honestly don't know what you are even here to negoitate, AS called terrorist
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "NT1"
+			new_human.wear_id.paygrade = "LIA1"
 		if(601 to 1500) // 10hrs
-			new_human.wear_id.paygrade = "NT2"
+			new_human.wear_id.paygrade = "LIA2"
 		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "NT3"
+			new_human.wear_id.paygrade = "LIA3"
 		if(6001 to 18000) // 100 hrs
-			new_human.wear_id.paygrade = "NT4"
+			new_human.wear_id.paygrade = "LIA4"
 		if(18001 to INFINITY) // 300 hrs
-			new_human.wear_id.paygrade = "NT5"
+			new_human.wear_id.paygrade = "LIA5"
 	new_human.wear_id.update_label()
 
 /datum/job/icc/liaison_cm/get_spawn_message_information(mob/M)
@@ -572,7 +572,7 @@ Almost all of CM members were colonisers hired by the NTC before all of this hap
 	selection_color = "#ffeedd"
 	title = "CLF Representative"
 	paygrade = "NT1"
-	comm_title = "NML"
+	comm_title = "CLFL"
 	supervisors = "the CLF high command."
 	total_positions = 1
 	access = ALL_ICC_ACCESS
@@ -607,15 +607,15 @@ Almost all of CM members were colonisers hired by the NTC before all of this hap
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
-			new_human.wear_id.paygrade = "NT1"
+			new_human.wear_id.paygrade = "LIA1"
 		if(601 to 1500) // 10hrs
-			new_human.wear_id.paygrade = "NT2"
+			new_human.wear_id.paygrade = "LIA2"
 		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "NT3"
+			new_human.wear_id.paygrade = "LIA3"
 		if(6001 to 18000) // 100 hrs
-			new_human.wear_id.paygrade = "NT4"
+			new_human.wear_id.paygrade = "LIA4"
 		if(18001 to INFINITY) // 300 hrs
-			new_human.wear_id.paygrade = "NT5"
+			new_human.wear_id.paygrade = "LIA5"
 	new_human.wear_id.update_label()
 
 /datum/job/clf/liaison_clf/get_spawn_message_information(mob/M)
