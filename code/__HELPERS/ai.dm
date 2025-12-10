@@ -164,7 +164,7 @@
 				continue
 			if(attacker_hive == hugger.get_xeno_hivenumber())
 				continue
-			if(attacker_faction in (nearby_xeno.get_hive().allied_factions))
+			if(attacker_faction in (GLOB.hive_datums[hugger.get_xeno_hivenumber()].allied_factions))
 				continue
 			if(get_dist(source, hugger) >= shorter_distance)
 				continue
