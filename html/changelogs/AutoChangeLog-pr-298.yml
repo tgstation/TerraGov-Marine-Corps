@@ -1,6 +1,0 @@
-author: "DrCrawler"
-delete-after: True
-changes:
-  - bugfix: "fixes many of the visual issues with the dragoon"
-  - bugfix: "fixes the hybrid specialist class loadout not having ammo for the gun it comes with"
-  - balance: "reduces the price of dragoon stripper clips in req"

@@ -71,3 +71,13 @@
   - balance: Xp5 shrap nade now explodes in shrap
   - rscadd: Added TARP to KZ Vendor
   - rscadd: Added KPX/47 Spectra for KZ
+2025-12-10:
+  Colfer1:
+  - balance: Lets all factions see excavations on the minimap
+  DrCrawler:
+  - bugfix: fixes many of the visual issues with the dragoon
+  - bugfix: fixes the hybrid specialist class loadout not having ammo for the gun
+      it comes with
+  - balance: reduces the price of dragoon stripper clips in req
+  Nokia2Student:
+  - bugfix: Skill exploit fix
