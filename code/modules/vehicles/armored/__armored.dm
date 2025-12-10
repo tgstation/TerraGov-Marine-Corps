@@ -353,8 +353,7 @@
 		return FALSE
 	var/list/enter_locs = enter_locations(user)
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
-		if(user == thing_to_load)
-			user.balloon_alert(user, "not at entrance")
+		user.balloon_alert(user, "not at entrance")
 		return FALSE
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
@@ -374,7 +373,6 @@
 	if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
 	if(!loc_override && !(entering_mob.loc in enter_locations(entering_mob)))
-		balloon_alert(entering_mob, "not at entrance")
 		return FALSE
 	return ..()
 
