@@ -65,7 +65,7 @@
 	density = TRUE
 	coverage = 80
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
-	obj_flags & CAN_BE_HIT
+	obj_flags = CAN_BE_HIT
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE
