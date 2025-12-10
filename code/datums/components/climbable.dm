@@ -20,29 +20,54 @@
 
 /datum/component/climbable/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(attempt_climb))
-	RegisterSignal(parent, COMSIG_MOVABLE_CHECK_CLIMBABLE, PROC_REF(check_climbable))
+	RegisterSignal(parent, COMSIG_ATOM_CHECK_CLIMBABLE, PROC_REF(check_climbable))
+	RegisterSignal(parent, COMSIG_ATOM_TRY_CLIMBABLE, PROC_REF(direct_attempt_climb))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/climbable/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_MOUSEDROPPED_ONTO,
-		COMSIG_MOVABLE_CHECK_CLIMBABLE,
+		COMSIG_ATOM_CHECK_CLIMBABLE,
+		COMSIG_ATOM_TRY_CLIMBABLE,
 		COMSIG_ATOM_EXAMINE,
 	))
 
+/datum/component/climbable/proc/direct_attempt_climb(datum/source, mob/user)
+	SIGNAL_HANDLER
+	var/turf/climb_turf
+	if(am_parent.bound_width <= 32 && am_parent.bound_height <= 32)
+		INVOKE_ASYNC(src, PROC_REF(do_climb), user)
+		return
+
+	var/turf/facing_turf = get_step(user, am_parent) //we try the most logical turf first, although this isn't reliable due to byond being bad
+	if(facing_turf in am_parent.locs && user.Adjacent(facing_turf))
+		climb_turf = facing_turf
+	else
+		for(var/turf/candi AS in am_parent.locs)
+			if(candi == facing_turf)
+				continue
+			if(!user.Adjacent(candi))
+				continue
+			climb_turf = candi
+			break
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user, climb_turf)
+
 ///Attempts to climb onto, or past parent
-/datum/component/climbable/proc/attempt_climb(atom/source, atom/dropping, mob/user, params)
+/datum/component/climbable/proc/attempt_climb(datum/source, atom/dropping, mob/user, params)
 	SIGNAL_HANDLER
 	if(!isliving(user))
 		return
 	if(dropping != user) //maybe change this actually
 		return
-	var/list/modifiers = params2list(params)
 	var/turf/click_turf
-	if(!user.client)
-		click_turf = params2turf(modifiers["screen-loc"], get_turf(user), null)
+	if(!params)
+		click_turf = get_turf(am_parent)
 	else
-		click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
+		var/list/modifiers = params2list(params)
+		if(!user.client)
+			click_turf = params2turf(modifiers["screen-loc"], get_turf(user), null)
+		else
+			click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user, click_turf)
 
 /datum/component/climbable/proc/do_climb(mob/living/user, turf/clicked_turf)
@@ -73,7 +98,7 @@
 		return
 
 	//var/turf/destination_turf = am_parent.loc
-	var/turf/destination_turf = clicked_turf
+	var/turf/destination_turf = clicked_turf ? clicked_turf : am_parent.loc
 	var/turf/user_turf = get_turf(user)
 	if(!istype(destination_turf) || !istype(user_turf))
 		return
@@ -117,10 +142,20 @@
 	SIGNAL_HANDLER
 	details += span_notice("You can climb ontop of this.")
 
-/datum/component/climbable/proc/check_climbable(atom/source)
+/datum/component/climbable/proc/check_climbable(atom/source, mob/user)
 	SIGNAL_HANDLER
+	if(!can_climb(user))
+		return
 	return COMPONENT_MOVABLE_CAN_CLIMB
 
-/atom/proc/can_climb()
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_CHECK_CLIMBABLE) & COMPONENT_MOVABLE_CAN_CLIMB)
+/atom/proc/can_climb(mob/user)
+	if(!isliving(user))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_CHECK_CLIMBABLE, user) & COMPONENT_MOVABLE_CAN_CLIMB)
 		return TRUE
+
+/atom/proc/try_climb(mob/user)
+	if(!can_climb(user))
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_TRY_CLIMBABLE, user)
+	return TRUE
