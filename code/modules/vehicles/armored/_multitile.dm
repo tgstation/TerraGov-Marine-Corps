@@ -48,10 +48,6 @@
 	///Holder for smoke del timer
 	var/smoke_del_timer
 
-/obj/vehicle/sealed/armored/multitile/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/climbable)
-
 /obj/vehicle/sealed/armored/multitile/Destroy()
 	QDEL_NULL(smoke_holder)
 	return ..()
