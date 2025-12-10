@@ -353,7 +353,7 @@
 		return FALSE
 	var/list/enter_locs = enter_locations(user)
 	if(!((user.loc in enter_locs) || (thing_to_load.loc in enter_locs)))
-		if(user != thing_to_load)
+		if(user == thing_to_load)
 			user.balloon_alert(user, "not at entrance")
 		return FALSE
 	if(isliving(thing_to_load))
