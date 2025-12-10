@@ -1,10 +1,8 @@
-/*!
- * Component for fuel storage objects
- */
-
 /datum/component/climbable
 	dupe_mode = COMPONENT_DUPE_UNIQUE
+	///Typecast parent
 	var/atom/movable/am_parent
+	///How long it takes to climb parent
 	var/climb_delay
 
 /datum/component/climbable/Initialize(_climb_delay = 1 SECONDS)
@@ -19,9 +17,9 @@
 	return ..()
 
 /datum/component/climbable/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(attempt_climb))
+	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop))
 	RegisterSignal(parent, COMSIG_ATOM_CHECK_CLIMBABLE, PROC_REF(check_climbable))
-	RegisterSignal(parent, COMSIG_ATOM_TRY_CLIMBABLE, PROC_REF(direct_attempt_climb))
+	RegisterSignal(parent, COMSIG_ATOM_TRY_CLIMBABLE, PROC_REF(try_climb))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/climbable/UnregisterFromParent()
@@ -32,32 +30,12 @@
 		COMSIG_ATOM_EXAMINE,
 	))
 
-/datum/component/climbable/proc/direct_attempt_climb(datum/source, mob/user)
-	SIGNAL_HANDLER
-	var/turf/climb_turf
-	if(am_parent.bound_width <= 32 && am_parent.bound_height <= 32)
-		INVOKE_ASYNC(src, PROC_REF(do_climb), user)
-		return
-
-	var/turf/facing_turf = get_step(user, am_parent) //we try the most logical turf first, although this isn't reliable due to byond being bad
-	if(facing_turf in am_parent.locs && user.Adjacent(facing_turf))
-		climb_turf = facing_turf
-	else
-		for(var/turf/candi AS in am_parent.locs)
-			if(candi == facing_turf)
-				continue
-			if(!user.Adjacent(candi))
-				continue
-			climb_turf = candi
-			break
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user, climb_turf)
-
-///Attempts to climb onto, or past parent
-/datum/component/climbable/proc/attempt_climb(datum/source, atom/dropping, mob/user, params)
+///Handles climbing on click drag
+/datum/component/climbable/proc/on_mousedrop(datum/source, atom/dropping, mob/user, params)
 	SIGNAL_HANDLER
 	if(!isliving(user))
 		return
-	if(dropping != user) //maybe change this actually
+	if(dropping != user) //todo: helping someone else climb something would actually be cool
 		return
 	var/turf/click_turf
 	if(!params)
@@ -70,6 +48,7 @@
 			click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user, click_turf)
 
+///Performs the climb, if able
 /datum/component/climbable/proc/do_climb(mob/living/user, turf/clicked_turf)
 	if(user.do_actions || !can_climb(user, clicked_turf))
 		return
@@ -94,10 +73,9 @@
 
 ///Checks to see if a mob can climb onto, or over this object
 /datum/component/climbable/proc/can_climb(mob/living/user, turf/clicked_turf)
-	if(!am_parent.can_interact(user)) //this is cursed because it requires dexterity
+	if(!am_parent.can_interact(user)) //todo: out of current scope but can_interact is cursed for this usage as it checks dexterity
 		return
 
-	//var/turf/destination_turf = am_parent.loc
 	var/turf/destination_turf = clicked_turf ? clicked_turf : am_parent.loc
 	var/turf/user_turf = get_turf(user)
 	if(!istype(destination_turf) || !istype(user_turf))
@@ -137,25 +115,52 @@
 
 	return destination_turf
 
-///Shows remaining fuel on examine
-/datum/component/climbable/proc/on_examine(datum/source, mob/user, list/details)
+///Tries to climb parent, used via parent proc calls instead of directly in the component
+/datum/component/climbable/proc/try_climb(datum/source, mob/user)
 	SIGNAL_HANDLER
-	details += span_notice("You can climb ontop of this.")
+	var/turf/climb_turf
+	if(am_parent.bound_width <= 32 && am_parent.bound_height <= 32)
+		INVOKE_ASYNC(src, PROC_REF(do_climb), user)
+		return
 
+	var/turf/facing_turf = get_step(user, am_parent) //we try the most logical turf first, although this isn't reliable due to byond being bad
+	if(facing_turf in am_parent.locs && user.Adjacent(facing_turf))
+		climb_turf = facing_turf
+	else
+		for(var/turf/candi AS in am_parent.locs)
+			if(candi == facing_turf)
+				continue
+			if(!user.Adjacent(candi))
+				continue
+			climb_turf = candi
+			break
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user, climb_turf)
+
+///Checks if user can climb parent
 /datum/component/climbable/proc/check_climbable(atom/source, mob/user)
 	SIGNAL_HANDLER
 	if(!can_climb(user))
 		return
 	return COMPONENT_MOVABLE_CAN_CLIMB
 
-/atom/proc/can_climb(mob/user)
+///Adds to the parent's examine text
+/datum/component/climbable/proc/on_examine(datum/source, mob/user, list/details)
+	SIGNAL_HANDLER
+	details += span_notice("You can climb ontop of this.")
+
+
+//The two procs below allow us to utilise the component outside normal scenarios, such as NPC usage
+
+///Returns true if user can climb src
+/atom/proc/check_climb(mob/user)
 	if(!isliving(user))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_ATOM_CHECK_CLIMBABLE, user) & COMPONENT_MOVABLE_CAN_CLIMB)
 		return TRUE
 
+///Tries to climb src, if the component is attached
 /atom/proc/try_climb(mob/user)
-	if(!can_climb(user))
+	if(!check_climb(user))
 		return
 	SEND_SIGNAL(src, COMSIG_ATOM_TRY_CLIMBABLE, user)
 	return TRUE

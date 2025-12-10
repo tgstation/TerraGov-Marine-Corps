@@ -1220,7 +1220,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 		if(!blocker.density) //Check if we're dense
 			continue
-		if(ismob(subject) && !blocker.can_climb(subject))
+		if(ismob(subject) && !blocker.check_climb(subject))
 			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
 			return TRUE
