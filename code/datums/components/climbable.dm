@@ -20,18 +20,27 @@
 	return ..()
 
 /datum/component/climbable/RegisterWithParent()
+	RegisterSignals(parent, list(COMSIG_CLICK_CTRL, COMSIG_ATOM_TRY_CLIMBABLE), PROC_REF(try_climb))
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop))
 	RegisterSignal(parent, COMSIG_ATOM_CHECK_CLIMBABLE, PROC_REF(check_climbable))
-	RegisterSignal(parent, COMSIG_ATOM_TRY_CLIMBABLE, PROC_REF(try_climb))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/climbable/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_MOUSEDROPPED_ONTO,
+		COMSIG_CLICK_CTRL,
 		COMSIG_ATOM_CHECK_CLIMBABLE,
 		COMSIG_ATOM_TRY_CLIMBABLE,
 		COMSIG_ATOM_EXAMINE,
 	))
+
+///Tries to climb parent, used via parent proc call or ctrl click
+/datum/component/climbable/proc/try_climb(datum/source, mob/user)
+	SIGNAL_HANDLER
+	var/climb_turf = find_climb_turf(user)
+	if(!climb_turf)
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user, climb_turf)
 
 ///Handles climbing on click drag
 /datum/component/climbable/proc/on_mousedrop(datum/source, atom/dropping, mob/user, params)
@@ -150,15 +159,6 @@
 	if(!can_climb(user, find_climb_turf(user)))
 		return
 	return COMPONENT_MOVABLE_CAN_CLIMB
-
-///Tries to climb parent, used via parent proc calls instead of directly in the component
-/datum/component/climbable/proc/try_climb(datum/source, mob/user)
-	SIGNAL_HANDLER
-	var/climb_turf = find_climb_turf(user)
-	if(!climb_turf)
-		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user, climb_turf)
-
 
 ///Returns true if user can climb src
 /atom/proc/check_climb(mob/user)
