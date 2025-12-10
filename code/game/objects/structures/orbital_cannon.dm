@@ -252,7 +252,6 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	appearance_flags = PIXEL_SCALE|LONG_GLIDE
 	layer = BELOW_OBJ_LAYER + 0.01
 	bound_width = 64
@@ -264,6 +263,9 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	var/obj/structure/orbital_cannon/linked_ob
 	var/fuel_amt = 0
 
+/obj/structure/orbital_tray/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/orbital_tray/Destroy()
 	QDEL_NULL(warhead)
@@ -331,12 +333,15 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	name = "theoretical ob ammo"
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	coverage = 100
 	var/is_solid_fuel = 0
+
+/obj/structure/ob_ammo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/ob_ammo/examine(mob/user)
 	. = ..()

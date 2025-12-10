@@ -1,7 +1,5 @@
 /obj/structure
 	icon = 'icons/obj/structures/structures.dmi'
-	var/climbable = FALSE
-	var/climb_delay = 1 SECONDS
 	var/barrier_flags = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
@@ -31,100 +29,12 @@
 
 /obj/structure/Initialize(mapload)
 	. = ..()
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 		icon_state = ""
 		if(smoothing_flags & SMOOTH_CORNERS)
 			icon_state = ""
-
-/obj/structure/proc/climb_on()
-
-	set name = "Climb structure"
-	set desc = "Climbs onto a structure."
-	set category = "IC.Object"
-	set src in oview(1)
-
-	do_climb(usr)
-
-/obj/structure/CtrlClick(mob/living/carbon/user)
-	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
-
-/obj/structure/MouseDrop_T(mob/target, mob/user)
-	. = ..()
-	var/mob/living/H = user
-	if(!istype(H) || target != user) //No making other people climb onto tables.
-		return
-
-	do_climb(target)
-
-///Checks to see if a mob can climb onto, or over this object
-/obj/structure/proc/can_climb(mob/living/user)
-	if(!climbable || !can_interact(user))
-		return
-
-	var/turf/destination_turf = loc
-	var/turf/user_turf = get_turf(user)
-	if(!istype(destination_turf) || !istype(user_turf))
-		return
-	if(!user.Adjacent(src))
-		return
-
-	if((atom_flags & ON_BORDER))
-		if(user_turf != destination_turf && user_turf != get_step(destination_turf, dir))
-			to_chat(user, span_warning("You need to be up against [src] to leap over."))
-			return
-		if(user_turf == destination_turf)
-			destination_turf = get_step(destination_turf, dir) //we're moving from the objects turf to the one its facing
-
-	if(destination_turf.density)
-		return
-
-	for(var/obj/object in destination_turf.contents)
-		if(isstructure(object))
-			var/obj/structure/structure = object
-			if(structure.allow_pass_flags & PASS_WALKOVER)
-				continue
-		if(object.density && (!(object.atom_flags & ON_BORDER) || object.dir & get_dir(src,user)))
-			to_chat(user, span_warning("There's \a [object.name] in the way."))
-			return
-
-	for(var/obj/object in user_turf.contents)
-		if(isstructure(object))
-			var/obj/structure/structure = object
-			if(structure.allow_pass_flags & PASS_WALKOVER)
-				continue
-		if(object.density && (object.atom_flags & ON_BORDER) && object.dir & get_dir(user, src))
-			to_chat(user, span_warning("There's \a [object.name] in the way."))
-			return
-
-	return destination_turf
-
-///Attempts to climb onto, or past an object
-/obj/structure/proc/do_climb(mob/living/user)
-	if(user.do_actions || !can_climb(user))
-		return
-
-	user.visible_message(span_warning("[user] starts [atom_flags & ON_BORDER ? "leaping over" : "climbing onto"] \the [src]!"))
-
-	ADD_TRAIT(user, TRAIT_IS_CLIMBING, REF(src))
-	if(!do_after(user, climb_delay, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
-		REMOVE_TRAIT(user, TRAIT_IS_CLIMBING, REF(src))
-		return
-	REMOVE_TRAIT(user, TRAIT_IS_CLIMBING, REF(src))
-
-	var/turf/destination_turf = can_climb(user)
-	if(!istype(destination_turf))
-		return
-
-	for(var/m in user.buckled_mobs)
-		user.unbuckle_mob(m)
-
-	user.forceMove(destination_turf)
-	user.visible_message(span_warning("[user] [atom_flags & ON_BORDER ? "leaps over" : "climbs onto"] \the [src]!"))
 
 /obj/structure/proc/structure_shaken()
 

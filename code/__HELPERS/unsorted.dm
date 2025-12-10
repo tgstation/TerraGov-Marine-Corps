@@ -1229,8 +1229,8 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
 				return TRUE
 			var/obj/structure/blocker_structure = obj_blocker
-			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
-				return TRUE
+			if(!blocker_structure.can_climb()) //If it's a structure and can't be climbed, we have a block
+				return TRUE //todo: we can move this up now
 		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
 			return TRUE
 

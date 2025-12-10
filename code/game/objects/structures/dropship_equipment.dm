@@ -167,7 +167,6 @@
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
@@ -190,6 +189,10 @@
 	var/point_cost = 0
 	///what kind of ammo this uses if any
 	var/ammo_type_used
+
+/obj/structure/dropship_equipment/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/dropship_equipment/Destroy()
 	QDEL_NULL(ammo_equipped)

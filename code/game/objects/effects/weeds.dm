@@ -230,7 +230,7 @@
 	if(color_variant == RESTING_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
-/obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
+/obj/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user, params)
 	var/obj/structure/window = locate(window_type) in loc
 	if(!window)
 		return ..()

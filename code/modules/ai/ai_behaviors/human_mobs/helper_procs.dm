@@ -421,9 +421,10 @@
 		return
 	if(. == AI_OBSTACLE_JUMP)
 		return //jumping is always best
-	if(!can_climb(user))
-		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
+	//todo: unfuck this
+	//if(!can_climb(user))
+	//	return
+	//INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 	return AI_OBSTACLE_RESOLVED
 
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)

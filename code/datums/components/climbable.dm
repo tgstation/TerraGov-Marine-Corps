@@ -20,24 +20,33 @@
 
 /datum/component/climbable/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(attempt_climb))
+	RegisterSignal(parent, COMSIG_MOVABLE_CHECK_CLIMBABLE, PROC_REF(check_climbable))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/climbable/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_MOUSEDROPPED_ONTO,
+		COMSIG_MOVABLE_CHECK_CLIMBABLE,
 		COMSIG_ATOM_EXAMINE,
 	))
-//////////////////////////////////////
 
-///Attempts to climb parent
-/datum/component/climbable/proc/attempt_climb(atom/source, mob/user)
+///Attempts to climb onto, or past parent
+/datum/component/climbable/proc/attempt_climb(atom/source, atom/dropping, mob/user, params)
 	SIGNAL_HANDLER
 	if(!isliving(user))
 		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
+	if(dropping != user) //maybe change this actually
+		return
+	var/list/modifiers = params2list(params)
+	var/turf/click_turf
+	if(!user.client)
+		click_turf = params2turf(modifiers["screen-loc"], get_turf(user), null)
+	else
+		click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user, click_turf)
 
-/datum/component/climbable/proc/do_climb(mob/living/user)
-	if(user.do_actions || !can_climb(user))
+/datum/component/climbable/proc/do_climb(mob/living/user, turf/clicked_turf)
+	if(user.do_actions || !can_climb(user, clicked_turf))
 		return
 
 	user.visible_message(span_warning("[user] starts [am_parent.atom_flags & ON_BORDER ? "leaping over" : "climbing onto"] \the [am_parent]!"))
@@ -48,7 +57,7 @@
 		return
 	REMOVE_TRAIT(user, TRAIT_IS_CLIMBING, REF(am_parent))
 
-	var/turf/destination_turf = can_climb(user)
+	var/turf/destination_turf = can_climb(user, clicked_turf)
 	if(!istype(destination_turf))
 		return
 
@@ -58,20 +67,17 @@
 	user.forceMove(destination_turf)
 	user.visible_message(span_warning("[user] [am_parent.atom_flags & ON_BORDER ? "leaps over" : "climbs onto"] \the [am_parent]!"))
 
-
-
-///Attempts to climb onto, or past an object
-
 ///Checks to see if a mob can climb onto, or over this object
-/datum/component/climbable/proc/can_climb(mob/living/user)
+/datum/component/climbable/proc/can_climb(mob/living/user, turf/clicked_turf)
 	if(!am_parent.can_interact(user)) //this is cursed because it requires dexterity
 		return
 
-	var/turf/destination_turf = am_parent.loc
+	//var/turf/destination_turf = am_parent.loc
+	var/turf/destination_turf = clicked_turf
 	var/turf/user_turf = get_turf(user)
 	if(!istype(destination_turf) || !istype(user_turf))
 		return
-	if(!user.Adjacent(am_parent))
+	if(!user.Adjacent(destination_turf))
 		return
 
 	if((am_parent.atom_flags & ON_BORDER))
@@ -84,22 +90,24 @@
 	if(destination_turf.density)
 		return
 
-	for(var/obj/object in destination_turf.contents)
-		if(isstructure(object))
-			var/obj/structure/structure = object
+	for(var/atom/movable/AM AS in destination_turf.contents)
+		if(AM == am_parent)
+			continue
+		if(isstructure(AM))
+			var/obj/structure/structure = AM
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(object.density && (!(object.atom_flags & ON_BORDER) || object.dir & get_dir(am_parent, user)))
-			to_chat(user, span_warning("There's \a [object.name] in the way."))
+		if(AM.density && (!(AM.atom_flags & ON_BORDER) || AM.dir & get_dir(am_parent, user)))
+			to_chat(user, span_warning("There's \a [AM.name] in the way."))
 			return
 
-	for(var/obj/object in user_turf.contents)
-		if(isstructure(object))
-			var/obj/structure/structure = object
+	for(var/atom/movable/AM AS in user_turf.contents)
+		if(isstructure(AM))
+			var/obj/structure/structure = AM
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(object.density && (object.atom_flags & ON_BORDER) && object.dir & get_dir(user, am_parent))
-			to_chat(user, span_warning("There's \a [object.name] in the way."))
+		if(AM.density && (AM.atom_flags & ON_BORDER) && AM.dir & get_dir(user, am_parent))
+			to_chat(user, span_warning("There's \a [AM.name] in the way."))
 			return
 
 	return destination_turf
@@ -107,4 +115,12 @@
 ///Shows remaining fuel on examine
 /datum/component/climbable/proc/on_examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	details += span_notice("Is climbable.")
+	details += span_notice("You can climb ontop of this.")
+
+/datum/component/climbable/proc/check_climbable(atom/source)
+	SIGNAL_HANDLER
+	return COMPONENT_MOVABLE_CAN_CLIMB
+
+/atom/proc/can_climb()
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_CHECK_CLIMBABLE) & COMPONENT_MOVABLE_CAN_CLIMB)
+		return TRUE
