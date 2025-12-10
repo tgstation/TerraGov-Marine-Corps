@@ -44,7 +44,7 @@
 	if(params)
 		var/list/modifiers = params2list(params)
 		click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
-	if(!click_turf || !(click_turf in climb_target.locs))
+	if(!click_turf || !(click_turf in climb_target.locs) || !user.Adjacent(click_turf))
 		click_turf = find_climb_turf(user)
 
 	INVOKE_ASYNC(src, PROC_REF(do_climb), user, click_turf)
