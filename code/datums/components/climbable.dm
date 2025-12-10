@@ -118,13 +118,13 @@
 ///Tries to climb parent, used via parent proc calls instead of directly in the component
 /datum/component/climbable/proc/try_climb(datum/source, mob/user)
 	SIGNAL_HANDLER
-	var/turf/climb_turf
 	if(am_parent.bound_width <= 32 && am_parent.bound_height <= 32)
 		INVOKE_ASYNC(src, PROC_REF(do_climb), user)
 		return
 
-	var/turf/facing_turf = get_step(user, am_parent) //we try the most logical turf first, although this isn't reliable due to byond being bad
-	if(facing_turf in am_parent.locs && user.Adjacent(facing_turf))
+	var/turf/climb_turf
+	var/turf/facing_turf = get_step(user, am_parent) //we try the most logical turf first since the fixed order of locs will give undesirably results otherwise
+	if((facing_turf in am_parent.locs) && user.Adjacent(facing_turf))
 		climb_turf = facing_turf
 	else
 		for(var/turf/candi AS in am_parent.locs)
