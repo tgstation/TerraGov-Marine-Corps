@@ -170,6 +170,7 @@
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -192,6 +193,12 @@
 
 /obj/structure/dropship_equipment/Initialize(mapload)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/climbable)
 
 /obj/structure/dropship_equipment/Destroy()

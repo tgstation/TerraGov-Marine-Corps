@@ -524,7 +524,7 @@
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/Initialize(mapload)

@@ -21,6 +21,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/crate/can_close()
 	. = ..()
