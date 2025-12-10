@@ -187,7 +187,7 @@
 		return FALSE
 
 	xeno_attacker.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)

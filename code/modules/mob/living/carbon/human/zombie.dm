@@ -145,4 +145,4 @@
 	if(zombie.a_intent != INTENT_HARM)
 		return
 	zombie.apply_damage(50, blocked = MELEE, updating_health = TRUE)//Less health but more damage
-	update_icon()
+	update_appearance(UPDATE_ICON)
