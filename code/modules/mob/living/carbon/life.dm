@@ -55,6 +55,8 @@
 		return
 
 	if(status_flags & GODMODE)
+		if(stat != CONSCIOUS)
+			set_stat(CONSCIOUS)
 		return
 
 	if(stat == DEAD)

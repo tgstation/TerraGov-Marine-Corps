@@ -84,7 +84,7 @@
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates(seconds_per_tick)
 	if(loc_weeds_type)
 		heal_wounds(XENO_RESTING_HEAL, FALSE, seconds_per_tick) // healing in critical while on weeds ignores scaling
-	else if(!endure) //If we're not Enduring we bleed out
+	else if(!(status_flags & GODMODE) && !endure) // Unless we're under the effects of God mode, or Ravager's Endure, we bleed out.
 		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD)
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick = 2)
