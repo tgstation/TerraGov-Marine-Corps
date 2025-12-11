@@ -4,8 +4,8 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/equipment/cells_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/cells_right.dmi',
 	)
 	worn_icon_state = "cell"
 	force = 5
@@ -278,6 +278,7 @@
 /obj/item/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"
+	worn_icon_state = "hcell"
 	maxcharge = 10000
 
 /obj/item/cell/high/empty/Initialize(mapload)
@@ -287,6 +288,7 @@
 /obj/item/cell/super
 	name = "super-capacity power cell"
 	icon_state = "scell"
+	worn_icon_state = "scell"
 	maxcharge = 20000
 
 /obj/item/cell/super/empty/Initialize(mapload)
@@ -296,6 +298,7 @@
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
 	icon_state = "hpcell"
+	worn_icon_state = "hpcell"
 	maxcharge = 30000
 
 /obj/item/cell/hyper/empty/Initialize(mapload)
@@ -305,6 +308,7 @@
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
+	worn_icon_state = "icell"
 	maxcharge = 30000
 
 /obj/item/cell/infinite/use()
@@ -346,7 +350,6 @@
 	desc = "This is a radioisotope generator that can fit into APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
-	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 5000
 	self_recharge = TRUE
@@ -358,7 +361,6 @@
 	desc = "A large twisting piece of metal that acts as the power core of a mecha. You probably shouldn't lick it, despite the blue glow."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
-	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
 	charge_overlay = null
 	self_recharge = TRUE
