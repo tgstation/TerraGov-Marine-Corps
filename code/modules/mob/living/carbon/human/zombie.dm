@@ -146,3 +146,9 @@
 	if(tipped_level != 2)
 		return
 	tip_over()
+
+/obj/structure/razorwire/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(zombie.a_intent != INTENT_HARM)
+		return
+	zombie.apply_damage(ZOMBIE_RAZORWIRE_DAMAGE, blocked = MELEE, updating_health = TRUE)//Less health but more damage
+	update_appearance(UPDATE_ICON)
