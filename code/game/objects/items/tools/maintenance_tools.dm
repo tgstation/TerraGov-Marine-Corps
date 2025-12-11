@@ -99,6 +99,7 @@
 	name = "blowtorch"
 	desc = "Used for welding and repairing various things."
 	icon_state = "welder"
+	base_icon_state = "welder"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 
@@ -120,9 +121,6 @@
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 	var/status = TRUE //When welder is secured on unsecured
-	///Icon_state for mob sprite emissive
-	var/emissive_state = "welder_emissive"
-
 
 /obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
@@ -138,13 +136,22 @@
 	. += EXAMINE_SECTION_BREAK
 	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
+/obj/item/tool/weldingtool/update_icon_state()
+	icon_state = base_icon_state
+	if(welding)
+		icon_state += "_on"
+
+/obj/item/tool/weldingtool/update_overlays()
+	. = ..()
+	if(!welding)
+		return
+	. += emissive_appearance(icon, "[base_icon_state]_emissive", src, alpha = src.alpha)
+
 /obj/item/tool/weldingtool/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
 	if(!welding)
 		return
-	if(!emissive_state)
-		return
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[base_icon_state]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
 
 /obj/item/tool/weldingtool/use(used = 0)
@@ -276,12 +283,13 @@
 	if(!welding)
 		if(get_fuel() > 0)
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
-			welding = 1
+			welding = TRUE
 			set_light_on(TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN
 			icon_state = "welder1"
+			update_appearance(UPDATE_ICON)
 			w_class = WEIGHT_CLASS_BULKY
 			heat = 3800
 			START_PROCESSING(SSobj, src)
@@ -293,8 +301,8 @@
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		force = 3
 		damtype = BRUTE
-		icon_state = "welder"
-		welding = 0
+		welding = FALSE
+		update_appearance(UPDATE_ICON)
 		w_class = initial(w_class)
 		heat = 0
 		if(M)
