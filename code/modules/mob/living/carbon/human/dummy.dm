@@ -77,7 +77,8 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	if(oldspecies)
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
-	species.create_limbs(src, oldspecies)
+	QDEL_LIST(limbs)
+	species.create_limbs(src, null) // we don't want the dummy keeping its robotic limbs
 	species.create_organs(src, oldspecies)
 	if(species.base_color && default_colour)
 		//Apply colour.
