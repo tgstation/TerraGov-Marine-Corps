@@ -510,8 +510,8 @@
 		def_zone = ran_zone(def_zone)
 	if(!organ)
 		organ = victim.get_limb(check_zone(def_zone))
-	if(!organ)
-		return FALSE
+	if(!organ || (organ.limb_status & LIMB_DESTROYED))
+		organ = victim.get_limb("chest")
 
 	if(isnum(blocked))
 		damage -= clamp(damage * (blocked - penetration) * 0.01, 0, damage)
