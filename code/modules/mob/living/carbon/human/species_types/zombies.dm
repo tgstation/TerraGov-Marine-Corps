@@ -2,7 +2,7 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|SPECIES_NO_HUG
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
@@ -82,7 +82,7 @@
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(4))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)

@@ -6,3 +6,7 @@
 #define ZOMBIE_STRUCTURE_DETECTION_RANGE 15
 ///Defender spawn amount
 #define ZOMBIE_DEFENDER_AMOUNT 13
+///Spawner threatened spawning limit
+#define ZOMBIE_THREATENED_CAP 125
+///How much damage zombies take from razorwire
+#define ZOMBIE_RAZORWIRE_DAMAGE 50

@@ -303,10 +303,12 @@
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
-			if(O.CanPass(root))	// Then check for obstacles to crush
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
 				continue
-			root.Bump(O) //manually call bump on everything
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
 	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
@@ -412,10 +414,12 @@
 		if(!T.Enter(root, direction))	//Check if we can cross the turf first/bump the turf
 			canstep = FALSE
 
-		for(var/atom/movable/O AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
-			if(O.CanPass(root))	// Then check for obstacles to crush
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
 				continue
-			root.Bump(O) //manually call bump on everything
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
 	if(canstep)
@@ -429,3 +433,132 @@
 //Some hover specific stuff for the SOM tank
 /obj/hitbox/rectangle/som_tank/get_projectile_loc(obj/item/armored_weapon/weapon)
 	return get_step(get_step(src, root.dir), root.dir)
+
+//2x3
+/obj/hitbox/two_three
+	bound_x = -32 //left middle tile
+	bound_y = -32
+	vehicle_length = 96
+	vehicle_width = 64
+
+/obj/hitbox/two_three/owner_turned(datum/source, old_dir, new_dir)
+	. = ..()
+	if(!.)
+		return
+	var/list/old_locs = locs.Copy()
+	switch(new_dir)
+		if(NORTH)
+			bound_height = vehicle_length
+			bound_width = vehicle_width
+			bound_x = 0
+			bound_y = -32
+			root.pixel_x = 8
+			root.pixel_y = -32
+		if(SOUTH)
+			bound_height = vehicle_length
+			bound_width = vehicle_width
+			bound_x = -32
+			bound_y = -32
+			root.pixel_x = -24
+			root.pixel_y = -32
+		if(WEST)
+			bound_height = vehicle_width
+			bound_width = vehicle_length
+			bound_x = -32
+			bound_y = 0
+			root.pixel_x = -40
+			root.pixel_y = 0
+		if(EAST)
+			bound_height = vehicle_width
+			bound_width = vehicle_length
+			bound_x = -32
+			bound_y = -32
+			root.pixel_x = -40
+			root.pixel_y = -32
+
+	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
+	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
+	switch(angle_change)
+		if(-270)
+			angle_change = 90
+		if(270)
+			angle_change = -90
+	for(var/mob/living/desant AS in tank_desants)
+		if(desant.loc == root.loc)
+			continue
+		var/new_x
+		var/new_y
+		if(angle_change > 0) //clockwise turn
+			new_x = root.x + (desant.y - root.y)
+			new_y = root.y - (desant.x - root.x)
+		else //anti-clockwise
+			new_x = root.x - (desant.y - root.y)
+			new_y = root.y + (desant.x - root.x)
+
+		desant.forceMove(locate(new_x, new_y, z))
+
+	SEND_SIGNAL(src, COMSIG_MULTITILE_VEHICLE_ROTATED, loc, new_dir, null, old_locs)
+
+/obj/hitbox/two_three/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
+	var/obj/vehicle/sealed/armored/armor = root
+	var/movement_dir
+	var/facing_dir = armor.dir
+
+	var/turf/centerturf = get_turf(root)
+	var/list/enteringturfs = list()
+
+	if(!ISDIAGONALDIR(direction))
+		if(direction == NORTH)
+			movement_dir = facing_dir
+		else if(direction == SOUTH)
+			movement_dir = REVERSE_DIR(facing_dir)
+		else //no strafing
+			return COMPONENT_DRIVER_BLOCK_MOVE
+		centerturf = get_step(get_step(centerturf, movement_dir), movement_dir)
+		enteringturfs += centerturf
+		enteringturfs += get_step(centerturf, turn(facing_dir, -90))
+	else //turn
+		if(direction & WEST)
+			movement_dir = turn(facing_dir, 90)
+			centerturf = get_step(centerturf, movement_dir)
+		else
+			movement_dir = turn(facing_dir, -90)
+			centerturf = get_step(get_step(centerturf, movement_dir), movement_dir)
+
+		if(direction & NORTH)
+			facing_dir = movement_dir
+			enteringturfs += get_step(centerturf, armor.dir)
+		else
+			facing_dir = REVERSE_DIR(movement_dir)
+			enteringturfs += get_step(centerturf, REVERSE_DIR(armor.dir))
+
+		enteringturfs += centerturf
+
+	var/canstep = TRUE
+	for(var/turf/T AS in enteringturfs)	//No break because we want to crush all the turfs before we start trying to move
+		if(!T.Enter(root, movement_dir))	//Check if we can cross the turf first/bump the turf
+			canstep = FALSE
+
+		for(var/atom/movable/AM AS in T.contents) // this is checked in turf/enter but it doesnt return false so lmao
+			if(AM.pass_flags & PASS_TANK) //rather than add it to AM/CanAllowThrough for this one interaction, lets just check it manually
+				continue
+			if(AM.CanPass(root))	// Then check for obstacles to crush
+				continue
+			root.Bump(AM) //manually call bump on everything
+			canstep = FALSE
+
+	if(!canstep)
+		return COMPONENT_DRIVER_BLOCK_MOVE
+
+	if(!ISDIAGONALDIR(direction))
+		armor.forceMove(get_step(armor.loc, movement_dir))
+		return COMPONENT_DRIVER_BLOCK_MOVE
+	//moving left, our mid point stays unchanged either way
+	if(direction == NORTHEAST)
+		armor.forceMove(get_step(armor.loc, turn(armor.dir, -45)))
+	else if(direction == SOUTHEAST)
+		armor.forceMove(get_step(armor.loc, turn(armor.dir, -135)))
+
+	root.setDir(facing_dir)
+	COOLDOWN_START(root, cooldown_vehicle_move, root.move_delay * 2)  //turns are essentially making two moves
+	return COMPONENT_DRIVER_BLOCK_MOVE
