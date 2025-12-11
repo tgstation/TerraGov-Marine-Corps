@@ -49,7 +49,7 @@
 	flash_visual.alpha = 0
 	flash_visual.layer = layer + 0.01
 	vis_contents += flash_visual
-	handle_connections(TRUE)
+	setup_connections()
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_THROW, PROC_REF(pre_throw))
 	prepare_huds()
 	for(var/datum/atom_hud/xeno/xeno_hud in GLOB.huds)
@@ -66,6 +66,8 @@
 		xeno_owner = null
 	if(current_holder)
 		force_drop()
+	if(dummy_item)
+		QDEL_NULL(dummy_item)
 	return ..()
 
 /* to do: need damage icons
@@ -110,16 +112,13 @@
 	span_xenonotice(BEHEMOTH_ROCK_EATING_MESSAGES), null, 5)
 	return TRUE
 
-/// Enables or disables connections used to check for climbing and other stuff.
-/obj/structure/xeno/earth_pillar/proc/handle_connections(toggle)
+/// Enables connections used to check for climbing and other stuff.
+/obj/structure/xeno/earth_pillar/proc/setup_connections()
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
-	if(!toggle)
-		RemoveElement(/datum/element/connect_loc)
-		return
 	AddElement(/datum/element/connect_loc, connections)
 
 /// Prepares this object to be thrown.
@@ -127,14 +126,14 @@
 	SIGNAL_HANDLER
 	climbable = FALSE
 	pixel_y = initial(pixel_y)
-	handle_connections(FALSE)
+	RemoveElement(/datum/element/connect_loc)
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
 
 /// Cleans up after this object is thrown.
 /obj/structure/xeno/earth_pillar/proc/post_throw(datum/source)
 	SIGNAL_HANDLER
 	climbable = TRUE
-	handle_connections(TRUE)
+	setup_connections()
 	UnregisterSignal(src, COMSIG_MOVABLE_POST_THROW)
 
 /// Applies various changes when this object is held.
@@ -453,7 +452,7 @@
 		step_away(atom_checked, target, 1, 1) // Displaced by a pillar spawning underneath.
 	var/obj/structure/xeno/earth_pillar/new_pillar = new(target, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
 	active_pillars += new_pillar
-	RegisterSignals(new_pillar, list(COMSIG_QDELETING), PROC_REF(pillar_deleted))
+	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_deleted))
 	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
 	xeno_stats.earth_pillars_created++
 	var/animation_time = 0.6 SECONDS
@@ -656,12 +655,12 @@
 	var/animation_time = (LANDSLIDE_RANGE - (LANDSLIDE_SPEED - 1)) * 0.8 // This is a Hail Mary, by the way.
 	animate(xeno_owner, animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW, pixel_z = xeno_owner.pixel_y + LANDSLIDE_RANGE)
 	animate(animation_time / 2, easing = CIRCULAR_EASING|EASE_IN, pixel_z = initial(xeno_owner.pixel_y))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(pre_user_move))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(user_move))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(user_impact))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_pre_move))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(owner_moved))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(owner_impact))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_charge))
 	LAZYINITLIST(atoms_hit)
-	user_move(xeno_owner, xeno_owner.loc, direction) // Needed to catch things right next to us when we start our charge.
+	owner_moved(xeno_owner, xeno_owner.loc, direction) // Needed to catch things right next to us when we start our charge.
 	playsound(xeno_owner.loc, 'sound/effects/alien/behemoth/landslide_charge.ogg', 30, TRUE)
 	xeno_owner.throw_at(target, LANDSLIDE_RANGE, LANDSLIDE_SPEED, xeno_owner)
 	charge_visual = new(null, direction)
@@ -669,7 +668,7 @@
 	animate(charge_visual, animation_time, alpha = 0)
 
 /// Checks if the tile we're about to move into doesn't have anything that can block us.
-/datum/action/ability/activable/xeno/landslide/proc/pre_user_move(datum/source, atom/newloc, direction)
+/datum/action/ability/activable/xeno/landslide/proc/owner_pre_move(datum/source, atom/newloc, direction)
 	SIGNAL_HANDLER
 	for(var/atom/movable/movable_checked AS in get_turf(newloc))
 		if(movable_checked in atoms_hit)
@@ -693,7 +692,7 @@
 			hit_vending.tip_over()
 
 /// Applies various effects to a selection of tiles in front of the user.
-/datum/action/ability/activable/xeno/landslide/proc/user_move(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+/datum/action/ability/activable/xeno/landslide/proc/owner_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/after_image(get_turf(old_loc), xeno_owner)
 	var/list/turf/target_turfs = list()
@@ -733,7 +732,7 @@
 					continue
 
 /// Adds effects for when we make impact against something.
-/datum/action/ability/activable/xeno/landslide/proc/user_impact(datum/source, atom/hit_atom, speed)
+/datum/action/ability/activable/xeno/landslide/proc/owner_impact(datum/source, atom/hit_atom, speed)
 	SIGNAL_HANDLER
 	var/turf/hit_turf = get_turf(hit_atom)
 	playsound(hit_turf, 'sound/effects/alien/behemoth/landslide_impact.ogg', 30, TRUE)
@@ -757,7 +756,7 @@
 /datum/action/ability/activable/xeno/landslide/proc/pillar_hit(datum/source, atom/hit_atom, speed)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
-	user_impact(source, hit_atom, speed)
+	owner_impact(source, hit_atom, speed)
 	if(!isliving(hit_atom) || xeno_owner.issamexenohive(hit_atom))
 		return
 	var/mob/living/hit_living = hit_atom
