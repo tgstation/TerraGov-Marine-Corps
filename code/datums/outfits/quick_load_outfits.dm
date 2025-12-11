@@ -2076,6 +2076,34 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 
+/datum/outfit/quick/som/veteran/dragoon
+	name = "Dragoon Veteran"
+	desc = "A lightly-armored agile class. Equipped with a Dragoon Mk1 Rapid Engagement rifle, plentiful ammo and autodoc. The rifle allows the soldier to harrass enemy units before tactically retreating, either picking off high-value targets or applying a constant pressure on the enemy. Also comes with a rifle instruction pamphlet to make up for your lack of training!"
+
+	wear_suit = /obj/item/clothing/suit/modular/som/light/autodoc
+	belt = /obj/item/storage/belt/marine/som
+	suit_store = /obj/item/weapon/gun/rifle/dragoon
+	back = /obj/item/storage/backpack/lightpack/icc
+	glasses = /obj/item/clothing/glasses/thermal/m64_thermal_goggles
+	r_hand = /obj/item/pamphlet/rifleman
+
+/datum/outfit/quick/som/veteran/dragoon/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon/pox, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/boltclip/dragoon, SLOT_IN_BACKPACK)
+
 // VSD
 
 /datum/outfit/quick/vsd

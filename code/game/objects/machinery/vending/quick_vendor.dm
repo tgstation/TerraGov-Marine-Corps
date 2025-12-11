@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/veteran/v35breacher,
 		/datum/outfit/quick/som/veteran/rocket_man,
 		/datum/outfit/quick/som/veteran/blinker,
+		/datum/outfit/quick/som/veteran/dragoon,
 		/datum/outfit/quick/som/squad_leader/standard_assaultrifle,
 		/datum/outfit/quick/som/squad_leader/standard_smg,
 		/datum/outfit/quick/som/squad_leader/charger,
