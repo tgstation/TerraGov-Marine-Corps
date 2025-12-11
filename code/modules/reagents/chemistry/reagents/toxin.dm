@@ -925,24 +925,35 @@
 		/datum/reagent/medicine/oxycodone
 	)
 	purge_rate = 0.7
+	///was added to scatter and subtracted from accuracy last life tick
+	var/last_scaccuracy_mod = 0
 
 /datum/reagent/toxin/poxomelanin/on_mob_life(mob/living/L, metabolism)
 	var/concentration = L.reagents.get_reagent_amount(/datum/reagent/toxin/poxomelanin)
 	var/slowdown_modifier = 0.5
 	var/tiredness = 0
+
+	L.adjust_mob_scatter(-last_scaccuracy_mod) //undo last tick's effects
+	L.adjust_mob_accuracy(last_scaccuracy_mod)
+	last_scaccuracy_mod = 0
 	switch(concentration)
 		if(1 to 5)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 			slowdown_modifier = 0.5
 			tiredness = (1*effect_str)
+			last_scaccuracy_mod = concentration/2 // linear from 0 to 2.5
 		if(6 to 15)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_MEDIUM
 			slowdown_modifier = 1
 			tiredness = (5*effect_str)
+			last_scaccuracy_mod = 2.5 + (concentration-5)/4 //linear from 2.5 to 5
 		if(16 to INFINITY)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //Kept to a fairly low cap since this is supposed to be more of a debuff chemical rather than being the primary weapon when using pox rounds.
 			slowdown_modifier = 1.5
 			tiredness = (10*effect_str)
+			last_scaccuracy_mod = 5 + min(5, (concentration-15)/3) //linear from 5 at 15 to 10 at 30, never goes over 10
+	L.adjust_mob_scatter(last_scaccuracy_mod)
+	L.adjust_mob_accuracy(-last_scaccuracy_mod)
 	L.add_movespeed_modifier(MOVESPEED_ID_POXOMELANIN, TRUE, 0, NONE, TRUE, 2 * slowdown_modifier) //Fairly light slowdowns, but still impactful. Hope you have buddies or some cover.
 	var/stamina_loss_limit = L.maxHealth * 0.3
 	var/applied_damage = clamp(tiredness, 0, (stamina_loss_limit - L.getStaminaLoss())) //Xeno neurotoxin but far less potent and cannot stamcrit
@@ -950,16 +961,11 @@
 
 	return ..()
 
-/datum/reagent/toxin/poxomelanin/on_mob_add(mob/living/L)
-
-	L.adjust_mob_scatter(10)
-	L.adjust_mob_accuracy(-10)
-
 /datum/reagent/toxin/poxomelanin/overdose_process(mob/living/L, metabolism)
 	L.blur_eyes(5)
 
 /datum/reagent/toxin/poxomelanin/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(MOVESPEED_ID_POXOMELANIN)
-	L.adjust_mob_scatter(-10)
-	L.adjust_mob_accuracy(10)
+	L.adjust_mob_scatter(-last_scaccuracy_mod)
+	L.adjust_mob_accuracy(last_scaccuracy_mod)
 	return ..()
