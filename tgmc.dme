@@ -1143,6 +1143,7 @@
 #include "code\game\objects\items\toys\toys.dm"
 #include "code\game\objects\items\weapons\batons.dm"
 #include "code\game\objects\items\weapons\blades.dm"
+#include "code\game\objects\items\weapons\civilian.dm"
 #include "code\game\objects\items\weapons\energy.dm"
 #include "code\game\objects\items\weapons\harvester.dm"
 #include "code\game\objects\items\weapons\holo_weapons.dm"
