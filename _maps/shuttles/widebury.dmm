@@ -1,33 +1,33 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ae" = (
-/obj/machinery/loadout_vendor/crash,
-/obj/machinery/light,
-/turf/open/floor/mainship/blue{
-	dir = 10
-	},
-/area/shuttle/canterbury)
-"aN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
+	dir = 2
 	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/tool/hand_labeler,
+/obj/item/stack/barbed_wire/full,
+/obj/item/radio/intercom,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"aN" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "aS" = (
-/obj/machinery/marine_selector/gear/commander,
-/obj/machinery/light,
+/obj/machinery/computer/shuttle/shuttle_control/canterbury,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/blue{
-	dir = 6
+	dir = 1
 	},
 /area/shuttle/canterbury)
 "bG" = (
@@ -121,10 +121,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "fF" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
 	},
-/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "fM" = (
@@ -186,10 +186,9 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "lo" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/marine_card,
+/obj/structure/cable,
 /turf/open/floor/mainship/blue{
-	dir = 5
+	dir = 4
 	},
 /area/shuttle/canterbury)
 "lT" = (
@@ -213,24 +212,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "of" = (
-/obj/structure/rack,
-/obj/item/tool/hand_labeler,
-/obj/item/storage/toolbox/electrical,
-/obj/item/stack/barbed_wire/full,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/tool/wrench,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/tool/screwdriver,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+/obj/machinery/loadout_vendor/crash,
+/turf/open/floor/mainship/blue{
+	dir = 10
 	},
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/item/radio/intercom,
-/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "oN" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -243,18 +228,11 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "oV" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/item/stack/razorwire/full,
-/obj/item/storage/box/crate/sentry,
-/obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door_control{
 	dir = 2;
 	id = "aft_engine_podlock"
 	},
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qe" = (
 /obj/machinery/vending/armor_supply,
@@ -299,6 +277,23 @@
 "ug" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
+"uh" = (
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo,
+/area/shuttle/canterbury)
 "uF" = (
 /obj/machinery/chem_dispenser,
 /obj/item/reagent_containers/dropper,
@@ -423,12 +418,16 @@
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury)
 "Ao" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/landmark/start/job/crash/fieldcommander,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/obj/structure/rack,
+/obj/item/stack/razorwire/full,
+/obj/item/storage/box/crate/sentry,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "AG" = (
 /obj/structure/barricade/folding{
@@ -437,11 +436,11 @@
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "AP" = (
-/obj/structure/bed/chair/dropship/passenger{
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
-/turf/open/floor/mainship/mono,
+/obj/machinery/computer/camera_advanced/overwatch,
+/turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury)
 "AX" = (
 /obj/effect/landmark/start/latejoin/crash,
@@ -625,13 +624,9 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KM" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable,
 /obj/docking_port/mobile/crashmode,
-/turf/open/floor/mainship/blue,
+/obj/structure/sign/prop1,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 "KX" = (
 /obj/structure/window/reinforced/toughened{
@@ -661,8 +656,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury)
 "OA" = (
-/obj/machinery/computer/camera_advanced/overwatch,
-/turf/open/floor/mainship/blue/full,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/mainship/blue,
 /area/shuttle/canterbury)
 "OU" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -677,8 +676,11 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "Qa" = (
-/obj/structure/sign/prop1,
-/turf/closed/wall/mainship/outer/canterbury,
+/obj/machinery/computer/marine_card,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
 /area/shuttle/canterbury)
 "Qu" = (
 /obj/structure/window/reinforced/toughened{
@@ -704,24 +706,19 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "SR" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/obj/effect/landmark/start/job/crash/fieldcommander,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Tb" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/canterbury,
-/turf/open/floor/mainship/blue{
+/obj/effect/landmark/start/job/crash/fieldcommander,
+/obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Us" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/security/marine_network,
 /turf/open/floor/mainship/blue{
-	dir = 9
+	dir = 8
 	},
 /area/shuttle/canterbury)
 "Uz" = (
@@ -751,11 +748,12 @@
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury)
 "VT" = (
-/obj/structure/table/mainship,
-/obj/machinery/faxmachine/cic,
-/turf/open/floor/mainship/blue{
+/obj/structure/cable,
+/obj/effect/landmark/start/job/crash/fieldcommander,
+/obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "VX" = (
 /obj/machinery/fuelcell_recycler,
@@ -766,8 +764,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "VY" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/obj/machinery/marine_selector/gear/commander,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
 /area/shuttle/canterbury)
 "Wr" = (
 /obj/structure/window/reinforced/toughened{
@@ -820,10 +820,11 @@
 	},
 /area/shuttle/canterbury/medical)
 "Ym" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 2
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
 	},
-/obj/machinery/vending/snack,
+/obj/effect/landmark/start/job/crash/squadengineer,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Yu" = (
@@ -981,7 +982,7 @@ lT
 ia
 ia
 ia
-ia
+cg
 cg
 hj
 jC
@@ -1002,10 +1003,10 @@ cg
 "}
 (7,1,1) = {"
 ia
-ia
 cg
 cg
 cg
+SR
 BV
 xe
 xe
@@ -1024,11 +1025,11 @@ ia
 ia
 "}
 (8,1,1) = {"
-ia
 cg
 cg
 Zk
 IT
+BV
 xe
 xe
 he
@@ -1047,19 +1048,19 @@ ia
 ia
 "}
 (9,1,1) = {"
-ia
 cg
-Ym
+Ao
 BV
 BV
 xe
+xe
 BV
-mv
 mv
 eG
 cg
 cg
 xJ
+BV
 mw
 BV
 JR
@@ -1070,19 +1071,19 @@ ia
 ia
 "}
 (10,1,1) = {"
-ia
+cg
 cg
 oV
 BV
-BV
 xe
-AP
+fF
+mv
 mv
 Us
-BV
-ae
+of
 cg
 wW
+BV
 mw
 BV
 VR
@@ -1093,19 +1094,19 @@ ia
 ia
 "}
 (11,1,1) = {"
-ia
 Uz
 uL
 BV
 BV
 xe
-AP
+fF
 mv
+aS
 Tb
-SR
 zg
 cg
 tW
+BV
 mw
 BV
 bV
@@ -1116,19 +1117,19 @@ ia
 ia
 "}
 (12,1,1) = {"
-ia
 Uz
 uL
 xe
 xe
 xe
-aN
+uh
 mv
-OA
+AP
 JP
+OA
 KM
-Qa
 yC
+BV
 mw
 BV
 Og
@@ -1139,19 +1140,19 @@ ia
 ia
 "}
 (13,1,1) = {"
-ia
 Uz
 uL
 BV
 BV
 xe
-AP
+fF
 mv
+Qa
 VT
-Ao
 Vk
 cg
 qe
+BV
 mw
 BV
 bG
@@ -1162,19 +1163,19 @@ ia
 ia
 "}
 (14,1,1) = {"
-ia
 cg
-of
+cg
 BV
 BV
 xe
-AP
+fF
+mv
 mv
 lo
 VY
-aS
 cg
 wW
+BV
 mw
 BV
 tS
@@ -1185,19 +1186,19 @@ ia
 ia
 "}
 (15,1,1) = {"
-ia
 cg
-fF
+ae
 BV
 BV
 xe
+xe
 BV
-mv
 mv
 ci
 cg
 cg
 En
+BV
 mw
 BV
 jU
@@ -1208,16 +1209,16 @@ ia
 ia
 "}
 (16,1,1) = {"
-ia
 cg
 cg
 dO
 DN
+BV
 xe
 xe
 Yu
-Yu
-VY
+Ym
+BV
 wr
 BV
 BV
@@ -1232,14 +1233,14 @@ ia
 "}
 (17,1,1) = {"
 ia
-ia
 cg
 cg
 cg
+aN
 BV
 xe
 xe
-xe
+mw
 mw
 mw
 mw
@@ -1257,7 +1258,7 @@ ia
 ia
 ia
 ia
-ia
+cg
 cg
 cg
 di
