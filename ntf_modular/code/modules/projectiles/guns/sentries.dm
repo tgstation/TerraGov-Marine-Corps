@@ -67,7 +67,7 @@
 
 	if(ishuman(user) && faction)
 		var/mob/living/carbon/human/human_user = user
-		if(!human_user.faction || human_user.faction != faction)
+		if(!human_user.faction || (human_user.faction != faction && !(human_user.get_iff_signal() & GLOB.faction_to_iff[faction])))
 			balloon_alert_to_viewers("Unauthorized user, self destruct engaged!", vision_distance = 4)
 			playsound(loc, arm_sound, 25, 1, 6)
 			sleep(4 SECONDS)
