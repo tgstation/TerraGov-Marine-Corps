@@ -324,6 +324,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
 
+/datum/supply_packs/weapons/pepperball/mag
+	name = "PB-12 pepperball gun magazine (x1)"
+	contains = list(/obj/item/ammo_magazine/rifle/pepperball)
+	cost = 3
+
 /datum/supply_packs/weapons/bricks
 	name = "Brick"
 	contains = list(/obj/item/weapon/brick)
