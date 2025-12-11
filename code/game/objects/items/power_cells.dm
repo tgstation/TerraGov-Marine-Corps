@@ -38,7 +38,7 @@
 	if(self_recharge)
 		START_PROCESSING(SSobj, src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/Destroy()
 	if(self_recharge)
@@ -49,7 +49,7 @@
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			SEND_SIGNAL(src, COMSIG_CELL_SELF_RECHARGE, charge_amount)
 	else
 		return PROCESS_KILL
@@ -262,6 +262,7 @@
 /obj/item/cell/crap/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
@@ -270,6 +271,7 @@
 /obj/item/cell/secborg/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
@@ -284,6 +286,7 @@
 /obj/item/cell/high/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/super
 	name = "super-capacity power cell"
@@ -294,6 +297,7 @@
 /obj/item/cell/super/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
@@ -304,6 +308,7 @@
 /obj/item/cell/hyper/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
