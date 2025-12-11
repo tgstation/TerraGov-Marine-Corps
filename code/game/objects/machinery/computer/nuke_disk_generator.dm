@@ -55,31 +55,9 @@
 
 	say("Program run has concluded! Standing by...")
 
-	if(iscrashgamemode(SSticker.mode))
-		if(iszombiecrashgamemode(SSticker.mode))
-			global_rally_zombies(src, TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_SEGMENT_COMPLETED, src)
 
-			var/datum/game_mode/infestation/crash/zombie/zombie_crash_gamemode = SSticker.mode
-			var/list/human_list = zombie_crash_gamemode.get_all_humans(count_flags = COUNT_IGNORE_HUMAN_SSD)
-			var/num_humans = length(human_list)
-			var/vendor_points_to_reward = ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN + ((ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX - ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN) * (num_humans / HIGH_MARINE_POP_ZOMBIE_CRASH))
-			var/vendor_points_per_alive_marine = ROUND_UP(vendor_points_to_reward / num_humans)
-			if(length(GLOB.zombie_crash_vendors))
-				var/obj/machinery/zombie_crash_vendor/zcrash_vendor = GLOB.zombie_crash_vendors[1]
-				for(var/mob/living/carbon/human/human AS in human_list)
-					if(!human.job)
-						continue
-					zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
-		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
-			if(!human.job)
-				continue
-			var/obj/item/card/id/user_id =  human.get_idcard()
-			if(!user_id)
-				continue
-			for(var/i in user_id.marine_points)
-				if(i == CAT_ZOMBIE_CRASH)
-					continue
-				user_id.marine_points[i] += 2
+	if(iscrashgamemode(SSticker.mode))
 		return
 
 	// Requisitions points bonus per cycle.

@@ -16,7 +16,7 @@
 	name = "\improper progression rewards vendor"
 	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
 	icon = 'icons/obj/machines/vending.dmi'
-	icon_state = "marineuniform"
+	icon_state = "marinerequisitions"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -215,12 +215,12 @@
 		return
 	if(!allowed(usr))
 		to_chat(usr, span_warning("Access denied."))
-		flick("marineuniform-deny", src)
+		flick("marinerequisitions-deny", src)
 		return
 	var/turf/current_turf = loc
 	if(length(current_turf.contents) > 25)
 		to_chat(usr, span_warning("The floor is too cluttered, make some space."))
-		flick("marineuniform-deny", src)
+		flick("marinerequisitions-deny", src)
 		return
 
 	var/product_typepath = text2path(params["vend"])
@@ -229,11 +229,11 @@
 
 	if(!pay_with_any_points(usr, product_cost))
 		to_chat(usr, span_warning("Not enough points."))
-		flick("marineuniform-deny", src)
+		flick("marinerequisitions-deny", src)
 		return
 
 	playsound(src, SFX_VENDING, 25, 0)
-	flick("marineuniform-vend", src)
+	flick("marinerequisitions-vend", src)
 	use_power(active_power_usage)
 
 	var/list/vended_items = list()

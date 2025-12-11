@@ -38,18 +38,6 @@
 
 /obj/effect/ai_node/spawner/zombie/plastique_act()
 	spawn_defenders()
-	if(iszombiecrashgamemode(SSticker.mode))
-		var/datum/game_mode/infestation/crash/zombie/zombie_crash_gamemode = SSticker.mode
-		var/list/human_list = zombie_crash_gamemode.get_all_humans(count_flags = COUNT_IGNORE_HUMAN_SSD)
-		var/num_humans = length(human_list)
-		var/vendor_points_to_reward = ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN + ((ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX - ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN) * (num_humans / HIGH_MARINE_POP_ZOMBIE_CRASH))
-		var/vendor_points_per_alive_marine = ROUND_UP(vendor_points_to_reward / num_humans)
-		if(length(GLOB.zombie_crash_vendors))
-			var/obj/machinery/zombie_crash_vendor/zcrash_vendor = GLOB.zombie_crash_vendors[1]
-			for(var/mob/living/carbon/human/human AS in human_list)
-				if(!human.job)
-					continue
-				zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
 
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)
 	qdel(src)
