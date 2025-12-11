@@ -1,12 +1,8 @@
-// I need this to load first because I wanna use the defines here, which is why it has an underscore in the file name.
-// Also, I didn't place much care into these because mutations were soft removed at the time.
+// I didn't place much care into these because mutations were soft removed at the time.
 
 // ***************************************
 // *********** SHELL: Foundations
 // ***************************************
-#define FOUNDATIONS_MAXIMUM_AMOUNT 2 // Maximum amount of Earth Pillars that we can create with this mutation active.
-#define FOUNDATIONS_HEALTH_REDUCTION 0.4 // as a percentage
-
 /datum/mutation_upgrade/shell/foundations
 	name = "Foundations"
 	desc = "You can now create additional Earth Pillars, but their maximum health is reduced."
@@ -34,9 +30,6 @@
 // ***************************************
 // *********** SPUR: Earth's Might
 // ***************************************
-#define EARTH_MIGHT_ADDITIONAL_DAMAGE 1.3 // 30%
-#define EARTH_MIGHT_PILLAR_DAMAGE 0.5 // 50%
-
 /datum/mutation_upgrade/spur/earth_might
 	name = "Earth's Might"
 	desc = "While holding an Earth Pillar, Geocrush will deal additional damage, but damage the pillar in the process."
@@ -60,8 +53,6 @@
 // ***************************************
 // *********** VEIL: Guided Claim
 // ***************************************
-#define GUIDED_CLAIM_ADDITIONAL_RANGE 2
-
 /datum/mutation_upgrade/veil/guided_claim
 	name = "Guided Claim"
 	desc = "Seize's range is increased."

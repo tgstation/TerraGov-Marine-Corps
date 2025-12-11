@@ -859,6 +859,13 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
 
+// Behemoth mutation defines
+#define FOUNDATIONS_MAXIMUM_AMOUNT 2 // Maximum amount of Earth Pillars that we can create with this mutation active.
+#define FOUNDATIONS_HEALTH_REDUCTION 0.4 // Health reduction applied to Earth Pillars as a percentage
+#define EARTH_MIGHT_ADDITIONAL_DAMAGE 1.3 // Additional damage provided by Earth Might as a percentage
+#define EARTH_MIGHT_PILLAR_DAMAGE 0.5 // Amount of damage done to Earth Pillars as a percentage
+#define GUIDED_CLAIM_ADDITIONAL_RANGE 2 // Additional range given to Seize
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
