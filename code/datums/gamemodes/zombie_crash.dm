@@ -45,7 +45,7 @@
 	for(var/i in (GLOB.zombie_spawner_turfs + GLOB.xeno_resin_silo_turfs))
 		new /obj/effect/ai_node/spawner/zombie(i)
 	for(var/i in GLOB.zombie_crash_vendor_landmarks)
-		new /obj/machinery/zombie_crash_vendor(get_turf(i))
+		new /obj/machinery/marine_selector/zombie_crash(get_turf(i))
 
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
@@ -74,7 +74,7 @@
 		return
 	var/vendor_points_to_reward = flat + ((maximum - minimum) * (num_humans / HIGH_MARINE_POP_ZOMBIE_CRASH))
 	var/vendor_points_per_alive_marine = ROUND_UP(vendor_points_to_reward / num_humans)
-	var/obj/machinery/zombie_crash_vendor/zcrash_vendor = GLOB.zombie_crash_vendors[1]
+	var/obj/machinery/marine_selector/zombie_crash/zcrash_vendor = GLOB.zombie_crash_vendors[1]
 	for(var/mob/living/carbon/human/human AS in human_list)
 		if(!human.job)
 			continue

@@ -1,4 +1,3 @@
-
 #define CAT_ENGINEERING_SUPPLIES "ENGINEERING SUPPLIES"
 #define CAT_MEDICAL_SUPPLIES "MEDICAL SUPPLIES"
 #define CAT_SMARTGUNNER_SUPPLIES "SMARTGUNNER SUPPLIES"
@@ -12,25 +11,14 @@
 #define CAT_WEAPONS "WEAPONS"
 #define CAT_FUN "FUN"
 
-/obj/machinery/zombie_crash_vendor
+/obj/machinery/marine_selector/zombie_crash
 	name = "\improper progression rewards vendor"
 	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
-	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "marinerequisitions"
-	density = TRUE
-	anchored = TRUE
-	layer = BELOW_OBJ_LAYER
-	interaction_flags = INTERACT_MACHINE_TGUI
-
-	idle_power_usage = 60
-	active_power_usage = 3000
-	light_range = 1.5
-	light_power = 0.5
-	light_color = LIGHT_COLOR_BLUE
-	/// A list of all category names. Will be set during Initialization.
-	var/list/categories = list()
-	/// An associative list of: [typepath] = list(category_name, product_name, product_cost, product_color)
-	var/list/listed_products = list(
+	lock_flags = NONE
+	icon_vend = "marinerequisitions-vend"
+	icon_deny = "marinerequisitions-deny"
+	listed_products = list(
 		// Medical Supplies
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDICAL_SUPPLIES, "Synaptizine Injector", 4, "medical-stamina"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDICAL_SUPPLIES, "Neuraline Injector", 8, "medical-emergency"),
@@ -131,73 +119,28 @@
 	/// The total amount of pooled points that have been spent. Shared across all vendors.
 	var/static/spent_pooled_points = 0
 
-/obj/machinery/zombie_crash_vendor/Initialize(mapload)
+/obj/machinery/marine_selector/zombie_crash/Initialize(mapload)
 	. = ..()
 	GLOB.zombie_crash_vendors += src
+	categories = list()
 	for(var/typepath AS in listed_products)
 		var/list/product_information = listed_products[typepath]
 		var/category_name = product_information[1]
 		if(categories[category_name])
 			continue
 		LAZYADD(categories, category_name)
-	update_icon()
 
-/obj/machinery/zombie_crash_vendor/Destroy()
+/obj/machinery/marine_selector/zombie_crash/Destroy()
 	. = ..()
 	GLOB.zombie_crash_vendors -= src
 
-/obj/machinery/zombie_crash_vendor/update_icon()
-	. = ..()
-	set_light(is_operational() ? initial(light_range) : 0)
-
-/obj/machinery/zombie_crash_vendor/update_icon_state()
-	. = ..()
-	icon_state = is_operational() ? initial(icon_state) : "[initial(icon_state)]-off"
-
-/obj/machinery/zombie_crash_vendor/update_overlays()
-	. = ..()
-	if(!is_operational() || !icon_state)
-		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", src)
-
-/obj/machinery/zombie_crash_vendor/can_interact(mob/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!ishuman(user))
-		return FALSE
-	var/mob/living/carbon/human/human_user = user
-	if(!allowed(human_user))
-		to_chat(human_user, span_warning("Access denied. Your assigned role doesn't have access to this machinery."))
-		return FALSE
-	var/obj/item/card/id/user_id = human_user.get_idcard()
-	if(!istype(user_id))
-		return FALSE
-	if(user_id.registered_name != human_user.real_name)
-		return FALSE
-	return TRUE
-
-/obj/machinery/zombie_crash_vendor/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/marine_selector/zombie_crash/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ZombieCrashSelector", name)
 		ui.open()
 
-/obj/machinery/zombie_crash_vendor/ui_static_data(mob/user)
-	. = list()
-	.["vendor_name"] = name
-	.["displayed_products"] = list()
-	for(var/category_name in categories)
-		.["displayed_products"][category_name] = list()
-	for(var/typepath in listed_products)
-		var/list/product_information = listed_products[typepath]
-		var/category_name = product_information[1]
-		var/product_name = product_information[2]
-		var/product_cost = product_information[3]
-		var/atom/product_typepath = typepath
-		LAZYADD(.["displayed_products"][category_name], list(list("product_index" = typepath, "product_name" = product_name, "product_color" = product_information[4], "product_cost" = product_cost, "product_desc" = initial(product_typepath.desc))))
-
-/obj/machinery/zombie_crash_vendor/ui_data(mob/user)
+/obj/machinery/marine_selector/zombie_crash/ui_data(mob/user)
 	. = list()
 	.["categories"] = list()
 	for(var/category in categories)
@@ -207,19 +150,14 @@
 	.["personal_points_remaining"] = get_remaining_personal_points(user)
 	.["personal_points_total"] = ZOMBIE_CRASH_POINTS_MAXIMUM
 
-/obj/machinery/zombie_crash_vendor/ui_act(action, list/params)
-	. = ..()
-	if(.)
-		return
-	if(action != "vend")
-		return
-	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+/obj/machinery/marine_selector/zombie_crash/on_vend(user, list/params)
+	if(!allowed(user))
+		to_chat(user, span_warning("Access denied."))
 		flick("marinerequisitions-deny", src)
 		return
 	var/turf/current_turf = loc
 	if(length(current_turf.contents) > 25)
-		to_chat(usr, span_warning("The floor is too cluttered, make some space."))
+		to_chat(user, span_warning("The floor is too cluttered, make some space."))
 		flick("marinerequisitions-deny", src)
 		return
 
@@ -227,8 +165,8 @@
 	var/list/product_information = listed_products[product_typepath]
 	var/product_cost = product_information[3]
 
-	if(!pay_with_any_points(usr, product_cost))
-		to_chat(usr, span_warning("Not enough points."))
+	if(!pay_with_any_points(user, product_cost))
+		to_chat(user, span_warning("Not enough points."))
 		flick("marinerequisitions-deny", src)
 		return
 
@@ -243,11 +181,10 @@
 		qdel(bundle)
 	else
 		vended_items += new product_typepath(loc)
-
 	for (var/obj/item/vended_item in vended_items)
-		vended_item.on_vend(usr, faction, auto_equip = TRUE)
+		vended_item.on_vend(user, faction, auto_equip = TRUE)
 
-/obj/machinery/zombie_crash_vendor/attackby(obj/item/I, mob/user, params)
+/obj/machinery/marine_selector/zombie_crash/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return TRUE
@@ -263,16 +200,16 @@
 	id_card.marine_points[CAT_ZOMBIE_CRASH] = 0
 
 /// Gets all points that can be spent.
-/obj/machinery/zombie_crash_vendor/proc/get_remaining_all_points(mob/user)
+/obj/machinery/marine_selector/zombie_crash/proc/get_remaining_all_points(mob/user)
 	return get_remaining_personal_points(user) + (total_pooled_points - spent_pooled_points)
 
 /// Gets all points on a user's ID card.
-/obj/machinery/zombie_crash_vendor/proc/get_remaining_personal_points(mob/user)
+/obj/machinery/marine_selector/zombie_crash/proc/get_remaining_personal_points(mob/user)
 	var/obj/item/card/id/I = user.get_idcard()
 	return I?.marine_points[CAT_ZOMBIE_CRASH] ? I.marine_points[CAT_ZOMBIE_CRASH] : 0
 
 /// Attempts to pay with points. Uses personal points first and then pooled points second. Returns TRUE if it was successfully paid off.
-/obj/machinery/zombie_crash_vendor/proc/pay_with_any_points(mob/user, amount)
+/obj/machinery/marine_selector/zombie_crash/proc/pay_with_any_points(mob/user, amount)
 	if(get_remaining_all_points(user) < amount)
 		return FALSE
 	var/obj/item/card/id/I = user.get_idcard()
@@ -286,7 +223,7 @@
 	return TRUE
 
 /// Adds an amount of personal points to someone. Any excess is added to the pooled points.
-/obj/machinery/zombie_crash_vendor/proc/add_personal_points(mob/living/carbon/human/human_user, amount)
+/obj/machinery/marine_selector/zombie_crash/proc/add_personal_points(mob/living/carbon/human/human_user, amount)
 	var/obj/item/card/id/user_id = human_user.get_idcard()
 	if(!user_id)
 		return
