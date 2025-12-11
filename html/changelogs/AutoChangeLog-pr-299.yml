@@ -1,0 +1,4 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - bugfix: "The dragoon sprites have been finally fixed."
