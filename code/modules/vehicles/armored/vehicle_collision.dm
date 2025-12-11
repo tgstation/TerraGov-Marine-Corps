@@ -13,7 +13,7 @@
 /obj/structure/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
 	if(!COOLDOWN_FINISHED(veh, ram_cooldown))
 		return
-	COOLDOWN_START(veh, ram_cooldown, 1 SECONDS)
+	COOLDOWN_START(veh, ram_cooldown, 0.5 SECONDS)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /obj/structure/barricade/folding/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = ram_damage)
