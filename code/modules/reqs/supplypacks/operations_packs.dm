@@ -165,7 +165,7 @@ OPERATIONS
 	name = "mech drop pod"
 	contains = list(/obj/structure/droppod/nonmob/mech_pod)
 	containertype = null
-	cost = 200
+	cost = 700
 
 /datum/supply_packs/operations/xeno_iff_tag
 	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!

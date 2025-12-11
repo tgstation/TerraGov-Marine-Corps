@@ -204,4 +204,4 @@ VEHICLES
 /datum/supply_packs/vehicles/repairpack
 	name = "Mech repairpack"
 	contains = list(/obj/item/repairpack)
-	cost = 10
+	cost = 200
