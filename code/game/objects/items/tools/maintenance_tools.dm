@@ -120,24 +120,32 @@
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 	var/status = TRUE //When welder is secured on unsecured
+	///Icon_state for mob sprite emissive
+	var/emissive_state = "welder_emissive"
 
 
 /obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 
-
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
-
 
 /obj/item/tool/weldingtool/examine(mob/user)
 	. += ..()
 	. += EXAMINE_SECTION_BREAK
 	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
+/obj/item/tool/weldingtool/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	if(!welding)
+		return
+	if(!emissive_state)
+		return
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
+	standing.overlays.Add(emissive_overlay)
 
 /obj/item/tool/weldingtool/use(used = 0)
 	if(!isOn() || !check_fuel())
