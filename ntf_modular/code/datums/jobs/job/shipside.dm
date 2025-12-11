@@ -579,8 +579,8 @@ Almost all of CM members were colonisers hired by the NTC before all of this hap
 	comm_title = "CLFL"
 	supervisors = "the CLF high command."
 	total_positions = 1
-	access = ALL_ICC_ACCESS
-	minimal_access = ALL_ICC_ACCESS
+	access = ALL_CLF_ACCESS
+	minimal_access = ALL_CLF_ACCESS
 	outfit = /datum/outfit/job/civilian/liaison_clf
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />

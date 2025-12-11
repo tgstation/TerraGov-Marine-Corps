@@ -62,8 +62,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 		/datum/outfit/job/clf/medic/skorpion,
 		/datum/outfit/job/clf/medic/paladin,
 	)
-	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_MEDICAL, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE, ACCESS_CLF_ENGINEERING, ACCESS_CLF_PRISON, ACCESS_CIVILIAN_PUBLIC)
-	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_MEDICAL, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE, ACCESS_CLF_ENGINEERING, ACCESS_CLF_PRISON, ACCESS_CIVILIAN_PUBLIC)
+	access = ALL_CLF_ACCESS
+	minimal_access = ALL_CLF_ACCESS
 	jobworth = list(
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM,
 		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
@@ -144,8 +144,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	supervisors = "the xenomorphs and CLF"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
-	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_MEDICAL, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE, ACCESS_CLF_ENGINEERING, ACCESS_CLF_PRISON, ACCESS_CIVILIAN_PUBLIC)
-	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_MEDICAL, ACCESS_CLF_CARGO, ACCESS_CLF_TADPOLE, ACCESS_CLF_ENGINEERING, ACCESS_CLF_PRISON, ACCESS_CIVILIAN_PUBLIC)
+	access = ALL_CLF_ACCESS
+	minimal_access = ALL_CLF_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic/clf
 	exp_requirements = XP_REQ_EXPERIENCED
