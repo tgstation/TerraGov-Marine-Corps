@@ -81,3 +81,6 @@
   - balance: reduces the price of dragoon stripper clips in req
   Nokia2Student:
   - bugfix: Skill exploit fix
+2025-12-12:
+  DrCrawler:
+  - bugfix: The dragoon sprites have been finally fixed.
