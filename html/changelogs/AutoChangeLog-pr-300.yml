@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - rscadd: "Adds regular robot synths, like combat robots, without the combat"
