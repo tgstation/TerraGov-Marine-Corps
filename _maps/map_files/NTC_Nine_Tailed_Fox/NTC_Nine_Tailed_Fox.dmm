@@ -2340,8 +2340,8 @@
 "bZU" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/mainship/open/cic{
-	id = "shipside_cic_lockdown";
-	dir = 2
+	id = "cicprivacy";
+	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -19659,15 +19659,6 @@
 	dir = 1
 	},
 /area/mainship/hull/upper_hull)
-"rYd" = (
-/obj/machinery/door/poddoor/mainship/open/cic{
-	id = "cicprivacy";
-	dir = 2
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
 "rYm" = (
 /turf/open/floor/wood,
 /area/mainship/ntf/fcroom)
@@ -44095,7 +44086,7 @@ hXu
 ljl
 hXu
 hXu
-rYd
+uIj
 hXu
 rtT
 cup
