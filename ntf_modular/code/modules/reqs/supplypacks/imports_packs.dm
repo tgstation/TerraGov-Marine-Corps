@@ -100,6 +100,12 @@
 	)
 	cost = 150
 
+/datum/supply_packs/explosives/explosives_mines_at
+	name = "anti tank mines"
+	notes = "Contains 5 Anti Tank mines"
+	contains = list(/obj/item/storage/box/explosive_mines/antitank)
+	cost = 350
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"
