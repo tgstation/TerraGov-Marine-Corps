@@ -110,6 +110,14 @@ EXPLOSIVES
 	)
 	cost = 500
 
+/datum/supply_packs/explosives/explosives_tanglefoot
+	name = "M40-T Tanglefoot smoke grenade box"
+	notes = "Contains 25 grenades"
+	contains = list(
+		/obj/item/storage/box/visual/grenade/drain,
+	)
+	cost = 120
+
 /datum/supply_packs/explosives/explosives_sleep
 	name = "NT-1 Knock-out smoke grenade box"
 	notes = "Contains 25 grenades"
