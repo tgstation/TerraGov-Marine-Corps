@@ -46,7 +46,6 @@
 			/obj/item/ammo_magazine/rifle/standard_dmr = -1,
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
-			/obj/item/weapon/gun/rifle/sniper/pmc_railgun = 3,
 			/obj/item/ammo_magazine/railgun/pmc = -1,
 		),
 		"Shotgun" = list(
