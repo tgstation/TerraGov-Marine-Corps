@@ -60,7 +60,7 @@
 	)
 
 /datum/campaign_asset/bonus_job/pmc
-	name = "PMC security detail"
+	name = "AC security detail"
 	desc = "An elite PMC team to assist in a joint operation"
 	detailed_desc = "A small number of PMC job slots are opened at no attrition cost. \
 	Ninetails have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."

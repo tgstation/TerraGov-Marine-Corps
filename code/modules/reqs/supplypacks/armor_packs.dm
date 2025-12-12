@@ -16,7 +16,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/riot,
 		/obj/item/clothing/head/helmet/marine/riot,
 	)
-	cost = 120
+	cost = 360
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/marine_shield

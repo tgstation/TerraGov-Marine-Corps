@@ -15958,7 +15958,7 @@
 /area/ice_colony/underground/responsehangar)
 "bRg" = (
 /obj/structure/closet/secure_closet/security_empty{
-	name = "PMC Equipment Locker"
+	name = "AC Equipment Locker"
 	},
 /obj/item/clothing/mask/gas/pmc/damaged,
 /turf/open/floor/tile/dark/red2{
@@ -15967,14 +15967,14 @@
 /area/ice_colony/underground/responsehangar)
 "bRh" = (
 /obj/structure/closet/secure_closet/security_empty{
-	name = "PMC Equipment Locker"
+	name = "AC Equipment Locker"
 	},
 /obj/item/clothing/mask/gas/pmc/damaged,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/responsehangar)
 "bRi" = (
 /obj/structure/closet/secure_closet/security_empty{
-	name = "PMC Equipment Locker"
+	name = "AC Equipment Locker"
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 6

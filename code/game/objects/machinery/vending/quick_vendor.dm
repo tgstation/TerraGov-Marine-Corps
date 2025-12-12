@@ -302,16 +302,16 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	)
 
 /obj/machinery/quick_vendor/pmc
-	name = "PMC Kwik-E-Quip Vendor"
+	name = "AC Kwik-E-Quip Vendor"
 	icon_state = "loadoutvendor"
 	faction = FACTION_NANOTRASEN
 	categories = list(
-		"PMC Standard",
-		"PMC Engineer",
-		"PMC Medic",
-		"PMC Gunner",
-		"PMC Specialist",
-		"PMC Squad Leader",
+		"AC Standard",
+		"AC Engineer",
+		"AC Medic",
+		"AC Gunner",
+		"AC Specialist",
+		"AC Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/icc

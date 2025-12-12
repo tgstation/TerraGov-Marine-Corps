@@ -285,7 +285,7 @@ export const JobPreferences = (props) => {
           <JobList name="CLF Jobs" jobs={clfJobs} />
         </Stack.Item>
         <Stack.Item grow>
-          <JobList name="PMC Jobs" jobs={pmcJobs} />
+          <JobList name="AC Jobs" jobs={pmcJobs} />
         </Stack.Item>
       </Stack>
       <Stack>

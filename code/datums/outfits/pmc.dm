@@ -1,7 +1,7 @@
 /*=============================STANDARD==================================*/
 
 /datum/outfit/job/pmc/standard
-	name = "PMC Standard"
+	name = "AC Standard"
 	jobtype = /datum/job/pmc/standard
 
 	id = /obj/item/card/id/silver
@@ -149,7 +149,7 @@
 /*=============================SMARTGUNNER==================================*/
 
 /datum/outfit/job/pmc/gunner
-	name = "PMC Gunner"
+	name = "AC Gunner"
 	jobtype = /datum/job/pmc/gunner
 
 	id = /obj/item/card/id/silver
@@ -247,7 +247,7 @@
 /*=============================SNIPER==================================*/
 
 /datum/outfit/job/pmc/sniper
-	name = "PMC Sniper"
+	name = "AC Sniper"
 	jobtype = /datum/job/pmc/sniper
 
 	id = /obj/item/card/id/silver
@@ -303,7 +303,7 @@
 /*=============================LEADER==================================*/
 
 /datum/outfit/job/pmc/leader
-	name = "PMC Leader"
+	name = "AC Leader"
 	jobtype = /datum/job/pmc/leader
 
 	id = /obj/item/card/id/silver

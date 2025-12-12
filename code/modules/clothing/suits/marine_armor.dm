@@ -134,7 +134,8 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
 	icon_state = "marine_riot"
 	slowdown = 1.3
-	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
+	stamina_regen_mod = -0.4
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 95, ENERGY = 10, BOMB = 45, BIO = 10, FIRE = 10, ACID = 10)
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
@@ -248,7 +249,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Ninetails Armory Divison for low ranking members of Ninetails PMC and security firms of Outer Rim."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_features_flags = ARMOR_LAMP_OVERLAY
 	allowed = list(
@@ -271,7 +272,7 @@
 	name = "\improper M4 Legionary pattern PMC armor"
 	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets."
 	icon_state = "pmc_armor_standard"
-	soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
+	//soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
@@ -290,14 +291,14 @@
 	name = "\improper M6 Princeps pattern PMC armor"
 	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular set looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
-	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
+	//soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	name = "\improper M4-L Sagittarii pattern PMC armor"
 	desc = "A lightweight modification of M4 armor suit, designed for prolonged sitting in dangerous enviroments, paying for that with reduced combat protection."
 	icon_state = "pmc_sniper"
-	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 40, BIO = 75, FIRE = 75, ACID = 75)
+	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 35, BIO = 65, FIRE = 65, ACID = 65)
 	inventory_flags = BLOCKSHARPOBJ
 	armor_features_flags = NONE
 
@@ -306,7 +307,7 @@
 	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 30, FIRE = 65, ACID = 65)
+	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 30, FIRE = 60, ACID = 65)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge

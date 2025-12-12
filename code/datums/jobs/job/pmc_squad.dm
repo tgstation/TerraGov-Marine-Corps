@@ -35,7 +35,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/standard
-	name = "PMC Standard"
+	name = "AC Standard"
 	jobtype = /datum/job/pmc/squad/standard
 
 	id = /obj/item/card/id/dogtag/standard
@@ -64,7 +64,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/medic
-	name = "PMC Medic"
+	name = "AC Medic"
 	jobtype = /datum/outfit/job/pmc/squad/medic
 
 	id = /obj/item/card/id/dogtag/corpsman
@@ -93,7 +93,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/engineer
-	name = "PMC Engineer"
+	name = "AC Engineer"
 	jobtype = /datum/outfit/job/pmc/squad/engineer
 
 	id = /obj/item/card/id/dogtag/engineer
@@ -122,7 +122,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/gunner
-	name = "PMC Gunner"
+	name = "AC Gunner"
 	jobtype = /datum/job/pmc/squad/gunner
 
 	id = /obj/item/card/id/dogtag/smartgun
@@ -151,7 +151,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/sniper
-	name = "PMC Specialist"
+	name = "AC Specialist"
 	jobtype = /datum/job/pmc/squad/sniper
 
 	id = /obj/item/card/id/dogtag/specialist
@@ -181,7 +181,7 @@
 	)
 
 /datum/outfit/job/pmc/squad/leader
-	name = "PMC Leader"
+	name = "AC Leader"
 	jobtype = /datum/job/pmc/squad/leader
 
 	id = /obj/item/card/id/dogtag/leader

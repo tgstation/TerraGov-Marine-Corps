@@ -224,17 +224,17 @@
 		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
-			. = size ? "PMC" : "PM Contractor"
+			. = size ? "APC" : "Asset Protection Contractor"
 		if("PMC2")
-			. = size ? "PMSC" : "PM Senior Contractor"
+			. = size ? "APSC" : "Asset Protection Senior Contractor"
 		if("PMC3")
-			. = size ? "PMSC" : "PM Senior Contractor"
+			. = size ? "APSC" : "Asset Protection Senior Contractor"
 		if("PMC4")
-			. = size ? "PMTL" : "PM Team Leader"
+			. = size ? "APTL" : "Asset Protection Team Leader"
 		if("PMCDS")
-			. = size ? "APS" : "Assets Protection Specialist"
+			. = size ? "APS" : "Asset Protection Specialist"
 		if("PMCDSL")
-			. = size ? "APTL" : "Assets Protection Team Leader"
+			. = size ? "APTL" : "Asset Protection Team Leader"
 		if("NT1")
 			. = size ? "CE" : "Corporate Employee"
 		if("NT2")

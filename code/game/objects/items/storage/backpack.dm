@@ -199,7 +199,7 @@
 	icon_state = "satchel-cap"
 
 /obj/item/storage/backpack/satchel/pmc
-	name = "PMC chestrig"
+	name = "AC chestrig"
 	desc = "A heavy-duty chestrig used by Ninetails PMC contractors."
 	icon_state = "pmc_chestrig"
 
@@ -838,7 +838,7 @@ GLOBAL_LIST_INIT(stealth_greyscale_matrix,\
 	storage_type = /datum/storage/backpack/captain
 
 /obj/item/storage/backpack/lightpack/pmc
-	name = "PMC bag"
+	name = "AC bag"
 	desc = "A heavy-duty bag used by Ninetails PMC contractors."
 	icon_state = "pmc_bag"
 

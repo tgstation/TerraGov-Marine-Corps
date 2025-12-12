@@ -81,15 +81,15 @@
 	faction = VENDOR_FACTION_VALHALLA
 
 /obj/machinery/loadout_vendor/pmc
-	desc = "An advanced vendor used by the PMCs to rapidly equip their mercenaries"
+	desc = "An advanced vendor used by the " + FACTION_NANOTRASEN + " to rapidly equip their mercenaries"
 	faction = VENDOR_FACTION_PMC
 	categories = list(
-		"PMC Standard",
-		"PMC Engineer",
-		"PMC Medic",
-		"PMC Gunner",
-		"PMC Specialist",
-		"PMC Squad Leader",
+		"AC Standard",
+		"AC Engineer",
+		"AC Medic",
+		"AC Gunner",
+		"AC Specialist",
+		"AC Squad Leader",
 	)
 
 /obj/machinery/loadout_vendor/icc
