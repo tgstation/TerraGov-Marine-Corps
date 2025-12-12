@@ -273,7 +273,7 @@
 	sundering = 2
 	shrapnel_chance = 2
 	bullet_color = COLOR_BRIGHT_BLUE
-	var/emp_chance = 25 //spin the wheel WOOOOO
+	var/emp_chance = 6 //spin the wheel WOOOOO
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	. = ..()
