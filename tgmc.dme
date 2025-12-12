@@ -1149,6 +1149,7 @@
 #include "code\game\objects\items\weapons\holo_weapons.dm"
 #include "code\game\objects\items\weapons\misc.dm"
 #include "code\game\objects\items\weapons\shields.dm"
+#include "code\game\objects\items\weapons\shivs.dm"
 #include "code\game\objects\items\weapons\stunbaton.dm"
 #include "code\game\objects\items\weapons\swords.dm"
 #include "code\game\objects\items\weapons\weapon.dm"
