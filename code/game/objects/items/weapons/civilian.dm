@@ -61,7 +61,7 @@
 	icon_state = "knuckles"
 	worn_icon_state = "knuckles"
 	icon = 'icons/obj/items/weapons/civilian.dmi'
-	force = 15
+	force = 18
 	attack_speed = CLICK_CD_UNARMED //same as punching
 	w_class = WEIGHT_CLASS_SMALL
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -82,5 +82,5 @@
 	desc = "A brass knuckle. This one has wicked sharp metal spikes attached."
 	icon_state = "knuckles_spike"
 	worn_icon_state = "knuckles_spike"
-	force = 30
+	force = 25
 	sharp = IS_SHARP_ITEM_SIMPLE

@@ -1,8 +1,8 @@
 /obj/item/weapon/twohanded/industrial_saw
-	name = "industrial cutter"
-	desc = "A massive two handed industrial cutting tool. Looks extremely deadly."
-	icon_state = "auto_axe"
-	worn_icon_state = "auto_axe"
+	name = "concrete saw"
+	desc = "A massive two handed industrial cutting tool. It can cut through pretty much anything."
+	icon_state = "auto_axe_off"
+	worn_icon_state = "auto_axe_off"
 	base_icon_state = "auto_axe"
 	attack_verb = list("gores", "tears", "rips", "shreds", "slashes", "cuts")
 	force = 20
@@ -28,6 +28,12 @@
 	else
 		worn_icon_state = "[base_icon_state]_off"
 
+/obj/item/weapon/twohanded/industrial_saw/toggle_active(new_state)
+	. = ..()
+	if(!.)
+		return
+	toggle_motor()
+
 /obj/item/weapon/twohanded/industrial_saw/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -36,7 +42,6 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 	toggle_active(FALSE)
-	toggle_motor(user)
 
 /obj/item/weapon/twohanded/industrial_saw/wield(mob/user)
 	. = ..()
@@ -47,18 +52,15 @@
 	if(!do_after(user, SKILL_TASK_TRIVIAL, NONE, src, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
 		return
 	toggle_active(TRUE)
-	toggle_motor(user)
 
-///Chainsaw turn off when unwielded
 /obj/item/weapon/twohanded/industrial_saw/unwield(mob/user)
 	. = ..()
 	if(!.)
 		return
 	toggle_active(FALSE)
-	toggle_motor(user)
 
-///Proc to turn the saw on or off
-/obj/item/weapon/twohanded/industrial_saw/proc/toggle_motor(mob/user)
+///Toggles the saw on or off
+/obj/item/weapon/twohanded/industrial_saw/proc/toggle_motor()
 	update_appearance(UPDATE_ICON)
 	if(!active)
 		attack_speed = initial(attack_speed)
