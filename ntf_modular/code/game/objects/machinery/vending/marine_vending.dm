@@ -587,6 +587,7 @@
 	products = list(
 		"AC standard issue" = list(
 			/obj/item/clothing/suit/storage/marine/veteran/pmc = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/standard = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/sniper = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/leader = -1,
