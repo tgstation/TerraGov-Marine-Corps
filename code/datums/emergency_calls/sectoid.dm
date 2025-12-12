@@ -1,7 +1,7 @@
 //Sectoids
 /datum/emergency_call/sectoid
-	name = "Sectoid Expedition"
-	base_probability = 26
+	name = "Quzot Thrall Expedition"
+	base_probability = 5
 	spawn_type = /mob/living/carbon/human/species/sectoid
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	alignement_factor = 0
@@ -9,7 +9,7 @@
 	var/max_psionics = 2
 
 /datum/emergency_call/sectoid/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are a sectoid, a mass-cloned alien soldier and psionics expert.")
+	to_chat(H, "<B>You are a Quzot thrall soldier, a bio-engineered soldier template commonly seen in the first quzot war, made of a poor human you once were, with psionic capabilities as with most Quzot creations.")
 	to_chat(H, "<B>You were sent to eliminate the local humans and to scout this sector of space for an abundance of resources. A distress signal from a primitive spacecraft has been picked up by our scanners.</B>")
 	to_chat(H, "<B>Your mission is simple: Destroy all humans, and any other race that poses a threat.</b>")
 

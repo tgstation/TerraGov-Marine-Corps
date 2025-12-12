@@ -1,21 +1,23 @@
 /datum/job/pmc/squad
 	job_category =  JOB_CAT_PMC
-	supervisors = "NTC command"
+	supervisors = "ArcherCorp management"
 	selection_color = "#ffeeee"
 	faction = FACTION_NANOTRASEN
 
 /datum/job/pmc/squad/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"You're elite enforcer commandos of NTC's Nine Tailed Fox PMC, you always thought infiltrators and recons were not hands on enough so you joined as an enforcer, and outperformed your peers to become one of the elite, just before deathsquad.
+	. += {"You're elite commandos of ArcherCorp Asset protection team, You are here in behalf of ArcherCorp's interests so stay in touch with your representative and strengthen up through gaining points and trading with NTC or other friendly factions while keeping observation.
+	You are only obligated to intervene if NTC ship or FOB is under attack as it risks the entire campaign and investments made until this point. Otherwise Archercorp sees no reason to waste any more in this operation. Archercorp does not mind acquiring some value from the fallen colonies, as said."}
+	/*. += {"You're elite commandos of NTC's Nine Tailed Fox PMC, you always thought infiltrators and recons were not hands on enough so you joined as an enforcer, and outperformed your peers to become one of the elite, just before deathsquad.
 	You are usually called when things seem dire and your equipment is a great cost to the corporation (so are you to train.)
-	Make it worth the cost and earn you and your family's luxury living again."}
+	Make it worth the cost and earn you and your family's luxury living again."}*/
 
 //PMC Standard
 /datum/job/pmc/squad/standard
 	title = PMC_STANDARD
 	paygrade = "PMC1"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	total_positions = -1
 	skills_type = /datum/skills/pmc
@@ -44,7 +46,7 @@
 /datum/job/pmc/squad/medic
 	title = PMC_MEDIC
 	paygrade = "PMC2"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/combat_medic/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -73,7 +75,7 @@
 /datum/job/pmc/squad/engineer
 	title = PMC_ENGINEER
 	paygrade = "PMC2"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/combat_engineer/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -102,7 +104,7 @@
 /datum/job/pmc/squad/gunner
 	title = PMC_GUNNER
 	paygrade = "PMC2"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/smartgunner/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -131,7 +133,7 @@
 /datum/job/pmc/squad/sniper
 	title = PMC_SNIPER
 	paygrade = "PMC3"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	total_positions = 3
 	skills_type = /datum/skills/specialist/pmc
@@ -161,7 +163,7 @@
 /datum/job/pmc/squad/leader
 	title = PMC_LEADER
 	paygrade = "PMC4"
-	comm_title = "PMC"
+	comm_title = "ACAPT"
 	minimap_icon = "pmc"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)

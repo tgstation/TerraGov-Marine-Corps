@@ -260,7 +260,7 @@
 //emp mag
 /obj/item/ammo_magazine/rifle/nt_halter/charged
 	name = "\improper NT 'Halter' charged magazine (7.62x38mm Charged)"
-	desc = "A magazine filled with specialized 7.62x38mm rifle rounds to deliver a supercharged blast but loses overall power, for the Halter series of firearms. Inconsistent effect due being a nightmare to produce."
+	desc = "A magazine filled with specialized 7.62x38mm rifle rounds to deliver a supercharged blast but loses overall power, for the Halter series of firearms. Inconsistent effect per bullet unfortuantely."
 	icon_state = "halter_charged"
 	bonus_overlay = "halter_charged"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/halter/charged
@@ -269,31 +269,31 @@
 	name = "charged heavy rifle bullet"
 	hud_state = "rifle_ap"
 	damage = 20
-	penetration = 10
+	penetration = 5
 	sundering = 2
 	shrapnel_chance = 2
 	bullet_color = COLOR_BRIGHT_BLUE
-	var/emp_chance = 25 //spin the wheel WOOOOO
+	var/emp_chance = 15 //spin the wheel WOOOOO
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_mob, 0, 0, 1, 2)
-	if(ishuman(target_mob))
-		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
-	else
-		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
+		empulse(target_mob, 0, 0, pick(0,1), 2)
+		if(ishuman(target_mob))
+			staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
+		else
+			staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
 
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_obj, 0, 0, 1, 2)
+		empulse(target_obj, 0, 0, pick(0,1), 2)
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
-		empulse(target_turf, 0, 0, 1, 2)
+		empulse(target_turf, 0, 0, pick(0,1), 2)
 
 //smart mag
 /obj/item/ammo_magazine/rifle/nt_halter/smart

@@ -82,12 +82,12 @@
 #define SQUAD_ROBOT "Squad Robot"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
-#define PMC_STANDARD "PMC Standard"
-#define PMC_MEDIC "PMC Medic"
-#define PMC_ENGINEER "PMC Engineer"
-#define PMC_GUNNER "PMC Gunner"
-#define PMC_SNIPER "PMC Specialist"
-#define PMC_LEADER "PMC Squad Leader"
+#define PMC_STANDARD "AC Standard"
+#define PMC_MEDIC "AC Medic"
+#define PMC_ENGINEER "AC Engineer"
+#define PMC_GUNNER "AC Gunner"
+#define PMC_SNIPER "AC Specialist"
+#define PMC_LEADER "AC Squad Leader"
 
 //ICC
 
@@ -133,7 +133,7 @@
 #define JOB_CAT_MARINE "Military"
 #define JOB_CAT_XENO "Xenomorph"
 #define JOB_CAT_UNASSIGNED "Unassigned"
-#define JOB_CAT_PMC "Private Military Company"
+#define JOB_CAT_PMC "ArcherCorp Asset Protection"
 #define JOB_CAT_VSD "Kaizoku Corporation"
 
 #define JOB_CAT_COMMANDSOM "SOM Command"

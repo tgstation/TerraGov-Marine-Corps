@@ -1,5 +1,5 @@
 /datum/emergency_call/pmc
-	name = "NT Private Military Contractor Squad"
+	name = "ArcherCorp Asset Protection Squad"
 	base_probability = 11
 	alignement_factor = -2
 	shuttle_id = SHUTTLE_DISTRESS_PMC

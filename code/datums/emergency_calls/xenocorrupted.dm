@@ -1,14 +1,14 @@
 /datum/emergency_call/xenomorphs_corrupted
 	name = "Xenomorphs (Corrupted Hive)"
-	base_probability = 0
+	base_probability = 11
 	auto_shuttle_launch = TRUE
 	spawn_type = null
 
 
 /datum/emergency_call/xenomorphs_corrupted/print_backstory(mob/living/carbon/xenomorph/X)
 	to_chat(X, "<B>We are a Xenomorph from an artifical corrupted hive created by the tallhosts.</b>")
-	to_chat(X, "<B>We've been stuck on this shuttle for years until someone reached out to us and took over the control of our shuttle remotely.</b>")
-	to_chat(X, "<B>From what we understand, it appears that someone launched this shuttle in order to help our fellow humans who are in trouble.</b>") // Human friendly ERT
+	to_chat(X, "<B>We've been put on this shuttle by the nearby tallhost hive upon receiving some sort of hivemind distress message.</b>")
+	to_chat(X, "<B>From what we understand, it appears that they launched this shuttle in order to help our fellow humans who are in trouble.</b>") // Human friendly ERT
 	to_chat(X, "<B>Expand our hive and destroy any other hives that we may encounter. For the corrupted Hive!</b>")
 
 

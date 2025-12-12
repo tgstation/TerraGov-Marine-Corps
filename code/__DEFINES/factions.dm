@@ -7,7 +7,7 @@
 #define FACTION_FREELANCERS "Freelancers"
 #define FACTION_IMP "Imperium of Mankind"
 #define FACTION_UNKN_MERCS "Unknown Mercenary Group"
-#define FACTION_NANOTRASEN "Ninetails PMC"
+#define FACTION_NANOTRASEN "Archercorp Asset Protection"
 #define FACTION_SECTOIDS "Sectoids"
 #define FACTION_SOM "Sons of Mars"
 #define FACTION_ICC "Colonial Militia"

@@ -9,9 +9,9 @@
 	desc = "nomnomnom"
 	slot = ATTACHMENT_SLOT_MODULE
 	var/list/blocked_attack_types = list()
-	var/deflect_projectile = FALSE
 
-	var/overcharge_max_health = 325
+	max_shield_health = 40 //less than standard e shield by base
+	var/overcharge_max_health = 345
 
 	//pale ass but black-white absorbing/deflect light and shit like that.
 	shield_color_low = COLOR_DARKER_RED
@@ -22,7 +22,7 @@
 	var/last_warning_time
 	var/explode_on_overload = TRUE
 	///percent chance to go off without exploding.
-	var/auto_release_chance = 50
+	var/auto_release_chance = 75
 
 /obj/item/armor_module/module/eshield/absorbant/energy
 	name = "NT Voidwalker Anti-Energy Shield System"
@@ -56,11 +56,10 @@ converting the absorbed energy into shield power, warning: overcharging too much
 				playsound(src.loc, 'sound/effects/airhiss.ogg', 40)
 			else
 				balloon_alert_to_viewers("shield break!")
-				affected.adjustStaminaLoss(400)
-				explosion(src.loc,0,0,2,3,2,0,2,smoke = TRUE,explosion_cause = src)
+				explosion(src.loc,0,0,0,3,0,0,0,smoke = TRUE,explosion_cause = src)
 			affected.remove_filter("eshield")
 			STOP_PROCESSING(SSobj, src)
-			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 3, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a bunch extra time for the cooldown.
+			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 1.2, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a bunch extra time for the cooldown.
 			return (shield_left - overcharge_max_health)
 		if(shield_left > 0)
 			if(found_type ? (shield_health > max_shield_health) : (shield_health < max_shield_health))
@@ -83,6 +82,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			return 0
 		else
 			shield_health = 0
+			affected.remove_filter("eshield")
 			STOP_PROCESSING(SSobj, src)
 			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a little extra time for the cooldown.
 			return -shield_left

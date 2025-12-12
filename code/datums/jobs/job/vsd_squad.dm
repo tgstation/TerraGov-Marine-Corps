@@ -8,8 +8,9 @@
 /datum/job/vsd_squad/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += {"You are trained loyal mercenaries of Kaizoku Corporation, though rumors are Kaizoku is a front to the Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased.
-Kaizoku is in the council that leads Phantom City, therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along. And at the same time Kaizoku supplies SOM their equipment to disrupt the said rival corporations in secret (not so secret). Keep in mind your mixed relations when taking action."}
+	. += {"You are trained loyal mercenaries of Kaizoku Corporation, though in company rumors are Kaizoku is backed by Yakuza Syndicate which nuked the Corporate Sector. Surely it is unbased else it would be disasterous.
+Kaizoku is in the corporate council that leads Phantom City, or what's left of it for now. Therefore it shares a table with Ninetails and all the other megacorps, which makes it vital they play along to ensure survival and prosperity of the corporation.
+and at the same time Kaizoku is pressured into playing along with SOM by their said similiarly powerful shareholder, Keep in mind your situation when choosing who to support when it is time, with enough justification you can get around accusations."}
 
 //VSD Standard
 /datum/job/vsd_squad/standard
