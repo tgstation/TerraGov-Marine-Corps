@@ -320,6 +320,7 @@
 /obj/item/weapon/gun/pistol/g22/tranq
 	name = "\improper P-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires chemical loaded bullets to take down enemies nonlethally. Must be cocked manually therefore has disgusting fire rate, but custom frame allows greater accuracy."
+	icon = 'ntf_modular/icons/obj/items/guns/pistols.dmi'
 	icon_state = "g22"
 	worn_icon_state = "g22"
 	fire_animation = null //it doesnt cycle itself.
