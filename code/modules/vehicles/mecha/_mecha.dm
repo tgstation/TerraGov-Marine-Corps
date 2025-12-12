@@ -342,6 +342,7 @@
 			continue
 		mob_exit(occupant, FALSE, TRUE)
 		occupant.SetSleeping(destruction_sleep_duration)
+		occupant.setStaminaLoss(occupant.getMaxHealth()*2)
 
 	if(wreckage)
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, unlucky_ais)

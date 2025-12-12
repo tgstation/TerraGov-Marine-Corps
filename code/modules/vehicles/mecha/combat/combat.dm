@@ -1,8 +1,8 @@
 /obj/vehicle/sealed/mecha/combat
 	force = 30
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 15, ENERGY = 20, BOMB = 20, BIO = 0, FIRE = 100, ACID = 100)
-	destruction_sleep_duration = 40
-	exit_delay = 40
+	destruction_sleep_duration = 6 SECONDS
+	exit_delay = 5 SECONDS
 
 /obj/vehicle/sealed/mecha/combat/emp_restore()
 	mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
