@@ -160,14 +160,14 @@
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	icon_state = "fireaxe"
 	worn_icon_state = "fireaxe"
-	force = 20
+	force = 35
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	atom_flags = CONDUCT
 	item_flags = TWOHANDED
-	force_activated = 75
+	force_activated = 80
 	attack_verb = list("attacks", "chops", "cleaves", "tears", "cuts")
 
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
@@ -419,6 +419,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK
 	force_activated = 90
+	penetration = 20
 	throwforce = 65
 	throw_speed = 3
 	edge = 1
@@ -426,7 +427,7 @@
 	atom_flags = CONDUCT
 	attack_verb = list("slices", "slashes", "jabs", "tears", "gores")
 	resistance_flags = UNACIDABLE
-	attack_speed = 12 //Default is 7.
+	attack_speed = 16
 
 /obj/item/weapon/twohanded/glaive/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
@@ -578,11 +579,11 @@
 	desc = "A heavy hammer that's good at smashing rocks, but would probably make a good weapon considering the circumstances."
 	icon_state = "sledgehammer"
 	worn_icon_state = "sledgehammer"
-	force = 20
+	force = 35
 	equip_slot_flags = ITEM_SLOT_BACK
 	atom_flags = CONDUCT
 	item_flags = TWOHANDED
-	force_activated = 85
+	force_activated = 95
 	penetration = 10
 	attack_speed = 20
 	attack_verb = list("attacks", "wallops", "smashes", "shatters", "bashes")
