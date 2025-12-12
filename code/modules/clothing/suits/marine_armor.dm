@@ -134,7 +134,8 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
 	icon_state = "marine_riot"
 	slowdown = 1.3
-	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
+	stamina_regen_mod = -0.4
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 95, ENERGY = 10, BOMB = 45, BIO = 10, FIRE = 10, ACID = 10)
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
