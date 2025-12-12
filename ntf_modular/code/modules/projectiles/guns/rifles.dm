@@ -278,12 +278,9 @@
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
+		do_sparks(3, TRUE, target_mob)
 		empulse(target_mob, 0, 0, 0, 2)
-		if(ishuman(target_mob))
-			do_sparks(3, TRUE, target_mob)
-			staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
-		else
-			staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
+		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	. = ..()
