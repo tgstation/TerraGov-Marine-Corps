@@ -631,7 +631,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "AC radio headset"
 	icon_state = "headset_marine_generic"
 	keyslot = /obj/item/encryptionkey/PMC
-	keyslot2 = /obj/item/encryptionkey/mcom
+	keyslot2 = /obj/item/encryptionkey/general
 	frequency = FREQ_PMC
 	faction = FACTION_NANOTRASEN
 
