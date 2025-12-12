@@ -74,10 +74,12 @@
 #define AMMO_PASS_THROUGH_MOB (1<<15)
 ///If the projectile ricochet and miss sound is pitched up
 #define AMMO_SOUND_PITCH (1<<16)
-///Is this projectile considered sniper ammo, used for the anti sniper stacking status effect (ntf removal, this is here for compat)
+///Is this projectile considered sniper ammo.
 #define AMMO_SNIPER (1<<17)
 ///Ammo type entirely ignores xenos
 #define AMMO_SKIPS_ZOMBIE (1<<18)
+///for sniper turrets so they cant stack fuck people. Seperate from ammo_sniper.
+#define AMMO_SNIPER_TURRET (1<<18)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //gun_features_flags
