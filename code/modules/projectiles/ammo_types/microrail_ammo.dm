@@ -86,7 +86,7 @@
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
-	damage = 15
+	damage = 5
 	penetration = 5
 	sundering = 1.5
 	max_range = 6
@@ -97,7 +97,7 @@
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	T.ignite(5, 10)
+	T.ignite(3, 6)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	if(prob(40))

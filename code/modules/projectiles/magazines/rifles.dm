@@ -682,6 +682,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 50
+	scatter_mod = 3
 
 /obj/item/ammo_magazine/rifle/som/incendiary
 	name = "\improper V-31 incendiary magazine (10x24mm)"
