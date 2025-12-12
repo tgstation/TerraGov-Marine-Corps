@@ -30,7 +30,23 @@
 	sharp = IS_SHARP_ITEM_BIG
 	atom_flags = CONDUCT
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("chops", "attacks", "slashes", "stabs", "jabs", "slices", "tears", "gores", "rips", "dices", "cuts")
+	attack_verb = list("chops", "attacks", "slashes", "stabs", "jabs", "slices", "tears", "gores", "rips", "dices", "cuts", "hacks")
+
+/obj/item/weapon/cleaver
+	name = "cleaver"
+	desc = "A big cleaver used for hacking apart meat and bone."
+	icon_state = "cleaver"
+	worn_icon_state = "hatchet_broad"
+	icon = 'icons/obj/items/weapons/civilian.dmi'
+	force = 55
+	throwforce = 50
+	attack_speed = 9
+	equip_slot_flags = ITEM_SLOT_BELT
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_BIG
+	atom_flags = CONDUCT
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("cleaves", "chops", "attacks", "slashes", "slices", "tears", "gores", "rips", "dices", "cuts", "hacks")
 
 /obj/item/weapon/pipe
 	name = "metal pipe"
