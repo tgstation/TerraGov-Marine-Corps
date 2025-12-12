@@ -17,7 +17,7 @@
 /datum/job/pmc/squad/standard
 	title = PMC_STANDARD
 	paygrade = "PMC1"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	total_positions = -1
 	skills_type = /datum/skills/pmc
@@ -46,7 +46,7 @@
 /datum/job/pmc/squad/medic
 	title = PMC_MEDIC
 	paygrade = "PMC2"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/combat_medic/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -75,7 +75,7 @@
 /datum/job/pmc/squad/engineer
 	title = PMC_ENGINEER
 	paygrade = "PMC2"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/combat_engineer/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -104,7 +104,7 @@
 /datum/job/pmc/squad/gunner
 	title = PMC_GUNNER
 	paygrade = "PMC2"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	skills_type = /datum/skills/smartgunner/pmc
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ENGINEERING, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
@@ -133,7 +133,7 @@
 /datum/job/pmc/squad/sniper
 	title = PMC_SNIPER
 	paygrade = "PMC3"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	total_positions = 3
 	skills_type = /datum/skills/specialist/pmc
@@ -163,7 +163,7 @@
 /datum/job/pmc/squad/leader
 	title = PMC_LEADER
 	paygrade = "PMC4"
-	comm_title = "ACAPT"
+	comm_title = "ACAP"
 	minimap_icon = "pmc"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_NT_PMC_MEDICAL, ACCESS_NT_PMC_COMMON)
