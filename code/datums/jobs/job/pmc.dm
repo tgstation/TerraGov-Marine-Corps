@@ -9,7 +9,7 @@
 
 //PMC Standard
 /datum/job/pmc/standard
-	title = "PMC Standard"
+	title = "AC Standard"
 	paygrade = "PMC1"
 	outfit = /datum/outfit/job/pmc/standard/val
 	multiple_outfits = TRUE
@@ -37,7 +37,7 @@
 	)
 
 /datum/outfit/job/pmc/standard
-	name = "PMC Standard"
+	name = "AC Standard"
 	jobtype = /datum/job/pmc/standard
 
 	id = /obj/item/card/id/silver/standard
@@ -92,14 +92,14 @@
 
 //PMC medic
 /datum/job/pmc/medic
-	title = "PMC Medic"
+	title = "AC Medic"
 	paygrade = "PMC2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/pmc/medic
 
 //medic loadout
 /datum/outfit/job/pmc/medic
-	name = "PMC Medic"
+	name = "AC Medic"
 	jobtype = /datum/job/pmc/medic
 
 	id = /obj/item/card/id/silver
@@ -142,7 +142,7 @@
 
 //PMC Gunner
 /datum/job/pmc/gunner
-	title = "PMC Gunner"
+	title = "AC Gunner"
 	paygrade = "PMC2"
 	skills_type = /datum/skills/smartgunner
 	outfit = /datum/outfit/job/pmc/gunner
@@ -164,7 +164,7 @@
 	)
 //PMC Sniper
 /datum/job/pmc/sniper
-	title = "PMC Sniper"
+	title = "AC Sniper"
 	paygrade = "PMC3"
 	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/pmc/sniper
@@ -172,7 +172,7 @@
 //PMC Leader
 /datum/job/pmc/leader
 	job_category = JOB_CAT_COMMAND
-	title = "PMC Leader"
+	title = "AC Leader"
 	paygrade = "PMC4"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/pmc/leader/m416

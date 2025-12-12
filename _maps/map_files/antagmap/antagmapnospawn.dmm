@@ -4506,7 +4506,7 @@
 /area/antag_ship/vsd/bridge)
 "xk" = (
 /obj/machinery/faxmachine{
-	department = "PMC Ship"
+	department = "AC Ship"
 	},
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/black/full,

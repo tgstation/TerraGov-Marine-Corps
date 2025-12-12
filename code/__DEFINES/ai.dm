@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(ai_squad_presets, list(
 		/datum/job/som/ert/standard,
 		/datum/job/som/ert/specialist,
 	),
-	"PMC squad" = list(
+	"AC squad" = list(
 		/datum/job/pmc/standard,
 		/datum/job/pmc/standard,
 		/datum/job/pmc/leader,

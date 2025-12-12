@@ -22,7 +22,7 @@
 	area_flags = NO_DROPPOD
 
 /area/riptide/caves/checkpoint
-	name = "PMC Checkpoint"
+	name = "AC Checkpoint"
 	icon_state = "Warden"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE

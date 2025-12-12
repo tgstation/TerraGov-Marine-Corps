@@ -586,7 +586,7 @@
 	wrenchable = FALSE
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
-		"PMC standard issue" = list(
+		"AC standard issue" = list(
 			/obj/item/clothing/suit/storage/marine/veteran/pmc = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/sniper = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner = -1,

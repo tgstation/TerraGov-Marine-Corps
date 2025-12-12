@@ -67,7 +67,7 @@
 	name = "UPP ERT"
 
 /area/shuttle/ert/pmc
-	name = "PMC ERT"
+	name = "AC ERT"
 
 /area/shuttle/big_ert
 	name = "Big ERT Ship"
