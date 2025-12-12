@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
-				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 20 MINUTES)
+				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 10 MINUTES)
 				// ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
 			return TRUE
 
