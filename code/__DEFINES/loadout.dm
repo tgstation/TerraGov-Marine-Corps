@@ -22,6 +22,9 @@
 #define CAT_FCSUP "COMMANDER SUPPLIES"
 #define CAT_LOAD "LOADOUT"
 
+// Zombie Crash
+#define CAT_ZOMBIE_CRASH "ZOMBIE CRASH"
+
 // Synth Special Categories
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats

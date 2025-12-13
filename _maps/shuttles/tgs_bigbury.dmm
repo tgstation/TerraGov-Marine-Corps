@@ -1042,6 +1042,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "Ui" = (

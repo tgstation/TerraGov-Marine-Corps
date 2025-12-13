@@ -101,6 +101,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DEFUSED, PROC_REF(on_nuclear_defuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_SEGMENT_COMPLETED, PROC_REF(on_disk_segment_completed))
 
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
@@ -257,3 +258,17 @@
 		var/jobpoint_difference = get_jobpoint_difference() + amount
 		adjusted_jobworth_list[index] = clamp(jobpoint_difference, 0, amount)
 	return adjusted_jobworth_list
+
+/// Gives points when a segment is completed.
+/datum/game_mode/infestation/crash/proc/on_disk_segment_completed(datum/source, generating_computer)
+	SIGNAL_HANDLER
+	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
+		if(!human.job)
+			continue
+		var/obj/item/card/id/user_id =  human.get_idcard()
+		if(!user_id)
+			continue
+		for(var/i in user_id.marine_points)
+			if(i == CAT_ZOMBIE_CRASH)
+				continue
+			user_id.marine_points[i] += 2
