@@ -1329,6 +1329,9 @@
 			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
 			/obj/item/armor_module/armor/chest/marine/ranger = -1,
 			/obj/item/armor_module/armor/chest/marine/mjolnir = -1,
+			/obj/item/armor_module/armor/chest/marine/invis = -1,
+			/obj/item/armor_module/armor/chest/marine/skirmisher/invis = -1,
+			/obj/item/armor_module/armor/chest/marine/assault/invis = -1,
 		),
 		"Jaeger Mk.I armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
