@@ -1,7 +1,7 @@
 /obj/item/binoculars/fire_support
-	name = "pair of tactical binoculars"
+	name = "fire support binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
-	icon_state = "range_finders"
+	icon_state = "fire_support"
 	w_class = WEIGHT_CLASS_SMALL
 	///lase effect
 	var/image/laser_overlay
@@ -131,7 +131,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	target_atom = target
-	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "sniper_laser", layer =-LASER_LAYER)
+	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "laser_target_yellow", layer =-LASER_LAYER)
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
