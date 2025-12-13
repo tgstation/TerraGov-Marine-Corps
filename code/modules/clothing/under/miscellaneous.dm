@@ -367,6 +367,7 @@
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic_s"
 
+//this is NOT THE SNEAKING SUIT
 /obj/item/clothing/under/spec_operative
 	name = "Special Operations Uniform"
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
@@ -388,36 +389,3 @@
 	icon_state = "tp_bodyrobes"
 	worn_icon_state = "tp_bodyrobes"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
-
-
-/obj/item/clothing/under/spec_operative
-	name = "Old NTC Spec-Ops Uniform"
-	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
-	icon_state = "syndicate"
-	armor_protection_flags = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
-	cold_protection_flags = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	slowdown= -0.25
-
-/obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
-	. = ..()
-	//Not sure what this was trying to do but all it was doing was causing runtime errors.
-	//RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
-	ADD_TRAIT(user, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
-
-/obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, i_clothing)
-	. = ..()
-	//UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
-	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
-
-/obj/item/clothing/under/spec_operative/tback
-	name = "NTC Spec-Ops Tactical T-Back Leotard"
-	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This leotard allows you to crawl through vents with ALT-CLICK"
-	icon_state = "swim_black"
-
-/obj/item/clothing/under/spec_operative/armoredsuit
-	name = "executive suit"
-	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
-	soft_armor = list(MELEE = 10, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
-	icon_state = "charcoal_suit_skirt"

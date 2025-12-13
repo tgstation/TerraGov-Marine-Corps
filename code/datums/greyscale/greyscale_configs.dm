@@ -140,6 +140,11 @@
 
 /datum/greyscale_config/vsd_hardsuit/exoskeleton
 
+/datum/greyscale_config/vsd_hardsuit/exoskeleton/nt
+
+/datum/greyscale_config/vsd_hardsuit/bikini
+	prefix = "superheavy_bikini_"
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2

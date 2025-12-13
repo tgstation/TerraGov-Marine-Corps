@@ -59,5 +59,16 @@
 				"icon_state":"exoskeleton_no_color",
 				"blend_mode":"overlay"
 			}
+		],
+		"exoskeletonnt":[
+			{
+				"type": "hyperscale",
+				"icon_state": "exoskeletonnt"
+			},
+			{
+				"type":"icon_state",
+				"icon_state":"exoskeletonnt_no_color",
+				"blend_mode":"overlay"
+			}
 		]
 }

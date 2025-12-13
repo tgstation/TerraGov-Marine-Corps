@@ -215,9 +215,6 @@
 /area/mainship/engineering/port_atmos)
 "aoH" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/marine/spec_operative,
-/obj/item/clothing/under/spec_operative/tback,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -21169,10 +21166,7 @@
 	pixel_x = 10
 	},
 /obj/item/disk/nuclear/red,
-/obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/marine/spec_operative,
 /obj/item/armor_module/module/valkyrie_autodoc,
-/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
 /turf/open/floor/carpet/side,
 /area/mainship/living/commandbunks)
 "uSO" = (

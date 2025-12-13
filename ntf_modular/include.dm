@@ -1,3 +1,4 @@
+
 #include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\_DEFINES\sexcon_defines.dm"
@@ -98,6 +99,7 @@
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\marine_armor.dm"
 #include "code\modules\clothing\under\marine_uniform.dm"
+#include "code\modules\clothing\under\miscellaneous.dm"
 #include "code\modules\condor\cas_chair.dm"
 #include "code\modules\factory\howtopaper.dm"
 #include "code\modules\factory\parts.dm"

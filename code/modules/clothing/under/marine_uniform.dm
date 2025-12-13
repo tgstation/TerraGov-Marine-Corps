@@ -183,26 +183,6 @@
 	has_sensor = 2
 	item_map_variant_flags = null
 
-/obj/item/clothing/under/marine/spec_operative
-	name = "NTF Infiltration Uniform"
-	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK. Made by NTC."
-	icon_state = "marine_undersuit"
-	armor_protection_flags = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
-	cold_protection_flags = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-
-/obj/item/clothing/under/marine/spec_operative/equipped(mob/user, i_clothing)
-	. = ..()
-	//Not sure what this was trying to do but all it was doing was causing runtime errors.
-	//RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
-	ADD_TRAIT(user, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
-
-/obj/item/clothing/under/marine/spec_operative/unequipped(mob/unequipper, i_clothing)
-	. = ..()
-	//UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
-	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
-
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."

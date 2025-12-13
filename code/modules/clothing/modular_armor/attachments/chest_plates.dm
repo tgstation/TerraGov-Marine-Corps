@@ -132,3 +132,9 @@
 	desc = "Designed for use with the CrashCore MT/P Exoskeleton. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Hephaestus' armor piece."
 	greyscale_config = /datum/greyscale_config/vsd_hardsuit/alt_two
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest)
+
+/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/aphrodite
+	name = "\improper NT Super-Heavy 'Aphrodite' hardlight chestplate"
+	desc = "Designed for use with a NT Powered Exoskeleton, NT parody armor for exhibitionists like with most other things. It provides a very good amount protection, with the cost of encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. Meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a 'Aphrodite' armor piece."
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/bikini
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest)

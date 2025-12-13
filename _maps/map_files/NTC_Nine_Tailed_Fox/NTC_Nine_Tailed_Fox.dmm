@@ -507,9 +507,6 @@
 /area/mainship/medical/operating_room_four)
 "aBQ" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/marine/spec_operative,
-/obj/item/clothing/under/spec_operative/tback,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -24761,10 +24758,7 @@
 "wMI" = (
 /obj/structure/closet/secure_closet/captain,
 /obj/item/disk/nuclear/red,
-/obj/item/clothing/shoes/marine/sneakingboots,
-/obj/item/clothing/under/marine/spec_operative,
 /obj/item/armor_module/module/valkyrie_autodoc,
-/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
 /turf/open/floor/wood,
 /area/sulaco/command{
 	name = "Captain's Room";

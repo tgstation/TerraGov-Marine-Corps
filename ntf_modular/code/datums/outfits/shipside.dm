@@ -5,8 +5,8 @@
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/mateba/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/spec_operative/armoredsuit
-	shoes = /obj/item/clothing/shoes/marine/sneakingboots
+	w_uniform = /obj/item/clothing/under/marine/sneaking/armoredsuit
+	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/marine/officer/
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/leadership
@@ -47,7 +47,7 @@
 	id = /obj/item/card/id/card/silver/vanguard
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer
-	shoes = /obj/item/clothing/shoes/marine/sneakingboots
+	shoes = /obj/item/clothing/shoes/marine
 	r_pocket = /obj/item/storage/pouch/general/large
 
 

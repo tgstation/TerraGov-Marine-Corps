@@ -1339,6 +1339,7 @@
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/under/marine/sneaking,
 	)
 
 /obj/effect/vendor_bundle/synth

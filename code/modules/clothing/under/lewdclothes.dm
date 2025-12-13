@@ -1,8 +1,8 @@
 /obj/item/clothing/under/lewd
 	name = "theoritical lewdness"
-	icon = 'icons/mob/lewdclothes.dmi'
+	icon = 'ntf_modular/icons/obj/clothing/uniforms/lewdclothes.dmi'
 	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/obj/clothing/uniforms/lewdclothes.dmi',
+		slot_w_uniform_str = 'ntf_modular/icons/mob/clothing/uniforms/lewdclothes.dmi',
 	)
 
 /obj/item/clothing/under/lewd/panties
@@ -35,6 +35,12 @@
 	worn_icon_state = "stripper_p"
 	inventory_flags = CHEST|GROIN
 	shows_bottom_genital = TRUE
+
+/obj/item/clothing/under/lewd/stripper/string
+	name = "black string bikini"
+	desc = "A string bikini, almost like wearing nothing at this point."
+	icon_state = "stringkini"
+	worn_icon_state = "stringkini"
 
 /obj/item/clothing/under/lewd/stripper/green
 	name = "green stripper outfit"

@@ -359,6 +359,8 @@
 		/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus,
 		/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus,
 
+		/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/aphrodite,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -385,6 +387,13 @@
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)
+
+/obj/item/clothing/suit/modular/vsd_exoskeleton/nt
+	name = "\improper NT powered modular exoskeleton"
+	desc = "NT altered more airflow-allowing take of the CrashCore Industries modular hardsuit exoskeleton, made to lift up the 'Super-Heavy' armor systems and designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon_state = "exoskeletonnt"
+	worn_icon_state = "exoskeletonnt"
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/exoskeleton/nt
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
