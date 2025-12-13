@@ -183,6 +183,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
+	if(!lit)
+		return
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
 	standing.overlays.Add(emissive_overlay)
 
