@@ -66,6 +66,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	. = ..()
 	if(corrupted)
 		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
+		. += "It is claimed by the [GLOB.hive_datums[corrupted].name] hive."
 	if(isxeno(user) && !is_corruptible)
 		. += "It is reinforced, making us not able to corrupt it."
 
@@ -300,6 +301,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 			hive.xeno_message("Our [name] has been stolen by [user] at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/hiss4.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
 		corrupted = 0
+		color = null
+		name = initial(name)
 
 		if(is_ground_level(z) && hive?.hivenumber == XENO_HIVE_NORMAL)
 			GLOB.corrupted_generators -= 1
@@ -380,6 +383,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	if(is_ground_level(z) && hivenumber == XENO_HIVE_NORMAL && corrupted != hivenumber)
 		GLOB.corrupted_generators += 1
 	corrupted = hivenumber
+	color = GLOB.hive_datums[hivenumber].color
+	name = initial(name) +" ([GLOB.hive_datums[hivenumber].name] Hive)"
 	is_on = FALSE
 	if(SSticker.mode)
 		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
