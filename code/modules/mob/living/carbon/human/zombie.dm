@@ -35,7 +35,7 @@
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = "zombie_claw_left"
 	base_icon_state = "zombie_claw"
-	force = 20
+	force = 25
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
@@ -56,7 +56,7 @@
 	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
-	force = 30
+	force = 35
 
 /obj/item/weapon/zombie_claw/tank
 	attack_speed = 12
