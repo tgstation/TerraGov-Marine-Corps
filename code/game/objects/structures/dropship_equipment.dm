@@ -825,8 +825,12 @@
 
 	//Marine-only visuals
 	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir)
-	for(var/turf/impact in predicted_dangerous_turfs)
-		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+	if(faction == FACTION_TERRAGOV)
+		for(var/turf/impact in predicted_dangerous_turfs)
+			effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+	else
+		for(var/turf/impact in predicted_dangerous_turfs)
+			effects_to_delete += new /obj/effect/overlay/blinking_laser/som/lines(impact)
 
 	var/mob/user = usr
 	if(istype(usr))

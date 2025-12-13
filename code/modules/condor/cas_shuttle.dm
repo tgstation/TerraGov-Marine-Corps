@@ -155,11 +155,13 @@
 
 	SSmonitor.process_human_positions()
 
+	/*
 	#ifndef TESTING
 	if(SSmonitor.human_on_ground < 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
+	*/
 
 	// AT THIS POINT, A FIREMISSION IS READY TO START!
 
@@ -193,11 +195,13 @@
 		return
 
 	SSmonitor.process_human_positions()
+	/*
 	#ifndef TESTING
 	if(SSmonitor.human_on_ground < 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
+	*/
 
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	user.playsound_local(chair, 'sound/voice/plane_vws/flightcomputer_hot.ogg', 70, FALSE)
@@ -269,8 +273,12 @@
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
-	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
-		return
+	if(faction == FACTION_TERRAGOV)
+		if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
+			return
+	else if(faction == FACTION_SOM)
+		if(!GLOB.som_cameranet.checkTurfVis(get_turf_pixel(target)))
+			return
 	if(!active_weapon)
 		to_chat(source, span_warning("No active weapon selected!"))
 		return
