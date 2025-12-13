@@ -31,6 +31,8 @@
 	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
 	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
 	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
+	robotnoises = list(MALE = SFX_ROBOT_NOISES, FEMALE = SFX_ROBOT_NOISES, PLURAL = SFX_ROBOT_NOISES, NEUTER = SFX_ROBOT_NOISES)
+	robotthreaten = list(MALE = SFX_ROBOT_THREATEN, FEMALE = SFX_ROBOT_THREATEN, PLURAL = SFX_ROBOT_THREATEN, NEUTER = SFX_ROBOT_THREATEN)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/H)
@@ -101,6 +103,8 @@
 	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
 	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
 	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
+	robotnoises = list(MALE = SFX_ROBOT_NOISES, FEMALE = SFX_ROBOT_NOISES, PLURAL = SFX_ROBOT_NOISES, NEUTER = SFX_ROBOT_NOISES)
+	robotthreaten = list(MALE = SFX_ROBOT_THREATEN, FEMALE = SFX_ROBOT_THREATEN, PLURAL = SFX_ROBOT_THREATEN, NEUTER = SFX_ROBOT_THREATEN)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 /datum/species/early_synthetic/handle_unique_behavior(mob/living/carbon/human/H)

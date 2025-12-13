@@ -142,6 +142,8 @@
 	var/list/chokes = list()
 	var/list/sexymoanhvys = list()
 	var/list/sexymoanlights = list()
+	var/list/robotnoises = list(MALE = SFX_ROBOT_NOISES, FEMALE = SFX_ROBOT_NOISES, PLURAL = SFX_ROBOT_NOISES, NEUTER = SFX_ROBOT_NOISES)
+	var/list/robotthreaten = list(MALE = SFX_ROBOT_THREATEN, FEMALE = SFX_ROBOT_THREATEN, PLURAL = SFX_ROBOT_THREATEN, NEUTER = SFX_ROBOT_THREATEN)
 
 	///Generic traits tied to having the species
 	var/list/inherent_traits = list()

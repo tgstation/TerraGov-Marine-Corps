@@ -170,3 +170,5 @@
 #define SFX_ROBOT_SCREAM "robot_scream"
 #define SFX_ROBOT_PAIN "robot_pain"
 #define SFX_ROBOT_WARCRY "robot_warcry"
+#define SFX_ROBOT_NOISES "robot_noises"
+#define SFX_ROBOT_THREATEN "robot_threaten"

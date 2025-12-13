@@ -474,5 +474,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = pick('sound/voice/robot/robot_pain1.ogg', 'sound/voice/robot/robot_pain2.ogg', 'sound/voice/robot/robot_pain3.ogg')
 		if(SFX_ROBOT_WARCRY)
 			soundin = pick('sound/voice/robot/robot_warcry1.ogg', 'sound/voice/robot/robot_warcry2.ogg', 'sound/voice/robot/robot_warcry3.ogg')
+		if(SFX_ROBOT_NOISES)
+			soundin = pick('sound/runtime/drone/drone1.ogg', 'sound/runtime/drone/drone2.ogg', 'sound/runtime/drone/drone3.ogg', 'sound/runtime/drone/drone4.ogg', 'sound/runtime/drone/drone5.ogg', 'sound/runtime/drone/drone6.ogg', 'sound/runtime/drone/drone7.ogg', 'sound/runtime/drone/drone8.ogg', 'sound/runtime/drone/drone9.ogg', 'sound/runtime/drone/drone10.ogg', 'sound/runtime/drone/drone11.ogg', 'sound/runtime/drone/drone12.ogg',)
+		if(SFX_ROBOT_THREATEN)
+			soundin = pick('sound/machines/sound_machines_FireAlarm1.ogg', 'sound/machines/sound_machines_FireAlarm2.ogg', 'sound/machines/sound_machines_FireAlarm3.ogg', 'sound/machines/sound_machines_FireAlarm4.ogg')
 
 	return soundin
