@@ -102,7 +102,7 @@
 /datum/ammo/bullet/sniper/pfc/nl/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(iscarbon(target_mob))
 		var/mob/living/carbon/carbon_victim = target_mob
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(5,8), no_overdose = TRUE)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(9,12), no_overdose = TRUE)
 
 /obj/item/ammo_magazine/packet/p86x70mm/tranq
 	name = "box of 8.6x70mm tranq"

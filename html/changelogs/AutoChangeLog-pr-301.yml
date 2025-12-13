@@ -1,0 +1,7 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - qol: "Halved the *trick emote cooldown, letting people pull off their revolver and knife tricks smoother"
+  - balance: "Buffed dragoon damage and penetration, made standard ammo slightly more expensive."
+  - balance: "Soporific now kicks in a little faster."
+  - balance: "Moonbeam tranq rounds inject people with 9-12u of soporific instead of 5-8u."

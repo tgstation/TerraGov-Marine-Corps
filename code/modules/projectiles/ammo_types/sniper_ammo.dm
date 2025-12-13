@@ -54,8 +54,8 @@
 /datum/ammo/bullet/sniper/dragoon
 	name = "exotic rifle bullet"
 	handful_amount = 4
-	damage = 50
-	penetration = 20
+	damage = 70
+	penetration = 30
 	sundering = 6
 	accurate_range_min = 3
 
@@ -69,7 +69,7 @@
 
 /datum/ammo/bullet/sniper/dragoon/pox
 	name = "green-tipped exotic rifle bullet"
-	damage = 35
+	damage = 50
 	penetration = 15
 	sundering = 3
 
