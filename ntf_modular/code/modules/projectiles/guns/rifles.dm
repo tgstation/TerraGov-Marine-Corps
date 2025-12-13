@@ -279,20 +279,20 @@
 	. = ..()
 	if(prob(emp_chance))
 		do_sparks(3, TRUE, target_mob)
-		empulse(target_mob, 0, 0, 0, 2)
+		empulse(target_mob, 0, 0, 0, 1)
 		staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 1)
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
 		do_sparks(3, TRUE, target_obj)
-		empulse(target_obj, 0, 0, 0, 2)
+		empulse(target_obj, 0, 0, 0, 1)
 
 /datum/ammo/bullet/rifle/heavy/halter/charged/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	. = ..()
 	if(prob(emp_chance))
 		do_sparks(3, TRUE, target_turf)
-		empulse(target_turf, 0, 0, 0, 2)
+		empulse(target_turf, 0, 0, 0, 1)
 
 //smart mag
 /obj/item/ammo_magazine/rifle/nt_halter/smart
