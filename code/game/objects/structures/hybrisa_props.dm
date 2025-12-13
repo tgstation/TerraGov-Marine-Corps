@@ -118,12 +118,15 @@
 	icon_state = "table_pool"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
+/obj/structure/prop/urban/furniture/tables/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 /obj/structure/prop/urban/furniture/tables/tableblack
 	name = "large metal table"
 	desc = "A large black metal table, looks very expensive."
 	icon_state = "blackmetaltable"
 	density = TRUE
-	climbable = TRUE
 	bound_height = 32
 	bound_width = 64
 
@@ -135,7 +138,6 @@
 	desc = "A large wooden table, looks very expensive."
 	icon_state = "brownlargetable"
 	density = TRUE
-	climbable = TRUE
 	bound_height = 32
 	bound_width = 64
 
@@ -149,7 +151,6 @@
 	density = TRUE
 	bound_height = 32
 	bound_width = 64
-	climbable = TRUE
 
 /obj/structure/prop/urban/furniture/tables/tablegambling
 	name = "gambling table"
@@ -158,7 +159,6 @@
 	density = TRUE
 	bound_height = 32
 	bound_width = 64
-	climbable = TRUE
 
 // Chairs
 /obj/structure/bed/urban/chairs

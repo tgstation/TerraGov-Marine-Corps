@@ -373,7 +373,6 @@
 	if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
 	if(!loc_override && !(entering_mob.loc in enter_locations(entering_mob)))
-		balloon_alert(entering_mob, "not at entrance")
 		return FALSE
 	return ..()
 

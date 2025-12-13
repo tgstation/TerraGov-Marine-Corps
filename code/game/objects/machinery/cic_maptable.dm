@@ -76,6 +76,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	var/screen_overlay = "maptable_screen"
 	///flags that we want to be shown when you interact with this table
 	var/minimap_flag = MINIMAP_FLAG_MARINE
@@ -102,6 +103,13 @@
 	z_down.maptable = src
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	update_appearance(UPDATE_ICON)
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
@@ -271,15 +279,7 @@
 	pixel_x = -16
 	pixel_y = -14
 	coverage = 75
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	bound_width = 64
-
-/obj/machinery/cic_maptable/drawable/big/Initialize(mapload)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
-	)
-	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/cic_maptable/drawable/big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM

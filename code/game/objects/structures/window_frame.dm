@@ -10,8 +10,6 @@
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 150
-	climbable = TRUE
-	climb_delay = 1.5 SECONDS
 	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 50, BIO = 100, FIRE = 50, ACID = 0)
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
@@ -41,6 +39,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable, 1.5 SECONDS)
 
 /obj/structure/window_frame/proc/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -177,12 +176,6 @@
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
 	max_integrity = 300
-
-/obj/structure/window_frame/prison/hull
-	climbable = FALSE
-	allow_pass_flags = NONE
-	reinforced = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/structure/window_frame/mainship/dropship
 	smoothing_flags = SMOOTH_BITMASK
