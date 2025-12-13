@@ -122,6 +122,7 @@
 	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water
+	fuel_type = /datum/reagent/water
 
 //The engineer pyro bag internal fuel tank
 /obj/item/ammo_magazine/flamer_tank/internal
