@@ -685,9 +685,6 @@
 #define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
 /// from /mob/proc/key_down(): (key, client/client, full_key)
 #define COMSIG_MOB_KEYDOWN "mob_key_down"
-///From mob/living/carbon/human/has_ai()
-#define COMSIG_HUMAN_HAS_AI "human_has_ai"
-	#define MOB_HAS_AI (1<<0)
 ///AI mob wants to jump
 #define COMSIG_AI_JUMP "ai_jump"
 ///AI mob equipped a melee weapon
@@ -774,6 +771,10 @@
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
 // /mob/living/carbon/human signals
+#define COMSIG_HUMAN_HAS_AI "human_has_ai" //! From mob/living/carbon/human/has_ai(): ()
+	#define MOB_HAS_AI (1<<0) //! This human has AI
+#define COMSIG_HUMAN_VIEW_DEATH "witnessed_death" //! From mob/living/carbon/human/death(): (gibbing)
+	#define HUMAN_VIEW_DEATH_STOP_LOOP (1<<0) //! Will break from the witness death loop
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE "human_melee_unarmed_attack_alternate"	//same as above, but right click
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)

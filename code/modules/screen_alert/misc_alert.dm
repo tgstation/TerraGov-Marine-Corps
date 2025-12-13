@@ -112,8 +112,6 @@
 /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot
 	image_to_play = "custom"
 
-#define MAX_NON_COMMTITLE_LEN 9
-
 /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot/Initialize(mapload, datum/hud/hud_owner, mob/living/mugshottee)
 	. = ..()
 	var/atom/movable/holding_movable = new
@@ -153,29 +151,11 @@
 	SET_PLANE(mugshot_name, plane, src)
 	mugshot_name.layer = layer+0.3
 
-	var/cleaned_realname = mugshottee.real_name
-	var/firstname = copytext(cleaned_realname, 1, findtext(cleaned_realname, " "))
-	var/lastname = trim(copytext(cleaned_realname, findtext(cleaned_realname, " ")))
-	var/nametouse
-	if(length(lastname) >= 1 && length(lastname) <= MAX_NON_COMMTITLE_LEN)
-		nametouse = lastname
-	else if(length(firstname) >= 1 && length(firstname) <= MAX_NON_COMMTITLE_LEN)
-		nametouse = firstname
-	else if(length(cleaned_realname) >= 1)
-		if(length(cleaned_realname) > MAX_NON_COMMTITLE_LEN)
-			//cleans too long clone names down to a better fitting length
-			cleaned_realname = replacetext(cleaned_realname, regex(@"CS-.-"), "")
-		nametouse = copytext(cleaned_realname, 1, MAX_NON_COMMTITLE_LEN+1)
-	else
-		nametouse = "UNKNOWN"
-	var/user_name = trim(mugshottee.comm_title + " " + nametouse)
-	mugshot_name.maptext = "<span class='maptext' style=font-size:6px;text-align:center>[user_name]</span>"
+	mugshot_name.maptext = "<span class='maptext' style=font-size:6px;text-align:center>[get_last_or_first_name(mugshottee)]</span>"
 
 	holding_movable.overlays += mugshot_name
 
 	vis_contents += holding_movable
-
-#undef MAX_NON_COMMTITLE_LEN
 
 /atom/movable/screen/text/screen_text/rightaligned
 	screen_loc = "RIGHT,TOP-3"
