@@ -33,6 +33,12 @@
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
+	for(var/datum/limb/limb AS in H.limbs)
+		if(!istype(limb, /datum/limb/head))
+			continue
+		limb.vital = FALSE
+		break
+
 	H.set_undefibbable()
 	H.faction = faction
 	H.language_holder = new default_language_holder()
@@ -69,6 +75,12 @@
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
+	for(var/datum/limb/limb AS in H.limbs)
+		if(!istype(limb, /datum/limb/head))
+			continue
+		limb.vital = TRUE
+		break
+
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.remove_hud_from(H)
 	qdel(H.r_hand)
@@ -109,14 +121,6 @@
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
-
-/datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
-	. = ..()
-	for(var/datum/limb/limb AS in organless_human.limbs)
-		if(!istype(limb, /datum/limb/head))
-			continue
-		limb.vital = FALSE
-		return
 
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
 	if(human.on_fire || !human.has_working_organs() || isspaceturf(get_turf(human)))

@@ -175,11 +175,12 @@
 	if(species_flags & GREYSCALE_BLOOD)
 		brute_damage_icon_state = "grayscale"
 
-///Handles creation of mob organs and limbs
-/datum/species/proc/create_organs(mob/living/carbon/human/organless_human)
+///Handles creation of mob limbs
+/datum/species/proc/create_limbs(mob/living/carbon/human/organless_human, old_species)
+	if(old_species)
+		//we already got limbs
+		return
 	organless_human.limbs = list()
-	organless_human.internal_organs = list()
-	organless_human.internal_organs_by_name = list()
 
 	//This is a basic humanoid limb setup
 	var/datum/limb/chest/new_chest = new(null, organless_human)
@@ -200,6 +201,15 @@
 	organless_human.limbs += new/datum/limb/foot/l_foot(new_l_leg, organless_human)
 	organless_human.limbs += new/datum/limb/foot/r_foot(new_r_leg, organless_human)
 
+///Creates the appropriate organs for the species
+/datum/species/proc/create_organs(mob/living/carbon/human/organless_human, old_species)
+	QDEL_LIST_NULL(organless_human.internal_organs)
+	QDEL_LIST_ASSOC_VAL(organless_human.internal_organs_by_name)
+	for(var/datum/limb/limb AS in organless_human.limbs)
+		limb.internal_organs = null
+
+	organless_human.internal_organs = list()
+	organless_human.internal_organs_by_name = list()
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		organless_human.internal_organs_by_name[organ] = new organ_type(organless_human)
