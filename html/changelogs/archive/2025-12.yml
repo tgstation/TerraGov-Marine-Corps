@@ -84,3 +84,6 @@
 2025-12-12:
   DrCrawler:
   - bugfix: The dragoon sprites have been finally fixed.
+2025-12-13:
+  Colfer1:
+  - rscadd: Adds regular robot synths, like combat robots, without the combat
