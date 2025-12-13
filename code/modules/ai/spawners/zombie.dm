@@ -15,7 +15,7 @@
 		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2,
 	)
 	spawnamount = 2
-	spawndelay = 15 SECONDS
+	spawndelay = 19 SECONDS
 	maxamount = 50
 	var/threat_warning = FALSE
 
