@@ -12,7 +12,7 @@
 		visible_message(span_danger("[user] attempted to touch [src]!"), null, null, 5)
 		return FALSE
 
-	human_user.changeNext_move(7)
+	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
 			if(on_fire && human_user != src)

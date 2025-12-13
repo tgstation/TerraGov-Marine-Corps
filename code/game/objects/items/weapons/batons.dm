@@ -18,6 +18,11 @@
 	M.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	visible_message(span_danger("[M] has been beaten with \the [src] by [user]!"), null, span_warning("You hear someone fall"), 2)
 
+/obj/item/weapon/classic_baton/black
+	desc = "A wooden truncheon for beating criminal scum. Comes in a shiny black finish for easier cleaning."
+	icon_state = "baton_black"
+	worn_icon_state = "baton_black"
+
 //Telescopic baton
 /obj/item/weapon/telebaton
 	name = "telescopic baton"
