@@ -68,6 +68,16 @@
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
+/client/verb/view_objectives()
+	set category = "IC"
+	set name = "View Objectives"
+
+	for(var/datum/antagonist/A in usr.mind.antag_datums)
+		var/numberedobjective = 1
+		for(var/datum/objective/O in A.objectives)
+			to_chat(usr,"<B>Objective #[numberedobjective]</B>. [O.explanation_text]")
+			++numberedobjective
+
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"

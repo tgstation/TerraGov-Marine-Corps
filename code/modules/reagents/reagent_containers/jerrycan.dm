@@ -25,6 +25,9 @@
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("Theres no fuel left in [src]!"))
 		return
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Explosions are full of Christmas magic.")
+		return
 	new /obj/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message(span_notice("[user] splashes some fuel on \the [A]"), span_notice("You splash some fuel on [A]"))
@@ -35,6 +38,9 @@
 	. = ..()
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("Theres no fuel left in [src]!"))
+		return
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Burning somebody alive won't ruin Christmas...")
 		return
 	M.adjust_fire_stacks(10)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)

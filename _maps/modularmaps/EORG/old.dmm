@@ -658,6 +658,10 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/deathmatch)
+"RG" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor,
+/area/deathmatch)
 "Sp" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
@@ -1066,7 +1070,7 @@ aQ
 bT
 aZ
 bT
-bT
+RG
 bT
 aZ
 bT
