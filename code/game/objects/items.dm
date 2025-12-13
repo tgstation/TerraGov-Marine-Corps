@@ -1392,7 +1392,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
 
-	TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_TRICK, 6)
+	TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_TRICK, 3)
 
 	return TRUE
 
