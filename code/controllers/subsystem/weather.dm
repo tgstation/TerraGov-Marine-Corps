@@ -31,6 +31,10 @@ SUBSYSTEM_DEF(weather)
 		var/datum/weather/W = last_weather_by_zlevel[z]
 		if(!isnull(W) && !initial(W.repeatable))
 			possible_weather -= last_weather_by_zlevel[z]
+		if(!length(possible_weather))
+			if(prob(10))
+				last_weather_by_zlevel[z] = null
+			continue
 		W = pickweight(possible_weather)
 		last_weather_by_zlevel[z] = W
 		run_weather(W, list(text2num(z)))

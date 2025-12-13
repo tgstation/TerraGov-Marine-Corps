@@ -5,11 +5,11 @@
 // Devour
 /////////////////////////////////
 /datum/action/ability/activable/xeno/devour
-	name = "Devour"
+	name = "Abduct"
 	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
 	action_icon_state = "abduct"
-	desc = "Devour your victim to be able to carry it faster."
-	desc = "Devour your victim to be able to carry it around."
+	desc = "Abduct your victim to be able to carry it faster."
+	desc = "Abduct your victim to be able to carry it around."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
 	target_flags = ABILITY_MOB_TARGET
@@ -76,7 +76,7 @@
 	var/mob/living/carbon/human/victim = target
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
-	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	owner_xeno.visible_message(span_danger("[owner_xeno] starts to pick up [victim] from the ground!"), span_danger("We start to pick up [victim] off the ground!"), null, 5)
 	log_combat(owner_xeno, victim, "started to devour")
 	var/channel = SSsounds.random_available_channel()
 	var/devour_delay = GORGER_DEVOUR_DELAY
@@ -88,12 +88,12 @@
 	owner_xeno.devouring_mob = victim
 	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		owner_xeno.devouring_mob = null
-		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
+		to_chat(owner, span_warning("We stop picking up \the [victim]. They probably were filthy anyway."))
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner_xeno.devouring_mob = null
 	log_combat(owner_xeno, victim, "devoured")
-	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	owner.visible_message(span_warning("[owner_xeno] abducts [victim]!"), span_warning("We abduct [victim]!"), null, 5)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim

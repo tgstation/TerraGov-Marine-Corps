@@ -31,7 +31,8 @@
     key = "xurrender"
     key_third_person = "xurrenders"
     message = "puts their hands on their head and falls to the ground, they xurrender!"
-    emote_type = EMOTE_TYPE_AUDIBLE
+    emote_type = EMOTE_TYPE_IMPORTANT
+    cooldown = 0
     stat_allowed = UNCONSCIOUS
     sound = 'sound/machines/beepalert.ogg'
 
@@ -55,7 +56,8 @@
     key = "xubmit"
     key_third_person = "xubmits"
     message = "falls to the ground and submits, offering their body for mercy!"
-    emote_type = EMOTE_TYPE_AUDIBLE
+    emote_type = EMOTE_TYPE_IMPORTANT
+    cooldown = 0
     stat_allowed = UNCONSCIOUS
     sound = 'ntf_modular/sound/misc/mat/end.ogg'
 
@@ -79,7 +81,8 @@
     key = "surrender"
     key_third_person = "surrenders"
     message = "puts their hands on their head and falls to the ground, they surrender!"
-    emote_type = EMOTE_TYPE_AUDIBLE
+    emote_type = EMOTE_TYPE_IMPORTANT
+    cooldown = 0
     stat_allowed = UNCONSCIOUS
     sound = 'sound/machines/beepalert.ogg'
 
@@ -101,7 +104,8 @@
     key = "submit"
     key_third_person = "submits"
     message = "falls to the ground and submits, offering their body for mercy!"
-    emote_type = EMOTE_TYPE_AUDIBLE
+    emote_type = EMOTE_TYPE_IMPORTANT
+    cooldown = 0
     stat_allowed = UNCONSCIOUS
     sound = 'ntf_modular/sound/misc/mat/end.ogg'
 
@@ -118,3 +122,78 @@
     var/image/submitting = image('icons/mob/effects/talk.dmi', user, icon_state = "submit")
     user.add_emote_overlay(submitting, 90 SECONDS)
 
+// Robot specific emotes
+/datum/emote/living/carbon/human/species/robot
+	mob_type_allowed_typecache = list(/mob/living/carbon/human/species/robot, /mob/living/carbon/human/species/early_synthetic, /mob/living/carbon/human/species/synthetic)
+	emote_type = EMOTE_TYPE_AUDIBLE
+	stat_allowed = UNCONSCIOUS
+
+/datum/emote/living/carbon/human/species/robot/droidnoises
+	key = "whirr"
+	key_third_person = "whirrs"
+	message = "emits a robotic noise."
+	cooldown = 1 SECONDS
+
+/datum/emote/living/carbon/human/species/robot/droidnoises/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.robotnoises[user.gender])
+		return user.species.robotnoises[user.gender]
+	if(user.species.robotnoises[NEUTER])
+		return user.species.robotnoises[NEUTER]
+
+/datum/emote/living/carbon/human/species/robot/droidon
+	key = "online"
+	message = "emits a mechanical rising sound"
+	sound = "sound/machines/drone/weapons_engaged.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droidoff
+	key = "offline"
+	message = "emits a mechanical lowering sound"
+	sound = "sound/machines/drone/droneoff.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droidscream
+	key = "mechascream"
+	message = "emits an unsettling robotic wail"
+	sound = "sound/voice/scream_horror1.ogg"
+	cooldown = 1 MINUTES
+
+/datum/emote/living/carbon/human/species/robot/droidterminate
+	key = "terminate"
+	message = "emits a threatening alarm!"
+
+/datum/emote/living/carbon/human/species/robot/droidterminate/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.robotthreaten[user.gender])
+		return user.species.robotthreaten[user.gender]
+	if(user.species.robotthreaten[NEUTER])
+		return user.species.robotthreaten[NEUTER]
+
+/datum/emote/living/carbon/human/species/robot/droiddamaged
+	key = "damaged"
+	message = "emits a fearful alarm!"
+	sound = "sound/mecha/internaldmgalarm.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droidcrit
+	key = "critical"
+	message = "emits a fearful alarm!"
+	sound = "sound/mecha/critdestr.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droidnominal
+	key = "nominal"
+	message = "reports nominal condition"
+	sound = "sound/mecha/nominal.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droid/beep
+	key = "beep1"
+	message = "beeps"
+	sound = "sound/items/defib_SafetyOn.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droid/beep/beep2
+	key = "beep2"
+	sound = "sound/items/defib_SafetyOff.ogg"
+
+/datum/emote/living/carbon/human/species/robot/droid/beep/beep3
+	key = "beep3"
+	sound = "sound/items/defib_failed.ogg"

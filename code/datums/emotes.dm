@@ -165,7 +165,7 @@
 				user.balloon_alert(user, "used an audible emote too recently!")
 				return FALSE
 			else
-				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
+				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 0.5 SECONDS)
 
 		if(user.client)
 			if(user.client.prefs.muted & MUTE_IC)
