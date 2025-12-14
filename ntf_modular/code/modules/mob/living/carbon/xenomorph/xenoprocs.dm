@@ -79,3 +79,19 @@
 
 /mob/living/carbon/xenomorph/get_iff_signal()
 	return xeno_iff_check()
+
+
+/mob/living/carbon/xenomorph/adjustToxLoss(amount)
+	return FALSE
+
+
+/mob/living/carbon/xenomorph/setToxLoss(amount)
+	return FALSE
+
+
+/mob/living/carbon/xenomorph/adjustCloneLoss(amount)
+	return FALSE
+
+
+/mob/living/carbon/xenomorph/setCloneLoss(amount)
+	return FALSE
