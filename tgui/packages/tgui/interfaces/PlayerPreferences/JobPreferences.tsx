@@ -138,12 +138,12 @@ export const JobPreferences = (props) => {
     'Synthetic Survivor',
   ];
   const pmcJobs = [
-    'PMC Standard',
-    'PMC Medic',
-    'PMC Engineer',
-    'PMC Gunner',
-    'PMC Specialist',
-    'PMC Squad Leader',
+    'AC Standard',
+    'AC Medic',
+    'AC Engineer',
+    'AC Gunner',
+    'AC Specialist',
+    'AC Squad Leader',
   ];
 
   const JobList = ({ name, jobs }) => (
