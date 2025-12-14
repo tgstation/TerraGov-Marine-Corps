@@ -179,6 +179,7 @@
 		),
 		"Utility" = list(
 			/obj/item/roller/bedroll = -1,
+			/obj/item/restraints/handcuffs/cable = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
@@ -807,6 +808,7 @@
 		),
 		"Utility" = list(
 			/obj/item/roller/bedroll = -1,
+			/obj/item/restraints/handcuffs/cable = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
@@ -1478,6 +1480,7 @@
 		),
 		"Utility" = list(
 			/obj/item/roller/bedroll = -1,
+			/obj/item/restraints/handcuffs/cable = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
@@ -2472,6 +2475,7 @@
 		),
 		"Utility" = list(
 			/obj/item/roller/bedroll = -1,
+			/obj/item/restraints/handcuffs/cable = -1,
 			/obj/item/flashlight/combat = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/tool/shovel/etool = -1,
