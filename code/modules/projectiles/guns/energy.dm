@@ -807,7 +807,7 @@
 
 /datum/lasrifle/energy_sniper_mode/standard
 	rounds_per_shot = 30
-	fire_delay = 0.8 SECONDS
+	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
@@ -817,7 +817,7 @@
 
 /datum/lasrifle/energy_sniper_mode/heat
 	rounds_per_shot = 100
-	fire_delay = 1 SECONDS
+	fire_delay = 1.2 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
