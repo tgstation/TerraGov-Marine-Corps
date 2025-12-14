@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed limbs losing armour on species change"
-  - code_imp: "Cleaned up some limb and organ code"
