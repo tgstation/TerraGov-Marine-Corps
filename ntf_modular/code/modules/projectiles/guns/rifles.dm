@@ -192,6 +192,8 @@
 	aim_slowdown = 0.3
 	aim_speed_modifier = 2.5
 	scatter = -1
+	akimbo_scatter_mod = 24
+	akimbo_additional_delay = 0.8
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb
 	name = "\improper NT 'Halter-CQB' carbine"
