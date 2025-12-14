@@ -535,6 +535,11 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla)
+"aEz" = (
+/obj/machinery/status_display,
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/wall/mainship,
+/area/tdome)
 "aFd" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -651,6 +656,15 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla)
+"aLt" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "aLR" = (
 /obj/structure/girder,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -721,6 +735,19 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"aPX" = (
+/obj/item/a_gift/anything{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/a_gift/anything{
+	pixel_y = 9
+	},
+/obj/item/a_gift/anything{
+	pixel_x = 10
+	},
+/turf/open/floor/podhatch/floor,
+/area/tdome)
 "aQE" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -782,6 +809,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/valhalla)
+"aVa" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "aVk" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/sterile/white,
@@ -1004,6 +1037,7 @@
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "bcQ" = (
@@ -1375,6 +1409,12 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla)
+"bHZ" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "bIy" = (
 /obj/machinery/status_display,
 /turf/closed/wall/r_wall,
@@ -1824,12 +1864,22 @@
 	pixel_y = 1
 	},
 /obj/effect/ai_node,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -2;
+	pixel_y = 1
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "cre" = (
 /obj/machinery/marine_selector/gear/commander/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"crp" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "crv" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -2091,6 +2141,9 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/structure/table,
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "cGi" = (
@@ -2216,6 +2269,9 @@
 	pixel_x = 2
 	},
 /obj/effect/ai_node,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 2
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "cNB" = (
@@ -3721,6 +3777,15 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/neutral,
 /area/centcom/valhalla)
+"eSX" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "eTf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/tile/escape{
@@ -4049,6 +4114,14 @@
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
+"fsA" = (
+/obj/structure/rack/nometal,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/effect/spawner/random_set/christmas_costume,
+/turf/open/floor/plating,
+/area/tdome)
 "fti" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -4151,6 +4224,11 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
+"fCL" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "fCR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -4170,6 +4248,12 @@
 	},
 /turf/open/floor/tile/neutral/corner,
 /area/centcom/valhalla)
+"fFT" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "fHt" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 8
@@ -4606,6 +4690,10 @@
 	pixel_x = -4;
 	pixel_y = 5
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -4;
+	pixel_y = 5
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "gje" = (
@@ -5007,6 +5095,9 @@
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
 	pixel_y = 5
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "gJS" = (
@@ -5192,6 +5283,7 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/soup/milosoup,
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "hda" = (
@@ -5254,6 +5346,10 @@
 	pixel_x = 3
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -6772,6 +6868,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
+"jxM" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship,
+/area/tdome)
 "jxN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -6919,6 +7019,13 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"jGb" = (
+/obj/structure/rack/nometal,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "jGs" = (
 /obj/structure/table,
 /obj/item/reagent_containers/syringe{
@@ -7006,6 +7113,15 @@
 /obj/effect/landmark/itemspawner/highlander,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"jMD" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "jMW" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -7209,6 +7325,9 @@
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
 	pixel_y = 2
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 2
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "jZh" = (
@@ -7323,6 +7442,7 @@
 /area/centcom/valhalla)
 "keG" = (
 /obj/structure/table,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "keP" = (
@@ -7442,6 +7562,12 @@
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
+"kmH" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "knm" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/tile/dark/gray,
@@ -7559,6 +7685,22 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla)
+"ktL" = (
+/obj/item/a_gift/anything{
+	pixel_x = 3;
+	pixel_y = -6
+	},
+/obj/item/a_gift/anything{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/a_gift/anything{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/a_gift/anything,
+/turf/open/floor/podhatch/floor,
+/area/tdome)
 "kuq" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/closet/crate,
@@ -7741,6 +7883,12 @@
 /obj/effect/landmark/itemspawner/fakewizard,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
+"kJr" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "kJw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -7806,6 +7954,15 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating/ironsand,
 /area/centcom/valhalla/exterior)
+"kPp" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "kPK" = (
 /obj/structure/table,
 /obj/item/storage/box/gloves{
@@ -8074,6 +8231,10 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -2;
+	pixel_y = 7
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "lmF" = (
@@ -8117,6 +8278,9 @@
 	pixel_x = 14
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 2
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_y = 2
 	},
 /turf/open/floor/tile/cafe,
@@ -8357,6 +8521,15 @@
 /obj/item/flashlight,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"lMS" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "lMV" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -8415,6 +8588,9 @@
 	pixel_y = 1
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_y = 5
 	},
 /turf/open/floor/tile/cafe,
@@ -8507,6 +8683,15 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"lZb" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor,
+/area/tdome)
 "lZp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -9093,6 +9278,16 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"mUh" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor,
+/area/tdome)
 "mUA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -9485,6 +9680,10 @@
 	pixel_x = 1;
 	pixel_y = 3
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 1;
+	pixel_y = 3
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "ntE" = (
@@ -9786,6 +9985,17 @@
 /area/centcom/valhalla)
 "nQD" = (
 /obj/machinery/igniter,
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle/short{
+	pixel_y = -14
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -11
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -12;
+	pixel_y = -10
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -9861,6 +10071,10 @@
 /obj/effect/landmark/itemspawner/chicken,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"nXJ" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/closed/wall/mainship,
+/area/tdome)
 "nXO" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating,
@@ -10631,6 +10845,15 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
+"phj" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "phm" = (
 /obj/structure/morgue,
 /obj/effect/decal/cleanable/cobweb,
@@ -10876,6 +11099,12 @@
 /obj/effect/turf_decal/warning_stripes/mech,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"pHj" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "pIc" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/yellow{
@@ -11093,6 +11322,10 @@
 	pixel_x = 14
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -2;
 	pixel_y = 7
 	},
@@ -11518,6 +11751,7 @@
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/grimy,
 /area/centcom/valhalla)
 "qJT" = (
@@ -11666,6 +11900,10 @@
 /obj/item/reagent_containers/food/snacks/rofflewaffles,
 /obj/item/reagent_containers/food/snacks/soup/larvasoup,
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -11888,6 +12126,10 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "rfV" = (
@@ -11939,6 +12181,13 @@
 /obj/machinery/marine_selector/gear/smartgun/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"riA" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "rjI" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /obj/effect/turf_decal/tile/black,
@@ -12192,6 +12441,11 @@
 	dir = 8
 	},
 /area/centcom/valhalla)
+"rEj" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random_set/christmas_costume,
+/turf/open/floor/plating,
+/area/tdome)
 "rFk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -12655,6 +12909,10 @@
 	pixel_x = -4;
 	pixel_y = 3
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -4;
+	pixel_y = 3
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "soi" = (
@@ -12770,6 +13028,9 @@
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/cheesecake,
 /obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice,
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_y = 3
 	},
 /turf/open/floor/tile/cafe,
@@ -13135,6 +13396,7 @@
 	name = "Thunderdome Flash"
 	},
 /obj/machinery/camera/autoname/thunderdome/hidden,
+/obj/structure/flora/tree/pine/xmas/presents/unlimited,
 /turf/open/floor/podhatch/floor,
 /area/tdome)
 "sYY" = (
@@ -13207,6 +13469,29 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
+"tfC" = (
+/obj/machinery/igniter,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/item/prop/mainship/candle{
+	pixel_y = 3
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -12
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 3;
+	pixel_y = 18
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -13;
+	pixel_y = 14
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 4
+	},
+/area/tdome)
 "tfU" = (
 /obj/structure/extinguisher_cabinet,
 /obj/structure/closet/secure_closet/medical_doctor,
@@ -13635,6 +13920,19 @@
 /area/centcom/valhalla)
 "tFt" = (
 /obj/machinery/igniter,
+/obj/item/prop/mainship/candle,
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 13;
+	pixel_y = -2
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -13
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 16;
+	pixel_y = -15
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
@@ -13670,6 +13968,12 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"tMw" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/tdome)
 "tNc" = (
 /obj/structure/noticeboard{
 	dir = 4;
@@ -14150,6 +14454,10 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 3;
+	pixel_y = 2
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "uCL" = (
@@ -14237,6 +14545,12 @@
 	dir = 4
 	},
 /area/centcom/valhalla)
+"uKO" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "uOe" = (
 /obj/machinery/teleport/station,
 /obj/effect/turf_decal/tile/black{
@@ -14300,6 +14614,10 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -2;
+	pixel_y = 7
+	},
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "uSc" = (
@@ -14319,6 +14637,12 @@
 /obj/machinery/computer/pod,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"uSU" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor,
+/area/tdome)
 "uTH" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -14530,6 +14854,15 @@
 	},
 /turf/closed/wall,
 /area/centcom/valhalla)
+"vhG" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "viZ" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/mexican/taco,
@@ -14538,6 +14871,9 @@
 	pixel_x = -14
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_y = 4
 	},
 /turf/open/floor/tile/cafe,
@@ -14786,6 +15122,8 @@
 /area/centcom/valhalla)
 "vFf" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/white,
 /area/tdome/tdomeobserve)
 "vFG" = (
@@ -14960,6 +15298,12 @@
 /obj/item/tool/stamp/cmo,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"vMU" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/tdome)
 "vNx" = (
 /obj/machinery/button/valhalla/marine_button{
 	link = "xenotanksouth";
@@ -15258,6 +15602,9 @@
 	pixel_x = 14
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = -3
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3
 	},
 /turf/open/floor/tile/cafe,
@@ -15959,6 +16306,13 @@
 /obj/item/tool/crowbar/red,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla)
+"wWY" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor,
+/area/tdome)
 "wXW" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -16457,6 +16811,27 @@
 /obj/structure/bed/stool,
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
+"xJr" = (
+/obj/machinery/igniter,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/item/prop/mainship/candle{
+	pixel_x = 3
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 11
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 14
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/tdome)
 "xKl" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/storage/box/donkpockets,
@@ -16750,6 +17125,10 @@
 	pixel_x = 14
 	},
 /obj/effect/spawner/random/food_or_drink/sugary_snack{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 2;
 	pixel_y = 6
 	},
@@ -17523,14 +17902,14 @@ osF
 xrI
 xrI
 xrI
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
+jxM
+kJr
+kJr
+kJr
+kJr
+kJr
+kJr
+fFT
 lIC
 xrI
 xrI
@@ -17780,14 +18159,14 @@ lIC
 lIC
 lIC
 lIC
-lIC
+nXJ
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
+crp
 lIC
 xrI
 xrI
@@ -18035,18 +18414,18 @@ lof
 lof
 fLA
 fLA
-lIC
-lIC
-lIC
+jxM
+kJr
+pHj
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
-lIC
-lIC
+aVa
+kJr
+fFT
 lIC
 xrI
 xrI
@@ -18292,7 +18671,7 @@ dIY
 dIY
 dIY
 ubt
-lIC
+nXJ
 meN
 xtI
 gBi
@@ -18303,7 +18682,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -18549,7 +18928,7 @@ dIY
 dIY
 dIY
 vhr
-lIC
+nXJ
 meN
 xtI
 gBi
@@ -18560,7 +18939,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+fsA
 lIC
 xrI
 xrI
@@ -18806,8 +19185,8 @@ dIY
 dIY
 dIY
 vhr
-lIC
-meN
+nXJ
+rEj
 xtI
 gBi
 gBi
@@ -18817,7 +19196,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -19063,7 +19442,7 @@ dIY
 dIY
 dIY
 dIY
-mzc
+aEz
 meN
 xtI
 gBi
@@ -19074,7 +19453,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -19320,7 +19699,7 @@ lIC
 qUt
 rMb
 dIY
-lIC
+nXJ
 meN
 xtI
 gBi
@@ -19331,7 +19710,7 @@ gBi
 gBi
 gBi
 xtI
-meN
+jGb
 lIC
 xrI
 osF
@@ -19577,9 +19956,9 @@ lIC
 uaI
 uaI
 vFf
-lIC
-lIC
-lIC
+kmH
+riA
+jMD
 hGe
 hGe
 hGe
@@ -19587,8 +19966,8 @@ hGe
 hGe
 hGe
 hGe
-lIC
-lIC
+aLt
+bHZ
 lIC
 lIC
 lIC
@@ -19835,7 +20214,7 @@ aJX
 wrn
 wrn
 wrn
-mJp
+lZb
 tFt
 pBq
 pBq
@@ -19844,7 +20223,7 @@ dDv
 pBq
 pBq
 pBq
-tFt
+xJr
 mJp
 uUF
 kMT
@@ -20092,7 +20471,7 @@ nOQ
 qpT
 wrn
 qpT
-mJp
+lZb
 oHd
 oHd
 lyt
@@ -20349,7 +20728,7 @@ ped
 aDr
 iZT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -20358,7 +20737,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 kaA
@@ -20606,7 +20985,7 @@ ykJ
 aDr
 gxT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -20615,7 +20994,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 cFt
@@ -20854,16 +21233,16 @@ xrI
 xrI
 lIC
 ibs
-tsg
-tsg
-tsg
+fCL
+kPp
+eSX
 tsg
 mzc
 qvl
 aDr
 iZT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -20872,7 +21251,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 kaA
@@ -21377,12 +21756,12 @@ vuf
 wrn
 wrn
 wrn
-mJp
+lZb
 oHd
 oHd
 vef
 tGL
-tGL
+ktL
 tGL
 daE
 oHd
@@ -21634,7 +22013,7 @@ wrn
 wrn
 wrn
 qsK
-mJp
+lZb
 oHd
 oHd
 vef
@@ -21643,7 +22022,7 @@ sYL
 tGL
 daE
 oHd
-oHd
+uSU
 mJp
 beG
 kMT
@@ -21891,12 +22270,12 @@ wrn
 wrn
 wrn
 wrn
-mJp
+lZb
 oHd
 oHd
 vef
 tGL
-tGL
+aPX
 tGL
 daE
 oHd
@@ -22405,7 +22784,7 @@ wrn
 aDr
 iZT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -22414,7 +22793,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 kaA
@@ -22662,7 +23041,7 @@ wrn
 aDr
 gxT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -22671,7 +23050,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 cFt
@@ -22919,7 +23298,7 @@ wrn
 aDr
 iZT
 aDr
-mJp
+lZb
 oHd
 oHd
 oHd
@@ -22928,7 +23307,7 @@ oHd
 oHd
 oHd
 oHd
-oHd
+uSU
 mJp
 eLQ
 kaA
@@ -23176,7 +23555,7 @@ wRc
 sEd
 wrn
 vBB
-fOQ
+mUh
 dNn
 dNn
 dzs
@@ -23433,7 +23812,7 @@ rxq
 tpZ
 uez
 jla
-mJp
+lZb
 nQD
 slv
 slv
@@ -23442,7 +23821,7 @@ evE
 slv
 slv
 slv
-nQD
+tfC
 mJp
 kMT
 kMT
@@ -23689,9 +24068,9 @@ lIC
 lIC
 lIC
 lIC
-lIC
-lIC
-lIC
+jxM
+vhG
+phj
 bZu
 bZu
 bZu
@@ -23699,8 +24078,8 @@ bZu
 bZu
 bZu
 bZu
-lIC
-lIC
+lMS
+fFT
 lIC
 lIC
 lIC
@@ -23946,7 +24325,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+nXJ
 meN
 xtI
 uwK
@@ -23957,7 +24336,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -24203,7 +24582,7 @@ xrI
 xrI
 xrI
 xrI
-mzc
+aEz
 meN
 xtI
 uwK
@@ -24214,7 +24593,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+fsA
 lIC
 xrI
 xrI
@@ -24460,7 +24839,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+nXJ
 meN
 xtI
 uwK
@@ -24471,7 +24850,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -24717,8 +25096,8 @@ xrI
 xrI
 xrI
 xrI
-lIC
-meN
+nXJ
+rEj
 xtI
 uwK
 uwK
@@ -24728,7 +25107,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+jGb
 lIC
 xrI
 xrI
@@ -24974,7 +25353,7 @@ xrI
 xrI
 xrI
 xrI
-lIC
+nXJ
 meN
 xtI
 uwK
@@ -24985,7 +25364,7 @@ uwK
 uwK
 uwK
 xtI
-meN
+fsA
 lIC
 xrI
 xrI
@@ -25231,18 +25610,18 @@ xrI
 wQi
 xrI
 xrI
-lIC
-lIC
-lIC
+kmH
+vMU
+uKO
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
-lIC
-lIC
+tMw
+bHZ
+bHZ
 lIC
 xrI
 xrI
@@ -25490,14 +25869,14 @@ xrI
 xrI
 xrI
 xrI
-lIC
+nXJ
 xtI
 xtI
 xtI
 xtI
 xtI
 xtI
-xtI
+crp
 lIC
 xrI
 xrI
@@ -25747,14 +26126,14 @@ xrI
 xrI
 xrI
 xrI
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
-lIC
+kmH
+vMU
+vMU
+vMU
+vMU
+vMU
+vMU
+bHZ
 lIC
 xrI
 xrI

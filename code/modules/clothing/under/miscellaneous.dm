@@ -370,8 +370,8 @@
 /obj/item/clothing/under/spec_operative
 	name = "Special Operations Uniform"
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
-	icon_state = "pilot_spec"
-	worn_icon_state = "pilot_spec"
+	icon_state = "scrubsgreen"
+	worn_icon_state = "scrubsgreen"
 	resistance_flags = UNACIDABLE
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
@@ -381,6 +381,9 @@
 	slowdown= -1
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+
+/obj/item/clothing/under/spec_operative/elf
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 15, ACID = 10)
 
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"

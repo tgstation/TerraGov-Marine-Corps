@@ -733,6 +733,48 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
+/datum/skills/santaclause
+	name = "Santa Claus"
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	combat = SKILL_COMBAT_TRAINED
+	smartgun = SKILL_SMART_MASTER
+	medical = SKILL_MEDICAL_PRACTICED
+	unarmed = SKILL_UNARMED_MASTER
+	surgery = SKILL_SURGERY_TRAINED
+	melee_weapons = SKILL_MELEE_SUPER
+	leadership = SKILL_LEAD_MASTER
+	pilot = SKILL_PILOT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/grinch
+	name = "The Grinch"
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	combat = SKILL_COMBAT_UNTRAINED
+	smartgun = SKILL_SMART_DEFAULT
+	medical = SKILL_MEDICAL_MASTER
+	unarmed = SKILL_UNARMED_MASTER
+	surgery = SKILL_SURGERY_MASTER
+	melee_weapons = SKILL_MELEE_SUPER
+	leadership = SKILL_LEAD_MASTER
+	pilot = SKILL_PILOT_TRAINED
+
+/datum/skills/elf
+	name = "Elf"
+	unarmed = SKILL_UNARMED_WEAK
+	melee_weapons = SKILL_MELEE_TRAINED
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_AMATEUR
+	pistols = SKILL_PISTOLS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+
 /*======  I.o.M.  ======*/
 
 /datum/skills/imperial

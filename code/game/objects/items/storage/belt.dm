@@ -344,6 +344,49 @@
 	worn_icon_state = "swatbelt"
 	storage_type = /datum/storage/belt/security/tactical
 
+/obj/item/storage/belt/security/full/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/flashbang(src)
+	new /obj/item/explosive/grenade/chem_grenade/teargas(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/flash(src)
+	new /obj/item/clothing/glasses(src)
+	new /obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit(src)
+	new /obj/item/weapon/baton(src)
+	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/tool/lighter/zippo(src)
+	new /obj/item/storage/fancy/cigarettes(src)
+	new /obj/item/flashlight(src)
+	new /obj/item/tool/taperoll/police(src)
+
+/obj/item/storage/belt/coalbelt
+	name = "\improper C-H0H0 Christmas coal rig"
+	desc = "The H0H0 is the standard load-bearing equipment of the Santa Claus. It consists of a large number of pockets that Santa traditionally fills with coal for hitting people who slow down his deliveries."
+	icon_state = "securitybelt"
+	worn_icon_state = "security"
+
+/obj/item/storage/belt/coalbelt/full/Initialize()
+	. = ..()
+	storage_datum.storage_slots = 10
+	storage_datum.max_storage_space = 21
+	storage_datum.max_w_class = 3
+	storage_datum.can_hold = list(
+		/obj/item/stack/throwing_knife/coal,
+	)
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+	new /obj/item/stack/throwing_knife/coal(src)
+
 /obj/item/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."

@@ -23,6 +23,10 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/closed/wall,
 /area/deathmatch)
+"dp" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/grime,
+/area/deathmatch)
 "dA" = (
 /obj/item/storage/belt/champion,
 /turf/open/floor/grime,
@@ -1441,7 +1445,7 @@ XY
 db
 zB
 JT
-JT
+dp
 dA
 JT
 JT

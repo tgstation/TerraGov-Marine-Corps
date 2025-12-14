@@ -31,6 +31,9 @@
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		balloon_alert(user, "against your programming!")
 		return TRUE
+	if(HAS_TRAIT(activator, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Can't wear this")
+		return
 	if(user.alpha != 255)
 		balloon_alert(user, "disable your cloak!")
 		return TRUE

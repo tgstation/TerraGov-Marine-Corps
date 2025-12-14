@@ -131,6 +131,10 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/howitzer_shells_fired = 0
 	var/rocket_shells_fired = 0
 	var/obs_fired = 0
+	var/number_of_grinches = 0
+	var/presents_grinched = 0
+	var/presents_delivered = 0
+	var/santa_presents_delivered = 0
 	var/sandevistan_uses = 0
 	var/sandevistan_gibs = 0
 	var/req_items_produced = list()

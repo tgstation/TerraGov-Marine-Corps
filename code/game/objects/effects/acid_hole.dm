@@ -140,6 +140,10 @@
 			to_chat(user, span_warning("Your programming prevents you from doing this."))
 			return
 
+		if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && G.dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your programming prevents you from doing this."))
+			return
+
 		if(!T || T.density)
 			to_chat(user, span_warning("This hole leads nowhere!"))
 			return

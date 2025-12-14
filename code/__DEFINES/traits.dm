@@ -266,6 +266,13 @@
 ///massively decreases human MANUAL get up time
 #define TRAIT_QUICK_GETUP "quick_getup"
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
+#define TRAIT_MUTED "muted" //target is mute and can't speak
+#define TRAIT_CHRISTMAS_GRINCH "christmas_grinch" //target has opened presents that don't belong to them
+#define TRAIT_ACTUAL_CHRISTMAS_GRINCH "christmas_grinch_actual" //target is quite literally the grinch
+#define TRAIT_SANTA_CLAUS "santa_claus" //target is santa claus
+#define TRAIT_CHRISTMAS_ELF "christmas_elf" //target is a christmas elf
+#define TRAIT_TELEPORTED_ACROSS_ZLEVELS "santa_medevac" //target is a christmas elf
+#define TRAIT_TOOK_COAL "taken coal" //target took coal from christmas tr
 #define TRAIT_MUTE "mute" //target is mute and can't speak, not to be confused with being muted by an admin
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 ///The target xenomorph's wound overlays won't be visible
