@@ -175,3 +175,26 @@
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
+
+/obj/item/weapon/twohanded/dualsaber
+	name = "double-bladed energy sword"
+	desc = "Handle with care."
+	icon = 'icons/obj/items/weapons/energy.dmi'
+	icon_state = "dualsaber"
+	worn_icon_state = "dualsaber"
+	force = 3
+	throwforce = 5
+	throw_speed = 1
+	throw_range = 5
+	w_class = WEIGHT_CLASS_SMALL
+	force_activated = 150
+	wieldsound = 'sound/weapons/saberon.ogg'
+	unwieldsound = 'sound/weapons/saberoff.ogg'
+	atom_flags = NOBLOODY
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
+	sharp = IS_SHARP_ITEM_BIG
+	edge = 1
+
+/obj/item/weapon/twohanded/dualsaber/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)

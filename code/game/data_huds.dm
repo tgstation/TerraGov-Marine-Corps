@@ -619,10 +619,12 @@
 /datum/atom_hud/squad_icc
 	hud_icons = list(SQUAD_HUD_ICC, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
-/mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
+/mob/proc/hud_set_job(faction)
 	return
 
-/mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
+/mob/living/carbon/human/hud_set_job(faction)
+	if(!faction)
+		faction = src.faction
 	var/hud_type = GLOB.faction_to_squad_hud[faction]
 	if(!hud_type)
 		return

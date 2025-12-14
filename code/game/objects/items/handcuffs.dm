@@ -57,6 +57,7 @@
 	breakouttime = 1 MINUTES
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_delay = 2 SECONDS
+	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/restraints/handcuffs/zip/place_handcuffs(mob/living/carbon/target, mob/user)
@@ -73,6 +74,7 @@
 	icon_state = "cuff_white"
 	breakouttime = 30 SECONDS
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/restraints/handcuffs/cable/red
 	color = "#DD0000"

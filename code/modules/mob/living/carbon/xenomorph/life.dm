@@ -200,7 +200,6 @@
 	if(!. || QDELING(src)) // For godmode / if they got gibbed via update_stat.
 		return
 	med_hud_set_health() // Todo: Make all damage update health so we can just kill pointless life updates entirely.
-	update_wounds()
 
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)

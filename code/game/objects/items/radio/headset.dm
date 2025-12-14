@@ -478,6 +478,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
+	///Is designated as the squad leader, ensures correct radio channels
+	var/squad_leader = FALSE
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
@@ -500,6 +502,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			keyslot2 = /obj/item/encryptionkey/med
 		name = dat + " radio headset"
 	return ..()
+
+/obj/item/radio/headset/mainship/marine/recalculateChannels()
+	. = ..()
+	if(squad_leader)
+		channels[RADIO_CHANNEL_COMMAND] = TRUE
+		secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(src, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 
 /obj/item/radio/headset/mainship/marine/alpha
 	name = "marine alpha radio headset"

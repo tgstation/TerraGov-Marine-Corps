@@ -6,19 +6,22 @@
 	invisibility = 0
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE
 	spawntypes = list(
-		/mob/living/carbon/human/species/zombie/ai/patrol = 100,
-		/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
-		/mob/living/carbon/human/species/zombie/ai/tank/patrol = 4,
-		/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 2,
-		/mob/living/carbon/human/species/zombie/ai/strong/patrol = 2,
+		list(/mob/living/carbon/human/species/zombie/ai/patrol = 85,
+			/mob/living/carbon/human/species/zombie/ai/fast/patrol = 15,
+		) = 95,
+		list(/mob/living/carbon/human/species/zombie/ai/tank/patrol = 2,
+			/mob/living/carbon/human/species/zombie/ai/smoker/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/hunter/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/boomer/patrol = 1,
+			/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
+		) = 5,
 	)
 	spawnamount = 2
 	spawndelay = 15 SECONDS
 	maxamount = 50
+	///Currently is considered under threat
 	var/threat_warning = FALSE
-
+	///proxy sensor holder
 	var/datum/proximity_monitor/proximity_monitor
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
 	COOLDOWN_DECLARE(defender_spawn_cooldown)
@@ -48,8 +51,10 @@
 ///Called by a proximity alert, spawns defenders when a threat is detected
 /obj/effect/ai_node/spawner/zombie/proc/spawn_defenders()
 	for(var/i in 1 to ZOMBIE_DEFENDER_AMOUNT)
-		var/spawntype = pickweight(spawntypes)
-		new spawntype(loc)
+		var/spawn_type = pickweight(spawntypes)
+		if(islist(spawn_type)) //for nested spawn options
+			spawn_type = pickweight(spawn_type)
+		new spawn_type(loc)
 
 /obj/effect/ai_node/spawner/zombie/HasProximity(atom/movable/hostile)
 	if(iszombie(hostile))

@@ -11520,7 +11520,7 @@
 /area/metnal/inside/executivedorms)
 "hOT" = (
 /obj/structure/bed/bunkbed,
-/obj/item/tool/kitchen/knife/shiv/plasma,
+/obj/item/weapon/shiv/plasma,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "hPo" = (

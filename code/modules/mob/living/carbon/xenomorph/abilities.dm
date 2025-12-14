@@ -1342,7 +1342,6 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	cooldown_duration = 30 SECONDS
 	use_state_flags = ABILITY_USE_STAGGERED
 	ability_cost = 50
-	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,

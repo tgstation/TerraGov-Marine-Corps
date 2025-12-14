@@ -103,5 +103,14 @@
   - balance: Moonbeam tranq rounds inject people with 9-12u of soporific instead of
       5-8u.
   Lumipharon:
+  - balance: removed special resin wall types
+  mudzbe:
+  - balance: Reduced zombie limb regrow speed
+2025-12-11:
+  mudzbe:
+  - rscadd: Razorwire now hurts zombies
+  - bugfix: Zombies can unbuckle themselves
+2025-12-14:
+  Lumipharon:
   - bugfix: fixed limbs losing armour on species change
   - code_imp: Cleaned up some limb and organ code
