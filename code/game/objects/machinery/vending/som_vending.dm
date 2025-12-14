@@ -46,6 +46,8 @@
 			/obj/item/cell/lasgun/volkite/small = -1,
 			/obj/item/cell/lasgun/volkite = -1,
 			/obj/item/cell/lasgun/lasrifle = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
