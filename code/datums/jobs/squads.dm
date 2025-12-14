@@ -457,7 +457,6 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	var/squad_faction = creator.faction
 	var/datum/squad/new_squad = new(squad_color, squad_name)
 	new_squad.id = new_id
-	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	new_squad.radio_freq = freq
 	GLOB.custom_squad_radio_freqs["[freq]"] = new_squad
 	var/radio_channel_name = new_squad.name
@@ -481,6 +480,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	GLOB.channel_tokens[radio_channel_name] = ":[key_prefix]"
 
 	if(new_squad.faction == FACTION_TERRAGOV)
+		new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
 		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]

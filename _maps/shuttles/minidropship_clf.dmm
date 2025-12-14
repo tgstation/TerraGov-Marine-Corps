@@ -44,7 +44,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "j" = (
-/obj/item/weapon/gun/sentry/ads_system/premade,
+/obj/item/weapon/gun/sentry/ads_system/premade{
+	faction = "Colonial Liberation Force"
+	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "k" = (

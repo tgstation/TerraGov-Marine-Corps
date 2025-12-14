@@ -174,7 +174,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "F" = (
-/obj/item/weapon/gun/sentry/ads_system/premade,
+/obj/item/weapon/gun/sentry/ads_system/premade{
+	faction = "Sons of Mars"
+	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "I" = (
