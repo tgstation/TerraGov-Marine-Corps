@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Move silo back in the crashed syndicate shuttle on icy caves"
