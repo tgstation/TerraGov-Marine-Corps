@@ -1,6 +1,0 @@
-author: "Colfer1"
-delete-after: True
-changes:
-  - qol: "devour is no longer flavored as vore."
-  - bugfix: "psychic cure now works on dead people, technically xenomorphs too but they're not coming back"
-  - soundadd: "robots/synths have a ton of new emotes now, beep1, 2, 3, terminate, online, offline, mechascream, critical, damaged, whirr"

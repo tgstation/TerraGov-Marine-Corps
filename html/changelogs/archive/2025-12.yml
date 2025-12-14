@@ -87,3 +87,21 @@
 2025-12-13:
   Colfer1:
   - rscadd: Adds regular robot synths, like combat robots, without the combat
+2025-12-14:
+  Colfer1:
+  - qol: devour is no longer flavored as vore.
+  - bugfix: psychic cure now works on dead people, technically xenomorphs too but
+      they're not coming back
+  - soundadd: robots/synths have a ton of new emotes now, beep1, 2, 3, terminate,
+      online, offline, mechascream, critical, damaged, whirr
+  DrCrawler:
+  - qol: Halved the *trick emote cooldown, letting people pull off their revolver
+      and knife tricks smoother
+  - balance: Buffed dragoon damage and penetration, made standard ammo slightly more
+      expensive.
+  - balance: Soporific now kicks in a little faster.
+  - balance: Moonbeam tranq rounds inject people with 9-12u of soporific instead of
+      5-8u.
+  Lumipharon:
+  - bugfix: fixed limbs losing armour on species change
+  - code_imp: Cleaned up some limb and organ code
