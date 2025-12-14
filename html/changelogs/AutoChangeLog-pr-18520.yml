@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Command radio access from ASL is no longer lost when unequipping or swapping radio keys"

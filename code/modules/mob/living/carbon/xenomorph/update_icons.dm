@@ -106,6 +106,8 @@
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	if(QDELETED(src) || !wound_overlay)
 		return
+	if(status_flags & GODMODE)
+		return //we'll incorrectly lose any wound overlays due to how godmode sets your 'health'
 
 	remove_overlay(WOUND_LAYER)
 	remove_filter("wounded_filter")

@@ -1231,7 +1231,7 @@
 /area/daedalusprison/inside/lobby)
 "baV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/tool/kitchen/knife/shiv,
+/obj/item/weapon/shiv,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/habitationnorth)
 "bbm" = (
@@ -17711,7 +17711,7 @@
 	},
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife/shiv,
+/obj/item/weapon/shiv,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -20349,7 +20349,7 @@
 /area/daedalusprison/inside/engineering)
 "quy" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/tool/kitchen/knife/shiv,
+/obj/item/weapon/shiv,
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
