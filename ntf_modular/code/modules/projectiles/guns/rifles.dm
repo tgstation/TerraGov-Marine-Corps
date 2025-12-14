@@ -157,7 +157,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/foldable/bipod,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -181,19 +180,21 @@
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST,  GUN_FIREMODE_SEMIAUTO)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC) //no twink ass firemodes, like god intended
 	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 19,"rail_x" = 25, "rail_y" = 23, "under_x" = 35, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	fire_delay = 0.2 SECONDS
-	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
+	fire_delay = 0.15 SECONDS
+	burst_amount = 1
+	burst_delay = 0.10 SECONDS
+	accuracy_mult = 1
 	wield_delay = 0.7 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
-	aim_slowdown = 0.3
-	aim_speed_modifier = 2.5
-	scatter = -1
+	aim_slowdown = 0.4
 	akimbo_scatter_mod = 24
 	akimbo_additional_delay = 0.8
+	aim_speed_modifier = 3
+	scatter = 0
+	scatter_unwielded = 18
+	accuracy_mult_unwielded = 0.8
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb
 	name = "\improper NT 'Halter-CQB' carbine"
@@ -202,26 +203,24 @@
 	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 23, "under_x" = 29, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	icon_state = "haltercqb"
 	worn_icon_state = "haltercqb"
-	fire_delay = 0.15 SECONDS
-	burst_delay = 0.10 SECONDS
-	scatter_unwielded = 12
-	aim_slowdown = 0.2
+	fire_delay = 0.125 SECONDS
+	aim_speed_modifier = 2.5
+	aim_slowdown = 0.3
 	scatter = 9
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.65
-	wield_delay = 0.5 SECONDS
-	damage_falloff_mult = 0.7
+	accuracy_mult = 0.9
+	scatter_unwielded = 14
+	wield_delay = 0.4 SECONDS
+	damage_falloff_mult = 0.8
+	akimbo_additional_delay = 1.5
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb/elite
 	name = "\improper NT 'Halter-CQB-E' carbine"
-	desc = "A custom variant of Halter series though not obvious from the outside, Chambered in 7.62x38mm. This one is retrofitted with custom, expensive materials and modifications that allow it to be more accurate and shoot at more devastating velocities despite it's size and lightness."
-	accuracy_mult = 1.10
+	desc = "A custom variant of Halter series though not obvious from the outside, Chambered in 7.62x38mm. This one is retrofitted with custom, expensive materials and modifications that allow it to be more accurate with longer effective range yet be even lighter."
+	accuracy_mult = 1
 	scatter = 7
-	damage_mult = 1.1
-	accuracy_mult_unwielded = 0.7
-	scatter_unwielded = 10
-	wield_delay = 0.4 SECONDS
-	damage_falloff_mult = 0.65
+	aim_speed_modifier = 2
+	wield_delay = 0.3 SECONDS
+	damage_falloff_mult = 0.7
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
