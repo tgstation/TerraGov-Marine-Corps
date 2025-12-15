@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(ai_witnessing_death_lines, list(
 		DEATH_LINES_SOLDIER_ANGRY,
 	),
 ))
+
 /// Lines when witnessing *anyone* get gibbed
 GLOBAL_LIST_INIT(ai_witnessing_gibbing_lines, list(
 	FACTION_NEUTRAL = list(
