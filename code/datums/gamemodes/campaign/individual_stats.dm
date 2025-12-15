@@ -58,7 +58,8 @@
 	currency += amount
 	if(!current_mob)
 		return
-	to_chat(current_mob, span_warning("You have received a cash bonus of [amount]."))
+	to_chat(current_mob, span_warning("(N-UI) Transaction: +[amount] credits."))
+	current_mob.playsound_local(current_mob, 'sound/effects/perk_unlock.ogg', 60)
 
 ///uses some funtokens, returns the amount missing, if insufficient funds
 /datum/individual_stats/proc/use_funds(amount)

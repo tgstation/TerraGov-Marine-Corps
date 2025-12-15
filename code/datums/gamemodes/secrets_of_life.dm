@@ -119,6 +119,16 @@
 	var/list/datum/faction_stats/stat_list = list()
 	var/list/datum/job/stat_restricted_jobs = list(/datum/job/survivor/prisoner,/datum/job/other/prisoner,/datum/job/other/prisonersom,/datum/job/other/prisonerclf)
 
+/datum/game_mode/infestation/extended_plus/secret_of_life/post_setup()
+	. = ..()
+	addtimer(CALLBACK(src), PROC_REF(give_wages), 15 MINUTES)
+
+/datum/game_mode/infestation/extended_plus/secret_of_life/proc/give_wages()
+	for(var/i in individual_stat_list)
+		var/datum/individual_stats/player_stats = individual_stat_list[i]
+		player_stats.give_funds(250)
+	addtimer(CALLBACK(src), PROC_REF(give_wages), 15 MINUTES)
+
 /datum/game_mode/infestation/extended_plus/secret_of_life/pre_setup()
 	. = ..()
 	for(var/faction in human_factions)

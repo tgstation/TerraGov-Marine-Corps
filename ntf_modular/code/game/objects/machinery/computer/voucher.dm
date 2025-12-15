@@ -65,9 +65,7 @@
 		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
 		if(gaymode)
 			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
-			the_stats.give_funds(round(le_disk.dropship_reward/5))
-			to_chat(user, span_notice("(N-UI) Transaction: +[round(le_disk.dropship_reward/5)] credits."))
-			user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
+			the_stats.give_funds(round(le_disk.dropship_reward/3))
 		qdel(I)
 		return TRUE
 	if(istype(I, /obj/item/card/credstick))
@@ -76,8 +74,6 @@
 		if(gaymode && cstick.worth)
 			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
 			the_stats.give_funds(cstick.worth)
-			to_chat(user, span_notice("(N-UI) Transaction: +[cstick.worth] credits."))
-			user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 		qdel(I)
 		return TRUE
 
