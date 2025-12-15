@@ -9,6 +9,11 @@
 	initiate_screen_message = "Rockets hot, incoming!"
 
 /datum/fire_support/rockets/do_impact(turf/target_turf)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		if(ads.try_intercept(target_turf, src, 0.2, 3))
+			return
 	explosion(target_turf, 0, 2, 4, 6, 2, explosion_cause=name)
 
 /datum/fire_support/rockets/unlimited
@@ -29,4 +34,9 @@
 	uses = 2
 
 /datum/fire_support/incendiary_rockets/do_impact(turf/target_turf)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		if(ads.try_intercept(target_turf, src, 0.1, 3))
+			return
 	explosion(target_turf, weak_impact_range = 4, flame_range = 4, throw_range = 2, explosion_cause=name)

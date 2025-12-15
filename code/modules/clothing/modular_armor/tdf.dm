@@ -2,7 +2,7 @@
 
 /obj/item/clothing/suit/modular/tdf
 	name = "\improper Knight class medium armor"
-	desc = "The Knight medium combat armor is the standard issue armor given to TDF infantry. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "The Knight medium combat armor is the standard issue armor given to NTF infantry. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = MARINE_ARMOR_MEDIUM
 	icon = 'icons/mob/modular/tdf_armor.dmi'
 	worn_icon_list = list(
@@ -116,7 +116,7 @@
 
 /obj/item/clothing/suit/modular/tdf/light
 	name = "\improper Pawn class light armor"
-	desc = "The Pawn light combat armor is the standard issue armor given to TDF recon units and assault units for their mobility. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "The Pawn light combat armor is the standard issue armor given to NTF recon units and assault units for their mobility. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = MARINE_ARMOR_LIGHT
 	icon_state = "tdf_light"
 	worn_icon_state = "tdf_light"
@@ -246,7 +246,7 @@
 
 /obj/item/clothing/suit/modular/tdf/robot
 	name = "\improper Clubs class heavy chassis"
-	desc = "Heavy armor plating designed for self mounting on TDF combat robotics. It has self-sealing bolts for mounting on robotic owners inside. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "Heavy armor plating designed for self mounting on NTF combat robotics. It has self-sealing bolts for mounting on robotic owners inside. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	species_exception = list(/datum/species/robot)
 	icon_state = "tdf_robot"
 	worn_icon_state = "tdf_robot"
@@ -276,7 +276,7 @@
 
 /obj/item/clothing/head/modular/tdf
 	name = "\improper Pawn Class Helmet"
-	desc = "The standard combat helmet worn by TDF combat troops. Comes with an integrated hud and AR to provide situational awareness to the wearer."
+	desc = "The standard combat helmet worn by NTF combat troops. Comes with an integrated hud and AR to provide situational awareness to the wearer."
 	icon = 'icons/mob/modular/tdf_helmets.dmi'
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/modular/tdf_helmets.dmi',
@@ -348,14 +348,14 @@
 
 /obj/item/clothing/head/modular/tdf/pyro
 	name = "\improper Jester Class Helmet"
-	desc = "A bulky helmet with an integrated gas mask and a 'Surt' armor module for fireproofing, fielded to TDF flamethrower operators."
+	desc = "A bulky helmet with an integrated gas mask and a 'Surt' armor module for fireproofing, fielded to NTF flamethrower operators."
 	icon_state = "tdf_helmet_pyro"
 	worn_icon_state = "tdf_helmet_pyro"
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 100, ACID = 50)
 
 /obj/item/clothing/head/modular/tdf/leader
 	name = "\improper Queen Class Helmet"
-	desc = "A helmet with additional protection and comfort, designed for TDF squad leaders and other command units."
+	desc = "A helmet with additional protection and comfort, designed for NTF squad leaders and other command units."
 	icon_state = "tdf_helmet_leader"
 	worn_icon_state = "tdf_helmet_leader"
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
@@ -392,7 +392,7 @@
 
 /obj/item/clothing/head/modular/tdf/robot
 	name = "\improper Clubs Class Helmet"
-	desc = "Heavy armor plating designed for self mounting on the upper half of TDF combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	desc = "Heavy armor plating designed for self mounting on the upper half of NTF combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	species_exception = list(/datum/species/robot)
 	icon_state = "tdf_helmet_robot"
 	worn_icon_state = "tdf_helmet_robot"

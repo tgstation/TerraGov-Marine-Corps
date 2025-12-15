@@ -13,6 +13,10 @@
 	l_pocket = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
+/datum/outfit/job/command/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/binoculars/fire_support/extended, SLOT_IN_R_POUCH)
+
 /datum/outfit/job/command/captain/robot
 	species = list(SPECIES_COMBAT_ROBOT)
 
@@ -22,6 +26,8 @@
 	head = /obj/item/clothing/head/beret/marine/captain
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/leadership
+
+
 
 /datum/outfit/job/command/captain_campaign
 	name = CAPTAIN
@@ -44,6 +50,10 @@
 	r_pocket = /obj/item/storage/pouch/general/large/command
 	l_pocket = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/fieldcommander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/binoculars/fire_support/extended, SLOT_IN_R_POUCH)
 
 /datum/outfit/job/command/fieldcommander/robot
 	species = list(SPECIES_COMBAT_ROBOT)
@@ -78,6 +88,9 @@
 	r_pocket = /obj/item/storage/pouch/general/large
 	l_pocket = /obj/item/binoculars/tactical
 
+/datum/outfit/job/command/staffofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/binoculars/fire_support/extended/sl, SLOT_IN_R_POUCH)
 
 /datum/outfit/job/command/staffofficer/robot
 	species = list(SPECIES_COMBAT_ROBOT)

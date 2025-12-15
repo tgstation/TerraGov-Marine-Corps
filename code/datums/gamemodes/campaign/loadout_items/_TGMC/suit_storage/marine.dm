@@ -15,7 +15,7 @@
 	It does not particularly excel in any area however, and so is overshadowed by other weapons at particular tasks. It uses 10x24mm caseless ammunition."
 	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
@@ -775,7 +775,7 @@
 	The defensive shield provides incredible resilience, allowing the user to soak up tremendous amounts of damage while they or their team mates push the enemy."
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/machete/full_alt
-	jobs_supported = list(SQUAD_MARINE)
+	jobs_supported = list(SQUAD_MARINE, VANGUARD, SQUAD_SPECIALIST)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/suit_store/machete_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)

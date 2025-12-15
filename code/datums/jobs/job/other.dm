@@ -197,7 +197,7 @@
 	supervisors = "Ninetails Corp"
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/slut
+	skills_type = /datum/skills/civilian/mo
 	total_positions = -1
 	selection_color = "#ef0cf7"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST

@@ -12,8 +12,8 @@
 
 #define PHORON_CRATE_SELL_AMOUNT 25
 #define PLATINUM_CRATE_SELL_AMOUNT 75
-#define PHORON_DROPSHIP_BONUS_AMOUNT 15
-#define PLATINUM_DROPSHIP_BONUS_AMOUNT 25
+#define PHORON_DROPSHIP_BONUS_AMOUNT 25
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 75
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Ninetails phoron Mining Well"
@@ -315,6 +315,12 @@
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
+	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	if(gaymode)
+		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats.give_funds(round((dropship_bonus * stored_mineral)/4))
+		to_chat(user, span_notice("(N-UI) Transaction: +[round((dropship_bonus * stored_mineral)/4)] credits."))
+		user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 	stored_mineral = 0
 	start_processing()
 

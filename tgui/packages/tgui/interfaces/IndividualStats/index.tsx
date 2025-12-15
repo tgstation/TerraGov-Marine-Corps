@@ -13,7 +13,7 @@ import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';
 
 const TAB_LOADOUT = 'Loadout';
-const TAB_PERKS = 'Perks';
+const TAB_PERKS = 'Skillsofts';
 
 const CampaignTabs = [TAB_LOADOUT, TAB_PERKS];
 
@@ -73,10 +73,6 @@ export const IndividualStats = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
     'selectedTab',
     TAB_LOADOUT,
-  );
-  const [selectedJob, setSelectedJob] = useLocalState(
-    'selectedJob',
-    data.current_job ? data.current_job : data.jobs[0],
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
@@ -207,26 +203,6 @@ export const IndividualStats = (props) => {
             </Section>
           </Modal>
         ) : null}
-        <Tabs fluid>
-          {data.jobs.map((jobname) => {
-            return (
-              <Tabs.Tab
-                key={jobname}
-                selected={jobname === selectedJob}
-                fontSize="130%"
-                textAlign="center"
-                onClick={() => {
-                  act('set_selected_job', {
-                    new_selected_job: jobname,
-                  });
-                  setSelectedJob(jobname);
-                }}
-              >
-                {jobname}
-              </Tabs.Tab>
-            );
-          })}
-        </Tabs>
         <Stack fontSize="150%">
           <LabeledList>
             <LabeledList.Item label={'Credits'}>

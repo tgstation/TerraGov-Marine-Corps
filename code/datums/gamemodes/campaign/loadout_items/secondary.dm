@@ -42,25 +42,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	req_desc = null
 	item_whitelist = null
-	jobs_supported = list(
-		SQUAD_MARINE,
-		SQUAD_CORPSMAN,
-		SQUAD_ENGINEER,
-		SQUAD_SMARTGUNNER,
-		SQUAD_LEADER,
-		FIELD_COMMANDER,
-		STAFF_OFFICER,
-		CAPTAIN,
-		SOM_SQUAD_MARINE,
-		SOM_SQUAD_CORPSMAN,
-		SOM_SQUAD_ENGINEER,
-		SOM_SQUAD_VETERAN,
-		SOM_SQUAD_LEADER,
-		SOM_FIELD_COMMANDER,
-		SOM_STAFF_OFFICER,
-		SOM_COMMANDER,
-	)
-
+	jobs_supported = list()
 
 /datum/loadout_item/secondary/gun
 	///Ammo type this gun will use

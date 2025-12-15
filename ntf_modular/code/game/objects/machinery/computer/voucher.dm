@@ -61,6 +61,23 @@
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
 		I.supply_export(faction)
+		var/obj/item/disk/intel_disk/le_disk
+		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+		if(gaymode)
+			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+			the_stats.give_funds(round(le_disk.dropship_reward/5))
+			to_chat(user, span_notice("(N-UI) Transaction: +[round(le_disk.dropship_reward/5)] credits."))
+			user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
+		qdel(I)
+		return TRUE
+	if(istype(I, /obj/item/card/credstick))
+		var/obj/item/card/credstick/cstick = I
+		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+		if(gaymode && cstick.worth)
+			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+			the_stats.give_funds(cstick.worth)
+			to_chat(user, span_notice("(N-UI) Transaction: +[cstick.worth] credits."))
+			user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 		qdel(I)
 		return TRUE
 
@@ -132,3 +149,9 @@
 /obj/machinery/computer/voucher/pmc
 	faction = FACTION_NANOTRASEN
 	req_access = list(ACCESS_NT_PMC_COMMON)
+
+//id make this into voucher console at 1 to 5 ratio but idk how to work that shit -vide
+/obj/item/card/credstick
+	name = "credstick"
+	desc = "A credstick which can be redeemed at a voucher console for credits used in skillsoft purchases or everyday needs."
+	var/worth = 100

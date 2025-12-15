@@ -1238,6 +1238,16 @@
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"Xenonauten/NTC" = list(
+			/obj/item/clothing/suit/modular/tdf/light = -1,
+			/obj/item/clothing/suit/modular/tdf = -1,
+			/obj/item/clothing/suit/modular/tdf/heavy = -1,
+			/obj/item/clothing/suit/modular/tdf/robot = -1,
+			/obj/item/clothing/head/modular/tdf = -1,
+			/obj/item/clothing/head/modular/tdf/medium = -1,
+			/obj/item/clothing/head/modular/tdf/heavy = -1,
+			/obj/item/clothing/head/modular/tdf/robot = -1,
+			/obj/item/clothing/head/modular/tdf/engi = -1,
+			/obj/item/clothing/head/modular/tdf/sg = -1,
 			/obj/item/clothing/suit/modular/xenonauten/light/bikini = -1,
 			/obj/item/clothing/suit/modular/xenonauten/bulletresistant = -1,
 			/obj/item/clothing/suit/modular/xenonauten/ablative = -1,
@@ -1273,12 +1283,14 @@
 		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
+			/obj/item/clothing/suit/modular/goon = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/facepaint/brown = -1,
 			/obj/item/facepaint/black = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,

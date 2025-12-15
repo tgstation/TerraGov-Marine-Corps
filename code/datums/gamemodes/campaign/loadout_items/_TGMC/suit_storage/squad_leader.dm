@@ -1,5 +1,5 @@
 /datum/loadout_item/suit_store/main_gun/squad_leader
-	jobs_supported = list(SQUAD_LEADER)
+	jobs_supported = list(SQUAD_LEADER, SQUAD_SPECIALIST)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
@@ -52,7 +52,7 @@
 	Uses TE power cells that are shared across all NTF laser weaponry."
 	ui_icon = "ter"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))

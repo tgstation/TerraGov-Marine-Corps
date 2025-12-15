@@ -5,18 +5,13 @@ import { useBackend } from '../../backend';
 export const GearCustomization = (props) => {
   const { act, data } = useBackend<GearCustomizationData>();
 
-  const {
-    gearsets,
-    gear,
-    clothing,
-    backpack,
-    physique_used,
-  } = data;
+  const { gearsets, gear, clothing, backpack, physique_used } = data;
   // These correspond to the gear slot and you need to update them if the defines change
   const slotMapping = {
     10: 'Head',
     8: 'Eyewear',
     9: 'Mouth',
+    16: 'Phones',
     17: 'Other',
   };
 
@@ -147,45 +142,32 @@ export const GearCustomization = (props) => {
               ))}
             </LabeledList>
           </Section>
+          <Stack.Item grow>
+            <Section title={'Phones'}>
+              <LabeledList>
+                {bySlot['Phones']?.map((item) => (
+                  <LabeledList.Item
+                    key={item.name}
+                    label={`${item.name} (${item.cost})`}
+                  >
+                    <Button.Checkbox
+                      inline
+                      content={'Equipped'}
+                      checked={gear.includes(item.name)}
+                      onClick={() =>
+                        gear.includes(item.name)
+                          ? act('loadoutremove', { gear: item.name })
+                          : act('loadoutadd', { gear: item.name })
+                      }
+                    />
+                  </LabeledList.Item>
+                ))}
+              </LabeledList>
+            </Section>
+          </Stack.Item>
         </Stack.Item>
-        {/* NTF removal
-        <Stack.Item grow>
-          <Section title={'Undershirt (select one)'}>
-            <LabeledList>
-              {clothing['undershirt'][physique_used]?.map((item, idx) => (
-                <LabeledList.Item key={item} label={item}>
-                  <Button.Checkbox
-                    inline
-                    content={'Equipped'}
-                    checked={undershirt - 1 === idx}
-                    onClick={() => act('undershirt', { newValue: item })}
-                  />
-                </LabeledList.Item>
-              ))}
-            </LabeledList>
-          </Section>
-        </Stack.Item>
-        */}
       </Stack>
       <Stack>
-        {/* NTF removal
-        <Stack.Item grow>
-          <Section title={'Underwear (select one)'}>
-            <LabeledList>
-              {clothing['underwear'][physique_used]?.map((item, idx) => (
-                <LabeledList.Item key={item} label={item}>
-                  <Button.Checkbox
-                    inline
-                    content={'Equipped'}
-                    checked={underwear - 1 === idx}
-                    onClick={() => act('underwear', { newValue: item })}
-                  />
-                </LabeledList.Item>
-              ))}
-            </LabeledList>
-          </Section>
-        </Stack.Item>
-        */}
         <Stack.Item grow>
           <Section title={'Backpack (select one)'}>
             <LabeledList>

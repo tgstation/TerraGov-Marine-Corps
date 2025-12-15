@@ -62,3 +62,13 @@
 
 /obj/item/clothing/under/dress/plaid_purple
 	name = "purple plaid skirt"
+
+/obj/item/clothing/under/tdf
+	name = "\improper NTF uniform"
+	desc = "The standard uniform of NTF PMC personnel. A very easy to recognize design with its distinct red to represent the NTF."
+	icon = 'ntf_modular/icons/obj/clothing/uniforms/ert_uniforms.dmi'
+	worn_icon_list = list(
+		slot_w_uniform_str = 'ntf_modular/icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)

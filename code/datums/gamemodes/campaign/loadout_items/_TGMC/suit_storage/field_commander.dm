@@ -84,7 +84,7 @@
 	Larger and more cumbersome than modern rifles and lacking any precision aimming, it makes up for this with its tremendous magazine capacity, making it more akin to a light machinegun that a rifle. Uses 10x24mm caseless ammunition."
 	ui_icon = "m41a"
 	item_typepath = /obj/item/weapon/gun/rifle/m41a/field_commander
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/field_commander/pulse_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))

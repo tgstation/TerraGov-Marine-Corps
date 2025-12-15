@@ -562,7 +562,8 @@
 		),
 		"General" = list(
 			/obj/item/facepaint/green = -1,
-			/obj/item/clothing/suit/modular/rownin = -1
+			/obj/item/clothing/suit/modular/rownin = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 		"OLD SCHOOL" = list(
 			/obj/item/clothing/head/helmet/marine/som = -1,

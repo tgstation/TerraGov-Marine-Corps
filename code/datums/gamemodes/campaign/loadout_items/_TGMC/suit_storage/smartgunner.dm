@@ -23,7 +23,7 @@
 	Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	ui_icon = "sg29"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()

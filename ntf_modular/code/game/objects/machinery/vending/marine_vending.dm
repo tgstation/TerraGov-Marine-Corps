@@ -608,10 +608,12 @@
 		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
+			/obj/item/clothing/suit/modular/goon = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 
@@ -1232,6 +1234,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1877,6 +1880,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 
@@ -2247,6 +2251,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 /obj/machinery/vending/medical/icc

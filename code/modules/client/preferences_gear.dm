@@ -261,3 +261,62 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	cost = 1
 	slot = SLOT_R_HAND
 
+/datum/gear/phone/white
+	display_name = "Holophone (White)"
+	path = /obj/item/radio/loadout_tool
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/red
+	display_name = "Holophone (Red)"
+	path = /obj/item/radio/loadout_tool/red
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/green
+	display_name = "Holophone (Green)"
+	path = /obj/item/radio/loadout_tool/green
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/blue
+	display_name = "Holophone (Blue)"
+	path = /obj/item/radio/loadout_tool/blue
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/purple
+	display_name = "Holophone (Purple)"
+	path = /obj/item/radio/loadout_tool/purple
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/large/white
+	display_name = "Holopad (White)"
+	path = /obj/item/radio/loadout_tool/large
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/large/red
+	display_name = "Holopad (Red)"
+	path = /obj/item/radio/loadout_tool/large/red
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/large/green
+	display_name = "Holopad (Green)"
+	path = /obj/item/radio/loadout_tool/large/green
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/large/blue
+	display_name = "Holopad (Blue)"
+	path = /obj/item/radio/loadout_tool/large/blue
+	cost = 1
+	slot = SLOT_L_HAND
+
+/datum/gear/phone/large/purple
+	display_name = "Holopad (Purple)"
+	path = /obj/item/radio/loadout_tool/large/purple
+	cost = 1
+	slot = SLOT_L_HAND

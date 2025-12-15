@@ -15,6 +15,11 @@
 	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 
 /datum/fire_support/mortar/do_impact(turf/target_turf)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		if(ads.try_intercept(target_turf, src))
+			return
 	explosion(target_turf, 0, 2, 3, 5, 2, explosion_cause="mortar fire support")
 
 /datum/fire_support/mortar/som
@@ -31,6 +36,12 @@
 	initiate_screen_message = "Coordinates confirmed, incendiary inbound!"
 
 /datum/fire_support/mortar/incendiary/do_impact(turf/target_turf)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		if(ads.try_intercept(target_turf, src))
+			explosion(target_turf, flame_range = 5, explosion_cause="incen mortar fire support")
+			return
 	explosion(target_turf, weak_impact_range = 4, flame_range = 5, throw_range = 0, explosion_cause="incen mortar fire support")
 	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 35)
 
@@ -58,6 +69,10 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(target_turf, SFX_EXPLOSION_SMALL, 50)
 	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		ads.try_intercept(target_turf, src) //go through
 	smoke.set_up(smokeradius, target_turf, smoke_duration)
 	smoke.start()
 
