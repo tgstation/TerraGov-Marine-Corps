@@ -34,3 +34,8 @@
 	jobtype = /datum/job/som/squad/leader
 
 	id = /obj/item/card/id/dogtag/som
+
+//bro sleeps with a bino but its the only way to ensure those idiots get it between loadout select and quick equip vendor.
+/datum/outfit/job/som/squad/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/binoculars/fire_support/extended/sl, SLOT_IN_R_POUCH)

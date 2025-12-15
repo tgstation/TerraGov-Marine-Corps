@@ -61,6 +61,12 @@
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
 		I.supply_export(faction)
+		var/obj/item/disk/intel_disk/le_disk
+		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+		if(gaymode)
+			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+			the_stats.give_funds(round(le_disk.dropship_reward/5))
+			to_chat(user, span_notice("(N-UI) Transaction: +[round(le_disk.dropship_reward/5)] credits."))
 		qdel(I)
 		return TRUE
 

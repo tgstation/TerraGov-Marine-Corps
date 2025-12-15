@@ -1,5 +1,5 @@
 #define TAB_LOADOUT "Loadout"
-#define TAB_PERKS "Perks"
+#define TAB_PERKS "Skillsoft"
 
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
@@ -173,9 +173,11 @@
 	return GLOB.conscious_state
 
 /datum/individual_stats/ui_data(mob/user)
+	/* totally nothing will go wrong
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+	*/
 
 	var/list/data = list()
 	var/mob/living/living_user = user
@@ -262,9 +264,11 @@
 	return data
 
 /datum/individual_stats/ui_static_data(mob/user)
+	/*
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+	*/
 
 	var/list/data = list()
 
@@ -300,9 +304,11 @@
 	if(.)
 		return
 
+	/*
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+	*/
 
 	var/mob/living/user = usr
 
@@ -368,9 +374,10 @@
 				to_chat(user, span_warning("Must be alive to do this!"))
 				return
 			var/datum/campaign_mission/current_mission = get_current_mission()
-			if(!current_mission || current_mission.mission_state == MISSION_STATE_FINISHED)
-				to_chat(user, span_warning("Wait for the next mission to be selected!"))
-				return
+			if(current_mission)
+				if(current_mission.mission_state == MISSION_STATE_FINISHED)
+					to_chat(user, span_warning("Wait for the next mission to be selected!"))
+					return
 			var/obj/item/card/id/user_id = user.get_idcard()
 			if(!(user_id.id_flags & CAN_BUY_LOADOUT))
 				to_chat(user, span_warning("You have already selected a loadout for this mission."))
@@ -378,7 +385,7 @@
 			if(user.job.title != job)
 				to_chat(user, span_warning("Invalid job. This outfit is for [job]."))
 				return
-			if(!is_mainship_level(user.z))
+			if(!is_mainship_level(user.z) && !is_antagmainship_level(user.z))
 				to_chat(user, span_warning("You can't equip a new loadout in the field!"))
 				return
 			if(!loadouts[job].check_full_loadout())
@@ -391,7 +398,19 @@
 			loadouts[job].equip_loadout(user)
 			user.playsound_local(user, 'sound/effects/menu_click.ogg', 50)
 			user_id.id_flags &= ~CAN_BUY_LOADOUT
+			if(!iscampaigngamemode(SSticker.mode))
+				//those can practically give special op gear to others if rebought, sorry bros. (quick equip vendor moment)
+				if(user.job.title in list(SOM_SQUAD_VETERAN))
+					return
+				addtimer(CALLBACK(src, PROC_REF(reenable_loadout_select), user), 1 HOURS)
 			return TRUE
+
+/datum/individual_stats/proc/reenable_loadout_select(mob/living/user)
+	var/obj/item/card/id/user_id = user.get_idcard()
+	user.playsound_local(user.loc, 'sound/machines/ping.ogg', 25)
+	user.balloon_alert("You are now authorized to another loadout purchase.")
+	to_chat(user, span_nicegreen("You are now authorized to another loadout purchase."))
+	user_id.id_flags |= CAN_BUY_LOADOUT
 
 //loadout/perk UI for campaign gamemode
 /datum/action/campaign_loadout

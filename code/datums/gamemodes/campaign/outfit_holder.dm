@@ -46,7 +46,9 @@
 		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
 		if(!thing_to_check)
 			continue
-		if(thing_to_check.quantity > 0)
+		if(!thing_to_check.item_typepath)
+			continue
+		if(thing_to_check.quantity > 0 && iscampaigngamemode(SSticker.mode)) //we dont have quantities outside campaign.
 			thing_to_check.quantity --
 		thing_to_check.post_equip(owner, loadout, src)
 
@@ -89,7 +91,6 @@
 	loadout_cost -= equipped_things[slot_bit]?.purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
 	loadout_cost += equipped_things[slot_bit]?.purchase_cost
-
 	switch(new_item.item_slot) //adds it to the loadout itself
 		if(ITEM_SLOT_OCLOTHING)
 			loadout.wear_suit = new_item?.item_typepath

@@ -1,5 +1,5 @@
 /datum/loadout_item/suit_store/main_gun/corpsman
-	jobs_supported = list(SQUAD_CORPSMAN)
+	jobs_supported = list(SQUAD_CORPSMAN, VANGUARD)
 
 /datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine
 	name = "Laser carbine"
@@ -7,7 +7,7 @@
 	Variable firemodes gives it additional flexibility over its ballistic counterpart. Uses TE power cells that are shared across all NTF laser weaponry."
 	ui_icon = "tec"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()

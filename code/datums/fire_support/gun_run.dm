@@ -1,7 +1,7 @@
 /datum/fire_support/gau
 	name = "Gun run"
 	fire_support_type = FIRESUPPORT_TYPE_GUN
-	impact_quantity = 5
+	impact_quantity = 8
 	uses = 5
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."

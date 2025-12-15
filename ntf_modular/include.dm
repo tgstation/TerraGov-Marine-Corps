@@ -1,10 +1,15 @@
 
+
+
+
 #include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\_DEFINES\sexcon_defines.dm"
+#include "code\_DEFINES\skills.dm"
 #include "code\_DEFINES\span.dm"
 #include "code\_HELPERS\announce.dm"
 #include "code\_onclick\hud\fullscreen.dm"
+#include "code\datums\fire_support\fire_support.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"
 #include "code\datums\health_scan\advice\damage_types.dm"
@@ -75,6 +80,7 @@
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\items\radio\ntc_listener.dm"
+#include "code\game\objects\items\tools\loadout_tool.dm"
 #include "code\game\objects\machinery\artillery\shells.dm"
 #include "code\game\objects\machinery\camera\camera.dm"
 #include "code\game\objects\machinery\cic_maptable.dm"
@@ -96,6 +102,7 @@
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
+#include "code\modules\clothing\modular_armor\modular.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\marine_armor.dm"
 #include "code\modules\clothing\under\marine_uniform.dm"
@@ -128,6 +135,7 @@
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\pixel_shift\code\pixel_shift.dm"
+#include "code\modules\power\lighting.dm"
 #include "code\modules\projectiles\guns\energy.dm"
 #include "code\modules\projectiles\guns\pistols.dm"
 #include "code\modules\projectiles\guns\rifles.dm"

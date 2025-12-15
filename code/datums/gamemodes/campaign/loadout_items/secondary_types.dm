@@ -42,7 +42,7 @@
 
 /datum/loadout_item/secondary/kit/primary_ammo/default
 	jobs_supported = list(SQUAD_CORPSMAN, SOM_SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/secondary/kit/emp_nades
 	name = "EMP nades"

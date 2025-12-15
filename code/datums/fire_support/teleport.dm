@@ -26,7 +26,10 @@
 
 /datum/fire_support/tele_cope/New()
 	. = ..()
-	disable_use()
+	if(iscampaigngamemode(SSticker.mode))
+		disable_use()
+	else
+		enable_use()
 
 ///Enabled the datum for use
 /datum/fire_support/tele_cope/proc/enable_use(datum/source, obj/structure/teleporter_array/teleporter)

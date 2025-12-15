@@ -9,8 +9,8 @@
 	name = "Ammo belt"
 	desc = "A belt with origins traced to the M276 ammo belt and some old colony security. Holds 6 normal sized magazines."
 	item_typepath = /obj/item/storage/belt/marine/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/som_mg/standard = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE,
@@ -75,7 +75,7 @@
 	desc = "A belt with origins dating back to old colony security holster rigs. Holds any pistol secondary, and plenty of ammo."
 	ui_icon = "v11"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_whitelist = list(
 		/obj/item/weapon/gun/pistol/som/standard = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/pistol/som/burst = ITEM_SLOT_SECONDARY,
@@ -87,14 +87,14 @@
 
 /datum/loadout_item/belt/som/pistol_holster/default
 	jobs_supported = list(SOM_STAFF_OFFICER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/belt/som/pistol_holster/officer
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after. Holds any pistol secondary, and plenty of ammo."
 	ui_icon = "vx12"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/belt/som/lifesaver
 	name = "S17 lifesaver bag"
@@ -102,4 +102,4 @@
 	ui_icon = "medkit"
 	item_typepath = /obj/item/storage/belt/lifesaver/som/quick
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION

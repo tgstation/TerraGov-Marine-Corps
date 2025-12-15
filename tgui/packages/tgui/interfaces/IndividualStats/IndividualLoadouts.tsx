@@ -137,6 +137,17 @@ export const IndividualLoadouts = (props) => {
           >
             Equipment options
           </Stack>
+          <Stack
+            fontSize="50%"
+            italic
+            textAlign="center"
+            mt={'5px'}
+            mb={'8px'}
+            ml={'5px'}
+          >
+            (Everything you wear except pockets and belt will be deleted if
+            overwritten here.)
+          </Stack>
           <Section fill scrollable width={'240px'} height={'555px'}>
             <Stack width={'240px'} wrap>
               {available_loadouts_data
