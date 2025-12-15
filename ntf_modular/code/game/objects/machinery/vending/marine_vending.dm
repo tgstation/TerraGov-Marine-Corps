@@ -129,6 +129,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 10,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Attachments" = list(
@@ -731,6 +732,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Specialized" = list(
@@ -1425,6 +1427,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Heavy Weapons" = list(
@@ -2428,6 +2431,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 12,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Heavy Weapons" = list(
