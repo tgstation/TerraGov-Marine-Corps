@@ -320,6 +320,7 @@
 		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
 		the_stats.give_funds(round((dropship_bonus * stored_mineral)/4))
 		to_chat(user, span_notice("(N-UI) Transaction: +[round((dropship_bonus * stored_mineral)/4)] credits."))
+		user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 	stored_mineral = 0
 	start_processing()
 

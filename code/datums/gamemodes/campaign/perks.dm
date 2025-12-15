@@ -45,6 +45,9 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	. = ..()
 	if(all_jobs)
 		jobs_supported = GLOB.jobs_regular_all
+	if(iscampaigngamemode(SSticker.mode)) //for extended etc
+		return
+	unlock_cost = initial(unlock_cost)*4
 
 ///Any one off bonuses for unlocking this perk
 /datum/perk/proc/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)

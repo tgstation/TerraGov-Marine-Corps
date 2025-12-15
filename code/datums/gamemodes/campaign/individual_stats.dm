@@ -74,6 +74,11 @@
 	if(new_perk in unlocked_perks)
 		to_chat(user, span_warning("Perk already purchased."))
 		return FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/huser = user
+		if(isspeciessynthetic(huser) || isrobot(huser) || is_species(huser, /datum/species/human/prototype_supersoldier))
+			to_chat(user, span_warning("You can't benefit from skillsofts."))
+			return FALSE
 	if(length(new_perk.prereq_perks))
 		var/perk_found
 		for(var/prereq in new_perk.prereq_perks)
