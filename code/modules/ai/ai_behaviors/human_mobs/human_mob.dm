@@ -1,3 +1,61 @@
+/// Chat lines when moving to a new target
+GLOBAL_LIST_INIT(ai_new_move_lines, list(
+	FACTION_NEUTRAL = list(
+		"Watch your spacing!",
+		"Changing position!",
+		"I'm on the way!",
+		"I'm hoofin' it!",
+		"Go, go, go!",
+		"Moving out!",
+		"Let's move.",
+		"Moving!",
+	),
+))
+
+/// Chat lines when receiving an order
+GLOBAL_LIST_INIT(ai_receive_order_lines, list(
+	FACTION_NEUTRAL = list(
+		"Affirmative.",
+		"You got it.",
+		"Understood.",
+		"Right away.",
+		"Of course.",
+		"Roger.",
+		"Okay.",
+	),
+	FACTION_TERRAGOV = list(
+		"Who put you in charge?",
+		"I have it sorted.",
+		"On the double.",
+		"Affirmative.",
+		"Roger.",
+	),
+))
+
+/// Chat lines when following a new target
+GLOBAL_LIST_INIT(ai_new_follow_lines, list(
+	FACTION_NEUTRAL = list(
+		"Yeah, I'll follow you.",
+		"I got your back!",
+		"Following you.",
+		"In formation!",
+		"Where to?",
+	),
+))
+
+/// Chat lines for retreating on low health
+GLOBAL_LIST_INIT(ai_retreating_lines, list(
+	FACTION_NEUTRAL = list(
+		"RUN FOR YOUR LIFE!!",
+		"Cover me, I'm hit!",
+		"I need help here!",
+		"Falling back!",
+		"Disengaging!",
+		"HELP!!",
+		"RUN!!",
+	),
+))
+
 /datum/ai_behavior/human
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
@@ -30,60 +88,6 @@
 	COOLDOWN_DECLARE(global_chat_cooldown)
 	/// Cooldown for specific chat lines, if applicable
 	var/list/specific_chat_cooldowns
-	/// Chat lines when moving to a new target
-	var/list/new_move_lines = list(
-		FACTION_NEUTRAL = list(
-			"Watch your spacing!",
-			"Changing position!",
-			"I'm on the way!",
-			"I'm hoofin' it!",
-			"Go, go, go!",
-			"Moving out!",
-			"Let's move.",
-			"Moving!",
-		),
-	)
-	/// Chat lines when receiving an order
-	var/list/receive_order_lines = list(
-		FACTION_NEUTRAL = list(
-			"Affirmative.",
-			"You got it.",
-			"Understood.",
-			"Right away.",
-			"Of course.",
-			"Roger.",
-			"Okay.",
-		),
-		FACTION_TERRAGOV = list(
-			"Who put you in charge?",
-			"I have it sorted.",
-			"On the double.",
-			"Affirmative.",
-			"Roger.",
-		),
-	)
-	/// Chat lines when following a new target
-	var/list/new_follow_chat = list(
-		FACTION_NEUTRAL = list(
-			"Yeah, I'll follow you.",
-			"I got your back!",
-			"Following you.",
-			"In formation!",
-			"Where to?",
-		),
-	)
-	/// Chat lines for retreating on low health
-	var/list/retreating_lines = list(
-		FACTION_NEUTRAL = list(
-			"RUN FOR YOUR LIFE!!",
-			"Cover me, I'm hit!",
-			"I need help here!",
-			"Falling back!",
-			"Disengaging!",
-			"HELP!!",
-			"RUN!!",
-		),
-	)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	. = ..()
@@ -261,7 +265,7 @@
 	if(!.)
 		return
 	if(prob(50))
-		faction_list_speak(new_move_lines)
+		faction_list_speak(GLOB.ai_new_move_lines)
 	set_run()
 
 /datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
@@ -269,7 +273,7 @@
 	if(!.)
 		return
 	if(prob(50) && isliving(escorted_atom))
-		faction_list_speak(new_follow_chat)
+		faction_list_speak(GLOB.ai_new_follow_lines)
 	set_run()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
@@ -359,7 +363,7 @@
 		return
 
 	if(prob(50))
-		faction_list_speak(retreating_lines)
+		faction_list_speak(GLOB.ai_retreating_lines)
 	set_run(TRUE)
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
