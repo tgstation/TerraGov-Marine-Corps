@@ -25,7 +25,7 @@
 	max_occupants = 4
 	move_delay = 0.3 SECONDS
 	glide_size = 4.333 //todo: Fix glidesize for vehicles. It generates visibly choppy glide, possibly related to how vehicles use cooldown for movedelay
-	ram_damage = 80
+	ram_damage = 180 //flying slow ass bitch
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)

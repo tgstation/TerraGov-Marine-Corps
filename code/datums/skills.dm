@@ -466,7 +466,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_PRO
 	police = SKILL_POLICE_MP
 	smartgun = SKILL_SMART_TRAINED
 
