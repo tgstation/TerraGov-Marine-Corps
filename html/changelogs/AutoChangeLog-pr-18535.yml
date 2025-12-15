@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added a variety of new planet side weapon types"
-  - balance: "Improved katana, sledge hammer,fire axe and hatchet stats"
-  - imageadd: "Updates sprites for katanas, sledge hammers, fire axes, hatchet"
-  - code_imp: "Cleaned up some weapon and two hander code"

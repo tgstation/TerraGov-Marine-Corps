@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - imageadd: "Updated cell and cell charger sprites, including unique inhands"
-  - bugfix: "Roundstart empty cells actually show as empty"

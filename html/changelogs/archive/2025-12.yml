@@ -81,6 +81,10 @@
   - balance: reduces the price of dragoon stripper clips in req
   Nokia2Student:
   - bugfix: Skill exploit fix
+2025-12-11:
+  mudzbe:
+  - rscadd: Razorwire now hurts zombies
+  - bugfix: Zombies can unbuckle themselves
 2025-12-12:
   DrCrawler:
   - bugfix: The dragoon sprites have been finally fixed.
@@ -88,29 +92,20 @@
   Colfer1:
   - rscadd: Adds regular robot synths, like combat robots, without the combat
 2025-12-14:
-  Colfer1:
-  - qol: devour is no longer flavored as vore.
-  - bugfix: psychic cure now works on dead people, technically xenomorphs too but
-      they're not coming back
-  - soundadd: robots/synths have a ton of new emotes now, beep1, 2, 3, terminate,
-      online, offline, mechascream, critical, damaged, whirr
-  DrCrawler:
-  - qol: Halved the *trick emote cooldown, letting people pull off their revolver
-      and knife tricks smoother
-  - balance: Buffed dragoon damage and penetration, made standard ammo slightly more
-      expensive.
-  - balance: Soporific now kicks in a little faster.
-  - balance: Moonbeam tranq rounds inject people with 9-12u of soporific instead of
-      5-8u.
-  Lumipharon:
-  - balance: removed special resin wall types
-  mudzbe:
-  - balance: Reduced zombie limb regrow speed
-2025-12-11:
-  mudzbe:
-  - rscadd: Razorwire now hurts zombies
-  - bugfix: Zombies can unbuckle themselves
-2025-12-14:
   Lumipharon:
   - bugfix: fixed limbs losing armour on species change
   - code_imp: Cleaned up some limb and organ code
+2025-12-15:
+  Lumipharon:
+  - code_imp: Spawners support lists of lists for spawntypes
+  - bugfix: Command radio access from ASL is no longer lost when unequipping or swapping
+      radio keys
+  - imageadd: Updated cell and cell charger sprites, including unique inhands
+  - bugfix: Roundstart empty cells actually show as empty
+  - bugfix: Godmode xenos won't show as full hp when they're not
+  - rscadd: Added a variety of new planet side weapon types
+  - balance: Improved katana, sledge hammer,fire axe and hatchet stats
+  - imageadd: Updates sprites for katanas, sledge hammers, fire axes, hatchet
+  - code_imp: Cleaned up some weapon and two hander code
+  mudzbe:
+  - rscadd: Move silo back in the crashed syndicate shuttle on icy caves
