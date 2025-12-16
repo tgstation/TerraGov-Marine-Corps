@@ -89,9 +89,9 @@
 		/datum/job/mothellian/grenadier = 2,
 		/datum/job/mothellian/leader = 2,
 */
-		/datum/job/pmc/squad/standard = 3,
-		/datum/job/pmc/squad/medic = 1,
-		/datum/job/pmc/squad/engineer = 1,
+		/datum/job/pmc/squad/standard = -1,
+		/datum/job/pmc/squad/medic = 2,
+		/datum/job/pmc/squad/engineer = 2,
 		/datum/job/pmc/squad/gunner = 1,
 		/datum/job/pmc/squad/sniper = 1,
 		/datum/job/pmc/squad/leader = 1,
@@ -156,12 +156,10 @@
 		if(prob(75))
 			new /mob/living/carbon/human/species/monkey(i)
 
-	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
-	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
-	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, 1400)
-	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, 300)
-	SSpoints.add_biomass_points(XENO_HIVE_NORMAL, 0) // Solely to make sure it isn't null.
-	SSpoints.add_biomass_points(XENO_HIVE_CORRUPTED, 0) // Solely to make sure it isn't null.
+	for(var/hivenumber in GLOB.hive_datums)
+		SSpoints.add_strategic_psy_points(hivenumber, 1400)
+		SSpoints.add_tactical_psy_points(hivenumber, 300)
+		SSpoints.add_biomass_points(hivenumber, 0) // Solely to make sure it isn't null.
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

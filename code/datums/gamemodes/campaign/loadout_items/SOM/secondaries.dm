@@ -1,5 +1,5 @@
 /datum/loadout_item/secondary/gun/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	item_whitelist = list(
 		/obj/item/storage/holster/belt/pistol/m4a3/som = ITEM_SLOT_BELT,
 		/obj/item/storage/holster/belt/pistol/m4a3/som/fancy = ITEM_SLOT_BELT,
@@ -15,8 +15,8 @@
 	Typically chambered in 9mm armor piercing rounds."
 	ui_icon = "v11"
 	item_typepath = /obj/item/weapon/gun/pistol/som/standard
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/secondary/gun/som/extended_pistol
 	name = "V-11e"
@@ -24,7 +24,7 @@
 	Typically chambered in 9mm armor piercing rounds. This one is configures for burstfire, and loaded with extended mags."
 	ui_icon = "v11"
 	item_typepath = /obj/item/weapon/gun/pistol/som/burst
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/som/highpower
@@ -40,7 +40,7 @@
 	ui_icon = "vx12"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/secondary/gun/som/serpenta_custom
 	name = "VX-12c Serpenta"
@@ -49,7 +49,7 @@
 	ui_icon = "vx12"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/secondary/gun/som/sawn_off
 	name = "Sawn-off shotgun"
@@ -73,7 +73,7 @@
 	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops. \
 	Can be used defensively to great effect, mainly against opponents trying to strike you in melee, although some users report varying levels of success in blocking ranged projectiles."
 	ui_icon = "machete"
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_typepath = /obj/item/weapon/energy/sword/som
 	loadout_item_flags = NONE
 	item_whitelist = null
@@ -87,7 +87,7 @@
 
 //kits
 /datum/loadout_item/secondary/kit/he_nades/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/secondary/kit/he_nades/som/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
@@ -96,10 +96,13 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/binoculars/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/secondary/kit/binoculars/som/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_BACKPACK)
+	if(iscampaigngamemode(SSticker.mode))
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_BACKPACK)
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
@@ -111,7 +114,7 @@
 	name = "COPE Sentry"
 	desc = "A powerful sentry gun. Throw like a grenade to deploy."
 	ui_icon = "sentry"
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/secondary/kit/som_engineer/sentry/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, SLOT_IN_BACKPACK)

@@ -18,7 +18,7 @@
 	///How much supply points you get for completing the terminal
 	var/supply_reward = 500
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 200
+	var/dropship_reward = 350
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 1

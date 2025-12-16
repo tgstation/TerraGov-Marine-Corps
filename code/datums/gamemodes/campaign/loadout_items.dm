@@ -19,9 +19,10 @@ GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, ini
 	. = list()
 	for(var/type in subtypesof(/datum/loadout_item))
 		var/datum/loadout_item/item_type = new type
+		/* ntf we use those for public access ig shit breaks without atleast a single item available.
 		if(!length(item_type.jobs_supported))
 			qdel(item_type)
-			continue
+			continue*/
 		.[item_type.type] = item_type
 
 //List of all loadout_item datums by job, excluding ones that must be unlocked //now including those
@@ -29,10 +30,12 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 
 /proc/init_campaign_loadout_items_by_role()
 	. = list()
-	for(var/job in GLOB.campaign_jobs)
+	for(var/job in GLOB.jobs_regular_all)
 		.[job] = list()
 		for(var/i in GLOB.campaign_loadout_item_type_list)
 			var/datum/loadout_item/option = GLOB.campaign_loadout_item_type_list[i]
+			if(!length(option.jobs_supported)) //all if nothing
+				option.jobs_supported = GLOB.jobs_regular_all
 			if(option.jobs_supported && !(job in option.jobs_supported))
 				continue
 			.[job] += option
@@ -66,6 +69,16 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
 	var/list/item_blacklist
+
+/datum/loadout_item/New()
+	. = ..()
+	if(iscampaigngamemode(SSticker.mode)) //for extended etc, allat ntf edit.
+		return
+	//idk how myself but if someone made research actually unlock shit itd be good.
+	if(!(loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION)) //adds every item to loadout from the get go,
+		loadout_item_flags &= LOADOUT_ITEM_ROUNDSTART_OPTION
+	if(quantity > 0) //instead of quantities we just increase price trifold.
+		purchase_cost = initial(purchase_cost)*4
 
 ///Attempts to add an item to a loadout
 /datum/loadout_item/proc/item_checks(datum/outfit_holder/outfit_holder)

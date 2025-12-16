@@ -18,7 +18,7 @@
 	pixel_x = 0
 	pixel_y = -40
 	enter_delay = 0.5 SECONDS
-	ram_damage = 25
+	ram_damage = 200
 	move_delay = 0.25 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,

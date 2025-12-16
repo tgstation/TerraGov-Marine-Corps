@@ -477,6 +477,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "aFV" = (
@@ -7628,6 +7629,16 @@
 /obj/structure/prop/mainship/mission_planning_system/black,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"hys" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/drop_pod_launcher/supply,
+/obj/structure/droppod/nonmob/turret_pod,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/mainship/squads/req)
 "hyv" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/pipedispenser,
@@ -9709,6 +9720,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_two)
+"jGx" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/drop_pod_launcher/supply,
+/obj/structure/droppod/nonmob/supply_pod,
+/turf/open/floor/mainship/green{
+	dir = 6
+	},
+/area/mainship/squads/req)
 "jGJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15146,6 +15167,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "oQX" = (
@@ -18193,6 +18215,10 @@
 	},
 /obj/item/tool/hand_labeler,
 /obj/structure/table/mainship/nometal,
+/obj/item/storage/box/crate/sentry/ads,
+/obj/item/storage/box/crate/sentry,
+/obj/item/storage/box/crate/sentry_laser,
+/obj/item/storage/box/crate/sentry,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "rYk" = (
@@ -22760,6 +22786,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"wnQ" = (
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "wot" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -58001,7 +58031,7 @@ sXh
 jpC
 vhY
 eCz
-eCz
+hys
 ics
 uUK
 mue
@@ -58203,7 +58233,7 @@ ogT
 jpC
 vhY
 eCz
-eCz
+jGx
 ics
 dTJ
 tWc
@@ -58607,7 +58637,7 @@ ogT
 jpC
 vhY
 eCz
-eCz
+wnQ
 ics
 uUK
 mue

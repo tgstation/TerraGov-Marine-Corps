@@ -11,11 +11,11 @@ GLOBAL_LIST_INIT(campaign_perks_by_role, init_campaign_perks_by_role())
 
 /proc/init_campaign_perks_by_role()
 	. = list()
-	for(var/job in GLOB.campaign_jobs)
+	for(var/job in GLOB.jobs_regular_all)
 		.[job] = list()
 		for(var/i in GLOB.campaign_perk_list)
 			var/datum/perk/perk = GLOB.campaign_perk_list[i]
-			if(!(job in perk.jobs_supported))
+			if(!(job in perk.jobs_supported) && !perk.all_jobs)
 				continue
 			.[job] += perk
 
@@ -44,7 +44,10 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/New()
 	. = ..()
 	if(all_jobs)
-		jobs_supported = GLOB.campaign_jobs
+		jobs_supported = GLOB.jobs_regular_all
+	if(iscampaigngamemode(SSticker.mode)) //for extended etc
+		return
+	unlock_cost = initial(unlock_cost)*4
 
 ///Any one off bonuses for unlocking this perk
 /datum/perk/proc/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -174,7 +177,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	req_desc = "Requires Melee specialisation."
 	ui_icon = "axe"
 	traits = list(TRAIT_AXE_EXPERT)
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	unlock_cost = 450
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
@@ -189,7 +192,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	req_desc = "Requires Melee specialisation."
 	ui_icon = "sword"
 	traits = list(TRAIT_SWORD_EXPERT)
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, FIELD_COMMANDER, SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SLUT, VANGUARD, SQUAD_SPECIALIST, SQUAD_LEADER, FIELD_COMMANDER, SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	unlock_cost = 450
 	prereq_perks = list(/datum/perk/skill_mod/melee/two)
 
@@ -275,7 +278,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
-	desc = "Improved damage, accuracy and scatter with pistol type firearms. Unlocks additional pistols for some roles."
+	desc = "Improved accuracy and scatter with pistol type firearms. Unlocks additional pistols for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "pistols"
 	pistols = 1
@@ -294,7 +297,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
-	desc = "Improved damage, accuracy and scatter with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot for some roles."
+	desc = "Improved accuracy and scatter with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "shotguns"
 	shotguns = 1
@@ -310,7 +313,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
-	desc = "Improved damage, accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
+	desc = "Improved accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "rifles"
 	rifles = 1
@@ -353,7 +356,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
-	desc = "Improved damage, accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
+	desc = "Improved accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "smgs"
 	smgs = 1
@@ -384,7 +387,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
-	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
+	desc = "Improved accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
@@ -405,11 +408,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
-	desc = "Improved damage, accuracy and scatter with smartguns type firearms."
+	desc = "Improved accuracy and scatter with smartguns type firearms."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "smartguns"
 	smartgun = 1
-	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
+	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 800
 

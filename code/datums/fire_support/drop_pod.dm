@@ -4,6 +4,7 @@
 	scatter_range = 1
 	uses = -1
 	icon_state = "sentry_pod"
+	initiate_title = "Pod Officer"
 	initiate_chat_message = "TARGET ACQUIRED SENTRY POD LAUNCHING."
 	initiate_screen_message = "Co-ordinates confirmed, sentry pod launching."
 	initiate_sound = null
@@ -17,7 +18,10 @@
 
 /datum/fire_support/droppod/New()
 	. = ..()
-	disable_pods()
+	if(iscampaigngamemode(SSticker.mode))
+		disable_pods()
+	else
+		enable_pods()
 
 /datum/fire_support/droppod/select_target(turf/target_turf)
 	for(var/obj/structure/droppod/nonmob/droppod AS in GLOB.droppod_list)

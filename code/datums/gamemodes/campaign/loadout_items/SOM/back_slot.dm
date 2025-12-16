@@ -2,20 +2,20 @@
 	name = "Mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies.. Carries less than a backpack, but items can be drawn instantly."
 	item_typepath = /obj/item/storage/backpack/satchel/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_STAFF_OFFICER, SOM_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN, SOM_STAFF_OFFICER, SOM_COMMANDER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/back/som_combat_pack
 	name = "Mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies. Has the storage capacity of a backpack but no draw delay."
 	purchase_cost = 25
 	item_typepath = /obj/item/storage/backpack/lightpack/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/back/som_combat_pack/free
 	purchase_cost = 0
 	jobs_supported = list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/back/som_flamer_tank
 	name = "Flame tank"
@@ -37,7 +37,7 @@
 	name = "Welding bag"
 	desc = "A technician backpack with integrated welder tank. Has satchel storage."
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	item_typepath = /obj/item/storage/backpack/marine/engineerpack/som
 
 /datum/loadout_item/back/blinkdrive
@@ -62,7 +62,7 @@
 	ui_icon = "v51"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/back_slot
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -112,6 +112,6 @@
 	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
 	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)
 	loadout_item_flags = NONE

@@ -10,6 +10,7 @@
 
 	products = list(
 		"Rifles" = list(
+			/obj/item/ammo_magazine/rifle/m416 = -1,
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
@@ -34,7 +35,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 		),
 		"SMGs" = list(
-			/obj/item/weapon/gun/smg/m25 = -1,
+			/obj/item/ammo_magazine/smg/val = -1,
 			/obj/item/ammo_magazine/smg/m25 = -1,
 			/obj/item/weapon/gun/smg/standard_heavysmg = -1,
 			/obj/item/ammo_magazine/smg/standard_heavysmg = -1,
@@ -47,6 +48,8 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/ammo_magazine/railgun/pmc = -1,
+			/obj/item/ammo_magazine/railgun/pmc/smart = -1,
+			/obj/item/ammo_magazine/railgun/pmc/hvap = -1,
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
@@ -78,12 +81,15 @@
 			/obj/item/ammo_magazine/handful/barrikada = 3,
 		),
 		"Machinegun" = list(
+			/obj/item/ammo_magazine/smart_gpmg = -1,
+			/obj/item/ammo_magazine/rifle/standard_smartrifle = -1,
 			/obj/item/weapon/gun/rifle/m41a = -1,
 			/obj/item/ammo_magazine/rifle/m41a = -1,
 			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		),
 		"Melee" = list(
+			/obj/item/weapon/combat_knife/pmc = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonet = -1,
 			/obj/item/stack/throwing_knife = -1,
@@ -96,6 +102,10 @@
 			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
+			/obj/item/weapon/gun/pistol/mk90 = -1,
+			/obj/item/ammo_magazine/pistol/mk90 = -1,
+			/obj/item/ammo_magazine/pistol/mk90/extended = 20,
+			/obj/item/ammo_magazine/pistol/mk100_gyrojet = -1,
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pistol = -1,
 			/obj/item/weapon/gun/pistol/standard_heavypistol = -1,
@@ -107,6 +117,7 @@
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/pmc = 100,
+			/obj/item/explosive/grenade/sticky/pmc = 50,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
@@ -129,6 +140,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 10,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Attachments" = list(
@@ -224,6 +236,7 @@
 			/obj/item/clothing/under/marine/squad/neck/alpha_skirt = -1,
 			/obj/item/clothing/under/marine/squad/neck/bravo_skirt = -1,
 			/obj/item/clothing/under/marine/squad/neck/charlie_skirt = -1,
+			/obj/item/clothing/gloves/marine/veteran/pmc_elite = -1,
 			/obj/item/clothing/gloves/marine/veteran/pmc = -1,
 			/obj/item/clothing/gloves/marine/hyperscale = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
@@ -307,12 +320,13 @@
 			/obj/item/clothing/mask/gas/tactical/coif = -1,
 		),
 		"Backpacks" = list(
+			/obj/item/storage/backpack/satchel/pmc = -1,
 			/obj/item/storage/backpack/marine/standard = -1,
 			/obj/item/storage/backpack/marine/satchel = -1,
 			/obj/item/tool/weldpack/marinestandard = -1,
 			/obj/item/storage/holster/m37 = -1,
 			/obj/item/storage/backpack/marine/smock/lite = -1,
-			/obj/item/storage/backpack/lightpack = 10
+			/obj/item/storage/backpack/lightpack/pmc = 10,
 		),
 		"Instruments" = list(
 			/obj/item/instrument/violin = -1,
@@ -588,15 +602,33 @@
 	wrenchable = FALSE
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
-		"AC standard issue" = list(
+		"Armor" = list(
 			/obj/item/clothing/suit/storage/marine/veteran/pmc = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/standard = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/sniper = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/stripes = -1,
+			/obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/leader = -1,
 			/obj/item/clothing/suit/storage/marine/veteran/pmc/leader = -1,
+		),
+		"Helmets" = list(
 			/obj/item/clothing/head/helmet/marine/veteran/pmc = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/standard = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis = -1,
 			/obj/item/clothing/head/helmet/marine/veteran/pmc/sniper = -1,
-			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner= -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/skull = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/joker = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/stripes = -1,
+			/obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/leader = -1,
 		),
 		"Combat Robot" = list(
 			/obj/item/clothing/suit/modular/robot/light = -1,
@@ -608,10 +640,12 @@
 		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,
+			/obj/item/clothing/suit/modular/goon = -1,
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 
@@ -729,6 +763,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Specialized" = list(
@@ -1232,6 +1267,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1422,6 +1458,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 5,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Heavy Weapons" = list(
@@ -1877,6 +1914,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 
@@ -2247,6 +2285,7 @@
 		"General" = list(
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/radio/loadout_tool = -1,
 		),
 	)
 /obj/machinery/vending/medical/icc
@@ -2423,6 +2462,7 @@
 			/obj/item/explosive/grenade/smokebomb/sleep = 12,
 			/obj/item/explosive/grenade/bullet/laser = 30,
 			/obj/item/explosive/grenade/bullet/hefa = 10,
+			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Heavy Weapons" = list(

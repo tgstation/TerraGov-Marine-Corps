@@ -10,7 +10,7 @@
 	Uses 10x24mm caseless ammunition and 10 gauge micro grenades."
 	ui_icon = "v31"
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()

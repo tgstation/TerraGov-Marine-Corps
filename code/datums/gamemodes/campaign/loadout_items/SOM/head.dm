@@ -3,7 +3,7 @@
 	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
 	item_typepath = /obj/item/clothing/head/modular/som
 	jobs_supported = list(SOM_SQUAD_MARINE)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/som_standard/medic
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
@@ -17,14 +17,14 @@
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
 	item_typepath = /obj/item/clothing/head/modular/som/veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/gorgon
 	name = "Gorgon helmet"
 	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. Typically seen on SOM leaders or their most elite combat units."
 	item_typepath = /obj/item/clothing/head/modular/som/leader
 	jobs_supported = list(SOM_SQUAD_LEADER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/gorgon/fc
 	name = "Gorgon helmet"
@@ -47,7 +47,7 @@
 	req_desc = "Requires a suit with a Lorica module."
 	ui_icon = "lorica"
 	item_typepath = /obj/item/clothing/head/modular/som/lorica
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_VETERAN)
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/som/heavy/lorica = ITEM_SLOT_OCLOTHING,
 		/obj/item/clothing/suit/modular/som/heavy/lorica/medic = ITEM_SLOT_OCLOTHING,
@@ -71,7 +71,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_tyr/universal
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_SLUT, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/som_mimir
@@ -87,7 +87,7 @@
 	desc = "A specialised helmet designed for use by combat engineers. Its main feature being an integrated welding mask."
 	item_typepath = /obj/item/clothing/head/modular/som/engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)

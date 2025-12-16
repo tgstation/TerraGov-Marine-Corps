@@ -12,6 +12,10 @@
 	l_pocket = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/lightpack
 
+/datum/outfit/job/command/ceo/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_hand(new /obj/item/binoculars/fire_support/extended, SLOT_IN_R_POUCH)
+
 /datum/outfit/job/command/corpseccommander
 	name = CORPSEC_COMMANDER
 	jobtype = /datum/job/terragov/command/corpseccommander

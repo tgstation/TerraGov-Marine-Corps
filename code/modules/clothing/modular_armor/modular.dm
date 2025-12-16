@@ -118,6 +118,10 @@
 		/obj/item/armor_module/armor/legs/marine/mjolnir,
 		/obj/item/armor_module/armor/arms/marine/mjolnir,
 
+		/obj/item/armor_module/armor/chest/marine/invis,
+		/obj/item/armor_module/armor/chest/marine/skirmisher/invis,
+		/obj/item/armor_module/armor/chest/marine/assault/invis,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
