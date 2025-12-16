@@ -533,6 +533,25 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 
+/obj/item/storage/holster/belt/pistol/m4a3/mk90/PopulateContents()
+	new /obj/item/weapon/gun/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+	new /obj/item/ammo_magazine/pistol/mk90(src)
+
+/obj/item/storage/holster/belt/pistol/m4a3/mk100_gyrojet/PopulateContents()
+	new /obj/item/weapon/gun/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+	new /obj/item/ammo_magazine/pistol/mk100_gyrojet(src)
+
+
 /obj/item/storage/holster/belt/pistol/m4a3/som
 	name = "\improper S19 holster rig"
 	desc = "A belt with origins dating back to old colony security holster rigs."

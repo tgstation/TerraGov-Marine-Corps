@@ -393,6 +393,10 @@
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/pmc_raval
+	fill_type = /obj/item/ammo_magazine/smg/val
+	fill_number = 3
+
 /obj/item/storage/pouch/magazine/drum
 	name = "drum magazine pouch"
 	desc = "It can contain four drum magazines."

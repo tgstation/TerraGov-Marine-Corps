@@ -272,18 +272,20 @@
 	name = "\improper M4 Legionary pattern PMC armor"
 	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets."
 	icon_state = "pmc_armor_standard"
-	//soft_armor = list(MELEE = 55, BULLET = 70, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 20, FIRE = 45, ACID = 45)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/sarge
+	name = "\improper M4 Legionary Sarge pattern PMC armor"
 	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You're no longer a shiny, aren't you?"
 	icon_state = "pmc_armor_standard_sarge"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
+	name = "\improper M4 Legionary Joker pattern PMC armor"
 	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You're either one of the funniest, or most annoying man in your squad."
 	icon_state = "pmc_armor_standard_joker"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/stripes
+	name = "\improper M4 Legionary Stripes pattern PMC armor"
 	desc = "Standard issue suit, designed for quick movement. produced by Ninetails Armory Division. It's a preffered choice among mercenaries and security assets. You like stripes, don't you?"
 	icon_state = "pmc_armor_standard_stripes"
 
@@ -291,7 +293,6 @@
 	name = "\improper M6 Princeps pattern PMC armor"
 	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular set looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
-	//soft_armor = list(MELEE = 60, BULLET = 75, LASER = 70, ENERGY = 70, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
@@ -311,14 +312,17 @@
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge
+	name = "\improper M7-H Cathaphract Sarge pattern PMC exo-armor"
 	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're no longer a shiny, aren't you?"
 	icon_state = "pmc_heavyarmor_sarge"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/joker
+	name = "\improper M7-H Cathaphract Joker pattern PMC exo-armor"
 	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You're either one of the funniest, or most annoying man in your squad."
 	icon_state = "pmc_heavyarmor_joker"
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/stripes
+	name = "\improper M7-H Cathaphract Stripes pattern PMC exo-armor"
 	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome. You like stripes, don't you?"
 	icon_state = "pmc_heavyarmor_stripes"
 

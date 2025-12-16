@@ -56,6 +56,9 @@
 	breathy = FALSE
 	voice_filter = "lowpass=f=750,volume=2"
 
+/obj/item/clothing/mask/gas/pmc/no_hug
+	anti_hug = 0
+
 /obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
 	anti_hug = 0
@@ -68,6 +71,9 @@
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. Additionally has soft white syntethic edge for face cutout, you definetly will not get cold with this one."
 	icon_state = "officer_mask"
+
+/obj/item/clothing/mask/gas/pmc/leader/no_hug
+	anti_hug = 0
 
 /obj/item/clothing/mask/gas/wolves
 	name = "tactical balaclava"
