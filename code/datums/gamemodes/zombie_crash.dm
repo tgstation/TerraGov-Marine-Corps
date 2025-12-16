@@ -105,15 +105,6 @@
 			num_humans++
 	return list(num_humans, num_zombies)
 
-/// Gets all marines
-/datum/game_mode/infestation/crash/zombie/proc/get_all_humans(count_flags)
-	var/list/mob/living/carbon/human/human_list = list()
-	for(var/mob/living/carbon/human/possible_human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !possible_human.client && possible_human.afk_status == MOB_DISCONNECTED)
-			continue
-		human_list += possible_human
-	return human_list
-
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
 		return
