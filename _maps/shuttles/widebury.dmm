@@ -38,7 +38,12 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bO" = (
-/turf/closed/wall/mainship/white/canterbury,
+/obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
 /area/shuttle/canterbury/medical)
 "bV" = (
 /obj/structure/window/reinforced/toughened{
@@ -59,12 +64,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "co" = (
-/obj/machinery/chem_master,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/machinery/light,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile,
+/obj/machinery/chem_dispenser,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
 /area/shuttle/canterbury/medical)
 "di" = (
 /obj/structure/window/reinforced/toughened{
@@ -164,6 +174,9 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
+/obj/machinery/air_alarm{
+	dir = 2
+	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "jU" = (
@@ -244,6 +257,10 @@
 /area/shuttle/canterbury)
 "ri" = (
 /obj/machinery/autodoc/crash,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "rL" = (
@@ -295,17 +312,6 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "uF" = (
-/obj/machinery/chem_dispenser,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/machinery/air_alarm{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -379,10 +385,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "yy" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 8
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -572,6 +574,9 @@
 /obj/item/bodybag/cryobag,
 /obj/item/reagent_containers/glass/beaker/cryomix{
 	name = "cryo beaker"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
@@ -964,7 +969,7 @@ ia
 hj
 fM
 fZ
-co
+uF
 bO
 xS
 Xk
@@ -988,7 +993,7 @@ hj
 jC
 Di
 uF
-bO
+co
 Rx
 Rx
 Rx
