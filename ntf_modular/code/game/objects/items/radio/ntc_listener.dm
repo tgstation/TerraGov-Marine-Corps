@@ -15,6 +15,9 @@
 	independent = TRUE
 	keyslot = /obj/item/encryptionkey/commai
 
+/obj/item/radio/headset/ntc_listener/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	return FALSE
+
 /obj/item/radio/headset/ntc_listener/attack(mob/living/M, mob/living/user)
 	. = ..()
 
