@@ -97,10 +97,11 @@ GLOBAL_LIST_INIT(faction_default_frequency, list(
 #define USL_IFF (1<<8)
 #define PIRATE_IFF (1<<9)
 #define VSD_IFF (1<<10)
+#define NEUTRAL_IFF (1<<11)
 
 ///Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
-	FACTION_NEUTRAL = TGMC_LOYALIST_IFF,
+	FACTION_NEUTRAL = NEUTRAL_IFF,
 	FACTION_TERRAGOV = TGMC_LOYALIST_IFF,
 	FACTION_RETIRED = TGMC_LOYALIST_IFF,
 	FACTION_SPECFORCE = TGMC_LOYALIST_IFF,
