@@ -64,11 +64,15 @@
 	global_rally_zombies(generating_computer, TRUE)
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX)
 
-/// Evenly distributes an amount of points to all humans. Minimum/maximum points scales on population.
+/// Evenly distributes an amount of points to all alive humans who are actively playing. Minimum/maximum points scales on population.
 /datum/game_mode/infestation/crash/zombie/proc/give_all_humans_points(flat, minimum, maximum)
 	if(!length(GLOB.zombie_crash_vendors))
 		return
-	var/list/human_list = get_all_humans(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/mob/living/carbon/human/human_list = list()
+	for(var/mob/living/carbon/human/possible_active_human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+		if(!possible_active_human.client && possible_active_human.afk_status == MOB_DISCONNECTED)
+			continue
+		human_list += possible_active_human
 	var/num_humans = length(human_list)
 	if(!num_humans)
 		return
@@ -101,22 +105,13 @@
 			num_humans++
 	return list(num_humans, num_zombies)
 
-/// Gets all human (non-zombies) that match certain criterias.
-/datum/game_mode/infestation/crash/zombie/proc/get_all_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+/// Gets all marines
+/datum/game_mode/infestation/crash/zombie/proc/get_all_humans(count_flags)
 	var/list/mob/living/carbon/human/human_list = list()
-	for(var/z in z_levels)
-		for(var/mob/living/carbon/human/possible_human in GLOB.humans_by_zlevel["[z]"])
-			if(!istype(possible_human))
-				continue
-			if(possible_human.faction == FACTION_ZOMBIE)
-				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !possible_human.client && possible_human.afk_status == MOB_DISCONNECTED)
-				continue
-			if(possible_human.status_flags & XENO_HOST)
-				continue
-			if(isspaceturf(possible_human.loc))
-				continue
-			human_list += possible_human
+	for(var/mob/living/carbon/human/possible_human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !possible_human.client && possible_human.afk_status == MOB_DISCONNECTED)
+			continue
+		human_list += possible_human
 	return human_list
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
