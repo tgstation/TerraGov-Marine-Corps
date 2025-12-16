@@ -320,14 +320,17 @@
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/stripes
+	name = "\improper M4 Legionary Stripes pattern PMC helmet"
 	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You like stripes, don't you?"
 	icon_state = "pmc_helmet_standard_stripes"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/twoface
+	name = "\improper M4 Legionary Twoface pattern PMC helmet"
 	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You could say we're of two minds on the subject."
 	icon_state = "pmc_helmet_standard_twoface"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
+	name = "\improper M4 Legionary Mantis pattern PMC helmet"
 	desc = "Standard issue enclosed helmet, produced by Ninetails Armory Division for their mercenaries and security assets. You feel quite hungry."
 	icon_state = "pmc_helmet_standard_mantis"
 
@@ -356,18 +359,22 @@
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/skull
+	name = "\improper M7-H Cathaphract Skull pattern PMC helmet"
 	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. It's rattling time."
 	icon_state = "pmc_heavyhelmet_skull"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/hunter
+	name = "\improper M7-H Cathaphract Hunter pattern PMC helmet"
 	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. I've got you in my sights."
 	icon_state = "pmc_heavyhelmet_hunter"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/joker
+	name = "\improper M7-H Cathaphract Joker pattern PMC helmet"
 	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You love seeing people smile."
 	icon_state = "pmc_heavyhelmet_joker"
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner/stripes
+	name = "\improper M7-H Cathaphract Stripes pattern PMC helmet"
 	desc = "A newest generation of Ninetails Armory. The heavy enclosed helmet with hardened cameras, a wise choice for mercenary who prefers close quarters combat. You like stripes, don't you?"
 	icon_state = "pmc_heavyhelmet_stripes"
 
