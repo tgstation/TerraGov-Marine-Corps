@@ -800,7 +800,7 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
+/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir, faction)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, TRUE)

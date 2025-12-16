@@ -138,7 +138,7 @@ export const IndividualLoadouts = (props) => {
             Equipment options
           </Stack>
           <Stack
-            fontSize="50%"
+            fontSize="70%"
             italic
             textAlign="center"
             mt={'5px'}

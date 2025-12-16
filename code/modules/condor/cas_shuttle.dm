@@ -258,7 +258,7 @@
 	user.unset_interaction()
 
 ///Handles clicking on a target while in CAS mode
-/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, params)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(mob/living/source, atom/target, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if	(	(	modifiers["right"] \
@@ -273,10 +273,10 @@
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
-	if(faction == FACTION_TERRAGOV)
+	if(source.faction == FACTION_TERRAGOV)
 		if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
 			return
-	else if(faction == FACTION_SOM)
+	else if(source.faction == FACTION_SOM)
 		if(!GLOB.som_cameranet.checkTurfVis(get_turf_pixel(target)))
 			return
 	if(!active_weapon)
@@ -295,7 +295,7 @@
 	if(!COOLDOWN_FINISHED(active_weapon, last_fired))
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
-	active_weapon.open_fire(target, attackdir)
+	active_weapon.open_fire(target, attackdir, source.faction)
 	record_cas_activity(active_weapon)
 
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)

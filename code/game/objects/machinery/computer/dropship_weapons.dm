@@ -106,7 +106,7 @@
 						return
 					if(QDELETED(LT)) // Quick final check on the Laser target
 						return
-					DEW.open_fire(LT)
+					DEW.open_fire(LT, faction = L.faction)
 					break
 
 		if("deselect")
