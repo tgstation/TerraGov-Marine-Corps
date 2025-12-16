@@ -1,0 +1,46 @@
+{
+	"hyperscale_marine_jumpskirt":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpskirt"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"hyperscale_marine_jumpskirt_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"hyperscale_marine_jumpskirt_d":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpskirt_d"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpskirt_d_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"hyperscale_marine_jumpskirt_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpskirt_h"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpskirt_h_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"hyperscale_marine_jumpskirt_r":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpskirt_r"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpskirt_r_no_color",
+			"blend_mode": "overlay"
+		}
+	]
+}

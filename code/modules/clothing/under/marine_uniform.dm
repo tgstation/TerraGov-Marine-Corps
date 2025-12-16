@@ -28,24 +28,6 @@
 /obj/item/clothing/under/marine/corpman_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
-/obj/item/clothing/under/marine_skirt
-	name = "\improper ArcherCorp-brand combat jumpskirt"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform- Wait, a fucking combat skirt?"
-	siemens_coefficient = 0.9
-	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
-	icon_state = "marine_jumpskirt"
-	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
-	)
-	has_sensor = 2
-	adjustment_variants = list(
-		"Rolled Sleeves" = "_d",
-		"No Sleeves" = "_h",
-		"No Top" = "_r",
-	)
-
 /obj/item/clothing/under/marine/holster
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
@@ -57,16 +39,6 @@
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
-	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
-
-/obj/item/clothing/under/marine/hyperscale_skirt
-	name = "\improper 8E Chameleon ArcherCorp-brand jumpskirt"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with facepaint! Comes in skirts now."
-	icon_state = "hyperscale_marine_jumpskirt"
-	worn_icon_state = "hyperscale_marine_jumpskirt"
-	greyscale_colors = ARMOR_PALETTE_BLACK
-	greyscale_config = /datum/greyscale_config/marine_uniform
-	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/clothing/under/marine/black_vest
@@ -103,46 +75,6 @@
 	name = "\improper NTF Alpha turtleneck"
 	desc = "A standard issued NTF turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
 	icon_state = "alpha_merc"
-
-/obj/item/clothing/under/marine/squad/neck/alpha_skirt
-	name = "\improper NTF Alpha skirtleneck"
-	desc = "A standard issued NTF turtleneck colored red- OH COME ON"
-	icon_state = "alpha_merc_skirt"
-	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
-	)
-
-/obj/item/clothing/under/marine/squad/neck/delta_skirt
-	name = "\improper NTF Delta skirtleneck"
-	desc = "A standard issued NTF turtleneck colored blue- OH COME ON"
-	icon_state = "delta_merc_skirt"
-	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
-	)
-
-/obj/item/clothing/under/marine/squad/neck/charlie_skirt
-	name = "\improper NTF Charlie skirtleneck"
-	desc = "A standard issued NTF turtleneck colored purple- OH COME ON"
-	icon_state = "charlie_merc_skirt"
-	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
-	)
-
-/obj/item/clothing/under/marine/squad/neck/bravo_skirt
-	name = "\improper NTF Bravo skirtleneck"
-	desc = "A standard issued NTF turtleneck colored yellow- OH COME ON"
-	icon_state = "bravo_merc_skirt"
-	worn_icon_list =list(
-		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
-		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
-	)
 
 // camo things stuff yeah!
 
