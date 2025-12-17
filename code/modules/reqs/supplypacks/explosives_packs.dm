@@ -92,7 +92,7 @@ EXPLOSIVES
 	name = "M25 HEFA grenade box"
 	notes = "Contains 25 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/hefa)
-	cost = 500
+	cost = 750
 
 /datum/supply_packs/explosives/explosives_neurotoxin
 	name = "M40-N Neurotoxin smoke grenade box"
