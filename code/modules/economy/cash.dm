@@ -42,20 +42,20 @@
 		qdel(src)
 
 /obj/item/spacecash/bundle
-	name = "stack of dollars"
+	name = "stack of papercreds"
 	icon_state = "blank"
-	desc = "They are worth 0 dollars."
+	desc = "They are worth 0 credits."
 	worth = 0
 
 /obj/item/spacecash/bundle/update_desc(updates)
 	. = ..()
-	desc = "They are worth [worth] dollars."
+	desc = "They are worth [worth] credits."
 
 /obj/item/spacecash/bundle/update_overlays()
 	. = ..()
 	var/sum = worth
 	var/num = 0
-	for(var/i in list(1000,500,200,100,50,20,10,1))
+	for(var/i in list(500,200,100,50,20,10,1))
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
@@ -84,7 +84,7 @@
 	src.update_appearance()
 	if(!worth)
 		usr.temporarilyRemoveItemFromInventory(src)
-	if(amount in list(1000,500,200,100,50,20,1))
+	if(amount in list(500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/spacecash/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
 		user.put_in_hands(cash)
