@@ -722,6 +722,10 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_belt_str,
 	slot_l_store_str,
 	slot_r_store_str,
+	slot_underwear_str,
+	slot_socks_str,
+	slot_shirt_str,
+	slot_bra_str,
 ))
 
 ///List of all additional item slot used by the admin loadout build mode
