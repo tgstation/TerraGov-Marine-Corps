@@ -137,13 +137,14 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
 		/obj/item/explosive/grenade/chem_grenade/healing_foam = list(CAT_MEDSUP, "EMS-02 Healing Foam Grenade", 8, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -286,7 +287,7 @@ GLOBAL_LIST_INIT(pmc_medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 10, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 8, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
@@ -294,6 +295,7 @@ GLOBAL_LIST_INIT(pmc_medic_gear_listed_products, list(
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
 		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 12, "corps-tools"),
 		/obj/item/ammo_magazine/smg/m25/ap = list(CAT_MEDSUP, "SMG-25 AP Magazine", 1, "black"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(pmc_gunner_gear_listed_products, list(
@@ -463,7 +465,8 @@ GLOBAL_LIST_INIT(som_medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 8, "corps-tools"), //half the price NTC pays for it
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(som_veteran_gear_listed_products, list(
@@ -529,7 +532,8 @@ GLOBAL_LIST_INIT(vsd_medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 8, "corps-tools"), //half the price NTC pays for it
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(vsd_specialist_gear_listed_products, list(
@@ -626,13 +630,14 @@ GLOBAL_LIST_INIT(icc_medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(icc_guard_gear_listed_products, list(
