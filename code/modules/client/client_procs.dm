@@ -117,6 +117,15 @@
 			return SSvote.Topic(href, href_list)
 		if("codex")
 			return SScodex.Topic(href, href_list)
+		if("codex_tgui")
+			if(href_list["entry"])
+				var/atom/entry = locate(href_list["entry"])
+				codex = new /datum/codex(src)
+				codex.open_ui(mob, entry)
+			else
+				//TO-DO: delete this when finished
+				to_chat(world, "Something went very wrong with the topic thing for the codex")
+			return
 
 	switch(href_list["action"])
 		if("openLink")
