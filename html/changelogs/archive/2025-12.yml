@@ -109,3 +109,12 @@
   - code_imp: Cleaned up some weapon and two hander code
   mudzbe:
   - rscadd: Move silo back in the crashed syndicate shuttle on icy caves
+2025-12-17:
+  Nokia2Student:
+  - rscadd: New helmets and armors added to ac vendors
+  - rscadd: New loadouts for ac gunner, ac specialist and ac sl.
+  - rscadd: New lightpacks for ac loadouts
+  - balance: Antihug protection was removed from ac masks
+  - balance: 'Ac standard slots: 3-> -1'
+  - balance: 'Ac medic slots: 1 -> 2'
+  - balance: 'Ac engineer slots: 1 -> 2'
