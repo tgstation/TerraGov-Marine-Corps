@@ -3158,7 +3158,7 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 0.55 SECONDS
+	fire_delay = 0.5 SECONDS
 	accuracy_mult = 1.15
 	scatter = -4
 	burst_amount = 1
@@ -3298,8 +3298,8 @@
 	burst_amount = 3
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	burst_delay = 0.1 SECONDS
-	scatter = 0
-	fire_delay = 0.2 SECONDS
+	scatter = 2
+	fire_delay = 0.25 SECONDS
 
 /obj/item/weapon/gun/rifle/vsd_carbine/recoilcomp
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)

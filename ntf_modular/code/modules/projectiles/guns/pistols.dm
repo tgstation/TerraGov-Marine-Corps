@@ -9,7 +9,6 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/ntunity
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xmdivider, /obj/item/ammo_magazine/pistol/xmdivider/ap, /obj/item/ammo_magazine/pistol/ntunity)
 	force = 8
-	actions_types = null
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/flashlight,
@@ -22,16 +21,17 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20, "rail_x" = 17, "rail_y" = 22, "under_x" = 29, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	burst_amount = 1
 	//gonna adjust for no burst fire.
-	windup_delay = 0.3 SECONDS
-	fire_delay = 0.3 SECONDS
+	windup_delay = 0.2 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 4
-	scatter = 1.5
+	scatter = 1
 	damage_mult = 1.2
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	recoil = 3
+	recoil = 1
+	recoil_unwielded = 5
 	//no red dot, holo sight instead.
-	accuracy_mult_unwielded = 0.95
-	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.8
+	accuracy_mult = 1
 	aim_speed_modifier = 0.50
 	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
