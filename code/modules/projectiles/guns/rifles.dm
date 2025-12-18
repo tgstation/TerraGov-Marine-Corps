@@ -591,7 +591,6 @@
 	)
 	aim_slowdown = 0.5
 	attachable_allowed = list(
-		/obj/item/attachable/foldable/som_carbine,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
