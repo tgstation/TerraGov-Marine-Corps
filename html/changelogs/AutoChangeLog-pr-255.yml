@@ -1,0 +1,6 @@
+author: "Belgiumdoggo"
+delete-after: True
+changes:
+  - rscadd: "New uniform, helmet, vest, and rebreather for the SOM Pilot Officer."
+  - bugfix: "fixed SOM Pilot Officer spawning with a tablet with access to NTC cams."
+  - code_imp: "updated the loadout spawn of the SOM Pilot Officer."
