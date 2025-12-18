@@ -62,13 +62,14 @@
 	printing = FALSE
 	printing_complete = TRUE
 	//NTF edit. Printing a disk instead of instantly giving the points.
-	new /obj/item/disk/intel_disk(get_turf(src), supply_reward, dropship_reward, faction, get_area(src))
+	var/obj/item/disk/intel_disk/new_disk = new(get_turf(src), supply_reward, dropship_reward, faction, get_area(src))
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
 	SStgui.close_uis(src)
 	update_minimap_icon()
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_INTEL_DISK_PRINTED, src, new_disk)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
