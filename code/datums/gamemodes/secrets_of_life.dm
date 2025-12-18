@@ -121,12 +121,12 @@
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/post_setup()
 	. = ..()
-	addtimer(CALLBACK(src), PROC_REF(give_wages), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/proc/give_wages()
 	for(var/datum/faction_stats/i in stat_list)
 		stat_list[i].apply_cash(250)
-	addtimer(CALLBACK(src), PROC_REF(give_wages), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/pre_setup()
 	. = ..()
