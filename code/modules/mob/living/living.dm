@@ -935,6 +935,7 @@ below 100 is not dizzy
 			ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
 			ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_NON_FLAMMABLE, STAT_TRAIT)
 			on_revive()
 	switch(stat)
 		if(CONSCIOUS) //From unconscious to conscious.
@@ -942,6 +943,8 @@ below 100 is not dizzy
 			REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 		if(DEAD)
 			on_death()
+			ADD_TRAIT(src, TRAIT_NON_FLAMMABLE, STAT_TRAIT)
+			ExtinguishMob()
 
 
 /mob/living/setGrabState(newstate)
