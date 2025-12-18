@@ -902,7 +902,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/shoulder_mount,)
