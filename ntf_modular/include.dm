@@ -101,6 +101,7 @@
 #include "code\modules\client\preferences.dm"
 #include "code\modules\clothing\glasses\hypnogoggles.dm"
 #include "code\modules\clothing\head\head.dm"
+#include "code\modules\clothing\masks\breath.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
