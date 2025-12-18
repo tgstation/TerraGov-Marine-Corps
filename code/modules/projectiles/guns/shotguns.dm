@@ -359,6 +359,13 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/stock/trenchgun,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
 	)
 	item_map_variant_flags = NONE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 0, "stock_y" = 12)
@@ -368,7 +375,7 @@
 
 	fire_delay = 1.2 SECONDS
 	max_chamber_items = 5
-	damage_mult = 0.75
+	damage_mult = 1
 	accuracy_mult_unwielded = 1
 
 	scatter = 4
@@ -925,7 +932,6 @@
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 	fire_delay = 1.75 SECONDS
-	damage_mult = 0.9
 	wield_delay = 0.95 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
@@ -977,7 +983,7 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 4
 	scatter_unwielded = 16
-	damage_mult = 0.85
+	damage_mult = 1
 	recoil = 1
 	recoil_unwielded = 4
 	aim_slowdown = 0.35
@@ -1087,9 +1093,9 @@
 	scatter_decay = 3
 	scatter_decay_unwielded = 1
 
-	aim_slowdown = 0.5
-	damage_falloff_mult = 1.3
-	aim_slowdown = 0.5
+	cock_delay = 1.0 SECONDS
+	aim_slowdown = 0.55
+	damage_mult = 1 //fucking thing has 5 more rounds than the SOM shotgun but fires slower
 
 /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)
@@ -1141,7 +1147,7 @@
 	fire_delay = 3 //one shot every 0.3 seconds.
 	accuracy_mult = 1.05
 	scatter = 3
-	damage_mult = 0.6  //40% less damage.
+	damage_mult = 0.75  //25% less damage.
 	recoil = 0.5
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.2
