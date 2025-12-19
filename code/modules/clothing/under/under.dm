@@ -25,9 +25,13 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/uniform/webbing,
 		/obj/item/armor_module/storage/uniform/black_vest,
+		/obj/item/armor_module/storage/uniform/black_vest/sling,
 		/obj/item/armor_module/storage/uniform/brown_vest,
+		/obj/item/armor_module/storage/uniform/brown_vest/sling,
 		/obj/item/armor_module/storage/uniform/white_vest,
+		/obj/item/armor_module/storage/uniform/white_vest/sling,
 		/obj/item/armor_module/storage/uniform/surgery_webbing,
+		/obj/item/armor_module/storage/uniform/surgery_webbing/sling,
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,

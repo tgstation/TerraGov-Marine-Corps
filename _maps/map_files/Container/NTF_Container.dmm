@@ -477,7 +477,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/obj/structure/closet/crate/ammo,
+/obj/structure/prop/computer/cryopod,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "aFV" = (
@@ -17913,6 +17913,10 @@
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
+"rLA" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "rMD" = (
 /obj/item/toy/beach_ball{
 	pixel_x = -10;
@@ -58434,7 +58438,7 @@ sss
 ogT
 jpC
 vhY
-eCz
+rLA
 aFG
 ics
 uUK
