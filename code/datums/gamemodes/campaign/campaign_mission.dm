@@ -42,7 +42,8 @@
 	///specific mission outcome
 	var/outcome
 	///The current gamemode. Var as its referred to often
-	var/datum/game_mode/hvh/campaign/mode
+	var/datum/game_mode/mode
+	///var/datum/game_mode/hvh/campaign/mode NTF EDIT
 	///The victory conditions for this mission for the starting faction, for display purposes
 	var/starting_faction_objective_description = "Loading mission objectives"
 	///The victory conditions for this mission for the hostile faction, for display purposes

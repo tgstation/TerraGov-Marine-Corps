@@ -335,7 +335,7 @@
 
 /obj/item/ammo_magazine/pistol/vsd_pistol
 	name = "\improper C96 'riot' magazine"
-	default_ammo = /datum/ammo/bullet/pistol/vsd_ap
+	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"

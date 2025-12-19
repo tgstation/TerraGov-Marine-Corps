@@ -258,7 +258,7 @@
 	plasma_stored = plasma_stored - value
 	if(plasma_stored < 0)
 		plasma_stored = 0
-		Paralyze(15 SECONDS) // 3 seconds after xeno paralyze resistance applied
+		Paralyze(45 SECONDS) // 15 seconds after xeno paralyze resistance applied
 	update_action_button_icons()
 	if(!update_plasma)
 		return

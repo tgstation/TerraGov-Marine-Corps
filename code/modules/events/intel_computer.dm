@@ -7,6 +7,27 @@
 	/// the intel computer for the next event to activate
 	var/obj/machinery/computer/intel_computer/intel_computer
 
+/datum/round_event_control/intel_computer/New()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_DISK_PRINTED, PROC_REF(recalculate_weight))
+	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_COMPUTER_ACTIVATED, PROC_REF(recalculate_weight))
+	weight *= 20
+
+/datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, var/obj/item/disk/intel_disk/new_disk)
+	var/active_computers = 0
+	for(var/obj/machinery/computer/intel_computer/I in GLOB.intel_computers)
+		if(I.active)
+			active_computers++
+	switch(active_computers)
+		if(0)
+			weight = initial(weight)*20
+		if(1)
+			weight = initial(weight)*5
+		if(2)
+			weight = initial(weight)*2
+		else
+			weight = initial(weight)
+
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode, force = FALSE)
 	. = ..()
 	if(!.)
@@ -67,3 +88,4 @@
 	I.printing_complete = FALSE
 	I.update_icon()
 	I.update_minimap_icon()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_INTEL_COMPUTER_ACTIVATED, I)

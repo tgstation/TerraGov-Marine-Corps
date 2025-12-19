@@ -2,6 +2,8 @@
 
 
 
+
+
 #include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\_DEFINES\sexcon_defines.dm"
@@ -80,6 +82,7 @@
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\items\radio\ntc_listener.dm"
+#include "code\game\objects\items\storage\medicdispenser.dm"
 #include "code\game\objects\items\tools\loadout_tool.dm"
 #include "code\game\objects\machinery\artillery\shells.dm"
 #include "code\game\objects\machinery\camera\camera.dm"
@@ -99,9 +102,11 @@
 #include "code\modules\client\preferences.dm"
 #include "code\modules\clothing\glasses\hypnogoggles.dm"
 #include "code\modules\clothing\head\head.dm"
+#include "code\modules\clothing\masks\breath.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
+#include "code\modules\clothing\modular_armor\attachments\uniform.dm"
 #include "code\modules\clothing\modular_armor\modular.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\marine_armor.dm"

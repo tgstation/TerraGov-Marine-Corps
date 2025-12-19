@@ -137,13 +137,14 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
 		/obj/item/explosive/grenade/chem_grenade/healing_foam = list(CAT_MEDSUP, "EMS-02 Healing Foam Grenade", 8, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -286,7 +287,7 @@ GLOBAL_LIST_INIT(pmc_medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 10, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 8, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
@@ -294,6 +295,7 @@ GLOBAL_LIST_INIT(pmc_medic_gear_listed_products, list(
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
 		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 12, "corps-tools"),
 		/obj/item/ammo_magazine/smg/m25/ap = list(CAT_MEDSUP, "SMG-25 AP Magazine", 1, "black"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(pmc_gunner_gear_listed_products, list(
@@ -463,7 +465,8 @@ GLOBAL_LIST_INIT(som_medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 8, "corps-tools"), //half the price NTC pays for it
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(som_veteran_gear_listed_products, list(
@@ -529,7 +532,8 @@ GLOBAL_LIST_INIT(vsd_medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 8, "corps-tools"), //half the price NTC pays for it
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(vsd_specialist_gear_listed_products, list(
@@ -626,13 +630,14 @@ GLOBAL_LIST_INIT(icc_medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
-		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 20, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/clothing/gloves/healthanalyzer = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
-		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 10, "corps-tools"),
+		/obj/item/storage/backpack/dispenser/medic = list(CAT_MEDSUP, "NM Automedical Dispenser", 20, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(icc_guard_gear_listed_products, list(
@@ -717,6 +722,10 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_belt_str,
 	slot_l_store_str,
 	slot_r_store_str,
+	slot_underwear_str,
+	slot_socks_str,
+	slot_shirt_str,
+	slot_bra_str,
 ))
 
 ///List of all additional item slot used by the admin loadout build mode
@@ -750,6 +759,12 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
 	),
+	SQUAD_ENGINEER = list(
+		/obj/machinery/vending/engivend/ntf,
+	),
+	SHIP_TECH = list(
+		/obj/machinery/vending/engivend/ntf,
+	),
 	VENDOR_FACTION_CRASH = list(
 		/obj/machinery/vending/weapon/crash,
 		/obj/machinery/vending/uniform_supply,
@@ -768,6 +783,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/medical/som,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/som,
 	),
 	VENDOR_FACTION_PMC = list(
 		/obj/machinery/vending/weapon/pmc,
@@ -779,6 +795,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/medical/pmc,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/pmc,
 	),
 	VENDOR_FACTION_VSD = list(
 		/obj/machinery/vending/weapon/vsd,
@@ -790,6 +807,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/engivend,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/vsd,
 	),
 	VENDOR_FACTION_ICC = list(
 		/obj/machinery/vending/weapon/icc,
@@ -801,6 +819,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/snack,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/icc,
 	),
 	VENDOR_FACTION_CLF = list(
 		/obj/machinery/vending/weapon/clf,
@@ -812,6 +831,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/snack,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/clf,
 	)
 ))
 
@@ -834,6 +854,7 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1020,6 +1041,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
@@ -1291,6 +1313,7 @@ GLOBAL_LIST_INIT(som_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/som/heavy_armor = list(CAT_AMR, "M-31 Heavy Battle Armor", 0, "Orange"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch/som = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1371,6 +1394,7 @@ GLOBAL_LIST_INIT(som_engineer_clothes_listed_products, list(
 		/obj/item/storage/backpack/dispenser = list(CAT_BAK, "Dispenser", 0, "black"),
 		/obj/item/storage/holster/backholster/mortar/full = list(CAT_BAK, "Mortar bag", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch/som = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1413,6 +1437,7 @@ GLOBAL_LIST_INIT(som_veteran_clothes_listed_products, list(
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "white"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch/som = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1454,6 +1479,7 @@ GLOBAL_LIST_INIT(som_leader_clothes_listed_products, list(
 		/obj/item/storage/backpack/lightpack/som = list(CAT_BAK, "Rucksack", 0, "white"),
 		/obj/item/storage/backpack/satchel/som = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch/som = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1495,6 +1521,7 @@ GLOBAL_LIST_INIT(vsd_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1581,6 +1608,7 @@ GLOBAL_LIST_INIT(vsd_specialist_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/heavy_armor = list(CAT_AMR, "Crasher Heavy Armor", 0, "Orange"),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1608,6 +1636,7 @@ GLOBAL_LIST_INIT(vsd_leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/vsd/syndicate_armor = list(CAT_AMR, "Crasher 'Syndicate' EOD Ballistic Armor", 0, ""),
 		/obj/item/storage/backpack/lightpack/vsd = list(CAT_BAK, "Combat Backpack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1634,6 +1663,7 @@ GLOBAL_LIST_INIT(pmc_standard_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/pmc/standard_armor = list(CAT_AMR, "M4 pattern PMC armor", 0, "white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1667,6 +1697,7 @@ GLOBAL_LIST_INIT(pmc_engineer_clothes_listed_products, list(
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
 		/obj/item/storage/backpack/dispenser = list(CAT_BAK, "Dispenser", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1694,6 +1725,7 @@ GLOBAL_LIST_INIT(pmc_gunner_clothes_listed_products, list(
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1721,6 +1753,7 @@ GLOBAL_LIST_INIT(pmc_sniper_clothes_listed_products, list(
 		/obj/item/clothing/mask/gas/pmc = list(CAT_MAS, "M8 pattern armored balaclava", 0,"white"),
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1749,6 +1782,7 @@ GLOBAL_LIST_INIT(pmc_medic_clothes_listed_products, list(
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/lifesaver/full = list(CAT_BEL, "Lifesaver belt", 0, "orange"),
@@ -1765,6 +1799,7 @@ GLOBAL_LIST_INIT(pmc_leader_clothes_listed_products, list(
 		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight Combat Pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
@@ -1796,6 +1831,7 @@ GLOBAL_LIST_INIT(icc_standard_clothes_listed_products, list(
 		/obj/item/storage/backpack/lightpack/icc/guard = list(CAT_BAK, "Black Modello/190 pack", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
+		/obj/item/armor_module/storage/uniform/black_vest/sling = list(CAT_WEB, "Tactical sling pouch", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/marine/icc = list(CAT_BEL, "Standard ammo belt", 0, "orange"),

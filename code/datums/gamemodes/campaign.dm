@@ -24,9 +24,9 @@
 		/datum/job/som/command/commander = 1,
 	)
 	///The current mission type being played
-	var/datum/campaign_mission/current_mission
+	///var/datum/campaign_mission/current_mission ///moved to game_mode base
 	///campaign stats organised by faction
-	var/list/datum/faction_stats/stat_list = list()
+	////var/list/datum/faction_stats/stat_list = list() ///moved to game_mode base
 	///List of death times by ckey. Used for respawn time
 	var/list/player_death_times = list()
 	///List of timers to auto open the respawn window
@@ -41,8 +41,10 @@
 
 /datum/game_mode/hvh/campaign/pre_setup()
 	. = ..()
+	/* NTF EDIT - moved to /datum/game_mode/proc/pre_setup()
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
+	*/
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(end_mission))
@@ -193,14 +195,18 @@
 	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
 ///sets up the newly selected mission
-/datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
+////datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)// NTF EDIT
+/datum/game_mode/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
-	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY, TIMER_CLIENT_TIME) //we autobalance teams after a short delay to account for slow respawners
-	//TIMER_CLIENT_TIME as loading a new z-level messes with the timing otherwise
 	for(var/faction in factions)
 		for(var/player in GLOB.alive_human_list_faction[faction])
-			stat_list[faction].interact(player) //gives the mission brief
+			stat_list[faction]?.interact(player) //gives the mission brief
 	current_mission.load_mission()
+
+/datum/game_mode/hvh/campaign/load_new_mission(datum/campaign_mission/new_mission)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY, TIMER_CLIENT_TIME) //we autobalance teams after a short delay to account for slow respawners
+	//TIMER_CLIENT_TIME as loading a new z-level messes with the timing otherwise
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 ///Checks team balance and tries to correct if possible

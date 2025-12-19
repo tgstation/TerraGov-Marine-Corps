@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - balance: "Non-chest limbs now have a significantly higher miss chance, targeting the eyes forces you to miss all your shots"

@@ -40,6 +40,7 @@
 		/datum/action/ability/xeno_action/displacement,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/xeno_action/xenohide,
 	)
 
 /datum/xeno_caste/hunter/assassin/primordial
@@ -65,4 +66,5 @@
 		/datum/action/ability/xeno_action/displacement,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/xeno_action/xenohide,
 	)

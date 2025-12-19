@@ -2706,11 +2706,7 @@
 	name = "Research"
 	})
 "crQ" = (
-/obj/machinery/power/apc{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/computer/pod,
+/obj/structure/prop/computer/cryopod,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -17566,6 +17562,10 @@
 /obj/item/pizzabox/random,
 /obj/item/pizzabox/random,
 /obj/item/pizzabox/random,
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},

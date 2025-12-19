@@ -15,9 +15,6 @@
 	independent = TRUE
 	keyslot = /obj/item/encryptionkey/commai
 
-/obj/item/radio/headset/ntc_listener/attack(mob/living/M, mob/living/user)
-	. = ..()
-
 /obj/item/radio/headset/ntc_listener/possibly_deactivate_in_loc()
 	return
 

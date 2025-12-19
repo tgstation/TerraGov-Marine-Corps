@@ -64,16 +64,17 @@
 	jobtype = /datum/job/som/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	ears = /obj/item/radio/headset/mainship/mcom/som
-	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/storage/marine/pilot
+	head = /obj/item/clothing/head/helmet/marine/som/pilot
+	mask = /obj/item/clothing/mask/rebreather/som
+	w_uniform = /obj/item/clothing/under/som/officer/pilot
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/pilot
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	gloves = /obj/item/clothing/gloves/insulated
+	gloves = /obj/item/clothing/gloves/marine/som/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
-	head = /obj/item/clothing/head/helmet/marine/pilot
-	r_pocket = /obj/item/storage/pouch/general/large
-	l_pocket = /obj/item/hud_tablet/pilot
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	l_pocket = /obj/item/minimap_tablet
 
 /datum/outfit/job/som/command/mech_pilot
 	name = SOM_MECH_PILOT

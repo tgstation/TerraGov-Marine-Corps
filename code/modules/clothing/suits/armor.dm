@@ -250,7 +250,8 @@
 	worn_icon_state = "hos"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	item_flags = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30) // on par with beret
+	soft_armor = MARINE_ARMOR_LIGHT
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 	allowed = list(

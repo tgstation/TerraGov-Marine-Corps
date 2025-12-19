@@ -69,6 +69,21 @@
 		/obj/item/armor_module/storage/engineering,
 	)
 
+/obj/item/clothing/suit/storage/marine/som/pilot
+	name = "\improper S12-P pilot armor"
+	desc = "A light piece of armor used by SOM pilots to protect themselves while flying in the cockpit. Made from tests into other armor systems for pilots."
+	icon_state = "som_pilot_black"
+	icon = 'ntf_modular/icons/obj/clothing/suits/ert_suits.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'ntf_modular/icons/mob/clothing/suits/ert_suits.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
+	worn_icon_state = "som_pilot_black"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 35, BOMB = 40, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = 0.20
+	item_map_variant_flags = NONE
+
 //tdf overwrites.
 /obj/item/clothing/suit/modular/tdf
 	icon = 'ntf_modular/icons/mob/modular/tdf_armor.dmi'

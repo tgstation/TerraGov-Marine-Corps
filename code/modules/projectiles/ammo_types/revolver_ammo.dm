@@ -64,7 +64,6 @@
 /datum/ammo/bullet/revolver/heavy/incen
 	name = "incendiary heavy revolver bullet"
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_BALLISTIC
-	damage_type = BURN
 	penetration = 15
 
 /datum/ammo/bullet/revolver/heavy/ap

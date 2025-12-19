@@ -809,13 +809,13 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 2, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 23, "stock_y" = 13)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.0
-	accuracy_mult_unwielded = 0.75
-	recoil = -2
-	damage_mult = 1.2
-	aim_slowdown = 0.1
-	scatter = -1
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
 	scatter_unwielded = 4
+	recoil = -2
+	recoil_unwielded = 0
+	akimbo_additional_delay = 1.1
+	akimbo_scatter_mod = 8
 	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/vsd_pistol/standard
@@ -854,13 +854,15 @@
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
 	fire_delay = 0.5 SECONDS
-	akimbo_additional_delay = 0.6
-	accuracy_mult_unwielded = 0.85
+	akimbo_additional_delay = 1
+	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
-	scatter_unwielded = 5
+	scatter_unwielded = 25
 	scatter = 2
 	recoil = 4
-	recoil_unwielded = 3
+	recoil_unwielded = 12
+	burst_scatter_mult = 1.2
+	akimbo_scatter_mod = 6 //fuck you
 	holstered_underlay_icon = 'ntf_modular/icons/obj/items/storage/holster.dmi'
 
 /obj/item/weapon/gun/pistol/xmdivider/gunslinger
@@ -887,7 +889,24 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	default_ammo_type = /obj/item/ammo_magazine/pistol/auto9
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/auto9)
 	force = 15
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/shoulder_mount,)
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 

@@ -75,13 +75,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
-"aK" = (
+"aJ" = (
 /obj/structure/cable,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/antag_ship/clf_base/techroom)
+/obj/structure/largecrate/supply/generator,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/lounge)
 "aL" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
@@ -816,14 +814,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander)
-"eQ" = (
-/obj/item/weapon/butterfly/switchblade,
-/obj/item/weapon/butterfly/switchblade,
-/obj/item/weapon/butterfly/switchblade,
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/armory)
 "eR" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/grayscale/black,
@@ -984,7 +974,7 @@
 /turf/open/floor/wood/darker,
 /area/antag_ship/pmc_ntf/port/quarters)
 "fM" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/pmc,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
 "fP" = (
@@ -1141,9 +1131,6 @@
 "gK" = (
 /obj/structure/sign/safety/storage,
 /obj/structure/cable,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/antag_ship/clf_base/techroom)
 "gL" = (
@@ -1490,7 +1477,7 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "ix" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/pmc,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "iy" = (
@@ -2183,10 +2170,6 @@
 "lG" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "lH" = (
@@ -2729,7 +2712,6 @@
 "nG" = (
 /obj/structure/cable,
 /obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/lounge)
 "nH" = (
@@ -3109,6 +3091,10 @@
 /obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/requisition)
+"pB" = (
+/obj/machinery/vending/engivend/clf,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/armory)
 "pC" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/grayscale/black,
@@ -3466,7 +3452,6 @@
 /area/antag_ship/vsd/hall)
 "rl" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -3787,7 +3772,6 @@
 	},
 /area/antag_ship/clf_base/techroom)
 "sT" = (
-/obj/structure/largecrate/supply/explosives/mortar_he,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -4603,7 +4587,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/som,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
 "wV" = (
@@ -4938,7 +4922,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "yy" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/icc,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -5001,7 +4985,7 @@
 /turf/open/floor/plating,
 /area/antag_ship/clf_base/requisition)
 "yZ" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/vsd,
 /turf/open/floor/prison,
 /area/antag_ship/vsd/engi)
 "zb" = (
@@ -6402,10 +6386,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/hangar)
-"Ga" = (
-/obj/structure/largecrate/guns/russian,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/armory)
 "Gc" = (
 /obj/effect/ai_node,
 /obj/machinery/light/small{
@@ -7158,7 +7138,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "Jq" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "Jt" = (
@@ -8346,6 +8326,8 @@
 /obj/structure/largecrate/supply/generator,
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
+/obj/item/stack/sheet/mineral/uranium/medium_stack,
+/obj/item/stack/sheet/mineral/uranium/medium_stack,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/lounge)
 "Py" = (
@@ -8407,9 +8389,7 @@
 /turf/open/floor/mainship/black/full,
 /area/antag_ship/pmc_ntf/center/armory)
 "PN" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/machinery/vending/tool,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "PP" = (
@@ -10095,10 +10075,6 @@
 	dir = 1
 	},
 /area/shuttle/transport)
-"Xs" = (
-/obj/structure/largecrate/supply/explosives/mines,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/armory)
 "Xu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19160,7 +19136,7 @@ Xc
 gI
 fp
 Sk
-Ga
+Sk
 AN
 gW
 gW
@@ -19255,7 +19231,7 @@ vR
 Ns
 KG
 Ax
-Xs
+Sk
 AN
 gW
 gW
@@ -19347,7 +19323,7 @@ GN
 SP
 Nj
 Nv
-aK
+Ns
 AN
 gU
 Sk
@@ -19537,7 +19513,7 @@ bU
 SP
 GG
 Nv
-aK
+Ns
 AN
 lG
 Sk
@@ -19632,11 +19608,11 @@ GN
 SP
 vQ
 Nv
-aK
+Ns
 AN
-eQ
+pB
 tV
-PN
+lN
 AN
 gW
 gW
@@ -19727,11 +19703,11 @@ GN
 SP
 TK
 Nv
-aK
+Ns
 AN
-OP
+PN
 va
-lN
+OP
 AN
 gW
 gW
@@ -20097,7 +20073,7 @@ gd
 Hc
 fZ
 YN
-mz
+aJ
 Px
 aF
 Aa

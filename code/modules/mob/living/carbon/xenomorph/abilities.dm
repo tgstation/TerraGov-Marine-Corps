@@ -1563,6 +1563,14 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	///how much we want to blur eyes, slowdown and stagger.
 	var/disorientamount = 2
 	var/can_hit_turf = FALSE
+	var/list/ignored_things = list(
+		/obj/alien/weeds,
+		/obj/alien/weeds/node,
+		/obj/alien/weeds/resting,
+		/obj/alien/weeds/sticky,
+		/obj/alien/weeds/node/resting,
+		/obj/alien/weeds/node/sticky
+		)
 
 /datum/action/ability/activable/xeno/tail_stab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -1599,7 +1607,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 				owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && (!can_hit_turf && isturf(A)))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && (isturf(A) && !can_hit_turf) && (A in ignored_things))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
 			add_cooldown(1 SECONDS)
