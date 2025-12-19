@@ -141,9 +141,11 @@
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
 
+/*NTF REMOVAL
 	mode = SSticker.mode
 	if(!istype(mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+*/
 
 	set_factions(initiating_faction)
 

@@ -116,7 +116,6 @@
 	respawn_time = 5 MINUTES
 	bioscan_interval = 30 MINUTES
 	deploy_time_lock = 15 SECONDS
-	var/list/datum/faction_stats/stat_list = list()
 	var/list/datum/job/stat_restricted_jobs = list(/datum/job/survivor/prisoner,/datum/job/other/prisoner,/datum/job/other/prisonersom,/datum/job/other/prisonerclf)
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/post_setup()
