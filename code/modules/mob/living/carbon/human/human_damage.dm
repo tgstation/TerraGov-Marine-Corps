@@ -210,6 +210,8 @@
 	if(species.species_flags & NO_STAMINA)
 		staminaloss = 0
 		return
+	if(species?.stamina_mod && amount > 0)
+		amount *= species.stamina_mod
 	return ..()
 
 /mob/living/carbon/human/setStaminaLoss(amount)

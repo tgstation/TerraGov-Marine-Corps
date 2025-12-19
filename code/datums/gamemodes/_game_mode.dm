@@ -87,6 +87,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
+	///The current mission type being played
+	var/datum/campaign_mission/current_mission
+	///campaign stats organised by faction
+	var/list/datum/faction_stats/stat_list = list()
+
 	var/roundstart_players = 0
 
 /datum/game_mode/New()
@@ -135,6 +140,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
 			continue
 		job.on_pre_setup()
+
+	for(var/faction in human_factions)
+		stat_list[faction] = new /datum/faction_stats(faction)
 
 	return TRUE
 

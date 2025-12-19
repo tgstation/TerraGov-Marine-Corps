@@ -371,9 +371,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 /datum/faction_stats/ui_static_data(mob/living/user)
 	. = ..()
+
+	var/datum/game_mode/current_mode = SSticker.mode
+/*NTF REMOVAL
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+*/
 
 	var/list/data = list()
 	var/ui_theme
@@ -482,9 +486,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(.)
 		return
 
+	var/datum/game_mode/current_mode = SSticker.mode
+/*NTF REMOVAL
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
+*/
 
 	var/mob/living/user = usr
 	if(!istype(user))
