@@ -461,9 +461,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/so
 	name = STAFF_OFFICER
 	engineer = SKILL_ENGINEER_ENGI
-	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_PLASTEEL
-	leadership = SKILL_LEAD_EXPERT
+	construction = SKILL_CONSTRUCTION_ADVANCED //Fortify cic for the impending doom
+	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_PRO
