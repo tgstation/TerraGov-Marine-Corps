@@ -24,7 +24,7 @@
 
 	inherent_traits = list(TRAIT_IMMEDIATE_DEFIB, TRAIT_CRIT_IS_DEATH)
 	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
-	stamina_mod = 0.50
+	stamina_mod = 0.75
 	max_stamina = 0
 
 	no_equip = list(
