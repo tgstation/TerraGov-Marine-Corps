@@ -759,6 +759,12 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
 	),
+	SQUAD_ENGINEER = list(
+		/obj/machinery/vending/engivend/ntf,
+	),
+	SHIP_TECH = list(
+		/obj/machinery/vending/engivend/ntf,
+	),
 	VENDOR_FACTION_CRASH = list(
 		/obj/machinery/vending/weapon/crash,
 		/obj/machinery/vending/uniform_supply,
@@ -777,6 +783,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/medical/som,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/som,
 	),
 	VENDOR_FACTION_PMC = list(
 		/obj/machinery/vending/weapon/pmc,
@@ -788,6 +795,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/medical/pmc,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/pmc,
 	),
 	VENDOR_FACTION_VSD = list(
 		/obj/machinery/vending/weapon/vsd,
@@ -799,6 +807,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/engivend,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/vsd,
 	),
 	VENDOR_FACTION_ICC = list(
 		/obj/machinery/vending/weapon/icc,
@@ -810,6 +819,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/snack,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/icc,
 	),
 	VENDOR_FACTION_CLF = list(
 		/obj/machinery/vending/weapon/clf,
@@ -821,6 +831,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/snack,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/engivend/clf,
 	)
 ))
 
