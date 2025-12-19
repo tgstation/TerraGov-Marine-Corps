@@ -118,3 +118,8 @@
   - balance: 'Ac standard slots: 3-> -1'
   - balance: 'Ac medic slots: 1 -> 2'
   - balance: 'Ac engineer slots: 1 -> 2'
+2025-12-19:
+  Belgiumdoggo:
+  - rscadd: New uniform, helmet, vest, and rebreather for the SOM Pilot Officer.
+  - bugfix: fixed SOM Pilot Officer spawning with a tablet with access to NTC cams.
+  - code_imp: updated the loadout spawn of the SOM Pilot Officer.
