@@ -7,6 +7,7 @@
 	var/list/mob/living/carbon/human/grabbing = null
 	COOLDOWN_DECLARE(tentacle_cooldown)
 	resist_time = 30 SECONDS
+	var/suiting_timer
 
 /obj/structure/bed/nest/advanced/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -222,6 +223,8 @@
 			break
 		return
 	var/mob/living/carbon/human/victim = buckled_mobs[1]
+	if(!victim)
+		return
 	if(victim.stat == DEAD)
 		unbuckle_mob(victim)
 		return
@@ -231,10 +234,7 @@
 			targetholename = "ass"
 		if(3)
 			targetholename = "pussy"
-	var/implanted_embryos = 0
-	for(var/obj/item/alien_embryo/implanted in victim.contents)
-		implanted_embryos++
-	if(COOLDOWN_FINISHED(src, tentacle_cooldown) && (implanted_embryos < 3))
+	if(COOLDOWN_FINISHED(src, tentacle_cooldown))
 		COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 		if(!(victim.status_flags & XENO_HOST))
 			victim.visible_message(span_xenonotice("[src] roughly thrusts a tentacle into [victim]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [victim]!"),
@@ -245,9 +245,10 @@
 			embryo.emerge_target = targethole
 			embryo.emerge_target_flavor = targetholename
 		else
-			victim.visible_message(span_love("[src] roughly thrusts a tentacle into [victim]'s [targetholename]!"),
-			span_love("[src] roughly thrusts a tentacle into your [targetholename]!"),
-			span_love("You hear squelching."))
+			victim.visible_message(span_love("[src]'s tentacle pumps sizzling acidic cum into [victim]'s [targetholename]!"),
+			span_love("[src] tentacle pumps sizzling acidic cum into your [targetholename]!"),
+			span_love("You hear spurting."))
+		/* no more help
 		//same medicines as larval growth sting, but no larva jelly
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) < 5)
 			victim.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 10)
@@ -255,9 +256,23 @@
 			victim.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 10)
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/dexalin) < 5)
 			victim.reagents.add_reagent(/datum/reagent/medicine/dexalin, 10)
+		*/
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) < 5)
-			victim.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 1)
+			victim.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 2)
+		victim.reagents.add_reagent(/datum/reagent/toxin/acid, 5) //need to make xenos not leave people in here unattended instead of using regular nests.
 	else
 		victim.visible_message(span_love("[src] roughly thrusts a tentacle into [victim]'s [targetholename]!"),
 		span_love("[src] roughly thrusts a tentacle into your [targetholename]!"),
 		span_love("You hear squelching."))
+	suiting_timer = addtimer(CALLBACK(src, PROC_REF(try_suit_up)), 5 MINUTES, TIMER_STOPPABLE)
+
+/obj/structure/bed/nest/advanced/proc/try_suit_up()
+	var/mob/living/carbon/human/victim = buckled_mobs[1]
+	if(!victim)
+		return
+	var/obj/item/storage/backpack/marine/resin_pack/goobersuit = new /obj/item/storage/backpack/marine/resin_pack(loc)
+	var/datum/component/parasitic_clothing/paracomp = goobersuit.GetComponent(/datum/component/parasitic_clothing)
+	paracomp.hivenumber = hivenumber
+	if(victim.w_underwear)
+		victim.dropItemToGround(victim.w_uniform)
+	victim.equip_to_slot_or_del(goobersuit, ITEM_SLOT_UNDERWEAR, TRUE)
