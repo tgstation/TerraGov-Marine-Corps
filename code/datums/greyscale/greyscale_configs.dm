@@ -134,9 +134,11 @@
 
 /datum/greyscale_config/vsd_hardsuit/alt
 	prefix = "superheavy_alt_"
+	json_config = 'ntf_modular/code/datums/greyscale/json_configs/vsd_hardsuit_alt.json'
 
 /datum/greyscale_config/vsd_hardsuit/alt_two
 	prefix = "superheavy_alt_two_"
+	json_config = 'ntf_modular/code/datums/greyscale/json_configs/vsd_hardsuit_alt.json'
 
 /datum/greyscale_config/vsd_hardsuit/exoskeleton
 
@@ -144,6 +146,7 @@
 
 /datum/greyscale_config/vsd_hardsuit/bikini
 	prefix = "superheavy_bikini_"
+	json_config = 'ntf_modular/code/datums/greyscale/json_configs/vsd_hardsuit_bikini.json'
 
 //Mark 2
 
