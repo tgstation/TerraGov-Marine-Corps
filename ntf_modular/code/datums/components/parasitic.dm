@@ -1,3 +1,6 @@
+/obj/item/clothing
+	var/datum/component/parasitic_clothing/parasite_comp
+
 /datum/component/parasitic_clothing
 	var/implant_delay = 4 MINUTES
 	var/hivenumber = XENO_HIVE_NORMAL
