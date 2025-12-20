@@ -4,6 +4,7 @@
 
 
 
+
 #include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\_DEFINES\sexcon_defines.dm"
@@ -11,6 +12,7 @@
 #include "code\_DEFINES\span.dm"
 #include "code\_HELPERS\announce.dm"
 #include "code\_onclick\hud\fullscreen.dm"
+#include "code\datums\components\parasitic.dm"
 #include "code\datums\fire_support\fire_support.dm"
 #include "code\datums\gamemodes\_game_mode.dm"
 #include "code\datums\genital_menu.dm"
@@ -108,6 +110,7 @@
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
 #include "code\modules\clothing\modular_armor\attachments\uniform.dm"
 #include "code\modules\clothing\modular_armor\modular.dm"
+#include "code\modules\clothing\parasitic_clothes.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\marine_armor.dm"
 #include "code\modules\clothing\under\marine_uniform.dm"
