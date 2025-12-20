@@ -243,10 +243,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/civilian/worker
-	name = "Survivor"
+	name = "Worker"
 	combat = SKILL_COMBAT_UNTRAINED
 	pistols = SKILL_PISTOLS_TRAINED
-	medical = SKILL_MEDICAL_COMPETENT
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
 	construction = SKILL_CONSTRUCTION_MASTER
 	engineer = SKILL_ENGINEER_ENGI
 	powerloader = SKILL_POWERLOADER_MASTER
@@ -313,8 +314,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/combat_medic
 	name = SQUAD_CORPSMAN
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/combat_medic/crafty
 	name = "Crafty Combat Medic"
