@@ -145,6 +145,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		individual_stat_list[new_member.ckey].apply_perks()
 	else
 		get_player_stats(new_member)
+	if(!iscampaigngamemode(SSticker.mode))
+		return
 	var/datum/action/campaign_loadout/loadouts = new
 	loadouts.give_action(new_member)
 	if(!(new_member.job.job_cost))
