@@ -12,9 +12,9 @@ SUBSYSTEM_DEF(events)
 	///The next world.time that a naturally occuring random event can be selected.
 	var/scheduled = 0
 	///Lower bound for how frequently events will occur
-	var/frequency_lower = 5 MINUTES
+	var/frequency_lower = 2.5 MINUTES
 	///the latest an event can happen after a previous event
-	var/frequency_upper = 10 MINUTES
+	var/frequency_upper = 5 MINUTES
 
 /datum/controller/subsystem/events/Initialize()
 	if(CONFIG_GET(flag/events_disallowed))

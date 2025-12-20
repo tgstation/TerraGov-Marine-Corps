@@ -2409,7 +2409,7 @@
 	burst_amount = 1
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 0.75
-	scatter = 12
+	scatter = 15
 	recoil = 1.5
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.4

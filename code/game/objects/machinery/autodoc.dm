@@ -847,7 +847,7 @@
 									live_larva.forceMove(get_turf(src))
 								else
 									embyro.forceMove(occupant.loc)
-									occupant.status_flags &= ~XENO_HOST
+									//occupant.status_flags &= ~XENO_HOST //this is handled by /obj/item/alien_embryo/process()
 								qdel(embyro)
 					if(length(limb_ref.implants))
 						for(var/obj/item/implant AS in limb_ref.implants)

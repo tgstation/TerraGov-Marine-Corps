@@ -103,7 +103,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/can_start(bypass_checks = FALSE)
-	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || (SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps)) && !bypass_checks)
+	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || ((SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps) && !(SSmapping.configs[GROUND_MAP].map_name in whitelist_ground_maps))) && !bypass_checks)
 		log_world("Attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		to_chat(world, "<b>Unable to start [name].</b> [SSmapping.configs[GROUND_MAP].map_name] isn't supported on [name].")
 		// start a gamemode vote, in theory this should never happen.
@@ -184,6 +184,12 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		var/datum/job/xenomorph/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[XENO_HIVE_NORMAL])
 		xeno_job.free_xeno_at_start = 0
 
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
+
+/datum/game_mode/proc/give_wages()
+	for(var/datum/faction_stats/i in stat_list)
+		stat_list[i].apply_cash(250)
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
 

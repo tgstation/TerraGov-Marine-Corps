@@ -1,9 +1,7 @@
 /datum/round_event_control/stock_uptick
 	name = "Supply point increase"
 	typepath = /datum/round_event/stock_uptick
-	weight = 15
-	earliest_start = 30 MINUTES
-	max_occurrences = 10
+	weight = 6
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the faction for the next event to activate

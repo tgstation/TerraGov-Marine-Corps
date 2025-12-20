@@ -96,6 +96,8 @@
 		new_character.key = key		//now transfer the key to link the client to our new body
 		GLOB.mobs_by_ckey_list[ckey(key)] = new_character
 
+	if(!new_character.client)
+		return
 	new_character.client.init_verbs()
 	new_character.ooc_notes = new_character.client.prefs.metadata
 	new_character.ooc_notes_likes = new_character.client.prefs.metadata_likes

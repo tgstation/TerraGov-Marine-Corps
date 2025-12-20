@@ -50,11 +50,11 @@ map arachne
 endmap
 
 map combat_patrol_base
-	minplayers 600
+	minplayers 0
 endmap
 
 map iteron
-	minplayers 600
+	minplayers 0
 endmap
 
 map multiz_debug

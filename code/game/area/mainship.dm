@@ -536,7 +536,7 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/patrol_base/hangar
+/area/mainship/patrol_base/hanger //Yes it's misspelled, but it's like that upstream too and fixing it everywhere would cause problems with updates
 	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
@@ -559,7 +559,7 @@
 /area/mainship/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/patrol_base/som/hangar
+/area/mainship/patrol_base/som/hanger //Yes it's misspelled, but it's like that upstream too and fixing it everywhere would cause problems with updates
 	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ

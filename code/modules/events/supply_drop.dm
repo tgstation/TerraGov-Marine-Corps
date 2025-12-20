@@ -2,9 +2,9 @@
 /datum/round_event_control/supply_drop
 	name = "Supply drop"
 	typepath = /datum/round_event/supply_drop
-	weight = 5
+	weight = 1
 	min_players = 5
-	earliest_start = 5 MINUTES
+	earliest_start = 30 MINUTES
 
 /datum/round_event/supply_drop
 	///How long between the event firing and the supply drop actually landing
