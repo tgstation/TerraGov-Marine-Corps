@@ -49,7 +49,7 @@
 /datum/component/parasitic_clothing/process()
 	. = ..()
 	if(!wearer)
-		STOP_PROCESSING()
+		STOP_PROCESSING(SSobj, src)
 		return
 	process_sex(wearer)
 

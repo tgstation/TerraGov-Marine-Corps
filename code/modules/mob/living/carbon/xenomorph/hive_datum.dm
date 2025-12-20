@@ -1303,10 +1303,13 @@ to_chat will check for valid clients itself already so no need to double check f
 	. = ..()
 	X.grant_language(/datum/language/common)
 	X.AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
+	new /obj/item/radio/headset/mainship/marine(X)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/xenomorph/X)
 	. = ..()
 	X.remove_language(/datum/language/common)
+	for(var/obj/item/radio/headset/mainship/marine/headstuff in X.contents)
+		qdel(headstuff)
 
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind
