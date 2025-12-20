@@ -33,6 +33,7 @@
 	var/paralyze
 	///knockback value; 0 = crush mode, 1 = knockback mode
 	var/knockback
+	slowdown = 0.5 //Heavy kys
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
