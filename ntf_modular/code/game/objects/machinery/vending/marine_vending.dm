@@ -2363,8 +2363,6 @@
 			/obj/item/weapon/gun/rifle/mpi_km/black = 5,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = 5,
 			/obj/item/ammo_magazine/rifle/mpi_km/extended = 3,
-			/obj/item/weapon/gun/rifle/type71 = 2,
-			/obj/item/ammo_magazine/rifle/type71 = 6,
 		),
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
@@ -2375,7 +2373,6 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,
@@ -2397,7 +2394,7 @@
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
-			/obj/item/weapon/gun/shotgun/pump/trenchgun = 5,
+			/obj/item/weapon/gun/shotgun/pump/trenchgun = 2,
 			/obj/item/weapon/gun/shotgun/combat = 2,
 			/obj/item/ammo_magazine/shotgun = -1,
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
@@ -2417,15 +2414,8 @@
 			/obj/item/ammo_magazine/icc_mg = -1,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/flamer/big_flamer = -1,
-			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
-			/obj/item/weapon/gun/launcher/rocket/icc = 2,
-			/obj/item/ammo_magazine/rocket/icc = 5,
-			/obj/item/ammo_magazine/rocket/icc/light = 10,
-			/obj/item/ammo_magazine/rocket/icc/heat = 10,
-			/obj/item/ammo_magazine/rocket/icc/thermobaric = 3,
-			/obj/item/weapon/gun/rifle/icc_coilgun = -1,
-			/obj/item/ammo_magazine/rifle/icc_coilgun = 15,
+			/obj/item/weapon/gun/flamer/big_flamer = 1,
+			/obj/item/ammo_magazine/flamer_tank/backtank = 1,
 		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,
@@ -2437,23 +2427,23 @@
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/icc_dpistol = -1,
 			/obj/item/ammo_magazine/pistol/icc_dpistol = -1,
-			/obj/item/weapon/gun/pistol/c99/tranq = 1,
-			/obj/item/ammo_magazine/pistol/c99 = 3,
-			/obj/item/ammo_magazine/pistol/c99t = 3,
+			/obj/item/weapon/gun/pistol/c99/tranq = 2,
+			/obj/item/ammo_magazine/pistol/c99 = 6,
+			/obj/item/ammo_magazine/pistol/c99t = 6,
 			/obj/item/weapon/gun/pistol/g22/tranq = 1,
 			/obj/item/ammo_magazine/pistol/g22tranq = 6,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
-			/obj/item/weapon/gun/rifle/tx54 = 2,
-			/obj/item/ammo_magazine/rifle/tx54 = 10,
-			/obj/item/ammo_magazine/rifle/tx54/incendiary = 10,
+			/obj/item/weapon/gun/rifle/tx54 = 1,
+			/obj/item/ammo_magazine/rifle/tx54 = 3,
+			/obj/item/ammo_magazine/rifle/tx54/incendiary = 3,
 			/obj/item/ammo_magazine/rifle/tx54/smoke = 10,
-			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 5,
-			/obj/item/explosive/grenade = 100,
+			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 10,
+			/obj/item/explosive/grenade = 75,
 			/obj/item/explosive/grenade/m15 = 30,
-			/obj/item/explosive/grenade/sticky = 65,
+			/obj/item/explosive/grenade/sticky = 50,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb = 25,
@@ -2472,15 +2462,14 @@
 			/obj/item/explosive/grenade/smokebomb/aphrotoxin = 15,
 			/obj/item/explosive/grenade/flashbang/stun = 44,
 			/obj/item/explosive/grenade/smokebomb/sleep = 17,
-			/obj/item/explosive/grenade/bullet/laser = 30,
+			/obj/item/explosive/grenade/bullet/laser = 20,
 			/obj/item/explosive/grenade/bullet/hefa = 5,
 			/obj/item/explosive/grenade/emp = 5,
 			/obj/item/storage/box/m94 = 200,
 		),
 		"Heavy Weapons" = list(
-			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
-			/obj/item/storage/box/crate/sentry/ads = 1,
-			/obj/item/storage/box/crate/minisentry = 8,
+			/obj/item/storage/box/crate/sentry/ads = 3,
+			/obj/item/storage/box/crate/minisentry = 3,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -2549,3 +2538,28 @@
 			/obj/item/plantable_flag/clf = 10,
 		),
 	)
+
+/obj/machinery/vending/engivend/ntf
+	isshared = TRUE
+	faction = VENDOR_FACTION_NEUTRAL
+
+/obj/machinery/vending/engivend/som
+	isshared = TRUE
+	faction = VENDOR_FACTION_SOM
+
+/obj/machinery/vending/engivend/clf
+	isshared = TRUE
+	faction = VENDOR_FACTION_CLF
+
+/obj/machinery/vending/engivend/icc
+	isshared = TRUE
+	faction = VENDOR_FACTION_ICC
+
+/obj/machinery/vending/engivend/vsd
+	isshared = TRUE
+	faction = VENDOR_FACTION_VSD
+
+/obj/machinery/vending/engivend/pmc
+	isshared = TRUE
+	faction = VENDOR_FACTION_PMC
+
