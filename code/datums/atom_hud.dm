@@ -3,27 +3,30 @@ GLOBAL_LIST_EMPTY(all_huds)
 
 
 //GLOBAL HUD LIST
-GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, alist(
-	DATA_HUD_BASIC = new /datum/atom_hud/simple,
-	DATA_HUD_SECURITY_ADVANCED = new /datum/atom_hud/security,
-	DATA_HUD_MEDICAL_BASIC = new /datum/atom_hud/medical/basic,
-	DATA_HUD_MEDICAL_ADVANCED = new /datum/atom_hud/medical/advanced,
-	DATA_HUD_MEDICAL_ADVANCED_SYNTH = new /datum/atom_hud/medical/advanced/synthetic,
-	DATA_HUD_MEDICAL_OBSERVER = new /datum/atom_hud/medical/observer,
-	DATA_HUD_XENO_INFECTION = new /datum/atom_hud/xeno_infection,
-	DATA_HUD_XENO_REAGENTS = new /datum/atom_hud/xeno_reagents,
-	DATA_HUD_XENO_STATUS = new /datum/atom_hud/xeno,
-	DATA_HUD_SQUAD_TERRAGOV = new /datum/atom_hud/squad,
-	DATA_HUD_ORDER = new /datum/atom_hud/order,
-	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain,
-	DATA_HUD_XENO_TACTICAL = new /datum/atom_hud/xeno_tactical,
-	DATA_HUD_SQUAD_SOM = new /datum/atom_hud/squad_som,
-	DATA_HUD_XENO_DEBUFF = new /datum/atom_hud/xeno_debuff,
-	DATA_HUD_XENO_HEART = new /datum/atom_hud/xeno_heart,
-	DATA_HUD_SQUAD_CLF = new /datum/atom_hud/squad_clf,
-	DATA_HUD_SQUAD_VSD = new /datum/atom_hud/squad_vsd,
-	DATA_HUD_SQUAD_ICC = new /datum/atom_hud/squad_icc,
-	))
+GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, initialize_data_huds())
+
+/proc/initialize_data_huds()
+	. = new/list(MAX_DATA_HUD)
+	.[DATA_HUD_BASIC] = new /datum/atom_hud/simple
+	.[DATA_HUD_SECURITY_ADVANCED] = new /datum/atom_hud/security
+	.[DATA_HUD_MEDICAL_BASIC] = new /datum/atom_hud/medical/basic
+	.[DATA_HUD_MEDICAL_ADVANCED] = new /datum/atom_hud/medical/advanced
+	.[DATA_HUD_MEDICAL_ADVANCED_SYNTH] = new /datum/atom_hud/medical/advanced/synthetic
+	.[DATA_HUD_MEDICAL_OBSERVER] = new /datum/atom_hud/medical/observer
+	.[DATA_HUD_XENO_INFECTION] = new /datum/atom_hud/xeno_infection
+	.[DATA_HUD_XENO_REAGENTS] = new /datum/atom_hud/xeno_reagents
+	.[DATA_HUD_XENO_STATUS] = new /datum/atom_hud/xeno
+	.[DATA_HUD_SQUAD_TERRAGOV] = new /datum/atom_hud/squad
+	.[DATA_HUD_ORDER] = new /datum/atom_hud/order
+	.[DATA_HUD_MEDICAL_PAIN] = new /datum/atom_hud/medical/pain
+	.[DATA_HUD_XENO_TACTICAL] = new /datum/atom_hud/xeno_tactical
+	.[DATA_HUD_SQUAD_SOM] = new /datum/atom_hud/squad_som
+	.[DATA_HUD_XENO_DEBUFF] = new /datum/atom_hud/xeno_debuff
+	.[DATA_HUD_XENO_HEART] = new /datum/atom_hud/xeno_heart
+	.[DATA_HUD_SQUAD_CLF] = new /datum/atom_hud/squad_clf
+	.[DATA_HUD_SQUAD_VSD] = new /datum/atom_hud/squad_vsd
+	.[DATA_HUD_SQUAD_ICC] = new /datum/atom_hud/squad_icc
+	return
 
 
 /datum/atom_hud

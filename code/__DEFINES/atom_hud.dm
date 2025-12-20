@@ -60,6 +60,7 @@
 #define DATA_HUD_SQUAD_CLF 17
 #define DATA_HUD_SQUAD_VSD 18
 #define DATA_HUD_SQUAD_ICC 19
+#define MAX_DATA_HUD 19 //should be last and equal to highest data hud
 
 
 // Notification action types
