@@ -234,7 +234,7 @@
 	var/implanted_embryos = 0
 	for(var/obj/item/alien_embryo/implanted in victim.contents)
 		implanted_embryos++
-	if(COOLDOWN_FINISHED(src, implant_cooldown) && (implanted_embryos < 3))
+	if(COOLDOWN_FINISHED(src, tentacle_cooldown) && (implanted_embryos < 3))
 		COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 		if(!(victim.status_flags & XENO_HOST))
 			victim.visible_message(span_xenonotice("[src] roughly thrusts a tentacle into [victim]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [victim]!"),

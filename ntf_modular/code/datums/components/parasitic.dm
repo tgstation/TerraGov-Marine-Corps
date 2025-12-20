@@ -56,18 +56,17 @@
 /datum/component/parasitic_clothing/proc/process_sex()
 	if(wearer.stat == DEAD)
 		return
-	if(!fixed_hole)
-		//wheel of fuck
-		var/targethole = rand(3)
-		var/targetholename = "mouth"
-		switch(targethole)
-			if(HOLE_MOUTH)
-				targetholename = "mouth"
-			if(HOLE_ASS)
-				targetholename = "ass"
-			if(HOLE_VAGINA)
-				targetholename = "pussy"
-	else
+	//wheel of fuck
+	var/targethole = rand(3)
+	var/targetholename = "mouth"
+	switch(targethole)
+		if(HOLE_MOUTH)
+			targetholename = "mouth"
+		if(HOLE_ASS)
+			targetholename = "ass"
+		if(HOLE_VAGINA)
+			targetholename = "pussy"
+	if(fixed_hole)
 		targethole = fixed_hole
 	if(targethole == HOLE_VAGINA)
 		if(wearer.gender = FEMALE)
@@ -76,7 +75,7 @@
 			targethole = HOLE_ASS
 			targetholename = "ass"
 	var/implanted_embryos = 0
-	for(var/obj/item/alien_embryo/implanted in victim.contents)
+	for(var/obj/item/alien_embryo/implanted in wearer.contents)
 		implanted_embryos++
 	if(COOLDOWN_FINISHED(src, implant_cooldown) && (implanted_embryos < 3))
 		COOLDOWN_START(src, implant_cooldown, implant_delay)
