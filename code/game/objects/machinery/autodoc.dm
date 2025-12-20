@@ -29,7 +29,7 @@
 #define SURGERY_PROCEDURE_EXTERNAL_DIALYSIS 15
 #define SURGERY_PROCEDURE_EXTERNAL_BLOOD 16
 
-#define UNNEEDED_DELAY 10 SECONDS // How long to waste if someone queues an unneeded surgery.
+#define UNNEEDED_DELAY 5 SECONDS // How long to waste if someone queues an unneeded surgery.
 
 //Autodoc
 /obj/machinery/autodoc
