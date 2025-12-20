@@ -369,6 +369,7 @@
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_shooter), ammo.impact_time-2 SECONDS)
 	notify_ghosts("<b>[xeno_shooter]</b> has just fired \the <b>[src]</b> !", source = clicked_turf, action = NOTIFY_JUMP)
+	log_combat(xeno_shooter, clicked_turf, "shot (XOB)", ammo, "from [logdetails(src)]")
 	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
 	switch(type)
 		if(/obj/structure/xeno/acid_maw)
