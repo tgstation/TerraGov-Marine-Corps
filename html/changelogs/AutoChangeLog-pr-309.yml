@@ -1,0 +1,4 @@
+author: "Ducky-Momo"
+delete-after: True
+changes:
+  - code_imp: "added SOM modules to list of allowed attachments of exoskeletons"
