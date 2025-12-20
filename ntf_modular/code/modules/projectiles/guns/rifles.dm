@@ -185,7 +185,6 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	burst_delay = 0.10 SECONDS
-	accuracy_mult = 1
 	wield_delay = 0.7 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.4
@@ -303,13 +302,11 @@
 	bonus_overlay = "halter_smart"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/halter/smart
 
+//this just suck so imma let it be same as regular bullets, cause its also paid and you got aim mode which is good on this.
 /datum/ammo/bullet/rifle/heavy/halter/smart
 	name = "smart heavy rifle bullet"
 	hud_state = "rifle_ap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
-	damage = 20
-	penetration = 5
-	sundering = 1.15
 	bullet_color = COLOR_BLUE_GRAY
 
 //foxfire mag
@@ -318,11 +315,14 @@
 	desc = "A magazine filled with specialized 7.62x38mm AP-I rifle rounds that pierce armor and ignite targets, for the Halter series of firearms."
 	icon_state = "halter_foxfire"
 	bonus_overlay = "halter_foxfire"
-	default_ammo = /datum/ammo/bullet/rifle/ap/foxfire
+	default_ammo = /datum/ammo/bullet/rifle/heavy/ap/foxfire
 
-/datum/ammo/bullet/rifle/ap/foxfire
-	name = "foxfire rifle bullet"
+/datum/ammo/bullet/rifle/heavy/ap/foxfire
+	name = "armor-piercing foxfire heavy rifle bullet"
 	hud_state = "rifle_ap"
+	//bit less crazy than actual heavy ap
+	penetration = 25
+	sundering = 3
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	bullet_color = COLOR_RED_LIGHT
 
