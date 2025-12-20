@@ -1,13 +1,12 @@
 /obj/structure/bed/nest/advanced
 	name = "tentacle breeding nest"
-	desc = "It's a gruesome pile of thick, sticky resin-covered tentacles shaped like a nest."
+	desc = "It's a gruesome pile of thick, sticky resin-covered tentacles shaped like a nest. It will cum acid into talls who stay stuck too long. Best watch out."
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/targethole = 1
 	var/settings_locked = FALSE
 	var/list/mob/living/carbon/human/grabbing = null
 	COOLDOWN_DECLARE(tentacle_cooldown)
 	resist_time = 30 SECONDS
-	var/suiting_timer
 
 /obj/structure/bed/nest/advanced/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -26,23 +25,28 @@
 	. = ..()
 	var/targetholename = "!!ERROR!!"
 	switch(targethole)
-		if(1)
+		if(HOLE_MOUTH)
 			targetholename = "mouth"
-		if(2)
+		if(HOLE_ASS)
 			targetholename = "ass"
-		if(3)
+		if(HOLE_VAGINA)
 			targetholename = "pussy"
+		if(HOLE_NIPPLE)
+			targetholename = "nipples"
+		if(HOLE_EAR)
+			targetholename = "ears"
 	. += span_notice("It is currently set to use its victim's [targetholename].")
 	if(settings_locked)
 		if(user.buckled == src)
-			. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];lock=2>\[unlock settings\]</a>")
+			. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];sethole=4>\[nipples\]</a> <a href=byond://?src=[REF(src)];sethole=5>\[ears\]</a> <a href=byond://?src=[REF(src)];lock=2>\[unlock settings\]</a>")
 		else
 			. += span_notice("The settings are locked. Only the person buckled to it can unlock them.")
 	else
-		. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];lock=1>\[lock settings\]</a>")
+		. += span_notice("Set to: <a href=byond://?src=[REF(src)];sethole=1>\[mouth\]</a> <a href=byond://?src=[REF(src)];sethole=2>\[ass\]</a> <a href=byond://?src=[REF(src)];sethole=3>\[pussy\]</a> <a href=byond://?src=[REF(src)];sethole=4>\[nipples\]</a> <a href=byond://?src=[REF(src)];sethole=5>\[ears\]</a> <a href=byond://?src=[REF(src)];lock=1>\[lock settings\]</a>")
 
 /obj/structure/bed/nest/advanced/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
+	try_suit_up(buckled_mob)
 	settings_locked = FALSE
 	COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 
@@ -80,7 +84,7 @@
 		span_notice("You hear squelching."))
 	LAZYADD(grabbing, target)
 	ASYNC
-		if(!do_mob(target, src, 10 SECONDS, null, BUSY_ICON_DANGER, PROGRESS_GENERIC, IGNORE_HAND | IGNORE_HELD_ITEM | IGNORE_DO_AFTER_COEFFICIENT | IGNORE_INCAPACITATION))
+		if(!do_mob(target, src, 1 SECONDS, null, BUSY_ICON_DANGER, PROGRESS_GENERIC, IGNORE_HAND | IGNORE_HELD_ITEM | IGNORE_DO_AFTER_COEFFICIENT | IGNORE_INCAPACITATION))
 			LAZYREMOVE(grabbing, target)
 			return
 		if(!buckle_mob(target))
@@ -116,6 +120,12 @@
 			if("3")
 				targethole = 3
 				to_chat(usr, span_notice("You set [src] to use its victim's pussy."))
+			if("4")
+				targethole = 4
+				to_chat(usr, span_notice("You set [src] to use its victim's nipples."))
+			if("5")
+				targethole = 4
+				to_chat(usr, span_notice("You set [src] to use its victim's ears."))
 			else
 				to_chat(usr, span_warning("Attempted to set [src]'s target hole to an invalid value."))
 	if(href_list["lock"])
@@ -165,6 +175,7 @@
 		span_xenonotice("[user] coaxes [src]'s tentacles into trapping you in it and starting to breed you!"),
 		span_notice("You hear squelching."))
 	playsound(loc, SFX_ALIEN_RESIN_MOVE, 50)
+	COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 
 	silent = TRUE
 	skip = TRUE
@@ -182,7 +193,7 @@
 		for(var/mob/living/carbon/human/target in loc)
 			if(target.buckled)
 				continue
-			if(target.stat != DEAD)
+			if(target.stat != DEAD && (COOLDOWN_FINISHED(src, tentacle_cooldown)))
 				try_to_grab(target)
 				continue
 			if(HAS_TRAIT(target, TRAIT_PSY_DRAINED))
@@ -230,10 +241,18 @@
 		return
 	var/targetholename = "mouth"
 	switch(targethole)
-		if(2)
+		if(HOLE_MOUTH)
+			targetholename = "mouth"
+		if(HOLE_ASS)
 			targetholename = "ass"
-		if(3)
+		if(HOLE_VAGINA)
 			targetholename = "pussy"
+		if(HOLE_NIPPLE)
+			targetholename = "nipples"
+		if(HOLE_EAR)
+			targetholename = "ears"
+	do_thrust_animate(victim, src)
+	do_thrust_animate(src, victim)
 	if(COOLDOWN_FINISHED(src, tentacle_cooldown))
 		COOLDOWN_START(src, tentacle_cooldown, 29.9 SECONDS)
 		if(!(victim.status_flags & XENO_HOST))
@@ -245,10 +264,10 @@
 			embryo.emerge_target = targethole
 			embryo.emerge_target_flavor = targetholename
 		else
-			victim.visible_message(span_love("[src]'s tentacle pumps sizzling acidic cum into [victim]'s [targetholename]!"),
-			span_love("[src] tentacle pumps sizzling acidic cum into your [targetholename]!"),
+			victim.visible_message(span_love("[src]'s tentacle pumps globs of sizzling acidic cum into [victim]'s [targetholename]!"),
+			span_love("[src] tentacle pumps globs of sizzling acidic cum into your [targetholename]!"),
 			span_love("You hear spurting."))
-		/* no more help
+		/* no more help, those need to be watched over instead of left alone in a room to rot forever.
 		//same medicines as larval growth sting, but no larva jelly
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) < 5)
 			victim.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 10)
@@ -259,20 +278,27 @@
 		*/
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) < 5)
 			victim.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 2)
+		victim.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
 		victim.reagents.add_reagent(/datum/reagent/toxin/acid, 5) //need to make xenos not leave people in here unattended instead of using regular nests.
 	else
 		victim.visible_message(span_love("[src] roughly thrusts a tentacle into [victim]'s [targetholename]!"),
 		span_love("[src] roughly thrusts a tentacle into your [targetholename]!"),
 		span_love("You hear squelching."))
-	suiting_timer = addtimer(CALLBACK(src, PROC_REF(try_suit_up)), 5 MINUTES, TIMER_STOPPABLE)
 
-/obj/structure/bed/nest/advanced/proc/try_suit_up()
-	var/mob/living/carbon/human/victim = buckled_mobs[1]
+/obj/structure/bed/nest/advanced/proc/try_suit_up(mob/living/carbon/human/victim)
+	if(!(victim.status_flags & XENO_HOST))
+		return
 	if(!victim)
 		return
-	var/obj/item/storage/backpack/marine/resin_pack/goobersuit = new /obj/item/storage/backpack/marine/resin_pack(loc)
-	var/datum/component/parasitic_clothing/paracomp = goobersuit.GetComponent(/datum/component/parasitic_clothing)
+	if(istype(victim.back, /obj/item/storage/backpack/marine/resin_sack))
+		return
+	if(victim.back)
+		victim.dropItemToGround(victim.back)
+	var/obj/item/storage/backpack/marine/resin_sack/gooberpack = new /obj/item/storage/backpack/marine/resin_sack(loc)
+	var/datum/component/parasitic_clothing/paracomp = gooberpack.GetComponent(/datum/component/parasitic_clothing)
 	paracomp.hivenumber = hivenumber
-	if(victim.w_underwear)
-		victim.dropItemToGround(victim.w_uniform)
-	victim.equip_to_slot_or_del(goobersuit, ITEM_SLOT_UNDERWEAR, TRUE)
+	victim.equip_to_slot(gooberpack, ITEM_SLOT_BACK)
+	victim.visible_message(span_warning("[src] attaches to [victim] as a resin sack!"),
+			span_warning("[src] attaches to you as a resin sack!"),
+			span_notice("You hear rustling."))
+	Destroy()

@@ -45,8 +45,8 @@
 				span_warning("[parent] attaches itself to you!"),
 				span_notice("You hear rustling."))
 		ADD_TRAIT(parent, TRAIT_NODROP, "parasite_trait")
+		START_PROCESSING(SSslowprocess, src)
 	RegisterSignal(wearer, COMSIG_HUMAN_BURN_DAMAGE, PROC_REF(burn_moment))
-	START_PROCESSING(SSslowprocess, src)
 
 /datum/component/parasitic_clothing/proc/dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -74,7 +74,7 @@
 	if(wearer.stat == DEAD)
 		return
 	//wheel of fuck
-	var/targethole = rand(3)
+	var/targethole = rand(5)
 	var/targetholename = "mouth"
 	switch(targethole)
 		if(HOLE_MOUTH)
@@ -83,28 +83,32 @@
 			targetholename = "ass"
 		if(HOLE_VAGINA)
 			targetholename = "pussy"
+		if(HOLE_NIPPLE)
+			targetholename = "nipples"
+		if(HOLE_EAR)
+			targetholename = "ears"
 	if(fixed_hole)
 		targethole = fixed_hole
-	if(targethole == HOLE_VAGINA)
-		if(wearer.gender == FEMALE)
-			targetholename = "pussy"
-		else
+	if(targethole == HOLE_VAGINA || targethole == HOLE_NIPPLE)
+		if(wearer.gender != FEMALE)
 			targethole = HOLE_ASS
 			targetholename = "ass"
 	if(COOLDOWN_FINISHED(src, implant_cooldown))
 		COOLDOWN_START(src, implant_cooldown, implant_delay)
 		if(!(wearer.status_flags & XENO_HOST))
-			wearer.visible_message(span_xenonotice("[parent] roughly thrusts a tentacle into [wearer]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [wearer]!"),
-			span_xenonotice("[parent] roughly thrusts a tentacle into your [targetholename], a round bulge visibly sliding through it as it inserts an egg into you!"),
+			wearer.visible_message(span_xenonotice("[src] roughly thrusts a tentacle into [wearer]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [wearer]!"),
+			span_xenonotice("[src] roughly thrusts a tentacle into your [targetholename], a round bulge visibly sliding through it as it inserts an egg into you!"),
 			span_notice("You hear squelching."))
 			var/obj/item/alien_embryo/embryo = new(wearer)
 			embryo.hivenumber = hivenumber
 			embryo.emerge_target = targethole
 			embryo.emerge_target_flavor = targetholename
 		else
-			wearer.visible_message(span_love("[parent] roughly thrusts a tentacle into [wearer]'s [targetholename]!"),
-			span_love("[parent] roughly thrusts a tentacle into your [targetholename]!"),
-			span_love("You hear squelching."))
+			wearer.visible_message(span_love("[src]'s tentacle pumps globs slightly acidic cum into [wearer]'s [targetholename]!"),
+			span_love("[src] tentacle pumps globs of slightly acidic cum into your [targetholename]!"),
+			span_love("You hear spurting."))
+			wearer.reagents.add_reagent(/datum/reagent/consumable/nutriment, 5)
+			wearer.reagents.add_reagent(/datum/reagent/toxin/acid, 2)
 	else
 		wearer.visible_message(span_love("[parent] roughly thrusts a tentacle into [wearer]'s [targetholename]!"),
 		span_love("[parent] roughly thrusts a tentacle into your [targetholename]!"),
