@@ -70,7 +70,7 @@ map deltastation
 endmap
 
 map fort_phobos
-	minplayers 600
+	minplayers 0
 endmap
 
 map desparity
