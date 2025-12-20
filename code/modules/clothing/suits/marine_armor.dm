@@ -249,7 +249,7 @@
 	name = "\improper M4 pattern PMC armor"
 	desc = "A modification of outdated army vest. Even tho it doesn't have an advanced armor layering and protection against unwelcome enviroment, that armor is still produced by Ninetails Armory Divison for low ranking members of Ninetails PMC and security firms of Outer Rim."
 	icon_state = "pmc_armor"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 15, FIRE = 35, ACID = 45)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_features_flags = ARMOR_LAMP_OVERLAY
 	allowed = list(
@@ -293,13 +293,15 @@
 	name = "\improper M6 Princeps pattern PMC armor"
 	desc = "A hardened modification of the M4 armor suit. The pinacle of protection and mobility. This particular set looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
+	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	name = "\improper M4-L Sagittarii pattern PMC armor"
 	desc = "A lightweight modification of M4 armor suit, designed for prolonged sitting in dangerous enviroments, paying for that with reduced combat protection."
 	icon_state = "pmc_sniper"
-	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 35, BIO = 65, FIRE = 65, ACID = 65)
+	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60) // Higher special resists but lower overall ones
 	inventory_flags = BLOCKSHARPOBJ
 	armor_features_flags = NONE
 
@@ -308,7 +310,7 @@
 	desc = "A newest generation of Ninetails Armory. Heavy layered plasteel-weave plates with solid ablative coatings. Servo-assistors prevent the suit's massive weight from immobilizing the wearer entirely, but the suit is still quite cumbersome."
 	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 60, BIO = 30, FIRE = 60, ACID = 65)
+	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 65, BIO = 65, FIRE = 65, ACID = 65) //Tyr2 but averaged out
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner/sarge
