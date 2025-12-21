@@ -73,6 +73,14 @@
 			return TRUE
 		if(slot_l_hand_str)
 			return TRUE
+		if(slot_underwear_str)
+			return TRUE
+		if(slot_bra_str)
+			return TRUE
+		if(slot_socks_str)
+			return TRUE
+		if(slot_shirt_str)
+			return TRUE
 	return FALSE //Unsupported slot
 
 /**

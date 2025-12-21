@@ -104,6 +104,26 @@ export const SLOTS: Record<
     gridSpot: getGridSpotKey([3, 2]),
     image: 'inventory-pocket.png',
   },
+  slot_bra: {
+    displayName: 'bra',
+    gridSpot: getGridSpotKey([4, 0]),
+    image: 'inventory-pocket.png',
+  },
+  slot_shirt: {
+    displayName: 'undershirt',
+    gridSpot: getGridSpotKey([4, 1]),
+    image: 'inventory-pocket.png',
+  },
+  slot_underwear: {
+    displayName: 'underwear',
+    gridSpot: getGridSpotKey([4, 2]),
+    image: 'inventory-pocket.png',
+  },
+  slot_socks: {
+    displayName: 'socks',
+    gridSpot: getGridSpotKey([4, 3]),
+    image: 'inventory-pocket.png',
+  },
 };
 
 export type GridSpotKey = string;
