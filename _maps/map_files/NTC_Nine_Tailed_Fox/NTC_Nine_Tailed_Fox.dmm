@@ -2707,6 +2707,7 @@
 	})
 "crQ" = (
 /obj/structure/prop/computer/cryopod,
+/obj/structure/cable,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -4861,6 +4862,10 @@
 	dir = 9
 	},
 /area/mainship/squads/specialist)
+"evV" = (
+/obj/structure/ship_ammo/cas/rocket/banshee,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ewt" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
@@ -7239,7 +7244,6 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "gzF" = (
-/obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -9623,6 +9627,13 @@
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
 	})
+"iHT" = (
+/obj/machinery/landinglight/cas{
+	dir = 1
+	},
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "iIz" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -9667,6 +9678,10 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"iIZ" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "iJZ" = (
 /obj/structure/closet/crate/mass_produced_crate/ammo,
 /turf/open/floor/mainship/cargo,
@@ -11961,6 +11976,7 @@
 /area/mainship/hallways/hangar)
 "kOh" = (
 /obj/machinery/door_control/mainship/ammo,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kOC" = (
@@ -16095,6 +16111,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "osJ" = (
@@ -17711,6 +17728,10 @@
 "pZX" = (
 /turf/open/space/basic,
 /area/mainship/hull/upper_hull)
+"qag" = (
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "qap" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -19505,6 +19526,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/hallways/synthdorms)
+"rJA" = (
+/obj/structure/ship_ammo/cas/rocket/banshee,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "rJL" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
@@ -19734,6 +19759,7 @@
 "rWA" = (
 /obj/item/radio/intercom/general,
 /obj/structure/cable,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -23153,6 +23179,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"vhF" = (
+/obj/machinery/landinglight/cas{
+	dir = 1
+	},
+/obj/structure/ship_ammo/cas/minirocket,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "vhN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23914,6 +23947,13 @@
 /area/mainship/living/port_garden)
 "vOP" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
+"vPH" = (
+/obj/machinery/landinglight/cas{
+	dir = 1
+	},
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "vPK" = (
@@ -45819,9 +45859,9 @@ aMa
 axM
 tIk
 fXK
-tIk
-gZA
-pin
+vZm
+vhF
+xaI
 xaI
 xaI
 bVA
@@ -45938,9 +45978,9 @@ aMa
 rlW
 tIk
 fXK
-tIk
-gZA
-pin
+vZm
+iHT
+qag
 pin
 cpB
 bVA
@@ -46054,7 +46094,7 @@ ewt
 aMa
 ppO
 aMa
-kEG
+iIZ
 tIk
 cXZ
 tIk
@@ -46652,9 +46692,9 @@ hIO
 tIk
 tIk
 tIk
-tIk
-gZA
-pin
+evV
+vPH
+rJA
 pin
 cpB
 bVA
@@ -46771,7 +46811,7 @@ oZK
 tIk
 gcD
 tIk
-tIk
+evV
 cxP
 vOP
 vOP
@@ -47008,9 +47048,9 @@ iSM
 aMa
 kDE
 rlQ
-rlQ
-gzF
 rkh
+gzF
+tIk
 gsM
 kEG
 kEG

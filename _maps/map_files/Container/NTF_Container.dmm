@@ -478,6 +478,7 @@
 	light_color = "#da2f1b"
 	},
 /obj/structure/prop/computer/cryopod,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "aFV" = (
@@ -10186,8 +10187,10 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/obj/machinery/computer/voucher,
-/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/voucher{
+	dir = 4;
+	pixel_x = 18
+	},
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -17915,6 +17918,7 @@
 /area/mainship/living/cafeteria_port)
 "rLA" = (
 /obj/structure/closet/crate/ammo,
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "rMD" = (
@@ -23613,6 +23617,10 @@
 	dir = 9
 	},
 /area/mainship/medical/medical_science)
+"xgs" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange,
+/area/mainship/squads/req)
 "xgV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -58437,7 +58445,7 @@ ufu
 sss
 ogT
 jpC
-vhY
+xgs
 rLA
 aFG
 ics
