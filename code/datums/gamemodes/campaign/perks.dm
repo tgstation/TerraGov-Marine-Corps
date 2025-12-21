@@ -169,7 +169,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	ui_icon = "soft_footed"
 	traits = list(TRAIT_LIGHT_STEP)
 	all_jobs = TRUE
-	unlock_cost = 300
+	unlock_cost = 350
 
 /datum/perk/trait/axe_master
 	name = "Axe master"
