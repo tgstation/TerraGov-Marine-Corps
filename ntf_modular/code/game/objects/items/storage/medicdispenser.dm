@@ -19,12 +19,12 @@
 
 /obj/machinery/deployable/dispenser/medic/process()
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		if(!line_of_sight(src, affecting, 2))
+		if(!line_of_sight(src, affecting, 3))
 			qdel(affecting_list[affecting])
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_QDELETING)
 			continue
-		affecting.heal_overall_damage(2, 2, FALSE, TRUE)
+		affecting.heal_overall_damage(4, 4, FALSE, TRUE)
 		affecting.adjustOxyLoss(-0.5)
 		affecting.adjustToxLoss(-0.5)
 
