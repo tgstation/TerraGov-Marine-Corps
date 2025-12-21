@@ -85,7 +85,7 @@
 	icon_state = "disablershot"
 	hitscan_effect_icon = "beam_stun"
 	bullet_color = COLOR_LIGHT_ORANGE
-	plasma_drain = 20
+	plasma_drain = 10
 	max_range = 5
 
 /datum/ammo/energy/lasgun/marine/shocking/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
