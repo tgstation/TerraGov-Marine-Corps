@@ -75,7 +75,7 @@
 	icon_state = "som_pilot_black"
 	icon = 'ntf_modular/icons/obj/clothing/suits/ert_suits.dmi'
 	worn_icon_list = list(
-		slot_wear_suit_str = 'ntf_modular/icons/mob/clothing/suits/ert_suits.dmi',
+		slot_wear_suit_str = 'ntf_modular/icons/obj/clothing/suits/ert_suits.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
