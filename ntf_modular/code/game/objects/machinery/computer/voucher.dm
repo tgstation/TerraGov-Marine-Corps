@@ -149,5 +149,6 @@
 //id make this into voucher console at 1 to 5 ratio but idk how to work that shit -vide
 /obj/item/card/credstick
 	name = "credstick"
+	icon_state = "centcom"
 	desc = "A credstick which can be redeemed at a voucher console for credits used in skillsoft purchases or everyday needs."
 	var/worth = 100
