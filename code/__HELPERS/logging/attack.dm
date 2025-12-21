@@ -54,13 +54,11 @@
 
 /// Logging for bombs detonating
 /proc/log_bomber(atom/user, details, atom/bomb, additional_details, message_admins = FALSE)
-	var/bomb_message = "[details][logdetails(bomb)][additional_details ? " [additional_details]" : ""]."
 
-	if(user)
-		user.log_message(bomb_message, LOG_ATTACK) //let it go to individual logs as well as the game log
-		bomb_message = "[logdetails(user)] [bomb_message]."
+	if(istype(user))
+		log_combat(user, bomb, details, addition = additional_details) //let it go to individual logs as well as the game log
 	else
-		log_game(bomb_message)
+		log_attack("[logdetails(user)] [details][logdetails(bomb)][additional_details ? " [additional_details]" : ""].")
 
 	if(message_admins)
 		message_admins("[user ? "[ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(user)] " : ""][details][bomb ? " [bomb.name] at [ADMIN_VERBOSEJMP(bomb)]": ""][additional_details ? " [additional_details]" : ""].")
