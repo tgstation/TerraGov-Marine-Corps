@@ -1,6 +1,9 @@
 /mob/dead/observer/Logout()
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
-	SSmobs.dead_players_by_zlevel[z] -= src
+	if(z in SSmobs.dead_players_by_zlevel)
+		SSmobs.dead_players_by_zlevel[z] -= src
+	else
+		stack_trace("z [isnum(z) ? num2text(z) : logdetails(z)] not found in SSmobs.dead_players_by_zlevel while in Logout of [logdetails(src)]")
 
 	. = ..()
 
