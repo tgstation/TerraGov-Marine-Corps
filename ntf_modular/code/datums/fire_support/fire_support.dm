@@ -103,7 +103,8 @@
 	. = ..()
 	if(!mode)
 		return
-	. += span_warning("Rearm in [round(timeleft(mode.rearm_timer) MILLISECONDS)] seconds.")
+	if(timeleft(mode.rearm_timer))
+		. += span_warning("Rearm in [round(timeleft(mode.rearm_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/extended/equipped(mob/user, slot)
 	. = ..()
