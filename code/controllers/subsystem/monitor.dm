@@ -216,6 +216,8 @@ SUBSYSTEM_DEF(monitor)
 	for(var/human in (GLOB.alive_human_list_faction[FACTION_TERRAGOV] | GLOB.alive_human_list_faction[FACTION_NANOTRASEN]))
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
+		if(!myarea)
+			continue
 		if(is_ground_level(TU.z))
 			human_on_ground++
 			if(myarea.area_flags & NEAR_FOB)
@@ -224,6 +226,8 @@ SUBSYSTEM_DEF(monitor)
 			human_on_ship++
 	for(var/human in GLOB.alive_human_list_faction[FACTION_CLF])
 		var/turf/TU = get_turf(human)
+		if(!istype(TU))
+			continue
 		if(is_ground_level(TU.z))
 			human_on_ground++
 		else if(is_mainship_level(TU.z))

@@ -665,6 +665,7 @@
 /area/orion_outpost/surface/building/command)
 "dz" = (
 /obj/machinery/light,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -1062,6 +1063,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/atc)
+"fo" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/orion_outpost/surface/building/command)
 "fp" = (
 /obj/structure/sink{
 	dir = 8
@@ -2659,9 +2666,11 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
 "nj" = (
-/obj/item/ammo_casing/bullet,
-/turf/open/floor/mainship/mono,
-/area/orion_outpost/surface/building/engineering)
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/orion_outpost/surface/building/tadpolepad)
 "nk" = (
 /obj/structure/platform{
 	dir = 8
@@ -3343,6 +3352,11 @@
 "qi" = (
 /turf/closed/shuttle/dropship_regular/top_corner,
 /area/orion_outpost/ground/underground/caveS)
+"qj" = (
+/obj/machinery/door/airlock/mainship/engineering,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "ql" = (
 /obj/item/tool/wrench,
 /obj/effect/ai_node,
@@ -4441,11 +4455,11 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/ammodepot)
 "vD" = (
-/obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	dir = 2
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
 	},
-/turf/open/floor/mainship/mono,
-/area/orion_outpost/surface/building/engineering)
+/area/orion_outpost/surface/building/tadpolepad)
 "vG" = (
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/breakroom)
@@ -5698,7 +5712,6 @@
 	},
 /area/orion_outpost/surface/building/ammodepot)
 "BA" = (
-/obj/structure/cable,
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
@@ -7076,6 +7089,7 @@
 /area/orion_outpost/ground/outposts)
 "In" = (
 /obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/orion_outpost/surface/building/engineering)
 "Io" = (
@@ -10431,6 +10445,7 @@
 /area/orion_outpost/surface/building/cargo)
 "Yq" = (
 /obj/item/ammo_casing/bullet,
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -20944,7 +20959,7 @@ XZ
 uk
 Vp
 uk
-nj
+KY
 In
 Xi
 OQ
@@ -21075,7 +21090,7 @@ wF
 bI
 hE
 rx
-Vp
+Eo
 Le
 dz
 Xi
@@ -21205,11 +21220,11 @@ DU
 DU
 Xi
 Xi
-wF
-wF
-Vp
-vD
 Xi
+Xi
+Xi
+Xi
+qj
 Xi
 Xi
 Xi
@@ -23564,8 +23579,8 @@ TD
 sB
 sB
 TD
-BM
-Yf
+vD
+nj
 eH
 BM
 Yf
@@ -24592,7 +24607,7 @@ VH
 Xm
 zR
 lN
-PY
+fo
 Nm
 oq
 oq

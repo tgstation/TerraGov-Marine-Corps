@@ -127,3 +127,10 @@
   Colfer1:
   - balance: Non-chest limbs now have a significantly higher miss chance, targeting
       the eyes forces you to miss all your shots
+2025-12-21:
+  Ducky-Momo:
+  - code_imp: added SOM modules to list of allowed attachments of exoskeletons
+  Nokia2Student:
+  - balance: Bio resistance values were increased massively on ac armors
+  - balance: Base resistance values were increased slightly on ac armors
+  - balance: Princeps ac armor slowdown value was changed from light to medium
