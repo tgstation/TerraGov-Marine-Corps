@@ -92,7 +92,7 @@
 	. = ..()
 	if(slot == SLOT_BACK)
 		deltimer(evolve_timer)
-		evolve_timer = addtimer(CALLBACK(src ,PROC_REF(try_evolve), user), 1 MINUTES, TIMER_STOPPABLE)
+		evolve_timer = addtimer(CALLBACK(src ,PROC_REF(try_evolve), user), 5 MINUTES, TIMER_STOPPABLE)
 
 /obj/item/clothing/resin_sack/proc/try_evolve(mob/living/carbon/human/victim)
 	if(!victim)
