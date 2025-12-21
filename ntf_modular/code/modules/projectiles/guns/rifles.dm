@@ -321,7 +321,8 @@
 	name = "armor-piercing foxfire heavy rifle bullet"
 	hud_state = "rifle_ap"
 	//bit less crazy than actual heavy ap
-	penetration = 25
+	damage = 20
+	penetration = 20
 	sundering = 3
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	bullet_color = COLOR_RED_LIGHT
