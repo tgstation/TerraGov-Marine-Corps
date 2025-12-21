@@ -16,7 +16,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aN" = (
@@ -68,10 +68,10 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -138,8 +138,8 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "fM" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/mainship/sterile,
+/mob/living/simple_animal/catslug/newt,
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "fU" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -170,13 +170,13 @@
 /turf/template_noop,
 /area/space)
 "jC" = (
-/obj/machinery/robotic_cradle,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
 /obj/machinery/air_alarm{
 	dir = 2
 	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "jU" = (
@@ -206,7 +206,7 @@
 /area/shuttle/canterbury)
 "lT" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/space/basic,
+/turf/open/floor/podhatch/floor,
 /area/shuttle/canterbury)
 "me" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -225,7 +225,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "of" = (
-/obj/machinery/loadout_vendor/crash,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -332,7 +332,9 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "vG" = (
-/obj/machinery/reagentgrinder,
+/obj/machinery/shower{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "wr" = (
@@ -341,6 +343,10 @@
 	name = "General Listening Channel";
 	dir = 4
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "wF" = (
@@ -438,9 +444,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "AP" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury)
@@ -489,6 +492,10 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Cp" = (
@@ -651,6 +658,10 @@
 	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
+"MU" = (
+/obj/machinery/robotic_cradle,
+/turf/open/floor/mainship/sterile,
+/area/shuttle/canterbury/medical)
 "Oc" = (
 /obj/machinery/vending/tool,
 /obj/structure/cable,
@@ -666,6 +677,7 @@
 	dir = 1
 	},
 /obj/machinery/telecomms/relay/preset/telecomms,
+/obj/machinery/light,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury)
 "OU" = (
@@ -816,19 +828,13 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "XW" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/mob/living/simple_animal/catslug/newt,
+/obj/machinery/reagentgrinder,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
 /area/shuttle/canterbury/medical)
 "Ym" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadengineer,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -926,7 +932,7 @@ GV
 ri
 XW
 Cp
-ug
+fM
 el
 vG
 hj
@@ -944,7 +950,7 @@ ia
 ia
 ia
 EH
-Ip
+MU
 Zp
 PI
 yy
@@ -967,7 +973,7 @@ ia
 ia
 ia
 hj
-fM
+Ip
 fZ
 uF
 bO
@@ -1037,9 +1043,9 @@ IT
 BV
 xe
 xe
-he
-he
 BV
+BV
+he
 BZ
 BV
 BV
@@ -1064,7 +1070,7 @@ mv
 eG
 cg
 cg
-xJ
+wW
 BV
 mw
 BV
@@ -1087,7 +1093,7 @@ mv
 Us
 of
 cg
-wW
+xJ
 BV
 mw
 BV
@@ -1110,7 +1116,7 @@ aS
 Tb
 zg
 cg
-tW
+En
 BV
 mw
 BV
@@ -1133,7 +1139,7 @@ AP
 JP
 OA
 KM
-yC
+qe
 BV
 mw
 BV
@@ -1156,7 +1162,7 @@ Qa
 VT
 Vk
 cg
-qe
+tW
 BV
 mw
 BV
@@ -1179,7 +1185,7 @@ mv
 lo
 VY
 cg
-wW
+yC
 BV
 mw
 BV
@@ -1202,7 +1208,7 @@ mv
 ci
 cg
 cg
-En
+wW
 BV
 mw
 BV
@@ -1221,9 +1227,9 @@ DN
 BV
 xe
 xe
-Yu
-Ym
 BV
+Ym
+Yu
 wr
 BV
 BV
