@@ -28,29 +28,29 @@
 	if(.)
 		return
 
-	if(!ishuman(M))
-		M.balloon_alert(user, "not a human!")
-		return FALSE
-	var/mob/living/carbon/human/target = M
+	if(ishuman(M))
+		var/mob/living/carbon/human/target = M
 
-	if(!ishuman(user))
-		target.balloon_alert(user, "not dextrous enough!")
-		return FALSE
+		if(!ishuman(user))
+			target.balloon_alert(user, "not dextrous enough!")
+			return FALSE
 
-	if(user.do_actions)
-		target.balloon_alert(user, "already busy!")
-		return
+		if(user.do_actions)
+			target.balloon_alert(user, "already busy!")
+			return
 
-	var/datum/limb/affecting = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+		var/datum/limb/affecting = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
-	if(!affecting)
-		return FALSE
+		if(!affecting)
+			return FALSE
 
-	if(!can_affect_limb(affecting))
-		target.balloon_alert(user, "limb is [affecting.limb_status & LIMB_ROBOT ? "robotic": "organic"]!")
-		return FALSE
+		if(!can_affect_limb(affecting))
+			target.balloon_alert(user, "limb is [affecting.limb_status & LIMB_ROBOT ? "robotic": "organic"]!")
+			return FALSE
 
-	return affecting
+		return affecting
+	else if(isxeno(M))
+		heal_xeno(M, user)
 
 ///Checks for whether the limb is appropriately organic/robotic
 /obj/item/stack/medical/proc/can_affect_limb(datum/limb/affecting)

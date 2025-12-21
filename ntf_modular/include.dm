@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #include "code\_DEFINES\colors.dm"
 #include "code\_DEFINES\ntf_defines.dm"
 #include "code\_DEFINES\sexcon_defines.dm"
@@ -82,6 +76,7 @@
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\items\radio\ntc_listener.dm"
+#include "code\game\objects\items\stacks\medical.dm\medical.dm"
 #include "code\game\objects\items\storage\medicdispenser.dm"
 #include "code\game\objects\items\tools\loadout_tool.dm"
 #include "code\game\objects\machinery\artillery\shells.dm"

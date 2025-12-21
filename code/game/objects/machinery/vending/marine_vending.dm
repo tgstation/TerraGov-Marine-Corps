@@ -142,7 +142,7 @@
 			/obj/item/ammo_magazine/pistol/derringer = 15,
 			/obj/item/weapon/gun/pistol/xmdivider/ntc = 6,
 			/obj/item/ammo_magazine/pistol/ntunity = 40,
-			/obj/item/weapon/gun/revolver/standard_magnum = -1,
+			/obj/item/weapon/gun/revolver/standard_magnum = 3,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
@@ -422,7 +422,7 @@
 			/obj/item/ammo_magazine/pistol/standard_heavypistol = -1,
 			/obj/item/weapon/gun/revolver/standard_revolver = -1,
 			/obj/item/ammo_magazine/revolver/standard_revolver = -1,
-			/obj/item/weapon/gun/revolver/standard_magnum = -1,
+			/obj/item/weapon/gun/revolver/standard_magnum = 2,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 			/obj/item/weapon/gun/pistol/standard_pocketpistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = -1,
