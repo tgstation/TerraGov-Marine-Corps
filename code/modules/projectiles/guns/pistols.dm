@@ -786,7 +786,7 @@
 	icon_state = "c96"
 	worn_icon_state = "c96"
 	caliber = CALIBER_9X19
-	max_shells = 22
+	max_shells = 17
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
