@@ -33,7 +33,17 @@
 	var/paralyze
 	///knockback value; 0 = crush mode, 1 = knockback mode
 	var/knockback
-	slowdown = 0.5 //Heavy kys
+	slowdown = 0.5
+
+/obj/item/weapon/twohanded/rocketsledge/equipped(mob/user, slot)
+	if(!user.has_movespeed_modifier(type))
+		user.add_movespeed_modifier(type, TRUE, 0, (item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, 1)
+	. = ..()
+
+/obj/item/weapon/twohanded/rocketsledge/unequipped(mob/unequipper, slot)
+	if(unequipper.has_movespeed_modifier(type))
+		unequipper.remove_movespeed_modifier(type)
+	. = ..()
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
