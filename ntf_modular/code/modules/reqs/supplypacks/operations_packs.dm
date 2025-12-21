@@ -6,7 +6,7 @@
 /datum/supply_packs/operations/credstick
 	name = "100c Credstick"
 	contains = list(/obj/item/card/credstick)
-	cost = 500
+	cost = 300
 
 /datum/supply_packs/operations/droppod/sentry
 	name = "sentry drop pod"
