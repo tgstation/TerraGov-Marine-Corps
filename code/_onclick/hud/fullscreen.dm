@@ -221,12 +221,17 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/fullscreen)
 	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
 	animate(alpha = initial(alpha), time = 20, loop = -1)
 
-/atom/movable/screen/fullscreen/machine/robothalf
+/atom/movable/screen/fullscreen/robot/machine
+	icon = 'icons/mob/screen/full/machine.dmi'
+	layer = FULLSCREEN_LAYER
+
+/atom/movable/screen/fullscreen/robot/machine/robothalf
 	icon_state = "robothalf"
 	alpha = 60
 
-/atom/movable/screen/fullscreen/machine/robotlow
+/atom/movable/screen/fullscreen/robot/machine/robotlow
 	icon_state = "robotlow"
+	alpha = 100
 
 /atom/movable/screen/fullscreen/ivanov_display
 	icon_state = "ivanov"
