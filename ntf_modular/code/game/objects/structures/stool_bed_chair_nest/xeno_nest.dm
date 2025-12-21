@@ -288,6 +288,7 @@
 		span_love("You hear squelching."))
 		playsound(victim, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5, ignore_walls = FALSE)
 		victim.adjustStaminaLoss(5)
+		victim.sexcon.adjust_arousal(2)
 
 /obj/structure/bed/nest/advanced/proc/try_suit_up(mob/living/carbon/human/victim)
 	if(!(victim.status_flags & XENO_HOST))

@@ -1,5 +1,5 @@
 /datum/component/parasitic_clothing
-	var/implant_delay = 4 MINUTES
+	var/implant_delay = 29.9 SECONDS
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/fixed_hole = null
 	var/mob/living/carbon/human/wearer = null
@@ -119,4 +119,5 @@
 		span_love("You hear squelching."))
 		wearer.adjustStaminaLoss(2)
 		playsound(wearer, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5, ignore_walls = FALSE)
+		wearer.sexcon.adjust_arousal(2)
 

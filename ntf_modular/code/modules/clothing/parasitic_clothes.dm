@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/resin_bodysuit
 	name = "living resin bodysuit"
-	desc = "Living mass of tentacles pretty much, yuck."
+	desc = "Living mass of tentacles pretty much, yuck. This might be removed with fire."
 	//get actual sprites.
 	icon = 'ntf_modular/icons/obj/clothing/uniforms/uniforms.dmi'
 	worn_icon_list = list(
@@ -44,7 +44,7 @@
 
 /obj/item/clothing/resin_sack
 	name = "living resin sack"
-	desc = "A mass of resin and tentacles stuck to your back, weighting down a bit."
+	desc = "A mass of resin and tentacles stuck to your back, weighting down a bit. This might be removed with fire."
 	//get actual sprites.
 	icon = 'ntf_modular/icons/obj/clothing/uniforms/uniforms.dmi'
 	worn_icon_list = list(
@@ -101,10 +101,7 @@
 		return
 	if(victim.w_underwear)
 		victim.dropItemToGround(victim.w_underwear)
-	var/datum/component/parasitic_clothing/ownparacomp = GetComponent(/datum/component/parasitic_clothing)
 	var/obj/item/clothing/suit/resin_bodysuit/goobersuit = new /obj/item/clothing/suit/resin_bodysuit(loc)
-	var/datum/component/parasitic_clothing/paracomp = goobersuit.GetComponent(/datum/component/parasitic_clothing)
-	paracomp.hivenumber = ownparacomp.hivenumber
 	victim.visible_message(span_warning("[src] evolves and wraps itself around [victim]!"),
 			span_warning("[src] evolves and wraps itself around your body!"),
 			span_notice("You hear rustling."))
