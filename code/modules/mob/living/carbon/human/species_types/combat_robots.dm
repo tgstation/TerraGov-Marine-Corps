@@ -63,20 +63,30 @@
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 
+/mob/living/carbon/human
+    COOLDOWN_DECLARE(soft_crit_emote_cooldown)
+    COOLDOWN_DECLARE(hard_crit_emote_cooldown)
+
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
-	if(H.health <= 0 && H.health > -50)
-		H.clear_fullscreen("robotlow")
-		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
-	else if(H.health <= -50)
-		H.clear_fullscreen("robothalf")
-		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
-	else
-		H.clear_fullscreen("robothalf")
-		H.clear_fullscreen("robotlow")
-	if(H.health > -25) //Staggerslowed if below crit threshold
-		return
-	H.Stagger(2 SECONDS)
-	H.adjust_slowdown(1)
+    if(H.health <= 0 && H.health > -50)
+        H.clear_fullscreen("robotlow")
+        H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/robot/machine/robothalf)
+        if(COOLDOWN_FINISHED(H, soft_crit_emote_cooldown))
+            COOLDOWN_START(H, soft_crit_emote_cooldown, 40 SECONDS)
+            H.emote("damaged")
+    else if(H.health <= -50)
+        H.clear_fullscreen("robothalf")
+        H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/robot/machine/robotlow)
+        if(COOLDOWN_FINISHED(H, hard_crit_emote_cooldown))
+            COOLDOWN_START(H, hard_crit_emote_cooldown, 40 SECONDS)
+            H.emote("critical")
+    else
+        H.clear_fullscreen("robothalf")
+        H.clear_fullscreen("robotlow")
+    if(H.health > -25) //Staggerslowed if below crit threshold
+        return
+    H.Stagger(2 SECONDS)
+    H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
@@ -86,17 +96,21 @@
 		KEYBINDING_NORMAL = COMSIG_KB_ROBOT_AUTOREPAIR,
 	)
 
-/datum/action/repair_self/can_use_action(silent, override_flags, selecting)
+/*/datum/action/repair_self/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
-	return !owner.incapacitated()
+	return !owner.incapacitated()*/
 
 /datum/action/repair_self/action_activate()
 	. = ..()
 	if(!. || !ishuman(owner))
 		return
+	if(owner.stat == DEAD)
+		return
 	var/mob/living/carbon/human/howner = owner
+	if(howner.has_status_effect(STATUS_EFFECT_REPAIR_MODE))
+		return
 	if(!howner.getBruteLoss() && !howner.getFireLoss())
 		return
 	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)

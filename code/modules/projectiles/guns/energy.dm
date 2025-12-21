@@ -377,6 +377,7 @@
 	worn_icon_state = "tesla"
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	windup_sound = 'sound/weapons/guns/fire/volkite_4.ogg'
 	ammo_datum_type = /datum/ammo/energy/tesla
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
@@ -400,6 +401,9 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/tesla_mode/standard,
 		"Focused" = /datum/lasrifle/tesla_mode/focused,
+		"EMP" = /datum/lasrifle/tesla_mode/emp,
+		"Shock" = /datum/lasrifle/tesla_mode/shocking
+
 	)
 
 /datum/lasrifle/tesla_mode/standard
@@ -423,6 +427,29 @@
 	radial_icon_state = "laser_overcharge"
 	description = "Fires an sophisticated IFF tesla ball, but with reduces shock range."
 
+/datum/lasrifle/tesla_mode/emp // Combat robots beware
+	rounds_per_shot = 200
+	ammo_datum_type = /datum/ammo/energy/tesla/emp
+	fire_delay = 4 SECONDS
+	windup_delay = 0.8 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to EMP."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+	radial_icon_state = "laser_charge"
+	description = "Fires a powerful tesla ball capable of frying electronics."
+
+/datum/lasrifle/tesla_mode/shocking
+	rounds_per_shot = 10
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shocking
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.6 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to shock."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tesla"
+	radial_icon_state = "laser_disabler"
+	description = "Fires a non-lethal shocking bolt to disable your enemies."
 //TE Tier 1 Series//
 
 //TE Standard Laser rifle
@@ -509,7 +536,7 @@
 	description = "Fires a powerful overcharged laser pulse. Deals heavy damage with superior penetration at the cost of slower fire rate."
 
 /datum/lasrifle/energy_rifle_mode/weakening
-	rounds_per_shot = 24
+	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening
 	fire_delay = 0.4 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
@@ -594,7 +621,7 @@
 	description = "Fires a standard laser pulse. Moderate damage."
 
 /datum/lasrifle/energy_pistol_mode/disabler
-	rounds_per_shot = 80
+	rounds_per_shot = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
@@ -672,6 +699,8 @@
 		"Spread" = /datum/lasrifle/energy_carbine_mode/base/spread,
 		"Impact" = /datum/lasrifle/energy_carbine_mode/base/impact,
 		"Cripple" = /datum/lasrifle/energy_carbine_mode/base/cripple,
+		"Tracker" = /datum/lasrifle/energy_carbine_mode/base/tracker,
+		"Disabler" = /datum/lasrifle/energy_carbine_mode/auto_burst/disabler
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
@@ -711,6 +740,14 @@
 	icon_state = "tec"
 	description = "Fires a rapid pulse laser, dealing good damage per second, but suffers from increased scatter and poorer falloff."
 
+/datum/lasrifle/energy_carbine_mode/auto_burst/disabler
+	rounds_per_shot = 12
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening/carbine
+	message_to_user = "You set the laser carbine's charge mode to disabler burst fire."
+	fire_mode = GUN_FIREMODE_AUTOBURST
+	icon_state = "tec"
+	description = "Fires a rapid pulse laser, dealing stamina damage, but suffers from increased scatter and poorer falloff."
+
 /datum/lasrifle/energy_carbine_mode/base/spread
 	rounds_per_shot = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
@@ -746,6 +783,18 @@
 	icon_state = "tec"
 	radial_icon_state = "laser_disabler"
 	description = "Fires a laser pulse dealing moderate damage and slowdown."
+
+/datum/lasrifle/energy_carbine_mode/base/tracker
+	rounds_per_shot = 15
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/tracker
+	fire_delay = 0.3 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	message_to_user = "You set the laser carbine's charge mode to tracker."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tec"
+	radial_icon_state = "laser_heat"
+	description = "Fires a laser pulse dealing moderate damage and causing targets to leave a trail."
 
 //TE Standard Sniper
 
@@ -803,6 +852,7 @@
 		"Heat" = /datum/lasrifle/energy_sniper_mode/heat,
 		"Shatter" = /datum/lasrifle/energy_sniper_mode/shatter,
 		"Ricochet" = /datum/lasrifle/energy_sniper_mode/ricochet,
+		"Disabling" = /datum/lasrifle/energy_sniper_mode/weakening
 	)
 
 /datum/lasrifle/energy_sniper_mode/standard
@@ -847,6 +897,17 @@
 	icon_state = "tes"
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
+
+/datum/lasrifle/energy_sniper_mode/weakening
+	rounds_per_shot = 30
+	fire_delay =  1.1 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/disabler
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	message_to_user = "You set the sniper rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tes"
+	radial_icon_state = "laser_disabler"
+	description = "Fires a single strong laser pulse, with good damage and penetration, and no falloff."
 
 // TE Standard MG
 
@@ -905,6 +966,7 @@
 		"Burst" = /datum/lasrifle/energy_mg_mode/standard/burst,
 		"Charge" = /datum/lasrifle/energy_mg_mode/standard/charge,
 		"Melting" = /datum/lasrifle/energy_mg_mode/standard/melting,
+		"Minigun" = /datum/lasrifle/energy_mg_mode/standard/minigun,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(atom/movable/projectile/projectile_to_fire, atom/target, firer)
@@ -958,6 +1020,17 @@
 	radial_icon_state = "laser_heat"
 	description = "Fires an unusual laser pulse that applies a melting effect which severely sunders xenomorph armor over time, as well as applying further damage."
 
+/datum/lasrifle/energy_mg_mode/standard/minigun
+	rounds_per_shot = 2
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/mini
+	fire_delay = 0.08 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
+	message_to_user = "You set the machine laser's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tem"
+	radial_icon_state = "laser_disabler"
+	description = "Fires a rapid laser pulse with moderately reduced damage, but vastly improved energy efficiency."
+
 // TE X-Ray
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
@@ -1004,6 +1077,7 @@
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_rifle_mode/xray,
 		"Piercing" = /datum/lasrifle/energy_rifle_mode/xray/piercing,
+		"Weakening" = /datum/lasrifle/energy_rifle_mode/xray/weakening,
 	)
 
 /datum/lasrifle/energy_rifle_mode/xray
@@ -1025,6 +1099,15 @@
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
 	description = "Fires a powerful xray laser pulse. Completely penetrates a victims armour, as well as any solid substance in the way."
+
+/datum/lasrifle/energy_rifle_mode/xray/weakening
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/weakening/xray
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	message_to_user = "You set the xray rifle's charge mode to disabling mode."
+	radial_icon_state = "laser_disabler"
+	description = "Fires a powerful xray laser pulse. Penetrates armor and deals large amounts of stamina damage."
 
 //Martian death rays
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
