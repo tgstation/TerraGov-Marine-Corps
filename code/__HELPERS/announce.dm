@@ -167,7 +167,7 @@
  * * alert - optional, alert or notice?
  * * receivers - a list of all players to send the message to
  */
-/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.alive_human_list, should_play_sound = FALSE)
+/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.human_mob_list | GLOB.observer_list, should_play_sound = FALSE)
 	if(!message)
 		return
 
