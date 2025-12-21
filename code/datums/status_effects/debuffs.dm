@@ -154,8 +154,8 @@
 		healing += BASE_HEAL_RATE
 	if(locate(/obj/item/bedsheet) in owner.loc)
 		healing += BASE_HEAL_RATE
-		if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed with a blanket
-			healing += 0.75 * BASE_HEAL_RATE // plushie bonus in bed with a blanket
+	if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed
+		healing += BASE_HEAL_RATE
 	if(health_ratio > -0.5)
 		owner.adjustBruteLoss(healing)
 		owner.adjustFireLoss(healing)
