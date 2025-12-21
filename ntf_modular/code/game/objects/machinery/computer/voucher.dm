@@ -61,7 +61,7 @@
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
 		I.supply_export(faction)
-		var/obj/item/disk/intel_disk/le_disk
+		var/obj/item/disk/intel_disk/le_disk = I
 		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
 		if(gaymode)
 			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
