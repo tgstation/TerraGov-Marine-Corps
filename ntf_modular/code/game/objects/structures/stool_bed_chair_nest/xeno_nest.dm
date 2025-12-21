@@ -259,6 +259,7 @@
 			victim.visible_message(span_xenonotice("[src] roughly thrusts a tentacle into [victim]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [victim]!"),
 			span_xenonotice("[src] roughly thrusts a tentacle into your [targetholename], a round bulge visibly sliding through it as it inserts an egg into you!"),
 			span_notice("You hear squelching."))
+			playsound(victim, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 			var/obj/item/alien_embryo/embryo = new(victim)
 			embryo.hivenumber = hivenumber
 			embryo.emerge_target = targethole
@@ -267,6 +268,7 @@
 			victim.visible_message(span_love("[src]'s tentacle pumps globs of sizzling acidic cum into [victim]'s [targetholename]!"),
 			span_love("[src] tentacle pumps globs of sizzling acidic cum into your [targetholename]!"),
 			span_love("You hear spurting."))
+			playsound(victim, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 		/* no more help, those need to be watched over instead of left alone in a room to rot forever.
 		//same medicines as larval growth sting, but no larva jelly
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) < 5)
@@ -278,27 +280,34 @@
 		*/
 		if(victim.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) < 5)
 			victim.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 2)
-		victim.reagents.add_reagent(/datum/reagent/consumable/nutriment, 10)
-		victim.reagents.add_reagent(/datum/reagent/toxin/acid, 5) //need to make xenos not leave people in here unattended instead of using regular nests.
+		victim.reagents.add_reagent(/datum/reagent/consumable/nutriment, 3)
+		victim.reagents.add_reagent(/datum/reagent/toxin/acid, 2) //need to make xenos not leave people in here unattended instead of using regular nests.
 	else
 		victim.visible_message(span_love("[src] roughly thrusts a tentacle into [victim]'s [targetholename]!"),
 		span_love("[src] roughly thrusts a tentacle into your [targetholename]!"),
 		span_love("You hear squelching."))
+		playsound(victim, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5, ignore_walls = FALSE)
+		victim.adjustStaminaLoss(5)
 
 /obj/structure/bed/nest/advanced/proc/try_suit_up(mob/living/carbon/human/victim)
 	if(!(victim.status_flags & XENO_HOST))
 		return
 	if(!victim)
 		return
-	if(istype(victim.back, /obj/item/storage/backpack/marine/resin_sack))
+	if(istype(victim.back, /obj/item/clothing/resin_sack))
 		return
 	if(victim.back)
 		victim.dropItemToGround(victim.back)
-	var/obj/item/storage/backpack/marine/resin_sack/gooberpack = new /obj/item/storage/backpack/marine/resin_sack(loc)
+	var/obj/item/clothing/resin_sack/gooberpack = new /obj/item/clothing/resin_sack(loc)
 	var/datum/component/parasitic_clothing/paracomp = gooberpack.GetComponent(/datum/component/parasitic_clothing)
 	paracomp.hivenumber = hivenumber
-	victim.equip_to_slot(gooberpack, ITEM_SLOT_BACK)
+	victim.equip_to_slot(gooberpack, SLOT_BACK)
 	victim.visible_message(span_warning("[src] attaches to [victim] as a resin sack!"),
 			span_warning("[src] attaches to you as a resin sack!"),
 			span_notice("You hear rustling."))
+	if(victim.reagents.get_reagent_amount(/datum/reagent/toxin/acid) >= 1)
+		victim.reagents.remove_all_type(/datum/reagent/toxin/acid, 100)
+		victim.visible_message(span_green("Remaining acidic cum spills out from [victim]'s holes!"),
+				span_green("Remaining acidic cum spills out of your holes!"),
+				span_notice("You hear splashing."))
 	Destroy()

@@ -14,7 +14,6 @@
 /datum/component/parasitic_clothing/Initialize(_hivenumber, _fixed_hole)
 	. = ..()
 	hiveify(_hivenumber, _fixed_hole)
-	STOP_PROCESSING(SSslowprocess, src)
 
 /datum/component/parasitic_clothing/proc/hiveify(_hivenumber, _fixed_hole)
 	if(_hivenumber)
@@ -29,7 +28,6 @@
 
 /datum/component/parasitic_clothing/RegisterWithParent()
 	. = ..()
-	START_PROCESSING(SSslowprocess, src)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(equipped))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(dropped))
 
@@ -39,38 +37,42 @@
 
 /datum/component/parasitic_clothing/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	wearer = equipper
-	if(!(slot &= SLOT_L_HAND) || !(slot &= SLOT_R_HAND))
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
+		wearer = equipper
 		wearer.visible_message(span_warning("[parent] attaches itself to [wearer]!"),
 				span_warning("[parent] attaches itself to you!"),
 				span_notice("You hear rustling."))
 		ADD_TRAIT(parent, TRAIT_NODROP, "parasite_trait")
+		RegisterSignal(wearer, COMSIG_LIVING_IGNITED, PROC_REF(burn_moment))
+		COOLDOWN_START(src, implant_cooldown, implant_delay) // so it dont instant egg
 		START_PROCESSING(SSslowprocess, src)
-	RegisterSignal(wearer, COMSIG_HUMAN_BURN_DAMAGE, PROC_REF(burn_moment))
+	else
+		dropped(source, equipper)
+
 
 /datum/component/parasitic_clothing/proc/dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
+	STOP_PROCESSING(SSslowprocess, src)
+	UnregisterSignal(wearer, COMSIG_LIVING_IGNITED, PROC_REF(burn_moment))
 	wearer = null
 	REMOVE_TRAIT(parent, TRAIT_NODROP, "parasite_trait")
-	UnregisterSignal(wearer, COMSIG_HUMAN_BURN_DAMAGE, PROC_REF(burn_moment))
-	STOP_PROCESSING(SSslowprocess, src)
 
-/datum/component/parasitic_clothing/proc/burn_moment(datum/source, amount, list/amount_mod)
+/datum/component/parasitic_clothing/proc/burn_moment(datum/source, fire_stacks)
 	SIGNAL_HANDLER
-	wearer.visible_message(span_warning("[parent] emits a screech and detaches from [wearer]!"),
-			span_warning("[parent] screeches detaches from you!"),
-			span_notice("You hear screeching."))
-	REMOVE_TRAIT(parent, TRAIT_NODROP, "parasite_trait")
-	wearer.UnEquip(parent, TRUE)
+	if(wearer)
+		wearer.visible_message(span_warning("[parent] emits a screech and detaches from [wearer]!"),
+				span_warning("[parent] screeches and detaches from you!"),
+				span_notice("You hear screeching."))
+		REMOVE_TRAIT(parent, TRAIT_NODROP, "parasite_trait")
+		playsound(wearer.loc, 'sound/voice/alien/facehugger_dies.ogg', 25, 1)
+		wearer.dropItemToGround(parent, TRUE)
+		wearer = null
+	qdel(parent)
 
 /datum/component/parasitic_clothing/process()
-	. = ..()
 	if(!wearer)
 		STOP_PROCESSING(SSslowprocess, src)
 		return
-	process_sex(wearer)
-
-/datum/component/parasitic_clothing/proc/process_sex()
 	if(wearer.stat == DEAD)
 		return
 	//wheel of fuck
@@ -96,20 +98,25 @@
 	if(COOLDOWN_FINISHED(src, implant_cooldown))
 		COOLDOWN_START(src, implant_cooldown, implant_delay)
 		if(!(wearer.status_flags & XENO_HOST))
-			wearer.visible_message(span_xenonotice("[src] roughly thrusts a tentacle into [wearer]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [wearer]!"),
-			span_xenonotice("[src] roughly thrusts a tentacle into your [targetholename], a round bulge visibly sliding through it as it inserts an egg into you!"),
+			wearer.visible_message(span_xenonotice("[parent] roughly thrusts a tentacle into [wearer]'s [targetholename], a round bulge visibly sliding through it as it inserts an egg into [wearer]!"),
+			span_xenonotice("[parent] roughly thrusts a tentacle into your [targetholename], a round bulge visibly sliding through it as it inserts an egg into you!"),
 			span_notice("You hear squelching."))
+			playsound(wearer, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
 			var/obj/item/alien_embryo/embryo = new(wearer)
 			embryo.hivenumber = hivenumber
 			embryo.emerge_target = targethole
 			embryo.emerge_target_flavor = targetholename
 		else
-			wearer.visible_message(span_love("[src]'s tentacle pumps globs slightly acidic cum into [wearer]'s [targetholename]!"),
-			span_love("[src] tentacle pumps globs of slightly acidic cum into your [targetholename]!"),
+			wearer.visible_message(span_love("[parent]'s tentacle pumps globs slightly acidic cum into [wearer]'s [targetholename]!"),
+			span_love("[parent] tentacle pumps globs of slightly acidic cum into your [targetholename]!"),
 			span_love("You hear spurting."))
-			wearer.reagents.add_reagent(/datum/reagent/consumable/nutriment, 5)
-			wearer.reagents.add_reagent(/datum/reagent/toxin/acid, 2)
+			playsound(wearer, 'ntf_modular/sound/misc/mat/endin.ogg', 50, TRUE, 7, ignore_walls = FALSE)
+		wearer.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
+		wearer.reagents.add_reagent(/datum/reagent/toxin/acid, 1)
 	else
 		wearer.visible_message(span_love("[parent] roughly thrusts a tentacle into [wearer]'s [targetholename]!"),
 		span_love("[parent] roughly thrusts a tentacle into your [targetholename]!"),
 		span_love("You hear squelching."))
+		wearer.adjustStaminaLoss(2)
+		playsound(wearer, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5, ignore_walls = FALSE)
+
