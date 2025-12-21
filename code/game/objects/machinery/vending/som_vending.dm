@@ -17,7 +17,7 @@
 			/obj/item/weapon/gun/rifle/mpi_km = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/black = -1,
 			/obj/item/ammo_magazine/rifle/mpi_km/rubber = -1,
-			/obj/item/ammo_magazine/rifle/mpi_km/extended = 30,
+			/obj/item/ammo_magazine/rifle/mpi_km/extended = 20,
 			/obj/item/ammo_magazine/rifle/som = -1,
 			/obj/item/ammo_magazine/rifle/som/rubber = -1,
 			/obj/item/ammo_magazine/rifle/som/ap = 25,

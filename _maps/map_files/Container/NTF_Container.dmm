@@ -3926,6 +3926,13 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1;
+	pixel_y = 1
+	},
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "dUf" = (
@@ -7309,6 +7316,14 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway)
+"heP" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/drop_pod_launcher/supply,
+/obj/structure/droppod/nonmob/supply_pod,
+/turf/open/shuttle/escapepod,
+/area/mainship/squads/req)
 "hfE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -7631,14 +7646,10 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "hys" = (
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/obj/structure/drop_pod_launcher/supply,
-/obj/structure/droppod/nonmob/turret_pod,
-/turf/open/floor/mainship/green{
-	dir = 6
-	},
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light/mainship,
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "hyv" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
@@ -9726,10 +9737,8 @@
 	dir = 4
 	},
 /obj/structure/drop_pod_launcher/supply,
-/obj/structure/droppod/nonmob/supply_pod,
-/turf/open/floor/mainship/green{
-	dir = 6
-	},
+/obj/structure/droppod/nonmob/turret_pod,
+/turf/open/shuttle/escapepod,
 /area/mainship/squads/req)
 "jGJ" = (
 /obj/structure/cable,
@@ -13176,6 +13185,17 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/port_hull)
+"mRU" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters";
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "mSy" = (
 /obj/machinery/power/apc/mainship/hardened,
 /obj/structure/cable,
@@ -17917,7 +17937,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "rLA" = (
-/obj/structure/closet/crate/ammo,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
@@ -56833,7 +56852,7 @@ whg
 bej
 wMk
 ics
-rRk
+dbI
 uxo
 uxo
 uxo
@@ -57035,7 +57054,7 @@ oWz
 sXe
 weW
 ics
-uUK
+jGx
 mue
 rEd
 uUK
@@ -57237,7 +57256,7 @@ pdd
 iGN
 kRv
 ics
-uUK
+jGx
 mue
 rEd
 uUK
@@ -57439,7 +57458,7 @@ vhY
 tGQ
 lMV
 ics
-lAv
+jGx
 mue
 rEd
 eMD
@@ -57641,7 +57660,7 @@ vhY
 iGN
 rcK
 ics
-uUK
+jGx
 mue
 rEd
 uUK
@@ -57843,7 +57862,7 @@ vhY
 rKi
 rYc
 ics
-uUK
+heP
 mue
 lBM
 uUK
@@ -58045,7 +58064,7 @@ vhY
 eCz
 hys
 ics
-uUK
+heP
 mue
 rEd
 uUK
@@ -58245,8 +58264,8 @@ ogT
 jpC
 vhY
 eCz
-jGx
-ics
+iGN
+mRU
 dTJ
 tWc
 rwE
