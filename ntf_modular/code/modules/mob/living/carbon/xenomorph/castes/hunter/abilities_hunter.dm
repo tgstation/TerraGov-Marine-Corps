@@ -50,11 +50,9 @@
 
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/phaseout/handle_stealth()
-	SIGNAL_HANDLER
 	xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_STILL_ALPHA) // instant full stealth regardless of movement.
 
 /datum/action/ability/xeno_action/stealth/phaseout/handle_stealth_move()
-	SIGNAL_HANDLER
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
