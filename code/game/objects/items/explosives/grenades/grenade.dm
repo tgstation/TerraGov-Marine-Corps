@@ -83,8 +83,8 @@
 	if(active)
 		return
 
+	log_bomber(user, "primed", src)
 	if(user?.client)
-		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed ++
 		personal_statistics.mission_grenades_primed ++
