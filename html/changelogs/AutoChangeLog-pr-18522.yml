@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed dropship ammo disappearing in certain scenarios"
+  - code_imp: "Update ripley dropship equipment interaction code"
