@@ -290,7 +290,24 @@ SUBSYSTEM_DEF(vote)
 							continue
 						if(VM.config_min_users && players < VM.config_min_users)
 							continue
-					maps += VM.map_name
+
+					var/mapname = VM.map_name
+
+					if(VM.config_min_users > 0 || VM.config_max_users > 0)
+						mapname += " \["
+						if(VM.config_min_users > 0)
+							mapname += "[VM.config_min_users]"
+						else
+							mapname += "0"
+						mapname += "-"
+						if(VM.config_max_users > 0)
+							mapname += "[VM.config_max_users]"
+						else
+							mapname += "inf"
+						mapname += "\]"
+
+					maps += mapname
+
 					shuffle_choices = TRUE
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
