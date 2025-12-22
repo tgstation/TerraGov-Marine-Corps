@@ -35,7 +35,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 /obj/item/armor_module/module/eshield/absorbant/intercept_damage(attack_type, incoming_damage, damage_type, silent)
 	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
-	if(attack_type == COMBAT_PROJ_ATTACK)
+	if(attack_type == COMBAT_PROJ_ATTACK || attack_type == COMBAT_MELEE_ATTACK)
 		if(incoming_damage <= 0)
 			return 0
 		var/found_type = FALSE
