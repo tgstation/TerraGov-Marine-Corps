@@ -33,11 +33,11 @@
 	var/paralyze
 	///knockback value; 0 = crush mode, 1 = knockback mode
 	var/knockback
-	slowdown = 0.15
+	slowdown = 0.2
 
 /obj/item/weapon/twohanded/rocketsledge/equipped(mob/user, slot)
 	if(!user.has_movespeed_modifier(type))
-		user.add_movespeed_modifier(type, TRUE, 0, (item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, 0.3)
+		user.add_movespeed_modifier(type, TRUE, 0, (item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, 0.4)
 	. = ..()
 
 /obj/item/weapon/twohanded/rocketsledge/unequipped(mob/unequipper, slot)

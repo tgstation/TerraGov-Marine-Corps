@@ -11,5 +11,5 @@
 			return
 		user.visible_message(span_green("[user] treats the wounds on [M] with [src]."),
 		span_green("You treat the wounds on [M] with [src].") )
-		M.heal_overall_damage((M.maxHealth/20) * unskilled_penalty, (M.maxHealth/20) * unskilled_penalty, updating_health = TRUE)
+		M.heal_overall_damage((M.maxHealth/10) * unskilled_penalty, (M.maxHealth/10) * unskilled_penalty, updating_health = TRUE)
 	M.balloon_alert(user, "finished tending")

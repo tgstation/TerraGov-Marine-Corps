@@ -16,7 +16,7 @@
 /obj/machinery/deployable/dispenser/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	flick("dispenser_deploy", src)
-	playsound(src, 'sound/machines/dispenser/dispenser_deploy.ogg', 50)
+	playsound(src, 'sound/machines/dispenser/dispenser_deploy.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(deploy)), 4.2 SECONDS)
 
 ///finishes deploying after the deploy timer
@@ -28,7 +28,7 @@
 		RegisterSignal(human, COMSIG_QDELETING, PROC_REF(on_affecting_qdel))
 		affecting_list[human] = beam(human, "blood_light", maxdistance = 3)
 		RegisterSignal(affecting_list[human], COMSIG_QDELETING, PROC_REF(on_beam_qdel))
-		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
+		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 30)
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(entered_tiles))
 	active = TRUE
@@ -54,7 +54,7 @@
 		return
 
 	RegisterSignal(entering, COMSIG_QDELETING, PROC_REF(on_affecting_qdel))
-	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
+	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 30)
 	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 3)
 	RegisterSignal(affecting_list[entering], COMSIG_QDELETING, PROC_REF(on_beam_qdel))
 
@@ -99,7 +99,7 @@
 	affecting_list = null
 	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)
-	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
+	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(disassemble), user), 4 SECONDS)
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)
