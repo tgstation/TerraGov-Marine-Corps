@@ -1,6 +1,12 @@
 /datum/supply_packs/operations/xeno_cage
 	name = "NTC special containment cage"
 	contains = list(/obj/structure/closet/secure_closet/xeno_cage)
+	cost = 50
+
+
+/datum/supply_packs/operations/xeno_cage
+	name = "NTC cage grenade"
+	contains = list(/obj/item/explosive/grenade/cagenade)
 	cost = 150
 
 /datum/supply_packs/operations/credstick
@@ -12,7 +18,7 @@
 	name = "sentry drop pod"
 	contains = list(/obj/structure/droppod/nonmob/turret_pod)
 	containertype = null
-	cost = 150 //compared to som they need to do labour and wait for the req elevator and shit, while som gets free cope teles.
+	cost = 100 //compared to som they need to do labour and wait for the req elevator and shit, while som gets free cope teles.
 
 /datum/supply_packs/operations/droppod/supply
 	name = "supply drop pod"

@@ -100,9 +100,9 @@
 	singular_name = "knife"
 	atom_flags = CONDUCT|DIRLOCK
 	sharp = IS_SHARP_ITEM_ACCURATE
-	force = 20
+	force = 10
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 25
+	throwforce = 10
 	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
@@ -118,6 +118,12 @@
 	var/mob/living/living_user
 	///Do we change sprite depending on the amount left?
 	var/update_on_throwing = TRUE
+
+/obj/item/stack/throwing_knife/throw_impact(atom/hit_atom, speed, bounce)
+	. = ..()
+	if(isxeno(hit_atom)) //xenos take extra damage
+		var/mob/living/carbon/xenomorph/beno = hit_atom
+		beno.apply_damage(15, BRUTE, BODY_ZONE_CHEST, MELEE)
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
