@@ -671,7 +671,7 @@
 
 /datum/reagent/toxin/xeno_aphrotoxin
 	name = "Aphrotoxin"
-	description = "An aphrodisiac mixed with larva growth toxin made naturally be some xenos, it is used to disorient hosts and prepare them for breeding. Also to boost larva growth."
+	description = "An aphrodisiac made naturally by some xenos, it is used to disorient hosts and prepare them for breeding."
 	reagent_state = LIQUID
 	color = COLOR_TOXIN_APHROTOXIN
 	overdose_threshold = 10000
