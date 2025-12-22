@@ -1609,7 +1609,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
 		return FALSE
 
-	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && ((isturf(A) || A.type in ignored_things) && !can_hit_turf))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && ((isturf(A) || (A.type in ignored_things)) && !can_hit_turf))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
 		add_cooldown(1 SECONDS)
