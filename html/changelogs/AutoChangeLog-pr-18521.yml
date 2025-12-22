@@ -1,0 +1,4 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscdel: "TGUI compatibility mode has been removed."
