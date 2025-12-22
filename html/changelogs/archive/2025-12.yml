@@ -134,3 +134,12 @@
   - balance: Bio resistance values were increased massively on ac armors
   - balance: Base resistance values were increased slightly on ac armors
   - balance: Princeps ac armor slowdown value was changed from light to medium
+2025-12-22:
+  Colfer1:
+  - rscadd: All laser weapons now have new modes to play with, including the tesla
+      shock rifle
+  - balance: Combat robots can now repair as long as they aren't dead or already repairing
+  - balance: EMP damage is moderately less effective against robots to make way for
+      dedicated EMP guns (Tesla shock rifle)
+  - bugfix: Fixed combat robot damage screens not showing up
+  - soundadd: Combat robots now play noises when in crit/hard crit
