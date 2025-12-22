@@ -536,7 +536,6 @@
 #include "code\datums\components\riding\riding_mob.dm"
 #include "code\datums\components\riding\riding_vehicle.dm"
 #include "code\datums\elements\_element.dm"
-#include "code\datums\elements\accelerate_on_cross.dm"
 #include "code\datums\elements\attachment.dm"
 #include "code\datums\elements\connect_loc.dm"
 #include "code\datums\elements\debris.dm"
