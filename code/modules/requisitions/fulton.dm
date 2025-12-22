@@ -38,7 +38,7 @@
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-	var/list/datum/export_report/export_reports = spirited_away.supply_export(user.faction)
+	var/list/datum/export_report/export_reports = spirited_away.supply_export(user.faction, user)
 	var/points = 0
 	var/dropship_points = 0
 	for(var/datum/export_report/export_report in export_reports)
