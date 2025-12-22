@@ -1,0 +1,5 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - rscadd: "Added barrier armor to the style line of armors, try it out and see how you like it"
+  - rscadd: "Added style line & select armor modules to all armor vendors, now even the CLF can have a medical pouch on their colorable jacket"

@@ -6,6 +6,7 @@
 	desc = "They got that drip, doe."
 	item_map_variant_flags = NONE
 	allowed_uniform_type = /obj/item/clothing/under
+	slowdown = -0.5
 	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
 	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
@@ -28,6 +29,13 @@
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/module/eshield/absorbant/energy,
 		/obj/item/armor_module/module/eshield/absorbant/ballistic,
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/module/eshield/som/overclocked,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/module/knight/som,
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/module/armorlock,
 // Storage Modules
@@ -210,3 +218,88 @@
 	worn_icon_state = "coof"
 	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	greyscale_config = /datum/greyscale_config/style_hat
+
+// ***************************************
+// Barrier Armors / NTF changes
+
+/obj/item/clothing/suit/modular/style/barrier
+	slowdown = 0.1
+	icon = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi'
+	worn_icon_list = list(slot_wear_suit_str = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi')
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_CHESTPLATE,
+		ATTACHMENT_SLOT_SHOULDER,
+		ATTACHMENT_SLOT_KNEE,
+		ATTACHMENT_SLOT_MODULE,
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_BELT,
+	)
+	attachments_allowed = list(
+// Armor Modules
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/knight,
+		/obj/item/armor_module/module/eshield/barrier/light,
+		/obj/item/armor_module/module/eshield/barrier/medium,
+		/obj/item/armor_module/module/eshield/barrier/heavy,
+		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/module/eshield/som,
+		/obj/item/armor_module/module/eshield/som/overclocked,
+		/obj/item/armor_module/module/mimir_environment_protection/som,
+		/obj/item/armor_module/module/knight/som,
+		/obj/item/armor_module/module/tyr_extra_armor/som,
+		/obj/item/armor_module/module/fire_proof/som,
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
+// Storage Modules
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/general/som,
+		/obj/item/armor_module/storage/engineering/som,
+		/obj/item/armor_module/storage/medical/som,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+// Equalizer Modules
+		/obj/item/armor_module/module/style/light_armor,
+		/obj/item/armor_module/module/style/medium_armor,
+		/obj/item/armor_module/module/style/heavy_armor,
+	)
+
+/obj/item/clothing/suit/modular/style/barrier/lightbarrier
+	name = "\improper light barrier armor"
+	icon_state = "barrier_light"
+	worn_icon_state = "barrier_light_worn"
+	desc = "A small, intricate, adjustable collar/pendant fitted with a miniature, highly efficient forcefield projector. It's incredibly light and convenient, the shield coil stable enough to rapidly recharge the protective barrier around the user. Made by Nine Tails Corp."
+	starting_attachments = list(/obj/item/armor_module/module/eshield/barrier/light)
+
+/obj/item/clothing/suit/modular/style/barrier/mediumbarrier
+	name = "\improper medium barrier armor"
+	desc = "A chest-mounted shield projector that comes in a package along with a set of capacitor sleeves and thigh bands. It's efficiency is comparable to standard arrowhead modules, though the additional capacitors provide greater durability. Made by Nine Tails Corp."
+	icon_state = "barrier_medium"
+	worn_icon_state = "barrier_medium_worn"
+	starting_attachments = list(/obj/item/armor_module/module/eshield/barrier/medium)
+	icon = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi'
+
+
+/obj/item/clothing/suit/modular/style/barrier/heavybarrier
+	name = "\improper heavy barrier armor"
+	desc = "A lightweight shield generator that can loosely be considered armor"
+	icon_state = "barrier_heavy"
+	worn_icon_state = "barrier_heavy_worn"
+	starting_attachments = list(/obj/item/armor_module/module/eshield/barrier/heavy)
+	icon = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi'
