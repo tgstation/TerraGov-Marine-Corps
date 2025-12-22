@@ -1586,7 +1586,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	var/mob/living/carbon/xenomorph/xeno = owner
 	//i could not make it so the mob turns away if at range here, for some reason, the xeno one for example or empty tile.
-	if(!line_of_sight(owner, A, range) && !((get_dist(owner,A) <= range) && (isturf(A) && !can_hit_turf)))
+	if(!line_of_sight(owner, A, range) || !((get_dist(owner,A) <= range)))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
@@ -1599,28 +1599,46 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	if(isxeno(A) && A.issamexenohive(owner))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
-			add_cooldown(1 SECONDS)
-			playsound(owner, "alien_tail_swipe", 50, TRUE)
-			if(!xeno.blunt_stab)
-				owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
-			else
-				owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+		add_cooldown(1 SECONDS)
+		playsound(owner, "alien_tail_swipe", 50, TRUE)
+		if(xeno.blunt_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+		else if(xeno.fiery_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_LASERSWORD)
+		else
+			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
 		return FALSE
 
-	if((!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && (isturf(A) && !can_hit_turf)) || (A in ignored_things))
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isvehicle(A) && ((isturf(A) || A.type in ignored_things) && !can_hit_turf))
 		if(!silent)
 			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
-			add_cooldown(1 SECONDS)
-			playsound(owner, "alien_tail_swipe", 50, TRUE)
-			if(!xeno.blunt_stab)
-				owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
-			else
-				owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+		add_cooldown(1 SECONDS)
+		playsound(owner, "alien_tail_swipe", 50, TRUE)
+		if(xeno.blunt_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+		else if(xeno.fiery_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_LASERSWORD)
+		else
+			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
+		return FALSE
+
+	if(isturf(A) && !can_hit_turf)
+		add_cooldown(1 SECONDS)
+		if(!silent)
+			owner.visible_message(span_xenowarning("\The [owner] swipes their tail through the air!"), span_xenowarning("We swipe our tail through the air!"))
+		playsound(owner, "alien_tail_swipe", 50, TRUE)
+		if(xeno.blunt_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+		else if(xeno.fiery_stab)
+			owner.do_attack_animation(A, ATTACK_EFFECT_LASERSWORD)
+		else
+			owner.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
 		return FALSE
 
 	if(isliving(A))
 		var/mob/living/Livingtarget = A
 		if(Livingtarget.stat == DEAD)
+			add_cooldown(1 SECONDS)
 			if(!silent)
 				to_chat(owner, span_xenodanger("We don't care about the dead."))
 			return FALSE

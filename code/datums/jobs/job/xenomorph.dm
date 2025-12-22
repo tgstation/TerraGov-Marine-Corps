@@ -107,7 +107,6 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>:a</s
 
 /datum/job/xenomorph/green
 	title = "Corrupted Xenomorph"
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS|JOB_FLAG_PROVIDES_SQUAD_HUD
 	minimal_access = ALL_MARINE_ACCESS
 	access = ALL_MARINE_ACCESS
 	faction = FACTION_TERRAGOV
