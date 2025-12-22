@@ -20,7 +20,7 @@
 /obj/item/card/voucher/get_export_value()
 	. = list(supply_reward, dropship_reward)
 
-/obj/item/card/voucher/supply_export(faction_selling)
+/obj/item/card/voucher/supply_export(faction_selling, mob/user)
 	if(faction_selling == faction)
 		return list(new /datum/export_report(0, name, faction_selling, 0))
 	return ..()
@@ -56,16 +56,11 @@
 			to_chat(user, span_warning("[src] says \"Cannot redeem voucher - can only be redeemed by other factions.\""))
 			return
 		else
-			I.supply_export(faction)
+			I.supply_export(faction, user)
 			qdel(I)
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
-		I.supply_export(faction)
-		var/obj/item/disk/intel_disk/le_disk = I
-		var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
-		if(gaymode)
-			var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
-			the_stats.give_funds(round(le_disk.dropship_reward/2))
+		I.supply_export(faction, user)
 		qdel(I)
 		return TRUE
 	if(istype(I, /obj/item/card/credstick))

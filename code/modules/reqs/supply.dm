@@ -186,13 +186,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	faction = _faction
 	dropship_points = _dropship_points
 
-/obj/docking_port/mobile/supply/proc/sell()
+/obj/docking_port/mobile/supply/proc/sell(datum/weakref/user_weakref)
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/list/datum/export_report = AM.supply_export(faction)
+			var/list/datum/export_report = AM.supply_export(faction, user_weakref.resolve())
 			if(export_report)
 				SSpoints.export_history += export_report
 			qdel(AM)
@@ -476,7 +476,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				else
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 					SSshuttle.moveShuttleToTransit(shuttle_id, TRUE)
-					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell)), 15 SECONDS)
+					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell), WEAKREF(ui.user)), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
 				supply_shuttle.buy(usr, src)
