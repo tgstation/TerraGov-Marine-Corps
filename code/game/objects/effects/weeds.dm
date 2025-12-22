@@ -165,7 +165,7 @@
 			playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		xeno_attacker.changeNext_move(CLICK_CD_RAPID)
-		take_damage(damage_amount*4, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
+		take_damage(damage_amount*6, damage_type, armor_type, effects, get_dir(src, xeno_attacker), armor_penetration, xeno_attacker)
 		return TRUE
 	if(issamexenohive(xeno_attacker) && (xeno_attacker.xeno_flags & XENO_DESTROY_WEEDS) && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
@@ -366,7 +366,7 @@
 			playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		xeno_attacker.changeNext_move(12)
-		take_damage(max_integrity/2)
+		take_damage(max_integrity)
 		return TRUE
 	if(issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB && (xeno_attacker.xeno_flags & XENO_DESTROY_OWN_STRUCTURES))
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts scooping up \the [src]!"), \
