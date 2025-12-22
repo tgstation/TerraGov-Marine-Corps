@@ -16,8 +16,10 @@
 	disorientamount = 4
 	can_hit_turf = TRUE
 
-/turf/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-ram!", disorientamount) //Smash structures
+/turf/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-ram!", disorientamount, can_hit_turf) //Smash structures
 	. = ..()
+	if(!can_hit_turf || !xeno.blunt_stab)
+		return
 	xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
 	xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	xeno.visible_message(span_xenodanger("\The [xeno] slam [src] with a [stab_description]"), \
@@ -53,7 +55,7 @@
 /obj/structure/earth_pillar/siege
 	name = "siege pillar"
 
-/obj/structure/earth_pillar/siege/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description, disorientamount)
+/obj/structure/earth_pillar/siege/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description, disorientamount, can_hit_turf)
 	. = ..()
 	if(xeno.blunt_stab)
 		stab_description = "strong tail-whip"
