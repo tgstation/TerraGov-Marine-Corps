@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - balance: "Remove stun attacks from all zombies except tanks"
+  - balance: "Increased zombie attack damage"
