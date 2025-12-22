@@ -25,6 +25,8 @@
 		/obj/item/grown/nettle/death = list(/datum/reagent/toxin/acid/polyacid = 0),
 		/obj/item/grown/nettle = list(/datum/reagent/toxin/acid = 0),
 		/obj/item/alien_embryo = list(/datum/reagent/consumable/larvajelly = 5),
+		/obj/item/resin_jelly = list(/datum/reagent/consumable/larvajelly = 10),
+		/obj/item/reagent_containers/food/snacks/nutrient_jelly = list(/datum/reagent/consumable/larvajelly = 15),
 
 		//Blender Stuff
 		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/soymilk = 0),
