@@ -494,6 +494,7 @@
 		affected.add_filter("eshield", 2, outline_filter(1, current_color))
 		spark_system.start()
 	else
+		playsound(affected, 'sound/weapons/guns/fire/taser_3.ogg', 40)
 		shield_health = 0
 		recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a little extra time for the cooldown.
 		return -shield_left
