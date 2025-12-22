@@ -37,6 +37,10 @@
 	. = ..()
 	var/datum/export_report/export_report = .[1]
 	GLOB.round_statistics.points_from_ambrosia += export_report.points
+	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	if(gaymode && user)
+		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats?.give_funds(round(export_report.points*0.4))
 
 /**
  * Getter proc for the point value of this object
