@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "fixed some balloon alert for fire support binos being visible to all mobs"
+  - bugfix: "fixed cooldowns being set for fire support binos later than they should be"
