@@ -1296,7 +1296,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_CORRUPTED
 	prefix = "Corrupted "
 	color = "#00ff80"
-	allied_factions = list(FACTION_TERRAGOV, FACTION_NANOTRASEN)
+	allied_factions = list(FACTION_TERRAGOV, FACTION_NANOTRASEN, FACTION_ICC)
 
 // Make sure they can understand english
 /datum/hive_status/corrupted/post_add(mob/living/carbon/xenomorph/X)
