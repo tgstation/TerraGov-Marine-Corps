@@ -337,11 +337,11 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	cast_say = "Administering adrenaline..."
 	stim_uid = "speedincrease"
 	particles = /particles/stims/speed
-	stim_flags = NONE
 	stim_duration = 15 SECONDS
+	cast_delay = 1
 
 /datum/stim/speed_increase/finish_cast(mob/living/owner)
-	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -0.5)
+	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -0.6)
 	return ..()
 
 /datum/stim/speed_increase/end_effects(mob/living/owner)
@@ -357,7 +357,6 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	cast_say = "Administering synephrine..."
 	stim_uid = "stamusedecrease"
 	stim_flags = STIM_ALLOW_DUPE
-	stim_duration = 1 MINUTES
 	///cached amount that we edited
 	var/amount_edited
 
@@ -372,6 +371,35 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stam.stim_drain_modifier += amount_edited
 	return ..()
 
+/datum/stim/crit_increase
+	name = "Crit Threshold"
+	desc = "Increases your resilience, allowing you to endure more damage before dying for a short time."
+	cast_say = "Administering methamphetamines"
+	stim_uid = "critaway"
+	particles = /particles/stims/crit
+	stim_flags = STIM_ALLOW_DUPE
+	cast_delay = 0.5 SECONDS
+	stim_duration = 30 SECONDS
+
+/datum/stim/crit_increase/finish_cast(mob/living/owner)
+	owner.health_threshold_crit -=35
+	owner.health_threshold_dead -=50
+	owner.add_slowdown(10)
+	return ..()
+
+/datum/stim/crit_increase/end_effects(mob/living/owner)
+	owner.health_threshold_crit +=35
+	owner.health_threshold_dead +=50
+	return ..()
+
+/datum/stim/trait/hivetarget
+	name = "Alien Pheromones"
+	desc = "Enhances your body's breedability, driving xenomorphs insane."
+	cast_say = "Adjusting desirability..."
+	stim_uid = "hivetarget"
+	stim_flags = NONE
+	trait_type = TRAIT_HIVE_TARGET
+	cast_delay = 15 SECONDS
 
 /datum/stim/stamina_regen
 	name = "Stamina Recovery"
@@ -446,6 +474,10 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /particles/stims/speed
 	icon_state = "square"
 	gradient = list(1, "#001eff", 2, "#00ffc3", "loop")
+
+/particles/stims/crit
+	icon_state = "spark"
+	gradient = list(1, "#db1111", 2, "#d1c300", "loop")
 
 /datum/stim/better_throw
 	name = "Longer Throw"
