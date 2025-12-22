@@ -515,7 +515,7 @@
 /obj/item/armor_module/module/eshield/process()
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
 	var/new_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, space = COLORSPACE_HCY, index = (shield_health/max_shield_health))
-	if(shield_health/max_shield_health < 0.2)
+	if(shield_health/max_shield_health < 0.1)
 		playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
 	if(new_color != current_color)
 		current_color = new_color
@@ -648,21 +648,21 @@
 	icon_state = "style_light"
 	worn_icon_state = "style_light_a"
 	soft_armor = MARINE_ARMOR_LIGHT
-	slowdown = SLOWDOWN_ARMOR_LIGHT
+	slowdown = 0.7
 
 /obj/item/armor_module/module/style/medium_armor
 	name = "\improper Medium Armor Equalizer"
 	icon_state = "style_medium"
 	worn_icon_state = "style_medium_a"
 	soft_armor = MARINE_ARMOR_MEDIUM
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = 1
 
 /obj/item/armor_module/module/style/heavy_armor
 	name = "\improper Heavy Armor Equalizer"
 	icon_state = "style_heavy"
 	worn_icon_state = "style_heavy_a"
 	soft_armor = MARINE_ARMOR_HEAVY
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	slowdown = 1.2 //Have to increase these because styles got a speed bonus now
 
 /**
  *   Helmet Modules
@@ -958,3 +958,38 @@
 	QDEL_NULL(attached_goggles)
 	return ..()
 
+//Barrier shields
+//***************
+
+/obj/item/armor_module/module/eshield/barrier
+	shield_color_low = COLOR_MOSTLY_PURE_PINK
+	shield_color_mid = COLOR_VIVID_YELLOW
+	attach_features_flags = ATTACH_ACTIVATION
+	slot = ATTACHMENT_SLOT_KNEE
+
+/obj/item/armor_module/module/eshield/barrier/light
+	name = "Dampener Light Energy Shield"
+	max_shield_health = 30
+	damaged_shield_cooldown = 1 SECONDS
+	shield_color_full = COLOR_LIME
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	recharge_rate = 10
+	soft_armor = list(MELEE = -15, BULLET = -5, LASER = -5, ENERGY = -5, BOMB = -5, BIO = -10, FIRE = -5, ACID = -10)
+
+/obj/item/armor_module/module/eshield/barrier/medium
+	name = "Deflector Medium Energy Shield"
+	max_shield_health = 120
+	damaged_shield_cooldown = 8 SECONDS
+	shield_color_full = COLOR_LASER_BLUE
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	recharge_rate = 15
+	soft_armor = list(MELEE = -20, BULLET = -10, LASER = -10, ENERGY = -10, BOMB = -10, BIO = -15, FIRE = -15, ACID = -15)
+
+/obj/item/armor_module/module/eshield/barrier/heavy
+	name = "Goliath Heavy Energy Shield"
+	max_shield_health = 300
+	damaged_shield_cooldown = 20 SECONDS
+	shield_color_full = COLOR_RED //  Her shields were up and glowing red!! Goodbye, Dawson's christian...
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	recharge_rate = 75
+	soft_armor = list(MELEE = -30, BULLET = -15, LASER = -15, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)

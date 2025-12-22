@@ -567,6 +567,16 @@
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/radio/loadout_tool = -1,
 		),
+		"Style Line" = list(
+			/obj/item/clothing/suit/modular/style/leather_jacket = -1,
+			/obj/item/clothing/suit/modular/style/duster = -1,
+			/obj/item/armor_module/module/style/light_armor = -1,
+			/obj/item/armor_module/module/style/medium_armor = -1,
+			/obj/item/armor_module/module/style/heavy_armor = -1,
+			/obj/item/clothing/suit/modular/style/barrier/lightbarrier = -1,
+			/obj/item/clothing/suit/modular/style/barrier/mediumbarrier = -1,
+			/obj/item/clothing/suit/modular/style/barrier/heavybarrier = -1,
+		),
 		"OLD SCHOOL" = list(
 			/obj/item/clothing/head/helmet/marine/som = -1,
 			/obj/item/clothing/suit/storage/marine/som = -1,

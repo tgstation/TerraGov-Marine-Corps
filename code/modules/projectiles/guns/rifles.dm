@@ -1047,6 +1047,7 @@
 		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonet/som,
