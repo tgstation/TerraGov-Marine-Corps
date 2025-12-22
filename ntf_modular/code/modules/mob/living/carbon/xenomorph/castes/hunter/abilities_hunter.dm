@@ -57,6 +57,11 @@
 	if(stealth_duration != -1)
 		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 
+/datum/action/ability/xeno_action/stealth/phaseout/can_use_action(silent, override_flags, selecting)
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
+		return FALSE
+	. = ..()
+
 ///Duration for the mark.
 #define DEATH_MARK_TIMEOUT 15 SECONDS
 ///Charge-up duration of the mark where you need to stay still for it to apply.
@@ -170,7 +175,7 @@
 	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
 	X.status_flags = INCORPOREAL
 	X.alpha = 0
-	X.pass_flags = PASS_MOB|PASS_XENO
+	X.pass_flags = PASS_MOB|PASS_XENO|PASS_FIRE|PASS_LOW_STRUCTURE|PASS_TANK|PASS_DEFENSIVE_STRUCTURE
 	X.density = FALSE
 	X.update_wounds()
 	X.update_icon()
