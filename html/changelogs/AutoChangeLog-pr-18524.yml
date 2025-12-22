@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Zombies tip over vending machines"
+  - bugfix: "Fixes vending machine and space heater cheese"
