@@ -187,8 +187,9 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
 
 /datum/game_mode/proc/give_wages()
-	for(var/datum/faction_stats/i in stat_list)
-		stat_list[i].apply_cash(250)
+	for(var/faction in stat_list)
+		var/datum/faction_stats/faction_stats = stat_list[faction]
+		faction_stats.apply_cash(250)
 	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE

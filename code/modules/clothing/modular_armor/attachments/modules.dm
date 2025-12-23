@@ -405,7 +405,8 @@
 	var/damaged_shield_cooldown = 10 SECONDS
 	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
 	var/recharge_timer
-
+	///Layer for the shield outline effect.  Purely visual.
+	var/shield_layer = 0
 
 /obj/item/armor_module/module/eshield/Initialize(mapload)
 	. = ..()
@@ -433,7 +434,7 @@
 	if(!isliving(parent.loc))
 		return
 	var/mob/living/affected = parent.loc
-	affected.remove_filter("eshield")
+	affected.remove_filter("eshield[shield_layer]")
 
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
 	spark_system.start()
@@ -445,6 +446,7 @@
 ///Called to give extra info on parent examine.
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
+	examine_list += span_notice("[src] - Shield stats:")
 	examine_list += span_notice("Recharge Rate: [recharge_rate/2] health per second")
 	examine_list += span_notice("Current Shield Health: [shield_health]")
 	examine_list += span_notice("Maximum Shield Health: [max_shield_health]")
@@ -470,7 +472,7 @@
 		return
 	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
 	STOP_PROCESSING(SSobj, src)
-	unequipper.remove_filter("eshield")
+	unequipper.remove_filter("eshield[shield_layer]")
 	shield_health = 0
 
 ///Adds the correct proc callback to the shield list for intercepting damage.
@@ -487,11 +489,11 @@
 	STOP_PROCESSING(SSobj, src)
 	var/shield_left = shield_health - incoming_damage
 	var/mob/living/affected = parent.loc
-	affected.remove_filter("eshield")
+	affected.remove_filter("eshield[shield_layer]")
 	if(shield_left > 0)
 		shield_health = shield_left
 		current_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, space = COLORSPACE_HCY, index = (shield_health/max_shield_health))
-		affected.add_filter("eshield", 2, outline_filter(1, current_color))
+		affected.add_filter("eshield[shield_layer]", 2-shield_layer, outline_filter(1, current_color))
 		spark_system.start()
 	else
 		playsound(affected, 'sound/weapons/guns/fire/taser_3.ogg', 40)
@@ -521,7 +523,7 @@
 	if(new_color != current_color)
 		current_color = new_color
 		var/mob/living/affected = parent.loc
-		affected.add_filter("eshield", 2, outline_filter(1, current_color))
+		affected.add_filter("eshield[shield_layer]", 2-shield_layer, outline_filter(1, current_color))
 	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
 		STOP_PROCESSING(SSobj, src)
 
@@ -967,6 +969,7 @@
 	shield_color_mid = COLOR_VIVID_YELLOW
 	attach_features_flags = ATTACH_ACTIVATION
 	slot = ATTACHMENT_SLOT_KNEE
+	shield_layer = 1
 
 /obj/item/armor_module/module/eshield/barrier/light
 	name = "Dampener Light Energy Shield"

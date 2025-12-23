@@ -69,7 +69,7 @@
 	drainer.get_hive().xeno_message(message, force = TRUE)
 	log_combat(drainer, drained, "obtained a hive target reward from")
 	bless_hive(drainer)
-	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, list(TRAIT_HIVE_TARGET, SUPERSOLDIER_TRAIT))
 	hive_target.med_hud_set_status()
 	hive_target = null
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED)
@@ -99,7 +99,7 @@
 /datum/round_event/hive_threat/Destroy(force, ...)
 	. = ..()
 	if(hive_target)
-		REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+		REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, list(TRAIT_HIVE_TARGET, SUPERSOLDIER_TRAIT))
 		hive_target.med_hud_set_status()
 		hive_target = null
 

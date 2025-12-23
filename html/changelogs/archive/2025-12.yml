@@ -143,3 +143,11 @@
       dedicated EMP guns (Tesla shock rifle)
   - bugfix: Fixed combat robot damage screens not showing up
   - soundadd: Combat robots now play noises when in crit/hard crit
+2025-12-23:
+  Colfer1:
+  - rscadd: Added barrier armor to the style line of armors, try it out and see how
+      you like it
+  - rscadd: Added style line & select armor modules to all armor vendors, now even
+      the CLF can have a medical pouch on their colorable jacket
+  - balance: supersoldier speed stims now have downsides
+  - soundadd: shields play a funny noise when broken

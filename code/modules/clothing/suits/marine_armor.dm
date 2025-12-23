@@ -428,6 +428,8 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/medical,
