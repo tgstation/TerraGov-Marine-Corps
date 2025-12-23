@@ -227,6 +227,8 @@
 #define TRAIT_CAN_TEAR_HOLE "can_tear_hole"
 /// Allows xenomorphs to heal without needing to be on weeds.
 #define TRAIT_INNATE_HEALING "innate_healing"
+///is currently jumping
+#define TRAIT_IS_JUMPING "is_jumping"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
