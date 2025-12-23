@@ -82,7 +82,7 @@
 	if(!message)
 		return
 
-	message = copytext_char(trim(sanitize(message)), 1, MAX_MESSAGE_LEN)
+	message = copytext_char(trim(sanitize_multiline(message)), 1, MAX_MESSAGE_LEN)
 	// Italicize it
 	message = "<i>[message]</i>"
 

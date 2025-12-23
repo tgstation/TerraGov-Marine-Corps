@@ -21,6 +21,10 @@
 	var/static/regex/regex = regex(@"[\n\t]", "g")
 	return html_encode(regex.Replace(text, "#"))
 
+/// Same as the above but does not replace new-lines, only tabs.
+/proc/sanitize_multiline(text)
+	var/static/regex/regex = regex(@"[\t]", "g")
+	return html_encode(regex.Replace(text, "#"))
 
 /// Runs STRIP_HTML_SIMPLE and sanitize.
 /proc/strip_html(text, limit = MAX_MESSAGE_LEN)
