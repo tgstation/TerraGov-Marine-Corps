@@ -252,6 +252,8 @@
 		/obj/item/armor_module/module/eshield/barrier/medium,
 		/obj/item/armor_module/module/eshield/barrier/heavy,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/eshield/absorbant/energy,
+		/obj/item/armor_module/module/eshield/absorbant/ballistic,
 		/obj/item/armor_module/module/eshield/overclocked,
 		/obj/item/armor_module/module/eshield/som,
 		/obj/item/armor_module/module/eshield/som/overclocked,
