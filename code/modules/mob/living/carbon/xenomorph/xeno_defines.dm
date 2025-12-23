@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Hive datum we belong to
 	VAR_PROTECTED/datum/hive_status/hive
 	///Xeno mob specific flags
-	var/xeno_flags = XENO_DESTROY_OWN_STRUCTURES | XENO_DESTROY_WEEDS
+	var/xeno_flags = XENO_DESTROY_OWN_STRUCTURES
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
