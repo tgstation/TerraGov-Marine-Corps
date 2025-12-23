@@ -119,8 +119,6 @@
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/pre_setup()
 	. = ..()
-	for(var/faction in human_factions)
-		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(things_after_spawn))
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/proc/things_after_spawn(datum/source, mob/living/carbon/human/new_member)
