@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	cast_say = "Administering adrenaline..."
 	stim_uid = "speedincrease"
 	particles = /particles/stims/speed
-	stim_duration = 15 SECONDS
+	stim_duration = 30 SECONDS
 	cast_delay = 1
 
 /datum/stim/speed_increase/finish_cast(mob/living/owner)
