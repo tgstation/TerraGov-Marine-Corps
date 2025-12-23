@@ -1,9 +1,14 @@
 /mob/dead/observer/Login()
 	. = ..()
-	if(z in SSmobs.dead_players_by_zlevel)
-		SSmobs.dead_players_by_zlevel[z] += src
+	if(!isnum(z))
+		stack_trace("z [logdetails(z)] is not a number while in Login of [logdetails(src)]")
 	else
-		stack_trace("z [isnum(z) ? num2text(z) : logdetails(z)] not found in SSmobs.dead_players_by_zlevel while in Login of [logdetails(src)]")
+		if(z > length(SSmobs.dead_players_by_zlevel))
+			stack_trace("z [logdetails(z)] is bigger than length(SSmobs.dead_players_by_zlevel)([length(SSmobs.dead_players_by_zlevel)]) while in Login of [logdetails(src)]")
+			while(length(SSmobs.dead_players_by_zlevel) < z)
+				SSmobs.dead_players_by_zlevel.len++
+				SSmobs.dead_players_by_zlevel[length(SSmobs.dead_players_by_zlevel)] = list()
+		SSmobs.dead_players_by_zlevel[z] += src
 
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(observer_z_changed))
 
