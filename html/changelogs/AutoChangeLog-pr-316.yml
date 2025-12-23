@@ -1,0 +1,4 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - qol: "Xenos don't scoop up weeds by default anymore"
