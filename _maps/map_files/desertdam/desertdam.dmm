@@ -59073,8 +59073,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_medical_south)
 "wTo" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
 "wTu" = (
