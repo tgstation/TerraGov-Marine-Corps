@@ -6,7 +6,10 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_ACCESSORY)
+	if(iscampaigngamemode(SSticker.mode))
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_ACCESSORY)
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_ACCESSORY)
 
 /datum/loadout_item/suit_store/main_gun/som_field_commander/standard_rifle
 	name = "V-31"
@@ -165,7 +168,10 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_ACCESSORY)
+	if(iscampaigngamemode(SSticker.mode))
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_ACCESSORY)
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_ACCESSORY)
 
 	if(!isstorageobj(wearer.back))
 		return
