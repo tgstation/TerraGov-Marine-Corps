@@ -11,7 +11,7 @@
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
 #define PHORON_CRATE_SELL_AMOUNT 150
-#define PLATINUM_CRATE_SELL_AMOUNT 300
+#define PLATINUM_CRATE_SELL_AMOUNT 250
 #define PHORON_DROPSHIP_BONUS_AMOUNT 15
 #define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
@@ -108,8 +108,9 @@
 			max_miner_integrity = 300
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
-			required_ticks = 60
+			required_ticks -= 10
 		if(MINER_AUTOMATED)
+			required_ticks += 10
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
 				SSpoints.dropship_points += dropship_bonus * stored_mineral
@@ -162,6 +163,7 @@
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
 			if(MINER_AUTOMATED)
+				required_ticks = initial(required_ticks)
 				upgrade = new /obj/item/minerupgrade/automatic
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
