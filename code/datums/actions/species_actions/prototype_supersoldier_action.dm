@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	max_skills = list(SKILL_POWERLOADER = SKILL_POWERLOADER_PRO) // ensures RO and such are still better
 
 /particles/stims
-	count = 10
+	count = 4
 	spawning = 1
 	gravity = list(0, -0.03)
 	icon = 'icons/effects/particles/generic_particles.dmi'
