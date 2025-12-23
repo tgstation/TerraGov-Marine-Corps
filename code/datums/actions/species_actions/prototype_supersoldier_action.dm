@@ -336,19 +336,15 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	desc = "Increases your speed of movement, making you walk and move passively faster."
 	cast_say = "Administering adrenaline..."
 	stim_uid = "speedincrease"
+	stim_flags = STIM_ALLOW_DUPE
 	particles = /particles/stims/speed
-	stim_duration = 30 SECONDS
-	cast_delay = 1
 
 /datum/stim/speed_increase/finish_cast(mob/living/owner)
-	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -0.6)
+	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -0.1)
 	return ..()
 
 /datum/stim/speed_increase/end_effects(mob/living/owner)
 	owner.remove_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE)
-	owner.adjust_stagger(5 SECONDS)
-	owner.add_slowdown(10)
-	owner.balloon_alert(owner, "Your adrenaline wears off!")
 	return ..()
 
 /datum/stim/stam_usage_decrease
