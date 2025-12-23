@@ -413,9 +413,10 @@
 
 /datum/individual_stats/proc/reenable_loadout_select(mob/living/user)
 	var/obj/item/card/id/user_id = user.get_idcard()
-	user.playsound_local(user.loc, 'sound/machines/ping.ogg', 25)
-	user.balloon_alert("You are now authorized to another loadout purchase.")
-	to_chat(user, span_nicegreen("You are now authorized to another loadout purchase."))
+	if(user.client)
+		user.playsound_local(user.loc, 'sound/machines/ping.ogg', 25)
+		user.balloon_alert("You are now authorized to another loadout purchase.")
+		to_chat(user, span_nicegreen("You are now authorized to another loadout purchase."))
 	user_id.id_flags |= CAN_BUY_LOADOUT
 
 //loadout/perk UI for campaign gamemode

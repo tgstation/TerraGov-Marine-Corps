@@ -623,12 +623,11 @@
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
-	target.visible_message(span_xenowarning("\the [owner] vomits healing resin over [target], mending their wounds!"))
 	if(!can_use_ability(target, TRUE))
 		return FALSE
 
 	if(!hivemind_heal)
-		target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+		target.visible_message(span_xenowarning("\the [owner] healing resin over [target], mending their wounds!"))
 	else
 		owner.visible_message(span_xenowarning("A faint psychic aura is suddenly emitted from \the [owner]!"), \
 		span_xenowarning("We cure [target] with the power of our mind!"))

@@ -44,7 +44,7 @@
 
 ///deploys the actual supply drop
 /datum/round_event/supply_drop/proc/drop_supplies(turf/target_turf, faction)
-	priority_announce("[faction] supply drop Materialisation detected at [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list + GLOB.observer_list))
+	priority_announce("[faction] supply drop Materialisation detected at [target_turf.loc].", "Bluespace Tactical Scanner Status", sound = 'sound/AI/distressreceived.ogg', receivers = (GLOB.alive_human_list + GLOB.observer_list + GLOB.alive_xeno_list))
 	new /obj/item/explosive/grenade/flare/on(target_turf)
 	switch(faction)
 		if(FACTION_SOM)

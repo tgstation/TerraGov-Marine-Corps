@@ -16,18 +16,33 @@
 	disorientamount = 4
 	can_hit_turf = TRUE
 
-/turf/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-ram!", disorientamount) //Smash structures
+/turf/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-ram!", disorientamount, can_hit_turf) //Smash structures
 	. = ..()
-	xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
-	xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	xeno.visible_message(span_xenodanger("\The [xeno] slam [src] with a [stab_description]"), \
-		span_xenodanger("We slam [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
-	playsound(src, "alien_tail_swipe", 50, TRUE)
-	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
-	var/list/turf/affected_turfs = filled_turfs(src, 1, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
-	for(var/turf/affected_tiles in affected_turfs)
-		affected_tiles.Shake(duration = 0.5 SECONDS) //SFX
-	behemoth_area_attack(xeno, affected_turfs, damage_multiplier = 1)
+	if(locate(/datum/action/ability/activable/xeno/tail_stab/battering_ram) in xeno.actions)
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno.visible_message(span_xenodanger("\The [xeno] slam [src] with a [stab_description]"), \
+			span_xenodanger("We slam [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+		playsound(src, "alien_tail_swipe", 50, TRUE)
+		playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
+		var/list/turf/affected_turfs = filled_turfs(src, 1, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
+		for(var/turf/affected_tiles in affected_turfs)
+			affected_tiles.Shake(duration = 0.5 SECONDS) //SFX
+		behemoth_area_attack(xeno, affected_turfs, damage_multiplier = 1)
+
+/obj/alien/weeds/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier,  stab_description = "devastating tail-ram!", disorientamount, can_hit_turf) //Smash structures
+	. = ..()
+	if(locate(/datum/action/ability/activable/xeno/tail_stab/battering_ram) in xeno.actions)
+		xeno.face_atom(src) //Face the target if adjacent so you dont look dumb.
+		xeno.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		xeno.visible_message(span_xenodanger("\The [xeno] slam [src] with a [stab_description]"), \
+			span_xenodanger("We slam [src] with a [stab_description]"), visible_message_flags = COMBAT_MESSAGE)
+		playsound(src, "alien_tail_swipe", 50, TRUE)
+		playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1)
+		var/list/turf/affected_turfs = filled_turfs(src, 1, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
+		for(var/turf/affected_tiles in affected_turfs)
+			affected_tiles.Shake(duration = 0.5 SECONDS) //SFX
+		behemoth_area_attack(xeno, affected_turfs, damage_multiplier = 1)
 
 // ***************************************
 // *********** Earth Riser (Siege)
@@ -53,7 +68,7 @@
 /obj/structure/earth_pillar/siege
 	name = "siege pillar"
 
-/obj/structure/earth_pillar/siege/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description, disorientamount)
+/obj/structure/earth_pillar/siege/tail_stab_act(mob/living/carbon/xenomorph/xeno, damage, target_zone, penetration, structure_damage_multiplier, stab_description, disorientamount, can_hit_turf)
 	. = ..()
 	if(xeno.blunt_stab)
 		stab_description = "strong tail-whip"

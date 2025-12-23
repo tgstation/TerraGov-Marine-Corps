@@ -185,11 +185,14 @@
 	else
 		. = list(supply_reward, dropship_reward)
 
-/obj/item/disk/intel_disk/supply_export(faction_selling)
+/obj/item/disk/intel_disk/supply_export(faction_selling, mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
-
+	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	if(gaymode && user)
+		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats?.give_funds(round(dropship_reward/2))
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
 	GLOB.round_statistics.points_from_intel += supply_reward
 

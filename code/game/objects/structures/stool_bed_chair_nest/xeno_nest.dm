@@ -153,8 +153,8 @@
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 
 /obj/structure/bed/nest/wall/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
-	buckleoverlaydir = get_dir(src.loc, user.loc)
-	src.dir = buckleoverlaydir
+	buckleoverlaydir = get_dir(loc, user.loc)
+	dir = buckleoverlaydir
 	face_atom(user)
 	buckling_mob.face_atom(user)
 	. = ..()
@@ -162,12 +162,20 @@
 		return
 	walldir_update(buckling_mob)
 	buckling_mob.set_lying_angle(0)
-	update_overlays()
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/bed/nest/wall/process()
+	. = ..()
+	for(var/mob/living/mobussy in buckled_mobs) //larvas making em shake and lose their pixel shift which sucks
+		mobussy.jitteriness = 0
+		walldir_update(mobussy)
 
 /obj/structure/bed/nest/wall/update_overlays()
 	. = ..()
+	/* this shit dont work right with pixel placement and obstruct vision
 	if(LAZYLEN(buckled_mobs))
-		. += image("icon_state" = "nestwall_overlay", "layer" = 6, "dir" = buckleoverlaydir, pixel_x = buckling_x, pixel_y = buckling_y)
+		add_overlay(image(icon, "nestwall_overlay", layer = 6, buckleoverlaydir, buckling_x, buckling_y))
+	*/
 
 /obj/structure/bed/nest/wall/proc/walldir_update(mob/buckling_mob)
 	switch(buckleoverlaydir)
@@ -199,15 +207,17 @@
 			layer = 3
 	buckling_mob.pixel_y = buckling_y
 	buckling_mob.pixel_x = buckling_x
+	//update_overlays()
 
 /obj/structure/bed/nest/wall/user_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	src.buckling_x = 0
-	src.buckling_y = 0
-	src.layer = 3
-	buckled_mob.pixel_x = 0
-	buckled_mob.pixel_y = 0
-
+	buckling_x = initial(buckling_x)
+	buckling_y = initial(buckling_y)
+	layer = 3
+	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
+	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+	//cut_overlays()
+	STOP_PROCESSING(SSslowprocess, src)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN
