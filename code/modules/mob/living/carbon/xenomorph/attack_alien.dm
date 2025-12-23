@@ -37,7 +37,7 @@
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 3
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier // same as slash here, but a bonus is applied later
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 	var/list/damage_mod = list()
 	var/list/armor_mod = list()
@@ -75,6 +75,8 @@
 		X.visible_message(span_danger("\The [X]'s disarm is blocked by [src]'s shield!"),
 			span_danger("Our disarm is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
+
+	damage *= 3 //apply the bonus for being a disarm instead of slash here so disarms aren't crazy strong against shields
 
 	if(armor_block)
 		damage = modify_by_armor(damage, armor_block, armor_pen, BODY_ZONE_CHEST)
