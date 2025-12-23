@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixes extinguishers refueling with the wrong fuel"
-  - bugfix: "Fixes water tanks not having the fuel component"
-  - bugfix: "Fixes flame tanks (and water) not being refuelable"

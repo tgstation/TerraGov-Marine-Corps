@@ -1,4 +1,0 @@
-author: "mudzbe"
-delete-after: True
-changes:
-  - rscadd: "Adds recommended pop for maps to the groundmap vote like how it is in the admin panel"
