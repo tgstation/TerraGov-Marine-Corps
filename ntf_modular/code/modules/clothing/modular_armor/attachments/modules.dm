@@ -57,7 +57,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			else
 				balloon_alert_to_viewers("shield break!")
 				explosion(src.loc,0,0,0,3,0,0,0,smoke = TRUE,explosion_cause = src)
-			affected.remove_filter("eshield")
+			affected.remove_filter("eshield[shield_layer]")
 			STOP_PROCESSING(SSobj, src)
 			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 1.2, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a bunch extra time for the cooldown.
 			return (shield_left - overcharge_max_health)
@@ -72,7 +72,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			else
 				level = shield_health / max_shield_health
 			current_color = gradient(0, shield_color_low, 0.5, shield_color_mid, 1, shield_color_full, 1.5, shield_color_overmax_full, 2, shield_color_overmax_full_danger, space = COLORSPACE_HCY, index = level)
-			affected.add_filter("eshield", 2, outline_filter(1, current_color))
+			affected.add_filter("eshield[shield_layer]", 2-shield_layer, outline_filter(1, current_color))
 
 			spark_system.start()
 			if(shield_health > (max_shield_health + ((overcharge_max_health - max_shield_health)/2)) && world.time > (last_warning_time + 2 SECONDS))
@@ -82,7 +82,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 			return 0
 		else
 			shield_health = 0
-			affected.remove_filter("eshield")
+			affected.remove_filter("eshield[shield_layer]")
 			STOP_PROCESSING(SSobj, src)
 			recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown + 1, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT) //Gives it a little extra time for the cooldown.
 			return -shield_left
@@ -105,7 +105,7 @@ converting the absorbed energy into shield power, warning: overcharging too much
 	if(new_color != current_color)
 		current_color = new_color
 		var/mob/living/affected = parent.loc
-		affected.add_filter("eshield", 2, outline_filter(1, current_color))
+		affected.add_filter("eshield[shield_layer]", 2-shield_layer, outline_filter(1, current_color))
 	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
 		STOP_PROCESSING(SSobj, src)
 
