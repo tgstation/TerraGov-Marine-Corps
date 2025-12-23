@@ -1,5 +1,5 @@
 ///Function that sells whatever object this is to the faction_selling; returns a /datum/export_report if successful
-/atom/movable/proc/supply_export(faction_selling)
+/atom/movable/proc/supply_export(faction_selling, mob/user)
 	var/list/points = get_export_value()
 	if(!points)
 		return FALSE
@@ -8,12 +8,12 @@
 	SSpoints.add_dropship_points(faction_selling, points[2])
 	return list(new /datum/export_report(points[1], name, faction_selling, points[2]))
 
-/mob/living/carbon/human/supply_export(faction_selling)
+/mob/living/carbon/human/supply_export(faction_selling, mob/user)
 	if(!can_sell_human_body(src, faction_selling))
 		return list(new /datum/export_report(0, name, faction_selling, 0))
 	return ..()
 
-/mob/living/carbon/xenomorph/supply_export(faction_selling)
+/mob/living/carbon/xenomorph/supply_export(faction_selling, mob/user)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(faction_selling in hive.allied_factions)
 		return list(new /datum/export_report(0, "[name] (Allied hive!)", faction_selling, 0))
@@ -24,19 +24,23 @@
 	var/list/points = get_export_value()
 	GLOB.round_statistics.points_from_xenos += points[1]
 
-/obj/structure/closet/supply_export(faction_selling)
+/obj/structure/closet/supply_export(faction_selling, mob/user)
 	. = ..()
 	for(var/atom/movable/AM in contents)
 		. += AM.supply_export(faction_selling)
 		qdel(AM)
 
-/obj/item/stack/req_jelly/supply_export(faction_selling)
+/obj/item/stack/req_jelly/supply_export(faction_selling, mob/user)
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(faction_selling in hive.allied_factions)
 		return list(new /datum/export_report(0, "[name] (Allied hive!)", faction_selling, 0))
 	. = ..()
 	var/datum/export_report/export_report = .[1]
 	GLOB.round_statistics.points_from_ambrosia += export_report.points
+	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	if(gaymode && user)
+		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats?.give_funds(round(export_report.points*0.4))
 
 /**
  * Getter proc for the point value of this object

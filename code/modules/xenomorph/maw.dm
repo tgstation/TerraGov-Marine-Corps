@@ -8,6 +8,10 @@
 	var/cooldown_time = 1
 	///NEVER SET THIS BELOW 2 SECONDS, THATS THE IMPACT ANIM TIME, PROBABLY SET IT HIGHER CUS LAUNCH ANIMS EXIST
 	var/impact_time = 6 SECONDS
+	///which hive is firing this
+	var/hivenumber
+	///which mob fired it
+	var/mob/firer
 
 ///called when the maw fires its payload
 /datum/maw_ammo/proc/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
@@ -155,7 +159,7 @@
 				hugger_type = pick(hugger_options_rare)
 			else
 				hugger_type = pick(hugger_options)
-			var/obj/item/clothing/mask/facehugger/paratrooper = new hugger_type(candidate)
+			var/obj/item/clothing/mask/facehugger/paratrooper = new hugger_type(candidate, hivenumber, firer)
 			paratrooper.go_idle()
 
 			var/xoffset = (target.x - candidate.x) * 32
@@ -217,7 +221,7 @@
 					continue assignturfs
 			minion_count--
 			var/minion_type = pick(minion_options)
-			var/mob/living/carbon/xenomorph/paratrooper = new minion_type(candidate)
+			var/mob/living/carbon/xenomorph/paratrooper = new minion_type(candidate, hivenumber)
 			paratrooper.notransform = TRUE
 			paratrooper.density = FALSE
 			paratrooper.set_canmove(FALSE)
@@ -329,6 +333,10 @@
 
 /// Tries to fire the acid maw after going through various checks and player inputs.
 /obj/structure/xeno/acid_maw/proc/try_fire(mob/living/carbon/xenomorph/xeno_shooter, atom/radical_target, slient, leaders_only = TRUE, requires_adjacency = TRUE)
+	if(!issamexenohive(xeno_shooter))
+		if(!slient)
+			balloon_alert(xeno_shooter, "wrong hive")
+		return FALSE
 	if(leaders_only && xeno_shooter.tier != XENO_TIER_FOUR && !(xeno_shooter.xeno_flags & XENO_LEADER))
 		if(!slient)
 			balloon_alert(xeno_shooter, "must be leader")
@@ -366,6 +374,9 @@
 		return FALSE
 
 	var/datum/maw_ammo/ammo = new selected_type
+
+	ammo.hivenumber = hivenumber
+	ammo.firer = xeno_shooter
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_shooter), ammo.impact_time-2 SECONDS)
 	notify_ghosts("<b>[xeno_shooter]</b> has just fired \the <b>[src]</b> !", source = clicked_turf, action = NOTIFY_JUMP)

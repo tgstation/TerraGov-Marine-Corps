@@ -46,6 +46,8 @@
 
 /obj/structure/barricade/examine(mob/user)
 	. = ..()
+	if(faction)
+		. += span_info("It belongs to <b>[faction]</b>")
 	if(is_wired)
 		. += span_info("There is a length of wire strewn across the top of this barricade.")
 	switch((obj_integrity / max_integrity) * 100)
@@ -80,11 +82,14 @@
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
-
-	if(is_wired)
-		balloon_alert(xeno_attacker, "barbed wire slicing into you!")
-		xeno_attacker.apply_damage(15, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
-
+	var/datum/hive_status/elhive = xeno_attacker.get_hive()
+	if(!(faction in elhive.allied_factions))
+		if(is_wired)
+			balloon_alert(xeno_attacker, "barbed wire slicing into you!")
+			xeno_attacker.apply_damage(15, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
+	else
+		attack_hand(xeno_attacker)
+		return
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
@@ -950,7 +955,9 @@
 	. = ..()
 	if(.)
 		return
-
+	if(ishuman(user) && user.faction != faction)
+		balloon_alert("It's joints are locked with an IFF lock.")
+		return
 	toggle_open(null, user)
 
 /obj/structure/barricade/folding/proc/toggle_open(state, atom/user)

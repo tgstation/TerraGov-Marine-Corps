@@ -50,17 +50,29 @@
 
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/phaseout/handle_stealth()
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	xenoowner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier // instant full stealth regardless of movement.
+	xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_STILL_ALPHA) // instant full stealth regardless of movement.
+	return
+
+/datum/action/ability/xeno_action/stealth/phaseout/handle_stealth_move()
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+		cancel_stealth()
+	return
+
 /datum/action/ability/xeno_action/stealth/phaseout/action_activate()
 	. = ..()
 	if(stealth_duration != -1)
 		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 
+/datum/action/ability/xeno_action/stealth/phaseout/can_use_action(silent, override_flags, selecting)
+	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
+		return FALSE
+	. = ..()
+
 ///Duration for the mark.
 #define DEATH_MARK_TIMEOUT 15 SECONDS
 ///Charge-up duration of the mark where you need to stay still for it to apply.
-#define DEATH_MARK_CHARGEUP 2 SECONDS
+#define DEATH_MARK_CHARGEUP 1 SECONDS
 
 // ***************************************
 // *********** Death Mark
@@ -170,7 +182,7 @@
 	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
 	X.status_flags = INCORPOREAL
 	X.alpha = 0
-	X.pass_flags = PASS_MOB|PASS_XENO
+	X.pass_flags = PASS_MOB|PASS_XENO|PASS_FIRE|PASS_LOW_STRUCTURE|PASS_TANK|PASS_DEFENSIVE_STRUCTURE
 	X.density = FALSE
 	X.update_wounds()
 	X.update_icon()

@@ -600,7 +600,7 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)]u): Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin))
-			msg += "Aphrotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin)]u): A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth.\n"
+			msg += "Aphrotoxin([reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin)]u): A strong aphrodisiac, will cause legs to go weak and increase arousal.\n"
 		if(embryocount < 1)
 			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 				msg += "Growth toxin: Makes the little ones grow faster while affected, but the host has no little ones inside..\n"

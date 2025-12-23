@@ -21,11 +21,11 @@
 			to_chat(user, span_warning("[src] buzzes: Cannot redeem voucher - can only be redeemed by other factions."))
 			return
 		else
-			I.supply_export(user.faction)
+			I.supply_export(user.faction, user)
 			qdel(I)
 			return TRUE
 	if(istype(I, /obj/item/disk/intel_disk))
-		I.supply_export(user.faction)
+		I.supply_export(user.faction, user)
 		qdel(I)
 		return TRUE
 

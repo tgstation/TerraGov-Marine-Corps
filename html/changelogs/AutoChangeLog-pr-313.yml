@@ -1,5 +1,0 @@
-author: "Colfer1"
-delete-after: True
-changes:
-  - balance: "supersoldier speed stims now have downsides"
-  - soundadd: "shields play a funny noise when broken"
