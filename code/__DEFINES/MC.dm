@@ -92,7 +92,6 @@
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
 }\
-/datum/controller/subsystem/timer/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/timer/##X
 
 #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
@@ -100,5 +99,4 @@
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
 }\
-/datum/controller/subsystem/processing/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/processing/##X
