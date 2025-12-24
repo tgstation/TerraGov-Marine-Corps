@@ -1,7 +1,11 @@
 SUBSYSTEM_DEF(lighting)
 	name = "Lighting"
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/mapping,
+	)
 	wait = 2
-	init_order = INIT_ORDER_LIGHTING
+	flags = SS_TICKER
 
 	//debug var for tracking updates before init is complete
 	var/duplicate_shadow_updates_in_init = 0

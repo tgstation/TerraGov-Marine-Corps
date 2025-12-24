@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	init_order = INIT_ORDER_MAPPING
+	dependencies = list(
+		/datum/controller/subsystem/job,
+	)
 	runlevels = ALL
 
 	var/list/datum/map_config/configs

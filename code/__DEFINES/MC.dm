@@ -17,6 +17,15 @@
 #define MC_AVG_FAST_UP_SLOW_DOWN(average, current) (average > current ? MC_AVERAGE_SLOW(average, current) : MC_AVERAGE_FAST(average, current))
 #define MC_AVG_SLOW_UP_FAST_DOWN(average, current) (average < current ? MC_AVERAGE_SLOW(average, current) : MC_AVERAGE_FAST(average, current))
 
+/// creates a running average of "things elapsed" per time period when you need to count via a smaller time period.
+/// eg you want an average number of things happening per second but you measure the event every tick (50 milliseconds).
+/// make sure both time intervals are in the same units. doesn't work if current_duration > total_duration or if total_duration == 0
+#define MC_AVG_OVER_TIME(average, current, total_duration, current_duration) ((((total_duration) - (current_duration)) / (total_duration)) * (average) + (current))
+
+#define MC_AVG_MINUTES(average, current, current_duration) (MC_AVG_OVER_TIME(average, current, 1 MINUTES, current_duration))
+
+#define MC_AVG_SECONDS(average, current, current_duration) (MC_AVG_OVER_TIME(average, current, 1 SECONDS, current_duration))
+
 #define NEW_SS_GLOBAL(varname) if(varname != src){if(istype(varname)){Recover();qdel(varname);}varname = src;}
 
 #define START_PROCESSING(Processor, Datum) if (!(Datum.datum_flags & DF_ISPROCESSING)) {Datum.datum_flags |= DF_ISPROCESSING;Processor.processing += Datum}
@@ -66,18 +75,19 @@
 #define SS_OK_TO_FAIL_INIT (1 << 6)
 
 //! SUBSYSTEM STATES
-#define SS_IDLE 0		/// aint doing shit.
-#define SS_QUEUED 1		/// queued to run
-#define SS_RUNNING 2	/// actively running
-#define SS_PAUSED 3		/// paused by mc_tick_check
-#define SS_SLEEPING 4	/// fire() slept.
-#define SS_PAUSING 5 	/// in the middle of pausing
-
+#define SS_IDLE 0 //! ain't doing shit.
+#define SS_QUEUED 1 //! queued to run
+#define SS_RUNNING 2 //! actively running
+#define SS_PAUSED 3 //! paused by mc_tick_check
+#define SS_SLEEPING 4 //! fire() slept.
+#define SS_PAUSING 5 //! in the middle of pausing
 
 // Subsystem init stages
-#define INITSTAGE_EARLY 1 //! Early init stuff that doesn't need to wait for mapload
-#define INITSTAGE_MAIN 2 //! Main init stage
-#define INITSTAGE_MAX 2 //! Highest initstage.
+#define INITSTAGE_FIRST 1
+#define INITSTAGE_EARLY 2 //! Early init stuff that doesn't need to wait for mapload
+#define INITSTAGE_MAIN 3 //! Main init stage
+#define INITSTAGE_LAST 4
+#define INITSTAGE_MAX 4 //! Highest init stage
 
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
@@ -91,6 +101,7 @@
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
 }\
+/datum/controller/subsystem/timer/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/timer/##X
 
 #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
@@ -98,4 +109,5 @@
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
 }\
+/datum/controller/subsystem/processing/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/processing/##X

@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(modularmapping)
 	name = "Modular Mapping"
-	init_order = INIT_ORDER_MODULARMAPPING
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+	)
 	flags = SS_NO_FIRE
 	var/list/obj/effect/spawner/modularmap/markers = list()
 
