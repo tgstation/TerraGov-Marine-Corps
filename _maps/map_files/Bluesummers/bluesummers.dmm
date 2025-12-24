@@ -7331,6 +7331,7 @@
 /area/bluesummers/inside/industrial)
 "gur" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/inside/food_processing/east)
 "gva" = (
@@ -7878,6 +7879,11 @@
 /obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/south)
+"gTq" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg3,
+/area/bluesummers/inside/industrial)
 "gUn" = (
 /obj/effect/spawner/random/misc/structure/closet/electrical,
 /obj/machinery/light{
@@ -23565,6 +23571,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bluesummers/caves/mining/south)
+"tjB" = (
+/obj/structure/cable,
+/turf/open/floor/plating/dmg1,
+/area/bluesummers/caves/northwest/garbledradio/indoor)
 "tjM" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/mainship/floor,
@@ -34888,7 +34898,7 @@ viR
 hmr
 iRY
 fQB
-mZn
+gTq
 kRv
 ubI
 ubI
@@ -36469,7 +36479,7 @@ rOc
 oUk
 chz
 gHW
-sLT
+tjB
 tKb
 tvA
 tKb
@@ -53622,7 +53632,7 @@ vmQ
 vmQ
 vmQ
 vmQ
-rKZ
+lEv
 nsm
 gVo
 rIj
