@@ -54,15 +54,11 @@
 
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 25, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/nightvision,
-		/obj/item/attachable/stock/tl127stock/moonbeam,
-		/obj/item/attachable/suppressor,
-	)
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle/tranq,
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
 		/obj/item/ammo_magazine/rifle/chamberedrifle/flak,
+		/obj/item/ammo_magazine/rifle/chamberedrifle/bluescreen,
 	)
 
 /obj/item/attachable/stock/tl127stock/moonbeam
@@ -87,6 +83,17 @@
 	max_rounds = 10
 	bonus_overlay = "moonbeam_tranq"
 
+/obj/item/ammo_magazine/rifle/chamberedrifle/bluescreen
+	name = "Moonbeam NL sniper rifle bluescreen magazine"
+	desc = "A box magazine filled with 8.6x70mm bluescreen rifle rounds for the Moonbeam, blunt rounds with an electric payload, effective for capturing nonorganic personnel, works on organics too... hardly"
+	caliber = CALIBER_86X70
+	icon_state = "moonbeam_bs"
+	icon_state_mini = "mag_moonbeam_bs"
+	icon = 'ntf_modular/icons/obj/items/ammo/sniper.dmi'
+	default_ammo = /datum/ammo/bullet/sniper/pfc/bluescreen
+	max_rounds = 10
+	bonus_overlay = "moonbeam_bs"
+
 /datum/ammo/bullet/sniper/pfc/nl
 	name = "high caliber tranq rifle bullet"
 	hud_state = "sniper_heavy"
@@ -101,8 +108,59 @@
 
 /datum/ammo/bullet/sniper/pfc/nl/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(iscarbon(target_mob))
-		var/mob/living/carbon/carbon_victim = target_mob
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(9,12), no_overdose = TRUE)
+		var/mob/living/carbon/human_victim = target_mob
+		human_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(9,12), no_overdose = TRUE)
+
+/datum/ammo/bullet/sniper/pfc/bluescreen
+	name = "high caliber bluescreen rifle bullet"
+	hud_state = "sniper_heavy"
+	damage_type = BRUTE
+	plasma_drain = 10
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	damage = 60
+	penetration = 10
+	sundering = 1
+	damage_falloff = 0.25
+	shrapnel_chance = 1
+
+/datum/ammo/bullet/sniper/pfc/bluescreen/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	. = ..()
+	//no emp on robot they had enough
+	do_sparks(3, TRUE, target_mob)
+	if(!ishuman(target_mob))
+		return
+	var/mob/living/carbon/human/human_victim = target_mob
+	if(human_victim.species.species_flags & ROBOTIC_LIMBS)
+		human_victim.adjustStaminaLoss(proj.damage*2)
+		human_victim.add_slowdown(0.5,3)
+		human_victim.SetStun(3)
+		if(human_victim.getStaminaLoss() > 20)
+			human_victim.overlay_fullscreen_timer(human_victim.getStaminaLoss(), 10, "glitch", /atom/movable/screen/fullscreen/robot_glitch)
+		if(human_victim.getStaminaLoss() >= 300 && !human_victim.IsUnconscious())
+			human_victim.ParalyzeNoChain(15 SECONDS) //fake unconscious basically
+			human_victim.AdjustMute(15 SECONDS)
+			human_victim.overlay_fullscreen_timer(15 SECONDS, 10, "bluescreen", /atom/movable/screen/fullscreen/dead/robot)
+			human_victim.visible_message(span_warning("[human_victim] shudders violently whilst spitting out error text before collapsing, flailing on the ground randomly."), span_blue("You are bluescreening, but you should be able to recover from this by rebooting automatically in about 15s."), span_notice("You hear a clanker glitching."))
+	else
+		if(prob(50))
+			empulse(target_mob.loc, 0,0,0,1)
+		human_victim.adjustStaminaLoss(proj.damage*1.5)
+		human_victim.SetStun(3)
+		human_victim.jitter(5)
+		human_victim.add_slowdown(0.5,3)
+		human_victim.visible_message(span_warning("[human_victim] shakes with an electric shock!"), span_warning("You feel lightning mess up your nerves, locking your body!"), span_notice("You hear a clanker glitching."))
+
+/datum/ammo/bullet/sniper/pfc/bluescreen/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	. = ..()
+	if(prob(50))
+		empulse(target_obj.loc, 0,0,0,1)
+	do_sparks(3, TRUE, target_obj)
+
+/datum/ammo/bullet/sniper/pfc/bluescreen/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	. = ..()
+	if(prob(50))
+		empulse(target_turf, 0,0,0,1)
+	do_sparks(3, TRUE, target_turf)
 
 /obj/item/ammo_magazine/packet/p86x70mm/tranq
 	name = "box of 8.6x70mm tranq"

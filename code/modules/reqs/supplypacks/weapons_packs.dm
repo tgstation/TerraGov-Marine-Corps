@@ -630,6 +630,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
 	cost = 30
 
+/datum/supply_packs/weapons/moonbeam_ammo
+	name = "Moonbeam NL sniper rifle bluescreen magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/bluescreen)
+	cost = 60
+
 /datum/supply_packs/weapons/dragoon
 	name = "Dragoon Mk1 Rapid Engagement Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/dragoon)

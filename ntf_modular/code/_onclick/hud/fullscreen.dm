@@ -16,3 +16,12 @@
 
 /atom/movable/screen/fullscreen/dead/xeno
 	icon_state = "dead_xeno"
+
+/atom/movable/screen/fullscreen/robot_glitch
+	icon = 'ntf_modular/icons/mob/screen/full/misc.dmi'
+	alpha = 180
+	icon_state = "glitch_robot"
+	blend_mode = BLEND_OVERLAY
+
+/atom/movable/screen/fullscreen/dead/robot
+	icon_state = "dead_robot"

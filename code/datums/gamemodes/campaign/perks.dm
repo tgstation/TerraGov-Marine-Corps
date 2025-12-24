@@ -241,8 +241,13 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	desc = "Advanced hand to hand combat training gives you an edge when you need to punch someone in the face. Improved unarmed damage and stun chance."
 	ui_icon = "cqc_1"
 	unarmed = 1
-	all_jobs = TRUE
 	unlock_cost = 250
+
+/datum/perk/skill_mod/unarmed/New()
+	//letting specs etc take this lets em basically one shot limbs off at cqc 7
+	var/list/goofyjobs = GLOB.jobs_regular_all - list(SQUAD_SPECIALIST, SOM_SQUAD_VETERAN, FIELD_COMMANDER, SOM_FIELD_COMMANDER, CHIEF_EXECUTIVE_OFFICER)
+	jobs_supported = goofyjobs
+	. = ..()
 
 /datum/perk/skill_mod/unarmed/two
 	name = "Hand to hand specialisation"

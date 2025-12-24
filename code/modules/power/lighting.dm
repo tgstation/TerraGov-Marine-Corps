@@ -367,11 +367,12 @@
 	flicker_time_upper_max = initial(flicker_time_upper_max)
 	random_flicker = initial(random_flicker)
 	flickering = FALSE
-	if(!has_power())
-		lightambient.stop(src)
-		return
-	if(status == LIGHT_OK)
-		lightambient.start(src)
+	if(lightambient)
+		if(!has_power())
+			lightambient.stop(src)
+			return
+		if(status == LIGHT_OK)
+			lightambient.start(src)
 
 ///flicker lights on and off. longer_off_time var makes the lights be off more than they are on, the default behavior for this proc.
 /obj/machinery/light/proc/flicker(toggle_flicker = FALSE, longer_off_time = TRUE, flicker_delay = 0.3 SECONDS)

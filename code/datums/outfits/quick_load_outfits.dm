@@ -2084,7 +2084,7 @@
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/rifle/dragoon
 	back = /obj/item/storage/backpack/lightpack/icc
-	glasses = /obj/item/clothing/glasses/thermal/m64_thermal_goggles
+	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	r_hand = /obj/item/pamphlet/rifleman
 
 /datum/outfit/quick/som/veteran/dragoon/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
