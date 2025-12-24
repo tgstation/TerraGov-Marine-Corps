@@ -334,7 +334,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	for(var/datum/controller/subsystem/subsystem as anything in subsystems)
 		for(var/dependent_type in subsystem.dependents)
 			if(!ispath(dependent_type, /datum/controller/subsystem))
-				stack_trace("ERROR: MC: subsystem `[subsystem.type]` has an invalid dependent: `[dependent_type]`. Skipping.")
+				stack_trace("MC ERROR: subsystem `[subsystem.type]` has an invalid dependent: `[dependent_type]`. Skipping.")
 				continue
 			var/datum/controller/subsystem/dependent = type_to_subsystem[dependent_type]
 			dependent.dependencies |= subsystem.type
@@ -344,7 +344,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	for(var/datum/controller/subsystem/subsystem as anything in subsystems)
 		for(var/dependency_type in subsystem.dependencies)
 			if(!ispath(dependency_type, /datum/controller/subsystem))
-				stack_trace("ERROR: MC: subsystem `[subsystem.type]` has an invalid dependency: `[dependency_type]`. Skipping.")
+				stack_trace("MC ERROR: subsystem `[subsystem.type]` has an invalid dependency: `[dependency_type]`. Skipping.")
 				continue
 			var/datum/controller/subsystem/dependency = type_to_subsystem[dependency_type]
 			// Not a foolproof failsafe, likely to only prevent any immediate issues if this is only triggered once.
