@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(modularmapping)
 	name = "Modular Mapping"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/mapping,
 	)
 	flags = SS_NO_FIRE
 	var/list/obj/effect/spawner/modularmap/markers = list()
