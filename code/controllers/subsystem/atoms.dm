@@ -7,7 +7,6 @@ SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/job,
 	)
 	flags = SS_NO_FIRE
 

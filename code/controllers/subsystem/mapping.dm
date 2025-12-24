@@ -1,8 +1,5 @@
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	dependencies = list(
-		/datum/controller/subsystem/job,
-	)
 	runlevels = ALL
 
 	var/list/datum/map_config/configs
