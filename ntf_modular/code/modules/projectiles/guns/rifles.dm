@@ -136,7 +136,7 @@
 		human_victim.SetStun(3)
 		if(human_victim.getStaminaLoss() > 20)
 			human_victim.overlay_fullscreen_timer(human_victim.getStaminaLoss(), 10, "glitch", /atom/movable/screen/fullscreen/robot_glitch)
-		if(human_victim.getStaminaLoss() >= 300 && !human_victim.IsUnconscious())
+		if((human_victim.getStaminaLoss() >= human_victim.maxHealth*2) && !human_victim.IsUnconscious())
 			human_victim.ParalyzeNoChain(15 SECONDS) //fake unconscious basically
 			human_victim.AdjustMute(15 SECONDS)
 			human_victim.overlay_fullscreen_timer(15 SECONDS, 10, "bluescreen", /atom/movable/screen/fullscreen/dead/robot)
