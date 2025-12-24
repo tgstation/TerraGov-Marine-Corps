@@ -407,7 +407,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 		// Can't initialize them if they have circular dependencies, there's no real failsafe here.
 		stack_trace("CRITICAL MC ERROR: These subsystems have circular dependencies and cannot be initialized: [jointext(debug_msg, " -> ")]")
-		to_chat(world, span_danger("<b>CRITICAL: Failed to initialize [jointext(usr_msg, ", ")]</b>"), MESSAGE_TYPE_DEBUG)
+		to_chat(world, span_boldannounce("<i>CRITICAL:</i> These subsystems have circular dependencies and cannot be initialized: [jointext(usr_msg, ", ")]"), MESSAGE_TYPE_DEBUG)
 
 	for (var/datum/controller/subsystem/subsystem as anything in sorted_subsystems)
 		var/subsystem_init_stage = subsystem.init_stage
@@ -443,7 +443,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, span_boldwarning("[msg]"), MESSAGE_TYPE_DEBUG)
+	to_chat(world, span_boldannounce("<i>[msg]</i>"), MESSAGE_TYPE_DEBUG)
 	log_world(msg)
 
 
