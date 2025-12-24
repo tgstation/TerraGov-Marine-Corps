@@ -1,6 +1,7 @@
 SUBSYSTEM_DEF(statpanels)
 	name = "Stat Panels"
 	wait = 4
+	init_stage = INITSTAGE_EARLY
 	priority = FIRE_PRIORITY_STATPANEL
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	flags = SS_NO_INIT
