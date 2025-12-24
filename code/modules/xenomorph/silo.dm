@@ -101,6 +101,24 @@
 //Corpse recyclinging and larva force burrow
 //*******************
 /obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/disk/intel_disk))
+		var/obj/item/disk/intel_disk/claimed_disk = I
+		var/ambrosia_amount = floor(claimed_disk.supply_reward/120)
+		var/psy_point_reward = claimed_disk.supply_reward/2
+		QDEL_NULL(I)
+		if(ambrosia_amount)
+			new /obj/item/stack/req_jelly(loc, ambrosia_amount, hivenumber)
+		GLOB.round_statistics.strategic_psypoints_from_intel += psy_point_reward
+		SSpoints.add_strategic_psy_points(hivenumber, psy_point_reward)
+		SSpoints.add_tactical_psy_points(hivenumber, psy_point_reward*0.5)
+		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
+		xeno_job.add_job_points(8)
+		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
+		hive_status.update_tier_limits()
+		GLOB.round_statistics.larva_from_cocoon += 8 / xeno_job.job_points_needed
+		to_chat(user, "<span class='notice'>The hive blesses us with ambrosia and psy points for claiming this object.</span>")
+		return TRUE
+
 	. = ..()
 
 	if(!istype(I, /obj/item/grab))
