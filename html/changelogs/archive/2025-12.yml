@@ -151,3 +151,10 @@
       the CLF can have a medical pouch on their colorable jacket
   - balance: supersoldier speed stims now have downsides
   - soundadd: shields play a funny noise when broken
+2025-12-24:
+  Colfer1:
+  - rscadd: Added a new "Alien Pheromones" and "Crit Threshold" stim to supersoldier
+  DrCrawler:
+  - rscadd: You can now use linebreaks in your subtlers, but only subtlers.
+  Nokia2Student:
+  - qol: Xenos don't scoop up weeds by default anymore
