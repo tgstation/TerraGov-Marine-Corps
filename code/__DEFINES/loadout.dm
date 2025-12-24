@@ -202,14 +202,14 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/effect/vendor_bundle/smartgunner_pistol = list(CAT_ESS, "SP-13 smart pistol", 0, "white"),
 	/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = list(CAT_SGSUP, "SP-13 smart pistol ammo", 1, "black"),
-	// /obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 21, "orange"), //If a smartgunner buys a SG-29, then they will have points to purchase 6 SG-29 drums
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 21, "orange"), //If a smartgunner buys a SG-29, then they will have points to purchase 6 SG-29 drums
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Ammo Drum", 4, "black"),
-	// /obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
+	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
-	// /obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SGSUP, "SG-62 Target Rifle (and fuckton of ammo)", 15, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
-	// /obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 1, "orange"),
-	// /obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Ammo Bin", 2, "black"),
+	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SGSUP, "SG-62 Target Rifle (and fuckton of ammo)", 15, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
+	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 1, "orange"),
+	/obj/item/ammo_magazine/packet/smart_targetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Ammo Bin", 2, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SGSUP, "SG-153 Spotting Rifle Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SG-153 Spotting Rifle High Impact Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SG-153 Spotting Rifle Heavy Rubber Magazine", 1, "black"),
