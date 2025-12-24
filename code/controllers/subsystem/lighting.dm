@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(lighting)
 		/datum/controller/subsystem/mapping,
 	)
 	wait = 2
-	flags = SS_TICKER
 
 	//debug var for tracking updates before init is complete
 	var/duplicate_shadow_updates_in_init = 0
