@@ -52,6 +52,9 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
+	starting_attachment_types = list(
+	)
+
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 25, "under_x" = 33, "under_y" = 16, "stock_x" = 8, "stock_y" = 12)
 
 	allowed_ammo_types = list(
