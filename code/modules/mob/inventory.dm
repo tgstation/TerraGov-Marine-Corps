@@ -49,7 +49,8 @@
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
-		return FALSE
+		if(!HAS_TRAIT(src, TRAIT_HAULED))
+			return
 	if(!istype(W))
 		return FALSE
 	if(!l_hand)
@@ -76,7 +77,8 @@
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
-		return FALSE
+		if(!HAS_TRAIT(src, TRAIT_HAULED))
+			return
 	if(!istype(W))
 		return FALSE
 	if(!r_hand)

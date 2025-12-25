@@ -317,6 +317,9 @@
 		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
+	var/mob/living/carbon/human/hauled = xeno_owner.eaten_mob
+	if(hauled && HAS_TRAIT(hauled, TRAIT_HAULED))
+		hauled.forceMove(xeno_owner.loc)
 	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	ADD_TRAIT(xeno_owner, TRAIT_NON_FLAMMABLE, initial(name))
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(fire = 100)
@@ -336,6 +339,10 @@
 /datum/action/ability/xeno_action/burrow/proc/xeno_burrow_doafter()
 	if(!do_after(owner, 3 SECONDS, NONE, null, BUSY_ICON_DANGER))
 		return
+	var/mob/living/carbon/human/hauled = xeno_owner.eaten_mob
+
+	if(hauled && HAS_TRAIT(hauled, TRAIT_HAULED))
+		hauled.forceMove(src)
 	to_chat(owner, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
 	// This part here actually burrows the xeno
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT

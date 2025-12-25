@@ -127,6 +127,11 @@
 		return FALSE
 	if(user.do_actions || (!ishuman(user) && !isxeno(user)) || attacked != user.pulling)
 		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(xeno_user.eaten_mob) // We can't carry more than one mob
+			to_chat(xeno_user, span_warning("You already are carrying something, there's no way that will work."))
+			return FALSE
 	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), attacked)) || !user.pulling)
 		return TRUE
 	user.advance_grab_state(attacked)

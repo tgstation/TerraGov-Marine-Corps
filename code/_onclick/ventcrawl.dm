@@ -63,7 +63,13 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return
-
+				if(isxeno(src))
+					var/mob/living/carbon/xenomorph/xeno_user = src
+					var/mob/living/carbon/human/user = xeno_user.eaten_mob
+					if(user && HAS_TRAIT(user, TRAIT_HAULED))
+						if(!ismonkey(user))
+							to_chat(src, span_xenowarning("You cannot ventcrawl while hauling [user]!"))
+							return
 
 			visible_message(span_notice("[stealthy ? "[src] scrambles into the ventilation ducts!" : ""]"),span_notice("You climb into the ventilation ducts."))
 

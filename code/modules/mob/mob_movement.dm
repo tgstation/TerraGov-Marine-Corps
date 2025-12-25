@@ -63,6 +63,15 @@
 		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
 /client/Move(atom/newloc, direction, glide_size_override)
+	var/mob/living/living_mob  // fuck you im doing it, the comment below. ntf edit
+	if(isliving(mob))
+		living_mob = mob
+
+	if(ishuman(living_mob))
+		var/mob/living/carbon/human/human = living_mob
+		if(HAS_TRAIT(human, TRAIT_HAULED))
+			human.handle_haul_resist()
+			return //ntf edit end
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return FALSE
 	next_move_dir_add = NONE
