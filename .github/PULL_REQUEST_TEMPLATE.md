@@ -9,6 +9,17 @@
 
 <!-- Argue for the merits of your changes and how they benefit the game, especially if they are controversial and/or far reaching. If you can't actually explain WHY what you are doing will improve the game, then it probably isn't good for the game in the first place. -->
 
+
+## Proof of Testing
+
+<!-- Include any screenshots/videos/debugging steps of the code functioning successfully, between the </summary> and </details> code blocks. -->
+<!-- To our mappers and spriters: Posting screenshots of content INSIDE EDITORS (aseprite, PDN, SDMM, ect) is NOT valid proof of testing. Please make sure that you COMPILE the game and provide PROOF you tested your edits. -->
+
+<details>
+<summary>Screenshots/Videos</summary>
+  
+</details>
+
 ## Changelog
 
 <!-- If your PR modifies aspects of the game that can be concretely observed by players or admins you should add a changelog. If your change does NOT meet this description, remove this section. Be sure to properly mark your PRs. Please note that maintainers freely reserve the right to remove and add tags should they deem it appropriate. You can attempt to manipulate the system all you want, but it's best to shoot for clear communication right off the bat. -->
