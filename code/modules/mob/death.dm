@@ -58,6 +58,9 @@
 
 /mob/proc/on_death()
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
+	var/datum/action/ability/xeno_action/return_to_body/returning = actions_by_path[/datum/action/ability/xeno_action/return_to_body]
+	if(returning)
+		returning.action_activate()
 	client?.view_size?.reset_to_default()//just so we never get stuck with a large view somehow
 
 	hide_fullscreens()

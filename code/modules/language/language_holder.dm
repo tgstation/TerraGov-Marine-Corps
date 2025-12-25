@@ -112,6 +112,10 @@
 	languages = list(/datum/language/xenocommon)
 	shadow_languages = list(/datum/language/common, /datum/language/moth)
 
+/datum/language_holder/xeno/puppet
+	languages = list(/datum/language/xenocommon, /datum/language/common)
+	shadow_languages = list(/datum/language/moth)
+
 /datum/language_holder/universal/New()
 	. = ..()
 	grant_all_languages(omnitongue = TRUE)

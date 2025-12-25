@@ -255,3 +255,194 @@
 				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
 				visible_message("[src]'s broken [limb_to_fix.name] is repaired by the healing!", "Your broken [limb_to_fix.name] is repaired by the healing!")
 				break
+
+///
+/// ******** Possession *****
+/// For taking over mobs as mob makers/hivemind
+/datum/action/ability/activable/xeno/possession
+	name = "Minion Possession"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "baneling"
+	desc = "Take control of a minion that you have jurisdiction over."
+
+	ability_cost = 1 // Change later
+	cooldown_duration = 1 SECONDS // Same here
+	action_type = ACTION_SELECT
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POSSESS,
+	)
+	target_flags = ABILITY_XENO_TARGET
+
+/*/datum/action/ability/activable/xeno/possession/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE*/
+
+/datum/action/ability/activable/xeno/possession/use_ability(atom/movable/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!ismob(A))
+		return FALSE
+	if(X.do_actions)
+		return FALSE
+	if(!X.issamexenohive(A))
+		return FALSE
+	if(!can_use_action(X, TRUE))
+		return FALSE
+	if(!isxeno(A))
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/new_mob = A
+	if(istype(X.xeno_caste, /datum/xeno_caste/hivemind))
+		if(!istype(new_mob.xeno_caste, /datum/xeno_caste/beetle) && \
+			!istype(new_mob.xeno_caste, /datum/xeno_caste/mantis) && \
+			!istype(new_mob.xeno_caste, /datum/xeno_caste/scorpion) && \
+			!istype(new_mob.xeno_caste, /datum/xeno_caste/nymph) \
+		)
+			return FALSE
+
+	if(isxenopuppeteer(X))
+		if(!istype(new_mob.xeno_caste, /datum/xeno_caste/puppet))
+			return FALSE
+			/*if( /datum/weakref/weak_master < puppytear ref) Allows puppeteers to take over other peoples puppets until this works... nobody plays puppeteer though*/
+
+	if(isxenowidow(X))
+		if(!istype(new_mob.xeno_caste, /datum/xeno_caste/spiderling))
+			return FALSE
+			/*if( mob/living/carbon/xenomorph/spidermother < widdy ref) Allows widows to take over other peoples spiders until this works... nobody plays widow though*/
+
+	A.visible_message(span_xenowarning("[A] lightly shimmers and wakes up."), \
+	span_xenowarning("We feel a controlling chill."))
+	playsound(A, SFX_ALIEN_DROOL, 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(A))
+	succeed_activate()
+	add_cooldown()
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(X, span_warning("That mob is currently possessing a different mob."))
+		return FALSE
+
+	if(new_mob.client)
+		to_chat(X, span_warning("That mob has been occupied."))
+		return FALSE
+
+	if(new_mob.stat == DEAD)
+		to_chat(X, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+
+	if(!ishuman(new_mob))
+		log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] used the possession ability.")
+		new_mob.transfer_mob(owner)
+		var/datum/action/ability/xeno_action/return_to_body/returning = new /datum/action/ability/xeno_action/return_to_body
+		if(!new_mob.actions_by_path[/datum/action/ability/xeno_action/return_to_body])
+			returning.give_action(new_mob)
+		returning.old_mob = owner
+		ADD_TRAIT(X, TRAIT_POSSESSING, TRAIT_POSSESSING)
+		return
+
+///****For getting back to your body****
+/datum/action/ability/xeno_action/return_to_body
+	name = "Return to Body"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "baneling"
+	desc = "Release control of a minion that you have jurisdiction over."
+	ability_cost = 0 // Change later
+	cooldown_duration = 0 SECONDS // Same here
+	action_type = ACTION_CLICK
+	target_flags = ABILITY_XENO_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RETURN,
+	)
+
+/datum/action/ability/xeno_action/return_to_body
+	var/mob/living/carbon/xenomorph/old_mob = null
+
+	var/datum/action/ability/xeno_action/return_to_body/leaving = /datum/action/ability/xeno_action/return_to_body
+	use_state_flags = ABILITY_USE_INCAP|ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_BURROWED
+
+
+/datum/action/ability/xeno_action/return_to_body/action_activate(xeno_owner)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!owner || QDELETED(old_mob))
+		to_chat(src, span_warning("Your old body is gone."))
+		return FALSE
+
+	if(old_mob.key)
+		to_chat(src, span_warning("Another consciousness is in your body...It is resisting you."))
+		return FALSE
+
+	old_mob.transfer_mob(owner)
+	X.possessor = null
+	leaving.remove_action(X)
+	src.old_mob = null
+	REMOVE_TRAIT(old_mob, TRAIT_POSSESSING, TRAIT_POSSESSING)
+	return TRUE
+
+// For the hivemind to create non-AI driven minions, unfortunately this doesn't work right now. Try again later.
+/*/datum/action/ability/activable/xeno/creation
+	name = "Minion Creation"
+	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
+	action_icon_state = "spawn_pod"
+	desc = "Create a brainless minion to be possessed by you."
+
+	ability_cost = 1 // Change later
+	cooldown_duration = 1 SECONDS // Same here
+	action_type = ACTION_TOGGLE
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE,
+	)
+	target_flags = ABILITY_TURF_TARGET
+	var/list/spawnable_minions = list(
+		/mob/living/carbon/xenomorph/beetle,
+		/mob/living/carbon/xenomorph/nymph,
+		/mob/living/carbon/xenomorph/mantis,
+		/mob/living/carbon/xenomorph/scorpion,)
+
+
+/datum/action/ability/activable/xeno/creation/can_use_action(silent, override_flags, selecting)
+	. = ..()
+	if(!.)
+		return
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+
+/datum/action/ability/activable/xeno/creation/action_activate()
+	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
+	if(xeno_owner.selected_ability != src)
+		return ..()
+	. = ..()
+	var/spawn_choice = show_radial_menu(owner, owner, GLOB.spawnable_minion_list, radius = 35)
+	if(!spawn_choice)
+		return
+	set_spawn_type(spawnable_minions[GLOB.spawnable_minion_list.Find(spawn_choice)])
+
+/*	var/mob/living/carbon/xenomorph/spiderling/new_spiderling = new(owner.loc, owner, owner)*/
+
+/datum/action/ability/activable/xeno/creation/proc/set_spawn_type(new_spawn, silent = FALSE)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.spawn_choice = new_spawn
+	update_button_icon()
+	if(silent)
+		return
+	var/atom/spawnn = xeno_owner.spawn_choice
+	xeno_owner.balloon_alert(xeno_owner, lowertext(spawnn::name))
+
+	/datum/action/ability/activable/xeno/creation/proc/choose_spawn()
+	var/list/available_spawns = list()
+	for(var/obj/alien/weeds/node/minion_type_possible AS in spawnable_minions)
+		var/minion_image = GLOB.spawnable_minion_list[initial(weed_type_possible.name)]
+		if(!minion_image)
+			continue
+		available_spawns[initial(minion_type_possible.name)] = minion_image
+
+	var/weed_choice = show_radial_menu(xeno_owner, xeno_owner, available_weeds, radius = 48)
+	if(!weed_choice)
+		return
+	else
+		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+			if(initial(weed_type_possible.name) == weed_choice)
+				weed_type = weed_type_possible
+				update_ability_cost()
+				break
+		to_chat(owner, span_xenonotice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
+	update_button_icon()*/
