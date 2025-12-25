@@ -528,7 +528,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/armor_module/module/eshield/overclocked
-	max_shield_health = 75
+	max_shield_health = 85
 	damaged_shield_cooldown = 5 SECONDS
 	shield_color_low = COLOR_MAROON
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE
@@ -540,7 +540,7 @@
 	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the NTF's 'Svalinn' shield system which was developed around the same time."
 
 /obj/item/armor_module/module/eshield/som/overclocked
-	max_shield_health = 75
+	max_shield_health = 85
 	damaged_shield_cooldown = 5 SECONDS
 	shield_color_low = COLOR_MAROON
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE

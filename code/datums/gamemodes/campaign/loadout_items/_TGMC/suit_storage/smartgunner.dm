@@ -24,6 +24,7 @@
 	ui_icon = "sg29"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	jobs_supported = list(SQUAD_SMARTGUNNER, VANGUARD)
 
 /datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
@@ -61,6 +62,7 @@
 	It uses high velocity 10x27mm caseless ammunition and 12x66mm ammunition for the underslung rifle."
 	ui_icon = "smartgun"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
+	jobs_supported = list(SQUAD_SMARTGUNNER, VANGUARD)
 
 /datum/loadout_item/suit_store/main_gun/smartgunner/smarttargetrifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()

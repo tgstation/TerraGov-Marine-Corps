@@ -545,6 +545,7 @@
 	)
 	purchase_cost = 100
 	quantity = 2
+	jobs_supported = list(SQUAD_MARINE, VANGUARD)
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()

@@ -181,6 +181,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/tx55/combat_patrol
 	purchase_cost = 100
 	quantity = 2
+	jobs_supported = list(SQUAD_LEADER, SQUAD_SPECIALIST, VANGUARD)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/oicw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
