@@ -15,7 +15,7 @@
 
 /mob/living/carbon/xenomorph/puppeteer/Initialize(mapload)
 	. = ..()
-	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
+	/*GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)*/
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 
 /mob/living/carbon/xenomorph/puppeteer/proc/postattack(mob/living/source, mob/living/target, damage)

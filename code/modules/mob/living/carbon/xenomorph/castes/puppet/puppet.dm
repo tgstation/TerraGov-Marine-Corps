@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/puppet
 	caste_base_type = /datum/xeno_caste/puppet
 	name = "Puppet"
-	desc = "A reanimated body, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
+	desc = "A humanoid replica made out of weeds and resin, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
 	icon = 'icons/Xeno/castes/puppet.dmi'
 	icon_state = "Puppet Running"
 	health = 250
@@ -10,6 +10,7 @@
 	pixel_x = 0
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
+	initial_language_holder = /datum/language_holder/xeno/puppet // So we can speak while possessed
 	pull_speed = -1
 	allow_pass_flags = PASS_XENO
 	pass_flags = PASS_XENO
@@ -34,7 +35,7 @@
 	if(!QDELETED(src))
 		gib()
 
-/mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
+/*/mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
 	. = ..()
 	var/atom/movable/master = weak_master?.resolve()
 	if(!master)
@@ -42,7 +43,7 @@
 	if(get_dist(src, master) > PUPPET_WITHER_RANGE)
 		adjustBruteLoss(15)
 	else
-		adjustBruteLoss(-5)
+		adjustBruteLoss(-5)*/
 
 /mob/living/carbon/xenomorph/puppet/med_hud_set_status()
 	. = ..()

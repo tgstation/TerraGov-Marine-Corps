@@ -160,6 +160,8 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
+	if(istype(xeno_caste, /datum/xeno_caste/puppet))
+		return
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/rank_name
 	var/prefix = "[hive.prefix][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"

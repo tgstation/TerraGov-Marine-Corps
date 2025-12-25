@@ -644,6 +644,12 @@
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_TELEPORT
 	hotkey_keys = list("C")
 
+/datum/keybinding/xeno/possession
+	name = "xenoability_possess"
+	full_name = "Minion: Possession"
+	description = "Possesses a minion that you have juridiction over"
+	keybind_signal = COMSIG_XENOABILITY_POSSESS
+
 /datum/keybinding/xeno/hunter_pounce
 	name = "hunter_pounce"
 	full_name = "Hunter: Pounce"

@@ -39,6 +39,11 @@
 #define FIREPROOF_WALL "fireproof resin wall"
 #define HARDY_WALL "hardy resin wall"
 
+#define BEETLE "beetle"
+#define NYMPH "nymph"
+#define MANTIS "mantis"
+#define SCORPION "scorpion"
+
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
@@ -164,6 +169,13 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		FIREPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = FIREPROOF_WALL),
 		HARDY_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = HARDY_WALL),
 		ADVANCED_RESIN_NEST = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = RESIN_NEST),
+		))
+
+GLOBAL_LIST_INIT(spawnable_minion_list, list(
+		/mob/living/carbon/xenomorph/beetle = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = BEETLE),
+		/mob/living/carbon/xenomorph/nymph = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = NYMPH),
+		/mob/living/carbon/xenomorph/mantis = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = MANTIS),
+		/mob/living/carbon/xenomorph/scorpion = image('ntf_modular/icons/Xeno/actions.dmi', icon_state = SCORPION),
 		))
 
 /*List of special resin structure images
