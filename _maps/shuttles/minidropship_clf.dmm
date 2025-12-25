@@ -33,7 +33,9 @@
 /turf/open/space/basic,
 /area/shuttle/minidropship)
 "i" = (
-/obj/structure/barricade/folding,
+/obj/structure/barricade/folding{
+	faction = "Colonial Liberation Force"
+	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
@@ -145,7 +147,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "C" = (
-/obj/structure/barricade/folding,
+/obj/structure/barricade/folding{
+	faction = "Colonial Liberation Force"
+	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
@@ -164,7 +168,8 @@
 /area/shuttle/minidropship)
 "E" = (
 /obj/structure/barricade/folding{
-	dir = 8
+	dir = 8;
+	faction = "Colonial Liberation Force"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/machinery/door/poddoor/mainship/open{
@@ -238,7 +243,8 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/structure/barricade/folding{
-	dir = 4
+	dir = 4;
+	faction = "Colonial Liberation Force"
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/machinery/door/poddoor/mainship/open{

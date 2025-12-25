@@ -29,6 +29,7 @@
 	var/can_wire = FALSE
 	///Is this barricade wired?
 	var/is_wired = FALSE
+	faction = FACTION_TERRAGOV //probably makes drone built cades work better im lazy to figure that out.
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
