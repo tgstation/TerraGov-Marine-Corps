@@ -1,4 +1,0 @@
-author: "OrbisAnima"
-delete-after: True
-changes:
-  - code_imp: "Added Proof of Testing section to the Github PR template."

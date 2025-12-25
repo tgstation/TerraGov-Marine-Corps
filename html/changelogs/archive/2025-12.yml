@@ -158,3 +158,6 @@
   - rscadd: You can now use linebreaks in your subtlers, but only subtlers.
   Nokia2Student:
   - qol: Xenos don't scoop up weeds by default anymore
+2025-12-25:
+  OrbisAnima:
+  - code_imp: Added Proof of Testing section to the Github PR template.
