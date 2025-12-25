@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/xeno_cage
 	name = "NTC specialised containment cage"
-	desc = "A secure container designed to contain dangerous lifeforms such as xenomorphs."
+	desc = "A secure container designed to contain dangerous lifeforms such as xenomorphs. It will heal whatever comes in it out of critical but does not stasis."
 	icon_state = "xeno_cage_locked"
 	icon_closed = "xeno_cage"
 	icon_locked = "xeno_cage_locked"
@@ -25,10 +25,28 @@
 		return TRUE
 	. = ..()
 
+/obj/structure/closet/bodybag/cryobag/close()
+	. = ..()
+	for(var/mob/living/carbon/livingthing in contents)
+		if(livingthing.InCritical())
+			if(!isxeno(livingthing))
+				if(!(livingthing.species.species_flags & NO_CHEM_METABOLIZATION))
+					livingthing.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 5)
+				else if(livingthing.species.species_flags & NO_CHEM_METABOLIZATION)
+					livingthing.heal_overall_damage(livingthing.get_crit_threshold()+5, livingthing.get_crit_threshold()+5, TRUE, TRUE)
+			else
+				livingthing.heal_overall_damage(livingthing.get_crit_threshold()+5, livingthing.get_crit_threshold()+5, FALSE, TRUE)
+		livingthing.AdjustParalyzed(5 SECONDS)
+
+/obj/structure/closet/bodybag/cryobag/open()
+	for(var/mob/living/carbon/livingthing in contents)
+		livingthing.AdjustParalyzed(5 SECONDS)
+	. = ..()
+
 /obj/item/explosive/grenade/cagenade
 	name = "CG1 widerange species capture grenade"
 	icon_state = "grenade_sticky_pmc"
-	desc = "Unfolds into a xeno containment device when thrown, Gotta catch em all."
+	desc = "Unfolds into a xeno containment device when thrown, Gotta catch em all. Use on a stunned target, it does not stick and only catch things it's right on top of after the timer is up."
 	hit_sound = null
 
 /obj/item/explosive/grenade/cagenade/throw_impact(atom/hit_atom, speed, bounce)

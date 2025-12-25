@@ -7,7 +7,7 @@
 /datum/supply_packs/operations/xeno_cage
 	name = "NTC cage grenade"
 	contains = list(/obj/item/explosive/grenade/cagenade)
-	cost = 150
+	cost = 100
 
 /datum/supply_packs/operations/credstick
 	name = "100c Credstick"
