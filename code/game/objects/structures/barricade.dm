@@ -955,9 +955,12 @@
 	. = ..()
 	if(.)
 		return
-	if(ishuman(user) && user.faction != faction)
-		balloon_alert("It's joints are locked with an IFF lock.")
+	if(ishuman(user) && faction && user.faction != faction)
+		balloon_alert(user, "It's joints are locked with an IFF lock.")
 		return
+	else if(!faction)
+		faction = user.faction
+		balloon_alert(user, "[src]'s iff lock now programmed to [user.faction].")
 	toggle_open(null, user)
 
 /obj/structure/barricade/folding/proc/toggle_open(state, atom/user)

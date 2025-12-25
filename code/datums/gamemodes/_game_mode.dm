@@ -184,13 +184,13 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		var/datum/job/xenomorph/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[XENO_HIVE_NORMAL])
 		xeno_job.free_xeno_at_start = 0
 
-	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 20 MINUTES)
 
 /datum/game_mode/proc/give_wages()
 	for(var/faction in stat_list)
 		var/datum/faction_stats/faction_stats = stat_list[faction]
 		faction_stats.apply_cash(250)
-	addtimer(CALLBACK(src, PROC_REF(give_wages)), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(give_wages)), 20 MINUTES)
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
 
