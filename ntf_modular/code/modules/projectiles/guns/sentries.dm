@@ -282,7 +282,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	face_atom(target_turf)
 	gun.set_target(target_turf)
 	addtimer(CALLBACK(src, PROC_REF(firing_loop), target_turf, fired_times), 1) //so it works detached from the proc and doesnt delay.
-	if(prob(10))
+	if(prob(1))
 		radio.talk_into(src, "<b>ALERT! [src] missed a [proj.name]! at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
 	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
