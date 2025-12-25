@@ -2,7 +2,7 @@
 	if(next_move > world.time)
 		return FALSE
 
-	if(incapacitated(TRUE))
+	if(incapacitated(TRUE) || HAS_TRAIT(src, TRAIT_HAULED))
 		to_chat(src, span_warning("You can't resist in your current state."))
 		return FALSE
 

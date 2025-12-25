@@ -1586,6 +1586,8 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	var/mob/living/carbon/xenomorph/xeno = owner
 	//i could not make it so the mob turns away if at range here, for some reason, the xeno one for example or empty tile.
+	if(HAS_TRAIT(A, TRAIT_HAULED))
+		return FALSE
 	if(!(get_dist(owner,A) <= range))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))

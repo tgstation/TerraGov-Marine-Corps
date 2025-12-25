@@ -630,7 +630,7 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
 	cost = 30
 
-/datum/supply_packs/weapons/moonbeam_ammo
+/datum/supply_packs/weapons/moonbeam_ammo_bluescreen
 	name = "Moonbeam NL sniper rifle bluescreen magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/bluescreen)
 	cost = 60

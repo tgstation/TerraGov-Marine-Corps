@@ -5,11 +5,15 @@
  */
 
 /// Defines whether we are using an ass overlay
-/mob/living/carbon/human/var/ass = null
+/mob/living/carbon/human
+	var/ass = null
 /// Defines whether we are using boob overlay
-/mob/living/carbon/human/var/boobs = null
+	var/boobs = null
 /// Defines whether we are using ass overlay
-/mob/living/carbon/human/var/cock = null
-
+	var/cock = null
 ///For xeno healing bone repair
-/mob/living/carbon/human/var/xeno_heals = 0
+	var/xeno_heals = 0
+	// Xenomorph that is hauling us if we are hauled
+	var/mob/living/carbon/xenomorph/devouring_mob
+	// Haul resist cooldown
+	var/next_haul_resist

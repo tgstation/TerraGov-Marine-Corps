@@ -335,7 +335,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/xenogender = 1
 
 	///A mob the xeno ate
-	var/mob/living/carbon/eaten_mob
+	var/mob/living/carbon/human/eaten_mob
 	///A mob the xeno is trying to eat
 	var/mob/living/devouring_mob
 	///How much evolution they have stored

@@ -610,8 +610,11 @@
 	while(TRUE)
 		if(user.getStaminaLoss() > 150)
 			break
-		if(!do_after(user, (action.do_time / get_speed_multiplier()), target = target))
+		if(!do_after(user, (action.do_time / get_speed_multiplier()), IGNORE_HAND|IGNORE_HELD_ITEM, target, ignore_turf_checks = IGNORE_LOC_CHANGE|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
 			break
+		//loc check for proximity instead of move disruption.
+		if(!(target in view(1, user)))
+			return
 		if(current_action == null || performed_action_type != current_action)
 			break
 		if(!can_perform_action(current_action))
@@ -674,10 +677,12 @@
 		if(SEX_SPEED_MID)
 			. = 3
 		if(SEX_SPEED_HIGH)
-			. = 4
-		if(SEX_SPEED_EXTREME)
 			. = 5
+		if(SEX_SPEED_EXTREME)
+			. = 7
 	. /= user.do_after_coefficent()
+	if(isxenorunner(user))
+		. += 2 //speed
 
 /datum/sex_controller/proc/get_stamina_cost_multiplier()
 	switch(force)

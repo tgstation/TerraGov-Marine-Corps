@@ -7,15 +7,15 @@
 /datum/action/ability/activable/xeno/devour
 	name = "Abduct"
 	action_icon = 'ntf_modular/icons/Xeno/actions.dmi'
-	action_icon_state = "abduct"
-	desc = "Abduct your victim to be able to carry it faster."
-	desc = "Abduct your victim to be able to carry it around."
+	action_icon_state = "abduct_on"
+	desc = "Abduct your victim to be able to carry it around. RCLICK to toggle between haul and devour modes."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
 	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
+	var/haul_mode = TRUE
 
 /datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -23,7 +23,7 @@
 		return
 	if(!ismob(target))
 		if(!silent)
-			to_chat(owner, span_warning("That wouldn't taste very good."))
+			to_chat(owner, span_warning("That wouldn't work."))
 		return FALSE
 	var/mob/living/carbon/human/victim = target
 	if(owner.status_flags & INCORPOREAL)
@@ -44,7 +44,10 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.eaten_mob)
 		if(!silent)
-			to_chat(owner_xeno, span_warning("You have already swallowed one."))
+			to_chat(owner_xeno, span_warning("We already have one with us."))
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_HAULED))
+		to_chat(owner_xeno, span_warning("They are already being hauled by someone else."))
 		return FALSE
 	if(owner_xeno.on_fire)
 		if(!silent)
@@ -63,7 +66,11 @@
 		return
 
 	var/channel = SSsounds.random_available_channel()
-	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
+	if(!haul_mode)
+		playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
+	else
+		release_haul()
+		return
 	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon!"))
 		owner_xeno.stop_sound_channel(channel)
@@ -76,7 +83,11 @@
 	var/mob/living/carbon/human/victim = target
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
-	owner_xeno.visible_message(span_danger("[owner_xeno] starts to pick up [victim] from the ground!"), span_danger("We start to pick up [victim] off the ground!"), null, 5)
+	if(haul_mode)
+		haul(target)
+		add_cooldown()
+		return
+	owner_xeno.visible_message(span_danger("[owner_xeno] start devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	log_combat(owner_xeno, victim, "started to devour")
 	var/channel = SSsounds.random_available_channel()
 	var/devour_delay = GORGER_DEVOUR_DELAY
@@ -88,12 +99,12 @@
 	owner_xeno.devouring_mob = victim
 	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		owner_xeno.devouring_mob = null
-		to_chat(owner, span_warning("We stop picking up \the [victim]. They probably were filthy anyway."))
+		to_chat(owner, span_warning("We stop devouring \the [victim]."))
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner_xeno.devouring_mob = null
 	log_combat(owner_xeno, victim, "devoured")
-	owner.visible_message(span_warning("[owner_xeno] abducts [victim]!"), span_warning("We abduct [victim]!"), null, 5)
+	owner.visible_message(span_warning("[owner_xeno] devour [victim]!"), span_warning("We devour [victim]!"), null, 5)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim
@@ -105,6 +116,46 @@
 
 /datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
 	return FALSE
+
+//ntf procs, haul stuff ported from cm sort of cherry picked
+/datum/action/ability/activable/xeno/devour/alternate_action_activate()
+	if(xeno_owner.eaten_mob)
+		to_chat(xeno_owner, span_xenowarning("We must release the one we got first, that's too much."))
+		return FALSE
+	haul_mode = !haul_mode
+	owner.balloon_alert(owner, "Haul [haul_mode ? "activated" : "deactivated"]")
+	action_icon_state = "abduct_[haul_mode? "on" : "off"]"
+	update_button_icon()
+
+/datum/action/ability/activable/xeno/devour/proc/haul(atom/target)
+	if(!xeno_owner.eaten_mob)
+		xeno_owner.visible_message(span_warning("[xeno_owner] restrains [target], hauling them effortlessly!"),
+		span_warning("We fully restrain [target] and start hauling them!"), null, 5)
+		playsound(xeno_owner.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+
+		if(xeno_owner.eaten_mob.mob_size) //carrying will slow down the xeno and be more dangerous compared to devouring due to it being instant.
+			xeno_owner.add_movespeed_modifier("hauler", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
+		xeno_owner.eaten_mob = target
+		xeno_owner.eaten_mob.forceMove(xeno_owner.loc, get_dir(target.loc, xeno_owner.loc))
+		xeno_owner.eaten_mob.handle_haul(src)
+
+// Releasing a hauled mob
+/datum/action/ability/activable/xeno/devour/proc/release_haul(stuns = FALSE)
+	deltimer(xeno_owner.haul_timer)
+	var/mob/living/carbon/human/user = xeno_owner.eaten_mob
+	if(!user)
+		to_chat(src, span_warning("We are not hauling anyone."))
+		return
+	xeno_owner.remove_movespeed_modifier("hauler", TRUE)
+	user.handle_unhaul()
+	xeno_owner.visible_message(span_xenowarning("[src] releases [user] from their grip!"),
+	span_xenowarning("We release [user] from our grip!"), null, 5)
+	playsound(xeno_owner.loc, 'sound/voice/alien/growl1.ogg', 15)
+	if(stuns)
+		user.AdjustStun(2)
+	UnregisterSignal(user, COMSIG_MOB_DEATH)
+	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+	xeno_owner.eaten_mob = null
 
 // ***************************************
 // *********** Drain blood
