@@ -175,9 +175,9 @@ SUBSYSTEM_DEF(vote)
 			var/ground_change_required
 			GLOB.master_mode = . //changes the current gamemode
 			//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
-			if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
+			if(new_gamemode.whitelist_ship_maps ? !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps) : (new_gamemode.blacklist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
 				ship_change_required = TRUE
-			if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
+			if(new_gamemode.whitelist_ground_maps ? !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps) : (new_gamemode.blacklist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
 				ground_change_required = TRUE
 			//we queue up the required votes and restarts
 			if(ship_change_required && ground_change_required)
