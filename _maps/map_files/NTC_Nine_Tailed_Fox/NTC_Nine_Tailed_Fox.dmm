@@ -5133,6 +5133,21 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
+"eMH" = (
+/obj/effect/remote_teleporter_linker/pair3,
+/obj/structure/sign/directions/engineering{
+	pixel_y = 14
+	},
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/structure/sign/directions/security{
+	pixel_y = 20
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "eNa" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -5429,7 +5444,7 @@
 /obj/machinery/door_control/mainship/checkpoint{
 	id = "Lowershiplockdown";
 	req_one_access = null;
-	req_access = list(5);
+	req_access = list(9);
 	name = "Lower Ship Lockdown Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -6635,6 +6650,15 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
+	})
+"fVX" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/obj/structure/barricade/folding,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "fWf" = (
 /obj/effect/ai_node,
@@ -9591,6 +9615,17 @@
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mainship/white,
 /area/mainship/living/tankerbunks)
+"iGu" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/obj/structure/barricade/folding{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "iGE" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -10933,6 +10968,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
+"jTv" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/wood,
+/area/mainship/living/basketball)
 "jTz" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
@@ -11979,6 +12018,17 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"kOB" = (
+/obj/effect/remote_teleporter_linker/pair1,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown";
+	name = "Teleporter Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "kOC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -14739,6 +14789,18 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship/command/airoom)
+"neI" = (
+/obj/effect/remote_teleporter_linker/pair1,
+/obj/structure/sign/directions/medical{
+	pixel_y = 14
+	},
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "neU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -17181,6 +17243,18 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
+"puE" = (
+/obj/effect/remote_teleporter_linker/pair4,
+/obj/structure/sign/directions/supply{
+	pixel_y = 14
+	},
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "puX" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -17879,6 +17953,12 @@
 "qgo" = (
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
+"qgO" = (
+/obj/effect/teleporter_linker,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "qgZ" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -17918,6 +17998,15 @@
 	dir = 8
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
+"qiK" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/structure/barricade/folding,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "qiT" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -18160,9 +18249,14 @@
 	name = "Lower Power"
 	})
 "qte" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
 /obj/effect/teleporter_linker,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "qtj" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -20506,6 +20600,17 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"sEx" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/obj/structure/barricade/folding{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "sEE" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -22654,7 +22759,7 @@
 /obj/machinery/door_control/mainship/checkpoint{
 	id = "Lowershiplockdown";
 	req_one_access = null;
-	req_access = list(5);
+	req_access = list(9);
 	name = "Lower Ship Lockdown Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -23013,6 +23118,12 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/remote_teleporter_linker/pair4,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown";
+	name = "Teleporter Shutters"
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -23233,6 +23344,15 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"vjy" = (
+/obj/effect/remote_teleporter_linker/pair3,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown";
+	name = "Teleporter Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "vjQ" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/sterile,
@@ -25020,6 +25140,14 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"wQm" = (
+/obj/structure/barricade/solid{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "wQw" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
@@ -26129,6 +26257,14 @@
 /turf/closed/wall/mainship,
 /area/deltastation/engineering/engine_smes{
 	outside = 0
+	})
+"xNc" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
 	})
 "xNs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -32383,7 +32519,7 @@ kyS
 kyS
 kyS
 kyS
-kyS
+kOB
 kyS
 kyS
 kyS
@@ -34559,7 +34695,7 @@ wFM
 sUW
 brX
 brX
-qte
+brX
 gcQ
 brX
 brX
@@ -44146,14 +44282,14 @@ cup
 cup
 cup
 cup
-cup
 bJK
+fVX
 rtT
-bJK
-cup
-bJK
+qte
+wQm
+neI
 rtT
-hXu
+iGu
 bJK
 cup
 bJK
@@ -44265,12 +44401,12 @@ jTF
 jTF
 jTF
 jTF
-jTF
 cup
+lDf
 rtT
-cup
-jTF
-cup
+hXu
+qgO
+hXu
 rtT
 hDJ
 cup
@@ -44384,14 +44520,14 @@ cup
 cup
 cup
 cup
-cup
 bJK
+qiK
 rtT
-bJK
-cup
-bJK
+puE
+xNc
+eMH
 rtT
-hXu
+sEx
 bJK
 cup
 bJK
@@ -55330,7 +55466,7 @@ nhA
 aFH
 leh
 leh
-leh
+jTv
 leh
 leh
 uyu
@@ -55959,7 +56095,7 @@ fOv
 kQG
 aHY
 fOv
-kQG
+vjy
 iQQ
 fcB
 ycY
