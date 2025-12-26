@@ -81,7 +81,7 @@
 	SSpoints.add_dropship_points(faction, disk_cycle_reward/10)
 	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
 
-	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
+	say("Program has execution has rewarded [disk_cycle_reward] requisitions points to [faction]!")
 
 /obj/machinery/computer/code_generator/nuke/start_final(mob/user)
 	busy = TRUE

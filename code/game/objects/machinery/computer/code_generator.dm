@@ -124,7 +124,13 @@
 	running = TRUE
 	current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
 	update_minimap_icon()
+	faction = user.faction
 	return TRUE
+
+/obj/machinery/computer/code_generator/examine(mob/user)
+	. = ..()
+	if(running)
+		. += "It is being operated by [faction]."
 
 ///What happens when a segment finishes running
 /obj/machinery/computer/code_generator/proc/complete_segment()

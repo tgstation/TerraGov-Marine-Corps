@@ -160,6 +160,16 @@
 		return TRUE
 	. = ..()
 
+/obj/machinery/computer/intel_computer/examine(mob/user)
+	. = ..()
+	if(printing && faction)
+		. += "It is being operated by [faction]"
+	. += "The next disk this computer produces will be worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and be part of an intel chain of length [max_chain]."
+	if(isxeno(user))
+		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[user.get_xeno_hivenumber()])
+		. += span_notice("You could redeem it at a silo for [floor(supply_reward/160)] ambrosia, [round(supply_reward/2, 0.1)] psypoints and [round(floor(supply_reward/60)/xeno_job.job_points_needed, 0.01)] burrowed larvae.")
+
+
 /obj/item/disk/intel_disk
 	name = "classified data disk"
 	desc = "Probably, contains some important data."
