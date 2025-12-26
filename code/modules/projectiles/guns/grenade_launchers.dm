@@ -254,6 +254,7 @@ The Grenade Launchers
 	aim_slowdown = 1
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(
+		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 	)
@@ -261,6 +262,7 @@ The Grenade Launchers
 	fire_delay = 1.05 SECONDS
 	max_chamber_items = 0
 	max_range = 10
+	w_class = WEIGHT_CLASS_NORMAL //this is pretty much useless so put it in your bag, maybe slightly less useless.
 
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
