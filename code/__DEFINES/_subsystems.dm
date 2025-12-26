@@ -71,53 +71,6 @@
 /// Successful, but don't print anything. Useful if subsystem was disabled.
 #define SS_INIT_NO_NEED 3
 
-//! ### SS initialization load orders
-// Subsystem init_order, from highest priority to lowest priority
-// Subsystems shutdown in the reverse of the order they initialize in
-// The numbers just define the ordering, they are meaningless otherwise.
-
-#define INIT_ORDER_GARBAGE 27
-#define INIT_ORDER_DBCORE 25
-#define INIT_ORDER_SERVER_MAINT 23
-#define INIT_ORDER_INPUT 22
-#define INIT_ORDER_ADMIN_VERBS 21 // needs to be pretty high, admins can't do much without it
-#define INIT_ORDER_VIS 20
-#define INIT_ORDER_SOUNDS 19
-#define INIT_ORDER_SECURITY_LEVEL 18
-#define INIT_ORDER_INSTRUMENTS 17
-#define INIT_ORDER_GREYSCALE 16
-#define INIT_ORDER_DISCORD 15
-#define INIT_ORDER_CODEX 14
-#define INIT_ORDER_EVENTS 13
-#define INIT_ORDER_MONITOR 12
-#define INIT_ORDER_JOBS 11
-#define INIT_ORDER_TICKER 10
-#define INIT_ORDER_MAPPING 9
-#define INIT_ORDER_EARLY_ASSETS 8
-#define INIT_ORDER_SPATIAL_GRID 7
-#define INIT_ORDER_PERSISTENCE 6 //before assets because some assets take data from SSPersistence, such as vendor items
-#define INIT_ORDER_TTS 5
-#define INIT_ORDER_ATOMS 4
-#define INIT_ORDER_MODULARMAPPING 3
-#define INIT_ORDER_MACHINES 2
-#define INIT_ORDER_AI_NODES 1
-#define INIT_ORDER_TIMER 0
-#define INIT_ORDER_DEFAULT -1
-#define INIT_ORDER_AIR -2
-#define INIT_ORDER_ASSETS -4
-#define INIT_ORDER_SPAWNING_POOL -5
-#define INIT_ORDER_OVERLAY -6
-#define INIT_ORDER_STICKY_BAN -10
-#define INIT_ORDER_MINIMAPS -15
-#define INIT_ORDER_ICON_SMOOTHING -16
-#define INIT_ORDER_LIGHTING -20
-#define INIT_ORDER_SHUTTLE -21
-#define INIT_ORDER_PATH -50
-#define INIT_ORDER_EXPLOSIONS -69
-#define INIT_ORDER_EXCAVATION -78
-#define INIT_ORDER_STATPANELS -97
-#define INIT_ORDER_CHAT -100 //Should be last to ensure chat remains smooth during init.
-
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
