@@ -12989,7 +12989,6 @@
 "lBb" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/voucher/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -14704,11 +14703,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
-"ndS" = (
-/obj/structure/largecrate/supply/generator,
-/obj/structure/cable,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "neu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -20763,8 +20757,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/voucher/som,
-/obj/structure/table/mainship,
+/obj/structure/largecrate/supply/generator,
+/obj/structure/cable,
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "ttF" = (
@@ -97179,7 +97173,7 @@ mOs
 mOs
 qWA
 fAE
-ndS
+txB
 krr
 lRT
 vzm

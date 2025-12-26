@@ -12488,11 +12488,6 @@
 /area/outpost/brig/wardens_office{
 	name = "CC Office"
 	})
-"orU" = (
-/obj/machinery/computer/voucher,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "osj" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -25872,7 +25867,7 @@ xRG
 ioZ
 yeX
 vFN
-orU
+qFg
 qFg
 qFg
 ulM
