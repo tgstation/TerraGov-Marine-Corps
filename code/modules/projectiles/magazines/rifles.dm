@@ -636,7 +636,7 @@
 	name = "clip of 9.8x22mm rifle rounds"
 	desc = "A Disposible Stripper clip filled with exotic rifle bullets."
 	icon_state = "clipdragoon"
-	default_ammo = /datum/ammo/bullet/sniper/dragoon
+	default_ammo = /datum/ammo/bullet/dragoon
 	caliber = CALIBER_98x22
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -647,7 +647,7 @@
 	name = "clip of green-tipped 9.8x22mm rifle rounds"
 	desc = "A Disposible Stripper clip filled with exotic rifle bullets."
 	icon_state = "clipdragoonp"
-	default_ammo = /datum/ammo/bullet/sniper/dragoon/pox
+	default_ammo = /datum/ammo/bullet/dragoon/pox
 	caliber = CALIBER_98x22
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_SMALL
