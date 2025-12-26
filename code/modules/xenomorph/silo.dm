@@ -111,11 +111,12 @@
 		GLOB.round_statistics.strategic_psypoints_from_intel += psy_point_reward
 		SSpoints.add_strategic_psy_points(hivenumber, psy_point_reward)
 		SSpoints.add_tactical_psy_points(hivenumber, psy_point_reward*0.5)
+		var/job_point_reward = floor(claimed_disk.supply_reward/60)
 		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
-		xeno_job.add_job_points(8)
+		xeno_job.add_job_points(job_point_reward)
 		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
 		hive_status.update_tier_limits()
-		GLOB.round_statistics.larva_from_cocoon += 8 / xeno_job.job_points_needed
+		GLOB.round_statistics.larva_from_cocoon += job_point_reward / xeno_job.job_points_needed
 		to_chat(user, "<span class='notice'>The hive blesses us with ambrosia and psy points for claiming this object.</span>")
 		return TRUE
 

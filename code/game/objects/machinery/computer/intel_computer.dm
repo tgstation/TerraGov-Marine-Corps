@@ -19,6 +19,8 @@
 	var/supply_reward = 500
 	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 350
+	///length of intel disk chain
+	var/max_chain = 0
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 1
@@ -63,6 +65,10 @@
 	printing_complete = TRUE
 	//NTF edit. Printing a disk instead of instantly giving the points.
 	var/obj/item/disk/intel_disk/new_disk = new(get_turf(src), supply_reward, dropship_reward, faction, get_area(src))
+	new_disk.max_chain = max_chain
+	max_chain = 0
+	supply_reward = initial(supply_reward)
+	dropship_reward = initial(dropship_reward)
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
 	SStgui.close_uis(src)
@@ -136,6 +142,24 @@
 		STOP_PROCESSING(SSmachines, src)
 
 // SOL edit start
+/obj/machinery/computer/intel_computer/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/disk/intel_disk))
+		if(!active)
+			to_chat(user, span_notice("This terminal has nothing of use on it."))
+			return TRUE
+		var/obj/item/disk/intel_disk/used_disk = I
+		if(world.time > used_disk.printed_at + used_disk.duration)
+			to_chat(user, span_notice("This disk has already expired!"))
+			return TRUE
+		user.dropItemToGround(used_disk)
+		max_chain = max(max_chain, used_disk.max_chain + 1)
+		supply_reward += used_disk.supply_reward + max_chain*50
+		dropship_reward += used_disk.dropship_reward + max_chain*40
+		qdel(used_disk)
+		to_chat(user, span_notice("You insert the disk into the intel computer.  The next disk this computer produces will be worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and be part of an intel chain of length [max_chain]."))
+		return TRUE
+	. = ..()
+
 /obj/item/disk/intel_disk
 	name = "classified data disk"
 	desc = "Probably, contains some important data."
@@ -152,6 +176,8 @@
 	var/dropship_reward
 	/// After this time, the disk will yield no req points.
 	var/duration = 20 MINUTES
+	///length of intel disk chain
+	var/max_chain = 0
 
 /obj/item/disk/intel_disk/Initialize(mapload, supply_reward, dropship_reward, who_printed, where_printed)
 	. = ..()
@@ -199,3 +225,10 @@
 /obj/item/disk/intel_disk/Destroy()
 	SSminimaps.remove_marker(src)
 	. = ..()
+
+/obj/item/disk/intel_disk/examine(mob/user)
+	. = ..()
+	. += span_notice("It is worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and is part of an intel chain of length [max_chain].")
+	if(isxeno(user))
+		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[user.get_xeno_hivenumber()])
+		. += span_notice("You could redeem it at a silo for [floor(supply_reward/160)] ambrosia, [round(supply_reward/2, 0.1)] psypoints and [round(floor(supply_reward/60)/xeno_job.job_points_needed, 0.01)] burrowed larvae.")

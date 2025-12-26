@@ -147,7 +147,7 @@
 /obj/item/stack/req_jelly/examine(mob/user)
 	. = ..()
 	var/list/value = get_export_value()
-	. += "It is worth [value[1]] supply points and [value[2]] dropship points."
+	. += "It is worth [value[1]] supply points, [value[2]] dropship points, and [round(value[1]*0.4)] credits."
 
 /obj/item/stack/req_jelly/attack(mob/living/carbon/patient, mob/living/user)
 	if(!isxeno(user))

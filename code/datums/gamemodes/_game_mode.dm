@@ -894,6 +894,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			continue
 		var/datum/job/scaled_job = SSjob.GetJobType(job_type)
 		scaled_job.job_points_needed = job_points_needed_by_job_type[job_type]
+	if(/datum/job/xenomorph in job_points_needed_by_job_type)
+		for(var/hivenumber in GLOB.hivenumber_to_job_type)
+			var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
+			if(!(xeno_job in job_points_needed_by_job_type))
+				xeno_job.job_points_needed = job_points_needed_by_job_type[/datum/job/xenomorph]
+
 	return TRUE
 
 /datum/game_mode/proc/scale_squad_jobs()
