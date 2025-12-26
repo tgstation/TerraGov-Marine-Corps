@@ -7011,8 +7011,8 @@
 	},
 /area/lv624/lazarus/research)
 "fAE" = (
-/obj/structure/cable,
 /obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "fAT" = (
@@ -12989,6 +12989,7 @@
 "lBb" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/table/reinforced/prison,
+/obj/machinery/computer/voucher/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -14704,6 +14705,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
 "ndS" = (
+/obj/structure/largecrate/supply/generator,
+/obj/structure/cable,
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "neu" = (
@@ -20757,11 +20760,11 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "tsP" = (
-/obj/structure/cable,
-/obj/structure/largecrate/supply/generator,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/computer/voucher/som,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "ttF" = (

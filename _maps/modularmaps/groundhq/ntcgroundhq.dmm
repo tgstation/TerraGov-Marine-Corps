@@ -1669,9 +1669,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "bSy" = (
@@ -6928,6 +6925,15 @@
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
 	})
+"hWx" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/squads/general)
 "hWD" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/plating,
@@ -7308,6 +7314,9 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "iug" = (
 /obj/machinery/door/airlock/mainship/marine/general,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "iuR" = (
@@ -7635,6 +7644,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/hangar)
+"iMw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "iNk" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -8222,6 +8240,13 @@
 	name = "HQ Tunnels";
 	always_unpowered = 0
 	})
+"juk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "jum" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
@@ -8276,6 +8301,17 @@
 	dir = 8
 	},
 /area/mainship/groundhq/ntf/engineering/ce_room)
+"jwt" = (
+/obj/structure/mirror{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/squads/general)
 "jwz" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2
@@ -11891,6 +11927,12 @@
 /area/orion_outpost/surface/building/prep{
 	name = "Worker Preperations"
 	})
+"nKf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "nKp" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -12446,6 +12488,11 @@
 /area/outpost/brig/wardens_office{
 	name = "CC Office"
 	})
+"orU" = (
+/obj/machinery/computer/voucher,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "osj" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -13163,6 +13210,12 @@
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/bridgebunks)
+"pht" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "phZ" = (
 /obj/machinery/line_nexter{
 	dir = 1
@@ -13588,6 +13641,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/mainship/groundhq/ntf/living/chapel)
+"pCQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "pDd" = (
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/wood,
@@ -15336,6 +15397,17 @@
 /area/mainship/groundhq/ntf/hallways/starboard_hallway{
 	name = "HQ Central Hallways"
 	})
+"rrK" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/squadsmartgunner,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "rsC" = (
 /obj/machinery/light{
 	dir = 1
@@ -19539,14 +19611,15 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "wGV" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/hallways/starboard_hallway{
-	name = "HQ Central Hallways"
-	})
+/obj/machinery/bot/roomba,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "wHC" = (
 /obj/structure/closet/secure_closet/military_police,
 /obj/item/reagent_containers/spray/pepper,
@@ -20651,8 +20724,8 @@
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/mainship/groundhq/ntf/medical/medical_science)
 "xZI" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/medical/medical_science)
@@ -25799,7 +25872,7 @@ xRG
 ioZ
 yeX
 vFN
-qFg
+orU
 qFg
 qFg
 ulM
@@ -28527,7 +28600,7 @@ cLq
 eWg
 mxX
 vvF
-omi
+nKf
 nNu
 pBJ
 vvF
@@ -28634,7 +28707,7 @@ wIj
 mxX
 mxX
 vvF
-xEm
+jwt
 xrm
 mkx
 vvF
@@ -28741,7 +28814,7 @@ uJQ
 aau
 mcW
 vvF
-npO
+rrK
 wwJ
 pnq
 vvF
@@ -28848,7 +28921,7 @@ mxX
 aau
 mYL
 dZi
-clu
+hWx
 xVg
 vqp
 mUT
@@ -28955,7 +29028,7 @@ mTu
 aau
 teL
 vvF
-czo
+wGV
 gHQ
 ejx
 vvF
@@ -29062,7 +29135,7 @@ wIj
 eCA
 siX
 vvF
-fhc
+sTm
 eBD
 pBJ
 vvF
@@ -29276,7 +29349,7 @@ uJQ
 aau
 fca
 vvF
-aUF
+vJA
 vvF
 cZf
 xzu
@@ -29383,7 +29456,7 @@ bXx
 tDR
 sEd
 vvF
-aUF
+vJA
 vvF
 cZf
 cZf
@@ -29490,7 +29563,7 @@ uJQ
 qmI
 fca
 vvF
-aUF
+vJA
 vvF
 cZf
 cZf
@@ -29597,7 +29670,7 @@ vvF
 bRV
 vvF
 vvF
-aUF
+vJA
 vvF
 cZf
 cZf
@@ -29701,10 +29774,10 @@ vAN
 pjx
 aUF
 lCu
-vva
+iMw
 vAN
 aUF
-aUF
+vJA
 vvF
 cZf
 cZf
@@ -29806,12 +29879,12 @@ xUr
 xUr
 xUr
 xUr
-wGV
-ppc
-ppc
-lxp
-lxp
-lxp
+dej
+juk
+mOp
+pht
+pht
+pCQ
 kDS
 qVR
 cZf
