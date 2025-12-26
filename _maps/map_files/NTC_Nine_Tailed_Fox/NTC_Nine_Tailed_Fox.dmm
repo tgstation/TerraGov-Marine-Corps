@@ -2706,8 +2706,8 @@
 	name = "Research"
 	})
 "crQ" = (
-/obj/structure/prop/computer/cryopod,
 /obj/structure/cable,
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},

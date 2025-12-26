@@ -477,8 +477,8 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/obj/structure/prop/computer/cryopod,
 /obj/structure/cable,
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "aFV" = (
