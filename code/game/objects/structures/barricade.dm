@@ -956,7 +956,7 @@
 	. = ..()
 	if(.)
 		return
-	if(ishuman(user) && faction && (GLOB.faction_to_iff[faction] & user.get_iff_signal()))
+	if(ishuman(user) && faction && !(GLOB.faction_to_iff[faction] & user.get_iff_signal()))
 		balloon_alert(user, "It's joints are locked with an IFF lock.")
 		return
 	else if(!faction)
