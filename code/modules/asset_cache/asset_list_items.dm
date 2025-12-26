@@ -199,5 +199,5 @@
 	assets = list(
 		"ntlogo.png" = 'html/images/ntlogo.png',
 		"tgmclogo.png" = 'html/images/tgmclogo.png',
-		"ntclogo.png" = 'html/images/ntclogo.png',
+		"ntclogo.png" = 'ntf_modular/html/images/ntclogo.png',
 	)
