@@ -1,7 +1,7 @@
 /datum/round_event_control/intel_computer
 	name = "Intel computer activation"
 	typepath = /datum/round_event/intel_computer
-	weight = 6
+	weight = 1
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the intel computer for the next event to activate
@@ -11,7 +11,7 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_DISK_PRINTED, PROC_REF(recalculate_weight))
 	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_COMPUTER_ACTIVATED, PROC_REF(recalculate_weight))
-	weight *= 20
+	weight *= 36
 
 /datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, var/obj/item/disk/intel_disk/new_disk)
 	var/active_computers = 0
@@ -20,11 +20,11 @@
 			active_computers++
 	switch(active_computers)
 		if(0)
-			weight = initial(weight)*20
+			weight = initial(weight)*36
 		if(1)
-			weight = initial(weight)*5
+			weight = initial(weight)*6
 		if(2)
-			weight = initial(weight)*2
+			weight = initial(weight)*3
 		else
 			weight = initial(weight)
 
