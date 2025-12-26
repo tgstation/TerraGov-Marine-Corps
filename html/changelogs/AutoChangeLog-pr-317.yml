@@ -1,6 +1,0 @@
-author: "Colfer1"
-delete-after: True
-changes:
-  - rscadd: "Added the ability to possess minions for hivemind, puppeteer, widow"
-  - rscadd: "Puppeteer can now make puppets that sound like people in the world"
-  - balance: "Puppeteer puppets no longer have a range limit."
