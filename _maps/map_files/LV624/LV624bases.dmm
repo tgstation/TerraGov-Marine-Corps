@@ -9163,6 +9163,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/misc/plushie,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "hNZ" = (

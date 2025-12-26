@@ -5134,7 +5134,6 @@
 	name = "Research"
 	})
 "eMH" = (
-/obj/effect/remote_teleporter_linker/pair3,
 /obj/structure/sign/directions/engineering{
 	pixel_y = 14
 	},
@@ -5144,6 +5143,8 @@
 /obj/structure/sign/directions/security{
 	pixel_y = 20
 	},
+/obj/effect/remote_teleporter_linker/pair2,
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -12025,6 +12026,7 @@
 	id = "Lowershiplockdown";
 	name = "Teleporter Shutters"
 	},
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -14797,6 +14799,7 @@
 /obj/structure/barricade/solid{
 	dir = 8
 	},
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -17244,13 +17247,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "puE" = (
-/obj/effect/remote_teleporter_linker/pair4,
 /obj/structure/sign/directions/supply{
 	pixel_y = 14
 	},
 /obj/structure/barricade/solid{
 	dir = 4
 	},
+/obj/effect/remote_teleporter_linker/pair3,
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -17954,7 +17958,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "qgO" = (
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -18252,7 +18256,7 @@
 /obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/effect/teleporter_linker,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -23118,12 +23122,13 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/remote_teleporter_linker/pair4,
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
 	id = "Lowershiplockdown";
 	name = "Teleporter Shutters"
 	},
+/obj/effect/remote_teleporter_linker/pair3,
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -23345,12 +23350,13 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "vjy" = (
-/obj/effect/remote_teleporter_linker/pair3,
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
 	id = "Lowershiplockdown";
 	name = "Teleporter Shutters"
 	},
+/obj/effect/remote_teleporter_linker/pair2,
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "vjQ" = (
