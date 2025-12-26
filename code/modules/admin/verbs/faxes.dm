@@ -95,7 +95,7 @@ ADMIN_VERB(view_faxes, R_ADMIN|R_MENTOR, "View Faxes", "View or send faxes", ADM
 	var/fax_html = {"
 		<font face="Verdana" color="black" size="1">
 			<center>
-				<img src='[SSassets.transport.get_asset_url("tgmclogo.png")]' />
+				<img src='[SSassets.transport.get_asset_url("ntclogo.png")]' />
 			</center>
 			<center>
 				Secure Communication SC-CLTMGC-01b
