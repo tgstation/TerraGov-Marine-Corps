@@ -18720,7 +18720,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
 	})
