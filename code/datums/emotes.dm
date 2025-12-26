@@ -71,8 +71,8 @@
 				continue
 			var/T1 = get_turf(user)
 			var/T2 = get_turf(M)
-			if((!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && (get_dist(T1, T2) > range)))
-				if(!check_other_rights(M.client, R_ADMIN, FALSE))
+			if((get_dist(T1, T2) > range))
+				if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || !check_other_rights(M.client, R_ADMIN, FALSE))
 					continue
 			if((M.faction != FACTION_NEUTRAL && user.faction != FACTION_NEUTRAL ) && M.faction != user.faction && !check_other_rights(M.client, R_ADMIN, FALSE) && !GLOB.observer_freedom)
 				user.balloon_alert(M, "does something you cannot see.")

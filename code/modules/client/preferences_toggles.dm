@@ -14,6 +14,7 @@
 
 	if(!check_other_rights(usr.client, R_ADMIN, FALSE))
 		to_chat(src, span_notice("Ghost ears are only useable by admins."))
+		prefs.toggles_chat &= !CHAT_GHOSTEARS
 		return
 	prefs.toggles_chat ^= CHAT_GHOSTEARS
 	prefs.save_preferences()
@@ -38,6 +39,7 @@
 
 	if(!check_other_rights(usr.client, R_ADMIN, FALSE))
 		to_chat(src, span_notice("Ghost sight is only useable by admins."))
+		prefs.toggles_chat &= !CHAT_GHOSTSIGHT
 		return
 	prefs.toggles_chat ^= CHAT_GHOSTSIGHT
 	prefs.save_preferences()
