@@ -193,7 +193,7 @@
 	})
 "vD" = (
 /obj/structure/cable,
-/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/machinery/telecomms/allinone,
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury{
 	name = "The Eagle"

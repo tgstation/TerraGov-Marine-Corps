@@ -642,6 +642,8 @@
 /area/mainship/hallways/ntf/dorm2)
 "aEY" = (
 /obj/structure/closet/secure_closet/guncabinet/m41aMK1,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
 "aFa" = (
@@ -4061,6 +4063,10 @@
 /area/mainship/groundhq/ntf/hallways/starboard_hallway{
 	name = "HQ Central Hallways"
 	})
+"eBD" = (
+/obj/machinery/marine_selector/gear/specialist,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "eCa" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
@@ -4741,7 +4747,7 @@
 	name = "HQ Central Hallways"
 	})
 "frM" = (
-/obj/machinery/marine_selector/clothes/commander,
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -6202,6 +6208,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
+"hif" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "hiS" = (
 /obj/structure/closet/secure_closet/engineering_personal{
 	req_access = null
@@ -7297,14 +7307,9 @@
 /turf/open/floor/prison,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "iug" = (
-/obj/structure/cable,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/marine/general,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/hallways/starboard_hallway{
-	name = "HQ Central Hallways"
-	})
+/area/mainship/squads/general)
 "iuR" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -7514,11 +7519,7 @@
 	},
 /area/mainship/living/basketball)
 "iFm" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
 "iGJ" = (
@@ -8424,6 +8425,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/marine_selector/gear/vanguard,
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/command/cic)
 "jEe" = (
@@ -9259,6 +9261,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/lv624/lazarus/security)
+"kDS" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/mainship/squads/general)
 "kEk" = (
 /obj/item/reagent_containers/food/drinks/cans/aspen,
 /obj/structure/table/mainship,
@@ -10106,6 +10114,14 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
+"lCu" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "lDg" = (
 /obj/item/ore/diamond,
 /turf/closed/mineral/smooth,
@@ -11927,13 +11943,13 @@
 	name = "Kitchen"
 	})
 "nNu" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/hallways/starboard_hallway{
-	name = "HQ Central Hallways"
-	})
+/obj/machinery/marine_selector/gear/specialist,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "nND" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -13244,12 +13260,9 @@
 	name = "HQ Central Hallways"
 	})
 "pnq" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "pnP" = (
 /obj/machinery/light{
 	dir = 1
@@ -13563,6 +13576,10 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/starboard_garden)
+"pBJ" = (
+/obj/machinery/marine_selector/clothes/specialist,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "pCq" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
@@ -18659,6 +18676,8 @@
 /area/mainship/squads/req)
 "vHJ" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
 "vHP" = (
@@ -28400,11 +28419,11 @@ vvF
 vvF
 vvF
 vvF
+hrg
 vvF
-doP
-hKj
-hKj
-hKj
+vvF
+vvF
+vvF
 hKj
 hKj
 hKj
@@ -28508,10 +28527,10 @@ cLq
 eWg
 mxX
 vvF
-doP
-doP
-doP
-doP
+omi
+nNu
+pBJ
+vvF
 doP
 doP
 doP
@@ -28615,10 +28634,10 @@ wIj
 mxX
 mxX
 vvF
-doP
-doP
-doP
-doP
+xEm
+xrm
+mkx
+vvF
 doP
 doP
 doP
@@ -28722,10 +28741,10 @@ uJQ
 aau
 mcW
 vvF
-doP
-doP
-doP
-doP
+npO
+wwJ
+pnq
+vvF
 doP
 doP
 doP
@@ -28828,11 +28847,11 @@ vvF
 mxX
 aau
 mYL
-vvF
-doP
-doP
-doP
-doP
+dZi
+clu
+xVg
+vqp
+mUT
 doP
 doP
 doP
@@ -28936,11 +28955,11 @@ mTu
 aau
 teL
 vvF
+czo
+gHQ
+ejx
+vvF
 doP
-doP
-doP
-cZf
-cZf
 doP
 doP
 hKj
@@ -29043,10 +29062,10 @@ wIj
 eCA
 siX
 vvF
-doP
-doP
-cZf
-cZf
+fhc
+eBD
+pBJ
+vvF
 doP
 doP
 doP
@@ -29150,10 +29169,10 @@ mTu
 aau
 hiX
 vvF
-doP
-cZf
-cZf
-cZf
+iug
+vvF
+vvF
+vvF
 doP
 doP
 doP
@@ -29257,8 +29276,8 @@ uJQ
 aau
 fca
 vvF
-doP
-cZf
+aUF
+vvF
 cZf
 xzu
 doP
@@ -29364,8 +29383,8 @@ bXx
 tDR
 sEd
 vvF
-doP
-cZf
+aUF
+vvF
 cZf
 cZf
 doP
@@ -29471,8 +29490,8 @@ uJQ
 qmI
 fca
 vvF
-doP
-doP
+aUF
+vvF
 cZf
 cZf
 cZf
@@ -29578,8 +29597,8 @@ vvF
 bRV
 vvF
 vvF
-doP
-doP
+aUF
+vvF
 cZf
 cZf
 doP
@@ -29678,18 +29697,18 @@ aUF
 aUF
 aUF
 aUF
-aUF
+vAN
 pjx
 aUF
+lCu
+vva
+vAN
 aUF
-iug
-frD
-doP
-doP
-doP
+aUF
+vvF
 cZf
-doP
-doP
+cZf
+cZf
 doP
 doP
 hKj
@@ -29790,13 +29809,13 @@ xUr
 wGV
 ppc
 ppc
-nNu
-pnq
-cZf
-cZf
+lxp
+lxp
+lxp
+kDS
 qVR
-doP
-doP
+cZf
+cZf
 jMq
 doP
 hKj
@@ -29898,12 +29917,12 @@ xhD
 vvF
 vvF
 vvF
-doP
-doP
+vvF
+vvF
+vvF
 cZf
 cZf
-doP
-doP
+cZf
 doP
 doP
 hKj
@@ -30009,7 +30028,7 @@ doP
 yjT
 cZf
 cZf
-doP
+cZf
 doP
 doP
 doP
@@ -30526,13 +30545,13 @@ ppc
 vvF
 uBc
 sTm
-uBc
+hif
 fhc
 uBc
 vvF
 uSF
 fhc
-uSF
+pnq
 fhc
 uSF
 vvF
