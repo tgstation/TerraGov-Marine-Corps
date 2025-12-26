@@ -103,7 +103,7 @@
 /obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/disk/intel_disk))
 		var/obj/item/disk/intel_disk/claimed_disk = I
-		var/ambrosia_amount = floor(claimed_disk.supply_reward/120)
+		var/ambrosia_amount = floor(claimed_disk.supply_reward/160)
 		var/psy_point_reward = claimed_disk.supply_reward/2
 		QDEL_NULL(I)
 		if(ambrosia_amount)

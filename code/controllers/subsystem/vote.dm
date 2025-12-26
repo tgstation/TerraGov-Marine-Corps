@@ -168,6 +168,9 @@ SUBSYSTEM_DEF(vote)
 			if(SSticker.current_state == GAME_STATE_PLAYING)
 				//If round is ongoing, we keep playing the round - vote for restart manually
 				return
+			if(timeleft(shipmap_timer_id))
+				//the votes are already queued, skip this
+				return
 			var/ship_change_required
 			var/ground_change_required
 			GLOB.master_mode = . //changes the current gamemode

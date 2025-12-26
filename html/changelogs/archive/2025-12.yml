@@ -161,3 +161,8 @@
 2025-12-25:
   OrbisAnima:
   - code_imp: Added Proof of Testing section to the Github PR template.
+2025-12-26:
+  Colfer1:
+  - rscadd: Added the ability to possess minions for hivemind, puppeteer, widow
+  - rscadd: Puppeteer can now make puppets that sound like people in the world
+  - balance: Puppeteer puppets no longer have a range limit.
