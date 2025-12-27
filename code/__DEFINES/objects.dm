@@ -111,8 +111,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SCOUT_CLOAK_COOLDOWN 100
 #define SCOUT_CLOAK_TIMER 50
 #define SCOUT_CLOAK_SHOOTING 153 //why isnt this implemented idk
-#define SCOUT_CLOAK_RUN_ALPHA 102
-#define SCOUT_CLOAK_WALK_ALPHA 75
+#define SCOUT_CLOAK_RUN_ALPHA 152
+#define SCOUT_CLOAK_WALK_ALPHA 102
 #define SCOUT_CLOAK_STILL_ALPHA 51 //20% Transparency
 #define SCOUT_CLOAK_MAX_ENERGY 100
 #define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
