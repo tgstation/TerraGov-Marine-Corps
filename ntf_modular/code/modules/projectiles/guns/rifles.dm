@@ -1,7 +1,7 @@
 //non lethal edition of SR-127, meant to be slightly better.
 /obj/item/weapon/gun/rifle/chambered/nonlethal
 	name = "\improper NTC 'Moonbeam' NL sniper rifle"
-	desc = "A light framed custom made bolt action rifle used by the NTC Specops, featuring a night vision scope... It is only able to fire non lethal rounds designed for it. In cases you wanna be an asshole. Through careful aim allows fire support from behind allies. It can have more types of attachments than standard sniper rifles. Uses 8.6×70mm magazines. Can also shoot regular ammo."
+	desc = "A light framed custom made bolt action rifle used by the NTC Specops, featuring a night vision scope and integrated IFF system... It is only able to fire non lethal rounds designed for it. In cases you wanna be an asshole. Through careful aim allows fire support from behind allies. It can have more types of attachments than standard sniper rifles. Uses 8.6×70mm magazines. Can also shoot regular ammo."
 	icon = 'ntf_modular/icons/obj/items/guns/marksman64.dmi'
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 	inhand_x_dimension = 64
