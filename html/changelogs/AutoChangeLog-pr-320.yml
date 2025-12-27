@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - balance: "Spiderlings no longer deal stamina damage when disarming you, instead they just provide an extremely intense slowdown"
