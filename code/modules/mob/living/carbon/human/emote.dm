@@ -213,24 +213,6 @@
 	message = "sulks down sadly."
 
 
-/datum/emote/living/carbon/human/surrender
-	key = "surrender"
-	key_third_person = "surrenders"
-	message = "puts their hands on their head and falls to the ground, they surrender!"
-	emote_type = EMOTE_TYPE_AUDIBLE
-
-/datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(. && isliving(user))
-		var/mob/living/L = user
-		L.Paralyze(20 SECONDS)
-		L.ExtinguishMob()
-		L.status_flags |= GODMODE
-		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 20 SECONDS, TIMER_STOPPABLE)
-
-/datum/emote/living/carbon/human/surrender/proc/surrender_end(mob/user)
-		user.status_flags &= ~GODMODE
-
 /datum/emote/living/carbon/human/sneeze
 	key = "sneeze"
 	key_third_person = "sneezes"

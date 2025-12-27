@@ -6,3 +6,4 @@
 #define TRAIT_SKILLS_EDITED "skills_edited"
 /// When a Xeno hauls us.
 #define TRAIT_HAULED "hauled"
+#define TRAIT_SURRENDERING "surrendering"

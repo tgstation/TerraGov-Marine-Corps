@@ -631,7 +631,6 @@
 	max_rounds = 8
 
 //-------------------------------------------------------
-//Dragoon
 /obj/item/ammo_magazine/rifle/boltclip/dragoon
 	name = "clip of 9.8x22mm rifle rounds"
 	desc = "A Disposible Stripper clip filled with exotic rifle bullets."

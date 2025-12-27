@@ -45,3 +45,10 @@
 	//remove_filter("hauled_shadow")
 	forceMove(location)
 	next_haul_resist = 0
+
+/mob/living/carbon/help_shake_act(mob/living/carbon/shaker)
+	if(HAS_TRAIT(src, TRAIT_SURRENDERING))
+		if(status_flags & GODMODE)
+			status_flags &= ~GODMODE
+			REMOVE_TRAIT(src, TRAIT_SURRENDERING, "surrender")
+	. = ..()
