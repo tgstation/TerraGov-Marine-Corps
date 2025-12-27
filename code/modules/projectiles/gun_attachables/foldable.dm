@@ -108,7 +108,7 @@
 	icon_state = "v34"
 	accuracy_mod = 0.2
 	recoil_mod = -2
-	scatter_mod = -8
+	scatter_mod = -5
 	aim_speed_mod = 0.05
 
 /obj/item/attachable/foldable/icc_machinepistol

@@ -266,21 +266,23 @@
 	fire_delay = 0.125 SECONDS
 	aim_speed_modifier = 2.5
 	aim_slowdown = 0.3
-	scatter = 8
+	scatter = 9
 	accuracy_mult = 0.9
 	scatter_unwielded = 14
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 0.8
 	akimbo_additional_delay = 1.5
+	damage_mult = 0.9
 
 /obj/item/weapon/gun/rifle/nt_halter/cqb/elite
 	name = "\improper NT 'Halter-CQB-E' carbine"
 	desc = "A custom variant of Halter series though not obvious from the outside, Chambered in 7.62x38mm. This one is retrofitted with custom, expensive materials and modifications that allow it to be more accurate with longer effective range yet be even lighter."
 	accuracy_mult = 1
-	scatter = 6
+	scatter = 7
 	aim_speed_modifier = 2
 	wield_delay = 0.3 SECONDS
 	damage_falloff_mult = 0.7
+	damage_mult = 1
 
 //standard mag
 /obj/item/ammo_magazine/rifle/nt_halter
