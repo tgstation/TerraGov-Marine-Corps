@@ -43,10 +43,6 @@
 		L.Paralyze(450 SECONDS)
 		L.ExtinguishMob()
 		L.status_flags |= GODMODE
-		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 450 SECONDS, TIMER_STOPPABLE)
-
-/datum/emote/living/carbon/xenomorph/xurrender/proc/surrender_end(mob/user)
-		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/xenomorph/xurrender/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!isxeno(user))
@@ -73,11 +69,6 @@
 		var/mob/living/L = user
 		L.Paralyze(450 SECONDS)
 		L.ExtinguishMob()
-		L.status_flags |= GODMODE
-		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 450 SECONDS, TIMER_STOPPABLE)
-
-/datum/emote/living/carbon/xenomorph/xubmit/proc/surrender_end(mob/user)
-		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/xenomorph/xubmit/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!isxeno(user))
@@ -87,7 +78,6 @@
 	. = ..()
 	var/image/submitting = image('icons/mob/effects/talk.dmi', user, icon_state = "submit")
 	user.add_emote_overlay(submitting, 90 SECONDS) //Xenos need to be stunned for longer, dont change this
-
 
 /datum/emote/living/carbon/human/surrender
     key = "surrender"
