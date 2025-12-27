@@ -16,6 +16,7 @@
 	icon_state = "moonbeam"
 	cock_animation = "moonbeam_cock"
 	caliber = CALIBER_86X70 //codex
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_IFF
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle/tranq
 	wield_delay = 0.6 SECONDS //0.8 with stock
 	cock_delay = 0.5 SECONDS
