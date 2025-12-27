@@ -89,7 +89,7 @@
     sound = 'sound/machines/beepalert.ogg'
 
 /datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional)
-    . = ..()
+	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
 		ADD_TRAIT(L, TRAIT_SURRENDERING, "surrender")
@@ -100,7 +100,7 @@
 
 /datum/emote/living/carbon/human/surrender/proc/surrender_end(mob/user)
 	user.status_flags &= ~GODMODE
-	REMOVE_TRAIT(L, TRAIT_SURRENDERING, "surrender")
+	REMOVE_TRAIT(user, TRAIT_SURRENDERING, "surrender")
 
 /datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!ishuman(user))
@@ -130,7 +130,7 @@
 		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 90 SECONDS, TIMER_STOPPABLE)
 
 /datum/emote/living/carbon/human/submit/proc/surrender_end(mob/user)
-		REMOVE_TRAIT(L, TRAIT_SURRENDERING, "surrender")
+		REMOVE_TRAIT(user, TRAIT_SURRENDERING, "surrender")
 		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/human/submit/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
