@@ -37,10 +37,16 @@
     sound = 'sound/machines/beepalert.ogg'
 
 /datum/emote/living/carbon/xenomorph/xurrender/run_emote(mob/user, params, type_override, intentional)
-    . = ..()
-    if(. && isliving(user))
-        var/mob/living/L = user
-        L.Paralyze(450 SECONDS)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Paralyze(450 SECONDS)
+		L.ExtinguishMob()
+		L.status_flags |= GODMODE
+		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 450 SECONDS, TIMER_STOPPABLE)
+
+/datum/emote/living/carbon/xenomorph/xurrender/proc/surrender_end(mob/user)
+		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/xenomorph/xurrender/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!isxeno(user))
@@ -62,10 +68,16 @@
     sound = 'ntf_modular/sound/misc/mat/end.ogg'
 
 /datum/emote/living/carbon/xenomorph/xubmit/run_emote(mob/user, params, type_override, intentional)
-    . = ..()
-    if(. && isliving(user))
-        var/mob/living/L = user
-        L.Paralyze(450 SECONDS)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Paralyze(450 SECONDS)
+		L.ExtinguishMob()
+		L.status_flags |= GODMODE
+		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 450 SECONDS, TIMER_STOPPABLE)
+
+/datum/emote/living/carbon/xenomorph/xubmit/proc/surrender_end(mob/user)
+		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/xenomorph/xubmit/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!isxeno(user))
@@ -110,10 +122,16 @@
     sound = 'ntf_modular/sound/misc/mat/end.ogg'
 
 /datum/emote/living/carbon/human/submit/run_emote(mob/user, params, type_override, intentional)
-    . = ..()
-    if(. && isliving(user))
-        var/mob/living/L = user
-        L.Paralyze(90 SECONDS)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Paralyze(90 SECONDS)
+		L.ExtinguishMob()
+		L.status_flags |= GODMODE
+		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 90 SECONDS, TIMER_STOPPABLE)
+
+/datum/emote/living/carbon/human/submit/proc/surrender_end(mob/user)
+		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/human/submit/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
     if(!ishuman(user))

@@ -244,14 +244,11 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 //Air defense system
 /obj/machinery/deployable/mounted/sentry/ads_system
 	name = "Archercorp 'ACADS01' Air Defense Sentry"
-	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about 10 rounds per shell shot down. Alt + RClick to briefly display it's range. "
-	use_power = TRUE
+	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about varying amounts of rounds per shell or grenade shot down. Grenades are not far up in the air and tiny therefore it can shoot them down only in half the range. Alt + RClick to briefly display it's range."
 	range = 0
 	var/intercept_cooldown = 0
 	var/rocket_intercept_cooldown = 0
 	var/preview_cooldown = 0
-
-/obj/effect/overlay/blinking_laser/marine/lines/nowarning
 
 /obj/machinery/deployable/mounted/sentry/ads_system/AltRightClick(mob/user)
 	. = ..()
@@ -261,7 +258,11 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	COOLDOWN_START(src, preview_cooldown, 4 SECONDS)
 	balloon_alert_to_viewers("showing range now.")
 	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range, loc))
-		QDEL_IN(new /obj/effect/overlay/blinking_laser/marine/pod_warning(aroundplace), 3 SECONDS)
+		QDEL_IN(new /obj/effect/overlay/blinking_laser/ads_range(aroundplace), 3 SECONDS)
+	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range/2, loc))
+		for(var/obj/effect/overlay/blinking_laser/ads_range/otheroverlay in aroundplace.contents)
+			qdel(otheroverlay)
+		QDEL_IN(new /obj/effect/overlay/blinking_laser/ads_grenade_range(aroundplace), 3 SECONDS)
 
 //this will make it not shoot people etc, this is barely a sentry but we want ammo things so
 /obj/machinery/deployable/mounted/sentry/ads_system/process()
@@ -301,7 +302,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 
 /obj/item/weapon/gun/sentry/ads_system
 	name = "\improper Archercorp ACADS01 Air Defense Sentry"
-	desc = "A deployable air defense sentry requiring 100 rounds drum of special flak ammunition."
+	desc = "An air defense sentry developed to protect bases and shuttles against air strikes and alike. Even when manually controlled this only shoots into the air and cannot hit ground targets. Uses about varying amounts of rounds per shell or grenade shot down. Grenades are not far up in the air and tiny therefore it can shoot them down only in half the range. Alt + RClick to briefly display it's range."
 	icon = 'ntf_modular/icons/obj/machines/deployable/point-defense/point_defense.dmi'
 	icon_state = "pointdef"
 	burst_amount = 5
@@ -358,10 +359,23 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	default_ammo = /datum/ammo/bullet/turret/air_defense
 
 /obj/item/explosive/grenade/throw_impact(atom/hit_atom, speed, bounce)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range/2,hit_atom))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
-		if(ads.try_intercept(target_turf,src, 0.1, 3))
+		if(ads.try_intercept(hit_atom,src, 0.1, 3))
 			qdel(src)
 			return
 	. = ..()
+
+//effects for showing range, everyone can see.
+/obj/effect/overlay/blinking_laser/ads_range
+	name = "ads range"
+	layer = WALL_OBJ_LAYER
+	icon = 'ntf_modular/icons/effects/lases.dmi'
+	icon_state = "ads_range"
+
+/obj/effect/overlay/blinking_laser/ads_grenade_range
+	name = "ads grenade range"
+	layer = WALL_OBJ_LAYER
+	icon = 'ntf_modular/icons/effects/lases.dmi'
+	icon_state = "ads_grenade_range"

@@ -2295,7 +2295,9 @@
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
-/obj/machinery/door_display/research_cell/cell/cell1,
+/obj/machinery/door_display/research_cell/cell/cell1{
+	id = containmentcell_1
+	},
 /obj/item/camera,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
@@ -4002,12 +4004,18 @@
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "dCP" = (
-/obj/structure/bed/bunkbed,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/walllocker{
-	dir = 1
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/machinery/door/window{
+	dir = 1;
+	layer = 2;
+	closed_layer = 2
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -5121,7 +5129,6 @@
 	})
 "eMw" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/start/job/xenomorph/green,
 /mob/living/carbon/human/species/monkey{
 	bruteloss = 25;
 	fireloss = 25
@@ -5405,9 +5412,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "eWs" = (
-/obj/structure/bed/bunkbed,
 /obj/machinery/camera/autoname/mainship,
-/obj/structure/closet/secure_closet/personal/walllocker,
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
 "eWC" = (
@@ -6779,11 +6785,17 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "gaG" = (
-/obj/structure/bed/bunkbed,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/walllocker,
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/machinery/door/window{
+	dir = 2
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
 "gbh" = (
@@ -6976,14 +6988,12 @@
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "gjY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/mainship/squads/specialist)
 "gkh" = (
 /obj/machinery/light{
 	dir = 8
@@ -8390,7 +8400,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "hzx" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
+	id = "containmentcell_1"
+	},
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
@@ -10708,11 +10720,17 @@
 	outside = 0
 	})
 "jIx" = (
-/obj/structure/bed/bunkbed,
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/walllocker,
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/machinery/door/window{
+	dir = 2
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
 "jJg" = (
@@ -15386,8 +15404,10 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "nNv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -15643,6 +15663,7 @@
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
 "nVt" = (
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -15736,6 +15757,9 @@
 /area/mainship/command/cic)
 "nZu" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/mainship/squads/specialist)
 "nZy" = (
@@ -18564,8 +18588,15 @@
 	outside = 1
 	})
 "qFX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/obj/machinery/door/window{
+	dir = 1;
+	layer = 2;
+	closed_layer = 2
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -19937,6 +19968,16 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"rZU" = (
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
+/obj/effect/landmark/start/job/xenomorph/green,
+/obj/structure/xeno/silo{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "saD" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
@@ -20520,13 +20561,9 @@
 /area/mainship/squads/req)
 "szL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/multi_tile{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 1;
+	req_access = list(16);
+	req_one_access = null
 	},
 /turf/open/floor/plating,
 /area/mainship/squads/specialist)
@@ -21823,10 +21860,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "tJc" = (
-/obj/structure/bed/bunkbed,
-/obj/structure/closet/secure_closet/personal/walllocker{
-	dir = 1
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
 "tJQ" = (
@@ -24583,11 +24617,10 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "wnq" = (
-/obj/structure/bed/bunkbed,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/personal/walllocker,
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
 "wnG" = (
@@ -29892,7 +29925,7 @@ cRa
 cRa
 nje
 qqh
-aTq
+rZU
 ojL
 qqh
 aTq
@@ -33729,8 +33762,8 @@ rRI
 pmp
 mKo
 eWs
-jkr
-qFX
+gjY
+eKG
 tJc
 mKo
 kyS
@@ -33848,9 +33881,9 @@ kyS
 vqb
 mKo
 jIx
-jkr
 nVt
-tJc
+eKG
+qFX
 mKo
 kyS
 euU
@@ -34087,7 +34120,7 @@ sTx
 jJu
 sYw
 nNv
-gjY
+kjD
 kjD
 iTz
 kjD

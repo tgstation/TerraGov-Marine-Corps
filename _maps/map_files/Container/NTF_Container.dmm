@@ -1443,6 +1443,12 @@
 	dir = 8
 	},
 /area/mainship/living/cafeteria)
+"byw" = (
+/obj/structure/xeno/silo{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "byy" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/floor,
@@ -1838,8 +1844,12 @@
 	},
 /area/mainship/living/cafeteria)
 "bRo" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
-/obj/machinery/door/poddoor/shutters/mainship/cell/cell1,
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
+	id = "containmentcell_1"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
+	id = "containmentcell_1"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "bRE" = (
@@ -3050,8 +3060,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_hallway)
 "cYJ" = (
-/obj/effect/soundplayer,
-/turf/closed/wall/mainship,
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/urban/wood,
 /area/mainship/squads/specialist)
 "cZv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3746,8 +3756,9 @@
 /turf/closed/wall/mainship,
 /area/mainship/hull/port_hull)
 "dNk" = (
-/obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
 /turf/open/floor/urban/wood,
 /area/mainship/squads/specialist)
 "dNl" = (
@@ -4851,6 +4862,12 @@
 /obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"eKd" = (
+/obj/structure/closet/secure_closet/personal/walllocker{
+	dir = 1
+	},
+/turf/open/floor/urban/wood,
+/area/mainship/squads/specialist)
 "eKe" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/mono,
@@ -5075,11 +5092,11 @@
 /turf/open/shuttle/escapepod,
 /area/mainship/nukeroom)
 "eRf" = (
-/obj/machinery/vending/medical/shipside,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
 /obj/effect/urban/decal/dirt,
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/specialist)
 "eRi" = (
@@ -5954,6 +5971,12 @@
 	},
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
+"fIC" = (
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "fIG" = (
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -6226,6 +6249,10 @@
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/starboard_emb)
+"fWR" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/hull/port_hull)
 "fXf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
@@ -7168,10 +7195,6 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "gWe" = (
-/obj/effect/landmark/start/job/xenomorph/green,
-/obj/effect/landmark/start/job/xenomorph/green,
-/obj/effect/landmark/start/job/xenomorph/green,
-/obj/effect/landmark/start/job/xenomorph/green,
 /obj/alien/weeds/node/resting{
 	hivenumber = "corrupted_hive"
 	},
@@ -7282,6 +7305,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"hcn" = (
+/obj/structure/table/wood/fancy,
+/obj/structure/closet/secure_closet/personal/walllocker,
+/turf/open/floor/urban/wood,
+/area/mainship/squads/specialist)
 "hcG" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/urban/wood,
@@ -8039,8 +8067,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/port_hull)
 "hTa" = (
-/obj/machinery/vending/MarineMed,
 /obj/effect/urban/decal/dirt,
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/specialist)
 "hTT" = (
@@ -9892,7 +9920,9 @@
 /turf/open/floor/mainship,
 /area/mainship/command/airoom)
 "jPl" = (
-/obj/machinery/door_display/research_cell/cell/cell1,
+/obj/machinery/door_display/research_cell/cell/cell1{
+	id = "containmentcell_1"
+	},
 /turf/closed/wall/mainship/research/containment/wall/purple{
 	dir = 4
 	},
@@ -11460,6 +11490,9 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"lkp" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "lkQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11794,6 +11827,10 @@
 	},
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
+"lAJ" = (
+/obj/effect/landmark/start/job/xenomorph/green,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "lAT" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -12021,6 +12058,12 @@
 /obj/effect/urban/decal/dirt,
 /turf/open/shuttle/escapepod,
 /area/mainship/engineering/engine_core)
+"lLC" = (
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "lLF" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -15085,6 +15128,12 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/port_point_defense)
+"oLg" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "oLt" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
@@ -19548,6 +19597,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/starboard_point_defense)
+"tgU" = (
+/obj/effect/urban/decal/dirt,
+/obj/machinery/vending/medical/shipside,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/specialist)
 "thg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
@@ -64949,9 +65003,9 @@ oML
 ocO
 mgY
 rKg
-dNk
+hcn
 gMh
-dNk
+eKd
 rKg
 toL
 toL
@@ -65353,12 +65407,12 @@ lim
 ocO
 gdx
 rKg
-vqi
-vqi
-vqi
+rKg
+cYJ
+rKg
 rKg
 toL
-toL
+fIC
 dMI
 hPb
 hDB
@@ -65560,7 +65614,7 @@ eMh
 vqi
 rKg
 toL
-toL
+ves
 dMI
 hPb
 hDB
@@ -65757,13 +65811,13 @@ hTa
 pNh
 mgY
 kew
-vqi
+aDv
 vqi
 vqi
 rKg
-toL
-toL
-dMI
+ves
+lkp
+oLg
 hPb
 hDB
 fIG
@@ -65959,12 +66013,12 @@ eRf
 pNh
 gVt
 rKg
-dNk
-vqi
-dNk
 rKg
-toL
-toL
+cYJ
+rKg
+rKg
+ves
+lkp
 dMI
 btN
 hDB
@@ -66157,16 +66211,16 @@ lpQ
 aRK
 ltQ
 dQf
-xzf
+tgU
 pNh
 rrh
 rKg
-dNk
-aDv
-dNk
+hcn
+vqi
+eKd
 rKg
-toL
-toL
+ves
+lLC
 dMI
 hPb
 hDB
@@ -66359,16 +66413,16 @@ lpQ
 aRK
 vtO
 dQf
-cYJ
+xzf
+pNh
+rrh
 rKg
+dNk
+aDv
+dNk
 rKg
-rKg
-rKg
-rKg
-rKg
-rKg
-toL
-toL
+ves
+lkp
 dMI
 hPb
 hDB
@@ -66561,16 +66615,16 @@ lpQ
 aRK
 mbP
 dQf
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
+fWR
+dMI
+dMI
+dMI
+dMI
+dMI
+dMI
+dMI
+ves
+lkp
 dMI
 hPb
 hDB
@@ -66763,16 +66817,16 @@ lpQ
 aRK
 qqG
 dQf
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
+lLC
+lkp
+lkp
+lLC
+lkp
+lkp
+lLC
+lkp
+lkp
+lkp
 dMI
 rDW
 hDB
@@ -66965,16 +67019,16 @@ ijJ
 ijJ
 ijJ
 ijJ
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
+lkp
+lAJ
+ves
+ves
+ves
+ves
+ves
+ves
+fIC
+lkp
 dMI
 rDW
 hDB
@@ -67167,17 +67221,17 @@ lLY
 lLY
 tUk
 ijJ
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-dMI
+lkp
+byw
+ves
+ves
+fIC
+ves
+ves
+ves
+ves
+lkp
+oLg
 rDW
 hDB
 fIG
@@ -67369,16 +67423,16 @@ xQr
 lLY
 tHJ
 ijJ
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
-toL
+lkp
+lLC
+lkp
+lkp
+lkp
+lkp
+lkp
+lkp
+lLC
+lkp
 dMI
 rDW
 hDB

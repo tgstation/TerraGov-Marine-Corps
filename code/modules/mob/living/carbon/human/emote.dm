@@ -224,7 +224,12 @@
 	if(. && isliving(user))
 		var/mob/living/L = user
 		L.Paralyze(20 SECONDS)
+		L.ExtinguishMob()
+		L.status_flags |= GODMODE
+		addtimer(CALLBACK(src, PROC_REF(surrender_end), user), 20 SECONDS, TIMER_STOPPABLE)
 
+/datum/emote/living/carbon/human/surrender/proc/surrender_end(mob/user)
+		user.status_flags &= ~GODMODE
 
 /datum/emote/living/carbon/human/sneeze
 	key = "sneeze"
