@@ -2707,7 +2707,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
-	mask = /obj/item/clothing/mask/gas/pmc/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc
 	suit_store = /obj/item/weapon/gun/smg/m25
 	r_pocket = /obj/item/storage/pouch/grenade
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -2760,7 +2760,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/defibrillator
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
-	mask = /obj/item/clothing/mask/gas/pmc/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/m25
 	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
@@ -2800,7 +2800,7 @@
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	mask = /obj/item/clothing/mask/gas/pmc/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	suit_store = /obj/item/weapon/gun/smg/m25
 	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
@@ -2848,7 +2848,7 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	mask = /obj/item/clothing/mask/gas/pmc/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	r_pocket = /obj/item/storage/pouch/explosive
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -2936,7 +2936,7 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
-	mask = /obj/item/clothing/mask/gas/pmc/leader/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	back = /obj/item/storage/backpack/lightpack/pmc
 
@@ -2980,7 +2980,8 @@
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/mk90
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/standard/joker
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/standard/mantis
-	suit_store = /obj/item/weapon/gun/rifle/sniper/pmc_railgun
+	suit_store = /obj/item/weapon/gun/smg/val
+	mask = /obj/item/clothing/mask/gas/pmc
 	r_pocket = /obj/item/storage/pouch/magazine/large/pmc_raval
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 
@@ -3017,7 +3018,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc_elite
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/leader
-	mask = /obj/item/clothing/mask/gas/pmc/leader/no_hug
+	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	r_pocket = /obj/item/storage/pouch/grenade
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
