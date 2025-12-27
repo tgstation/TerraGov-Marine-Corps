@@ -10197,9 +10197,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
 /obj/machinery/computer/voucher{
 	dir = 4;
 	pixel_x = 18
@@ -19360,6 +19357,17 @@
 	dir = 4
 	},
 /area/mainship/engineering/lower_engineering)
+"tak" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/item/radio/intercom/general{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "taq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -56641,7 +56649,7 @@ lKM
 ros
 lKM
 lKM
-bwg
+tak
 kds
 dRf
 dRf
