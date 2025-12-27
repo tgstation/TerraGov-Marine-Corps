@@ -7647,8 +7647,12 @@
 /area/mainship/command/cic)
 "hys" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/light/mainship,
 /obj/structure/closet/crate/ammo,
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "hyv" = (
@@ -18242,10 +18246,6 @@
 	},
 /obj/item/tool/hand_labeler,
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/box/crate/sentry/ads,
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry_laser,
-/obj/item/storage/box/crate/sentry,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "rYk" = (
