@@ -123,7 +123,7 @@
 	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
-		if(ads.try_intercept(T, src))
+		if(ads.try_intercept(T, src, 0.1, 3))
 			return
 	explosion(T, 1, 2, 5, 0, 3, explosion_cause=src)
 
@@ -133,7 +133,7 @@
 	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
-		if(ads.try_intercept(T, src))
+		if(ads.try_intercept(T, src, 0.1, 3))
 			return
 	explosion(T, 0, 3, 0, 0, 3, throw_range = 0, explosion_cause=src)
 
@@ -157,7 +157,7 @@
 	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
-		if(ads.try_intercept(T, src))
+		if(ads.try_intercept(T, src, 0.1, 3))
 			return
 	explosion(T, 0, 0, 1, 0, 3, throw_range = 0, explosion_cause=src)
 

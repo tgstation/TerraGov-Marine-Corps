@@ -357,3 +357,11 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/turret/air_defense
 
+/obj/item/explosive/grenade/throw_impact(atom/hit_atom, speed, bounce)
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		if(ads.try_intercept(target_turf,src, 0.1, 3))
+			qdel(src)
+			return
+	. = ..()
