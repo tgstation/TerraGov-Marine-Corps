@@ -415,7 +415,7 @@
 	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/tracker/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 3 SECONDS)
+	target_mob.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 60 SECONDS, 1 SECONDS)
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"

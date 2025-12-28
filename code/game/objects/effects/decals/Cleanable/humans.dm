@@ -13,6 +13,7 @@
 	var/basecolor="#ff3b00" // Color when wet.
 	var/amount = 5
 	var/drying_timer
+	layer = (29 + TOPDOWN_LAYER)
 
 
 /obj/effect/decal/cleanable/blood/Initialize(mapload)
@@ -120,11 +121,13 @@
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	alpha = 150
 	amount = 2
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/cum/dry()
 	name = "dried [name]"
 	desc = "Some semen or something, yuck. It seems to have dried."
 	color = adjust_brightness(color, -75)
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/robotcum
 	name = "synthetic cum"
@@ -132,11 +135,13 @@
 	desc = "It's literally oil-y cum."
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/robotcum/dry()
 	name = "dried [name]"
 	desc = "It's literally oil-y cum. It seems to have dried."
 	color = adjust_brightness(color, -75)
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/xenocum
 	name = "xeno cum"
@@ -144,11 +149,13 @@
 	desc = "Some acidic xeno semen or something, yuck."
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/xenocum/dry()
 	name = "dried [name]"
 	desc = "Some semen or something, yuck. It seems to have dried."
 	color = adjust_brightness(color, -75)
+	layer = (29 + TOPDOWN_LAYER)
 
 
 /obj/effect/decal/cleanable/blood/splatter/girlcum
@@ -158,6 +165,7 @@
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	alpha = 100
 	amount = 2
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/splatter/girlcum/dry()
 	name = "dried [name]"
@@ -182,6 +190,7 @@
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
 	amount = 1
+	layer = (29 + TOPDOWN_LAYER)
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/update_overlays()
 	. = ..()
