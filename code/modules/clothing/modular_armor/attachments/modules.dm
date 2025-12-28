@@ -389,6 +389,7 @@
 	var/max_shield_health = 60
 	///Amount to recharge per tick, processes once every two seconds.
 	var/recharge_rate = 10
+	var/melee_bonus = 1
 
 	///Spark system used to generate sparks when the armor takes damage
 	var/datum/effect_system/spark_spread/spark_system
@@ -486,8 +487,11 @@
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
 	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
+
 	STOP_PROCESSING(SSobj, src)
 	var/shield_left = shield_health - incoming_damage
+	if(attack_type == COMBAT_MELEE_ATTACK)
+		shield_left = shield_health - incoming_damage * melee_bonus
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield[shield_layer]")
 	if(shield_left > 0)
@@ -973,27 +977,28 @@
 
 /obj/item/armor_module/module/eshield/barrier/light
 	name = "Dampener Light Energy Shield"
-	max_shield_health = 30
-	damaged_shield_cooldown = 1 SECONDS
+	max_shield_health = 40
+	damaged_shield_cooldown = 0.8 SECONDS
 	shield_color_full = COLOR_LIME
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-	recharge_rate = 10
-	soft_armor = list(MELEE = -15, BULLET = -5, LASER = -5, ENERGY = -5, BOMB = -5, BIO = -10, FIRE = -5, ACID = -10)
+	melee_bonus = 1.2
+	recharge_rate = 25
 
 /obj/item/armor_module/module/eshield/barrier/medium
 	name = "Deflector Medium Energy Shield"
 	max_shield_health = 120
 	damaged_shield_cooldown = 8 SECONDS
 	shield_color_full = COLOR_LASER_BLUE
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = 0.35 // Somewhat between light/medium
 	recharge_rate = 15
-	soft_armor = list(MELEE = -20, BULLET = -10, LASER = -10, ENERGY = -10, BOMB = -10, BIO = -15, FIRE = -15, ACID = -15)
+	melee_bonus = 1.6
+	soft_armor = list(MELEE = -15, BULLET = -5, LASER = -5, ENERGY = -5, BOMB = -5, BIO = -10, FIRE = -10, ACID = -10)
 
 /obj/item/armor_module/module/eshield/barrier/heavy
 	name = "Goliath Heavy Energy Shield"
 	max_shield_health = 300
 	damaged_shield_cooldown = 20 SECONDS
 	shield_color_full = COLOR_RED //  Her shields were up and glowing red!! Goodbye, Dawson's christian...
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	recharge_rate = 75
-	soft_armor = list(MELEE = -30, BULLET = -15, LASER = -15, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)
+	melee_bonus = 1.8
+	soft_armor = list(MELEE = -20, BULLET = -15, LASER = -15, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)

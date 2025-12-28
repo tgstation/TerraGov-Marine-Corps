@@ -223,7 +223,7 @@
 // Barrier Armors / NTF changes
 
 /obj/item/clothing/suit/modular/style/barrier
-	slowdown = 0.1
+	slowdown = 0 // has no slowdown, but no speed up either
 	icon = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi'
 	worn_icon_list = list(slot_wear_suit_str = 'ntf_modular/icons/obj/clothing/suits/barrier_armor.dmi')
 	attachments_by_slot = list(
@@ -300,7 +300,7 @@
 
 /obj/item/clothing/suit/modular/style/barrier/heavybarrier
 	name = "\improper heavy barrier armor"
-	desc = "A lightweight shield generator that can loosely be considered armor"
+	desc = "Heavy-duty neck-and-back-mounted shield projector paired up with large capacitor gauntlets and greaves. Highly durable protective forcefield, but it takes a while to re-charge the capacitors, and the barrier's power limits how stable it can be, requiring a longer spool-up time to prevent malfunctions. Made by ArcherCorp."
 	icon_state = "barrier_heavy"
 	worn_icon_state = "barrier_heavy_worn"
 	starting_attachments = list(/obj/item/armor_module/module/eshield/barrier/heavy)
