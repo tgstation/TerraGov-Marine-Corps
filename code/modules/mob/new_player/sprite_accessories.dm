@@ -1189,7 +1189,6 @@
 /datum/sprite_accessory/hair_gradient
 	icon = 'icons/mob/hair_gradients.dmi'
 	gender = NEUTER
-	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/hair_gradient/none
 	name = "None"
@@ -1240,7 +1239,6 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn", "Mothellian")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"

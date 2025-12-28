@@ -331,14 +331,17 @@
 		return FALSE
 
 	if(!ishuman(new_mob))
+		var/datum/action/ability/xeno_action/return_to_body/returning = new_mob.actions_by_path[/datum/action/ability/xeno_action/return_to_body]
+		if(returning)
+			if(!returning.action_activate())
+				returning.remove_action(new_mob)
 		log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] used the possession ability.")
 		new_mob.transfer_mob(owner)
-		var/datum/action/ability/xeno_action/return_to_body/returning = new /datum/action/ability/xeno_action/return_to_body
-		if(!new_mob.actions_by_path[/datum/action/ability/xeno_action/return_to_body])
-			returning.give_action(new_mob)
+		returning = new
+		returning.give_action(new_mob)
 		returning.old_mob = owner
 		ADD_TRAIT(X, TRAIT_POSSESSING, TRAIT_POSSESSING)
-		return
+		return TRUE
 
 ///****For getting back to your body****
 /datum/action/ability/xeno_action/return_to_body
