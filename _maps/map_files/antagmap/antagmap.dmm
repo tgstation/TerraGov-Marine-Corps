@@ -782,6 +782,15 @@
 	dir = 10
 	},
 /area/antag_ship/clf_base/hallways/inside)
+"eF" = (
+/obj/effect/landmark/start/job/vsd,
+/obj/docking_port/stationary/crashmode{
+	name = "KZ Crashland point 2";
+	id = "kzcrashland2";
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/antag_ship/vsd/armory)
 "eH" = (
 /obj/effect/landmark/start/job/vsd_spec,
 /turf/open/floor/iron/dark,
@@ -814,6 +823,23 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander)
+"eP" = (
+/obj/docking_port/stationary/crashmode{
+	name = "CM Crashland point";
+	id = "cmcrashland";
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/space)
+"eQ" = (
+/obj/effect/step_trigger/teleporter/random,
+/obj/docking_port/stationary/crashmode{
+	name = "KZ Crashland point";
+	id = "kzcrashland";
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "eR" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/grayscale/black,
@@ -2614,6 +2640,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/antag_ship/clf_base/prison)
+"no" = (
+/obj/docking_port/stationary/crashmode{
+	name = "CM Crashland point 2";
+	id = "cmcrashland2";
+	dir = 1
+	},
+/turf/closed/mineral/smooth/desertdamrockwall/indestructible,
+/area/space)
 "np" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -3790,6 +3824,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/commcenter)
+"sZ" = (
+/obj/docking_port/stationary/crashmode{
+	name = "SOM Crashland point 2";
+	id = "somcrashland2";
+	dir = 1
+	},
+/turf/open/floor/mainship/office,
+/area/antag_ship/som/bridge)
 "te" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper PMC Airlock";
@@ -7525,6 +7567,14 @@
 	dir = 1
 	},
 /area/antag_ship/vsd/armory)
+"Lz" = (
+/obj/docking_port/stationary/crashmode{
+	name = "PMC Crashland point";
+	id = "pmccrashland";
+	dir = 1
+	},
+/turf/open/floor/mainship/black/full,
+/area/antag_ship/pmc_ntf/center/armory)
 "LC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -8843,6 +8893,14 @@
 	},
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
+"RV" = (
+/obj/docking_port/stationary/crashmode{
+	name = "PMC Crashland point 2";
+	id = "pmccrashland2";
+	dir = 1
+	},
+/turf/open/floor/mainship/black/full,
+/area/antag_ship/pmc_ntf/center/armory)
 "RY" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -11282,7 +11340,7 @@ Cc
 nD
 GX
 iX
-GX
+Lz
 IF
 bK
 Cc
@@ -11339,7 +11397,7 @@ bb
 bb
 bb
 Xn
-dT
+sZ
 pn
 Oi
 ND
@@ -11947,7 +12005,7 @@ Cc
 Xv
 GX
 iX
-GX
+RV
 IF
 bK
 Cc
@@ -13837,7 +13895,7 @@ CN
 CN
 CN
 CN
-VK
+eQ
 CN
 CN
 CN
@@ -15360,7 +15418,7 @@ CN
 mg
 Ro
 AO
-QT
+eF
 LI
 LI
 eH
@@ -17069,7 +17127,7 @@ zb
 zb
 zb
 zb
-Cy
+eP
 kn
 As
 As
@@ -21344,7 +21402,7 @@ zb
 zb
 zb
 zb
-zb
+no
 kn
 As
 As
