@@ -282,13 +282,13 @@ SUBSYSTEM_DEF(spatial_grid)
 			for(var/row in BOUNDING_BOX_MIN(center_y) to BOUNDING_BOX_MAX(center_y, cells_on_y_axis))
 				for(var/x_index in BOUNDING_BOX_MIN(center_x) to BOUNDING_BOX_MAX(center_x, cells_on_x_axis))
 
-					. += grid_level[row][x_index].client_contents
+					UNLINT(. += grid_level[row][x_index].client_contents)
 
 		if(SPATIAL_GRID_CONTENTS_TYPE_HEARING)
 			for(var/row in BOUNDING_BOX_MIN(center_y) to BOUNDING_BOX_MAX(center_y, cells_on_y_axis))
 				for(var/x_index in BOUNDING_BOX_MIN(center_x) to BOUNDING_BOX_MAX(center_x, cells_on_x_axis))
 
-					. += grid_level[row][x_index].hearing_contents
+					UNLINT(. += grid_level[row][x_index].hearing_contents)
 
 	return .
 

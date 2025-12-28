@@ -37,7 +37,7 @@
 	///assoc list "[bitflag]" = list(typepaths)
 	var/list/autogrant_actions_controller
 	///assoc list mob = list(type = action datum assigned to mob)
-	var/list/mob/occupant_actions
+	var/list/occupant_actions
 	///This vehicle will follow us when we move (like atrailer duh)
 	var/obj/vehicle/trailer
 	var/are_legs_exposed = FALSE
