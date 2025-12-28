@@ -10,7 +10,7 @@
 	screen_overlay = "intel_computer_screen"
 	circuit = /obj/item/circuitboard/computer/intel_computer
 
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 	///Whether this computer is activated by the event yet
