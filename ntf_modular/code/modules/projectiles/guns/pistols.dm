@@ -61,3 +61,19 @@
         staggerstun(target_mob, proj, paralyze = 0, stun = 1 SECONDS, stagger = 1 SECONDS, slowdown = 1, knockback = 1)
     else
         staggerstun(target_mob, proj, paralyze = 1 SECONDS, stagger = 1 SECONDS, slowdown = 1, knockback = 1)
+
+/datum/ammo/bullet/pistol/tranq
+	name = "tranq bullet"
+	hud_state = "pistol_tranq"
+	armor_type = "bullet"
+	damage = 80 //should knock enemies down on multiple shots.
+	penetration = 20
+	damage_type = STAMINA
+	shell_speed = 3.3
+	shrapnel_chance = 0.2
+	plasma_drain = 20
+
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/carbon_victim = target_mob
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(5,8), no_overdose = TRUE)

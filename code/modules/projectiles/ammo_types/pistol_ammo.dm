@@ -30,23 +30,6 @@
 	sundering = 0.5
 	damage_falloff = 1.5
 
-
-/datum/ammo/bullet/pistol/tranq
-	name = "tranq bullet"
-	hud_state = "pistol_tranq"
-	armor_type = "bullet"
-	damage = 80 //should knock enemies down on multiple shots.
-	penetration = 20
-	damage_type = STAMINA
-	shell_speed = 3.3
-	shrapnel_chance = 0.2
-	plasma_drain = 20
-
-/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	if(iscarbon(target_mob))
-		var/mob/living/carbon/carbon_victim = target_mob
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, rand(3,5), no_overdose = TRUE)
-
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
 	hud_state = "pistol_hollow"
