@@ -991,7 +991,7 @@
 	slowdown = 0.35 // Somewhat between light/medium
 	recharge_rate = 15
 	melee_bonus = 1.6
-	soft_armor = list(MELEE = -15, BULLET = -5, LASER = -5, ENERGY = -5, BOMB = -5, BIO = -10, FIRE = -10, ACID = -10)
+	soft_armor = list(MELEE = -15, BULLET = -10, LASER = -10, ENERGY = -10, BOMB = -5, BIO = -10, FIRE = -10, ACID = -10)
 
 /obj/item/armor_module/module/eshield/barrier/heavy
 	name = "Goliath Heavy Energy Shield"
@@ -1001,4 +1001,4 @@
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	recharge_rate = 75
 	melee_bonus = 1.8
-	soft_armor = list(MELEE = -20, BULLET = -15, LASER = -15, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)
+	soft_armor = list(MELEE = -20, BULLET = -20, LASER = -20, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)

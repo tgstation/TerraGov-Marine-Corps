@@ -277,9 +277,9 @@
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 // Equalizer Modules
-		/obj/item/armor_module/module/style/light_armor,
+/*		/obj/item/armor_module/module/style/light_armor,
 		/obj/item/armor_module/module/style/medium_armor,
-		/obj/item/armor_module/module/style/heavy_armor,
+		/obj/item/armor_module/module/style/heavy_armor,*/
 	)
 
 /obj/item/clothing/suit/modular/style/barrier/lightbarrier
