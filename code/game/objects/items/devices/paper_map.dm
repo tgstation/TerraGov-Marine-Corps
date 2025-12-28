@@ -177,12 +177,6 @@
 	interactee.client?.screen += map
 	handle_locator(interactee)
 
-/obj/item/paper_map/marine
-	minimap_flag = MINIMAP_FLAG_MARINE
-
-/obj/item/paper_map/som
-	minimap_flag = MINIMAP_FLAG_MARINE_SOM
-
 /obj/item/paper_map/shipside
 	targetted_zlevel = 4
 
