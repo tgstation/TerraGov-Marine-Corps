@@ -405,7 +405,7 @@
 	var/damaged_shield_cooldown = 10 SECONDS
 	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
 	var/recharge_timer
-	///Layer for the shield outline effect.  Purely visual.
+	///Layer for the shield outline effect.  Also affects which shield takes damage first
 	var/shield_layer = 0
 
 /obj/item/armor_module/module/eshield/Initialize(mapload)
@@ -480,7 +480,7 @@
 	SIGNAL_HANDLER
 	if(!shield_health)
 		return
-	affecting_shields += CALLBACK(src, PROC_REF(intercept_damage))
+	affecting_shields[CALLBACK(src, PROC_REF(intercept_damage))] = 2-shield_layer
 
 ///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent, shield_flags)
