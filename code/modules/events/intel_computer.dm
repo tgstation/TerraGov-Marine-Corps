@@ -11,7 +11,7 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_DISK_PRINTED, PROC_REF(recalculate_weight))
 	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_COMPUTER_ACTIVATED, PROC_REF(recalculate_weight))
-	weight *= 36
+	weight *= 108
 
 /datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, var/obj/item/disk/intel_disk/new_disk)
 	var/active_computers = 0
@@ -20,11 +20,11 @@
 			active_computers++
 	switch(active_computers)
 		if(0)
-			weight = initial(weight)*36
+			weight = initial(weight)*108
 		if(1)
-			weight = initial(weight)*6
+			weight = initial(weight)*12
 		if(2)
-			weight = initial(weight)*3
+			weight = initial(weight)*6
 		else
 			weight = initial(weight)
 

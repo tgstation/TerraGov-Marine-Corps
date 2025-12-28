@@ -2,7 +2,7 @@
 /datum/round_event_control/supply_drop
 	name = "Supply drop"
 	typepath = /datum/round_event/supply_drop
-	weight = 1
+	weight = 3
 	min_players = 5
 	earliest_start = 30 MINUTES
 
