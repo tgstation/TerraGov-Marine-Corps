@@ -3935,8 +3935,6 @@
 	dir = 4;
 	pixel_x = 1
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -4709,6 +4707,7 @@
 	dir = 6;
 	pixel_x = 1
 	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "eEf" = (
@@ -6071,6 +6070,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"fLO" = (
+/obj/machinery/holopad,
+/turf/open/shuttle/escapepod,
+/area/mainship/hallways/hangar/droppod)
 "fMu" = (
 /obj/machinery/door/window/secure/brig/cell_2,
 /obj/machinery/door/poddoor/shutters/mainship/cell/brig/cell2,
@@ -17727,7 +17730,6 @@
 	dir = 10;
 	layer = 2.5
 	},
-/obj/structure/cable,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "rxg" = (
@@ -20299,7 +20301,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/port_point_defense)
 "tWc" = (
-/obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9;
 	pixel_y = 1
@@ -20309,6 +20310,7 @@
 	pixel_y = 1;
 	pixel_x = 1
 	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "tWd" = (
@@ -23464,6 +23466,8 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
 /turf/open/shuttle/escapepod,
 /area/mainship/hallways/hangar/droppod)
 "wTt" = (
@@ -58329,7 +58333,7 @@ eCz
 iGN
 mRU
 dTJ
-tWc
+vXC
 rwE
 bHY
 uxo
@@ -58532,7 +58536,7 @@ aFG
 ics
 uUK
 mue
-vFe
+duf
 rEd
 dOa
 uLI
@@ -58734,7 +58738,7 @@ wnQ
 ics
 uUK
 mue
-eiu
+fLO
 rEd
 dOa
 uLI
@@ -59138,7 +59142,7 @@ eCz
 ics
 uUK
 mue
-duf
+vFe
 nig
 acO
 cYk
@@ -59340,7 +59344,7 @@ eCz
 ics
 uUK
 mue
-duf
+vFe
 rEd
 dOa
 uLI
@@ -59541,7 +59545,7 @@ eCz
 eCz
 ics
 wTf
-vXC
+tWc
 eEe
 bLh
 uxo
