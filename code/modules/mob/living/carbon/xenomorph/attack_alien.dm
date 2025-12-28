@@ -17,7 +17,7 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee", shield_flags = SHIELD_FLAG_XENOMORPH))
 		return ..()
 	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
 		span_danger("Our grab was blocked by [src]'s shield!"), null, 5)
@@ -69,7 +69,7 @@
 		armor_pen += i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
-		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee", shield_flags = SHIELD_FLAG_XENOMORPH)
 
 	if(!damage)
 		X.visible_message(span_danger("\The [X]'s disarm is blocked by [src]'s shield!"),
@@ -233,7 +233,7 @@
 		armor_pen += i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
-		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee", shield_flags = SHIELD_FLAG_XENOMORPH)
 
 	if(!damage)
 		X.visible_message(span_danger("\The [X]'s slash is blocked by [src]'s shield!"),

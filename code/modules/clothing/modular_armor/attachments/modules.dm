@@ -389,7 +389,6 @@
 	var/max_shield_health = 60
 	///Amount to recharge per tick, processes once every two seconds.
 	var/recharge_rate = 10
-	var/melee_bonus = 1
 
 	///Spark system used to generate sparks when the armor takes damage
 	var/datum/effect_system/spark_spread/spark_system
@@ -406,7 +405,7 @@
 	var/damaged_shield_cooldown = 10 SECONDS
 	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
 	var/recharge_timer
-	///Layer for the shield outline effect.  Purely visual.
+	///Layer for the shield outline effect.  Also affects which shield takes damage first
 	var/shield_layer = 0
 
 /obj/item/armor_module/module/eshield/Initialize(mapload)
@@ -477,21 +476,19 @@
 	shield_health = 0
 
 ///Adds the correct proc callback to the shield list for intercepting damage.
-/obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
+/obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type, shield_flags)
 	SIGNAL_HANDLER
 	if(!shield_health)
 		return
-	affecting_shields += CALLBACK(src, PROC_REF(intercept_damage))
+	affecting_shields[CALLBACK(src, PROC_REF(intercept_damage))] = 2-shield_layer
 
 ///Handles the interception of damage.
-/obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
+/obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent, shield_flags)
 	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
 
 	STOP_PROCESSING(SSobj, src)
 	var/shield_left = shield_health - incoming_damage
-	if(attack_type == COMBAT_MELEE_ATTACK)
-		shield_left = shield_health - incoming_damage * melee_bonus
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield[shield_layer]")
 	if(shield_left > 0)
@@ -974,13 +971,21 @@
 	attach_features_flags = ATTACH_ACTIVATION
 	slot = ATTACHMENT_SLOT_KNEE
 	shield_layer = 1
+	var/xeno_multipllier = 1
+
+/obj/item/armor_module/module/eshield/barrier/intercept_damage(attack_type, incoming_damage, damage_type, silent, shield_flags)
+	if(shield_flags & SHIELD_FLAG_XENOMORPH)
+		incoming_damage *= xeno_multipllier
+	. = ..()
+	if(shield_flags & SHIELD_FLAG_XENOMORPH)
+		. /= xeno_multipllier
 
 /obj/item/armor_module/module/eshield/barrier/light
 	name = "Dampener Light Energy Shield"
 	max_shield_health = 40
 	damaged_shield_cooldown = 0.8 SECONDS
 	shield_color_full = COLOR_LIME
-	melee_bonus = 1.2
+	xeno_multipllier = 1.2
 	recharge_rate = 25
 
 /obj/item/armor_module/module/eshield/barrier/medium
@@ -990,7 +995,7 @@
 	shield_color_full = COLOR_LASER_BLUE
 	slowdown = 0.35 // Somewhat between light/medium
 	recharge_rate = 15
-	melee_bonus = 1.6
+	xeno_multipllier = 1.6
 	soft_armor = list(MELEE = -20, BULLET = -10, LASER = -10, ENERGY = -10, BOMB = -10, BIO = -15, FIRE = -15, ACID = -15)
 
 /obj/item/armor_module/module/eshield/barrier/heavy
@@ -1000,5 +1005,5 @@
 	shield_color_full = COLOR_RED //  Her shields were up and glowing red!! Goodbye, Dawson's christian...
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	recharge_rate = 75
-	melee_bonus = 1.8
+	xeno_multipllier = 1.8
 	soft_armor = list(MELEE = -20, BULLET = -20, LASER = -20, ENERGY = -20, BOMB = -20, BIO = -25, FIRE = -20, ACID = -25)

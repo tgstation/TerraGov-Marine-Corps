@@ -725,12 +725,12 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 				if(3)
 					target.visible_message("<span class='danger'>[src] falls limp after fucking [target.gender==MALE ? "itself on [target]'s cock" : "[target]'s vagina"]!</span>")
 			if(ismonkey(target))
-				damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+				damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE, shield_flags = SHIELD_FLAG_XENOMORPH)
 				if(damage)
 					target.apply_damage(damage, BRUTE, BODY_ZONE_PRECISE_GROIN, MELEE, updating_health = TRUE)
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws and fucks [target] before falling down!"),span_danger("[src] frantically claws and fucks you before falling down! Auugh!"))
-			damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+			damage = target.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE, shield_flags = SHIELD_FLAG_XENOMORPH)
 			if(damage)
 				target.apply_damage(damage, BRUTE, BODY_ZONE_PRECISE_GROIN, MELEE, updating_health = TRUE)
 
@@ -987,7 +987,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	the_damage = victim.check_shields(COMBAT_MELEE_ATTACK, the_damage, MELEE)
+	the_damage = victim.check_shields(COMBAT_MELEE_ATTACK, the_damage, MELEE, shield_flags = SHIELD_FLAG_XENOMORPH)
 	victim.apply_damage(the_damage, BRUTE, affecting, MELEE) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE
