@@ -940,6 +940,7 @@
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
 	autobalance_monitor_value = ZX_PRICE
+	damage_mult = 0.7
 
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
