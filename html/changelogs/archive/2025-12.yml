@@ -166,3 +166,7 @@
   - rscadd: Added the ability to possess minions for hivemind, puppeteer, widow
   - rscadd: Puppeteer can now make puppets that sound like people in the world
   - balance: Puppeteer puppets no longer have a range limit.
+2025-12-28:
+  Colfer1:
+  - balance: Spiderlings no longer deal stamina damage when disarming you, instead
+      they just provide an extremely intense slowdown
