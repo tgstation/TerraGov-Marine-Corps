@@ -391,7 +391,7 @@
 			if(user.job.title != job)
 				to_chat(user, span_warning("Invalid job. This outfit is for [job]."))
 				return
-			if(!is_mainship_level(user.z) && !is_antagmainship_level(user.z))
+			if(!is_mainship_level(user.z) && !is_antagmainship_level(user.z) && !istype(get_area(user), /area/shuttle/canterbury))
 				to_chat(user, span_warning("You can't equip a new loadout in the field!"))
 				return
 			if(!loadouts[job].check_full_loadout())
