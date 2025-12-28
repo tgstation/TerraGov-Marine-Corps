@@ -104,6 +104,8 @@
 /datum/emote/proc/check_cooldown(mob/user, intentional)
 	if(!intentional)
 		return TRUE
+	if(!cooldown)
+		return TRUE
 	if(TIMER_COOLDOWN_RUNNING(user, "emote[key]"))
 		return FALSE
 	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
