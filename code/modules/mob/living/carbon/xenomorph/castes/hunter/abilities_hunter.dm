@@ -426,7 +426,7 @@
 
 	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
-		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee", shield_flags = SHIELD_FLAG_XENOMORPH))
 			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
 			xeno_owner.set_throwing(FALSE)
 			return

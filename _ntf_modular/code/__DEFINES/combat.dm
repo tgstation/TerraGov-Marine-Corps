@@ -1,0 +1,1 @@
+#define SHIELD_FLAG_XENOMORPH (1 << 0)

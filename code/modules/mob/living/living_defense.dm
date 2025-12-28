@@ -288,18 +288,18 @@
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return bio_protection
 
-/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0, shield_flags = NONE)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
 		return 0
 	. = damage
 	var/list/affecting_shields = list()
-	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
+	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type, shield_flags)
 	if(length(affecting_shields) > 1)
 		sortTim(affecting_shields, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
-		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
+		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration, shield_flags)
 		if(!.)
 			break
 

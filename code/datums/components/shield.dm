@@ -131,7 +131,7 @@
 	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
 
 ///Signal handler for incoming damage, directs to the right callback proc
-/datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
+/datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type, shield_flags)
 	SIGNAL_HANDLER
 	if(cover.getRating(dam_type) <= 0)
 		return
@@ -233,7 +233,7 @@
 	transfer_damage_cb = CALLBACK(src, PROC_REF(transfer_damage_to_overhealth))
 
 ///Checks if damage should be passed to overshield
-/datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)
+/datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent, shield_flags)
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
 			return incoming_damage
@@ -243,10 +243,10 @@
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
-			return transfer_damage_cb.Invoke(absorbing_damage, incoming_damage - absorbing_damage, silent)
+			return transfer_damage_cb.Invoke(absorbing_damage, incoming_damage - absorbing_damage, silent, shield_flags)
 
 ///Calculates actual damage to the shield, returning total amount that penetrates
-/datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(absorbing_damage, unabsorbed_damage, silent)
+/datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(absorbing_damage, unabsorbed_damage, silent, shield_flags)
 	if(absorbing_damage >= shield_integrity)
 		unabsorbed_damage += absorbing_damage - shield_integrity
 	if(!silent)
