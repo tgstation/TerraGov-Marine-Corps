@@ -536,7 +536,7 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	icon_state = "at32"
 	default_ammo = /datum/ammo/bullet/auto_cannon
-	max_rounds = 40
+	max_rounds = 30
 	reload_delay = 25
 	icon_state_mini = "mag_dmr"
 
@@ -546,7 +546,7 @@
 	caliber = CALIBER_20
 	icon_state = "at32_he"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
-	max_rounds = 40
+	max_rounds = 30
 	reload_delay = 25
 	icon_state_mini = "mag_dmr"
 
@@ -556,6 +556,6 @@
 	caliber = CALIBER_20
 	icon_state = "at32_at"
 	default_ammo = /datum/ammo/bullet/auto_cannon/anti_tank
-	max_rounds = 40
+	max_rounds = 30
 	reload_delay = 25
 	icon_state_mini = "mag_dmr"

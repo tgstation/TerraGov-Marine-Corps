@@ -1175,7 +1175,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
 	fire_animation = "at32"
-	max_shells = 40 //codex
+	max_shells = 30 //codex
 	caliber = CALIBER_20 //codex
 	load_method = MAGAZINE //codex
 	fire_sound = 'sound/weapons/guns/fire/autocannon_1.ogg'
@@ -1194,9 +1194,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 0.45 SECONDS
 	wield_delay = 0.85 SECONDS
 	windup_delay = 0.1 SECONDS
-	aim_slowdown = 2.75
-	accuracy_mult = 1
+	aim_slowdown = 3
+	accuracy_mult = 0.7 //0.8 with lasersight
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 10
+	damage_falloff_mult = 2
 	scatter = 0
+
 	autobalance_monitor_value = null
