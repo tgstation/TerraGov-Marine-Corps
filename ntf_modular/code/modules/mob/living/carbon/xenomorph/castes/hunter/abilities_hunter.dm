@@ -101,7 +101,7 @@
 /datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, DEATH_MARK_CHARGEUP, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+	if(!do_after(X, DEATH_MARK_CHARGEUP, IGNORE_HAND|IGNORE_HELD_ITEM, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE))
 		return
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
@@ -153,7 +153,7 @@
 		if(whereweat.get_lumcount() > 0.4) //cant shift out a lit turf.
 			X.balloon_alert(X, "We need a darker spot.") //so its more visible to xeno.
 			return
-	if(do_after(X, 3 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
+	if(do_after(X, 4 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health)))) //dont move
 		do_change_form(X)
 
 ///Finish the form changing of the hunter and give the needed stats
