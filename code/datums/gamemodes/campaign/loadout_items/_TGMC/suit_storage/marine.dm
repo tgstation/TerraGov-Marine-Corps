@@ -305,6 +305,7 @@
 	Uses back or gun mounted fuel tanks."
 	req_desc = "Requires a suit with a Surt module."
 	ui_icon = "m240"
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SPECIALIST)
 	item_typepath = LOADOUT_ITEM_TGMC_FLAMER
 	item_whitelist = list(/obj/item/clothing/suit/modular/tdf/heavy/surt = ITEM_SLOT_OCLOTHING)
 	item_blacklist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = ITEM_SLOT_SECONDARY)

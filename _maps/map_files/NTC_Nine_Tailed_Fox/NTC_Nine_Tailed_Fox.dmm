@@ -267,12 +267,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/chapel/office)
-"aoj" = (
-/obj/item/paper{
-	info = "OOC: let us know in discord if there is any loadout additions that could fit specialist job here."
-	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/squads/specialist)
 "aoE" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/mainship/cargo,
@@ -33048,7 +33042,7 @@ kyS
 juD
 mKo
 jyM
-aoj
+vZP
 vIh
 iXo
 mKo
