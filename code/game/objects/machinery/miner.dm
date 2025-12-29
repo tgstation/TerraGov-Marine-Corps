@@ -297,6 +297,13 @@
 			. += span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.")
 		if(MINER_RUNNING)
 			. += span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported.")
+	. += span_info("Each crate it produces is worth [mineral_value] supply points and [dropship_bonus] dropship points.")
+	if(miner_upgrade_type == MINER_OVERCLOCKED)
+		. += span_info("Due to its upgrade, it produces one crate each [required_ticks*2] seconds, or [mineral_value*((1 HOURS / (2 SECONDS))/required_ticks)] supply points per hour.")
+		. += span_info("Without its upgrade, it would produce one crate each [initial(required_ticks)*2] seconds, or [mineral_value*((1 HOURS / (2 SECONDS))/initial(required_ticks))] supply points per hour.")
+	else
+		. += span_info("It produces one crate each [required_ticks*2] seconds, or [mineral_value*((1 HOURS / (2 SECONDS))/required_ticks)] supply points per hour.")
+
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
