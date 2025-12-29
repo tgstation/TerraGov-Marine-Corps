@@ -170,3 +170,8 @@
   Colfer1:
   - balance: Spiderlings no longer deal stamina damage when disarming you, instead
       they just provide an extremely intense slowdown
+2025-12-29:
+  Colfer1:
+  - balance: barrier armor now has a melee modifier, increasing melee damage done
+      to the shield
+  - bugfix: Most cleanables now layer over weeds, good thing there is soap
