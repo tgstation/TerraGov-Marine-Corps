@@ -258,8 +258,7 @@ GLOBAL_LIST_INIT(vanguard_gear_listed_products, list(
 	/obj/item/armor_module/module/hlin_explosive_armor = list(CAT_CDSUP, "Hlin Explosive Compensation Module", 5,"orange"),
 	/obj/item/ammo_magazine/packet/mateba = list(CAT_CDSUP, "Mateba .454 casull Packet", 1, "black"),
 	/obj/item/ammo_magazine/rifle/nt_halter/smart = list(CAT_CDSUP, "NT-Halter Smart magazine", 1, "black"),
-	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_STASUP, "Injector (Advanced)", 3, "orange"),
-
+	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_CDSUP, "Injector (Advanced)", 3, "orange"),
 	))
 
 GLOBAL_LIST_INIT(pmc_standard_gear_listed_products, list(
