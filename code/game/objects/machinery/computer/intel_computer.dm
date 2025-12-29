@@ -163,12 +163,12 @@
 /obj/machinery/computer/intel_computer/examine(mob/user)
 	. = ..()
 	if(printing && faction)
-		. += "It is being operated by [faction]"
-	. += "The next disk this computer produces will be worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and be part of an intel chain of length [max_chain]."
+		. += span_notice("It is being operated by [faction]")
+	. += span_notice("The next disk this computer produces will be worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and [max_chain ? "be part of an intel chain of length [max_chain]" : "not be part of an intel chain"].")
 	if(isxeno(user))
 		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[user.get_xeno_hivenumber()])
 		. += span_notice("You could redeem it at a silo for [floor(supply_reward/160)] ambrosia, [round(supply_reward/2, 0.1)] psypoints and [round(floor(supply_reward/60)/xeno_job.job_points_needed, 0.01)] burrowed larvae.")
-
+	. += span_notice("[active ? "Y":"Once it is active, y"]ou could insert an intel disk to increase these rewards. [max_chain ? "This will extend its intel chain if it is already part of a chain of length [max_chain] or more" : "This will also start an intel chain"].")
 
 /obj/item/disk/intel_disk
 	name = "classified data disk"
@@ -238,7 +238,11 @@
 
 /obj/item/disk/intel_disk/examine(mob/user)
 	. = ..()
-	. += span_notice("It is worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and is part of an intel chain of length [max_chain].")
+	if(world.time > printed_at + duration)
+		. += span_userdanger("It has expired, is worthless, and will soon explode!")
+		return
+	. += span_notice("It is worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and is [max_chain ? "part of an intel chain of length [max_chain]":"not part of an intel chain"].")
 	if(isxeno(user))
 		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[user.get_xeno_hivenumber()])
 		. += span_notice("You could redeem it at a silo for [floor(supply_reward/160)] ambrosia, [round(supply_reward/2, 0.1)] psypoints and [round(floor(supply_reward/60)/xeno_job.job_points_needed, 0.01)] burrowed larvae.")
+	. += span_notice("You could insert it into an active intel computer to increase these rewards and [max_chain?"extend its intel chain to length [max_chain+1]":"start an intel chain"].")
