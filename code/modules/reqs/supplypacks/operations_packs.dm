@@ -158,8 +158,15 @@ OPERATIONS
 
 /datum/supply_packs/operations/monkeyboxes
 	name = "Monkey Cube Box"
+	notes = "Contains 5 cubes."
 	contains = list(/obj/item/storage/box/monkeycubes)
 	cost = 500
+
+/datum/supply_packs/operations/monkeyboxes/single
+	name = "Monkey Cube"
+	notes = "A single cube, without a box."
+	contains = list(/obj/item/reagent_containers/food/snacks/monkeycube)
+	cost = 100
 
 /datum/supply_packs/operations/droppod_mech
 	name = "mech drop pod"
