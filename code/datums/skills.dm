@@ -1,19 +1,19 @@
 #define SKILLSID "skills-[unarmed]-[melee_weapons]\
 -[combat]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
--[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[mech]-[stamina]"
+-[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]-[mech]-[stamina]-[sex]"
 
 #define SKILLSIDSRC(S) "skills-[S.unarmed]-[S.melee_weapons]\
 -[S.combat]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
--[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.mech]-[S.stamina]"
+-[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]-[S.mech]-[S.stamina]-[S.sex]"
 
 /proc/getSkills(unarmed = 0, melee_weapons = 0,\
 combat = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
-engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, mech = 0, stamina = 0)
+engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, mech = 0, stamina = 0, sex = 0)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(unarmed, melee_weapons,\
 			combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
+			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina, sex)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
@@ -37,6 +37,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/large_vehicle = initial(new_skill.large_vehicle)
 	var/stamina = initial(new_skill.stamina)
 	var/mech = initial(new_skill.mech)
+	var/sex = initial(new_skill.sex)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new skills_type
@@ -68,11 +69,11 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/mech = SKILL_MECH_DEFAULT
 	///Effects stamina regen rate and regen delay
 	var/stamina = SKILL_STAMINA_DEFAULT
-
+	var/sex = SKILL_SEX_DEFAULT
 
 /datum/skills/New(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina, sex)
 	if(!isnull(unarmed))
 		src.unarmed = unarmed
 	if(!isnull(melee_weapons))
@@ -113,12 +114,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		src.mech = mech
 	if(!isnull(stamina))
 		src.stamina = stamina
+	if(!isnull(sex))
+		src.sex = sex
 	tag = SKILLSIDSRC(src)
 
 /// returns/gets a new skills datum with values changed according to the args passed
 /datum/skills/proc/modifyRating(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina, sex)
 	return getSkills(src.unarmed+unarmed,\
 	src.melee_weapons+melee_weapons,\
 	src.combat+combat,\
@@ -138,7 +141,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.powerloader+powerloader,\
 	src.large_vehicle+large_vehicle,\
 	src.mech+mech,\
-	src.stamina+stamina)
+	src.stamina+stamina,\
+	src.sex+sex)
 
 /// acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones
 /datum/skills/proc/modifyAllRatings(difference)
@@ -161,12 +165,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.powerloader+difference,\
 	src.large_vehicle+difference,\
 	src.mech+difference,\
-	src.stamina+difference)
+	src.stamina+difference,\
+	src.sex+difference)
 
 /// acts as [/proc/modifyRating] but sets the rating directly rather than modify it
 /datum/skills/proc/setRating(unarmed, melee_weapons,\
 combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, mech, stamina, sex)
 	return getSkills((isnull(unarmed) ? src.unarmed : unarmed),\
 		(isnull(melee_weapons) ? src.melee_weapons : melee_weapons),\
 		(isnull(combat) ? src.combat : combat),\
@@ -186,7 +191,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		(isnull(powerloader) ? src.powerloader : powerloader),\
 		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle),\
 		(isnull(mech) ? src.mech : mech),\
-		(isnull(stamina) ? src.stamina : stamina))
+		(isnull(stamina) ? src.stamina : stamina),\
+		(isnull(sex) ? src.sex : sex))
 
 /datum/skills/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, tag))
@@ -227,6 +233,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_LARGE_VEHICLE = large_vehicle,
 		SKILL_MECH = mech,
 		SKILL_STAMINA = stamina,
+		SKILL_SEX = sex,
 	)
 
 /datum/skills/civilian

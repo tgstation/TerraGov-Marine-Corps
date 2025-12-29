@@ -147,3 +147,8 @@
 	icon_state = "centcom"
 	desc = "A credstick which can be redeemed at a voucher console for credits used in skillsoft purchases or everyday needs."
 	var/worth = 100
+
+/obj/item/card/credstick/executive
+	name = "executive dredstick"
+	desc = "A credstick which can be redeemed at a voucher console for credits used in skillsoft purchases or everyday needs. This one is an executive version, holding 5000 credits."
+	worth = 5000

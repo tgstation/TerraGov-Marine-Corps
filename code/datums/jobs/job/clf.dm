@@ -128,6 +128,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	comm_title = "CLF0"
 	minimap_icon = "CLF0"
 	outfit = /datum/outfit/job/clf/breeder
+	skills_type = /datum/skills/slut/clf
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ADDTOMANIFEST
 	multiple_outfits = FALSE
 

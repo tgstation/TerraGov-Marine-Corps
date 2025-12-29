@@ -14,6 +14,10 @@
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/ceo
 
+/obj/effect/landmark/start/job/nm_ceo
+	icon_state = "CMO"
+	job = /datum/job/terragov/command/nm_ceo
+
 /obj/effect/landmark/start/job/captain/campaign
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain/campaign
