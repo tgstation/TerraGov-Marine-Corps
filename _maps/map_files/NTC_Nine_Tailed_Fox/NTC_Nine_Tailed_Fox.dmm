@@ -21599,6 +21599,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/bathroom)
+"ttZ" = (
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "tux" = (
 /obj/structure/closet/secure_closet/xeno_cage,
 /turf/open/floor/mainship/sterile/dark,
@@ -30875,7 +30881,7 @@ kjD
 kyS
 wDa
 mUE
-kyS
+ttZ
 kjD
 kyS
 dhN
