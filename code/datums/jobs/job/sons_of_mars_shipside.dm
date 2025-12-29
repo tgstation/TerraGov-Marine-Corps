@@ -488,6 +488,7 @@ A happy base is a well-functioning base."}
 
 /datum/job/som/medical/professor
 	title = SOM_CHIEF_MEDICAL_OFFICER
+	shadow_languages = list(/datum/language/xenocommon)
 	access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_MARINE_ENGINEERING, ACCESS_SOM_TADPOLE)
 	minimal_access = list(ACCESS_SOM_DEFAULT,ACCESS_SOM_MEDICAL,ACCESS_SOM_ENGINEERING,ACCESS_SOM_COMMAND,ACCESS_MARINE_ENGINEERING, ACCESS_SOM_TADPOLE)
 	req_admin_notify = TRUE

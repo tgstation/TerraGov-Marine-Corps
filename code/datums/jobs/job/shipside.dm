@@ -718,6 +718,7 @@ A happy ship is a well-functioning ship."}
 
 /datum/job/terragov/medical/professor
 	title = CHIEF_MEDICAL_OFFICER
+	shadow_languages = list(/datum/language/xenocommon)
 	req_admin_notify = TRUE
 	comm_title = "CMO"
 	paygrade = "SP"
