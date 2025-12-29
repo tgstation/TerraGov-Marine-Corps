@@ -120,8 +120,8 @@
 		if(embryo.affected_mob == affected_mob)
 			embryos_in_host++
 	if(affected_mob.client && (affected_mob.client.inactivity < 10 MINUTES))
-		psypoint_reward += psych_points_output * 5 / embryos_in_host
-		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK * 5 / embryos_in_host
+		psypoint_reward += psych_points_output * 10 / embryos_in_host
+		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK * 10 / embryos_in_host
 	else
 		psypoint_reward += psych_points_output / embryos_in_host
 		biomass_reward += MUTATION_BIOMASS_PER_EMBRYO_TICK / embryos_in_host
