@@ -15,7 +15,7 @@
 	start_sound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 
 /datum/fire_support/mortar/do_impact(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src))
@@ -36,7 +36,7 @@
 	initiate_screen_message = "Coordinates confirmed, incendiary inbound!"
 
 /datum/fire_support/mortar/incendiary/do_impact(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src))
@@ -69,7 +69,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(target_turf, SFX_EXPLOSION_SMALL, 50)
 	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		ads.try_intercept(target_turf, src) //go through

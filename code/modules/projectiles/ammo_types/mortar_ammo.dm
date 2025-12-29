@@ -18,7 +18,7 @@
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 
 /datum/ammo/mortar/drop_nade(turf/T)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -31,7 +31,7 @@
 /datum/ammo/mortar/incend/drop_nade(turf/T)
 	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -47,7 +47,7 @@
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -71,7 +71,7 @@
 /datum/ammo/mortar/howi/incend/drop_nade(turf/T)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -92,7 +92,7 @@
 	smoke.start()
 	flame_radius(4, T)
 	flame_radius(1, T, burn_intensity = 75, burn_duration = 45, burn_damage = 15, fire_stacks = 75)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -107,7 +107,7 @@
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src))
@@ -120,7 +120,7 @@
 	shell_speed = 1.5
 
 /datum/ammo/mortar/rocket/drop_nade(turf/T)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))
@@ -130,7 +130,7 @@
 /datum/ammo/mortar/rocket/incend/drop_nade(turf/T)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))
@@ -154,7 +154,7 @@
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(10, T, 11)
 	smoke.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))
@@ -165,7 +165,7 @@
 	shell_speed = 2.5
 
 /datum/ammo/mortar/rocket/mlrs/drop_nade(turf/T)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))
@@ -175,7 +175,7 @@
 /datum/ammo/mortar/rocket/mlrs/incendiary/drop_nade(turf/T)
 	flame_radius(3, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))
@@ -191,7 +191,7 @@
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(5, T, 6)
 	smoke.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,T))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,T))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(T, src, 0.1, 3))

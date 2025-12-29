@@ -13,7 +13,7 @@
 	start_sound = null
 
 /datum/fire_support/cruise_missile/select_target(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src, 2, 30))
@@ -47,7 +47,7 @@
 	var/outer_range = 9
 
 /datum/fire_support/rad_missile/do_impact(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src, 2, 30))

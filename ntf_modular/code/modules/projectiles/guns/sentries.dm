@@ -257,9 +257,9 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 		return
 	COOLDOWN_START(src, preview_cooldown, 4 SECONDS)
 	balloon_alert_to_viewers("showing range now.")
-	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range, loc))
+	for(var/turf/aroundplace in range(GLOB.ads_intercept_range, loc))
 		QDEL_IN(new /obj/effect/overlay/blinking_laser/ads_range(aroundplace), 3 SECONDS)
-	for(var/turf/aroundplace in orange(GLOB.ads_intercept_range/2, loc))
+	for(var/turf/aroundplace in range(GLOB.ads_intercept_range/2, loc))
 		for(var/obj/effect/overlay/blinking_laser/ads_range/otheroverlay in aroundplace.contents)
 			qdel(otheroverlay)
 		QDEL_IN(new /obj/effect/overlay/blinking_laser/ads_grenade_range(aroundplace), 3 SECONDS)
@@ -359,7 +359,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	default_ammo = /datum/ammo/bullet/turret/air_defense
 
 /obj/item/explosive/grenade/throw_impact(atom/hit_atom, speed, bounce)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range/2,hit_atom))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range/2,hit_atom))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(hit_atom,src, 0.1, 3))

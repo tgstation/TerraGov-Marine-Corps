@@ -9,7 +9,7 @@
 	initiate_screen_message = "Rockets hot, incoming!"
 
 /datum/fire_support/rockets/do_impact(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src, 0.2, 3))
@@ -34,7 +34,7 @@
 	uses = 2
 
 /datum/fire_support/incendiary_rockets/do_impact(turf/target_turf)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,target_turf))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,target_turf))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(target_turf, src, 0.1, 3))

@@ -407,7 +407,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -466,7 +466,7 @@
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
 	warcrime.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -494,7 +494,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -520,7 +520,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -602,7 +602,7 @@
 	impact.ceiling_debris_check(2)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -633,7 +633,7 @@
 /obj/structure/ship_ammo/cas/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
 	. = ..()
 	impact.ceiling_debris_check(2)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -657,7 +657,7 @@
 	var/datum/effect_system/smoke_spread/tactical/S = new
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -680,7 +680,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -705,7 +705,7 @@
 	impact.ceiling_debris_check(2)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -740,7 +740,7 @@
 
 /obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
@@ -803,7 +803,7 @@
 
 /obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in orange(GLOB.ads_intercept_range,impact))
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,impact))
 		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
 			continue
 		if(ads.try_intercept(impact, src, 0.5, 5))
