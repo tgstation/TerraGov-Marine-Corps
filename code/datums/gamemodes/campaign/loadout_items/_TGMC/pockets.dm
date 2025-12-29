@@ -201,7 +201,7 @@
 	desc = "A pouch containing three ammo magazines. Will contain a secondary ammo type where applicable."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/magazine/large
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SLUT, VANGUARD, SQUAD_SPECIALIST, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SLUT, SQUAD_SPECIALIST, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	item_blacklist = list(
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
