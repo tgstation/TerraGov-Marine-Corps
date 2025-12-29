@@ -448,6 +448,7 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 30,
 			/obj/item/ammo_magazine/rifle/standard_carbine = 30,
 			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 30,
+			/obj/item/ammo_magazine/rifle/nt_halter = 30,
 			/obj/item/ammo_magazine/rifle/tx11 = 30,
 			/obj/item/ammo_magazine/packet/p4570 = 16,
 		),
