@@ -165,7 +165,7 @@
 						xeno_user.use_plasma(rand(80,160)+(100*blame_mob.skills.sex))
 					else
 						user.adjustStaminaLoss(rand(40,80)+(60*blame_mob.skills.sex))
-			if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
+			if(SEX_DRAIN_STYLE_DRAIN_BLOOD_FAST)
 				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
 					to_chat(user, span_userdanger("You feel weak and dizzy as [blame_mob] drains your life force through your orgasm!"))
 					log_combat(blame_mob, user, "drained life from", "an orgasm")
@@ -174,9 +174,22 @@
 					blame_mob.adjustStaminaLoss(-rand(10,40))
 					to_chat(blame_mob, span_infoplain("You feel healthier as you drain [user]'s life force through [user.p_their()] orgasm."))
 					if(isxeno(user))
-						user.adjustBruteLoss(115-(30*blame_mob.skills.sex))
+						user.adjustBruteLoss(115+(15*blame_mob.skills.sex))
 					else
-						user.adjust_blood_volume(-(115-(30*blame_mob.skills.sex)))
+						user.adjust_blood_volume(-(115+(15*blame_mob.skills.sex)))
+					blame_mob.adjust_blood_volume(20+blame_mob.skills.sex)
+			if(SEX_DRAIN_STYLE_DRAIN_BLOOD_SLOW)
+				if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
+					to_chat(user, span_userdanger("You feel weak and dizzy as [blame_mob] drains your life force through your orgasm!"))
+					log_combat(blame_mob, user, "drained life from", "an orgasm")
+					blame_mob.heal_overall_damage(rand(40, 80)+(30*blame_mob.skills.sex), rand(40, 80)+(30*blame_mob.skills.sex), TRUE, TRUE)
+					blame_mob.adjustCloneLoss(-(rand(5,15)+(5*blame_mob.skills.sex)))
+					blame_mob.adjustStaminaLoss(-rand(10,40))
+					to_chat(blame_mob, span_infoplain("You feel healthier as you drain [user]'s life force through [user.p_their()] orgasm."))
+					if(isxeno(user))
+						user.adjustBruteLoss(100-(30*blame_mob.skills.sex))
+					else
+						user.adjust_blood_volume(-(100-(30*blame_mob.skills.sex)))
 					blame_mob.adjust_blood_volume(20)
 
 /datum/sex_controller/proc/cum_into(oral = FALSE, mob/filled)
@@ -327,7 +340,14 @@
 							xeno_user.use_plasma(healing_amount*(2+blame_mob.skills.sex))
 						else
 							user.adjustStaminaLoss(healing_amount*(1+blame_mob.skills.sex))
-				if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
+				if(SEX_DRAIN_STYLE_DRAIN_BLOOD_FAST)
+					if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
+						blame_mob.heal_overall_damage(healing_amount*(1+blame_mob.skills.sex), healing_amount*(1+blame_mob.skills.sex), TRUE, TRUE)
+						if(isxeno(user))
+							user.adjustBruteLoss(healing_amount/10)
+						else
+							user.adjust_blood_volume(-healing_amount/10)
+				if(SEX_DRAIN_STYLE_DRAIN_BLOOD_SLOW)
 					if((!(user.mind)) || (user.client?.prefs.harmful_sex_flags & HARMFUL_SEX_BLOOD_DRAIN))
 						blame_mob.heal_overall_damage(healing_amount*(1+blame_mob.skills.sex), healing_amount*(1+blame_mob.skills.sex), TRUE, TRUE)
 						if(isxeno(user))
@@ -768,8 +788,10 @@
 			return "<font color='#eac8de'>HEAL TARGET</font>"
 		if(SEX_DRAIN_STYLE_DRAIN_STAMINA)
 			return "<font color='#e9a8d1'>DRAIN STAMINA</font>"
-		if(SEX_DRAIN_STYLE_DRAIN_BLOOD)
-			return "<font color='#d146f5'>DRAIN BLOOD/LIFE</font>"
+		if(SEX_DRAIN_STYLE_DRAIN_BLOOD_FAST)
+			return "<font color='#f05ee1'>DRAIN LIFE/BLOOD (fast)</font>"
+		if(SEX_DRAIN_STYLE_DRAIN_BLOOD_SLOW)
+			return "<font color='#d146f5'>DRAIN LIFE/BLOOD (slow)</font>"
 
 /datum/sex_controller/proc/get_manual_arousal_string()
 	switch(manual_arousal)
