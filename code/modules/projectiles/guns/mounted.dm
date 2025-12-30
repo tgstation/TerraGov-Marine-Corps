@@ -495,8 +495,8 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 	caliber = CALIBER_14X5 // codex
-	max_shells = 5 //codex
-	max_chamber_items = 5
+	max_shells = 6 //codex
+	max_chamber_items = 6
 	force = 30
 	fire_sound = 'sound/weapons/guns/fire/ptrs.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
