@@ -25,7 +25,7 @@
 		return TRUE
 	. = ..()
 
-/obj/structure/closet/bodybag/cryobag/close()
+/obj/structure/closet/secure_closet/xeno_cage/close()
 	. = ..()
 	for(var/mob/living/carbon/livingthing in contents)
 		if(livingthing.InCritical())
@@ -38,7 +38,7 @@
 				livingthing.heal_overall_damage(livingthing.get_crit_threshold()+5, livingthing.get_crit_threshold()+5, FALSE, TRUE)
 		livingthing.AdjustParalyzed(5 SECONDS)
 
-/obj/structure/closet/bodybag/cryobag/open()
+/obj/structure/closet/secure_closet/xeno_cage/open()
 	for(var/mob/living/carbon/livingthing in contents)
 		livingthing.AdjustParalyzed(5 SECONDS)
 	. = ..()
