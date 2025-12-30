@@ -630,11 +630,13 @@
 	while(TRUE)
 		if(user.getStaminaLoss() > 150)
 			break
-		if(!do_after(user, (action.do_time / get_speed_multiplier()), IGNORE_HAND|IGNORE_HELD_ITEM, target, ignore_turf_checks = IGNORE_LOC_CHANGE|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
-			break
 		//loc check for proximity instead of move disruption.
 		if(!(target in view(1, user)))
+			if(current_action)
+				stop_current_action()
 			return
+		if(!do_after(user, (action.do_time / get_speed_multiplier()), IGNORE_HAND|IGNORE_HELD_ITEM, target, ignore_turf_checks = IGNORE_LOC_CHANGE|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
+			break
 		if(current_action == null || performed_action_type != current_action)
 			break
 		if(!can_perform_action(current_action))
