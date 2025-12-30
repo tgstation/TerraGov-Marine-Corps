@@ -118,6 +118,10 @@
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += job_point_reward / xeno_job.job_points_needed
 		to_chat(user, "<span class='notice'>The hive blesses us with ambrosia and psy points for claiming this object.</span>")
+		if(claimed_disk.max_chain > GLOB.round_statistics.intel_max_chain)
+			GLOB.round_statistics.intel_max_chain = claimed_disk.max_chain
+			GLOB.round_statistics.intel_max_chain_sold_by = "the [hive_status.name] hive"
+			GLOB.round_statistics.intel_max_chain_sold_for = "[floor(psy_point_reward)] psy points, [ambrosia_amount] ambrosia, and [round(job_point_reward / xeno_job.job_points_needed, 0.01)] larvae"
 		return TRUE
 
 	. = ..()

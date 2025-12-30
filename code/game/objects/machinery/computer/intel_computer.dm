@@ -231,6 +231,10 @@
 		the_stats?.give_funds(round(dropship_reward/2))
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
 	GLOB.round_statistics.points_from_intel += supply_reward
+	if(max_chain > GLOB.round_statistics.intel_max_chain)
+		GLOB.round_statistics.intel_max_chain = max_chain
+		GLOB.round_statistics.intel_max_chain_sold_by = faction_selling
+		GLOB.round_statistics.intel_max_chain_sold_for = "[supply_reward] supply points[user ? " and" : ","] [dropship_reward] dropship points[user ? ", and [dropship_reward/2] credits" : ""]"
 
 /obj/item/disk/intel_disk/Destroy()
 	SSminimaps.remove_marker(src)
