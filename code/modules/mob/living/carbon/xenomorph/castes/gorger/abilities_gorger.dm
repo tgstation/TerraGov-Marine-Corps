@@ -96,8 +96,8 @@
 		devour_delay = GORGER_DEVOUR_DELAY
 	if((HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || !victim.client || victim.lying_angle || victim.incapacitated()) && !isxeno(victim))
 		devour_delay -= 1 SECONDS
-		if(haul_mode) //easier to do
-			devour_delay -= 1 SECONDS
+	if(haul_mode) //easier to do
+		devour_delay -= 1 SECONDS
 	if(haul_mode && devour_delay)
 		if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 			to_chat(owner, span_warning("We stop trying to pick up \the [victim]."))
@@ -121,6 +121,8 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim
+	if(xeno_owner.eaten_mob?.mob_size)
+		xeno_owner.add_movespeed_modifier("devourer", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
 	if(ishuman(victim))
 		var/obj/item/radio/headset/mainship/headset = victim.wear_ear
 		if(istype(headset))
@@ -140,7 +142,7 @@
 	action_icon_state = "abduct_[haul_mode? "on" : "off"]"
 	update_button_icon()
 
-/mob/living/carbon/human/resist()
+/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_HAULED))
 		handle_haul_resist()
@@ -152,10 +154,20 @@
 		playsound(xeno_owner.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 		xeno_owner.eaten_mob = target
-		if(xeno_owner.eaten_mob?.mob_size) //carrying will slow down the xeno and be more dangerous compared to devouring due to it being instant.
+		if(xeno_owner.eaten_mob?.mob_size)
 			xeno_owner.add_movespeed_modifier("hauler", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
 		xeno_owner.eaten_mob.forceMove(xeno_owner.loc, get_dir(target.loc, xeno_owner.loc))
 		xeno_owner.eaten_mob.handle_haul(src)
+		RegisterSignal(xeno_owner.eaten_mob, COMSIG_MOB_DEATH, PROC_REF(release_dead_haul))
+
+/datum/action/ability/activable/xeno/devour/proc/release_dead_haul()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/user = xeno_owner.eaten_mob
+	to_chat(src, span_warning("[user] is dead. No more use for them now."))
+	user.handle_unhaul()
+	UnregisterSignal(user, COMSIG_MOB_DEATH)
+	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+	xeno_owner.eaten_mob = null
 
 // Releasing a hauled mob
 /datum/action/ability/activable/xeno/devour/proc/release_haul(stuns = FALSE)

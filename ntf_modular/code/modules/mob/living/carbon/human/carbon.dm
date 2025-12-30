@@ -11,7 +11,7 @@
 		var/obj/item/item = get_active_held_item()
 		if(item?.force)
 			var/damage_of_item = rand(item.force, floor(item.force * 5))
-			xeno.take_limb_damage(damage_of_item)
+			xeno.apply_damage(damage_of_item, BRUTE)
 			visible_message(span_danger("<B>[src] attacks [xeno]'s carapace with the [item.name]!"))
 			if(item.sharp)
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
@@ -29,16 +29,22 @@
 	ADD_TRAIT(src, TRAIT_IMMOBILE, "t_s_xeno_haul")
 	ADD_TRAIT(src, TRAIT_HAULED, "t_s_xeno_haul")
 
+	RegisterSignal(xeno, COMSIG_MOB_DEATH, PROC_REF(release_haul_death))
 	devouring_mob = xeno
 	layer = ABOVE_MOB_LAYER
 	// add_filter("hauled_shadow", 1, color_matrix_filter(rgb(95, 95, 95)))
 	pixel_y = 6
 	next_haul_resist = 0
 
+/mob/living/carbon/human/proc/release_haul_death()
+	SIGNAL_HANDLER
+	handle_unhaul()
+
 // Removing traits and other stuff after xeno releases us from haul
 /mob/living/carbon/human/proc/handle_unhaul()
 	var/location = get_turf(loc)
 	remove_traits(list(TRAIT_HAULED, TRAIT_IMMOBILE), "t_s_xeno_haul")
+	UnregisterSignal(devouring_mob, COMSIG_MOB_DEATH)
 	pixel_y = 0
 	devouring_mob = null
 	layer = MOB_LAYER
