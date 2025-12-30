@@ -12,8 +12,8 @@
 	melee_damage = 12
 	accuracy_malus = 65
 	speed = -0.8
-	plasma_max = 2
-	plasma_gain = 0
+	plasma_max = 100
+	plasma_gain = 3
 	max_health = 250
 	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE
 	minimap_icon = "puppet"
@@ -22,4 +22,12 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/activable/xeno/feed,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/xeno_action/create_edible_jelly,
+		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/place_stew_pod,
 	)

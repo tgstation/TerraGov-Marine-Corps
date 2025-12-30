@@ -6,9 +6,9 @@
 	icon_state = "Puppet Running"
 	health = 250
 	maxHealth = 250
-	plasma_stored = 0
+	plasma_stored = 100
 	pixel_x = 0
-	tier = XENO_TIER_MINION
+	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 	initial_language_holder = /datum/language_holder/xeno/puppet // So we can speak while possessed
 	pull_speed = -1
