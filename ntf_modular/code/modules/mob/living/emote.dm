@@ -42,7 +42,6 @@
 		var/mob/living/L = user
 		L.Paralyze(450 SECONDS)
 		L.ExtinguishMob()
-		L.status_flags |= GODMODE
 
 /datum/emote/living/carbon/xenomorph/xurrender/run_emote(mob/user, params, type_override, intentional = TRUE, prefix)
 	if(!isxeno(user))
