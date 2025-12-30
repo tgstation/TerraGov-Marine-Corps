@@ -115,9 +115,3 @@
 			user.forceMove(src)
 		else
 			user.forceMove(loc)
-
-/mob/living/carbon/xenomorph/relaymove(mob/living/user, direct)
-	. = ..()
-	if(HAS_TRAIT(user, TRAIT_HAULED))
-		var/mob/living/carbon/human/eaten_mob = user
-		eaten_mob.handle_haul_resist()

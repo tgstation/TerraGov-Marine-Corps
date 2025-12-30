@@ -10,7 +10,7 @@
 	if(istype(get_active_held_item(), /obj/item))
 		var/obj/item/item = get_active_held_item()
 		if(item?.force)
-			var/damage_of_item = rand(floor(item.force / 4), item.force)
+			var/damage_of_item = rand(item.force, floor(item.force * 5))
 			xeno.take_limb_damage(damage_of_item)
 			visible_message(span_danger("<B>[src] attacks [xeno]'s carapace with the [item.name]!"))
 			if(item.sharp)

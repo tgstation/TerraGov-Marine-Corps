@@ -135,6 +135,11 @@
 	action_icon_state = "abduct_[haul_mode? "on" : "off"]"
 	update_button_icon()
 
+/mob/living/carbon/human/resist()
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_HAULED))
+		handle_haul_resist()
+
 /datum/action/ability/activable/xeno/devour/proc/haul(atom/target)
 	if(!xeno_owner.eaten_mob)
 		xeno_owner.visible_message(span_warning("[xeno_owner] restrains [target], hauling them effortlessly!"),
