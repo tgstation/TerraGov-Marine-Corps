@@ -281,9 +281,9 @@
 			current_title = pick(icon_states(icon)) //randomly picks a starting screen.
 			icon_state = current_title
 		else
-			log_message("icon_states('[icon]') is an empty list!", LOG_CATEGORY_RUNTIME)
+			log_runtime("icon_states('[icon]') is an empty list!")
 	else
-		log_message("icon_states('[icon]') is not a list!", LOG_CATEGORY_RUNTIME)
+		log_runtime("icon_states('[icon]') is not a list!")
 
 //timer above triggers this to change the image.
 /turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
@@ -295,9 +295,9 @@
 			current_title = next_in_list(current_title, total_titles)
 			icon_state = current_title //sets the title to the current_title here
 		else
-			log_message("icon_states('[icon]') is an empty list!", LOG_CATEGORY_RUNTIME)
+			log_runtime("icon_states('[icon]') is an empty list!")
 	else
-		log_message("icon_states('[icon]') is not a list!", LOG_CATEGORY_RUNTIME)
+		log_runtime("icon_states('[icon]') is not a list!")
 
 
 /turf/closed/wall/indestructible/other
