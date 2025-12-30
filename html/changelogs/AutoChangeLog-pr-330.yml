@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - qol: "Puppets and spiderlings now appear on hive status for the purpose of possession ability"
