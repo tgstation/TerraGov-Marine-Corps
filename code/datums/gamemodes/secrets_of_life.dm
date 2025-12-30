@@ -153,7 +153,6 @@
 		xenorespawn_time = 5 MINUTES
 		bioscan_interval = 15 MINUTES
 		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
-		funnysound = pick('sound/misc/airraid.ogg', 'sound/misc/hell_march.ogg', 'sound/misc/queen_alarm.ogg',)
 	else
 		evo_requirements = list(
 			/datum/xeno_caste/queen = 8,
@@ -164,14 +163,14 @@
 		xenorespawn_time = initial(xenorespawn_time)
 		bioscan_interval = initial(bioscan_interval)
 		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
-		funnysound = pick('sound/theme/neutral_melancholy2.ogg', 'sound/theme/neutral_hopeful1.ogg', 'sound/theme/winning_triumph2.ogg')
+
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 	send_ooc_announcement(
-		sender_override = "War phase [pop_lock ? "OFF" : "ON"].",
+		sender_override = "War phase [pop_lock ? "ON" : "OFF"].",
 		title = "It's so over.",
 		text = "Pop locks for xeno castes, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
-		sound_override = funnysound,
+		play_sound = FALSE
 		style = OOC_ALERT_GAME
 	)
 	SSvote.initiate_vote()

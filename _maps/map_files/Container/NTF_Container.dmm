@@ -7306,9 +7306,6 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "gWe" = (
-/obj/alien/weeds/node/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "gWh" = (
@@ -8431,9 +8428,6 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/hull/starboard_hull)
 "iji" = (
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
 	},
@@ -15390,12 +15384,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/port_point_defense)
-"oLg" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/port_hull)
 "oLt" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
@@ -15753,9 +15741,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "pck" = (
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 10
 	},
@@ -16299,9 +16284,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig_cells)
 "pIi" = (
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 8
 	},
@@ -16937,9 +16919,6 @@
 /turf/open/floor/plating,
 /area/mainship/living/bridgebunks)
 "quS" = (
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 6
 	},
@@ -17099,9 +17078,6 @@
 "qDx" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
-	},
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
 	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 4
@@ -18663,18 +18639,12 @@
 	id = "Containment Cell 3";
 	pixel_y = 30
 	},
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
 "sco" = (
 /obj/machinery/light/mainship/small,
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2,
 /area/mainship/medical/medical_science)
 "scM" = (
@@ -20051,10 +20021,6 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"toL" = (
-/obj/structure/foamedmetal,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/port_hull)
 "toP" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
@@ -24105,9 +24071,6 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "xfZ" = (
-/obj/alien/weeds/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 9
 	},
@@ -65433,8 +65396,8 @@ hcn
 gMh
 eKd
 rKg
-toL
-toL
+fIC
+ves
 dMI
 rDW
 rqL
@@ -65635,8 +65598,8 @@ dNk
 vqi
 dNk
 rKg
-toL
-toL
+ves
+ves
 dMI
 rDW
 hDB
@@ -65837,7 +65800,7 @@ rKg
 cYJ
 rKg
 rKg
-toL
+ves
 fIC
 dMI
 hPb
@@ -66039,7 +66002,7 @@ vqi
 eMh
 vqi
 rKg
-toL
+ves
 ves
 dMI
 hPb
@@ -66243,7 +66206,7 @@ vqi
 rKg
 ves
 lkp
-oLg
+lkp
 hPb
 hDB
 fIG
@@ -67657,7 +67620,7 @@ ves
 ves
 ves
 lkp
-oLg
+lkp
 rDW
 hDB
 fIG

@@ -5143,9 +5143,6 @@
 	bruteloss = 25;
 	fireloss = 25
 	},
-/obj/alien/weeds/node/resting{
-	hivenumber = "corrupted_hive"
-	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -9167,13 +9164,28 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/synthdorms)
 "iio" = (
-/obj/item/attachable/suppressor,
-/obj/structure/table/reinforced,
-/obj/item/attachable/reddot,
-/obj/item/weapon/gun/shotgun/combat/masterkey,
-/obj/item/attachable/scope/mini,
-/obj/item/attachable/lasersight,
-/obj/item/attachable/compensator,
+/obj/structure/closet/cabinet,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/reagent_containers/cup/glass/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/cans/beer,
+/obj/item/reagent_containers/food/drinks/cans/beer,
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/reagent_containers/cup/glass/ice,
+/obj/item/reagent_containers/cup/glass/ice,
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
+/obj/item/reagent_containers/cup/glass/dry_ramen,
+/obj/item/reagent_containers/food/drinks/coffee/cafe_latte,
+/obj/item/reagent_containers/cup/soda_cans/space_up,
+/obj/item/reagent_containers/cup/soda_cans/space_up,
+/obj/item/reagent_containers/cup/soda_cans/beer,
+/obj/item/reagent_containers/cup/soda_cans/beer,
+/obj/item/reagent_containers/cup/soda_cans/beer,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -9829,7 +9841,7 @@
 "iOn" = (
 /obj/item/radio/headset/ntc_listener,
 /obj/item/radio/headset/mainship/mcom,
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "iOs" = (
 /obj/structure/disposalpipe/segment,
@@ -11849,6 +11861,12 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"kFK" = (
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "kFL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13097,6 +13115,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -13688,7 +13707,7 @@
 /area/mainship/squads/req)
 "mag" = (
 /obj/structure/prop/mainship/sensor_computer3/black,
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "mbW" = (
 /turf/open/floor/mainship/black{
@@ -14469,6 +14488,12 @@
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
+"mHY" = (
+/obj/alien/weeds/node/resting{
+	hivenumber = "corrupted_hive"
+	},
+/turf/open/floor/plating,
+/area/mainship/hull/lower_hull)
 "mIw" = (
 /obj/machinery/light/mainship,
 /obj/effect/decal/cleanable/blood/drip{
@@ -22570,6 +22595,12 @@
 /obj/item/clothing/head/headband/snake,
 /obj/item/clothing/mask/gas,
 /obj/item/storage/pouch/medkit/medic,
+/obj/item/attachable/compensator,
+/obj/item/attachable/lasersight,
+/obj/item/attachable/scope/mini,
+/obj/item/weapon/gun/shotgun/combat/masterkey,
+/obj/item/attachable/suppressor,
+/obj/item/attachable/reddot,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -23404,6 +23435,13 @@
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
+	})
+"vgJ" = (
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "vgM" = (
 /obj/effect/ai_node,
@@ -24969,7 +25007,7 @@
 	})
 "wDG" = (
 /obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "wDV" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -29901,12 +29939,12 @@ bMw
 bMw
 cRa
 nje
-qqh
+mHY
 qqh
 qqh
 aTq
 aTq
-aTq
+kFK
 hWW
 fwn
 nHD
@@ -30023,7 +30061,7 @@ nje
 qqh
 rZU
 ojL
-qqh
+mHY
 aTq
 qqh
 fwn
@@ -30258,12 +30296,12 @@ nje
 nje
 nje
 nje
-aTq
+kFK
 qqh
 aTq
 aTq
 aTq
-qqh
+mHY
 fwn
 wDa
 dhN
@@ -58471,7 +58509,7 @@ wpC
 liW
 kmK
 lAK
-qnG
+vgJ
 pbZ
 qnG
 qnG
