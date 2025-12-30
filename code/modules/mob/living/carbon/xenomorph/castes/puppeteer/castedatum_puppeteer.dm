@@ -95,6 +95,7 @@
 		/datum/action/ability/activable/xeno/puppet_blessings,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/possession,
 	)
 
 	aura_strength = 3
