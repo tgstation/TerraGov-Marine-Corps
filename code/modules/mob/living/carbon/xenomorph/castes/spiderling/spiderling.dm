@@ -13,7 +13,7 @@
 	health = 250
 	maxHealth = 250
 	plasma_stored = 200
-	tier = XENO_TIER_MINION
+	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
 	allow_pass_flags = PASS_XENO
