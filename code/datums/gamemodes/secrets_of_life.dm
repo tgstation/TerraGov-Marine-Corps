@@ -141,7 +141,6 @@
 
 /datum/game_mode/infestation/extended_plus/secret_of_life/proc/toggle_pop_locks()
 	// Apply Evolution Xeno Population Locks:
-	var/funnysound
 	pop_lock = !pop_lock
 	if(!pop_lock)
 		evo_requirements = list(
@@ -170,7 +169,7 @@
 		sender_override = "War phase [pop_lock ? "ON" : "OFF"].",
 		title = "It's so over.",
 		text = "Pop locks for xeno castes, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
-		play_sound = FALSE
+		play_sound = FALSE,
 		style = OOC_ALERT_GAME
 	)
 	SSvote.initiate_vote()
