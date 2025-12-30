@@ -25,6 +25,11 @@
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't work."))
 		return FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human = target
+		if(human.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
+			to_chat(owner,span_xenowarning("We have no reason to do that."))
+			return FALSE
 	var/mob/living/carbon/human/victim = target
 	if(owner.status_flags & INCORPOREAL)
 		if(!silent)

@@ -117,7 +117,13 @@
 	return FALSE
 
 /datum/action/join_larva_queue/action_activate()
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/hivechoice = tgui_input_list(owner, "Choose your hive.", "Join Larva Queue", list("Normal", "Corrupted"))
+	var/datum/hive_status/normal/HS
+	switch(hivechoice)
+		if("Normal")
+			HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		if("Corrupted")
+			HS = GLOB.hive_datums[XENO_HIVE_CORRUPTED]
 	if(HS.add_to_larva_candidate_queue(owner.client))
 		set_toggle(TRUE)
 		return

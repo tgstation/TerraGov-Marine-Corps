@@ -346,7 +346,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(L.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
+			to_chat(usr,span_xenowarning("We have no reason to do that."))
 			return FALSE
 		if(pulling != L)
 			pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
