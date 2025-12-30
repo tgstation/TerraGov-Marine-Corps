@@ -12508,6 +12508,9 @@
 	})
 "lbU" = (
 /obj/machinery/bodyscanner,
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards{
+	pixel_y = 35
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
