@@ -30,6 +30,9 @@
 		if(human.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
 			to_chat(owner,span_xenowarning("We have no reason to do that."))
 			return FALSE
+	if(isxeno(target) && haul_mode)
+		to_chat(owner,span_xenowarning("We cant carry them."))
+		return FALSE
 	var/mob/living/carbon/human/victim = target
 	if(owner.status_flags & INCORPOREAL)
 		if(!silent)
@@ -138,9 +141,9 @@
 		span_warning("We fully restrain [target] and start hauling them!"), null, 5)
 		playsound(xeno_owner.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-		if(xeno_owner.eaten_mob.mob_size) //carrying will slow down the xeno and be more dangerous compared to devouring due to it being instant.
-			xeno_owner.add_movespeed_modifier("hauler", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
 		xeno_owner.eaten_mob = target
+		if(xeno_owner.eaten_mob?.mob_size) //carrying will slow down the xeno and be more dangerous compared to devouring due to it being instant.
+			xeno_owner.add_movespeed_modifier("hauler", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
 		xeno_owner.eaten_mob.forceMove(xeno_owner.loc, get_dir(target.loc, xeno_owner.loc))
 		xeno_owner.eaten_mob.handle_haul(src)
 
