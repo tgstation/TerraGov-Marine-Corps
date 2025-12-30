@@ -1,0 +1,5 @@
+author: "Ducky-Momo"
+delete-after: True
+changes:
+  - rscadd: "added transparent gas masks to CLF and CM vendors, adds two PTR anti-mech rifles and ammo boxes to CLF, adds anti-smoke/gas grenades to SOM"
+  - balance: "gave PTR one more round in the mag, removed autocannon from KZ weapon vendor"
