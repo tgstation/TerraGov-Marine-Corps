@@ -157,7 +157,7 @@
 		if(xeno_owner.eaten_mob?.mob_size)
 			xeno_owner.add_movespeed_modifier("hauler", TRUE, 0, NONE, TRUE, xeno_owner.eaten_mob.mob_size)
 		xeno_owner.eaten_mob.forceMove(xeno_owner.loc, get_dir(target.loc, xeno_owner.loc))
-		xeno_owner.eaten_mob.handle_haul(src)
+		xeno_owner.eaten_mob.handle_haul(xeno_owner)
 		RegisterSignal(xeno_owner.eaten_mob, COMSIG_MOB_DEATH, PROC_REF(release_dead_haul))
 
 /datum/action/ability/activable/xeno/devour/proc/release_dead_haul()

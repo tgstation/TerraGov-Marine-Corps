@@ -6,13 +6,15 @@
 		return
 
 	var/mob/living/carbon/xenomorph/xeno = devouring_mob
+	if(!devouring_mob)
+		return
 	next_haul_resist = world.time + 1.4 SECONDS
 	if(istype(get_active_held_item(), /obj/item))
 		var/obj/item/item = get_active_held_item()
 		if(item?.force)
-			var/damage_of_item = rand(item.force, floor(item.force * 5))
-			xeno.apply_damage(damage_of_item, BRUTE)
-			visible_message(span_danger("<B>[src] attacks [xeno]'s carapace with the [item.name]!"))
+			var/damage_of_item = rand(item.force, floor(item.force * 4))
+			xeno.apply_damage(damage_of_item, BRUTE, zone_selected, MELEE, attacker = src)
+			visible_message(span_danger("<B>[src] attacks the gap in [xeno]'s carapace with the [item.name]!"))
 			if(item.sharp)
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 			else
