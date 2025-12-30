@@ -170,7 +170,7 @@
 		title = "It's so over.",
 		text = "Pop locks for xeno castes, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
 		play_sound = FALSE,
-		style = OOC_ALERT_GAME
+		style = OOC_ALERT_GAME,
 	)
 	SSvote.initiate_vote()
 
