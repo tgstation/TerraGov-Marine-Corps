@@ -215,6 +215,8 @@ SUBSYSTEM_DEF(monitor)
 	clf_on_ship = 0
 	for(var/human in (GLOB.alive_human_list_faction[FACTION_TERRAGOV] | GLOB.alive_human_list_faction[FACTION_NANOTRASEN]))
 		var/turf/TU = get_turf(human)
+		if(!istype(TU))
+			continue
 		var/area/myarea = TU.loc
 		if(!myarea)
 			continue

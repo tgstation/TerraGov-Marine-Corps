@@ -524,7 +524,7 @@
 /// A flurry of rapid and precise strikes, dealing additional damage.
 /datum/action/ability/activable/xeno/conqueror_will/proc/combo_jab(mob/living/living_target)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_jab.ogg', 40, TRUE)
-	addtimer(CALLBACK(src, GLOBAL_PROC_REF(playsound), living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 15, TRUE), 0.2 SECONDS, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 15, TRUE), 0.2 SECONDS, TIMER_CLIENT_TIME)
 	new /obj/effect/temp_visual/conqueror/hook/jab/initial(living_target.loc)
 	living_target.do_attack_animation(get_step(living_target, REVERSE_DIR(get_dir(living_target, xeno_owner))))
 	if(jab_damage_multiplier)
