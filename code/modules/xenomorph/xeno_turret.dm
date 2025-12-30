@@ -165,6 +165,8 @@
 			var/mob/living/nearby_living_hostile = nearby_hostile
 			if(nearby_living_hostile.stat == DEAD)
 				continue
+			if(nearby_living_hostile.status_flags & INCORPOREAL)
+				continue
 		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)

@@ -307,6 +307,9 @@
 		span_warning("We nibble [src]."), null, 5)
 		X.do_attack_animation(src)
 		return FALSE
+	else
+		if(!no_health_regen_grace_period)
+			apply_status_effect(STATUS_EFFECT_NO_HEALTH_REGEN, 10 SECONDS)
 	return ..()
 
 

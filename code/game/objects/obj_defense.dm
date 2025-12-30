@@ -144,7 +144,12 @@
 		span_danger("We slash [src]!"))
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		playsound(loc, SFX_ALIEN_CLAW_METAL, 25)
-	attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration)
+	var/mult = 1
+	if(istype(src, /obj/structure/mineral_door/resin))
+		mult = RESIN_DOOR_MULT
+	if(istype(src, /obj/alien/resin/sticky))
+		mult = STICKY_RESIN_MULT
+	attack_generic(xeno_attacker, damage_amount*mult, damage_type, armor_type, effects, armor_penetration)
 	return TRUE
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)

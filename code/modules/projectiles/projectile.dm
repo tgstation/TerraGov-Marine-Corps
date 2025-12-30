@@ -1002,6 +1002,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /mob/living/carbon/xenomorph/bullet_act(atom/movable/projectile/proj)
+	if(!issamexenohive(proj.shot_from) && has_status_effect(STATUS_EFFECT_NO_HEALTH_REGEN))
+		remove_status_effect(STATUS_EFFECT_NO_HEALTH_REGEN)
+		no_health_regen_grace_period = TRUE
+		addtimer(CALLBACK(src, PROC_REF(grace_period_end)), 15 SECONDS)
 	if(issamexenohive(proj.shot_from) && (isxeno(proj.shot_from) || istype(proj.shot_from, /obj/structure/xeno))) //Aliens won't be harming allied aliens.
 		return
 
@@ -1027,6 +1031,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		use_plasma(proj.ammo.plasma_drain)
 
 	return ..()
+
+/mob/living/carbon/xenomorph/proc/grace_period_end()
+	no_health_regen_grace_period = FALSE
 
 /atom/movable/projectile/hitscan
 	///The icon of the laser beam that will be created

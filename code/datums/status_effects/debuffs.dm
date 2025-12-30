@@ -998,11 +998,20 @@
 // ***************************************
 /datum/status_effect/nohealthregen
 	id = "nohealthregen"
+	alert_type = /atom/movable/screen/alert/status_effect/nohealthregen
 	status_type = STATUS_EFFECT_REPLACE
+
+/atom/movable/screen/alert/status_effect/nohealthregen
+	name = "Health Regeneration Stopped"
+	desc = "Your health regeneration was temporarily lost because of enemy xeno toxin!"
 
 /datum/status_effect/nohealthregen/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
-		owner = new_owner
+		var/mob/living/carbon/xenomorph/xeno = new_owner
+		if(xeno.no_health_regen_grace_period)
+			qdel(src)
+			return
+		owner = xeno
 		duration = set_duration
 		return ..()
 	else

@@ -232,10 +232,12 @@
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T, hivenumber = XENO_HIVE_NORMAL)
 	if(T.density || istype(T, /turf/open/space)) // No structures in space
 		return
-
 	for(var/obj/O in T.contents)
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
+	var/obj/alien/weeds/alien_weeds = locate() in T
+	if(!alien_weeds || hivenumber != alien_weeds.get_xeno_hivenumber())
+		return
 
 	new /obj/alien/resin/sticky/thin(T, hivenumber)
 

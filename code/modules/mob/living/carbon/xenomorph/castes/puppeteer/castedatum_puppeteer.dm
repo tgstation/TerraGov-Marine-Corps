@@ -85,7 +85,7 @@
 		/datum/action/ability/activable/xeno/flay,
 		/datum/action/ability/activable/xeno/pincushion,
 		/datum/action/ability/xeno_action/dreadful_presence,
-/*		/datum/action/ability/activable/xeno/refurbish_husk,*/
+		/datum/action/ability/activable/xeno/refurbish_husk,
 		/datum/action/ability/activable/xeno/puppet,
 		/datum/action/ability/activable/xeno/organic_bomb,
 		/datum/action/ability/activable/xeno/tendril_patch,
@@ -95,6 +95,7 @@
 		/datum/action/ability/activable/xeno/puppet_blessings,
 		/datum/action/ability/xeno_action/create_edible_jelly,
 		/datum/action/ability/xeno_action/place_stew_pod,
+		/datum/action/ability/activable/xeno/possession,
 	)
 
 	aura_strength = 3

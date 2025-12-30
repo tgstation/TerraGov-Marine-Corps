@@ -470,6 +470,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/fiery_stab = FALSE
 
 	var/preggo = FALSE
+	///grace period to health regen after being hit by a projectile while fighting a xeno
+	var/no_health_regen_grace_period = FALSE
 
 	//list of active tunnels
 	var/list/tunnels = list()

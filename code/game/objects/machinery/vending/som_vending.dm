@@ -152,6 +152,7 @@
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
 			/obj/item/explosive/grenade/smokebomb/som = 25,
+			/obj/item/explosive/grenade/smokebomb/antigas = 20,
 			/obj/item/explosive/grenade/incendiary/som = 50,
 			/obj/item/explosive/grenade/som = 200,
 			/obj/item/explosive/grenade/sticky/cloaker = 10,
