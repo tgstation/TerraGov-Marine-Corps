@@ -84,6 +84,7 @@
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner_xeno.eject_victim()
+	owner_xeno.remove_movespeed_modifier("devourer", TRUE)
 	log_combat(owner_xeno, victim, "released", addition="from being devoured")
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 
@@ -105,7 +106,7 @@
 		haul(target)
 		add_cooldown()
 		return
-	owner_xeno.visible_message(span_danger("[owner_xeno] start devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	owner_xeno.visible_message(span_danger("[owner_xeno] starts devouring [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	log_combat(owner_xeno, victim, "started to devour")
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
