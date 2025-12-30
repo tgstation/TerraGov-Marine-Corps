@@ -1,7 +1,0 @@
-author: "DrCrawler"
-delete-after: True
-changes:
-  - rscadd: "Added a new CEO position,"
-  - rscadd: "Implemented sex skill."
-  - balance: "Changed CLF Breeder skills a bit."
-  - spellcheck: "Fixes larva being described as popping out of the father's pussy when an impregnated xeno gives birth."
