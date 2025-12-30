@@ -352,7 +352,7 @@
 /obj/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB)
+	if(!issamexenohive(xeno_attacker) && xeno_attacker.a_intent == INTENT_GRAB && (xeno_attacker.xeno_flags & XENO_DESTROY_WEEDS))
 		SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_OBJ, src)
 		if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, xeno_attacker) & COMPONENT_NO_ATTACK_ALIEN)
 			return FALSE

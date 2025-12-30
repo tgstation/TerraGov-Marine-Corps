@@ -96,7 +96,7 @@
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
-	var/slow_amt = 8
+	var/slow_amt = 3
 	/// Does this refund build points when destoryed?
 	var/refundable = TRUE
 
@@ -123,8 +123,6 @@
 		var/mob/living/carbon/xenomorph/X = crosser
 		if(!issamexenohive(X))
 			X.next_move_slowdown += slow_amt
-		else
-			X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 		return
 
 	if(issamexenohive(crosser))
@@ -174,7 +172,7 @@
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
-	slow_amt = 4
+	slow_amt = 3
 
 	ignore_weed_destruction = FALSE
 	refundable = FALSE

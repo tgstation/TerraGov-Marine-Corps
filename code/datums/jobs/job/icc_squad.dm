@@ -14,6 +14,10 @@ Though soon they turned less lethal, danger still persists, especially those tha
 You are all former or current employees/colonists of Ninetails but there is still some tensions after what happened.
 For that CM is closer to NTC than the rest, and believes SOM and Kaizoku to be vultures on top of a stillborn colonization"}
 
+/datum/job/icc_squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	C.transfer_to_hive(XENO_HIVE_CORRUPTED)
+
 //ICC Standard
 /datum/job/icc_squad/standard
 	title = "CM Standard"

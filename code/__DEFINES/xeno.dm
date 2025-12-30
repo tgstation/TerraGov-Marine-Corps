@@ -39,6 +39,15 @@
 #define FIREPROOF_WALL "fireproof resin wall"
 #define HARDY_WALL "hardy resin wall"
 
+// Hits needed to take down if dmg is 25 with zero ap (Queen): Regular/Regenerating/Regenerating full hp
+#define RESIN_WALL_MULT 1.4 // 6/3/9
+#define RESIN_DOOR_MULT 2.4 // 4/4/4
+#define HARDY_WALL_MULT 4.5 // 4/4/13
+#define FIRE_WALL_MULT 1.4 // 3/3/6
+#define BULLET_WALL_MULT 1.4 // 3/3/8
+
+#define STICKY_RESIN_MULT 2 // One hit
+
 #define BEETLE "beetle"
 #define NYMPH "nymph"
 #define MANTIS "mantis"

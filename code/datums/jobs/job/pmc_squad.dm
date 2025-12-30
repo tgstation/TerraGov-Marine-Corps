@@ -13,6 +13,10 @@
 	You are usually called when things seem dire and your equipment is a great cost to the corporation (so are you to train.)
 	Make it worth the cost and earn you and your family's luxury living again."}*/
 
+/datum/job/pmc/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	C.transfer_to_hive(XENO_HIVE_CORRUPTED)
+
 //PMC Standard
 /datum/job/pmc/squad/standard
 	title = PMC_STANDARD

@@ -103,6 +103,8 @@
 			return FALSE
 		if(living_jumper.incapacitated())
 			return FALSE
+		if(living_jumper.status_flags & INCORPOREAL)
+			return FALSE
 		if(stamina_cost && (living_jumper.getStaminaLoss() > -stamina_cost))
 			if(isrobot(living_jumper) || issynth(living_jumper))
 				to_chat(living_jumper, span_warning("Your leg servos do not allow you to jump!"))
