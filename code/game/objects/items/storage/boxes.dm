@@ -168,6 +168,10 @@
 	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5
 
+/obj/item/storage/box/monkeycubes/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/food/snacks/monkeycube))
+
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"

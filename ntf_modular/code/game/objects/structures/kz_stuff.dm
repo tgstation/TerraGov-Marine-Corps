@@ -323,6 +323,9 @@
 		current_mob.set_skills(current_mob.skills.setRating(mech = stored_disk.stored_skills.mech))
 	if(stored_disk.stored_skills.stamina > current_mob.skills.stamina)
 		current_mob.set_skills(current_mob.skills.setRating(stamina = stored_disk.stored_skills.stamina))
+	if(stored_disk.stored_skills.sex > current_mob.skills.sex)
+		current_mob.set_skills(current_mob.skills.setRating(sex = stored_disk.stored_skills.sex))
+
 
 /obj/structure/bed/chair/kz/proc/restore_skills(mob/living/target)
 	target.can_restore_skills = TRUE

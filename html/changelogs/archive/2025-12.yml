@@ -175,3 +175,10 @@
   - balance: barrier armor now has a melee modifier, increasing melee damage done
       to the shield
   - bugfix: Most cleanables now layer over weeds, good thing there is soap
+2025-12-30:
+  DrCrawler:
+  - rscadd: Added a new CEO position,
+  - rscadd: Implemented sex skill.
+  - balance: Changed CLF Breeder skills a bit.
+  - spellcheck: Fixes larva being described as popping out of the father's pussy when
+      an impregnated xeno gives birth.

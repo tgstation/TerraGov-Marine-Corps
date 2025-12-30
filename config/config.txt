@@ -309,3 +309,5 @@ TGUI_MAX_CHUNK_COUNT 32
 
 ## Uncomment and replace with the URL where users can verify their byond accounts
 #FORUM_LINK_URI
+
+ALLOW_ADMIN_OOCCOLOR
