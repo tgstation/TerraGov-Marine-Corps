@@ -131,6 +131,8 @@
 
 /datum/action/join_larva_queue/update_button_icon()
 	. = ..()
+	if(!.)
+		return
 	var/larva_position = SEND_SIGNAL(owner.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, HS.hivenumber)
 	set_toggle(!!larva_position)
 	if(larva_position)
