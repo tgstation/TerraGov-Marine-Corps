@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 
 	if(GLOB.round_statistics.intel_max_chain)
-		parts += "The longest intel chain cashed in has length [GLOB.round_statistics.intel_max_chain]."
+		parts += "The longest intel chain cashed in had length [GLOB.round_statistics.intel_max_chain]."
 	for(var/chain_length in GLOB.round_statistics.intel_chain_sold_by_list)
 		parts += "The first chain of length [chain_length] cashed in was cashed in by [GLOB.round_statistics.intel_chain_sold_by_list[chain_length]] for [GLOB.round_statistics.intel_chain_sold_for_list[chain_length]]."
 	if(GLOB.round_statistics.strategic_psypoints_from_generators)

@@ -241,7 +241,7 @@
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""] were acquired.  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].", title = "Intel Division")
 	for(var/hivenumber in GLOB.hive_datums)
 		GLOB.hive_datums[hivenumber].xeno_message(
-			"The talls of [faction_selling] claimed a disk for [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""] were acquired.  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
+			"The talls of [faction_selling] claimed a disk for [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""].  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
 			size = 3,
 			)
 	GLOB.round_statistics.points_from_intel += supply_reward
