@@ -5,6 +5,7 @@
 	var/melee_multiplier = 1
 	var/aura_multiplier = 1
 	COOLDOWN_DECLARE(silo_shock_cooldown)
+	var/queueable = FALSE
 
 /datum/hive_status/proc/set_health_multiplier(new_health_multiplier)
 	health_mulitiplier = new_health_multiplier
@@ -26,10 +27,17 @@
 		xeno.apply_status_effect(/datum/status_effect/nohealthregen, 40 SECONDS)
 	xeno_message("Our last silo [last_silo] is besieged at [AREACOORD_NO_Z(last_silo)]! The shock of sustaining it brings us to our knees!", "xenoannounce", 7, TRUE, last_silo.loc, 'sound/voice/alien/help2.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 
+/datum/hive_status/normal
+	queueable = TRUE
+
 /datum/hive_status/corrupted
 	health_mulitiplier = 0.8
 	aura_multiplier = 0.95
 	req_jelly_progress_required = 220 // 1100 seconds = 18.3 minutes per pod
+	queueable = TRUE
+
+/datum/hive_status/corrupted/fallen
+	queueable = FALSE
 
 /mob/living/proc/transfer_to_hive(_hivenumber)
 	hivenumber = _hivenumber

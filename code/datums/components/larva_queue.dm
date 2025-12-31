@@ -143,10 +143,12 @@
 
 /datum/action/join_larva_queue/alternate_action_activate()
 	ASYNC
-		var/hivechoice = tgui_input_list(owner, "Choose your hive.", "Join Larva Queue", list("Normal", "Corrupted"))
-		switch(hivechoice)
-			if("Normal")
-				HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-			if("Corrupted")
-				HS = GLOB.hive_datums[XENO_HIVE_CORRUPTED]
+		var/list/queueable_hives = list()
+		var/list/queueable_hives_assoc = list()
+		for(var/hivenumber in GLOB.hive_datums)
+			if(GLOB.hive_datums[hivenumber].queueable)
+				queueable_hives += GLOB.hive_datums[hivenumber].name
+				queueable_hives_assoc[GLOB.hive_datums[hivenumber].name] = GLOB.hive_datums[hivenumber]
+		var/hivechoice = tgui_input_list(owner, "Choose your hive.", "Join Larva Queue", queueable_hives)
+		HS = queueable_hives_assoc[hivechoice]
 		update_button_icon()
