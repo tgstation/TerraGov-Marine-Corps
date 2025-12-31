@@ -226,15 +226,17 @@
 	if(!.)
 		return FALSE
 	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	var/datum/individual_stats/the_stats
 	if(gaymode && user)
-		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
 		the_stats?.give_funds(round(dropship_reward/2))
 	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
 	GLOB.round_statistics.points_from_intel += supply_reward
 	if(max_chain > GLOB.round_statistics.intel_max_chain)
 		GLOB.round_statistics.intel_max_chain = max_chain
-		GLOB.round_statistics.intel_max_chain_sold_by = faction_selling
-		GLOB.round_statistics.intel_max_chain_sold_for = "[supply_reward] supply points[user ? " and" : ","] [dropship_reward] dropship points[user ? ", and [dropship_reward/2] credits" : ""]"
+	if(!("[max_chain]" in GLOB.round_statistics.intel_chain_sold_by_list))
+		GLOB.round_statistics.intel_chain_sold_by_list["[max_chain]"] = faction_selling
+		GLOB.round_statistics.intel_chain_sold_for_list["[max_chain]"] = "[supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""]"
 
 /obj/item/disk/intel_disk/Destroy()
 	SSminimaps.remove_marker(src)
