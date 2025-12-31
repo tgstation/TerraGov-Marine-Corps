@@ -69,13 +69,13 @@
 	penetration = 50
 	sundering = 12.5
 	shrapnel_chance = 0
-	max_range = 12
+	max_range = 20
 	accurate_range_min = 4
 	///Bonus flat damage to walls, balanced around resin walls.
 	var/autocannon_wall_bonus = 50
 
 /datum/ammo/bullet/auto_cannon/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	proj.proj_max_range -= 20
+	proj.proj_max_range -= 10
 
 	if(istype(target_turf, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = target_turf

@@ -1195,10 +1195,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	wield_delay = 0.85 SECONDS
 	windup_delay = 0.1 SECONDS
 	aim_slowdown = 3
-	accuracy_mult = 0.7 //0.8 with lasersight
+	accuracy_mult = 0.8 //0.9 with lasersight
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 10
-	damage_falloff_mult = 2
+	damage_falloff_mult = 1.5
 	scatter = 0
 
 	autobalance_monitor_value = null
