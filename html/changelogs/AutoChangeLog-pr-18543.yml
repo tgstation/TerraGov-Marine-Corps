@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscdel: "Remove flashbang effect from ammo cookoff"
