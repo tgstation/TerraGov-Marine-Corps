@@ -182,3 +182,21 @@
   - balance: Changed CLF Breeder skills a bit.
   - spellcheck: Fixes larva being described as popping out of the father's pussy when
       an impregnated xeno gives birth.
+2025-12-31:
+  Colfer1:
+  - bugfix: puppeteer and widow get possession when primordial too
+  - qol: Puppets and spiderlings now appear on hive status for the purpose of possession
+      ability
+  - balance: Xenos now give ALOT more money when exported, a price hike of 4x. A drone
+      is now worth 300
+  - bugfix: primordial puppeteers can no longer summon 10 billion puppets
+  Ducky-Momo:
+  - rscadd: added transparent gas masks to CLF and CM vendors, adds two PTR anti-mech
+      rifles and ammo boxes to CLF, adds anti-smoke/gas grenades to SOM
+  - balance: gave PTR one more round in the mag, removed autocannon from KZ weapon
+      vendor
+  Nokia2Student:
+  - balance: Buffed xenomorph damage against resin structures
+  - balance: Adjusted xeno regeneration debuff applied in xvx
+  - bugfix: Weed nodes now properly respect destroy weeds toggle
+  - bugfix: Fixed dragon issues related to flying and weed

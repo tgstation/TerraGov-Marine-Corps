@@ -1,7 +1,0 @@
-author: "Nokia2Student"
-delete-after: True
-changes:
-  - balance: "Buffed xenomorph damage against resin structures"
-  - balance: "Adjusted xeno regeneration debuff applied in xvx"
-  - bugfix: "Weed nodes now properly respect destroy weeds toggle"
-  - bugfix: "Fixed dragon issues related to flying and weed"

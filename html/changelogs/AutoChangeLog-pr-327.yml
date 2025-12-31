@@ -1,4 +1,0 @@
-author: "Colfer1"
-delete-after: True
-changes:
-  - bugfix: "puppeteer and widow get possession when primordial too"
