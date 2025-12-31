@@ -16,7 +16,7 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 500
+	var/supply_reward = 450
 	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 350
 	///length of intel disk chain
