@@ -84,6 +84,7 @@
 			data["species"] = species || "Human"
 			data["good_eyesight"] = good_eyesight
 			data["citizenship"] = citizenship
+			data["blood_type"] = blood_type
 			data["tts_voice"] = tts_voice
 			data["tts_pitch"] = "[tts_pitch]"
 			data["religion"] = religion
@@ -611,6 +612,12 @@
 			if(!choice)
 				return
 			citizenship = choice
+
+		if("blood_type")
+			var/choice = tgui_input_list(ui.user, "Your favorite blood type.", "Type of Blood", list("O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"))
+			if(!choice)
+				return
+			blood_type = choice
 
 		if("religion")
 			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)

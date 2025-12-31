@@ -123,6 +123,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Lore
 	var/citizenship = "Phantom City (Earth)"
+	var/blood_type = "A+"
 	var/religion = "None"
 	var/flavor_text = ""
 	var/med_record = ""

@@ -117,4 +117,4 @@
 /obj/item/clothing/suit/modular/xenonauten/ablative/bikini
 	name = "\improper NTC ablative bikini armor"
 	desc = "A lightweight set of armor that excels in protecting the wearer against laser and energy attacks thanks to it's reflective plating, how does it work? don't ask."
-	greyscale_config = /datum/greyscale_config/xenonaut/ablative
+	greyscale_config = /datum/greyscale_config/xenonaut/bikini

@@ -11,6 +11,7 @@
 	grad_style = pick(GLOB.hair_gradients_list)
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
+	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 	religion = pick(RELIGION_CHOICES)
 	tts_voice = random_tts_voice()
 	randomize_hair_color("hair")
@@ -212,6 +213,7 @@
 	character.f_style = f_style
 
 	character.citizenship = citizenship
+	character.blood_type = blood_type
 	character.religion = religion
 
 	character.voice = tts_voice

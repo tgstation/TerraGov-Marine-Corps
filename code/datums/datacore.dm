@@ -282,6 +282,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["sex"] = H.gender
 	G.fields["species"] = H.get_species()
 	G.fields["citizenship"] = H.citizenship
+	G.fields["blood_type"] = H.blood_type
 	G.fields["religion"] = H.religion
 	if(H.gen_record)
 		G.fields["notes"] = H.gen_record

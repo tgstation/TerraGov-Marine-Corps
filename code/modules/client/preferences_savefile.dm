@@ -517,6 +517,7 @@
 	READ_FILE(S["moth_wings"], moth_wings)
 
 	READ_FILE(S["citizenship"], citizenship)
+	READ_FILE(S["blood_type"], blood_type)
 	READ_FILE(S["religion"], religion)
 
 	READ_FILE(S["tts_voice"], tts_voice)
@@ -614,6 +615,7 @@
 	moth_wings = sanitize_inlist(moth_wings, GLOB.moth_wings_list, initial(moth_wings))
 
 	citizenship = sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
+	blood_type = sanitize_inlist(blood_type, list("O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"), initial(blood_type))
 	religion = sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
 
 	tts_voice = sanitize_inlist_tts(tts_voice)
@@ -738,6 +740,7 @@
 	moth_wings = sanitize_inlist(moth_wings, GLOB.moth_wings_list, initial(moth_wings))
 
 	citizenship = sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
+	blood_type = sanitize_inlist(blood_type, list("O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"), initial(blood_type))
 	religion = sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
 
 	tts_voice = sanitize_inlist_tts(tts_voice)
@@ -814,6 +817,7 @@
 	WRITE_FILE(S["moth_wings"], moth_wings)
 
 	WRITE_FILE(S["citizenship"], citizenship)
+	WRITE_FILE(S["blood_type"], blood_type)
 	WRITE_FILE(S["religion"], religion)
 
 	WRITE_FILE(S["tts_voice"], tts_voice)
