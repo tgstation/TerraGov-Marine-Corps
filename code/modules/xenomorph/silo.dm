@@ -118,10 +118,17 @@
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += job_point_reward / xeno_job.job_points_needed
 		to_chat(user, "<span class='notice'>The hive blesses us with ambrosia and psy points for claiming this object.</span>")
+		minor_announce("Classified data disk claimed by the [hive_status.name] hive.  [floor(psy_point_reward)] psy points, [ambrosia_amount] ambrosia, and [round(job_point_reward / xeno_job.job_points_needed, 0.01)] larvae were acquired.  It was [claimed_disk.max_chain ? "part of an intel chain of length [claimed_disk.max_chain]" : "not part of an intel chain"].", title = "Intel Division")
+		for(var/announcement_hivenumber in GLOB.hive_datums)
+			GLOB.hive_datums[announcement_hivenumber].xeno_message(
+				"The [hive_status.name] hive claimed a disk for [floor(psy_point_reward)] psy points, [ambrosia_amount] ambrosia, and [round(job_point_reward / xeno_job.job_points_needed, 0.01)] larvae.  It was [claimed_disk.max_chain ? "part of an intel chain of length [claimed_disk.max_chain]" : "not part of an intel chain"].",
+				size = 3,
+				)
 		if(claimed_disk.max_chain > GLOB.round_statistics.intel_max_chain)
 			GLOB.round_statistics.intel_max_chain = claimed_disk.max_chain
-			GLOB.round_statistics.intel_max_chain_sold_by = "the [hive_status.name] hive"
-			GLOB.round_statistics.intel_max_chain_sold_for = "[floor(psy_point_reward)] psy points, [ambrosia_amount] ambrosia, and [round(job_point_reward / xeno_job.job_points_needed, 0.01)] larvae"
+		if(!("[claimed_disk.max_chain]" in GLOB.round_statistics.intel_chain_sold_by_list))
+			GLOB.round_statistics.intel_chain_sold_by_list["[claimed_disk.max_chain]"] = "the [hive_status.name] hive"
+			GLOB.round_statistics.intel_chain_sold_for_list["[claimed_disk.max_chain]"] = "[floor(psy_point_reward)] psy points, [ambrosia_amount] ambrosia, and [round(job_point_reward / xeno_job.job_points_needed, 0.01)] larvae"
 		return TRUE
 
 	. = ..()

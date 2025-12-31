@@ -6,7 +6,7 @@
 	/// The client we track (instead of having to cast every time)
 	var/client/waiter
 	/// The position we have in the larva queue (0 means you're not in it)
-	var/position = 0
+	var/list/positions = list()
 	/// Our queue action
 	var/datum/action/join_larva_queue/action = null
 
@@ -22,6 +22,7 @@
 
 	waiter = client
 	action = new
+	action.HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	add_queue_action()
 
 /datum/component/larva_queue/RegisterWithParent()
@@ -63,12 +64,14 @@
 		var/datum/action/join_larva_queue/existing_action = waiter.mob.actions_by_path[/datum/action/join_larva_queue]
 		if(!existing_action)
 			action.give_action(waiter.mob)
-		if (position != 0)
+		if(!action.HS)
+			action.HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		if (action.HS.hivenumber in positions)
 			action.set_toggle(TRUE)
 	else
 		// Leave the queue since they logged into an ineligible mob
-		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HS.remove_from_larva_candidate_queue(waiter)
+		for(var/hivenumber in GLOB.hive_datums)
+			GLOB.hive_datums[hivenumber].remove_from_larva_candidate_queue(waiter)
 
 /**
  * Removes the larva queue action whenever the client leaves a mob
@@ -81,24 +84,29 @@
 /**
  * Gets the current position in the larva queue
  */
-/datum/component/larva_queue/proc/get_queue_position(waiter)
+/datum/component/larva_queue/proc/get_queue_position(waiter, hivenumber)
 	SIGNAL_HANDLER
-	return position
+	if(hivenumber in positions)
+		return positions[hivenumber]
+	return 0
 
 /**
  * Sets the current position in the larva queue
  */
-/datum/component/larva_queue/proc/set_queue_position(waiter, new_position)
+/datum/component/larva_queue/proc/set_queue_position(waiter, new_position, hivenumber)
 	SIGNAL_HANDLER
-	position = new_position
-	var/datum/hive_status/the_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!the_hive)
-		stack_trace("Where's the main hive? (XENO_HIVE_NORMAL NOT FOUND)")
+	if(new_position == 0)
+		LAZYREMOVE(positions, hivenumber)
+	else
+		LAZYSET(positions, hivenumber, new_position)
+	if(!action.HS)
+		action.HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(action.HS.hivenumber != hivenumber)
 		return
-	action.button.maptext = MAPTEXT_TINY_UNICODE(span_center("[position]/[LAZYLEN(the_hive.candidates)]"))
+	action.button.maptext = MAPTEXT_TINY_UNICODE(span_center("[new_position]/[LAZYLEN(action.HS.candidates)]"))
 	action.button.maptext_x = 1
 	action.button.maptext_y = 3
-	if (position == 0) // No longer in queue
+	if (new_position == 0) // No longer in queue
 		action.set_toggle(FALSE)
 		action.button.maptext = null
 
@@ -107,6 +115,7 @@
 	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
 	action_type = ACTION_TOGGLE
+	var/datum/hive_status/HS
 
 /datum/action/join_larva_queue/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -117,14 +126,29 @@
 	return FALSE
 
 /datum/action/join_larva_queue/action_activate()
-	var/hivechoice = tgui_input_list(owner, "Choose your hive.", "Join Larva Queue", list("Normal", "Corrupted"))
-	var/datum/hive_status/normal/HS
-	switch(hivechoice)
-		if("Normal")
-			HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if("Corrupted")
-			HS = GLOB.hive_datums[XENO_HIVE_CORRUPTED]
-	if(HS.add_to_larva_candidate_queue(owner.client))
-		set_toggle(TRUE)
+	HS.add_to_larva_candidate_queue(owner.client)
+	update_button_icon()
+
+/datum/action/join_larva_queue/update_button_icon()
+	. = ..()
+	if(!.)
 		return
-	set_toggle(FALSE)
+	var/larva_position = SEND_SIGNAL(owner.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, HS.hivenumber)
+	set_toggle(!!larva_position)
+	if(larva_position)
+		button.maptext = MAPTEXT_TINY_UNICODE(span_center("[larva_position]/[LAZYLEN(HS.candidates)]"))
+	else
+		button.maptext = ""
+	button.color = HS.color
+
+/datum/action/join_larva_queue/alternate_action_activate()
+	ASYNC
+		var/list/queueable_hives = list()
+		var/list/queueable_hives_assoc = list()
+		for(var/hivenumber in GLOB.hive_datums)
+			if(GLOB.hive_datums[hivenumber].queueable)
+				queueable_hives += GLOB.hive_datums[hivenumber].name
+				queueable_hives_assoc[GLOB.hive_datums[hivenumber].name] = GLOB.hive_datums[hivenumber]
+		var/hivechoice = tgui_input_list(owner, "Choose your hive.", "Join Larva Queue", queueable_hives)
+		HS = queueable_hives_assoc[hivechoice]
+		update_button_icon()

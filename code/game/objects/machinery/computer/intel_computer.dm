@@ -16,7 +16,7 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 500
+	var/supply_reward = 450
 	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 350
 	///length of intel disk chain
@@ -70,7 +70,15 @@
 	supply_reward = initial(supply_reward)
 	dropship_reward = initial(dropship_reward)
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
-	minor_announce("Classified data extraction has been completed in [get_area(src)].", title = "Intel Division")
+	minor_announce("Classified data extraction has been completed in [get_area(src)].  A disk has been produced that is worth [supply_reward] supply points, [dropship_reward] dropship points, [dropship_reward/2] credits, and is [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].", title = "Intel Division")
+	for(var/hivenumber in GLOB.hive_datums)
+		var/datum/job/xeno_job = SSjob.GetJobType(GLOB.hivenumber_to_job_type[hivenumber])
+		GLOB.hive_datums[hivenumber].xeno_message(
+			"A disk has been produced at [get_area(src)] that is worth [floor(supply_reward/160)] ambrosia, [round(supply_reward/2, 0.1)] psypoints and [round(floor(supply_reward/60)/xeno_job.job_points_needed, 0.01)] burrowed larvae. It is [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
+			size = 3,
+			target = new_disk,
+			report_distance = TRUE,
+			)
 	SStgui.close_uis(src)
 	update_minimap_icon()
 	update_icon()
@@ -226,15 +234,22 @@
 	if(!.)
 		return FALSE
 	var/datum/game_mode/infestation/extended_plus/secret_of_life/gaymode = SSticker.mode
+	var/datum/individual_stats/the_stats
 	if(gaymode && user)
-		var/datum/individual_stats/the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
+		the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
 		the_stats?.give_funds(round(dropship_reward/2))
-	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points and [dropship_reward] dropship points were acquired.", title = "Intel Division")
+	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""] were acquired.  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].", title = "Intel Division")
+	for(var/hivenumber in GLOB.hive_datums)
+		GLOB.hive_datums[hivenumber].xeno_message(
+			"The talls of [faction_selling] claimed a disk for [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""].  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
+			size = 3,
+			)
 	GLOB.round_statistics.points_from_intel += supply_reward
 	if(max_chain > GLOB.round_statistics.intel_max_chain)
 		GLOB.round_statistics.intel_max_chain = max_chain
-		GLOB.round_statistics.intel_max_chain_sold_by = faction_selling
-		GLOB.round_statistics.intel_max_chain_sold_for = "[supply_reward] supply points[user ? " and" : ","] [dropship_reward] dropship points[user ? ", and [dropship_reward/2] credits" : ""]"
+	if(!("[max_chain]" in GLOB.round_statistics.intel_chain_sold_by_list))
+		GLOB.round_statistics.intel_chain_sold_by_list["[max_chain]"] = faction_selling
+		GLOB.round_statistics.intel_chain_sold_for_list["[max_chain]"] = "[supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""]"
 
 /obj/item/disk/intel_disk/Destroy()
 	SSminimaps.remove_marker(src)

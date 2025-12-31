@@ -1181,24 +1181,24 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidates, waiter)
 	RegisterSignal(waiter, COMSIG_QDELETING, PROC_REF(cleanup_waiter))
 	var/new_position = LAZYLEN(candidates)
-	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, new_position)
+	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, new_position, hivenumber)
 	to_chat(waiter, span_warning("There are either no burrowed larva, you are on your xeno respawn timer, or there are no silos. You are in position [new_position] to become a Xenomorph."))
 	give_larva_to_next_in_queue() //Updates the queue for xeno respawn timer
 	return TRUE
 
 /// Remove a client from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(client/waiter)
-	var/larva_position = SEND_SIGNAL(waiter, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
+	var/larva_position = SEND_SIGNAL(waiter, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, hivenumber)
 	if (!larva_position)
 		return // We weren't in the queue
 	LAZYREMOVE(candidates, waiter)
 	UnregisterSignal(waiter, COMSIG_QDELETING)
-	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0)
+	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0, hivenumber)
 	to_chat(waiter, span_warning("You left the Larva queue."))
 	var/client/client_in_queue
 	for(var/i in 1 to LAZYLEN(candidates))
 		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i, hivenumber)
 
 /// Propose larvas until their is no more candidates, or no more burrowed
 /datum/hive_status/proc/give_larva_to_next_in_queue()
@@ -1243,7 +1243,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 	for(var/i in 1 to LAZYLEN(candidates))
 		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i, hivenumber)
 
 /// Remove ref to avoid hard del and null error
 /datum/hive_status/proc/cleanup_waiter(datum/source)
@@ -1252,7 +1252,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/proc/try_to_give_larva(client/next_in_line)
-	SEND_SIGNAL(next_in_line, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0)
+	SEND_SIGNAL(next_in_line, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0, hivenumber)
 	if(!attempt_to_spawn_larva(next_in_line, TRUE))
 		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
 		return FALSE

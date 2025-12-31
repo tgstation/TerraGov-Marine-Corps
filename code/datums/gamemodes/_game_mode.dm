@@ -448,8 +448,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.total_projectile_hits[FACTION_XENO]] projectiles managed to hit xenomorphs. For a [(GLOB.round_statistics.total_projectile_hits[FACTION_XENO] / max(GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV], 1)) * 100]% accuracy total!"
 
 	if(GLOB.round_statistics.intel_max_chain)
-		parts += "The longest intel chain cashed in has length [GLOB.round_statistics.intel_max_chain]."
-		parts += "The first chain of this length cashed in was cashed in by [GLOB.round_statistics.intel_max_chain_sold_by] for [GLOB.round_statistics.intel_max_chain_sold_for]."
+		parts += "The longest intel chain cashed in had length [GLOB.round_statistics.intel_max_chain]."
+	for(var/chain_length in GLOB.round_statistics.intel_chain_sold_by_list)
+		parts += "The first chain of length [chain_length] cashed in was cashed in by [GLOB.round_statistics.intel_chain_sold_by_list[chain_length]] for [GLOB.round_statistics.intel_chain_sold_for_list[chain_length]]."
 	if(GLOB.round_statistics.strategic_psypoints_from_generators)
 		parts += "[GLOB.round_statistics.strategic_psypoints_from_generators] strategic psy points were obtained from generators, at an average rate of [GLOB.round_statistics.strategic_psypoints_from_generators * ((1 HOURS) /(1 SECONDS)) / GLOB.round_statistics.generator_seconds] points per generator per hour."
 		var/avg_gen_time = GLOB.round_statistics.generator_seconds * 1 SECONDS / GLOB.generators_on_ground
@@ -1178,9 +1179,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
-	var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
-	if (larva_position) // If non-zero, we're in queue
-		items += "Position in larva candidate queue: [larva_position]"
+	for(var/hivenumber in GLOB.hive_datums)
+		var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, hivenumber)
+		if(larva_position)
+			items += "Position in [GLOB.hive_datums[hivenumber].name] larva candidate queue: [larva_position]"
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions

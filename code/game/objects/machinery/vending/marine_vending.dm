@@ -163,7 +163,7 @@
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
 			/obj/item/explosive/grenade/smokebomb/antigas = 10,
 			/obj/item/explosive/grenade/sticky/cloaker = 10,
-			/obj/item/explosive/grenade/smokebomb/drain = 15,
+			/obj/item/explosive/grenade/smokebomb/drain = 25,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = 40,

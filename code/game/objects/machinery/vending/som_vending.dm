@@ -160,7 +160,7 @@
 			/obj/item/explosive/grenade/smokebomb/satrapine = 30,
 			/obj/item/explosive/grenade/flashbang/stun = 30,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
-			/obj/item/explosive/grenade/smokebomb/drain = 15,
+			/obj/item/explosive/grenade/smokebomb/drain = 25,
 			/obj/item/explosive/grenade/mirage = 50,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = 20,

@@ -16383,7 +16383,7 @@
 	},
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating,
-/area/gelida/outdoors/colony_streets/central_streets)
+/area/gelida/indoors/a_block/bridges)
 "lcK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkbrown/full,
