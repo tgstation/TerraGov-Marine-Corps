@@ -1178,9 +1178,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
-	var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
-	if (larva_position) // If non-zero, we're in queue
-		items += "Position in larva candidate queue: [larva_position]"
+	for(var/hivenumber in GLOB.hive_datums)
+		var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, hivenumber)
+		if(larva_position)
+			items += "Position in [GLOB.hive_datums[hivenumber].name] larva candidate queue: [larva_position]"
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
