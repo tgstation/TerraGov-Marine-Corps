@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			var/hivenumber = user.get_xeno_hivenumber()
 			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [hivenumber] hive")
 			if(upgrade.upgrade_flags & UPGRADE_FLAG_MESSAGE_HIVE)
-				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, hivenumber)
+				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 3, hivenumber)
 
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/atom/built = new building_type(get_turf(buyer), hivenumber)
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(built)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built \a [built] at [get_area(built)]!", "xenoannounce", 5, hivenumber)
+	xeno_message("[buyer] has built \a [built] at [get_area(built)]!", "xenoannounce", 3, hivenumber)
 	return ..()
 
 /datum/hive_upgrade/building/silo
@@ -473,7 +473,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	new turret_type(get_turf(buyer), hivenumber)
 
 	log_game("[buyer] built a turret in [AREACOORD(buyer)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built a new turret at [get_area(buyer)]!", "xenoannounce", 5, hivenumber)
+	xeno_message("[buyer] has built a new turret at [get_area(buyer)]!", "xenoannounce", 3, hivenumber)
 
 	return ..()
 
@@ -531,7 +531,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/atom/built = new /obj/structure/xeno/resin_gargoyle(buildloc, hivenumber, buyer)
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, hivenumber)
+	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 3, hivenumber)
 	return ..()
 
 /datum/hive_upgrade/xenos
