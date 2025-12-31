@@ -252,6 +252,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/tx54)
 	cost = 20
 
+/datum/supply_packs/weapons/tx54_he
+	name = "GL-54 HE grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
+	cost = 120
+
 /datum/supply_packs/weapons/tx54_incendiary
 	name = "GL-54 incendiary grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
@@ -271,6 +276,16 @@ WEAPONS
 	name = "GL-54 tanglefoot grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/tangle)
 	cost = 48
+
+/datum/supply_packs/weapons/tx54_smoke/acid
+	name = "GL-54 acid smoke grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/acid)
+	cost = 120
+
+/datum/supply_packs/weapons/tx54_razor
+	name = "GL-54 razorburn grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
+	cost = 180
 
 /datum/supply_packs/weapons/tx55
 	name = "AR-55 OICW Rifle"
