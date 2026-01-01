@@ -1320,6 +1320,7 @@
 //			/obj/item/armor_module/module/hod_head = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/fire_proof = 4,
+			/obj/item/armor_module/module/fire_proof_helmet = 4,
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/knight = -1,
 			/obj/item/armor_module/module/eshield = -1,
