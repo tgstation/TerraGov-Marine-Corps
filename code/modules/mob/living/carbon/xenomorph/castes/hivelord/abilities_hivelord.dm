@@ -155,7 +155,7 @@
 		owner.balloon_alert(owner, "resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
-	if(!xeno_owner.loc_weeds_type && weeding_cost > 0 && xeno_owner.plasma_stored >= weeding_cost)
+	if(!xeno_owner.loc_weeds_type && weeding_cost > 0 && xeno_owner.plasma_stored >= (weeding_cost+10))
 		var/obj/alien/weeds/created_weeds = new(xeno_owner.loc)
 		SSweeds_decay.decaying_list += created_weeds // Check if it should go away (no nearby node) or stick around (nearby node).
 		xeno_owner.handle_weeds_on_movement() // loc_weeds_type is changed here.

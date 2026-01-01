@@ -176,17 +176,20 @@
 ///Handles moving while in stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
 	SIGNAL_HANDLER
+	var/plasma_to_use
 	if(owner.m_intent == MOVE_INTENT_WALK)
-		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
+		plasma_to_use = (HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 
 		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_WALK_ALPHA)
 	else
-		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * movement_cost_multiplier)
+		plasma_to_use = (HUNTER_STEALTH_RUN_PLASMADRAIN * movement_cost_multiplier)
 		xeno_owner.set_alpha_source(ALPHA_SOURCE_HUNTER_STEALTH, HUNTER_STEALTH_RUN_ALPHA)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!xeno_owner.plasma_stored)
+	if(xeno_owner.plasma_stored < plasma_to_use)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
+	else
+		xeno_owner.use_plasma(plasma_to_use)
 
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
