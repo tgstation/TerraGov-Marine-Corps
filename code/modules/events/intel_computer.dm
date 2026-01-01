@@ -21,8 +21,17 @@
 			active_computers++
 	switch(active_computers)
 		if(0)
-			weight = initial(weight)*18
-			no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 8 MINUTES, TIMER_STOPPABLE)
+			if(prob(50))
+				weight = initial(weight)*108
+				if(timeleft(no_pc_timer))
+					deltimer(no_pc_timer)
+					no_pc_timer = null
+			else
+				weight = initial(weight)*18
+				if(prob(50))
+					no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 8 MINUTES, TIMER_STOPPABLE)
+				else
+					no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 16 MINUTES, TIMER_STOPPABLE)
 		if(1)
 			weight = initial(weight)*12
 			if(timeleft(no_pc_timer))
