@@ -33,6 +33,8 @@
 		if(1)
 			weight = initial(weight)*108
 		if(2)
+			weight = initial(weight)*12
+		if(3)
 			weight = initial(weight)*6
 		else
 			weight = initial(weight)
