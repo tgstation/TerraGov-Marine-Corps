@@ -2,7 +2,7 @@
 	name = "Intel computer activation"
 	typepath = /datum/round_event/intel_computer
 	weight = 1
-	var/no_pc_timer
+	var/intel_drought_timer
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the intel computer for the next event to activate
@@ -19,38 +19,28 @@
 	for(var/obj/machinery/computer/intel_computer/I in GLOB.intel_computers)
 		if(I.active)
 			active_computers++
+	if(timeleft(intel_drought_timer))
+		weight = initial(weight)
+		return
 	switch(active_computers)
 		if(0)
 			if(prob(50))
 				weight = initial(weight)*108
-				if(timeleft(no_pc_timer))
-					deltimer(no_pc_timer)
-					no_pc_timer = null
 			else
-				weight = initial(weight)*18
-				if(prob(50))
-					no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 8 MINUTES, TIMER_STOPPABLE)
-				else
-					no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 16 MINUTES, TIMER_STOPPABLE)
+				minor_announce("Intel overharvesting has caused an intel drought.  Intel will be less common for 15 minutes.", title = "Intel Drought")
+				intel_drought_timer = addtimer(CALLBACK(src, PROC_REF(intel_drought_end)), 15 MINUTES, TIMER_STOPPABLE)
+				weight = initial(weight)
 		if(1)
-			weight = initial(weight)*12
-			if(timeleft(no_pc_timer))
-				deltimer(no_pc_timer)
-				no_pc_timer = null
+			weight = initial(weight)*108
 		if(2)
 			weight = initial(weight)*6
-			if(timeleft(no_pc_timer))
-				deltimer(no_pc_timer)
-				no_pc_timer = null
 		else
 			weight = initial(weight)
-			if(timeleft(no_pc_timer))
-				deltimer(no_pc_timer)
-				no_pc_timer = null
 
-/datum/round_event_control/intel_computer/proc/no_pc_weight_boost()
+/datum/round_event_control/intel_computer/proc/intel_drought_end()
+	minor_announce("The intel drought has ended.", title = "Intel Drought End")
 	weight = initial(weight)*108
-	no_pc_timer = null
+	intel_drought_timer = null
 
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode, force = FALSE)
 	. = ..()
