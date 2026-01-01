@@ -55,6 +55,7 @@
 	H.dropItemToGround(H.r_hand, TRUE)
 	H.dropItemToGround(H.l_hand, TRUE)
 	H.dextrous = FALSE//Prevents from opening cades
+	ADD_TRAIT(H, TRAIT_NO_STUN_ATTACK, ZOMBIE_TRAIT)
 	if(SSticker.mode.zombie_ids)
 		if(istype(H.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/id = H.wear_id
@@ -205,6 +206,7 @@
 	. = ..()
 	H.transform = matrix().Scale(1.2, 1.2)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, ZOMBIE_TRAIT)
+	REMOVE_TRAIT(H, TRAIT_NO_STUN_ATTACK, ZOMBIE_TRAIT)//The boss of the gym
 	H.move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 
 /datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)

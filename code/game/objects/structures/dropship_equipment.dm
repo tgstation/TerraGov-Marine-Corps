@@ -208,60 +208,35 @@
 
 /obj/structure/dropship_equipment/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
-		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(attached_clamp.loaded, /obj/structure/ship_ammo))
-			return
-		var/obj/structure/ship_ammo/clamp_ammo = attached_clamp.loaded
-		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
-			to_chat(user, span_warning("[clamp_ammo] doesn't fit in [src]."))
-			return
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return
-		if(ammo_equipped || attached_clamp.loaded != clamp_ammo || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
-			return
-		clamp_ammo.forceMove(src)
-		attached_clamp.loaded = null
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		attached_clamp.update_icon()
-		to_chat(user, span_notice("You load [clamp_ammo] into [src]."))
-		ammo_equipped = clamp_ammo
-		update_equipment()
-		return //refilled dropship ammo
+		try_load_ammo(user, attached_clamp, attached_clamp.loaded)
+		return
+
 	if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return
-		if(!ammo_equipped || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
-			return
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!ammo_equipped.ammo_count)
-			ammo_equipped.loc = null
-			to_chat(user, span_notice("You've discarded the empty [ammo_equipped.name] in [src]."))
-			qdel(ammo_equipped)
-		else
-			ammo_equipped.forceMove(attached_clamp.linked_powerloader)
-			attached_clamp.loaded = ammo_equipped
-			attached_clamp.update_icon()
-			to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [attached_clamp]."))
-		ammo_equipped = null
-		update_icon()
-		return //emptied or removed dropship ammo
+		try_unload_ammo(user, attached_clamp)
+		return
+
 	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
 		return
 	if(get_self_acid())
 		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+		return
+
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
+	var/duration_time = ship_base ? 7 SECONDS : 1 SECONDS //uninstalling equipment takes more time
 	if(!do_after(user, duration_time, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		return
-	if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+	if(attached_clamp.loaded)
 		return
-	forceMove(attached_clamp.linked_powerloader)
-	attached_clamp.loaded = src
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+	if(get_self_acid())
+		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+		return
+
+	attached_clamp.do_load(src)
+
 	SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
-	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	attached_clamp.update_icon()
 	to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [attached_clamp.loaded] with [attached_clamp]."))
 	if(ship_base)
 		ship_base.installed_equipment = null
@@ -276,6 +251,58 @@
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
+
+///Attempts to load ammo into src
+/obj/structure/dropship_equipment/proc/try_load_ammo(mob/living/user, obj/item/powerloader_clamp/attached_clamp, obj/structure/ship_ammo/clamp_ammo)
+	if(!istype(clamp_ammo))
+		return
+	if(!(dropship_equipment_flags & USES_AMMO))
+		balloon_alert(user, "No ammo needed")
+		return
+	if(ammo_equipped)
+		balloon_alert(user, "Already loaded")
+		return
+	if(clamp_ammo.ammo_type != ammo_type_used)
+		balloon_alert(user, "Wrong ammo")
+		return
+
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		return
+	if(QDELETED(clamp_ammo) || ammo_equipped || attached_clamp.loaded != clamp_ammo)
+		return
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+
+	attached_clamp.do_unload(src)
+	to_chat(user, span_notice("You load [clamp_ammo] into [src]."))
+	ammo_equipped = clamp_ammo
+	update_equipment()
+	update_appearance(UPDATE_ICON)
+
+///Attempts to remove ammo from src
+/obj/structure/dropship_equipment/proc/try_unload_ammo(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		return
+	if(attached_clamp.loaded)
+		return
+	if(!ammo_equipped)
+		return
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+
+	if(ammo_equipped.ammo_count)
+		attached_clamp.do_load(ammo_equipped)
+		to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [attached_clamp]."))
+	else
+		ammo_equipped.loc = null
+		to_chat(user, span_notice("You've discarded the empty [ammo_equipped.name] in [src]."))
+		qdel(ammo_equipped)
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+
+	ammo_equipped = null
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
