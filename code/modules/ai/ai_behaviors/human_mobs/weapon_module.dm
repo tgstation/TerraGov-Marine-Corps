@@ -1,21 +1,107 @@
-//code specific to ranged and melee weapons
+//! Code specific to ranged/melee combat
+
+#define COMBAT_HIGH_ENERGY \
+	"THIS IS IT! CHARGE!!",\
+	"BRING IT ON!!",\
+	"You're mine!",\
+	"Let's rock!",\
+	"WASTE 'EM!!",\
+	"Fuck you!",\
+	"Get some!"
+
+#define COMBAT_COLD \
+	"Weapons free.",\
+	"Moving in.",\
+	"Engaging!",\
+	"Engaging.",\
+	"Hostiles!",\
+	"Contact!"
+
 /datum/ai_behavior/human
 	///Currently equipped and ready firearm
 	var/obj/item/weapon/gun/gun
 	///Currently equipped and ready melee weapon - could also be the gun
 	var/obj/item/weapon/melee_weapon
-	///Chat lines when opening fire
-	var/list/start_fire_chat = list("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!")
-	///Chat lines when reloading
-	var/list/reloading_chat = list("Reloading!", "Cover me, reloading!", "Changing mag!", "Out of ammo!")
-	///Chat lines when target goes out of range
-	var/list/out_range_chat = list("Target out of range.", "Out of range.", "I lost them.", "Where'd they go?", "They're running!")
-	///Chat lines when LOS broken
-	var/list/no_los_chat = list("Target lost!", "Where'd they go?", "I lost sight of them!", "Where'd they go?", "They're running!", "Stop hiding!")
-	///Chat lines when some asshole on your team is in the way
-	var/list/friendly_blocked_chat = list("Get out of the way!", "You're in my line!", "Clear the firing lane!", "Move!", "Holding fire!", "Stop blocking me damn it!")
-	///Chat lines when target dies or is destroyed
-	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
+	/// Lines when gaining a combat target
+	var/list/new_target_lines = list(
+		FACTION_NEUTRAL = list(
+			COMBAT_HIGH_ENERGY,
+		),
+		FACTION_TERRAGOV = list(
+			COMBAT_HIGH_ENERGY,
+			"CONTACT!!",
+		),
+		FACTION_NANOTRASEN = list(
+			COMBAT_COLD,
+		),
+		FACTION_SPECFORCE = list(
+			COMBAT_COLD,
+		),
+	)
+	/// Lines when opening fire
+	var/list/start_fire_lines = list(
+		FACTION_NEUTRAL = list(
+			"Weapons free!",
+			"Open fire!",
+			"Fuck you!",
+			"Just die!",
+			"Get some!",
+			"Firing!",
+			"Die!",
+		),
+	)
+	/// Lines when trying to reload the current weapon
+	var/list/reloading_lines = list(
+		FACTION_NEUTRAL = list(
+			"Cover me, I'm reloading!",
+			"Out, reloading!",
+			"Changing mag!",
+			"RELOADING!!",
+		),
+	)
+	/// Lines when firing has to stop because of a target leaving firing range
+	var/list/out_of_range_lines = list(
+		FACTION_NEUTRAL = list(
+			"THEY'RE MAKING A BREAK FOR IT!!",
+			"THEY'RE OUT OF SHOOTING RANGE!!",
+			"Where'd they go?!",
+			"We're losing 'em!",
+			"They're running!",
+			"I'm losing them!",
+		),
+	)
+	/// Lines when firing has to stop because of line of sight being lost
+	var/list/no_line_of_sight_lines = list(
+		FACTION_NEUTRAL = list(
+			"I'm gonna find you, motherfucker!",
+			"I lost sight of them!",
+			"Where'd they go?!",
+			"Target lost!",
+			"Quit hiding!",
+		),
+	)
+	/// Lines when firing has to stop because of a friendly in the way
+	var/list/friendly_blocking_lines = list(
+		FACTION_NEUTRAL = list(
+			"YOU'RE IN MY FIRING LINE!!",
+			"COME ON, GET CLEAR!!",
+			"HOLDING FIRE, MOVE!!",
+			"GET CLEAR!!",
+			"MOVE IT!!",
+		),
+	)
+	/// Lines when a combat target is killed
+	var/list/dead_target_lines = list(
+		FACTION_NEUTRAL = list(
+			"Down for the count!",
+			"Kill confirmed!",
+			"They're down!",
+			"Scratch one!",
+			"Target down!",
+			"We got one.",
+			"Dead.",
+		),
+	)
 
 /datum/ai_behavior/human/melee_interact(datum/source, atom/interactee, melee_tool = melee_weapon) //specifies the arg value
 	var/toggle_intent = FALSE
@@ -45,7 +131,7 @@
 	if(fire_result != AI_FIRE_CAN_HIT)
 		return
 	if(prob(90))
-		try_speak(pick(start_fire_chat))
+		faction_list_speak(start_fire_lines)
 	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
 		gun.unique_action(mob_parent)
 	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
@@ -261,18 +347,18 @@
 	switch(stop_reason)
 		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
 			if(prob(75))
-				try_speak(pick(dead_target_chat))
+				faction_list_speak(dead_target_lines)
 		if(AI_FIRE_NO_AMMO)
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
-				try_speak(pick(out_range_chat))
+				faction_list_speak(out_of_range_lines)
 		if(AI_FIRE_NO_LOS)
 			if(prob(50))
-				try_speak(pick(no_los_chat))
+				faction_list_speak(no_line_of_sight_lines)
 		if(AI_FIRE_FRIENDLY_BLOCKED)
 			if(prob(50))
-				try_speak(pick(friendly_blocked_chat))
+				faction_list_speak(friendly_blocking_lines)
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()
@@ -297,7 +383,7 @@
 		//insert messaging etc
 		return
 	if(prob(90))
-		try_speak(pick(reloading_chat))
+		faction_list_speak(reloading_lines)
 	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
 		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
@@ -320,3 +406,6 @@
 			if(line_mob.faction == mob_parent.faction)
 				return FALSE
 	return TRUE
+
+#undef COMBAT_HIGH_ENERGY
+#undef COMBAT_COLD

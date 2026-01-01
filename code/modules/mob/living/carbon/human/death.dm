@@ -47,6 +47,7 @@
 		deathmessage = species.death_message
 	if(!silent && species.death_sound)
 		playsound(loc, species.death_sound, 50, TRUE)
+	nearby_humans_witness_death(gibbing)
 	return ..()
 
 
@@ -72,6 +73,13 @@
 
 	return ..()
 
+/// Sends a signal to viewing humans with `src` and `gibbing`
+/mob/living/carbon/human/proc/nearby_humans_witness_death(gibbing)
+	for(var/mob/living/carbon/human/nearby in oviewers(src))
+		if(nearby.incapacitated() || is_blind(nearby))
+			continue
+		if(SEND_SIGNAL(nearby, COMSIG_HUMAN_VIEW_DEATH, src, gibbing) & HUMAN_VIEW_DEATH_STOP_LOOP)
+			break
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	if(f_style)
