@@ -484,7 +484,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
-/obj/machinery/vending/uniform_supply,
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
