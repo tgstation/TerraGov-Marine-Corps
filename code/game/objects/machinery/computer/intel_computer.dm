@@ -238,10 +238,10 @@
 	if(gaymode && user)
 		the_stats = gaymode.stat_list[user.faction].get_player_stats(user)
 		the_stats?.give_funds(round(dropship_reward/2))
-	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""] were acquired.  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].", title = "Intel Division")
+	minor_announce("Classified data disk extracted by [faction_selling] from area of operations. [supply_reward] supply points[the_stats ? "," : " and"] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""] were acquired.  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].", title = "Intel Division")
 	for(var/hivenumber in GLOB.hive_datums)
 		GLOB.hive_datums[hivenumber].xeno_message(
-			"The talls of [faction_selling] claimed a disk for [supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""].  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
+			"The talls of [faction_selling] claimed a disk for [supply_reward] supply points[the_stats ? "," : " and"] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""].  It was [max_chain ? "part of an intel chain of length [max_chain]" : "not part of an intel chain"].",
 			size = 3,
 			)
 	GLOB.round_statistics.points_from_intel += supply_reward
@@ -249,7 +249,7 @@
 		GLOB.round_statistics.intel_max_chain = max_chain
 	if(!("[max_chain]" in GLOB.round_statistics.intel_chain_sold_by_list))
 		GLOB.round_statistics.intel_chain_sold_by_list["[max_chain]"] = faction_selling
-		GLOB.round_statistics.intel_chain_sold_for_list["[max_chain]"] = "[supply_reward] supply points[the_stats ? " and" : ","] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""]"
+		GLOB.round_statistics.intel_chain_sold_for_list["[max_chain]"] = "[supply_reward] supply points[the_stats ? "," : " and"] [dropship_reward] dropship points[the_stats ? ", and [dropship_reward/2] credits" : ""]"
 
 /obj/item/disk/intel_disk/Destroy()
 	SSminimaps.remove_marker(src)
