@@ -193,7 +193,7 @@
 	/// Dropship reward. Set up during init. Is set up by an intel computer.
 	var/dropship_reward
 	/// After this time, the disk will yield no req points.
-	var/duration = 20 MINUTES
+	var/duration = 45 MINUTES
 	///length of intel disk chain
 	var/max_chain = 0
 

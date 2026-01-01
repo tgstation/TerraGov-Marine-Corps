@@ -2,6 +2,7 @@
 	name = "Intel computer activation"
 	typepath = /datum/round_event/intel_computer
 	weight = 1
+	var/no_pc_timer
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the intel computer for the next event to activate
@@ -13,20 +14,34 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_INTEL_COMPUTER_ACTIVATED, PROC_REF(recalculate_weight))
 	weight *= 108
 
-/datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, var/obj/item/disk/intel_disk/new_disk)
+/datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, obj/item/disk/intel_disk/new_disk)
 	var/active_computers = 0
 	for(var/obj/machinery/computer/intel_computer/I in GLOB.intel_computers)
 		if(I.active)
 			active_computers++
 	switch(active_computers)
 		if(0)
-			weight = initial(weight)*108
+			weight = initial(weight)*18
+			no_pc_timer = addtimer(CALLBACK(src, PROC_REF(no_pc_weight_boost)), 8 MINUTES, TIMER_STOPPABLE)
 		if(1)
 			weight = initial(weight)*12
+			if(timeleft(no_pc_timer))
+				deltimer(no_pc_timer)
+				no_pc_timer = null
 		if(2)
 			weight = initial(weight)*6
+			if(timeleft(no_pc_timer))
+				deltimer(no_pc_timer)
+				no_pc_timer = null
 		else
 			weight = initial(weight)
+			if(timeleft(no_pc_timer))
+				deltimer(no_pc_timer)
+				no_pc_timer = null
+
+/datum/round_event_control/intel_computer/proc/no_pc_weight_boost()
+	weight = initial(weight)*108
+	no_pc_timer = null
 
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode, force = FALSE)
 	. = ..()
