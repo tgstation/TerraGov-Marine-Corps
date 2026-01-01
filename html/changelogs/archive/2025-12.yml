@@ -200,3 +200,27 @@
   - balance: Adjusted xeno regeneration debuff applied in xvx
   - bugfix: Weed nodes now properly respect destroy weeds toggle
   - bugfix: Fixed dragon issues related to flying and weed
+2025-12-23:
+  Lumipharon:
+  - bugfix: Fixes extinguishers refueling with the wrong fuel
+  - bugfix: Fixes water tanks not having the fuel component
+  - bugfix: Fixes flame tanks (and water) not being refuelable
+  - bugfix: fixed dropship ammo disappearing in certain scenarios
+  - code_imp: Update ripley dropship equipment interaction code
+  - bugfix: fixed sticky weeds not applying slowdown
+  - qol: fixed some balloon alert for fire support binos being visible to all mobs
+  - bugfix: fixed cooldowns being set for fire support binos later than they should
+      be
+  Neocloudy:
+  - rscdel: TGUI compatibility mode has been removed.
+  mudzbe:
+  - balance: Remove stun attacks from all zombies except tanks
+  - balance: Increased zombie attack damage
+  - rscadd: Adds recommended pop for maps to the groundmap vote like how it is in
+      the admin panel
+  - soundadd: Replace howitzer sound
+  - rscadd: Zombies tip over vending machines
+  - bugfix: Fixes vending machine and space heater cheese
+2025-12-29:
+  mudzbe:
+  - bugfix: Groundmap vote fixed

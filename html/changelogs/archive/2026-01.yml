@@ -2,3 +2,7 @@
   Ducky-Momo:
   - rscadd: KZ ammo back to specialized section of vendor
   - balance: buffed autocannon accuracy, range and damage falloff
+  mudzbe:
+  - balance: Robots/synths take burn damage per zombium
+  - rscdel: Remove flashbang effect from ammo cookoff
+  - balance: Decrease zombie spawnrate

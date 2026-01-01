@@ -17,7 +17,7 @@
 		) = 5,
 	)
 	spawnamount = 2
-	spawndelay = 15 SECONDS
+	spawndelay = 25 SECONDS
 	maxamount = 50
 	///Currently is considered under threat
 	var/threat_warning = FALSE
