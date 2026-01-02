@@ -28,13 +28,28 @@
 	rechargeTime = 0
 
 /obj/docking_port/stationary/marine_dropship/minidropship/clf
-	name = "CLF Van Parking Spot"
+	name = "Technical Vehicle Parking Spot"
 	id = SHUTTLE_CLFTADPOLE
-	roundstart_template = /datum/map_template/shuttle/minidropship/old
+	//roundstart_template = /datum/map_template/shuttle/minidropship/clf
+
 
 /obj/docking_port/mobile/marine_dropship/minidropship/clf
-	name = "CLF Van"
+	name = "Technical Van"
 	id = SHUTTLE_CLFTADPOLE
+	dwidth = 0
+	dheight = 0
+	width = 6
+	height = 8
+	rechargeTime = 0
+
+/obj/docking_port/stationary/marine_dropship/minidropship/colmil
+	name = "CM Minidropship Parking Spot"
+	id = SHUTTLE_CMTADPOLE
+	//roundstart_template = /datum/map_template/shuttle/minidropship/colmil
+
+/obj/docking_port/mobile/marine_dropship/minidropship/colmil
+	name = "CM Tadpole"
+	id = SHUTTLE_CMTADPOLE
 	dwidth = 0
 	dheight = 0
 	width = 7
@@ -88,6 +103,16 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/clf
 	name = "CLF Van Controls"
 	shuttleId = SHUTTLE_CLFTADPOLE
+	origin_port_id = SHUTTLE_CLFTADPOLE
+	req_access = null
+	req_one_access = null
+	networks = null
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/colmil
+	name = "CM Tadpole navigation computer"
+	shuttleId = SHUTTLE_CMTADPOLE
+	origin_port_id = SHUTTLE_CMTADPOLE
+	req_access = null
 	req_one_access = null
 	networks = null
 

@@ -110,6 +110,10 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/antag_ship/icc/hangar/center)
+"aT" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "aU" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/requisition)
@@ -170,7 +174,6 @@
 /area/antag_ship/som/security/cell)
 "bl" = (
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
-/obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/clf_base/techroom)
 "bm" = (
@@ -909,6 +912,17 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
+"fi" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/storage/fancy/cigar,
+/obj/item/tool/lighter/zippo,
+/obj/item/tool/pen,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "fj" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkbrown{
@@ -2840,6 +2854,7 @@
 /area/antag_ship/icc/hangar/center)
 "oh" = (
 /obj/effect/urban/decal/trash/fifteen,
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "oi" = (
@@ -3484,6 +3499,12 @@
 /obj/effect/turf_decal/caution/red,
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/hall)
+"rj" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/antag_ship/som/hangar)
 "rl" = (
 /obj/structure/table/reinforced/prison,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
@@ -3705,6 +3726,12 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander)
+"sm" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "sn" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -4347,10 +4374,10 @@
 /obj/item/tool/wrench,
 /obj/item/tool/crowbar,
 /obj/item/tool/screwdriver,
-/obj/item/paper/factoryhowto,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/item/paper/factoryhowto/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "vG" = (
@@ -4987,6 +5014,12 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
+"yG" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "yH" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/bcircuit/anim,
@@ -5197,6 +5230,12 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/starboard/spaceport)
+"Ac" = (
+/obj/item/paper{
+	info = "(ooc)I can't make the fucking tadpoles work"
+	},
+/turf/open/floor/plating,
+/area/antag_ship/icc/hangar/west)
 "Ae" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /obj/structure/cable,
@@ -5728,6 +5767,20 @@
 /obj/item/reagent_containers/food/snacks/sausage,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/antag_ship/clf_base/kitchen)
+"CH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
+"CK" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "CL" = (
 /obj/structure/prop/mainship/gelida/powercconnectorthreeside{
 	dir = 4
@@ -6470,6 +6523,15 @@
 /obj/item/toy/plush/rouny,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
+"Go" = (
+/turf/open/floor/plating,
+/area/antag_ship/icc/hangar/west)
+"Gr" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "Gs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -6806,6 +6868,13 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/clf_base/techroom)
+"HR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/generator,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "HS" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
@@ -7183,6 +7252,17 @@
 /obj/machinery/vending/engivend/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
+"Js" = (
+/obj/structure/rack,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/paper/factoryhowto,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "Jt" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/mainship{
@@ -7252,6 +7332,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/antag_ship/clf_base/hallways/inside)
+"JN" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "JP" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -7383,6 +7470,12 @@
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
 /turf/open/floor/plating/scorched,
 /area/antag_ship/som/mech_bay)
+"KE" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "KG" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters{
@@ -8278,6 +8371,9 @@
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 1
 	},
+/obj/machinery/dropship_part_fabricator/tadpole{
+	faction = "Colonial Militia"
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "Pd" = (
@@ -8782,6 +8878,8 @@
 /obj/machinery/light/red{
 	dir = 1
 	},
+/obj/item/storage/box/crate/loot/materials_pack,
+/obj/effect/teleporter_linker/indestructible,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
@@ -8893,6 +8991,10 @@
 	},
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
+"RT" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/icc/hangar/west)
 "RV" = (
 /obj/docking_port/stationary/crashmode{
 	name = "PMC Crashland point 2";
@@ -9095,7 +9197,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/obj/machinery/dropship_part_fabricator/tadpole{
+	faction = "Sons of Mars"
+	},
+/turf/open/floor/mainship/cargo,
 /area/antag_ship/som/hangar)
 "SS" = (
 /obj/machinery/light/mainship{
@@ -9347,6 +9452,31 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/requisition)
+"TW" = (
+/obj/item/folder/black_random{
+	pixel_y = 12
+	},
+/obj/item/tool/hand_labeler{
+	pixel_y = 13;
+	pixel_x = 12
+	},
+/obj/item/tool/stamp/denied,
+/obj/item/tool/stamp/qm,
+/obj/structure/table/mainship/nometal,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/engineering/powercell{
+	pixel_y = 13
+	},
+/obj/effect/spawner/random/engineering/powercell,
+/obj/item/spare_cord{
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "TX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -9470,10 +9600,6 @@
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
-"Uw" = (
-/obj/effect/teleporter_linker/indestructible,
-/turf/open/floor/plating/ground/dirt,
-/area/antag_ship/clf_base/hallways/inside)
 "Ux" = (
 /turf/open/floor/prison/plate,
 /area/antag_ship/vsd/engi)
@@ -10042,6 +10168,13 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/grass,
 /area/antag_ship/clf_base/prison)
+"WU" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "WV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -13006,7 +13139,7 @@ CN
 CN
 CN
 AB
-RK
+rj
 UK
 RK
 rS
@@ -17425,16 +17558,16 @@ la
 la
 la
 la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
+la
+la
+la
+la
+la
+la
+la
+la
+la
+la
 zb
 zb
 zb
@@ -17518,18 +17651,18 @@ Hh
 xE
 Hh
 wr
+Mb
+JN
+yG
+yG
+yG
+yG
+yG
+yG
+yG
+JN
+Gr
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -17613,18 +17746,18 @@ uF
 ff
 oh
 oa
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -17708,18 +17841,18 @@ ff
 Mb
 ff
 oa
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -17803,18 +17936,18 @@ TZ
 LP
 ff
 oa
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -17898,18 +18031,18 @@ yf
 OD
 pM
 gv
+RT
+Go
+Go
+Go
+Go
+Ac
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -17993,18 +18126,18 @@ Mb
 Mb
 Mb
 Mb
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -18088,18 +18221,18 @@ yh
 mR
 mR
 yh
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -18183,18 +18316,18 @@ yh
 eg
 EP
 LN
+RT
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+KE
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -18278,18 +18411,18 @@ ZV
 ZV
 ZV
 ZV
+aT
+HR
+Js
+TW
+CH
+CK
+sm
+fi
+sm
+sm
+WU
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -18373,18 +18506,18 @@ yh
 Yt
 Yt
 Yt
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
 la
-la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
 zb
 zb
 zb
@@ -18470,16 +18603,16 @@ wB
 wB
 la
 la
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
-zb
+la
+la
+la
+la
+la
+la
+la
+la
+la
+la
 zb
 zb
 zb
@@ -20625,7 +20758,7 @@ gW
 gW
 gW
 ai
-gW
+Em
 gW
 ai
 gW
@@ -21000,7 +21133,7 @@ aF
 aF
 aF
 tY
-tY
+gW
 gW
 gW
 gW
@@ -21103,7 +21236,7 @@ gW
 gW
 gW
 am
-aF
+gW
 tT
 "}
 (111,1,1) = {"
@@ -21198,7 +21331,7 @@ gW
 gW
 gW
 JW
-aF
+gW
 tT
 "}
 (112,1,1) = {"
@@ -21286,14 +21419,14 @@ Nj
 VO
 gW
 gW
-Em
+gW
 gW
 JW
 gW
 gW
 gW
-aF
-aF
+gW
+gW
 tT
 "}
 (113,1,1) = {"
@@ -21387,7 +21520,7 @@ gW
 gW
 ai
 gW
-aF
+gW
 aF
 tT
 "}
@@ -23934,7 +24067,7 @@ qo
 fb
 UR
 ma
-Uw
+GN
 GN
 aF
 aF

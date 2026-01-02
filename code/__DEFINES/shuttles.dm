@@ -103,6 +103,7 @@
 #define SHUTTLE_TADPOLE "minidropship"
 #define SHUTTLE_CLFTADPOLE "minidropshipclf"
 #define SHUTTLE_SOMTADPOLE "minidropshipsom"
+#define SHUTTLE_CMTADPOLE "minidropshipcolmil"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"
 #define SHUTTLE_CAS "casplane"
 #define SHUTTLE_CAS_DOCK "cas_dock"

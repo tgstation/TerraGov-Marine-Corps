@@ -6,9 +6,6 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "c" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "d" = (
@@ -66,6 +63,7 @@
 /area/shuttle/minidropship)
 "m" = (
 /obj/structure/bed/chair/dropship/passenger,
+/obj/structure/extinguisher_cabinet,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (
@@ -123,13 +121,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/shuttle/minidropship)
 "v" = (
-/obj/machinery/computer/camera{
-	network = list("dropship2")
-	},
-/obj/structure/table/mainship,
+/obj/effect/attach_point/crew_weapon/minidropship,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "x" = (
@@ -177,11 +176,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "F" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -10
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera{
+	network = list("dropship1","dropship2","landing zones")
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "G" = (
 /obj/structure/dropship_piece/glasstwo/tadpole,
@@ -311,6 +310,9 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted{
 	dir = 8
 	},
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
 /turf/open/floor/mainship,
 /area/shuttle/minidropship)
 
@@ -338,7 +340,7 @@ R
 "}
 (3,1,1) = {"
 j
-f
+y
 Z
 H
 s
@@ -349,20 +351,20 @@ i
 "}
 (4,1,1) = {"
 Y
-y
+F
 c
 D
 o
 g
 J
-g
+v
 C
 "}
 (5,1,1) = {"
 j
-v
+f
 u
-F
+H
 m
 q
 t
