@@ -267,7 +267,7 @@ Archercorp generally takes a more isolationist approach to diplomacy and are gen
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Create good relations and maintain corporation's image, do paperwork, have sex during meetings...? Reply if you’re called.
 	"}
-	skills_type = /datum/skills/civilian
+	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
 	jobworth = list(
