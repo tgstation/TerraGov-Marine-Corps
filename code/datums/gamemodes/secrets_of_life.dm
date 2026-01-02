@@ -103,7 +103,7 @@
 		/datum/job/icc/liaison_cm = 1,
 		/datum/job/clf/liaison_clf = 1,
 		/datum/job/som/civilian/liaison_som = 1,
-		/datum/job/vsd/liaison_kaizoku = 1,
+		/datum/job/vsd_squad/liaison_kaizoku = 1,
 		/datum/job/pmc/squad/standard = -1,
 		/datum/job/pmc/squad/medic = 2,
 		/datum/job/pmc/squad/engineer = 2,
