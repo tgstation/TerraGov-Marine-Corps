@@ -221,6 +221,12 @@
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
 			display_name = display_key
 
+		if(display_name in recv_client.prefs.ignoring)
+			continue
+		var/mob/living/carbon/xenomorph/xeno_speaker = mob
+		if(istype(xeno_speaker) && ("[xeno_speaker.nicknumber]" in recv_client.prefs.ignoring))
+			continue
+
 		var/avoid_highlight = recv_client == src
 		to_chat(recv_client, "<font color='#a330a7'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
@@ -231,6 +237,8 @@
 		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+			continue
+		if(key in recv_staff.prefs.ignoring)
 			continue
 
 		var/display_name = "[ADMIN_TPMONTY(mob)]"
@@ -330,6 +338,12 @@
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
 
+		if(display_name in recv_client.prefs.ignoring)
+			continue
+		var/mob/living/carbon/xenomorph/xeno_speaker = mob
+		if(istype(xeno_speaker) && ("[xeno_speaker.nicknumber]" in recv_client.prefs.ignoring))
+			continue
+
 		var/avoid_highlight = recv_client == src
 		to_chat(recv_client, "<font color='#ca6200'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
@@ -340,6 +354,8 @@
 		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+			continue
+		if(key in recv_staff.prefs.ignoring)
 			continue
 
 		var/display_name = "[ADMIN_TPMONTY(mob)]"
@@ -446,6 +462,13 @@
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
+
+		if(display_name in recv_client.prefs.ignoring)
+			continue
+		var/mob/living/carbon/xenomorph/xeno_speaker = mob
+		if(istype(xeno_speaker) && ("[xeno_speaker.nicknumber]" in recv_client.prefs.ignoring))
+			continue
+
 		if(ishuman(original_corpse))
 			display_name = "[original_corpse.real_name](DEAD)"
 
@@ -459,6 +482,8 @@
 		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+			continue
+		if(key in recv_staff.prefs.ignoring)
 			continue
 
 		var/display_name = "[ADMIN_TPMONTY(mob)]"
@@ -757,7 +782,7 @@
 /client/verb/select_ignore()
 	set name = "Ignore"
 	set category = "OOC"
-	set desc ="Ignore a player's messages on the OOC channel"
+	set desc ="Ignore a player's messages on the OOC, XOOC, MOOC, and XMOOC channels."
 
 	var/list/players = list()
 
@@ -802,12 +827,12 @@
 	prefs.ignoring.Add(selection)
 	prefs.save_preferences()
 
-	to_chat(src, span_info("You are now ignoring [selection] on the OOC channel."))
+	to_chat(src, span_info("You are now ignoring [selection] on the OOC, XOOC, MOOC, and XMOOC channels."))
 
 /client/verb/select_unignore()
 	set name = "Unignore"
 	set category = "OOC"
-	set desc = "Stop ignoring a player's messages on the OOC channel"
+	set desc = "Stop ignoring a player's messages on the OOC, XOOC, MOOC, and XMOOC channels."
 
 	if(!length(prefs.ignoring))
 		to_chat(src, span_infoplain("You haven't ignored any players!"))
