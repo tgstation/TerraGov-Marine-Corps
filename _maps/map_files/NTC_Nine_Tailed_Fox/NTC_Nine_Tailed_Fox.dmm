@@ -34,16 +34,6 @@
 	dir = 1
 	},
 /area/mainship/hull/upper_hull)
-"abl" = (
-/obj/structure/curtain/open/temple,
-/obj/machinery/door/airlock/centcom{
-	lockid = "strip2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull,
-/area/mainship/groundhq/ntf/crimsonveil)
 "abv" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship/small{
@@ -3419,9 +3409,7 @@
 /area/mainship/living/officer_study)
 "cMd" = (
 /obj/structure/curtain/open/temple,
-/obj/machinery/door/airlock/centcom{
-	lockid = "strip3"
-	},
+/obj/machinery/door/airlock/centcom,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -3812,9 +3800,7 @@
 /area/mainship/medical/operating_room_one)
 "dbJ" = (
 /obj/machinery/door/airlock/centcom,
-/obj/machinery/door/airlock/centcom{
-	lockid = "strip1"
-	},
+/obj/machinery/door/airlock/centcom,
 /obj/structure/curtain/open/temple,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18163,6 +18149,7 @@
 "phN" = (
 /obj/structure/sign/engie,
 /obj/effect/remote_teleporter_linker/pair4,
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship_hull,
 /area/mainship/groundhq/ntf/hallways/gardens)
 "pij" = (
@@ -19476,6 +19463,7 @@
 /obj/structure/sign/directions/engineering{
 	pixel_y = 14
 	},
+/obj/item/teleporter_kit/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
@@ -56204,7 +56192,7 @@ dbJ
 vpC
 vpC
 vpC
-abl
+cMd
 vpC
 vpC
 vpC
