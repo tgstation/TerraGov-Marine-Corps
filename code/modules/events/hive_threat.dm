@@ -56,7 +56,7 @@
 		var/message = "You sense that [hive_target] is a valuable target for breeding. Fuck or psydrain them for a blessing for your hive!"
 		if(hivenumber == XENO_HIVE_NORMAL)
 			message = "The Queen Mother senses that [hive_target] is the breeding target of the hive. Fuck or psydrain them for the Queen Mother's blessing!"
-		GLOB.hive_datums[hivenumber].xeno_message(message, size = 3, force=TRUE, target = hive_target, sound = get_sfx(SFX_QUEEN), arrow_color = "ff00b0", report_distance = TRUE)
+		GLOB.hive_datums[hivenumber].xeno_message(message, size = 3, force=TRUE, target = hive_target, arrow_color = "ff00b0", report_distance = TRUE)
 
 //manages the hive reward and clean up
 /datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer, mob/living/drained)
