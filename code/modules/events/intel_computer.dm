@@ -15,13 +15,13 @@
 	weight *= 108
 
 /datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, obj/item/disk/intel_disk/new_disk)
+	if(timeleft(intel_drought_timer))
+		weight = initial(weight)
+		return
 	var/active_computers = 0
 	for(var/obj/machinery/computer/intel_computer/I in GLOB.intel_computers)
 		if(I.active)
 			active_computers++
-	if(timeleft(intel_drought_timer))
-		weight = initial(weight)
-		return
 	switch(active_computers)
 		if(0)
 			if(prob(50))
