@@ -1381,6 +1381,16 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
+"hK" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/vsd/liason,
+/turf/open/floor/prison/blackfloor,
+/area/antag_ship/vsd/hall)
 "hM" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -5774,6 +5784,16 @@
 /obj/structure/dropship_equipment/shuttle/rappel_system,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
+"CJ" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/vsd/liason,
+/turf/open/floor/prison/blackfloor,
+/area/antag_ship/vsd/hall)
 "CK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -14891,7 +14911,7 @@ tu
 Sx
 qC
 IZ
-nF
+CJ
 Iv
 UZ
 nF
@@ -15081,7 +15101,7 @@ JT
 Sx
 qC
 IZ
-qs
+hK
 vt
 Nz
 qs
