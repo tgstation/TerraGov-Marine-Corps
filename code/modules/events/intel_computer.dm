@@ -31,18 +31,22 @@
 	if(world.time < last_intel_drought_start + INTEL_DROUGHT_LENGTH)
 		weight = initial(weight)
 		return
-	if((world.time > last_intel_drought_start + INTEL_DROUGHT_LENGTH + INTEL_DROUGHT_COOLDOWN) && prob(100/(2+length(active_computers))))
-		var/longest_chain = 0
-		for(var/obj/item/disk/intel_disk/disk AS in active_disks)
-			if(!istype(disk))
-				stack_trace("non-disk [logdetails(disk)] found in active_disks of [logdetails(src)]!")
-				active_disks.RemoveAll(disk)
-			longest_chain = max(longest_chain, disk.max_chain)
-		if(prob(100*(2+length(active_computers))/(2+longest_chain+length(active_computers))))
-			minor_announce("Intel overharvesting has caused an intel drought.  Intel will be much less common for 15 minutes.", title = "Intel Drought")
-			addtimer(CALLBACK(src, PROC_REF(intel_drought_end)), INTEL_DROUGHT_LENGTH + 1)
-			weight = initial(weight)
-			return
+	if((world.time > last_intel_drought_start + INTEL_DROUGHT_LENGTH + INTEL_DROUGHT_COOLDOWN))
+		var/weighted_computers = length(active_computers)
+		if(weighted_computers > 0)
+			weighted_computers++
+		if(prob(100/(2+weighted_computers)))
+			var/longest_chain = 0
+			for(var/obj/item/disk/intel_disk/disk AS in active_disks)
+				if(!istype(disk))
+					stack_trace("non-disk [logdetails(disk)] found in active_disks of [logdetails(src)]!")
+					active_disks.RemoveAll(disk)
+				longest_chain = max(longest_chain, disk.max_chain)
+			if(prob(100*(2+weighted_computers)/(2+longest_chain+weighted_computers)))
+				minor_announce("Intel overharvesting has caused an intel drought.  Intel will be much less common for 15 minutes.", title = "Intel Drought")
+				addtimer(CALLBACK(src, PROC_REF(intel_drought_end)), INTEL_DROUGHT_LENGTH + 1)
+				weight = initial(weight)
+				return
 
 	switch(active_computers)
 		if(0)
