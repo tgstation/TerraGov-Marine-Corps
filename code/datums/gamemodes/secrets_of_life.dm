@@ -151,7 +151,7 @@
 		// respawn_time = 30 MINUTES (it may be too disruptive for other parties, and greenos.)
 		xenorespawn_time = 5 MINUTES
 		bioscan_interval = 15 MINUTES
-		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
+		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
 	else
 		evo_requirements = list(
 			/datum/xeno_caste/queen = 8,
@@ -161,7 +161,7 @@
 		// respawn_time = initial(respawn_time)
 		xenorespawn_time = initial(xenorespawn_time)
 		bioscan_interval = initial(bioscan_interval)
-		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
+		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
 
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
