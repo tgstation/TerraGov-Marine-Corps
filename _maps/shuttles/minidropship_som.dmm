@@ -20,7 +20,8 @@
 	pixel_y = 32
 	},
 /obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
+	equipment_offset_y = 25;
+	ship_tag = "minidropshipsom"
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
@@ -197,7 +198,8 @@
 	dir = 1
 	},
 /obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
+	equipment_offset_y = 25;
+	ship_tag = "minidropshipsom"
 	},
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -266,7 +268,8 @@
 	pixel_y = 32
 	},
 /obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
+	equipment_offset_y = 25;
+	ship_tag = "minidropshipsom"
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
@@ -303,7 +306,8 @@
 	pixel_y = 32
 	},
 /obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
+	equipment_offset_y = 25;
+	ship_tag = "minidropshipsom"
 	},
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
