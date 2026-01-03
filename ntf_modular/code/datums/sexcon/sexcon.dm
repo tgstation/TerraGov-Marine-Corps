@@ -61,12 +61,11 @@
 
 /datum/sex_controller/proc/do_message_signature(sigkey)
 	var/properkey = "[speed][force][sigkey]"
-	if(properkey == msg_signature && last_msg_signature + 5 SECONDS >= world.time)
+	if(properkey == msg_signature)
 		if(prob(10))
 			user.balloon_alert_to_viewers(pick("*plap*","*plop*","*slap*","*pap*"))
 		return FALSE
 	msg_signature = properkey
-	last_msg_signature = world.time
 	return TRUE
 
 /datum/sex_controller/proc/finished_check()
