@@ -262,7 +262,7 @@
 	try_entering(user, grabbed_mob)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(atom/dropping, mob/user)
+/obj/machinery/autodoc/MouseDrop_T(atom/dropping, mob/user, params)
 	. = ..()
 	if(!ishuman(dropping) || !ishuman(user))
 		return
