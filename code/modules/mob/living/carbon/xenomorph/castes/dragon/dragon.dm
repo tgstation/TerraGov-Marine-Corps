@@ -41,8 +41,8 @@
 	return TRUE
 
 /// If they have plasma, reduces their damage accordingly by up to 50%. Ratio is 4 plasma per 1 damage.
-/mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker)
-	if((status_flags & GODMODE) || damage <= 0)
+/mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker, bypass_flight = FALSE)
+	if(((status_flags & INCORPOREAL) && !bypass_flight)|| damage <= 0)
 		return FALSE
 	if(damagetype != BRUTE && damagetype != BURN)
 		return FALSE
@@ -51,3 +51,32 @@
 		use_plasma(ROUND_UP(damage_reduction * 5))
 		damage -= damage_reduction
 	return ..()
+
+/mob/living/carbon/xenomorph/dragon/on_crit()
+	. = ..()
+	if((status_flags & INCORPOREAL))
+		var/datum/action/ability/activable/xeno/fly/fly_ability = actions_by_path[/datum/action/ability/activable/xeno/fly]
+		if(!fly_ability.performing_landing_animation)
+			fly_ability.start_landing()
+
+/mob/living/carbon/xenomorph/dragon/death(gibbing, deathmessage, silent)
+	if((status_flags & INCORPOREAL))
+		var/datum/action/ability/activable/xeno/fly/fly_ability = actions_by_path[/datum/action/ability/activable/xeno/fly]
+		if(!fly_ability.performing_landing_animation)
+			fly_ability.start_landing()
+	. = ..()
+
+/mob/living/carbon/xenomorph/dragon/Life(seconds_per_tick, times_fired)
+	. = ..()
+	if(!(status_flags & INCORPOREAL))
+		return FALSE
+	for(var/obj/machinery/deployable/mounted/sentry/ads_system/ads in range(GLOB.ads_intercept_range,loc))
+		if(!COOLDOWN_FINISHED(ads, intercept_cooldown))
+			continue
+		var/datum/hive_status/hive = GLOB.hive_datums[ads.get_xeno_hivenumber()]
+		if(istype(hive) && (faction in hive.allied_factions))
+			continue
+		if(ads.try_intercept(loc, src, 0.5, 5))
+			to_chat(src, span_xenodanger("We are shot by the talls' defenses!"))
+			apply_damage(rand(75,125), BRUTE, BODY_ZONE_CHEST, BULLET, updating_health = TRUE, penetration = 25, attacker = src, bypass_flight = TRUE)
+			continue //so others shoot too.

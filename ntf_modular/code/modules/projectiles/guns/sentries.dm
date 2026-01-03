@@ -278,7 +278,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	COOLDOWN_START(src, intercept_cooldown, the_cooldown)
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun.rounds <= 0)
-		radio.talk_into(src, "<b>ALERT! [src] failed to shoot down a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
+		radio.talk_into(src, "<b>ALERT! [src] failed to shoot a [proj.name]! due depleted ammo at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
 	face_atom(target_turf)
 	gun.set_target(target_turf)
@@ -286,7 +286,7 @@ GLOBAL_VAR_INIT(ads_intercept_range, 9)
 	if(prob(1))
 		radio.talk_into(src, "<b>ALERT! [src] missed a [proj.name]! at: [AREACOORD_NO_Z(src)].</b>")
 		return FALSE
-	radio.talk_into(src, "<b>ALERT! [src] has shot down a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
+	radio.talk_into(src, "<b>ALERT! [src] has shot a [proj.name] at: [AREACOORD_NO_Z(src)].</b>")
 	playsound(loc, SFX_EXPLOSION_SMALL_DISTANT, 50, 1, falloff = 5)
 	return TRUE
 

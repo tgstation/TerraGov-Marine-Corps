@@ -128,7 +128,7 @@
 	name = "Displacement"
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Physically disappear, become incorporeal until you decide to reappear somewhere else, reappearing on lighted areas will disorient you and flicker the lights."
+	desc = "Become incorporeal by shifting into another plane until you decide to reappear on another weed, reappearing on lighted areas will disorient you and flicker the lights. being out of weeds will consume plasma until you ultimately die."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HUNTER_DISPLACEMENT,
 	)
@@ -172,6 +172,7 @@
 		X.density = TRUE
 		REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
 		X.alpha = 255
+		X.remove_filter("displacement_filter")
 		X.update_wounds()
 		X.update_icon()
 		X.update_action_buttons()
@@ -181,8 +182,9 @@
 		lightie.set_flicker(2 SECONDS, 1, 2, rand(1,2))
 	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
 	X.status_flags = INCORPOREAL
-	X.alpha = 0
-	X.pass_flags = PASS_MOB|PASS_XENO|PASS_FIRE|PASS_LOW_STRUCTURE|PASS_TANK|PASS_DEFENSIVE_STRUCTURE
+	X.alpha = SCOUT_CLOAK_WALK_ALPHA
+	X.add_filter("displacement_filter", 20, color_matrix_filter(rgb(108, 0, 108)))
+	X.pass_flags = PASS_MOB|PASS_XENO|PASS_FIRE|PASS_LOW_STRUCTURE|PASS_TANK|PASS_DEFENSIVE_STRUCTURE|PASS_GLASS|PASS_GRILLE
 	X.density = FALSE
 	X.update_wounds()
 	X.update_icon()
