@@ -31,7 +31,7 @@
 	if(world.time < last_intel_drought_start + INTEL_DROUGHT_LENGTH)
 		weight = initial(weight)
 		return
-	if((world.time > last_intel_drought_start + INTEL_DROUGHT_LENGTH + INTEL_DROUGHT_COOLDOWN))
+	if(istype(new_disk) && (world.time > last_intel_drought_start + INTEL_DROUGHT_LENGTH + INTEL_DROUGHT_COOLDOWN))
 		var/weighted_computers = length(active_computers)
 		if(weighted_computers > 0)
 			weighted_computers++
