@@ -7,14 +7,14 @@
 	base_strain_type = /mob/living/carbon/xenomorph/puppet
 	caste_type_path = /mob/living/carbon/xenomorph/puppet
 
-	tier = XENO_TIER_MINION
+	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 	melee_damage = 12
 	accuracy_malus = 65
-	speed = -0.8
+	speed = -0.5
 	plasma_max = 100
 	plasma_gain = 3
-	max_health = 250
+	max_health = 150
 	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE
 	minimap_icon = "puppet"
 	soft_armor = list(MELEE = 14, BULLET = 3, LASER = 5, ENERGY = 3, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
