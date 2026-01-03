@@ -142,26 +142,26 @@
 /datum/game_mode/infestation/extended_plus/secret_of_life/proc/toggle_pop_locks()
 	// Apply Evolution Xeno Population Locks:
 	pop_lock = !pop_lock
-	if(!pop_lock)
-		evo_requirements = list(
-			/datum/xeno_caste/queen = 0,
-			/datum/xeno_caste/king = 0,
-			/datum/xeno_caste/dragon = 0,
-		)
-		// respawn_time = 30 MINUTES (it may be too disruptive for other parties, and greenos.)
-		xenorespawn_time = 5 MINUTES
-		bioscan_interval = 15 MINUTES
-		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
-	else
+	if(pop_lock)
 		evo_requirements = list(
 			/datum/xeno_caste/queen = 8,
 			/datum/xeno_caste/king = 12,
 			/datum/xeno_caste/dragon = 12,
 		)
+		// respawn_time = 30 MINUTES (it may be too disruptive for uninvolved parties.)
+		xenorespawn_time = 5 MINUTES
+		bioscan_interval = 15 MINUTES
+		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
+	else
+		evo_requirements = list(
+			/datum/xeno_caste/queen = 0,
+			/datum/xeno_caste/king = 0,
+			/datum/xeno_caste/dragon = 0,
+		)
 		// respawn_time = initial(respawn_time)
 		xenorespawn_time = initial(xenorespawn_time)
 		bioscan_interval = initial(bioscan_interval)
-		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
+		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
 
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
