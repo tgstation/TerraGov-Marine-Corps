@@ -418,7 +418,7 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 	)
 	minimap_icon = "cl"
 
-/datum/job/vsd/liaison_kaizoku/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+/datum/job/vsd_squad/liaison_kaizoku/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
@@ -440,7 +440,7 @@ TRANSCo generally tend to be rather hands off with general matters unless they a
 			new_human.wear_id.paygrade = "NT5"
 	new_human.wear_id.update_label()
 
-/datum/job/vsd/liaison_kaizoku/get_spawn_message_information(mob/M)
+/datum/job/vsd_squad/liaison_kaizoku/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
 	. += {"As a representative of Kaizoku you are expected to stay professional and loyal to the corporation at all times.
@@ -453,7 +453,7 @@ Your ranking allows you to know your corporation has vital backing from the crim
 
 /datum/outfit/job/civilian/liaison_kaizoku
 	name = "Kaizoku Liaison"
-	jobtype = /datum/job/vsd/liaison_kaizoku
+	jobtype = /datum/job/vsd_squad/liaison_kaizoku
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship/vsd

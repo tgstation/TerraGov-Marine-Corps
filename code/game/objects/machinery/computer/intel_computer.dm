@@ -216,6 +216,7 @@
 	playsound(src, 'sound/machines/beepalert.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(disk_cleanup)), 1 MINUTES, TIMER_STOPPABLE)
 	SSminimaps.remove_marker(src)
+	SEND_SIGNAL(src, COMSIG_DISK_EXPIRY)
 
 /obj/item/disk/intel_disk/proc/disk_cleanup()
 	SIGNAL_HANDLER
