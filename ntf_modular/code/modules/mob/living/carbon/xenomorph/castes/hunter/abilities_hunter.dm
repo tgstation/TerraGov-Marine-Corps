@@ -101,7 +101,7 @@
 /datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, DEATH_MARK_CHARGEUP, IGNORE_HAND|IGNORE_HELD_ITEM, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE))
+	if(!do_after(X, DEATH_MARK_CHARGEUP, IGNORE_HAND|IGNORE_HELD_ITEM, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC, IGNORE_TARGET_LOC_CHANGE))
 		return
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
