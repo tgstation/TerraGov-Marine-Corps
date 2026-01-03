@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - bugfix: "AI no longer spam tailstab (because they dont have it anymore)"
