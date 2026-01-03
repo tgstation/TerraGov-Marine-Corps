@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - balance: "adjusted puppet speed and health to be less oppressive"
