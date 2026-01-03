@@ -1,8 +1,13 @@
+#define INTEL_DROUGHT_LENGTH (15 MINUTES)
+#define INTEL_DROUGHT_COOLDOWN (45 MINUTES)
+
 /datum/round_event_control/intel_computer
 	name = "Intel computer activation"
 	typepath = /datum/round_event/intel_computer
 	weight = 1
-	var/intel_drought_timer
+	var/last_intel_drought_start = -1 DAYS
+	var/list/obj/machinery/computer/intel_computer/active_computers = list()
+	var/list/obj/item/disk/intel_disk/active_disks = list()
 
 	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 	/// the intel computer for the next event to activate
@@ -15,21 +20,33 @@
 	weight *= 108
 
 /datum/round_event_control/intel_computer/proc/recalculate_weight(obj/machinery/computer/intel_computer/source_computer, obj/item/disk/intel_disk/new_disk)
-	if(timeleft(intel_drought_timer))
+	if(istype(source_computer))
+		if(istype(new_disk))
+			active_computers.RemoveAll(source_computer)
+			active_disks |= new_disk
+			RegisterSignal(new_disk, COMSIG_DISK_EXPIRY, PROC_REF(remove_disk))
+			RegisterSignal(new_disk, COMSIG_QDELETING, PROC_REF(remove_disk))
+		else
+			active_computers |= source_computer
+	if(world.time < last_intel_drought_start + INTEL_DROUGHT_LENGTH)
 		weight = initial(weight)
 		return
-	var/active_computers = 0
-	for(var/obj/machinery/computer/intel_computer/I in GLOB.intel_computers)
-		if(I.active)
-			active_computers++
+	if((world.time > last_intel_drought_start + INTEL_DROUGHT_LENGTH + INTEL_DROUGHT_COOLDOWN) && prob(100/(2+length(active_computers))))
+		var/longest_chain = 0
+		for(var/obj/item/disk/intel_disk/disk AS in active_disks)
+			if(!istype(disk))
+				stack_trace("non-disk [logdetails(disk)] found in active_disks of [logdetails(src)]!")
+				active_disks.RemoveAll(disk)
+			longest_chain = max(longest_chain, disk.max_chain)
+		if(prob(100*(2+length(active_computers))/(2+longest_chain+length(active_computers))))
+			minor_announce("Intel overharvesting has caused an intel drought.  Intel will be much less common for 15 minutes.", title = "Intel Drought")
+			addtimer(CALLBACK(src, PROC_REF(intel_drought_end)), INTEL_DROUGHT_LENGTH + 1)
+			weight = initial(weight)
+			return
+
 	switch(active_computers)
 		if(0)
-			if(prob(50))
-				weight = initial(weight)*108
-			else
-				minor_announce("Intel overharvesting has caused an intel drought.  Intel will be less common for 15 minutes.", title = "Intel Drought")
-				intel_drought_timer = addtimer(CALLBACK(src, PROC_REF(intel_drought_end)), 15 MINUTES, TIMER_STOPPABLE)
-				weight = initial(weight)
+			weight = initial(weight)*108
 		if(1)
 			weight = initial(weight)*108
 		if(2)
@@ -39,10 +56,12 @@
 		else
 			weight = initial(weight)
 
+/datum/round_event_control/intel_computer/proc/remove_disk(obj/item/disk/intel_disk/disk_to_remove)
+	active_disks.RemoveAll(disk_to_remove)
+
 /datum/round_event_control/intel_computer/proc/intel_drought_end()
 	minor_announce("The intel drought has ended.", title = "Intel Drought End")
-	weight = initial(weight)*108
-	intel_drought_timer = null
+	recalculate_weight()
 
 /datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode, force = FALSE)
 	. = ..()
