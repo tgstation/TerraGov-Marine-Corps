@@ -76,7 +76,8 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[ads.get_xeno_hivenumber()]
 		if(istype(hive) && (faction in hive.allied_factions))
 			continue
-		if(ads.try_intercept(loc, src, 0.5, 5))
+		if(ads.try_intercept(loc, src, rand(0.3, 0.5), 5))
 			to_chat(src, span_xenodanger("We are shot by the talls' defenses!"))
 			apply_damage(rand(75,125), BRUTE, BODY_ZONE_CHEST, BULLET, updating_health = TRUE, penetration = 25, attacker = src, bypass_flight = TRUE)
+			add_slowdown(2) //Want to make it less viable to use dragon to bait and destroy ammo reserves of ads.
 			continue //so others shoot too.
