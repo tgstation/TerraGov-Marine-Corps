@@ -6,8 +6,10 @@
 	outside = FALSE
 	icon_state = "yellow"
 
+/*  Ticking these directly avoids ticked file enforcement errors
 #include "clf_base.dm"
 #include "icc_base.dm"
 #include "ntf_pmc_ship.dm"
 #include "som_ship.dm"
 #include "vsd_ship.dm"
+*/
