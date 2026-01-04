@@ -7799,7 +7799,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "kOY" = (
-/obj/alien/weeds/node,
+/obj/effect/landmark/valhalla_weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "kPj" = (

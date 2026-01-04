@@ -144,6 +144,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	if(round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_global_signal), COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED), deploy_time_lock)
 
+	var/weed_type
+	for(var/turf/T in GLOB.xeno_valhalla_weed_node_turfs)
+		weed_type = pickweight(GLOB.weed_prob_list)
+		new weed_type(T)
+
 	if(!SSdbcore.Connect())
 		return
 	var/sql
