@@ -32,7 +32,7 @@
 	slowdown = 0
 	light_mod = 6 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/modular/goon = "", /obj/item/clothing/suit/modular/rownin = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /**
  * Mini autodoc module
@@ -45,7 +45,7 @@
 	worn_icon_state = "mod_autodoc_a"
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/modular/goon = "", /obj/item/clothing/suit/modular/rownin = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -123,7 +123,7 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 	slowdown = 0.1
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular/tdf = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/modular/goon = "", /obj/item/clothing/suit/modular/rownin = "")
 
 /obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -235,7 +235,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/modular/goon = "", /obj/item/clothing/suit/modular/rownin = "", /obj/item/clothing/suit/storage/marine/freelancer = "")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -381,7 +381,7 @@
 	worn_icon_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
 	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = null, /obj/item/clothing/suit/modular/tdf = "")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = null, /obj/item/clothing/suit/modular/tdf = "", /obj/item/clothing/suit/modular/goon = "", /obj/item/clothing/suit/modular/rownin = "")
 
 	///Current shield Health
 	var/shield_health = 0
