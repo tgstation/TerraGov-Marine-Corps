@@ -1,3 +1,5 @@
+//NTF EDIT - This file was unticked, commenting it out instead for CI
+/*
 /datum/body_type
 	var/name
 	var/icon_name
@@ -13,3 +15,4 @@
 /datum/body_type/endomorphic
 	name = "Endomorphic (Overweight)"
 	icon_name = "endo"
+*/
