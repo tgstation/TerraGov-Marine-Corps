@@ -8004,10 +8004,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/inside/engineering)
-"haL" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/floor,
-/area/bluesummers/inside/luxury)
 "haY" = (
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/plating_catwalk,
@@ -16298,11 +16294,6 @@
 "nsm" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/inside/captains_office)
-"nsx" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/drought,
-/area/bluesummers/outside/south)
 "nsN" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
@@ -20678,7 +20669,6 @@
 	},
 /area/bluesummers/inside/industrial)
 "qOz" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/luxury)
@@ -25555,11 +25545,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics)
-"uNU" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/drought/cave,
-/area/bluesummers/caves/northeast)
 "uNX" = (
 /obj/structure/window_frame/mainship,
 /obj/effect/spawner/random/misc/shard,
@@ -28544,11 +28529,6 @@
 	dir = 10
 	},
 /area/bluesummers/caves/cryostorage/bridge)
-"xAb" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bluesummers/outside/northeast)
 "xAc" = (
 /obj/effect/spawner/random/misc/shard,
 /turf/open/floor/plating,
@@ -42920,7 +42900,7 @@ rOc
 rOc
 llN
 uHu
-haL
+qOz
 jbJ
 jbJ
 iUY
@@ -43482,7 +43462,7 @@ tUm
 jbJ
 enP
 iUY
-haL
+qOz
 iUY
 nwy
 dcd
@@ -43846,7 +43826,7 @@ jbJ
 jbJ
 mQj
 iUY
-haL
+qOz
 xGy
 srC
 rOc
@@ -48217,7 +48197,7 @@ tmP
 sdA
 tmP
 tmP
-nsx
+gtc
 pqb
 lzI
 lzI
@@ -52729,7 +52709,7 @@ gYn
 qXB
 ouR
 qXB
-xAb
+rFQ
 kGi
 pQe
 cfK
@@ -56856,7 +56836,7 @@ vYU
 uNj
 byx
 aey
-uNU
+aey
 aey
 aey
 vXm
