@@ -119,12 +119,12 @@
 	name = "high caliber bluescreen rifle bullet"
 	hud_state = "sniper_heavy"
 	damage_type = BRUTE
-	plasma_drain = 10
+	plasma_drain = 20
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
-	damage = 60
+	damage = 50
 	penetration = 10
 	sundering = 1
-	damage_falloff = 0.25
+	damage_falloff = 0.2
 	shrapnel_chance = 1
 
 /datum/ammo/bullet/sniper/pfc/bluescreen/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
@@ -136,8 +136,8 @@
 	var/mob/living/carbon/human/human_victim = target_mob
 	if(human_victim.species.species_flags & ROBOTIC_LIMBS)
 		human_victim.adjustStaminaLoss(proj.damage*2)
-		human_victim.add_slowdown(0.5,3)
-		human_victim.SetStun(3)
+		human_victim.add_slowdown(0.3,1)
+		human_victim.AdjustStun(0.2 SECONDS)
 		if(human_victim.getStaminaLoss() > 20)
 			human_victim.overlay_fullscreen_timer(human_victim.getStaminaLoss(), 10, "glitch", /atom/movable/screen/fullscreen/robot_glitch)
 		if((human_victim.getStaminaLoss() >= human_victim.maxHealth*2) && !human_victim.IsUnconscious())
@@ -149,9 +149,9 @@
 		if(prob(50))
 			empulse(target_mob.loc, 0,0,0,1)
 		human_victim.adjustStaminaLoss(proj.damage*1.5)
-		human_victim.SetStun(3)
-		human_victim.jitter(5)
-		human_victim.add_slowdown(0.5,3)
+		human_victim.AdjustStun(0.1 SECONDS)
+		human_victim.jitter(3)
+		human_victim.add_slowdown(0.2,1)
 		human_victim.visible_message(span_warning("[human_victim] shakes with an electric shock!"), span_warning("You feel lightning mess up your nerves, locking your body!"), span_notice("You hear a clanker glitching."))
 
 /datum/ammo/bullet/sniper/pfc/bluescreen/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)

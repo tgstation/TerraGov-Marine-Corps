@@ -142,6 +142,7 @@
 /datum/game_mode/infestation/extended_plus/secret_of_life/proc/toggle_pop_locks()
 	// Apply Evolution Xeno Population Locks:
 	pop_lock = !pop_lock
+	var/sound_to_play = pop_lock ? pick('ntf_modular/sound/music/war_mode/hell_march_noearrape.ogg') : pick('ntf_modular/sound/music/war_mode/conflicttensionaltnoearrape.ogg', 'ntf_modular/sound/music/war_mode/konami-intro-metal-gear-solid.ogg')
 	if(pop_lock)
 		evo_requirements = list(
 			/datum/xeno_caste/queen = 8,
@@ -171,7 +172,7 @@
 		sender_override = "[pop_lock ? "Heats of conflict are rising." : "Heat of conflict is likely dying out."]",
 		title = "[pop_lock ? "It's so over." : "Back to typefucking."]",
 		text = "Pop locks for xeno castes, DNR time, recloning rate, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
-		play_sound = FALSE,
+		sound_override = sound_to_play,
 		style = OOC_ALERT_GAME,
 	)
 	SSvote.initiate_vote()
