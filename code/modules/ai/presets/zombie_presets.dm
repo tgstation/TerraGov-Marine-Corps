@@ -3,7 +3,7 @@
 	/// If set
 	var/ai_type
 
-/mob/living/carbon/human/species/zombie/ai/Initialize(mapload, atom_to_escort)
+/mob/living/carbon/human/species/zombie/ai/Initialize(mapload, datum/outfit/job/outfit, atom/atom_to_escort)
 	. = ..()
 	if(ai_type)
 		AddComponent(/datum/component/ai_controller, ai_type, atom_to_escort)
@@ -81,7 +81,7 @@
 	. = ..()
 	var/leader = new leader_type(loc)
 	for(var/i in 1 to minion_number)
-		new minion_type(loc, leader)
+		new minion_type(loc, atom_to_escort = leader)
 	qdel(src)
 
 /obj/effect/zombie_pack/tank
