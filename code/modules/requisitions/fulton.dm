@@ -96,8 +96,12 @@
 	addtimer(CALLBACK(src, PROC_REF(cleanup_extraction)), 8 SECONDS)
 	if(ishuman(spirited_away))
 		var/mob/living/carbon/human/spirited_away_human = spirited_away
+		if(!spirited_away_human)
+			return
+		spirited_away_human.ParalyzeNoChain(6.2 SECONDS)
 		if(spirited_away_human.stat == CONSCIOUS)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'ntf_modular/sound/misc/kirby_scream_meme.ogg', 100, TRUE), 7 SECONDS)
+			spirited_away_human.visible_message(span_notice("[spirited_away_human] lets out a terrified scream as they are suddenly lifted off the air!"), span_warning("You let out a terrified scream as you are suddenly lifted off the air!"), null, 5)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'ntf_modular/sound/misc/kirby_scream_meme.ogg', 100, FALSE), 6.2 SECONDS)
 
 	flick("fulton_expand", baloon)
 	baloon.icon_state = "fulton_balloon"
@@ -235,10 +239,7 @@
 	if(active)
 		balloon_alert(user, "Fulton not ready")
 		return FALSE
-	if(isstype(target, /obj/structure/table))
-		balloon_alert(user, "Cannot extract")
-		return FALSE
-	if(!istype(target, /obj/structure/closet))
+	if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/target_closet = target
 		if(!target_closet)
 			return FALSE
@@ -295,8 +296,6 @@
 		var/turf/droploc = get_turf(linked_extraction_point)
 		playsound(droploc, 'sound/items/fultext_deploy.ogg', 30, TRUE)
 		var/image/fulton_image = image('icons/obj/items/fulton_balloon.dmi', src, "fulton_balloon")
-		fulton_image.pixel_x -= 16
-		fulton_image.pixel_y += 16
 		movable_target.forceMove(droploc)
 		movable_target.pixel_z = 400
 		movable_target.add_overlay(list(fulton_image))
@@ -311,6 +310,10 @@
 /// handles cleanup of post-animation stuff (ie just after it lands)
 /obj/item/fulton_extraction_pack/adminbus/proc/clean_fultondrop(mob/living/carbon/human/movable_target, list/anim_overlays)
 	movable_target.cut_overlay(anim_overlays)
+	var/image/fulton_image = image('icons/obj/items/fulton_balloon.dmi', src, "fulton_retract")
+	movable_target.add_overlay(list(fulton_image))
+	sleep(4 SECONDS)
+	movable_target.cut_overlay(list(fulton_image))
 
 
 /obj/vehicle/sealed/armored/fulton_act(mob/living/user, obj/item/I)

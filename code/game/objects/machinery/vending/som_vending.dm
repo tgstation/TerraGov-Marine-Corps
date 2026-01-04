@@ -311,6 +311,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
+			/obj/item/fulton_extraction_pack/adminbus/advanced = 2,
 			/obj/item/clothing/suit/storage/marine/boomvest = 20,
 			/obj/item/radio/headset/mainship/som/zulu = -1,
 			/obj/item/radio/headset/mainship/som/yankee = -1,
