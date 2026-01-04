@@ -100,11 +100,7 @@
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "EQ" = (
-/obj/effect/attach_point/weapon/cas/left{
-	icon = 'ntf_modular/icons/obj/structures/prop/somship.dmi';
-	icon_state = "somcas_misc_one_flipped";
-	ship_tag = "som_cas_dock"
-	},
+/obj/effect/attach_point/weapon/cas/left/som,
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Fj" = (
@@ -132,21 +128,11 @@
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Jf" = (
-/obj/structure/caspart/minigun{
-	icon = 'icons/obj/structures/prop/somship.dmi';
-	icon_state = "somcas_misc_five";
-	dir = 8;
-	density = 0
-	},
+/obj/structure/caspart/minigun/som/right
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "Jp" = (
-/obj/structure/caspart/minigun{
-	icon = 'icons/obj/structures/prop/somship.dmi';
-	icon_state = "somcas_misc_five";
-	density = 0;
-	pixel_x = 1
-	},
+/obj/structure/caspart/minigun/som
 /turf/open/floor/plating,
 /area/shuttle/cas)
 "MF" = (
