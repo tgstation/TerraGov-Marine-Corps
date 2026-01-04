@@ -48,7 +48,9 @@
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(is_centcom_level(ssd_mob.z) || ishuman(ssd_mob) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		if(ishuman(ssd_mob) && !(owner.key in ssd_mob.ckey_history)) //can only take your own human characters' control.
 			continue
 		free_ssd_mobs += ssd_mob
 

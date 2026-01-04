@@ -31,7 +31,7 @@
 
 		else //Dead
 			dead_ticks ++
-			if(dead_ticks > TIME_BEFORE_DNR)
+			if(dead_ticks > GLOB.time_before_dnr)
 				set_undefibbable()
 			else
 				med_hud_set_status()

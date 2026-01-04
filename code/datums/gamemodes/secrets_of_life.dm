@@ -148,17 +148,19 @@
 			/datum/xeno_caste/king = 12,
 			/datum/xeno_caste/dragon = 12,
 		)
-		// respawn_time = 30 MINUTES (it may be too disruptive for uninvolved parties.)
+		respawn_time = 10 MINUTES //we have cloning here so its not 30 minutes.
 		xenorespawn_time = 5 MINUTES
 		bioscan_interval = 15 MINUTES
 		round_type_flags &= ~MODE_XENO_GRAB_DEAD_ALLOWED
+		GLOB.time_before_dnr = 150
 	else
 		evo_requirements = list(
 			/datum/xeno_caste/queen = 0,
 			/datum/xeno_caste/king = 0,
 			/datum/xeno_caste/dragon = 0,
 		)
-		// respawn_time = initial(respawn_time)
+		GLOB.time_before_dnr = 1300
+		respawn_time = initial(respawn_time)
 		xenorespawn_time = initial(xenorespawn_time)
 		bioscan_interval = initial(bioscan_interval)
 		round_type_flags |= MODE_XENO_GRAB_DEAD_ALLOWED
@@ -166,9 +168,9 @@
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 	send_ooc_announcement(
-		sender_override = "War phase [pop_lock ? "ON" : "OFF"].",
-		title = "It's so over.",
-		text = "Pop locks for xeno castes, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
+		sender_override = "[pop_lock ? "Heats of conflict are rising." : "Heat of conflict is likely dying out."]",
+		title = "[pop_lock ? "It's so over." : "Back to typefucking."]",
+		text = "Pop locks for xeno castes, DNR time, recloning rate, dead dragging, respawn timers, bioscans and possibly other things will be affected.",
 		play_sound = FALSE,
 		style = OOC_ALERT_GAME,
 	)

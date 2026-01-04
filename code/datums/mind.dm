@@ -91,6 +91,7 @@
 
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
+	new_character.ckey_history += key		//record this ckey as having controlled this mob, ntf addition.
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body

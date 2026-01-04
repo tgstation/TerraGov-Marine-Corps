@@ -93,6 +93,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/list/datum/faction_stats/stat_list = list()
 
 	var/roundstart_players = 0
+	///dnr time in ticks for this mode.
+	var/custom_dnr_time
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -148,6 +150,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
+	if(custom_dnr_time)
+		GLOB.time_before_dnr = custom_dnr_time
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
 	for(var/faction in human_factions)
 		SSpoints.dropship_points[faction] = 0

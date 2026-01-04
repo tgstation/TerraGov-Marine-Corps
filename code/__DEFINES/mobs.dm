@@ -388,7 +388,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
-#define TIME_BEFORE_DNR 1300 //In life ticks, multiply by 2 to have seconds
+GLOBAL_VAR_INIT(time_before_dnr, 150)
 
 ///Default living `maxHealth`
 #define LIVING_DEFAULT_MAX_HEALTH 100

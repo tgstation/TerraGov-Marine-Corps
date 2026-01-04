@@ -11,15 +11,16 @@
 
 	if(!issynth(patient)) // specifically checking for synths here because synths don't expire but robots do
 		var/dead_color
-		switch(patient.dead_ticks)
-			if(0 to 0.4 * TIME_BEFORE_DNR)
-				dead_color = "yellow"
-			if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
-				dead_color = "orange"
-			if(0.8 * TIME_BEFORE_DNR to INFINITY)
-				dead_color = "red"
+		var/threshold_1 = 0.4 * GLOB.time_before_dnr
+		var/threshold_2 = 0.8 * GLOB.time_before_dnr
+		if(patient.dead_ticks <= threshold_1)
+			dead_color = "yellow"
+		else if(patient.dead_ticks <= threshold_2)
+			dead_color = "orange"
+		else
+			dead_color = "red"
 		. += list(list(
-			ADVICE_TEXT = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks)) * (SSmobs.wait * 4))].",
+			ADVICE_TEXT = "Time remaining to revive: [DisplayTimeText((GLOB.time_before_dnr-(patient.dead_ticks)) * (SSmobs.wait * 4))].",
 			ADVICE_TOOLTIP = "The patient can't be revived after this long. Stasis bags pause this timer, and being revived resets it, even if the patient dies again.",
 			ADVICE_ICON = FA_ICON_HEART_PULSE,
 			ADVICE_ICON_COLOR = dead_color,

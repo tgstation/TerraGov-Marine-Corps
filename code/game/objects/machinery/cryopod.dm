@@ -343,12 +343,11 @@
 
 	GLOB.real_names_joined -= real_name
 
-	GLOB.key_to_time_of_role_death[key] = world.time
-
 /* NTF EDIT
+	GLOB.key_to_time_of_role_death[key] = world.time
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 */
-	ghostize(FALSE, FALSE, TRUE) //NTF EDIT - We want to make sure they *are* kicked to lobby.
+	ghostize(TRUE, FALSE, TRUE) //NTF EDIT - We want to make sure they *are* kicked to lobby.
 
 	qdel(src)
 
@@ -463,11 +462,6 @@
 		to_chat(initiator, span_warning("[src] is occupied."))
 		return FALSE
 
-/*
-	user.forceMove(src)
-	occupant = user
-	update_icon()
-*/
 	user.despawn()
 	return TRUE
 
