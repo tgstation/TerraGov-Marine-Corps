@@ -3998,9 +3998,9 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline,
 /obj/machinery/iv_drip,
 /obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/turf_decal/trimline/white,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "tK" = (
