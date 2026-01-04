@@ -264,7 +264,7 @@
 	attachable_offset = list("muzzle_x" = 39, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 23, "under_x" = 29, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	icon_state = "haltercqb"
 	worn_icon_state = "haltercqb"
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2.5
 	aim_slowdown = 0.3
 	scatter = 8
