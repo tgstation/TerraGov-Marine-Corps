@@ -81,7 +81,7 @@
 	. = ..()
 	var/leader = new leader_type(loc)
 	for(var/i in 1 to minion_number)
-		new minion_type(loc, atom_to_escort = leader)
+		new minion_type(loc, null, leader)
 	qdel(src)
 
 /obj/effect/zombie_pack/tank
