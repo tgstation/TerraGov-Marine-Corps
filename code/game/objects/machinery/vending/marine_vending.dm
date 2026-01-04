@@ -256,6 +256,7 @@
 			/obj/item/ammo_magazine/packet/p10x26mm = -1,
 			/obj/item/ammo_magazine/packet/p10x265mm = -1,
 			/obj/item/ammo_magazine/packet/halter = -1,
+			/obj/item/ammo_magazine/packet/halter/laser = -1,
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,
 			/obj/item/ammo_magazine/packet/p492x34mm = -1,
 			/obj/item/ammo_magazine/packet/p86x70mm = -1,

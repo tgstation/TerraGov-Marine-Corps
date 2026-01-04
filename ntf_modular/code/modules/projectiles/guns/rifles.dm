@@ -431,6 +431,11 @@
 	current_rounds = 120
 	max_rounds = 120
 
+/obj/item/ammo_magazine/packet/halter
+	name = "box of 7.62x38mm LE"
+	desc = "A box containing 120 rounds of 7.62x38mm Laser Emitters."
+	default_ammo = /datum/ammo/energy/lasgun/halter
+
 /obj/item/storage/box/visual/magazine/compact/halter_assaultrifle
 	name = "Halter magazine box"
 	desc = "A box specifically designed to hold a large amount of Halter magazines."
