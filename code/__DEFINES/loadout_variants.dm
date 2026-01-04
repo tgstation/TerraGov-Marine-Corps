@@ -34,7 +34,7 @@
 #define CAPE_KILT_ALT "cape_kilt_alt"
 #define SOM_BLACK "SOM_black"
 #define CAPE_HIGHLIGHT_NORMAL_ALT "normal_alt"
-#define OLD "old"
+#define OLD_VARIANT "old"
 
 #define CAPE_HIGHLIGHT_NONE "cape_highlight_none"
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
@@ -102,5 +102,5 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	BALLISTIC_VEST_JUNGLE = "jungle",
 	BALLISTIC_VEST_DESERT = "desert",
 	BALLISTIC_VEST_SNOW = "snow",
-	OLD = "old",
+	OLD_VARIANT = "old",
 ))
