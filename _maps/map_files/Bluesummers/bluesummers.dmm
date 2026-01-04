@@ -12074,7 +12074,6 @@
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bluesummers/caves/northeast/indoor)
 "kip" = (
