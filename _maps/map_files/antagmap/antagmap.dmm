@@ -7503,7 +7503,6 @@
 	name = "Armoury";
 	id = "clfarmoury"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -8016,7 +8015,6 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/structure/cable,
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "Nq" = (
