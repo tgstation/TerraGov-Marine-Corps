@@ -124,7 +124,8 @@
 	icon_state = "weednode0"
 
 /obj/effect/landmark/valhalla_weed_node/Initialize(mapload)
-	GLOB.xeno_valhalla_weed_node_turfs += loc
+	var/weed_type = pickweight(GLOB.weed_prob_list)
+	new weed_type(loc)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
