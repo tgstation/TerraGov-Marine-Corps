@@ -711,7 +711,6 @@
 /area/mainship/command/cic)
 "aHt" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -1538,7 +1537,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "boT" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -6376,7 +6374,6 @@
 	})
 "fxF" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "fyn" = (
@@ -6671,7 +6668,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "fIL" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -7837,7 +7833,6 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/upper_hull)
 "gFt" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -13594,7 +13589,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -13869,7 +13863,6 @@
 	name = "Shipside Medbay"
 	})
 "lzd" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/cargo{
@@ -17270,7 +17263,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "ovj" = (
@@ -20075,7 +20067,6 @@
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "qQX" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20489,7 +20480,6 @@
 	name = "CEO Office"
 	})
 "rmu" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24090,7 +24080,6 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "usu" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -28303,7 +28292,6 @@
 	name = "Kitchen"
 	})
 "xQf" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,

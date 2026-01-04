@@ -382,7 +382,6 @@
 	})
 "ZI" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/loadout_vendor,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury{

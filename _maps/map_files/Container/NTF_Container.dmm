@@ -359,7 +359,6 @@
 /area/mainship/engineering/engine_core)
 "axw" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/disposalpipe/junction{
 	dir = 1
@@ -786,7 +785,6 @@
 	},
 /area/mainship/living/starboard_emb)
 "aUY" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -5664,7 +5662,6 @@
 /area/mainship/medical/lounge)
 "foE" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6064,7 +6061,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/bow_hallway)
 "fIu" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -7181,7 +7177,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "gRv" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -9383,7 +9378,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "jjU" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -14176,7 +14170,6 @@
 /area/mainship/hallways/ntf/dorm1)
 "nyu" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14306,7 +14299,6 @@
 	name = "Sauna"
 	})
 "nHk" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
@@ -16524,7 +16516,6 @@
 /area/mainship/hull/starboard_hull)
 "pXI" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -16534,7 +16525,6 @@
 	},
 /area/mainship/hallways/bow_hallway)
 "pYe" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -18408,7 +18398,6 @@
 /area/mainship/squads/general)
 "rRR" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18546,7 +18535,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/starboard_emb)
 "rXE" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6

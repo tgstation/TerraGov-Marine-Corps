@@ -108,7 +108,6 @@
 /area/lv624/lazarus/armory)
 "aeo" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/starboard_hallway{
 	name = "HQ Central Hallways"
@@ -1601,7 +1600,6 @@
 "ciN" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
@@ -1996,7 +1994,6 @@
 /area/mainship/groundhq/ntf/shipboard/brig)
 "cFQ" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
@@ -2185,7 +2182,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
@@ -3073,7 +3069,6 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "dXO" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -3592,7 +3587,6 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "eLc" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -5596,7 +5590,6 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "hFA" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -6324,7 +6317,6 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
 "izI" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment/corner{
@@ -7282,7 +7274,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
@@ -7500,7 +7491,6 @@
 /area/mainship/living/grunt_rnr)
 "jXb" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -7622,7 +7612,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "kgT" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -8198,7 +8187,6 @@
 /area/mainship/living/grunt_rnr)
 "laL" = (
 /obj/structure/catwalk,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -9813,7 +9801,6 @@
 "nvs" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -11272,7 +11259,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -12116,7 +12102,6 @@
 /area/mainship/groundhq/ntf/command/cic)
 "qrT" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "qrZ" = (
@@ -12400,7 +12385,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
@@ -12903,7 +12887,6 @@
 	name = "Kitchen"
 	})
 "rnl" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14395,7 +14378,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -14867,7 +14849,6 @@
 /area/mainship/hallways/ntf/dorm1)
 "uhM" = (
 /obj/structure/window/framed/mainship,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/mainship/groundhq/ntf/engineering/engine_core)
@@ -15918,7 +15899,6 @@
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "vFF" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -16642,7 +16622,6 @@
 	dir = 2
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
@@ -16723,7 +16702,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange,
@@ -17170,7 +17148,6 @@
 "xhD" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17334,7 +17311,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "xus" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/hangar)
@@ -17722,7 +17698,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -17806,7 +17781,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "yec" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9

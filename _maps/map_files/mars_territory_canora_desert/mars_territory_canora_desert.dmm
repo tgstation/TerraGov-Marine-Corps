@@ -1189,7 +1189,6 @@
 /area/canora_desert/surface/building/som_medical)
 "fc" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/dark2,
 /area/canora_desert/surface/building/som_engidome)
 "fd" = (
@@ -2525,7 +2524,6 @@
 	},
 /area/canora_desert/surface/building/abandoned_wooden_building)
 "kI" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_engimedmaint)
@@ -9187,7 +9185,6 @@
 	},
 /area/canora_desert/surface/building/som_mechbay)
 "PK" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/canora_desert/surface/building/closed)

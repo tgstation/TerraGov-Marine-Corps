@@ -16802,7 +16802,6 @@
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/engineering/lobby{
 	name = "CLF engineering";
