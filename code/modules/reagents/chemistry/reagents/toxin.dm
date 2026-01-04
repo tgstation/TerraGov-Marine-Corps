@@ -510,9 +510,9 @@
 		custom_metabolism = initial(custom_metabolism)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/dylovene) > 1)
-		custom_metabolism += 5
+		custom_metabolism *= 1.4
 	if(L.reagents.get_reagent_amount(/datum/reagent/hypervene) > 1)
-		custom_metabolism += 5
+		custom_metabolism *= 3
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
