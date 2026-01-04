@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				else
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/hydraulic.ogg', 50, 0)
 					SSshuttle.moveShuttleToTransit(shuttle_id, TRUE)
-					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell), WEAKREF(ui.user)), 3 SECONDS)
+					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell), WEAKREF(ui.user)), 4 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
 				supply_shuttle.buy(usr, src)
