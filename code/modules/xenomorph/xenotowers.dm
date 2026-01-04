@@ -72,8 +72,8 @@
 	icon_state = "lighttower"
 	bound_width = 32
 	bound_height = 32
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 75
+	max_integrity = 75
 
 /obj/structure/xeno/lighttower/Initialize(mapload)
 	. = ..()

@@ -6,7 +6,7 @@
 	icon_state = "Puppeteer Running"
 	health = 250
 	maxHealth = 250
-	plasma_stored = 350
+	plasma_stored = 200
 	pixel_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL

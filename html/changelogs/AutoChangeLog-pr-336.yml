@@ -1,0 +1,4 @@
+author: "Colfer1"
+delete-after: True
+changes:
+  - bugfix: "Xenos can no longer devour eachother"

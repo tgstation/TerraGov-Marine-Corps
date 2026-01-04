@@ -36,13 +36,13 @@
 
 	var/hivenumber = owner.get_xeno_hivenumber()
 	for(var/obj/silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
-		if((silo.z == xeno_owner.z) && (get_dist(xeno_owner, silo) <= 15))
+		if((silo.z == xeno_owner.z) && (get_dist(xeno_owner, silo) <= 5))
 			if(!silent)
 				owner.balloon_alert(owner, "One of our hive's silos is too close!")
 			return FALSE
 	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	for(var/obj/req_jelly_pod AS in hive.req_jelly_pods)
-		if((req_jelly_pod.z == xeno_owner.z) && (get_dist(xeno_owner, req_jelly_pod) <= 10))
+		if((req_jelly_pod.z == xeno_owner.z) && (get_dist(xeno_owner, req_jelly_pod) <= 5))
 			if(!silent)
 				owner.balloon_alert(owner, "One of our hive's ambrosia pots is too close!")
 			return FALSE

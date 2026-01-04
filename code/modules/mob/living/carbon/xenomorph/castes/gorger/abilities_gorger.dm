@@ -45,6 +45,10 @@
 	if(HAS_TRAIT(victim, TRAIT_TIME_SHIFTED))
 		to_chat(owner, span_warning("They are anchored in time!"))
 		return FALSE
+	if(isxeno(victim))
+		if(!isxenolarva(victim))
+			to_chat(owner, span_warning("Not a larva, it would be hard to pick this one up"))
+			return FALSE
 	if(victim.buckled)
 		if(!silent)
 			to_chat(owner, span_warning("[victim] is buckled to something."))
