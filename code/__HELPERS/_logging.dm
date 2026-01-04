@@ -1,3 +1,6 @@
+//NTF EDIT - We don't use this stuff.  See the files in code/__HELPERS/logging instead
+/*
+
 //wrapper macros for easier grepping
 #define DIRECT_OUTPUT(A, B) A << B
 #define DIRECT_INPUT(A, B) A >> B
@@ -386,3 +389,4 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+*/

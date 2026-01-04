@@ -198,6 +198,7 @@
 #include "code\__DEFINES\dcs\signals\signals_atom\signals_atom_mouse.dm"
 #include "code\__DEFINES\dcs\signals\signals_atom\signals_atom_x_act.dm"
 #include "code\__HELPERS\_lists.dm"
+#include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_planes.dm"
 #include "code\__HELPERS\_string_lists.dm"
 #include "code\__HELPERS\admin.dm"
