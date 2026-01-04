@@ -616,7 +616,7 @@
 /area/space)
 "zu" = (
 /obj/machinery/camera/autoname{
-	dir = 4sssss
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/space)
