@@ -100,7 +100,7 @@
 			return
 		spirited_away_human.ParalyzeNoChain(6.2 SECONDS)
 		if(spirited_away_human.stat == CONSCIOUS)
-			spirited_away_human.visible_message(span_notice("[spirited_away_human] lets out a terrified scream as they are suddenly lifted off the air!"), span_warning("You let out a terrified scream as you are suddenly lifted off the air!"), null, 5)
+			spirited_away_human.visible_message(span_notice("[spirited_away_human] lets out a yelp as they are suddenly lifted off the air!"), span_warning("You let out a yelp as you are suddenly lifted off the air!"), null, 5)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'ntf_modular/sound/misc/kirby_scream_meme.ogg', 100, FALSE), 6.2 SECONDS)
 
 	flick("fulton_expand", baloon)
