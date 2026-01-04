@@ -1,3 +1,4 @@
+/*NTF EDIT - This file was unticked and causing ticked file enforcment errors.  it appears to be largely redundant with code\game\objects\items\weapons\two_handed\twohanded.dm
 /obj/item/weapon/twohanded
 	icon = 'icons/obj/items/weapons/twohanded.dmi'
 	worn_icon_list = list(
@@ -775,3 +776,4 @@
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 	toggle_active()
 	toggle_motor(user)
+*/

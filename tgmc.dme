@@ -1173,6 +1173,7 @@
 #include "code\game\objects\items\weapons\shivs.dm"
 #include "code\game\objects\items\weapons\stunbaton.dm"
 #include "code\game\objects\items\weapons\swords.dm"
+#include "code\game\objects\items\weapons\twohanded.dm"
 #include "code\game\objects\items\weapons\weapon.dm"
 #include "code\game\objects\items\weapons\weaponry.dm"
 #include "code\game\objects\items\weapons\two_handed\basic.dm"
