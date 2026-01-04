@@ -527,7 +527,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 //////////////////////////////
 
 /// Try to attach to the mask slot
-/obj/item/clothing/mask/facehugger/proc/try_attach(mob/living/carbon/hugged, no_evade)
+/obj/item/clothing/mask/facehugger/proc/try_attach(mob/living/hugged, mob/user, no_evade)
 	set_throwing(FALSE)
 	leaping = FALSE
 	update_icon()
@@ -556,7 +556,11 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		var/catch_chance = 80
 		if(hugged.dir == REVERSE_DIR(dir))
 			catch_chance += 20
-		catch_chance -= max(hugged.shock_stage * 0.3, hugged.getStaminaLoss() * 0.25)
+		var/mob/living/carbon/carbon_hugged = hugged
+		if(istype(carbon_hugged))
+			catch_chance -= max(carbon_hugged.shock_stage * 0.3, hugged.getStaminaLoss() * 0.25)
+		else
+			catch_chance -= max(hugged.getStaminaLoss() * 0.25)
 		if(hugged.get_inactive_held_item())
 			catch_chance  *= 0.8
 		if(hugged.get_active_held_item())
@@ -853,18 +857,18 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	///The amount of chemical we should inject, in units
 	var/amount_injected = 10
 
-/obj/item/clothing/mask/facehugger/combat/chem_injector/try_attach(mob/living/carbon/M, mob/user)
-	if(!combat_hugger_check_target(M))
+/obj/item/clothing/mask/facehugger/combat/chem_injector/try_attach(mob/living/hugged, mob/user, no_evade)
+	if(!combat_hugger_check_target(hugged))
 		return FALSE
 
-	do_attack_animation(M)
+	do_attack_animation(hugged)
 	var/damage = 1
-	damage = M.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
+	damage = hugged.check_shields(COMBAT_MELEE_ATTACK, damage, MELEE)
 	if(damage)
-		M.apply_damage(damage, BRUTE, blocked = MELEE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
-	M.reagents.add_reagent(injected_chemical_type, amount_injected, no_overdose = TRUE)
-	playsound(M, 'sound/effects/spray3.ogg', 25, 1)
-	M.visible_message(span_danger("[src] penetrates [M] with its sharp probscius!"), span_danger("[src] penetrates you with a sharp probscius before falling down!"))
+		hugged.apply_damage(damage, BRUTE, blocked = MELEE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
+	hugged.reagents.add_reagent(injected_chemical_type, amount_injected, no_overdose = TRUE)
+	playsound(hugged, 'sound/effects/spray3.ogg', 25, 1)
+	hugged.visible_message(span_danger("[src] penetrates [hugged] with its sharp probscius!"), span_danger("[src] penetrates you with a sharp probscius before falling down!"))
 	leaping = FALSE
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
@@ -874,15 +878,15 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	filtercolor = COLOR_DARK_ORANGE
 	injected_chemical_type = /datum/reagent/toxin/xeno_neurotoxin
 
-/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro/try_attach(mob/living/carbon/M)
+/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro/try_attach(mob/living/hugged, mob/user, no_evade)
 	if(!..())
 		return
 	var/basedamage = 100
-	basedamage = M.modify_by_armor(basedamage, BIO, 0, BODY_ZONE_HEAD)
-	var/damage = min(basedamage, max(0, 50 - M.getStaminaLoss()))
+	basedamage = hugged.modify_by_armor(basedamage, BIO, 0, BODY_ZONE_HEAD)
+	var/damage = min(basedamage, max(0, 50 - hugged.getStaminaLoss()))
 	basedamage -= damage
 	damage += basedamage/20 //damage that would put target over 50 staminaloss is reduced by a factor of 20
-	M.apply_damage(damage, STAMINA, BODY_ZONE_HEAD, updating_health = TRUE) //This should prevent sprinting
+	hugged.apply_damage(damage, STAMINA, BODY_ZONE_HEAD, updating_health = TRUE) //This should prevent sprinting
 
 /obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn
 	name = "ozelomelyn hugger"
@@ -903,8 +907,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/combat/acid/try_attach(mob/M, mob/user)
-	if(!combat_hugger_check_target(M))
+/obj/item/clothing/mask/facehugger/combat/acid/try_attach(mob/hugged, mob/user, no_evade)
+	if(!combat_hugger_check_target(hugged))
 		return FALSE
 
 	visible_message(span_danger("[src] explodes into a smoking splatter of acid!"))
@@ -931,8 +935,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	jump_cooldown = 1.5 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/combat/resin/try_attach(mob/M, mob/user)
-	if(!combat_hugger_check_target(M))
+/obj/item/clothing/mask/facehugger/combat/resin/try_attach(mob/living/hugged, mob/user, no_evade)
+	if(!combat_hugger_check_target(hugged))
 		return FALSE
 
 	visible_message(span_danger("[src] explodes into a mess of viscous resin!"))
@@ -970,11 +974,11 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	jump_cooldown = 1.2 SECONDS
 	proximity_time = 0.5 SECONDS
 
-/obj/item/clothing/mask/facehugger/combat/slash/try_attach(mob/M)
-	if(!combat_hugger_check_target(M))
+/obj/item/clothing/mask/facehugger/combat/slash/try_attach(mob/living/hugged, mob/user, no_evade)
+	if(!combat_hugger_check_target(hugged))
 		return FALSE
 
-	var/mob/living/carbon/human/victim = M
+	var/mob/living/carbon/human/victim = hugged
 	var/the_damage = CARRIER_SLASH_HUGGER_DAMAGE
 	var/gangbang = 0
 	for(var/obj/item/clothing/mask/facehugger/combat/slash/frens in orange(3, loc))
@@ -982,7 +986,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		break //we just need one confirmed rest dont matter.
 	if(gangbang) //less damage if we got frens around cause we are op.
 		the_damage *= 0.5
-	do_attack_animation(M, ATTACK_EFFECT_REDSLASH)
+	do_attack_animation(hugged, ATTACK_EFFECT_REDSLASH)
 	playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
@@ -1011,8 +1015,8 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	name = "harmless hugger"
 	filtercolor = COLOR_BROWN
 
-/obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/M, mob/user)
-	if(!combat_hugger_check_target(M))
+/obj/item/clothing/mask/facehugger/combat/harmless/try_attach(mob/living/hugged, mob/user, no_evade)
+	if(!combat_hugger_check_target(hugged))
 		return FALSE
 	return TRUE
 
