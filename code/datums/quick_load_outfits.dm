@@ -1,6 +1,7 @@
 /**
  *WARNING: This file is obsolete, use /code/datums/outfits/quick_load_outfits.dm for any new outfits
 */
+/*
 /datum/outfit/quick
 	///Description of the loadout
 	var/desc = "Description here"
@@ -2825,3 +2826,4 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_confrontationrifle, SLOT_IN_BELT)
+*/

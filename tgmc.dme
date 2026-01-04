@@ -450,6 +450,7 @@
 #include "code\datums\namepool.dm"
 #include "code\datums\personal_statistics.dm"
 #include "code\datums\progressbar.dm"
+#include "code\datums\quick_load_outfits.dm"
 #include "code\datums\recipe.dm"
 #include "code\datums\round_statistics.dm"
 #include "code\datums\saymode.dm"
