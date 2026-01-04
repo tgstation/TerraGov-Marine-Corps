@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	else if(stat == CONSCIOUS && user.can_be_facehugged(src, provoked = TRUE)) // If you try to take a healthy one it will try to hug or attack you.
 		user.visible_message(span_warning("[src] skitters up [user]'s arm as [user.p_they()] try to grab it!"), \
 		span_warning("[src] skitters up your arm as you try to grab it!"))
-		if(!try_attach(user))
+		if(!try_attach(user, no_evade = TRUE))
 			go_idle()
 	return FALSE // Else you can't pick.
 
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		if(!do_after(user, hand_attach_time, TRUE, M, BUSY_ICON_DANGER))
 			return
 	user.dropItemToGround(src)
-	if(!try_attach(M))
+	if(!try_attach(M, no_evade = TRUE))
 		go_idle()
 	user.update_icons()
 
@@ -527,7 +527,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 //////////////////////////////
 
 /// Try to attach to the mask slot
-/obj/item/clothing/mask/facehugger/proc/try_attach(mob/living/carbon/hugged)
+/obj/item/clothing/mask/facehugger/proc/try_attach(mob/living/carbon/hugged, no_evade)
 	set_throwing(FALSE)
 	leaping = FALSE
 	update_icon()
@@ -552,7 +552,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		X.dropItemToGround(src)
 		X.update_icons()
 
-	if(hugged.dir != dir && !hugged.incapacitated())
+	if(!no_evade && hugged.dir != dir && !hugged.incapacitated())
 		var/catch_chance = 80
 		if(hugged.dir == REVERSE_DIR(dir))
 			catch_chance += 20
