@@ -441,6 +441,7 @@
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/foldable/skorpion_stock,
 	)
 	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 21,"rail_x" = 10, "rail_y" = 24, "under_x" = 23, "under_y" = 15, "stock_x" = -21, "stock_y" = -1)
