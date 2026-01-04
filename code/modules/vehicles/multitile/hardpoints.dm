@@ -1,3 +1,5 @@
+//NTF EDIT - This file was unticked, commenting it out instead for CI
+/*
 /*
 All of the hardpoints, for the tank or other
 Currently only has the tank hardpoints
@@ -997,3 +999,4 @@ Currently only has the tank hardpoints
 ///////////////
 // AMMO MAGS // END
 ///////////////
+*/

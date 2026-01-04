@@ -1,3 +1,5 @@
+//NTF EDIT - This file was unticked, commenting it out instead for CI
+/*
 #define TANKFAB_MAIN_MENU 0
 #define TANKFAB_MOD_MAINT 1
 #define TANKFAB_PRINTER 2
@@ -289,3 +291,4 @@
 #undef TANKFAB_MOD_MAINT
 #undef TANKFAB_PRINTER
 #undef TANKFAB_BUSY
+*/

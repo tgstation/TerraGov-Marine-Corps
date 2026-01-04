@@ -1,4 +1,5 @@
-
+//NTF EDIT - This file was unticked, commenting it out instead for CI
+/*
 //TANKS, HURRAY
 //Read the documentation in cm_armored.dm and multitile.dm before trying to decipher this stuff
 
@@ -306,3 +307,4 @@
 
 	HP.active_effect(A)
 	return TRUE
+*/
