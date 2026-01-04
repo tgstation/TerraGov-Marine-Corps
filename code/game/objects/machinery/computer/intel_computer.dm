@@ -161,8 +161,8 @@
 			return TRUE
 		user.dropItemToGround(used_disk)
 		max_chain = max(max_chain, used_disk.max_chain + 1)
-		supply_reward += used_disk.supply_reward + max_chain*50
-		dropship_reward += used_disk.dropship_reward + max_chain*40
+		supply_reward += used_disk.supply_reward + max_chain*75
+		dropship_reward += used_disk.dropship_reward + max_chain*50
 		qdel(used_disk)
 		to_chat(user, span_notice("You insert the disk into the intel computer.  The next disk this computer produces will be worth [supply_reward] supply points, [dropship_reward] dropship points, [round(dropship_reward/2)] credits, and be part of an intel chain of length [max_chain]."))
 		return TRUE
