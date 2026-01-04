@@ -25,3 +25,13 @@
 	contains = list(/obj/structure/droppod/nonmob/supply_pod)
 	containertype = null
 	cost = 50
+
+/datum/supply_packs/operations/fulton_extraction_pack/advanced
+	name = "advanced fulton extraction pack"
+	contains = list(/obj/item/fulton_extraction_pack/adminbus/advanced)
+	cost = 200
+
+/datum/supply_packs/operations/extraction_beacon
+	name = "fulton extraction beacon"
+	contains = list(/obj/structure/fulton_extraction_point)
+	cost = 200

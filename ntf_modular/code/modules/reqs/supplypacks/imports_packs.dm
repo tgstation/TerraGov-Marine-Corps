@@ -111,6 +111,56 @@
 	contains = list(/obj/item/storage/backpack/dispenser/medic)
 	cost = 400
 
+/datum/supply_packs/engineering/stasispod
+	name = "Standard Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/dark
+	name = "Dark Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/dark)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/pilot
+	name = "Pilot Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/pilot)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/captain
+	name = "Captain Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/captain)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/sec
+	name = "Security Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/sec)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/med
+	name = "Medical Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/med)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/explo
+	name = "Explorer Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/explo)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/engi
+	name = "Engineering Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/engi)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/indus
+	name = "Industrial Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/indust)
+	cost = 25
+
+/datum/supply_packs/engineering/stasispod/red
+	name = "Red Stasis Pod"
+	contains = list(/obj/structure/bed/chair/stasis/red)
+	cost = 25
+
 /* save until we got faction specific req
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"

@@ -4,7 +4,8 @@
 	name = "Hypersleep stasis frame"
 	desc = "Latest to hypersleep tech that runs on a mini nuclear battery, \
 	could be used by ones who fear closed spaces or kinky people, can be dragged unlike regular cryos, \
-	items are not removed and the person is still 'interactable' and may wake up later unlike traditional hypersleep pods."
+	items are not removed and the person is still 'interactable' and may wake up later unlike traditional hypersleep pods. \
+	Using ALT+CLICK will anchor/unanchor the pod for easier transport."
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
@@ -69,6 +70,16 @@
 	. += emissive_appearance(icon, "cap", src, alpha = 100)
 	. += mutable_appearance(icon, "cap", alpha = 100)
 
+/obj/structure/bed/chair/stasis/AltClick(mob/user)
+	. = ..()
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	if(anchored)
+		to_chat(user, span_notice("You unanchor [src]."))
+		anchored = FALSE
+	else
+		to_chat(user, span_notice("You anchor [src]."))
+		anchored = TRUE
+
 /obj/structure/bed/chair/stasis/proc/shuttle_crush()
 	SIGNAL_HANDLER
 	if(occupant)
@@ -125,20 +136,28 @@
 		to_chat(initiator, span_warning("[src] is occupied."))
 		return FALSE
 
+	ADD_TRAIT(buckling_mob, TRAIT_STASIS, type)
 	occupant = buckling_mob
 	update_icon()
 
-	balloon_alert_to_viewers("Hisses as it starts the cryosleep process...")
-	to_chat(buckling_mob, span_notice("You feel yourself slipping into unconsciousness... You will be stored if you do not unbuckle soon."))
+	balloon_alert_to_viewers("Hisses as it starts the stasis process...")
+	to_chat(buckling_mob, span_notice("You feel yourself slipping into a dreamy stasis state... You can use the context menu to return to lobby."))
 	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
-	addtimer(CALLBACK(src, PROC_REF(activate), buckling_mob), 5 SECONDS, TIMER_STOPPABLE)
 
-/obj/structure/bed/chair/stasis/proc/activate(mob/living/buckling_mob)
-	if(QDELETED(occupant) || !(buckling_mob in buckled_mobs))
+/obj/structure/bed/chair/stasis/verb/enter_cryo()
+	set name = "Start Hypersleep"
+	set desc = "Store your body in this stasis frame for later retrieval by you, sending you to lobby."
+	set category = "IC.Object"
+	set src in view(0)
+
+	if(QDELETED(occupant) || !(usr in buckled_mobs))
 		return FALSE
-	buckling_mob.set_resting(TRUE)
-	buckling_mob.ghostize(TRUE, FALSE, TRUE)
-	return TRUE
+	if(ishuman(usr) && usr.client)
+		var/mob/living/carbon/human/human_usr = usr
+		if(tgui_alert(usr, "Would you like to enter hypersleep?", null, list("Yes", "No")) != "Yes")
+			return
+		human_usr.set_resting(TRUE)
+		human_usr.ghostize(TRUE, FALSE, TRUE)
 
 /obj/structure/bed/chair/stasis/verb/send_away()
 	set name = "Fullcryo Occupant"
@@ -162,8 +181,8 @@
 		W.store_in_cryo()
 
 /obj/structure/bed/chair/stasis/verb/store_items()
-	set name = "Store items"
-	set desc = "Store occupant's items in cryoframe's internal storage for later-retrieval."
+	set name = "Store Worn Items"
+	set desc = "Store occupant's items in cryoframe's internal storage for later-retrieval. WARNING: turrets will shoot the occupant due their ID being stored away!"
 	set category = "IC.Object"
 	set src in view(1)
 
@@ -206,6 +225,7 @@
 		var/atom/movable/A = I
 		A.forceMove(loc)
 
+	REMOVE_TRAIT(occupant, TRAIT_STASIS, type)
 	occupant = null
 	eject_items()
 	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
