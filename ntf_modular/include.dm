@@ -148,6 +148,7 @@
 #include "code\modules\projectiles\guns\pistols.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\sentries.dm"
+#include "code\modules\reagents\reagent_containers\glass\glass.dm"
 #include "code\modules\reqs\supplypacks\factory_packs.dm"
 #include "code\modules\reqs\supplypacks\imports_packs.dm"
 #include "code\modules\reqs\supplypacks\operations_packs.dm"

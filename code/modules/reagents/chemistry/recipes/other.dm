@@ -100,7 +100,7 @@
 /datum/chemical_reaction/rezadone
 	name = "Rezadone"
 	results = list(/datum/reagent/medicine/rezadone = 3)
-	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/mindbreaker
 	name = "Mindbreaker Toxin"

@@ -127,7 +127,7 @@
 	cost = 25
 
 /datum/supply_packs/engineering/stasispod/captain
-	name = "Captain Stasis Pod"
+	name = "Command Stasis Pod"
 	contains = list(/obj/structure/bed/chair/stasis/captain)
 	cost = 25
 
@@ -161,45 +161,58 @@
 	contains = list(/obj/structure/bed/chair/stasis/red)
 	cost = 25
 
-/* save until we got faction specific req
+
+//faction specific things below here.
 /datum/supply_packs/imports/unity
 	name = "NT105 Unity Revolver"
 	contains = list(/obj/item/weapon/gun/pistol/xmdivider/ntc)
+	faction_lock = FACTION_TERRAGOV
 	cost = 100
 
 /datum/supply_packs/imports/divider
 	name = "CC/104 Divider Revolver"
 	contains = list(/obj/item/weapon/gun/pistol/xmdivider)
+	faction_lock = FACTION_VSD
 	cost = 100
 
-/datum/supply_packs/imports/divider
+/datum/supply_packs/imports/divider_ammo_incendiary
 	name = "CC/104 Divider Revolver incendiary Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/xmdivider)
+	faction_lock = FACTION_VSD
 	cost = 3
 
-/datum/supply_packs/imports/divider
+/datum/supply_packs/imports/divider_ammo_ap
 	name = "CC/104 Divider Revolver Armor Piercing Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/xmdivider/ap)
+	faction_lock = FACTION_VSD
 	cost = 3
 
 /datum/supply_packs/imports/g22_tranq
 	name = "P-22 Custom Tranq Pistol"
 	contains = list(/obj/item/weapon/gun/pistol/g22/tranq)
+	faction_lock = FACTION_TERRAGOV
 	cost = 200
 
 /datum/supply_packs/imports/g22_tranq_ammo
 	name = "P-22 Custom Pistol Tranq Magazine"
 	contains = list(/obj/item/ammo_magazine/pistol/g22tranq)
+	faction_lock = FACTION_TERRAGOV
 	cost = 3
 
 /datum/supply_packs/imports/moonbeam
 	name = "NTC 'Moonbeam' tranq sniper rifle"
 	contains = list(/obj/item/weapon/gun/rifle/chambered/nonlethal)
+	faction_lock = FACTION_TERRAGOV
 	cost = 400
 
-/datum/supply_packs/imports/g22_tranq_ammo
-	name = "P-22 Custom Pistol Tranq Magazine"
+/datum/supply_packs/imports/moonbeam_ammo
+	name = "Moonbeam Tranq Magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/tranq)
+	faction_lock = FACTION_TERRAGOV
 	cost = 5
 
-*/
+/datum/supply_packs/medical/carpotoxin
+	name = "Carpotoxin Bottle"
+	contains = list(/obj/item/reagent_containers/glass/bottle/carpotoxin)
+	faction_lock = FACTION_TERRAGOV //novamed
+	cost = 400

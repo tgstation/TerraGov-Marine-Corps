@@ -25,10 +25,12 @@
 
 /datum/fire_support/droppod/solmode
 	fire_support_type = FIRESUPPORT_TYPE_SENTRY_POD_SOLMODE
+	solmode_rearm_duration = 4
 	bino_cooldown_mult = 0.1
 
 /datum/fire_support/droppod/supply/solmode
 	fire_support_type = FIRESUPPORT_TYPE_SUPPLY_POD_SOLMODE
+	solmode_rearm_duration = 4
 	bino_cooldown_mult = 0.1
 
 //som shit has also lasting fire and overall crazy so i gotta gut em a bit.

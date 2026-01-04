@@ -64,7 +64,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
-	callTime = 15 SECONDS
+	callTime = 3 SECONDS
+	ignitionTime = 1 SECONDS
 
 	dir = WEST
 	port_direction = EAST
@@ -449,6 +450,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					else
 						shopping_cart -= P.type
 				if("addone")
+					if(P.faction_lock && ui.user.faction != P.faction_lock)
+						to_chat(ui.user, span_warning("You cannot order this supply pack due to faction restrictions."))
+						return
 					if(shopping_cart[P.type])
 						shopping_cart[P.type]++
 					else
@@ -461,6 +465,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						cart_cost += SP.cost * shopping_cart[SP.type]
 					var/excess_points = SSpoints.supply_points[ui_user.faction] - cart_cost
 					var/number_to_buy = min(round(excess_points / P.cost), 20) //hard cap at 20
+					if(P.faction_lock && ui.user.faction != P.faction_lock)
+						to_chat(ui.user, span_warning("You cannot order this supply pack due to faction restrictions."))
+						return
 					if(shopping_cart[P.type])
 						shopping_cart[P.type] += number_to_buy
 					else
@@ -474,13 +481,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 				else
-					playsound(supply_shuttle.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
+					playsound(supply_shuttle.return_center_turf(), 'sound/machines/hydraulic.ogg', 50, 0)
 					SSshuttle.moveShuttleToTransit(shuttle_id, TRUE)
-					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell), WEAKREF(ui.user)), 15 SECONDS)
+					addtimer(CALLBACK(supply_shuttle, TYPE_PROC_REF(/obj/docking_port/mobile/supply, sell), WEAKREF(ui.user)), 3 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
 				supply_shuttle.buy(usr, src)
-				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
+				playsound(D.return_center_turf(), 'sound/machines/hydraulic.ogg', 50, 0)
 				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE
 		if("approve")

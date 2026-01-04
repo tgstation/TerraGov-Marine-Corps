@@ -25,7 +25,7 @@
 	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 4
 	scatter = 1
-	damage_mult = 1.2
+	damage_mult = 1.3
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	recoil = 1
 	recoil_unwielded = 5

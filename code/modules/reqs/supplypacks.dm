@@ -15,6 +15,7 @@
 	var/randomised_num_contained = 0
 	///If this supply pack should be buyable in HvH gamemode
 	var/available_against_xeno_only = FALSE
+	var/faction_lock
 
 /datum/supply_packs/proc/generate(atom/movable/location)
 	for(var/i in contains)

@@ -21,6 +21,7 @@
 		pack_data["group"] = pack.group
 		pack_data["container_name"] = initial(pack.containertype.name)
 		pack_data["available_against_xeno_only"] = pack.available_against_xeno_only
+		pack_data["faction_lock"] = pack.faction_lock
 		var/list/contained = list()
 		for(var/atom/atomtypepath AS in pack.contains)
 			var/name = atomtypepath::name

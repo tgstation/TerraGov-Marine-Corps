@@ -6,6 +6,8 @@
 		SQUAD_ENGINEER,
 		SQUAD_SMARTGUNNER,
 		SQUAD_LEADER,
+		SQUAD_SPECIALIST,
+		VANGUARD,
 		FIELD_COMMANDER,
 		SOM_SQUAD_MARINE,
 		SOM_SQUAD_CORPSMAN,
@@ -24,6 +26,8 @@
 		SQUAD_ENGINEER,
 		SQUAD_SMARTGUNNER,
 		SQUAD_LEADER,
+		SQUAD_SPECIALIST,
+		VANGUARD,
 		FIELD_COMMANDER,
 		SOM_SQUAD_MARINE,
 		SOM_SQUAD_ENGINEER,
@@ -51,6 +55,7 @@
 	purchase_cost = 20
 
 /datum/loadout_item/secondary/kit/emp_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
@@ -62,6 +67,7 @@
 	ui_icon = "stun_nade"
 
 /datum/loadout_item/secondary/kit/stun_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
@@ -74,6 +80,7 @@
 	purchase_cost = 15
 
 /datum/loadout_item/secondary/kit/antigas_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
@@ -85,6 +92,7 @@
 	ui_icon = "construction"
 
 /datum/loadout_item/secondary/kit/sandbags/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
@@ -95,6 +103,7 @@
 	ui_icon = "default"
 
 /datum/loadout_item/secondary/kit/throwing_knives/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
@@ -109,6 +118,7 @@
 	ui_icon = "default"
 
 /datum/loadout_item/secondary/kit/plastique/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -124,6 +134,7 @@
 	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/anti_tank/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/antitank, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)

@@ -46,8 +46,6 @@
 		var/datum/loadout_item/thing_to_check = equipped_things["[slot]"]
 		if(!thing_to_check)
 			continue
-		if(!thing_to_check.item_typepath)
-			continue
 		if(thing_to_check.quantity > 0 && iscampaigngamemode(SSticker.mode)) //we dont have quantities outside campaign.
 			thing_to_check.quantity --
 		thing_to_check.post_equip(owner, loadout, src)

@@ -21,6 +21,7 @@
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/suit_slot/som_light_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
@@ -29,6 +30,7 @@
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
@@ -59,6 +61,7 @@
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
@@ -67,6 +70,7 @@
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
@@ -133,6 +137,7 @@
 	req_desc = null
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
@@ -144,6 +149,7 @@
 	req_desc = null
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
@@ -194,6 +200,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_slot/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
@@ -216,6 +223,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/suit_slot/som_medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
 	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
 
