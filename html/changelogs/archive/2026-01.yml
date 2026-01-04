@@ -6,3 +6,12 @@
   - balance: Robots/synths take burn damage per zombium
   - rscdel: Remove flashbang effect from ammo cookoff
   - balance: Decrease zombie spawnrate
+2026-01-04:
+  Colfer1:
+  - balance: Medical nanites are now twice as effective, but purge other brute/burn/pain
+      healing chems like they are supposed to
+  - bugfix: AI no longer spam tailstab (because they dont have it anymore)
+  - balance: adjusted puppet speed and health to be less oppressive
+  - bugfix: Xenos can no longer devour eachother
+  OrbisAnima:
+  - qol: Removes repetition of Sex messages unless the intents are changed.

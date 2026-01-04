@@ -1,4 +1,0 @@
-author: "OrbisAnima"
-delete-after: True
-changes:
-  - qol: "Removes repetition of Sex messages unless the intents are changed."
