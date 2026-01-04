@@ -1,7 +1,7 @@
 {
     "map_name": "Colony 1",
     "map_path": "map_files/Colony1",
-    "map_file": "colony1.dmm",
+    "map_file": "Colony1.dmm",
     "environment_traits": {
         "COLD": true
     },
