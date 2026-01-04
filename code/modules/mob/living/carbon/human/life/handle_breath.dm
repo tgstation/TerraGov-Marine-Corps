@@ -1,3 +1,5 @@
+//NTF EDIT - This file was unticked, commenting it out instead for CI
+/*
 //Refer to life.dm for caller
 
 /mob/living/carbon/human/need_breathe()
@@ -133,3 +135,4 @@
 		adjust_bodytemperature(temp_adj)
 
 	return TRUE
+*/
