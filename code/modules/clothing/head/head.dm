@@ -166,6 +166,19 @@
 	icon_state = "rocap"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
+/obj/item/clothing/head/tgmccap/ro/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_HEAD)
+		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+
+/obj/item/clothing/head/tgmccap/ro/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_CAVE_INTERFERENCE_CHECK)
+
+/obj/item/clothing/head/tgmccap/ro/proc/on_interference_check(source, list/inplace_interference)
+	SIGNAL_HANDLER
+	inplace_interference[1] = max(0, inplace_interference[1] - 1)
+
 /obj/item/clothing/head/tgmccap/ro/navy
 	name = "\improper NTC navy officer cap"
 	desc = "A hat usually worn by officers in the NTC. This time in a nice shade of navy blue."
