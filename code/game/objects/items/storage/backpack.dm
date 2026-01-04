@@ -576,10 +576,10 @@
 
 GLOBAL_LIST_INIT(stealth_greyscale_matrix,\
 	list(0.269,0.119,0.119,0,
-		 0.105,0.255,0.105,0,
-		 0.126,0.126,0.276,0,
-		     0,    0,    0,1,
-		  0.1, 0.1, 0.1,0))
+		0.1050,0.255,0.105,0,
+		0.1260,0.126,0.276,0,
+			00,    0,    0,1,
+		0.1000, 0.10, 0.10,0))
 
 ///Activates the cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
