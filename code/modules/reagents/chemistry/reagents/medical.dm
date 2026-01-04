@@ -1364,19 +1364,19 @@
 	custom_metabolism = 0
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
-//	purge_list = list(
-//		/datum/reagent/medicine/bicaridine,
-//		/datum/reagent/medicine/kelotane,
-//		/datum/reagent/medicine/tramadol,
-//		/datum/reagent/medicine/oxycodone,
-//		/datum/reagent/medicine/tricordrazine,
-//		/datum/reagent/medicine/meralyne,
-//		/datum/reagent/medicine/dermaline,
-//		/datum/reagent/medicine/paracetamol,
-//		/datum/reagent/medicine/russian_red,
-//		/datum/reagent/consumable/drink/doctor_delight,
-//	)
-//	purge_rate = 5
+	purge_list = list(
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/kelotane,
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/tricordrazine,
+		/datum/reagent/medicine/meralyne,
+		/datum/reagent/medicine/dermaline,
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/russian_red,
+		/datum/reagent/consumable/doctor_delight,
+	)
+	purge_rate = 5
 
 /datum/reagent/medicalnanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
@@ -1402,16 +1402,16 @@
 
 			if(volume > 5)
 				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
-				L.adjustToxLoss(-0.15 * effect_str)
+				L.adjustToxLoss(-0.30 * effect_str)
 
 			if(volume > 5 && (L.getBruteLoss(organic_only = TRUE) >= 3)) // so we don't waste nanites healing miniscule damage
-				L.heal_overall_damage(3 * effect_str, 0)
+				L.heal_overall_damage(6 * effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
 			if(volume > 5 && (L.getFireLoss(organic_only = TRUE) >= 3)) // same but for burn
-				L.heal_overall_damage(0, 3 * effect_str)
+				L.heal_overall_damage(0, 6 * effect_str)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
 					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
