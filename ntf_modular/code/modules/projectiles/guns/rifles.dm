@@ -431,7 +431,7 @@
 	current_rounds = 120
 	max_rounds = 120
 
-/obj/item/ammo_magazine/packet/halter
+/obj/item/ammo_magazine/packet/halter/laser
 	name = "box of 7.62x38mm LE"
 	desc = "A box containing 120 rounds of 7.62x38mm Laser Emitters."
 	default_ammo = /datum/ammo/energy/lasgun/halter
