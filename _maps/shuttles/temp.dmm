@@ -168,7 +168,6 @@
 /area/space)
 "gv" = (
 /obj/structure/table/reinforced,
-/obj/structure/table/reinforced,
 /obj/structure/window/reinforced/tinted{
 	dir = 1;
 	layer = 2
