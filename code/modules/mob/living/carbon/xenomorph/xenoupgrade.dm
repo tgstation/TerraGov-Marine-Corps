@@ -9,6 +9,8 @@
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
 	set_datum(FALSE)
+	if(hive.living_xeno_ruler == src)
+		remove_ruler_abilities()
 	var/selected_ability_type = selected_ability?.type
 
 	var/list/datum/action/ability/xeno_action/actions_already_added = mob_abilities
@@ -38,6 +40,9 @@
 				continue
 			activable_ability.select()
 			break
+
+	if(hive.living_xeno_ruler == src)
+		give_ruler_abilities()
 
 	if(xeno_flags & XENO_LEADER)
 		give_rally_abilities() //Give them back their rally hive ability
