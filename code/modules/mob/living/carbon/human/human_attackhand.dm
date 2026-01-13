@@ -12,7 +12,7 @@
 		visible_message(span_danger("[user] attempted to touch [src]!"), null, null, 5)
 		return FALSE
 
-	human_user.changeNext_move(7)
+	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
 			if(on_fire && human_user != src)
@@ -131,7 +131,7 @@
 
 			visible_message(span_danger("[human_user] [attack_verb] [src]!"), null, null, 5)
 			var/list/hit_report = list()
-			if(damage >= 4 && prob(25))
+			if((damage >= 4 && prob(25)) && !HAS_TRAIT(human_user, TRAIT_NO_STUN_ATTACK))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
 				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				hit_report += "(KO)"

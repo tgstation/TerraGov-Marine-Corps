@@ -42,12 +42,12 @@
 		return
 
 	var/static/list/connections = list(
-		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override)
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_ATOM_ENTERED = PROC_REF(on_loc_entered),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 	update_icon()
-	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
 		update_neighbours()
 	for(var/mob/living/living_mob in loc.contents)
@@ -147,46 +147,41 @@
 /obj/alien/weeds/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_RESIN] = layer
 
+///special behavior when atoms enter our loc
+/obj/alien/weeds/proc/on_loc_entered(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(!isxeno(crosser))
+		return
+	var/mob/living/carbon/xenomorph/xeno = crosser
+	xeno.next_move_slowdown += xeno?.xeno_caste?.weeds_speed_mod
+
+///Slows down non xeno crossers
+/obj/alien/weeds/proc/slow_down_crosser(atom/movable/crosser)
+	if(isxeno(crosser))
+		return
+	if(crosser.throwing || crosser.buckled)
+		return
+	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
+		return
+	if(issealedvehicle(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
+		return
+	if(!ishuman(crosser))
+		return
+	var/mob/living/carbon/human/victim = crosser
+	if(victim.lying_angle)
+		return
+	victim.next_move_slowdown += WEED_SLOWDOWN
+
 /obj/alien/weeds/sticky
 	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
-/obj/alien/weeds/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
-	)
-	AddElement(/datum/element/connect_loc, connections)
-	return ..()
-
-/obj/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	SIGNAL_HANDLER
-	if(crosser.throwing || crosser.buckled)
-		return
-
-	if(issealedvehicle(crosser))
-		var/obj/vehicle/sealed/vehicle = crosser
-		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
-		return
-
-	if(isxeno(crosser))
-		var/mob/living/carbon/xenomorph/X = crosser
-		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
-		return
-
-	if(!ishuman(crosser))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.pass_flags, HOVERING))
-		return
-
-	var/mob/living/carbon/human/victim = crosser
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += WEED_SLOWDOWN
-
+/obj/alien/weeds/sticky/on_loc_entered(datum/source, atom/movable/crosser)
+	. = ..()
+	slow_down_crosser(crosser)
 
 /obj/alien/weeds/resting
 	name = "resting weeds"
@@ -327,35 +322,9 @@
 	node_icon = "weednodegreen"
 	ability_cost_mult = 3
 
-/obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
-	)
-	AddElement(/datum/element/connect_loc, connections)
-	return ..()
-
-/obj/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	SIGNAL_HANDLER
-	if(crosser.throwing || crosser.buckled)
-		return
-
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += WEED_SLOWDOWN
-		return
-
-	if(!ishuman(crosser))
-		return
-
-	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
-		return
-
-	var/mob/living/carbon/human/victim = crosser
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += WEED_SLOWDOWN
+/obj/alien/weeds/node/sticky/on_loc_entered(datum/source, atom/movable/crosser)
+	. = ..()
+	slow_down_crosser(crosser)
 
 //Resting weed node
 /obj/alien/weeds/node/resting
