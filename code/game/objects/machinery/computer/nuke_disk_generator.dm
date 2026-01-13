@@ -1,7 +1,3 @@
-#define DISK_CYCLE_REWARD_MIN 100
-#define DISK_CYCLE_REWARD_MAX 300
-
-
 // -- Print disk computer
 /obj/item/circuitboard/computer/nuke_disk_generator
 	name = "circuit board (nuke disk generator)"
@@ -56,19 +52,6 @@
 	say("Program run has concluded! Standing by...")
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_SEGMENT_COMPLETED, src)
-
-	if(iscrashgamemode(SSticker.mode))
-		return
-
-	// Requisitions points bonus per cycle.
-	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
-	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
-
-	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
-	SSpoints.dropship_points += disk_cycle_reward/10
-	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
-
-	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
 
 /obj/machinery/computer/code_generator/nuke/start_final(mob/user)
 	busy = TRUE

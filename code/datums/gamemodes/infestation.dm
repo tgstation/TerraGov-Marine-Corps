@@ -28,6 +28,8 @@
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
 
+	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_SEGMENT_COMPLETED, PROC_REF(on_disk_segment_completed))
+
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)
 		weed_type = pickweight(GLOB.weed_prob_list)
@@ -406,3 +408,21 @@
 		victim.adjustFireLoss(victim.maxHealth * 4)
 		victim.death()
 		CHECK_TICK
+
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
+
+/// Gives points when a segment is completed.
+/datum/game_mode/infestation/proc/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
+	SIGNAL_HANDLER
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
+
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	generating_computer.say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
+
+#undef DISK_CYCLE_REWARD_MIN
+#undef DISK_CYCLE_REWARD_MAX
