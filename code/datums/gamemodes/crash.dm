@@ -259,6 +259,7 @@
 	return adjusted_jobworth_list
 
 /datum/game_mode/infestation/crash/on_disk_segment_completed(datum/source, generating_computer)
+	..() // Needed because SIGNAL_HANDLER.
 	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
 		if(!human.job)
 			continue
