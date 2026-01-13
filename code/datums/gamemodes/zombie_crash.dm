@@ -60,7 +60,7 @@
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX)
 
 /datum/game_mode/infestation/crash/zombie/on_disk_segment_completed(datum/source, generating_computer)
-	..()
+	. = ..()
 	global_rally_zombies(generating_computer, TRUE)
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX)
 

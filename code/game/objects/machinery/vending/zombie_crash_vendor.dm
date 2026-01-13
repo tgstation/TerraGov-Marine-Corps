@@ -12,7 +12,7 @@
 #define CAT_FUN "FUN"
 
 /obj/machinery/marine_selector/zombie_crash
-	name = "\improper progression rewards vendor"
+	name = "progression rewards vendor"
 	desc = "A mysterious vendor that keeps tracks of how well your team has done against the zombies and grants rewards for these efforts."
 	icon_state = "marinerequisitions"
 	lock_flags = NONE
@@ -131,8 +131,8 @@
 		LAZYADD(categories, category_name)
 
 /obj/machinery/marine_selector/zombie_crash/Destroy()
-	. = ..()
 	GLOB.zombie_crash_vendors -= src
+	return ..()
 
 /obj/machinery/marine_selector/zombie_crash/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
