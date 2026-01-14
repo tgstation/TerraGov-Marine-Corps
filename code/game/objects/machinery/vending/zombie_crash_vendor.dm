@@ -183,6 +183,7 @@
 		vended_items += new product_typepath(loc)
 	for (var/obj/item/vended_item in vended_items)
 		vended_item.on_vend(user, faction, auto_equip = TRUE)
+	log_game("[user] purchased [product_information[2]] from the Zombie Crash Vendor for [product_cost] points.");
 
 /obj/machinery/marine_selector/zombie_crash/attackby(obj/item/I, mob/user, params)
 	. = ..()

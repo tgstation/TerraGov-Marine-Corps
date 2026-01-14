@@ -25,10 +25,11 @@
 	. = ..()
 	if(bioscan_interval)
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-	if(!(round_type_flags & MODE_INFESTATION))
-		return
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_SEGMENT_COMPLETED, PROC_REF(on_disk_segment_completed))
+
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
 
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)
