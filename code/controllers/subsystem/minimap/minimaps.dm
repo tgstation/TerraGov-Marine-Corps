@@ -17,7 +17,10 @@
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
-	init_order = INIT_ORDER_MINIMAPS
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/modularmapping,
+	)
 	priority = FIRE_PRIORITY_MINIMAPS
 	wait = 10
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
