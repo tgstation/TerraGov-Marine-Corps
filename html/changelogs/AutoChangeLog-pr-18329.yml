@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added NPC beacons, admin use only for now"
+  - code_imp: "Added a NPC controller component to slave NPCs to a given atom"
