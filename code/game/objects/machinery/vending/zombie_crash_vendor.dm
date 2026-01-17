@@ -30,6 +30,7 @@
 		/obj/item/quikdeploy/cade = list(CAT_ENGINEERING_SUPPLIES, "QuikCade - Metal", 2, "engineering-placeable"),
 		/obj/item/quikdeploy/cade/plasteel = list(CAT_ENGINEERING_SUPPLIES, "QuikCade - Plasteel", 4, "engineering-placeable"),
 		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_ENGINEERING_SUPPLIES, "TL-182 deployable shield", 4, "engineering-placeable"),
+		/obj/item/storage/box/explosive_mines  = list(CAT_ENGINEERING_SUPPLIES, "Explosive mines x5", 2, "engineering-explosive"),
 		/obj/item/explosive/plastique = list(CAT_ENGINEERING_SUPPLIES, "Plastic explosive", 4, "engineering-explosive"),
 		/obj/item/detpack = list(CAT_ENGINEERING_SUPPLIES, "Detonation pack", 8, "engineering-explosive"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_ENGINEERING_SUPPLIES, "Razorburn grenade", 6, "engineering-grenade"),
@@ -69,17 +70,17 @@
 		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light Vehicle Ammo", 6, "vehicle-ammo"),
 		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy Vehicle Ammo", 6, "vehicle-ammo"),
 		// Emplacements
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 24, "emplacement-laser"),
-		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 12, "emplacement-laser"), // Cheap due to low ammo capacity.
-		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 24, "emplacement-heavysmartgun"),
-		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 20, "emplacement-heavysmartgun"),
-		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 24, "emplacement-heavymachinegun"),
-		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 20, "emplacement-heavymachinegun"),
-		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 24, "emplacement-minigun"),
-		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 20, "emplacement-minigun"),
-		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 24, "emplacement-autocannon"),
-		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 20, "emplacement-autocannon"),
-		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 28, "emplacement-autocannon"), // Expensive because it can perma-kill zombies by itself.
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 10, "emplacement-laser"),
+		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-laser"), // Cheap due to low ammo capacity.
+		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 14, "emplacement-heavysmartgun"),
+		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-heavysmartgun"),
+		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 14, "emplacement-heavymachinegun"),
+		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-heavymachinegun"),
+		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 14, "emplacement-minigun"),
+		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-minigun"),
+		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 14, "emplacement-autocannon"),
+		/obj/item/ammo_magazine/auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" High-Velocity Ammo", 10, "emplacement-autocannon"),
+		/obj/item/ammo_magazine/auto_cannon/flak = list(CAT_EMPLACEMENTS, "\"ATR-22\" Flak Ammo", 14, "emplacement-autocannon"), // Expensive because it can perma-kill zombies by itself.
 		// Armor Modules; these are expensive because they are effectively permanent upgrades to a marine's gear.
 		/obj/item/armor_module/module/valkyrie_autodoc = list(CAT_ARMOR_MODULE, "\"Valkyrie\" Autodoc Module", 30, "armor-module-valk"),
 		/obj/item/armor_module/module/tyr_extra_armor = list(CAT_ARMOR_MODULE, "\"Tyr II\" Armor Module", 30, "armor-module-tyr"),
@@ -110,7 +111,10 @@
 		/obj/item/ammo_magazine/rifle/tx8/incendiary = list(CAT_WEAPONS, "\"BR-8\" incendiary magazine", 3, "weapon-iff"), // Can pierce through multiple zombies to set them on fire.
 		/obj/item/ammo_magazine/rifle/tx8/impact = list(CAT_WEAPONS, "\"BR-8\" impact magazine", 1, "weapon-iff"),
 		/obj/item/weapon/gun/minigun = list(CAT_WEAPONS, "\"MG-100\" Vindicator minigun", 10, "weapon-minigun"),
-		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 30, "weapon-minigun"),
+		/obj/item/ammo_magazine/minigun_powerpack = list(CAT_WEAPONS, "\"MG-100\" powerpack", 15, "weapon-minigun"),
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_WEAPONS, "Flamethrower", 2, "weapon-flamer"),
+		/obj/item/ammo_magazine/flamer_tank/large/X = list(CAT_WEAPONS, "\"X\" Fuel Tank (75u)", 6, "weapon-flamer"),
+		/obj/item/ammo_magazine/flamer_tank/backtank/X = list(CAT_WEAPONS, "\"X\" Fuel Backpack (500u)", 30, "weapon-flamer"), // 1x backpack = 6.67x tanks; discount of 10 points.
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
 	)

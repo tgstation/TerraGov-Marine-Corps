@@ -317,6 +317,11 @@ const ItemLine = (props) => {
         Minigun
       </Box>
     ),
+    'weapon-flamer': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Flamer
+      </Box>
+    ),
     'fun-random': (
       <Box inline mr="6px" ml="6px" color="#BA55D3">
         Random
