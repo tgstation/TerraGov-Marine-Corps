@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - refactor: "Subsystem initialization order has been refactored."
