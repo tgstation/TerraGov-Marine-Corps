@@ -1,6 +1,9 @@
 SUBSYSTEM_DEF(assets)
 	name = "Assets"
-	init_order = INIT_ORDER_ASSETS
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/persistence,
+	)
 	flags = SS_NO_FIRE
 	var/list/datum/asset_cache_item/cache = list()
 	var/list/preload = list()

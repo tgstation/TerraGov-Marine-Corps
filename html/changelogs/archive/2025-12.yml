@@ -20,3 +20,78 @@
   - rscadd: 'Added a new heavy seasonal: Remote Weapons'
   mudzbe:
   - bugfix: Gamemodes cant start on maps with a blacklisted ground map (without bypass)
+2025-12-04:
+  Lewdcifer:
+  - bugfix: Runners and Hunters should get their Pounce ability again.
+  Lumipharon:
+  - rscadd: NPC's will keep track of important items they drop and try pick them up
+      later
+  - bugfix: fixed NPC's trying to pickup things with missing limbs
+2025-12-05:
+  mudzbe:
+  - balance: Threatened zombie spawners have a higher spawning capacity
+2025-12-06:
+  Despong & Lumi:
+  - balance: added the Sambar MRAP - a speedy but unarmed alternative to the APC
+  Lumipharon:
+  - balance: Zombies can no longer be facehugged
+  - bugfix: fixed spiderlings, for real
+  - bugfix: fixed the UV machinegun option in the engineer vendor having the incorrect
+      contents
+  - bugfix: fixed several minor resin weed related bugs
+  - bugfix: fixed sticky weeds applying slowdown to humans that were jumping or on
+      tanks
+  - bugfix: fixed not being able to hit fuel tanks
+  - bugfix: fixed some unneeded fuel tank balloon alerts
+  - qol: chairs layer under objects
+2025-12-09:
+  Lumipharon:
+  - balance: removed special resin wall types
+  mudzbe:
+  - balance: Reduced zombie limb regrow speed
+2025-12-11:
+  mudzbe:
+  - rscadd: Razorwire now hurts zombies
+  - bugfix: Zombies can unbuckle themselves
+2025-12-14:
+  Lumipharon:
+  - bugfix: fixed limbs losing armour on species change
+  - code_imp: Cleaned up some limb and organ code
+2025-12-15:
+  Lumipharon:
+  - code_imp: Spawners support lists of lists for spawntypes
+  - bugfix: Command radio access from ASL is no longer lost when unequipping or swapping
+      radio keys
+  - imageadd: Updated cell and cell charger sprites, including unique inhands
+  - bugfix: Roundstart empty cells actually show as empty
+  - bugfix: Godmode xenos won't show as full hp when they're not
+  - rscadd: Added a variety of new planet side weapon types
+  - balance: Improved katana, sledge hammer,fire axe and hatchet stats
+  - imageadd: Updates sprites for katanas, sledge hammers, fire axes, hatchet
+  - code_imp: Cleaned up some weapon and two hander code
+  mudzbe:
+  - rscadd: Move silo back in the crashed syndicate shuttle on icy caves
+2025-12-23:
+  Lumipharon:
+  - bugfix: Fixes extinguishers refueling with the wrong fuel
+  - bugfix: Fixes water tanks not having the fuel component
+  - bugfix: Fixes flame tanks (and water) not being refuelable
+  - bugfix: fixed dropship ammo disappearing in certain scenarios
+  - code_imp: Update ripley dropship equipment interaction code
+  - bugfix: fixed sticky weeds not applying slowdown
+  - qol: fixed some balloon alert for fire support binos being visible to all mobs
+  - bugfix: fixed cooldowns being set for fire support binos later than they should
+      be
+  Neocloudy:
+  - rscdel: TGUI compatibility mode has been removed.
+  mudzbe:
+  - balance: Remove stun attacks from all zombies except tanks
+  - balance: Increased zombie attack damage
+  - rscadd: Adds recommended pop for maps to the groundmap vote like how it is in
+      the admin panel
+  - soundadd: Replace howitzer sound
+  - rscadd: Zombies tip over vending machines
+  - bugfix: Fixes vending machine and space heater cheese
+2025-12-29:
+  mudzbe:
+  - bugfix: Groundmap vote fixed

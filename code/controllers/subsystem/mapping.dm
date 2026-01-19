@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	init_order = INIT_ORDER_MAPPING
 	runlevels = ALL
 
 	var/list/datum/map_config/configs

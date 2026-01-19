@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = NONE
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD
 	xeno_abilities_flags = ABILITY_CRASH
 	required_players = 1
 	valid_job_types = list(
@@ -83,10 +83,15 @@
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-			SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
+			if(!spawner.threat_warning)
+				SSspawning.spawnerdata[spawner].max_allowed_mobs = 0
+				spawner.maxamount = 0
 		return
 	for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
-		SSspawning.spawnerdata[spawner].max_allowed_mobs = round(num_humans * 8 / length(GLOB.zombie_spawners))
+		if(!spawner.threat_warning)
+			var/new_spawn_cap = round(num_humans * 8 / length(GLOB.zombie_spawners))
+			SSspawning.spawnerdata[spawner].max_allowed_mobs = new_spawn_cap
+			spawner.maxamount = new_spawn_cap
 
 /datum/game_mode/infestation/crash/zombie/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list

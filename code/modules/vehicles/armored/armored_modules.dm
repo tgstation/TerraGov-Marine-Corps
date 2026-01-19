@@ -138,6 +138,15 @@
 	flag_controller = VEHICLE_CONTROL_DRIVE
 	ability_to_grant = /datum/action/vehicle/sealed/armored/smoke_screen
 
+/obj/item/tank_module/ability/tesla
+	name = "tesla module"
+	desc = "Allows the driver to briefly electrify the vehicle's hull. Good for unwanted guests."
+	icon_state = "smoke_launcher"
+	tank_mod_flags = TANK_MOD_NOT_FABRICABLE
+	is_driver_module = TRUE
+	flag_controller = VEHICLE_CONTROL_DRIVE
+	ability_to_grant = /datum/action/vehicle/sealed/armored/tesla
+
 /obj/item/tank_module/interior
 	name = "generic interior module"
 	desc = "you shouldnt see this"

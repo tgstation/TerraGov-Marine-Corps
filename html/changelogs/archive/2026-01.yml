@@ -1,0 +1,16 @@
+2026-01-01:
+  mudzbe:
+  - balance: Robots/synths take burn damage per zombium
+  - rscdel: Remove flashbang effect from ammo cookoff
+  - balance: Decrease zombie spawnrate
+2026-01-17:
+  Lumipharon:
+  - imageadd: improved welder sprites
+  - rscadd: Added NPC beacons, admin use only for now
+  - code_imp: Added a NPC controller component to slave NPCs to a given atom
+  Neocloudy:
+  - refactor: Subsystem initialization order has been refactored.
+  mudzbe:
+  - bugfix: Adjusts crash map AI nodes, so that zombies path to nuke discs better
+  - bugfix: Weeds always spawn in xeno valhalla
+  - qol: Add marine quickbuild to crash gamemodes

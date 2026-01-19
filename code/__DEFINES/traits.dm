@@ -245,6 +245,7 @@
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
+#define TRAIT_NO_STUN_ATTACK "no_stun_attack"
 #define TRAIT_BATONIMMUNE "baton_immunity"
 #define TRAIT_SLEEPIMMUNE "sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE "flashbang_immunity"
@@ -305,6 +306,8 @@
 #define TRAIT_IS_RELOADING "is_reloading"
 ///is removing shrapnel
 #define TRAIT_IS_SHRAP_REMOVING "is_shrap_removing"
+///is equipping some item, probably clothing
+#define TRAIT_IS_EQUIPPING_ITEM "is_equipping_item"
 
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"

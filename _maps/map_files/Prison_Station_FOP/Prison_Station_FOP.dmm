@@ -5222,6 +5222,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkred/corners,
 /area/prison/security/checkpoint/maxsec_highsec)
 "arO" = (
@@ -5392,16 +5393,15 @@
 /area/prison/security/checkpoint/maxsec_highsec)
 "asm" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/prison/cellblock/highsec/north/north)
+/obj/effect/ai_node,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/research/secret/bioengineering)
 "asn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/disposalpipe/segment{
@@ -5669,6 +5669,7 @@
 /turf/open/floor/prison/darkred,
 /area/prison/security/checkpoint/maxsec_highsec)
 "asV" = (
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkred{
 	dir = 6
 	},
@@ -24947,6 +24948,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkred{
 	dir = 8
 	},
@@ -25070,6 +25072,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/red/full,
 /area/prison/security/checkpoint/highsec/s)
 "bCj" = (
@@ -27092,6 +27095,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -33232,6 +33236,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "ceH" = (
@@ -39902,6 +39907,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security)
 "elG" = (
@@ -75989,7 +75995,7 @@ aom
 ars
 atT
 avP
-asm
+ads
 asX
 aty
 acG
@@ -80425,8 +80431,8 @@ pTN
 pTN
 bqO
 pTN
-aFj
 pTN
+aFj
 pTN
 pTN
 brh
@@ -92157,7 +92163,7 @@ afJ
 ahe
 hTd
 ahH
-aiV
+asm
 agq
 aiv
 afM

@@ -2,7 +2,7 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|SPECIES_NO_HUG
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
@@ -33,6 +33,12 @@
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
+	for(var/datum/limb/limb AS in H.limbs)
+		if(!istype(limb, /datum/limb/head))
+			continue
+		limb.vital = FALSE
+		break
+
 	H.set_undefibbable()
 	H.faction = faction
 	H.language_holder = new default_language_holder()
@@ -42,6 +48,7 @@
 	H.dropItemToGround(H.r_hand, TRUE)
 	H.dropItemToGround(H.l_hand, TRUE)
 	H.dextrous = FALSE//Prevents from opening cades
+	ADD_TRAIT(H, TRAIT_NO_STUN_ATTACK, ZOMBIE_TRAIT)
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against zombies
@@ -69,6 +76,12 @@
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
+	for(var/datum/limb/limb AS in H.limbs)
+		if(!istype(limb, /datum/limb/head))
+			continue
+		limb.vital = TRUE
+		break
+
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.remove_hud_from(H)
 	qdel(H.r_hand)
@@ -82,7 +95,7 @@
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(4))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
@@ -109,14 +122,6 @@
 		addtimer(CALLBACK(src, PROC_REF(fade_out_and_qdel_in), H), 1 MINUTES)
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
-
-/datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
-	. = ..()
-	for(var/datum/limb/limb AS in organless_human.limbs)
-		if(!istype(limb, /datum/limb/head))
-			continue
-		limb.vital = FALSE
-		return
 
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
 	if(human.on_fire || !human.has_working_organs() || isspaceturf(get_turf(human)))
@@ -155,6 +160,7 @@
 	. = ..()
 	H.transform = matrix().Scale(1.2, 1.2)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, ZOMBIE_TRAIT)
+	REMOVE_TRAIT(H, TRAIT_NO_STUN_ATTACK, ZOMBIE_TRAIT)//The boss of the gym
 	H.move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 
 /datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)

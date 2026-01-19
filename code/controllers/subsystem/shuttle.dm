@@ -4,7 +4,10 @@
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
-	init_order = INIT_ORDER_SHUTTLE
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
