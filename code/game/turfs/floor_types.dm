@@ -220,6 +220,25 @@
 /turf/open/floor/mainship/som/sw
 	icon_state = "somsw"
 
+/turf/open/floor/mainship/icc
+	icon_state = "iccnw"
+	name = "\improper ICC flag"
+
+/turf/open/floor/mainship/icc/n
+	icon_state = "iccn"
+
+/turf/open/floor/mainship/icc/ne
+	icon_state = "iccne"
+
+/turf/open/floor/mainship/icc/sw
+	icon_state = "iccsw"
+
+/turf/open/floor/mainship/icc/s
+	icon_state = "iccs"
+
+/turf/open/floor/mainship/icc/se
+	icon_state = "iccse"
+
 // RESEARCH STUFF
 
 /turf/open/floor/mainship/research/containment/floor1

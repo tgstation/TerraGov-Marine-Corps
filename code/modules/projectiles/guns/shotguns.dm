@@ -231,8 +231,8 @@
 	burst_amount = 1
 	scatter = 3
 	scatter_unwielded = 10
-	recoil = 0.5
-	recoil_unwielded = 3
+	recoil = 1
+	recoil_unwielded = 4
 
 
 //-------------------------------------------------------
@@ -283,13 +283,6 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/bayonet/converted,
-	)
-
-/obj/item/weapon/gun/shotgun/pump/freelancer
-	starting_attachment_types = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/bayonet/converted,
-		/obj/item/attachable/gyro,
 	)
 
 //-------------------------------------------------------
@@ -448,6 +441,15 @@
 		/obj/item/attachable/compensator,
 	)
 
+// Non-functional version, for trolling purposes
+
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/broken
+
+	desc = "Curiously using a rifled barrel in a shotgun. The ML-101 shotgun is used by ICC personnel forces to devastate targets at close range. Uses 6 gauge shells, but the tube doesn't seem to be working on this shotgun, and the barrel is in poor condition."
+	max_chamber_items = 0
+	damage_falloff_mult = 8
+	scatter = 30
+	scatter_unwielded = 40
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
@@ -813,10 +815,6 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
 
-/obj/item/weapon/gun/shotgun/pump/t35/back_slot //we need an apparent dupe due to uses in assoc lists
-	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
-
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
@@ -905,6 +903,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight/under,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 38, "under_y" = 12, "stock_x" = 14, "stock_y" = 16)
 
@@ -920,17 +919,14 @@
 	wield_delay = 0.85 SECONDS
 
 /obj/item/weapon/gun/shotgun/som/pointman
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/standard
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
-
-/obj/item/weapon/gun/shotgun/som/back_slot
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 /obj/item/weapon/gun/shotgun/som/support
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/shotgun/som/burst
 	name = "\improper V-51B assault shotgun"
@@ -944,11 +940,17 @@
 
 /obj/item/weapon/gun/shotgun/som/burst/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/burst/ert
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+
+// brokey v-51b
+/obj/item/weapon/gun/shotgun/som/burst/broken
+	desc = "V-51B custom. An upgraded version of the standard SOM shotgun with a burst fire mode and a snazzy paintjob. Rare as it is deadly. It seems a little damaged though..."
+	burst_delay = 5 SECONDS
+	fire_delay = 5 SECONDS
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

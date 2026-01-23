@@ -232,6 +232,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/sniper/elite
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sniper/elite)
 	force = 17
+	attachable_allowed = list()
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	item_map_variant_flags = NONE
@@ -376,7 +377,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun
 	name = "\improper MG-100 Vindicator minigun"
-	desc = "A six-barreled rotary machine gun, the ultimate in man-portable firepower. Capable of laying down a steady stream high velocity armor piercing rounds. Try not to kill all of your friends with it."
+	desc = "A six-barreled rotary machine gun, the ultimate in man-portable firepower. While it is extremely unwieldy, it can unleash a devastating amount of high velocity armor piercing rounds. Try not to kill all of your friends with it."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "minigun"
 	worn_icon_state = "minigun"
@@ -385,7 +386,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
 	fire_animation = "minigun_fire"
-	max_shells = 500 //codex
+	max_shells = 750 //codex
 	caliber = CALIBER_762X51 //codex
 	load_method = MAGAZINE //codex
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
@@ -400,23 +401,24 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 1.2 SECONDS
+	wield_delay = 1.8 SECONDS
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	aim_slowdown = 0.8
-	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	aim_slowdown = 1.2
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.1 SECONDS
 	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	scatter = 5
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
+	damage_mult = 0.85
 
 	item_flags = TWOHANDED|AUTOBALANCE_CHECK
 
@@ -481,9 +483,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 1.2
 	actions_types = list()
 
-	fire_delay = 0.1 SECONDS
 	scatter = -5
 	recoil_unwielded = 4
+	damage_mult = 1
+	windup_delay = 0.4 SECONDS
 
 	item_flags = TWOHANDED
 
@@ -970,6 +973,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		return FALSE
 	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
 		gun_user?.record_war_crime()
+
+//broken version of the ICC RPG
+/obj/item/weapon/gun/launcher/rocket/icc/broken
+	desc = "The Man Portable-Infantry Rocket Launcher is a man portable warhead launcher employed by the ICC. Being capable of firing a wide variety of 83m rear-mounted rockets to provide excellent tactical flexibility in a compact package. The trigger on this one seems tight though. You probably shouldn't fire this..."
+	windup_delay = 10 SECONDS
+//GOOD HITS
+	scatter = 45
 
 //VSD RPG
 /obj/item/weapon/gun/launcher/rocket/vsd

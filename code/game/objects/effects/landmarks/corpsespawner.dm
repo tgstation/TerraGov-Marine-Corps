@@ -386,6 +386,7 @@
 	name = "Unknown PMC"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
 	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -584,12 +585,12 @@
 //ICC
 /obj/effect/landmark/corpsespawner/icc
 	name = "ICC infantry"
-	corpseuniform = /obj/item/clothing/under/som
-	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpseuniform = /obj/item/clothing/under/icc
+	corpsesuit = /obj/item/clothing/suit/storage/marine/icc
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/modular/som
-	corpsegloves = /obj/item/clothing/gloves/marine/som
-	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/icc
+	corpsegloves = /obj/item/clothing/gloves/marine/icc
+	corpseshoes = /obj/item/clothing/shoes/marine/icc/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 
 /obj/effect/landmark/corpsespawner/icc_officer
@@ -601,6 +602,19 @@
 	corpsegloves = /obj/item/clothing/gloves/marine/icc/guard
 	corpseshoes = /obj/item/clothing/shoes/marine/icc/guard/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/icc_offduty
+	name = "ICC soldier"
+	corpseuniform = /obj/item/clothing/under/icc
+	corpsegloves = /obj/item/clothing/gloves/marine/icc
+	corpseshoes = /obj/item/clothing/shoes/marine/icc
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/icc_bridge
+	name = "ICC officer"
+	corpsehelmet = /obj/item/clothing/head/headset
+	corpseuniform = /obj/item/clothing/under/icc/officer
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 
 // VSD
 /obj/effect/landmark/corpsespawner/vsd_standard
@@ -635,20 +649,20 @@
 /obj/effect/landmark/corpsespawner/freelancer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer
-	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine/brown
+	corpseshoes = /obj/item/clothing/shoes/marine
 
 /obj/effect/landmark/corpsespawner/freelancer_officer
 	name = "Freelancer mercenary"
 	corpseuniform = /obj/item/clothing/under/marine/veteran/freelancer
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/freelancer/heavy
-	corpsemask = /obj/item/clothing/mask/gas/tactical/freelancer
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/freelancer/beret
+	corpsesuit = /obj/item/clothing/suit/storage/faction/freelancer
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/frelancer/beret
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/marine/brown
+	corpseshoes = /obj/item/clothing/shoes/marine
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH

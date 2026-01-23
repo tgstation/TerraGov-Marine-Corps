@@ -1216,6 +1216,7 @@
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
 	icon = 'icons/obj/vehicles/64x64.dmi'
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 300
@@ -1389,14 +1390,6 @@
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
-	allow_pass_flags = PASSABLE|PASS_WALKOVER
-
-/obj/structure/prop/vehicle/tank/Initialize(mapload)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
-	)
-	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/obj/structures/prop/tank_vertical.dmi'
@@ -2428,6 +2421,32 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/broken_ptrs
+	name = "\improper PTR-41/1785 anti-mech gun"
+	desc = "The PTR-41/1785 is a bottom shelf solution modernized for dealing with armor. It uses 14.5mm high velocity rounds that will certainly leave a hole in whatever unfortunate soul is hit by it. Unfortunately, this PTRS seems to be broken."
+	icon = 'icons/obj/machines/deployable/clf_heavyrifle.dmi'
+	icon_state = "ptrs_deployed"
+	coverage = 15
+	max_integrity = 100
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/broken_agls
+	name = "\improper AGLS-37 Kauser automatic grenade launcher"
+	desc = "The AGLS-37 automatic grenade launching system. It's too heavy to be wielded or operated without the tripod. On the back, it reads: \"Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\n This one seems to be permanently bolted to the floor, and non-functional."
+	icon = 'icons/obj/machines/deployable/agls.dmi'
+	icon_state = "agls_deployed"
+	coverage = 15
+	max_integrity = 100
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/prop/broken_howitzer
+	name = "\improper TA-100Y howitzer"
+	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. The breech on this one won't open, though."
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
+	icon_state = "howitzer_deployed"
+	max_integrity = 400
+	coverage = 65
+	resistance_flags = XENO_DAMAGEABLE
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK
