@@ -139,5 +139,7 @@
 	/// The direction we WANT to move, based off our keybinds
 	/// Will be udpated to be the actual direction later on
 	var/intended_direction = NONE
+	///Reference to the Codex object (window and all it's contents)
+	var/datum/codex/codex = /datum/codex
 	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
 	var/window_scaling

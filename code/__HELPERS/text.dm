@@ -26,6 +26,8 @@
 /proc/strip_html(text, limit = MAX_MESSAGE_LEN)
 	return sanitize(STRIP_HTML_SIMPLE(text, limit))
 
+//TO-DO: Make a version of strip_html that removes the characters inside HTML tags too
+//Apply to Codex descriptions and background entries
 
 /// Runs STRIP_HTML_SIMPLE and byond's sanitization proc.
 /proc/adminscrub(text, limit = MAX_MESSAGE_LEN)

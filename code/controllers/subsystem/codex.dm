@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(codex)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/codex/proc/get_codex_entry(datum/codex_entry/entry)
-	if(!initialized)
+	if(!initialized || !entry || QDELETED(entry))
 		return
 	var/searching = text_ref(entry)
 	if(isatom(entry))
@@ -116,3 +116,38 @@ SUBSYSTEM_DEF(codex)
 		if(entry && showing_mob.can_use_codex())
 			present_codex_entry(showing_mob, entry)
 			return TRUE
+
+//TO-DO: Merge this with get_codex_entry maybe?
+///Return all the information regarding a specific codex entry as a list; just provide an atom to get the entry for
+/datum/controller/subsystem/codex/proc/get_codex_data(atom/target)
+	var/list/data = list()
+	var/datum/codex_entry/entry = get_codex_entry(target)
+	if(entry)
+		data["name"] = entry.display_name
+		data["description"] = strip_html(entry.description)
+		data["lore"] = strip_html(entry.lore_text)
+		data["antag"] = entry.antag_text
+		data["attributes"] = entry.attributes
+		data["mechanics"] = entry.mechanics
+		data["background"] = entry.background
+		data["is_gun"] = entry.is_gun
+		data["is_clothing"] = entry.is_clothing
+	else
+		data["name"] = "oops no entry"
+		data["description"] = "error"
+		data["lore"] = "error"
+		data["antag"] = "error"
+		data["attributes"] = list()
+		data["mechanics"] = list()
+		data["background"] = list()
+		data["is_gun"] = FALSE
+		data["is_clothing"] = FALSE
+	return data
+
+///Return a list of matching codex entries for a given query
+/datum/controller/subsystem/codex/proc/search_codex(query)
+    var/list/results = list()
+    var/list/matches = retrieve_entries_for_string(query)
+    for(var/datum/codex_entry/entry in matches)
+        results += entry.display_name
+    return results
