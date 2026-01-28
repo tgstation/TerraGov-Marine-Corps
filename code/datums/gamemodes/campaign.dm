@@ -4,6 +4,7 @@
 	round_type_flags = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
