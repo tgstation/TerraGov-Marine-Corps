@@ -124,7 +124,8 @@ SUBSYSTEM_DEF(vote)
 		else
 			text += "<hr><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
 	else
-		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
+		. = pick(choices)
+		text += "<b>Vote Result: No Votes. Randomly picked [.]</b>"
 	log_vote(text)
 	vote_happening = FALSE
 	remove_action_buttons()
