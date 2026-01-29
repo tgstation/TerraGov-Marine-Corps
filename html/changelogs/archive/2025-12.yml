@@ -92,3 +92,6 @@
   - soundadd: Replace howitzer sound
   - rscadd: Zombies tip over vending machines
   - bugfix: Fixes vending machine and space heater cheese
+2025-12-29:
+  mudzbe:
+  - bugfix: Groundmap vote fixed

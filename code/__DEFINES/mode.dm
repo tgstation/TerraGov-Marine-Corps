@@ -70,6 +70,8 @@
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
 /// Should xenomorphs be allowed to buy mutations (including its structures)?
 #define MODE_MUTATIONS_OBTAINABLE (1<<17)
+/// Should marines have access to quickbuild?
+#define MODE_ALLOW_MARINE_QUICKBUILD (1<<18)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"

@@ -118,6 +118,17 @@
 
 /obj/effect/landmark/distress_item
 
+/obj/effect/landmark/valhalla_weed_node
+	name = "valhalla xeno weed node spawn landmark"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode0"
+
+/obj/effect/landmark/valhalla_weed_node/Initialize(mapload)
+	var/weed_type = pickweight(GLOB.weed_prob_list)
+	new weed_type(loc)
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
