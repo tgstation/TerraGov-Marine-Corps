@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Map votes will now choose a random valid map if no one votes"
