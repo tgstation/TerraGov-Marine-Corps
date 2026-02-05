@@ -44,8 +44,6 @@
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	var/client_count = length(GLOB.clients)
-	if(client_count >= NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED)
-		evo_requirements[/datum/xeno_caste/queen] -= 2
 	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
 		evo_requirements[/datum/xeno_caste/queen] -= 2
 
