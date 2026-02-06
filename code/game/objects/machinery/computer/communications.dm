@@ -116,7 +116,7 @@
 					return FALSE
 
 				var/mob/living/carbon/human/sender = usr
-				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(0) ? sender.get_paygrade(0) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
+				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(PAYGRADE_FULL) ? sender.get_paygrade(PAYGRADE_FULL) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
 				TIMER_COOLDOWN_START(usr, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
@@ -131,7 +131,7 @@
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 
-			if(give_medal_award(loc))
+			if(do_award_medal(usr))
 				visible_message(span_notice("[src] prints a medal."))
 
 		if("evacuation_start")
