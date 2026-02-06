@@ -33,6 +33,9 @@ TUNNEL
 		icon_state = "manhole_open[rand(1,3)]"
 	tunnel_desc = "[get_area(src)] (X: [x], Y: [y])"
 
+	if(!locate(/obj/alien/weeds) in loc)
+		new /obj/alien/weeds/node(loc)
+
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
 	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
