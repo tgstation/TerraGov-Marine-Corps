@@ -1,0 +1,11 @@
+2026-02-06:
+  Joe13413:
+  - bugfix: replaced rogue space tiles in tgmc airfield map
+  Lumipharon:
+  - code_imp: Map votes will now choose a random valid map if no one votes
+  Runian:
+  - rscadd: Mosin Nagant clips can now be obtained in no longer exclusive to Nuclear
+      War's weapon vendor. It can now be obtained in the weapon vendor for Crash &
+      Valhalla as well.
+  mudzbe:
+  - bugfix: Cleanup mech removal queen evo oversight
