@@ -1220,17 +1220,14 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 		if(!blocker.density) //Check if we're dense
 			continue
+		if(ismob(subject) && !blocker.check_climb(subject))
+			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE
 		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
-			var/obj/obj_blocker = blocker
-			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
-				return TRUE
-			var/obj/structure/blocker_structure = obj_blocker
-			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
-				return TRUE
+			return TRUE
 		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
 			return TRUE
 

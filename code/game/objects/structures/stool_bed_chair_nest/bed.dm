@@ -145,7 +145,7 @@
 		balloon_alert(user, "brakes off")
 		anchored = FALSE
 
-/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
+/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user, params)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)

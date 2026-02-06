@@ -21,6 +21,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/crate/can_close()
 	. = ..()
@@ -35,15 +36,14 @@
 	if(!.)
 		return
 
-	if(climbable)
-		INVOKE_ASYNC(src, PROC_REF(structure_shaken))
-		climbable = FALSE //Open crate is not a surface that works when climbing around
+	INVOKE_ASYNC(src, PROC_REF(structure_shaken))
+	remove_component(/datum/component/climbable)
 
 /obj/structure/closet/crate/close()
 	. = ..()
 	if(!.)
 		return
-	climbable = TRUE
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"

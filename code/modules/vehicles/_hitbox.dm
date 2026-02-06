@@ -40,10 +40,12 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_cross_hitbox),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
 		COMSIG_TURF_THROW_ENDED_HERE = PROC_REF(on_stop_throw),
+		COMSIG_ATOM_ENTERED = PROC_REF(on_loc_entered),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable) //the hitbox itself needs it for NPC use
 
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
@@ -117,6 +119,17 @@
 /obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
 	SIGNAL_HANDLER
 	add_desant(thrown_movable)
+
+///signal handler when something thrown lands on us
+/obj/hitbox/proc/on_loc_entered(turf/loc_entered, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SIGNAL_HANDLER
+	if(!isliving(arrived))
+		return
+	if(arrived.throwing)
+		return
+	if(HAS_TRAIT(arrived, TRAIT_IS_JUMPING))
+		return
+	add_desant(arrived)
 
 ///signal handler when we leave a turf under the hitbox
 /obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)

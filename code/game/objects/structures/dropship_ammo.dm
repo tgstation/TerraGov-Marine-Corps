@@ -8,7 +8,6 @@
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
@@ -52,6 +51,9 @@
 	///Crosshair to use when this ammo is loaded
 	var/crosshair = 'icons/UI_Icons/cas_crosshairs/gun.dmi'
 
+/obj/structure/ship_ammo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/ship_ammo/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	. = ..()
