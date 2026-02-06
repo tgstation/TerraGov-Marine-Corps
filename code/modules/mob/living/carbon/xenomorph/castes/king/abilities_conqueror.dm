@@ -178,7 +178,7 @@
 /datum/action/ability/xeno_action/conqueror_dash/proc/activate_dash(direction)
 	xeno_owner.add_pass_flags(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_WALKOVER, CONQUEROR_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
-	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
+	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE)
 	var/turf/turf_target = get_ranged_target_turf(xeno_owner, direction, CONQUEROR_DASH_RANGE)
 	for(var/turf/turf_to_check AS in get_line(xeno_owner.loc, turf_target) - xeno_owner.loc)
 		for(var/atom/atom_to_check AS in turf_to_check)
@@ -430,7 +430,7 @@
 			if(potential_mob.stat == DEAD || potential_mob.issamexenohive(xeno_owner))
 				continue
 			if(!potential_mob.Adjacent(xeno_owner))
-				playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 7, TRUE)
+				playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 7, TRUE)
 				step_towards(xeno_owner, potential_mob, get_dist(xeno_owner, potential_mob) - 1)
 			break
 
@@ -1077,7 +1077,7 @@
 		for(var/atom/atom_to_check AS in turf_to_check)
 			if(atom_to_check.CanPass(xeno_owner, turf_to_check))
 				new /obj/effect/temp_visual/conqueror/dash_trail(turf_to_check, get_dir(xeno_owner, target))
-	playsound(new_turf, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
+	playsound(new_turf, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE)
 	playsound(target, 'sound/effects/alien/conqueror/will_kick.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/conqueror/hook/punch(target.loc)
 	xeno_owner.forceMove(new_turf)

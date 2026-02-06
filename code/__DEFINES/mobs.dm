@@ -619,7 +619,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_BE_LEADER (1<<2) // Can we be selected as a hive leader (not to be confused with hive ruler)?
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<3) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
-#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
+#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
 
 ///How often we can swap strains
@@ -860,6 +860,13 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
+
+// Behemoth mutation defines
+#define FOUNDATIONS_MAXIMUM_AMOUNT 2 // Maximum amount of Earth Pillars that we can create with this mutation active.
+#define FOUNDATIONS_HEALTH_REDUCTION 0.4 // Health reduction applied to Earth Pillars as a percentage
+#define EARTH_MIGHT_ADDITIONAL_DAMAGE 1.3 // Additional damage provided by Earth Might as a percentage
+#define EARTH_MIGHT_PILLAR_DAMAGE 0.5 // Amount of damage done to Earth Pillars as a percentage
+#define GUIDED_CLAIM_ADDITIONAL_RANGE 2 // Additional range given to Seize
 
 //misc
 

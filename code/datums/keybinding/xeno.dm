@@ -1327,47 +1327,52 @@
 	description = "Give blessings to your puppets."
 	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS
 
-/datum/keybinding/xeno/behemoth_roll
-	name = "Roll"
-	full_name = "Behemoth: Roll"
-	description = "Curl up into a ball, sacrificing some offensive capabilities in exchange for greater movement speed."
-	keybind_signal = COMSIG_XENOABILITY_BEHEMOTH_ROLL
-
-/datum/keybinding/xeno/landslide
-	name = "Landslide"
-	full_name = "Behemoth: Landslide"
-	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
-	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
-
-/datum/keybinding/xeno/cancel_landslide
-	name = "Cancel Landslide"
-	full_name = "Behemoth: Cancel Landslide"
-	description = "Cancels landslide without having to select the ability"
-	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
-
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"
 	full_name = "Behemoth: Earth Riser"
-	description = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage."
+	description = "Create or interact with an Earth Pillar. If holding one, you will instead throw it."
 	keybind_signal = COMSIG_XENOABILITY_EARTH_RISER
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/earth_riser_alternate
 	name = "Destroy Earth Pillar"
 	full_name = "Behemoth: Destroy Earth Pillar"
-	description = "Destroy active Earth Pillars created by Earth Riser, starting by the oldest one."
+	description = "Destroy active Earth Pillars, from oldest to newest."
 	keybind_signal = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE
 
-/datum/keybinding/xeno/seismic_fracture
-	name = "Seismic Fracture"
-	full_name = "Behemoth: Seismic Fracture"
-	description = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
-	keybind_signal = COMSIG_XENOABILITY_SEISMIC_FRACTURE
+/datum/keybinding/xeno/behemoth_seize
+	name = "Targeted Seize"
+	full_name = "Behemoth: Seize (Targeted)"
+	description = "Dash towards a target Earth Pillar and grab it."
+	keybind_signal = COMSIG_XENOABILITY_BEHEMOTH_SEIZE
+
+/datum/keybinding/xeno/behemoth_seize_alternate
+	name = "Seize Nearest"
+	full_name = "Behemoth: Seize (Nearest)"
+	description = "Dash towards the nearest Earth Pillar and grab it."
+	keybind_signal = COMSIG_XENOABILITY_BEHEMOTH_SEIZE_ALTERNATE
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/landslide
+	name = "Landslide"
+	full_name = "Behemoth: Landslide"
+	description = "Charge forward in the nearest cardinal direction, affecting eligible targets in a wide path."
+	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/geocrush
+	name = "Geocrush"
+	full_name = "Behemoth: Geocrush"
+	description = "Attack a target, dealing heavy damage and applying various debuffs."
+	keybind_signal = COMSIG_XENOABILITY_GEOCRUSH
+	hotkey_keys = list("Z")
 
 /datum/keybinding/xeno/primal_wrath
 	name = "Primal Wrath"
 	full_name = "Behemoth: Primal Wrath"
-	description = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
+	description = "Recover all damage recently received, and gain a brief moment of invulnerability, in exchange for a stacking debuff."
 	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/firecharge
 	name = "Fire Charge"
