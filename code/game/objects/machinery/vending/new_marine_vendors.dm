@@ -740,6 +740,7 @@
 		/obj/item/binoculars/tactical,
 		/obj/item/pinpointer,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/binoculars/fire_support,
 	)
 
 /obj/effect/vendor_bundle/commander
@@ -751,6 +752,7 @@
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/binoculars/fire_support,
 	)
 
 /obj/effect/vendor_bundle/synth

@@ -736,6 +736,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/pinpointer = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/head/modular/m10x/leader = 1,
+		/obj/item/binoculars/fire_support = 1,
 	),
 	FIELD_COMMANDER = list(
 		/obj/item/explosive/plastique = 1,
@@ -745,6 +746,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/medevac_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
+		/obj/item/binoculars/fire_support = 1,
 	),
 	SYNTHETIC = list(
 		/obj/item/stack/sheet/plasteel/medium_stack = 1,

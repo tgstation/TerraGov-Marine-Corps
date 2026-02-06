@@ -11,6 +11,10 @@ mode Nuclear War
 	requiredplayers 2
 endmode
 
+mode Sovl War
+	requiredplayers 2
+endmode
+
 mode Extended
 	requiredplayers 0
 	votable 0
