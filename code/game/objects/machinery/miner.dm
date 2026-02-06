@@ -270,7 +270,22 @@
 		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
 
-	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	// Award points to company if user has one, otherwise to faction
+	var/company_name = null
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		company_name = human_user.get_company_name()
+
+	// adding company points here
+	if(company_name)
+		add_company_points(company_name, mineral_value * stored_mineral)
+		to_chat(user, span_notice("Your company [company_name] earned [mineral_value * stored_mineral] points!"))
+		to_chat(user, span_info("Company balance: [get_company_points(company_name)] points"))
+	else
+		// if man who fixed drill has no company so points gonna to terragov(its his factio by defaul, BUT WHO KNOWS, ITS CAN BE SOM), not to company
+		SSpoints.supply_points[faction] += mineral_value * stored_mineral
+		to_chat(user, span_notice("Points awarded to faction budget: [mineral_value * stored_mineral] points"))
+
 	SSpoints.dropship_points += dropship_bonus * stored_mineral
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)

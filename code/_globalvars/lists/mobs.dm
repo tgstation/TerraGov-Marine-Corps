@@ -219,3 +219,11 @@ GLOBAL_LIST_INIT(human_init_actions, list(
 	/datum/action/innate/message_squad,
 	/datum/action/ability/activable/build_designator,
 ))
+
+// Company system globals
+GLOBAL_LIST_EMPTY(custom_companies)			// List of all companies: "CompanyName" = list(owner_mob, ownership_percentage, company_points)
+GLOBAL_LIST_EMPTY(custom_company_names)		// List of company names for easy lookup
+
+// Contracts system globals
+GLOBAL_LIST_EMPTY(custom_contracts)        // list of all contracts, owner_mob, name of contract, description, price
+GLOBAL_LIST_EMPTY(custom_contracts_names)  // list of all contract names
