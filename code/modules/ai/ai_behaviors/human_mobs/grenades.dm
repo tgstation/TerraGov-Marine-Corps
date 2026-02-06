@@ -1,8 +1,16 @@
 /datum/ai_behavior/human
 	///Probability of trying to throw a grenade during process
 	var/nade_throw_prob = 5
-	///Chat lines for throwing a nade
-	var/list/nade_throw_chat = list("Grenade out!", "Fire in the hole!", "Grenade!", "Catch this!")
+	/// Lines when throwing a grenade
+	var/list/nade_throw_lines = list(
+		FACTION_NEUTRAL = list(
+			"Fire in the hole!",
+			"Here it comes!",
+			"Grenade out!",
+			"Catch this!",
+			"This is it!",
+		),
+	)
 
 ///Decides if we should throw a grenade
 /datum/ai_behavior/human/proc/grenade_process()
@@ -34,7 +42,7 @@
 		return
 	grenade.attack_self(mob_parent)
 	if(prob(85))
-		try_speak(pick(nade_throw_chat))
+		faction_list_speak(nade_throw_lines, force = TRUE)
 	return mob_parent.throw_item(target, grenade)
 
 ///Finds a suitable grenade to throw
