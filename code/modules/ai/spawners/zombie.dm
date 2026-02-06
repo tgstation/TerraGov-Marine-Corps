@@ -41,6 +41,7 @@
 
 /obj/effect/ai_node/spawner/zombie/plastique_act()
 	spawn_defenders()
+
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)
 	qdel(src)
 

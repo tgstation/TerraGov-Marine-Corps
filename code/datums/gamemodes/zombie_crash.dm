@@ -42,16 +42,47 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_zombie()
 
-	for(var/i in GLOB.zombie_spawner_turfs)
+	for(var/i in (GLOB.zombie_spawner_turfs + GLOB.xeno_resin_silo_turfs))
 		new /obj/effect/ai_node/spawner/zombie(i)
+	for(var/i in GLOB.zombie_crash_vendor_landmarks)
+		new /obj/machinery/marine_selector/zombie_crash(get_turf(i))
 
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/effect/ai_node/spawner/zombie(i)
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(check_finished))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
+
+/// When any zombie tunnel is destroyed, check if the round should end & grant vendor points.
+/datum/game_mode/infestation/crash/zombie/proc/on_tunnel_destroyed(datum/source)
+	SIGNAL_HANDLER
+	check_finished()
+	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX)
+
+/datum/game_mode/infestation/crash/zombie/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
+	. = ..()
+	global_rally_zombies(generating_computer, TRUE)
+	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX)
+
+/// Evenly distributes an amount of points to all alive humans who are actively playing. Minimum/maximum points scales on population.
+/datum/game_mode/infestation/crash/zombie/proc/give_all_humans_points(flat, minimum, maximum)
+	if(!length(GLOB.zombie_crash_vendors))
+		return
+	var/list/mob/living/carbon/human/human_list = list()
+	for(var/mob/living/carbon/human/possible_active_human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+		if(!possible_active_human.client && possible_active_human.afk_status == MOB_DISCONNECTED)
+			continue
+		human_list += possible_active_human
+	var/num_humans = length(human_list)
+	if(!num_humans)
+		return
+	var/vendor_points_to_reward = flat + ((maximum - minimum) * (num_humans / HIGH_MARINE_POP_ZOMBIE_CRASH))
+	var/vendor_points_per_alive_marine = ROUND_UP(vendor_points_to_reward / num_humans)
+	var/obj/machinery/marine_selector/zombie_crash/zcrash_vendor = GLOB.zombie_crash_vendors[1]
+	for(var/mob/living/carbon/human/human AS in human_list)
+		if(!human.job)
+			continue
+		zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
 
 ///Counts humans and zombies not in valhalla
 /datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)

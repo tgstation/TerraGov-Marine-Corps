@@ -209,6 +209,15 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/zombie_vendor
+	name = "zombie crash progression vendor landmark"
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "marinerequisitions"
+
+/obj/effect/landmark/zombie_vendor/Initialize(mapload)
+	GLOB.zombie_crash_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
+	return ..()
+
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"

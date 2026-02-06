@@ -257,3 +257,15 @@
 		var/jobpoint_difference = get_jobpoint_difference() + amount
 		adjusted_jobworth_list[index] = clamp(jobpoint_difference, 0, amount)
 	return adjusted_jobworth_list
+
+/datum/game_mode/infestation/crash/on_disk_segment_completed(datum/source, generating_computer)
+	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
+		if(!human.job)
+			continue
+		var/obj/item/card/id/user_id =  human.get_idcard()
+		if(!user_id)
+			continue
+		for(var/i in user_id.marine_points)
+			if(i == CAT_ZOMBIE_CRASH)
+				continue
+			user_id.marine_points[i] += 2
