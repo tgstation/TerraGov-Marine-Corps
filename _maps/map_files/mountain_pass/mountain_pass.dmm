@@ -2268,6 +2268,10 @@
 /obj/structure/prop/urban/supermart/freezer/supermartfreezer5,
 /turf/open/floor/iron/kitchen_coldroom,
 /area/space)
+"tw" = (
+/obj/machinery/photocopier,
+/turf/open/urban/street/cement2,
+/area/space)
 "tx" = (
 /obj/effect/turf_decal/delivery/white,
 /turf/open/urban/street/sidewalkfull,
@@ -3015,6 +3019,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
+/area/space)
+"zv" = (
+/obj/structure/bookcase/manuals/engineering,
+/turf/open/urban/street/cement2,
 /area/space)
 "zA" = (
 /obj/structure/closet/secure_closet/personal,
@@ -8279,10 +8287,10 @@ qC
 Ci
 Ci
 gA
-Ow
-Ow
-Ow
-Ow
+gn
+zv
+EN
+tw
 gA
 do
 WV
