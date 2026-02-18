@@ -155,6 +155,7 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
+/obj/effect/spawner/random/decal/blood,
 /turf/open/urban/street/cement3,
 /area/space)
 "bB" = (
@@ -619,6 +620,12 @@
 	},
 /turf/open/urban/street/cement3,
 /area/space)
+"fa" = (
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/structure/closet/crate/freezer,
+/turf/open/urban/street/cement1,
+/area/space)
 "fg" = (
 /turf/open/openspace,
 /turf/open/openspace,
@@ -938,6 +945,10 @@
 	},
 /turf/open/urban/street/cement1,
 /area/space)
+"hW" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/urban/street/cement3,
+/area/space)
 "hY" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /turf/open/floor/plating/mainship/striped{
@@ -1014,6 +1025,10 @@
 /obj/item/clothing/shoes/marine/icc/knife,
 /obj/item/clothing/mask/gas/icc,
 /turf/open/floor/mainship/floor,
+/area/space)
+"iC" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/urban/street/cement3,
 /area/space)
 "iD" = (
 /obj/structure/prop/vehicle/crane/cranecargo{
@@ -1480,6 +1495,10 @@
 /obj/item/weapon/gun/rifle/icc_sharpshooter/medic,
 /turf/open/urban/street/cement3,
 /area/space)
+"mQ" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/urban/street/cement1,
+/area/space)
 "mS" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/cigarette,
@@ -1636,6 +1655,7 @@
 "oA" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerbloodempty,
 /obj/effect/landmark/corpsespawner/icc,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "oK" = (
@@ -1790,6 +1810,12 @@
 /obj/structure/closet/crate/ammo,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
+/turf/open/urban/street/cement3,
+/area/space)
+"pT" = (
+/obj/structure/table/urban/shiny_brown,
+/obj/item/flashlight/pen,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/urban/street/cement3,
 /area/space)
 "pW" = (
@@ -2135,6 +2161,7 @@
 /area/space)
 "si" = (
 /obj/machinery/bodyscanner,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "sj" = (
@@ -2195,6 +2222,7 @@
 /area/space)
 "sM" = (
 /obj/structure/bed/roller/hospital_empty,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "sO" = (
@@ -2786,6 +2814,10 @@
 /obj/structure/table/urban/shiny_brown,
 /turf/open/floor/tile/dark,
 /area/space)
+"xP" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/urban/street/cement3,
+/area/space)
 "xQ" = (
 /obj/structure/bed/chair/north,
 /obj/effect/mapping_helpers/simple_pipes/general/hidden,
@@ -3055,6 +3087,11 @@
 	dir = 1
 	},
 /area/space)
+"zG" = (
+/obj/structure/table/urban/shiny_brown,
+/obj/item/folder/white,
+/turf/open/urban/street/cement3,
+/area/space)
 "zN" = (
 /obj/structure/bed/chair/office/dark/north,
 /turf/open/urban/street/cement2,
@@ -3111,6 +3148,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 1
 	},
+/area/space)
+"Aq" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/prison/sterilewhite,
 /area/space)
 "Au" = (
 /turf/open/urban/street/sidewalk{
@@ -3981,6 +4022,7 @@
 "Jm" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2,
 /obj/effect/landmark/corpsespawner/icc,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "Jn" = (
@@ -4723,6 +4765,7 @@
 /area/space)
 "Qo" = (
 /obj/effect/landmark/corpsespawner/icc/offduty,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "Qs" = (
@@ -5048,6 +5091,7 @@
 	pixel_z = 10
 	},
 /obj/machinery/iv_drip,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "SR" = (
@@ -5076,6 +5120,11 @@
 "Tb" = (
 /obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/ground/coast/corner,
+/area/space)
+"Td" = (
+/obj/effect/landmark/corpsespawner/icc/officer,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/urban/street/cement3,
 /area/space)
 "Tg" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -5269,6 +5318,12 @@
 /obj/structure/closet/walllocker/hydrant/full,
 /turf/closed/wall/urban/colony/ribbed,
 /area/space)
+"Vi" = (
+/obj/item/reagent_containers/blood/OMinus,
+/obj/effect/spawner/random/medical/bloodpack,
+/obj/structure/closet/crate/freezer,
+/turf/open/urban/street/cement1,
+/area/space)
 "Vk" = (
 /obj/structure/prop/urban/supermart/rack/longrackempty,
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
@@ -5353,6 +5408,7 @@
 "Wq" = (
 /obj/structure/bed/roller/hospital_empty/bigrollerbloodempty,
 /obj/effect/landmark/corpsespawner/icc/guard,
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/space)
 "Wu" = (
@@ -11369,7 +11425,7 @@ fL
 yl
 Nq
 Qo
-Nq
+Aq
 Nq
 Nq
 Nq
@@ -12225,8 +12281,8 @@ WV
 WV
 WV
 gA
-ss
-ss
+mQ
+Vi
 gA
 sy
 Nq
@@ -12398,7 +12454,7 @@ WV
 WV
 gA
 ss
-ss
+Vi
 gA
 sy
 Nq
@@ -12570,7 +12626,7 @@ WV
 WV
 gA
 ss
-ss
+fa
 gA
 ej
 Nq
@@ -12748,8 +12804,8 @@ Uv
 gA
 zd
 ZJ
-Nq
-Nq
+Aq
+Aq
 gA
 WV
 WV
@@ -12915,7 +12971,7 @@ WV
 gA
 wz
 Gh
-Gh
+hW
 Gh
 gA
 Nq
@@ -13258,9 +13314,9 @@ WV
 WV
 ru
 Px
-Gh
+iC
 Ys
-Yq
+zG
 gA
 Gh
 MG
@@ -13431,7 +13487,7 @@ Ao
 ru
 oo
 Gh
-yB
+Td
 bA
 gA
 Gh
@@ -13601,10 +13657,10 @@ WV
 WV
 yW
 gA
-Yq
+pT
 Gh
 Gh
-Gh
+xP
 gA
 mV
 tg
