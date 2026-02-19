@@ -29,6 +29,10 @@
 /obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"aj" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/ground/grass/weedable,
+/area/space)
 "ak" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/weapon/gun/pistol/icc_dpistol,
@@ -171,6 +175,10 @@
 "by" = (
 /obj/structure/rock/brown/pile/alt3,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/space)
+"bz" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass/weedable,
 /area/space)
 "bA" = (
 /obj/structure/bed/chair/comfy/black{
@@ -426,6 +434,12 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/urban/street/sidewalk,
 /area/space)
+"db" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/space)
 "di" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -578,6 +592,10 @@
 /obj/item/stack/medical/heal_pack/advanced/burn_pack,
 /obj/item/stack/medical/heal_pack/advanced/burn_pack,
 /turf/open/urban/street/cement3,
+/area/space)
+"es" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/space)
 "ew" = (
 /obj/structure/platform/metalplatform/nondense,
@@ -2425,6 +2443,12 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"sY" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/space)
 "sZ" = (
 /obj/structure/closet/secure_closet,
 /obj/item/clothing/gloves/marine/icc/guard,
@@ -2465,6 +2489,10 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
+/area/space)
+"to" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/ground/grass/weedable,
 /area/space)
 "tp" = (
 /obj/structure/table/urban/shiny_brown,
@@ -2512,6 +2540,10 @@
 /obj/effect/spawner/random/engineering,
 /obj/effect/spawner/random/engineering,
 /turf/open/urban/street/cement2,
+/area/space)
+"tL" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/ground/grass/weedable,
 /area/space)
 "tO" = (
 /obj/structure/bed/chair/sofa/left{
@@ -4522,6 +4554,10 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
+"Lg" = (
+/obj/structure/flora/grass/green,
+/turf/open/ground/grass/weedable,
+/area/space)
 "Lh" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/urban/street/cement2,
@@ -4686,6 +4722,12 @@
 /obj/item/ammo_magazine/rifle/bolt,
 /turf/open/urban/street/cement3,
 /area/space)
+"MP" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/space)
 "MU" = (
 /obj/structure/prop/broken_howitzer{
 	dir = 4
@@ -4698,6 +4740,12 @@
 	dir = 4
 	},
 /turf/open/urban/street/cement3,
+/area/space)
+"MZ" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
 /area/space)
 "Nb" = (
 /obj/structure/table/reinforced,
@@ -4738,6 +4786,10 @@
 /area/space)
 "Nq" = (
 /turf/open/floor/prison/sterilewhite,
+/area/space)
+"Nr" = (
+/obj/structure/flora/desert/grass,
+/turf/open/floor/plating/ground/dirt2,
 /area/space)
 "Nt" = (
 /obj/structure/bed/chair,
@@ -16388,9 +16440,9 @@ eC
 do
 do
 do
+to
 do
-do
-do
+to
 do
 do
 do
@@ -16400,7 +16452,7 @@ EA
 EA
 EA
 EA
-eC
+db
 DA
 WV
 WV
@@ -16558,19 +16610,19 @@ eC
 do
 do
 do
+to
 do
 do
 do
 do
 do
+tL
 do
 do
 do
 do
 do
-do
-do
-do
+aj
 do
 do
 DA
@@ -16907,7 +16959,7 @@ do
 do
 do
 wr
-do
+Lg
 do
 do
 do
@@ -16915,7 +16967,7 @@ do
 lz
 do
 do
-do
+to
 DA
 WV
 WV
@@ -17070,6 +17122,7 @@ WV
 WV
 Ao
 eC
+bz
 do
 do
 do
@@ -17079,12 +17132,11 @@ do
 do
 do
 do
+aj
 do
 do
 do
-do
-do
-do
+to
 do
 do
 do
@@ -17244,7 +17296,7 @@ cl
 do
 do
 do
-do
+aj
 do
 do
 do
@@ -17418,6 +17470,7 @@ do
 do
 do
 do
+aj
 do
 do
 do
@@ -17426,8 +17479,7 @@ do
 do
 do
 do
-do
-do
+bz
 do
 do
 do
@@ -17586,7 +17638,7 @@ WV
 WV
 cl
 do
-do
+tL
 do
 do
 do
@@ -17596,7 +17648,7 @@ lz
 do
 do
 do
-do
+to
 do
 do
 do
@@ -17604,7 +17656,7 @@ do
 do
 do
 DA
-WV
+Nr
 WV
 WV
 WV
@@ -17760,6 +17812,7 @@ yW
 nj
 do
 do
+to
 do
 do
 do
@@ -17773,8 +17826,7 @@ do
 do
 do
 do
-do
-lT
+es
 ko
 WV
 WV
@@ -17937,7 +17989,7 @@ Zu
 Zu
 Zu
 Zu
-Zu
+MZ
 Zu
 Zu
 Zu
@@ -18622,16 +18674,16 @@ EA
 EA
 EA
 EA
+MP
 EA
 EA
 EA
 EA
+sY
 EA
 EA
 EA
-EA
-EA
-EA
+sY
 EA
 Mm
 WV
