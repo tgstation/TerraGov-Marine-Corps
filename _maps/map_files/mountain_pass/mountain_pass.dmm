@@ -2319,9 +2319,6 @@
 /obj/effect/spawner/random/misc/soap,
 /turf/open/floor/tile/dark,
 /area/space)
-"rN" = (
-/turf/open/space/basic,
-/area/space)
 "rP" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/core,
 /turf/open/floor/plating/ground/dirt2,
@@ -12056,7 +12053,7 @@ WV
 WV
 WV
 cl
-rN
+Gz
 Gz
 HD
 gA
@@ -12400,7 +12397,7 @@ WV
 WV
 WV
 cl
-rN
+Gz
 Gz
 HD
 gA
@@ -12744,7 +12741,7 @@ WV
 WV
 WV
 cl
-rN
+Gz
 Gz
 HD
 gA
@@ -13095,7 +13092,7 @@ do
 Gz
 Gz
 Gz
-rN
+Gz
 Gz
 eC
 DF
