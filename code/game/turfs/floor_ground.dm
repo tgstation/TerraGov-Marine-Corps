@@ -67,6 +67,15 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2
 	icon_state = "grassdirt_corner2"
 
+/turf/open/floor/plating/ground/dirtgrassborder/no_construction
+	allow_construction = FALSE
+
+/turf/open/floor/plating/ground/dirtgrassborder/no_construction/corner
+	icon_state = "grassdirt_corner"
+
+/turf/open/floor/plating/ground/dirtgrassborder/no_construction/corner2
+	icon_state = "grassdirt_corner2"
+
 /turf/open/floor/plating/ground/dirt_alt
 	name = "dirt"
 	icon = 'icons/turf/dirt.dmi'
@@ -89,6 +98,21 @@
 	icon_state = "grassdirt2_corner"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2
+	icon_state = "grassdirt2_corner2"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/corner
+	icon_state = "grassdirt2_corner"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2
+	icon_state = "grassdirt2_corner2"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction
+	allow_construction = FALSE
+
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner
+	icon_state = "grassdirt2_corner"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2
 	icon_state = "grassdirt2_corner2"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth //jungle to dirt
@@ -176,6 +200,9 @@
 
 /turf/open/floor/plating/ground/mars/random/cave/darker
 	color = "#948a7c"
+
+/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction
+	allow_construction = FALSE
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"
