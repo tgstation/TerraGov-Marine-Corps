@@ -8,6 +8,11 @@
 	barefootstep = FOOTSTEP_DIRT
 	mediumxenofootstep = FOOTSTEP_DIRT
 	minimap_color = MINIMAP_DIRT
+	var/icon_spawn_state = "desert"
+
+/turf/open/floor/plating/ground/Initialize(mapload, ...)
+	. = ..()
+	icon_state = icon_spawn_state
 
 /turf/open/floor/plating/ground/broken_states()
 	return icon_state
@@ -89,6 +94,10 @@
 	name = "dirt"
 	icon_state = "dirt"
 
+/turf/open/floor/plating/ground/dirt2/no_construction
+	icon_state = "dirtclear"
+	icon_spawn_state = "dirt"
+
 /turf/open/floor/plating/ground/dirtgrassborder2
 	name = "grass"
 	icon_state = "grassdirt2_edge"
@@ -108,12 +117,16 @@
 
 /turf/open/floor/plating/ground/dirtgrassborder2/no_construction
 	allow_construction = FALSE
+	icon_state = "grassdirt2_edgeclear"
+	icon_spawn_state = "grassdirt2_edge"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner
-	icon_state = "grassdirt2_corner"
+	icon_state = "grassdirt2_cornerclear"
+	icon_spawn_state = "grassdirt2_corner"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2
-	icon_state = "grassdirt2_corner2"
+	icon_state = "grassdirt2_corner2clear"
+	icon_spawn_state = "grassdirt2_corner2"
 
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth //jungle to dirt
 	icon = 'icons/turf/floors/jungle-dirt-border.dmi'
@@ -198,11 +211,16 @@
 	icon_state = "mars_cave"
 	smoothing_groups = list(SMOOTH_GROUP_SAND)
 
-/turf/open/floor/plating/ground/mars/random/cave/darker
+/turf/open/floor/plating/ground/mars/random/cave/no_construction
+	allow_construction = FALSE
+	icon_state = "mars_caveclear"
+	icon_spawn_state = "mars_cave"
+
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker
 	color = "#948a7c"
 
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction
-	allow_construction = FALSE
+/turf/open/floor/plating/ground/mars/random/cave/darker
+	color = "#948a7c"
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"

@@ -22,7 +22,7 @@
 /area/mountain_pass/exterior/zlevel3/westroad)
 "ah" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/dirtgrassborder2,
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction,
 /area/mountain_pass/exterior/w)
 "ai" = (
 /obj/structure/table/reinforced,
@@ -96,6 +96,11 @@
 "aA" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/cave/south)
+"aB" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/w)
 "aC" = (
 /obj/structure/table/reinforced/flipped,
 /obj/structure/prop/broken_ptrs{
@@ -583,6 +588,11 @@
 	dir = 4
 	},
 /area/space)
+"du" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 4
+	},
+/area/space)
 "dv" = (
 /obj/structure/lattice/autosmooth,
 /turf/open/floor/plating/ground/dirt2,
@@ -666,7 +676,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "dQ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2,
 /area/mountain_pass/exterior/w)
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
@@ -770,7 +780,7 @@
 /area/mountain_pass/exterior/se)
 "eB" = (
 /obj/structure/rock/brown,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south)
 "eC" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -800,6 +810,11 @@
 /obj/structure/rock/variable/stalagmite,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/west)
+"eK" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "eN" = (
 /obj/structure/prop/vehicle/tank/east/barrel/broken{
 	dir = 4;
@@ -941,6 +956,11 @@
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/barracks)
+"fC" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "fD" = (
 /obj/effect/urban/decal/trash/fourteen,
 /turf/open/floor/plating/ground/dirt2,
@@ -978,6 +998,11 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
+"fM" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 1
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "fN" = (
 /turf/open/urban/street/sidewalk{
 	dir = 9
@@ -988,6 +1013,11 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/exterior/se)
+"fR" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 1
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "fS" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 2
@@ -1026,7 +1056,7 @@
 /area/space)
 "gf" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/north)
 "gi" = (
 /obj/structure/rock/variable/tinyrock/brown2,
@@ -1188,7 +1218,7 @@
 /area/mountain_pass/cave/zlevel2/engi_offices)
 "hd" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south)
 "he" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
@@ -1769,7 +1799,7 @@
 /area/space)
 "kx" = (
 /obj/structure/rock/brown/alt4,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south)
 "kz" = (
 /obj/effect/turf_decal/siding/dark{
@@ -1833,6 +1863,11 @@
 /obj/structure/rock/brown/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south)
+"kS" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "kW" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1;
@@ -1912,7 +1947,7 @@
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
 "lt" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/north)
 "lu" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -2147,7 +2182,7 @@
 /area/mountain_pass/interior/armorer_workshop)
 "mP" = (
 /obj/structure/stairs/multiz/directional/south,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/east)
 "mQ" = (
 /obj/machinery/mining/brace/active{
@@ -2206,6 +2241,8 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/artillery_ammunition_storage)
+"ng" = (
+/area/space)
 "nj" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -2405,7 +2442,7 @@
 /area/space)
 "oy" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/dirtgrassborder2{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
 	dir = 4
 	},
 /area/mountain_pass/exterior/zlevel2/westroad)
@@ -2876,6 +2913,9 @@
 	},
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior/guard_barracks)
+"rf" = (
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
+/area/mountain_pass/cave/south/zlevel2/southeast)
 "rj" = (
 /obj/machinery/button/door,
 /turf/open/floor/tile/dark,
@@ -2890,7 +2930,7 @@
 /area/mountain_pass/interior/armorer_workshop)
 "rp" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
 	dir = 8
 	},
 /area/mountain_pass/exterior/zlevel3/westroad)
@@ -3327,10 +3367,10 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/coastal_bunker)
 "tE" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/northwest)
 "tF" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/southwest)
 "tG" = (
 /obj/structure/urinal{
@@ -3466,9 +3506,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
 "uC" = (
-/obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/ground/jungle/clear,
-/area/space)
+/area/mountain_pass/exterior/zlevel2/westroad)
 "uF" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
@@ -3501,6 +3540,9 @@
 	dir = 4
 	},
 /area/space)
+"uQ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner,
+/area/space)
 "uR" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 9
@@ -3518,6 +3560,8 @@
 /obj/structure/table/urban/shiny_brown,
 /turf/open/floor/tile/dark,
 /area/space)
+"uT" = (
+/area/mountain_pass/cave/south/zlevel2/northeast)
 "uU" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/som_big/incendiary,
@@ -3578,7 +3622,7 @@
 /area/mountain_pass/cave/panic_bunker)
 "vo" = (
 /obj/structure/rock/variable/tinyrock,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/east)
 "vp" = (
 /obj/effect/mapping_helpers/simple_pipes/general/hidden,
@@ -3741,7 +3785,7 @@
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
 "wn" = (
 /obj/structure/stairs/multiz/directional/west,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/southeast)
 "wo" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -3963,16 +4007,18 @@
 	},
 /area/space)
 "xs" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/space)
 "xt" = (
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/broken,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "xv" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirt2/no_construction,
-/area/space)
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "xw" = (
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -4014,7 +4060,7 @@
 /area/mountain_pass/exterior/se)
 "xH" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/dirtgrassborder2{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
 	dir = 8
 	},
 /area/mountain_pass/exterior/zlevel2/westroad)
@@ -4061,6 +4107,11 @@
 	dir = 6
 	},
 /area/mountain_pass/exterior/e)
+"xU" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "xV" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -4104,6 +4155,11 @@
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/urban/street/cement2,
 /area/space)
+"yf" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "yg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -4183,6 +4239,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"yA" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "yB" = (
 /obj/effect/landmark/corpsespawner/icc/officer,
 /turf/open/urban/street/cement3,
@@ -4438,7 +4499,6 @@
 /area/mountain_pass/exterior/landingzone)
 "zS" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
 /area/mountain_pass/cave/south/zlevel2/southwest)
 "zT" = (
 /turf/open/floor/plating/ground/dirt2,
@@ -4605,6 +4665,11 @@
 /obj/structure/rock/brown/alt5,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
+"AY" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "Ba" = (
 /obj/structure/table/wood,
 /turf/open/urban/street/cement2,
@@ -4630,7 +4695,7 @@
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/zlevel2/engi_offices)
 "Bg" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/west)
 "Bh" = (
 /obj/structure/barricade/sandbags{
@@ -4732,7 +4797,7 @@
 /area/space)
 "BI" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/west)
 "BJ" = (
 /obj/effect/landmark/corpsespawner/icc/officer,
@@ -4854,7 +4919,7 @@
 /area/space)
 "Cz" = (
 /obj/structure/stairs/multiz/directional/north,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south)
 "CA" = (
 /obj/structure/platform/metalplatform/nondense,
@@ -4879,6 +4944,11 @@
 	dir = 4
 	},
 /area/mountain_pass/exterior/beach)
+"CF" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "CH" = (
 /obj/effect/landmark/corpsespawner/icc/guard,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -5118,7 +5188,7 @@
 /area/mountain_pass/cave/panic_bunker)
 "DX" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
 	dir = 4
 	},
 /area/space)
@@ -5162,7 +5232,7 @@
 /area/mountain_pass/exterior/e)
 "Eh" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/north)
 "Ei" = (
 /obj/structure/platform/metalplatform/nondense{
@@ -5204,7 +5274,7 @@
 /area/mountain_pass/exterior/e)
 "Er" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/dirtgrassborder2{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
 	dir = 4
 	},
 /area/mountain_pass/exterior/w)
@@ -5349,7 +5419,7 @@
 /turf/open/urban/street/sidewalk,
 /area/mountain_pass/cave/south/east)
 "FA" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/east)
 "FC" = (
 /obj/structure/bed/chair/office/dark{
@@ -5382,6 +5452,9 @@
 "FI" = (
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
+"FJ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2,
+/area/space)
 "FL" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -5883,7 +5956,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/east)
 "Ja" = (
-/turf/open/floor/plating/ground/dirtgrassborder2{
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
 	dir = 8
 	},
 /area/mountain_pass/exterior/w)
@@ -6000,6 +6073,10 @@
 "JJ" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/zlevel2/northeast)
+"JK" = (
+/obj/structure/rock/brown/pile/alt2,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/mountain_pass/cave/south/zlevel2/southwest)
 "JO" = (
 /obj/structure/rock/brown/pile/alt2,
 /turf/open/ground,
@@ -6079,7 +6156,7 @@
 	},
 /area/space)
 "Kr" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south)
 "Kt" = (
 /obj/structure/rack,
@@ -6217,7 +6294,7 @@
 /area/mountain_pass/exterior/w)
 "Lu" = (
 /obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/west)
 "Lv" = (
 /turf/closed/wall/r_wall/bunker,
@@ -6571,7 +6648,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "NI" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/west)
 "NK" = (
 /obj/structure/rock/variable/tinyrock/brown2,
@@ -6606,7 +6683,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/e)
 "NV" = (
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/northeast)
 "NY" = (
 /obj/machinery/shower{
@@ -6691,6 +6768,11 @@
 "Ox" = (
 /turf/open/urban/street/sidewalk,
 /area/mountain_pass/exterior/landingzone)
+"Oz" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/space)
 "OA" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/tile/dark,
@@ -6887,6 +6969,11 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"PL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 1
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "PM" = (
 /turf/open/ground/jungle/clear,
 /area/mountain_pass/exterior/zlevel3/westroad)
@@ -6923,7 +7010,7 @@
 /area/mountain_pass/interior/kitchen)
 "PZ" = (
 /obj/structure/rock/brown/pile/alt2,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/east)
 "Qa" = (
 /obj/item/trash/mre/som{
@@ -7402,7 +7489,7 @@
 /obj/structure/stairs/multiz/directional/south{
 	dir = 1
 	},
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/northeast)
 "SH" = (
 /obj/structure/table/reinforced,
@@ -7425,6 +7512,11 @@
 	},
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/cafeteria)
+"SO" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "SR" = (
 /obj/machinery/griddle,
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
@@ -7479,7 +7571,7 @@
 /area/space)
 "Tf" = (
 /obj/structure/rock/brown/pile/alt3,
-/turf/open/floor/plating/ground/mars/random/cave/darker/no_construction,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/north)
 "Tg" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -7547,6 +7639,11 @@
 /obj/structure/rock/brown/alt12,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/northwest)
+"TC" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "TD" = (
 /turf/closed/wall/urban,
 /area/mountain_pass/interior/kitchen)
@@ -7580,6 +7677,11 @@
 /obj/structure/rock/brown/pile/alt,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south)
+"TP" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 1
+	},
+/area/space)
 "TR" = (
 /obj/structure/rock/brown/alt,
 /turf/open/ground,
@@ -7695,6 +7797,11 @@
 /obj/item/reagent_containers/food/snacks/sandwiches/breadslice,
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
+"UB" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "UD" = (
 /turf/open/urban/street/sidewalkcorner,
 /area/mountain_pass/cave/south/east)
@@ -8058,6 +8165,9 @@
 "WV" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"WX" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction,
+/area/mountain_pass/exterior/w)
 "WZ" = (
 /obj/structure/rock/brown/pile/alt,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -8185,6 +8295,11 @@
 	},
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/urban/street/sidewalk{
+	dir = 4
+	},
+/area/space)
+"XJ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
 	dir = 4
 	},
 /area/space)
@@ -8407,6 +8522,11 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/interior/construction)
+"Ze" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "Zf" = (
 /obj/structure/table/urban/shiny_brown,
 /obj/machinery/faxmachine,
@@ -8546,7 +8666,7 @@
 /area/mountain_pass/exterior/e)
 "ZP" = (
 /obj/structure/stairs/multiz/directional/south,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
 /area/mountain_pass/cave/south/zlevel2/southeast)
 "ZQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -9011,7 +9131,7 @@ Gz
 Gz
 Gz
 bT
-Ux
+WX
 br
 br
 br
@@ -9529,7 +9649,7 @@ ot
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -9701,7 +9821,7 @@ ot
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -9873,7 +9993,7 @@ ot
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -10045,7 +10165,7 @@ BX
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -10217,7 +10337,7 @@ BX
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -10389,7 +10509,7 @@ BX
 BX
 BX
 BX
-br
+BX
 br
 br
 br
@@ -10731,8 +10851,8 @@ Gz
 Ja
 Ja
 Ja
-NO
-br
+aB
+BX
 br
 br
 br
@@ -10903,7 +11023,7 @@ Gz
 bT
 bT
 bT
-Ux
+WX
 br
 br
 br
@@ -11075,7 +11195,7 @@ Gz
 ZU
 bT
 bT
-Ux
+WX
 br
 br
 br
@@ -12922,9 +13042,9 @@ Gz
 Gz
 Bg
 Bg
-pF
-pF
-pF
+Bg
+Bg
+Bg
 pF
 pF
 pF
@@ -29129,11 +29249,11 @@ iV
 iV
 iV
 qc
-iV
-iV
-iV
-iV
-iV
+eK
+eK
+eK
+eK
+eK
 sF
 sF
 sF
@@ -29447,7 +29567,7 @@ Gz
 Gz
 Gz
 Gz
-wa
+uC
 PA
 wa
 wa
@@ -29616,10 +29736,10 @@ Gz
 Gz
 Mn
 oy
-iV
-iV
-iV
-iV
+eK
+eK
+eK
+eK
 iV
 iV
 iV
@@ -30161,7 +30281,7 @@ fd
 yh
 Zb
 Zb
-it
+TC
 iO
 iO
 iO
@@ -30333,10 +30453,10 @@ pX
 wa
 wa
 Xi
-wo
-Zb
-Zb
-Zb
+PL
+SO
+SO
+SO
 sF
 sF
 sF
@@ -30649,9 +30769,9 @@ Gz
 Mn
 DI
 iO
-fd
-Zb
-Zb
+fR
+SO
+SO
 Zb
 Zb
 Zb
@@ -30820,8 +30940,8 @@ Gz
 Gz
 Mn
 xH
-Zb
-pX
+SO
+UB
 Gz
 Gz
 Gz
@@ -31005,10 +31125,10 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
-Gz
+dd
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -31174,13 +31294,13 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
+JK
+dd
+dd
+dd
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -31345,14 +31465,14 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -31517,13 +31637,13 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
-Gz
+dd
+dd
+dd
+dd
+JK
+dd
+dd
 Gz
 Gz
 Gz
@@ -31689,11 +31809,11 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
-Gz
-Gz
+dd
+dd
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -31861,9 +31981,9 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -32033,15 +32153,15 @@ Gz
 Gz
 Gz
 Gz
-Gz
-Gz
-Gz
 dd
 dd
 dd
 dd
-tF
-tF
+dd
+dd
+dd
+dd
+dd
 Gz
 Gz
 Gz
@@ -32212,7 +32332,7 @@ dd
 dd
 dd
 dd
-tF
+dd
 tF
 tF
 tF
@@ -32384,7 +32504,7 @@ dd
 dd
 dd
 dd
-tF
+dd
 tF
 tF
 tF
@@ -32556,7 +32676,7 @@ dd
 dd
 dd
 dd
-tF
+dd
 tF
 tF
 tF
@@ -32728,7 +32848,7 @@ dd
 dd
 dd
 dd
-tF
+dd
 tF
 tF
 tF
@@ -32900,14 +33020,14 @@ Gz
 dd
 dd
 dd
+dd
 tF
 tF
 tF
 tF
 tF
 tF
-tF
-tF
+dd
 dd
 dd
 dd
@@ -33072,14 +33192,14 @@ Gz
 Gz
 Gz
 dd
+dd
 tF
 tF
 tF
 tF
 tF
-tF
-tF
-tF
+dd
+dd
 dd
 dd
 dd
@@ -33245,7 +33365,7 @@ Gz
 Gz
 Gz
 Gz
-tF
+dd
 tF
 tF
 dd
@@ -34264,10 +34384,10 @@ Gz
 Mn
 Fk
 tU
-WR
-WM
+Ze
+yA
 Lj
-Lj
+Dr
 Dr
 Dr
 Gz
@@ -34437,8 +34557,8 @@ Mn
 Fk
 tU
 tU
-WR
-UE
+Ze
+xU
 UE
 UE
 UE
@@ -34611,7 +34731,7 @@ tU
 tU
 tU
 tU
-tU
+AI
 AI
 AI
 AI
@@ -34783,7 +34903,7 @@ tU
 tU
 tU
 tU
-tU
+AI
 AI
 AI
 AI
@@ -34955,7 +35075,7 @@ tU
 tU
 tU
 tU
-tU
+AI
 AI
 AI
 AI
@@ -35127,7 +35247,7 @@ tU
 tU
 tU
 tU
-tU
+AI
 AI
 AI
 AI
@@ -35299,7 +35419,7 @@ tU
 tU
 tU
 tU
-tU
+AI
 AI
 AI
 AI
@@ -40753,8 +40873,8 @@ Gz
 Gz
 Gz
 NV
-NV
-NV
+uT
+uT
 xy
 xy
 xy
@@ -41608,9 +41728,9 @@ Gz
 Gz
 Gz
 Gz
-NV
-NV
-NV
+JJ
+JJ
+JJ
 NV
 NV
 NV
@@ -41780,10 +41900,10 @@ Gz
 Gz
 Gz
 Gz
-NV
-NV
-NV
-NV
+JJ
+JJ
+JJ
+JJ
 NV
 NV
 NV
@@ -41953,10 +42073,10 @@ Gz
 Gz
 Gz
 NV
-NV
-NV
-NV
-NV
+JJ
+JJ
+JJ
+JJ
 NV
 NV
 Gz
@@ -42126,10 +42246,10 @@ Gz
 Gz
 NV
 NV
-NV
-NV
-NV
-NV
+JJ
+JJ
+JJ
+JJ
 NV
 Gz
 Gz
@@ -42299,9 +42419,9 @@ Gz
 NV
 NV
 NV
-NV
-NV
-NV
+JJ
+JJ
+JJ
 Gz
 Gz
 Gz
@@ -42472,8 +42592,8 @@ NV
 NV
 NV
 NV
-NV
-NV
+JJ
+JJ
 Gz
 Gz
 Gz
@@ -42645,7 +42765,7 @@ NV
 NV
 NV
 NV
-NV
+JJ
 JJ
 JJ
 Gz
@@ -42817,7 +42937,7 @@ NV
 NV
 NV
 NV
-NV
+JJ
 JJ
 JJ
 JJ
@@ -42988,7 +43108,7 @@ NV
 NV
 NV
 NV
-JJ
+NV
 JJ
 JJ
 JJ
@@ -43042,10 +43162,10 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Mn
 Gz
 Gz
@@ -43160,7 +43280,7 @@ NV
 NV
 NV
 NV
-JJ
+NV
 JJ
 JJ
 JJ
@@ -43214,10 +43334,10 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Mn
 Gz
 Gz
@@ -43329,10 +43449,10 @@ Gz
 Gz
 Gz
 Gz
-JJ
-JJ
-JJ
-JJ
+NV
+NV
+NV
+NV
 JJ
 JJ
 JJ
@@ -43386,10 +43506,10 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Gz
 Gz
 Gz
@@ -43501,8 +43621,8 @@ Gz
 Gz
 Gz
 Gz
-JJ
-JJ
+NV
+NV
 JJ
 JJ
 JJ
@@ -43559,10 +43679,10 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Gz
 Gz
 Gz
@@ -43574,7 +43694,7 @@ Mh
 Mh
 Gz
 Gz
-Mh
+rf
 Mh
 Gz
 Gz
@@ -43741,14 +43861,14 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
 Gz
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Gz
 Mn
 sF
@@ -43912,15 +44032,15 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
+rf
 Gz
 Mn
 Mn
@@ -44085,10 +44205,10 @@ Mh
 Na
 Na
 Na
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 ZP
 Mn
 Gz
@@ -44257,10 +44377,10 @@ Na
 Na
 Na
 Na
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 ZP
 Mn
 Gz
@@ -44429,10 +44549,10 @@ Gz
 Na
 Na
 Na
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 ZP
 Mn
 Gz
@@ -44599,10 +44719,10 @@ Gz
 Gz
 Gz
 Gz
-Mh
-Mh
-Mh
-Mh
+rf
+rf
+rf
+rf
 Gz
 Gz
 Gz
@@ -45465,7 +45585,7 @@ JR
 JR
 JR
 JR
-jY
+JR
 Gz
 Gz
 Gz
@@ -45637,7 +45757,7 @@ JR
 JR
 JR
 JR
-jY
+JR
 jY
 jY
 jY
@@ -45809,7 +45929,7 @@ JR
 JR
 JR
 JR
-jY
+JR
 jY
 jY
 jY
@@ -46154,10 +46274,10 @@ IM
 VO
 VO
 Bx
-vc
-vc
-vc
-na
+AY
+AY
+AY
+kS
 jY
 sF
 sF
@@ -46329,8 +46449,8 @@ sF
 GQ
 GQ
 GQ
-Bx
-na
+fM
+kS
 sF
 sF
 sF
@@ -49219,10 +49339,10 @@ Gz
 jn
 jn
 nJ
-Hw
-Hw
-Hw
-Ql
+fC
+fC
+fC
+CF
 qT
 Mn
 Mn
@@ -49395,7 +49515,7 @@ BU
 BU
 BU
 rp
-Hw
+fC
 sF
 sF
 sF
@@ -50596,10 +50716,10 @@ jn
 jn
 jn
 TK
-UY
-QZ
-UY
-UY
+yf
+xv
+yf
+yf
 sF
 sF
 sF
@@ -54037,12 +54157,12 @@ rt
 gK
 iQ
 BW
-uC
-uC
+ge
+ge
 Fn
-lT
-Zu
-IC
+uQ
+XJ
+FJ
 sF
 sF
 sF
@@ -54211,8 +54331,8 @@ cl
 do
 mE
 Zu
-Zu
-ko
+XJ
+FJ
 IC
 IC
 sF
@@ -54382,7 +54502,7 @@ WV
 qz
 pW
 JI
-xv
+rt
 IC
 IC
 IC
@@ -54553,8 +54673,8 @@ WV
 WV
 WV
 WV
-IC
-IC
+WV
+WV
 IC
 IC
 IC
@@ -54725,8 +54845,8 @@ WV
 WV
 WV
 WV
-IC
-IC
+WV
+WV
 IF
 IC
 IC
@@ -54897,8 +55017,8 @@ WV
 WV
 WV
 WV
-IC
-IC
+WV
+WV
 IC
 IC
 IC
@@ -55069,8 +55189,8 @@ WV
 WV
 WV
 WV
-IC
-IC
+WV
+WV
 IC
 IC
 IC
@@ -55241,11 +55361,11 @@ WV
 WV
 WV
 WV
+WV
+WV
 IC
 IC
-IC
-IC
-Ao
+TP
 qT
 Mn
 Mn
@@ -55413,11 +55533,11 @@ WV
 WV
 WV
 pv
-IC
-IC
-Ao
-EA
-eC
+WV
+WV
+TP
+Oz
+du
 Gz
 Gz
 Gz
@@ -55759,8 +55879,8 @@ WV
 WV
 cl
 lz
-Fn
-Fn
+do
+do
 Gz
 Gz
 Gz
@@ -61388,7 +61508,7 @@ Gz
 Gz
 Gz
 xs
-xs
+Qk
 Qk
 Qk
 Qk
@@ -61561,8 +61681,8 @@ Gz
 xs
 xs
 xs
-xs
-xs
+Qk
+Qk
 Qk
 Qk
 Qk
@@ -61734,8 +61854,8 @@ xs
 xs
 xs
 xs
-xs
-xs
+Qk
+Qk
 Qk
 Qk
 Qk
@@ -61906,8 +62026,8 @@ xs
 xs
 xs
 xs
-xs
-xs
+Qk
+Qk
 Qk
 Qk
 Qk
@@ -62078,7 +62198,7 @@ xs
 xs
 xs
 xs
-xs
+ng
 sF
 sF
 Gz
@@ -62140,7 +62260,7 @@ xs
 xs
 xs
 xs
-Gz
+xs
 Gz
 Gz
 Gz
@@ -64557,7 +64677,7 @@ Qk
 Gz
 Gz
 Gz
-xs
+ng
 xs
 IC
 IC
