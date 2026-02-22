@@ -96,11 +96,6 @@
 "aA" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/cave/south)
-"aB" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 4
-	},
-/area/mountain_pass/exterior/w)
 "aC" = (
 /obj/structure/table/reinforced/flipped,
 /obj/structure/prop/broken_ptrs{
@@ -184,6 +179,13 @@
 	dir = 1
 	},
 /area/mountain_pass/exterior/landingzone)
+"bd" = (
+/obj/structure/closet/secure_closet,
+/obj/item/clothing/under/icc,
+/obj/effect/spawner/random/engineering/tool,
+/obj/item/storage/belt,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "bf" = (
 /obj/item/weapon/gun/pistol/icc_dpistol,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -256,6 +258,10 @@
 /area/mountain_pass/interior)
 "bB" = (
 /obj/structure/rack,
+/obj/item/ammo_magazine/rifle/icc_sharpshooter,
+/obj/item/ammo_magazine/rifle/icc_sharpshooter,
+/obj/item/ammo_magazine/rifle/icc_sharpshooter,
+/obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
@@ -401,6 +407,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/space)
+"cr" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/mountain_pass/cave)
 "ct" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid,
 /turf/open/urban/street/cement2,
@@ -565,7 +576,9 @@
 /area/mountain_pass/cave/panic_bunker)
 "dk" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
 /area/mountain_pass/cave)
 "dl" = (
 /turf/open/floor/plating/dmg2,
@@ -585,11 +598,6 @@
 /area/space)
 "dr" = (
 /turf/open/ground/coast{
-	dir = 4
-	},
-/area/space)
-"du" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
 	dir = 4
 	},
 /area/space)
@@ -690,6 +698,11 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/urban/street/sidewalkfull,
 /area/space)
+"dU" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "dX" = (
 /turf/open/floor/roof,
 /area/space)
@@ -810,11 +823,6 @@
 /obj/structure/rock/variable/stalagmite,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/west)
-"eK" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
 "eN" = (
 /obj/structure/prop/vehicle/tank/east/barrel/broken{
 	dir = 4;
@@ -909,6 +917,21 @@
 /obj/effect/spawner/random/misc/soap,
 /turf/open/urban/street/cement1,
 /area/mountain_pass/interior/barracks)
+"fn" = (
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble10/dense{
+	dir = 1;
+	pixel_w = -32
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/space)
+"fo" = (
+/obj/structure/rack,
+/obj/item/storage/holster/icc_mg,
+/obj/item/ammo_magazine/icc_mg/belt,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mountain_pass/cave/armory)
 "fp" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 4
@@ -954,13 +977,9 @@
 /obj/structure/closet/secure_closet,
 /obj/item/storage/backpack/lightpack/icc,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/item/storage/belt/marine/icc,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/barracks)
-"fC" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel3/westroad)
 "fD" = (
 /obj/effect/urban/decal/trash/fourteen,
 /turf/open/floor/plating/ground/dirt2,
@@ -998,26 +1017,22 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
-"fM" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
-	dir = 1
-	},
-/area/mountain_pass/exterior/zlevel2/eastroad)
 "fN" = (
 /turf/open/urban/street/sidewalk{
 	dir = 9
 	},
 /area/mountain_pass/cave/south/zlevel2/east)
+"fO" = (
+/obj/machinery/vending/security,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/mountain_pass/cave)
 "fQ" = (
 /obj/structure/platform/metalplatform/nondense,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/exterior/se)
-"fR" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 1
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
 "fS" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic_solid{
 	dir = 2
@@ -1070,7 +1085,9 @@
 /area/mountain_pass/exterior/zlevel3/westroad)
 "gm" = (
 /obj/machinery/vending/security,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
 /area/mountain_pass/cave)
 "gn" = (
 /obj/structure/prop/urban/misc/trash/blue,
@@ -1224,6 +1241,11 @@
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"hf" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 4
+	},
+/area/space)
 "hg" = (
 /obj/structure/table/reinforced,
 /obj/structure/window{
@@ -1307,6 +1329,12 @@
 "hC" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/cave/south/east)
+"hD" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/mountain_pass/cave)
 "hE" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/urban/street/cement2,
@@ -1339,6 +1367,9 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/east)
+"hK" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner,
+/area/space)
 "hL" = (
 /obj/machinery/cic_maptable/drawable/big/som{
 	pixel_x = -19;
@@ -1777,6 +1808,7 @@
 /obj/item/clothing/under/icc,
 /obj/effect/spawner/random/food_or_drink/packagedbar/candyweighted,
 /obj/effect/spawner/random/weaponry/melee,
+/obj/item/storage/belt/marine/icc,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/barracks)
 "kr" = (
@@ -1807,6 +1839,11 @@
 	},
 /turf/open/floor/mainship/icc/sw,
 /area/mountain_pass/cave/panic_bunker)
+"kA" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/w)
 "kC" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
@@ -1821,7 +1858,9 @@
 "kG" = (
 /obj/structure/table/reinforced,
 /obj/structure/reagent_dispensers/wallmounted/peppertank,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
 /area/mountain_pass/cave)
 "kH" = (
 /obj/effect/mapping_helpers/simple_pipes/general/hidden,
@@ -1840,9 +1879,7 @@
 /area/mountain_pass/exterior/s)
 "kL" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/som_big,
-/obj/item/ammo_magazine/rifle/som_big,
-/obj/item/ammo_magazine/rifle/som_big,
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/mountain_pass/cave/armory)
 "kN" = (
@@ -1863,11 +1900,6 @@
 /obj/structure/rock/brown/pile/alt2,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south)
-"kS" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel2/eastroad)
 "kW" = (
 /obj/effect/decal/cleanable/blood/six{
 	dir = 1;
@@ -1875,6 +1907,11 @@
 	},
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"kX" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
 /area/space)
 "kY" = (
 /obj/item/weapon/gun/launcher/rocket/icc/broken,
@@ -1938,10 +1975,11 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/construction)
 "lr" = (
-/obj/structure/rack,
-/obj/item/storage/holster/icc_mg/full,
-/turf/open/floor/plating/ground/concrete,
-/area/mountain_pass/cave/armory)
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid{
+	dir = 2
+	},
+/turf/open/floor/tile/dark/red2,
+/area/mountain_pass/cave)
 "ls" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
@@ -2234,6 +2272,11 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/space)
+"ne" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 1
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "nf" = (
 /obj/structure/rack,
 /obj/item/mortal_shell/howitzer/he,
@@ -2241,8 +2284,6 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/artillery_ammunition_storage)
-"ng" = (
-/area/space)
 "nj" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -2269,6 +2310,11 @@
 	},
 /turf/open/urban/street/cement1,
 /area/mountain_pass/interior/guard_barracks)
+"no" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "nq" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/mountain_pass/exterior/zlevel3/westroad)
@@ -2279,6 +2325,10 @@
 /obj/effect/landmark/corpsespawner/icc/guard,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/guard_barracks)
+"nw" = (
+/obj/structure/rock/brown/pile/alt2,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/mountain_pass/cave/south/zlevel2/southwest)
 "nx" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/dirt2,
@@ -2295,6 +2345,11 @@
 /obj/item/tool/weldpack,
 /turf/open/urban/street/sidewalkfull,
 /area/space)
+"nD" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/mountain_pass/cave)
 "nG" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/urban/street/sidewalk{
@@ -2400,7 +2455,9 @@
 /area/space)
 "om" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
 /area/mountain_pass/cave)
 "on" = (
 /obj/structure/fence/dark,
@@ -2532,6 +2589,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/explosive/grenade/incendiary/som,
+/obj/item/explosive/grenade/incendiary/som,
+/obj/item/explosive/grenade/incendiary/som,
+/obj/item/explosive/grenade/incendiary/som,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "ph" = (
@@ -2913,9 +2974,6 @@
 	},
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior/guard_barracks)
-"rf" = (
-/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
-/area/mountain_pass/cave/south/zlevel2/southeast)
 "rj" = (
 /obj/machinery/button/door,
 /turf/open/floor/tile/dark,
@@ -2928,6 +2986,11 @@
 /obj/effect/spawner/random/engineering/engibelt/emptyornot,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/armorer_workshop)
+"ro" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "rp" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
@@ -3053,9 +3116,7 @@
 /area/space)
 "rQ" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/volkite,
-/obj/item/cell/lasgun/volkite,
-/obj/item/cell/lasgun/volkite,
+/obj/item/weapon/gun/rifle/icc_mg/guard,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -3088,7 +3149,9 @@
 /area/space)
 "rZ" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/icc_sharpshooter/medic,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "sa" = (
@@ -3506,14 +3569,27 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
 "uC" = (
-/turf/open/ground/jungle/clear,
-/area/mountain_pass/exterior/zlevel2/westroad)
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/mountain_pass/cave)
+"uD" = (
+/turf/open/floor/tile/dark/red2/corner,
+/area/mountain_pass/cave)
 "uF" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
 /turf/open/urban/street/cement2,
 /area/space)
+"uG" = (
+/obj/structure/closet/secure_closet,
+/obj/item/clothing/under/icc/webbing,
+/obj/item/clothing/under/icc,
+/obj/item/storage/backpack/lightpack/icc,
+/obj/item/clothing/shoes/marine/icc,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "uH" = (
 /turf/open/floor/plating/dmg2,
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
@@ -3540,9 +3616,6 @@
 	dir = 4
 	},
 /area/space)
-"uQ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner,
-/area/space)
 "uR" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 9
@@ -3560,14 +3633,12 @@
 /obj/structure/table/urban/shiny_brown,
 /turf/open/floor/tile/dark,
 /area/space)
-"uT" = (
-/area/mountain_pass/cave/south/zlevel2/northeast)
 "uU" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/rifle/som_big/incendiary,
-/obj/item/ammo_magazine/rifle/som_big/incendiary,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/mountain_pass/cave/armory)
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/mountain_pass/cave)
 "uV" = (
 /turf/open/urban/street/sidewalkfull,
 /area/mountain_pass/cave/south/east)
@@ -3679,6 +3750,11 @@
 "vB" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/mountain_pass/exterior)
+"vC" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "vH" = (
 /obj/effect/landmark/corpsespawner/icc/officer,
 /turf/open/urban/street/cement2,
@@ -3765,6 +3841,12 @@
 "wg" = (
 /turf/open/floor/mainship/tcomms,
 /area/space)
+"wh" = (
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/mountain_pass/cave)
 "wi" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/mainship/icc/s,
@@ -4014,11 +4096,8 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "xv" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel3/westroad)
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction,
+/area/mountain_pass/exterior/w)
 "xw" = (
 /turf/open/urban/street/sidewalk{
 	dir = 8
@@ -4065,10 +4144,8 @@
 	},
 /area/mountain_pass/exterior/zlevel2/westroad)
 "xI" = (
-/obj/structure/rack,
-/obj/item/storage/belt/shotgun/icc,
-/turf/open/floor/plating/ground/concrete,
-/area/mountain_pass/cave/armory)
+/turf/open/floor/tile/dark/red2,
+/area/mountain_pass/cave)
 "xJ" = (
 /turf/closed/wall/urban,
 /area/mountain_pass/interior/guard_barracks)
@@ -4107,11 +4184,6 @@
 	dir = 6
 	},
 /area/mountain_pass/exterior/e)
-"xU" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel2/central)
 "xV" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -4155,11 +4227,6 @@
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/urban/street/cement2,
 /area/space)
-"yf" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel3/westroad)
 "yg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -4240,10 +4307,12 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
 "yA" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel2/central)
+/obj/structure/rack,
+/obj/item/ammo_magazine/smg/icc_machinepistol,
+/obj/item/ammo_magazine/smg/icc_machinepistol,
+/obj/item/ammo_magazine/smg/icc_machinepistol,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/cave/armory)
 "yB" = (
 /obj/effect/landmark/corpsespawner/icc/officer,
 /turf/open/urban/street/cement3,
@@ -4436,9 +4505,8 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/construction)
 "zy" = (
-/obj/structure/window/framed/urban/reinforced,
-/turf/open/floor/plating/ground/dirt2,
-/area/mountain_pass/interior/barracks)
+/turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
+/area/mountain_pass/cave/south/zlevel2/southeast)
 "zA" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/clothing/under/icc,
@@ -4531,6 +4599,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"Aa" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "Ab" = (
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior)
@@ -4569,6 +4642,11 @@
 /area/mountain_pass/interior)
 "Ar" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/mountain_pass/exterior/zlevel2/westroad)
+"As" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 1
+	},
 /area/mountain_pass/exterior/zlevel2/westroad)
 "Au" = (
 /turf/open/urban/street/sidewalk{
@@ -4622,6 +4700,11 @@
 /obj/item/tank/anesthetic,
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
+"AN" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "AO" = (
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/urban/street/cement3,
@@ -4665,11 +4748,6 @@
 /obj/structure/rock/brown/alt5,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
-"AY" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel2/eastroad)
 "Ba" = (
 /obj/structure/table/wood,
 /turf/open/urban/street/cement2,
@@ -4795,6 +4873,12 @@
 /obj/item/tool/weldingtool,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"BH" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel3/westroad)
 "BI" = (
 /obj/structure/stairs/multiz/directional/north,
 /turf/open/floor/plating/ground/mars/random/cave/no_construction/darker,
@@ -4853,6 +4937,8 @@
 /obj/structure/prop/urban/supermart/rack,
 /turf/open/urban/street/cement2,
 /area/space)
+"Cb" = (
+/area/mountain_pass/cave/south/zlevel2/northeast)
 "Cc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/forcefield/allow_bullet_travel,
@@ -4866,6 +4952,11 @@
 /area/mountain_pass/exterior/zlevel3/westroad)
 "Ci" = (
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"Cj" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 1
+	},
 /area/space)
 "Cl" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -4882,6 +4973,8 @@
 /obj/item/ammo_magazine/rifle/icc_autoshotgun,
 /obj/item/ammo_magazine/rifle/icc_autoshotgun,
 /obj/structure/rack,
+/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
+/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "Co" = (
@@ -4945,10 +5038,8 @@
 	},
 /area/mountain_pass/exterior/beach)
 "CF" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel3/westroad)
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2,
+/area/space)
 "CH" = (
 /obj/effect/landmark/corpsespawner/icc/guard,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -5032,6 +5123,11 @@
 /obj/structure/prop/urban/misc/buildinggreebliessmall3,
 /turf/open/urban/street/sidewalkfull,
 /area/space)
+"CX" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 1
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "CY" = (
 /obj/machinery/power/smes/buildable/empty,
 /turf/open/floor/mainship/floor,
@@ -5452,9 +5548,6 @@
 "FI" = (
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
-"FJ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2,
-/area/space)
 "FL" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -5477,6 +5570,11 @@
 	},
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior)
+"FP" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "FQ" = (
 /obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/floor/plating/ground/dirt2,
@@ -5637,8 +5735,8 @@
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
 "GX" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/icc_mg/belt,
 /obj/machinery/light,
+/obj/item/weapon/gun/rifle/icc_confrontationrifle/leader,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "GZ" = (
@@ -5797,6 +5895,11 @@
 "HV" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/zlevel2/westroad)
+"HW" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/space)
 "HX" = (
 /obj/effect/turf_decal/tracks/claw1/bloody{
 	dir = 4
@@ -5837,6 +5940,11 @@
 	dir = 1
 	},
 /area/mountain_pass/exterior)
+"Ir" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "Is" = (
 /obj/structure/bed/roller,
 /turf/open/floor/plating/ground/dirt2,
@@ -6073,10 +6181,6 @@
 "JJ" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/zlevel2/northeast)
-"JK" = (
-/obj/structure/rock/brown/pile/alt2,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/mountain_pass/cave/south/zlevel2/southwest)
 "JO" = (
 /obj/structure/rock/brown/pile/alt2,
 /turf/open/ground,
@@ -6090,7 +6194,15 @@
 /area/mountain_pass/exterior/zlevel2/eastroad)
 "JU" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/icc_confrontationrifle/leader,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "JV" = (
@@ -6111,6 +6223,12 @@
 /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/broken,
 /turf/open/floor/tile/dark,
 /area/space)
+"JZ" = (
+/obj/structure/bed/urban/bunkbed4{
+	dir = 1
+	},
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "Kb" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 10
@@ -6137,6 +6255,11 @@
 /obj/item/weapon/gun/pistol/icc_dpistol,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"Km" = (
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 4
+	},
+/area/mountain_pass/cave)
 "Kn" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/brown2,
@@ -6179,6 +6302,18 @@
 /obj/effect/spawner/random/misc/soap,
 /turf/open/floor/tile/dark,
 /area/space)
+"KA" = (
+/obj/structure/rack,
+/obj/item/cell/lasgun/volkite,
+/obj/item/cell/lasgun/volkite,
+/obj/item/cell/lasgun/volkite,
+/obj/item/cell/lasgun/volkite,
+/obj/item/cell/lasgun/volkite,
+/obj/item/cell/lasgun/volkite,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mountain_pass/cave/armory)
 "KB" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/mountain_pass/exterior)
@@ -6243,6 +6378,17 @@
 	},
 /turf/open/floor/mainship/icc/se,
 /area/space)
+"Lb" = (
+/obj/structure/rack,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/obj/item/explosive/grenade/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/cave/armory)
 "Lc" = (
 /obj/machinery/door/airlock/urban/generic_solid{
 	dir = 1
@@ -6383,10 +6529,10 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/collapsed_tunnel)
 "Ma" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader,
-/turf/open/floor/plating/ground/concrete,
-/area/mountain_pass/cave/armory)
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/westroad)
 "Mb" = (
 /obj/machinery/door/airlock/urban/medical_solid{
 	dir = 2
@@ -6441,6 +6587,11 @@
 	},
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
+"Mu" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/mountain_pass/cave)
 "Mx" = (
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/urban/street/cement1,
@@ -6570,7 +6721,13 @@
 /area/space)
 "Ng" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/icc_mg/guard,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
+/obj/item/ammo_magazine/pistol/icc_dpistol,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "Nh" = (
@@ -6579,6 +6736,14 @@
 	},
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/cafeteria)
+"Ni" = (
+/obj/structure/closet/secure_closet,
+/obj/item/storage/backpack/lightpack/icc,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/item/clothing/shoes/marine/icc,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "Nj" = (
 /turf/open/urban/street/sidewalkfull,
 /area/space)
@@ -6768,11 +6933,6 @@
 "Ox" = (
 /turf/open/urban/street/sidewalk,
 /area/mountain_pass/exterior/landingzone)
-"Oz" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 8
-	},
-/area/space)
 "OA" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/tile/dark,
@@ -6954,6 +7114,11 @@
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/floor/tile/dark,
 /area/space)
+"PG" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
+	},
+/area/mountain_pass/exterior/zlevel2/central)
 "PH" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/grass/weedable,
@@ -6969,11 +7134,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
-"PL" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
-	dir = 1
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
 "PM" = (
 /turf/open/ground/jungle/clear,
 /area/mountain_pass/exterior/zlevel3/westroad)
@@ -7112,6 +7272,16 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/tile/dark,
 /area/space)
+"QA" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/shotgun/heavy_buckshot,
+/obj/item/ammo_magazine/shotgun/heavy_buckshot,
+/obj/item/ammo_magazine/shotgun/barrikada{
+	desc = "A box filled with high velocity shotgun slugs nicknamed 'Barrikada'. Rated to break through basically everything up to including tank engines. 6 Gauged."
+	},
+/obj/item/storage/belt/shotgun/icc,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mountain_pass/cave/armory)
 "QB" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/alt{
 	dir = 1
@@ -7267,13 +7437,10 @@
 /turf/open/floor/plating/ground/concrete,
 /area/space)
 "Rn" = (
-/obj/item/ammo_magazine/shotgun/barrikada{
-	desc = "A box filled with high velocity shotgun slugs nicknamed 'Barrikada'. Rated to break through basically everything up to including tank engines. 6 Gauged."
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 4
 	},
-/obj/item/ammo_magazine/shotgun/heavy_buckshot,
-/obj/structure/rack,
-/turf/open/floor/plating/ground/concrete,
-/area/mountain_pass/cave/armory)
+/area/mountain_pass/exterior/zlevel3/westroad)
 "Ro" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 1
@@ -7513,10 +7680,9 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/cafeteria)
 "SO" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark/red2,
+/area/mountain_pass/cave)
 "SR" = (
 /obj/machinery/griddle,
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
@@ -7639,11 +7805,6 @@
 /obj/structure/rock/brown/alt12,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/northwest)
-"TC" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
 "TD" = (
 /turf/closed/wall/urban,
 /area/mountain_pass/interior/kitchen)
@@ -7653,6 +7814,11 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/mountain_pass/exterior/landingzone)
+"TG" = (
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
+	},
+/area/mountain_pass/cave)
 "TH" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/tile/dark,
@@ -7677,11 +7843,6 @@
 /obj/structure/rock/brown/pile/alt,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south)
-"TP" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 1
-	},
-/area/space)
 "TR" = (
 /obj/structure/rock/brown/alt,
 /turf/open/ground,
@@ -7770,6 +7931,12 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
+"Us" = (
+/obj/machinery/door/airlock/multi_tile/urban/generic_solid,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/mountain_pass/cave)
 "Ut" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/urban/street/sidewalkcorner,
@@ -7798,10 +7965,13 @@
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
 "UB" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner{
-	dir = 4
-	},
-/area/mountain_pass/exterior/zlevel2/westroad)
+/obj/structure/closet/secure_closet,
+/obj/item/clothing/under/icc,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/item/clothing/shoes/marine/icc,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "UD" = (
 /turf/open/urban/street/sidewalkcorner,
 /area/mountain_pass/cave/south/east)
@@ -7853,9 +8023,8 @@
 /area/mountain_pass/exterior)
 "UT" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
-/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag,
 /obj/machinery/light,
+/obj/item/weapon/gun/rifle/icc_sharpshooter/medic,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/cave/armory)
 "UV" = (
@@ -7871,6 +8040,16 @@
 	dir = 8
 	},
 /area/mountain_pass/exterior/zlevel3/westroad)
+"UZ" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/som_big/incendiary,
+/obj/item/ammo_magazine/rifle/som_big/incendiary,
+/obj/item/ammo_magazine/rifle/som_big,
+/obj/item/ammo_magazine/rifle/som_big,
+/obj/item/ammo_magazine/rifle/som_big,
+/obj/item/ammo_magazine/rifle/som_big,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/mountain_pass/cave/armory)
 "Va" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/grassybush,
@@ -7939,6 +8118,11 @@
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/w)
+"Vt" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/mountain_pass/cave)
 "Vv" = (
 /turf/open/floor/mainship/black/full,
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
@@ -7979,6 +8163,11 @@
 /obj/structure/table/reinforced,
 /turf/open/urban/street/sidewalkfull,
 /area/mountain_pass/cave/south/zlevel2/east)
+"VH" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/mountain_pass/cave)
 "VJ" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/east)
@@ -8002,7 +8191,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "VR" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 4
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/mountain_pass/interior)
 "VS" = (
@@ -8019,6 +8210,11 @@
 /obj/structure/table,
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/e)
+"Wb" = (
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 8
+	},
+/area/mountain_pass/cave)
 "Wc" = (
 /obj/effect/urban/decal/trash/nine,
 /turf/open/urban/street/cement2,
@@ -8165,9 +8361,6 @@
 "WV" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
-"WX" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction,
-/area/mountain_pass/exterior/w)
 "WZ" = (
 /obj/structure/rock/brown/pile/alt,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -8206,6 +8399,10 @@
 /obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/collapsed_tunnel)
+"Xl" = (
+/obj/structure/window/framed/urban/reinforced,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "Xm" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rocket/icc/heat,
@@ -8298,11 +8495,6 @@
 	dir = 4
 	},
 /area/space)
-"XJ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
-	dir = 4
-	},
-/area/space)
 "XM" = (
 /obj/structure/table/reinforced/flipped,
 /obj/effect/spawner/random/engineering/cable,
@@ -8363,6 +8555,9 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/armorer_workshop)
+"Yf" = (
+/turf/open/ground/jungle/clear,
+/area/mountain_pass/exterior/zlevel2/westroad)
 "Yk" = (
 /obj/structure/closet/secure_closet/walllocker/medical/full{
 	dir = 1
@@ -8471,6 +8666,18 @@
 	},
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave)
+"YL" = (
+/obj/structure/closet/secure_closet,
+/obj/item/clothing/under/icc,
+/obj/item/clothing/under/icc,
+/obj/item/storage/backpack/lightpack/icc,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/item/clothing/shoes/marine/icc,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
+"YM" = (
+/area/space)
 "YN" = (
 /obj/effect/decal/cleanable/flour,
 /obj/item/reagent_containers/food/snacks/flour,
@@ -8488,6 +8695,11 @@
 	},
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/lz_offices)
+"YT" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/mountain_pass/cave)
 "YV" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/effect/forcefield/allow_bullet_travel,
@@ -8522,11 +8734,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/interior/construction)
-"Ze" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/no_construction/corner2{
-	dir = 8
-	},
-/area/mountain_pass/exterior/zlevel2/central)
 "Zf" = (
 /obj/structure/table/urban/shiny_brown,
 /obj/machinery/faxmachine,
@@ -8537,6 +8744,11 @@
 	dir = 4
 	},
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
+"Zi" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/no_construction{
+	dir = 8
+	},
+/area/mountain_pass/exterior/zlevel2/eastroad)
 "Zk" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/cave/south/zlevel2/west)
@@ -8593,6 +8805,7 @@
 /obj/structure/closet/secure_closet,
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/item/storage/belt/marine/icc,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/barracks)
 "Zw" = (
@@ -8659,6 +8872,10 @@
 	dir = 4
 	},
 /area/mountain_pass/exterior/zlevel3/westroad)
+"ZN" = (
+/obj/structure/bed/urban/bunkbed4,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/barracks)
 "ZO" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
@@ -9131,7 +9348,7 @@ Gz
 Gz
 Gz
 bT
-WX
+xv
 br
 br
 br
@@ -10851,7 +11068,7 @@ Gz
 Ja
 Ja
 Ja
-aB
+kA
 BX
 br
 br
@@ -11023,7 +11240,7 @@ Gz
 bT
 bT
 bT
-WX
+xv
 br
 br
 br
@@ -11195,7 +11412,7 @@ Gz
 ZU
 bT
 bT
-WX
+xv
 br
 br
 br
@@ -16833,13 +17050,13 @@ WV
 WV
 CQ
 CQ
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+Vt
+Mu
+Mu
+Mu
+Mu
+Mu
+nD
 CQ
 CQ
 aA
@@ -17005,14 +17222,14 @@ WV
 Qk
 CQ
 gm
+TG
 qd
 qd
 qd
 qd
 qd
 qd
-qd
-gm
+fO
 CQ
 aA
 aA
@@ -17173,7 +17390,7 @@ WV
 WV
 WV
 Qk
-Qk
+fn
 Qk
 CQ
 kG
@@ -17184,7 +17401,7 @@ dp
 Lz
 au
 qd
-An
+SO
 CQ
 aA
 aA
@@ -17348,15 +17565,15 @@ CQ
 CQ
 CQ
 CQ
-An
+hD
+Km
 qd
 qd
 qd
 qd
 qd
-qd
-qd
-An
+uD
+uU
 CQ
 CQ
 aA
@@ -17426,7 +17643,7 @@ jA
 jA
 jA
 jA
-lQ
+jA
 lQ
 lQ
 lQ
@@ -17508,26 +17725,26 @@ YI
 YI
 CQ
 CQ
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+Vt
+Mu
+Mu
+Mu
+Mu
+Mu
+Mu
+Mu
+Mu
+Mu
+nD
 CQ
 CQ
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+cr
+uC
+Km
+uD
+uC
+uC
+VH
 CQ
 CQ
 CQ
@@ -17591,6 +17808,7 @@ ss
 jA
 cb
 hE
+lb
 jA
 Hf
 fs
@@ -17598,7 +17816,6 @@ fs
 fs
 yc
 jA
-lQ
 lQ
 lQ
 lQ
@@ -17679,6 +17896,8 @@ YI
 YI
 YI
 CQ
+Vt
+TG
 qd
 qd
 qd
@@ -17688,15 +17907,13 @@ qd
 qd
 qd
 qd
-qd
-qd
-qd
+Wb
 dk
 CQ
 CQ
 CQ
-qd
-qd
+YT
+lr
 CQ
 CQ
 CQ
@@ -17763,6 +17980,7 @@ ss
 jA
 lb
 lb
+lb
 jA
 Jv
 ss
@@ -17770,7 +17988,6 @@ ss
 ss
 NY
 jA
-lQ
 lQ
 lQ
 lQ
@@ -17851,7 +18068,7 @@ vx
 YI
 YI
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -17863,17 +18080,17 @@ dz
 CQ
 qd
 qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+Wb
+Mu
+Mu
+Mu
+TG
+Wb
+Mu
+Mu
+Mu
+Mu
+nD
 CQ
 aA
 aA
@@ -17935,6 +18152,7 @@ ss
 FN
 lb
 lb
+lb
 FN
 Jv
 RX
@@ -17942,7 +18160,6 @@ mC
 fm
 NY
 jA
-lQ
 lQ
 lQ
 lQ
@@ -18023,7 +18240,7 @@ vx
 YI
 YI
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -18045,8 +18262,8 @@ qd
 qd
 qd
 qd
-qd
-qd
+Wb
+Us
 aA
 aA
 aA
@@ -18107,6 +18324,7 @@ ss
 jA
 lb
 lb
+lb
 jA
 Jv
 ss
@@ -18114,7 +18332,6 @@ Xp
 ss
 NY
 jA
-lQ
 lQ
 lQ
 lQ
@@ -18195,7 +18412,7 @@ YI
 YI
 YI
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -18217,8 +18434,8 @@ qd
 qd
 qd
 qd
-qd
-qd
+uD
+VH
 aA
 aA
 aA
@@ -18279,6 +18496,7 @@ AS
 jA
 lb
 lb
+lb
 jA
 Bm
 Zp
@@ -18286,7 +18504,6 @@ Zp
 Zp
 YG
 jA
-lQ
 lQ
 lQ
 lQ
@@ -18367,7 +18584,7 @@ YI
 YI
 YI
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -18381,15 +18598,15 @@ qd
 qd
 CQ
 CQ
-dz
 CQ
 CQ
 CQ
-dz
+CQ
+CQ
 CQ
 CQ
 qd
-qd
+xI
 CQ
 aA
 aA
@@ -18451,6 +18668,7 @@ jA
 PR
 lb
 lb
+jA
 Yk
 jA
 jA
@@ -18458,7 +18676,6 @@ jA
 jA
 jA
 jA
-lQ
 lQ
 lQ
 lQ
@@ -18538,8 +18755,8 @@ YI
 YI
 YI
 YI
-qd
-qd
+wh
+TG
 qd
 qd
 qd
@@ -18561,7 +18778,7 @@ qd
 jW
 dz
 qd
-qd
+xI
 CQ
 aA
 aA
@@ -18629,8 +18846,8 @@ cj
 JB
 cj
 Zv
+lb
 jA
-lQ
 lQ
 lQ
 lQ
@@ -18710,8 +18927,8 @@ YI
 YI
 YI
 YI
-qd
-qd
+cr
+Km
 qd
 qd
 qd
@@ -18733,7 +18950,7 @@ Qv
 qd
 qd
 qd
-qd
+xI
 CQ
 aA
 aA
@@ -18801,8 +19018,8 @@ lb
 lb
 lb
 lb
+lb
 OT
-lQ
 lQ
 lQ
 lQ
@@ -18883,7 +19100,7 @@ YI
 YI
 YI
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -18905,7 +19122,7 @@ CQ
 CQ
 CQ
 qd
-qd
+xI
 CQ
 aA
 aA
@@ -18974,7 +19191,7 @@ lb
 lb
 lb
 lb
-lQ
+lb
 lQ
 lQ
 lQ
@@ -19055,17 +19272,17 @@ vx
 YI
 YI
 CQ
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+cr
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+Km
 qd
 dz
 jW
@@ -19077,7 +19294,7 @@ qd
 jW
 dz
 qd
-qd
+xI
 CQ
 qP
 aA
@@ -19145,8 +19362,8 @@ lb
 hn
 lb
 lb
+lb
 jA
-lQ
 lQ
 lQ
 lQ
@@ -19237,7 +19454,7 @@ mu
 Ku
 CQ
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -19249,7 +19466,7 @@ Qv
 qd
 qd
 qd
-qd
+xI
 CQ
 qP
 aA
@@ -19317,8 +19534,8 @@ zk
 fz
 zk
 Hg
-jA
-lQ
+lb
+Xl
 lQ
 lQ
 lQ
@@ -19400,7 +19617,7 @@ Gz
 Gz
 Ku
 Ku
-DP
+yA
 zF
 hj
 hj
@@ -19409,8 +19626,8 @@ iY
 Ku
 Ku
 CQ
+YT
 qd
-qd
 CQ
 CQ
 CQ
@@ -19421,7 +19638,7 @@ CQ
 CQ
 CQ
 qd
-qd
+xI
 CQ
 qP
 qP
@@ -19485,12 +19702,12 @@ lb
 yU
 jA
 jA
-zy
-zy
-zy
 jA
 jA
-lQ
+jA
+jA
+jA
+jA
 lQ
 lQ
 lQ
@@ -19581,7 +19798,7 @@ hj
 GX
 Ku
 CQ
-qd
+YT
 qd
 dz
 jW
@@ -19593,7 +19810,7 @@ YK
 jW
 dz
 qd
-qd
+xI
 CQ
 qP
 qP
@@ -19652,17 +19869,17 @@ KB
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-SW
-DT
-fT
-vB
-lQ
-lQ
-lQ
+jA
+lb
+lb
+JZ
+bd
+JZ
+YL
+JZ
+Ni
+JZ
+jA
 lQ
 lQ
 lQ
@@ -19743,17 +19960,17 @@ Gz
 Gz
 Gz
 Ku
-Ma
-hj
-zF
-hj
-hj
-uy
-hj
 lL
+hj
+ZH
+hj
+hj
+nL
+hj
+St
 Ku
 CQ
-qd
+YT
 qd
 qd
 qd
@@ -19765,7 +19982,7 @@ qd
 qd
 qd
 qd
-qd
+xI
 CQ
 qP
 aA
@@ -19824,17 +20041,17 @@ lQ
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-SW
-KB
-lQ
-lQ
-lQ
+Xl
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+jA
 lQ
 lQ
 lQ
@@ -19917,28 +20134,28 @@ Gz
 Ku
 Ng
 hj
-ZH
+KA
 Yl
 Qr
-nL
+UZ
 hj
-Rn
+DP
 Ku
 CQ
-qd
-qd
-CQ
-CQ
-dz
-CQ
-CQ
-CQ
-dz
-CQ
-CQ
-qd
+YT
 qd
 CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+qd
+xI
+CQ
 qP
 aA
 aA
@@ -19996,17 +20213,17 @@ lQ
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
+jA
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+lb
+jA
 lQ
 lQ
 lQ
@@ -20089,14 +20306,15 @@ Gz
 Ku
 JU
 hj
-rQ
+zF
 EW
 vA
-uU
+uy
 hj
 Cn
 Ku
 CQ
+YT
 qd
 qd
 qd
@@ -20108,8 +20326,7 @@ qd
 qd
 qd
 qd
-qd
-qd
+xI
 CQ
 aA
 aA
@@ -20168,17 +20385,17 @@ lQ
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
+jA
+lb
+lb
+uG
+lb
+lb
+lb
+lb
+UB
+ZN
+jA
 lQ
 lQ
 lQ
@@ -20259,7 +20476,7 @@ Gz
 Gz
 Gz
 Ku
-St
+Lb
 hj
 rQ
 MV
@@ -20269,19 +20486,19 @@ hj
 bB
 Ku
 CQ
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
-qd
+cr
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+VH
 CQ
 aA
 aA
@@ -20340,17 +20557,17 @@ lQ
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
+jA
+lb
+yU
+jA
+Xl
+Xl
+Xl
+Xl
+jA
+jA
+jA
 lQ
 lQ
 lQ
@@ -20433,12 +20650,12 @@ Gz
 Ku
 rZ
 hj
-zF
+fo
 hj
 hj
-uy
+QA
 hj
-lr
+St
 Ku
 CQ
 CQ
@@ -20776,7 +20993,7 @@ Gz
 Gz
 Ku
 Ku
-xI
+St
 zF
 hj
 hj
@@ -20842,14 +21059,14 @@ KB
 lQ
 lQ
 lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
-lQ
+gA
+sJ
+sJ
+sJ
+gA
+Jw
+fS
+gA
 lQ
 yb
 aK
@@ -21014,14 +21231,14 @@ lQ
 lQ
 lQ
 yb
-aK
-aK
-aK
-mb
-lQ
-lQ
-lQ
-lQ
+gA
+OM
+Jw
+Jw
+Jw
+Jw
+Jw
+gA
 yb
 et
 zY
@@ -21186,14 +21403,14 @@ lQ
 lQ
 yb
 et
-zY
-lH
-zY
-vB
-lQ
-lQ
-lQ
-lQ
+gA
+OM
+bg
+Jw
+Jw
+Jw
+Jw
+gA
 Iq
 zY
 zY
@@ -21359,12 +21576,12 @@ MA
 ZO
 Eg
 gA
-sJ
-sJ
-sJ
-gA
+OM
+bg
 Jw
-fS
+bg
+bg
+bg
 gA
 um
 um
@@ -21532,10 +21749,10 @@ ZO
 Eg
 gA
 OM
+bg
 Jw
-Jw
-Jw
-Jw
+bg
+mr
 Jw
 gA
 Gh
@@ -21704,9 +21921,9 @@ ZO
 Eg
 gA
 OM
+Jw
+Jw
 bg
-Jw
-Jw
 Jw
 Jw
 gA
@@ -21875,12 +22092,12 @@ MA
 ZO
 Eg
 gA
-OM
-bg
-Jw
-bg
-bg
-bg
+gA
+EG
+gA
+gA
+gA
+EG
 gA
 Oc
 qZ
@@ -22047,11 +22264,11 @@ MA
 ZO
 Eg
 gA
-OM
-bg
 Jw
-bg
-mr
+Jw
+Jw
+Jw
+Jw
 Jw
 gA
 Oc
@@ -22219,10 +22436,10 @@ MA
 ZO
 zs
 gA
-OM
 Jw
 Jw
-bg
+Jw
+Jw
 Jw
 Jw
 gA
@@ -22391,12 +22608,12 @@ MA
 ZO
 Eg
 gA
-gA
-EG
-gA
-gA
-gA
-EG
+Jw
+Jw
+Jw
+Jw
+Jw
+Jw
 gA
 gA
 AO
@@ -29249,11 +29466,11 @@ iV
 iV
 iV
 qc
-eK
-eK
-eK
-eK
-eK
+Aa
+Aa
+Aa
+Aa
+Aa
 sF
 sF
 sF
@@ -29567,7 +29784,7 @@ Gz
 Gz
 Gz
 Gz
-uC
+Yf
 PA
 wa
 wa
@@ -29736,10 +29953,10 @@ Gz
 Gz
 Mn
 oy
-eK
-eK
-eK
-eK
+Aa
+Aa
+Aa
+Aa
 iV
 iV
 iV
@@ -30281,7 +30498,7 @@ fd
 yh
 Zb
 Zb
-TC
+FP
 iO
 iO
 iO
@@ -30453,10 +30670,10 @@ pX
 wa
 wa
 Xi
-PL
-SO
-SO
-SO
+As
+Ma
+Ma
+Ma
 sF
 sF
 sF
@@ -30769,9 +30986,9 @@ Gz
 Mn
 DI
 iO
-fR
-SO
-SO
+CX
+Ma
+Ma
 Zb
 Zb
 Zb
@@ -30940,8 +31157,8 @@ Gz
 Gz
 Mn
 xH
-SO
-UB
+Ma
+AN
 Gz
 Gz
 Gz
@@ -31294,7 +31511,7 @@ Gz
 Gz
 Gz
 Gz
-JK
+nw
 dd
 dd
 dd
@@ -31641,7 +31858,7 @@ dd
 dd
 dd
 dd
-JK
+nw
 dd
 dd
 Gz
@@ -34384,8 +34601,8 @@ Gz
 Mn
 Fk
 tU
-Ze
-yA
+vC
+ro
 Lj
 Dr
 Dr
@@ -34557,8 +34774,8 @@ Mn
 Fk
 tU
 tU
-Ze
-xU
+vC
+PG
 UE
 UE
 UE
@@ -40873,8 +41090,8 @@ Gz
 Gz
 Gz
 NV
-uT
-uT
+Cb
+Cb
 xy
 xy
 xy
@@ -43162,10 +43379,10 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Mn
 Gz
 Gz
@@ -43334,10 +43551,10 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Mn
 Gz
 Gz
@@ -43506,10 +43723,10 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Gz
 Gz
 Gz
@@ -43679,10 +43896,10 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Gz
 Gz
 Gz
@@ -43694,7 +43911,7 @@ Mh
 Mh
 Gz
 Gz
-rf
+zy
 Mh
 Gz
 Gz
@@ -43861,14 +44078,14 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
+zy
+zy
+zy
 Gz
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Gz
 Mn
 sF
@@ -44032,15 +44249,15 @@ Mh
 Mh
 Mh
 Mh
-rf
-rf
-rf
-rf
-rf
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
+zy
+zy
+zy
+zy
+zy
 Gz
 Mn
 Mn
@@ -44205,10 +44422,10 @@ Mh
 Na
 Na
 Na
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 ZP
 Mn
 Gz
@@ -44377,10 +44594,10 @@ Na
 Na
 Na
 Na
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 ZP
 Mn
 Gz
@@ -44549,10 +44766,10 @@ Gz
 Na
 Na
 Na
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 ZP
 Mn
 Gz
@@ -44719,10 +44936,10 @@ Gz
 Gz
 Gz
 Gz
-rf
-rf
-rf
-rf
+zy
+zy
+zy
+zy
 Gz
 Gz
 Gz
@@ -46274,10 +46491,10 @@ IM
 VO
 VO
 Bx
-AY
-AY
-AY
-kS
+Zi
+Zi
+Zi
+Ir
 jY
 sF
 sF
@@ -46449,8 +46666,8 @@ sF
 GQ
 GQ
 GQ
-fM
-kS
+ne
+Ir
 sF
 sF
 sF
@@ -49339,10 +49556,10 @@ Gz
 jn
 jn
 nJ
-fC
-fC
-fC
-CF
+Rn
+Rn
+Rn
+dU
 qT
 Mn
 Mn
@@ -49515,7 +49732,7 @@ BU
 BU
 BU
 rp
-fC
+Rn
 sF
 sF
 sF
@@ -50716,10 +50933,10 @@ jn
 jn
 jn
 TK
-yf
-xv
-yf
-yf
+no
+BH
+no
+no
 sF
 sF
 sF
@@ -54160,9 +54377,9 @@ BW
 ge
 ge
 Fn
-uQ
-XJ
-FJ
+hK
+kX
+CF
 sF
 sF
 sF
@@ -54331,8 +54548,8 @@ cl
 do
 mE
 Zu
-XJ
-FJ
+kX
+CF
 IC
 IC
 sF
@@ -55365,7 +55582,7 @@ WV
 WV
 IC
 IC
-TP
+Cj
 qT
 Mn
 Mn
@@ -55535,9 +55752,9 @@ WV
 pv
 WV
 WV
-TP
-Oz
-du
+Cj
+HW
+hf
 Gz
 Gz
 Gz
@@ -62198,7 +62415,7 @@ xs
 xs
 xs
 xs
-ng
+YM
 sF
 sF
 Gz
@@ -64677,7 +64894,7 @@ Qk
 Gz
 Gz
 Gz
-ng
+YM
 xs
 IC
 IC
