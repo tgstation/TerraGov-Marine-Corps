@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/icc/offduty,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "ac" = (
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/open/urban/street/sidewalk,
@@ -12,6 +20,7 @@
 /area/mountain_pass/interior/guard_barracks)
 "ae" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/mountain_pass/interior/construction)
 "af" = (
@@ -1770,6 +1779,11 @@
 	dir = 8
 	},
 /area/mountain_pass/cave/zlevel2/engi_generators)
+"kg" = (
+/obj/effect/landmark/corpsespawner/icc/offduty,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/exterior/w)
 "ki" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access,
 /turf/open/floor/tile/dark/brown2{
@@ -1961,6 +1975,10 @@
 /obj/structure/window/framed/urban/reinforced,
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior)
+"ln" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "lo" = (
 /obj/structure/lattice,
 /obj/effect/forcefield/allow_bullet_travel,
@@ -2120,6 +2138,11 @@
 	},
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/armorer_workshop)
+"mk" = (
+/obj/item/stack/sheet/metal,
+/obj/item/trash/berrybar,
+/turf/open/floor/plating,
+/area/mountain_pass/interior/construction)
 "mn" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 8;
@@ -2284,6 +2307,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/artillery_ammunition_storage)
+"ni" = (
+/obj/effect/urban/decal/trash/seventeen,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "nj" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -2900,6 +2927,7 @@
 	dir = 1;
 	pixel_w = -8
 	},
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/w)
 "qL" = (
@@ -3453,6 +3481,12 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/s)
+"tN" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/interior/construction)
 "tO" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
@@ -3685,6 +3719,10 @@
 "vh" = (
 /turf/open/floor/tile/dark/brown2,
 /area/mountain_pass/cave/zlevel2/engi_offices)
+"vj" = (
+/obj/item/tool/wrench,
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/exterior/w)
 "vn" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
@@ -4095,6 +4133,10 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/broken,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
+"xu" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/interior/construction)
 "xv" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/no_construction,
 /area/mountain_pass/exterior/w)
@@ -4801,6 +4843,10 @@
 	},
 /turf/open/urban/street/cement1,
 /area/mountain_pass/interior/barracks)
+"Bn" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating,
+/area/mountain_pass/interior/construction)
 "Bo" = (
 /obj/machinery/shower{
 	dir = 8
@@ -4982,6 +5028,10 @@
 /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/broken,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/armorer_workshop)
+"Cp" = (
+/obj/structure/prop/trashpile,
+/turf/open/floor/plating,
+/area/mountain_pass/interior/construction)
 "Cr" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/rifle/icc_sharpshooter,
@@ -5071,6 +5121,7 @@
 /area/space)
 "CO" = (
 /obj/structure/largecrate/random/barrel,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/w)
 "CP" = (
@@ -6348,6 +6399,7 @@
 /area/mountain_pass/cave/south/collapsed_tunnel)
 "KQ" = (
 /obj/structure/largecrate/random/barrel,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/interior/construction)
 "KR" = (
@@ -6474,6 +6526,10 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/se)
+"LF" = (
+/obj/effect/urban/decal/trash/seven,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "LG" = (
 /obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -7134,6 +7190,11 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"PK" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/cheesie,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/interior/construction)
 "PM" = (
 /turf/open/ground/jungle/clear,
 /area/mountain_pass/exterior/zlevel3/westroad)
@@ -7588,6 +7649,14 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/e)
+"Sg" = (
+/obj/effect/urban/decal/trash/six,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
+"Sh" = (
+/obj/effect/urban/decal/trash/five,
+/turf/open/floor/plating/ground/concrete,
+/area/mountain_pass/interior/construction)
 "Sj" = (
 /turf/open/urban/street/sidewalkfull,
 /area/mountain_pass/cave/south/zlevel2)
@@ -7622,6 +7691,11 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/s)
+"Sq" = (
+/obj/structure/table/urban/shiny_brown,
+/obj/item/folder/black,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "Sr" = (
 /obj/machinery/door/airlock/urban/generic_solid,
 /turf/open/floor/iron/kitchen_coldroom,
@@ -7688,6 +7762,11 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
+"SS" = (
+/obj/structure/table/urban/shiny_brown,
+/obj/effect/spawner/random/food_or_drink,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/construction)
 "SU" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/urban/street/cement2,
@@ -7913,6 +7992,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/mountain_pass/cave/south/east)
+"Uj" = (
+/obj/item/clothing/gloves/black,
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/exterior/w)
 "Uk" = (
 /turf/open/urban/street/cement2,
 /area/mountain_pass/exterior/e)
@@ -8531,6 +8614,7 @@
 /area/mountain_pass/exterior/w)
 "XZ" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/interior/construction)
 "Ya" = (
@@ -8749,6 +8833,10 @@
 	dir = 8
 	},
 /area/mountain_pass/exterior/zlevel2/eastroad)
+"Zj" = (
+/obj/item/trash/trashbag,
+/turf/open/floor/plating,
+/area/mountain_pass/interior/construction)
 "Zk" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/cave/south/zlevel2/west)
@@ -10740,7 +10828,7 @@ gF
 gF
 gF
 uh
-Ym
+Cp
 HU
 FF
 ks
@@ -10749,7 +10837,7 @@ AP
 AP
 AP
 wM
-is
+PK
 uh
 gF
 gF
@@ -10912,15 +11000,15 @@ ER
 gF
 gF
 uh
+Zj
 Ym
 Ym
 Ym
-Ym
 AP
 AP
 AP
-AP
-AP
+xu
+xu
 qC
 uh
 gF
@@ -11087,7 +11175,7 @@ uh
 Ym
 Ym
 Ym
-Ym
+Bn
 AP
 AP
 AP
@@ -11259,7 +11347,7 @@ uh
 Ym
 Ym
 ae
-Ym
+Bn
 Ym
 AP
 qC
@@ -11441,7 +11529,7 @@ AP
 uh
 Pv
 zv
-ex
+Sq
 tw
 uh
 gF
@@ -11609,12 +11697,12 @@ AP
 is
 MC
 AP
-AP
+Sh
 Zs
+ln
 zW
 zW
-zW
-zW
+ni
 uh
 gF
 br
@@ -11777,14 +11865,14 @@ kr
 Ym
 Ym
 Ym
-AP
-wM
+xu
+tN
 Mz
 AP
 AP
 uh
-Pj
-zW
+ab
+LF
 zW
 zW
 md
@@ -11955,7 +12043,7 @@ AP
 AP
 AP
 uh
-ex
+SS
 tp
 lq
 zW
@@ -12300,7 +12388,7 @@ AP
 AP
 uh
 zW
-zW
+Sg
 Pj
 zW
 uh
@@ -12463,12 +12551,12 @@ sm
 Pn
 Ym
 Ym
-Pn
+mk
 eO
 AP
 AP
-AP
-AP
+xu
+xu
 AP
 uh
 GG
@@ -12806,9 +12894,9 @@ br
 br
 br
 br
-br
-br
-br
+Uj
+kg
+vj
 ec
 br
 br
