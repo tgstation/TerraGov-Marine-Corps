@@ -17,6 +17,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aN" = (
@@ -316,9 +317,6 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "uL" = (
-/obj/structure/barricade/folding{
-	dir = 1
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "vf" = (
@@ -412,12 +410,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
-"ze" = (
-/obj/structure/barricade/folding{
-	dir = 8
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "zg" = (
 /obj/structure/closet/secure_closet/guncabinet/canterbury,
 /obj/machinery/air_alarm{
@@ -436,12 +428,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
-/area/shuttle/canterbury)
-"AG" = (
-/obj/structure/barricade/folding{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "AP" = (
 /obj/machinery/computer/camera_advanced/overwatch,
@@ -913,9 +899,9 @@ wZ
 vf
 Br
 hj
-ze
-ze
-ze
+uL
+uL
+uL
 dS
 cg
 lT
@@ -1373,9 +1359,9 @@ MQ
 Oc
 Bj
 cg
-AG
-AG
-AG
+uL
+uL
+uL
 Kq
 cg
 lT
