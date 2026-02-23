@@ -127,6 +127,11 @@
 /obj/machinery/computer/som,
 /turf/open/urban/street/cement2,
 /area/space)
+"aH" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "aI" = (
 /obj/structure/flora/ausbushes,
 /turf/open/ground/grass/weedable,
@@ -183,9 +188,9 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/artillery_ammunition_storage)
 "bc" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirtgrassborder2{
-	dir = 1
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/sidewalk{
+	dir = 8
 	},
 /area/mountain_pass/exterior/landingzone)
 "bd" = (
@@ -724,6 +729,10 @@
 /obj/structure/bed/urban/bunkbed2,
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
+"eb" = (
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble12/dense,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "ec" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/dirt2,
@@ -989,6 +998,12 @@
 /obj/item/storage/belt/marine/icc,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/barracks)
+"fB" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "fD" = (
 /obj/effect/urban/decal/trash/fourteen,
 /turf/open/floor/plating/ground/dirt2,
@@ -1154,6 +1169,9 @@
 	dir = 4
 	},
 /area/mountain_pass/exterior/zlevel2/central)
+"gE" = (
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/interior/lz_offices)
 "gF" = (
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/w)
@@ -1400,11 +1418,9 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/cargo)
 "hR" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/ground/grass/weedable,
-/area/mountain_pass/exterior/landingzone)
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble5,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "hV" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1458,6 +1474,12 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/tile/dark,
 /area/space)
+"ij" = (
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/sidewalk{
+	dir = 9
+	},
+/area/mountain_pass/exterior/landingzone)
 "ik" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -1774,6 +1796,11 @@
 /obj/effect/landmark/corpsespawner/icc/guard,
 /turf/open/floor/plating/ground/dirt2,
 /area/space)
+"kd" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/item/stack/sheet/metal,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "ke" = (
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
@@ -2109,6 +2136,10 @@
 	dir = 8
 	},
 /area/mountain_pass/exterior/zlevel3/westroad)
+"ma" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "mb" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
@@ -2307,6 +2338,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/artillery_ammunition_storage)
+"nh" = (
+/obj/structure/window/framed/urban/reinforced,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/exterior/landingzone)
 "ni" = (
 /obj/effect/urban/decal/trash/seventeen,
 /turf/open/urban/street/cement2,
@@ -2456,9 +2491,9 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/kitchen)
 "of" = (
-/obj/structure/window/framed/urban/reinforced,
+/obj/structure/table/reinforced,
 /turf/open/urban/street/cement2,
-/area/mountain_pass/interior/lz_offices)
+/area/mountain_pass/interior/cargo)
 "og" = (
 /obj/machinery/door/airlock/multi_tile/secure{
 	welded = 1
@@ -2809,10 +2844,9 @@
 	},
 /area/space)
 "qk" = (
-/obj/structure/prop/vehicle/big_truck/enclosed{
-	dir = 8
+/turf/open/urban/street/sidewalkcenter{
+	dir = 1
 	},
-/turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/landingzone)
 "ql" = (
 /obj/effect/decal/cleanable/dirt/grime4,
@@ -2937,7 +2971,6 @@
 /turf/open/floor/mainship/floor,
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
 "qM" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/mountain_pass/exterior/landingzone)
 "qN" = (
@@ -2958,9 +2991,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/space)
 "qS" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/ground/grass/weedable,
+/turf/closed/mineral/smooth,
 /area/mountain_pass/exterior/s)
 "qT" = (
 /obj/structure/flora/jungle/vines,
@@ -3037,8 +3068,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/e)
 "rs" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth,
+/turf/closed/wall/urban,
 /area/space)
 "rt" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -3067,6 +3097,13 @@
 "rA" = (
 /turf/open/floor/mainship/floor,
 /area/mountain_pass/cave/zlevel2/coastal_gauss)
+"rC" = (
+/obj/structure/prop/urban/airport/refuelinghose{
+	pixel_w = -10;
+	pixel_z = -1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/exterior/landingzone)
 "rD" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/clothing/under/icc/officer,
@@ -3094,12 +3131,10 @@
 /turf/open/floor/urban/tile/tileblue,
 /area/space)
 "rH" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/ground/grass/weedable,
-/area/mountain_pass/exterior/landingzone)
+/obj/structure/table/reinforced,
+/obj/item/tool/weldingtool,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "rI" = (
 /obj/structure/table/urban/shiny_brown,
 /obj/item/reagent_containers/food/drinks/bottle/cognac{
@@ -3243,6 +3278,11 @@
 	},
 /turf/open/urban/street/cement1,
 /area/mountain_pass/interior/guard_barracks)
+"so" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "sq" = (
 /turf/open/ground,
 /area/mountain_pass/exterior/beach)
@@ -3295,6 +3335,10 @@
 "sF" = (
 /turf/open/openspace,
 /area/space)
+"sH" = (
+/obj/machinery/door/airlock/urban/generic,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "sI" = (
 /obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /turf/open/floor/tile/dark,
@@ -3371,6 +3415,12 @@
 /obj/item/clothing/mask/gas/icc,
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/guard_barracks)
+"ta" = (
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/mountain_pass/exterior/landingzone)
 "tb" = (
 /turf/open/floor/plating/dmg3,
 /area/mountain_pass/cave/armory)
@@ -3394,10 +3444,7 @@
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior)
 "ti" = (
-/obj/structure/prop/vehicle/big_truck{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/urban/street/cement2,
 /area/mountain_pass/exterior/landingzone)
 "tk" = (
 /obj/structure/table/urban/shiny_brown,
@@ -3590,6 +3637,10 @@
 /obj/machinery/computer,
 /turf/open/urban/street/cement2,
 /area/space)
+"ux" = (
+/obj/structure/prop/urban/misc/buildinggreeblies/greeble9/dense,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "uy" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/mountain_pass/cave/armory)
@@ -3827,6 +3878,11 @@
 /obj/machinery/vending/coffee,
 /turf/open/urban/street/cement2,
 /area/space)
+"vY" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/welding,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "vZ" = (
 /obj/structure/prop/vehicle/icc_recontank{
 	dir = 4
@@ -3937,9 +3993,12 @@
 /turf/open/floor/iron/kitchen_coldroom,
 /area/mountain_pass/interior/kitchen)
 "wu" = (
-/obj/structure/table/reinforced,
+/obj/structure/prop/vehicle/big_truck/flat{
+	dir = 1;
+	pixel_w = -12
+	},
 /turf/open/urban/street/cement2,
-/area/mountain_pass/interior/lz_offices)
+/area/mountain_pass/interior/cargo)
 "ww" = (
 /obj/machinery/shower{
 	dir = 4
@@ -4003,9 +4062,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mountain_pass/interior/construction)
 "wL" = (
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/window/framed/urban/marshalls,
 /turf/open/urban/street/cement2,
-/area/mountain_pass/interior/lz_offices)
+/area/mountain_pass/exterior/landingzone)
 "wM" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -4102,11 +4161,11 @@
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/e)
 "xo" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/sidewalk{
+	dir = 1
 	},
-/turf/closed/mineral/smooth/indestructible,
-/area/space)
+/area/mountain_pass/exterior/landingzone)
 "xp" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 1
@@ -4716,6 +4775,10 @@
 	dir = 1
 	},
 /area/space)
+"AC" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "AE" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/siding/dark{
@@ -4790,6 +4853,15 @@
 /obj/structure/rock/brown/alt5,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
+"AY" = (
+/obj/structure/prop/urban/airport/refuelinghose2{
+	pixel_w = -10;
+	pixel_z = -4
+	},
+/turf/open/urban/street/sidewalkcenter{
+	dir = 8
+	},
+/area/mountain_pass/exterior/landingzone)
 "Ba" = (
 /obj/structure/table/wood,
 /turf/open/urban/street/cement2,
@@ -5212,9 +5284,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "Dh" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/indestructible,
-/area/space)
+/obj/item/tool/weldingtool,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "Di" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable,
@@ -5327,6 +5399,10 @@
 	dir = 4
 	},
 /area/mountain_pass/exterior)
+"DU" = (
+/obj/effect/spawner/random/misc/structure/closet/welding,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "DV" = (
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 8
@@ -5388,11 +5464,14 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/exterior/e)
 "Ej" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/obj/structure/barricade/sandbags{
 	dir = 4
 	},
-/area/mountain_pass/exterior/landingzone)
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/coastal_bunker)
 "Ek" = (
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/landingzone)
@@ -5485,6 +5564,15 @@
 /obj/structure/table/urban/shiny_brown,
 /turf/open/urban/street/cement2,
 /area/space)
+"EQ" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/coastal_bunker)
 "ER" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable,
@@ -5525,6 +5613,10 @@
 "Fn" = (
 /turf/open/ground/jungle/clear,
 /area/space)
+"Fo" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/exterior/landingzone)
 "Fq" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'SECURE AREA'."dir=1
@@ -5766,9 +5858,8 @@
 /turf/open/ground/jungle/clear,
 /area/mountain_pass/exterior/zlevel2/eastroad)
 "GR" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/ground/grass/weedable,
-/area/mountain_pass/exterior/landingzone)
+/turf/open/urban/street/cement2,
+/area/mountain_pass/exterior/s)
 "GS" = (
 /obj/structure/prop/mainship/sensor_computer1/black,
 /turf/open/urban/street/cement2,
@@ -5853,6 +5944,11 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior)
+"Ht" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/small_stack,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "Hu" = (
 /turf/open/urban/street/sidewalk{
 	dir = 4
@@ -5888,11 +5984,10 @@
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/beach)
 "HD" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/mineral/smooth,
-/area/space)
+/obj/structure/bed/roller,
+/obj/item/tool/wrench,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "HG" = (
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge/corner2{
 	dir = 4
@@ -6150,6 +6245,7 @@
 /turf/open/urban/street/cement2,
 /area/space)
 "Jo" = (
+/obj/structure/rock/variable/tinyrock/brown2,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
@@ -6243,6 +6339,12 @@
 "JR" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/zlevel2/eastroad)
+"JS" = (
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/mountain_pass/exterior/landingzone)
 "JU" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/rifle/icc_assaultcarbine,
@@ -6633,6 +6735,9 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/core,
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/zlevel3/westroad)
+"Mq" = (
+/turf/closed/mineral/smooth,
+/area/mountain_pass/exterior)
 "Mt" = (
 /obj/structure/table/reinforced,
 /obj/structure/window{
@@ -6707,10 +6812,7 @@
 /turf/open/urban/street/cement3,
 /area/mountain_pass/interior/armorer_workshop)
 "MO" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/rock/variable/tinyrock/brown2,
-/turf/open/ground/grass/weedable,
+/turf/closed/wall/urban,
 /area/mountain_pass/exterior/landingzone)
 "MP" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -6804,7 +6906,8 @@
 /turf/open/urban/street/sidewalkfull,
 /area/space)
 "Nk" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/obj/structure/prop/fueltank,
+/turf/open/urban/street/asphalt,
 /area/mountain_pass/exterior/landingzone)
 "Nl" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -7105,12 +7208,23 @@
 /obj/effect/mapping_helpers/simple_pipes/general/hidden,
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
+"Pi" = (
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/sidewalk{
+	dir = 5
+	},
+/area/mountain_pass/exterior/landingzone)
 "Pj" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/construction)
+"Pk" = (
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "Pm" = (
 /obj/structure/rock/variable/tinyrock,
 /obj/effect/landmark/xeno_resin_wall,
@@ -7326,6 +7440,10 @@
 /obj/item/trash/pillpacket,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"Qx" = (
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/plating/ground/dirt2,
+/area/mountain_pass/exterior/w)
 "Qy" = (
 /obj/machinery/door/airlock/urban/personal_solid{
 	dir = 2
@@ -7385,6 +7503,19 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/mountain_pass/exterior/e)
+"QK" = (
+/obj/structure/prop/vehicle/icc_recontank,
+/obj/structure/prop/vehicle/icc_recontank/wheels,
+/obj/structure/prop/vehicle/icc_recontank/turret{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/icc_recontank/damage/veryhigh,
+/obj/structure/prop/vehicle/icc_recontank/cannon{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "QL" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
@@ -7618,8 +7749,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/space)
 "RV" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
-/area/mountain_pass/exterior/landingzone)
+/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "RW" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -7719,9 +7851,8 @@
 /turf/open/urban/street/cement2,
 /area/mountain_pass/interior/coastal_bunker)
 "Sy" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/ground/grass/weedable,
-/area/mountain_pass/exterior/landingzone)
+/turf/closed/wall/urban,
+/area/mountain_pass/exterior/s)
 "Sz" = (
 /obj/machinery/door/airlock/engineering,
 /turf/open/floor/tile/dark,
@@ -7866,6 +7997,10 @@
 	},
 /turf/open/floor/urban/tile/tileblue,
 /area/space)
+"Tv" = (
+/obj/structure/table/reinforced,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/exterior/landingzone)
 "Tx" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 5
@@ -7902,6 +8037,11 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/tile/dark,
 /area/space)
+"TI" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/weldpack,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "TK" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
@@ -7927,7 +8067,6 @@
 /turf/open/ground,
 /area/mountain_pass/exterior/beach)
 "TS" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 8
 	},
@@ -7937,8 +8076,9 @@
 /turf/open/ground/grass/weedable,
 /area/mountain_pass/exterior/landingzone)
 "TV" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/urban/street/sidewalkcenter{
+	dir = 8
+	},
 /area/mountain_pass/exterior/landingzone)
 "TW" = (
 /obj/machinery/power/geothermal,
@@ -8003,6 +8143,10 @@
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
 /area/mountain_pass/cave/panic_bunker)
+"Um" = (
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/asphalt,
+/area/mountain_pass/exterior/landingzone)
 "Un" = (
 /obj/structure/table/reinforced,
 /obj/structure/window{
@@ -8658,9 +8802,9 @@
 /turf/open/floor/plating,
 /area/mountain_pass/interior/construction)
 "Yn" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
-	dir = 1
+/obj/structure/rock/variable/tinyrock/brown2,
+/turf/open/urban/street/sidewalk{
+	dir = 4
 	},
 /area/mountain_pass/exterior/landingzone)
 "Yp" = (
@@ -8905,6 +9049,10 @@
 "Zx" = (
 /turf/open/floor/tile/dark/brown2/corner,
 /area/mountain_pass/cave/zlevel2/engi_offices)
+"Zy" = (
+/obj/item/stack/sheet/metal,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "Zz" = (
 /obj/machinery/door/poddoor/shutters/urban/secure_red_door{
 	dir = 2
@@ -8912,9 +9060,9 @@
 /turf/open/floor/tile/dark,
 /area/space)
 "ZA" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/ground/grass/weedable,
-/area/space)
+/obj/structure/rack,
+/turf/open/urban/street/cement2,
+/area/mountain_pass/interior/cargo)
 "ZB" = (
 /obj/structure/window/framed/urban/reinforced,
 /turf/open/floor/prison/sterilewhite,
@@ -9137,7 +9285,7 @@ Mn
 Mn
 Mn
 Mn
-xo
+Mn
 Mn
 Mn
 Mn
@@ -9309,7 +9457,7 @@ Gz
 Gz
 Gz
 Gz
-HD
+Gz
 Gz
 Gz
 Gz
@@ -9481,7 +9629,7 @@ Gz
 Gz
 Gz
 Gz
-HD
+Gz
 Gz
 Gz
 Gz
@@ -9499,7 +9647,7 @@ Ek
 Ek
 Ek
 Ek
-TT
+Ek
 Ek
 Ek
 Ek
@@ -9653,7 +9801,7 @@ Gz
 Gz
 Gz
 Gz
-HD
+Gz
 Gz
 Gz
 Gz
@@ -9825,7 +9973,7 @@ Gz
 Gz
 Gz
 Gz
-HD
+Gz
 aX
 aX
 zc
@@ -9840,7 +9988,7 @@ Ek
 Ek
 Ek
 Ek
-tX
+Ek
 Ek
 Ek
 Ek
@@ -9997,12 +10145,12 @@ Gz
 Gz
 Gz
 Gz
-HD
+Gz
 aX
-kE
+ij
 Js
 Js
-Js
+bc
 Js
 Js
 Js
@@ -10169,9 +10317,9 @@ gF
 Gz
 Gz
 Gz
-HD
+Gz
 aX
-uJ
+xo
 BR
 oX
 oX
@@ -10341,7 +10489,7 @@ ER
 NK
 Gz
 Gz
-HD
+Gz
 aX
 uJ
 Ox
@@ -10513,7 +10661,7 @@ gF
 gF
 Gz
 Gz
-HD
+Gz
 aX
 uJ
 Ox
@@ -10685,9 +10833,9 @@ gF
 Gz
 Gz
 Gz
-HD
+Gz
 aX
-uJ
+xo
 Ox
 IK
 Ea
@@ -10857,7 +11005,7 @@ gF
 gF
 NK
 mg
-HD
+Gz
 aX
 uJ
 Ox
@@ -11029,9 +11177,9 @@ gF
 XY
 gF
 mg
-HD
+Gz
 aX
-uJ
+xo
 Ox
 IK
 Ea
@@ -11201,8 +11349,8 @@ gF
 gF
 gF
 mg
-hR
-zc
+aX
+aX
 uJ
 Ox
 IK
@@ -11373,9 +11521,9 @@ Va
 gF
 gF
 mg
-rH
-Ek
-uJ
+aX
+aX
+xo
 Ox
 IK
 Ea
@@ -11545,7 +11693,7 @@ gF
 gF
 ER
 mg
-hR
+Ek
 Ek
 uJ
 Ox
@@ -11717,7 +11865,7 @@ gF
 gF
 gF
 mg
-hR
+Ek
 Ek
 uJ
 Ox
@@ -11889,7 +12037,7 @@ gF
 gF
 gF
 mg
-hR
+Ek
 tX
 uJ
 Ox
@@ -12061,7 +12209,7 @@ gF
 gF
 gF
 mg
-hR
+Ek
 Ek
 uJ
 Ox
@@ -12233,7 +12381,7 @@ gF
 ER
 gF
 mg
-hR
+Ek
 Ek
 uJ
 Ox
@@ -12405,7 +12553,7 @@ gF
 ER
 gF
 mg
-hR
+Ek
 Ek
 uJ
 Ox
@@ -12577,7 +12725,7 @@ kQ
 gF
 gF
 mg
-hR
+Ek
 zc
 uJ
 Ox
@@ -12749,9 +12897,9 @@ tR
 gF
 gF
 mg
-hR
 Ek
-uJ
+aX
+xo
 Ox
 TF
 Tg
@@ -12921,9 +13069,9 @@ tR
 gF
 gF
 mg
-hR
-Ek
-uJ
+aX
+aX
+xo
 pt
 Js
 Js
@@ -12931,7 +13079,7 @@ Js
 Js
 Js
 Js
-Js
+bc
 Js
 Js
 Js
@@ -13093,19 +13241,19 @@ tR
 gF
 bv
 mg
-hR
-Ek
-BK
+aX
+aX
+Pi
+Yn
 oX
 oX
 oX
 oX
+Yn
 oX
 oX
 oX
-oX
-oX
-oX
+Yn
 oX
 oX
 oX
@@ -13265,21 +13413,21 @@ tR
 gF
 ER
 mg
-hR
-tX
-Ek
-Ek
-Ek
-Ek
-Ek
-tX
-Ek
-GK
-Ek
-RV
+aX
+MO
+MO
+MO
+wL
+wL
+wL
+wL
+MO
+MO
+MO
+Ea
 Nk
-Fj
-Fj
+Um
+qk
 Fj
 Fj
 Fj
@@ -13437,20 +13585,20 @@ tR
 ER
 NK
 mg
-hR
+aX
 MO
-tX
-pU
-Ek
-Ek
-Ek
-Ek
-Ek
-Ek
-RV
-Nk
-Fj
-Fj
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+MO
+Ea
+Ea
+Ea
 qk
 Fj
 Fj
@@ -13609,21 +13757,21 @@ tR
 gF
 gF
 mg
-hR
+aX
 Wz
+XW
+XW
+XW
+XW
+XW
+XW
+XW
+XW
 Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Fj
-Fj
-Fj
-Fj
+Ea
+Ea
+Ea
+Ea
 Fj
 Fj
 Fj
@@ -13781,7 +13929,7 @@ ya
 kQ
 gF
 mg
-HD
+Gz
 Wz
 XW
 XW
@@ -13791,11 +13939,11 @@ XW
 XW
 XW
 XW
-XW
-Fj
-Fj
-Fj
-Fj
+Wz
+TV
+TV
+TV
+AY
 Fj
 Fj
 Fj
@@ -13953,7 +14101,7 @@ br
 tR
 gF
 mg
-HD
+Gz
 Wz
 XW
 XW
@@ -13970,9 +14118,9 @@ Fj
 Fj
 Fj
 Fj
+rC
 Fj
 Fj
-ti
 Fj
 Fj
 Fj
@@ -14125,7 +14273,7 @@ br
 tR
 gF
 Gz
-HD
+Gz
 Wz
 XW
 XW
@@ -14297,7 +14445,7 @@ br
 tR
 Gz
 Gz
-HD
+Gz
 Wz
 XW
 XW
@@ -14452,9 +14600,9 @@ ec
 br
 br
 br
-br
-br
-br
+Qx
+Qx
+Qx
 br
 br
 br
@@ -14469,7 +14617,7 @@ br
 tR
 Gz
 Gz
-HD
+Gz
 Wz
 XW
 XW
@@ -14492,11 +14640,11 @@ Wz
 Fj
 Fj
 Fj
-Fj
-Fj
-Fj
-Fj
-Fj
+MO
+wL
+wL
+wL
+MO
 Fj
 Fj
 Fj
@@ -14639,9 +14787,9 @@ br
 br
 br
 tR
+do
 Gz
 Gz
-HD
 Wz
 XW
 XW
@@ -14660,15 +14808,15 @@ XW
 XW
 XW
 XW
-Wz
+YR
 Fj
 Fj
 Fj
-Fj
-Fj
-Fj
-Fj
-Fj
+wL
+Fo
+Tv
+Tv
+nh
 Fj
 Fj
 Fj
@@ -14812,8 +14960,8 @@ br
 br
 tR
 NK
-Gz
-HD
+do
+do
 Wz
 XW
 XW
@@ -14836,11 +14984,11 @@ Wz
 Fj
 Fj
 Fj
-Wz
-zi
-zi
-zi
-Wz
+XW
+XW
+XW
+XW
+Lr
 Fj
 Fj
 Fj
@@ -14983,9 +15131,9 @@ lQ
 lQ
 lQ
 Iq
-Gz
-Gz
-HD
+do
+do
+ge
 Wz
 XW
 XW
@@ -15004,21 +15152,21 @@ XW
 XW
 XW
 XW
-YR
-Fj
-Fj
-Fj
+Wz
+on
+on
+on
+Wz
 zi
-wL
-wu
-wu
-of
+zi
+zi
+Wz
 Fj
 Fj
 Fj
 Fj
-Jt
-Ds
+JS
+ta
 Mn
 "}
 (36,1,1) = {"
@@ -15155,9 +15303,9 @@ lQ
 lQ
 lQ
 Iq
-Gz
-Gz
-HD
+do
+do
+do
 Wz
 XW
 XW
@@ -15180,17 +15328,17 @@ Wz
 Fj
 Fj
 Fj
-XW
-XW
-XW
-XW
-Lr
+gE
+gE
+gE
+gE
+gE
 Fj
 Fj
 Fj
-Fj
-Jo
-pU
+zC
+aX
+aX
 Mn
 "}
 (37,1,1) = {"
@@ -15327,9 +15475,15 @@ lQ
 lQ
 lQ
 Iq
+do
 Gz
 Gz
-HD
+Wz
+Wz
+XW
+XW
+XW
+XW
 Wz
 Wz
 Wz
@@ -15342,27 +15496,21 @@ Wz
 Wz
 Wz
 Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-Wz
-on
-on
-on
-Wz
-zi
-zi
-zi
 Wz
 Fj
 Fj
 Fj
+gE
+gE
+gE
+gE
+gE
 Fj
-Jo
-Sy
+Fj
+Fj
+aX
+aX
+aX
 Mn
 "}
 (38,1,1) = {"
@@ -15499,43 +15647,43 @@ lQ
 lQ
 lQ
 Iq
-zY
-zY
+ou
+Mq
+Gz
+Gz
 rs
-ZA
+Ow
+Ow
+Ow
+Ow
 rs
-rs
-rs
-rs
-rs
-rs
-rs
-Yn
+Gz
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 TS
 TS
 TS
-TS
-TS
-TS
-TS
-TS
-TS
-TS
-TS
-TS
-TS
-Ej
-GR
-GR
-GR
+Ds
+Ek
+Ek
+Ek
 qM
-TV
-TV
-TV
-TV
-bc
-GR
-Dh
+Fj
+Fj
+aX
+aX
+aX
+aX
+Mn
 "}
 (39,1,1) = {"
 Mn
@@ -15673,25 +15821,25 @@ lQ
 Iq
 lH
 zY
-zY
-rk
-Gz
-Gz
-Gz
-Gz
-Gz
-Av
-Hx
-Av
-rk
+Mq
 qS
-rk
-rk
-rk
-rk
-rk
-rk
-rk
+rs
+Ow
+Ow
+Ow
+Ow
+Sy
+qS
+qS
+qS
+qS
+qS
+qS
+qS
+qS
+qS
+qS
+qS
 rk
 rk
 rk
@@ -15705,8 +15853,8 @@ hN
 hN
 hN
 hN
-dY
-rk
+qS
+qS
 Mn
 "}
 (40,1,1) = {"
@@ -15845,22 +15993,22 @@ lQ
 Iq
 zY
 ou
-zY
-rk
-rk
-rk
-rk
-rk
-rk
-rk
+Mq
+qS
+Sy
+GR
+GR
+GR
+GR
+Sy
+qS
+qS
+qS
 kK
 rk
-rk
-rk
-rk
-aj
-rk
-rk
+qS
+qS
+qS
 Di
 rk
 aj
@@ -15877,8 +16025,8 @@ hN
 hN
 hN
 hN
-dY
-rk
+qS
+qS
 Mn
 "}
 (41,1,1) = {"
@@ -16018,20 +16166,20 @@ Iq
 ID
 zY
 lH
+qS
+Sy
+GR
+GR
+GR
+GR
+Sy
+kK
+kK
 rk
 rk
 rk
-rk
-rk
-rk
-rk
-rk
-rk
-rk
-rk
-rk
-rk
-rk
+kK
+kK
 rk
 rk
 rk
@@ -16050,7 +16198,7 @@ hN
 hN
 hN
 dY
-aj
+qS
 Mn
 "}
 (42,1,1) = {"
@@ -16192,10 +16340,10 @@ zY
 zY
 WO
 WO
-WO
-WO
-WO
-WO
+hP
+hP
+hP
+hP
 WO
 WO
 WO
@@ -16363,11 +16511,7 @@ zY
 zY
 zY
 WO
-hP
-hP
-hP
-KU
-hP
+ux
 hP
 hP
 hP
@@ -16376,11 +16520,15 @@ hP
 hP
 hP
 hP
+WO
+ma
+ma
+ZA
+ZA
+ZA
+ZA
 hP
-hP
-hP
-hP
-hP
+eb
 hP
 hP
 BO
@@ -16535,16 +16683,16 @@ fT
 zY
 lx
 WO
-xf
-hP
-hP
-WO
 hP
 hP
 hP
 hP
 hP
 hP
+hP
+hP
+hP
+KU
 hP
 hP
 hP
@@ -16707,10 +16855,6 @@ Iq
 lH
 zY
 WO
-PE
-hP
-hP
-BO
 hP
 hP
 hP
@@ -16718,6 +16862,10 @@ hP
 hP
 hP
 hP
+hP
+hP
+WO
+DU
 hP
 hP
 hP
@@ -16879,17 +17027,17 @@ Iq
 zY
 zY
 WO
-PE
-hP
-hP
-BO
 hP
 hP
 hP
 hP
 hP
-hP
-hP
+WO
+WO
+sH
+WO
+WO
+DU
 hP
 hP
 hP
@@ -17051,24 +17199,24 @@ Iq
 zY
 zY
 WO
-PE
-hP
-hP
-BO
 hP
 hP
 hP
 hP
 hP
+WO
+xf
 hP
 hP
+WO
+DU
+hP
+aH
+of
 hP
 hP
-hP
-hP
-hP
-hP
-hP
+of
+rH
 hP
 hP
 WO
@@ -17223,24 +17371,24 @@ Iq
 zY
 zY
 WO
-PE
-PE
-PE
-BO
 hP
 hP
 hP
 hP
 hP
+WO
 hP
 hP
 hP
+WO
 hP
 hP
+aH
+of
 hP
 hP
-hP
-hP
+TI
+vY
 hP
 hP
 WO
@@ -17395,24 +17543,24 @@ Iq
 zY
 zY
 WO
+hP
+hP
+hP
+hP
+hP
 BO
+PE
+hP
+hP
 BO
-BO
-WO
 hP
 hP
+fB
+rH
 hP
 hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
+vY
+of
 hP
 hP
 WO
@@ -17572,19 +17720,19 @@ hP
 hP
 hP
 hP
+BO
+PE
 hP
 hP
+BO
 hP
 hP
+so
+so
 hP
 hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
+Ht
+of
 hP
 hP
 WO
@@ -17744,15 +17892,15 @@ hP
 hP
 hP
 hP
+BO
+PE
+hP
+hP
+BO
 hP
 hP
 hP
-hP
-hP
-hP
-hP
-hP
-hP
+AC
 hP
 hP
 hP
@@ -17916,16 +18064,16 @@ hP
 hP
 hP
 hP
+BO
+PE
+PE
+PE
+BO
 hP
 hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
+AC
+AC
+wu
 hP
 hP
 hP
@@ -18088,19 +18236,19 @@ hP
 hP
 hP
 hP
+WO
+BO
+BO
+BO
+WO
+hR
 hP
 hP
 hP
 hP
 hP
 hP
-hP
-hP
-hP
-hP
-hP
-hP
-hP
+Pk
 hP
 hP
 hP
@@ -18264,16 +18412,16 @@ hP
 hP
 hP
 hP
+WO
 hP
 hP
 hP
+HD
 hP
-hP
-hP
-hP
-hP
-hP
-hP
+Zy
+Zy
+Dh
+kd
 hP
 hP
 hN
@@ -18436,6 +18584,7 @@ hP
 hP
 hP
 hP
+qD
 hP
 hP
 hP
@@ -18443,10 +18592,9 @@ hP
 hP
 hP
 hP
-hP
-hP
-hP
-hP
+AC
+QK
+AC
 hP
 hN
 hN
@@ -18780,9 +18928,9 @@ hP
 hP
 hP
 hP
-hP
-hP
-hP
+WO
+RV
+RV
 hP
 hP
 hP
@@ -26304,7 +26452,7 @@ BS
 BS
 BS
 BS
-BS
+KM
 BS
 tC
 tC
@@ -26821,11 +26969,11 @@ dy
 dy
 dy
 BS
-Sx
+Ej
 Sx
 lg
 Sx
-Sx
+EQ
 BS
 dy
 dy
