@@ -223,11 +223,9 @@
 	full_name = "Place Hologram"
 	description = "Place a holographic template of a structure"
 	keybind_signal = COMSIG_ABILITY_PLACE_HOLOGRAM
-	hotkey_keys = list("E")
 
 /datum/keybinding/human/select_buildtype
 	name = "select_buildtype"
 	full_name = "Select Buildtype"
 	description = "Select the structure to use when using Place Hologram"
 	keybind_signal = COMSIG_ABILITY_SELECT_BUILDTYPE
-	hotkey_keys = list("Q")
