@@ -37,6 +37,8 @@
 	var/datum/ui_state/state = null
 	/// Rate limit client refreshes to prevent DoS.
 	COOLDOWN_DECLARE(refresh_cooldown)
+	///If TRUE, the UI will not require the source object to be within view of the user
+	var/always_open = FALSE
 
 /**
  * public
@@ -49,10 +51,11 @@
  * optional title string The title of the UI.
  * optional ui_x int Deprecated: Window width.
  * optional ui_y int Deprecated: Window height.
+ * optional always_open bool If true, the UI will not require the source object to be within view of the user
  *
  * return datum/tgui The requested UI.
  */
-/datum/tgui/New(mob/user, datum/src_object, interface, title, ui_x, ui_y)
+/datum/tgui/New(mob/user, datum/src_object, interface, title, ui_x, ui_y, always_open)
 	log_tgui(user,
 		"new [interface]",
 		src_object = src_object)
@@ -66,6 +69,7 @@
 	// Deprecated
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
+	src.always_open = always_open
 
 /datum/tgui/Destroy()
 	user = null
@@ -298,6 +302,9 @@
  * Updates the status, and returns TRUE if status has changed.
  */
 /datum/tgui/proc/process_status()
+	if(always_open)
+		return FALSE
+
 	var/prev_status = status
 	status = src_object.ui_status(user, state)
 	return prev_status != status
