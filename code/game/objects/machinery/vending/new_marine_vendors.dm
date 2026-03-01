@@ -740,8 +740,12 @@
 		/obj/item/binoculars/tactical,
 		/obj/item/pinpointer,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/binoculars/fire_support,
 	)
+
+/obj/effect/vendor_bundle/leader/Initialize(mapload, autodelete)
+	if(SSticker.mode && istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+		gear_to_spawn += /obj/item/binoculars/fire_support
+	return ..()
 
 /obj/effect/vendor_bundle/commander
 	gear_to_spawn = list(
@@ -752,8 +756,12 @@
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/binoculars/fire_support,
 	)
+
+/obj/effect/vendor_bundle/commander/Initialize(mapload, autodelete)
+	if(SSticker.mode && istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+		gear_to_spawn += /obj/item/binoculars/fire_support
+	return ..()
 
 /obj/effect/vendor_bundle/synth
 	gear_to_spawn = list(

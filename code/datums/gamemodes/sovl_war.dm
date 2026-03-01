@@ -62,6 +62,8 @@
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
+	GLOB.loadout_role_essential_set[SQUAD_LEADER][/obj/item/binoculars/fire_support] = 1
+	GLOB.loadout_role_essential_set[FIELD_COMMANDER][/obj/item/binoculars/fire_support] = 1
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
