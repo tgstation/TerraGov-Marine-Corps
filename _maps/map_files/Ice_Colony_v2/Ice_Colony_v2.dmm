@@ -13139,7 +13139,6 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bFc" = (
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -27158,10 +27157,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
 "pBp" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/effect/spawner/random/engineering/toolbox,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering/garbledradio)
 "pBR" = (
