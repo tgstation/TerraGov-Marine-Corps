@@ -442,6 +442,24 @@
 		return
 	owner.adjustFireLoss(10)
 
+/datum/status_effect/spacefreeze/light/high_altitude
+	id = "high_altitude"
+
+/datum/status_effect/spacefreeze/light/high_altitude/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The frigid wind whips at your limbs, carrying your body heat along with it. You should probably get down."))
+
+/datum/status_effect/longfall
+	alert_type = /atom/movable/screen/alert/status_effect/longfall
+	id = "longfall"
+
+/datum/status_effect/longfall/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("It's a long way to solid ground from here..."))
+
+/datum/status_effect/longfall/tick(delta_time)
+	owner.adjustBruteLoss(800)
+
 ///irradiated mob
 /datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
@@ -985,6 +1003,10 @@
 	name = "Freezing"
 	desc = "Space is very very cold, who would've thought?"
 	icon_state = "cold3"
+
+/atom/movable/screen/alert/status_effect/longfall
+	name = "Freefalling"
+	desc = "Speed has never killed anyone. Suddenly becoming stationary, that's what gets you."
 
 // ***************************************
 // *********** Dancer Tagged

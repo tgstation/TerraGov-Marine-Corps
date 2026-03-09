@@ -9,6 +9,11 @@
 	minimap_color = MINIMAP_AREA_JUNGLE
 	always_unpowered = TRUE
 
+/area/space/mountain_pass/midair
+	debuff_type = /datum/status_effect/spacefreeze/light/high_altitude
+	ambience = list('sound/ambience/windambient.ogg')
+	icon_state = "runway"
+
 /area/mountain_pass/exterior/landingzone
 	name = "Z-Level 1: Landing Zone"
 	icon = 'icons/turf/area_kutjevo.dmi'
@@ -40,7 +45,7 @@
 	icon_state = "blue2"
 	minimap_color = MINIMAP_WATER
 
-/area/mountain_pass/exterior/zlevel2/westroad
+/area/mountain_pass/exterior/zlevel2
 	name = "Z-Level 2: Western Road"
 	icon_state = "west"
 
@@ -52,9 +57,25 @@
 	name = "Z-Level 2: Central Base Grounds"
 	icon_state = "central"
 
-/area/mountain_pass/exterior/zlevel3/westroad
+/area/mountain_pass/exterior/zlevel3
 	name = "Z-Level 3: Western Road"
 	icon_state = "west"
+
+/area/mountain_pass/exterior/zlevel3/northwesternroad
+	name = "Z-Level 3: Northwestern Road"
+	icon_state = "northwest"
+
+/area/mountain_pass/exterior/zlevel3/centralroad
+	name = "Z-Level 3: Central Road"
+	icon_state = "central"
+
+/area/mountain_pass/exterior/zlevel3/easterncliff
+	name = "Z-Level 3: Eastern Cliff"
+	icon_state = "east"
+
+/area/mountain_pass/exterior/zlevel3/northeasterncliff
+	name = "Z-Level 3: Northeastern Cliff"
+	icon_state = "northeast"
 
 // Interior Areas
 
@@ -120,6 +141,11 @@
 	icon_state = "construction"
 	minimap_color = MINIMAP_AREA_COLONY
 
+/area/mountain_pass/interior/zlevel2
+	name = "Z-level 2: Defensive Bunker"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
 // Underground Buildings
 /area/mountain_pass/cave
 	name = "Z-level 1: Underground Brig"
@@ -154,6 +180,7 @@
 	name = "Z-level 2: Underground Engineering - Offices"
 	icon_state = "engine_monitoring"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/mountain_pass/cave/zlevel2/coastal_gauss
 	name = "Z-level 2: Underground Gauss Cannon"
@@ -161,66 +188,86 @@
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 	ceiling = CEILING_UNDERGROUND_METAL
 
+/area/mountain_pass/cave/zlevel3
+	name = "Z-level 3: CIC Bunker - Security Checkpoint"
+	icon_state = "checkpoint1"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
+	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/mountain_pass/cave/zlevel3/cic_bunker_front
+	name = "Z-level 3: CIC Bunker - Gate"
+	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+
+/area/mountain_pass/cave/zlevel3/cic_bunker
+	name = "Z-level 3: CIC Bunker - Interior"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
 // Cave areas
 
-/area/mountain_pass/cave/south
+/area/mountain_pass/cave/passages
 	name = "Z-level 1: Southern Caves"
 	icon_state = "caves_south"
 	icon = 'icons/turf/hybrisareas.dmi'
 	minimap_color = MINIMAP_SHALE
 	ceiling = CEILING_UNDERGROUND
 
-/area/mountain_pass/cave/south/east
+/area/mountain_pass/cave/passages/east
 	name = "Z-level 1: Eastern Caves"
 	icon_state = "caves_east"
 
-/area/mountain_pass/cave/south/north
+/area/mountain_pass/cave/passages/north
 	name = "Z-level 1: Northern Caves"
 	icon_state = "caves_north"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/mountain_pass/cave/south/west
+/area/mountain_pass/cave/passages/west
 	name = "Z-level 1: Western Caves"
 	icon_state = "caves_west"
 
-/area/mountain_pass/cave/south/northwest
+/area/mountain_pass/cave/passages/northwest
 	name = "Z-level 1: Northwestern Caves"
 	icon_state = "caves_northwest"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/mountain_pass/cave/south/collapsed_tunnel
-	name = "Z-level 1: Collapsed Tunnel"
-	icon_state = "caves_central"
-	ceiling = CEILING_DEEP_UNDERGROUND
+/area/mountain_pass/cave/passages/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
-/area/mountain_pass/cave/south/zlevel2/northeast
+/area/mountain_pass/cave/passages/zlevel2
+	name = "Z-level 2: Southern Caves"
+
+/area/mountain_pass/cave/passages/zlevel2/northeast
 	name = "Z-level 2: Northeastern Caves"
 	icon_state = "caves_northeast"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/mountain_pass/cave/south/zlevel2/north
+/area/mountain_pass/cave/passages/zlevel2/north
 	name = "Z-level 2: Northern Caves"
 	icon_state = "caves_north"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/mountain_pass/cave/south/zlevel2/northwest
+/area/mountain_pass/cave/passages/zlevel2/northwest
 	name = "Z-level 2: Northwestern Caves"
 	icon_state = "caves_northwest"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
-/area/mountain_pass/cave/south/zlevel2/east
+/area/mountain_pass/cave/passages/zlevel2/east
 	name = "Z-level 2: Eastern Caves"
 	icon_state = "caves_east"
 
-/area/mountain_pass/cave/south/zlevel2/southeast
+/area/mountain_pass/cave/passages/zlevel2/southeast
 	name = "Z-level 2: Southeastern Caves"
 	icon_state = "caves_southeast"
 
-/area/mountain_pass/cave/south/zlevel2/southwest
+/area/mountain_pass/cave/passages/zlevel2/southwest
 	name = "Z-level 2: Southwestern Caves"
 	icon_state = "caves_southwest"
 
-/area/mountain_pass/cave/south/zlevel2/west
+/area/mountain_pass/cave/passages/zlevel2/west
 	name = "Z-level 2: Western Caves"
 	icon_state = "caves_west"
 	ceiling = CEILING_DEEP_UNDERGROUND
