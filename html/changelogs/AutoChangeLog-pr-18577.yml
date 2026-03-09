@@ -1,0 +1,5 @@
+author: "Scav"
+delete-after: True
+changes:
+  - rscdel: "Removed the prebuilt folding cades on all crash ships"
+  - rscadd: "Added extra materials to compensate"
