@@ -1,0 +1,6 @@
+2026-03-10:
+  PibeCantina:
+  - balance: Moved ice colony's last disk further south.
+  Scav:
+  - rscdel: Removed the prebuilt folding cades on all crash ships
+  - rscadd: Added extra materials to compensate
