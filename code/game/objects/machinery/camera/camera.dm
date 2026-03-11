@@ -22,23 +22,23 @@
 	var/in_use_lights = FALSE
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
+/obj/machinery/camera/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_z = -16
+		if(SOUTH)
+			pixel_z = 32
+		if(EAST)
+			pixel_w = -16
+		if(WEST)
+			pixel_w = 16
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
 	icon_state = "camera"
 
-	if(newDir)
-		setDir(newDir)
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = -16
-		if(SOUTH)
-			pixel_y = 16
-		if(EAST)
-			pixel_x = -16
-		if(WEST)
-			pixel_x = 16
+	setDir(newDir ? newDir : dir)
 
 	for(var/i in network)
 		network -= i
