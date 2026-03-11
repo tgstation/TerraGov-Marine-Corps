@@ -22,18 +22,6 @@
 	var/in_use_lights = FALSE
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
-/obj/machinery/camera/setDir(newdir)
-	. = ..()
-	switch(dir)
-		if(NORTH)
-			pixel_z = -16
-		if(SOUTH)
-			pixel_z = 32
-		if(EAST)
-			pixel_w = -16
-		if(WEST)
-			pixel_w = 16
-
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
 	icon_state = "camera"
@@ -83,6 +71,18 @@
 		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
 			. += span_info("It can reactivated with a <b>screwdriver</b>.")
+
+/obj/machinery/camera/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_z = -16
+		if(SOUTH)
+			pixel_z = 32
+		if(EAST)
+			pixel_w = -16
+		if(WEST)
+			pixel_w = 16
 
 
 /obj/machinery/camera/proc/camera_ui_data()
