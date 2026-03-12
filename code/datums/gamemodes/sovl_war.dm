@@ -49,16 +49,13 @@
 	)
 	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
-/datum/game_mode/infestation/sovl_war/setup()
+/datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
 	//testing only
 	addtimer(CALLBACK(src, PROC_REF(enable_pods)), deploy_time_lock)
 	for(var/obj/machinery/computer/camera_advanced/remote_fob/computer AS in GLOB.remote_fob_computers)
 		computer.metal_remaining += 100
 		computer.plasteel_remaining += 50
-
-/datum/game_mode/infestation/sovl_war/post_setup()
-	. = ..()
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
