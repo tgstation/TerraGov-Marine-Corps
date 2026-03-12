@@ -64,6 +64,9 @@
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
 	GLOB.loadout_role_essential_set[SQUAD_LEADER][/obj/item/binoculars/fire_support] = 1
 	GLOB.loadout_role_essential_set[FIELD_COMMANDER][/obj/item/binoculars/fire_support] = 1
+	if(GLOB.vending_records[/obj/machinery/vending/weapon]) //you've seriously fucked up if marines have no weapon vendors
+		var/datum/vending_product/record = new (null, /obj/item/storage/box/crate/sentry_sniper, 3, tab = "Heavy Weapons")
+		GLOB.vending_records[/obj/machinery/vending/weapon] += record
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
