@@ -114,11 +114,11 @@
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 
 	if(!kit.linked_teleporter)
-		to_chat(user, span_warning("\The [src] is not linked to any other teleporter."))
+		balloon_alert(user, "No link found")
 		return
 
 	if(!istype(kit.linked_teleporter.loc, /obj/machinery/deployable/teleporter))
-		to_chat(user, span_warning("The other teleporter is not deployed!"))
+		balloon_alert(user, "Link not deployed")
 		return
 
 	var/obj/item/teleporter_kit/linked_kit = kit.linked_teleporter
@@ -128,11 +128,16 @@
 		return
 
 	if(!COOLDOWN_FINISHED(kit, teleport_cooldown))
-		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
+		balloon_alert(user, "[round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds")
 		return
 
-	if((deployed_linked_teleporter.z != z) || get_dist_euclidean(src, deployed_linked_teleporter) > max_range)
-		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
+	if(deployed_linked_teleporter.z != z)
+		balloon_alert(user, "Beyond max range")
+		return
+
+	var/tele_dist = get_dist_euclidean(src, deployed_linked_teleporter)
+	if(tele_dist > max_range)
+		balloon_alert(user, "[tele_dist - max_range ] beyond max range")
 		return
 
 	var/list/atom/movable/teleporting = list()
@@ -146,7 +151,7 @@
 		teleporting += thing
 
 	if(!length(teleporting))
-		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
+		balloon_alert(user, "Nothing to teleport")
 		return
 
 	do_sparks(5, TRUE, src)
