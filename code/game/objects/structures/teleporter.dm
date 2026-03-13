@@ -128,7 +128,7 @@
 		return
 
 	if(!COOLDOWN_FINISHED(kit, teleport_cooldown))
-		balloon_alert(user, "[round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds")
+		balloon_alert(user, "[floor(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds")
 		return
 
 	if(deployed_linked_teleporter.z != z)
@@ -137,7 +137,7 @@
 
 	var/tele_dist = get_dist_euclidean(src, deployed_linked_teleporter)
 	if(tele_dist > max_range)
-		balloon_alert(user, "[tele_dist - max_range ] beyond max range")
+		balloon_alert(user, "[floor(tele_dist - max_range)] beyond max range")
 		return
 
 	var/list/atom/movable/teleporting = list()
