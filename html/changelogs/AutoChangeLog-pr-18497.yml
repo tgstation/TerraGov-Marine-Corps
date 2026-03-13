@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "In Zombie Crash, completing objectives now grants points. These points can be redeemed at a vendor for gear."
