@@ -1308,6 +1308,7 @@
 #include "code\game\objects\machinery\vending\quick_vendor.dm"
 #include "code\game\objects\machinery\vending\vending.dm"
 #include "code\game\objects\machinery\vending\vending_types.dm"
+#include "code\game\objects\machinery\vending\zombie_crash_vendor.dm"
 #include "code\game\objects\structures\barricade.dm"
 #include "code\game\objects\structures\barsign.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"

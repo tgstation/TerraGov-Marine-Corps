@@ -13139,6 +13139,7 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bFc" = (
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -23088,10 +23089,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
-"kgh" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
 "kgl" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/disposalpipe/segment/corner{
@@ -56141,7 +56138,7 @@ bsh
 rKs
 buH
 buj
-kgh
+buj
 btz
 bpm
 bYY
