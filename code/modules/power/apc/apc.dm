@@ -147,6 +147,9 @@
 		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, PROC_REF(set_broken)), 5)
 
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_MARINE_QUICKBUILD))
+		req_access = null
+
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
 

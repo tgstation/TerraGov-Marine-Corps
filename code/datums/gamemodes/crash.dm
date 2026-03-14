@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DISALLOW_RAILGUN|MODE_ALLOW_MARINE_QUICKBUILD
+	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DISALLOW_RAILGUN|MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
 	xeno_abilities_flags = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
