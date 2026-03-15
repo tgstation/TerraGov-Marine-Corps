@@ -1,5 +1,6 @@
 /datum/species/monkey
 	name = "Monkey"
+	default_language_holder = /datum/language_holder/monkey
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
 	species_flags = HAS_NO_HAIR|DETACHABLE_HEAD
 	inherent_traits = list(TRAIT_CAN_VENTCRAWL)

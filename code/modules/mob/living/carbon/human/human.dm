@@ -219,6 +219,8 @@
 		return get_paygrades(id.paygrade, size, gender)
 	return ""
 
+/mob/living/carbon/human/get_paygrade_or_last_name(size = 1)
+	return get_paygrade(size) || get_last_or_first_name(src, FALSE, TRUE)
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/get_visible_name()
