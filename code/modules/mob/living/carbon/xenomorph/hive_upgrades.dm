@@ -135,12 +135,16 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 	return TRUE
 
+#define HIVE_BUILDING_REQ_WEEDS (1<<0)
+
 /datum/hive_upgrade/building
 	category = "Buildings"
 	///The type of building created
 	var/building_type
 	///Building time, in seconds. 10 by default.
 	var/building_time = 10 SECONDS
+	///special behavior flags
+	var/build_flags = HIVE_BUILDING_REQ_WEEDS
 
 /datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
@@ -155,12 +159,12 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_warning("We can't do that here."))
 		return FALSE
 
-	var/obj/alien/weeds/alien_weeds = locate() in buildloc
-
-	if(!alien_weeds)
-		if(!silent)
-			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
-		return FALSE
+	if(build_flags & HIVE_BUILDING_REQ_WEEDS)
+		var/obj/alien/weeds/alien_weeds = locate() in buildloc
+		if(!alien_weeds)
+			if(!silent)
+				to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+			return FALSE
 
 	if(!buildloc.check_alien_construction(buyer, silent, building_type) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
@@ -185,6 +189,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "larvasilo"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/silo
+	build_flags = NONE
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
