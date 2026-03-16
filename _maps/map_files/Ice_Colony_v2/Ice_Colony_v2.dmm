@@ -13139,7 +13139,6 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bFc" = (
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
