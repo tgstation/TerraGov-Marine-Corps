@@ -11038,6 +11038,11 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
+"bqO" = (
+/obj/structure/closet/wardrobe/engineering_yellow,
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering/garbledradio)
 "bqP" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/engineering)
@@ -11068,11 +11073,6 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "brf" = (
 /obj/structure/closet/wardrobe/engineering_yellow,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/engineering/garbledradio)
-"brj" = (
-/obj/structure/closet/wardrobe/engineering_yellow,
-/obj/machinery/light,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering/garbledradio)
 "brn" = (
@@ -20387,6 +20387,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
+"glC" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering/garbledradio)
 "glQ" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -21030,10 +21034,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hangar)
-"hfh" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/maintenance/engineering/garbledradio)
 "hfp" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -23703,8 +23703,8 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "kXF" = (
-/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/engineering/garbledradio)
 "kXM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -25739,11 +25739,9 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "nBW" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	name = "\improper Underground Maintenance"
-	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/engineering/garbledradio)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "nCm" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -26297,6 +26295,12 @@
 	dir = 1
 	},
 /area/ice_colony/surface/garage/one)
+"onS" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper Underground Maintenance"
+	},
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering/garbledradio)
 "onW" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -58236,7 +58240,7 @@ dEc
 bqh
 njX
 njX
-nBW
+onS
 njX
 njX
 jXk
@@ -58446,7 +58450,7 @@ dEc
 dEc
 dEc
 bZj
-hfh
+kXF
 ccx
 qWO
 xKD
@@ -58658,7 +58662,7 @@ gem
 dEc
 dEc
 bqh
-kXF
+glC
 uEq
 uEq
 uEq
@@ -58873,7 +58877,7 @@ bqi
 bqM
 brq
 uEq
-brj
+bqO
 njX
 uEq
 oeV
@@ -59082,7 +59086,7 @@ gem
 dEc
 dEc
 bqN
-kXF
+glC
 nnQ
 uEq
 brf
@@ -59513,11 +59517,11 @@ njX
 bug
 bwK
 bwK
+nBW
 bwK
 bwK
 bwK
-bwK
-bwK
+nBW
 bwK
 bqP
 kgG
@@ -60148,12 +60152,12 @@ nWU
 bqP
 uSg
 uSg
-bwK
+nBW
 bwK
 uSg
 uSg
 uSg
-bwK
+nBW
 bwK
 bqP
 iQJ
@@ -60790,7 +60794,7 @@ bwK
 bwK
 bwK
 bwK
-bwK
+nBW
 bqP
 kgG
 dUI
@@ -60995,7 +60999,7 @@ kgG
 nWU
 bqP
 bwK
-bwK
+nBW
 uSg
 uSg
 uSg
