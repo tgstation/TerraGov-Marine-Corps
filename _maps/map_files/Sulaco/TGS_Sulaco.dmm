@@ -9403,7 +9403,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 8
 	},
-/turf/closed/wall/mainship/gray/outer,
+/turf/closed/wall/mainship/gray,
 /area/sulaco/hangar)
 "btR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -17404,6 +17404,12 @@
 /obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/sulaco/cargo)
+"liN" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "ljR" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin{
@@ -24005,7 +24011,8 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "toH" = (
-/turf/open/floor/mainship_hull/gray,
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/closed/wall/mainship/gray/outer,
 /area/sulaco/maintenance/lower_maint)
 "toM" = (
 /obj/structure/window/reinforced{
@@ -66441,9 +66448,9 @@ aPF
 aPF
 aPF
 bFa
-mDu
-mDu
-mDu
+aTM
+aTM
+aTM
 qDO
 aaa
 aaa
@@ -66695,13 +66702,13 @@ nbJ
 aPF
 aPF
 aPF
+xNa
 aPF
-bFa
-bFa
-mDu
-mDu
-mDu
-wFA
+liN
+aWh
+mPZ
+aTM
+qDO
 aaa
 aaa
 aaa
@@ -66950,16 +66957,16 @@ yiZ
 wtB
 xxy
 wtB
-yiZ
+rAt
 btt
-yiZ
-yiZ
-yiZ
-yiZ
+rAt
+rAt
+rAt
+rAt
+aWh
+aTM
 mDu
-qDO
-aaa
-aaa
+vyQ
 aaa
 aaa
 aaa
@@ -67212,11 +67219,11 @@ cyU
 mwI
 tNc
 cIa
-lzW
+qTV
+aWh
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -67469,11 +67476,11 @@ qxr
 nLW
 qxr
 iHn
-iqO
+qTV
+aWh
+toH
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -67726,11 +67733,11 @@ qxr
 qxr
 qxr
 xss
-iqO
+qTV
+aWh
+toH
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -67983,11 +67990,11 @@ cyU
 qxr
 qxr
 qXF
-lzW
+qTV
+aWh
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -68239,12 +68246,12 @@ vCN
 vCN
 vaH
 vCN
-yiZ
-yiZ
+rAt
+rAt
+aWh
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -68496,12 +68503,12 @@ gyj
 jgc
 bhV
 aWm
-lzW
-mDu
+qTV
+aWh
+mPZ
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -68753,12 +68760,12 @@ nug
 nug
 rwk
 bdX
-lzW
+qTV
+aWh
 aTM
 aTM
+mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -69014,8 +69021,8 @@ mdS
 aWh
 aTM
 mDu
-vyQ
-aaa
+mDu
+wFA
 aaa
 aaa
 aaa
@@ -69527,7 +69534,7 @@ oFW
 qTV
 ixz
 aTM
-toH
+mDu
 qDO
 aaa
 aaa
@@ -69784,7 +69791,7 @@ aWm
 qTV
 mTN
 aTM
-toH
+mDu
 qDO
 aaa
 aaa
@@ -70041,7 +70048,7 @@ aWm
 qTV
 qxr
 aTM
-toH
+mDu
 mDu
 vyQ
 aaa
