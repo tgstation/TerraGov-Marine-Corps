@@ -13572,9 +13572,11 @@
 	},
 /area/sulaco/briefing)
 "gJd" = (
-/obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 8
+	},
 /turf/open/floor/plating,
-/area/mainship/command/self_destruct)
+/area/sulaco/hangar)
 "gJn" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -17404,12 +17406,6 @@
 /obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/sulaco/cargo)
-"liN" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "ljR" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin{
@@ -24012,7 +24008,7 @@
 /area/sulaco/briefing)
 "toH" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/closed/wall/mainship/gray/outer,
+/turf/open/floor/plating/platebotc,
 /area/sulaco/maintenance/lower_maint)
 "toM" = (
 /obj/structure/window/reinforced{
@@ -66704,7 +66700,7 @@ aPF
 aPF
 xNa
 aPF
-liN
+gJd
 aWh
 mPZ
 aTM
@@ -67220,7 +67216,7 @@ mwI
 tNc
 cIa
 qTV
-aWh
+mTN
 aTM
 mDu
 qDO
@@ -70046,7 +70042,7 @@ qSg
 gfj
 aWm
 qTV
-qxr
+aWh
 aTM
 mDu
 mDu
@@ -70303,7 +70299,7 @@ lNU
 rwk
 bdX
 qTV
-gJd
+mPZ
 aTM
 aTM
 mDu
@@ -70560,7 +70556,7 @@ oDI
 xur
 lvr
 qTV
-qxr
+aWh
 kEZ
 aTM
 mDu
