@@ -1,5 +1,0 @@
-author: "PibeCantina"
-delete-after: True
-changes:
-  - balance: "Made south disk location on ice colony a bit bigger"
-  - bugfix: "Deleted rogue disk generator machine on the south facility AND fixed some silly areas."

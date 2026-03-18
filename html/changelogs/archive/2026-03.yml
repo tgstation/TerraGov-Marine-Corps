@@ -19,3 +19,8 @@
 2026-03-17:
   mudzbe:
   - bugfix: Reqtorio mortar smoke shell fix
+2026-03-18:
+  PibeCantina:
+  - balance: Made south disk location on ice colony a bit bigger
+  - bugfix: Deleted rogue disk generator machine on the south facility AND fixed some
+      silly areas.
