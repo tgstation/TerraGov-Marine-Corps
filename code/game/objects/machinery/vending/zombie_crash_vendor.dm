@@ -10,6 +10,7 @@
 #define CAT_SMARTGUNNER "SMARTGUNNER"
 #define CAT_WEAPONS "WEAPONS"
 #define CAT_FUN "FUN"
+#define CAT_MECH
 
 /obj/machinery/marine_selector/zombie_crash
 	name = "progression rewards vendor"
@@ -69,6 +70,24 @@
 		/obj/item/uav_turret/heavy = list(CAT_VEHICLE, "Heavy Vehicle Turret", 8, "vehicle-attachable"),
 		/obj/item/ammo_magazine/box11x35mm = list(CAT_VEHICLE, "Light Vehicle Ammo", 6, "vehicle-ammo"),
 		/obj/item/ammo_magazine/box12x40mm = list(CAT_VEHICLE, "Heavy Vehicle Ammo", 6, "vehicle-ammo"),
+		// Mechs
+		/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill = list(CAT_MECH, "Recon Mecha", 30, "mech"),
+		/obj/item/mecha_parts/mecha_equipment/armor/booster = list(CAT_MECH, "Medium Dash Booster", 10, "mech-equipment"),
+		/obj/item/mecha_parts/mecha_equipment/generator/greyscale/heavy = list(CAT_MECH, "Fusion Engine", 10, "mech-equipment"),
+		/obj/item/mecha_parts/mecha_equipment/melee_core = list(CAT_MECH, "Melee core", 10, "mech-equipment"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun = list(CAT_MECH, "Minigun", 20, "mech-weapon"),
+		/obj/item/mecha_ammo/vendable/minigun = list(CAT_MECH, "Minigun ammo", 5, "mech-ammo"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon = list(CAT_MECH, "Light cannon", 25, "mech-weapon"),
+		/obj/item/mecha_ammo/vendable/lightcannon = list(CAT_MECH, "Light Cannon ammo", 5, "mech-ammo"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg = list(CAT_MECH, "LMG", 20, "mech-weapon"),
+		/obj/item/mecha_ammo/vendable/lmg = list(CAT_MECH, "LMG ammo", 5, "mech-ammo"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle = list(CAT_MECH, "Laser Rifle", 20, "mech-weapon"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle  = list(CAT_MECH, "Assault rifle", 15, "mech-weapon"),
+		/obj/item/mecha_ammo/vendable/rifle = list(CAT_MECH, "Rifle ammo", 5, "mech-ammo"),
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun  = list(CAT_MECH, "Shotgun", 10, "mech-weapon"),
+		/obj/item/mecha_ammo/vendable/shotgun = list(CAT_MECH, "Shotgun ammo", 5, "mech-ammo"),
+		/obj/item/mecha_parts/mecha_equipment/laser_sword = list(CAT_MECH, "Laser sword", 10, "mech-weapon"),
+
 		// Emplacements
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 10, "emplacement-laser"),
 		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-laser"), // Cheap due to low ammo capacity.
@@ -251,6 +270,7 @@
 #undef CAT_SMARTGUNNER
 #undef CAT_WEAPONS
 #undef CAT_FUN
+#undef CAT_MECH
 
 /obj/effect/vendor_bundle/mimir_two_modules
 	desc = "Designed for mounting on modular armor. This protects you significantly more against acidic, gaseous, and biological attacks. It comes with two modules: one for your helmet and one for your suit. Will impact mobility."
