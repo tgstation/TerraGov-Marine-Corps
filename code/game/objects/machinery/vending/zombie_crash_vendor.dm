@@ -117,6 +117,7 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X = list(CAT_WEAPONS, "\"X\" Fuel Backpack (500u)", 30, "weapon-flamer"), // 1x backpack = 6.67x tanks; discount of 10 points.
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
+		/mob/living/carbon/xenomorph/larva/Corrupted = list(CAT_FUN, "Corrupted larva", 30, "fun-random"),
 	)
 	/// The total amount of pooled points that have been gained. Shared across all vendors.
 	var/static/total_pooled_points = 0
