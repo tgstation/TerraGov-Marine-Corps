@@ -10,7 +10,7 @@
 #define CAT_SMARTGUNNER "SMARTGUNNER"
 #define CAT_WEAPONS "WEAPONS"
 #define CAT_FUN "FUN"
-#define CAT_MECH
+#define CAT_MECH "MECH"
 
 /obj/machinery/marine_selector/zombie_crash
 	name = "progression rewards vendor"
