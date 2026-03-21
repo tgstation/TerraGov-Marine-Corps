@@ -12,3 +12,5 @@
 #define ZOMBIE_THREATENED_CAP 125
 ///How much damage zombies take from razorwire
 #define ZOMBIE_RAZORWIRE_DAMAGE 50
+///The ratio of maximum allowed possessed sentient zombies to alive humans
+#define ZOMBIE_SENTIENT_TO_HUMAN_RATIO 7
