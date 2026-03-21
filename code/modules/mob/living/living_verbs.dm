@@ -62,6 +62,8 @@
 	log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
+	if(src in GLOB.possessed_sentient_zombie_list)
+		GLOB.possessed_sentient_zombie_list -= src
 
 /mob/living/point_to(atom/pointed_atom as mob|obj|turf in view(client.view, src))
 	if(!..())
