@@ -413,6 +413,8 @@
 		if(!iszombie(src))
 			set_species("Strong zombie")
 		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling)
+		if(client)
+			GLOB.possessed_sentient_zombie_list += src
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
