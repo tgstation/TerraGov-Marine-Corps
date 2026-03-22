@@ -75,9 +75,9 @@
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance
 	name = "psychic lance"
-	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
-	damage = 60
-	penetration = 50
+	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
+	damage = 35
+	penetration = 75
 	accuracy = 100
 	sundering = 5
 	max_range = 12
