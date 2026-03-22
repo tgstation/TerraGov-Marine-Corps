@@ -76,11 +76,11 @@
 /datum/ammo/energy/xeno/psy_blast/psy_lance
 	name = "psychic lance"
 	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
-	damage = 35
-	penetration = 75
+	damage = 60
+	penetration = 50
 	accuracy = 100
 	sundering = 5
-	max_range = 12
+	max_range = 9
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
 	ability_cost = 300
