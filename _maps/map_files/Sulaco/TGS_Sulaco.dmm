@@ -7947,9 +7947,9 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/research)
 "aSN" = (
-/obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/hangar)
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/maintenance/lower_maint)
 "aSU" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 4
@@ -8628,9 +8628,15 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aYA" = (
-/obj/vehicle/unmanned/droid,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/structure/sign/vacuum,
+/obj/machinery/door_control/unmeltable{
+	dir = 1;
+	id = "s_umbilical";
+	name = "Air Lock Door Control";
+	pixel_y = -20
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "aYB" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -8646,9 +8652,14 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aYD" = (
-/obj/structure/sign/vacuum,
+/obj/machinery/camera/autoname,
+/obj/machinery/door_control/unmeltable{
+	id = "s_umbilical";
+	name = "Air Lock Door Control";
+	pixel_y = 26
+	},
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "aYH" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/bucket,
@@ -8830,11 +8841,9 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/living/pilotbunks)
 "bap" = (
-/obj/machinery/door/poddoor/mainship/umbilical/south{
-	dir = 2
-	},
+/obj/structure/sign/vacuum,
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "bas" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -9940,15 +9949,11 @@
 /turf/open/floor/tile/chapel,
 /area/sulaco/marine/chapel)
 "cch" = (
-/obj/structure/sign/vacuum,
-/obj/machinery/door_control/unmeltable{
-	dir = 1;
-	id = "s_umbilical";
-	name = "Air Lock Door Control";
-	pixel_y = -20
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "ccC" = (
 /obj/item/radio/intercom/general{
 	dir = 8
@@ -16680,6 +16685,11 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"kmY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/maintenance/lower_maint)
 "knr" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
@@ -20794,14 +20804,9 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
 "ptp" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/uav_turret/droid,
-/obj/item/uav_turret/droid,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/effect/soundplayer/deltaplayer,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint)
 "pum" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -22170,14 +22175,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "rkI" = (
-/obj/machinery/camera/autoname,
-/obj/machinery/door_control/unmeltable{
-	id = "s_umbilical";
-	name = "Air Lock Door Control";
-	pixel_y = 26
-	},
+/obj/vehicle/unmanned/droid,
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "rkK" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -22436,10 +22436,12 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "ryR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/vehicle/unmanned/droid,
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2;
+	id = "s_umbilical_outer"
+	},
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "rzi" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -22567,9 +22569,14 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
 "rId" = (
-/obj/machinery/suit_storage_unit,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/uav_turret/droid,
+/obj/item/uav_turret/droid,
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "rIv" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/stamp{
@@ -24580,6 +24587,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"tYi" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/maintenance/lower_maint)
 "tZr" = (
 /turf/open/floor/mainship_hull/gray/dir{
 	dir = 5
@@ -26044,12 +26057,8 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/central_hall2)
 "vRm" = (
-/obj/machinery/door/poddoor/mainship/umbilical/south{
-	dir = 2;
-	id = "s_umbilical_outer"
-	},
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/area/sulaco/maintenance/lower_maint)
 "vRu" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -27395,9 +27404,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "xHm" = (
-/obj/effect/soundplayer/deltaplayer,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/hangar)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/maintenance/lower_maint)
 "xHE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -61305,13 +61314,13 @@ ecj
 bFa
 bFa
 mDu
+mDu
+mDu
 qDO
 aaa
 aaa
 aaa
 aaa
-aaa
-aDS
 aaa
 aaa
 aaa
@@ -61562,14 +61571,14 @@ gHU
 hQp
 bFa
 mDu
+mDu
+mDu
 qDO
 aaa
 aaa
 aDS
 aDS
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -61817,15 +61826,15 @@ aPF
 aPF
 aPF
 nav
-bFa
+aTM
+aTM
+aTM
 mDu
 qDO
 aaa
 aaa
 aaa
 aaa
-aaa
-aDS
 aaa
 aaa
 aaa
@@ -62074,11 +62083,11 @@ aPF
 aPF
 aPF
 aPF
-bFa
+gJd
+aWh
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -62331,11 +62340,11 @@ aPF
 aPF
 aPF
 aPF
-bFa
+aUu
+aWh
+aTM
 mDu
 qDO
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -62588,7 +62597,9 @@ aSk
 aPF
 xNa
 gQS
-bFa
+aUu
+ixz
+aTM
 mDu
 qDO
 aaa
@@ -62596,8 +62607,6 @@ aaa
 aDS
 aDS
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -62845,7 +62854,9 @@ svV
 aPF
 aPF
 uYv
-aSN
+aUu
+aWh
+toH
 mDu
 mDu
 wRO
@@ -62853,8 +62864,6 @@ wRO
 vyQ
 aDS
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -63102,7 +63111,9 @@ svV
 aPF
 aPF
 uYv
-aSN
+aUu
+aWh
+toH
 mDu
 mDu
 mDu
@@ -63110,8 +63121,6 @@ mDu
 mDu
 vyQ
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -63359,16 +63368,16 @@ svV
 aPF
 gHU
 gQS
-bFa
-bFa
-bFa
-bFa
+aUu
+cch
+aTM
+aTM
+aTM
+aTM
 mDu
 mDu
 qDO
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -63616,16 +63625,16 @@ svV
 aPF
 aPF
 gHU
-xHm
-rId
+aUu
+ixz
 ptp
-bFa
-bFa
+aSN
+rId
+aTM
+aTM
 mDu
 qDO
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -63872,17 +63881,17 @@ sMl
 svV
 aPF
 aPF
-cch
-aPY
-gHU
-aYD
-aPY
-bFa
+aPF
+aUu
+aYA
+aUu
+xHm
+bap
+aUu
+aTM
 vDU
 wFA
 aah
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -64130,16 +64139,16 @@ mmv
 aPF
 aPF
 aPF
-bap
-aPF
-aPF
-aPF
+gJd
+aWh
+tYi
 vRm
+vRm
+vRm
+ryR
 aUt
 aah
 aah
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -64387,16 +64396,16 @@ svV
 aPF
 aPF
 tha
-aPY
-rkI
-gHU
-aPY
-bFa
+aUu
+aWh
+aUu
+aYD
+xHm
+aUu
+aTM
 wRO
 vyQ
 aah
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -64644,16 +64653,16 @@ svV
 aPF
 aPF
 gHU
-aPY
-ryR
-aYA
-bFa
-bFa
+aUu
+aWh
+aUu
+kmY
+rkI
+aTM
+aTM
 mDu
 qDO
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -64901,16 +64910,16 @@ svV
 aPF
 aPF
 gQS
-bFa
-bFa
-bFa
-bFa
+aUu
+ixz
+aTM
+aTM
+aTM
+aTM
 mDu
 mDu
 qDO
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -65158,7 +65167,9 @@ svV
 aPF
 aPF
 uYv
-aSN
+aUu
+aWh
+toH
 mDu
 mDu
 mDu
@@ -65166,8 +65177,6 @@ mDu
 mDu
 wFA
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -65415,16 +65424,16 @@ svV
 aPF
 gHU
 uYv
-aSN
+aUu
+aWh
+toH
 mDu
 mDu
-vDU
+mDu
 vDU
 wFA
 aDS
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -65672,16 +65681,16 @@ aQL
 aPF
 aPF
 nfu
-bFa
+aUu
+cch
+aTM
+mDu
 mDu
 qDO
 aaa
-aaa
 aDS
 aDS
 aDS
-aDS
-aaa
 aaa
 aaa
 aaa
@@ -65929,13 +65938,13 @@ aPF
 aPF
 xNa
 aPF
-bFa
+aUu
+aWh
+aTM
 mDu
 mDu
-wRO
-vyQ
-aDS
-aDS
+qDO
+aaa
 aDS
 aDS
 aDS
@@ -66186,12 +66195,12 @@ aPF
 aPF
 aPF
 aPF
-bFa
-mDu
+aUu
+aWh
+aTM
 mDu
 mDu
 qDO
-aaa
 aaa
 aaa
 aaa
@@ -66443,12 +66452,12 @@ aPF
 aPF
 aPF
 aPF
-bFa
+aUu
+ixz
 aTM
 aTM
-aTM
+mDu
 qDO
-aaa
 aaa
 aaa
 aaa
@@ -66704,8 +66713,8 @@ gJd
 aWh
 mPZ
 aTM
+mDu
 qDO
-aaa
 aaa
 aaa
 aaa
@@ -66962,7 +66971,7 @@ rAt
 aWh
 aTM
 mDu
-vyQ
+qDO
 aaa
 aaa
 aaa
@@ -67987,7 +67996,7 @@ qxr
 qxr
 qXF
 qTV
-aWh
+ixz
 aTM
 mDu
 qDO
