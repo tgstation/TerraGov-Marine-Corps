@@ -24,3 +24,8 @@
   - balance: Made south disk location on ice colony a bit bigger
   - bugfix: Deleted rogue disk generator machine on the south facility AND fixed some
       silly areas.
+2026-03-24:
+  Lewdcifer:
+  - bugfix: Fixes a bug where ladders could be deleted by xeno acid or plasma cutters
+  blackdav123:
+  - bugfix: Rain now properly updates fire sprites when extinguishing.
