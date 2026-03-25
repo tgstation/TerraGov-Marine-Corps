@@ -136,6 +136,20 @@
 	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
+/obj/effect/landmark/patrol_point/xeno
+	faction = FACTION_ALIEN
+
+/obj/effect/landmark/patrol_point/xeno/xeno_11
+	name = "Xeno exit point 1"
+	icon_state = "purple_1"
+	id = "Xeno_1"
+	minimap_icon = "xeno_patrol_1"
+
+/obj/effect/landmark/patrol_point/xeno/xeno_21
+	name = "Xeno exit point 2"
+	icon_state = "purple_2"
+	id = "Xeno_2"
+	minimap_icon = "xeno_patrol_2"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"

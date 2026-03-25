@@ -545,6 +545,12 @@
 	name = "Telecommunications"
 	icon_state = "tcomms"
 
+/area/mainship/patrol_base/independent
+	name = "Independent Combat Patrol Base"
+
+/area/mainship/patrol_base/xeno
+	name = "Xeno Combat Patrol Base"
+
 /area/mainship/multiz_debug_area
 	name = "Multi-Z Debugging"
 	icon_state = "req"

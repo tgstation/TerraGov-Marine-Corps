@@ -878,6 +878,10 @@
 "aXS" = (
 /turf/closed/wall/r_wall,
 /area/bluemoon/caves/s/shallow)
+"aXV" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/s)
 "aZi" = (
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -12496,6 +12500,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bluemoon/caves/facility/eta)
+"oie" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/e)
 "oiP" = (
 /obj/structure/table/wood,
 /obj/item/tool/pen/blue{
@@ -17667,6 +17675,10 @@
 	dir = 10
 	},
 /area/bluemoon/outside/building/lz)
+"uBw" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/n)
 "uBC" = (
 /obj/structure/closet/secure_closet/marshal,
 /turf/open/floor/tile/vault{
@@ -29081,7 +29093,7 @@ xGy
 iKK
 iKK
 iKK
-iKK
+uBw
 iKK
 uJX
 xGy
@@ -33752,7 +33764,7 @@ owX
 owX
 exb
 owX
-owX
+aXV
 owX
 owX
 xzH
@@ -40473,7 +40485,7 @@ nkm
 nkm
 nkm
 nkm
-nkm
+oie
 nkm
 nkm
 nkm

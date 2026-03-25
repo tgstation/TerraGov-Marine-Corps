@@ -87,6 +87,13 @@
 	id = "SOM_2"
 	icon_state = "patrol_point_2"
 
+/obj/structure/patrol_point/xeno_11
+	id = "Xeno_1"
+
+/obj/structure/patrol_point/xeno_21
+	id = "Xeno_2"
+	icon_state = "patrol_point_2"
+
 /obj/structure/patrol_point/tank
 	name = "vehicle deploy point"
 	desc = "A one way ticket to the combat zone for vehicles of all sizes."
