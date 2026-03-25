@@ -4184,7 +4184,6 @@
 /turf/closed/shuttle/dropship_regular/backhatch,
 /area/mainship/patrol_base/som)
 "TK" = (
-/obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
