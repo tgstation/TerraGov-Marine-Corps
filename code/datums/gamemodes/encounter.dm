@@ -5,6 +5,25 @@
 	config_tag = "Encounter"
 	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_INFESTATION|MODE_MUTATIONS_OBTAINABLE|MODE_PSY_POINTS|MODE_SILO_RESPAWN|MODE_ENCOUNTER
 	xeno_abilities_flags = ABILITY_CRASH
+	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_XENO)
+	valid_job_types = list(
+		/datum/job/terragov/squad/engineer = 8,
+		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/smartgunner = 4,
+		/datum/job/terragov/squad/leader = 4,
+		/datum/job/terragov/squad/standard = -1,
+		/datum/job/som/squad/leader = 4,
+		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/engineer = 8,
+		/datum/job/som/squad/medic = 8,
+		/datum/job/som/squad/standard = -1,
+		/datum/job/xenomorph = 1
+	)
+	job_points_needed_by_job_type = list(
+		/datum/job/terragov/squad/smartgunner = 5,
+		/datum/job/som/squad/veteran = 5,
+		/datum/job/xenomorph = ENCOUNTER_LARVA_POINTS_NEEDED,
+	)
 	wave_timer_length = 2 MINUTES
 	max_game_time = 30 MINUTES
 	game_timer_delay = 0
@@ -40,7 +59,7 @@
 		else if(tower.owning_faction == FACTION_SOM)
 			SOM_cap_points+= 1
 			SSpoints.supply_points[FACTION_SOM] += tower_req_value
-		else if(tower.owning_faction == FACTION_ALIEN)
+		else if(tower.owning_faction == FACTION_XENO)
 			XENO_cap_points += 1
 			SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, tower_xeno_tactical_point_value)
 			SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, tower_xeno_strategic_point_value)
@@ -51,6 +70,9 @@
 
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
+
+	for(var/i in GLOB.xeno_encounter_resin_silo_turfs)
+		new /obj/structure/xeno/silo(i)
 
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)

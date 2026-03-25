@@ -2446,7 +2446,7 @@
 /area/mainship/patrol_base/som)
 "BW" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/encounter_silo_spawn,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/xeno)
 "Cd" = (
