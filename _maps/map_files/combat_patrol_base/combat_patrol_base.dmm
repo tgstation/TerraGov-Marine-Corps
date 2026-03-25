@@ -2200,7 +2200,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
