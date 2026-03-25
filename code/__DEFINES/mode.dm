@@ -70,6 +70,8 @@
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
 /// Should xenomorphs be allowed to buy mutations (including its structures)?
 #define MODE_MUTATIONS_OBTAINABLE (1<<17)
+/// Should marines have access to quickbuild?
+#define MODE_ALLOW_MARINE_QUICKBUILD (1<<18)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -93,7 +95,7 @@
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
 ///Initial delay before crash landing
-#define CRASH_DELAY_TIME 10 MINUTES
+#define CRASH_DELAY_TIME 7 MINUTES
 
 #define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
 #define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
@@ -187,6 +189,14 @@
 
 #define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
+
+#define ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN 10
+#define ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX 120
+#define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN 20
+#define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX 240
+#define ZOMBIE_CRASH_POINTS_MAXIMUM 60
+/// The marine pop considered to be high pop, only for Zombie Crash.
+#define HIGH_MARINE_POP_ZOMBIE_CRASH 20
 
 #define NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED 40 // This amount of clients must be connected at gamemode setup to get the first mech pilot slot.
 #define NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT 20 // After meeting NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED, a mech pilot slot is open for each set of X clients.

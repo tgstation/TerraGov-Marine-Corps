@@ -118,6 +118,17 @@
 
 /obj/effect/landmark/distress_item
 
+/obj/effect/landmark/valhalla_weed_node
+	name = "valhalla xeno weed node spawn landmark"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode0"
+
+/obj/effect/landmark/valhalla_weed_node/Initialize(mapload)
+	var/weed_type = pickweight(GLOB.weed_prob_list)
+	new weed_type(loc)
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
@@ -197,6 +208,15 @@
 	GLOB.zombie_spawner_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/zombie_vendor
+	name = "zombie crash progression vendor landmark"
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "marinerequisitions"
+
+/obj/effect/landmark/zombie_vendor/Initialize(mapload)
+	GLOB.zombie_crash_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
+	return ..()
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
