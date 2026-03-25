@@ -2732,7 +2732,6 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "FD" = (
-/obj/machinery/power/smes/preset,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -3292,9 +3291,6 @@
 /area/mainship/patrol_base)
 "LF" = (
 /obj/structure/table/mainship,
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
