@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - bugfix: "TE-9001 icon fix"
+  - bugfix: "Removed non-existant gun from valhalla and gift box"
