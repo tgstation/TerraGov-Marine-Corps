@@ -106,7 +106,7 @@
 			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
 		if(10)
 			gift_message = span_notice("It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?")
-			gift_type = /obj/item/weapon/gun/rifle/sniper/elite/xmas
+			gift_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 		if(20)
 			gift_message = span_notice("Just what the fuck is it?")
 			gift_type = /obj/item/clothing/mask/facehugger/lamarr
@@ -138,14 +138,6 @@
 	if(is_mainship_level(current_turf.z))
 		balloon_alert(user, "can't fire that here!")
 		return FALSE
-	return TRUE
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/xmas
-	gun_features_flags = NONE
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
 	return TRUE
 
 
