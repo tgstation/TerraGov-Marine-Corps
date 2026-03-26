@@ -38,9 +38,9 @@
 
 /datum/game_mode/infestation/crash/zombie/post_setup()
 	. = ..()
-	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP))
+	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		if(corpse.z in z_levels)
+		if(!(corpse.z in z_levels))
 			continue
 		corpse.create_zombie()
 
