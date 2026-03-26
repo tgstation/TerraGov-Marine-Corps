@@ -1,0 +1,11 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "teleporter pads have a max range of 60 tiles"
+  - balance: "teleporter pads are available to engineers for 30 points for a pair"
+  - balance: "decreased req teleporter pad price to 350 from 500"
+  - rscadd: "req can purchase a single teleporter pad for 225 points"
+  - balance: "engineer technician backpacks can hold teleporter pads"
+  - qol: "teleporter pads both as an item and deployed now show their cell status, and whether they are linked or not"
+  - qol: "deployed teleporter pads show their power via hud"
+  - code_imp: "Improved some teleporter pad code"
