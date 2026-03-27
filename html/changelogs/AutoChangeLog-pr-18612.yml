@@ -1,0 +1,5 @@
+author: "ViperSnake01"
+delete-after: True
+changes:
+  - balance: "Reduced psy lance range from 12 to 9 tiles."
+  - bugfix: "Fixed a typo in the psy lance ability description."
