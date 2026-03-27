@@ -13,3 +13,44 @@
   Runian:
   - rscadd: In Zombie Crash, completing objectives now grants points. These points
       can be redeemed at a vendor for gear.
+2026-03-15:
+  PibeCantina:
+  - balance: moves it a bit north now
+2026-03-17:
+  mudzbe:
+  - bugfix: Reqtorio mortar smoke shell fix
+2026-03-18:
+  PibeCantina:
+  - balance: Made south disk location on ice colony a bit bigger
+  - bugfix: Deleted rogue disk generator machine on the south facility AND fixed some
+      silly areas.
+2026-03-24:
+  Lewdcifer:
+  - bugfix: Fixes a bug where ladders could be deleted by xeno acid or plasma cutters
+  blackdav123:
+  - bugfix: Rain now properly updates fire sprites when extinguishing.
+2026-03-27:
+  Lumipharon:
+  - bugfix: fixed the position of south facing cameras
+  - balance: Buffed the tank autocannon
+  - bugfix: fixed petrify failing to remove its effects in certain cases
+  - balance: teleporter pads have a max range of 60 tiles
+  - balance: teleporter pads are available to engineers for 30 points for a pair
+  - balance: decreased req teleporter pad price to 350 from 500
+  - rscadd: req can purchase a single teleporter pad for 225 points
+  - balance: engineer technician backpacks can hold teleporter pads
+  - qol: teleporter pads both as an item and deployed now show their cell status,
+      and whether they are linked or not
+  - qol: deployed teleporter pads show their power via hud
+  - code_imp: Improved some teleporter pad code
+  Runian:
+  - bugfix: Zombies only spawn groundside on Zombie Crash.
+  Scav:
+  - rscadd: 'Added more emotes - :catscream: , :catscream2: , :omegalul: , :c189:
+      , :bigbrain: , :concern: , :rotcat: , :steamhappy: , :walter: , :pensive : ,
+      :noway: , :fueltank: , :explodinghead:'
+  mudzbe:
+  - rscadd: Added mech to zombie crash vendor
+  - qol: APCs have no access restrictions on crash gamemodes
+  - bugfix: TE-9001 icon fix
+  - bugfix: Removed non-existant gun from valhalla and gift box

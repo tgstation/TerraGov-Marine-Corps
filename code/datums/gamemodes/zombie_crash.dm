@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
 	xeno_abilities_flags = ABILITY_CRASH
 	required_players = 1
 	valid_job_types = list(
@@ -38,7 +38,10 @@
 
 /datum/game_mode/infestation/crash/zombie/post_setup()
 	. = ..()
+	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		if(!(corpse.z in z_levels))
+			continue
 		corpse.create_zombie()
 
 	for(var/i in (GLOB.zombie_spawner_turfs + GLOB.xeno_resin_silo_turfs))

@@ -235,10 +235,10 @@
 /datum/ammo/xeno/acid/on_shield_block(mob/target_mob, atom/movable/projectile/proj)
 	airburst(target_mob, proj)
 
-/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
-	if(T.density)
+/datum/ammo/xeno/acid/drop_nade(turf/target_turf, atom/movable/projectile/proj) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(target_turf)
 		return
-	xenomorph_spray(T, puddle_duration, puddle_acid_damage)
+	xenomorph_spray(target_turf, puddle_duration, puddle_acid_damage)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -323,10 +323,10 @@
 	/// smoke type created when the projectile fails to reach max range
 	var/datum/effect_system/smoke_spread/smoketype_fail = /datum/effect_system/smoke_spread/xeno/acid/fast
 
-/datum/ammo/xeno/acid/smokescreen/drop_nade(turf/T)
+/datum/ammo/xeno/acid/smokescreen/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype_fail()
-	playsound(T, 'sound/effects/smoke.ogg', 10, 1, 2)
-	smoke.set_up(1, T)
+	playsound(target_turf, 'sound/effects/smoke.ogg', 10, 1, 2)
+	smoke.set_up(1, target_turf)
 	smoke.start()
 
 /datum/ammo/xeno/acid/smokescreen/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
@@ -369,29 +369,25 @@
 	/// smoke type created when the projectile fails to reach max range
 	var/datum/effect_system/smoke_spread/smoketype_fail = /datum/effect_system/smoke_spread/xeno/acid/fast
 
-/datum/ammo/xeno/acid/smokescreen_bomblet/drop_nade(turf/T, max_range_reached = FALSE)
-	if(!max_range_reached)
-		var/datum/effect_system/smoke_spread/smoke = new smoketype_fail()
-		playsound(T, 'sound/effects/smoke.ogg', 10, 1, 2)
-		smoke.set_up(smoke_radius, T)
-		smoke.start()
-	else
-		var/datum/effect_system/smoke_spread/smoke = new smoketype()
-		playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-		smoke.set_up(smoke_radius, T, smoke_duration)
-		smoke.start()
+///Drops a smoke bomblet
+/datum/ammo/xeno/acid/smokescreen_bomblet/proc/drop_bomblet(turf/target_turf, max_range_reached = FALSE)
+	var/chosen_smoke = max_range_reached ? smoketype : smoketype_fail
+	var/datum/effect_system/smoke_spread/smoke = new chosen_smoke()
+	playsound(target_turf, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smoke_radius, target_turf, smoke_duration)
+	smoke.start()
 
 ///Hitting an object causes the bomblet to fail and release transparent fast-dissipating smoke
 /datum/ammo/xeno/acid/smokescreen_bomblet/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj), FALSE)
+	drop_bomblet(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj), FALSE)
 
 ///Hitting a mob causes the bomblet to fail and release transparent fast-dissipating smoke
 /datum/ammo/xeno/acid/smokescreen_bomblet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, FALSE)
+	drop_bomblet(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, FALSE)
 
 ///Reaching max range causes the bomblet to detonate and release opaque long-lasting smoke
 /datum/ammo/xeno/acid/smokescreen_bomblet/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, TRUE)
+	drop_bomblet(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, TRUE)
 
 /datum/ammo/xeno/acid/smokescreen/neurotoxin
 	damage_type = STAMINA
@@ -450,10 +446,10 @@
 	if(isvehicle(target_obj))
 		target_obj.take_damage(XADAR_VEHICLE_DAMAGE)
 
-/datum/ammo/rocket/he/xadar/drop_nade(turf/T)
-	new /obj/effect/temp_visual/xadar_blast(locate((T.x - 1),(T.y - 1),T.z)) // Gets the tile SE of the impact zone to center the effect properly
-	playsound(T, 'sound/effects/xadarblast.ogg', 50, 1)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))
+/datum/ammo/rocket/he/xadar/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	new /obj/effect/temp_visual/xadar_blast(locate((target_turf.x - 1),(target_turf.y - 1),target_turf.z)) // Gets the tile SE of the impact zone to center the effect properly
+	playsound(target_turf, 'sound/effects/xadarblast.ogg', 50, 1)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(target_turf,2))
 		human_victim.adjust_stagger(4 SECONDS)
 		human_victim.apply_damage(90, BURN, BODY_ZONE_CHEST, ACID,  penetration = 10)
 		var/throwlocation = human_victim.loc
@@ -462,5 +458,5 @@
 		if(human_victim.stat == DEAD)
 			continue
 		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
-	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
+	for(var/acid_tile in filled_turfs(get_turf(target_turf), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
 		xenomorph_spray(acid_tile, 5 SECONDS, 40, null, TRUE)
