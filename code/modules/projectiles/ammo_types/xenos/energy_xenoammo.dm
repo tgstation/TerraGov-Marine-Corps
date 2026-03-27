@@ -80,7 +80,7 @@
 	penetration = 50
 	accuracy = 100
 	sundering = 5
-	max_range = 12
+	max_range = 9
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
 	ability_cost = 300
