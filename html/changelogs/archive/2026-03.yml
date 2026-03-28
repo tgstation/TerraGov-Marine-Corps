@@ -54,3 +54,7 @@
   - qol: APCs have no access restrictions on crash gamemodes
   - bugfix: TE-9001 icon fix
   - bugfix: Removed non-existant gun from valhalla and gift box
+2026-03-28:
+  ViperSnake01:
+  - balance: Reduced psy lance range from 12 to 9 tiles.
+  - bugfix: Fixed a typo in the psy lance ability description.
