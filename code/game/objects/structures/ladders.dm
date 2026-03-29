@@ -490,7 +490,6 @@
 /obj/structure/ladder/id_linked
 	name = "sturdy ladder"
 	desc = "An extremely sturdy metal ladder."
-	resistance_flags = INDESTRUCTIBLE
 	var/id
 	var/height = 0  // higher numbers are considered physically higher
 

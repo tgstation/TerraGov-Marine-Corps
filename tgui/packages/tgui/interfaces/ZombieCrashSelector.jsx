@@ -217,6 +217,26 @@ const ItemLine = (props) => {
         Ammo
       </Box>
     ),
+    mech: (
+      <Box inline mr="6px" ml="6px" color="rgb(255, 0, 0)">
+        Mech
+      </Box>
+    ),
+    'mech-ammo': (
+      <Box inline mr="6px" ml="6px" color="rgb(0, 4, 255)">
+        Mech Ammo
+      </Box>
+    ),
+    'mech-weapon': (
+      <Box inline mr="6px" ml="6px" color="rgb(0, 217, 255)">
+        Mech Weapon
+      </Box>
+    ),
+    'mech-equipment': (
+      <Box inline mr="6px" ml="6px" color="rgb(140, 0, 255)">
+        Mech Equipment
+      </Box>
+    ),
     'emplacement-laser': (
       <Box inline mr="6px" ml="6px" color="#fff385ff">
         Laser
