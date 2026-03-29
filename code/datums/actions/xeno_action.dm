@@ -53,7 +53,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner
 
 /datum/action/ability/activable/xeno/New(Target)
-	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_REDUCED_XENO_COOLDOWN))
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_BUFFED_XENO_ABILITIES))
 		cooldown_duration = cooldown_duration/3
 		ability_cost = ability_cost /3
 	. = ..()
