@@ -24,22 +24,22 @@
 	bullet_color = LIGHT_COLOR_FIRE
 	barricade_clear_distance = 2
 
-/datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 4, 6, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
+	drop_nade(target_turf, proj)
 
 /datum/ammo/rocket/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc, proj)
 
 /datum/ammo/rocket/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/rocket/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/rocket/he
 	name = "high explosive rocket"
@@ -55,8 +55,8 @@
 	damage = 100
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG // We want this one to specifically go over onscreen range.
 
-/datum/ammo/rocket/he/unguided/drop_nade(turf/T)
-	explosion(T, 0, 7, 0, 0, 2, throw_range = 4, explosion_cause=src)
+/datum/ammo/rocket/he/unguided/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 7, 0, 0, 2, throw_range = 4, explosion_cause = proj)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
@@ -67,8 +67,8 @@
 	penetration = 200
 	sundering = 0
 
-/datum/ammo/rocket/ap/drop_nade(turf/T)
-	explosion(T, flash_range = 1, explosion_cause=src)
+/datum/ammo/rocket/ap/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -82,8 +82,8 @@
 	sundering = 20
 	barricade_clear_distance = 4
 
-/datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 2, 5, 0, 3, explosion_cause=src)
+/datum/ammo/rocket/ltb/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 5, 0, 3, explosion_cause = proj)
 
 /datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
@@ -94,8 +94,8 @@
 		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
-/datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
-	explosion(target_turf, 1, 4, 6, 0, 3, explosion_cause=src)
+/datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 1, 4, 6, 0, 3, explosion_cause = proj)
 
 /datum/ammo/rocket/heavy_isg
 	name = "8.8cm round"
@@ -110,8 +110,8 @@
 	accurate_range = 21
 	handful_amount = 1
 
-/datum/ammo/rocket/heavy_isg/drop_nade(turf/T)
-	explosion(T, 0, 7, 8, 12, explosion_cause=src)
+/datum/ammo/rocket/heavy_isg/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 7, 8, 12, explosion_cause = proj)
 
 /datum/ammo/rocket/heavy_isg/unguided
 	hud_state = "bigshell_he_unguided"
@@ -155,11 +155,11 @@
 	///The radius for the non explosion effects
 	var/effect_radius = 3
 
-/datum/ammo/rocket/wp/drop_nade(turf/T)
-	if(!T || !isturf(T))
+/datum/ammo/rocket/wp/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
 		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(effect_radius, T, 27, 27, 27, 17)
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(effect_radius, target_turf, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -176,14 +176,14 @@
 /datum/ammo/rocket/wp/quad/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/phosphorus()
 
-/datum/ammo/rocket/wp/quad/drop_nade(turf/T)
+/datum/ammo/rocket/wp/quad/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	set_smoke()
-	smoke_system.set_up(effect_radius, T)
+	smoke_system.set_up(effect_radius, target_turf)
 	smoke_system.start()
 	smoke_system = null
-	T.visible_message(span_danger("The rocket explodes into white gas!") )
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(effect_radius, T, 27, 27, 27, 17)
+	target_turf.visible_message(span_danger("The rocket explodes into white gas!") )
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(effect_radius, target_turf, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad/som
 	name = "white phosphorous RPG"
@@ -221,8 +221,8 @@
 	penetration = 50
 	sundering = 50
 
-/datum/ammo/rocket/recoilless/drop_nade(turf/T)
-	explosion(T, 0, 3, 4, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/recoilless/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 3, 4, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
@@ -233,8 +233,8 @@
 	penetration = 100
 	sundering = 0
 
-/datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
-	explosion(T, flash_range = 1, explosion_cause=src)
+/datum/ammo/rocket/recoilless/heat/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
 	name = "HEAM shell"
@@ -247,8 +247,8 @@
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
-/datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/T)
-	explosion(T, 0, 1, 0, 0, 1, explosion_cause=src)
+/datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 1, 0, 0, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
@@ -261,8 +261,8 @@
 	penetration = 50
 	sundering = 25
 
-/datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 0, 1, explosion_cause=src)
+/datum/ammo/rocket/recoilless/light/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 1, 8, 0, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/recoilless/chemical
 	name = "low velocity chemical shell"
@@ -279,12 +279,12 @@
 	/// Radius this smoke will encompass on detonation.
 	var/smokeradius = 7
 
-/datum/ammo/rocket/recoilless/chemical/drop_nade(turf/T)
+/datum/ammo/rocket/recoilless/chemical/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(smokeradius, T, rand(5,9))
+	playsound(target_turf, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, target_turf, rand(5,9))
 	smoke.start()
-	explosion(T, flash_range = 1, explosion_cause=src)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/recoilless/chemical/cloak
 	name = "low velocity chemical shell"
@@ -315,8 +315,8 @@
 	penetration = 15
 	sundering = 25
 
-/datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/T)
-	explosion(T, 0, 1, 8, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/recoilless/low_impact/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 1, 8, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
@@ -336,8 +336,8 @@
 	penetration = 20
 	sundering = 20
 
-/datum/ammo/rocket/som/drop_nade(turf/T)
-	explosion(T, 0, 3, 6, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/som/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 3, 6, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/som/light
 	name = "low impact RPG"
@@ -348,8 +348,8 @@
 	damage = 60
 	penetration = 10
 
-/datum/ammo/rocket/som/light/drop_nade(turf/T)
-	explosion(T, 0, 2, 7, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/som/light/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 7, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/som/thermobaric
 	name = "thermobaric RPG"
@@ -357,8 +357,8 @@
 	hud_state = "rpg_thermobaric"
 	damage = 30
 
-/datum/ammo/rocket/som/thermobaric/drop_nade(turf/T)
-	explosion(T, 0, 4, 5, 0, 4, 4, explosion_cause=src)
+/datum/ammo/rocket/som/thermobaric/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 4, 5, 0, 4, 4, explosion_cause = proj)
 
 /datum/ammo/rocket/som/heat //Anti tank, or mech
 	name = "HEAT RPG"
@@ -376,8 +376,8 @@
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
-/datum/ammo/rocket/som/heat/drop_nade(turf/T)
-	explosion(T, 0, 1, 0, 0, 1, explosion_cause=src)
+/datum/ammo/rocket/som/heat/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 1, 0, 0, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/som/rad
 	name = "irrad RPG"
@@ -394,15 +394,15 @@
 	///Range for the minimal rad effects
 	var/outer_range = 8
 
-/datum/ammo/rocket/som/rad/drop_nade(turf/T)
-	playsound(T, 'sound/effects/portal_opening.ogg', 50, 1)
-	for(var/mob/living/victim in hearers(outer_range, T))
+/datum/ammo/rocket/som/rad/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	playsound(target_turf, 'sound/effects/portal_opening.ogg', 50, 1)
+	for(var/mob/living/victim in hearers(outer_range, target_turf))
 		var/strength
 		var/sound_level
-		if(get_dist(victim, T) <= inner_range)
+		if(get_dist(victim, target_turf) <= inner_range)
 			strength = rad_strength
 			sound_level = 4
-		else if(get_dist(victim, T) <= mid_range)
+		else if(get_dist(victim, target_turf) <= mid_range)
 			strength = rad_strength * 0.7
 			sound_level = 3
 		else
@@ -412,7 +412,7 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(T, weak_impact_range = 4, explosion_cause=src)
+	explosion(target_turf, weak_impact_range = 4, explosion_cause = proj)
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
@@ -427,8 +427,8 @@
 	max_range = 30
 	handful_amount = 1
 
-/datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/atgun_shell/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 3, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/atgun_shell/on_hit_turf(turf/target_turf, atom/movable/projectile/proj) //no explosion every time it hits a turf
 	proj.proj_max_range -= 10
@@ -442,8 +442,8 @@
 	penetration = 70
 	sundering = 25
 
-/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
-	explosion(T, flash_range = 1, explosion_cause=src)
+/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
@@ -466,8 +466,8 @@
 	penetration = 50
 	sundering = 35
 
-/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
-	explosion(T, 0, 3, 5, explosion_cause=src)
+/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 3, 5, explosion_cause = proj)
 
 /datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step(target_turf, proj) : target_turf)
@@ -484,8 +484,8 @@
 	bonus_projectiles_scatter = 8
 	var/bonus_projectile_quantity = 10
 
-/datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/T)
-	explosion(T, flash_range = 1, explosion_cause=src)
+/datum/ammo/rocket/atgun_shell/beehive/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_mob, proj)
@@ -559,8 +559,8 @@
 	///Number in degrees that the projectile will change during each process
 	var/turn_rate = 5
 
-/datum/ammo/rocket/homing/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 4, 1, explosion_cause=src)
+/datum/ammo/rocket/homing/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 3, 4, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/homing/ammo_process(atom/movable/projectile/proj, damage)
 	if(QDELETED(proj.original_target))
@@ -583,8 +583,8 @@
 	sundering = 5
 	turn_rate = 10
 
-/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
-	explosion(T, 0, 0, 0, 4, 1, explosion_cause=src)
+/datum/ammo/rocket/homing/microrocket/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 0, 4, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/homing/microrocket/mech
 	name = "homing mech HE microrocket"
@@ -594,8 +594,8 @@
 	sundering = 3
 	turn_rate = 10
 
-/datum/ammo/rocket/homing/microrocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 0, 2, 1, explosion_cause=src)
+/datum/ammo/rocket/homing/microrocket/mech/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 0, 2, 1, explosion_cause = proj)
 
 /datum/ammo/rocket/homing/tow
 	name = "TOW-III missile"
@@ -608,8 +608,8 @@
 	sundering = 10
 	max_range = 30
 
-/datum/ammo/rocket/homing/tow/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/homing/tow/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 4, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/coilgun
 	name = "kinetic penetrator"
@@ -629,8 +629,8 @@
 	bullet_color = LIGHT_COLOR_TUNGSTEN
 	barricade_clear_distance = 4
 
-/datum/ammo/rocket/coilgun/drop_nade(turf/T)
-	explosion(T, 0, 3, 5, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/coilgun/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 3, 5, 0, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
 	ammo_behavior_flags = AMMO_ENERGY
@@ -641,8 +641,8 @@
 	penetration = 40
 	sundering = 5
 
-/datum/ammo/rocket/coilgun/low/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 4, explosion_cause=src)
+/datum/ammo/rocket/coilgun/low/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 3, 4, explosion_cause = proj)
 
 /datum/ammo/rocket/coilgun/high
 	damage_falloff = 0
@@ -652,8 +652,8 @@
 	sundering = 20
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_PASS_THROUGH_MOB
 
-/datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
-	explosion(T, 1, 4, 5, 6, 2, explosion_cause=src)
+/datum/ammo/rocket/coilgun/high/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 1, 4, 5, 6, 2, explosion_cause = proj)
 
 /datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(ishuman(target_mob) && prob(50)) //it only has AMMO_PASS_THROUGH_MOB so it can keep going if it gibs a mob
@@ -674,8 +674,8 @@
 	penetration = 100
 	sundering = 0
 
-/datum/ammo/rocket/icc_lowvel_heat/drop_nade(turf/T)
-	explosion(T, flash_range = 1, explosion_cause=src)
+/datum/ammo/rocket/icc_lowvel_heat/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, flash_range = 1, explosion_cause = proj)
 
 /datum/ammo/rocket/icc_lowvel_high_explosive
 	name = "Low Velocity HE shell"
@@ -685,5 +685,5 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG // We want this to specifically go over onscreen range.
 	shell_speed = 1
 
-/datum/ammo/rocket/icc_lowvel_high_explosive/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 0, 2, explosion_cause=src)
+/datum/ammo/rocket/icc_lowvel_high_explosive/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 3, 0, 2, explosion_cause = proj)

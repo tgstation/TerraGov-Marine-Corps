@@ -212,9 +212,12 @@
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
-	penetration = 45
-	sundering = 4
+	damage = 70
+	penetration = 35
+	sundering = 8
+
+/datum/ammo/bullet/tank_autocannon_ap/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 1)
 
 /datum/ammo/rocket/tank_autocannon_he
 	name = "autocannon high explosive"
@@ -222,16 +225,20 @@
 	hud_state = "hivelo_fire"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 15
-	penetration = 20
+	armor_type = BOMB
+	damage = 10
+	penetration = 0
 	sundering = 0
+	airburst_multiplier = 2
+	shell_speed = 3
 
-/datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 2, tiny = TRUE)
+/datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	airburst(target_turf, proj)
+	explosion(target_turf, weak_impact_range = 2, tiny = TRUE)
 
 /datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	//this specifically doesn't knockback. Don't change the explosion above weak.
-	drop_nade(get_turf(target_mob))
+	drop_nade(get_turf(target_mob), proj)
 
 // SARDEN
 
@@ -254,8 +261,8 @@
 	sundering = 0.5
 	max_range = 21
 
-/datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
+/datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
