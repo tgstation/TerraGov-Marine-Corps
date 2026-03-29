@@ -103,6 +103,7 @@
 		human.move_resist = MOVE_FORCE_OVERPOWERING
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
+		human.pulledby?.stop_pulling()
 
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
