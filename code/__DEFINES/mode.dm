@@ -74,7 +74,7 @@
 #define MODE_ALLOW_MARINE_QUICKBUILD (1<<18)
 /// Should Area Power Controllers have no access restrictions
 #define MODE_APC_ALL_ACCESS (1<<19)
-/// Reduced Xeno cooldown
+/// Should xeno abilities be buffed with lower cooldown and cost
 #define MODE_BUFFED_XENO_ABILITIES (1<<20)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
