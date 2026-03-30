@@ -167,7 +167,7 @@
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
 	user_old_move_resist = operator.move_resist
-	operator.move_resist = MOVE_FORCE_STRONG
+	operator.set_move_resist(MOVE_FORCE_STRONG)
 
 ///Updates the pixel offset of user so it looks like their manning the gun from behind
 /obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
@@ -316,7 +316,7 @@
 	user_old_x = 0
 	user_old_y = 0
 	density = initial(density)
-	user.move_resist = user_old_move_resist
+	user.set_move_resist(user_old_move_resist)
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)

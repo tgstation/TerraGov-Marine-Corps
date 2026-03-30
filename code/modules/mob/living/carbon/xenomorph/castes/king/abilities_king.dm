@@ -100,10 +100,9 @@
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
-		human.move_resist = MOVE_FORCE_OVERPOWERING
+		human.set_move_resist(MOVE_FORCE_OVERPOWERING)
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
-		human.pulledby?.stop_pulling()
 
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
 		stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(human)]",flags=MASK_INVERSE)))
@@ -142,7 +141,7 @@
 		human.notransform = FALSE
 		human.status_flags &= ~GODMODE
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
-		human.move_resist = initial(human.move_resist)
+		human.set_move_resist(initial(human.move_resist))
 		human.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 		human.overlays -= petrified_humans[human]
 	petrified_humans.Cut()
