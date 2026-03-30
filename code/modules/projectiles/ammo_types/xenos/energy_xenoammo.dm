@@ -31,13 +31,13 @@
 	///AOE damage amount
 	var/aoe_damage = 45
 
-/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, atom/movable/projectile/proj)
-	if(!T || !isturf(T))
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
 		return
-	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	var/list/turf/target_turfs = generate_cone(T, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
-	for(var/turf/target_turf AS in target_turfs)
-		for(var/atom/movable/target AS in target_turf)
+	playsound(target_turf, 'sound/effects/EMPulse.ogg', 50)
+	var/list/turf/target_turfs = generate_cone(target_turf, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
+	for(var/turf/cone_turf AS in target_turfs)
+		for(var/atom/movable/target AS in cone_turf)
 			if(isliving(target))
 				var/mob/living/living_victim = target
 				if(living_victim.stat == DEAD)
@@ -59,7 +59,7 @@
 			if(target.anchored)
 				continue
 
-	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
@@ -80,7 +80,7 @@
 	penetration = 50
 	accuracy = 100
 	sundering = 5
-	max_range = 12
+	max_range = 9
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
 	ability_cost = 300
@@ -113,21 +113,21 @@
 	aoe_range = 1
 	aoe_damage = 31.5 // 45 * 0.7 = 31.5
 
-/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/T, atom/movable/projectile/proj)
-	if(!T || !isturf(T))
+/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
 		return
-	playsound(T, 'sound/effects/portal_opening.ogg', 50)
-	var/list/turf/target_turfs = generate_cone(T, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
-	for(var/turf/target_turf AS in target_turfs)
-		for(var/mob/living/carbon/human/affected_human in target_turf)
+	playsound(target_turf, 'sound/effects/portal_opening.ogg', 50)
+	var/list/turf/target_turfs = generate_cone(target_turf, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
+	for(var/turf/cone_turf AS in target_turfs)
+		for(var/mob/living/carbon/human/affected_human in cone_turf)
 			if(affected_human.stat == DEAD)
 				continue
 			affected_human.apply_damage(aoe_damage, STAMINA, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
 			staggerstun(affected_human, proj, 10, slowdown = 1)
 			affected_human.do_jitter_animation(500)
-			if(target_turf != T)
-				step_away(affected_human, T, 1)
-	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+			if(cone_turf != target_turf)
+				step_away(affected_human, target_turf, 1)
+	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
 
 /datum/ammo/energy/xeno/psy_blast/psy_drain/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)

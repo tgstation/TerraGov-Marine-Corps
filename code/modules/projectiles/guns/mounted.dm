@@ -212,7 +212,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/machines/deployable/heavy_laser.dmi'
-	icon_state = "heavylaser"
+	icon_state = "heavylaser_deployable"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
