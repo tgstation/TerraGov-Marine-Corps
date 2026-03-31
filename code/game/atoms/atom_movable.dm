@@ -1666,6 +1666,8 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 
 /// Sets and deals with any changes to the move_resist variable.
 /atom/movable/proc/set_move_resist(new_move_resist)
+	if(move_resist == new_move_resist)
+		return
 	move_resist = new_move_resist
 	if(pulledby && !can_be_pulled(pulledby))
 		pulledby.stop_pulling()
