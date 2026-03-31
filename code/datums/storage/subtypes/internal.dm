@@ -78,7 +78,7 @@
 
 /datum/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
-	storage_slots = 3
+	storage_slots = 5
 
 /datum/storage/internal/webbing/New(atom/parent)
 	. = ..()
