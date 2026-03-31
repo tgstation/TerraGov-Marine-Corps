@@ -58,3 +58,6 @@
   ViperSnake01:
   - balance: Reduced psy lance range from 12 to 9 tiles.
   - bugfix: Fixed a typo in the psy lance ability description.
+2026-03-31:
+  Runian:
+  - bugfix: Changing an atom's move resistance now may cause any active pulls to end.
