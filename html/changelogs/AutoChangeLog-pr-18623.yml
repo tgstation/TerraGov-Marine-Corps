@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Changing an atom's move resistance now may cause any active pulls to end."
