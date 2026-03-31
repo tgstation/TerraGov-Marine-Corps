@@ -104,7 +104,7 @@
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
-		human.move_resist = MOVE_FORCE_OVERPOWERING
+		human.set_move_resist(MOVE_FORCE_OVERPOWERING)
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
 
@@ -147,7 +147,7 @@
 	victim.notransform = FALSE
 	victim.status_flags &= ~GODMODE
 	REMOVE_TRAIT(victim, TRAIT_HANDS_BLOCKED, REF(src))
-	victim.move_resist = initial(victim.move_resist)
+	victim.set_move_resist(initial(victim.move_resist))
 	victim.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 	victim.overlays -= petrified_humans[victim]
 	petrified_humans -= victim
