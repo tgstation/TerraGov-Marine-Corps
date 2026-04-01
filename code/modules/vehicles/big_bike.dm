@@ -12,7 +12,7 @@
 	layer = MOB_BELOW_PIGGYBACK_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	max_buckled_mobs = 2
 	max_occupants = 2
 	pixel_w = -17

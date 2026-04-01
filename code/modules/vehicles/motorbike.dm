@@ -13,7 +13,7 @@
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
