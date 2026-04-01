@@ -113,10 +113,9 @@
 	hud_state = "spotrifle_flak"
 	damage = 60
 	sundering = 0.5
-	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/spottingrifle/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	airburst(target_mob, proj)
+	airburst(target_mob, proj, 30)
 
 /datum/ammo/bullet/spottingrifle/incendiary
 	name = "smart incendiary spotting  bullet"
