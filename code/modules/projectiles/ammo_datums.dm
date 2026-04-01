@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 
-/datum/ammo/proc/drop_nade(turf/T)
+/datum/ammo/proc/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///called on projectile process() when AMMO_SPECIAL_PROCESS flag is active

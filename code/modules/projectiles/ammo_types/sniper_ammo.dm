@@ -70,15 +70,6 @@
 	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
-/datum/ammo/bullet/sniper/elite
-	name = "supersonic sniper bullet"
-	hud_state = "sniper_supersonic"
-	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy = 20
-	damage = 100
-	penetration = 60
-	sundering = 50
-
 /datum/ammo/bullet/sniper/pfc
 	name = "high caliber rifle bullet"
 	hud_state = "sniper_heavy"
