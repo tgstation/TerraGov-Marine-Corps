@@ -43,10 +43,6 @@
 
 	new_gun?.set_gun_user(null)
 
-/obj/machinery/deployable/mounted/Destroy()
-	operator?.unset_interaction()
-	return ..()
-
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
@@ -284,7 +280,6 @@
 
 	return FALSE
 
-
 ///Unsets the user from manning the internal gun
 /obj/machinery/deployable/mounted/on_unset_interaction(mob/user)
 	if(!operator)
@@ -311,12 +306,12 @@
 		gun.set_gun_user(null)
 
 	operator.client?.view_size.reset_to_default()
+	operator.set_move_resist(user_old_move_resist)
 	operator = null
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
 	density = initial(density)
-	user.set_move_resist(user_old_move_resist)
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)

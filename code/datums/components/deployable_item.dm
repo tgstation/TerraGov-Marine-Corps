@@ -184,8 +184,6 @@
 	deployed_machine.post_disassemble(user)
 	undeployed_item.toggle_deployment_flag()
 
-	user.unset_interaction()
-
 	UnregisterSignal(undeployed_item, COMSIG_MOVABLE_MOVED)
 	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
 		undeployed_item.forceMove(get_turf(deployed_machine))
