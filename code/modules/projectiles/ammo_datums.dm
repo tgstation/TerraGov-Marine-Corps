@@ -181,26 +181,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/airburst(atom/target, atom/movable/projectile/proj, burst_damage = 20)
 	if(!target || !proj || burst_damage <= 0)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	for(var/mob/living/carbon/victim in orange(1, target))
-		if(proj.firer == victim)
+
+	for(var/thing AS in orange(1, target))
+		if(isliving(thing))
+			var/mob/living/living_victim = thing
+			living_victim.visible_message(span_danger("[living_victim] is hit by backlash from \a [proj.name]!"),
+				isxeno(living_victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
+			living_victim.apply_damage(burst_damage, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE, attacker = proj.firer)
+		if(!isobj(thing))
 			continue
-		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
-			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		victim.apply_damage(burst_damage, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE, attacker = proj.firer)
+		var/obj/obj_victim = thing
+		obj_victim.take_damage(burst_damage, proj.ammo.damage_type, armor_type, attack_dir = get_dir(target, obj_victim), blame_mob = proj.firer)
 
-///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
-/datum/ammo/proc/deflagrate(atom/target, atom/movable/projectile/proj, deflag_damage = 15, deflagrate_mult = 1)
-	if(!target || !proj || deflag_damage <= 0)
+///A probability based incendiary explosion triggered on living targets
+/datum/ammo/proc/deflagrate(mob/living/target, atom/movable/projectile/proj, deflag_damage = 15, deflagrate_mult = 1)
+	if(!isliving(target) || !proj || deflag_damage <= 0)
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	if(!istype(target, /mob/living))
-		return
 
-	var/mob/living/victim = target
-	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_mult
+	var/deflagrate_chance = target.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_mult
 	if(!prob(deflagrate_chance))
 		return
 
-	new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
+	new /obj/effect/temp_visual/shockwave(get_turf(target), 2)
 	playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
 
 	for(var/mob/living/carbon/victim in range(1, target))

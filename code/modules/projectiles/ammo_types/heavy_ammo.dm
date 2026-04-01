@@ -112,7 +112,7 @@
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	airburst(target_mob, proj, burst_damage)
 
-/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
+/datum/ammo/bullet/auto_cannon/flak/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	airburst(target_turf, proj, burst_damage)
 
 /datum/ammo/bullet/auto_cannon/anti_tank
