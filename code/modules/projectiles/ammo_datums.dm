@@ -83,10 +83,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
-	///Multiplier for deflagrate chance
-	var/deflagrate_multiplier = 0.9
-	///Flat damage caused if fire_burst is triggered by deflagrate
-	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
@@ -182,7 +178,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 ///Does AOE damage in a 1 tile radius
-/datum/ammo/proc/airburst(atom/target, atom/movable/projectile/proj, burst_damage = proj.damage)
+/datum/ammo/proc/airburst(atom/target, atom/movable/projectile/proj, burst_damage = 20)
 	if(!target || !proj || burst_damage <= 0)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in orange(1, target))
@@ -193,24 +189,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(burst_damage, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE, attacker = proj.firer)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
-/datum/ammo/proc/deflagrate(atom/target, atom/movable/projectile/proj, deflag_damage = proj.damage)
+/datum/ammo/proc/deflagrate(atom/target, atom/movable/projectile/proj, deflag_damage = 15, deflagrate_mult = 1)
 	if(!target || !proj || deflag_damage <= 0)
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	if(!istype(target, /mob/living))
 		return
 
 	var/mob/living/victim = target
-	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
-	//var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
-	if(prob(deflagrate_chance))
-		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
-		fire_burst(target, proj)
+	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_mult
+	if(!prob(deflagrate_chance))
+		return
 
-///the actual fireblast triggered by deflagrate
-/datum/ammo/proc/fire_burst(atom/target, atom/movable/projectile/proj)
-	if(!target || !proj)
-		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
+	playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
+
 	for(var/mob/living/carbon/victim in range(1, target))
 		if(victim == target)
 			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
@@ -218,7 +210,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_userdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE, attacker = proj.firer)
+		victim.apply_damage(deflag_damage, BURN, blocked = FIRE, updating_health = TRUE, attacker = proj.firer)
 
 		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)
