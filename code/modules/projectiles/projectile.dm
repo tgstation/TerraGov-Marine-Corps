@@ -19,6 +19,9 @@
 
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
+///Multiplier applied to FF projectile damage
+#define PROJECTILE_FF_MULT 0.5
+
 #define PROJECTILE_HIT_CHECK(thing_to_hit, projectile, cardinal_move, uncrossing, hit_atoms) (!(thing_to_hit.resistance_flags & PROJECTILE_IMMUNE) && thing_to_hit.projectile_hit(projectile, cardinal_move, uncrossing) && !(thing_to_hit in hit_atoms))
 
 //The actual bullet objects.
@@ -111,8 +114,6 @@
 	var/y_offset
 	///Max range the projectile can travel
 	var/proj_max_range = 30
-	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
-	var/friendly_fire_multiplier = 0.5
 	///The "point blank" range of the projectile. Inside this range the projectile gets a bonus to hit
 	var/point_blank_range = 0
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
@@ -953,7 +954,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
 	if(proj.firer && proj.firer.faction == faction)
-		damage *= proj.friendly_fire_multiplier
+		damage *= PROJECTILE_FF_MULT
 
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
@@ -1470,3 +1471,4 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 #undef PROJ_ABS_PIXEL_TO_TURF
 #undef PROJ_ANIMATION_SPEED
+#undef PROJECTILE_FF_MULT
