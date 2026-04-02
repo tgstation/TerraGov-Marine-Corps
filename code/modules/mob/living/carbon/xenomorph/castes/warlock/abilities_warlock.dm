@@ -356,6 +356,10 @@
 	///The particle type this ability uses
 	var/channel_particle = /particles/warlock_charge
 
+/datum/action/ability/activable/xeno/psy_crush/remove_action(mob/living/L)
+	pre_stop_crush()
+	return ..()
+
 /datum/action/ability/activable/xeno/psy_crush/use_ability(atom/target)
 	if(channel_loop_timer)
 		if(current_iterations <= 1) //prevents instant cast and crushing
@@ -391,10 +395,11 @@
 	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 	orb = new /obj/effect/xeno/crush_orb(target_turf)
+	RegisterSignals(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING), PROC_REF(on_orb_destruction))
 
 	action_icon_state = "psy_crush_activate"
 	update_button_icon()
-	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(pre_stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
@@ -411,7 +416,7 @@
 /datum/action/ability/activable/xeno/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
 	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
-		stop_crush()
+		pre_stop_crush()
 		return
 	if(current_iterations >= max_interations)
 		crush(target)
@@ -436,17 +441,17 @@
 		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
-	stop_crush()
+	pre_stop_crush()
 
 ///crushes all turfs in the AOE
 /datum/action/ability/activable/xeno/psy_crush/proc/crush(turf/target)
 	var/crush_cost = ability_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
-		stop_crush()
+		pre_stop_crush()
 		return
 	if(!check_distance(target))
-		stop_crush()
+		pre_stop_crush()
 		return
 
 	succeed_activate(crush_cost)
@@ -478,20 +483,33 @@
 				var/obj/fire/fire = victim
 				fire.reduce_fire(10)
 				continue
+	pre_stop_crush()
+
+///Stops crush when the orb is destroyed
+/datum/action/ability/activable/xeno/psy_crush/proc/on_orb_destruction(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING))
 	stop_crush()
 
-/// stops channeling and unregisters all listeners, resetting the ability
-/datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
+///Preps for stop crush where it is cancelled by the ability or owner
+/datum/action/ability/activable/xeno/psy_crush/proc/pre_stop_crush(datum/source)
 	SIGNAL_HANDLER
-	if(channel_loop_timer)
-		deltimer(channel_loop_timer)
-		channel_loop_timer = null
-	QDEL_LIST(effect_list)
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 	if(orb.icon_state != "crush_hard") //we failed to crush
 		flick("crush_smooth", orb)
 		QDEL_NULL_IN(src, orb, 0.5 SECONDS)
 	else
 		QDEL_NULL_IN(src, orb, 0.4 SECONDS)
+	stop_crush()
+
+/// stops channeling and resets the ability
+/datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
+	if(channel_loop_timer)
+		deltimer(channel_loop_timer)
+		channel_loop_timer = null
+	QDEL_LIST(effect_list)
+	QDEL_NULL(particle_holder)
+
 	current_iterations = 0
 	target_turfs = null
 	effect_list = null
@@ -500,8 +518,6 @@
 	xeno_owner.update_glow()
 	add_cooldown()
 	update_button_icon()
-	QDEL_NULL(particle_holder)
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/ability/activable/xeno/psy_crush/proc/apply_filters(list/turfs)
@@ -549,14 +565,27 @@
 	icon = 'icons/xeno/2x2building.dmi'
 	icon_state = "orb_idle"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	resistance_flags = NONE
 	layer = FLY_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	max_integrity = 100
 	pixel_x = -16
+	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
+	destroy_sound = 'sound/effects/xadarblast.ogg'
 
 /obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
+
+/obj/effect/xeno/crush_orb/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	SHOULD_CALL_PARENT(FALSE) //we don't call parent since we don't want to immediately qdel
+	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
+	flick("crush_smooth", src)
+	QDEL_IN(src, 0.5 SECONDS)
+
+/obj/effect/xeno/crush_orb/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
+	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
+		return FALSE
+	return ..()
 
 #undef PSY_CRUSH_DAMAGE
 
@@ -581,14 +610,14 @@
 	/// The ammo types that can be selected.
 	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(/datum/ammo/energy/xeno/psy_blast)
 	/// The currently selected ammo type.
-	var/list/datum/ammo/energy/xeno/selected_ammo_type
+	var/datum/ammo/energy/xeno/selected_ammo_type
 	/// If Psychic Drain is used, how much bonus damage is granted?
 	var/psychic_drain_bonus_damage = 0
 
 /datum/action/ability/activable/xeno/psy_blast/New(Target)
 	. = ..()
 	if(length(selectable_ammo_types))
-		selected_ammo_type = selectable_ammo_types[1]
+		selected_ammo_type = GLOB.ammo_list[selectable_ammo_types[1]]
 
 /datum/action/ability/activable/xeno/psy_blast/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
 	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
@@ -596,8 +625,7 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
-	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
-		selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
+	selectable_ammo_types -= /datum/ammo/energy/xeno/psy_lance
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/on_xeno_upgrade()
@@ -607,7 +635,7 @@
 	selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 
 /datum/action/ability/activable/xeno/psy_blast/on_cooldown_finish()
-	owner.balloon_alert(owner, "Psy blast ready")
+	owner.balloon_alert(owner, "[selected_ammo_type.name] ready")
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/action_activate()
@@ -619,10 +647,10 @@
 		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[1]]
 	else
 		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[(found_pos % length(selectable_ammo_types)) + 1]] // Pick the next selectable ammo type. If not, loop to the beginning.
-	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-	ability_cost = selected_ammo.ability_cost
-	particle_type = selected_ammo.channel_particle
-	switch(selected_ammo.type)
+	selected_ammo_type = xeno_owner.ammo
+	ability_cost = selected_ammo_type.ability_cost
+	particle_type = selected_ammo_type.channel_particle
+	switch(selected_ammo_type.type)
 		if(/datum/ammo/energy/xeno/psy_blast)
 			name = "Psychic Blast ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light burn damage and staggers in an area. Direct hits deal additional light brute damage."
@@ -633,7 +661,7 @@
 			name = "Psychic Drain ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light stamina damage, staggers, and knockbacks in a smaller area. Direct hits deal additional light stamina damage and briefly knockdowns."
 	desc += " Must remain stationary for a few seconds to use." // Extra space intentional.
-	owner.balloon_alert(xeno_owner, "[selected_ammo]")
+	owner.balloon_alert(xeno_owner, "[selected_ammo_type]")
 	update_button_icon()
 	return ..()
 
