@@ -464,8 +464,7 @@
 	name = "SMG-25 & shield"
 	desc = "Equipped with a mag harness, recoil compensator and gyroscopic stabilizer, and comes with a TL-172 defensive shield. SMG-25 submachinegun, is a large capacity smg, able to be be used effectively one or two handed. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. \
-	The defensive shield provides incredible resilience, allowing the user to soak up tremendous amounts of damage while they or their team mates push the enemy. \
-	The accompanying TL-172 defensive shield helps to protect the user from melee attacks, and shotgun based stuns. \
+	The defensive shield provides incredible resilience, allowing the user to soak up tremendous amounts of damage while they or their team mates push the enemy. It also has a chance to outright deflect melee attacks, and prevent shotgun based stuns.\
 	Generally used with Tyr heavy armor for maximum survivability. Uses 10x20mm caseless ammunition."
 	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
