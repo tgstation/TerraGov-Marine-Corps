@@ -357,7 +357,8 @@
 	var/channel_particle = /particles/warlock_charge
 
 /datum/action/ability/activable/xeno/psy_crush/remove_action(mob/living/L)
-	pre_stop_crush()
+	if(!QDELETED(orb))
+		pre_stop_crush()
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_crush/use_ability(atom/target)
