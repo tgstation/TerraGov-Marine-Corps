@@ -1,0 +1,4 @@
+2026-04-02:
+  Runian:
+  - bugfix: Resisting out of grabs caused by unmanned vehicle claw correctly resets
+      your movement delay to normal.
