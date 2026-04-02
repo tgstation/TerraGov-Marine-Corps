@@ -37,8 +37,7 @@
 	if(!isturf(target_turf))
 		return
 	playsound(target_turf, 'sound/effects/EMPulse.ogg', 50)
-	var/list/turf/target_turfs = generate_cone(target_turf, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
-	for(var/turf/cone_turf AS in target_turfs)
+	for(var/turf/cone_turf AS in generate_cone(target_turf, aoe_range, -1, 359, 359, pass_flags_checked = PASS_AIR))
 		for(var/target in cone_turf)
 			if(isliving(target))
 				if(isxeno(target))
@@ -48,6 +47,8 @@
 					continue
 				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
 				staggerstun(living_victim, proj, 10, slowdown = 1)
+				if(get_dist(target_turf, living_victim) <= 1)
+					living_victim.knockback(target_turf, 1, 1, knockback_force = MOVE_FORCE_NORMAL)
 				living_victim.do_jitter_animation(500)
 				continue
 			if(isobj(target))
@@ -86,8 +87,7 @@
 	if(!isturf(target_turf))
 		return
 	playsound(target_turf, 'sound/effects/portal_opening.ogg', 50)
-	var/list/turf/target_turfs = generate_cone(target_turf, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
-	for(var/turf/cone_turf AS in target_turfs)
+	for(var/turf/cone_turf AS in generate_cone(target_turf, aoe_range, -1, 359, 359, pass_flags_checked = PASS_AIR))
 		for(var/mob/living/carbon/human/affected_human in cone_turf)
 			if(affected_human.stat == DEAD)
 				continue
