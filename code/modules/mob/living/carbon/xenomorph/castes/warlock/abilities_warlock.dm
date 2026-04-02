@@ -491,6 +491,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING))
 	stop_crush()
+	orb = null
 
 ///Preps for stop crush where it is cancelled by the ability or owner
 /datum/action/ability/activable/xeno/psy_crush/proc/pre_stop_crush(datum/source)
@@ -570,7 +571,7 @@
 	resistance_flags = NONE
 	layer = FLY_LAYER
 	max_integrity = 220
-	pixel_x = -16
+	pixel_w = -16
 	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 	destroy_sound = 'sound/effects/xadarblast.ogg'
 
@@ -581,8 +582,15 @@
 /obj/effect/xeno/crush_orb/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	SHOULD_CALL_PARENT(FALSE) //we don't call parent since we don't want to immediately qdel
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
-	flick("crush_smooth", src)
+	flick("crush_hard", orb)
 	QDEL_IN(src, 0.5 SECONDS)
+	for(var/mob/living/victim in range(1, src))
+		if(isxeno(victim))
+			continue
+		victim.apply_damage(PSY_CRUSH_DAMAGE, BURN, blocked = BOMB, updating_health = TRUE, attacker = blame_mob)
+		victim.adjust_stagger(3 SECONDS)
+		victim.add_slowdown(3)
+		victim.do_jitter_animation(500)
 
 /obj/effect/xeno/crush_orb/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
