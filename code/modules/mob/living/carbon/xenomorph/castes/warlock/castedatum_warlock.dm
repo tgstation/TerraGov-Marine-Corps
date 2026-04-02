@@ -48,4 +48,4 @@
 	primordial_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
 	upgrade = XENO_UPGRADE_PRIMO
 
-	// Psychic Blast automatically upgrades with the power to use [/datum/ammo/energy/xeno/psy_blast/psy_lance].
+	// Psychic Blast automatically upgrades with the power to use [/datum/ammo/energy/xeno/psy_lance].

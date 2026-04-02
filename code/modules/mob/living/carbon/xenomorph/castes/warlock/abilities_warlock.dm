@@ -570,6 +570,7 @@
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 230
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
@@ -593,19 +594,19 @@
 
 /datum/action/ability/activable/xeno/psy_blast/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
 	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
-		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+		selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
 	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
-		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+		selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/on_xeno_upgrade()
 	. = ..()
-	if(/datum/ammo/energy/xeno/psy_blast/psy_lance in selectable_ammo_types)
+	if(/datum/ammo/energy/xeno/psy_lance in selectable_ammo_types)
 		return
-	selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+	selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 
 /datum/action/ability/activable/xeno/psy_blast/on_cooldown_finish()
 	owner.balloon_alert(owner, "Psy blast ready")
@@ -627,7 +628,7 @@
 		if(/datum/ammo/energy/xeno/psy_blast)
 			name = "Psychic Blast ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light burn damage and staggers in an area. Direct hits deal additional light brute damage."
-		if(/datum/ammo/energy/xeno/psy_blast/psy_lance)
+		if(/datum/ammo/energy/xeno/psy_lance)
 			name = "Psychic Lance ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals high burn damage with high armor penetration. This can hit multiple mobs and goes through structures."
 		if(/datum/ammo/energy/xeno/psy_blast/psy_drain)
@@ -638,30 +639,19 @@
 	update_button_icon()
 	return ..()
 
-/datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!xeno_owner.check_state())
-		return FALSE
-	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-	if(selected_ammo.ability_cost > xeno_owner.plasma_stored)
-		if(!silent)
-			owner.balloon_alert(owner, "[selected_ammo.ability_cost - xeno_owner.plasma_stored] more plasma!")
-		return FALSE
-
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
+	succeed_activate()
+
+	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_PLASMA))
 		owner.balloon_alert(owner, "Our focus is disrupted")
+		add_cooldown(cooldown_duration * 0.5)
 		end_channel()
 		return fail_activate()
-
-	succeed_activate()
 
 	var/atom/movable/projectile/hitscan/projectile = new /atom/movable/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
