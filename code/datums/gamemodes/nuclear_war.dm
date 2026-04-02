@@ -94,17 +94,20 @@
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
+			priority_announce("A new silo has been laid! Destroy the new silo to resume hive collapse.", "Hive Collapse Averted", type = ANNOUNCEMENT_PRIORITY)
 		return
 	if(GLOB.corrupted_generators)
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)
 			siloless_hive_timer = null
+			priority_announce("A generator has been corrupted! Decorrupt the generators to resume hive collapse.", "Hive Collapse Averted", type = ANNOUNCEMENT_PRIORITY)
 		return
 	//handle starting
 	if(siloless_hive_timer)
 		return
 
 	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
+	priority_announce("Psychic distress waves detected from the xenomorph hive, imminent hive collapse in T-[NUCLEAR_WAR_SILO_COLLAPSE]. Prevent xenomorphs from laying a new silo or recorrupting generators.", "Imminent Hive Collapse Detected", type = ANNOUNCEMENT_PRIORITY)
 	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
 
