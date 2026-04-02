@@ -358,6 +358,8 @@
 
 /datum/action/ability/activable/xeno/psy_crush/use_ability(atom/target)
 	if(channel_loop_timer)
+		if(length(target_turfs) == 1) //prevents instant cast and crushing
+			return
 		if(length(target_turfs)) //it shouldn't be possible to do this without any turfs, but just in case
 			crush(target_turfs[1])
 		return
