@@ -14174,6 +14174,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.18.1":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
+  languageName: node
+  linkType: hard
+
 "loglevel@npm:^1.6.8":
   version: 1.9.2
   resolution: "loglevel@npm:1.9.2"
@@ -20484,7 +20491,7 @@ __metadata:
     "@types/react-dom": "npm:^19.1.2"
     common: "workspace:*"
     fastify: "npm:^5.1.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     platform: "npm:^1.3.6"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
