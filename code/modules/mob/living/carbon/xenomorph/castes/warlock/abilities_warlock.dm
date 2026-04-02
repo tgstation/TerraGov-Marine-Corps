@@ -496,6 +496,7 @@
 /datum/action/ability/activable/xeno/psy_crush/proc/pre_stop_crush(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
+	UnregisterSignal(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING))
 	if(orb.icon_state != "crush_hard") //we failed to crush
 		flick("crush_smooth", orb)
 		QDEL_NULL_IN(src, orb, 0.5 SECONDS)
