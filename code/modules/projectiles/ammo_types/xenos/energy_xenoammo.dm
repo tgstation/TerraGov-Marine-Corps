@@ -8,6 +8,8 @@
 	barricade_clear_distance = 1
 	///Plasma cost to fire this projectile
 	var/ability_cost
+	///do_after duration when using this ammo type
+	var/charge_time = 1 SECONDS
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -109,6 +111,7 @@
 	penetration = 50
 	accuracy = 100
 	on_pierce_multiplier = 0.7
+	charge_time = 1.5 SECONDS
 	sundering = 5
 	max_range = 9
 	accurate_range = 7

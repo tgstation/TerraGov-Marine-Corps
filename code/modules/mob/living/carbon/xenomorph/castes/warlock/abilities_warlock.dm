@@ -579,9 +579,7 @@
 	///The particle type that will be created when using this ability
 	var/particles/particle_type = /particles/warlock_charge/psy_blast
 	/// The ammo types that can be selected.
-	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(
-		/datum/ammo/energy/xeno/psy_blast
-	)
+	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(/datum/ammo/energy/xeno/psy_blast)
 	/// The currently selected ammo type.
 	var/list/datum/ammo/energy/xeno/selected_ammo_type
 	/// If Psychic Drain is used, how much bonus damage is granted?
@@ -647,7 +645,7 @@
 
 	succeed_activate()
 
-	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_PLASMA))
+	if(!do_after(xeno_owner, selected_ammo_type.charge_time, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_PLASMA))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		add_cooldown(cooldown_duration * 0.5)
 		end_channel()
