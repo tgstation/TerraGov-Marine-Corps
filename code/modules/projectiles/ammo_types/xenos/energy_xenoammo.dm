@@ -117,7 +117,7 @@
 	accurate_range = 7
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	ability_cost = 350
+	ability_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
