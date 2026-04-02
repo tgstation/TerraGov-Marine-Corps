@@ -9,7 +9,7 @@
 	///Plasma cost to fire this projectile
 	var/ability_cost
 	///do_after duration when using this ammo type
-	var/charge_time = 0.8 SECONDS
+	var/charge_time = 1 SECONDS
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
