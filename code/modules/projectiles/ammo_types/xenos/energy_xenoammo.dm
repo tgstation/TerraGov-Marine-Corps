@@ -110,7 +110,7 @@
 	damage = 60
 	penetration = 50
 	accuracy = 100
-	on_pierce_multiplier = 0.7
+	on_pierce_multiplier = 0.8
 	charge_time = 1.2 SECONDS
 	sundering = 5
 	max_range = 9
