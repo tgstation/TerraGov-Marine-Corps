@@ -622,8 +622,6 @@
 	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(/datum/ammo/energy/xeno/psy_blast)
 	/// The currently selected ammo type.
 	var/datum/ammo/energy/xeno/selected_ammo_type
-	/// If Psychic Drain is used, how much bonus damage is granted?
-	var/psychic_drain_bonus_damage = 0
 
 /datum/action/ability/activable/xeno/psy_blast/New(Target)
 	. = ..()
