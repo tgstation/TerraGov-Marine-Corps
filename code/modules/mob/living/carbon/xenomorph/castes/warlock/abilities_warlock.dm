@@ -582,7 +582,7 @@
 /obj/effect/xeno/crush_orb/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	SHOULD_CALL_PARENT(FALSE) //we don't call parent since we don't want to immediately qdel
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
-	flick("crush_hard", orb)
+	flick("crush_hard", src)
 	QDEL_IN(src, 0.5 SECONDS)
 	for(var/mob/living/victim in range(1, src))
 		if(isxeno(victim))
