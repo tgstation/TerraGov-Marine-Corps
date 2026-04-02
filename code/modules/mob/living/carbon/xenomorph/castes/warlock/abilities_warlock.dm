@@ -567,7 +567,7 @@
 	anchored = TRUE
 	resistance_flags = NONE
 	layer = FLY_LAYER
-	max_integrity = 100
+	max_integrity = 220
 	pixel_x = -16
 	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
 	destroy_sound = 'sound/effects/xadarblast.ogg'
