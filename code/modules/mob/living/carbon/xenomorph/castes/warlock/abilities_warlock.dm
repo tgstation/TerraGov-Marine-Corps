@@ -587,6 +587,17 @@
 		return FALSE
 	return ..()
 
+/obj/ex_act(severity)
+	if(QDELETED(src))
+		return
+	switch(severity)
+		if(EXPLODE_LIGHT)
+			take_damage(120, BRUTE, BOMB, 0)
+		if(EXPLODE_WEAK)
+			take_damage(50, BRUTE, BOMB, 0)
+		else
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+
 #undef PSY_CRUSH_DAMAGE
 
 // ***************************************
