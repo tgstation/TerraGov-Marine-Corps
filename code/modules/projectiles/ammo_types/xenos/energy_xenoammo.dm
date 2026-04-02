@@ -37,16 +37,18 @@
 	playsound(target_turf, 'sound/effects/EMPulse.ogg', 50)
 	var/list/turf/target_turfs = generate_cone(target_turf, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
 	for(var/turf/cone_turf AS in target_turfs)
-		for(var/atom/movable/target AS in cone_turf)
+		for(var/target in cone_turf)
 			if(isliving(target))
+				if(isxeno(target))
+					continue
 				var/mob/living/living_victim = target
 				if(living_victim.stat == DEAD)
 					continue
-				if(!isxeno(living_victim))
-					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
-					staggerstun(living_victim, proj, 10, slowdown = 1)
-					living_victim.do_jitter_animation(500)
-			else if(isobj(target))
+				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
+				staggerstun(living_victim, proj, 10, slowdown = 1)
+				living_victim.do_jitter_animation(500)
+				continue
+			if(isobj(target))
 				var/obj/obj_victim = target
 				var/dam_mult = 1
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
@@ -56,8 +58,6 @@
 				if(isarmoredvehicle(target))
 					dam_mult -= 0.5
 				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
-			if(target.anchored)
-				continue
 
 	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
 
@@ -119,12 +119,13 @@
 	glow_color = "#CB0166"
 
 /datum/ammo/energy/xeno/psy_lance/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	if(isvehicle(target_obj))
-		var/obj/vehicle/veh_victim = target_obj
-		var/veh_damage = 200
-		if(isgreyscalemecha(veh_victim))
-			veh_damage = 25
-		veh_victim.take_damage(veh_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
+	if(!isvehicle(target_obj))
+		return
+	var/obj/vehicle/veh_victim = target_obj
+	var/veh_damage = 200
+	if(isgreyscalemecha(veh_victim))
+		veh_damage = 25
+	veh_victim.take_damage(veh_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_lance/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
