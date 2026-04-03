@@ -25,6 +25,7 @@
 	icon_state = "cargotech"
 	worn_icon_state = "lb_suit"
 	armor_protection_flags = CHEST|GROIN|ARMS
+	codex_path = /obj/item/clothing/under/rank
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."

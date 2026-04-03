@@ -78,16 +78,15 @@
 
 #define INIT_ORDER_GARBAGE 27
 #define INIT_ORDER_DBCORE 25
-#define INIT_ORDER_SERVER_MAINT 23
-#define INIT_ORDER_INPUT 22
-#define INIT_ORDER_ADMIN_VERBS 21 // needs to be pretty high, admins can't do much without it
-#define INIT_ORDER_VIS 20
-#define INIT_ORDER_SOUNDS 19
-#define INIT_ORDER_SECURITY_LEVEL 18
-#define INIT_ORDER_INSTRUMENTS 17
-#define INIT_ORDER_GREYSCALE 16
-#define INIT_ORDER_DISCORD 15
-#define INIT_ORDER_CODEX 14
+#define INIT_ORDER_SERVER_MAINT 22
+#define INIT_ORDER_INPUT 21
+#define INIT_ORDER_ADMIN_VERBS 20 // needs to be pretty high, admins can't do much without it
+#define INIT_ORDER_VIS 19
+#define INIT_ORDER_SOUNDS 18
+#define INIT_ORDER_SECURITY_LEVEL 17
+#define INIT_ORDER_INSTRUMENTS 16
+#define INIT_ORDER_GREYSCALE 15
+#define INIT_ORDER_DISCORD 14
 #define INIT_ORDER_EVENTS 13
 #define INIT_ORDER_MONITOR 12
 #define INIT_ORDER_JOBS 11
@@ -98,15 +97,16 @@
 #define INIT_ORDER_PERSISTENCE 6 //before assets because some assets take data from SSPersistence, such as vendor items
 #define INIT_ORDER_TTS 5
 #define INIT_ORDER_ATOMS 4
-#define INIT_ORDER_MODULARMAPPING 3
-#define INIT_ORDER_MACHINES 2
-#define INIT_ORDER_AI_NODES 1
-#define INIT_ORDER_TIMER 0
-#define INIT_ORDER_DEFAULT -1
-#define INIT_ORDER_AIR -2
-#define INIT_ORDER_ASSETS -4
-#define INIT_ORDER_SPAWNING_POOL -5
-#define INIT_ORDER_OVERLAY -6
+#define INIT_ORDER_CODEX 3	//Initializes after atoms to build the entries
+#define INIT_ORDER_MODULARMAPPING 2
+#define INIT_ORDER_MACHINES 0
+#define INIT_ORDER_AI_NODES -1
+#define INIT_ORDER_TIMER -2
+#define INIT_ORDER_DEFAULT -3
+#define INIT_ORDER_AIR -4
+#define INIT_ORDER_ASSETS -5
+#define INIT_ORDER_SPAWNING_POOL -6
+#define INIT_ORDER_OVERLAY -7
 #define INIT_ORDER_STICKY_BAN -10
 #define INIT_ORDER_MINIMAPS -15
 #define INIT_ORDER_ICON_SMOOTHING -16

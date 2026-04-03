@@ -44,6 +44,7 @@
 	icon_state = "sexyclown"
 	worn_icon_state = "sexyclown"
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/under/pj/red
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
@@ -90,6 +91,7 @@
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection_flags = CHEST|GROIN|LEGS|ARMS //Needs gloves and shoes with cold protection to be fully protected.
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	codex_path = /obj/item/clothing/under/rank/vice
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
@@ -103,6 +105,7 @@
 	cold_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
+	codex_path = /obj/item/clothing/under/acj
 
 /obj/item/clothing/under/owl
 	name = "owl uniform"
@@ -129,6 +132,7 @@
 	desc = "A thick, layered grey undersuit lined with power cables. Feels a little like wearing an electrical storm."
 	icon_state = "psysuit"
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	codex_path = /obj/item/clothing/under/psysuit
 
 /obj/item/clothing/under/gentlesuit
 	name = "Gentlemans Suit"
@@ -175,6 +179,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	armor_protection_flags = CHEST|GROIN|LEGS
+	codex_path = /obj/item/clothing/under/pirate
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -191,18 +196,21 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	armor_protection_flags = CHEST|GROIN|FEET
+	codex_path = /obj/item/clothing/under/kilt
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
 	icon_state = "sexymime"
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/under/sexymime
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
 	icon_state = "gladiator"
 	armor_protection_flags = GROIN
+	codex_path = /obj/item/clothing/under/gladiator
 
 //dress
 /obj/item/clothing/under/dress/
@@ -244,18 +252,21 @@
 	desc = "Feminine fashion for the style concious captain."
 	icon_state = "dress_cap"
 	armor_protection_flags = CHEST|GROIN|ARMS
+	codex_path = /obj/item/clothing/under/dress/dress_cap
 
 /obj/item/clothing/under/dress/dress_hop
 	name = "head of personnel dress uniform"
 	desc = "Feminine fashion for the style concious HoP."
 	icon_state = "dress_hop"
 	armor_protection_flags = CHEST|GROIN|ARMS
+	codex_path = /obj/item/clothing/under/dress/dress_hop
 
 /obj/item/clothing/under/dress/dress_hr
 	name = "human resources director uniform"
 	desc = "Superior class for the nosy H.R. Director."
 	icon_state = "huresource"
 	armor_protection_flags = CHEST|GROIN|ARMS
+	codex_path = /obj/item/clothing/under/dress/dress_hr
 
 /obj/item/clothing/under/dress/plaid_blue
 	name = "blue plaid skirt"
@@ -306,12 +317,14 @@
 	icon_state = "bride_white"
 	inv_hide_flags = HIDESHOES
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/under/wedding/bride_white
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/under/sundress
 
 /obj/item/clothing/under/captainformal
 	name = "captain's formal uniform"
@@ -381,6 +394,7 @@
 	slowdown= -1
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+	codex_path = /obj/item/clothing/under/spec_operative
 
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
@@ -388,4 +402,5 @@
 	icon_state = "tp_bodyrobes"
 	worn_icon_state = "tp_bodyrobes"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	codex_path = /obj/item/clothing/under/techpriest
 

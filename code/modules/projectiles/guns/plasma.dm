@@ -67,6 +67,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
 	starting_attachment_types = list(
@@ -151,6 +152,7 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/cannon/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -236,6 +238,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/standard
 	starting_attachment_types = list(

@@ -14,6 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "m43"
+	codex_path = /obj/item/cell/lasgun
 	var/reload_delay = 0
 	///Magazine flags.
 	var/magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER
@@ -25,6 +26,7 @@
 	desc = "A specialized high density battery used to power the M43 lasgun."
 	charge_overlay = "m43"
 	icon_state = "m43"
+	codex_path = /obj/item/cell/lasgun/M43
 
 /obj/item/cell/lasgun/M43/highcap// Large battery
 	name = "\improper M43 highcap lasgun battery"
@@ -32,6 +34,7 @@
 	charge_overlay = "m43_e"
 	icon_state = "m43_e"
 	maxcharge = 1600
+	codex_path = /obj/item/cell/lasgun/M43/highcap// Large battery
 
 /obj/item/cell/lasgun/pulse
 	name = "\improper M19C4 pulse battery"
@@ -42,6 +45,7 @@
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
+	codex_path = /obj/item/cell/lasgun/pulse
 
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
@@ -49,6 +53,7 @@
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 2 shots
 	charge_delay = 2 SECONDS
+	codex_path = /obj/item/cell/lasgun/M43/practice
 
 /obj/item/cell/lasgun/lasrifle
 	name = "\improper Terra Experimental standard battery"
@@ -57,6 +62,8 @@
 	icon_state = "te"
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
+	codex_path = /obj/item/cell/lasgun/lasrifle
+
 /obj/item/cell/lasgun/lasrifle/recharger
 	name = "\improper Terra Experimental recharger battery"
 	desc = "A prototype high density battery reverse-engineered from captured Volkite equipment. Due to developmental constraints and less than stellar jury-rigging, as well as space taken up by the recharger component, it boasts sub-par capacity."
@@ -65,6 +72,8 @@
 	self_recharge = TRUE
 	charge_amount = 12 //balanced around recharging 1 standard laser rifle shot per second
 	charge_delay = 1 SECONDS
+	codex_path = /obj/item/cell/lasgun/lasrifle/recharger
+
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
 
@@ -75,6 +84,7 @@
 	maxcharge = 900
 	icon_state_mini = "mag_plasma"
 	charge_overlay = "plasma"
+	codex_path = /obj/item/cell/lasgun/plasma
 
 //volkite
 
@@ -85,6 +95,7 @@
 	maxcharge = 1440
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite"
+	codex_path = /obj/item/cell/lasgun/volkite
 
 /obj/item/cell/lasgun/volkite/small
 	name = "compact volkite energy cell"
@@ -93,6 +104,7 @@
 	maxcharge = 540
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_cell"
+	codex_path = /obj/item/cell/lasgun/volkite/small
 
 /obj/item/cell/lasgun/volkite/turret
 	name = "volkite nuclear energy cell"
@@ -104,6 +116,7 @@
 	self_recharge = TRUE
 	charge_amount = 24
 	charge_delay = 2 SECONDS
+	codex_path = /obj/item/cell/lasgun/volkite/turret
 
 /obj/item/cell/lasgun/volkite/turret/hover_bike
 	maxcharge = 1500
@@ -131,6 +144,7 @@
 	light_range = 0.1
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
+	codex_path = /obj/item/cell/lasgun/volkite/powerpack
 	///The kind of cells we like to accept around here to charge from us.
 	var/cell_type = /obj/item/cell
 
@@ -205,6 +219,7 @@
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
+	codex_path = /obj/item/cell/lasgun/volkite/powerpack/marine
 
 /obj/item/cell/lasgun/volkite/powerpack/marine/backpack
 	name = "\improper TE powerbackpack"
@@ -214,3 +229,4 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 12000
+	codex_path = /obj/item/cell/lasgun/volkite/powerpack/marine/backpack

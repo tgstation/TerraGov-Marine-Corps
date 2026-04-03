@@ -3,6 +3,7 @@
 
 /obj/item/ammo_magazine/revolver
 	name = "\improper R-44 magnum speed loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	equip_slot_flags = NONE
@@ -15,6 +16,7 @@
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper R-44 marksman speed loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver/marksman
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = CALIBER_44
 	icon_state = "m_m44"
@@ -22,6 +24,7 @@
 
 /obj/item/ammo_magazine/revolver/heavy
 	name = "\improper R-44 PW-MX speed loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver/heavy
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = CALIBER_44
 	icon_state = "h_m44"
@@ -29,6 +32,7 @@
 
 /obj/item/ammo_magazine/revolver/standard_revolver
 	name = "\improper R-44 magnum speed loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver/standard_revolver
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/tp44
 	equip_slot_flags = NONE
@@ -40,6 +44,7 @@
 
 /obj/item/ammo_magazine/revolver/upp
 	name = "\improper N-Y speed loader (7.62x38mmR)"
+	codex_path = /obj/item/ammo_magazine/revolver/upp
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = CALIBER_762X38
 	icon_state = "ny762"
@@ -48,6 +53,7 @@
 
 /obj/item/ammo_magazine/revolver/small
 	name = "\improper 'Bote' .357 speed loader (.357)"
+	codex_path = /obj/item/ammo_magazine/revolver/small
 	desc = "A revolver speed loader loaded with special 357 rounds that bounce on impact. Be careful around friends and family!"
 	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = CALIBER_357
@@ -57,6 +63,7 @@
 
 /obj/item/ammo_magazine/revolver/mateba
 	name = "\improper Mateba speed loader (.454)"
+	codex_path = /obj/item/ammo_magazine/revolver/mateba
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
 	caliber = CALIBER_454
 	icon_state = "mateba"
@@ -65,6 +72,7 @@
 
 /obj/item/ammo_magazine/revolver/cmb
 	name = "\improper CMB revolver speed loader (.357)"
+	codex_path = /obj/item/ammo_magazine/revolver/cmb
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = CALIBER_357
 	icon_state = "cmb"
@@ -73,6 +81,7 @@
 
 /obj/item/ammo_magazine/revolver/judge
 	name = "\improper Judge speed loader (.45L)"
+	codex_path = /obj/item/ammo_magazine/revolver/judge
 	desc = "A revolver speed loader for the Judge, these rounds have a high velocity propellant, leading to next to no scatter and falloff."
 	default_ammo = /datum/ammo/bullet/revolver/judge
 	caliber = CALIBER_45L
@@ -82,6 +91,7 @@
 
 /obj/item/ammo_magazine/revolver/judge/buckshot
 	name = "\improper Judge buckshot speed loader (.45L)"
+	codex_path = /obj/item/ammo_magazine/revolver/judge/buckshot
 	desc = "A revolver speed loader for the Judge, this is filled with tiny pellets inside, with high scatter but large CQC damage."
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	caliber = CALIBER_45L
@@ -90,6 +100,7 @@
 
 /obj/item/ammo_magazine/revolver/standard_magnum
 	name = "\improper R-76 speed loader (12.7mm)"
+	codex_path = /obj/item/ammo_magazine/revolver/standard_magnum
 	desc = "A revolver speed loader for the R-76 Magnum, mind your shoulder, will stun most moderately sized targets on impact."
 	default_ammo = /datum/ammo/bullet/revolver/t76
 	max_rounds = 5
@@ -101,6 +112,7 @@
 
 /obj/item/ammo_magazine/revolver/single_action
 	name = "\improper Single action revolver speed-loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver/single_action
 	desc = "A single action revolver speed-loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	equip_slot_flags = NONE
@@ -113,6 +125,7 @@
 
 /obj/item/ammo_magazine/revolver/single_action/m44
 	name = "\improper R-44 SAA magnum speed loader (.44)"
+	codex_path = /obj/item/ammo_magazine/revolver/single_action/m44
 	desc = "A R-44 SAA revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	equip_slot_flags = NONE

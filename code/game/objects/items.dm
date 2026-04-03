@@ -158,6 +158,8 @@
 	///Current variant selected.
 	var/current_variant
 
+	var/obj/item/codex_path
+
 /obj/item/Initialize(mapload)
 	if(species_exception)
 		species_exception = string_list(species_exception)

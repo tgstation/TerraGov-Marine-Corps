@@ -70,6 +70,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.4
+	codex_path = /obj/item/weapon/gun/shotgun/combat
 
 
 //-------------------------------------------------------
@@ -116,6 +117,7 @@
 	recoil_unwielded = 4
 	wield_delay = 1 SECONDS
 	akimbo_additional_delay = 0.9
+	codex_path = /obj/item/weapon/gun/shotgun/combat/standardmarine
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
 	default_ammo_type = /datum/ammo/bullet/shotgun/slug
@@ -141,6 +143,7 @@
 	pixel_shift_y = 18
 
 	wield_delay_mod = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/shotgun/combat/masterkey
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -177,6 +180,7 @@
 	recoil_unwielded = 4
 	aim_slowdown = 0.6
 	damage_mult = 0.7
+	codex_path = /obj/item/weapon/gun/shotgun/double
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
@@ -195,6 +199,7 @@
 	scatter_unwielded = 10
 	recoil = 3
 	recoil_unwielded = 5
+	codex_path = /obj/item/weapon/gun/shotgun/double/sawn
 
 //-------------------------------------------------------
 //MARINE DOUBLE SHOTTY
@@ -233,6 +238,7 @@
 	scatter_unwielded = 10
 	recoil = 1
 	recoil_unwielded = 4
+	codex_path = /obj/item/weapon/gun/shotgun/double/marine
 
 
 //-------------------------------------------------------
@@ -278,6 +284,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
+	codex_path = /obj/item/weapon/gun/shotgun/pump
 
 /obj/item/weapon/gun/shotgun/pump/standard
 	starting_attachment_types = list(
@@ -323,6 +330,7 @@
 	recoil_unwielded = 0
 	cock_delay = 1.2 SECONDS
 	aim_slowdown = 0.4
+	codex_path = /obj/item/weapon/gun/shotgun/pump/cmb
 
 /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	starting_attachment_types = list(
@@ -376,6 +384,7 @@
 	recoil_unwielded = 0
 	cock_delay = 1.2 SECONDS
 	aim_slowdown = 0.55
+	codex_path = /obj/item/weapon/gun/shotgun/pump/trenchgun
 
 /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	starting_attachment_types = list(
@@ -433,6 +442,7 @@
 	wield_delay = 0.95 SECONDS
 	cock_delay = 1.4 SECONDS
 	damage_falloff_mult = 0.5 // Rifled barrel, also has more slug variety
+	codex_path = /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun
 
 /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader
 	starting_attachment_types = list(
@@ -507,6 +517,7 @@
 	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
+	codex_path = /obj/item/weapon/gun/shotgun/pump/bolt
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unscoped
 	starting_attachment_types = list(/obj/item/attachable/stock/mosin)
@@ -571,6 +582,7 @@
 
 	placed_overlay_iconstate = "wood"
 	damage_mult = 1
+	codex_path = /obj/item/weapon/gun/shotgun/double/martini
 
 //***********************************************************
 // Derringer
@@ -603,6 +615,7 @@
 	aim_slowdown = 0
 	wield_delay = 0.3 SECONDS
 	damage_mult = 1
+	codex_path = /obj/item/weapon/gun/shotgun/double/derringer
 
 /obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
 	. = ..()
@@ -651,6 +664,7 @@
 	recoil = 2
 	recoil_unwielded = 4
 	cock_delay = 0.6 SECONDS
+	codex_path = /obj/item/weapon/gun/shotgun/pump/lever
 
 
 // ***********************************************
@@ -703,6 +717,7 @@
 	cock_delay = 0.2 SECONDS
 	aim_slowdown = 0.6
 	movement_acc_penalty_mult = 5
+	codex_path = /obj/item/weapon/gun/shotgun/pump/lever/repeater
 
 /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
@@ -751,6 +766,7 @@
 	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 
 //------------------------------------------------------
 //SH-35 Pump shotgun
@@ -796,6 +812,7 @@
 	cock_delay = 1.4 SECONDS
 
 	placed_overlay_iconstate = "t35"
+	codex_path = /obj/item/weapon/gun/shotgun/pump/t35
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
@@ -862,6 +879,7 @@
 	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+	codex_path = /obj/item/weapon/gun/shotgun/zx76
 
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
@@ -908,6 +926,7 @@
 	recoil_unwielded = 4
 	aim_slowdown = 0.35
 	wield_delay = 0.85 SECONDS
+	codex_path = /obj/item/weapon/gun/shotgun/som
 
 /obj/item/weapon/gun/shotgun/som/pointman
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
@@ -928,6 +947,7 @@
 	extra_delay = -0.2 SECONDS
 	damage_mult = 1
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	codex_path = /obj/item/weapon/gun/shotgun/som/burst
 
 /obj/item/weapon/gun/shotgun/som/burst/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
@@ -957,6 +977,7 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+	codex_path = /obj/item/weapon/gun/shotgun/micro_grenade
 
 // KSG
 
@@ -1001,6 +1022,7 @@
 	recoil_unwielded = 0
 	cock_delay = 1.2 SECONDS
 	aim_slowdown = 0.55
+	codex_path = /obj/item/weapon/gun/shotgun/pump/ksg
 
 /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)

@@ -66,6 +66,7 @@
 	accuracy_mult = 1.15
 	scatter = 2
 	scatter_unwielded = 1
+	codex_path = /obj/item/weapon/gun/energy/taser
 
 /obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
 	. = ..()
@@ -103,6 +104,7 @@
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
 	akimbo_scatter_mod = 8
+	codex_path = /obj/item/weapon/gun/energy/lasgun
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
@@ -182,6 +184,7 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 3
+	codex_path = /obj/item/weapon/gun/energy/lasgun/M43
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -221,6 +224,7 @@
 	scatter_unwielded = 25
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	codex_path = /obj/item/weapon/gun/energy/lasgun/pulse
 
 /obj/item/weapon/gun/energy/lasgun/pulse/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -241,6 +245,7 @@
 	damage_falloff_mult = 1
 	fire_delay = 0.35 SECONDS
 	aim_slowdown = 0.35
+	codex_path = /obj/item/weapon/gun/energy/lasgun/M43/practice
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
 	return
@@ -281,6 +286,7 @@
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle, /obj/item/cell/lasgun/lasrifle/recharger)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle
 	/// A list of available modes this gun can switch to
 	var/list/datum/lasrifle/mode_list = list()
 	/// The index of the current mode selected, used for non radial mode switches
@@ -398,6 +404,7 @@
 		"Standard" = /datum/lasrifle/tesla_mode/standard,
 		"Focused" = /datum/lasrifle/tesla_mode/focused,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
 
 /datum/lasrifle/tesla_mode/standard
 	rounds_per_shot = 100
@@ -475,6 +482,7 @@
 		"Weakening" = /datum/lasrifle/energy_rifle_mode/weakening,
 		"Microwave" = /datum/lasrifle/energy_rifle_mode/microwave,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
@@ -575,6 +583,7 @@
 		"Heat" = /datum/lasrifle/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/energy_pistol_mode/disabler,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
@@ -668,6 +677,7 @@
 		"Impact" = /datum/lasrifle/energy_carbine_mode/base/impact,
 		"Cripple" = /datum/lasrifle/energy_carbine_mode/base/cripple,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	starting_attachment_types = list(
@@ -799,6 +809,7 @@
 		"Shatter" = /datum/lasrifle/energy_sniper_mode/shatter,
 		"Ricochet" = /datum/lasrifle/energy_sniper_mode/ricochet,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 
 /datum/lasrifle/energy_sniper_mode/standard
 	rounds_per_shot = 30
@@ -900,6 +911,7 @@
 		"Charge" = /datum/lasrifle/energy_mg_mode/standard/charge,
 		"Melting" = /datum/lasrifle/energy_mg_mode/standard/melting,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target, firer)
 	. = ..()
@@ -998,6 +1010,7 @@
 		"Standard" = /datum/lasrifle/energy_rifle_mode/xray,
 		"Piercing" = /datum/lasrifle/energy_rifle_mode/xray/piercing,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/xray
 
 /datum/lasrifle/energy_rifle_mode/xray
 	rounds_per_shot = 15
@@ -1055,6 +1068,7 @@
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
 	light_color = LIGHT_COLOR_ORANGE
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
@@ -1086,6 +1100,7 @@
 	movement_acc_penalty_mult = 2
 	aim_slowdown = 0.1
 	wield_delay = 0.4 SECONDS
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
 	name = "\improper VX-12c Serpenta"
@@ -1099,6 +1114,7 @@
 	scatter_unwielded = 4
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.95
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper VX-32 Charger"
@@ -1124,6 +1140,7 @@
 	recoil_unwielded = 1
 	movement_acc_penalty_mult = 3
 	damage_falloff_mult = 0.5
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -1174,6 +1191,7 @@
 	damage_falloff_mult = 0.4
 	wield_delay = 0.9 SECONDS
 	fire_delay = 0.25 SECONDS
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -1220,6 +1238,7 @@
 	recoil_unwielded = 5
 	damage_falloff_mult = 0.4
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

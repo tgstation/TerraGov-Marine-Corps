@@ -30,6 +30,7 @@
 
 /obj/item/clothing/suit/armor/vest
 	name = "armored vest"
+	codex_path = /obj/item/clothing/suit/armor/vest
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armor"
 	worn_icon_state = "armor"
@@ -48,6 +49,7 @@
 
 /obj/item/clothing/suit/armor/vest/admiral
 	name = "admiral's jacket"
+	codex_path = /obj/item/clothing/suit/armor/vest/admiral
 	desc = "An armoured jacket with gold regalia"
 	icon_state = "admiral_jacket"
 	worn_icon_state = "admiral_jacket"
@@ -56,6 +58,7 @@
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
+	codex_path = /obj/item/clothing/suit/armor/vest/security
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
 	worn_icon_state = "armorsec"
@@ -63,6 +66,7 @@
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
+	codex_path = /obj/item/clothing/suit/armor/vest/warden
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	worn_icon_state = "warden_jacket"
@@ -70,6 +74,7 @@
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
+	codex_path = /obj/item/clothing/suit/armor/bulletproof
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	worn_icon_state = "bulletproof"
@@ -91,6 +96,7 @@
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
+	codex_path = /obj/item/clothing/suit/armor/riot
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	worn_icon_state = "swat"
@@ -107,6 +113,7 @@
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
+	codex_path = /obj/item/clothing/suit/armor/swat
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
 	icon_state = "deathsquad"
 	worn_icon_state = "swat"
@@ -126,6 +133,7 @@
 
 /obj/item/clothing/suit/armor/swat/officer
 	name = "officer jacket"
+	codex_path = /obj/item/clothing/suit/armor/swat/officer
 	desc = "An armored jacket used in special operations."
 	icon_state = "detective"
 	worn_icon_state = "det_suit"
@@ -137,6 +145,7 @@
 
 /obj/item/clothing/suit/armor/det_suit
 	name = "armor"
+	codex_path = /obj/item/clothing/suit/armor/det_suit
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "detective-armor"
 	worn_icon_state = "detective-armor"
@@ -147,6 +156,7 @@
 
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"
+	codex_path = /obj/item/clothing/suit/armor/rugged
 	desc = "A suit of armor used by workers in dangerous environments."
 	icon_state = "swatarmor"
 	worn_icon_state = "swatarmor"
@@ -159,6 +169,7 @@
 
 /obj/item/clothing/suit/armor/patrol
 	name = "Security Patrol Armor"
+	codex_path = /obj/item/clothing/suit/armor/patrol
 	desc = "A lightweight suit of armor used by security officers on patrol. While it is more advanced than kevlar, it is heavier and will slightly slow the wearer down."
 	icon_state = "security_patrol"
 	worn_icon_state = "security_patrol"
@@ -174,6 +185,7 @@
 
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"
+	codex_path = /obj/item/clothing/suit/armor/sectoid
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
@@ -188,6 +200,7 @@
 
 /obj/item/clothing/suit/armor/sectoid/shield
 	name = "powerful psionic field"
+	codex_path = /obj/item/clothing/suit/armor/sectoid/shield
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 
@@ -201,6 +214,7 @@
 
 /obj/item/clothing/suit/armor/centcom
 	name = "Cent. Com. armor"
+	codex_path = /obj/item/clothing/suit/armor/centcom
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
 	worn_icon_state = "centcom"
@@ -215,6 +229,7 @@
 
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
+	codex_path = /obj/item/clothing/suit/armor/heavy
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	worn_icon_state = "swat_suit"
@@ -231,6 +246,7 @@
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "Thunderdome suit (red)"
+	codex_path = /obj/item/clothing/suit/armor/tdome/red
 	desc = "Reddish armor."
 	icon_state = "tdred"
 	worn_icon_state = "tdred"
@@ -238,6 +254,7 @@
 
 /obj/item/clothing/suit/armor/tdome/green
 	name = "Thunderdome suit (green)"
+	codex_path = /obj/item/clothing/suit/armor/tdome/green
 	desc = "Pukish armor."
 	icon_state = "tdgreen"
 	worn_icon_state = "tdgreen"
@@ -245,6 +262,7 @@
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
+	codex_path = /obj/item/clothing/suit/armor/hos
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	worn_icon_state = "hos"
@@ -257,6 +275,7 @@
 
 /obj/item/clothing/suit/armor/hos/jensen
 	name = "armored trenchcoat"
+	codex_path = /obj/item/clothing/suit/armor/hos/jensen
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	worn_icon_state = "jensencoat"

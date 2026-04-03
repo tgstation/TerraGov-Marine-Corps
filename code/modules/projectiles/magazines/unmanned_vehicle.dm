@@ -9,6 +9,7 @@
 	current_rounds = 50
 	max_rounds = 50
 	icon_state_mini = "ammo_packet"
+	codex_path = /obj/item/ammo_magazine/box12x40mm
 
 /obj/item/ammo_magazine/box11x35mm
 	name = "box of 11x35mm"
@@ -21,3 +22,4 @@
 	current_rounds = 150
 	max_rounds = 150
 	icon_state_mini = "ammo_packet"
+	codex_path = /obj/item/ammo_magazine/box11x35mm

@@ -9,6 +9,7 @@
 	inv_hide_flags = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	armor_protection_flags = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
+	codex_path = /obj/item/clothing/head/bio_hood
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
@@ -24,6 +25,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0.9
+	codex_path = /obj/item/clothing/suit/bio_suit
 
 //Virology biosuit, green stripe
 /obj/item/clothing/head/bio_hood/virology
@@ -33,6 +35,7 @@
 	icon_state = "bio_virology"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/head/bio_hood/virology
 
 //Security biosuit, grey with red stripe across the chest
 /obj/item/clothing/head/bio_hood/security
@@ -42,6 +45,7 @@
 	icon_state = "bio_security"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/head/bio_hood/security
 
 //Janitor's biosuit, grey with purple arms
 /obj/item/clothing/head/bio_hood/janitor
@@ -51,6 +55,7 @@
 	icon_state = "bio_janitor"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/head/bio_hood/janitor
 
 
 //Scientist's biosuit, white with a pink-ish hue
@@ -61,12 +66,14 @@
 	icon_state = "bio_scientist"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/head/bio_hood/scientist
 
 //CMO's biosuit, blue stripe
 /obj/item/clothing/suit/bio_suit/cmo
 	icon_state = "bio_cmo"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/bio_suit/cmo
 
 /obj/item/clothing/head/bio_hood/cmo
 	icon_state = "bio_cmo"
@@ -79,3 +86,4 @@
 	icon_state = "plaguedoctor"
 	worn_icon_state = "bio_suit"
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/bio_suit/plaguedoctorsuit

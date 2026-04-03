@@ -21,6 +21,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	current_rounds = 150
 	max_rounds = 150
+	codex_path = /obj/item/ammo_magazine/packet/p10x24mm
 
 /obj/item/ammo_magazine/packet/pnato
 	name = "box of 5.56x45mm"
@@ -30,6 +31,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	current_rounds = 150
 	max_rounds = 150
+	codex_path = /obj/item/ammo_magazine/packet/pnato
 
 /obj/item/ammo_magazine/packet/pwarsaw
 	name = "box of 7.62x39mm"
@@ -39,6 +41,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	current_rounds = 120
 	max_rounds = 120
+	codex_path = /obj/item/ammo_magazine/packet/pwarsaw
 
 /obj/item/ammo_magazine/packet/p10x265mm
 	name = "box of 10x26.5mm"
@@ -48,6 +51,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	current_rounds = 100
 	max_rounds = 100
+	codex_path = /obj/item/ammo_magazine/packet/p10x265mm
 
 /obj/item/ammo_magazine/packet/p10x27mm
 	name = "box of 10x27mm"
@@ -57,6 +61,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	current_rounds = 100
 	max_rounds = 100
+	codex_path = /obj/item/ammo_magazine/packet/p10x27mm
 
 /obj/item/ammo_magazine/packet/p10x25mm
 	name = "box of 10x25mm"
@@ -66,6 +71,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	current_rounds = 125
 	max_rounds = 125
+	codex_path = /obj/item/ammo_magazine/packet/p10x25mm
 
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
@@ -75,6 +81,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	current_rounds = 210
 	max_rounds = 210
+	codex_path = /obj/item/ammo_magazine/packet/p492x34mm
 
 /obj/item/ammo_magazine/packet/p86x70mm
 	name = "box of 8.6x70mm"
@@ -84,6 +91,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	current_rounds = 50
 	max_rounds = 50
+	codex_path = /obj/item/ammo_magazine/packet/p86x70mm
 
 /obj/item/ammo_magazine/packet/smart_minigun
 	name = "SG-85 ammo bin"
@@ -94,6 +102,7 @@
 	current_rounds = 500
 	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
+	codex_path = /obj/item/ammo_magazine/packet/smart_minigun
 
 /obj/item/ammo_magazine/packet/smart_targetrifle
 	name = "box of 10x27mm HV"
@@ -103,6 +112,7 @@
 	caliber = CALIBER_10x27_CASELESS
 	current_rounds = 200
 	max_rounds = 200
+	codex_path = /obj/item/ammo_magazine/packet/smart_targetrifle
 
 /obj/item/ammo_magazine/packet/smart_spottingrifle
 	name = "box of 12.7mm Smart Magnum"
@@ -112,6 +122,7 @@
 	caliber = CALIBER_12x7
 	current_rounds = 25
 	max_rounds = 25
+	codex_path = /obj/item/ammo_magazine/packet/smart_spottingrifle
 
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
@@ -121,6 +132,7 @@
 	caliber = CALIBER_10X28_CASELESS
 	current_rounds = 150
 	max_rounds = 150
+	codex_path = /obj/item/ammo_magazine/packet/scout_rifle
 
 /obj/item/ammo_magazine/packet/autosniper
 	name = "box of low-pressure 8.6x70mm"
@@ -130,6 +142,7 @@
 	caliber = CALIBER_86X70
 	current_rounds = 100
 	max_rounds = 100
+	codex_path = /obj/item/ammo_magazine/packet/autosniper
 
 /obj/item/ammo_magazine/packet/standardautoshotgun
 	name = "box of 16 Gauge shotgun slugs"
@@ -139,12 +152,14 @@
 	caliber = CALIBER_16G
 	current_rounds = 60
 	max_rounds = 60
+	codex_path = /obj/item/ammo_magazine/packet/standardautoshotgun
 
 /obj/item/ammo_magazine/packet/standardautoshotgun/flechette
 	name = "box of 16 Gauge shotgun flechette shells"
 	desc = "A box containing 16 Gauge flechette shells, they look like they'd fit in the SH-15."
 	icon_state = "16g_flech"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
+	codex_path = /obj/item/ammo_magazine/packet/standardautoshotgun/flechette
 
 // pistol packets
 
@@ -157,6 +172,7 @@
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
+	codex_path = /obj/item/ammo_magazine/packet/p9mm
 
 /obj/item/ammo_magazine/packet/magnum
 	name = "packet of .44 magnum"
@@ -167,6 +183,7 @@
 	current_rounds = 49
 	max_rounds = 49
 	w_class = WEIGHT_CLASS_SMALL
+	codex_path = /obj/item/ammo_magazine/packet/magnum
 
 /obj/item/ammo_magazine/packet/mateba
 	name = "packet of .454 casull"
@@ -176,6 +193,7 @@
 	caliber = CALIBER_454
 	current_rounds = 42
 	max_rounds = 42
+	codex_path = /obj/item/ammo_magazine/packet/mateba
 
 /obj/item/ammo_magazine/packet/acp
 	name = "packet of pistol .45 ACP"
@@ -186,6 +204,7 @@
 	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
+	codex_path = /obj/item/ammo_magazine/packet/acp
 
 /obj/item/ammo_magazine/packet/p9mmap
 	name = "packet of 9mm AP"
@@ -196,6 +215,7 @@
 	caliber = CALIBER_9X19
 	current_rounds = 70
 	max_rounds = 70
+	codex_path = /obj/item/ammo_magazine/packet/p9mmap
 
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"
@@ -206,6 +226,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 100
 	max_rounds = 100
+	codex_path = /obj/item/ammo_magazine/packet/p10x26mm
 
 /obj/item/ammo_magazine/packet/p10x20mm
 	name = "packet of 10x20mm"
@@ -216,6 +237,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 240
 	max_rounds = 240
+	codex_path = /obj/item/ammo_magazine/packet/p10x20mm
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -227,6 +249,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50
 	max_rounds = 50
+	codex_path = /obj/item/ammo_magazine/packet/p4570
 
 /obj/item/ammo_magazine/packet/pthreeightyacp
 	name = "packet of .380 ACP"
@@ -237,6 +260,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 210
 	max_rounds = 210
+	codex_path = /obj/item/ammo_magazine/packet/pthreeightyacp
 
 /obj/item/ammo_magazine/packet/p41ae
 	name = "packet of .41 AE"
@@ -247,6 +271,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 165
 	max_rounds = 165
+	codex_path = /obj/item/ammo_magazine/packet/p41ae
 
 /obj/item/ammo_magazine/packet/p41ae_squashhead
 	name = "packet of .41 AE squashhead"
@@ -257,3 +282,4 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 165
 	max_rounds = 165
+	codex_path = /obj/item/ammo_magazine/packet/p41ae_squashhead

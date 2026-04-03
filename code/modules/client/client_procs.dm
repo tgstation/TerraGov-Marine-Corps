@@ -117,8 +117,14 @@
 		if("codex_tgui")
 			if(href_list["entry"])
 				var/atom/entry = locate(href_list["entry"])
-				codex = new /datum/codex(src)
-				codex.open_ui(mob, entry)
+
+				//Every client has one Codex window that is reused
+				if(codex)
+					codex.set_codex_entry(entry)
+				else
+					codex = new /datum/codex(src, entry)
+
+				codex.open_ui()
 			else
 				//TO-DO: delete this when finished
 				to_chat(world, "Something went very wrong with the topic thing for the codex")

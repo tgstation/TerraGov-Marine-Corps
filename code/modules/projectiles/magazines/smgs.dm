@@ -1,5 +1,6 @@
 /obj/item/ammo_magazine/smg
 	name = "\improper SMG magazine"
+	codex_path = /obj/item/ammo_magazine/smg
 	desc = "A submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg
 	max_rounds = 30
@@ -11,6 +12,7 @@
 
 /obj/item/ammo_magazine/smg/m25
 	name = "\improper SMG-25 magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/m25
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "m25"
@@ -19,6 +21,7 @@
 
 /obj/item/ammo_magazine/smg/m25/ap
 	name = "\improper SMG-25 AP magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/m25/ap
 	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 	icon_state_mini = "mag_smg_green"
@@ -26,6 +29,7 @@
 
 /obj/item/ammo_magazine/smg/m25/extended
 	name = "\improper SMG-25 extended magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/m25/extended
 	icon_state = "m25_ext"
 	max_rounds = 90
 	icon_state_mini = "mag_smg_yellow"
@@ -36,6 +40,7 @@
 
 /obj/item/ammo_magazine/smg/standard_machinepistol
 	name = "\improper MP-19 machinepistol magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/standard_machinepistol
 	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
@@ -48,6 +53,7 @@
 
 /obj/item/ammo_magazine/smg/standard_smg
 	name = "\improper SMG-90 submachine gun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/standard_smg
 	desc = "A 10x20mm caseless submachine gun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t90"
@@ -60,6 +66,7 @@
 
 /obj/item/ammo_magazine/smg/standard_heavysmg
 	name = "\improper SMG-45 magazine (.41 AE)"
+	codex_path = /obj/item/ammo_magazine/smg/standard_heavysmg
 	desc = "A .41 AE caseless submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg/heavy
 	caliber = CALIBER_41AE
@@ -71,6 +78,7 @@
 
 /obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
 	name = "\improper SMG-45 squash-head magazine (.41 AE)"
+	codex_path = /obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
 	desc = "A .41 AE caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
 	default_ammo = /datum/ammo/bullet/smg/squash
 	icon_state = "t45_sh"
@@ -82,6 +90,7 @@
 
 /obj/item/ammo_magazine/smg/mp7
 	name = "\improper SMG-27 magazine (4.6x30mm)"
+	codex_path = /obj/item/ammo_magazine/smg/mp7
 	desc = "A 4.6mm magazine for the SMG-27."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = CALIBER_46X30
@@ -95,6 +104,7 @@
 
 /obj/item/ammo_magazine/smg/skorpion
 	name = "\improper CZ-81 magazine (.32ACP)"
+	codex_path = /obj/item/ammo_magazine/smg/skorpion
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
@@ -107,6 +117,7 @@
 
 /obj/item/ammo_magazine/smg/ppsh
 	name = "\improper PPSh-17b magazine (7.62x25mm)"
+	codex_path = /obj/item/ammo_magazine/smg/ppsh
 	desc = "A drum magazine for the PPSh submachinegun."
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
@@ -119,6 +130,7 @@
 
 /obj/item/ammo_magazine/smg/ppsh/extended
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
+	codex_path = /obj/item/ammo_magazine/smg/ppsh/extended
 	icon_state = "ppsh_ext"
 	icon_state_mini = "mag_drum_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -131,6 +143,7 @@
 
 /obj/item/ammo_magazine/smg/uzi
 	name = "\improper SMG-2 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/smg/uzi
 	desc = "A magazine for the SMG-2."
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
@@ -139,6 +152,7 @@
 
 /obj/item/ammo_magazine/smg/uzi/extended
 	name = "\improper GAL9 extended magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/smg/uzi/extended
 	icon_state = "uzi_ext"
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
@@ -149,6 +163,7 @@
 
 /obj/item/ammo_magazine/smg/som
 	name = "\improper V-21 submachinegun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/som
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "v21"
@@ -158,6 +173,7 @@
 
 /obj/item/ammo_magazine/smg/som/ap
 	name = "\improper V-21 AP submachinegun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/som/ap
 	desc = "A 10x20mm caseless submachinegun magazine, loaded in armor piercing rounds."
 	icon_state = "v21_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
@@ -165,6 +181,7 @@
 
 /obj/item/ammo_magazine/smg/som/incendiary
 	name = "\improper V-21 incendiary submachinegun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/som/incendiary
 	desc = "A 10x20mm caseless submachinegun magazine, loaded in incendiary rounds."
 	icon_state = "v21_incend"
 	default_ammo = /datum/ammo/bullet/smg/incendiary
@@ -172,6 +189,7 @@
 
 /obj/item/ammo_magazine/smg/som/extended
 	name = "\improper V-21 extended submachinegun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/som/extended
 	desc = "An extended 10x20mm caseless submachinegun magazine."
 	icon_state = "v21_extended"
 	max_rounds = 75
@@ -181,6 +199,7 @@
 
 /obj/item/ammo_magazine/smg/som/rad
 	name = "\improper V-21 radioactive submachinegun magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/som/rad
 	desc = "A 10x20mm caseless submachinegun magazine, loaded with radioactive rounds. Handle with care."
 	icon_state = "v21_rad"
 	default_ammo = /datum/ammo/bullet/smg/rad
@@ -191,6 +210,7 @@
 
 /obj/item/ammo_magazine/smg/icc_machinepistol
 	name = "\improper PL-38 AP machinepistol magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/icc_machinepistol
 	desc = "A 10x20mm caseless armor-piercing machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "pl38"
@@ -201,6 +221,7 @@
 
 /obj/item/ammo_magazine/smg/icc_machinepistol/hp
 	name = "\improper PL-38 HP machinepistol magazine (10x20mm)"
+	codex_path = /obj/item/ammo_magazine/smg/icc_machinepistol/hp
 	desc = "A 10x20mm caseless hollow point machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "pl38_hp"
@@ -214,6 +235,7 @@
 
 /obj/item/ammo_magazine/smg/icc_pdw
 	name = "\improper L-40 AP personal defense weapon magazine (4.6mm)"
+	codex_path = /obj/item/ammo_magazine/smg/icc_pdw
 	desc = "A 4.6mm caseless armor-piercing PDW magazine."
 	caliber = CALIBER_46X30
 	icon_state = "l40"
@@ -227,6 +249,7 @@
 
 /obj/item/ammo_magazine/smg/vsd_pdw
 	name = "\improper C17 drum mag (.45 ACP)"
+	codex_path = /obj/item/ammo_magazine/smg/vsd_pdw
 	desc = "An Armor-Piercing .45 ACP caseless submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg/ap/hv
 	caliber = CALIBER_45ACP

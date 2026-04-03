@@ -3,6 +3,7 @@
 
 /obj/item/ammo_magazine/sniper
 	name = "\improper SR-26 magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/sniper
 	desc = "A magazine of antimaterial rifle ammo."
 	caliber = CALIBER_10X28
 	icon_state = "t26"
@@ -15,6 +16,7 @@
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper SR-26 incendiary magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/sniper/incendiary
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
@@ -22,6 +24,7 @@
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper SR-26 flak magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/sniper/flak
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
@@ -31,6 +34,7 @@
 
 /obj/item/ammo_magazine/sniper/elite
 	name = "\improper SR-42 marksman magazine (10x99mm)"
+	codex_path = /obj/item/ammo_magazine/sniper/elite
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
@@ -41,6 +45,7 @@
 
 /obj/item/ammo_magazine/sniper/svd
 	name = "\improper SVD magazine (7.62x54mmR)"
+	codex_path = /obj/item/ammo_magazine/sniper/svd
 	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = CALIBER_762X54
 	icon_state = "svd"
@@ -52,6 +57,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/rifle/tx8
 	desc = "A magazine of overpressured high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
 	icon = 'icons/obj/items/ammo/sniper.dmi'
@@ -62,6 +68,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/rifle/tx8/incendiary
 	desc = "A magazine of overpressured high velocity incendiary rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
@@ -71,6 +78,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
+	codex_path = /obj/item/ammo_magazine/rifle/tx8/impact
 	desc = "A magazine of overpressured high velocity impact rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
@@ -82,6 +90,7 @@
 
 /obj/item/ammo_magazine/rocket
 	name = "\improper generic high-explosive rocket"
+	codex_path = /obj/item/ammo_magazine/rocket
 	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
@@ -128,6 +137,7 @@
 
 /obj/item/ammo_magazine/rocket/sadar
 	name = "\improper 84mm 'L-G' high-explosive rocket"
+	codex_path = /obj/item/ammo_magazine/rocket/sadar
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
@@ -139,12 +149,14 @@
 
 /obj/item/ammo_magazine/rocket/sadar/unguided
 	name = "\improper 84mm 'Unguided' high-explosive rocket"
+	codex_path = /obj/item/ammo_magazine/rocket/sadar/unguided
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
 	icon_state = "rocket_he_unguided"
 	default_ammo = /datum/ammo/rocket/he/unguided
 
 /obj/item/ammo_magazine/rocket/sadar/ap
 	name = "\improper 84mm 'L-G' anti-armor rocket"
+	codex_path = /obj/item/ammo_magazine/rocket/sadar/ap
 	desc = "A tube for an AP rocket, the warhead of which inside is a missile assisted kinetic penetrator that will devastate just about anything that it hits internally, but will do nothing to the surrounding armor. When empty, use this frame to deconstruct it."
 	icon_state = "rocket_ap"
 	default_ammo = /datum/ammo/rocket/ap
@@ -152,6 +164,7 @@
 
 /obj/item/ammo_magazine/rocket/sadar/wp
 	name = "\improper 84mm 'L-G' white-phosphorus rocket"
+	codex_path = /obj/item/ammo_magazine/rocket/sadar/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this. Use this in hand to deconstruct it."
 	icon_state = "rocket_wp"
 	default_ammo = /datum/ammo/rocket/wp
@@ -159,6 +172,7 @@
 
 /obj/item/ammo_magazine/rocket/sadar/wp/unguided
 	name = "\improper 84mm 'Unguided' white-phosphorus rocket"
+	codex_path = /obj/item/ammo_magazine/rocket/sadar/wp/unguided
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumb', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
 	icon_state = "rocket_wp_unguided"
 	default_ammo = /datum/ammo/rocket/wp/unguided
@@ -168,6 +182,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless
 	name = "\improper 67mm high-explosive shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless
 	desc = "A high explosive shell for the RL-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell"
@@ -178,6 +193,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/light
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
 	default_ammo = /datum/ammo/rocket/recoilless/light
@@ -185,6 +201,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/low_impact
 	name = "\improper 67mm light-explosive shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/low_impact
 	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
 	default_ammo = /datum/ammo/rocket/recoilless/low_impact
@@ -192,30 +209,35 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/heat
 	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
 
 /obj/item/ammo_magazine/rocket/recoilless/heam
 	name = "\improper 67mm HEAM shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/heam
 	desc = "A high explosive-anti mechg shell for the RL-160 recoilless rifle. Fires a penetrating shot designed specifically to penetrate mech armor, but suffers from poor accuracy against other targets. Requires specialized storage to carry."
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
 
 /obj/item/ammo_magazine/rocket/recoilless/smoke
 	name = "\improper 67mm Chemical (Smoke) shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/smoke
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
 	icon_state = "shell_smoke"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical
 
 /obj/item/ammo_magazine/rocket/recoilless/cloak
 	name = "\improper 67mm Chemical (Cloak) shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/cloak
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
 	icon_state = "shell_cloak"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/cloak
 
 /obj/item/ammo_magazine/rocket/recoilless/plasmaloss
 	name = "\improper 67mm Chemical (Tanglefoot) shell"
+	codex_path = /obj/item/ammo_magazine/rocket/recoilless/plasmaloss
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
 	icon_state = "shell_tanglefoot"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
@@ -225,6 +247,7 @@
 
 /obj/item/ammo_magazine/rocket/oneuse
 	name = "\improper 68mm high-explosive shell"
+	codex_path = /obj/item/ammo_magazine/rocket/oneuse
 	desc = "A rocket used to reload a one use rocket once returned to an armory."
 	caliber = CALIBER_68MM
 	icon_state = "rocket"
@@ -241,6 +264,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
+	codex_path = /obj/item/ammo_magazine/rocket/m57a4
 	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
@@ -250,6 +274,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
+	codex_path = /obj/item/ammo_magazine/rocket/m57a4/ds
 	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
@@ -269,6 +294,7 @@
 //SOM RPG
 /obj/item/ammo_magazine/rocket/som
 	name = "\improper 84mm high-explosive RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som
 	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
 	icon_state = "rpg_he"
 	default_ammo = /datum/ammo/rocket/som
@@ -277,6 +303,7 @@
 
 /obj/item/ammo_magazine/rocket/som/light
 	name = "\improper 84mm light-explosive RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som/light
 	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
 	icon_state = "rpg_le"
 	default_ammo = /datum/ammo/rocket/som/light
@@ -285,6 +312,7 @@
 
 /obj/item/ammo_magazine/rocket/som/heat
 	name = "\improper 84mm HEAT RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som/heat
 	desc = "A high explosive anti armor warhead for the V-71 rocket launcher. Designed to punch through the toughest armor."
 	icon_state = "rpg_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
@@ -292,6 +320,7 @@
 
 /obj/item/ammo_magazine/rocket/som/thermobaric
 	name = "\improper 84mm thermobaric RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som/thermobaric
 	desc = "A thermobaric warhead for the V-71 rocket launcher. Causes a powerful fuel air explosion over a moderate area."
 	icon_state = "rpg_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
@@ -299,6 +328,7 @@
 
 /obj/item/ammo_magazine/rocket/som/rad
 	name = "\improper 84mm irrad RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som/rad
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
 	icon_state = "rpg_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
@@ -306,6 +336,7 @@
 
 /obj/item/ammo_magazine/rocket/som/incendiary
 	name = "\improper 84mm incendiary RPG"
+	codex_path = /obj/item/ammo_magazine/rocket/som/incendiary
 	desc = "An incendiary warhead for the V-71 rocket launcher. Releases a white phosphorus payload, burning anything in a moderate blast radius."
 	icon_state = "rpg_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
@@ -314,6 +345,7 @@
 //ICC RPG
 /obj/item/ammo_magazine/rocket/icc
 	name = "\improper 84mm high-explosive tube"
+	codex_path = /obj/item/ammo_magazine/rocket/icc
 	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
 	icon_state = "icc_he"
 	default_ammo = /datum/ammo/rocket/som
@@ -322,6 +354,7 @@
 
 /obj/item/ammo_magazine/rocket/icc/light
 	name = "\improper 84mm light-explosive tube"
+	codex_path = /obj/item/ammo_magazine/rocket/icc/light
 	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
 	icon_state = "icc_le"
 	default_ammo = /datum/ammo/rocket/som/light
@@ -330,6 +363,7 @@
 
 /obj/item/ammo_magazine/rocket/icc/heat
 	name = "\improper 84mm HEAT tube"
+	codex_path = /obj/item/ammo_magazine/rocket/icc/heat
 	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
 	icon_state = "icc_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
@@ -337,6 +371,7 @@
 
 /obj/item/ammo_magazine/rocket/icc/thermobaric
 	name = "\improper 84mm thermobaric tube"
+	codex_path = /obj/item/ammo_magazine/rocket/icc/thermobaric
 	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
 	icon_state = "icc_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
@@ -346,6 +381,7 @@
 
 /obj/item/ammo_magazine/rocket/vsd/he
 	name = "\improper 84mm HE 'Anti-Personnel' case"
+	codex_path = /obj/item/ammo_magazine/rocket/vsd/he
 	desc = "84mm Anti Personnel case. The label reads: 'Makes big boom'."
 	icon_state = "c153_he"
 	default_ammo = /datum/ammo/rocket/som
@@ -354,6 +390,7 @@
 
 /obj/item/ammo_magazine/rocket/vsd/incendiary
 	name = "\improper 84mm Incendiary 'Anti-Personnel' case"
+	codex_path = /obj/item/ammo_magazine/rocket/vsd/incendiary
 	desc = "84mm Incendiary Anti Personnel case. The label reads: 'Makes people go AAAAAAAHH'."
 	icon_state = "c153_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
@@ -361,6 +398,7 @@
 
 /obj/item/ammo_magazine/rocket/vsd/chemical
 	name = "\improper 84mm Chemical-Warhead 'Anti-Personnel' case"
+	codex_path = /obj/item/ammo_magazine/rocket/vsd/chemical
 	desc = "Chemical Capped 84mm Anti Personnel case. The label reads: 'Makes people fucking die'."
 	icon_state = "c153_chemical"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/harmgas/vsd
@@ -370,6 +408,7 @@
 
 /obj/item/ammo_magazine/railgun
 	name = "railgun canister (Armor Piercing Discarding Sabot)"
+	codex_path = /obj/item/ammo_magazine/railgun
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister. This round will penetrate through most armor, but will not leave much of a hole."
 	caliber = CALIBER_RAILGUN
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
@@ -383,6 +422,7 @@
 
 /obj/item/ammo_magazine/railgun/hvap
 	name = "railgun canister (High Velocity Armor Piericing)"
+	codex_path = /obj/item/ammo_magazine/railgun/hvap
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
 	icon_state = "railgun_hvap"
 	icon_state_mini = "mag_railgun_blue"
@@ -390,6 +430,7 @@
 
 /obj/item/ammo_magazine/railgun/smart
 	name = "railgun canister (Smart Armor Piericing)"
+	codex_path = /obj/item/ammo_magazine/railgun/smart
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
 	icon_state = "railgun_smart"
 	icon_state_mini = "mag_railgun_green"
@@ -399,6 +440,7 @@
 
 /obj/item/ammo_magazine/rifle/pepperball
 	name = "pepperball canister (SAN balls)"
+	codex_path = /obj/item/ammo_magazine/rifle/pepperball
 	desc = "A canister holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
@@ -410,6 +452,7 @@
 
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	name = "small pepperball canister (SAN balls)"
+	codex_path = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	desc = "A small canister for use with the miniature pepperball gun."
 	icon_state = "pepperball_mini"
 	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
@@ -418,6 +461,7 @@
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper MG-100 Vindicator powerpack"
+	codex_path = /obj/item/ammo_magazine/minigun_powerpack
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 minigun system.\nClick the icon in the top left to reload your MG-100."
 	icon_state = "powerpack"
 	worn_icon_state = "powerpack"
@@ -441,6 +485,7 @@
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"
+	codex_path = /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
 	icon_state = "powerpack_sg"
 	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
@@ -453,6 +498,7 @@
 //"External magazine" for the wheelchair-mounted minigun
 /obj/item/ammo_magazine/minigun_wheelchair
 	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	codex_path = /obj/item/ammo_magazine/minigun_wheelchair
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
@@ -467,6 +513,7 @@
 
 /obj/item/ammo_magazine/bike_minigun
 	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	codex_path = /obj/item/ammo_magazine/bike_minigun
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
@@ -480,6 +527,7 @@
 
 /obj/item/ammo_magazine/rifle/icc_coilgun
 	name = "coilgun canister"
+	codex_path = /obj/item/ammo_magazine/rifle/icc_coilgun
 	desc = "A canister holding tungsten projectiles for a coilgun. Will probably penetrate through just about everything."
 	caliber = CALIBER_RAILGUN
 	icon_state = "coilgun"

@@ -41,6 +41,7 @@
 	armor_protection_flags = CHEST|GROIN|LEGS
 	siemens_coefficient = 0.9
 	adjustment_variants = list()
+	codex_path = /obj/item/clothing/under/rank/warden
 
 /obj/item/clothing/under/rank/security2
 	name = "security officer's uniform"

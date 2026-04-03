@@ -71,6 +71,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	movement_acc_penalty_mult = 8
 
 	placed_overlay_iconstate = "antimat"
+	codex_path = /obj/item/weapon/gun/rifle/sniper/antimaterial
 
 
 
@@ -251,6 +252,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 5
 	burst_amount = 1
 	movement_acc_penalty_mult = 7
+	codex_path = /obj/item/weapon/gun/rifle/sniper/elite
 
 //SVD //Based on the Dragunov sniper rifle.
 
@@ -300,6 +302,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = -1
 	wield_delay = 2 SECONDS
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/sniper/svd
 
 
 
@@ -364,6 +367,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 1.1
 	scatter = -3
+	codex_path = /obj/item/weapon/gun/rifle/tx8
 
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
@@ -420,6 +424,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	movement_acc_penalty_mult = 4
 
 	item_flags = TWOHANDED|AUTOBALANCE_CHECK
+	codex_path = /obj/item/weapon/gun/minigun
 
 /obj/item/weapon/gun/minigun/Initialize(mapload)
 	. = ..()
@@ -458,6 +463,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	windup_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 0
+	codex_path = /obj/item/weapon/gun/minigun/one_handed
 
 //So that it displays the minigun on the mob as if always wielded
 /obj/item/weapon/gun/minigun/one_handed/update_item_state()
@@ -487,6 +493,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil_unwielded = 4
 
 	item_flags = TWOHANDED
+	codex_path = /obj/item/weapon/gun/minigun/smart_minigun
 
 /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	starting_attachment_types = list(/obj/item/attachable/motiondetector)
@@ -537,11 +544,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter_unwielded = 2
 
 	placed_overlay_iconstate = "pepper"
+	codex_path = /obj/item/weapon/gun/rifle/pepperball
 
 /obj/item/weapon/gun/flamer/hydro_cannon/pepperball
 	name = "coaxial watercannon"
 	desc = "For the quenching of unfortunate mistakes."
 	icon_state = "hydrocannon_pepper"
+	codex_path = /obj/item/weapon/gun/flamer/hydro_cannon/pepperball
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
@@ -564,6 +573,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	pixel_shift_y = 16
 
 	wield_delay_mod = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 
 /particles/backblast
 	icon = 'icons/effects/effects.dmi'
@@ -625,6 +635,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
 	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
+	codex_path = /obj/item/weapon/gun/launcher/rocket
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 
@@ -705,6 +716,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 
 	item_flags = TWOHANDED|AUTOBALANCE_CHECK
+	codex_path = /obj/item/weapon/gun/launcher/rocket/sadar
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -750,6 +762,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 0.8
 
 	placed_overlay_iconstate = "thermo"
+	codex_path = /obj/item/weapon/gun/launcher/rocket/m57a4
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/do_fire(obj/object_to_fire)
 	. = ..()
@@ -770,6 +783,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	worn_icon_state = "t57"
 	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/m57a4)
+	codex_path = /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57/unloaded
 	default_ammo_type = null
@@ -813,6 +827,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1 SECONDS
 	scatter = -10
+	codex_path = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
@@ -848,6 +863,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1 SECONDS
 	scatter = -100
+	codex_path = /obj/item/weapon/gun/launcher/rocket/oneuse
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/Initialize(mapload, spawn_empty)
 	. = ..(mapload, FALSE)
@@ -921,6 +937,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.6 SECONDS
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+	codex_path = /obj/item/weapon/gun/launcher/rocket/som
 
 /obj/item/weapon/gun/launcher/rocket/som/do_fire(obj/object_to_fire)
 	. = ..()
@@ -964,6 +981,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.6 SECONDS
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+	codex_path = /obj/item/weapon/gun/launcher/rocket/icc
 
 /obj/item/weapon/gun/launcher/rocket/icc/do_fire(obj/object_to_fire)
 	. = ..()
@@ -1006,6 +1024,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.6 SECONDS
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+	codex_path = /obj/item/weapon/gun/launcher/rocket/vsd
 
 /obj/item/weapon/gun/launcher/rocket/vsd/do_fire(obj/object_to_fire)
 	. = ..()
@@ -1057,6 +1076,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = 0
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/railgun
 
 /obj/item/weapon/gun/rifle/railgun/unloaded
 	default_ammo_type = null
@@ -1103,3 +1123,4 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	scatter = 0
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/icc_coilgun

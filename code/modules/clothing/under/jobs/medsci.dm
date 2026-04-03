@@ -17,6 +17,7 @@
 	desc = "Feminine fashion for the style concious RD. Its fabric provides minor protection from biological contaminants."
 	icon_state = "dress_rd"
 	armor_protection_flags = CHEST|GROIN|ARMS
+	codex_path = /obj/item/clothing/under/rank/research_director
 
 /obj/item/clothing/under/rank/scientist
 	desc = "It's made of a special fiber that provides minor protection against small explosions. It has markings that denote the wearer as a scientist."
@@ -62,6 +63,7 @@
 	icon_state = "nursesuit"
 	permeability_coefficient = 0.50
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/under/rank/scientist
 
 /obj/item/clothing/under/rank/nurse
 	desc = "A dress commonly worn by the nursing staff in the medical department."
@@ -70,6 +72,7 @@
 	permeability_coefficient = 0.50
 	armor_protection_flags = CHEST|GROIN
 	adjustment_variants = list()
+	codex_path = /obj/item/clothing/under/rank/nurse
 
 /obj/item/clothing/under/rank/orderly
 	desc = "A white suit to be worn by orderly people who love orderly things."

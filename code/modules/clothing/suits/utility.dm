@@ -27,6 +27,7 @@
 	heat_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	codex_path = /obj/item/clothing/suit/fire
 
 /obj/item/clothing/suit/fire/heavy
 	name = "firesuit"
@@ -36,6 +37,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 120, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 1.5
+	codex_path = /obj/item/clothing/suit/fire/heavy
 
 /*
 * Bomb protection
@@ -49,6 +51,7 @@
 	inv_hide_flags = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	armor_protection_flags = HEAD|FACE|EYES
 	siemens_coefficient = 0
+	codex_path = /obj/item/clothing/head/bomb_hood
 
 
 /obj/item/clothing/suit/bomb_suit
@@ -65,6 +68,7 @@
 	heat_protection_flags = CHEST|GROIN
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
+	codex_path = /obj/item/clothing/suit/bomb_suit
 
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuitsec"
@@ -88,6 +92,7 @@
 	inv_hide_flags = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	armor_protection_flags = HEAD|FACE|EYES
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, FIRE = 0, ACID = 0)
+	codex_path = /obj/item/clothing/head/radiation
 
 
 /obj/item/clothing/suit/radiation
@@ -103,3 +108,4 @@
 	slowdown = 1.5
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, FIRE = 0, ACID = 0)
 	inv_hide_flags = HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/radiation

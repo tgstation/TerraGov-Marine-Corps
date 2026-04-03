@@ -2,6 +2,8 @@ SUBSYSTEM_DEF(codex)
 	name = "Codex"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_CODEX
+	///Assoaciative list: key = type, value = /datum/codex_entry/[this item's entry]
+	var/list/entries = list()
 	var/list/entries_by_path = list()
 	var/list/entries_by_string = list()
 	var/list/index_file = list()
@@ -9,6 +11,25 @@ SUBSYSTEM_DEF(codex)
 	var/list/entry_cache = list()
 
 /datum/controller/subsystem/codex/Initialize()
+
+	/* THIS STUPID THING IS A LIE, IT DOES NOT GENERATE A CODEX ENTRY FOR EVERYTHING
+	MAKE IT SO EVERY ATOM CALLS get_specific_codex_entry() INSTEAD, SCRAP THIS WHOLE THING
+
+	maybe make an entry for everything that has a "add to codex" var set to TRUE, and set it to false for children
+	of the atom that are basically the same (like toolbelts and their child that spawns full)
+
+	entries by string and entries by path is inefficient, destroy it when you wake up*/
+	var/list/things = subtypesof(/obj/item)
+	for(var/obj/item/item AS in things)
+		var/codex_path = item.codex_path
+		if(!codex_path || entries[codex_path])
+			continue
+
+		//Can't do codex_path::get_specific_codex_entry() because it requires a constant path
+		//So going to temporarily create a new instance of the codex_path and call the proc, then delete the item
+		var/obj/item/item_to_be_catalogued = new codex_path()
+		var/datum/codex_entry/entry = item_to_be_catalogued.get_specific_codex_entry()
+		entries[codex_path] += entry
 
 	// Create general hardcoded entries.
 	for(var/ctype in typesof(/datum/codex_entry))
@@ -39,7 +60,7 @@ SUBSYSTEM_DEF(codex)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/codex/proc/get_codex_entry(datum/codex_entry/entry)
-	if(!initialized || !entry || QDELETED(entry))
+	if(!initialized || !entry)
 		return
 	var/searching = text_ref(entry)
 	if(isatom(entry))
@@ -134,21 +155,19 @@ SUBSYSTEM_DEF(codex)
 		data["is_gun"] = entry.is_gun
 		data["is_clothing"] = entry.is_clothing
 	else
-		data["name"] = "oops no entry"
-		data["description"] = "error"
-		data["lore"] = "error"
-		data["antag"] = "error"
-		data["attributes"] = list()
-		data["mechanics"] = list()
-		data["background"] = list()
-		data["is_gun"] = FALSE
-		data["is_clothing"] = FALSE
+		data["name"] = null
 	return data
 
 ///Return a list of matching codex entries for a given query
-/datum/controller/subsystem/codex/proc/search_codex(query)
-    var/list/results = list()
-    var/list/matches = retrieve_entries_for_string(query)
-    for(var/datum/codex_entry/entry in matches)
-        results += entry.display_name
-    return results
+/datum/controller/subsystem/codex/proc/search_codex(query, minimum_characters = 3)
+	if(length(query) < minimum_characters)
+		return list()
+
+	//List 1 is the display names for displaying in the UI
+	//List 2 is references to the entries so the Codex datum fetches it if selected
+	var/list/results = list(list(), list())
+	var/list/matches = retrieve_entries_for_string(query)
+	for(var/datum/codex_entry/entry in matches)
+		results[1] += entry.display_name
+		results[2] += entry
+	return results

@@ -83,6 +83,7 @@
 	burst_amount = 5
 	burst_delay = 0.1 SECONDS
 	akimbo_additional_delay = 20 // Literally do not even bother to try
+	codex_path = /obj/item/weapon/gun/smg/standard_machinepistol
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock, /obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
@@ -139,6 +140,7 @@
 	burst_amount = 0
 
 	placed_overlay_iconstate = "t90"
+	codex_path = /obj/item/weapon/gun/smg/standard_smg
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -203,6 +205,7 @@
 	scatter = 2
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
+	codex_path = /obj/item/weapon/gun/smg/standard_heavysmg
 
 //-------------------------------------------------------
 //M-25 SMG
@@ -257,6 +260,7 @@
 	burst_amount = 3
 	akimbo_additional_delay = 0.4
 	damage_falloff_mult = 0.9
+	codex_path = /obj/item/weapon/gun/smg/m25
 
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
@@ -299,6 +303,7 @@
 	damage_mult = 1.2
 	aim_slowdown = 0.2
 	scatter = 3
+	codex_path = /obj/item/weapon/gun/smg/m25/elite
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
@@ -341,6 +346,7 @@
 	scatter = 5
 	scatter_unwielded = 10
 	damage_mult = 1.2
+	codex_path = /obj/item/weapon/gun/smg/mp7
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -379,6 +385,7 @@
 	fire_delay = 0.1 SECONDS
 	aim_slowdown = 0.3
 	wield_delay = 0.5 SECONDS
+	codex_path = /obj/item/weapon/gun/smg/skorpion
 
 /obj/item/weapon/gun/smg/skorpion/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/skorpion_stock, /obj/item/attachable/magnetic_harness)
@@ -444,6 +451,7 @@
 	scatter_increase_unwielded = 8
 	scatter_decay = 0.5
 	scatter_decay_unwielded = 0.1
+	codex_path = /obj/item/weapon/gun/smg/ppsh
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -470,6 +478,7 @@
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	wield_delay = 0.4 SECONDS
+	codex_path = /obj/item/weapon/gun/smg/uzi
 
 /obj/item/weapon/gun/smg/uzi/mag_harness
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi/extended
@@ -536,6 +545,7 @@
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7
+	codex_path = /obj/item/weapon/gun/smg/som
 
 /obj/item/weapon/gun/smg/som/scout
 	starting_attachment_types = list(
@@ -632,6 +642,7 @@
 	scatter_unwielded = 5
 	aim_slowdown = 0.2
 	wield_delay = 0.55 SECONDS
+	codex_path = /obj/item/weapon/gun/smg/icc_machinepistol
 
 /obj/item/weapon/gun/smg/icc_machinepistol/medic
 	starting_attachment_types = list(/obj/item/attachable/foldable/icc_machinepistol, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
@@ -701,6 +712,7 @@
 	scatter = 3
 	scatter_unwielded = 8
 	damage_falloff_mult = 1.5
+	codex_path = /obj/item/weapon/gun/smg/icc_pdw
 
 /obj/item/weapon/gun/smg/icc_pdw/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
@@ -758,6 +770,7 @@
 	scatter = 3
 	scatter_unwielded = 11
 	akimbo_additional_delay = 0.4
+	codex_path = /obj/item/weapon/gun/smg/vsd_pdw
 
 /obj/item/weapon/gun/smg/vsd_pdw/standard
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator)

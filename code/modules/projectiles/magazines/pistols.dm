@@ -4,6 +4,7 @@
 
 /obj/item/ammo_magazine/pistol/standard_pistol
 	name = "\improper P-14 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/standard_pistol
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "tp14"
@@ -16,6 +17,7 @@
 //PP-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
 	name = "\improper PP-7 plasma cell"
+	codex_path = /obj/item/ammo_magazine/pistol/plasma_pistol
 	desc = "An energy cell for the PP-7 plasma pistol."
 	caliber = CALIBER_PLASMA
 	icon_state = "tx7"
@@ -30,6 +32,7 @@
 
 /obj/item/ammo_magazine/pistol
 	name = "\improper RT-3 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "m4a3"
@@ -41,24 +44,28 @@
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/hp
 	icon_state = "m4a3_hp"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	icon_state_mini = "mag_pistol_blue"
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/ap
 	icon_state = "m4a3_ap"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/incendiary
 	icon_state = "m4a3_incendiary"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
 	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/extended
 	max_rounds = 24
 	icon_state = "m4a3_ext"
 	icon_state_mini = "mag_pistol_yellow"
@@ -68,6 +75,7 @@
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "\improper P-1911 magazine (.45)"
+	codex_path = /obj/item/ammo_magazine/pistol/m1911
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "1911"
@@ -81,6 +89,7 @@
 
 /obj/item/ammo_magazine/pistol/standard_heavypistol
 	name = "\improper P-23 magazine (.45)"
+	codex_path = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = ".45"
@@ -93,6 +102,7 @@
 
 /obj/item/ammo_magazine/pistol/g22
 	name = "\improper P-22 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/g22
 	caliber = CALIBER_9X19
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
@@ -101,6 +111,7 @@
 
 /obj/item/ammo_magazine/pistol/g22tranq
 	name = "\improper G22 tranq magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/g22tranq
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
@@ -113,6 +124,7 @@
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
+	codex_path = /obj/item/ammo_magazine/pistol/heavy
 	default_ammo = /datum/ammo/bullet/pistol/superheavy
 	caliber = CALIBER_50AE
 	icon_state = "50ae"
@@ -125,6 +137,7 @@
 
 /obj/item/ammo_magazine/pistol/c99t
 	name = "\improper PK-9 tranq magazine (.22)"
+	codex_path = /obj/item/ammo_magazine/pistol/c99t
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	caliber = CALIBER_22LR
 	icon_state = "pk-9_tranq"
@@ -133,6 +146,7 @@
 
 /obj/item/ammo_magazine/pistol/c99
 	name = "\improper PK-9 hollowpoint magazine (.22)"
+	codex_path = /obj/item/ammo_magazine/pistol/c99
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = CALIBER_22LR
 	icon_state = "pk-9"
@@ -144,6 +158,7 @@
 
 /obj/item/ammo_magazine/pistol/holdout
 	name = "tiny pistol magazine (.22)"
+	codex_path = /obj/item/ammo_magazine/pistol/holdout
 	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
 	default_ammo = /datum/ammo/bullet/pistol/tiny
 	caliber = CALIBER_22LR
@@ -157,6 +172,7 @@
 
 /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	name = "\improper P-17 pocket pistol AP magazine (.380)"
+	codex_path = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	desc = "A surprisingly small magazine used by the P-17 pistol holding .380 ACP bullets."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	caliber = CALIBER_380ACP
@@ -170,6 +186,7 @@
 
 /obj/item/ammo_magazine/pistol/highpower
 	name = "\improper Highpower magazine (.50 AE)"
+	codex_path = /obj/item/ammo_magazine/pistol/highpower
 	default_ammo = /datum/ammo/bullet/pistol/superheavy
 	caliber = CALIBER_50AE
 	icon_state = "m4a3" //PLACEHOLDER
@@ -181,6 +198,7 @@
 
 /obj/item/ammo_magazine/pistol/vp70
 	name = "\improper 88M4 AP magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/vp70
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "88m4"
@@ -192,6 +210,7 @@
 
 /obj/item/ammo_magazine/pistol/vp78
 	name = "\improper VP78 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/vp78
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
 	icon_state = "50ae"
@@ -202,6 +221,7 @@
 
 /obj/item/ammo_magazine/pistol/som
 	name = "\improper V-11 AP magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/som
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "v11"
@@ -210,12 +230,14 @@
 
 /obj/item/ammo_magazine/pistol/som/incendiary
 	name = "\improper V-11 incendiary magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/som/incendiary
 	icon_state = "v11_incend"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
 	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/som/extended
 	max_rounds = 30
 	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
@@ -225,6 +247,7 @@
 
 /obj/item/ammo_magazine/pistol/icc_dpistol
 	name = "\improper PL-5 magazine (.45)"
+	codex_path = /obj/item/ammo_magazine/pistol/icc_dpistol
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "pl5"
@@ -238,6 +261,7 @@
 
 /obj/item/ammo_magazine/pistol/auto9
 	name = "\improper Auto-9 magazine (9mm)"
+	codex_path = /obj/item/ammo_magazine/pistol/auto9
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = CALIBER_9X19
 	icon_state = "tp17"
@@ -249,6 +273,7 @@
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 /obj/item/ammo_magazine/pistol/chimp
 	name = "\improper CHIMP70 magazine (.70M)"
+	codex_path = /obj/item/ammo_magazine/pistol/chimp
 	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
@@ -258,6 +283,7 @@
 //SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
 	name = "\improper SP-13 magazine (9mm AP)"
+	codex_path = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
 	icon_state_mini = "mag_pistol_orange"
@@ -269,6 +295,7 @@
 // knife
 /obj/item/ammo_magazine/pistol/knife
 	name = "\improper ballistic knife head (Blade)"
+	codex_path = /obj/item/ammo_magazine/pistol/knife
 	default_ammo = /datum/ammo/bullet/pistol
 	caliber = CALIBER_ALIEN
 	icon_state = "knife"
@@ -278,6 +305,7 @@
 //XM104 cylinder placed in pistols
 /obj/item/ammo_magazine/pistol/xmdivider
 	name = "\improper XM104 cylinder (.357)"
+	codex_path = /obj/item/ammo_magazine/pistol/xmdivider
 	desc = "XM104 cylinder loaded with custom .357 incendiary rounds."
 	default_ammo = /datum/ammo/bullet/revolver/heavy/incen
 	max_rounds = 6
@@ -289,6 +317,7 @@
 
 /obj/item/ammo_magazine/pistol/vsd_pistol
 	name = "\improper C96 'riot' magazine"
+	codex_path = /obj/item/ammo_magazine/pistol/vsd_pistol
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
 	icon_state = "c96"

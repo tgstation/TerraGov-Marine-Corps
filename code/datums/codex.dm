@@ -1,14 +1,16 @@
 ///Uses the SIGN macro to return a string of "+" if x is 0 or greater
 #define PRINT_SIGN_IF_POSITIVE(x) SIGN(x) >= 0 ? "+" : ""
 
+///Verb that opens the Codex UI; if the Codex hasn't been opened yet, creates a new one pointing to the main menu
 /client/verb/codex()
 	set name = "Open Codex"
 	set category = "OOC"
 	set desc ="Open and browse the Codex"
 
-	//TO-DO: make this stuff actually work
-	codex = new /datum/codex(src)
-	codex.open_ui(mob)
+	if(!codex)
+		codex = new /datum/codex(src)
+
+	codex.open_ui()
 
 /datum/codex
 	///Whatever page the codex is currently on
@@ -17,14 +19,36 @@
 	var/client/owner
 	///The search results from the last search; is stored here by the SScodex then passed on to the UI
 	var/list/search_results
+	///The references to the search results; each element corresponds to the same index in search_results
+	var/list/search_results_references
 
-/datum/codex/New(client)
+/datum/codex/New(client, atom/target)
 	owner = client
+	if(target)
+		set_codex_entry(target)
 
-//TO-DO: Figure out if this should be deleted and use ui_interact instead
-/datum/codex/proc/open_ui(mob/viewer, atom/target)
+/datum/codex/Destroy(force, ...)
+	owner = null
+	entry = null
+	QDEL_LIST(search_results)
+	QDEL_LIST(search_results_references)
+	return ..()
+
+///Open the Codex UI for the user
+/datum/codex/proc/open_ui()
+	if(!owner)
+		stack_trace("An attempt was made to open the Codex UI without a client. This is likely an orphan Codex datum, somehow.")
+		return
+
+	if(!owner.mob)
+		to_chat(owner, span_warning("Sorry, it appears you are not inside a mob. Inhabiting a mob (even observer ghosts count as one!) is necessary to use the Codex."))
+		return
+
+	ui_interact(owner.mob)
+
+///Set the current codex entry to the one passed in; e.g. when the user clicks the codex link on examine or when using the search function
+/datum/codex/proc/set_codex_entry(atom/target)
 	entry = target
-	ui_interact(viewer)
 
 /datum/codex/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -40,7 +64,17 @@
 	if(action == "search_codex")
 		var/query = params["query"]
 		var/list/results = SScodex.search_codex(query)
-		search_results = results
+		if(!length(results) || !length(results[1]))
+			return TRUE	//Update anyways to clear previous search results
+
+		search_results = results[1]
+		search_results_references = results[2]
+		return TRUE
+
+	if(action == "view_codex_entry")
+		set_codex_entry(search_results_references[params["result_index"] + 1])	//Typescript arrays start at 0
+		search_results = null	//Clear the search results after searching!
+		search_results_references = null
 		return TRUE
 
 /datum/codex/ui_data(mob/user)
@@ -55,7 +89,7 @@
 	.["background"] = data["background"]
 	.["is_gun"] = data["is_gun"]
 	.["is_clothing"] = data["is_clothing"]
-	.["searchResults"] = length(search_results) ? search_results : null
+	.["search_results"] = length(search_results) ? search_results : null
 
 /datum/codex/ui_static_data(mob/user)
 	return list()

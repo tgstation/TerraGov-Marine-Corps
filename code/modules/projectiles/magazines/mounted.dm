@@ -11,6 +11,7 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"
+	codex_path = /obj/item/ammo_magazine/hsg_102
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/hsg_102/hsg_nest
@@ -29,6 +30,7 @@
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 10 SECONDS
+	codex_path = /obj/item/ammo_magazine/heavymachinegun
 
 /obj/item/ammo_magazine/heavymachinegun/small
 	name = "HMG-08 box magazine (10x30mm Caseless)"
@@ -39,6 +41,7 @@
 	icon_state_mini = "mag_hmg"
 	max_rounds = 250
 	reload_delay = 5 SECONDS
+	codex_path = /obj/item/ammo_magazine/heavymachinegun/small
 
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
@@ -52,6 +55,7 @@
 	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
+	codex_path = /obj/item/ammo_magazine/standard_mmg
 
 /obj/item/ammo_magazine/standard_agls
 	name = "AGLS-37 HE magazine (40mm Caseless)"
@@ -64,30 +68,35 @@
 	max_rounds = 30
 	default_ammo = /datum/ammo/grenade_container/ags_grenade
 	reload_delay = 4 SECONDS
+	codex_path = /obj/item/ammo_magazine/standard_agls
 
 /obj/item/ammo_magazine/standard_agls/fragmentation
 	name = "AGLS-37 Frag magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Fragmentation grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_frag"
 	default_ammo = /datum/ammo/ags_shrapnel
+	codex_path = /obj/item/ammo_magazine/standard_agls/fragmentation
 
 /obj/item/ammo_magazine/standard_agls/incendiary
 	name = "AGLS-37 WP magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless White Phosphorous grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
+	codex_path = /obj/item/ammo_magazine/standard_agls/incendiary
 
 /obj/item/ammo_magazine/standard_agls/flare
 	name = "AGLS-37 Flare magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_flare"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
+	codex_path = /obj/item/ammo_magazine/standard_agls/flare
 
 /obj/item/ammo_magazine/standard_agls/cloak
 	name = "AGLS-37 Cloak magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_cloak"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
+	codex_path = /obj/item/ammo_magazine/standard_agls/cloak
 
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
@@ -101,6 +110,7 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/atgun_shell
 	reload_delay = 2 SECONDS
+	codex_path = /obj/item/ammo_magazine/standard_atgun
 
 /obj/item/ammo_magazine/standard_atgun/apcr
 	name = "AT-36 APCR shell (37mm Shell)"
@@ -108,6 +118,7 @@
 	icon_state = "at36_apcr"
 	worn_icon_state = "at36_apcr"
 	default_ammo = /datum/ammo/rocket/atgun_shell/apcr
+	codex_path = /obj/item/ammo_magazine/standard_atgun/apcr
 
 /obj/item/ammo_magazine/standard_atgun/he
 	name = "AT-36 HE (37mm Shell)"
@@ -115,6 +126,7 @@
 	icon_state = "at36_he"
 	worn_icon_state = "at36_he"
 	default_ammo = /datum/ammo/rocket/atgun_shell/he
+	codex_path = /obj/item/ammo_magazine/standard_atgun/he
 
 /obj/item/ammo_magazine/standard_atgun/beehive
 	name = "AT-36 Beehive (37mm Shell)"
@@ -122,6 +134,7 @@
 	icon_state = "at36_beehive"
 	worn_icon_state = "at36_beehive"
 	default_ammo = /datum/ammo/rocket/atgun_shell/beehive
+	codex_path = /obj/item/ammo_magazine/standard_atgun/beehive
 
 /obj/item/ammo_magazine/standard_atgun/incend
 	name = "AT-36 Napalm (37mm Shell)"
@@ -129,6 +142,7 @@
 	icon_state = "at36_incend"
 	worn_icon_state = "at36_incend"
 	default_ammo = /datum/ammo/rocket/atgun_shell/beehive/incend
+	codex_path = /obj/item/ammo_magazine/standard_atgun/incend
 
 /obj/item/ammo_magazine/heavy_minigun
 	name = "MG-2005 box magazine (7.62x51mm)"
@@ -141,6 +155,7 @@
 	max_rounds = 1000
 	default_ammo = /datum/ammo/bullet/minigun
 	reload_delay = 10 SECONDS
+	codex_path = /obj/item/ammo_magazine/heavy_minigun
 
 /obj/item/ammo_magazine/auto_cannon
 	name = "autocannon high-velocity magazine(20mm)"
@@ -154,6 +169,7 @@
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
+	codex_path = /obj/item/ammo_magazine/auto_cannon
 
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
@@ -161,6 +177,7 @@
 	icon_state = "ac_flak"
 	worn_icon_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
+	codex_path = /obj/item/ammo_magazine/auto_cannon/flak
 
 /obj/item/cell/lasgun/heavy_laser
 	name = "heavy-duty weapon laser cell"
@@ -170,6 +187,7 @@
 	reload_delay = 5 SECONDS
 	icon_state = "hl"
 	charge_overlay = null
+	codex_path = /obj/item/cell/lasgun/heavy_laser
 
 /obj/item/ammo_magazine/heavy_isg
 	name = "FK-88 shell (155mm Shell)"
@@ -183,11 +201,13 @@
 	max_rounds = 1
 	reload_delay = 8 SECONDS
 	default_ammo = /datum/ammo/rocket/heavy_isg
+	codex_path = /obj/item/ammo_magazine/heavy_isg
 
 /obj/item/ammo_magazine/heavy_isg/he
 	name = "FK-88 HE shell (155mm Shell)"
 	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Right-click with other hand to swap between unguided and guided modes."
 	default_ammo = /datum/ammo/rocket/heavy_isg
+	codex_path = /obj/item/ammo_magazine/heavy_isg/he
 	var/guided = TRUE
 
 /obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
@@ -205,6 +225,7 @@
 	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
 	icon_state = "isg_sabot"
 	default_ammo = /datum/ammo/bullet/heavy_isg_apfds
+	codex_path = /obj/item/ammo_magazine/heavy_isg/sabot
 
 ///Default ammo for the ML-91 and its export variants.
 /obj/item/ammo_magazine/icc_hmg
@@ -219,3 +240,4 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"
+	codex_path = /obj/item/ammo_magazine/icc_hmg

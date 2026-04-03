@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -22,76 +22,23 @@ interface CodexData {
 // Main Codex component to display the codex entry
 export const Codex = () => {
   const { act, data } = useBackend<CodexData>();
-  const [search_query, update_search_query] = useState('');
-  const [search_results, update_search_results] = useState<string[]>([]);
 
-  // Function to handle querying the codex and retrieving results
-  const handle_searching = async (query: string) => {
-    // Update what the user is trying to search for via the state via useState hook
-    update_search_query(query);
-
-    // Let the backend know the user is searching for something
-    act('search_codex', { query });
-
-    // Extract search results from the response
-    const results = data.search_results || [];
-
-    // Update the search results to display with the extracted results
-    update_search_results(Array.isArray(results) ? results : []);
-  };
-
-  // What to do when a search result is clicked; JUST PLACEHOLDER, FIX THIS
-  const handle_result_click = (result: string) => {
-    act('view_codex_entry', { entry: result });
-  };
+  // Render the MainMenu if no entry is selected
+  if (!data.name) {
+    return (
+      <Window width={500} height={400} theme="ntos_rusty">
+        <Window.Content scrollable>
+          <MainMenu />
+        </Window.Content>
+      </Window>
+    );
+  }
 
   return (
     <Window width={600} height={750} theme="ntos_rusty">
       <Window.Content scrollable>
-        {/* Search bar and results grouped together */}
-        <Box position="relative" mt={2} mb={1}>
-          {/* Render the search bar; a component already exists so it does most of the work */}
-          <SearchBar
-            query={search_query}
-            onSearch={handle_searching}
-            placeholder="Search the Codex..."
-            autoFocus
-          />
-
-          {/* Display the search results in a drop down */}
-          {search_results.length > 0 && (
-            <Box
-              position="absolute" // Position it under the search bar without displacing other elements
-              top="100%"
-              ml={'18px'} // Adds a margin to the left of the dropdown the size of the magnifying glass icon next to search bar
-              width="calc(100% - 20px)" // Adjust width to account for the left margin; perfectly flush under search bar
-              backgroundColor="#222222"
-              style={{
-                border: '1px solid #3cff14',
-                borderTop: 'none',
-                zIndex: 10, // Ensure it appears above other elements
-              }}
-              maxHeight="200px" // Don't make the dropdown too tall
-              overflowY="auto"
-              mt={0} // Remove margin to keep it flush with search bar
-            >
-              {/* Render each result as a button since they are already clickable and easy to fit*/}
-              {search_results.map((result, index) => (
-                <Button
-                  key={index}
-                  fluid // Stretch the button to fill the width of the dropdown
-                  ellipsis // Add ellipsis to the text if it overflows
-                  backgroundColor="#222222"
-                  textColor="white"
-                  onClick={() => handle_result_click(result)}
-                >
-                  {result}
-                </Button>
-              ))}
-            </Box>
-          )}
-        </Box>
-
+        {/* Render the search engine component */}
+        <SearchEngineRendering />
         {/* Display basic info like name and description */}
         <Section title="Basic Info">
           <Box mb={2}>
@@ -125,6 +72,81 @@ export const Codex = () => {
         )}
       </Window.Content>
     </Window>
+  );
+};
+
+// Component to display the search bar and results
+const SearchEngineRendering = () => {
+  const { act, data } = useBackend<CodexData>();
+  const [search_query, update_search_query] = useState('');
+  const [search_results, update_search_results] = useState<string[]>([]);
+  const [focused, setFocused] = useState(false); // Track focus state
+
+  // Function to handle querying the codex and retrieving results
+  const handle_searching = async (query: string) => {
+    // Update what the user is trying to search for via the state via useState hook
+    update_search_query(query);
+
+    // Let the backend know the user is searching for something
+    act('search_codex', { query });
+
+    // Extract search results from the response
+    const results = data.search_results || [];
+
+    // Update the search results to display with the extracted results
+    update_search_results(Array.isArray(results) ? results : []);
+  };
+
+  // What to do when a search result is clicked
+  const handle_result_click = (result_index: number) => {
+    act('view_codex_entry', { result_index });
+  };
+
+  return (
+    <Box position="relative" mt={2} mb={1}>
+      {/* Render the search bar; a component already exists so it does most of the work */}
+      <SearchBar
+        query={search_query}
+        onSearch={handle_searching}
+        placeholder="Search the Codex..."
+        autoFocus
+        onInput={() => setFocused(true)} // No way to track if a user clicked on the search bar, so we set it to true when the user types
+        onBlur={() => setFocused(false)} // Remove focus when the user clicks outside or presses Escape/Enter
+      />
+
+      {/* Display the search results in a drop down if the search bar is focused */}
+      {search_results.length > 0 && (
+        <Box
+          position="absolute" // Position it under the search bar without displacing other elements
+          top="100%"
+          ml={'18px'} // Adds a margin to the left of the dropdown the size of the magnifying glass icon next to search bar
+          width="calc(100% - 18px)" // Adjust width to account for the left margin; perfectly flush under search bar
+          backgroundColor="rgb(20, 30, 20)"
+          style={{
+            border: '1px solid #3cff14',
+            borderTop: 'none',
+            zIndex: 10, // Ensure it appears above other elements
+          }}
+          maxHeight="200px" // Don't make the dropdown too tall
+          overflowY="auto"
+          mt={0} // Remove margin to keep it flush with search bar
+        >
+          {/* Render each result as a button since they are already clickable and easy to fit*/}
+          {search_results.map((result, index) => (
+            <Button
+              key={index}
+              fluid // Stretch the button to fill the width of the dropdown
+              ellipsis // Add ellipsis to the text if it overflows
+              textColor="white"
+              onClick={() => handle_result_click(index)}
+              className="Button--codex-search-result"
+            >
+              {result}
+            </Button>
+          ))}
+        </Box>
+      )}
+    </Box>
   );
 };
 
@@ -338,5 +360,25 @@ const AttachmentsTable = ({ value }: { value: Record<string, string[]> }) => {
         )}
       </tbody>
     </table>
+  );
+};
+
+// Component for the main menu
+const MainMenu = () => {
+  return (
+    <>
+      <SearchEngineRendering />
+      <Stack fill>
+        <Section title="Main Menu">
+          <Stack.Item>
+            Welcome to the Codex! Use the search bar above to find entries or
+            explore the categories.
+          </Stack.Item>
+        </Section>
+        <Stack.Item grow textAlign="right">
+          Stuff
+        </Stack.Item>
+      </Stack>
+    </>
   );
 };

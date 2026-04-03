@@ -17,6 +17,7 @@
 	armor_protection_flags = CHEST
 	allowed = list (/obj/item/weapon/gun)
 	siemens_coefficient = 3
+	codex_path = /obj/item/clothing/suit/bluetag
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -27,6 +28,7 @@
 	armor_protection_flags = CHEST
 	allowed = list (/obj/item/weapon/gun)
 	siemens_coefficient = 3
+	codex_path = /obj/item/clothing/suit/redtag
 
 /*
 * Costume
@@ -37,6 +39,7 @@
 	icon_state = "pirate"
 	worn_icon_state = "pirate"
 	armor_protection_flags = CHEST|ARMS
+	codex_path = /obj/item/clothing/suit/pirate
 
 
 /obj/item/clothing/suit/hgpirate
@@ -48,11 +51,13 @@
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, FIRE = 20, ACID = 20)
+	codex_path = /obj/item/clothing/suit/hgpirate
 
 /obj/item/clothing/suit/hgpirate/noarmor
 	name = "tattered pirate captain coat"
 	item_flags = NONE
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	codex_path = /obj/item/clothing/suit/hgpirate/noarmor
 
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
@@ -75,6 +80,7 @@
 	worn_icon_state = "justice"
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	codex_path = /obj/item/clothing/suit/justice
 
 /obj/item/clothing/suit/judgerobe
 	name = "judge's robe"
@@ -84,6 +90,7 @@
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
 	inv_hide_flags = HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/judgerobe
 
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
@@ -92,6 +99,7 @@
 	worn_icon_state = "wcoat"
 	blood_overlay_type = "armor"
 	armor_protection_flags = CHEST|GROIN
+	codex_path = /obj/item/clothing/suit/wcoat
 
 
 /obj/item/clothing/suit/storage/apron/overalls
@@ -100,6 +108,7 @@
 	icon_state = "overalls"
 	worn_icon_state = "overalls"
 	armor_protection_flags = CHEST|GROIN|LEGS
+	codex_path = /obj/item/clothing/suit/storage/apron/overalls
 
 
 /obj/item/clothing/suit/syndicatefake
@@ -111,6 +120,7 @@
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy)
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor_protection_flags = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
+	codex_path = /obj/item/clothing/suit/syndicatefake
 
 /obj/item/clothing/suit/hastur
 	name = "Hastur's Robes"
@@ -119,6 +129,7 @@
 	worn_icon_state = "hastur"
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/hastur
 
 
 /obj/item/clothing/suit/imperium_monk
@@ -128,6 +139,7 @@
 	worn_icon_state = "imperium_monk"
 	armor_protection_flags = HEAD|CHEST|GROIN|LEGS|FEET|ARMS
 	inv_hide_flags = HIDESHOES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/imperium_monk
 
 
 /obj/item/clothing/suit/chickensuit
@@ -138,6 +150,7 @@
 	armor_protection_flags = CHEST|ARMS|GROIN|LEGS|FEET
 	inv_hide_flags = HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+	codex_path = /obj/item/clothing/suit/chickensuit
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -148,6 +161,7 @@
 	armor_protection_flags = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+	codex_path = /obj/item/clothing/suit/monkeysuit
 
 
 /obj/item/clothing/suit/holidaypriest
@@ -157,6 +171,7 @@
 	worn_icon_state = "holidaypriest"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/holidaypriest
 
 
 /obj/item/clothing/suit/cardborg
@@ -166,6 +181,7 @@
 	worn_icon_state = "cardborg"
 	armor_protection_flags = CHEST|GROIN
 	inv_hide_flags = HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/cardborg
 
 
 /obj/item/clothing/suit/white_dress_jacket
@@ -189,6 +205,7 @@
 	worn_icon_state = "straight_jacket"
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	codex_path = /obj/item/clothing/suit/straight_jacket
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
@@ -214,6 +231,7 @@
 	icon_state = "ianshirt"
 	worn_icon_state = "ianshirt"
 	armor_protection_flags = CHEST|ARMS
+	codex_path = /obj/item/clothing/suit/ianshirt
 
 //Blue suit jacket toggle
 /obj/item/clothing/suit/suit/verb/toggle()
@@ -246,6 +264,7 @@
 	icon_state = "blue_pyjamas"
 	worn_icon_state = "blue_pyjamas"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
+	codex_path = /obj/item/clothing/under/bluepyjamas
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
@@ -253,6 +272,7 @@
 	icon_state = "red_pyjamas"
 	worn_icon_state = "red_pyjamas"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
+	codex_path = /obj/item/clothing/under/redpyjamas
 
 //coats
 
@@ -282,6 +302,8 @@
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+	codex_path = /obj/item/clothing/suit/xenos
+
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
@@ -337,6 +359,7 @@
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
 	armor_protection_flags = CHEST|ARMS
+	codex_path = /obj/item/clothing/under/swimsuit/black
 	cold_protection_flags = CHEST|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
@@ -360,6 +383,7 @@
 	icon_state = "rebel_armor"
 	worn_icon_state = "rebel_armor"
 	armor_protection_flags = CHEST|GROIN|LEGS
+	codex_path = /obj/item/clothing/suit/replica
 
 /obj/item/clothing/suit/techpriest
 	name = "Techpriest Robes"
@@ -367,4 +391,5 @@
 	icon_state = "tp_bodyrobes"
 	worn_icon_state = "tp_bodyrobes"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	codex_path = /obj/item/clothing/suit/techpriest
 

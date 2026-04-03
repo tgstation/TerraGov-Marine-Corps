@@ -142,6 +142,7 @@ The Grenade Launchers
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
 	max_chamber_items = 5
+	codex_path = /obj/item/weapon/gun/grenade_launcher/multinade_launcher
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -156,6 +157,7 @@ The Grenade Launchers
 	fire_animation = "t70_erp_fire"
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 	default_ammo_type = /obj/item/explosive/grenade/creampie
+	codex_path = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
 
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
@@ -204,6 +206,7 @@ The Grenade Launchers
 	)
 
 	wield_delay_mod = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/grenade_launcher/underslung
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	attach_features_flags = NONE
@@ -214,6 +217,7 @@ The Grenade Launchers
 	icon_state = "t64_grenade"
 	pixel_shift_x = 21
 	pixel_shift_y = 15
+	codex_path = /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
@@ -241,6 +245,7 @@ The Grenade Launchers
 	fire_delay = 1.05 SECONDS
 	max_chamber_items = 0
 	max_range = 10
+	codex_path = /obj/item/weapon/gun/grenade_launcher/single_shot
 
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
@@ -249,6 +254,7 @@ The Grenade Launchers
 	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)
 	req_access = list(ACCESS_MARINE_BRIG)
+	codex_path = /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare
 	name = "flare gun"
@@ -265,8 +271,10 @@ The Grenade Launchers
 	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/flaregun)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
+	codex_path = /obj/item/weapon/gun/grenade_launcher/single_shot/flare
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine
 	name = "M30E2 flare gun"
 	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
 	icon_state = "marine_flaregun"
+	codex_path = /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine

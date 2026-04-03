@@ -293,6 +293,7 @@
 	icon = 'icons/obj/items/guns/special.dmi'
 	icon_state = "m240"
 	worn_icon_state = "m240"
+	codex_path = /obj/item/weapon/gun/flamer/big_flamer
 
 /obj/item/weapon/gun/flamer/big_flamer/vsd
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flamer_nozzle/wide,)
@@ -322,6 +323,7 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
+	codex_path = /obj/item/weapon/gun/flamer/som
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
@@ -355,6 +357,7 @@
 		/obj/item/attachable/flamer_nozzle/long,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+	codex_path = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner
 	starting_attachment_types = list(
@@ -395,6 +398,7 @@
 	flame_max_range = 4
 
 	wield_delay_mod = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/flamer/mini_flamer
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	attach_features_flags = NONE
@@ -421,6 +425,7 @@
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
+	codex_path = /obj/item/weapon/gun/flamer/big_flamer/marinestandard
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
@@ -536,6 +541,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 
 	flame_max_wall_pen = 1 //Actually means we'll hit one wall and then stop
 	flame_max_wall_pen_wide = 1
+	codex_path = /obj/item/weapon/gun/flamer/hydro_cannon
 
 /obj/item/weapon/gun/flamer/hydro_cannon/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	for(var/atom/movable/relevant_atom AS in turf_to_ignite)

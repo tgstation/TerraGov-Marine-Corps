@@ -9,6 +9,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 */
 /obj/item/ammo_magazine/shotgun
 	name = "box of 12 gauge shotgun slugs"
+	codex_path = /obj/item/ammo_magazine/shotgun
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "slugs"
 	icon = 'icons/obj/items/ammo/shotgun.dmi'
@@ -20,6 +21,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "box of 12 gauge incendiary slugs"
+	codex_path = /obj/item/ammo_magazine/shotgun/incendiary
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
@@ -27,6 +29,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "box of 12 gauge buckshot shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/buckshot
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
@@ -34,6 +37,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/flechette
 	name = "box of 12 gauge flechette shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/flechette
 	desc = "A box filled with flechette shotgun shells. 12 Gauge."
 	icon_state = "flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
@@ -41,6 +45,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/beanbag
 	name = "box of 12 gauge beanbag slugs"
+	codex_path = /obj/item/ammo_magazine/shotgun/beanbag
 	desc = "A box filled with beanbag shotgun shells used for non-lethal crowd control. 12 Gauge."
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
@@ -48,6 +53,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/tracker
 	name = "box of 12 gauge tracker shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/tracker
 	desc = "A box filled with tracker shotgun shells. 12 Gauge."
 	icon_state = "tracking"
 	default_ammo = /datum/ammo/bullet/shotgun/tracker
@@ -55,6 +61,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/blank
 	name = "box of 12 gauge blank shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/blank
 	desc = "A box filled with blank shotgun shells. 12 Gauge."
 	icon_state = "blank"
 	default_ammo = /datum/ammo/bullet/shotgun/blank
@@ -62,6 +69,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/rifle/bolt
 	name = "box of 7.62x54mmR rifle rounds"
+	codex_path = /obj/item/ammo_magazine/rifle/bolt
 	desc = "A box filled with rifle bullets."
 	icon_state = "7.62" //Thank you Alterist
 	icon = 'icons/obj/items/ammo/packet.dmi'
@@ -73,6 +81,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/rifle/boltclip //Nearly 1:1 copy of above
 	name = "clip of 7.62x54mmR rifle rounds"
+	codex_path = /obj/item/ammo_magazine/rifle/boltclip //Nearly 1:1 copy of above
 	desc = "A Disposible Stripper clip filled with rifle bullets."
 	icon_state = "clip"
 	default_ammo = /datum/ammo/bullet/sniper/svd
@@ -83,6 +92,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/rifle/martini
 	name = "box of .557/440 rifle rounds"
+	codex_path = /obj/item/ammo_magazine/rifle/martini
 	desc = "A box filled with rifle bullets."
 	icon_state = ".557"
 	icon = 'icons/obj/items/ammo/packet.dmi'
@@ -94,6 +104,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/pistol/derringer
 	name = "box of .40 rimfire pistol rounds"
+	codex_path = /obj/item/ammo_magazine/pistol/derringer
 	desc = "A box filled with pistol bullets."
 	icon_state = "derringer"
 	icon = 'icons/obj/items/ammo/packet.dmi'
@@ -105,6 +116,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/mbx900
 	name = "box of .410 sabot shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/mbx900
 	desc = "A box filled with .410 sabot rounds."
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
@@ -115,6 +127,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/mbx900/buckshot
 	name = "box of .410 buckshot shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/mbx900/buckshot
 	desc = "A box filled with .410 buckshot rounds."
 	icon_state = "mbx900_buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
@@ -122,6 +135,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/mbx900/tracking
 	name = "box of .410 tracker shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/mbx900/tracking
 	desc = "A box filled with .410 tracker rounds."
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
@@ -129,6 +143,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/heavy_buckshot
 	name = "box of 6 gauge buckshot shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/heavy_buckshot
 	desc = "A box filled with buckshot spread shotgun shells. 6 Gauge."
 	caliber = CALIBER_6G
 	icon_state = "heavy_shotgun_buckshot"
@@ -137,6 +152,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/barrikada
 	name = "box of 6 gauge 'Barrikada' shells"
+	codex_path = /obj/item/ammo_magazine/shotgun/barrikada
 	desc = "A box filled with high velocity shotgun slugs nicknamed 'Barrikada'. Rated to break through basically everything up to including tank engines. 6 Gauge."
 	caliber = CALIBER_6G
 	icon_state = "heavy_shotgun_barrikada"

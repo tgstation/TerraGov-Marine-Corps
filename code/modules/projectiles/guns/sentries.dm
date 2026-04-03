@@ -58,6 +58,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+	codex_path = /obj/item/weapon/gun/sentry/big_sentry
 
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"
@@ -77,6 +78,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	codex_path = /obj/item/weapon/gun/sentry/pod_sentry
 
 //thrown SOM sentry
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
@@ -117,6 +119,7 @@
 	var/det_time = 4 SECONDS
 	///The sound made when activated
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attack_self(mob/user)
 	if(active)
@@ -229,6 +232,7 @@
 
 	deploy_time = 1 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	codex_path = /obj/item/weapon/gun/sentry/mini
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol
 	sentry_iff_signal = TGMC_LOYALIST_IFF
@@ -247,6 +251,7 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	codex_path = /obj/item/weapon/gun/sentry/premade
 
 /obj/item/weapon/gun/sentry/premade/dumb
 	name = "\improper Modified ST-571 sentry gun"
@@ -257,6 +262,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry_premade/dumb)
 	max_shells = 500
 	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	codex_path = /obj/item/weapon/gun/sentry/premade/dumb
 
 /obj/item/weapon/gun/sentry/premade/dumb/hostile
 	name = "malfunctioning ST-571 sentry gun"
@@ -268,6 +274,7 @@
 	name = "SG-577 Gauss Dropship Turret"
 	ammo_datum_type = /datum/ammo/bullet/turret
 	sentry_iff_signal = TGMC_LOYALIST_IFF
+	codex_path = /obj/item/weapon/gun/sentry/premade/canterbury
 
 // Sniper Sentry
 
@@ -300,6 +307,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable,
 	)
+	codex_path = /obj/item/weapon/gun/sentry/sniper_sentry
 
 /obj/item/storage/box/crate/sentry_sniper
 	name = "\improper SST-574 sentry crate"
@@ -355,6 +363,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+	codex_path = /obj/item/weapon/gun/sentry/shotgun_sentry
 
 /obj/item/storage/box/crate/sentry_shotgun
 	name = "\improper SHT-573 sentry crate"
@@ -409,6 +418,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+	codex_path = /obj/item/weapon/gun/sentry/flamer_sentry
 
 /obj/item/storage/box/crate/sentry_flamer
 	name = "\improper SHT-575 sentry crate"
@@ -462,6 +472,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+	codex_path = /obj/item/weapon/gun/sentry/laser_sentry // yes this isnt a subtype of lasers, because we use normal ammo instead of batteries
 
 /obj/item/storage/box/crate/sentry_laser
 	name = "\improper SLT-576 sentry crate"

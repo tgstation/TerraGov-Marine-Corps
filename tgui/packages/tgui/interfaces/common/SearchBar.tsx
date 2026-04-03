@@ -17,6 +17,10 @@ type OptionalProps = Partial<{
   placeholder: string;
   /** Override styles of the search bar. */
   style: CSSProperties;
+  /** Called when the user presses any key while focused on the search bar. */
+  onInput: () => void;
+  /** Called when the search bar loses focus. */
+  onBlur: () => void;
 }>;
 
 type Props = RequiredProps & OptionalProps;
@@ -33,6 +37,8 @@ export function SearchBar(props: Props) {
     placeholder = 'Search...',
     query = '',
     style,
+    onInput,
+    onBlur,
   } = props;
 
   return (
@@ -48,6 +54,8 @@ export function SearchBar(props: Props) {
           onChange={onSearch}
           placeholder={placeholder}
           value={query}
+          onInput={onInput}
+          onBlur={onBlur}
         />
       </Stack.Item>
     </Stack>

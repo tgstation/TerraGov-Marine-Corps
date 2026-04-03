@@ -69,6 +69,7 @@
 	recoil = -2
 	recoil_unwielded = -2
 	akimbo_scatter_mod = 8
+	codex_path = /obj/item/weapon/gun/pistol/standard_pistol
 
 /obj/item/weapon/gun/pistol/standard_pistol/standard
 	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
@@ -125,6 +126,7 @@
 	wield_delay_mod = 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
+	codex_path = /obj/item/weapon/gun/pistol/plasma_pistol
 
 /obj/item/weapon/gun/pistol/plasma_pistol/beginner
 	starting_attachment_types = list(/obj/item/weapon/gun/shotgun/combat/masterkey, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
@@ -148,6 +150,7 @@
 	desc = "FOR THE EMPEROR!"
 	icon_state = "tx7w"
 	worn_icon_state = "tx7"
+	codex_path = /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 
 //-------------------------------------------------------
 //RT-3 pistol
@@ -173,6 +176,7 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
+	codex_path = /obj/item/weapon/gun/pistol/rt3
 
 //-------------------------------------------------------
 // P-23 service pistol
@@ -209,6 +213,7 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
+	codex_path = /obj/item/weapon/gun/pistol/standard_heavypistol
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -245,6 +250,7 @@
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
+	codex_path = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -262,6 +268,7 @@
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1.3
+	codex_path = /obj/item/weapon/gun/pistol/m1911/custom
 
 //-------------------------------------------------------
 //P-22. Blocc
@@ -286,6 +293,7 @@
 	scatter_unwielded = 0
 	aim_slowdown = 0.2
 	fire_delay = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/pistol/g22
 
 /obj/item/weapon/gun/pistol/g22/tranq
 	name = "\improper P-22 custom pistol"
@@ -305,6 +313,7 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 1.15
 	damage_mult = 0.5
+	codex_path = /obj/item/weapon/gun/pistol/g22/tranq
 
 
 //-------------------------------------------------------
@@ -349,12 +358,15 @@
 	scatter_unwielded = 7
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.7
+	codex_path = /obj/item/weapon/gun/pistol/heavy
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
 	icon_state = "g_deagle"
 	worn_icon_state = "g_deagle"
+	codex_path = /obj/item/weapon/gun/pistol/heavy/gold
+
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
@@ -393,6 +405,7 @@
 	scatter_unwielded = 2
 	damage_mult = 1.3
 	aim_slowdown = 0.1
+	codex_path = /obj/item/weapon/gun/pistol/c99
 
 /obj/item/weapon/gun/pistol/c99/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
@@ -427,6 +440,7 @@
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
+	codex_path = /obj/item/weapon/gun/pistol/holdout
 
 //-------------------------------------------------------
 //P-17 Pocket pistol. Based on a PMM.
@@ -459,6 +473,7 @@
 	recoil_unwielded = -2
 	scatter_unwielded = 0
 	aim_speed_modifier = 0
+	codex_path = /obj/item/weapon/gun/pistol/standard_pocketpistol
 
 
 //-------------------------------------------------------
@@ -490,6 +505,7 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 3
 	scatter_unwielded = 7
+	codex_path = /obj/item/weapon/gun/pistol/highpower
 
 /obj/item/weapon/gun/pistol/highpower/standard
 	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/gyro)
@@ -538,6 +554,7 @@
 	scatter = 0
 	scatter_unwielded = 6
 	akimbo_additional_delay = 2
+	codex_path = /obj/item/weapon/gun/pistol/vp70
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
@@ -571,6 +588,7 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+	codex_path = /obj/item/weapon/gun/pistol/vp78
 
 /obj/item/weapon/gun/pistol/vp78/pmc
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro, /obj/item/attachable/compensator)
@@ -612,6 +630,7 @@
 	aim_slowdown = 0.1
 	scatter = -1
 	scatter_unwielded = 4
+	codex_path = /obj/item/weapon/gun/pistol/som
 
 /obj/item/weapon/gun/pistol/som/standard
 	starting_attachment_types = list(
@@ -663,6 +682,7 @@
 	aim_slowdown = 0.1
 	scatter = -1
 	scatter_unwielded = 4
+	codex_path = /obj/item/weapon/gun/pistol/vsd_pistol
 
 /obj/item/weapon/gun/pistol/vsd_pistol/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot,/obj/item/attachable/compensator,/obj/item/attachable/lasersight,)
@@ -705,6 +725,7 @@
 	scatter = 2
 	recoil = 4
 	recoil_unwielded = 3
+	codex_path = /obj/item/weapon/gun/pistol/xmdivider
 
 /obj/item/weapon/gun/pistol/xmdivider/gunslinger
 	starting_attachment_types = list(
@@ -737,6 +758,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	fire_delay = 0.1 SECONDS
 	burst_amount = 3
 	recoil_unwielded = 3
+	codex_path = /obj/item/weapon/gun/pistol/auto9
 
 //-------------------------------------------------------
 // PL-5 ICC Duty Pistol
@@ -763,6 +785,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	damage_falloff_mult = 1.25
 	recoil = -2
 	recoil_unwielded = -1
+	codex_path = /obj/item/weapon/gun/pistol/icc_dpistol
 
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
@@ -788,6 +811,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 2
+	codex_path = /obj/item/weapon/gun/pistol/chimp
 
 
 /obj/item/weapon/gun/pistol/knife
@@ -830,6 +854,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
+	codex_path = /obj/item/weapon/gun/pistol/knife
 
 // Smart pistol, based on the MP-9.
 /obj/item/weapon/gun/pistol/smart_pistol
@@ -865,3 +890,4 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter = 0
 	scatter_unwielded = 8
 	recoil_unwielded = 2
+	codex_path = /obj/item/weapon/gun/pistol/smart_pistol

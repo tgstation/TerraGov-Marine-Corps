@@ -70,6 +70,7 @@
 
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	codex_path = /obj/item/weapon/gun/hsg_102
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/hsg_102/hsg_nest
@@ -90,6 +91,7 @@
 	)
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	codex_path = /obj/item/weapon/gun/hsg_102/hsg_nest
 
 /obj/item/weapon/gun/hsg_102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
@@ -136,6 +138,7 @@
 
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	codex_path = /obj/item/weapon/gun/standard_minigun
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/standard_minigun/nest
@@ -151,6 +154,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	codex_path = /obj/item/weapon/gun/standard_minigun/nest
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy anti-air gun
@@ -197,6 +201,7 @@
 
 	max_integrity = 500
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	codex_path = /obj/item/weapon/gun/standard_auto_cannon
 
 /obj/machinery/deployable/mounted/moveable/auto_cannon
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
@@ -246,6 +251,7 @@
 		"Shatter Burst" = /datum/lasrifle/heavy_laser/burst,
 		"Ricochet" = /datum/lasrifle/heavy_laser/ricochet,
 	)
+	codex_path = /obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser
 
 /datum/lasrifle/heavy_laser/standard
 	rounds_per_shot = 15
@@ -326,6 +332,7 @@
 
 	max_integrity = 800
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	codex_path = /obj/item/weapon/gun/heavy_isg
 
 /obj/machinery/deployable/mounted/moveable/isg
 	coverage = 90 // Has a shield.
@@ -351,6 +358,7 @@
 	wield_delay = 5 SECONDS
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
+	codex_path = /obj/item/weapon/gun/hsg_102/death
 
 // This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
@@ -398,6 +406,7 @@
 
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	codex_path = /obj/item/weapon/gun/heavymachinegun
 
 
 
@@ -467,6 +476,7 @@
 	damage_falloff_mult = 0.25
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
+	codex_path = /obj/item/weapon/gun/standard_mmg
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
@@ -530,6 +540,7 @@
 	deploy_time = 1 SECONDS // Meant to be used by ERT's
 	undeploy_time = 0.25 SECONDS
 	movement_acc_penalty_mult = 20 // Good luck hitting on the move, bruv
+	codex_path = /obj/item/weapon/gun/clf_heavyrifle
 
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
@@ -572,6 +583,7 @@
 	undeploy_time = 2000 SECONDS
 	max_integrity = 500
 	deployable_item = /obj/machinery/deployable/mounted/moveable/atgun
+	codex_path = /obj/item/weapon/gun/standard_atgun
 
 /obj/machinery/deployable/mounted/moveable/atgun
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
@@ -675,6 +687,7 @@
 
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+	codex_path = /obj/item/weapon/gun/standard_agls
 
 /obj/item/weapon/gun/standard_agls/do_fire(obj/object_to_fire)
 	. = ..()
@@ -736,3 +749,4 @@
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/icc_hmg,
 	)
+	codex_path = /obj/item/weapon/gun/icc_hmg

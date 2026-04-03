@@ -87,6 +87,7 @@
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/standard_carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
@@ -180,6 +181,8 @@
 
 	placed_overlay_iconstate = "t12"
 
+	codex_path = /obj/item/weapon/gun/rifle/standard_assaultrifle
+
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
@@ -262,6 +265,8 @@
 	burst_amount = 1
 	movement_acc_penalty_mult = 6
 
+	codex_path = /obj/item/weapon/gun/rifle/standard_dmr
+
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
 
@@ -342,6 +347,8 @@
 	accuracy_mult = 0.9
 	scatter = 0
 
+	codex_path = /obj/item/weapon/gun/rifle/standard_br
+
 /obj/item/weapon/gun/rifle/standard_br/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/t64stock, /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
 
@@ -411,6 +418,7 @@
 	aim_slowdown = 0.4
 	damage_mult = 1.05 //Has smaller magazines
 
+	codex_path = /obj/item/weapon/gun/rifle/m412
 
 
 //-------------------------------------------------------
@@ -459,7 +467,7 @@
 	damage_mult = 1.5
 	scatter = -2
 	force = 20
-
+	codex_path = /obj/item/weapon/gun/rifle/m412/elite
 
 //-------------------------------------------------------
 //PR-11
@@ -510,6 +518,7 @@
 	burst_delay = 0.15 SECONDS
 	scatter = 0
 	fire_delay = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/rifle/m41a
 
 /obj/item/weapon/gun/rifle/m41a/field_commander
 	starting_attachment_types = list(
@@ -581,6 +590,7 @@
 	wield_delay = 0.9 SECONDS
 
 	placed_overlay_iconstate = "ak47"
+	codex_path = /obj/item/weapon/gun/rifle/mpi_km
 
 /obj/item/weapon/gun/rifle/mpi_km/standard
 	starting_attachment_types = list(
@@ -623,6 +633,7 @@
 		/obj/item/attachable/flashlight/under,
 	)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km/black)
+	codex_path = /obj/item/weapon/gun/rifle/mpi_km/black
 
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness
 	starting_attachment_types = list(
@@ -695,6 +706,7 @@
 	scatter = 2
 	burst_amount = 1
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/lmg_d
 
 /obj/item/weapon/gun/rifle/lmg_d/magharness
 	starting_attachment_types = list(
@@ -747,6 +759,7 @@
 	wield_delay = 1.1 SECONDS
 	aim_slowdown = 0.85
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/dpm
 
 //-------------------------------------------------------
 //M16 RIFLE
@@ -807,6 +820,7 @@
 	accuracy_mult = 1.1
 	wield_delay = 0.7 SECONDS
 	damage_mult = 1.2
+	codex_path = /obj/item/weapon/gun/rifle/m16
 
 /obj/item/weapon/gun/rifle/m16/freelancer
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted, /obj/item/weapon/gun/shotgun/combat/masterkey)
@@ -869,6 +883,7 @@
 	damage_mult = 1.2
 	scatter = 1
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/famas
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
@@ -946,6 +961,7 @@
 	scatter = 2
 	scatter_unwielded = 80
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/standard_lmg
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
@@ -1018,6 +1034,7 @@
 	movement_acc_penalty_mult = 7.25
 
 	placed_overlay_iconstate = "lmg"
+	codex_path = /obj/item/weapon/gun/rifle/standard_gpmg
 
 /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
@@ -1088,6 +1105,7 @@
 	force = 20
 
 	placed_overlay_iconstate = "lmg"
+	codex_path = /obj/item/weapon/gun/rifle/m412l1_hpr
 
 /obj/item/weapon/gun/rifle/m412l1_hpr/freelancer
 	starting_attachment_types = list(
@@ -1156,7 +1174,7 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
 	scatter = -1
-
+	codex_path = /obj/item/weapon/gun/rifle/type71
 
 /obj/item/weapon/gun/rifle/type71/flamer
 	name = "\improper Type 71 pulse rifle"
@@ -1179,6 +1197,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
 	)
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/mini_flamer/unremovable)
+	codex_path = /obj/item/weapon/gun/rifle/type71/flamer
 
 /obj/item/weapon/gun/rifle/type71/flamer/standard
 	starting_attachment_types = list(
@@ -1201,6 +1220,7 @@
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
+	codex_path = /obj/item/weapon/gun/rifle/type71/commando
 
 /obj/item/weapon/gun/rifle/type71/seasonal
 	desc = "The primary rifle of many space pirates and militias, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition."
@@ -1262,6 +1282,7 @@
 	burst_amount = 1
 	scatter = -2
 	movement_acc_penalty_mult = 3
+	codex_path = /obj/item/weapon/gun/rifle/standard_autoshotgun
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
@@ -1324,6 +1345,7 @@
 	movement_acc_penalty_mult = 4
 
 	placed_overlay_iconstate = "smartgun"
+	codex_path = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
@@ -1387,6 +1409,7 @@
 	movement_acc_penalty_mult = 8
 
 	placed_overlay_iconstate = "smartgun"
+	codex_path = /obj/item/weapon/gun/rifle/standard_smarttargetrifle
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
 	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock, /obj/item/attachable/motiondetector)
@@ -1420,6 +1443,7 @@
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
 	pixel_shift_y = 16
+	codex_path = /obj/item/weapon/gun/rifle/standard_spottingrifle
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1456,6 +1480,7 @@
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 	movement_acc_penalty_mult = 3
+	codex_path = /obj/item/weapon/gun/rifle/sectoid_rifle
 
 /obj/item/weapon/gun/rifle/sectoid_rifle/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -1546,6 +1571,7 @@
 	wield_delay = 1.5 SECONDS
 	cock_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/chambered
 
 /obj/item/weapon/gun/rifle/chambered/unscoped
 	starting_attachment_types = list(/obj/item/attachable/stock/tl127stock)
@@ -1597,6 +1623,7 @@
 	aim_slowdown = 1
 	wield_delay = 1.5 SECONDS
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/standard_autosniper
 
 //-------------------------------------------------------
 //AR-11 Rifle, based on the gamer-11
@@ -1646,6 +1673,7 @@
 	scatter_unwielded = 15
 	aim_slowdown = 0.45
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/tx11
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/tx11)
@@ -1727,6 +1755,7 @@
 	wield_delay = 0.8 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
+	codex_path = /obj/item/weapon/gun/rifle/standard_skirmishrifle
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	starting_attachment_types = list(
@@ -1784,6 +1813,7 @@
 	damage_falloff_mult = 3
 
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/alf_machinecarbine
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	starting_attachment_types = list(
@@ -1840,6 +1870,7 @@
 	scatter = 1
 	wield_delay = 0.7 SECONDS
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/mkh
 
 //-------------------------------------------------------
 // GL-54 grenade launcher
@@ -1896,6 +1927,7 @@
 	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+	codex_path = /obj/item/weapon/gun/rifle/tx54
 
 /obj/item/weapon/gun/rifle/tx54/motion_sensor
 	starting_attachment_types = list(/obj/item/attachable/motiondetector)
@@ -1919,6 +1951,7 @@
 	detach_delay = 3 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
 	starting_attachment_types = list()
+	codex_path = /obj/item/weapon/gun/rifle/tx54/mini
 
 //-------------------------------------------------------
 // AR-55 rifle
@@ -1980,6 +2013,7 @@
 	burst_scatter_mult = 2
 	aim_slowdown = 1
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/tx55
 
 /obj/item/weapon/gun/rifle/tx55/freelancer
 	starting_attachment_types = list(
@@ -2059,6 +2093,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1.2 SECONDS
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/garand
 
 //-------------------------------------------------------
 // V-31 SOM rifle
@@ -2126,6 +2161,7 @@
 	extra_delay = 0.1 SECONDS
 
 	damage_falloff_mult = 0.7
+	codex_path = /obj/item/weapon/gun/rifle/som
 
 /obj/item/weapon/gun/rifle/som/standard
 	starting_attachment_types = list(
@@ -2215,6 +2251,7 @@
 	movement_acc_penalty_mult = 4
 	damage_falloff_mult = 1.4
 	damage_mult = 0.9
+	codex_path = /obj/item/weapon/gun/rifle/som_carbine
 
 /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/foldable/som_carbine, /obj/item/attachable/magnetic_harness)
@@ -2231,6 +2268,7 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
 	)
+	codex_path = /obj/item/weapon/gun/rifle/som_carbine/black
 
 /obj/item/weapon/gun/rifle/som_carbine/black/standard
 	starting_attachment_types = list(
@@ -2304,6 +2342,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
+	codex_path = /obj/item/weapon/gun/rifle/som_big
 
 /obj/item/weapon/gun/rifle/som_big/standard
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip)
@@ -2372,6 +2411,7 @@
 	movement_acc_penalty_mult = 7
 
 	placed_overlay_iconstate = "lmg"
+	codex_path = /obj/item/weapon/gun/rifle/som_mg
 
 /obj/item/weapon/gun/rifle/som_mg/standard
 	starting_attachment_types = list(/obj/item/attachable/stock/som_mg_stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
@@ -2445,6 +2485,7 @@
 	accuracy_mult = 1.15
 	scatter = 0
 	movement_acc_penalty_mult = 5
+	codex_path = /obj/item/weapon/gun/rifle/icc_sharpshooter
 
 /obj/item/weapon/gun/rifle/icc_sharpshooter/medic
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_sharpshooter, /obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/heavy_barrel)
@@ -2515,6 +2556,7 @@
 	wield_delay = 0.55 SECONDS
 	damage_falloff_mult = 2.5
 	movement_acc_penalty_mult = 4
+	codex_path = /obj/item/weapon/gun/rifle/icc_battlecarbine
 
 /obj/item/weapon/gun/rifle/icc_battlecarbine/standard
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
@@ -2582,6 +2624,7 @@
 	scatter_increase = 5
 	scatter_decay = 1
 	scatter_decay_unwielded = 0.5
+	codex_path = /obj/item/weapon/gun/rifle/icc_confrontationrifle
 
 /obj/item/weapon/gun/rifle/icc_confrontationrifle/leader
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
@@ -2640,6 +2683,7 @@
 	burst_amount = 1
 	scatter = 8
 	movement_acc_penalty_mult = 2
+	codex_path = /obj/item/weapon/gun/rifle/icc_autoshotgun
 
 /obj/item/weapon/gun/rifle/icc_autoshotgun/guard
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness)
@@ -2688,6 +2732,7 @@
 	wield_delay = 0.85 SECONDS
 	aim_slowdown = 0.2
 	scatter = 0
+	codex_path = /obj/item/weapon/gun/rifle/icc_assaultcarbine
 
 /obj/item/weapon/gun/rifle/icc_assaultcarbine/export
 	name = "\improper L&S EM-88 assault carbine"
@@ -2695,6 +2740,7 @@
 	icon_state = "l88_export"
 	worn_icon_state = "l88_export"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
+	codex_path = /obj/item/weapon/gun/rifle/icc_assaultcarbine/export
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
@@ -2756,6 +2802,7 @@
 	scatter = 5
 	scatter_unwielded = 45
 	movement_acc_penalty_mult = 6
+	codex_path = /obj/item/weapon/gun/rifle/icc_mg
 
 /obj/item/weapon/gun/rifle/icc_mg/guard
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel)
@@ -2815,6 +2862,7 @@
 	scatter = 5
 	burst_amount = 1
 	movement_acc_penalty_mult = 8
+	codex_path = /obj/item/weapon/gun/rifle/vsd_lmg
 
 /obj/item/weapon/gun/rifle/vsd_lmg/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/foldable/bipod, /obj/item/attachable/extended_barrel)
@@ -2866,6 +2914,7 @@
 	burst_delay = 0.15 SECONDS
 	scatter = 0
 	fire_delay = 0.2 SECONDS
+	codex_path = /obj/item/weapon/gun/rifle/vsd_rifle
 
 /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)

@@ -16,6 +16,7 @@
 	icon_state_mini = "tank_light"
 
 	default_ammo = /datum/ammo/flamethrower
+	codex_path = /obj/item/ammo_magazine/flamer_tank
 
 	var/dispenser_type = /obj/structure/reagent_dispensers/fueltank
 
@@ -28,6 +29,7 @@
 	current_rounds = 25
 	max_rounds = 25
 	icon_state_mini = "tank_orange_mini"
+	codex_path = /obj/item/ammo_magazine/flamer_tank/mini
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
@@ -63,6 +65,7 @@
 	current_rounds = 75
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
+	codex_path = /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
 
 /obj/item/ammo_magazine/flamer_tank/large/som
 	name = "large flamerthrower tank"
@@ -72,6 +75,7 @@
 	max_rounds = 75
 	current_rounds = 75
 	reload_delay = 3 SECONDS
+	codex_path = /obj/item/ammo_magazine/flamer_tank/large/som
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
@@ -80,6 +84,7 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+	codex_path = /obj/item/ammo_magazine/flamer_tank/large/X
 
 /obj/item/ammo_magazine/flamer_tank/large/X/som
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
@@ -92,6 +97,7 @@
 	max_rounds = 225
 	current_rounds = 225
 	reload_delay = 2 SECONDS
+	codex_path = /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "backpack fuel tank"
@@ -107,6 +113,7 @@
 	icon_state_mini = "tank"
 
 	default_ammo = /datum/ammo/flamethrower
+	codex_path = /obj/item/ammo_magazine/flamer_tank/backtank
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "backpack fuel tank (X)"
@@ -114,6 +121,7 @@
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+	codex_path = /obj/item/ammo_magazine/flamer_tank/backtank/X
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
@@ -129,6 +137,7 @@
 
 	default_ammo = /datum/ammo/water
 	dispenser_type = /obj/structure/reagent_dispensers/watertank
+	codex_path = /obj/item/ammo_magazine/flamer_tank/water
 
 //The engineer pyro bag internal fuel tank
 /obj/item/ammo_magazine/flamer_tank/internal
@@ -138,4 +147,5 @@
 	max_rounds = 280
 	current_rounds = 280
 	reload_delay = 0 SECONDS
+	codex_path = /obj/item/ammo_magazine/flamer_tank/internal
 

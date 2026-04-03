@@ -5,6 +5,7 @@
 //Botonist
 /obj/item/clothing/suit/storage/apron
 	name = "apron"
+	codex_path = /obj/item/clothing/suit/storage/apron
 	desc = "A basic blue apron."
 	icon_state = "apron"
 	worn_icon_state = "apron"
@@ -28,6 +29,7 @@
 
 /obj/item/clothing/suit/surgical
 	name = "surgical apron"
+	codex_path = /obj/item/clothing/suit/surgical
 	desc = "A plastic covering to prevent the passage of bodily fluids during surgery."
 	icon_state = "surgical"
 	worn_icon_state = "surgical"
@@ -56,6 +58,7 @@
 //Captain
 /obj/item/clothing/suit/captunic
 	name = "captain's parade tunic"
+	codex_path = /obj/item/clothing/suit/captunic
 	desc = "Worn by a Captain to show their class."
 	icon_state = "captunic"
 	worn_icon_state = "bio_suit"
@@ -64,6 +67,7 @@
 
 /obj/item/clothing/suit/captunic/capjacket
 	name = "captain's uniform jacket"
+	codex_path = /obj/item/clothing/suit/captunic/capjacket
 	desc = "A less formal jacket for everyday captain use."
 	icon_state = "capjacket"
 	worn_icon_state = "bio_suit"
@@ -73,6 +77,7 @@
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
 	name = "chaplain hoodie"
+	codex_path = /obj/item/clothing/suit/chaplain_hoodie
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
 	worn_icon_state = "chaplain_hoodie"
@@ -80,6 +85,7 @@
 
 /obj/item/clothing/suit/nun
 	name = "nun robe"
+	codex_path = /obj/item/clothing/suit/nun
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
 	worn_icon_state = "nun"
@@ -89,6 +95,7 @@
 //Chef
 /obj/item/clothing/suit/storage/chef
 	name = "Chef's apron"
+	codex_path = /obj/item/clothing/suit/storage/chef
 	desc = "An apron used by a high class chef."
 	icon_state = "chef"
 	worn_icon_state = "chef"
@@ -100,6 +107,7 @@
 
 /obj/item/clothing/suit/storage/chef/classic
 	name = "A classic chef's apron."
+	codex_path = /obj/item/clothing/suit/storage/chef/classic
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
 	worn_icon_state = "apronchef"
@@ -113,6 +121,7 @@
 
 /obj/item/clothing/suit/security/formal
 	name = "formal jacket"
+	codex_path = /obj/item/clothing/suit/security/formal
 	desc = "A formal military jacket. Not recommended for combat use."
 	icon_state = "officerbluejacket"
 
@@ -121,6 +130,7 @@
 
 /obj/item/clothing/suit/security/formal/officer
 	name = "officer's jacket"
+	codex_path = /obj/item/clothing/suit/security/formal/officer
 	desc = "An officer's formal jacket, makes you look authoritative."
 	icon_state = "wardenbluejacket"
 
@@ -129,6 +139,7 @@
 
 /obj/item/clothing/suit/storage/security/formal/senior_officer
 	name = "senior officer's jacket"
+	codex_path = /obj/item/clothing/suit/storage/security/formal/senior_officer
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 
@@ -138,6 +149,7 @@
 //Detective
 /obj/item/clothing/suit/storage/det_suit
 	name = "coat"
+	codex_path = /obj/item/clothing/suit/storage/det_suit
 	desc = "An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business."
 	icon_state = "detective"
 	worn_icon_state = "det_suit"
@@ -167,6 +179,7 @@
 //Forensics
 /obj/item/clothing/suit/storage/forensics
 	name = "jacket"
+	codex_path = /obj/item/clothing/suit/storage/forensics
 	desc = "A forensics technician jacket."
 	worn_icon_state = "det_suit"
 	armor_protection_flags = CHEST|ARMS
@@ -185,17 +198,20 @@
 
 /obj/item/clothing/suit/storage/forensics/red
 	name = "red jacket"
+	codex_path = /obj/item/clothing/suit/storage/forensics/red
 	desc = "A red forensics technician jacket."
 	icon_state = "forensics_red"
 
 /obj/item/clothing/suit/storage/forensics/blue
 	name = "blue jacket"
+	codex_path = /obj/item/clothing/suit/storage/forensics/blue
 	desc = "A blue forensics technician jacket."
 	icon_state = "forensics_blue"
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
 	name = "orange reflective safety vest"
+	codex_path = /obj/item/clothing/suit/storage/hazardvest
 	desc = "A high-visibility vest used in work zones."
 	icon_state = "hazard"
 	worn_icon_state = "hazard"
@@ -220,17 +236,20 @@
 
 /obj/item/clothing/suit/storage/hazardvest/lime
 	name = "lime reflective safety vest"
+	codex_path = /obj/item/clothing/suit/storage/hazardvest/lime
 	icon_state = "hazard_lime"
 	worn_icon_state = "hazard_lime"
 
 /obj/item/clothing/suit/storage/hazardvest/blue
 	name = "blue reflective safety vest"
+	codex_path = /obj/item/clothing/suit/storage/hazardvest/blue
 	icon_state = "hazard_blue"
 	worn_icon_state = "hazard_blue"
 
 //Lawyer
 /obj/item/clothing/suit/storage/lawyer/bluejacket
 	name = "Blue Suit Jacket"
+	codex_path = /obj/item/clothing/suit/storage/lawyer/bluejacket
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue_open"
 	worn_icon_state = "suitjacket_blue_open"
@@ -239,6 +258,7 @@
 
 /obj/item/clothing/suit/storage/lawyer/purpjacket
 	name = "Purple Suit Jacket"
+	codex_path = /obj/item/clothing/suit/storage/lawyer/purpjacket
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_purp"
 	worn_icon_state = "suitjacket_purp"
@@ -248,6 +268,7 @@
 //Internal Affairs
 /obj/item/clothing/suit/storage/internalaffairs
 	name = "Internal Affairs Jacket"
+	codex_path = /obj/item/clothing/suit/storage/internalaffairs
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
 	worn_icon_state = "ia_jacket"
@@ -277,6 +298,7 @@
 //Medical
 /obj/item/clothing/suit/storage/fr_jacket
 	name = "first responder jacket"
+	codex_path = /obj/item/clothing/suit/storage/fr_jacket
 	desc = "A high-visibility jacket worn by medical first responders."
 	icon_state = "fr_jacket_open"
 	worn_icon_state = "fr_jacket"
@@ -313,6 +335,7 @@
 //Mime
 /obj/item/clothing/suit/suspenders
 	name = "suspenders"
+	codex_path = /obj/item/clothing/suit/suspenders
 	desc = "They suspend the illusion of the mime's play."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
@@ -321,6 +344,7 @@
 
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
+	codex_path = /obj/item/clothing/suit/storage/snow_suit
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
 	icon_state = "snowsuit_alpha"
 	armor_protection_flags = CHEST|GROIN|ARMS
@@ -334,11 +358,13 @@
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
 	name = "doctor's snow suit"
+	codex_path = /obj/item/clothing/suit/storage/snow_suit/doctor
 	icon_state = "snowsuit_doctor"
 	permeability_coefficient = 0.6
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
 	name = "engineer's snow suit"
+	codex_path = /obj/item/clothing/suit/storage/snow_suit/engineer
 	icon_state = "snowsuit_engineer"
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 35, ENERGY = 20, BOMB = 10, BIO = 0, FIRE = 20, ACID = 20)

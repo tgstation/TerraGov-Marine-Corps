@@ -75,6 +75,7 @@
 	accuracy_mult = 1
 	scatter = -1
 	recoil_unwielded = 0.75
+	codex_path = /obj/item/weapon/gun/revolver/standard_revolver
 
 /obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -109,6 +110,7 @@
 	damage_mult = 1.05
 	scatter_unwielded = 12
 	recoil_unwielded = 0
+	codex_path = /obj/item/weapon/gun/revolver/upp
 
 
 //-------------------------------------------------------
@@ -138,6 +140,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 	recoil_unwielded = 0
+	codex_path = /obj/item/weapon/gun/revolver/small
 
 
 //-------------------------------------------------------
@@ -176,6 +179,7 @@
 	accuracy_mult_unwielded = 0.8
 	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
+	codex_path = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
 	name = "\improper Mateba autorevolver"
@@ -218,6 +222,7 @@
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
 	damage_mult = 1.05
+	codex_path = /obj/item/weapon/gun/revolver/cmb
 
 //-------------------------------------------------------
 //The Judge, a shotgun and revolver in one
@@ -254,6 +259,7 @@
 	fire_delay = 0.8 SECONDS
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
+	codex_path = /obj/item/weapon/gun/revolver/judge
 
 //-------------------------------------------------------
 // The R-76 Magnum. Fires a big round, equal to a slug. Has a windup.
@@ -297,6 +303,7 @@
 	recoil_unwielded = 3
 
 	starting_attachment_types = list(/obj/item/attachable/stock/t76)
+	codex_path = /obj/item/weapon/gun/revolver/standard_magnum
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy
 	starting_attachment_types = list()
@@ -344,6 +351,7 @@
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You prime the hammer."
 	cock_delay = 0
+	codex_path = /obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
 
 
 
@@ -377,3 +385,4 @@
 
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1.1
+	codex_path = /obj/item/weapon/gun/revolver/single_action/m44
