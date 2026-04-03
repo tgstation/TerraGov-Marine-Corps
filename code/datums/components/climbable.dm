@@ -17,6 +17,7 @@
 
 /datum/component/climbable/Destroy(force, silent)
 	am_parent = null
+	climb_target = null
 	return ..()
 
 /datum/component/climbable/RegisterWithParent()
@@ -49,12 +50,7 @@
 		return
 	if(dropping != user) //todo: helping someone else climb something would actually be cool
 		return
-	var/turf/click_turf
-	if(params)
-		var/list/modifiers = params2list(params)
-		click_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
-	if(!click_turf || !(click_turf in climb_target.locs) || !user.Adjacent(click_turf))
-		click_turf = find_climb_turf(user)
+	var/turf/click_turf = find_climb_turf(user, params)
 	if(!click_turf) //how did you do this?
 		return
 
@@ -89,18 +85,17 @@
 	var/turf/user_turf = get_turf(user)
 	if(!istype(destination_turf) || !istype(user_turf))
 		return
+	if(destination_turf.density)
+		return
 	if(!user.Adjacent(destination_turf))
 		return
 
 	if((climb_target.atom_flags & ON_BORDER))
-		if(user_turf != destination_turf && user_turf != get_step(destination_turf, am_parent.dir))
+		//for border objects specifically we need to either be on its turf, or the turf in front of it, depending which way we're going
+		var/valid_climb_turf = (destination_turf == am_parent.loc) ? get_step(am_parent, am_parent.dir) : am_parent.loc
+		if(user.loc != valid_climb_turf)
 			to_chat(user, span_warning("You need to be up against [am_parent] to leap over."))
 			return
-		if(user_turf == destination_turf)
-			destination_turf = get_step(destination_turf, am_parent.dir) //we're moving from the objects turf to the one its facing
-
-	if(destination_turf.density)
-		return
 
 	for(var/atom/movable/AM AS in destination_turf.contents)
 		if(AM == am_parent)
@@ -127,11 +122,22 @@
 	return destination_turf
 
 ///Tries to find the most appropriate turf to climb onto, mostly relevant for multitile atoms
-/datum/component/climbable/proc/find_climb_turf(mob/user)
+/datum/component/climbable/proc/find_climb_turf(mob/user, params)
 	if(!climb_target.loc)
 		return
+
+	//We assume there are no cursed multitile border objects for this
+	if((climb_target.atom_flags & ON_BORDER) && (user.loc == climb_target.loc))
+		return get_step(climb_target, climb_target.dir)
+
 	if(length(climb_target.locs) == 1)
 		return climb_target.loc
+
+	if(params)
+		var/list/modifiers = params2list(params)
+		var/param_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
+		if(param_turf && user.Adjacent(param_turf))
+			return param_turf
 
 	var/climb_turf
 	//we try the most logical turf first since the fixed order of locs may give undesirable results otherwise
@@ -147,6 +153,7 @@
 			climb_turf = candi
 			break
 	return climb_turf
+
 
 ///Adds to the parent's examine text
 /datum/component/climbable/proc/on_examine(datum/source, mob/user, list/details)
