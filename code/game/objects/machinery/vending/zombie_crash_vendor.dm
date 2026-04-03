@@ -138,6 +138,7 @@
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
 		/mob/living/carbon/xenomorph/larva/Corrupted = list(CAT_FUN, "Corrupted larva", 25, "fun-random"),
 		/obj/item/xeno_iff_tag = list(CAT_FUN, "Xeno IFF Tag", 5, "fun-random"),
+		/obj/item/storage/backpack/marine/duffelbag/xenosaddle = list(CAT_FUN, "Xeno Saddle", 5, "fun-random"),
 	)
 	/// The total amount of pooled points that have been gained. Shared across all vendors.
 	var/static/total_pooled_points = 0
