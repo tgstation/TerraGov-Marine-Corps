@@ -722,6 +722,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	notify_ai_hazard()
 
+#undef OPPRESSOR_ADBDUCT_RANGE
+
 // ***************************************
 // *********** Dislocate
 // ***************************************
