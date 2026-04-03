@@ -133,6 +133,7 @@
 	if(length(climb_target.locs) == 1)
 		return climb_target.loc
 
+	//For multitile objects, we allow the player to specify what turf they want to climb onto, provided it's in reach
 	if(params)
 		var/list/modifiers = params2list(params)
 		var/param_turf = params2turf(modifiers["screen-loc"], get_turf(user.client.eye), user.client)
