@@ -1,4 +1,0 @@
-author: "joe13413"
-delete-after: True
-changes:
-  - bugfix: "phero towers are now 150 points like they're supposed to be, as opposed to 300"
