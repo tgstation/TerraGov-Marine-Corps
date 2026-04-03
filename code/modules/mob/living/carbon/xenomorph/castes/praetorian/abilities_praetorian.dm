@@ -585,6 +585,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
 	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 
+#define OPPRESSOR_ADBDUCT_RANGE 7
+
 /datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
 	action_icon_state = "abduct"
@@ -616,8 +618,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
-	var/distance_to_target = get_dist(xeno_owner, A)
-	if(!distance_to_target)
+	if(A.z != xeno_owner.z)
+		return FALSE
+	var/distance = get_dist(xeno_owner, A)
+	if(distance > 9) //offscreen funny
+		return FALSE
+	if(distance == 0 || distance == -1 )
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too short")
 		return FALSE
@@ -629,18 +635,22 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/oppressor/abduct/use_ability(atom/A)
 	var/turf/targetted_turf = get_turf(A)
-	while(get_dist(xeno_owner, targetted_turf) > 7) // Allows targetting beyond maximum range to automatically do maximum range.
-		targetted_turf = get_step(targetted_turf, REVERSE_DIR(get_dir(xeno_owner, targetted_turf)))
+	var/turf/xeno_turf = get_turf(xeno_owner)
 
 	xeno_owner.face_atom(targetted_turf)
 	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
 		add_cooldown(1 SECONDS)
 		return
 	xeno_owner.face_atom(targetted_turf)
-	turf_line = get_traversal_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
+	turf_line = get_traversal_line(get_step(xeno_turf, get_cardinal_dir(xeno_turf, targetted_turf)), check_path(xeno_turf, targetted_turf, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
-	for(var/turf/turf_from_line AS in turf_line)
+	for(var/i = 1 to length(turf_line))
+		var/turf/turf_from_line = turf_line[i]
+		if(get_dist(xeno_turf, turf_from_line) > OPPRESSOR_ADBDUCT_RANGE)
+			turf_line.Cut(1, i + 1)
+			break
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
+
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.7 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
