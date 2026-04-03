@@ -75,4 +75,16 @@
   .NoticeBox {
     border-radius: 0.16em;
   }
+  .Tooltip {
+    text-align: left;
+    padding: 1px;
+    padding-left: 4px;
+    padding-bottom: 3px;
+    border-left: 4px solid hsl(110, 82.7%, 38.4%);
+    border-bottom: 1.5px solid hsl(110, 82.7%, 30.4%);
+  }
+  // Special class for labeled lists in the Codex
+  .codex-label span {
+    border-bottom: 2px dotted gray !important;
+  }
 }
