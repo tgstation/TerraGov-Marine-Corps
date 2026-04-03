@@ -135,7 +135,7 @@
 	sound_hit = "alien_resin_build2"
 	sound_bounce = "alien_resin_build3"
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
-	max_range = 40
+	max_range = 10
 	bullet_color = COLOR_PURPLE
 	stagger_duration = 1 SECONDS
 	slowdown_stacks = 3
@@ -185,14 +185,16 @@
 	spit_cost = 200
 	added_spit_delay = 8 SECONDS
 	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
-	bonus_projectiles_scatter = 22
+	bonus_projectiles_scatter = 45
 	///number of sticky resins made
-	var/bonus_projectile_quantity = 16
+	var/bonus_projectile_quantity = 8
 
 /datum/ammo/xeno/sticky/mini
 	damage = 5
 	max_range = 3
 	shell_speed = 1
+	stagger_duration = 0.2 SECONDS
+	slowdown_stacks = 1
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
