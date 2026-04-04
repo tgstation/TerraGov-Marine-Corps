@@ -105,14 +105,15 @@
 	penetration = 30
 	sundering = 5
 	max_range = 30
-	airburst_multiplier = 1
 	autocannon_wall_bonus = 25
+	///Damage done via airburst
+	var/burst_damage = 50
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	airburst(target_mob, proj)
+	airburst(target_mob, proj, burst_damage)
 
-/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	airburst(target_turf, proj)
+/datum/ammo/bullet/auto_cannon/flak/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
+	airburst(target_turf, proj, burst_damage)
 
 /datum/ammo/bullet/auto_cannon/anti_tank
 	name = "autocannon solid-shot bullet"
@@ -229,11 +230,10 @@
 	damage = 10
 	penetration = 0
 	sundering = 0
-	airburst_multiplier = 2
 	shell_speed = 3
 
 /datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
-	airburst(target_turf, proj)
+	airburst(target_turf, proj, 20)
 	explosion(target_turf, weak_impact_range = 2, tiny = TRUE)
 
 /datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
