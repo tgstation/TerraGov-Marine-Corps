@@ -652,7 +652,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	xeno_owner.use_plasma(amount)
 	transfer_target.gain_plasma(amount)
 
-	if(xeno_owner.plasma_stored <= 0 || transfer_target.plasma_stored == transfer_target.xeno_caste.plasma_max)
+	if(xeno_owner.plasma_stored <= 0) //we can just keep it running indefinitely, if desired
 		finish_cycle()
 		return
 
