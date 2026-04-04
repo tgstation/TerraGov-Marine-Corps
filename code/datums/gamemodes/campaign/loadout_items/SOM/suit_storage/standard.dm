@@ -230,6 +230,7 @@
 	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
 	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
 	When used with the boarding shield, use of the higher rate of fire is highly unrecommended outside of anything but absolute point blank range. \
+	The accompanying S-144 boarding shield provides incredible resistance to damage, and it also provides resistance against projectile based stuns. \
 	It uses 10x20mm caseless rounds."
 	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/smg/som/one_handed
@@ -264,6 +265,7 @@
 	Has outstanding mobility and handling and can be comfortably fired one handed on its lower fire rate mode. \
 	When set to its higher rate of fire, it unleashes a staggering torrent of firepower, but is difficult to control even two handed, and quickly loses effectiveness at range. \
 	When used with the boarding shield, use of the higher rate of fire is highly unrecommended outside of anything but absolute point blank range. \
+	The accompanying S-144 boarding shield provides incredible resistance to damage, and it also provides resistance against projectile based stuns. \
 	Uses a mix of standard and AP 10x20mm caseless ammunition."
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/smg/som/ap
