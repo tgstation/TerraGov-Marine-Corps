@@ -236,7 +236,7 @@
 	airburst(target_mob, proj)
 
 /datum/ammo/xeno/acid/drop_nade(turf/target_turf, atom/movable/projectile/proj) //Leaves behind an acid pool; defaults to 1-3 seconds.
-	if(target_turf)
+	if(!target_turf)
 		return
 	xenomorph_spray(target_turf, puddle_duration, puddle_acid_damage)
 
