@@ -322,14 +322,16 @@
 // *********** psychic crush
 // ***************************************
 
-#define PSY_CRUSH_DAMAGE 50
+#define PSY_CRUSH_BASE_DAMAGE 30
+#define PSY_CRUSH_CHANNEL_PARTICLE /particles/warlock_charge
+
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 15 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
@@ -354,7 +356,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
-	var/channel_particle = /particles/warlock_charge
+	//var/channel_particle = /particles/warlock_charge
 
 /datum/action/ability/activable/xeno/psy_crush/remove_action(mob/living/L)
 	if(!QDELETED(orb))
@@ -384,7 +386,7 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 
-	particle_holder = new(owner, channel_particle)
+	particle_holder = new(owner, PSY_CRUSH_CHANNEL_PARTICLE)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 5
 
@@ -439,7 +441,7 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, ABILITY_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.5 SECONDS, TIMER_STOPPABLE)
 		return
 
 	pre_stop_crush()
@@ -468,23 +470,27 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB, attacker = owner)
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB, attacker = owner)
-				carbon_victim.adjust_stagger(5 SECONDS)
-				carbon_victim.add_slowdown(6)
+				carbon_victim.apply_damage(get_damage(), BRUTE, blocked = BOMB, attacker = owner)
+				carbon_victim.apply_damage(get_damage(), STAMINA, blocked = BOMB, attacker = owner)
+				carbon_victim.adjust_stagger(2 SECONDS * current_iterations)
+				carbon_victim.add_slowdown(3 * current_iterations)
 				continue
 			if(isvehicle(victim) || ishitbox(victim))
 				var/obj/obj_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(obj_victim))
 					dam_mult = 2.3
-				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
+				obj_victim.take_damage(get_damage() * dam_mult, BRUTE, BOMB)
 				continue
 			if(isfire(victim))
 				var/obj/fire/fire = victim
-				fire.reduce_fire(10)
+				fire.reduce_fire(5 * current_iterations)
 				continue
 	pre_stop_crush()
+
+///Returns the amount of damage based on number of iterations
+/datum/action/ability/activable/xeno/psy_crush/proc/get_damage()
+	return PSY_CRUSH_BASE_DAMAGE + (10 * current_iterations)
 
 ///Stops crush when the orb is destroyed
 /datum/action/ability/activable/xeno/psy_crush/proc/on_orb_destruction(datum/source)
@@ -587,7 +593,7 @@
 	for(var/mob/living/victim in range(1, src))
 		if(isxeno(victim))
 			continue
-		victim.apply_damage(PSY_CRUSH_DAMAGE, BURN, blocked = BOMB, updating_health = TRUE, attacker = blame_mob)
+		victim.apply_damage(PSY_CRUSH_BASE_DAMAGE, BURN, blocked = BOMB, updating_health = TRUE, attacker = blame_mob)
 		victim.adjust_stagger(3 SECONDS)
 		victim.add_slowdown(3)
 		victim.do_jitter_animation(500)
@@ -608,7 +614,8 @@
 		else
 			take_damage(INFINITY, BRUTE, BOMB, 0)
 
-#undef PSY_CRUSH_DAMAGE
+#undef PSY_CRUSH_BASE_DAMAGE
+#undef PSY_CRUSH_CHANNEL_PARTICLE
 
 // ***************************************
 // *********** Psyblast
