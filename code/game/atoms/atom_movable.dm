@@ -1338,8 +1338,6 @@
 		return FALSE
 	if(anchored || throwing)
 		return FALSE
-	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
-		return FALSE
 	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE
 	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
