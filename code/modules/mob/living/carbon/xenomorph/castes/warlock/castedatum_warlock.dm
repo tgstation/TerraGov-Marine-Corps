@@ -29,7 +29,7 @@
 		/datum/action/ability/activable/xeno/psy_crush,
 		/datum/action/ability/activable/xeno/psy_blast,
 		/datum/action/ability/activable/xeno/psychic_shield,
-		/datum/action/ability/activable/xeno/transfer_plasma/drone,
+		/datum/action/ability/activable/xeno/transfer_plasma/beam,
 		/datum/action/ability/xeno_action/psychic_whisper,
 	)
 
