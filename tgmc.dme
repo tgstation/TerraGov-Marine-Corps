@@ -634,6 +634,8 @@
 #include "code\datums\gamemodes\campaign\loadout_items\_TGMC\suit_storage\marine.dm"
 #include "code\datums\gamemodes\campaign\loadout_items\_TGMC\suit_storage\smartgunner.dm"
 #include "code\datums\gamemodes\campaign\loadout_items\_TGMC\suit_storage\squad_leader.dm"
+#include "code\datums\gamemodes\campaign\loadout_items\generic_secondaries\corpsman.dm"
+#include "code\datums\gamemodes\campaign\loadout_items\generic_secondaries\engineer.dm"
 #include "code\datums\gamemodes\campaign\loadout_items\SOM\back_slot.dm"
 #include "code\datums\gamemodes\campaign\loadout_items\SOM\belt.dm"
 #include "code\datums\gamemodes\campaign\loadout_items\SOM\ears.dm"
