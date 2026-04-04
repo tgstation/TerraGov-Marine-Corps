@@ -322,14 +322,16 @@
 // *********** psychic crush
 // ***************************************
 
-#define PSY_CRUSH_DAMAGE 50
+#define PSY_CRUSH_BASE_DAMAGE 30
+#define PSY_CRUSH_CHANNEL_PARTICLE /particles/warlock_charge
+
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
 	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 15 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
@@ -354,10 +356,17 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///The particle type this ability uses
-	var/channel_particle = /particles/warlock_charge
+	//var/channel_particle = /particles/warlock_charge
+
+/datum/action/ability/activable/xeno/psy_crush/remove_action(mob/living/L)
+	if(!QDELETED(orb))
+		pre_stop_crush()
+	return ..()
 
 /datum/action/ability/activable/xeno/psy_crush/use_ability(atom/target)
 	if(channel_loop_timer)
+		if(current_iterations <= 1) //prevents instant cast and crushing
+			return
 		if(length(target_turfs)) //it shouldn't be possible to do this without any turfs, but just in case
 			crush(target_turfs[1])
 		return
@@ -377,7 +386,7 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 
-	particle_holder = new(owner, channel_particle)
+	particle_holder = new(owner, PSY_CRUSH_CHANNEL_PARTICLE)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 5
 
@@ -389,10 +398,11 @@
 	LAZYINITLIST(effect_list)
 	effect_list += new /obj/effect/xeno/crush_warning(target_turf)
 	orb = new /obj/effect/xeno/crush_orb(target_turf)
+	RegisterSignals(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING), PROC_REF(on_orb_destruction))
 
 	action_icon_state = "psy_crush_activate"
 	update_button_icon()
-	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(pre_stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
@@ -409,7 +419,7 @@
 /datum/action/ability/activable/xeno/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
 	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
-		stop_crush()
+		pre_stop_crush()
 		return
 	if(current_iterations >= max_interations)
 		crush(target)
@@ -431,20 +441,20 @@
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, ABILITY_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.5 SECONDS, TIMER_STOPPABLE)
 		return
 
-	stop_crush()
+	pre_stop_crush()
 
 ///crushes all turfs in the AOE
 /datum/action/ability/activable/xeno/psy_crush/proc/crush(turf/target)
 	var/crush_cost = ability_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
-		stop_crush()
+		pre_stop_crush()
 		return
 	if(!check_distance(target))
-		stop_crush()
+		pre_stop_crush()
 		return
 
 	succeed_activate(crush_cost)
@@ -460,36 +470,55 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB, attacker = owner)
-				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB, attacker = owner)
-				carbon_victim.adjust_stagger(5 SECONDS)
-				carbon_victim.add_slowdown(6)
+				carbon_victim.apply_damage(get_damage(), BRUTE, blocked = BOMB, attacker = owner)
+				carbon_victim.apply_damage(get_damage(), STAMINA, blocked = BOMB, attacker = owner)
+				carbon_victim.adjust_stagger(2 SECONDS * current_iterations)
+				carbon_victim.add_slowdown(3 * current_iterations)
 				continue
 			if(isvehicle(victim) || ishitbox(victim))
 				var/obj/obj_victim = victim
 				var/dam_mult = 0.5
 				if(ismecha(obj_victim))
 					dam_mult = 2.3
-				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
+				obj_victim.take_damage(get_damage() * dam_mult, BRUTE, BOMB)
 				continue
 			if(isfire(victim))
 				var/obj/fire/fire = victim
-				fire.reduce_fire(10)
+				fire.reduce_fire(5 * current_iterations)
 				continue
-	stop_crush()
+	pre_stop_crush()
 
-/// stops channeling and unregisters all listeners, resetting the ability
-/datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
+///Returns the amount of damage based on number of iterations
+/datum/action/ability/activable/xeno/psy_crush/proc/get_damage()
+	return PSY_CRUSH_BASE_DAMAGE + (10 * current_iterations)
+
+///Stops crush when the orb is destroyed
+/datum/action/ability/activable/xeno/psy_crush/proc/on_orb_destruction(datum/source)
 	SIGNAL_HANDLER
-	if(channel_loop_timer)
-		deltimer(channel_loop_timer)
-		channel_loop_timer = null
-	QDEL_LIST(effect_list)
+	UnregisterSignal(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING))
+	stop_crush()
+	orb = null
+
+///Preps for stop crush where it is cancelled by the ability or owner
+/datum/action/ability/activable/xeno/psy_crush/proc/pre_stop_crush(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
+	UnregisterSignal(orb, list(COMSIG_OBJ_DECONSTRUCT, COMSIG_QDELETING))
 	if(orb.icon_state != "crush_hard") //we failed to crush
 		flick("crush_smooth", orb)
 		QDEL_NULL_IN(src, orb, 0.5 SECONDS)
 	else
 		QDEL_NULL_IN(src, orb, 0.4 SECONDS)
+	stop_crush()
+
+/// stops channeling and resets the ability
+/datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
+	if(channel_loop_timer)
+		deltimer(channel_loop_timer)
+		channel_loop_timer = null
+	QDEL_LIST(effect_list)
+	QDEL_NULL(particle_holder)
+
 	current_iterations = 0
 	target_turfs = null
 	effect_list = null
@@ -498,8 +527,6 @@
 	xeno_owner.update_glow()
 	add_cooldown()
 	update_button_icon()
-	QDEL_NULL(particle_holder)
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/ability/activable/xeno/psy_crush/proc/apply_filters(list/turfs)
@@ -547,16 +574,48 @@
 	icon = 'icons/xeno/2x2building.dmi'
 	icon_state = "orb_idle"
 	anchored = TRUE
-	resistance_flags = RESIST_ALL
+	resistance_flags = NONE
 	layer = FLY_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pixel_x = -16
+	max_integrity = 220
+	pixel_w = -16
+	obj_flags = CAN_BE_HIT|PROJ_IGNORE_DENSITY
+	destroy_sound = 'sound/effects/xadarblast.ogg'
 
 /obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
 
-#undef PSY_CRUSH_DAMAGE
+/obj/effect/xeno/crush_orb/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	SHOULD_CALL_PARENT(FALSE) //we don't call parent since we don't want to immediately qdel
+	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
+	flick("crush_hard", src)
+	QDEL_IN(src, 0.5 SECONDS)
+	for(var/mob/living/victim in range(1, src))
+		if(isxeno(victim))
+			continue
+		victim.apply_damage(PSY_CRUSH_BASE_DAMAGE, BURN, blocked = BOMB, updating_health = TRUE, attacker = blame_mob)
+		victim.adjust_stagger(3 SECONDS)
+		victim.add_slowdown(3)
+		victim.do_jitter_animation(500)
+
+/obj/effect/xeno/crush_orb/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
+	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
+		return FALSE
+	return ..()
+
+/obj/ex_act(severity)
+	if(QDELETED(src))
+		return
+	switch(severity)
+		if(EXPLODE_LIGHT)
+			take_damage(120, BRUTE, BOMB, 0)
+		if(EXPLODE_WEAK)
+			take_damage(50, BRUTE, BOMB, 0)
+		else
+			take_damage(INFINITY, BRUTE, BOMB, 0)
+
+#undef PSY_CRUSH_BASE_DAMAGE
+#undef PSY_CRUSH_CHANNEL_PARTICLE
 
 // ***************************************
 // *********** Psyblast
@@ -568,6 +627,7 @@
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 230
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
@@ -576,37 +636,32 @@
 	///The particle type that will be created when using this ability
 	var/particles/particle_type = /particles/warlock_charge/psy_blast
 	/// The ammo types that can be selected.
-	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(
-		/datum/ammo/energy/xeno/psy_blast
-	)
+	var/list/datum/ammo/energy/xeno/selectable_ammo_types = list(/datum/ammo/energy/xeno/psy_blast)
 	/// The currently selected ammo type.
-	var/list/datum/ammo/energy/xeno/selected_ammo_type
-	/// If Psychic Drain is used, how much bonus damage is granted?
-	var/psychic_drain_bonus_damage = 0
+	var/datum/ammo/energy/xeno/selected_ammo_type
 
 /datum/action/ability/activable/xeno/psy_blast/New(Target)
 	. = ..()
 	if(length(selectable_ammo_types))
-		selected_ammo_type = selectable_ammo_types[1]
+		selected_ammo_type = GLOB.ammo_list[selectable_ammo_types[1]]
 
 /datum/action/ability/activable/xeno/psy_blast/give_action(mob/living/carbon/xenomorph/given_to_xenomorph)
 	if(given_to_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
-		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+		selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
-	if(removed_from_xenomorph.upgrade == XENO_UPGRADE_PRIMO)
-		selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+	selectable_ammo_types -= /datum/ammo/energy/xeno/psy_lance
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/on_xeno_upgrade()
 	. = ..()
-	if(/datum/ammo/energy/xeno/psy_blast/psy_lance in selectable_ammo_types)
+	if(/datum/ammo/energy/xeno/psy_lance in selectable_ammo_types)
 		return
-	selectable_ammo_types += /datum/ammo/energy/xeno/psy_blast/psy_lance
+	selectable_ammo_types += /datum/ammo/energy/xeno/psy_lance
 
 /datum/action/ability/activable/xeno/psy_blast/on_cooldown_finish()
-	owner.balloon_alert(owner, "Psy blast ready")
+	owner.balloon_alert(owner, "[selected_ammo_type.name] ready")
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/action_activate()
@@ -618,35 +673,23 @@
 		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[1]]
 	else
 		xeno_owner.ammo = GLOB.ammo_list[selectable_ammo_types[(found_pos % length(selectable_ammo_types)) + 1]] // Pick the next selectable ammo type. If not, loop to the beginning.
-	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-	ability_cost = selected_ammo.ability_cost
-	particle_type = selected_ammo.channel_particle
-	switch(selected_ammo.type)
+	selected_ammo_type = xeno_owner.ammo
+	ability_cost = selected_ammo_type.ability_cost
+	particle_type = selected_ammo_type.channel_particle
+	switch(selected_ammo_type.type)
 		if(/datum/ammo/energy/xeno/psy_blast)
 			name = "Psychic Blast ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light burn damage and staggers in an area. Direct hits deal additional light brute damage."
-		if(/datum/ammo/energy/xeno/psy_blast/psy_lance)
+		if(/datum/ammo/energy/xeno/psy_lance)
 			name = "Psychic Lance ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals high burn damage with high armor penetration. This can hit multiple mobs and goes through structures."
 		if(/datum/ammo/energy/xeno/psy_blast/psy_drain)
 			name = "Psychic Drain ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light stamina damage, staggers, and knockbacks in a smaller area. Direct hits deal additional light stamina damage and briefly knockdowns."
 	desc += " Must remain stationary for a few seconds to use." // Extra space intentional.
-	owner.balloon_alert(xeno_owner, "[selected_ammo]")
+	owner.balloon_alert(xeno_owner, "[selected_ammo_type]")
 	update_button_icon()
 	return ..()
-
-/datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!xeno_owner.check_state())
-		return FALSE
-	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-	if(selected_ammo.ability_cost > xeno_owner.plasma_stored)
-		if(!silent)
-			owner.balloon_alert(owner, "[selected_ammo.ability_cost - xeno_owner.plasma_stored] more plasma!")
-		return FALSE
 
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
@@ -654,12 +697,13 @@
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
+	succeed_activate()
+
+	if(!do_after(xeno_owner, selected_ammo_type.charge_time, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_PLASMA))
 		owner.balloon_alert(owner, "Our focus is disrupted")
+		add_cooldown(cooldown_duration * 0.5)
 		end_channel()
 		return fail_activate()
-
-	succeed_activate()
 
 	var/atom/movable/projectile/hitscan/projectile = new /atom/movable/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)

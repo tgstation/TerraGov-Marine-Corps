@@ -712,6 +712,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(!(allow_pass_flags & PASS_PROJECTILE))
 		return TRUE
+	if((proj.ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOVABLE) && !(allow_pass_flags & PASS_LOW_STRUCTURE)) //you're just shooting straight through stuff
+		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
