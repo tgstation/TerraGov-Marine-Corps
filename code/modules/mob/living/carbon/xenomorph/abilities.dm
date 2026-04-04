@@ -593,16 +593,21 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	to_chat(xeno_owner, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [xeno_owner.plasma_stored]/[xeno_owner.xeno_caste.plasma_max]."))
 	playsound(xeno_owner, SFX_ALIEN_DROOL, 25)
 
+//A continuous beam version
 /datum/action/ability/activable/xeno/transfer_plasma/beam
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	transfer_delay = 0.5 SECONDS
 	max_range = 5
+	///Timer holder for plasma loop
 	var/cycle_timer
+	///Who we're giving plasma to
 	var/mob/living/carbon/xenomorph/transfer_target
+	///Holder for beam effect
 	var/beam_holder
 
 /datum/action/ability/activable/xeno/transfer_plasma/beam/remove_action(mob/living/L)
 	deltimer(cycle_timer)
+	cycle_timer = null
 	transfer_target = null
 	if(beam_holder)
 		QDEL_NULL(beam_holder)
@@ -613,18 +618,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return TRUE
 	return ..()
 
-/datum/action/ability/activable/xeno/transfer_plasma/beam/proc/usage_check()
-	if(transfer_target.z != xeno_owner.z)
-		return FALSE
-	if(get_dist(xeno_owner, transfer_target) > max_range)
-		return FALSE
-	if(!can_use_ability(transfer_target, TRUE, ABILITY_USE_BUSY))
-		return FALSE
-	return TRUE
-
 /datum/action/ability/activable/xeno/transfer_plasma/beam/use_ability(atom/A)
 	if(cycle_timer)
 		deltimer(cycle_timer)
+		cycle_timer = null
 		finish_cycle()
 		return
 
@@ -644,7 +641,8 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	transfer_target.add_filter(TRANSFER_PLASMA_OUTLINE, 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	cycle_plasma()
 
-/datum/action/ability/activable/xeno/transfer_plasma/beam/proc/cycle_plasma(iteration = 0)
+///Checks conditions, gives plasma and repeats
+/datum/action/ability/activable/xeno/transfer_plasma/beam/proc/cycle_plasma()
 	if(!usage_check())
 		finish_cycle()
 		return
@@ -654,20 +652,36 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	xeno_owner.use_plasma(amount)
 	transfer_target.gain_plasma(amount)
 
-	if(xeno_owner.plasma_stored <= 0 || xeno_owner.plasma_stored ==  xeno_owner.xeno_caste.plasma_max|| transfer_target.plasma_stored == transfer_target.xeno_caste.plasma_max)
+	if(xeno_owner.plasma_stored <= 0 || transfer_target.plasma_stored == transfer_target.xeno_caste.plasma_max)
 		finish_cycle()
 		return
 
-	cycle_timer = addtimer(CALLBACK(src, PROC_REF(cycle_plasma), iteration ++), 0.5 SECONDS, TIMER_STOPPABLE)
+	cycle_timer = addtimer(CALLBACK(src, PROC_REF(cycle_plasma)), 0.5 SECONDS, TIMER_STOPPABLE)
 
+///Checks if we can keep beaming
+/datum/action/ability/activable/xeno/transfer_plasma/beam/proc/usage_check()
+	if(QDELETED(transfer_target))
+		return FALSE
+	if(transfer_target.stat == DEAD)
+		return FALSE
+	if(transfer_target.z != xeno_owner.z)
+		return FALSE
+	if(get_dist(xeno_owner, transfer_target) > max_range)
+		return FALSE
+	if(!can_use_ability(transfer_target, TRUE, ABILITY_USE_BUSY))
+		return FALSE
+	return TRUE
 
+///Cleans up on finish
 /datum/action/ability/activable/xeno/transfer_plasma/beam/proc/finish_cycle()
 	transfer_target.remove_filter(TRANSFER_PLASMA_OUTLINE)
 	QDEL_NULL(beam_holder)
 	playsound(xeno_owner, SFX_ALIEN_DROOL, 25)
 	transfer_target = null
+	cycle_timer = null
 
 #undef TRANSFER_PLASMA_OUTLINE
+
 // ***************************************
 // *********** Corrosive Acid
 // ***************************************
