@@ -209,14 +209,17 @@
 	if(!autobalance_faction_list)
 		return
 
-	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[autobalance_faction_list[1]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[1]])] players, \
-	[autobalance_faction_list[2]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
+	var/strong_team = autobalance_faction_list[1]
+	var/weak_team = autobalance_faction_list[2]
+
+	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[strong_team] has [length(GLOB.alive_human_list_faction[strong_team])] players, \
+	[weak_team] has [length(GLOB.alive_human_list_faction[weak_team])] players." : "teams balanced."] \
 	Forced autobalance is [forced ? "ON." : "OFF."]")
 
-	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
+	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[strong_team])
 		if(stat_list[faction_member.faction].faction_leader == faction_member)
 			continue
-		INVOKE_ASYNC(src, PROC_REF(swap_player_team), faction_member, autobalance_faction_list[2], forced)
+		INVOKE_ASYNC(src, PROC_REF(swap_player_team), faction_member, weak_team, forced)
 
 	addtimer(CALLBACK(src, PROC_REF(autobalance_bonus)), CAMPAIGN_AUTOBALANCE_DECISION_TIME + 1 SECONDS)
 
@@ -228,9 +231,10 @@
 	var/team_one_count = length(GLOB.alive_human_list_faction[factions[1]])
 	var/team_two_count = length(GLOB.alive_human_list_faction[factions[2]])
 
-	if(team_one_count > team_two_count * ratio)
+	//round up so a 1 player difference at lower pop doesn't trigger autobalance
+	if(team_one_count > ROUND_UP(team_two_count * ratio))
 		return list(factions[1], factions[2])
-	else if(team_two_count > team_one_count * ratio)
+	else if(team_two_count > ROUND_UP(team_one_count * ratio))
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
@@ -261,8 +265,18 @@
 	if(!autobalance_faction_list)
 		return
 
-	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
-	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
+	var/strong_team = autobalance_faction_list[1]
+	var/weak_team = autobalance_faction_list[2]
+	var/pop_diff = length(GLOB.alive_human_list_faction[strong_team]) - length(GLOB.alive_human_list_faction[weak_team])
+
+	//if the pop diff is lower than this, a mech tends to be too strong
+	if(pop_diff >= 5)
+		var/mech_num = ROUND_UP(pop_diff * 0.2)
+		current_mission.spawn_mech(weak_team, 0, 0, mech_num, "[mech_num] additional mechs granted for autobalance")
+		return
+	//if its a low diff, we just give them some more attrition for purchases or respawns
+	stat_list[weak_team].total_attrition_points += pop_diff * 3
+
 
 ///Shuffles the teams forcefully
 /datum/game_mode/hvh/campaign/proc/shuffle_teams()
