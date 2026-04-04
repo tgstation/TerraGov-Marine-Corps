@@ -37,6 +37,8 @@
 	if(!isturf(target_turf))
 		return
 	playsound(target_turf, 'sound/effects/EMPulse.ogg', 50)
+	var/list/throw_list = list()
+
 	for(var/turf/cone_turf AS in generate_cone(target_turf, aoe_range, -1, 359, 359, pass_flags_checked = PASS_AIR))
 		for(var/target in cone_turf)
 			if(isliving(target))
@@ -45,10 +47,9 @@
 				var/mob/living/living_victim = target
 				if(living_victim.stat == DEAD)
 					continue
+				throw_list += living_victim
 				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
 				staggerstun(living_victim, proj, 10, slowdown = 1)
-				if(get_dist(target_turf, living_victim) <= 1)
-					living_victim.knockback(target_turf, 1, 1, knockback_force = MOVE_FORCE_NORMAL)
 				living_victim.do_jitter_animation(500)
 				continue
 			if(isobj(target))
@@ -63,6 +64,10 @@
 				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
+
+	for(var/mob/living/throw_victim AS in throw_list)
+		var/victim_dist = get_dist(target_turf, throw_victim)
+		throw_victim.knockback((victim_dist > 0 ? target_turf : proj.firer), 3 - victim_dist, 1, knockback_force = MOVE_FORCE_NORMAL)
 
 /datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
