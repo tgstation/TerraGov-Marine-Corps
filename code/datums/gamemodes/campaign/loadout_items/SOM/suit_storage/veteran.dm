@@ -78,7 +78,7 @@
 	Has excellent mobility and handling and is best used at close range. \
 	Its deflagrating ability works best against light armored targets, where it can quickly mow down and demoralise tightly packed enemies. Against heavily armored opponents, its effectiveness can quickly drop however. \
 	Uses volkite power cells, shared with the VX-33. \
-	The accompanying S-144 boarding shield helps to protect the user from melee attacks, and shotgun based stuns."
+	The accompanying S-144 boarding shield provides incredible resistance to damage, and it also provides resistance against projectile based stuns."
 	ui_icon = "riot_shield"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	purchase_cost = 60

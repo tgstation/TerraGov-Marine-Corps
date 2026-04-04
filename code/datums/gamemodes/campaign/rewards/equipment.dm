@@ -224,7 +224,7 @@
 /datum/campaign_asset/equipment/shields_tgmc
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
-	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they grant a chance to deflect melee attacks and resist shotgun stuns, at the cost of occupying a hand and slowing you down."
+	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they provide resistance against projectile based stuns, at the cost of occupying a hand and slowing you down."
 	ui_icon = "riot_shield"
 	uses = 2
 	cost = 3
@@ -272,7 +272,7 @@
 /datum/campaign_asset/equipment/shields_som
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
-	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they grant a chance to deflect melee attacks and resist shotgun stuns, at the cost of occupying a hand and slowing you down."
+	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they provide resistance against projectile based stuns, at the cost of occupying a hand and slowing you down."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "riot_shield"
 	uses = 2
