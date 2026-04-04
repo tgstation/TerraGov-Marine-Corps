@@ -135,44 +135,44 @@
 	sound_hit = "alien_resin_build2"
 	sound_bounce = "alien_resin_build3"
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
-	max_range = 40
+	max_range = 10
 	bullet_color = COLOR_PURPLE
 	stagger_duration = 1 SECONDS
 	slowdown_stacks = 3
 
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_resin(get_turf(target_mob))
-	if(iscarbon(target_mob))
-		var/mob/living/carbon/target_carbon = target_mob
-		if(target_carbon.issamexenohive(proj.firer))
-			return
-		target_carbon.adjust_stagger(stagger_duration) //stagger briefly; useful for support
-		target_carbon.add_slowdown(slowdown_stacks) //slow em down
+	drop_resin(get_turf(target_mob), proj)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	target_carbon.adjust_stagger(stagger_duration) //stagger briefly; useful for support
+	target_carbon.add_slowdown(slowdown_stacks) //slow em down
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	if(issealedvehicle(target_obj))
 		var/obj/vehicle/sealed/seal = target_obj
 		COOLDOWN_INCREMENT(seal, cooldown_vehicle_move, seal.move_delay)
-	var/turf/target_turf = get_turf(target_obj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin((target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc), proj)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
 /datum/ammo/xeno/sticky/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_resin(target_turf.density ? proj.loc : target_turf)
+	drop_resin((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
-/datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
-	if(T.density || istype(T, /turf/open/space)) // No structures in space
+/datum/ammo/xeno/sticky/proc/drop_resin(turf/target_turf, atom/movable/projectile/proj)
+	if(target_turf.density || isspaceturf(target_turf)) // No structures in space
 		return
 
-	for(var/obj/O in T.contents)
+	for(var/obj/O in target_turf)
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/alien/resin/sticky/thin(T)
+	new /obj/alien/resin/sticky/thin(target_turf)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -185,34 +185,20 @@
 	spit_cost = 200
 	added_spit_delay = 8 SECONDS
 	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
-	bonus_projectiles_scatter = 22
+	bonus_projectiles_scatter = 45
 	///number of sticky resins made
-	var/bonus_projectile_quantity = 16
+	var/bonus_projectile_quantity = 8
+
+/datum/ammo/xeno/sticky/globe/drop_resin(turf/target_turf, atom/movable/projectile/proj)
+	. = ..()
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, rand(1, 359), loc_override = target_turf)
 
 /datum/ammo/xeno/sticky/mini
 	damage = 5
 	max_range = 3
 	shell_speed = 1
-
-/datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
-	drop_resin(det_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
-
-/datum/ammo/xeno/sticky/globe/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(det_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
-
-/datum/ammo/xeno/sticky/globe/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	var/turf/det_turf = get_turf(target_mob)
-	drop_resin(det_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
-
-/datum/ammo/xeno/sticky/globe/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(det_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
+	stagger_duration = 0.2 SECONDS
+	slowdown_stacks = 1
 
 /datum/ammo/xeno/acid
 	name = "acid spit"
