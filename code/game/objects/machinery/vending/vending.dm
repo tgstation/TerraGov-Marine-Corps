@@ -231,14 +231,22 @@
 
 /obj/machinery/vending/set_ai_block()
 	var/turf/current_turf = get_turf(src)
-		if(!current_turf)
-			return
+	if(!current_turf)
+		return
 	//Vendors can be passed in one way or another by all NPC's so we never set AI_BLOCK unless the vendor is indestructable
 	if(density && (resistance_flags & INDESTRUCTIBLE))
 		current_turf.atom_flags |= AI_BLOCKED
 		return
 
 	current_turf.atom_flags &= ~AI_BLOCKED
+
+/obj/machinery/vending/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!isxeno(user))
+		return ..()
+	var/mob/living/carbon/xenomorph/xeno_attacker = user
+	xeno_attacker.a_intent = INTENT_DISARM
+	attack_alien(xeno_attacker)
+	xeno_attacker.a_intent = INTENT_HARM
 
 /**
  * Builds shared vendors inventory
