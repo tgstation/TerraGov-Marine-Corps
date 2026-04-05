@@ -110,3 +110,24 @@
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
+
+/datum/game_mode/hvh/combat_patrol/encounter/respawn_wave()
+	var/list/player_list = count_humans(SSmapping.levels_by_trait(ZTRAIT_GROUND), COUNT_IGNORE_ALIVE_SSD)
+	var/active_som = length(player_list[1])
+	var/active_tgmc = length(player_list[2])
+	for(var/mob/dead/observer/o in GLOB.observer_list)//Recently dead are active because they will be respawned now too
+		if(DEATHTIME_CHECK(o))
+			if(o.faction == FACTION_TERRAGOV)
+				active_tgmc++
+			else if(o.faction ==FACTION_SOM)
+				active_som++
+	var/active_humans = active_som + active_tgmc
+
+	. = ..()
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/num_xenos = xeno_job.total_positions -  xeno_job.current_positions
+	var/desired_xeno_count = 1 + floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO)
+	var/xenos_to_add = desired_xeno_count - num_xenos
+	if(xenos_to_add > 0)
+		xeno_job.add_job_positions(xenos_to_add)
