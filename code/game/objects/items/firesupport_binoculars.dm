@@ -104,20 +104,20 @@
 		if(mode_list[option].name != mode_selected)
 			continue
 		mode = mode_list[option]
-		user.balloon_alert(user, "[mode_selected] mode")
+		balloon_alert(user, "[mode_selected] mode")
 	update_icon()
 
 ///lases a target and calls fire support on it
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
 	if(user.do_actions)
-		balloon_alert_to_viewers("busy!")
+		balloon_alert(user, "busy!")
 		return
 	if(is_mainship_level(user.z))
-		user.balloon_alert(user, "can't use these here!")
+		balloon_alert(user, "can't use these here!")
 		return
 	if(faction && user.faction != faction)
-		balloon_alert_to_viewers("security locks engaged")
+		balloon_alert(user, "security locks engaged")
 		return
 	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
@@ -125,7 +125,7 @@
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		balloon_alert_to_viewers("no clear view!")
+		balloon_alert(user, "no clear view!")
 		return
 
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
@@ -139,6 +139,8 @@
 		unset_target()
 		return
 	if(!bino_checks(target, user))
+		playsound(user,'sound/machines/click.ogg', 25, 1)
+		unset_target()
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -148,16 +150,16 @@
 ///Internal bino checks, mainly around firemode
 /obj/item/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	if(!mode)
-		balloon_alert_to_viewers("select a mode!")
+		balloon_alert(user, "select a mode!")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[lowertext(mode.name)] unavailable!")
+		balloon_alert(user, "[lowertext(mode.name)] unavailable!")
 		return FALSE
 	if(!mode.uses)
-		balloon_alert_to_viewers("[lowertext(mode.name)] expended!")
+		balloon_alert(user, "[lowertext(mode.name)] expended!")
 		return FALSE
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("on cooldown!")
+		balloon_alert(user, "on cooldown!")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(isspacearea(targ_area))

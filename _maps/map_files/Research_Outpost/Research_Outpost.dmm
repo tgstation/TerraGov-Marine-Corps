@@ -2047,6 +2047,11 @@
 	dir = 8
 	},
 /area/outpost/yard/east)
+"jN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south)
 "jO" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -2562,6 +2567,7 @@
 /obj/structure/bed/chair/office{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "lY" = (
@@ -6392,6 +6398,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/spawner/random/engineering/powercell,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Ee" = (
@@ -10941,6 +10948,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
 	},
@@ -24685,8 +24693,8 @@ DX
 QK
 wz
 wz
-wz
 yj
+wz
 Cn
 wz
 wz
@@ -25081,8 +25089,8 @@ cR
 Ed
 xY
 fE
-MG
 eE
+MG
 MU
 MG
 CU
@@ -25478,7 +25486,7 @@ ob
 MG
 Bz
 lX
-eE
+MG
 JG
 MG
 MG
@@ -26005,8 +26013,8 @@ hK
 wQ
 hK
 hK
-IH
-wQ
+jN
+hK
 yW
 yW
 yW

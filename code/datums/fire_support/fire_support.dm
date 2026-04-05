@@ -55,6 +55,7 @@
 	if(!uses || !(fire_support_flags & FIRESUPPORT_AVAILABLE))
 		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
 		return
+	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration, TIMER_STOPPABLE)
 	uses --
 	addtimer(CALLBACK(src, PROC_REF(start_fire_support), target_turf), delay_to_impact)
 
@@ -67,7 +68,6 @@
 
 ///Actually begins the fire support attack
 /datum/fire_support/proc/start_fire_support(turf/target_turf)
-	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration, TIMER_STOPPABLE)
 	select_target(target_turf)
 
 	if(start_visual)

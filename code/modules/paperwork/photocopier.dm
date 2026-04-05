@@ -9,6 +9,7 @@
 	active_power_usage = 200
 	power_channel = EQUIP
 	max_integrity = 300
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	var/obj/item/paper/copy
 	var/obj/item/photo/photocopy
 	var/copies = 1
@@ -17,6 +18,15 @@
 	var/greytoggle = "Greyscale"
 	var/busy = FALSE
 
+/obj/machinery/photocopier/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/photocopier/interact(mob/user)
 	. = ..()

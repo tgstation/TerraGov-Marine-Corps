@@ -234,7 +234,7 @@
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
 		ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
-		xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG
+		xeno_owner.set_move_resist(MOVE_FORCE_EXTREMELY_STRONG)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(last_crest_bonus)
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, xeno_owner.xeno_caste.crest_defense_slowdown)
 	else
@@ -243,7 +243,7 @@
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		REMOVE_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT)
-		xeno_owner.move_resist = initial(xeno_owner.move_resist)
+		xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_crest_bonus)
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 

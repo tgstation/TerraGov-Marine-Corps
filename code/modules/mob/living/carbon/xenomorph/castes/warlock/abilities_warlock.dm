@@ -130,7 +130,7 @@
 	action_icon_state = "psy_shield_reflect"
 	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
-	xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG // This aims to prevent bumping (or shuffling) from a fair amount of xenomorph castes which may lead to the shield cancelling (and unloading the now-unfrozen projectiles into the bumper or bumpee).
+	xeno_owner.set_move_resist(MOVE_FORCE_EXTREMELY_STRONG) // This aims to prevent bumping (or shuffling) from a fair amount of xenomorph castes which may lead to the shield cancelling (and unloading the now-unfrozen projectiles into the bumper or bumpee).
 
 	ability_cost = detonation_cost
 	GLOB.round_statistics.psy_shields++
@@ -157,7 +157,7 @@
 		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_WARLOCK_PSYCHIC_SHIELD)
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	update_button_icon()
 	add_cooldown()
 	if(active_shield)
@@ -627,7 +627,7 @@
 			desc = "Launch a blast of psychic energy that deals light burn damage and staggers in an area. Direct hits deal additional light brute damage."
 		if(/datum/ammo/energy/xeno/psy_blast/psy_lance)
 			name = "Psychic Lance ([ability_cost])"
-			desc = "Launch a blast of psychic energy that deals high brute damage with high armor penetration. This can hit multiple mobs and goes through structures."
+			desc = "Launch a blast of psychic energy that deals high burn damage with high armor penetration. This can hit multiple mobs and goes through structures."
 		if(/datum/ammo/energy/xeno/psy_blast/psy_drain)
 			name = "Psychic Drain ([ability_cost])"
 			desc = "Launch a blast of psychic energy that deals light stamina damage, staggers, and knockbacks in a smaller area. Direct hits deal additional light stamina damage and briefly knockdowns."

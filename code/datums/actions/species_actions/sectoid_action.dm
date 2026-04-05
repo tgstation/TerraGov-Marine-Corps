@@ -208,7 +208,7 @@
 	carbon_target.notransform = TRUE
 	carbon_target.status_flags |= GODMODE
 	ADD_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
-	carbon_target.move_resist = MOVE_FORCE_OVERPOWERING
+	carbon_target.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 	carbon_target.log_message("has been petrified by [owner] for [stasis_duration] ticks", LOG_ATTACK, color="pink")
 
@@ -234,7 +234,7 @@
 	carbon_target.notransform = FALSE
 	carbon_target.status_flags &= ~GODMODE
 	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
-	carbon_target.move_resist = initial(carbon_target.move_resist)
+	carbon_target.set_move_resist(initial(carbon_target.move_resist))
 	carbon_target.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 	carbon_target.overlays -= stone_overlay
 

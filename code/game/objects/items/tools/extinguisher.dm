@@ -25,6 +25,9 @@
 	. = ..()
 	create_reagents(max_water, AMOUNT_VISIBLE, list(/datum/reagent/water = max_water))
 
+/obj/item/tool/extinguisher/get_fueltype()
+	return /datum/reagent/water
+
 /obj/item/tool/extinguisher/mini
 	name = "mini fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."

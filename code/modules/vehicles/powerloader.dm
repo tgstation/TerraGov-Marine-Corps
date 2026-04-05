@@ -179,6 +179,20 @@
 	if(user in linked_powerloader.buckled_mobs)
 		linked_powerloader.unbuckle_mob(user)
 
+///Loads an AM into the clamp
+/obj/item/powerloader_clamp/proc/do_load(atom/movable/new_clamped)
+	new_clamped.forceMove(linked_powerloader)
+	loaded = new_clamped
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+
+///Unloads our cargo somewhere
+/obj/item/powerloader_clamp/proc/do_unload(atom/new_loc)
+	loaded.forceMove(new_loc)
+	loaded = null
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+
 /obj/structure/powerloader_wreckage
 	name = "\improper RPL-Y Cargo Loader wreckage"
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."

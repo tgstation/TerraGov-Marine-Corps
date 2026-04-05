@@ -94,13 +94,17 @@
 			var/datum/armor/attaching_armor = getArmor(petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor, petrify_armor)
 			xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.attachArmor(attaching_armor)
 			viewing_xenomorphs[xenomorph_viewer] = attaching_armor
+			RegisterSignal(xenomorph_viewer, COMSIG_QDELETING, PROC_REF(end_xeno_effect))
+			continue
+
 		if(!ishuman(carbon_viewer) || is_blind(carbon_viewer))
 			continue
+
 		var/mob/living/carbon/human/human = carbon_viewer
 		human.notransform = TRUE
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
-		human.move_resist = MOVE_FORCE_OVERPOWERING
+		human.set_move_resist(MOVE_FORCE_OVERPOWERING)
 		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
 
@@ -115,6 +119,7 @@
 
 		human.overlays += stone_overlay
 		petrified_humans[human] = stone_overlay
+		RegisterSignal(human, COMSIG_QDELETING, PROC_REF(end_human_effect))
 
 	if(!length(petrified_humans) && !length(viewing_xenomorphs))
 		flick("eye_closing", eye)
@@ -135,19 +140,33 @@
 	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
-///ends all combat-relazted effects
+///Ends the effect for a specific human
+/datum/action/ability/xeno_action/petrify/proc/end_human_effect(mob/living/carbon/human/victim)
+	SIGNAL_HANDLER
+	UnregisterSignal(victim, COMSIG_QDELETING)
+	victim.notransform = FALSE
+	victim.status_flags &= ~GODMODE
+	REMOVE_TRAIT(victim, TRAIT_HANDS_BLOCKED, REF(src))
+	victim.set_move_resist(initial(victim.move_resist))
+	victim.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
+	victim.overlays -= petrified_humans[victim]
+	petrified_humans -= victim
+
+///Ends the effect for a specific xeno
+/datum/action/ability/xeno_action/petrify/proc/end_xeno_effect(mob/living/carbon/xenomorph/xeno)
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno, COMSIG_QDELETING)
+	xeno.soft_armor = xeno.soft_armor.detachArmor(viewing_xenomorphs[xeno])
+	viewing_xenomorphs -= xeno
+
+///ends all combat-related effects
 /datum/action/ability/xeno_action/petrify/proc/end_effects()
 	for(var/mob/living/carbon/human/human AS in petrified_humans)
-		human.notransform = FALSE
-		human.status_flags &= ~GODMODE
-		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
-		human.move_resist = initial(human.move_resist)
-		human.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
-		human.overlays -= petrified_humans[human]
+		end_human_effect(human)
 	petrified_humans.Cut()
 
 	for(var/mob/living/carbon/xenomorph/xenomorph_viewer AS in viewing_xenomorphs)
-		xenomorph_viewer.soft_armor = xenomorph_viewer.soft_armor.detachArmor(viewing_xenomorphs[xenomorph_viewer])
+		end_xeno_effect(xenomorph_viewer)
 	viewing_xenomorphs.Cut()
 
 ///callback for removing the eye from viscontents

@@ -16,6 +16,8 @@
 
 /datum/ai_behavior/xeno/zombie/process()
 	. = ..()
+	if(mob_parent.buckled)
+		mob_parent.buckled.unbuckle_mob(mob_parent)
 	if(mob_parent.resting)
 		mob_parent.get_up()
 

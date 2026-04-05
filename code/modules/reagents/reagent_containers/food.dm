@@ -37,3 +37,6 @@
 		if(mouse_control["icon-y"])
 			var/sign = mouse_y - grid_y != 0 ? SIGN(mouse_y - grid_y) : -1
 			pixel_y = grid_y - center_of_mass["y"] + sign*16/cellnumber
+
+/obj/item/reagent_containers/food/is_refuelable()
+	return FALSE

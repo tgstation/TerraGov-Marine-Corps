@@ -370,7 +370,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 2
 	projectile_delay = 0.45 SECONDS
-	rearm_time = 9 SECONDS
+	rearm_time = 4 SECONDS
 	hud_state_empty = "hivelo_empty"
 
 /obj/item/armored_weapon/apc_cannon

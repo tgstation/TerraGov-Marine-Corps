@@ -25,6 +25,7 @@
 	var/subsystem_type = /datum/controller/subsystem/machines
 	var/wrenchable = FALSE
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
+	///The mob controlling this machine
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
@@ -44,6 +45,11 @@
 	operator?.unset_interaction()
 	operator = null
 	set_ai_block()
+	return ..()
+
+/obj/machinery/post_disassemble(mob/user)
+	if(operator)
+		operator.unset_interaction()
 	return ..()
 
 ///Sets or unsets AI_BLOCKED on our turf
