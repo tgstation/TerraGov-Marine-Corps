@@ -118,16 +118,20 @@
 	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
+///Breaks the computer
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	density = FALSE
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
+///Unbreaks the computer
 /obj/machinery/computer/proc/repair()
 	machine_stat &= ~BROKEN
 	density = TRUE
 	durability = initial(durability)
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
@@ -248,3 +252,18 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFxeno_attacker
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFxeno_attacker
 	Shake(duration = 0.5 SECONDS)
+
+/obj/machinery/computer/set_ai_block()
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+	if(density && !QDELETED(src) && (resistance_flags & INDESTRUCTIBLE))
+		current_turf.atom_flags |= AI_BLOCKED
+		return
+	current_turf.atom_flags &= ~AI_BLOCKED
+
+/obj/machinery/computer/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!isxeno(user) || resistance_flags & INDESTRUCTIBLE)
+		return ..()
+	var/mob/living/carbon/xenomorph/xeno_attacker = user
+	attack_alien(xeno_attacker)
