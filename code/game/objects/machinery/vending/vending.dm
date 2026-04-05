@@ -230,7 +230,11 @@
 
 /obj/machinery/vending/set_ai_block()
 	//Vendors can be passed in one way or another by all NPC's so we never set AI_BLOCK unless the vendor is indestructable
-	if(resistance_flags & INDESTRUCTIBLE)
+	if(density && (resistance_flags & INDESTRUCTIBLE))
+		var/turf/current_turf = get_turf(src)
+		if(!current_turf)
+			return
+		current_turf.atom_flags |= AI_BLOCKED
 		return
 	return ..()
 
