@@ -6,3 +6,21 @@
   joe13413:
   - bugfix: phero towers are now 150 points like they're supposed to be, as opposed
       to 300
+2026-04-05:
+  Lumipharon:
+  - bugfix: Oppressor will no longer crash the server with funny abduct issues
+  - bugfix: Motorbikes only use fuel when actually driven, instead of when moved for
+      any reason
+  - balance: Hivelord primo spit ball has 8 secondary projectiles instead of 16, and
+      they cause less stagger and slow
+  - bugfix: A variety of reagents containers such as food will no longer be filled
+      with fuel when storing them in engiepacks
+  - bugfix: fixed undeploying someone else's item breaking interaction related things
+  - bugfix: fixed a grenade runtime when detonating in a clientless mob's hand
+  - balance: The delay for allowing pods to deploy after Alamo/Tad deployment time
+      has been reduced from 10 minutes to 2 minutes
+  - refactor: refactored climbing code into a component
+  - rscadd: You can now climb onto multitile vehicles and various other misc machinery,
+      clankers rejoice
+  - qol: climbing a multitile structure will now attempt to climb the tile you actually
+      click on

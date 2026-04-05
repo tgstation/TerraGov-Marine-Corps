@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "A variety of reagents containers such as food will no longer be filled with fuel when storing them in engiepacks"

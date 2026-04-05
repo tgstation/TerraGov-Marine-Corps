@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "The delay for allowing pods to deploy after Alamo/Tad deployment time has been reduced from 10 minutes to 2 minutes"

@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "refactored climbing code into a component"
-  - rscadd: "You can now climb onto multitile vehicles and various other misc machinery, clankers rejoice"
-  - qol: "climbing a multitile structure will now attempt to climb the tile you actually click on"

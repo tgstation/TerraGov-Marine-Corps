@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Motorbikes only use fuel when actually driven, instead of when moved for any reason"
