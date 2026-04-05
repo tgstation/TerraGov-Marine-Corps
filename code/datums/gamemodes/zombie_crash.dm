@@ -114,6 +114,9 @@
 	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_zombies = living_player_list[2]
+
+	GLOB.maximum_allowed_possessed_zombies = floor(num_humans / ZOMBIE_SENTIENT_TO_HUMAN_RATIO)
+
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
 			if(!spawner.threat_warning)
