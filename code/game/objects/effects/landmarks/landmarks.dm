@@ -169,6 +169,16 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/encounter_silo_spawn
+	name = "encounter xeno silo spawn landmark"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
+
+/obj/effect/landmark/encounter_silo_spawn/Initialize(mapload)
+	GLOB.xeno_encounter_resin_silo_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/xeno_spawner_spawn
 	name = "xeno spawner spawn landmark"
 	icon = 'icons/Xeno/3x3building.dmi'

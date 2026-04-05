@@ -29,6 +29,9 @@
 
 /obj/structure/sensor_tower/Initialize(mapload)
 	. = ..()
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		new /obj/structure/campaign_objective/capture_objective/sensor_tower(loc)
+		qdel(src)
 	name += " " + num2text(id)
 	towerid = id
 	id++
@@ -38,7 +41,7 @@
 	. = ..()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
-		icon_state += "_tgmc"
+		icon_state += "_TerraGov"
 
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -148,8 +151,6 @@
 			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] activation process has been stopped, glory to Mars!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
 			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] activation process has been stopped, rally up and get it together team!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait)
-
-		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 
 ///Pauses or restarts the gamemode timer
 /obj/structure/sensor_tower/proc/toggle_game_timer(addition_time)

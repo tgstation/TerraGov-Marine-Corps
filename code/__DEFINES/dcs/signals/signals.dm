@@ -144,6 +144,8 @@
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
+///Opens the combat patrol base req doors
+#define COMSIG_GLOB_HVH_REQ "!hvh_req_opened"
 
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"

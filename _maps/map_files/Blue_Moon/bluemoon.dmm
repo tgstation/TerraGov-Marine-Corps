@@ -878,6 +878,10 @@
 "aXS" = (
 /turf/closed/wall/r_wall,
 /area/bluemoon/caves/s/shallow)
+"aXV" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/s)
 "aZi" = (
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -12496,6 +12500,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bluemoon/caves/facility/eta)
+"oie" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/n)
 "oiP" = (
 /obj/structure/table/wood,
 /obj/item/tool/pen/blue{
@@ -14796,6 +14804,10 @@
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/bluemoon/outside/c)
+"rea" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/se)
 "res" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 1;
@@ -17667,6 +17679,10 @@
 	dir = 10
 	},
 /area/bluemoon/outside/building/lz)
+"uBw" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/bluemoon/caves/n)
 "uBC" = (
 /obj/structure/closet/secure_closet/marshal,
 /turf/open/floor/tile/vault{
@@ -29081,7 +29097,7 @@ xGy
 iKK
 iKK
 iKK
-iKK
+uBw
 iKK
 uJX
 xGy
@@ -31726,7 +31742,7 @@ uJX
 uJX
 iKK
 iKK
-iKK
+oie
 iKK
 iPA
 iKK
@@ -33752,7 +33768,7 @@ owX
 owX
 exb
 owX
-owX
+aXV
 owX
 owX
 xzH
@@ -39604,7 +39620,7 @@ gjJ
 gjJ
 eyt
 gjJ
-gjJ
+rea
 gjJ
 gjJ
 gjJ

@@ -171,6 +171,8 @@ GLOBAL_LIST_INIT(jobs_squad_standard, list(SQUAD_MARINE, SOM_SQUAD_MARINE))
 #define LARVA_POINTS_REGULAR 3.25
 ///How many marines per xeno at optimal ratio
 #define XENO_MARINE_RATIO 2.46
+///Xenos pick fights when there are 5 humans on each team there will be 2 xenos which is a fair fight factoring in the other team's damage
+#define ENCOUNTER_XENO_HUMAN_RATIO 10
 
 #define SURVIVOR_POINTS_REGULAR 1
 

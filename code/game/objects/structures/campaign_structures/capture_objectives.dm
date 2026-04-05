@@ -36,12 +36,16 @@
 				new_icon_state = "campaign_objective_capturing_tgmc"
 			if(null)
 				new_icon_state = "campaign_objective"
+			if(FACTION_XENO)
+				new_icon_state = "campaign_objective_capturing_Xeno"
 			else
 				new_icon_state = "campaign_objective_capturing_som"
 	else
 		switch(owning_faction)
 			if(FACTION_TERRAGOV)
 				new_icon_state = capturing_faction ? "campaign_objective_decap_tgmc" : "campaign_objective_tgmc"
+			if(FACTION_XENO)
+				new_icon_state = capturing_faction ? "campaign_objective_decap_Xeno" : "campaign_objective_Xeno"
 			else
 				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
 
@@ -73,6 +77,7 @@
 		capture_timer = null
 		countdown.stop()
 	if(owning_faction == user.faction) //we already own it, we just stopped the enemy cap
+		message_admins("FUCK")
 		capturing_faction = null
 		update_icon()
 		return
@@ -159,21 +164,32 @@
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
 	. = ..()
-	icon_state = initial(icon_state)
 	if(!owning_faction)
 		switch(capturing_faction)
 			if(FACTION_TERRAGOV)
-				icon_state += "_cap_tgmc"
+				icon_state = "sensor_cap_TerraGov"
 			if(null)
-				return
+				icon_state = "sensor"
+			if(FACTION_XENO)
+				icon_state = "sensor_cap_Xeno"
 			else
-				icon_state += "_cap_som"
+				icon_state = "sensor_cap_som"
 		return
-	switch(owning_faction)
-		if(FACTION_TERRAGOV)
-			icon_state += capturing_faction ? "_decap_tgmc" : "_tgmc"
-		else
-			icon_state += capturing_faction ? "_decap_som" : "_som"
+
+	if(!capturing_faction)
+		icon_state = "sensor_som"
+		if(owning_faction == FACTION_TERRAGOV || owning_faction == FACTION_XENO)
+			icon_state = "sensor_[owning_faction]"
+		return
+
+	if(capturing_faction == FACTION_TERRAGOV || capturing_faction == FACTION_XENO)
+		icon_state += "_decap_[capturing_faction]"
+		return
+	icon_state += "_decap_som"
+
+/obj/structure/campaign_objective/capture_objective/sensor_tower/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(!(xeno_attacker.status_flags & INCORPOREAL))
+		begin_capture(xeno_attacker)
 
 //fulton objectives = they qdel after being captured
 /obj/effect/landmark/campaign_structure/phoron_crate

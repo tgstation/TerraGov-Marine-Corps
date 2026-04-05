@@ -13,6 +13,7 @@
 	var/minimap_icon = "patrol_1"
 	///List of open turfs around the point to deploy onto
 	var/list/deploy_turfs
+	var/human_deployment_point = TRUE
 
 /obj/effect/landmark/patrol_point/Initialize(mapload)
 	. = ..()
@@ -58,7 +59,8 @@
 
 	if(isliving(movable_to_move))
 		var/mob/living_to_move = movable_to_move
-		new /atom/movable/effect/rappel_rope(target_turf)
+		if(human_deployment_point)
+			new /atom/movable/effect/rappel_rope(target_turf)
 		living_to_move.trainteleport(target_turf)
 	else
 		movable_to_move.forceMove(target_turf)
@@ -73,15 +75,16 @@
 		if(isliving(AM))
 			add_spawn_protection(AM)
 
-		AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
-		var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
+		if(human_deployment_point)
+			AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
+			var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
 
-		layer_list[AM] = AM.layer
-		AM.pixel_z += RAPPEL_HEIGHT
-		AM.layer = FLY_LAYER
+			layer_list[AM] = AM.layer
+			AM.pixel_z += RAPPEL_HEIGHT
+			AM.layer = FLY_LAYER
 
-		animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
-		animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
+			animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
+			animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
 	addtimer(CALLBACK(src, PROC_REF(end_rappel), deploy_list, layer_list, mobs_moving), RAPPEL_DURATION)
 
@@ -97,10 +100,11 @@
 ///Ends the rappel effects
 /obj/effect/landmark/patrol_point/proc/end_rappel(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
-		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
-		AM.layer = layer_list[AM]
+		if(human_deployment_point)
+			AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+			AM.layer = layer_list[AM]
 		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
-		if(ismecha(AM) || isarmoredvehicle(AM))
+		if(ismecha(AM) || isarmoredvehicle(AM) || isxeno(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 	for(var/user in mobs_moving)
@@ -136,6 +140,21 @@
 	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
+/obj/effect/landmark/patrol_point/xeno
+	faction = FACTION_XENO
+	human_deployment_point = FALSE
+
+/obj/effect/landmark/patrol_point/xeno/xeno_11
+	name = "Xeno exit point 1"
+	icon_state = "purple_1"
+	id = "Xeno_1"
+	minimap_icon = "xeno_patrol_1"
+
+/obj/effect/landmark/patrol_point/xeno/xeno_21
+	name = "Xeno exit point 2"
+	icon_state = "purple_2"
+	id = "Xeno_2"
+	minimap_icon = "xeno_patrol_2"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"

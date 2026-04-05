@@ -74,6 +74,8 @@
 #define MODE_ALLOW_MARINE_QUICKBUILD (1<<18)
 /// Should Area Power Controllers have no access restrictions
 #define MODE_APC_ALL_ACCESS (1<<19)
+/// Should encounter gamemode modifiers be enabled
+#define MODE_ENCOUNTER (1<<20)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -184,6 +186,7 @@
 
 #define NUCLEAR_WAR_LARVA_POINTS_NEEDED 10
 #define CRASH_LARVA_POINTS_NEEDED 8
+#define ENCOUNTER_LARVA_POINTS_NEEDED 15
 
 #define FREE_XENO_AT_START 2
 
