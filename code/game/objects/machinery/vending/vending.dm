@@ -230,14 +230,15 @@
 			take_damage(rand(75, 125), BRUTE, BOMB)
 
 /obj/machinery/vending/set_ai_block()
-	//Vendors can be passed in one way or another by all NPC's so we never set AI_BLOCK unless the vendor is indestructable
-	if(density && (resistance_flags & INDESTRUCTIBLE))
-		var/turf/current_turf = get_turf(src)
+	var/turf/current_turf = get_turf(src)
 		if(!current_turf)
 			return
+	//Vendors can be passed in one way or another by all NPC's so we never set AI_BLOCK unless the vendor is indestructable
+	if(density && (resistance_flags & INDESTRUCTIBLE))
 		current_turf.atom_flags |= AI_BLOCKED
 		return
-	return ..()
+
+	current_turf.atom_flags &= ~AI_BLOCKED
 
 /**
  * Builds shared vendors inventory
@@ -330,6 +331,7 @@
 	else
 		tipped_level = 0
 
+///Flips it over and makes it passable
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	A.Turn(90)
@@ -339,7 +341,9 @@
 	density = FALSE
 	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
+	set_ai_block()
 
+///Puts the vendor back up
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
 	var/matrix/A = matrix()
@@ -349,6 +353,7 @@
 	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
 	density = initial(density)
+	set_ai_block()
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
