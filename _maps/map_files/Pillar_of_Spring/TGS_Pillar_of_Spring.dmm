@@ -4694,15 +4694,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/door_control{
 	dir = 1;
 	id = "or1privacyshutter";
 	name = "Privacy Shutters";
 	pixel_x = -5;
 	pixel_y = 10
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -4891,8 +4891,9 @@
 /area/mainship/command/self_destruct)
 "fTy" = (
 /obj/item/trash/cigbutt,
-/obj/item/storage/firstaid/adv,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/iv_drip,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "fTZ" = (
@@ -4963,8 +4964,19 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/general)
 "fYT" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/spray/surgery{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/storage/box/gloves,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -5089,6 +5101,7 @@
 /obj/structure/cable,
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -5331,9 +5344,12 @@
 /area/mainship/engineering/engineering_workshop)
 "gpC" = (
 /obj/structure/cable,
-/obj/machinery/iv_drip,
 /obj/machinery/power/apc/mainship,
-/obj/item/reagent_containers/blood/OMinus,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "gpU" = (
@@ -6825,7 +6841,6 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "iuw" = (
-/obj/machinery/light/mainship,
 /obj/structure/sink{
 	dir = 1
 	},
@@ -6835,9 +6850,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/operating_room_one)
@@ -7477,9 +7489,6 @@
 /area/mainship/squads/general)
 "jrk" = (
 /obj/machinery/bioprinter/stocked,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -10443,7 +10452,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "mUU" = (
-/obj/machinery/light/mainship,
 /obj/structure/sink{
 	dir = 1
 	},
@@ -10453,9 +10461,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/operating_room_two)
@@ -10794,8 +10799,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "nkX" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/storage/box/gloves,
+/obj/item/reagent_containers/spray/surgery{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 6;
+	pixel_y = 10
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -11404,13 +11420,14 @@
 /area/mainship/living/briefing)
 "oca" = (
 /obj/structure/cable,
-/obj/structure/closet/secure_closet/medical2,
 /obj/structure/sign/nosmoking_2{
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -11721,8 +11738,11 @@
 "oCo" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
-/obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood/OMinus,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -13620,23 +13640,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "qOa" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/gloves,
 /obj/machinery/door_control{
 	id = "or2privacyshutter";
 	name = "Privacy Shutters"
 	},
-/obj/item/storage/surgical_tray,
-/obj/item/reagent_containers/spray/surgery{
-	pixel_x = -5;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 6;
-	pixel_y = 10
-	},
+/obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -15860,6 +15868,7 @@
 /obj/structure/cable,
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -16108,15 +16117,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/door_control{
 	dir = 1;
 	id = "or2privacyshutter";
 	name = "Privacy Shutters";
 	pixel_x = -5;
 	pixel_y = 10
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -16311,24 +16320,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "uig" = (
-/obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "or1privacyshutter";
 	name = "Privacy Shutters"
 	},
 /obj/structure/cable,
-/obj/item/storage/surgical_tray,
-/obj/item/storage/box/gloves,
-/obj/item/reagent_containers/spray/surgery{
-	pixel_x = -5;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 6;
-	pixel_y = 10
-	},
+/obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -16631,8 +16628,9 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "uCj" = (
-/obj/item/storage/firstaid/adv,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/iv_drip,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "uCk" = (
@@ -16680,9 +16678,6 @@
 /area/mainship/hallways/hangar)
 "uDQ" = (
 /obj/machinery/bioprinter/stocked,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -19741,13 +19736,14 @@
 /turf/open/space,
 /area/space)
 "ykH" = (
-/obj/structure/closet/secure_closet/medical2,
 /obj/structure/sign/nosmoking_2{
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/item/storage/firstaid/adv,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_two)
 "ykK" = (
