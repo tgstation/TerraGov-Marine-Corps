@@ -591,7 +591,10 @@
 		return ..()
 	if(!isliving(M))
 		return
-	try_easy_load(dropping, M)
+	if(try_easy_load(dropping, M))
+		return TRUE
+	if(isliving(dropping))
+		return ..() //we help them onto the vehicle
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	return try_easy_load(grab.grabbed_thing, user)
