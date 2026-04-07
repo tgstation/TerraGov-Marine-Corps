@@ -52,6 +52,9 @@
 		return
 	var/helper
 	if(dropping != user)
+		var/mob/living/living_dropping = dropping
+		if(user.mob_size < living_dropping.mob_size)
+			return
 		helper = user
 	var/turf/click_turf = find_climb_turf(user, params)
 	if(!click_turf) //how did you do this?
@@ -102,7 +105,7 @@
 		return FALSE
 	return TRUE
 
-///Checks to see if a mob can climb onto, or over this object
+///Checks to see if a mob can climb onto, or over this object, or can be helped onto it by someone else
 /datum/component/climbable/proc/can_climb(mob/living/climber, turf/destination_turf, mob/living/helper)
 	if(!helper)
 		helper = climber
@@ -110,8 +113,8 @@
 	if(!climb_target.can_interact(helper)) //todo: out of current scope but can_interact is cursed for this usage as it checks dexterity
 		return
 
-	var/turf/climber_turf = get_turf(helper)
-	if(!istype(destination_turf) || !istype(climber_turf))
+	var/turf/origin_turf = get_turf(helper)
+	if(!istype(destination_turf) || !istype(origin_turf))
 		return
 	if(destination_turf.density)
 		return
@@ -138,7 +141,7 @@
 			to_chat(helper, span_warning("There's \a [AM.name] in the way."))
 			return
 
-	for(var/atom/movable/AM AS in climber_turf.contents)
+	for(var/atom/movable/AM AS in origin_turf.contents)
 		if(isstructure(AM))
 			var/obj/structure/structure = AM
 			if(structure.allow_pass_flags & PASS_WALKOVER)
