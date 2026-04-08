@@ -118,7 +118,7 @@
 /obj/effect/landmark/itemspawner/marisawizard/fake
 	items_to_spawn = list(\
 	/obj/item/clothing/head/wizard/marisa/fake,\
-	/obj/item/clothing/suit/wizrobe/marisa/fake)
+	/obj/item/clothing/suit/storage/wizrobe/marisa/fake)
 
 
 /obj/effect/landmark/itemspawner/cutewitch

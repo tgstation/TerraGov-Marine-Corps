@@ -112,7 +112,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	siemens_coefficient = 1
 
-/obj/item/clothing/suit/wizrobe/marisa/fake
+/obj/item/clothing/suit/storage/wizrobe/marisa/fake
 	name = "Witch Robe"
 	desc = "Magic is all about the spell power, ZE!"
 	icon_state = "marisa"
