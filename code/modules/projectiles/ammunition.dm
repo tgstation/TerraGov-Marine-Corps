@@ -253,6 +253,14 @@
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	caliber = CALIBER_4570
 
+/obj/item/ammo_magazine/handful/tp44
+	name = "handful of standard revolver bullet (.44 Magnum)"
+	icon_state = "bullet"
+	current_rounds = 7
+	max_rounds = 7
+	default_ammo = /datum/ammo/bullet/revolver/tp44
+	caliber = CALIBER_44
+
 /obj/item/ammo_magazine/handful/slug
 	name = "handful of shotgun slug (12 gauge)"
 	icon_state = "shotgun_slug"
