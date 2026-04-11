@@ -9,7 +9,6 @@
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
-		do_unique_action(user, TRUE)
 		return
 	unload(user)
 
