@@ -391,8 +391,10 @@
 		var/datum/limb/limb = pick(H.limbs)
 		if(limb.body_part == CHEST || limb.body_part == GROIN)
 			limb = H.get_limb("head")//Total chance 3/11 = 27%
-		limb.droplimb(FALSE, TRUE, FALSE, TRUE)
-		H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] is pulped by [src]!"))
+
+		if(!(limb.limb_status & LIMB_DESTROYED))
+			H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] is pulped by [src]!"))
+			limb.droplimb(FALSE, TRUE, FALSE, TRUE)
 
 	if(crushed.stat == DEAD)
 		return
