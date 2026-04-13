@@ -386,6 +386,14 @@
 	var/turf/below_us = get_turf(src)
 	below_us.add_mob_blood(crushed)
 
+	if(iszombie(crushed))
+		var/mob/living/carbon/human/H = crushed
+		var/datum/limb/limb = pick(H.limbs)
+		if(limb.body_part == CHEST || limb.body_part == GROIN)
+			limb = H.get_limb("head")//Total chance 3/11 = 27%
+		limb.droplimb(FALSE, TRUE, FALSE, TRUE)
+		H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] is pulped by [src]!"))
+
 	if(crushed.stat == DEAD)
 		return
 	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
