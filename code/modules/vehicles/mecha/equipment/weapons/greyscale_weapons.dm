@@ -576,7 +576,7 @@
 
 ///Hits a mob in the way
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
-	if((bumped_mob.mob_size > MOB_SIZE_HUMAN) || (bumped_mob.mob_size == MOB_SIZE_HUMAN && prob(60)))
+	if((bumped_mob.mob_size > MOB_SIZE_HUMAN) || (bumped_mob.mob_size == MOB_SIZE_HUMAN && prob(25)))
 		bumped_mob.attackby(src, cutter)
 		return
 
