@@ -330,12 +330,6 @@
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
 		/obj/item/ammo_magazine/handful/buckshot = 3,
-		/obj/item/defibrillator = 1,
-		/obj/item/tool/crowbar/red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
 	)
 
 
@@ -354,12 +348,6 @@
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
-		/obj/item/defibrillator = 1,
-		/obj/item/tool/crowbar/red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
 	)
 
 
@@ -379,12 +367,6 @@
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
-		/obj/item/defibrillator = 1,
-		/obj/item/tool/crowbar/red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
 	)
 
 

@@ -185,7 +185,7 @@
 
 	backpack_contents = list(
 		/obj/item/tool/crowbar/red = 1,
-		/obj/item/explosive/grenade/som = 6,
+		/obj/item/explosive/grenade/som = 3,
 		/obj/item/defibrillator = 1,
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/weapon/gun/pistol/icc_dpistol = 1,
@@ -234,6 +234,11 @@
 
 	r_pocket_contents = list(
 		/obj/item/ammo_magazine/rifle/icc_sharpshooter = 3,
+	)
+
+/datum/outfit/job/icc/medic/icc_sharpshooter/update_contents()
+	backpack_contents += list(
+		/obj/item/explosive/grenade/som = 3,
 	)
 
 
