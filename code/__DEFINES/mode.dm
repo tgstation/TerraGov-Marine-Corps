@@ -50,8 +50,8 @@
 #define MODE_PSY_POINTS_ADVANCED (1<<6)
 /// Should hijacking the Alamo be an option? This does not prevent capturing the Alamo.
 #define MODE_HIJACK_POSSIBLE (1<<7)
-/// Should xenomorph be allowed to grab dead humans?
-#define MODE_XENO_GRAB_DEAD_ALLOWED (1<<8)
+/// Should xeno abilities be buffed with lower cooldown and cost
+#define MODE_BUFFED_XENO_ABILITIES (1<<8)
 /// Should resin silos have additional effects beyond serving as a respawn point? This includes, but not limited to: pheromones and larva point generation.
 #define MODE_SILO_RESPAWN (1<<9)
 /// Should robotic species be prevented from joining (exceptions apply). Limits some supply packs from being chosen/obtained.
@@ -74,10 +74,6 @@
 #define MODE_ALLOW_MARINE_QUICKBUILD (1<<18)
 /// Should Area Power Controllers have no access restrictions
 #define MODE_APC_ALL_ACCESS (1<<19)
-///Alamo only, no tad or pods. Sovl.
-#define MODE_ALAMO_ONLY (1<<20)
-/// Should xeno abilities be buffed with lower cooldown and cost
-#define MODE_BUFFED_XENO_ABILITIES (1<<21)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
