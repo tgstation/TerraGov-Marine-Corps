@@ -492,6 +492,14 @@
 	deconstructable = FALSE
 	icon_state = "window-reinforced"
 
+/obj/structure/window/framed/mainship/bulletproof
+	name = "hardened bulletproof window"
+	desc = "A hardened silicate alloy window mounted within a special shock-absorbing frame, totally immune to small arms fire."
+	max_integrity = 500
+	deconstructable = FALSE
+	icon_state = "window-reinforced"
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
+
 /obj/structure/window/framed/mainship/white
 	icon = 'icons/obj/smooth_objects/wwindow.dmi'
 	icon_state = "white_rwindow-0"

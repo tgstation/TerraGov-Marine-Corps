@@ -166,6 +166,12 @@
 /obj/effect/turf_decal/tile/corsatsemi/white
 	color = "#d3d3d3"
 
+/obj/effect/turf_decal/logo
+	icon_state = "logo_central"
+
+/obj/effect/turf_decal/logo/logo_peripheral
+	icon_state = "logo_peripheral"
+
 /obj/effect/turf_decal/woodsiding
 	icon_state = "wood_siding"
 
