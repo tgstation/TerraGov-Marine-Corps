@@ -543,6 +543,7 @@
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
+	belt = /obj/item/belt_harness
 
 	backpack_contents = list(
 		/obj/item/storage/box/m94 = 1,
@@ -649,6 +650,7 @@
 	back = /obj/item/storage/backpack/lightpack/vsd
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
 	head = /obj/item/clothing/head/helmet/marine/vsd
+	mask = /obj/item/clothing/mask/gas/vsd
 
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
@@ -676,7 +678,6 @@
 /datum/outfit/job/vsd/leader/one
 	head = /obj/item/clothing/head/vsd/beret
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
-	mask = /obj/item/clothing/mask/gas/vsd
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
@@ -704,7 +705,6 @@
 /datum/outfit/job/vsd/leader/two
 	head = /obj/item/clothing/head/helmet/marine/vsd/heavy
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
-	mask = /obj/item/clothing/mask/gas/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/korovin
@@ -731,7 +731,6 @@
 	head = /obj/item/clothing/head/vsd/beret_alt
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
-	mask = /obj/item/clothing/mask/gas/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
