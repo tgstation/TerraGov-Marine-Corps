@@ -412,16 +412,16 @@
 				qdel(ready_candidate)
 				return
 
-			var/mob/living/carbon/human/human_current
+			var/mob/living/carbon/human/human_current = candidate
+			//The player might be a brain or some other unusual circumstance
 			if(isobserver(candidate))
 				var/mob/dead/observer/observer_candidate = candidate
 				if(!isnull(observer_candidate.can_reenter_corpse))
 					human_current = observer_candidate.can_reenter_corpse.resolve()
 				qdel(candidate)
-			else if(ishuman(candidate))
-				human_current = candidate
-			if(human_current)
-				human_current.set_undefibbable(TRUE)
+			if(!ishuman(human_current))
+				return
+			human_current.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able
