@@ -178,7 +178,7 @@
 /datum/outfit/job/som/militia/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	r_pocket = /obj/item/storage/pouch/shotgun
-	r_pocket_contents += list(
+	r_pocket_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/handful/flechette = 2,
 	)
