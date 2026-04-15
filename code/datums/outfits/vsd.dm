@@ -317,8 +317,16 @@
 /datum/outfit/job/vsd/medic/ksg
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/support
 	l_pocket = /obj/item/storage/pouch/shotgun
+	suit_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 2,
+	)
 
-	backpack_contents = list(
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 4,
+	)
+
+/datum/outfit/job/vsd/medic/ksg/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
 		/obj/item/ammo_magazine/handful/buckshot = 3,
@@ -330,19 +338,19 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
 	)
 
-	suit_contents = list(
-		/obj/item/ammo_magazine/handful/buckshot = 2,
-	)
-
-	l_pocket_contents = list(
-		/obj/item/ammo_magazine/handful/buckshot = 4,
-	)
-
 
 /datum/outfit/job/vsd/medic/vsd_rifle
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
-	backpack_contents = list(
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
+
+/datum/outfit/job/vsd/medic/vsd_rifle/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
@@ -354,18 +362,19 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
 	)
 
-	suit_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
-	)
-
-	l_pocket_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
-	)
 
 /datum/outfit/job/vsd/medic/vsd_carbine
 	w_uniform = /obj/item/clothing/under/vsd/alt/white_webbing
 	suit_store = /obj/item/weapon/gun/rifle/vsd_carbine/suppressed
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
+	)
 
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
+	)
+
+/datum/outfit/job/vsd/medic/vsd_carbine/update_contents()
 	backpack_contents = list(
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
 		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
@@ -376,14 +385,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
-	)
-
-	suit_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
-	)
-
-	l_pocket_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_carbine = 2,
 	)
 
 
@@ -416,6 +417,8 @@
 		/obj/item/stack/medical/heal_pack/gauze = 1,
 		/obj/item/stack/medical/heal_pack/ointment = 1,
 		/obj/item/explosive/plastique = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 
 /datum/outfit/job/vsd/spec/demolitionist
@@ -432,10 +435,6 @@
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/ammo_magazine/rocket/vsd/he = 4,
 		/obj/item/explosive/grenade/vsd = 2,
-	)
-
-	webbing_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 	)
 
 	l_pocket_contents = list(
@@ -462,10 +461,6 @@
 		/obj/item/weapon/gun/pistol/xmdivider/gunslinger = 1,
 	)
 
-	webbing_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
-	)
-
 /datum/outfit/job/vsd/spec/uslspec_one
 	w_uniform = /obj/item/clothing/under/vsd/upp/alt/webbing
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/alt
@@ -490,11 +485,6 @@
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
 	)
 
-	webbing_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
-	)
-
 	l_pocket_contents = list(
 		/obj/item/ammo_magazine/flamer_tank/mini = 3,
 	)
@@ -512,11 +502,6 @@
 	belt_contents = list(
 		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
 		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
-	)
-
-	webbing_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 
 	l_pocket_contents = list(
@@ -540,10 +525,6 @@
 	belt_contents = list(
 		/obj/item/ammo_magazine/pistol/xmdivider = 6,
 		/obj/item/weapon/gun/pistol/xmdivider = 1,
-	)
-
-	webbing_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 	)
 
 //juggernaut outfits
