@@ -22905,9 +22905,7 @@
 	},
 /area/mainship/squads/req)
 "sjp" = (
-/obj/effect/turf_decal/logo/logo_peripheral{
-	icon_state = "logo_central"
-	},
+/obj/effect/turf_decal/logo,
 /turf/open/floor/mainship_hull,
 /area/space)
 "sjq" = (
@@ -29920,7 +29918,6 @@
 /area/mainship/command/cic)
 "yio" = (
 /obj/machinery/cic_maptable,
-/obj/structure/table/mainship/nometal,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
