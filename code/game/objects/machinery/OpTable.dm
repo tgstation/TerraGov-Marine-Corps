@@ -20,6 +20,7 @@
 	var/blood_flow_on = 0
 
 	var/obj/machinery/computer/operating/computer = null
+	var/datum/health_scan/scanner = null
 
 /obj/machinery/optable/Initialize(mapload)
 	. = ..()
@@ -31,9 +32,14 @@
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/climbable)
 	blood_flow_on = 0
+	scanner = new(src)
 
 	return INITIALIZE_HINT_LATELOAD
 
+
+/obj/machinery/optable/Destroy(force, ...)
+	QDEL_NULL(scanner)
+	return ..()
 
 /obj/machinery/optable/LateInitialize()
 	for(dir in list(NORTH, EAST, SOUTH, WEST))
@@ -65,15 +71,14 @@
 
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	// Show the radial menu for open-hand interaction even when no patient is attached.
-	// Do not call ancestor behavior on open-hand clicks, since the table handles its
-	// own actions and disconnect logic explicitly.
 	var/list/radial_options = list(
 		"Eject Anesthetic" = image(icon='icons/obj/items/tank.dmi', icon_state="anesthetic"),
 		"Eject Blood Pack" = image(icon='icons/obj/items/bloodpack.dmi', icon_state="full"),
 		"Toggle Blood Flow" = image(icon='icons/obj/iv_drip.dmi', icon_state="hooked"),
-		"Disconnect Patient" = image(icon='icons/obj/surgery.dmi', icon_state="table1")
 	)
+	if(victim)
+		radial_options["Analyze Vitals"] = image(icon='icons/obj/device.dmi', icon_state="health")
+		radial_options["Disconnect Patient"] = image(icon='icons/obj/surgery.dmi', icon_state="table1")
 	var/choice = show_radial_menu(user, src, radial_options, null, 48, require_near = TRUE, tooltips = TRUE)
 	if(!choice)
 		return
@@ -83,6 +88,7 @@
 			to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
 			playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
 			anes_tank = null
+			update_icon()
 		else
 			to_chat(user, span_warning("There is no anesthetic tank connected."))
 	if(choice == "Eject Blood Pack")
@@ -91,6 +97,7 @@
 			to_chat(user, span_notice("You remove \the [blood_pack] from \the [src]."))
 			playsound(loc, 'sound/effects/pop.ogg', 25, 1)
 			blood_pack = null
+			update_icon()
 		else
 			to_chat(user, span_warning("There is no blood pack connected."))
 	if(choice == "Toggle Blood Flow")
@@ -108,6 +115,11 @@
 			to_chat(user, span_notice("You disconnect [victim] from the table."))
 		else
 			to_chat(user, span_warning("There is no patient to disconnect."))
+	if(choice == "Analyze Vitals")
+		if(victim && scanner)
+			scanner.analyze_vitals(victim, user)
+		else
+			to_chat(user, span_warning("There is no patient to scan."))
 	return
 
 
@@ -202,17 +214,46 @@
 	icon_state = "table2-idle"
 	return 0
 
+/obj/machinery/optable/update_overlays()
+	. = ..()
+
+	if(blood_pack)
+		var/datum/reagents/reagents = blood_pack.reagents
+		if(reagents?.total_volume)
+			var/image/filling = image('icons/obj/surgery.dmi', src, "blood")
+
+			var/percent = round((reagents.total_volume / blood_pack.volume) * 100)
+			switch(percent)
+				if(0 to 9)
+					filling.icon_state = "blood0"
+				if(10 to 24)
+					filling.icon_state = "blood10"
+				if(25 to 49)
+					filling.icon_state = "blood25"
+				if(50 to 74)
+					filling.icon_state = "blood50"
+				if(75 to 79)
+					filling.icon_state = "blood75"
+				if(80 to 90)
+					filling.icon_state = "blood80"
+				if(91 to INFINITY)
+					filling.icon_state = "blood100"
+
+			filling.color = mix_color_from_reagents(reagents.reagent_list)
+			. += filling
+
+	if(anes_tank)
+		var/image/anesthetic_overlay = image('icons/obj/surgery.dmi', src, "tank")
+		. += anesthetic_overlay
+
 /obj/machinery/optable/process()
 	check_victim()
-	// If blood flow is enabled, attempt a small transfusion each process tick
 	if(blood_flow_on && victim && blood_pack && blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) > 0)
 		var/transfer_amount = 4
-		if(victim.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(victim.blood_volume <= BLOOD_VOLUME_NORMAL)
 			victim.inject_blood(blood_pack, transfer_amount)
-			if(prob(10))
-				to_chat(victim, span_information("You feel slightly less faint."))
+			update_icon()
 		else
-			// Victim no longer needs blood, stop flow
 			blood_flow_on = 0
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
@@ -252,6 +293,8 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		update_icon()
 
 	if(istype(I, /obj/item/reagent_containers/blood))
 		if(blood_pack)
@@ -259,6 +302,8 @@
 		user.transferItemToLoc(I, src)
 		blood_pack = I
 		to_chat(user, span_notice("You connect \the [blood_pack] to \the [src]."))
+		playsound(loc, 'sound/items/hypospray.ogg', 25, 1)
+		update_icon()
 
 	if(istype(I, /obj/item/riding_offhand))
 		var/obj/item/riding_offhand/carry_obj = I
