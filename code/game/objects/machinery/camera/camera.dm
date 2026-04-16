@@ -80,7 +80,7 @@
 			pixel_w = 0
 		if(SOUTH)
 			pixel_z = 32
-			pixel_w
+			pixel_w = 0
 		if(EAST)
 			pixel_z = 0
 			pixel_w = -24
