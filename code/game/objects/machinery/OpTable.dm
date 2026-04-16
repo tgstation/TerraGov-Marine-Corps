@@ -101,14 +101,8 @@
 		else
 			to_chat(user, span_warning("There is no blood pack connected."))
 	if(choice == "Toggle Blood Flow")
-		var/text
-		if(blood_flow_on)
-			blood_flow_on = 0
-			text = "off"
-		else
-			blood_flow_on = 1
-			text = "on"
-		to_chat(user, span_notice("Blood flow is now [text]."))
+		blood_flow_on = !blood_flow_on
+		to_chat(user, span_notice("Blood flow is now [blood_flow_on ? "on" : "off"]."))
 	if(choice == "Disconnect Patient")
 		if(victim)
 			user_unbuckle_mob(victim, user)
