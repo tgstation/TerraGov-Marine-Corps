@@ -28,6 +28,7 @@
 	user.visible_message(span_notice("[user] begins to cut through [target]'s [affected.encased] with \the [tool]."), \
 	span_notice("You begin to cut through [target]'s [affected.encased] with \the [tool]."))
 	target.balloon_alert_to_viewers("Sawing...")
+	sound_to_play = 'sound/surgery/saw.ogg'
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
@@ -35,6 +36,7 @@
 	user.visible_message(span_notice("[user] has cut [target]'s [affected.encased] open with \the [tool]."),		\
 	span_notice("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
+	sound_to_play = 'sound/surgery/circsawfail1.ogg'
 	affected.surgery_open_stage = 2.5
 	return ..()
 
@@ -42,7 +44,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!") , \
 	span_warning("Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!") )
 	target.balloon_alert_to_viewers("Slipped!")
-
+	sound_to_play = 'sound/effects/splat.ogg'
 	affected.createwound(CUT, 20)
 	affected.fracture()
 	affected.update_wounds()
@@ -62,6 +64,7 @@
 	user.visible_message(span_notice("[user] starts to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You start to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Bending...")
+	sound_to_play = pick('sound/surgery/retractor1.ogg', 'sound/surgery/retractor2.ogg')
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
@@ -81,6 +84,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased]!"), \
 	span_warning("Your hand slips, cracking [target]'s  [affected.encased]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
@@ -101,6 +105,7 @@
 	user.visible_message(span_notice("[user] starts bending [target]'s [affected.encased] back into place with \the [tool]."), \
 	span_notice("You start bending [target]'s [affected.encased] back into place with \the [tool]."))
 	target.balloon_alert_to_viewers("Bending...")
+	sound_to_play = pick('sound/surgery/retractor1.ogg', 'sound/surgery/retractor2.ogg')
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
@@ -115,6 +120,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"), \
 	span_warning("Your hand slips, bending [target]'s [affected.encased] the wrong way!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
 	affected.update_wounds()
@@ -134,6 +140,7 @@
 	user.visible_message(span_notice("[user] starts applying \the [tool] to [target]'s [affected.encased]."), \
 	span_notice("You start applying \the [tool] to [target]'s [affected.encased]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
+	sound_to_play = pick('sound/surgery/organ1.ogg', 'sound/surgery/organ2.ogg')
 	target.balloon_alert_to_viewers("Applying gel...")
 	..()
 

@@ -26,6 +26,7 @@
 /datum/surgery_step/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool].") , \
 	span_notice("You are beginning to cut off [target]'s [affected.display_name] with \the [tool]."))
+	sound_to_play = 'sound/surgery/saw.ogg'
 	target.balloon_alert_to_viewers("Sawing...")
 	target.custom_pain("Your [affected.display_name] is being ripped apart!", 1)
 	..()
@@ -33,6 +34,7 @@
 /datum/surgery_step/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] cuts off [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You cut off [target]'s [affected.display_name] with \the [tool]."))
+	sound_to_play = 'sound/surgery/circsawfail1.ogg'
 	target.balloon_alert_to_viewers("Success")
 	affected.droplimb(1)
 	target.updatehealth()

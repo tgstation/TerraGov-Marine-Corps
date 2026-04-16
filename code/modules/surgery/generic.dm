@@ -2,6 +2,8 @@
 //////////////////////////////////////////////////////////////////
 //						COMMON STEPS							//
 //////////////////////////////////////////////////////////////////
+/datum/surgery_step
+	var/sound_to_play
 
 /datum/surgery_step/generic
 	can_infect = TRUE
@@ -35,6 +37,7 @@
 	user.visible_message(span_notice("[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Incising...")
+	sound_to_play = pick('sound/surgery/scalpel1.ogg', 'sound/surgery/scalpel2.ogg')
 	target.custom_pain("You feel a horrible, searing pain in your [affected.display_name] as it is pushed apart!",1)
 	..()
 
@@ -57,6 +60,8 @@
 	user.visible_message(span_warning("[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = pick('sound/effects/bone_break1.ogg', 'sound/effects/bone_break2.ogg', 'sound/effects/bone_break3.ogg')
+	sound_to_play = 'sound/effects/sparks1.ogg'
 	affected.createwound(CUT, 20)
 	affected.createwound(BURN, 15)
 	affected.update_wounds()
@@ -127,6 +132,7 @@
 	span_notice("You start the incision on [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.display_name]!", 1)
 	target.balloon_alert_to_viewers("Incising...")
+	sound_to_play = pick('sound/surgery/scalpel1.ogg', 'sound/surgery/scalpel2.ogg')
 	..()
 
 /datum/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -146,6 +152,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!"), \
 	span_warning("Your hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	affected.createwound(CUT, 10)
 	affected.update_wounds()
 
@@ -172,6 +179,7 @@
 	span_notice("You start clamping bleeders in [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("The pain in your [affected.display_name] is maddening!", 1)
 	target.balloon_alert_to_viewers("Clamping...")
+	sound_to_play = pick('sound/surgery/hemostat1.ogg', 'sound/surgery/hemostat2.ogg')
 	..()
 
 /datum/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -186,6 +194,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!"),	\
 	span_warning("Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	affected.createwound(CUT, 10)
 	affected.update_wounds()
 
@@ -206,6 +215,7 @@
 	if(target_zone == "groin")
 		user.visible_message(span_notice("[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."), \
 		span_notice("You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."))
+		sound_to_play = pick('sound/surgery/retractor1.ogg', 'sound/surgery/retractor2.ogg')
 	else
 		user.visible_message(span_notice("[user] starts to pry open the incision on [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice("You start to pry open the incision on [target]'s [affected.display_name] with \the [tool]."))
@@ -217,12 +227,15 @@
 	if(target_zone == "chest")
 		user.visible_message(span_notice("[user] keeps the ribcage open on [target]'s torso with \the [tool]."), \
 		span_notice("You keep the ribcage open on [target]'s torso with \the [tool]."))
+		sound_to_play = pick('sound/surgery/hemostat1.ogg', 'sound/surgery/hemostat2.ogg')
 	else if(target_zone == "groin")
 		user.visible_message(span_notice("[user] keeps the incision open on [target]'s lower abdomen with \the [tool]."), \
 		span_notice("You keep the incision open on [target]'s lower abdomen with \the [tool]."))
+		sound_to_play = pick('sound/surgery/hemostat1.ogg', 'sound/surgery/hemostat2.ogg')
 	else
 		user.visible_message(span_notice("[user] keeps the incision open on [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice("You keep the incision open on [target]'s [affected.display_name] with \the [tool]."))
+		sound_to_play = pick('sound/surgery/hemostat1.ogg', 'sound/surgery/hemostat2.ogg')
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2
 	return ..()
@@ -238,6 +251,7 @@
 		user.visible_message(span_warning("[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!"), \
 		span_warning("Your hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	target.apply_damage(12, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 	affected.update_wounds()
 
@@ -263,6 +277,7 @@
 /datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].") , \
 	span_notice("You are beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool]."))
+	sound_to_play = pick('sound/surgery/cautery1.ogg', 'sound/surgery/cautery2.ogg')
 	target.custom_pain("Your [affected.display_name] is being burned!", 1)
 	target.balloon_alert_to_viewers("Cauterizing...")
 	..()
@@ -280,6 +295,7 @@
 	user.visible_message(span_warning("[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	target.apply_damage(3, BURN, affected, updating_health = TRUE)
 
 ///Sewing people closed. Not fast, but works on corpses.
@@ -307,6 +323,7 @@
 /datum/surgery_step/generic/repair/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to suture the wounds on [target]'s [affected.display_name].")  , \
 	span_notice("You are beginning to suture the wounds on [target]'s [affected.display_name].") )
+	sound_to_play = pick('sound/surgery/suture1.ogg', 'sound/surgery/suture2.ogg')
 	target.custom_pain("Your [affected.display_name] is getting stabbed!!", 1)
 	target.balloon_alert_to_viewers("Suturing...")
 	..()
@@ -325,4 +342,5 @@
 	user.visible_message(span_warning("[user]'s hand slips, tearing through [target]'s skin with \the [tool]!") , \
 	span_warning("Your hand slips, tearing \the [tool] through [target]'s skin!") )
 	target.balloon_alert_to_viewers("Slipped!")
+	sound_to_play = 'sound/effects/splat.ogg'
 	affected.take_damage_limb(5, updating_health = TRUE)
