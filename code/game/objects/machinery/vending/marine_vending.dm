@@ -233,6 +233,13 @@
 		SEASONAL_HEAVY = "Operational Weapons",
 	)
 
+/obj/machinery/vending/weapon/mark2
+	name = "Automated Weapons Rack MK2"
+	desc = "A compacted automated weapon rack hooked up to a colossal storage of standard-issue weapons."
+	icon_state = "mk2_marinearmory"
+	icon_vend = "mk2_marinearmory-vend"
+	icon_deny = "mk2_marinearmory"
+
 /obj/machinery/vending/weapon/crash
 	products = list(
 		"Rifles" = list(

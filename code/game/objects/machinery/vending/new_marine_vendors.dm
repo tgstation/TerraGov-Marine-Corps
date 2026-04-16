@@ -224,6 +224,17 @@
 	. = ..()
 	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
 
+/obj/machinery/marine_selector/clothes/mark2
+	name = "\improper GHMME Automated Closet MK2"
+	desc = "A compressed automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
+	icon_state = "mk2_marineuniform"
+	icon_vend = "mk2_marineuniform-vend"
+	icon_deny = "mk2_marineuniform-deny"
+
+/obj/machinery/marine_selector/clothes/mark2/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
+
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
