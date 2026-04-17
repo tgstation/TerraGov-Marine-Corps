@@ -390,7 +390,7 @@
 		var/mob/living/carbon/human/H = crushed
 		var/datum/limb/limb = pick(H.limbs)
 		if(limb.body_part == CHEST || limb.body_part == GROIN)
-			limb = H.get_limb("head")//Total chance 3/11 = 27%
+			limb = H.get_limb(BODY_ZONE_HEAD)//Total chance 3/11 = 27%
 
 		if(!(limb.limb_status & LIMB_DESTROYED))
 			H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] is pulped by [src]!"))
