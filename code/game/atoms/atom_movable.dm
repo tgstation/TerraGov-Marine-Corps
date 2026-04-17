@@ -761,7 +761,7 @@
 	var/turf/origin = get_turf(src)
 
 	if(!targetted_throw)
-		target = get_turf_at_angle(origin, Get_Angle(origin, target), range)
+		target = get_turf_at_angle_ranged(origin, Get_Angle(origin, target), range)
 
 	if(spin)
 		animation_spin(5, 1)

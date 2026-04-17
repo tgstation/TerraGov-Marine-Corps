@@ -458,7 +458,7 @@
 		throw_at(user, 4 + psi_power, psi_power, user, TRUE)
 	else
 		var/user_turf = get_turf(user)
-		var/target = get_turf_at_angle(user_turf, Get_Angle(user_turf, src), 7)
+		var/target = get_turf_at_angle_ranged(user_turf, Get_Angle(user_turf, src), 7)
 		throw_at(target, 4 + psi_power, psi_power, user, TRUE)
 	return list(3 SECONDS, 10)
 
