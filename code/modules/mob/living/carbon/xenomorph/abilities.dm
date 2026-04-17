@@ -603,7 +603,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	///Who we're giving plasma to
 	var/mob/living/carbon/xenomorph/transfer_target
 	///Holder for beam effect
-	var/beam_holder
+	var/datum/beam/beam_holder
 
 /datum/action/ability/activable/xeno/transfer_plasma/beam/remove_action(mob/living/L)
 	deltimer(cycle_timer)
