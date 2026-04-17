@@ -13362,9 +13362,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_main_hall)
 "gsg" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/computer/operating,
 /turf/open/floor/prison/whitegreen/corner,
