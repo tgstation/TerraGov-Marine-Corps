@@ -13578,7 +13578,7 @@
 /area/sulaco/briefing)
 "gJd" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
