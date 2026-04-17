@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(silo)
 	for(var/mob/living/carbon/human/human AS in human_list)
 		if(!human.key && !human.has_ai())
 			continue
-		active_humans ++
+		active_humans++
 
 	var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
