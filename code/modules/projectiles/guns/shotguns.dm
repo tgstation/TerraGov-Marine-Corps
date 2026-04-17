@@ -633,7 +633,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 9 //codex
+	max_chamber_items = 12 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -643,21 +643,26 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/bayonet/converted,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
-	fire_delay = 0.8 SECONDS
+	fire_delay = 0.4 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 7
-	recoil = 2
-	recoil_unwielded = 4
-	cock_delay = 0.6 SECONDS
+	recoil = 1
+	recoil_unwielded = 3
+	cock_delay = 0.2 SECONDS
 
 
 // ***********************************************
