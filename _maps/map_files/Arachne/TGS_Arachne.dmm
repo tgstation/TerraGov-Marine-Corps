@@ -315,10 +315,6 @@
 /area/mainship/engineering/engineering_workshop)
 "amv" = (
 /obj/machinery/bodyscanner,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 5;
-	pixel_y = 1
-	},
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -3986,8 +3982,8 @@
 /area/mainship/shipboard/firing_range)
 "dor" = (
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1;
-	pixel_y = 1
+	dir = 6;
+	pixel_x = 1
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical)
@@ -6551,6 +6547,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/structure/cable,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "fpg" = (
@@ -7437,16 +7434,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
-"gey" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1;
-	pixel_y = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical)
 "geI" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
@@ -14181,14 +14168,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
-"ltL" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1;
-	pixel_y = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/medical)
 "lud" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/power/apc/mainship{
@@ -18485,19 +18464,17 @@
 /area/mainship/command/cic)
 "oLU" = (
 /obj/structure/disposalpipe/segment/corner,
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/toxin{
-	pixel_y = 9
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/obj/item/storage/firstaid/adv{
-	pixel_x = -6;
-	pixel_y = 2
+/obj/machinery/door/window{
+	dir = 2
 	},
-/obj/item/storage/firstaid/o2{
-	pixel_x = 7;
-	pixel_y = 2
+/obj/machinery/shower{
+	dir = 8
 	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/item/tool/soap/nanotrasen,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/operating_room_one)
 "oMq" = (
 /obj/machinery/marine_selector/gear/commander,
@@ -21113,7 +21090,6 @@
 	},
 /area/mainship/squads/general)
 "qVc" = (
-/obj/machinery/iv_drip,
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
@@ -21121,7 +21097,18 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/item/reagent_containers/blood/OMinus,
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_y = 9
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "qVx" = (
@@ -27936,7 +27923,6 @@
 	},
 /area/mainship/medical)
 "wAO" = (
-/obj/machinery/iv_drip,
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
@@ -27944,7 +27930,18 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/item/reagent_containers/blood/OMinus,
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_y = 9
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "wAT" = (
@@ -28236,19 +28233,17 @@
 /area/mainship/hallways/port_hallway)
 "wLQ" = (
 /obj/structure/disposalpipe/segment/corner,
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/toxin{
-	pixel_y = 9
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/obj/item/storage/firstaid/adv{
-	pixel_x = -6;
-	pixel_y = 2
+/obj/machinery/door/window{
+	dir = 2
 	},
-/obj/item/storage/firstaid/o2{
-	pixel_x = 7;
-	pixel_y = 2
+/obj/machinery/shower{
+	dir = 8
 	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/item/tool/soap/nanotrasen,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/operating_room_two)
 "wLX" = (
 /obj/structure/disposalpipe/segment,
@@ -29797,6 +29792,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/structure/cable,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "yee" = (
@@ -34841,7 +34837,7 @@ vzI
 nzR
 rEk
 rEk
-ptU
+dor
 jSN
 rtx
 rEk
@@ -35862,7 +35858,7 @@ lDr
 lDr
 lDr
 fmv
-dor
+ptU
 lrt
 nzR
 ovG
@@ -35964,7 +35960,7 @@ aJm
 aJm
 aJm
 qvX
-dor
+ptU
 nfv
 xxL
 oYS
@@ -36066,7 +36062,7 @@ kRl
 jal
 wOI
 epc
-ltL
+bfz
 gMW
 nzR
 nzR
@@ -36168,7 +36164,7 @@ tlm
 sZo
 rlz
 aeb
-gey
+qYN
 aYg
 tUV
 grh
@@ -36270,7 +36266,7 @@ aJm
 dEQ
 xDf
 vzI
-tHO
+rEk
 dRQ
 niq
 yio
