@@ -633,7 +633,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 12 //codex
+	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -660,7 +660,7 @@
 	accuracy_mult_unwielded = 0.7
 	scatter = 1
 	scatter_unwielded = 7
-	recoil = 1
+	recoil = 0
 	recoil_unwielded = 3
 	cock_delay = 0.2 SECONDS
 
