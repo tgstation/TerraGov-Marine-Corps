@@ -405,15 +405,14 @@
 	do_jitter_animation(1000)
 	if(!client)
 		if(should_offer_to_ghost)
-			if(!iszombie(src) && !should_zombify)
-				offer_mob()
+			offer_mob()
 			addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
 			return
 	if(should_zombify)
 		if(!iszombie(src))
 			set_species("Strong zombie")
 		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling)
-		if(client)
+		if(client && !(src in GLOB.possessed_sentient_zombie_list))
 			GLOB.possessed_sentient_zombie_list += src
 	heal_limbs(-health)
 	set_stat(CONSCIOUS)
