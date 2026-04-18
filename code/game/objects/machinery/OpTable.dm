@@ -15,10 +15,11 @@
 	var/strapped = 0
 	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
+	///sending blood to patient
+	var/blood_flow_on = FALSE
+
 	var/obj/item/tank/anesthetic/anes_tank
 	var/obj/item/reagent_containers/blood/blood_pack
-	var/blood_flow_on = 0
-
 	var/obj/machinery/computer/operating/computer = null
 	var/datum/health_scan/scanner = null
 
@@ -31,7 +32,6 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/climbable)
-	blood_flow_on = 0
 	scanner = new(src)
 
 	return INITIALIZE_HINT_LATELOAD
@@ -71,6 +71,7 @@
 
 
 /obj/machinery/optable/attack_hand(mob/living/user)
+	..()
 	var/list/radial_options = list(
 		"Eject Anesthetic" = image(icon='icons/obj/items/tank.dmi', icon_state="anesthetic"),
 		"Eject Blood Pack" = image(icon='icons/obj/items/bloodpack.dmi', icon_state="full"),
@@ -88,7 +89,7 @@
 			to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
 			playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
 			anes_tank = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("There is no anesthetic tank connected."))
 	if(choice == "Eject Blood Pack")
@@ -97,7 +98,7 @@
 			to_chat(user, span_notice("You remove \the [blood_pack] from \the [src]."))
 			playsound(loc, 'sound/effects/pop.ogg', 25, 1)
 			blood_pack = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("There is no blood pack connected."))
 	if(choice == "Toggle Blood Flow")
@@ -246,9 +247,9 @@
 		var/transfer_amount = 4
 		if(victim.blood_volume <= BLOOD_VOLUME_NORMAL)
 			victim.inject_blood(blood_pack, transfer_amount)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
-			blood_flow_on = 0
+			blood_flow_on = FALSE
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
 	if (C == user)
@@ -288,7 +289,7 @@
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if(istype(I, /obj/item/reagent_containers/blood))
 		if(blood_pack)
@@ -297,7 +298,7 @@
 		blood_pack = I
 		to_chat(user, span_notice("You connect \the [blood_pack] to \the [src]."))
 		playsound(loc, 'sound/items/hypospray.ogg', 25, 1)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if(istype(I, /obj/item/riding_offhand))
 		var/obj/item/riding_offhand/carry_obj = I
