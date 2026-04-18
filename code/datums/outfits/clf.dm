@@ -31,7 +31,8 @@
 	belt = /obj/item/storage/belt/knifepouch
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/uzi/update_contents()
+	backpack_contents += list(
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/ammo_magazine/smg/uzi/extended = 8,
 	)
@@ -41,7 +42,8 @@
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/skorpion/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/smg/skorpion = 7,
 	)
@@ -50,31 +52,31 @@
 /datum/outfit/job/clf/standard/mpi_km
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/standard
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/mpi_km = 6,
+	)
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/mpi_km/update_contents()
+	backpack_contents += list(
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/stack/sheet/metal/medium_stack = 1,
-	)
-
-	belt_contents = list(
-		/obj/item/ammo_magazine/rifle/mpi_km = 6,
 	)
 
 
 /datum/outfit/job/clf/standard/shotgun
 	belt = /obj/item/storage/belt/shotgun
 	suit_store = /obj/item/weapon/gun/shotgun/pump/standard
-
-	backpack_contents = list(
-		/obj/item/storage/box/m94 = 1,
-		/obj/item/explosive/plastique = 1,
-		/obj/item/stack/sheet/metal/medium_stack = 1,
-	)
-
 	belt_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 7,
 		/obj/item/ammo_magazine/handful/flechette = 7,
+	)
+
+/datum/outfit/job/clf/standard/shotgun/update_contents()
+	backpack_contents += list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/explosive/plastique = 1,
+		/obj/item/stack/sheet/metal/medium_stack = 1,
 	)
 
 
@@ -84,7 +86,8 @@
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/shotgun/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/explosive/grenade/phosphorus/upp = 1,
 		/obj/item/ammo_magazine/smg/skorpion = 5,
@@ -94,30 +97,30 @@
 /datum/outfit/job/clf/standard/som_smg
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/smg/som/basic
+	belt_contents = list(
+		/obj/item/ammo_magazine/smg/som = 6,
+	)
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/som_smg/update_contents()
+	backpack_contents += list(
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/stack/sheet/metal/medium_stack = 1,
-	)
-
-	belt_contents = list(
-		/obj/item/ammo_magazine/smg/som = 6,
 	)
 
 
 /datum/outfit/job/clf/standard/garand
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/rifle/garand
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/garand = 6,
+	)
 
-	backpack_contents = list(
+/datum/outfit/job/clf/standard/garand/update_contents()
+	backpack_contents += list(
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/stack/sheet/metal/medium_stack = 1,
-	)
-
-	belt_contents = list(
-		/obj/item/ammo_magazine/rifle/garand = 6,
 	)
 
 
@@ -157,41 +160,41 @@
 /datum/outfit/job/clf/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
 	r_pocket = /obj/item/storage/holster/flarepouch
-
-	backpack_contents = list(
-		/obj/item/ammo_magazine/smg/uzi/extended = 7,
-	)
-
 	r_pocket_contents = list(
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1,
 		/obj/item/explosive/grenade/flare = 6,
+	)
+
+/datum/outfit/job/clf/medic/uzi/update_contents()
+	backpack_contents += list(
+		/obj/item/ammo_magazine/smg/uzi/extended = 7,
 	)
 
 
 /datum/outfit/job/clf/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 	r_pocket = /obj/item/storage/holster/flarepouch
-
-	backpack_contents = list(
-		/obj/item/ammo_magazine/smg/skorpion = 7,
-	)
-
 	r_pocket_contents = list(
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1,
 		/obj/item/explosive/grenade/flare = 6,
+	)
+
+/datum/outfit/job/clf/medic/skorpion/update_contents()
+	backpack_contents += list(
+		/obj/item/ammo_magazine/smg/skorpion = 7,
 	)
 
 
 /datum/outfit/job/clf/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	r_pocket = /obj/item/storage/pouch/shotgun
-
-	backpack_contents = list(
+	r_pocket_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/handful/flechette = 2,
 	)
 
-	r_pocket_contents = list(
+/datum/outfit/job/clf/medic/paladin/update_contents()
+	backpack_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/handful/flechette = 2,
 	)

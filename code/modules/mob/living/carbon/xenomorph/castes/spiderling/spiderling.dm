@@ -91,7 +91,7 @@
 
 /datum/ai_behavior/spiderling/should_hold()
 	//We don't move if we're riding mum
-	if(current_action == ESCORTING_ATOM && (mob_parent.buckled = escorted_atom))
+	if(current_action == ESCORTING_ATOM && (mob_parent.buckled == escorted_atom))
 		return TRUE
 	return ..()
 
@@ -225,14 +225,12 @@
 /// rest when widow does
 /datum/ai_behavior/spiderling/proc/start_resting(mob/source)
 	SIGNAL_HANDLER
-	var/mob/living/living = mob_parent
-	living?.set_resting(TRUE)
+	mob_parent?.set_resting(TRUE)
 
 /// stop resting when widow does, plus unbuckle all mobs so the widow won't get stuck
 /datum/ai_behavior/spiderling/proc/stop_resting(mob/source)
 	SIGNAL_HANDLER
-	var/mob/living/living = mob_parent
-	living?.set_resting(FALSE)
+	mob_parent?.set_resting(FALSE)
 	source?.unbuckle_all_mobs()
 
 /// Signal handler to make the spiderling jump when widow does

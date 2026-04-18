@@ -256,6 +256,9 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
+	if(owner.stat != DEAD && !(limb_status & LIMB_BROKEN) && CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
+		fracture()
+
 	if(body_part == CHEST || body_part == GROIN)
 		if(updating_health)
 			owner.updatehealth()
@@ -265,9 +268,10 @@
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
+
 	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO)
 		droplimb()
-		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+		if(!(owner.species?.species_flags & NO_PAIN))
 			owner.emote("scream")
 		return
 
@@ -380,10 +384,6 @@
 	// Process wounds, doing healing etc. Only do this every few ticks to save processing power
 	if(owner.life_tick % wound_update_accuracy == 0)
 		update_wounds(limb_regen_penalty)
-
-	//Bone fractures
-	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage && !(limb_status & LIMB_ROBOT))
-		fracture()
 
 	//Infections
 	update_germs()
@@ -660,7 +660,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_to_drop?.droplimb(TRUE, TRUE)
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
+/datum/limb/proc/droplimb(amputation, delete_limb = FALSE, gibbing = FALSE, silent = FALSE)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 
@@ -687,7 +687,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// If any organs are attached to this, destroy them
 	for(var/c in children)
 		var/datum/limb/appendage = c
-		appendage.droplimb(amputation, delete_limb, TRUE)
+		appendage.droplimb(amputation, delete_limb, gibbing, TRUE)
 
 	//Clear out any internal and external wounds, damage the parent limb
 	QDEL_LIST(wounds)
@@ -771,11 +771,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
 	release_restraints()
 
-	if(vital)
+	if(vital && !gibbing)
 		owner.death()
+
 	return TRUE
 
-/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
+/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE, gibbing = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -836,22 +837,22 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return limb_wound_status & LIMB_WOUND_SALVED || !burn_dam
 
 /datum/limb/proc/fracture()
-
-	if(limb_status & (LIMB_BROKEN|LIMB_DESTROYED|LIMB_ROBOT) )
+	if(limb_status & (LIMB_BROKEN|LIMB_DESTROYED|LIMB_ROBOT))
 		return
 
-	owner.visible_message(\
+	owner.visible_message(
 		span_warning("You hear a loud cracking sound coming from [owner]!"),
 		span_userdanger("Something feels like it shattered in your [display_name]!"),
-		"<span class='warning'>You hear a sickening crack!<span>")
+		span_warning("You hear a sickening crack!"),
+	)
 	var/soundeffect = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
 	playsound(owner,soundeffect, 45, 1)
-	if(owner.species && !(owner.species.species_flags & NO_PAIN))
+	if(!(owner.species?.species_flags & NO_PAIN))
 		owner.emote("scream")
 
 	add_limb_flags(LIMB_BROKEN)
 	remove_limb_flags(LIMB_REPAIRED)
-	broken_description = pick("broken","fracture","hairline fracture")
+	broken_description = pick("broken", "fracture", "hairline fracture")
 
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
@@ -1153,7 +1154,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	face_surgery_stage = 0
 
 
-/datum/limb/head/droplimb(amputation, delete_limb = FALSE, silent = FALSE)
+/datum/limb/head/droplimb(amputation, delete_limb = FALSE, gibbing = FALSE, silent = FALSE)
 	. = ..()
 	if(!.)
 		return

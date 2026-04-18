@@ -27,7 +27,7 @@
 		return 0
 
 /datum/internal_organ/Destroy()
-	owner = null
+	clean_owner()
 	organ_holder = null
 	return ..()
 
@@ -49,6 +49,10 @@
 ///Signal handler to prevent hard del
 /datum/internal_organ/proc/clean_owner()
 	SIGNAL_HANDLER
+	if(!owner)
+		return
+	var/datum/limb/limb = owner.get_limb(parent_limb)
+	LAZYREMOVE(limb.internal_organs, src)
 	owner = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)

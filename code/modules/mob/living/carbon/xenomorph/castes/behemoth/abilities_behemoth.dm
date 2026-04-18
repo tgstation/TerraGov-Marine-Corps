@@ -16,6 +16,7 @@
 	icon_state = "earth_pillar"
 	layer = MOB_BELOW_PIGGYBACK_LAYER
 	climbable = TRUE
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	density = TRUE
 	coverage = INFINITY
 	max_integrity = 500

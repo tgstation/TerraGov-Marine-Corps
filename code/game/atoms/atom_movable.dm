@@ -723,7 +723,7 @@
 		return
 	if(!isturf(loc))
 		return
-	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
+	var/dir_to_proj = angle2dir_cardinal(Get_Angle(hit_atom, old_throw_source))
 	if(ISDIAGONALDIR(dir_to_proj))
 		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
 		for(var/direction in cardinals)
@@ -742,7 +742,7 @@
 	else if(new_angle > 360)
 		new_angle -= 360
 
-	step(src, angle_to_dir(new_angle))
+	step(src, angle2dir(new_angle))
 
 /atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
@@ -1663,3 +1663,12 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 */
 /atom/movable/proc/keybind_face_direction(direction)
 	setDir(direction)
+
+/// Sets and deals with any changes to the move_resist variable.
+/atom/movable/proc/set_move_resist(new_move_resist)
+	if(move_resist == new_move_resist)
+		return
+	move_resist = new_move_resist
+	if(pulledby && !can_be_pulled(pulledby))
+		pulledby.stop_pulling()
+

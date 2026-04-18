@@ -140,6 +140,7 @@
 /obj/item/tool/wrench,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/tool/screwdriver,
+/obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aw" = (
@@ -180,9 +181,6 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aA" = (
-/obj/structure/barricade/folding{
-	dir = 8
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "aB" = (
@@ -201,12 +199,6 @@
 /area/shuttle/canterbury/medical)
 "aD" = (
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"aF" = (
-/obj/structure/barricade/folding{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "aH" = (
 /obj/machinery/door/poddoor/mainship{
@@ -484,7 +476,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
-/obj/machinery/vending/uniform_supply,
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
@@ -702,18 +694,12 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/barricade/folding,
 /obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
-"cZ" = (
-/obj/structure/barricade/folding,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "da" = (
-/obj/structure/barricade/folding,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "aft_engine_podlock"
@@ -1003,7 +989,7 @@ aJ
 aJ
 aJ
 aJ
-cZ
+aD
 co
 "}
 (9,1,1) = {"
@@ -1104,9 +1090,9 @@ aa
 aa
 an
 ay
-aF
-aF
-aF
+aA
+aA
+aA
 an
 bp
 bq

@@ -95,9 +95,13 @@
 	name = "hatchet"
 	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
 	icon = 'icons/obj/items/tools.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	icon_state = "hatchet"
 	atom_flags = CONDUCT
-	force = 35
+	force = 45
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 25
 	throw_speed = 4

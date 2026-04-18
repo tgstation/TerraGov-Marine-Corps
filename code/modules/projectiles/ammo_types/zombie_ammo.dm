@@ -32,9 +32,9 @@
 /datum/ammo/bile_spit/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? proj.loc : target_turf)
 
-/datum/ammo/bile_spit/drop_nade(turf/T)
+/datum/ammo/bile_spit/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing/smoke_system = new
 	smoke_system.strength = 1.5
 	smoke_system.lifetime = 2
-	smoke_system.set_up(3, T)
+	smoke_system.set_up(3, target_turf)
 	smoke_system.start()

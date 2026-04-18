@@ -61,13 +61,16 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	objective_flags |= CAMPAIGN_OBJECTIVE_DISABLED
 	GLOB.campaign_objectives -= src
-	SSminimaps.remove_marker(src)
+	update_control_minimap_icon()
 	return TRUE
 
 ///Update the minimap blips to show who is controlling this objective
 /obj/structure/campaign_objective/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "campaign_objective", MINIMAP_LABELS_LAYER))
+	var/new_icon_state = "campaign_objective"
+	if(objective_flags & CAMPAIGN_OBJECTIVE_DISABLED)
+		new_icon_state += "_disabled"
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, MINIMAP_LABELS_LAYER))
 
 ///Remaining time for overhead countdown if applicable
 /obj/structure/campaign_objective/proc/get_time_left()

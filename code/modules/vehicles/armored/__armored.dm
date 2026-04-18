@@ -88,10 +88,14 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
+	///How many humans this is worth for silo gen calcs
+	var/larva_value = 5
 	///How close a wrecked vehicle is to being prepared for repair
 	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
+		larva_value = 0
 	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
@@ -373,7 +377,6 @@
 	if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
 	if(!loc_override && !(entering_mob.loc in enter_locations(entering_mob)))
-		balloon_alert(entering_mob, "not at entrance")
 		return FALSE
 	return ..()
 
@@ -592,7 +595,10 @@
 		return ..()
 	if(!isliving(M))
 		return
-	try_easy_load(dropping, M)
+	if(try_easy_load(dropping, M))
+		return TRUE
+	if(isliving(dropping))
+		return ..() //we help them onto the vehicle
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	return try_easy_load(grab.grabbed_thing, user)
@@ -695,7 +701,7 @@
 ///Rotates the cannon overlay
 /obj/vehicle/sealed/armored/proc/swivel_turret(atom/A, new_weapon_dir)
 	if(!new_weapon_dir)
-		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
+		new_weapon_dir = angle2dir_cardinal(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam

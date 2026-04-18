@@ -3,8 +3,6 @@
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "walllocker"
-	pixel_x = -16
-	pixel_y = -16
 	density = FALSE
 	anchored = TRUE
 	icon_closed = "walllocker"
@@ -16,17 +14,23 @@
 
 /obj/structure/closet/walllocker/Initialize(mapload, ndir)
 	. = ..()
-	if(ndir)
-		dir = ndir
+	setDir(ndir ? ndir : dir)
+
+/obj/structure/closet/walllocker/setDir(newdir)
+	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_w = -16
+			pixel_z = -48
 		if(SOUTH)
-			pixel_y = 32
+			pixel_w = -16
+			pixel_z = -16
 		if(EAST)
-			pixel_x = -32
+			pixel_w = -48
+			pixel_z = -12
 		if(WEST)
-			pixel_x = 32
+			pixel_w = 16
+			pixel_z = -12
 
 /obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
 	name = "emergency locker"
@@ -88,8 +92,6 @@
 	name = "secure wall locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/wallframes.dmi'
-	pixel_x = -16
-	pixel_y = -16
 	icon_state = "sec_locker1"
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
@@ -106,17 +108,23 @@
 
 /obj/structure/closet/secure_closet/walllocker/Initialize(mapload, ndir)
 	. = ..()
-	if(ndir)
-		dir = ndir
+	setDir(ndir ? ndir : dir)
+
+/obj/structure/closet/secure_closet/walllocker/setDir(newdir)
+	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_w = -16
+			pixel_z = -48
 		if(SOUTH)
-			pixel_y += 32
+			pixel_w = -16
+			pixel_z = -16
 		if(EAST)
-			pixel_x -= 32
+			pixel_w = -48
+			pixel_z = -12
 		if(WEST)
-			pixel_x += 32
+			pixel_w = 16
+			pixel_z = -12
 
 /obj/structure/closet/secure_closet/walllocker/medical
 	name = "first aid closet"
@@ -147,8 +155,6 @@
 	desc = "It's a secure wall locker for personnel. The first card swiped gains control."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "sec_locker1"
-	pixel_x = -16
-	pixel_y = -16
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
 	icon_opened = "sec_locker_opened"
@@ -164,14 +170,20 @@
 
 /obj/structure/closet/secure_closet/personal/walllocker/Initialize(mapload, ndir)
 	. = ..()
-	if(ndir)
-		dir = ndir
+	setDir(ndir ? ndir : dir)
+
+/obj/structure/closet/secure_closet/personal/walllocker/setDir(newdir)
+	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_w = -16
+			pixel_z = -48
 		if(SOUTH)
-			pixel_y += 32
+			pixel_w = -16
+			pixel_z = -16
 		if(EAST)
-			pixel_x -= 32
+			pixel_w = -48
+			pixel_z = -12
 		if(WEST)
-			pixel_x += 32
+			pixel_w = 16
+			pixel_z = -12

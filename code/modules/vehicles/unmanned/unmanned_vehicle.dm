@@ -154,6 +154,13 @@
 	else
 		next_move_delay = move_delay
 
+/obj/vehicle/unmanned/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		if(M.client)
+			M.client.move_delay = world.time
+	return ..()
+
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -406,7 +413,7 @@
 	name = "\improper Light UV Machinegun Crate"
 	desc = "A crate containing a light unmanned vehicle machinegun and some spare ammo."
 
-/obj/structure/closet/crate/uav_crate/light_turret/PopulateContents()
+/obj/structure/closet/crate/uav_crate/turret/PopulateContents()
 	new /obj/item/uav_turret(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)

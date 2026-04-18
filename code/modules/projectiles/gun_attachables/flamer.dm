@@ -50,6 +50,7 @@
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 	burn_time_mod = 0.3
+	range_modifier = 1
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red

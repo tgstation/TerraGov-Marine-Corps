@@ -29,6 +29,8 @@
 
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
+	if(veh.armored_flags & ARMORED_SELF_WALL_DAMAGE)
+		veh.take_damage(ram_damage * 0.4, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	if(stat == DEAD)
@@ -36,9 +38,10 @@
 	if(lying_angle)
 		return
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
-	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1)
+	//some dir variation so you can't chain wallsmash someone from 100 to 0... too easily
+	throw_at(get_step(get_step(loc, facing), pick(LeftAndRightOfDir(facing, TRUE) + facing)), 3, 2, veh, TRUE, TRUE)
 	take_overall_damage(ram_damage, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
-
+	return TRUE
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	gib() //fuck you
