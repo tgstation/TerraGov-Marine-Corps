@@ -10,8 +10,8 @@
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
-	melee_ap = 10
+	melee_damage = 26
+	melee_ap = 15
 
 	// *** Speed *** //
 	speed = -0.6

@@ -7,6 +7,7 @@
 // *********** Earth Pillar
 // ***************************************
 #define COMSIG_EARTH_PILLAR_DESTROY "earth_pillar_destroy"
+#define EARTH_PILLAR_CLIMB_DELAY 1.5 SECONDS
 #define EARTH_PILLAR_REPAIR_DELAY 1.4 SECONDS
 #define EARTH_PILLAR_REPAIR_AMOUNT 0.1 // percent
 
@@ -15,12 +16,10 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "earth_pillar"
 	layer = MOB_BELOW_PIGGYBACK_LAYER
-	climbable = TRUE
-	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	density = TRUE
 	coverage = INFINITY
 	max_integrity = 500
-	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
 	hit_sound = SFX_BEHEMOTH_EARTH_PILLAR_HIT
 	destroy_sound = 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg'
 	obj_flags = CAN_BE_HIT|BLOCKS_CONSTRUCTION
@@ -49,11 +48,13 @@
 	flash_visual.alpha = 0
 	flash_visual.layer = layer + 0.01
 	vis_contents += flash_visual
+	AddComponent(/datum/component/climbable, EARTH_PILLAR_CLIMB_DELAY)
 	setup_connections()
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_THROW, PROC_REF(pre_throw))
 	prepare_huds()
-	for(var/datum/atom_hud/xeno/xeno_hud in GLOB.huds)
-		xeno_hud.add_to_hud(src)
+	// We add this to ALL player huds. Everyone can see its health.
+	for(var/datum/atom_hud/player_hud in GLOB.huds)
+		player_hud.add_to_hud(src)
 	update_visuals()
 	RegisterSignals(src, list(COMSIG_ATOM_BULLET_ACT, COMSIG_ATOM_EX_ACT, COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_ATOM_ATTACKBY), PROC_REF(update_visuals))
 
@@ -70,47 +71,45 @@
 		QDEL_NULL(dummy_item)
 	return ..()
 
-/* to do: need damage icons
-/obj/structure/xeno/earth_pillar/update_icon_state()
-	. = ..()
-	if(obj_integrity <= max_integrity * 0.25)
-		icon_state = "earth_pillar_3"
-		return
-	if(obj_integrity <= max_integrity * 0.5)
-		icon_state = "earth_pillar_2"
-		return
-	if(obj_integrity <= max_integrity * 0.75)
-		icon_state = "earth_pillar_1"
-		return
-*/
-
 // Adds interactions specifically for Behemoths.
 /obj/structure/xeno/earth_pillar/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier, damage_type = xeno_attacker.xeno_caste.melee_damage_type, armor_type = xeno_attacker.xeno_caste.melee_damage_armor, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!isxenobehemoth(xeno_attacker)) // If you're not a Behemoth, then you're unworthy of the rock. Begone, pleb.
+	// If you're not a Behemoth, then you're unworthy of the rock. Begone, pleb.
+	if(!isxenobehemoth(xeno_attacker))
 		return
-	if(xeno_attacker.a_intent == INTENT_HELP) // Repairs the rock if it's damaged.
+	// Repairs the rock if it's damaged.
+	if(xeno_attacker.a_intent == INTENT_HELP)
+		// If it's at full integrity, then we don't need to do this.
 		if(obj_integrity >= max_integrity)
 			balloon_alert(xeno_attacker, "No repairs needed")
 			return
+		// While loop to make this repeat until we cancel it or finish repairing it.
 		while(do_after(xeno_attacker, EARTH_PILLAR_REPAIR_DELAY, NONE, src, BUSY_ICON_CLOCK))
 			var/repair_amount = max_integrity * EARTH_PILLAR_REPAIR_AMOUNT
 			repair_damage(repair_amount, xeno_attacker)
 			var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_attacker.ckey]
 			xeno_stats.earth_pillar_repairs += repair_amount
 			playsound(src, SFX_BEHEMOTH_EARTH_PILLAR_HIT, 15, TRUE, 5)
+			// If it's back to full integrity, we can stop.
 			if(obj_integrity >= max_integrity)
 				balloon_alert(xeno_attacker, "Fully repaired ([obj_integrity]/[max_integrity])")
 				return
 			balloon_alert(xeno_attacker, "+[repair_amount] ([obj_integrity]/[max_integrity])")
-	if(xeno_attacker.a_intent == INTENT_GRAB) // Grabs the rock.
+	// Using grab intent on a rock will let us grab it.
+	if(xeno_attacker.a_intent == INTENT_GRAB)
 		when_grabbed(xeno_attacker)
 		return
+	// Otherwise, we just get a cute little fluff interaction of the Behemoth eating rock.
 	xeno_attacker.do_attack_animation(src)
 	do_jitter_animation(jitter_loops = 1)
 	playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 30, TRUE)
 	xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 	span_xenonotice(BEHEMOTH_ROCK_EATING_MESSAGES), null, 5)
 	return TRUE
+
+// This isn't caught by signals, so we just add this to make sure the visuals update correctly.
+/obj/structure/xeno/earth_pillar/take_damage(damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, mob/living/blame_mob)
+	. = ..()
+	update_visuals()
 
 /// Enables connections used to check for climbing and other stuff.
 /obj/structure/xeno/earth_pillar/proc/setup_connections()
@@ -124,7 +123,6 @@
 /// Prepares this object to be thrown.
 /obj/structure/xeno/earth_pillar/proc/pre_throw(datum/source)
 	SIGNAL_HANDLER
-	climbable = FALSE
 	pixel_y = initial(pixel_y)
 	RemoveElement(/datum/element/connect_loc)
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
@@ -132,9 +130,10 @@
 /// Cleans up after this object is thrown.
 /obj/structure/xeno/earth_pillar/proc/post_throw(datum/source)
 	SIGNAL_HANDLER
-	climbable = TRUE
 	setup_connections()
-	UnregisterSignal(src, COMSIG_MOVABLE_POST_THROW)
+	// COMSIG_MOVABLE_MOVED is used when Geocrush hits an Earth Pillar.
+	// Refer to the geocrush_act proc further below in this file.
+	UnregisterSignal(src, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
 /// Applies various changes when this object is held.
 /obj/structure/xeno/earth_pillar/proc/when_grabbed(mob/grabber)
@@ -197,7 +196,7 @@
 		return
 	when_dropped(current_holder, attacked_turf)
 
-/// Updates appearances, and the HUD elements. Needed to handle signals.
+/// Updates appearances, and the HUD elements.
 /obj/structure/xeno/earth_pillar/proc/update_visuals(datum/source)
 	SIGNAL_HANDLER
 	update_appearance()
@@ -251,23 +250,27 @@
 	. = ..()
 	if(!.)
 		return
-	if(!xeno_owner.canmove) // Shouldn't be able to use this ability if you can't move.
+	// Shouldn't be able to use this ability if you can't move.
+	if(!xeno_owner.canmove)
 		return FALSE
 
 /datum/action/ability/activable/xeno/behemoth_seize/use_ability(atom/target)
 	. = ..()
-	if(!isearthpillar(target)) // If it's not an Earth Pillar, we don't care about it.
+	// If it's not an Earth Pillar, we don't care about it.
+	if(!isearthpillar(target))
 		xeno_owner.balloon_alert(xeno_owner, "Not an Earth Pillar")
 		return
 	if(!line_of_sight(xeno_owner, target, WORLD_VIEW_NUM))
 		xeno_owner.balloon_alert(xeno_owner, "No line of sight")
 		return
-	if(xeno_owner.buckled) // Dashing automatically unbuckles you.
+	// Using this ability will automatically unbuckle us, to ensure it can happen.
+	if(xeno_owner.buckled)
 		xeno_owner.buckled.unbuckle_mob(xeno_owner, TRUE, FALSE)
 	dash_to_pillar(target)
 
-/// Alternate use will try to find the nearest target and seize it.
+/// This ability's alternate use will try to find the nearest target and seize it.
 /datum/action/ability/activable/xeno/behemoth_seize/alternate_action_activate()
+	// Make sure we can actually use this ability before moving on.
 	if(!can_use_action(TRUE))
 		return
 	var/obj/structure/xeno/earth_pillar/pillar_target
@@ -278,19 +281,25 @@
 			if(!isearthpillar(movable_checked))
 				continue
 			var/obj/structure/xeno/earth_pillar/pillar_checked = movable_checked
-			if(pillar_checked.current_holder) // If someone's already holding this pillar, then it's an invalid target. Keep looking.
+			// If someone's already holding this pillar, then it's an invalid target. Keep looking.
+			if(pillar_checked.current_holder)
 				continue
+			// We got a target, so we can move on.
 			pillar_target = pillar_checked
-			break // We already got our target, no need to continue.
-	if(!pillar_target) // If at this point we don't have a target, then the ability fails.
+			break
+	// If we don't have a target at this point, then the ability fails.
+	if(!pillar_target)
 		xeno_owner.balloon_alert(xeno_owner, "No pillar within range")
 		return
 	dash_to_pillar(pillar_target)
 
 /// Dashes towards the nearest Earth Pillar in range and tries to grab it.
 /datum/action/ability/activable/xeno/behemoth_seize/proc/dash_to_pillar(obj/structure/xeno/earth_pillar/target)
-	if(xeno_owner.held_pillar) // If we're already holding a pillar, drop it so we can grab the targetted one.
-		if(!xeno_owner.held_pillar.dummy_item) // Not having the dummy item means it was thrown by Earth Riser. We're not ready for grabbing another.
+	// If we're already holding a pillar, drop it so we can grab the one we're targeting.
+	if(xeno_owner.held_pillar)
+		// If we're holding a pillar, but don't have the dummy item given by it, then it means we threw it.
+		// In this scenario, we're not ready for grabbing another pillar, so we abort.
+		if(!xeno_owner.held_pillar.dummy_item)
 			return
 		xeno_owner.held_pillar.when_dropped(xeno_owner)
 	xeno_owner.add_pass_flags(SEIZE_PASS_FLAGS, XENO_TRAIT)
@@ -311,7 +320,7 @@
 			continue
 		var/obj/structure/xeno/earth_pillar/pillar_grabbed = movable_checked
 		pillar_grabbed.when_grabbed(xeno_owner)
-		xeno_owner.stop_throw() // We already have a pillar, so the throw should end.
+		xeno_owner.stop_throw() // We already have a pillar, so this ability should stop.
 
 /// Cleans up after a throw is done.
 /datum/action/ability/activable/xeno/behemoth_seize/proc/post_throw(datum/source)
@@ -347,7 +356,8 @@
 	)
 	/// List containing all currently active pillars created by this ability.
 	var/list/obj/structure/xeno/earth_pillar/active_pillars
-	/// The maximum amount of pillars that we can have active. Anything above the initial amount is assumed to be the result of a Shell mutation.
+	/// The maximum amount of pillars that we can have active.
+	/// Anything above the initial amount is assumed to be the result of a Shell mutation.
 	var/creation_limit = 1
 
 /datum/action/ability/activable/xeno/earth_riser/give_action(mob/living/L)
@@ -374,7 +384,7 @@
 		return
 	var/condition = creation_limit > 2 ? TRUE : FALSE
 	counter.icon = condition ? null : action_icon
-	counter.icon_state = condition ? null : "pillar_counter_[creation_limit][LAZYLEN(active_pillars)]" // f.ex pillar_counter_11 means we have 1 pillar as a limit and 1 active pillar
+	counter.icon_state = condition ? null : "pillar_counter_[creation_limit][LAZYLEN(active_pillars)]" // for example, pillar_counter_11 means we have 1 pillar as a limit and 1 active pillar.
 	counter.pixel_x = condition ? 16 : initial(counter.pixel_x)
 	counter.pixel_y = condition ? -4 : initial(counter.pixel_y)
 	counter.maptext = condition ? MAPTEXT("["[LAZYLEN(active_pillars)]/[creation_limit]"]") : null
@@ -386,7 +396,8 @@
 /datum/action/ability/activable/xeno/earth_riser/use_ability(atom/target)
 	. = ..()
 	if(!xeno_owner.incapacitated())
-		if(xeno_owner.held_pillar) // If we're holding an Earth Pillar, then we want to throw it.
+		// If we're holding an Earth Pillar, then we want to throw it.
+		if(xeno_owner.held_pillar)
 			if(xeno_owner.plasma_stored < EARTH_RISER_THROW_COST)
 				xeno_owner.balloon_alert(xeno_owner, "Need [EARTH_RISER_THROW_COST - xeno_owner.plasma_stored] more plasma")
 				return
@@ -398,7 +409,8 @@
 				return
 			throw_pillar(get_turf(target))
 			return
-		if(isearthpillar(target) && xeno_owner.Adjacent(target)) // If our target is an Earth Pillar, then we want to grab it. Plasma and cooldown are irrelevant for this.
+		// If our target is an Earth Pillar, then we want to grab it. Plasma and cooldown are irrelevant for this.
+		if(isearthpillar(target) && xeno_owner.Adjacent(target))
 			var/obj/structure/xeno/earth_pillar/target_pillar = target
 			target_pillar.when_grabbed(xeno_owner)
 			return
@@ -511,8 +523,9 @@
 			if(!isliving(movable_checked) || xeno_owner.issamexenohive(movable_checked))
 				continue
 			var/mob/living/hit_living = movable_checked
-			if(hit_living.loc == get_turf(target)) // If the pillar landed on you, then you're getting knocked down.
+			if(hit_living.loc == get_turf(target)) // Additional effects if a pillar lands on top of someone.
 				hit_living.AdjustKnockdown(EARTH_RISER_THROW_KNOCKDOWN)
+				hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			hit_living.adjust_stagger(EARTH_RISER_THROW_STAGGER)
 			hit_living.add_slowdown(EARTH_RISER_THROW_SLOWDOWN)
 			hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
@@ -602,7 +615,7 @@
 
 /datum/action/ability/activable/xeno/landslide/on_cooldown_finish()
 	. = ..()
-	if(xeno_owner.stat >= DEAD) // If we're dead, we don't really care.
+	if(xeno_owner.stat >= DEAD)
 		return
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 20, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
@@ -621,6 +634,7 @@
 		return
 	var/direction = get_cardinal_dir(xeno_owner, target)
 	target = get_ranged_target_turf(target, direction, LANDSLIDE_RANGE)
+	// If the tile in front of us is blocked, or if we're targeting the tile we're on, we abort.
 	if(LinkBlocked(xeno_owner.loc, get_step(xeno_owner, direction), pass_flags_checked = PASS_AIR) || xeno_owner.loc == get_turf(target))
 		xeno_owner.balloon_alert(xeno_owner, "No space!")
 		return
@@ -642,8 +656,9 @@
 		affected_turfs += turf_line
 		for(var/turf/turf_checked AS in turf_line)
 			for(var/atom/movable/movable_checked AS in turf_checked)
-				if(!isearthpillar(movable_checked)) // Pillars extend the range of the ability, and should have warnings too.
+				if(!isearthpillar(movable_checked))
 					continue
+				// Pillars extend the range of the ability, and should have warnings too.
 				affected_turfs += get_line(movable_checked, check_path(movable_checked, get_ranged_target_turf(movable_checked, direction, LANDSLIDE_RANGE), pass_flags_checked = PASS_AIR))
 				var/obj/structure/xeno/earth_pillar/hit_pillar = movable_checked
 				hit_pillar.warning_flash()
@@ -695,8 +710,10 @@
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/after_image(get_turf(old_loc), xeno_owner)
 	var/list/turf/target_turfs = list()
+	// Get the turfs we're affecting with our charge.
 	for(var/angle in list(-90, 45, 0, 45, 90))
 		target_turfs += get_step(xeno_owner, angle ? turn(movement_dir, angle) : movement_dir)
+	// Then we start checking those turfs and applying effects.
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target_movable AS in target_turf)
 			if(target_movable in atoms_hit)
@@ -860,7 +877,8 @@
 // *********** Geocrush
 // ***************************************
 #define GEOCRUSH_RANGE 1 // tiles
-#define GEOCRUSH_STAMINA_DAMAGE_MODIFIER 0.5 // percent
+#define GEOCRUSH_STAMINA_DAMAGE_MODIFIER 1.0 // percent
+#define GEOCRUSH_OBJECT_DAMAGE_MODIFIER 4.0 // percent
 #define GEOCRUSH_SLOWDOWN 5 // stacks
 #define GEOCRUSH_STAGGER 5 // stacks
 #define GEOCRUSH_KNOCKDOWN 1 SECONDS
@@ -874,7 +892,6 @@
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
-	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GEOCRUSH,
 	)
@@ -888,70 +905,472 @@
 	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 20, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
-// Handles ability checks instead because we need the final target in the event of target correction.
+
+// This handles target acquisition, as well as related checks, before actually doing the ability.
 /datum/action/ability/activable/xeno/geocrush/use_ability(atom/target)
 	. = ..()
-	if((xeno_owner.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS) && get_dist(xeno_owner, target) > GEOCRUSH_RANGE) // When directional attacks are enabled, if the distance exceeds the range, we correct the target.
-		var/list/turf/turf_line = get_line(xeno_owner, target) // Could be get_step but we're future proofing in case the range is ever more than 1.
-		for(var/atom/movable/movable_checked AS in turf_line[GEOCRUSH_RANGE + 1])
-			if(isliving(movable_checked))
-				target = movable_checked
+///////////////////// TARGET ACQUISITION /////////////////////
+	if(!target.Adjacent(xeno_owner))
+		// If our target isn't adjacent, and we have directional attacks enabled, we can attempt to find a valid target.
+		if((xeno_owner.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
+			var/turf/turf_to_check = get_step(xeno_owner, get_dir(xeno_owner, target))
+			var/new_target
+			// We prioritize living atoms when adjusting our target.
+			for(var/mob/living/living_checked AS in turf_to_check)
+				new_target = living_checked
+				message_admins("living found, new_target is [new_target]")
 				break
-	if(!line_of_sight(xeno_owner, target, GEOCRUSH_RANGE))
-		xeno_owner.balloon_alert(xeno_owner, "No line of sight")
-		return
-	if(!isliving(target) || xeno_owner.issamexenohive(target))
+			// If we don't have a new target by now, we'll grab the first thing we find.
+			if(!new_target)
+				for(var/atom/movable/movable_checked AS in turf_to_check)
+					new_target = movable_checked
+					message_admins("no living found, new target is [new_target]")
+					break
+			// If we STILL don't have a new target at this point, we assume there's nothing valid, so we stop.
+			if(!new_target)
+				xeno_owner.balloon_alert(xeno_owner, "Invalid target")
+				return
+			// Otherwise, we replace the target and keep going.
+			target = new_target
+		// If we don't have directional attacks enabled, then we just stop.
+		else
+			xeno_owner.balloon_alert("Not in range")
+			return
+
+///////////////////// TARGET CHECKS /////////////////////
+	if(!isliving(target) && !isstructure(target) && !ismachinery(target) && !isvehicle(target))
 		xeno_owner.balloon_alert(xeno_owner, "Invalid target")
 		return
-	var/mob/living/living_target = target
-	if(living_target.stat == DEAD)
-		xeno_owner.balloon_alert(xeno_owner, "Target is dead")
+	if(target.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE))
+		xeno_owner.balloon_alert(xeno_owner, "Cannot damage")
 		return
-	do_geocrush(living_target)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(xeno_owner.issamexenohive(living_target))
+			xeno_owner.balloon_alert(xeno_owner, "Cannot use on allies")
+			return
+		if(living_target.stat == DEAD)
+			xeno_owner.balloon_alert(xeno_owner, "Target is dead")
+			return
 
-/// Actually does the ability, because use_ability is relegated.
-/datum/action/ability/activable/xeno/geocrush/proc/do_geocrush(atom/target)
-	xeno_owner.do_attack_animation(target)
-	new /obj/effect/temp_visual/behemoth/geocrush(target.loc)
-	new /obj/effect/temp_visual/shockwave(target.loc, 4, REVERSE_DIR(target.dir))
-	playsound(target.loc, 'sound/effects/alien/behemoth/geocrush.ogg', 40, TRUE, 40) // You can hear someone getting clapped from a long distance.
-	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+///////////////////// THE ACTUAL ABILITY /////////////////////
+	var/ability_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+	// If we have a spur mutation, using this ability while we have a pillar will make us deal additional damage.
 	if(spur_mutation && xeno_owner.held_pillar)
 		playsound(target.loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 25, TRUE)
 		new /obj/effect/temp_visual/behemoth/earth_pillar/creation/destruction(target.loc)
 		xeno_owner.held_pillar.take_damage(xeno_owner.held_pillar.max_integrity * EARTH_MIGHT_PILLAR_DAMAGE, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, xeno_owner.dir, 100, xeno_owner)
 		xeno_owner.held_pillar.when_dropped(xeno_owner, target.loc)
-		damage *= EARTH_MIGHT_ADDITIONAL_DAMAGE
-	for(var/atom/movable/movable_checked AS in target.loc)
-		if(!isliving(movable_checked) || xeno_owner.issamexenohive(movable_checked))
-			continue
-		var/mob/living/hit_living = movable_checked
-		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
-		hit_living.apply_damage(damage, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
-		hit_living.apply_damage(damage * GEOCRUSH_STAMINA_DAMAGE_MODIFIER, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
-		var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
-		xeno_stats.geocrush_damage += damage
-		hit_living.Knockdown(GEOCRUSH_KNOCKDOWN)
-		hit_living.add_slowdown(GEOCRUSH_SLOWDOWN)
-		hit_living.adjust_stagger(GEOCRUSH_STAGGER)
-		RegisterSignal(hit_living, COMSIG_MOVABLE_IMPACT, PROC_REF(target_impact))
-		RegisterSignal(hit_living, COMSIG_MOVABLE_POST_THROW, PROC_REF(target_post_throw))
-		hit_living.knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
+		ability_damage *= EARTH_MIGHT_ADDITIONAL_DAMAGE
+	var/target_turf = get_turf(target) // We save this in case the target gets deleted after taking damage.
+	// geocrush_act can return FALSE to prevent the rest of the effects from happening.
+	// This usually happens when our target shouldn't be affected by Geocrush.
+	if(!target.geocrush_act(xeno_owner, ability_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, xeno_owner.xeno_caste.melee_ap))
+		return
+	xeno_owner.do_attack_animation(target_turf)
+	new /obj/effect/temp_visual/behemoth/geocrush(target_turf)
+	new /obj/effect/temp_visual/shockwave(target_turf, 4, get_dir(target_turf, xeno_owner))
+	playsound(target_turf, 'sound/effects/alien/behemoth/geocrush.ogg', 40, TRUE, 40) // You can hear someone getting clapped from a long distance.
 	add_cooldown()
 	succeed_activate()
 
-/// Adds effects for when our victim makes impact against something.
-/datum/action/ability/activable/xeno/geocrush/proc/target_impact(datum/source, atom/hit_atom, speed)
+
+/** Handles anything that should happen when this ability hits a given atom.
+This ability can hit almost everything in the game, but we do have a list of exceptions and prohibitions.
+If these aren't denied outright, then they are handled differently somehow to ensure intended functionality.
+
+Depending on the return value:
+* Returning ..() will proceed with the rest of the effects.
+* Returning TRUE will just let us know that the ability can happen without the rest of the effects.
+* Returning FALSE means the ability couldn't happen, usually because our target shouldn't be affected.
+*/
+/atom/proc/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
+	return TRUE
+
+/// Does anything that should happen to an atom when it is hit by anything thrown by this ability.
+/atom/proc/geocrush_impact(atom/causer)
+	return TRUE
+
+// Movable targets will be pushed back if possible.
+/atom/movable/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	. = ..()
+	if(!anchored)
+		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(geocrush_thrown_into))
+		RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(geocrush_post_throw))
+		RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(geocrush_drag))
+		knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
+
+/// Does anything that should happen to an atom when it is thrown into something.
+/atom/movable/proc/geocrush_thrown_into(datum/source, atom/hit_atom, speed)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
 	var/turf/affected_turf = get_turf(hit_atom)
 	playsound(affected_turf, 'sound/effects/alien/behemoth/landslide_impact.ogg', 30, TRUE)
 	new /obj/effect/temp_visual/behemoth/landslide/impact(affected_turf, get_dir(affected_turf, source))
+	hit_atom.geocrush_impact(source)
 
-/// Cleans up after the knockback is done.
-/datum/action/ability/activable/xeno/geocrush/proc/target_post_throw(datum/source)
+/// Cleans up after a throw.
+/atom/movable/proc/geocrush_post_throw(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+
+/// Any atoms on top will be dragged along when this one is thrown by this ability.
+/atom/movable/proc/geocrush_drag(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
+	for(var/atom/movable/movable_atom AS in old_loc)
+		movable_atom.forceMove(loc)
+
+/mob/living/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
+	. = ..()
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "scream")
+	apply_damage(damage, damage_type, ran_zone(), armor_type, FALSE, FALSE, TRUE, armor_penetration, xeno_owner)
+	apply_damage(damage * GEOCRUSH_STAMINA_DAMAGE_MODIFIER, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, armor_penetration, xeno_owner)
+	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.geocrush_damage += damage
+	Knockdown(GEOCRUSH_KNOCKDOWN)
+	add_slowdown(GEOCRUSH_SLOWDOWN)
+	adjust_stagger(GEOCRUSH_STAGGER)
+
+/mob/living/geocrush_impact(atom/causer)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "scream")
+	Knockdown(GEOCRUSH_KNOCKDOWN)
+	add_slowdown(GEOCRUSH_SLOWDOWN)
+	adjust_stagger(GEOCRUSH_STAGGER)
+	knockback(causer, 1, 1)
+
+/obj/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
+	. = ..()
+	Shake(duration = 0.5 SECONDS)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
+
+// Opens the panel, and cuts the wires.
+// We don't break it because that would be very unbalanced.
+/obj/machinery/geocrush_act(...)
+	if(!(machine_stat & PANEL_OPEN))
+		machine_stat |= PANEL_OPEN
+	if(wires)
+		var/allcut = wires.is_all_cut()
+		if(!allcut)
+			wires.cut_all()
+	update_appearance()
+	return ..()
+
+// Stuff like atmospherics pipes, as well as vents and scrubbers.
+// These are more useful to us whole, rather than destroyed, so we prohibit them.
+/obj/machinery/atmospherics/geocrush_act(...)
+	return FALSE
+
+/obj/machinery/camera/geocrush_act(...)
+	deconstruct(FALSE)
+	return TRUE
+
+// Map tables get broken.
+/obj/machinery/cic_maptable/geocrush_act(...)
+	if(!(machine_stat & BROKEN))
+		machine_stat |= BROKEN
+	return ..()
+
+/obj/machinery/computer/geocrush_act(...)
+	set_disabled()
+	return ..()
+
+/obj/machinery/conveyor/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// This will toggle the relevant doors as if we had pressed the button.
+/obj/machinery/door_control/geocrush_act(...)
+	button_pressed()
+	return ..()
+
+/obj/machinery/door/window/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	deconstruct(FALSE, xeno_owner)
+	return TRUE
+
+// These ones are unanchored, so we can push them back.
+/obj/machinery/factory/geocrush_act(...)
+	anchored = FALSE
+	return ..()
+
+/obj/machinery/faxmachine/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// This can be knocked back, even if it is anchored.
+/obj/machinery/faxmachine/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+// Nobody cares about these. They're basically props.
+/obj/machinery/gear/geocrush_act(...)
+	return FALSE
+
+/obj/machinery/griddle/geocrush_act(...)
+	anchored = FALSE
+	return ..()
+
+/obj/machinery/griddle/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+/obj/machinery/grill/geocrush_act(...)
+	anchored = FALSE
+	return ..()
+
+/obj/machinery/grill/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+/obj/machinery/holopad/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/machinery/iv_drip/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/machinery/keycard_auth/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// If there is a light set, then we'll break that first.
+// Otherwise, we assume it's just the fixture, and destroy it.
+/obj/machinery/light/geocrush_act(...)
+	if(!status)
+		broken()
+		return ..()
+	qdel(src)
+	return TRUE
+
+// This is also atmospherics stuff. We don't care about it.
+/obj/machinery/meter/geocrush_act(...)
+	return FALSE
+
+/obj/machinery/photocopier/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// Even more atmospherics stuff that we don't care about.
+/obj/machinery/portable_atmospherics/geocrush_act(...)
+	return FALSE
+
+// APCs are immediately broken.
+/obj/machinery/power/apc/geocrush_act(...)
+	beenhit += 4
+	update_appearance()
+	return ..()
+
+// We don't hit these for the same reasons we don't hit generators.
+/obj/machinery/power/fusion_engine/geocrush_act(...)
+	return FALSE
+
+// Sleepers get broken.
+/obj/machinery/sleeper/geocrush_act(...)
+	if(!(machine_stat & BROKEN))
+		machine_stat |= BROKEN
+	return ..()
+
+/obj/machinery/smartfridge/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/machinery/status_display/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/machinery/unboxer/geocrush_act(...)
+	anchored = FALSE
+	return ..()
+
+/obj/machinery/unboxer/geocrush_impact(atom/causer)
+	knockback(causer, 1, 1)
+
+// Vending machines will break when hit.
+/obj/machinery/vending/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	if(!(machine_stat & BROKEN))
+		malfunction()
+	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
+	return ..()
+
+// If anything makes impact against a vending machine, it'll be tipped over.
+/obj/machinery/vending/geocrush_impact(...)
+	. = ..()
+	if(tipped_level < 2)
+		tip_over()
+
+// Vending machines are also tipped over after being hit.
+// We do it at the end to ensure it can hit stuff beforehand.
+/obj/machinery/vending/geocrush_post_throw(...)
+	if(tipped_level < 2)
+		tip_over()
+	return ..()
+
+// Special exception for this one, since it's a wall mounted object.
+// We don't knock this one around, we just break it.
+/obj/machinery/vending/nanomed/geocrush_act(...)
+	if(!(machine_stat & BROKEN))
+		malfunction()
+	return TRUE
+
+// Structures are shaken, meaning anything on them gets effected.
+/obj/structure/geocrush_act(...)
+	structure_shaken()
+	return ..()
+
+/obj/structure/geocrush_impact(...)
+	. = ..()
+	structure_shaken()
+
+// We need the gains.
+/obj/structure/benchpress/geocrush_act(...)
+	return FALSE
+
+/obj/structure/camera_assembly/geocrush_act(...)
+	deconstruct(FALSE)
+	return TRUE
+
+/obj/structure/catwalk/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/closet/geocrush_act(mob/living/carbon/xenomorph/xeno_owner)
+	deconstruct(FALSE, xeno_owner)
+	return TRUE
+
+/obj/structure/curtain/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/dropship_equipment/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
+	return ..()
+
+/obj/structure/dropship_equipment/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+/obj/structure/flora/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// Girders are broken before they are thrown.
+/obj/structure/girder/geocrush_act(...)
+	obj_break()
+	anchored = FALSE
+	return ..()
+
+/obj/structure/girder/geocrush_impact(atom/causer)
+	knockback(causer, 1, 1)
+
+// Most xeno structures, including resin doors, shouldn't be valid targets.
+/obj/structure/mineral_door/resin/geocrush_act(...)
+	return FALSE
+
+/obj/structure/musician/geocrush_act(...)
+	anchored = FALSE
+	return ..()
+
+/obj/structure/musician/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+// OB ammo (warheads, usually) explodes.
+/obj/structure/ob_ammo/geocrush_act(...)
+	obj_destruction()
+	return TRUE
+
+/obj/structure/ob_ammo/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+/obj/structure/prop/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/prop/geocrush_impact(atom/causer)
+	knockback(causer, 1, 1)
+
+// Reagent dispensers make a water effect before being deleted.
+/obj/structure/reagent_dispensers/geocrush_act(...)
+	new /obj/effect/particle_effect/water(loc)
+	qdel(src)
+	return TRUE
+
+/obj/structure/reagent_dispensers/geocrush_impact(atom/causer)
+	knockback(causer, 1, 1)
+
+// Fuel-based dispensers just explode instead.
+/obj/structure/reagent_dispensers/fueltank/geocrush_act(...)
+	explode()
+	return TRUE
+
+/obj/structure/reagent_dispensers/wallmounted/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/rock/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/ship_ammo/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
+	return ..()
+
+/obj/structure/ship_ammo/geocrush_impact(atom/causer)
+	. = ..()
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+// Signs on walls, like posters and stuff. We don't care about those.
+/obj/structure/sign/geocrush_act(...)
+	return FALSE
+
+/obj/structure/sink/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+/obj/structure/table/geocrush_act(...)
+	deconstruct(FALSE)
+	return TRUE
+
+/obj/structure/table/geocrush_impact(...)
+	. = ..()
+	deconstruct(FALSE)
+
+/obj/structure/window/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
+	deconstruct(FALSE, xeno_owner)
+	return TRUE
+
+/obj/structure/window/geocrush_impact(atom/causer)
+	. = ..()
+	deconstruct(FALSE, causer)
+
+/obj/structure/window_frame/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// All xeno structures should be invalid.
+/obj/structure/xeno/geocrush_act(...)
+	return FALSE
+
+// Except for earth pillars. We can knock these around for funsies.
+/obj/structure/xeno/earth_pillar/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
+	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
+	// Sanity check in case we deal enough damage to destroy it.
+	if(QDELING(src))
+		return TRUE
+	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
+	return TRUE
+
+/obj/vehicle/ridden/powerloader/geocrush_act(...)
+	deconstruct(FALSE)
+	return TRUE
+
+/obj/vehicle/ridden/powerloader/geocrush_impact(atom/causer)
+	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
+
+/obj/vehicle/ridden/wheelchair/geocrush_act(...)
+	qdel(src)
+	return TRUE
+
+// We don't call parent on stuff like APCs and tanks because we shouldn't knock those around.
+/obj/vehicle/sealed/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
+	Shake(duration = 0.5 SECONDS)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
 
 /obj/effect/temp_visual/behemoth/geocrush
 	name = "Geocrush"
@@ -1188,7 +1607,7 @@
 			pixel_x += 39
 			pixel_y += 6
 
-// TO DO: Primal Wrath shows up on Examine. How do I stop that?
+// TO DO: Primal Wrath shows up on Examine. I need to stop that.
 /obj/effect/primal_wrath
 	alpha = 0
 	color = COLOR_NEARLY_BLACK_VIOLET
