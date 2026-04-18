@@ -123,6 +123,14 @@
 		return
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
+/datum/species/zombie/handle_gib(mob/living/carbon/human/H)
+	. = ..()
+	GLOB.possessed_sentient_zombie_list -= H
+
+/datum/species/zombie/handle_dust(mob/living/carbon/human/H)
+	. = ..()
+	GLOB.possessed_sentient_zombie_list -= H
+
 /datum/species/zombie/can_revive_to_crit(mob/living/carbon/human/human)
 	if(human.on_fire || !human.has_working_organs() || isspaceturf(get_turf(human)))
 		SSmobs.stop_processing(human)
