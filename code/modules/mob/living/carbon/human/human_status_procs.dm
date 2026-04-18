@@ -77,7 +77,7 @@
 		return
 	return ..()
 
-/mob/living/carbon/human/proc/rip_out_heart(mob/living/user, var/pickup_heart = TRUE)
+/mob/living/carbon/human/proc/rip_out_heart(mob/living/user, pickup_heart)
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
 	if(!do_after(user, 2 SECONDS, NONE, src))
 		return

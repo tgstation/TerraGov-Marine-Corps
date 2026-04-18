@@ -407,7 +407,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
-	rip_out_heart(user)
+	rip_out_heart(user, TRUE)
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()
