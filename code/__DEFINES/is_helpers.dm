@@ -314,6 +314,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isfacehugger(A) (istype(A, /obj/item/clothing/mask/facehugger))
 
+#define isearthpillar(A) (istype(A, /obj/structure/xeno/earth_pillar))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

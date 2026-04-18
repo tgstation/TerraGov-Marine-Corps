@@ -6,7 +6,6 @@
 // ***************************************
 // *********** Earth Pillar
 // ***************************************
-#define isearthpillar(A) (istype(A, /obj/structure/xeno/earth_pillar)) // So that we don't need to repeat the type path.
 #define COMSIG_EARTH_PILLAR_DESTROY "earth_pillar_destroy"
 #define EARTH_PILLAR_REPAIR_DELAY 1.4 SECONDS
 #define EARTH_PILLAR_REPAIR_AMOUNT 0.1 // percent
@@ -466,7 +465,6 @@
 /// Removes our reference to a pillar when it is deleted.
 /datum/action/ability/activable/xeno/earth_riser/proc/pillar_deleted(datum/source)
 	SIGNAL_HANDLER
-	message_admins("hi")
 	active_pillars -= source
 	add_cooldown()
 
@@ -901,7 +899,7 @@
 	if(!line_of_sight(xeno_owner, target, GEOCRUSH_RANGE))
 		xeno_owner.balloon_alert(xeno_owner, "No line of sight")
 		return
-	if(!isliving(target))
+	if(!isliving(target) || xeno_owner.issamexenohive(target))
 		xeno_owner.balloon_alert(xeno_owner, "Invalid target")
 		return
 	var/mob/living/living_target = target
