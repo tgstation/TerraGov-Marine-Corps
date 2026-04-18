@@ -916,15 +916,13 @@
 			var/turf/turf_to_check = get_step(xeno_owner, get_dir(xeno_owner, target))
 			var/new_target
 			// We prioritize living atoms when adjusting our target.
-			for(var/mob/living/living_checked AS in turf_to_check)
+			for(var/mob/living/living_checked in turf_to_check)
 				new_target = living_checked
-				message_admins("living found, new_target is [new_target]")
 				break
 			// If we don't have a new target by now, we'll grab the first thing we find.
 			if(!new_target)
 				for(var/atom/movable/movable_checked AS in turf_to_check)
 					new_target = movable_checked
-					message_admins("no living found, new target is [new_target]")
 					break
 			// If we STILL don't have a new target at this point, we assume there's nothing valid, so we stop.
 			if(!new_target)
@@ -1220,6 +1218,9 @@ Depending on the return value:
 
 // We need the gains.
 /obj/structure/benchpress/geocrush_act(...)
+	return FALSE
+
+/obj/structure/cable/geocrush_act(...)
 	return FALSE
 
 /obj/structure/camera_assembly/geocrush_act(...)
