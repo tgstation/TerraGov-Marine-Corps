@@ -509,7 +509,7 @@
 "bZ" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (
