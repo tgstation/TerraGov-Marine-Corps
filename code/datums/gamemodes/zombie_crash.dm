@@ -86,10 +86,11 @@
 			continue
 		zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
 
-///Counts humans and zombies not in valhalla
-/datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+///Counts humans, corrupted xenos and zombies not in valhalla
+/datum/game_mode/infestation/crash/zombie/proc/count_humans_xenos_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
 	var/num_zombies = 0
+	var/num_xenos = 0
 
 	for(var/z in z_levels)
 		for(var/mob/living/carbon/human/H  in GLOB.humans_by_zlevel["[z]"])
@@ -105,14 +106,32 @@
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-	return list(num_humans, num_zombies)
+
+		for(var/i in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
+			if(!X.client && X.afk_status == MOB_DISCONNECTED)
+				continue
+			if(is_xeno_in_forbidden_zone(X))
+				continue
+			if(isspaceturf(X.loc))
+				continue
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
+			// Never count hivemind
+			if(isxenohivemind(X))
+				continue
+
+			num_xenos++
+	return list(num_humans, num_zombies, num_xenos)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
 		return
 
-	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
+	var/list/living_player_list = count_humans_xenos_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/num_humans = living_player_list[1] + living_player_list[3]
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
