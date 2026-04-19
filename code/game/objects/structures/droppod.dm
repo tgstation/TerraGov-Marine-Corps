@@ -24,7 +24,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN

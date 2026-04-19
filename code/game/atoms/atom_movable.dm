@@ -755,13 +755,13 @@
 	else if(gravity > 1)
 		range = ROUND_UP(range * (2 - gravity))
 
-	if(!targetted_throw)
-		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
-
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
 
 	var/turf/origin = get_turf(src)
+
+	if(!targetted_throw)
+		target = get_turf_at_angle_ranged(origin, Get_Angle(origin, target), range)
 
 	if(spin)
 		animation_spin(5, 1)
@@ -1337,8 +1337,6 @@
 	if(src == user || !isturf(loc))
 		return FALSE
 	if(anchored || throwing)
-		return FALSE
-	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
 		return FALSE
 	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE

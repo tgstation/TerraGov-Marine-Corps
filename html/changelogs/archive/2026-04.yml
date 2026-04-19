@@ -92,3 +92,28 @@
       being pulped permaing the zombie
   - balance: Add another maintenance tunnel to sulaco SD and southern hangar
   - bugfix: Fixed Sulaco SD invincible walls, incorrect maint area
+2026-04-19:
+  Lewdcifer:
+  - bugfix: Boilers and Crushers can disable miners and tear holes in walls again.
+  Lumipharon:
+  - bugfix: Probably fixes generators not triggering collapse timer in some cases
+  - balance: Psy crush cannot be instantly double cast
+  - balance: Psy crush orb can be destroyed to cancel the ability, will hurt anyone
+      nearby however
+  - balance: Psy crush does more damage the larger its AOE
+  - balance: Psy blast/lance consumes plasma when first cast, instead of on success
+  - balance: Psy blast/lance now target turfs for aimming purposes
+  - balance: Psy lance cast times changed to 1.2 seconds
+  - balance: Psy blast/lance have a 50% CD applied if the cast is interrupted
+  - balance: Psy lance has a 0.8 pierce multiplier
+  - balance: Psy blast causes knockback that scales with distance to the epicentre,
+      with low throw force
+  - balance: Warlock plasma transfer now acts as a continous beam
+  - balance: Volkite Carronade range reduced to 15 and has correct range when shooting
+      diagonally
+  - bugfix: Jump throws should be more accurate/appropriately ranged when throwing
+      diagonally
+  - bugfix: You can now push objects when things are buckled onto them, such as marines
+      on bikes
+  - qol: Buckling something which you have grabbed will always try to transfer the
+      grab to the buckled thing
