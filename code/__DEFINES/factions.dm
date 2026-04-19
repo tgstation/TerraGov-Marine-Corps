@@ -152,3 +152,10 @@ GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
 		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 	),
 ))
+
+///Faction to formatted text for use in capture objectives
+GLOBAL_LIST_INIT(faction_to_formatted_text, list(
+	FACTION_TERRAGOV = "TerraGov",
+	FACTION_SOM = "som",
+	FACTION_XENO = "Xeno"
+))

@@ -163,36 +163,10 @@
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
 	. = ..()
-	icon_state = initial(icon_state)
 	if(!owning_faction)
-		switch(capturing_faction)
-			if(FACTION_TERRAGOV)
-				icon_state += "_cap_TerraGov"
-			if(null)
-				return
-			if(FACTION_XENO)
-				icon_state += "_cap_Xeno"
-			else
-				icon_state += "_cap_som"
-		return
-
-	if(!capturing_faction)
-		switch(owning_faction)
-			if(FACTION_TERRAGOV)
-				icon_state += "_TerraGov"
-			if(FACTION_XENO)
-				icon_state += "_Xeno"
-			else
-				icon_state += "_som"
-		return
-
-	switch(owning_faction)//Owning faction_(decapped by)_capturing faction
-		if(FACTION_TERRAGOV)
-			icon_state += (capturing_faction == FACTION_SOM) ? "_TerraGov_decap_som" : "_TerraGov_decap_Xeno"
-		if(FACTION_XENO)
-			icon_state += (capturing_faction == FACTION_SOM) ? "_Xeno_decap_som" : "_Xeno_decap_TerraGov"
-		else
-			icon_state += (capturing_faction == FACTION_XENO) ? "_som_decap_Xeno" : "_som_decap_TerraGov"
+		capturing_faction ? (icon_state = "sensor_cap_" + GLOB.faction_to_formatted_text[capturing_faction]) : (icon_state = "sensor")
+	else
+		capturing_faction ? (icon_state += "_decap_[GLOB.faction_to_formatted_text[capturing_faction]]") : (icon_state = "sensor_" + GLOB.faction_to_formatted_text[owning_faction])
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!(xeno_attacker.status_flags & INCORPOREAL))

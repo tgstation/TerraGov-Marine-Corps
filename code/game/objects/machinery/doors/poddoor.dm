@@ -246,8 +246,8 @@
 /obj/machinery/door/poddoor/mainship/indestructible
 	resistance_flags = RESIST_ALL
 
-/obj/machinery/door/poddoor/mainship/ReqHVH
-	id = "ReqHVH"
+/obj/machinery/door/poddoor/mainship/req_hvh
+	id = "req_hvh"
 	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/timed_late

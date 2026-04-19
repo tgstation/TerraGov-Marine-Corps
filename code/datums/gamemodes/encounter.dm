@@ -1,4 +1,4 @@
-#define CAPTURE_POINT_TARGET 400
+#define CAPTURE_POINT_TARGET 800
 
 /datum/game_mode/hvh/combat_patrol/encounter
 	name = "Encounter"
@@ -41,11 +41,11 @@
 	///Xenos' point count
 	var/XENO_cap_points = 0
 	///Tower req value for owning faction per process()
-	var/tower_req_value = 10
+	var/tower_req_value = 5
 	///Tower xeno tactical point value for owning faction per process()
-	var/tower_xeno_tactical_point_value = 3
+	var/tower_xeno_tactical_point_value = 1
 	///Tower xeno strategic point value for owning faction per process()
-	var/tower_xeno_strategic_point_value = 7
+	var/tower_xeno_strategic_point_value = 4
 
 /datum/game_mode/hvh/combat_patrol/encounter/announce()
 	to_chat(world, "<b>The current game mode is - Free for all!</b>")
@@ -77,11 +77,6 @@
 
 	for(var/i in GLOB.xeno_encounter_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
-
-	var/weed_type
-	for(var/turf/T in GLOB.xeno_weed_node_turfs)
-		weed_type = pickweight(GLOB.weed_prob_list)
-		new weed_type(T)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_REQ)
 

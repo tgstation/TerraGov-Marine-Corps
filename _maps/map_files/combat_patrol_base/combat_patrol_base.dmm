@@ -744,7 +744,7 @@
 /area/mainship/patrol_base/som)
 "iy" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/mainship/ReqHVH,
+/obj/machinery/door_control/mainship/req_hvh,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -1295,7 +1295,7 @@
 /area/mainship/patrol_base/som)
 "pL" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/mainship/ReqHVH/som,
+/obj/machinery/door_control/mainship/req_hvh/som,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -1382,7 +1382,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "qB" = (
-/obj/machinery/door/poddoor/mainship/ReqHVH,
+/obj/machinery/door/poddoor/mainship/req_hvh,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "qK" = (
@@ -1855,7 +1855,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/xeno)
 "va" = (
-/obj/machinery/door/poddoor/mainship/ReqHVH{
+/obj/machinery/door/poddoor/mainship/req_hvh{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -2112,7 +2112,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "xR" = (
-/obj/machinery/door/poddoor/mainship/ReqHVH,
+/obj/machinery/door/poddoor/mainship/req_hvh,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "yf" = (
@@ -2860,7 +2860,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/mainship/ReqHVH,
+/obj/machinery/door/poddoor/mainship/req_hvh,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "Ho" = (
@@ -3128,7 +3128,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Jz" = (
-/obj/machinery/door/poddoor/mainship/ReqHVH{
+/obj/machinery/door/poddoor/mainship/req_hvh{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -4210,7 +4210,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "TZ" = (
-/obj/machinery/door/poddoor/mainship/ReqHVH{
+/obj/machinery/door/poddoor/mainship/req_hvh{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete,
