@@ -765,7 +765,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/available_recasts = 1
 	/// Have we hit a human with the last ability cast?
 	var/recast_prerequisite_met = FALSE
-	/// The timer id for the callback that will set the ability on cooldown if recast is not used up in time.
+	/// The timer id for the callback that will set the ability on cooldown if recast(s) is not used up in time.
 	var/recast_decay_timer_id
 	/// Should we do acid_spray_act on those we pass over?
 	var/do_acid_spray_act = TRUE
