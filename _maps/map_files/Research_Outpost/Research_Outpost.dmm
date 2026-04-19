@@ -3191,7 +3191,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "oS" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "oV" = (
@@ -8670,7 +8670,7 @@
 	},
 /area/outpost/cargo)
 "OM" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "ON" = (
@@ -9393,7 +9393,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "Sh" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "Si" = (
@@ -10124,7 +10124,7 @@
 "Vy" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Vz" = (

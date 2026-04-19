@@ -4513,7 +4513,7 @@
 "eeu" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
 "eeI" = (
@@ -10807,7 +10807,7 @@
 "jAF" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest)
 "jAG" = (
@@ -11735,7 +11735,7 @@
 /area/bluesummers/inside/chapel)
 "khW" = (
 /obj/structure/lattice,
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
 "kin" = (
@@ -21936,7 +21936,7 @@
 	},
 /area/bluesummers/inside/food_processing)
 "srv" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southwest)
 "srA" = (

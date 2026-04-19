@@ -274,7 +274,7 @@
 /turf/open/floor,
 /area/bluemoon/outside/building/dorms/plant)
 "aoS" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/ground/sandrock,
 /area/bluemoon/caves/ne)
 "aoY" = (
@@ -3975,7 +3975,7 @@
 /turf/open/floor/prison,
 /area/bluemoon/caves/facility/omicron)
 "eBL" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "eCy" = (
@@ -11976,7 +11976,7 @@
 	},
 /area/bluemoon/outside/building/engi)
 "nwk" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/ice,
 /area/bluemoon/caves/sw)
 "nwA" = (

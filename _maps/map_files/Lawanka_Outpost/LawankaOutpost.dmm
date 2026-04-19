@@ -8694,7 +8694,7 @@
 /area/lawankaoutpost/colony/northdorms)
 "hha" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "hhr" = (
@@ -10459,7 +10459,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
 "iKW" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
 "iLi" = (
@@ -15003,7 +15003,7 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
 "myg" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "myl" = (
@@ -26786,7 +26786,7 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
 "vVu" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "vVy" = (

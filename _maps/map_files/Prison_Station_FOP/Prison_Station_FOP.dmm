@@ -39476,7 +39476,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "dsA" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "dsF" = (
@@ -41179,7 +41179,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "gVt" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
 "gWy" = (
@@ -46772,7 +46772,7 @@
 	},
 /area/prison/security/monitoring/medsec/south)
 "see" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "seK" = (
@@ -49024,7 +49024,7 @@
 /area/prison/material_processing)
 "wNs" = (
 /obj/item/ammo_casing,
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "wOs" = (

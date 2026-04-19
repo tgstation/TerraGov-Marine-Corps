@@ -1007,7 +1007,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "fm" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "fn" = (
@@ -3113,7 +3113,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "qg" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "qi" = (
@@ -8570,7 +8570,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "RE" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "RF" = (
@@ -9696,7 +9696,7 @@
 /turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "Xc" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "Xd" = (

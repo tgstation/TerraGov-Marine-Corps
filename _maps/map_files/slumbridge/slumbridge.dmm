@@ -10805,7 +10805,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "icC" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop1/lz1)
 "idd" = (
@@ -15944,7 +15944,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/central)
 "lNs" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "lNw" = (
@@ -29094,7 +29094,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/houses/swcargo)
 "voW" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "vpa" = (
@@ -30924,7 +30924,7 @@
 /area/slumbridge/inside/pmcdome)
 "wzS" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/caves/northeastcaves)
 "wAl" = (

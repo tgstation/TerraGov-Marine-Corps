@@ -359,7 +359,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/bar/entertainment)
 "adJ" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
 "adL" = (
@@ -91194,7 +91194,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/prison,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qnJ" = (
@@ -107321,7 +107321,7 @@
 /area/lv759/indoors/colonial_marshals/holding_cells)
 "tio" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/landing_zone_1)
 "tis" = (
@@ -117716,7 +117716,7 @@
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_foyer)
 "uXp" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating,
 /area/lv759/outdoors/landing_zone_2)
 "uXq" = (

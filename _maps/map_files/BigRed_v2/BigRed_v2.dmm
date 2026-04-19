@@ -14001,7 +14001,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qiV" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "qjc" = (
@@ -16683,7 +16683,7 @@
 /turf/open/space/basic,
 /area/space)
 "waG" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "waY" = (

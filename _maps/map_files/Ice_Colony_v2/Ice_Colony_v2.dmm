@@ -22115,7 +22115,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/medical/lobby/garbledradio)
 "iPK" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northeast)
 "iPL" = (
@@ -23017,7 +23017,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "kcY" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "kdn" = (
@@ -28334,7 +28334,7 @@
 /area/ice_colony/exterior/surface/taxiway)
 "rfY" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "rgk" = (
@@ -29541,7 +29541,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad)
 "sCC" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "sCK" = (

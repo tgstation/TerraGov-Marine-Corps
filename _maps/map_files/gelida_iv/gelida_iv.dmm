@@ -5542,7 +5542,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/dorms)
 "dPe" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/shuttle/drop2/gelida)
 "dPl" = (
@@ -23310,7 +23310,7 @@
 	},
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "pJi" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/west_caves)
 "pJy" = (
@@ -23912,7 +23912,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "qcB" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "qcQ" = (
@@ -31574,7 +31574,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_street)
 "vrX" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating,
 /area/shuttle/drop1/gelida)
 "vsk" = (

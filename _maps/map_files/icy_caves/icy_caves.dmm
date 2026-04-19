@@ -253,7 +253,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "be" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
 "bf" = (
@@ -8499,7 +8499,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "Pw" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "Px" = (
@@ -8804,7 +8804,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/caves)
 "QV" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "QW" = (
@@ -9611,7 +9611,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "Vb" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "Vd" = (

@@ -4119,7 +4119,7 @@
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/bunker/center)
 "dtB" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/ice,
 /area/daedalusprison/caves/southwest/garbledradio)
 "dtU" = (
@@ -7237,7 +7237,7 @@
 	},
 /area/daedalusprison/inside/substation)
 "fTQ" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/daedalusprison/inside/landingzoneone)
 "fTR" = (
@@ -7554,7 +7554,7 @@
 	},
 /area/daedalusprison/inside/mechanicshop)
 "gkO" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/ice,
 /area/daedalusprison/caves/northwest/garbledradio)
 "glb" = (
@@ -10348,7 +10348,7 @@
 	},
 /area/daedalusprison/inside/medical)
 "iFB" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/ice,
 /area/daedalusprison/caves/northeast)
 "iFK" = (

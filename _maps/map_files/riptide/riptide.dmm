@@ -2495,7 +2495,7 @@
 /area/riptide/caves/pmc/prison)
 "bLI" = (
 /obj/structure/flora/jungle/grass,
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
 "bLO" = (
@@ -3843,7 +3843,7 @@
 /area/riptide/inside/syndicatecheckpoint)
 "cGI" = (
 /obj/effect/turf_decal/riverdecal,
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/riptide/caves/north2)
 "cGS" = (
@@ -13098,7 +13098,7 @@
 /area/riptide/outside/river)
 "jlB" = (
 /obj/effect/landmark/excavation_site_spawner,
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/south)
 "jlF" = (
@@ -20070,7 +20070,7 @@
 /area/riptide/outside/eastbeach)
 "nSO" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/ground,
 /area/riptide/outside/westislands)
 "nSS" = (

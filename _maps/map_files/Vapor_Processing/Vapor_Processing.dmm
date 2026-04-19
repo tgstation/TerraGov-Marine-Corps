@@ -4401,7 +4401,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "FZ" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/ground,
 /area/lv624/ground/caves/central2)
 "Gh" = (
@@ -4528,7 +4528,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
 "IF" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "IH" = (
@@ -5027,7 +5027,7 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "PN" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "PR" = (
@@ -5602,7 +5602,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "XX" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "Yb" = (

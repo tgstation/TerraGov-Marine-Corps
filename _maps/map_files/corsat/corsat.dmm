@@ -6104,7 +6104,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/three)
 "cLo" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/sigmaremote)
 "cLs" = (
@@ -43459,7 +43459,7 @@
 	},
 /area/corsat/gamma/hangar)
 "tbq" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/corsat/dropzone/landingzonethree)
 "tbr" = (
@@ -47465,7 +47465,7 @@
 /area/corsat/omega/hangar/security)
 "uDz" = (
 /obj/effect/turf_decal/tile/full/black,
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/four)
 "uDE" = (
@@ -49968,7 +49968,7 @@
 /area/corsat/omega/biodome/one)
 "vGv" = (
 /obj/effect/turf_decal/tile/full/black,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/one)
 "vGL" = (

@@ -7105,7 +7105,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/Northwest_Colony)
 "hzI" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_north/garbledradio)
 "hzN" = (
@@ -12125,7 +12125,7 @@
 /turf/open/floor/kutjevo/tan,
 /area/kutjevo/interior/filtration)
 "mQm" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/colony_South/garbledradio)
 "mRP" = (
@@ -19680,7 +19680,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_S_East)
 "uJs" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/lz_dunes)
 "uJV" = (
@@ -23077,7 +23077,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/complex/botany/east)
 "yiW" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/kutjevo/exterior/space_port)
 "yiX" = (

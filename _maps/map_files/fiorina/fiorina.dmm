@@ -10547,7 +10547,7 @@
 /turf/open/floor/prison,
 /area/fiorina/lz/near_lzI)
 "fRA" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/prison/plate,
 /area/fiorina/station/power_ring)
 "fRP" = (
@@ -17786,7 +17786,7 @@
 /area/fiorina/tumor/fiberbush)
 "jLw" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/prison/darkbrown{
 	dir = 1
 	},
@@ -23547,7 +23547,7 @@
 /area/fiorina/tumor/servers)
 "mMV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/prison,
 /area/fiorina/tumor/servers)
 "mNu" = (
@@ -32643,7 +32643,7 @@
 /turf/open/floor/prison,
 /area/fiorina/maintenance)
 "rRi" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/grass,
 /area/fiorina/station/telecomm/lz1_cargo)
 "rRs" = (

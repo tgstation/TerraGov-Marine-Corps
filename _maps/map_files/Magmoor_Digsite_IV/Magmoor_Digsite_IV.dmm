@@ -3662,7 +3662,7 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
 "cvS" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
 "cws" = (
@@ -6075,7 +6075,7 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
 "ehk" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest/garbledradio)
 "ehH" = (
@@ -12536,7 +12536,7 @@
 	},
 /area/magmoor/landing)
 "iLE" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "iLH" = (
@@ -29633,7 +29633,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
 "uKx" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "uKO" = (

@@ -1013,7 +1013,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "gT" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "gU" = (
@@ -4179,7 +4179,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Bl" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Bo" = (

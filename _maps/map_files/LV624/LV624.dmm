@@ -1634,7 +1634,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "aRA" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "aRC" = (
@@ -9443,7 +9443,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "jaS" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -18078,7 +18078,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "sXN" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "sYe" = (
@@ -21651,7 +21651,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/hydroponics/aux)
 "wOK" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "wON" = (

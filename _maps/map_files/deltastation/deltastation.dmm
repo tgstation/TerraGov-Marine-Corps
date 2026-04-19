@@ -20588,7 +20588,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "ehL" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "ehT" = (
@@ -24444,7 +24444,7 @@
 /area/deltastation/engineering/main)
 "eUI" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "eUP" = (
@@ -52364,7 +52364,7 @@
 /area/deltastation/maintenance/department/electrical)
 "kHy" = (
 /obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
 "kHB" = (
@@ -103503,7 +103503,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "uZO" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "uZS" = (

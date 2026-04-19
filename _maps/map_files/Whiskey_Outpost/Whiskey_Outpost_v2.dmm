@@ -1015,7 +1015,7 @@
 /area/whiskey_outpost)
 "eW" = (
 /obj/effect/turf_decal/grassdecal/corner,
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "eY" = (
@@ -7070,7 +7070,7 @@
 	},
 /area/whiskey_outpost)
 "QQ" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/liquid/water/river,
 /area/whiskey_outpost/outside/north)
 "QS" = (
@@ -7760,7 +7760,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 4
 	},
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "WL" = (
@@ -7981,7 +7981,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "YK" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "YL" = (

@@ -1796,7 +1796,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "tq" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southeast)
 "tr" = (
@@ -3624,7 +3624,7 @@
 /turf/closed/wall,
 /area/lavaland/cave/east)
 "Mm" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southwest)
 "Mn" = (
@@ -3694,7 +3694,7 @@
 /area/lavaland/medical)
 "Ny" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
 "NA" = (
@@ -4249,7 +4249,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northeast)
 "Tl" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northeast)
 "Tn" = (

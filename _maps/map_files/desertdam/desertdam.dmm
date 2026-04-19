@@ -14300,7 +14300,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/patrol_point/tgmc_11,
+/obj/effect/landmark/patrol_point/rappel/tgmc_11,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "bNa" = (
@@ -47401,10 +47401,6 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -49599,7 +49595,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/effect/landmark/patrol_point/rappel/tgmc_21,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "rfC" = (
@@ -50515,10 +50511,6 @@
 "rLx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -52199,7 +52191,7 @@
 	},
 /area/desert_dam/building/medical/lobby)
 "sHZ" = (
-/obj/effect/landmark/patrol_point/som/som_11,
+/obj/effect/landmark/patrol_point/rappel/som/som_11,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/east_caves)
 "sId" = (
@@ -54491,7 +54483,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/building/telecommunication)
 "ufg" = (
-/obj/effect/landmark/patrol_point/som/som_21,
+/obj/effect/landmark/patrol_point/rappel/som/som_21,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "ufh" = (
