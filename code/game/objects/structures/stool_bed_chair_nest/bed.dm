@@ -12,7 +12,7 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
@@ -145,7 +145,7 @@
 		balloon_alert(user, "brakes off")
 		anchored = FALSE
 
-/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
+/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user, params)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)

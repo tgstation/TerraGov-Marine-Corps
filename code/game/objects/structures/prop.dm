@@ -2480,11 +2480,14 @@
 	icon_state = "trashpile"
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	hit_sound = 'sound/weapons/heavyhit.ogg'
 	coverage = 30
 	max_integrity = 75
+
+/obj/structure/prop/trashpile/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/prop/casammo
 	name = "30mm ammo crate"
@@ -2493,10 +2496,13 @@
 	icon_state = "30mm_crate"
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	coverage = 30
 	max_integrity = 150
+
+/obj/structure/prop/casammo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/prop/casammo/incendiary_minirocket
 	name = "incendiary mini rocket stack"

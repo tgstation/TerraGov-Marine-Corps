@@ -1185,8 +1185,6 @@
 	icon_state = "earth_pillar_0"
 	base_icon_state = "earth_pillar_0"
 	layer = MOB_BELOW_PIGGYBACK_LAYER
-	climbable = TRUE
-	climb_delay = 1.5 SECONDS
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	density = TRUE
 	max_integrity = 200
@@ -1206,6 +1204,7 @@
 	. = ..()
 	xeno_owner = new_owner
 	RegisterSignal(xeno_owner, COMSIG_QDELETING, PROC_REF(owner_deleted))
+	AddComponent(/datum/component/climbable, 1.5 SECONDS)
 	if(enhanced)
 		icon_state = "[icon_state]e"
 		var/random_x = generator("num", -100, 100, NORMAL_RAND)

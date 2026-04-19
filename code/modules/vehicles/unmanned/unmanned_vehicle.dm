@@ -154,6 +154,13 @@
 	else
 		next_move_delay = move_delay
 
+/obj/vehicle/unmanned/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		if(M.client)
+			M.client.move_delay = world.time
+	return ..()
+
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()

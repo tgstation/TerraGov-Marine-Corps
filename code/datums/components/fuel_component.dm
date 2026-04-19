@@ -71,9 +71,6 @@
 /obj/proc/is_refuelable()
 	return reagents
 
-/obj/item/ammo_magazine/flamer_tank/is_refuelable()
-	return TRUE
-
 ///Attempts to refuel src from a reagent container
 /obj/proc/try_refuel(atom/refueler, fuel_type, mob/user)
 	if(!can_refuel(refueler, fuel_type, user))

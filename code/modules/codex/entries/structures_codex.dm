@@ -18,9 +18,6 @@
 	if(general_entry?.mechanics_text)
 		structure_strings += general_entry.mechanics_text + "<br>"
 
-	if(climbable)
-		structure_strings += "You can climb ontop of this structure."
-
 	if(buckle_flags & CAN_BUCKLE)
 		structure_strings += "You can buckle someone or yourself to this structure. <br>Click the structure or press 'resist' to unbuckle."
 

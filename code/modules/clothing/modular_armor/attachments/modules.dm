@@ -554,7 +554,7 @@
 		return
 
 	user.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
-	user.move_resist = MOVE_FORCE_OVERPOWERING
+	user.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	user.log_message("has been armor locked for [ARMORLOCK_DURATION] ticks", LOG_ATTACK, color="pink")
 
 	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "armorlock")
@@ -570,7 +570,7 @@
 /obj/item/armor_module/module/armorlock/proc/end_armorlock(mob/living/user, image/shield_overlay)
 	user.overlays -= shield_overlay
 	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
-	user.move_resist = initial(user.move_resist)
+	user.set_move_resist(initial(user.move_resist))
 	user.status_flags &= ~GODMODE
 
 /obj/item/armor_module/module/style

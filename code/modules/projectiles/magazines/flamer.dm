@@ -21,6 +21,9 @@
 /obj/item/ammo_magazine/flamer_tank/get_fueltype()
 	return fuel_type
 
+/obj/item/ammo_magazine/flamer_tank/is_refuelable()
+	return TRUE
+
 /obj/item/ammo_magazine/flamer_tank/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_type != get_fueltype())
 		user?.balloon_alert(user, "wrong fuel")

@@ -927,7 +927,6 @@
 /area/oscar_outpost)
 "fg" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
 	dir = 8
 	},
 /turf/open/floor/mainship_hull/dir{
@@ -1591,7 +1590,6 @@
 /area/oscar_outpost/outside/northwest)
 "jz" = (
 /obj/structure/platform/rockcliff{
-	climb_delay = 20;
 	dir = 4
 	},
 /turf/open/floor/mainship_hull/dir{
