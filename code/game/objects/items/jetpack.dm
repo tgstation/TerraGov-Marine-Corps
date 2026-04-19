@@ -31,6 +31,7 @@
 
 /obj/item/jetpack_marine/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/fuel_storage, fuel_max)
 	toggle_action = new(src)
 	update_icon()
 
