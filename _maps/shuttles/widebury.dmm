@@ -227,6 +227,7 @@
 /area/shuttle/canterbury)
 "of" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -1287,7 +1288,7 @@ IQ
 cg
 fj
 Rr
-Rr
+RV
 mw
 xe
 xe
