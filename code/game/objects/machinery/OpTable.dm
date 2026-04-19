@@ -15,12 +15,15 @@
 	var/strapped = 0
 	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
-	///sending blood to patient
+	///optable sending blood to patient
 	var/blood_flow_on = FALSE
-
+	///anesthetic tank to connect to optable
 	var/obj/item/tank/anesthetic/anes_tank
+	///blood pack to connect to optable
 	var/obj/item/reagent_containers/blood/blood_pack
+	///operating computer connected to optable
 	var/obj/machinery/computer/operating/computer = null
+	///body scanner function for optable
 	var/datum/health_scan/scanner = null
 
 /obj/machinery/optable/Initialize(mapload)
@@ -71,51 +74,64 @@
 
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	..()
+	if(!victim)
+		. = ..()
+		if(.)
+			return
+#define EJECT_ANESTHETIC "Eject Anesthetic"
+#define EJECT_BLOOD_PACK "Eject Blood Pack"
+#define TOGGLE_BLOOD_FLOW "Toggle Blood Flow"
+#define DISCONNECT_PATIENT "Disconnect Patient"
+#define ANALYZE_VITALS "Analyze Vitals"
 	var/list/radial_options = list(
-		"Eject Anesthetic" = image(icon='icons/obj/items/tank.dmi', icon_state="anesthetic"),
-		"Eject Blood Pack" = image(icon='icons/obj/items/bloodpack.dmi', icon_state="full"),
-		"Toggle Blood Flow" = image(icon='icons/obj/iv_drip.dmi', icon_state="hooked"),
+		EJECT_ANESTHETIC = image(icon='icons/obj/items/tank.dmi', icon_state="anesthetic"),
+		EJECT_BLOOD_PACK = image(icon='icons/obj/items/bloodpack.dmi', icon_state="full"),
+		TOGGLE_BLOOD_FLOW = image(icon='icons/obj/iv_drip.dmi', icon_state="hooked"),
 	)
 	if(victim)
-		radial_options["Analyze Vitals"] = image(icon='icons/obj/device.dmi', icon_state="health")
-		radial_options["Disconnect Patient"] = image(icon='icons/obj/surgery.dmi', icon_state="table1")
+		radial_options[ANALYZE_VITALS] = image(icon='icons/obj/device.dmi', icon_state="health")
+		radial_options[DISCONNECT_PATIENT] = image(icon='icons/mob/actions/actions_mecha.dmi', icon_state="mech_eject")
 	var/choice = show_radial_menu(user, src, radial_options, null, 48, require_near = TRUE, tooltips = TRUE)
 	if(!choice)
 		return
-	if(choice == "Eject Anesthetic")
-		if(anes_tank)
-			user.put_in_active_hand(anes_tank)
-			to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
-			playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
-			anes_tank = null
-			update_appearance(UPDATE_ICON)
-		else
-			to_chat(user, span_warning("There is no anesthetic tank connected."))
-	if(choice == "Eject Blood Pack")
-		if(blood_pack)
-			user.put_in_active_hand(blood_pack)
-			to_chat(user, span_notice("You remove \the [blood_pack] from \the [src]."))
-			playsound(loc, 'sound/effects/pop.ogg', 25, 1)
-			blood_pack = null
-			update_appearance(UPDATE_ICON)
-		else
-			to_chat(user, span_warning("There is no blood pack connected."))
-	if(choice == "Toggle Blood Flow")
-		blood_flow_on = !blood_flow_on
-		to_chat(user, span_notice("Blood flow is now [blood_flow_on ? "on" : "off"]."))
-	if(choice == "Disconnect Patient")
-		if(victim)
-			user_unbuckle_mob(victim, user)
-			to_chat(user, span_notice("You disconnect [victim] from the table."))
-		else
-			to_chat(user, span_warning("There is no patient to disconnect."))
-	if(choice == "Analyze Vitals")
-		if(victim && scanner)
-			scanner.analyze_vitals(victim, user)
-		else
-			to_chat(user, span_warning("There is no patient to scan."))
-	return
+	switch(choice)
+		if(EJECT_ANESTHETIC)
+			if(anes_tank)
+				user.put_in_active_hand(anes_tank)
+				balloon_alert(user, "You remove \the [anes_tank] from \the [src].")
+				playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
+				anes_tank = null
+				update_appearance(UPDATE_ICON)
+			else
+				balloon_alert(user, "There is no anesthetic tank connected.")
+		if(EJECT_BLOOD_PACK)
+			if(blood_pack)
+				user.put_in_active_hand(blood_pack)
+				balloon_alert(user, "You remove \the [blood_pack] from \the [src].")
+				playsound(loc, 'sound/effects/pop.ogg', 25, 1)
+				blood_pack = null
+				update_appearance(UPDATE_ICON)
+			else
+				balloon_alert(user, "There is no blood pack connected.")
+		if(TOGGLE_BLOOD_FLOW)
+			blood_flow_on = !blood_flow_on
+			balloon_alert(user, "Blood flow is now [blood_flow_on ? "on" : "off"].")
+		if(DISCONNECT_PATIENT)
+			if(victim)
+				user_unbuckle_mob(victim, user)
+				balloon_alert(user, "You disconnect [victim] from the table.")
+			else
+				balloon_alert(user, "There is no patient to disconnect.")
+		if(ANALYZE_VITALS)
+			if(victim && scanner)
+				scanner.analyze_vitals(victim, user)
+			else
+				balloon_alert(user, "There is no patient to scan.")
+#undef EJECT_ANESTHETIC
+#undef EJECT_BLOOD_PACK
+#undef TOGGLE_BLOOD_FLOW
+#undef DISCONNECT_PATIENT
+#undef ANALYZE_VITALS
 
 
 
@@ -128,31 +144,31 @@
 		to_chat(user, span_xenowarning("We don't have the manual dexterity to do this."))
 		return FALSE
 	if(buckling_mob != victim)
-		to_chat(user, span_warning("Lay the patient on the table first!"))
+		balloon_alert(user, "Lay the patient on the table first!")
 		return FALSE
 	if(!anes_tank)
-		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
+		balloon_alert(user, "There is no anesthetic tank connected to the table, load one first.")
 		return FALSE
-	buckling_mob.visible_message(span_notice("[user] begins to connect [buckling_mob] to the anesthetic system and inserting an IV line."))
+	buckling_mob.visible_message(span_notice("[user] begins to connect [buckling_mob] to the anesthetic system."))
 	if(!do_after(user, 2.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		if(buckling_mob != victim)
-			to_chat(user, span_warning("The patient must remain on the table!"))
+			balloon_alert(user, "The patient must remain on the table!")
 			return FALSE
-		to_chat(user, span_notice("You stop placing the mask on [buckling_mob]'s face."))
+		balloon_alert(user, "You stop placing the mask on [buckling_mob]'s face.")
 		return FALSE
 	if(!anes_tank)
 		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
 		return FALSE
 	if(!blood_pack || blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) <= 0)
-		to_chat(user, span_warning("Blood reservoir is empty. Consider replacing the bag."))
+		balloon_alert(user, "Blood reservoir is empty.")
 	var/mob/living/carbon/human/buckling_human = buckling_mob
 	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
-		to_chat(user, span_danger("You can't remove their mask!"))
+		balloon_alert(user, "You can't remove their mask!")
 		return FALSE
 	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
-		to_chat(user, span_danger("You can't fit the gas mask over their face!"))
+		balloon_alert(user, "You can't fit the gas mask over their face!")
 		return FALSE
-	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
+	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
 	addtimer(CALLBACK(src, PROC_REF(knock_out_buckled), buckling_human), rand(2 SECONDS, 4 SECONDS))
 	buckling_human.setDir(SOUTH)
