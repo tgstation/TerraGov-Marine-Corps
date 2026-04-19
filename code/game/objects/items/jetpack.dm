@@ -31,7 +31,6 @@
 
 /obj/item/jetpack_marine/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/fuel_storage, fuel_max)
 	toggle_action = new(src)
 	update_icon()
 
@@ -52,6 +51,9 @@
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
 	toggle_action.remove_action(user)
+
+/obj/item/jetpack_marine/is_refuelable()
+	return TRUE
 
 /obj/item/jetpack_marine/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_left == fuel_max)
