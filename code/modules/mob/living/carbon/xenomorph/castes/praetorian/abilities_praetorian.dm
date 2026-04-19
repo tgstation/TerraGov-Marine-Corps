@@ -951,23 +951,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/oppressor/tail_lash/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
-
-	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+	for(var/turf/affected_tile AS in get_forward_square(xeno_owner, 1, 2))
 		affected_tile.Shake(duration = 0.1 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)
