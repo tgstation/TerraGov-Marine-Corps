@@ -17,6 +17,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aN" = (
@@ -315,12 +316,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
-"uL" = (
-/obj/structure/barricade/folding{
-	dir = 1
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "vf" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -412,12 +407,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
-"ze" = (
-/obj/structure/barricade/folding{
-	dir = 8
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "zg" = (
 /obj/structure/closet/secure_closet/guncabinet/canterbury,
 /obj/machinery/air_alarm{
@@ -438,9 +427,6 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "AG" = (
-/obj/structure/barricade/folding{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "AP" = (
@@ -913,9 +899,9 @@ wZ
 vf
 Br
 hj
-ze
-ze
-ze
+AG
+AG
+AG
 dS
 cg
 lT
@@ -1106,7 +1092,7 @@ ia
 "}
 (11,1,1) = {"
 Uz
-uL
+AG
 BV
 BV
 xe
@@ -1129,7 +1115,7 @@ ia
 "}
 (12,1,1) = {"
 Uz
-uL
+AG
 xe
 xe
 xe
@@ -1152,7 +1138,7 @@ ia
 "}
 (13,1,1) = {"
 Uz
-uL
+AG
 BV
 BV
 xe
