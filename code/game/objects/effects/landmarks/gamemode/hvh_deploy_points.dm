@@ -115,22 +115,22 @@
 ///Ends the deploy effects
 ///parent MUST be called last!
 /obj/effect/landmark/patrol_point/proc/end_deployment(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
-    SHOULD_CALL_PARENT(TRUE)
-    for(var/atom/movable/AM AS in movables_to_move)
-        SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
+	SHOULD_CALL_PARENT(TRUE)
+	for(var/atom/movable/AM AS in movables_to_move)
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
 
 ///Ends the rappel effects
 /obj/effect/landmark/patrol_point/rappel/end_deployment(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
-    for(var/atom/movable/AM AS in movables_to_move)
-        AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
-        AM.layer = layer_list[AM]
-        if(ismecha(AM) || isarmoredvehicle(AM))
-            new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
-            playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
-    for(var/user in mobs_moving)
-        shake_camera(user, 0.2 SECONDS, 0.5)
+	for(var/atom/movable/AM AS in movables_to_move)
+		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+		AM.layer = layer_list[AM]
+		if(ismecha(AM) || isarmoredvehicle(AM))
+			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
+			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
+	for(var/user in mobs_moving)
+		shake_camera(user, 0.2 SECONDS, 0.5)
 
-    return ..()
+	return ..()
 
 /obj/effect/landmark/patrol_point/xeno/end_deployment(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
