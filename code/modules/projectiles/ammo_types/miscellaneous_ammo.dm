@@ -230,9 +230,9 @@
 /datum/ammo/grenade_container/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/grenade_container/drop_nade(turf/T)
-	var/obj/item/explosive/grenade/G = new nade_type(T)
-	G.visible_message(span_warning("\A [G] lands on [T]!"))
+/datum/ammo/grenade_container/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	var/obj/item/explosive/grenade/G = new nade_type(target_turf)
+	G.visible_message(span_warning("\A [G] lands on [target_turf]!"))
 	G.det_time = 10
 	G.activate()
 

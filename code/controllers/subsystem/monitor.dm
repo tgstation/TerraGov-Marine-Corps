@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
-	init_order = INIT_ORDER_MONITOR
+	init_stage = INITSTAGE_EARLY
 	runlevels = RUNLEVEL_GAME
 	wait = 3 MINUTES
 	can_fire = TRUE

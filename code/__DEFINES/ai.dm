@@ -66,10 +66,13 @@
 ///AI will give up escorting something beyond this distance
 #define AI_ESCORTING_BREAK_DISTANCE 20
 
+//get escort priority ratings - calculates escort target by highest to lowest
+#define AI_ESCORT_RATING_ENSLAVED_WEAK 5
 #define AI_ESCORT_RATING_FACTION_GOAL 10
 #define AI_ESCORT_RATING_SQUAD_LEAD 13
 #define AI_ESCORT_RATING_CLOSE_FRIENDLY 15
 #define AI_ESCORT_RATING_BUDDY 16
+#define AI_ESCORT_RATING_ENSALVED_STRONG 25
 
 GLOBAL_LIST_EMPTY(all_nodes)
 

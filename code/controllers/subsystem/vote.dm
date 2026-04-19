@@ -64,7 +64,6 @@ SUBSYSTEM_DEF(vote)
 
 	remove_action_buttons()
 
-
 /// Tally the results and give the winner
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
@@ -99,36 +98,52 @@ SUBSYSTEM_DEF(vote)
 			if(choices[option] == greatest_votes)
 				. += option
 
-
 /// Announce the votes tally to everyone
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
-	if(length(winners) > 0)
-		if(question)
-			text += "<big><b><i>[question]</i></b></big>"
-		else
-			text += "<b>[capitalize(mode)] Vote</b>"
-		for(var/i = 1 to length(choices))
-			var/votes = choices[choices[i]]
-			if(!votes)
-				votes = 0
-			text += "\n<b>[choices[i]]:</b> [votes]"
-		if(mode != "custom")
-			if(length(winners) > 1)
-				text = "<hr><b>Vote Tied Between:</b>"
-				for(var/option in winners)
-					text += "\n\t[option]"
-			. = pick(winners)
-			text += "<hr><b>Vote Result: [.]</b>"
-		else
-			text += "<hr><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+
+	if(!length(winners))
+		if(mode != "shipmap" && mode != "groundmap")
+			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
+			cleanup_vote(text)
+			return
+		//We randomly choose a valid map to avoid restarting with invalid maps for the gamemode, bricking the round and requiring a restart
+		var/random_map = pick(choices)
+		winners += random_map
+		text += "<b>Vote Result: Inconclusive - No Votes! Random valid map selected: [random_map]</b>"
+		. = random_map
+		cleanup_vote(text)
+		return
+
+	if(question)
+		text += "<big><b><i>[question]</i></b></big>"
 	else
-		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
-	log_vote(text)
+		text += "<b>[capitalize(mode)] Vote</b>"
+	for(var/i = 1 to length(choices))
+		var/votes = choices[choices[i]]
+		if(!votes)
+			votes = 0
+		text += "\n<b>[choices[i]]:</b> [votes]"
+	if(mode != "custom")
+		if(length(winners) > 1)
+			text = "<hr><b>Vote Tied Between:</b>"
+			for(var/option in winners)
+				text += "\n\t[option]"
+		. = pick(winners)
+		text += "<hr><b>Vote Result: [.]</b>"
+	else
+		text += "<hr><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+	cleanup_vote(text)
+
+///Cleans up after a vote is successfully concluded
+/datum/controller/subsystem/vote/proc/cleanup_vote(result_text)
 	vote_happening = FALSE
 	remove_action_buttons()
-	to_chat(world, custom_boxed_message("purple_box", text))
+	if(!result_text)
+		return
+	log_vote(result_text)
+	to_chat(world, custom_boxed_message("purple_box", result_text))
 
 /// Apply the result of the vote if it's possible
 /datum/controller/subsystem/vote/proc/result(default_result)

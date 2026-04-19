@@ -15340,6 +15340,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bluemoon/outside/building/admin)
 "rMc" = (
@@ -37637,7 +37638,7 @@ eya
 qft
 xyx
 gbZ
-gbZ
+xMQ
 uzA
 qft
 dMF
@@ -37784,7 +37785,7 @@ vVJ
 qft
 jlK
 gbZ
-xMQ
+gbZ
 lID
 asA
 aKG
@@ -37931,7 +37932,7 @@ rjG
 qft
 kdU
 gbZ
-gbZ
+xMQ
 iwU
 asA
 qZY

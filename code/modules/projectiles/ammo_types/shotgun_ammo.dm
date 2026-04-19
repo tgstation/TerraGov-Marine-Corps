@@ -130,8 +130,8 @@
 	damage_falloff = 0.5
 	penetration = 0
 
-/datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 2, tiny = TRUE, explosion_cause=src)
+/datum/ammo/bullet/shotgun/frag/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, weak_impact_range = 2, tiny = TRUE, explosion_cause=src)
 
 /datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))

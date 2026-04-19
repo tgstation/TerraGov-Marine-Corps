@@ -37,10 +37,9 @@
 	damage = 90
 	penetration = 0
 	sundering = 30
-	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	airburst(target_mob, proj)
+	airburst(target_mob, proj, 45)
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
@@ -69,15 +68,6 @@
 
 	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
-
-/datum/ammo/bullet/sniper/elite
-	name = "supersonic sniper bullet"
-	hud_state = "sniper_supersonic"
-	ammo_behavior_flags = AMMO_BALLISTIC
-	accuracy = 20
-	damage = 100
-	penetration = 60
-	sundering = 50
 
 /datum/ammo/bullet/sniper/pfc
 	name = "high caliber rifle bullet"

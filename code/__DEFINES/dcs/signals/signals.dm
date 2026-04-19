@@ -161,7 +161,10 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
-#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!ZOMBIE_TUNNEL_DESTROYED"
+/// From [/obj/effect/ai_node/spawner/zombie/Destroy()]
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!zombie_tunnel_destroyed"
+/// From [/obj/machinery/computer/code_generator/nuke/complete_segment()]: (/obj/machinery/computer/code_generator/nuke/generating_computer)
+#define COMSIG_GLOB_DISK_SEGMENT_COMPLETED "!disk_segment_completed"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -425,6 +428,12 @@
 #define COMSIG_MOVABLE_SHUTTLE_CRUSH "movable_shuttle_crush"
 ///Movable deployed via a patrol point
 #define COMSIG_MOVABLE_PATROL_DEPLOYED "movable_patrol_deployed"
+
+///from /atom/can_climb()
+#define COMSIG_ATOM_CHECK_CLIMBABLE "atom_check_climbable"
+	#define COMPONENT_MOVABLE_CAN_CLIMB (1<<0)
+///from /atom/try_climb()
+#define COMSIG_ATOM_TRY_CLIMBABLE "atom_try_climbable"
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
@@ -924,6 +933,9 @@
 
 ///from /datum/action/ability/activable/build_designator/call_interaction()
 #define COMSIG_MOB_INTERACTION_DESIGNATED "mob_interaction_designated"
+
+///From /atom/add_slaved_npc()
+#define COMSIG_COMPONENT_ADD_NEW_SLAVE_NPC "component_add_new_slave_npc"
 
 // /datum/song signals
 

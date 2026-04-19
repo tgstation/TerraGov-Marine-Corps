@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(spawning)
  * Arguments:
  * * spawner: atom to be registered
  * * delaytime: time in byond ticks between respawns dont make this lower than SS wait or perish
- * * spawntypes: can be both a list as well as a specific type for the spawner to spawn
+ * * spawntypes: can be a list, list of lists or a specific type for the spawner to spawn
  * * postspawn: Callback to be invoked on the spawned squad, use for equipping and such
  */
 /datum/controller/subsystem/spawning/proc/registerspawner(atom/spawner, delaytime = 30 SECONDS, spawntypes, maxmobs = 10, spawnamount = 1, datum/callback/postspawn)
@@ -82,6 +82,8 @@ SUBSYSTEM_DEF(spawning)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
 			var/spawntype = pickweight(spawnerdata[spawner].spawntypes)
+			if(islist(spawntype)) //for nested spawn options
+				spawntype = pickweight(spawntype)
 			var/mob/newmob = new spawntype(spawnpoint)
 
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)

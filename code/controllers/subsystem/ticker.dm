@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
-	init_order = INIT_ORDER_TICKER
 
 	priority = FIRE_PRIORITY_TICKER
 	flags = SS_KEEP_TIMING
@@ -49,6 +48,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize()
 	load_mode()
 
+	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 1 SECONDS)
 	login_music = choose_lobby_song()
 	for(var/client/player AS in GLOB.clients)
 		player.play_title_music()
@@ -71,9 +71,7 @@ SUBSYSTEM_DEF(ticker)
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
-				return
-			if(isnull(start_at))
-				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 1 SECONDS)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world,

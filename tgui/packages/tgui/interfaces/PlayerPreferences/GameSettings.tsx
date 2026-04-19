@@ -197,13 +197,6 @@ export const GameSettings = (props) => {
                 tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
-                label="TGUI Window Mode"
-                value="tgui_fancy"
-                action="tgui_fancy"
-                leftLabel={'Fancy (default)'}
-                rightLabel={'Compatible (slower)'}
-              />
-              <ToggleFieldPreference
                 label="TGUI Window Placement"
                 value="tgui_lock"
                 action="tgui_lock"

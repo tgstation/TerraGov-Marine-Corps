@@ -4252,6 +4252,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/security/regular,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "vW" = (
@@ -8630,6 +8631,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "RS" = (

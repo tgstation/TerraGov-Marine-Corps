@@ -35,7 +35,7 @@
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = "zombie_claw_left"
 	base_icon_state = "zombie_claw"
-	force = 20
+	force = 25
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
@@ -56,7 +56,7 @@
 	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
-	force = 30
+	force = 35
 
 /obj/item/weapon/zombie_claw/tank
 	attack_speed = 12
@@ -67,10 +67,10 @@
 
 /**
  * Any special attack by zombie behavior
- * Return FALSE if normal melee_attack_chain should occur
+ * Called after melee_attack_chain if it returns true
 */
 /atom/proc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	return FALSE
+	return
 
 /obj/machinery/door/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!density)
@@ -93,7 +93,6 @@
 		return
 	zombie.changeNext_move(claw.attack_speed)
 	open(TRUE)
-	return TRUE
 
 /obj/machinery/power/apc/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -116,7 +115,6 @@
 		beenhit += 1
 	zombie.changeNext_move(claw.attack_speed)
 	zombie.do_attack_animation(src, used_item = claw)
-	return TRUE
 
 /obj/machinery/nuclearbomb/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!timer_enabled)
@@ -134,7 +132,10 @@
 		return
 	if(!claw.zombium_per_hit)
 		return
-	reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		apply_damage(modify_by_armor(claw.zombium_per_hit * ZOMBIUM_ROBOT_EFFECT_MULTIPLIER, BIO, 0, zombie.get_limbzone_target()), BURN, zombie.get_limbzone_target())//Zombium is corrosive to machines
+	else
+		reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
 
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
 	if(!is_wired)
@@ -143,3 +144,14 @@
 		return
 	balloon_alert(zombie, "barbed wire slices into you!")
 	zombie.apply_damage(20, blocked = MELEE , sharp = TRUE, updating_health = TRUE)//Higher damage since zombies have high healing rate, and theyre using their hands
+
+/obj/machinery/vending/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(tipped_level == 2)
+		return
+	tip_over()
+
+/obj/structure/razorwire/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
+	if(zombie.a_intent != INTENT_HARM)
+		return
+	zombie.apply_damage(ZOMBIE_RAZORWIRE_DAMAGE, blocked = MELEE, updating_health = TRUE)//Less health but more damage
+	update_appearance(UPDATE_ICON)

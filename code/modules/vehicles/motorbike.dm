@@ -13,7 +13,7 @@
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
@@ -106,9 +106,9 @@
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+/obj/vehicle/ridden/motorbike/relaydrive(mob/living/user, direction)
 	. = ..()
-	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
+	if(!.)
 		return
 	fuel_count--
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)

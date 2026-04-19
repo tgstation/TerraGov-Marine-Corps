@@ -77,7 +77,8 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	if(oldspecies)
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
-	species.create_organs(src)
+	species.create_limbs(src, oldspecies)
+	species.create_organs(src, oldspecies)
 	if(species.base_color && default_colour)
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))

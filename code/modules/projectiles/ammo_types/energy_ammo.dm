@@ -109,8 +109,8 @@
 /datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	proj.proj_max_range -= 10
 
-/datum/ammo/energy/bfg/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
+/datum/ammo/energy/bfg/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/energy/bfg/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
@@ -553,11 +553,11 @@
 	max_range = 30
 	hitscan_effect_icon = "beam_incen"
 
-/datum/ammo/energy/lasgun/marine/heavy_laser/drop_nade(turf/T, radius = 1)
-	if(!T || !isturf(T))
+/datum/ammo/energy/lasgun/marine/heavy_laser/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
 		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 3, 3, 3, 3)
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(1, target_turf, 3, 3, 3, 3)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
@@ -624,8 +624,8 @@
 	accurate_range = 5
 	max_range = 12
 
-/datum/ammo/energy/plasma/blast/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE, explosion_cause=src)
+/datum/ammo/energy/plasma/blast/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, weak_impact_range = 3, color = COLOR_DISABLER_BLUE, explosion_cause=src)
 
 /datum/ammo/energy/plasma/blast/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
@@ -647,9 +647,9 @@
 	///Number of melting stacks to apply
 	var/melting_stacks = 2
 
-/datum/ammo/energy/plasma/blast/melting/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 4, color = COLOR_DISABLER_BLUE, explosion_cause=src)
-	for(var/mob/living/living_victim in viewers(3, T)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
+/datum/ammo/energy/plasma/blast/melting/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, weak_impact_range = 4, color = COLOR_DISABLER_BLUE, explosion_cause=src)
+	for(var/mob/living/living_victim in viewers(3, target_turf)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
 		var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
 		if(debuff)
 			debuff.add_stacks(melting_stacks)
@@ -663,9 +663,9 @@
 	accurate_range = 9
 	ammo_behavior_flags = AMMO_ENERGY
 
-/datum/ammo/energy/plasma/blast/shatter/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE, explosion_cause=src)
-	for(var/mob/living/living_victim in viewers(3, T))
+/datum/ammo/energy/plasma/blast/shatter/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE, explosion_cause=src)
+	for(var/mob/living/living_victim in viewers(3, target_turf))
 		living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
 
 /datum/ammo/energy/plasma/blast/incendiary
@@ -676,9 +676,9 @@
 	icon_state = "plasma_big"
 	hud_state = "flame"
 
-/datum/ammo/energy/plasma/blast/incendiary/drop_nade(turf/T)
-	flame_radius(2, T, burn_duration = 9, colour = "blue")
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+/datum/ammo/energy/plasma/blast/incendiary/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	flame_radius(2, target_turf, burn_duration = 9, colour = "blue")
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 #define PLASMA_CANNON_INNER_STAGGERSTUN_RANGE 3
 #define PLASMA_CANNON_STAGGERSTUN_RANGE 9

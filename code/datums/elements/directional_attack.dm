@@ -30,7 +30,7 @@
 	if(QDELETED(clicked_atom))
 		return
 
-	var/turf/turf_to_check = get_step(source, angle_to_dir(Get_Angle(source, clicked_atom)))
+	var/turf/turf_to_check = get_step(source, angle2dir(Get_Angle(source, clicked_atom)))
 	if(!turf_to_check || !source.Adjacent(turf_to_check))
 		return
 
