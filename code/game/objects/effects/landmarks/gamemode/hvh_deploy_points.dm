@@ -124,7 +124,7 @@
 	notify_deploy_finished(movables_to_move)
 
 /obj/effect/landmark/patrol_point/xeno/end_deployment_effects(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
-    return
+	return
 
 ///sends a signal for every movable moved. Intended to be sent when any deployment visuals are finished, in end_deploy_effects()
 /obj/effect/landmark/patrol_point/proc/notify_deploy_finished(list/movables_to_move)
