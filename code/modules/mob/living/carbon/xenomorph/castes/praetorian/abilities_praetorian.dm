@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/i = 1 to length(turf_line))
 		var/turf/turf_from_line = turf_line[i]
 		if(get_dist(xeno_turf, turf_from_line) > OPPRESSOR_ADBDUCT_RANGE)
-			turf_line.Cut(1, i + 1)
+			turf_line.Cut(i)
 			break
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
 
