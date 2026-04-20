@@ -18,6 +18,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 	icon_state_mini = "slugs"
 
+/obj/item/ammo_magazine/shotgun/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(current_rounds <= 0)
+		balloon_alert(user, "Empty")
+		return
+	create_handful(user)
+
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "box of 12 gauge incendiary slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
