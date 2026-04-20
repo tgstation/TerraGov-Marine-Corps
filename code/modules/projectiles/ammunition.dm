@@ -494,6 +494,27 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				user.temporarilyRemoveItemFromInventory(AM)
 				qdel(AM)
 
+
+/obj/item/big_ammo_box/attack_hand_alternate(mob/living/user)
+	if(loc == user)
+		return ..()
+	if(!isturf(loc))
+		to_chat(user, span_warning("[src] must be on the ground to be used."))
+		return
+	if(current_rounds < 1)
+		to_chat(user, span_warning("The [src] is empty."))
+		return
+
+	var/obj/item/ammo_magazine/handful/H = new
+	var/rounds = min(bullet_amount, initial(default_ammo.handful_amount))
+
+	H.generate_handful(ammo_type, caliber, rounds, initial(ammo_type.handful_amount))
+	bullet_amount -= rounds
+
+	user.put_in_hands(H)
+	to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
+	update_icon()
+
 //explosion when using flamer procs.
 /obj/item/big_ammo_box/fire_act(burn_level)
 	if(!bullet_amount)
@@ -642,14 +663,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
 	icon_state = "tracking"
-	worn_icon_state = "ammoboxtracking"
+	worn_icon_state = "ammoboxslug"
 	base_icon_state = "tracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
 /obj/item/shotgunbox/blank
 	name = "blank ammo box"
 	icon_state = "blank"
-	worn_icon_state = "ammoboxblank"
+	worn_icon_state = "ammoboxslug"
 	base_icon_state = "blank"
 	ammo_type = /datum/ammo/bullet/shotgun/blank
 
@@ -659,3 +680,106 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	caliber = CALIBER_10x26_CASELESS
 	bullet_amount = 3200 //a backpack holds 8 MG-60 box mags, which is 1600 rounds
 	max_bullet_amount = 3200
+
+/obj/item/big_ammo_box/c10x265mm
+	name = "big ammo box (10x26.5mm)"
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
+	caliber = CALIBER_10x265_CASELESS
+	bullet_amount = 1600 //a backpack holds 8 boxes, which is 800 rounds
+	max_bullet_amount = 1600
+
+/obj/item/big_ammo_box/c10x27mm
+	name = "big ammo box (10x27mm)"
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	caliber = CALIBER_10x27_CASELESS
+	bullet_amount = 1600 //a backpack holds 8 boxes, which is 800 rounds
+	max_bullet_amount = 1600
+
+/obj/item/big_ammo_box/c10x25mm
+	name = "big ammo box (10x25mm)"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	caliber = CALIBER_10x25_CASELESS
+	bullet_amount = 2000 //a backpack holds 8 boxes, which is 1000 rounds
+	max_bullet_amount = 2000
+
+/obj/item/big_ammo_box/c492x34mm
+	name = "big ammo box (4.92x34mm)"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	caliber = CALIBER_492X34_CASELESS
+	bullet_amount = 3360 //a backpack holds 8 boxes, which is 1680 rounds
+	max_bullet_amount = 3360
+
+/obj/item/big_ammo_box/c86x70mm
+	name = "big ammo box (8.6x70mm)"
+	default_ammo = /datum/ammo/bullet/sniper/pfc
+	caliber = CALIBER_86X70
+	bullet_amount = 800 //a backpack holds 8 boxes, which is 400 rounds
+	max_bullet_amount = 800
+
+/obj/item/big_ammo_box/cstandardautoshotgun
+	name = "big ammo box (16 Gauge shotgun slugs)"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
+	caliber = CALIBER_16G
+	bullet_amount = 960 //a backpack holds 8 boxes, which is 480 rounds
+	max_bullet_amount = 960
+
+/obj/item/big_ammo_box/cstandardautoshotgun/flechette
+	name = "big ammo box (16 Gauge shotgun flechette shells)"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
+
+/obj/item/big_ammo_box/c9mm
+	name = "big ammo box (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol
+	caliber = CALIBER_9X19
+	bullet_amount = 2240 //packets are oddly space inefficient, going by the 10x26 packet to mg60 box conversion ratio gives 2x 8x packet capacity for backpack of 1120
+	max_bullet_amount = 2240
+
+/obj/item/big_ammo_box/cmagnum
+	name = "big ammo box (.44 magnum)"
+	default_ammo = /datum/ammo/bullet/revolver/tp44
+	caliber = CALIBER_44
+	bullet_amount = 1568 //packets are oddly space inefficient, going by the 10x26 packet to mg60 box conversion ratio gives 2x 8x packet capacity for backpack of 784
+	max_bullet_amount = 1568
+
+/obj/item/big_ammo_box/cacp
+	name = "big ammo box (.45 ACP)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = CALIBER_45ACP
+	bullet_amount = 1600 //packets are oddly space inefficient, going by the 10x26 packet to mg60 box conversion ratio gives 2x 8x packet capacity for backpack of 800
+	max_bullet_amount = 1600
+
+/obj/item/big_ammo_box/c9mmap
+	name = "big ammo box (9mm AP)"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	caliber = CALIBER_9X19
+	bullet_amount = 2240 //packets are oddly space inefficient, going by the 10x26 packet to mg60 box conversion ratio gives 2x 8x packet capacity for backpack of 1120
+	max_bullet_amount = 2240
+
+/obj/item/big_ammo_box/c4570
+	name = "big ammo box (.45-70)"
+	default_ammo = /datum/ammo/bullet/rifle/repeater
+	caliber = CALIBER_4570
+	bullet_amount = 1600 //packets are oddly space inefficient, going by the 10x26 packet to mg60 box conversion ratio gives 2x 8x packet capacity for backpack of 800
+	max_bullet_amount = 1600
+
+/obj/item/big_ammo_box/cthreeightyacp
+	name = "big ammo box (.380 ACP)"
+	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
+	caliber = CALIBER_380ACP
+	bullet_amount = 5040 //this packet is instead oddly space efficient, i'm just gonna do the regular backpackfull for 2520
+	max_bullet_amount = 5040
+
+/obj/item/big_ammo_box/c41ae
+	name = "big ammo box (.41 AE)"
+	default_ammo = /datum/ammo/bullet/smg/heavy
+	caliber = CALIBER_41AE
+	bullet_amount = 3960 //this packet is instead oddly space efficient, i'm just gonna do the regular backpackfull for 1980
+	max_bullet_amount = 3960
+
+/obj/item/big_ammo_box/c41ae_squashhead
+	name = "big ammo box (.41 AE squashhead)"
+	default_ammo = /datum/ammo/bullet/smg/squash
+	caliber = CALIBER_41AE
+	bullet_amount = 3960 //this packet is instead oddly space efficient, i'm just gonna do the regular backpackfull for 1980
+	max_bullet_amount = 3960
+
