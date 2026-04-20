@@ -74,7 +74,7 @@
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	drop_nade(get_turf(target_mob), proj)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
 	var/mob/living/carbon/human/human_victim = target_mob
@@ -96,13 +96,13 @@
 	if(ismecha(target_obj))
 		proj.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(target_obj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()

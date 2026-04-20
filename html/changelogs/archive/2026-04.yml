@@ -36,3 +36,84 @@
   novaepee and Lumi:
   - imageadd: Recolored Sleeper Console, now you won't get sleeper and body scanner
       confused
+2026-04-14:
+  Lumipharon:
+  - balance: 'Campaign: Autobalance will give attrition instead of a mech if the player
+      count difference is less than 5'
+  - bugfix: 'Campaign: Autobalance will no longer trigger at low pop with a 1 player
+      difference'
+2026-04-15:
+  novaepee:
+  - rscadd: Change placement of surgery room's items in Pillar of Spring for MD's
+      ease of access when doing surgery
+  - balance: allow MDs in Pillar of Spring to use more surgery items for less WASD
+      movement; very tactical
+2026-04-18:
+  Aporhtonoma:
+  - rscadd: names of victims to puppets.
+  Lumipharon:
+  - bugfix: When looking up/down a ladder, your camera resets when moving or being
+      stunned
+  - bugfix: Stops ladder view from ending when it shouldn't
+  - bugfix: fixed a runtime with sword and axe special attacks against objects
+  - bugfix: fixed attachments such as capes from laying incorrectly
+  - balance: TGMC wide flamer range increased to 7 from 6, and width increased to
+      60 degrees from 55
+  - balance: SOM/VSD flamer width increased to 45 degrees from 40
+  - balance: 'Campaign: X-fuel back tank purchase price increased to 100 from 50'
+  - bugfix: fixed SOM and VSD flamers not firing properly at certain specific angles
+  - code_imp: generate_cone() uses euclidean distance
+  - balance: Warrior spur mutation no longer buffs lunge range
+  - balance: Airbursting projectiles now affect objects instead of just living things
+  - code_imp: Code improvements to projectile airbursts and deflagrate
+  - bugfix: fixed greyscale projectiles being invisible
+  - bugfix: 'Campaign: fixed pods not activating correctly'
+  - balance: Mech sword dash has a high chance of knocking human sized targets out
+      of the way instead of instantly critting them
+  - bugfix: fixed some ERT and campaign ally loadouts missing items
+  - rscadd: You can now use click drag to help other mobs climb over or onto things
+  - bugfix: Destructable campaign objectives now update their minimap blip when C4'd
+  - bugfix: fixed vendors and computers blocking NPC's when they shouldn't
+  - code_imp: angle_to_dir() replaced with angle2dir. angle_to_cardinal_dir replaced
+      with angle2dir_cardinal
+  - rscadd: Added Sovl War, the objectively best and entirely perfect gamemode
+  - code_imp: Stopped outfit datums getting duplicated needlessly
+  - bugfix: fixed the position of some wall mounted objects, as well as cameras in
+      the Alamo
+  - rscadd: 'Campaign: Engineers from both factions can purchase barriade capsules
+      as secondary options'
+  - rscadd: 'Campaign: Medics from both factions can purchase healing foam grenades
+      as secondary options'
+  - bugfix: 'Campaign: Fixed SMG+ SOM standard loadout not having binocs'
+  - bugfix: fixed a runtime when respawning in campaign after being gibbed
+  - bugfix: fixed some projectiles breaking due to missing args
+  mudzbe:
+  - rscadd: Mechs trampling zombies pulps a limb. There is a 27% chance of the head
+      being pulped permaing the zombie
+  - balance: Add another maintenance tunnel to sulaco SD and southern hangar
+  - bugfix: Fixed Sulaco SD invincible walls, incorrect maint area
+2026-04-19:
+  Lewdcifer:
+  - bugfix: Boilers and Crushers can disable miners and tear holes in walls again.
+  Lumipharon:
+  - bugfix: Probably fixes generators not triggering collapse timer in some cases
+  - balance: Psy crush cannot be instantly double cast
+  - balance: Psy crush orb can be destroyed to cancel the ability, will hurt anyone
+      nearby however
+  - balance: Psy crush does more damage the larger its AOE
+  - balance: Psy blast/lance consumes plasma when first cast, instead of on success
+  - balance: Psy blast/lance now target turfs for aimming purposes
+  - balance: Psy lance cast times changed to 1.2 seconds
+  - balance: Psy blast/lance have a 50% CD applied if the cast is interrupted
+  - balance: Psy lance has a 0.8 pierce multiplier
+  - balance: Psy blast causes knockback that scales with distance to the epicentre,
+      with low throw force
+  - balance: Warlock plasma transfer now acts as a continous beam
+  - balance: Volkite Carronade range reduced to 15 and has correct range when shooting
+      diagonally
+  - bugfix: Jump throws should be more accurate/appropriately ranged when throwing
+      diagonally
+  - bugfix: You can now push objects when things are buckled onto them, such as marines
+      on bikes
+  - qol: Buckling something which you have grabbed will always try to transfer the
+      grab to the buckled thing

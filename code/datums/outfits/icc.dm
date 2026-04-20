@@ -185,7 +185,7 @@
 
 	backpack_contents = list(
 		/obj/item/tool/crowbar/red = 1,
-		/obj/item/explosive/grenade/som = 6,
+		/obj/item/explosive/grenade/som = 3,
 		/obj/item/defibrillator = 1,
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/weapon/gun/pistol/icc_dpistol = 1,
@@ -210,16 +210,15 @@
 	suit_store = /obj/item/weapon/gun/smg/icc_machinepistol/medic
 	l_pocket = /obj/item/storage/pouch/magazine/large/icc
 	r_pocket = /obj/item/storage/pouch/magazine/large/icc
-
-	backpack_contents = list(
-		/obj/item/ammo_magazine/smg/icc_machinepistol = 3,
-	)
-
 	l_pocket_contents = list(
 		/obj/item/ammo_magazine/smg/icc_machinepistol/hp = 3,
 	)
-
 	r_pocket_contents = list(
+		/obj/item/ammo_magazine/smg/icc_machinepistol = 3,
+	)
+
+/datum/outfit/job/icc/medic/icc_machinepistol/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/smg/icc_machinepistol = 3,
 	)
 
@@ -235,6 +234,11 @@
 
 	r_pocket_contents = list(
 		/obj/item/ammo_magazine/rifle/icc_sharpshooter = 3,
+	)
+
+/datum/outfit/job/icc/medic/icc_sharpshooter/update_contents()
+	backpack_contents += list(
+		/obj/item/explosive/grenade/som = 3,
 	)
 
 
@@ -280,33 +284,6 @@
 
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/icc_confrontationrifle = 6,
-	)
-
-/datum/outfit/job/icc/leader
-	name = "ICC Leader"
-	jobtype = /datum/job/icc/leader
-
-	shoes = /obj/item/clothing/shoes/marine/icc/knife
-	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard
-	gloves = /obj/item/clothing/gloves/marine/icc/guard
-	head = /obj/item/clothing/head/helmet/marine/icc/guard
-	back = /obj/item/storage/backpack/lightpack/icc/guard
-	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
-	r_pocket = /obj/item/storage/pouch/construction/icc/full
-
-	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,
-	)
-
-	backpack_contents = list(
-		/obj/item/tool/crowbar/red = 1,
-		/obj/item/explosive/grenade/som = 6,
-		/obj/item/storage/box/m94 = 1,
-	)
-
-	webbing_contents = list(
-		/obj/item/binoculars/tactical/range = 1,
-		/obj/item/explosive/plastique = 4,
 	)
 
 /datum/outfit/job/icc/leader/icc_heavyshotgun

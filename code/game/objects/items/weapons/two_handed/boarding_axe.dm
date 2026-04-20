@@ -66,7 +66,7 @@
 	succeed_activate()
 	add_cooldown()
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.Move(get_step(carbon_owner, angle_to_dir(Get_Angle(carbon_owner, A))), get_dir(carbon_owner, A))
+	carbon_owner.Move(get_step(carbon_owner, angle2dir(Get_Angle(carbon_owner, A))), get_dir(carbon_owner, A))
 	carbon_owner.face_atom(A)
 	activate_particles(owner.dir)
 	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, 0, 5)
@@ -80,7 +80,7 @@
 			continue
 		if(!ishuman(victim))
 			var/obj/obj_victim = victim
-			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
 			obj_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 			continue
 		var/mob/living/carbon/human/human_victim = victim

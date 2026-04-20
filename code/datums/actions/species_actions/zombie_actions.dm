@@ -151,7 +151,7 @@
 	if(living_target.faction == owner.faction) //we leap past friendlies
 		return
 
-	if(ishuman(living_target) && (angle_to_dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle2dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			var/mob/living/living_owner = owner

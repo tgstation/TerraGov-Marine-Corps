@@ -435,18 +435,29 @@
 	else //goes both ways
 		show_options(user, is_ghost = TRUE)
 
-
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
 	. = ..()
-	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying_angle || !user.client)
+	if(user.incapacitated() || is_blind(user) || user.lying_angle || !user.client)
 		user.unset_interaction()
 
 /obj/structure/ladder/on_set_interaction(mob/user)
 	user.reset_perspective(src)
+	RegisterSignals(user, list(
+		COMSIG_MOVABLE_MOVED,
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)
+	), PROC_REF(unset_viewer))
 
 /obj/structure/ladder/on_unset_interaction(mob/user)
-	..()
+	. = ..()
+	UnregisterSignal(user, list(
+		COMSIG_MOVABLE_MOVED,
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		SIGNAL_ADDTRAIT(TRAIT_IMMOBILE),
+		))
 	user.reset_perspective(null)
 
 ///Peeking up/down
@@ -485,6 +496,10 @@
 		span_notice("You look down [src]!"))
 		usr.set_interaction(down)
 
+///Cancels interaction for the viewer
+/obj/structure/ladder/proc/unset_viewer(mob/user)
+	SIGNAL_HANDLER
+	user.unset_interaction()
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
 /obj/structure/ladder/id_linked

@@ -32,7 +32,7 @@
 		return
 
 	var/dist = get_dist(src, area_apc)
-	var/direction = angle_to_dir(Get_Angle(get_turf(src), get_turf(area_apc)))
+	var/direction = angle2dir(Get_Angle(get_turf(src), get_turf(area_apc)))
 	to_chat(user, span_notice("The local APC is located at [span_bold("[dist] units [dir2text(direction)]")]."))
 	user.balloon_alert(user, "[dist] units [dir2text(direction)]")
 
