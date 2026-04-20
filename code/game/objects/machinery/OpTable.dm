@@ -72,12 +72,6 @@
 	if(blood_pack)
 		. += span_information("It has a [blood_pack] connected with the meter showing [round(blood_pack.reagents.get_reagent_amount(/datum/reagent/blood),1)] units of [blood_pack.blood_type] blood.")
 
-
-/obj/machinery/optable/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-
 #define EJECT_ANESTHETIC "Eject Anesthetic"
 #define EJECT_BLOOD_PACK "Eject Blood Pack"
 #define TOGGLE_BLOOD_FLOW "Toggle Blood Flow"
