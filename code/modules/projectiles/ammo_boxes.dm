@@ -1,5 +1,3 @@
-//Big ammo boxes
-
 /obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
 	desc = "A large ammo box. It comes with a leather strap."
@@ -23,7 +21,7 @@
 	var/max_current_rounds = 2400
 	///Caliber of the rounds stored
 	var/caliber = CALIBER_10X24_CASELESS
-	///Whether the box is deployed or not.
+	///Whether the box is deployed or not
 	var/deployed = FALSE
 
 /obj/item/big_ammo_box/update_icon_state()
@@ -46,24 +44,6 @@
 	update_appearance()
 	user.dropItemToGround(src)
 
-/obj/item/big_ammo_box/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	if(!deployed)
-		return
-	if(!ishuman(over))
-		return
-	if(over != usr)
-		return
-	if(!Adjacent(over))
-		return
-	var/mob/living/carbon/human/human = over
-	if(human.incapacitated())
-		return
-	if(!human.put_in_hands(src))
-		return
-
-	deployed = FALSE
-	update_appearance()
-
 /obj/item/big_ammo_box/attack_hand(mob/living/user)
 	if(loc == user)
 		return ..()
@@ -85,6 +65,27 @@
 	user.put_in_hands(new_handful)
 	to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 	update_appearance()
+
+/obj/item/big_ammo_box/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	attempt_undeploy(user)
+
+/obj/item/big_ammo_box/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(!.)
+		return
+
+	if(over != usr)
+		return
+	attempt_undeploy(over)
+
+/obj/item/big_ammo_box/fire_act(burn_level)
+	if(!current_rounds)
+		return
+	explosion(loc, 0, 0, 1, 0, 0, throw_range = FALSE, explosion_cause="ammo box cookoff") //blow it up.
+	qdel(src)
 
 /obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -153,12 +154,23 @@
 	to_chat(user, span_notice("You put [rounds_to_move] rounds in [src]."))
 	playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 
-//explosion when using flamer procs.
-/obj/item/big_ammo_box/fire_act(burn_level)
-	if(!current_rounds)
+///Tries to undeploy and pick up src
+/obj/item/big_ammo_box/proc/attempt_undeploy(mob/living/user)
+	if(!deployed)
 		return
-	explosion(loc, 0, 0, 1, 0, 0, throw_range = FALSE, explosion_cause="ammo box cookoff") //blow it up.
-	qdel(src)
+	if(!ishuman(user))
+		return
+	if(!Adjacent(user))
+		return
+	var/mob/living/carbon/human/human = user
+	if(human.incapacitated())
+		return
+	if(!human.put_in_hands(src))
+		return
+
+	deployed = FALSE
+	update_appearance()
+
 
 /obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
