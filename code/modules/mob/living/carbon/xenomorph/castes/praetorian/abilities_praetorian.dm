@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 ///Start the acid cone spray in the correct direction
 /datum/action/ability/activable/xeno/spray_acid/cone/proc/start_acid_spray_cone(turf/T, range)
-	var/facing = angle_to_dir(Get_Angle(owner, T))
+	var/facing = angle2dir(Get_Angle(owner, T))
 	owner.setDir(facing)
 	switch(facing)
 		if(NORTH, SOUTH, EAST, WEST)

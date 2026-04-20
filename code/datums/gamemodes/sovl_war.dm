@@ -1,8 +1,15 @@
-/datum/game_mode/infestation/nuclear_war
-	name = "Nuclear War"
-	config_tag = "Nuclear War"
-	silo_scaling = 2
-	round_type_flags = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI|MODE_MUTATIONS_OBTAINABLE
+///Default silo scale value
+#define SOVL_WAR_SILO_SCALE 2
+///Min silo scale value, at higher pop
+#define SOVL_WAR_MIN_SILO_SCALE 1.4
+///At this pop or under, we use the max silo scale value
+#define SOVL_WAR_MIN_POP_BASE 50
+
+/datum/game_mode/infestation/sovl_war
+	name = "Sovl War"
+	config_tag = "Sovl War"
+	silo_scaling = SOVL_WAR_SILO_SCALE
+	round_type_flags = MODE_ALAMO_ONLY|MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
@@ -19,6 +26,7 @@
 		/datum/job/terragov/civilian/liaison = 2,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/transport_crewman = 1,
+		/datum/job/terragov/command/assault_crewman = 0,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 1,
 		/datum/job/terragov/squad/corpsman = 1,
@@ -37,20 +45,25 @@
 
 	evo_requirements = list(
 		/datum/xeno_caste/queen = 8,
+		/datum/xeno_caste/king = 12,
 	)
+	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
-///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
-	var/siloless_hive_timer
-
-/datum/game_mode/infestation/nuclear_war/post_setup()
-	var/client_count = length(GLOB.clients)
-	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
-		evo_requirements[/datum/xeno_caste/queen] -= 2
-
+/datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
+	//testing only
+	addtimer(CALLBACK(src, PROC_REF(enable_pods)), deploy_time_lock)
+	for(var/obj/machinery/computer/camera_advanced/remote_fob/computer AS in GLOB.remote_fob_computers)
+		computer.metal_remaining += 100
+		computer.plasteel_remaining += 50
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
+	GLOB.loadout_role_essential_set[SQUAD_LEADER][/obj/item/binoculars/fire_support] = 1
+	GLOB.loadout_role_essential_set[FIELD_COMMANDER][/obj/item/binoculars/fire_support] = 1
+	if(GLOB.vending_records[/obj/machinery/vending/weapon]) //you've seriously fucked up if marines have no weapon vendors
+		var/datum/vending_product/record = new (null, /obj/item/storage/box/crate/sentry_sniper, 3, tab = "Heavy Weapons")
+		GLOB.vending_records[/obj/machinery/vending/weapon] += record
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
@@ -66,69 +79,24 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DEFUSED, PROC_REF(on_nuclear_defuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
-///Called by [/datum/hive_status/normal/handle_ruler_timer()] after [NUCLEAR_WAR_HIVEMIND_COLLAPSE] elapses to end the round
-/datum/game_mode/infestation/nuclear_war/orphan_hivemind_collapse()
+/datum/game_mode/infestation/sovl_war/process()
+	//attempt to combat xeno scaling at higher pop levels - silo scale is 2 at 50 pop or under, and scales down to 1.4 at 100+ pop
+	silo_scaling = LERP(SOVL_WAR_SILO_SCALE, SOVL_WAR_MIN_SILO_SCALE, clamp((length(GLOB.player_list) / SOVL_WAR_MIN_POP_BASE) - 1, 0, 1))
+	return ..()
+
+/datum/game_mode/infestation/sovl_war/orphan_hivemind_collapse()
 	if(round_finished)
 		return
 	if(round_stage == INFESTATION_MARINE_CRASHING)
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
+	round_finished = MODE_INFESTATION_M_MAJOR
 
-///Returns the time left before the hivemind collapses due to being orphaned
-/datum/game_mode/infestation/nuclear_war/get_hivemind_collapse_countdown()
+/datum/game_mode/infestation/sovl_war/get_hivemind_collapse_countdown()
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
 
-///Checks if the conditions for silo collapse have been met and starts/stops the countdown timer accordingly
-/datum/game_mode/infestation/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
-	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
-		return
-
-	//handle potential stopping
-	if(round_stage != INFESTATION_MARINE_DEPLOYMENT)
-		if(siloless_hive_timer)
-			deltimer(siloless_hive_timer)
-			siloless_hive_timer = null
-		return
-	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
-		if(siloless_hive_timer)
-			deltimer(siloless_hive_timer)
-			siloless_hive_timer = null
-			silo_owner.xeno_message("A new silo has been laid! Hive collapse has been averted. Defend it and recorrupt generators to prevent future collapse.", "xenoannounce", 6, TRUE)
-			priority_announce("A new silo has been laid! Destroy the new silo before generators are recorrupted to resume hive collapse.", "Hive Collapse Averted", type = ANNOUNCEMENT_PRIORITY)
-		return
-	if(GLOB.corrupted_generators > 0)
-		if(siloless_hive_timer)
-			deltimer(siloless_hive_timer)
-			siloless_hive_timer = null
-			silo_owner.xeno_message("A generator has been corrupted! Hive collapse has been averted. Defend it and lay a new silo to prevent future collapse.", "xenoannounce", 6, TRUE)
-			priority_announce("A generator has been corrupted! Decorrupt the generators before a new silo is laid to resume hive collapse.", "Hive Collapse Averted", type = ANNOUNCEMENT_PRIORITY)
-		return
-	//handle starting
-	if(siloless_hive_timer)
-		return
-
-	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
-	priority_announce("Psychic distress waves detected from the xenomorph hive, imminent hive collapse in [NUCLEAR_WAR_SILO_COLLAPSE/10] seconds. Prevent xenomorphs from laying a new silo or recorrupting generators.", "Imminent Hive Collapse Detected", type = ANNOUNCEMENT_PRIORITY)
-	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
-
-///Called by [/proc/update_silo_death_timer] after [NUCLEAR_WAR_SILO_COLLAPSE] elapses to end the round
-/datum/game_mode/infestation/nuclear_war/siloless_hive_collapse()
-	if(!(round_type_flags & MODE_INFESTATION))
-		return
-	if(round_finished)
-		return
-	if(round_stage == INFESTATION_MARINE_CRASHING)
-		return
-	round_finished = MODE_INFESTATION_M_MAJOR
-
-///Returns the time left before the hive collapses due to lack of silos or corrupted generators
-/datum/game_mode/infestation/nuclear_war/get_siloless_collapse_countdown()
-	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
-
-/datum/game_mode/infestation/nuclear_war/check_finished()
+/datum/game_mode/infestation/sovl_war/check_finished()
 	if(round_finished)
 		return TRUE
 
@@ -189,3 +157,7 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
+
+/datum/game_mode/infestation/sovl_war/proc/enable_pods()
+	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
+		pod.allow_sovl_drop()

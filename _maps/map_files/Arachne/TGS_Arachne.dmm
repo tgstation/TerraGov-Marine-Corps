@@ -442,17 +442,9 @@
 	pixel_y = 6;
 	pixel_x = -5
 	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/healthanalyzer{
-	pixel_x = -5
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 9
-	},
-/area/mainship/medical)
+/obj/item/reagent_containers/blood/OMinus,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/operating_room_two)
 "auP" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -8276,6 +8268,7 @@
 /obj/structure/sign/nosmoking_2{
 	dir = 1
 	},
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "gMV" = (
@@ -20535,11 +20528,11 @@
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/chief_mp_office)
-"qzN" = (
-/obj/machinery/vending/weapon,
-/obj/effect/turf_decal/warning_stripes/thin,
-/turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
+"qzG" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/operating_room_two)
 "qAM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -28737,13 +28730,8 @@
 /turf/open/floor/tile/damaged/panel,
 /area/mainship/shipboard/brig)
 "xkw" = (
-/obj/machinery/disposal,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "xlh" = (

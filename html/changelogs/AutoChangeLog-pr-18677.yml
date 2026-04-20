@@ -1,0 +1,8 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscadd: "Added blood pack storage to operating tables, as an integrated IV."
+  - rscadd: "Added body scanner functionality operating tables."
+  - imageadd: "Added new icon states for the operating table."
+  - qol: "Operating table inventory and functionality interactions are now performed through a radial menu."
+  - rscadd: "Added a unique sprite for the surgical sterilizing spray bottle, to make it distinct from the standard cleaner."

@@ -161,30 +161,6 @@
 	return (mean + stddev * R1)
 #undef ACCURACY
 
-/proc/get_turf_in_angle(angle, turf/starting, increments)
-	var/pixel_x = 0
-	var/pixel_y = 0
-	for(var/i in 1 to increments)
-		pixel_x += sin(angle)+16*sin(angle)*2
-		pixel_y += cos(angle)+16*cos(angle)*2
-	var/new_x = starting.x
-	var/new_y = starting.y
-	while(pixel_x > 16)
-		pixel_x -= 32
-		new_x++
-	while(pixel_x < -16)
-		pixel_x += 32
-		new_x--
-	while(pixel_y > 16)
-		pixel_y -= 32
-		new_y++
-	while(pixel_y < -16)
-		pixel_y += 32
-		new_y--
-	new_x = clamp(new_x, 0, world.maxx)
-	new_y = clamp(new_y, 0, world.maxy)
-	return locate(new_x, new_y, starting.z)
-
 // Returns a list where [1] is all x values and [2] is all y values that overlap between the given pair of rectangles
 /proc/get_overlap(x1, y1, x2, y2, x3, y3, x4, y4)
 	var/list/region_x1 = list()
