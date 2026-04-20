@@ -424,7 +424,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	worn_icon_state = "big_ammo_box"
 	equip_slot_flags = ITEM_SLOT_BACK
 	base_icon_state = "big"
-	var/default_ammo = /datum/ammo/bullet/rifle
+	var/datum/ammo/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 2400
 	var/max_bullet_amount = 2400
 	var/caliber = CALIBER_10X24_CASELESS
@@ -501,14 +501,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(!isturf(loc))
 		to_chat(user, span_warning("[src] must be on the ground to be used."))
 		return
-	if(current_rounds < 1)
+	if(bullet_amount < 1)
 		to_chat(user, span_warning("The [src] is empty."))
 		return
 
 	var/obj/item/ammo_magazine/handful/H = new
 	var/rounds = min(bullet_amount, initial(default_ammo.handful_amount))
 
-	H.generate_handful(ammo_type, caliber, rounds, initial(ammo_type.handful_amount))
+	H.generate_handful(default_ammo, caliber, rounds, initial(default_ammo.handful_amount))
 	bullet_amount -= rounds
 
 	user.put_in_hands(H)
@@ -698,7 +698,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/c10x25mm
 	name = "big ammo box (10x25mm)"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	caliber = CALIBER_10x25_CASELESS
+	caliber = CALIBER_10X25_CASELESS
 	bullet_amount = 2000 //a backpack holds 8 boxes, which is 1000 rounds
 	max_bullet_amount = 2000
 
