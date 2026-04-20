@@ -117,3 +117,6 @@
       on bikes
   - qol: Buckling something which you have grabbed will always try to transfer the
       grab to the buckled thing
+2026-04-20:
+  Lumipharon:
+  - bugfix: Xenos no longer get hungry
