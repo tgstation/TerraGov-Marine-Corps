@@ -422,8 +422,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo/box.dmi'
 	icon_state = "big"
 	worn_icon_state = "big_ammo_box"
+	item_state_worn = TRUE
 	equip_slot_flags = ITEM_SLOT_BACK
 	base_icon_state = "big"
+	worn_icon_list = list(
+		slot_back_str = 'icons/mob/clothing/back/ammo.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+	)
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 2400
 	var/max_bullet_amount = 2400
@@ -500,6 +506,31 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 	explosion(loc, 0, 0, 1, 0, 0, throw_range = FALSE, explosion_cause="ammo box cookoff") //blow it up.
 	qdel(src)
+
+/obj/item/big_ammo_box/ap
+	name = "big ammo box (10x24mm AP)"
+	icon_state = "big_ap"
+	base_icon_state = "big_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	bullet_amount = 400 //AP is OP
+	max_bullet_amount = 400
+
+/obj/item/big_ammo_box/smg
+	name = "big ammo box (10x20mm)"
+	icon_state = "big_m25"
+	base_icon_state = "big_m25"
+	worn_icon_state = "big_ammo_box_smg"
+	default_ammo = /datum/ammo/bullet/smg
+	bullet_amount = 4500
+	max_bullet_amount = 4500
+	caliber = CALIBER_10X20_CASELESS
+
+/obj/item/big_ammo_box/mg
+	name = "big ammo box (10x26mm)"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	caliber = CALIBER_10x26_CASELESS
+	bullet_amount = 3200 //a backpack holds 8 MG-60 box mags, which is 1600 rounds
+	max_bullet_amount = 3200
 
 //Deployable shotgun ammo box
 /obj/item/shotgunbox
@@ -600,23 +631,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	qdel(H)
 	update_icon()
 
-/obj/item/big_ammo_box/ap
-	name = "big ammo box (10x24mm AP)"
-	icon_state = "big_ap"
-	base_icon_state = "big_ap"
-	default_ammo = /datum/ammo/bullet/rifle/ap
-	bullet_amount = 400 //AP is OP
-	max_bullet_amount = 400
-
-/obj/item/big_ammo_box/smg
-	name = "big ammo box (10x20mm)"
-	icon_state = "big_m25"
-	base_icon_state = "big_m25"
-	default_ammo = /datum/ammo/bullet/smg
-	bullet_amount = 4500
-	max_bullet_amount = 4500
-	caliber = CALIBER_10X20_CASELESS
-
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
 	icon_state = "buckshot"
@@ -652,10 +666,3 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	worn_icon_state = "ammoboxblank"
 	base_icon_state = "blank"
 	ammo_type = /datum/ammo/bullet/shotgun/blank
-
-/obj/item/big_ammo_box/mg
-	name = "big ammo box (10x26mm)"
-	default_ammo = /datum/ammo/bullet/rifle/machinegun
-	caliber = CALIBER_10x26_CASELESS
-	bullet_amount = 3200 //a backpack holds 8 MG-60 box mags, which is 1600 rounds
-	max_bullet_amount = 3200
