@@ -1,6 +1,6 @@
 /obj/machinery/optable
 	name = "Operating Table"
-	desc = "Used for advanced medical procedures."
+	desc = "Used for advanced medical procedures. Right-click for utility options."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
 	density = TRUE
@@ -74,15 +74,18 @@
 
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	if(!victim)
-		. = ..()
-		if(.)
-			return
+	. = ..()
+	if(.)
+		return
+
 #define EJECT_ANESTHETIC "Eject Anesthetic"
 #define EJECT_BLOOD_PACK "Eject Blood Pack"
 #define TOGGLE_BLOOD_FLOW "Toggle Blood Flow"
-#define DISCONNECT_PATIENT "Disconnect Patient"
 #define ANALYZE_VITALS "Analyze Vitals"
+/obj/machinery/optable/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	var/list/radial_options = list(
 		EJECT_ANESTHETIC = image(icon='icons/obj/items/tank.dmi', icon_state="anesthetic"),
 		EJECT_BLOOD_PACK = image(icon='icons/obj/items/bloodpack.dmi', icon_state="full"),
@@ -90,7 +93,6 @@
 	)
 	if(victim)
 		radial_options[ANALYZE_VITALS] = image(icon='icons/obj/device.dmi', icon_state="health")
-		radial_options[DISCONNECT_PATIENT] = image(icon='icons/mob/actions/actions_mecha.dmi', icon_state="mech_eject")
 	var/choice = show_radial_menu(user, src, radial_options, null, 48, require_near = TRUE, tooltips = TRUE)
 	if(!choice)
 		return
@@ -116,12 +118,6 @@
 		if(TOGGLE_BLOOD_FLOW)
 			blood_flow_on = !blood_flow_on
 			balloon_alert(user, "Blood flow is now [blood_flow_on ? "on" : "off"].")
-		if(DISCONNECT_PATIENT)
-			if(victim)
-				user_unbuckle_mob(victim, user)
-				balloon_alert(user, "You disconnect [victim] from the table.")
-			else
-				balloon_alert(user, "There is no patient to disconnect.")
 		if(ANALYZE_VITALS)
 			if(victim && scanner)
 				scanner.analyze_vitals(victim, user)
@@ -130,7 +126,6 @@
 #undef EJECT_ANESTHETIC
 #undef EJECT_BLOOD_PACK
 #undef TOGGLE_BLOOD_FLOW
-#undef DISCONNECT_PATIENT
 #undef ANALYZE_VITALS
 
 
