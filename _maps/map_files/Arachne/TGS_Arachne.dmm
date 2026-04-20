@@ -442,9 +442,17 @@
 	pixel_y = 6;
 	pixel_x = -5
 	},
-/obj/item/reagent_containers/blood/OMinus,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/operating_room_two)
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/healthanalyzer{
+	pixel_x = -5
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
+/area/mainship/medical)
 "auP" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -3551,6 +3559,16 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
+"cWR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "cYl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8268,7 +8286,6 @@
 /obj/structure/sign/nosmoking_2{
 	dir = 1
 	},
-/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "gMV" = (
@@ -11169,10 +11186,6 @@
 	},
 /area/mainship/hallways/starboard_ert)
 "jal" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -20528,11 +20541,11 @@
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/chief_mp_office)
-"qzG" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/operating_room_two)
+"qzN" = (
+/obj/machinery/vending/weapon,
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "qAM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -23664,12 +23677,10 @@
 /area/mainship/medical/lounge)
 "sZo" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -28730,8 +28741,13 @@
 /turf/open/floor/tile/damaged/panel,
 /area/mainship/shipboard/brig)
 "xkw" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
+/obj/machinery/disposal,
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "xlh" = (
@@ -36118,7 +36134,7 @@ iOW
 xqh
 vjQ
 tlm
-tlm
+cWR
 sZo
 rlz
 aeb
@@ -36220,7 +36236,7 @@ iOW
 vtz
 fRR
 tys
-tys
+oUO
 dEQ
 mel
 vzI
