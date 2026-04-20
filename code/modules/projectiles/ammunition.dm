@@ -430,9 +430,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 	)
+	///Ammunition type
 	var/default_ammo = /datum/ammo/bullet/rifle
+	///Current stored rounds
 	var/bullet_amount = 2400
+	///Maximum stored rounds
 	var/max_bullet_amount = 2400
+	///Caliber of the rounds stored
 	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon_state()
@@ -540,6 +544,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "slug"
 	worn_icon_state = "ammoboxslug"
 	base_icon_state = "slug"
+	item_state_worn = TRUE
+	worn_icon_list = list(
+		slot_back_str = 'icons/mob/clothing/back/ammo.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	///Current stored rounds
