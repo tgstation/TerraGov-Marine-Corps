@@ -32,7 +32,7 @@
 	game_timer_delay = 0
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_CORSAT)
+	whitelist_ground_maps = list(MAP_BIG_RED, MAP_ICE_COLONY, MAP_ICY_CAVES, MAP_DESPARITY, MAP_CORSAT, MAP_RESEARCH_OUTPOST)
 
 	///TGMC's point count
 	var/TGMC_cap_points = 0
