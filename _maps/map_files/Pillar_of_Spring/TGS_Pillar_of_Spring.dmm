@@ -5097,7 +5097,6 @@
 	},
 /area/mainship/living/chapel)
 "fZP" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
