@@ -40,11 +40,13 @@ WEAPONS
 	name = "SST-574 sniper sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_sniper)
 	cost = 600
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/sentry_sniper_ammo
 	name = "SST-574 sniper sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry/sniper)
 	cost = 100
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/sentry_flamer
 	name = "SFT-575 flamethrower sentry"
