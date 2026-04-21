@@ -145,6 +145,18 @@
 	if(updating_health)
 		updatehealth()
 
+/mob/living/carbon/xenomorph/adjustToxLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/setToxLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/adjustCloneLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/setCloneLoss(amount)
+	return FALSE
+
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
 		return FALSE
