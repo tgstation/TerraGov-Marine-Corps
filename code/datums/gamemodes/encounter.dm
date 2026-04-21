@@ -125,7 +125,12 @@
 	. = ..()
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/num_xenos = xeno_job.total_positions
+	var/num_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
+    for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+        if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+            continue
+        num_xenos ++
+
 	var/desired_xeno_count = min(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 	if(xenos_to_add > 0)
