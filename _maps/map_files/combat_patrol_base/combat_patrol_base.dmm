@@ -213,6 +213,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/xeno)
+"ct" = (
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
 "cv" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship/office,
@@ -451,6 +455,15 @@
 /obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base/xeno)
+"fe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base/som)
 "fo" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 4
@@ -1155,6 +1168,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base)
 "nJ" = (
+/obj/effect/turf_decal/arrows/red,
 /turf/open/floor/mainship/black/corner{
 	dir = 8
 	},
@@ -1634,6 +1648,14 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
+"sF" = (
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "sG" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -1949,6 +1971,10 @@
 /obj/machinery/prop/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/mainship/patrol_base/xeno)
+"wp" = (
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "wr" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -2568,6 +2594,15 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"Eb" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base/som)
 "Ec" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -2601,6 +2636,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"Em" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Eo" = (
 /obj/machinery/door/poddoor/railing/supply{
 	dir = 8
@@ -3126,6 +3169,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/mainship/patrol_base/som)
+"Jn" = (
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "Jr" = (
 /turf/open/floor/mainship/red/full,
 /area/mainship/patrol_base/som)
@@ -3298,9 +3345,11 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "LE" = (
-/obj/machinery/loadout_vendor,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base)
+/area/mainship/patrol_base/som)
 "LF" = (
 /obj/structure/table/mainship,
 /obj/structure/cable,
@@ -4063,6 +4112,13 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
+"SM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "SN" = (
 /turf/open/floor/mainship/purple/full,
 /area/mainship/patrol_base/som)
@@ -4486,7 +4542,6 @@
 "WJ" = (
 /obj/effect/landmark/start/job/requisitionsofficer,
 /obj/structure/bed/chair/office/dark,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "WL" = (
@@ -4651,6 +4706,12 @@
 	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
+"YN" = (
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "YR" = (
 /obj/structure/monorail{
 	dir = 5
@@ -5463,7 +5524,7 @@ Md
 SD
 SD
 SD
-SD
+sF
 SD
 SD
 hr
@@ -5525,7 +5586,7 @@ OT
 Rf
 OT
 OT
-ZQ
+Eb
 OT
 OT
 sG
@@ -5586,9 +5647,9 @@ If
 If
 If
 Cl
-Fk
-LN
-Fk
+LE
+fe
+LE
 Ph
 Fa
 dV
@@ -10911,7 +10972,7 @@ wz
 wz
 nm
 WX
-kA
+wp
 zW
 SU
 uz
@@ -10973,8 +11034,8 @@ kH
 wz
 nm
 WX
-NZ
-NZ
+Jn
+YN
 SU
 uz
 ac
@@ -11035,8 +11096,8 @@ Ii
 wz
 nm
 KS
-HG
-Ow
+SM
+ct
 SU
 uz
 ac
@@ -11097,7 +11158,7 @@ sN
 wz
 RW
 KS
-lv
+Em
 Ow
 SU
 uz
@@ -11159,7 +11220,7 @@ Ii
 wz
 nm
 WX
-kA
+wp
 yH
 ln
 BD
@@ -11480,7 +11541,7 @@ Fw
 gW
 ac
 Uw
-LE
+ac
 DF
 rw
 Fw
