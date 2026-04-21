@@ -1232,11 +1232,6 @@
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/mainship/purple/full,
 /area/mainship/living/briefing)
-"bAZ" = (
-/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
-/obj/item/paper/memorial,
-/turf/open/floor/mainship/terragov/north,
-/area/mainship/hallways/starboard_hallway)
 "bBk" = (
 /obj/structure/barricade/solid{
 	dir = 4
@@ -1455,10 +1450,8 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "bLP" = (
-/obj/item/clothing/head/modular/marine,
-/turf/open/floor/mainship/terragov/north{
-	dir = 10
-	},
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "bMe" = (
 /obj/machinery/camera/autoname/mainship{
@@ -1673,10 +1666,9 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/command/self_destruct)
 "bWg" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 9
-	},
-/area/mainship/hallways/starboard_hallway)
+/obj/structure/cable,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "bWq" = (
 /obj/item/stack/tile/plasteel,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -1941,6 +1933,10 @@
 /obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
+"cqV" = (
+/obj/item/grown/sunflower,
+/turf/open/floor/grass,
+/area/mainship/hallways/starboard_hallway)
 "csh" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -3602,6 +3598,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/mechpilotquarters)
+"exQ" = (
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/obj/item/paper/memorial,
+/turf/open/floor/mainship/terragov/north,
+/area/mainship/hallways/starboard_hallway)
 "exV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3815,7 +3816,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "eKC" = (
-/obj/structure/prop/flag,
+/obj/structure/flora/tree/dead,
+/obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/mainship/hallways/starboard_hallway)
 "eLq" = (
@@ -4865,9 +4867,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "fTZ" = (
-/obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship/terragov/north{
-	dir = 6
+	dir = 9
 	},
 /area/mainship/hallways/starboard_hallway)
 "fUs" = (
@@ -4966,6 +4967,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"gaq" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 5
+	},
+/area/mainship/hallways/starboard_hallway)
 "gaz" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -5460,6 +5466,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"gCL" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "gES" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -5726,9 +5739,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "gYa" = (
-/obj/structure/flora/tree/dead,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
+/obj/item/clothing/head/modular/marine,
+/turf/open/floor/mainship/terragov/north{
+	dir = 10
+	},
 /area/mainship/hallways/starboard_hallway)
 "gYy" = (
 /turf/open/floor/mainship/green/corner,
@@ -6401,7 +6415,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "hTV" = (
-/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/mainship/living/tankerbunks)
 "hUf" = (
@@ -7446,10 +7460,6 @@
 "jsE" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"jti" = (
-/obj/machinery/computer/squad_selector,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "jwr" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -8147,6 +8157,11 @@
 	},
 /turf/open/space,
 /area/space)
+"kxM" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 1
+	},
+/area/mainship/hallways/starboard_hallway)
 "kxN" = (
 /obj/machinery/light/mainship,
 /obj/structure/filingcabinet,
@@ -8737,6 +8752,11 @@
 "leW" = (
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/boxingring)
+"lfc" = (
+/obj/structure/prop/mainship/gelida/lightstick,
+/obj/structure/cable,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/living/tankerbunks)
 "lgF" = (
 /obj/structure/prop/mainship/name_stencil,
 /turf/open/floor/mainship_hull,
@@ -9265,6 +9285,10 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"lGF" = (
+/obj/structure/prop/flag,
+/turf/open/floor/grass,
+/area/mainship/hallways/starboard_hallway)
 "lGU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9675,10 +9699,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"lYk" = (
-/obj/item/grown/sunflower,
-/turf/open/floor/grass,
-/area/mainship/hallways/starboard_hallway)
 "lYE" = (
 /obj/machinery/door_control/old/medbay{
 	id = "Medbay";
@@ -12345,11 +12365,6 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"pwX" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 1
-	},
-/area/mainship/hallways/starboard_hallway)
 "pya" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -13636,11 +13651,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"qWG" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 5
-	},
-/area/mainship/hallways/starboard_hallway)
 "qXc" = (
 /obj/item/trash/cigbutt{
 	pixel_x = 5;
@@ -14463,7 +14473,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/bed/roller,
@@ -15693,10 +15702,6 @@
 /obj/machinery/door/firedoor/multi_tile,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"tIO" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/mainship/living/tankerbunks)
 "tJA" = (
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/squads/general)
@@ -16013,11 +16018,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
-"ucK" = (
-/obj/structure/prop/mainship/gelida/lightstick,
-/obj/structure/cable,
-/turf/open/floor/mainship/hexagon,
-/area/mainship/living/tankerbunks)
 "udd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light/mainship{
@@ -16109,6 +16109,12 @@
 	dir = 8
 	},
 /area/mainship/medical/lower_medical)
+"uix" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/turf/open/floor/mainship/terragov/north{
+	dir = 6
+	},
+/area/mainship/hallways/starboard_hallway)
 "uiG" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
@@ -16449,10 +16455,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"uDG" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/hexagon,
-/area/mainship/living/tankerbunks)
 "uEg" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/wood,
@@ -17536,11 +17538,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/boxingring)
 "waC" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/hexagon,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
 /area/mainship/living/tankerbunks)
 "wcT" = (
 /turf/closed/wall/mainship/white,
@@ -54113,7 +54112,7 @@ vmD
 vmD
 vmD
 vmD
-jti
+bLP
 vmD
 rWD
 aHG
@@ -54891,7 +54890,7 @@ hWt
 vmD
 vmD
 vmD
-eKC
+lGF
 lVR
 kGc
 bbl
@@ -55408,9 +55407,9 @@ vmD
 eel
 pgh
 vDH
-bWg
+fTZ
 xdN
-bLP
+gYa
 tqD
 rUF
 bJB
@@ -55665,9 +55664,9 @@ vmD
 miU
 eQb
 fqj
-pwX
+kxM
 oOX
-bAZ
+exQ
 miU
 rUF
 xWS
@@ -55922,9 +55921,9 @@ vmD
 tpi
 eQb
 kGc
-qWG
+gaq
 fGV
-fTZ
+uix
 cKB
 rUF
 hWC
@@ -56181,7 +56180,7 @@ iay
 ciN
 tpi
 eel
-lYk
+cqV
 tpi
 rUF
 nIn
@@ -56438,7 +56437,7 @@ cRE
 miU
 tpi
 miU
-gYa
+eKC
 cRE
 rUF
 dPp
@@ -56691,12 +56690,12 @@ oGN
 oGN
 ezY
 oGN
-ucK
-uDG
+lfc
+bWg
 mXm
+waC
+waC
 hTV
-hTV
-tIO
 hEc
 uyy
 cBw
@@ -56949,7 +56948,7 @@ eFo
 eFo
 eFo
 kCs
-uDG
+bWg
 xLu
 xLu
 gcd
@@ -57206,7 +57205,7 @@ eFo
 eFo
 eFo
 pqQ
-uDG
+bWg
 xLu
 uXw
 eZp
@@ -57463,7 +57462,7 @@ lpt
 eFo
 eFo
 gcr
-waC
+gCL
 xLu
 rOV
 vXQ
