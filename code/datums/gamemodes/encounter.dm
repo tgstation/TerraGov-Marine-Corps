@@ -129,13 +129,8 @@
 	var/num_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
 
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		if(!istype(xeno)) // Small fix?
+		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
 			continue
-		if(is_xeno_in_forbidden_zone(xeno))
-			continue
-		if(xeno.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
-			continue
-
 		num_xenos++
 
 	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
