@@ -593,7 +593,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
 	)
@@ -638,8 +638,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/xeno_turf = get_turf(xeno_owner)
 
 	xeno_owner.face_atom(targetted_turf)
-	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
-		add_cooldown(1 SECONDS)
+	if(!do_after(owner, 0.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+		add_cooldown(cooldown_duration * 0.5)
 		return
 	xeno_owner.face_atom(targetted_turf)
 	turf_line = get_traversal_line(get_step(xeno_turf, get_cardinal_dir(xeno_turf, targetted_turf)), check_path(xeno_turf, targetted_turf, PASS_THROW))
@@ -652,16 +652,22 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.7 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
-	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
+	var/pull_time = 0.5 SECONDS + get_dist(xeno_owner, turf_line[length(turf_line)])
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), pull_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+	RegisterSignals(xeno_owner, list(
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_STAGGERED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		COMSIG_MOVABLE_MOVED,
+		), PROC_REF(failed_pull))
 
 /datum/action/ability/activable/xeno/oppressor/abduct/on_post_throw(datum/source)
 	. = ..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
 	human_source.add_slowdown(0.6 * last_known_multiplier)
-	human_source.adjust_stagger(3 SECONDS * last_known_multiplier)
+	human_source.adjust_stagger(1 SECONDS * last_known_multiplier)
 	REMOVE_TRAIT(human_source, TRAIT_IMMOBILE, THROW_TRAIT)
 	human_source.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
 
@@ -707,7 +713,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/cleanup_variables()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
+	UnregisterSignal(xeno_owner, list(
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_STAGGERED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		COMSIG_MOVABLE_MOVED,
+		))
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
 	ability_timer = null
