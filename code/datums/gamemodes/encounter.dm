@@ -17,7 +17,6 @@
 		/datum/job/som/squad/engineer = 8,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
-		/datum/job/xenomorph = 1
 	)
 	job_points_needed_by_job_type = list(
 		/datum/job/terragov/squad/smartgunner = 5,
@@ -126,10 +125,18 @@
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/num_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
-			continue
-		num_xenos++
+
+	for(var/z in z_levels)
+		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
+			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+				continue
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
+
+			num_xenos++
 
 	var/desired_xeno_count = min(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
