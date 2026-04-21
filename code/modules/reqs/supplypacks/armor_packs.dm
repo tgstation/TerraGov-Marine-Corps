@@ -19,6 +19,18 @@ ARMOR
 	cost = 120
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/armor/basic
+	name = "Basic Jaegar set"
+	contains = list(
+		/obj/item/clothing/suit/modular/jaeger/light,
+		/obj/item/clothing/suit/modular/jaeger,
+		/obj/item/clothing/suit/modular/jaeger/heavy,
+		/obj/item/clothing/head/modular/marine/eod,
+		/obj/item/clothing/head/modular/marine/assault,
+		/obj/item/clothing/head/modular/marine/eva,
+	)
+	cost = 10
+
 /datum/supply_packs/armor/marine_shield/deployable
 	name = "TL-182 deployable shield"
 	contains = list(/obj/item/weapon/shield/riot/marine/deployable)
