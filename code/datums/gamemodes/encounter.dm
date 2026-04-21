@@ -4,7 +4,7 @@
 	name = "Encounter"
 	config_tag = "Encounter"
 	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_INFESTATION|MODE_MUTATIONS_OBTAINABLE|MODE_PSY_POINTS|MODE_SILO_RESPAWN|MODE_ENCOUNTER|MODE_HUMAN_ONLY
-	xeno_abilities_flags = ABILITY_CRASH
+	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_XENO)
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 8,
