@@ -126,19 +126,17 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/num_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
 
-	for(var/z in z_levels)
-		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
-			var/mob/living/carbon/xenomorph/X = i
-			if(!istype(X)) // Small fix?
-				continue
-			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
-				continue
-			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
-				continue
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		if(!istype(xeno)) // Small fix?
+			continue
+		if(is_xeno_in_forbidden_zone(xeno))
+			continue
+		if(xeno.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+			continue
 
-			num_xenos++
+		num_xenos++
 
-	var/desired_xeno_count = min(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
+	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 	if(xenos_to_add > 0)
 		xeno_job.add_job_positions(xenos_to_add)
