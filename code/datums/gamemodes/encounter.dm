@@ -83,6 +83,8 @@
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 
+	respawn_wave()
+
 /datum/game_mode/hvh/combat_patrol/encounter/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
 	items += "Terragov Marine Corps capture points: [TGMC_cap_points]/[CAPTURE_POINT_TARGET]"
@@ -138,5 +140,6 @@
 
 	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
+
 	if(xenos_to_add > 0)
-		xeno_job.add_job_positions(xenos_to_add)
+		xeno_job.total_positions += xenos_to_add
