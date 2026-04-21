@@ -1,4 +1,4 @@
-#define CAPTURE_POINT_TARGET 800
+#define CAPTURE_POINT_TARGET 1600
 
 /datum/game_mode/hvh/combat_patrol/encounter
 	name = "Encounter"
@@ -28,7 +28,7 @@
 		/datum/xeno_caste/queen = 8,
 	)
 	wave_timer_length = 2 MINUTES
-	max_game_time = 30 MINUTES
+	max_game_time = 60 MINUTES
 	game_timer_delay = 0
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
@@ -125,8 +125,8 @@
 	. = ..()
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/num_xenos = xeno_job.total_positions -  xeno_job.current_positions
-	var/desired_xeno_count = 1 + floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO)
+	var/num_xenos = xeno_job.total_positions
+	var/desired_xeno_count = min(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 	if(xenos_to_add > 0)
 		xeno_job.add_job_positions(xenos_to_add)
