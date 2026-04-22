@@ -27,7 +27,7 @@
 
 /datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(post_mission_credits))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, COMSIG_GLOB_HVH_RESPAWN_WAVE), PROC_REF(post_mission_credits))
 	owner_ckey = new_mob.ckey
 	current_mob = new_mob
 	faction = new_faction
@@ -48,10 +48,12 @@
 	return ..()
 
 ///Pay each player additional credits based on individual performance during the mission
-/datum/individual_stats/proc/post_mission_credits(datum/source)
+/datum/individual_stats/proc/post_mission_credits(datum/source, datum/game_mode/hvh/hvh_mode)
 	SIGNAL_HANDLER
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
-	give_funds(personal_statistics.get_mission_reward())
+	give_funds(hvh_mode.get_fund_value(personal_statistics.get_mission_reward()))
+	if(hvh_mode.wave_timer) //wave modes don't have missions to reset this, although this could be a flag
+		personal_statistics.reset_mission_stats()
 
 ///Applies cash
 /datum/individual_stats/proc/give_funds(amount)

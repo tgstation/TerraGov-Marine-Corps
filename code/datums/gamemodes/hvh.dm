@@ -280,6 +280,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/hvh/proc/respawn_wave()
 	wave_timer = addtimer(CALLBACK(src, PROC_REF(respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_RESPAWN_WAVE, src)
 
 	var/respawn_list = player_death_times.Copy()
 	player_death_times.Cut()
@@ -391,5 +392,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(!job.special_check_latejoin(candidate.client))
 		return FALSE
 	return TRUE
+
+///Returns the value for end of wave/mission fund rewards
+/datum/game_mode/hvh/proc/get_fund_value(base_amount)
+	return base_amount
 
 #undef BIOSCAN_DELTA

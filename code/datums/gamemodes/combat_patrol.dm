@@ -68,6 +68,9 @@
 		return
 	announce_bioscans_marine_som()
 
+/datum/game_mode/hvh/combat_patrol/get_fund_value(base_amount)
+	return base_amount * 2
+
 //End game checks
 /datum/game_mode/hvh/combat_patrol/check_finished()
 	if(round_finished)
