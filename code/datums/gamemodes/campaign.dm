@@ -27,8 +27,6 @@
 	var/datum/campaign_mission/current_mission
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
-	///List of death times by ckey. Used for respawn time
-	var/list/player_death_times = list()
 	///List of timers to auto open the respawn window
 	var/list/respawn_timers = list()
 
@@ -44,7 +42,6 @@
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(end_mission))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
@@ -74,7 +71,7 @@
 		to_chat(respawnee, span_warning("Respawn timer has [round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10)] seconds remaining."))
 		return
 
-	attempt_attrition_respawn(respawnee)
+	attempt_respawn(respawnee)
 
 /datum/game_mode/hvh/campaign/intro_sequence()
 	var/op_name_faction_one = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
@@ -192,6 +189,41 @@
 /datum/game_mode/hvh/campaign/ghost_verbs(mob/dead/observer/observer)
 	return list(/datum/action/campaign_overview, /datum/action/campaign_loadout)
 
+/datum/game_mode/hvh/campaign/record_death(datum/source, mob/living/carbon/player, override = FALSE)
+	. = ..()
+	if(!.)
+		return
+	respawn_timers[player.ckey] = addtimer(CALLBACK(src, PROC_REF(auto_attempt_respawn), player.ckey), CAMPAIGN_RESPAWN_TIME + stat_list[player.faction]?.respawn_delay_modifier + 1, TIMER_STOPPABLE)
+
+/datum/game_mode/hvh/campaign/auto_attempt_respawn(respawnee_ckey)
+	. = ..()
+	respawn_timers[respawnee_ckey] = null
+
+/datum/game_mode/hvh/campaign/do_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
+	. = ..()
+	if(!.)
+		return
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE) //only free respawns between missions
+		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
+
+/datum/game_mode/hvh/campaign/respawn_checks(mob/new_player/ready_candidate, datum/job/job_datum)
+	. = ..()
+	if(!.)
+		return
+	if((current_mission.mission_state == MISSION_STATE_ACTIVE) && (stat_list[job_datum.faction].active_attrition_points < job_datum.job_cost))
+		to_chat(usr, span_warning("Unable to spawn. Insufficient attrition."))
+		return FALSE
+	return TRUE
+
+///Check which jobs are valid, to add to the job selector menu
+/datum/game_mode/hvh/campaign/IsJobAvailable(mob/candidate, datum/job/job, faction)
+	. = ..()
+	if(!.)
+		return
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE && (job.job_cost > stat_list[faction].active_attrition_points))
+		return FALSE
+	return TRUE
+
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
@@ -293,31 +325,6 @@
 		else
 			player.faction = new_faction
 
-//respawn stuff
-
-///Records the players death time for respawn time purposes
-/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player, override = FALSE)
-	SIGNAL_HANDLER
-	if(override)
-		return //ghosting out of a corpse won't count
-	if(!istype(player))
-		return
-	if(!(player.faction in factions))
-		return
-	player_death_times[player.ckey] = world.time
-	respawn_timers[player.ckey] = addtimer(CALLBACK(src, PROC_REF(auto_attempt_respawn), player.ckey), CAMPAIGN_RESPAWN_TIME + stat_list[player.faction]?.respawn_delay_modifier + 1, TIMER_STOPPABLE)
-
-///Auto pops up the respawn window
-/datum/game_mode/hvh/campaign/proc/auto_attempt_respawn(respawnee_ckey)
-	for(var/mob/player AS in GLOB.player_list)
-		if(player.ckey != respawnee_ckey)
-			continue
-		respawn_timers[respawnee_ckey] = null
-		if(isliving(player) && player.stat != DEAD)
-			return
-		player_respawn(player)
-		return
-
 ///Handles post mission cleanup
 /datum/game_mode/hvh/campaign/proc/end_mission(datum/source)
 	SIGNAL_HANDLER
@@ -342,132 +349,6 @@
 		auto_attempt_respawn(ckey) //Faction datum doesn't pop up for ghosts
 		deltimer(respawn_timers[ckey])
 	respawn_timers.Cut()
-
-///respawns the player if attrition points are available
-/datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
-	var/list/dat = list("<div class='notice'>Mission Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
-	if(!GLOB.enter_allowed)
-		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"
-	var/forced_faction
-	if(candidate.faction in SSticker.mode.get_joinable_factions(FALSE))
-		forced_faction = candidate.faction
-	else
-		forced_faction = tgui_input_list(candidate, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions(TRUE))
-		if(!forced_faction)
-			return
-	dat += "<div class='latejoin-container' style='width: 100%'>"
-	for(var/cat in SSjob.active_joinable_occupations_by_category)
-		var/list/category = SSjob.active_joinable_occupations_by_category[cat]
-		var/datum/job/job_datum = category[1] //use the color of the first job in the category (the department head) as the category color
-		dat += "<fieldset class='latejoin' style='border-color: [job_datum.selection_color]'>"
-		dat += "<legend align='center' style='color: [job_datum.selection_color]'>[job_datum.job_category]</legend>"
-		var/list/dept_dat = list()
-		for(var/job in category)
-			job_datum = job
-			if(!IsJobAvailable(candidate, job_datum, forced_faction))
-				continue
-			var/command_bold = ""
-			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
-				command_bold = " command"
-			var/position_amount
-			if(job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS)
-				position_amount = "?"
-			else if(job_datum.job_flags & JOB_FLAG_SHOW_OPEN_POSITIONS)
-				position_amount = "[job_datum.total_positions - job_datum.current_positions] open positions"
-			else
-				position_amount = job_datum.current_positions
-			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];campaign_choice=SelectedJob;player=[REF(candidate)];job_selected=[REF(job_datum)]'>[job_datum.title] ([position_amount])</a>"
-		if(!length(dept_dat))
-			dept_dat += span_nopositions("No positions open.")
-		dat += jointext(dept_dat, "")
-		dat += "</fieldset><br>"
-	dat += "</div>"
-	var/datum/browser/popup = new(candidate, "latechoices", "Choose Occupation", 680, 580)
-	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
-	popup.set_content(jointext(dat, ""))
-	popup.open(FALSE)
-
-/datum/game_mode/hvh/campaign/Topic(href, href_list[])
-	switch(href_list["campaign_choice"])
-		if("SelectedJob")
-			if(!SSticker)
-				return
-			var/mob/candidate = locate(href_list["player"])
-			if(!candidate?.client)
-				return
-
-			if(!GLOB.enter_allowed)
-				to_chat(candidate, span_warning("Spawning currently disabled, please observe."))
-				return
-
-			var/mob/new_player/ready_candidate = new()
-			candidate.client.screen.Cut()
-			candidate.mind.transfer_to(ready_candidate)
-
-			var/datum/job/job_datum = locate(href_list["job_selected"])
-
-			if(!attrition_respawn(ready_candidate, job_datum))
-				ready_candidate.mind.transfer_to(candidate)
-				ready_candidate?.client?.screen?.Cut()
-				qdel(ready_candidate)
-				return
-
-			var/mob/living/carbon/human/human_current = candidate
-			//The player might be a brain or some other unusual circumstance
-			if(isobserver(candidate))
-				var/mob/dead/observer/observer_candidate = candidate
-				if(!isnull(observer_candidate.can_reenter_corpse))
-					human_current = observer_candidate.can_reenter_corpse.resolve()
-				qdel(candidate)
-			if(!ishuman(human_current))
-				return
-			human_current.set_undefibbable(TRUE)
-
-
-///Actually respawns the player, if still able
-/datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
-	if(!ready_candidate.IsJobAvailable(job_datum, TRUE))
-		to_chat(usr, span_warning("Selected job is not available."))
-		return
-	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr,span_warning("The round is either not ready, or has already finished!"))
-		return
-	if(!GLOB.enter_allowed)
-		to_chat(usr, span_warning("Spawning currently disabled, please observe."))
-		return
-	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
-		to_chat(usr, span_warning("Failed to assign selected role."))
-		return
-
-	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
-		if(stat_list[job_datum.faction].active_attrition_points < job_datum.job_cost)
-			to_chat(usr, span_warning("Unable to spawn. Insufficient attrition."))
-			return
-		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
-	LateSpawn(ready_candidate)
-	return TRUE
-
-///Check which jobs are valid, to add to the job selector menu
-/datum/game_mode/hvh/campaign/proc/IsJobAvailable(mob/candidate, datum/job/job, faction)
-	if(!job)
-		return FALSE
-	if(job.faction != faction)
-		return FALSE
-	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		return FALSE
-	if(current_mission.mission_state == MISSION_STATE_ACTIVE && (job.job_cost > stat_list[faction].active_attrition_points))
-		return FALSE
-	if(is_banned_from(candidate.ckey, job.title))
-		return FALSE
-	if(QDELETED(candidate))
-		return FALSE
-	if(!job.player_old_enough(candidate.client))
-		return FALSE
-	if(job.required_playtime_remaining(candidate.client))
-		return FALSE
-	if(!job.special_check_latejoin(candidate.client))
-		return FALSE
-	return TRUE
 
 ///Sets up newly spawned players with the campaign status verb
 /datum/game_mode/hvh/campaign/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)

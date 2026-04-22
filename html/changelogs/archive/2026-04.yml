@@ -117,3 +117,24 @@
       on bikes
   - qol: Buckling something which you have grabbed will always try to transfer the
       grab to the buckled thing
+2026-04-20:
+  Lumipharon:
+  - bugfix: Xenos no longer get hungry
+2026-04-21:
+  AzonStarfall:
+  - rscadd: Added blood pack storage to operating tables, as an integrated IV.
+  - rscadd: Added body scanner functionality operating tables.
+  - imageadd: Added new icon states for the operating table.
+  - qol: Operating table inventory and functionality interactions are now performed
+      through a radial menu.
+  - rscadd: Added a unique sprite for the surgical sterilizing spray bottle, to make
+      it distinct from the standard cleaner.
+  Runian:
+  - bugfix: Marine jetpack can now be refueled.
+2026-04-22:
+  Lumipharon:
+  - rscadd: Respawning in Combat Patrol and Sensor Capture now behaves like Campaign.
+      No more name swapping!
+  Runian:
+  - bugfix: Agility's button icon correctly changes when it is toggled.
+  - bugfix: Carriers can no longer store harmless huggers.

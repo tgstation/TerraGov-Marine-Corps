@@ -9122,7 +9122,6 @@
 	pixel_x = -25;
 	pixel_y = 8
 	},
-/obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -10750,7 +10749,7 @@
 "hBs" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "hCr" = (
@@ -17368,7 +17367,6 @@
 	pixel_x = -25;
 	pixel_y = 8
 	},
-/obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -17695,7 +17693,7 @@
 "sOM" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_four)
 "sPk" = (
