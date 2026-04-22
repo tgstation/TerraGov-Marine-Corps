@@ -2714,6 +2714,17 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/living/chapel)
+"djj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/plasticflaps/sturdy,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "dkD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry{
 	dir = 1
@@ -3697,14 +3708,11 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/mechpilotquarters)
 "exV" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
-/obj/item/tool/weldpack,
+/obj/structure/table/mainship/nometal,
+/obj/item/stack/barbed_wire/half_stack,
+/obj/item/tool/crowbar,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/hallways/hangar)
 "eye" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -3855,25 +3863,10 @@
 	},
 /area/mainship/living/commandbunks)
 "eGl" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/structure/plasticflaps/sturdy,
+/turf/open/floor/mainship/green{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/rack,
-/obj/item/stack/conveyor,
-/obj/item/stack/conveyor,
-/obj/item/stack/conveyor,
-/obj/item/stack/conveyor,
-/obj/item/stack/conveyor,
-/obj/item/stack/conveyor,
-/obj/item/tool/screwdriver,
-/obj/item/tool/crowbar,
-/obj/item/tool/wrench,
-/obj/item/conveyor_switch_construct,
-/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "eGs" = (
 /obj/structure/target_stake,
@@ -3955,17 +3948,6 @@
 /obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"eLx" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "eLM" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/white{
@@ -5630,17 +5612,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"gDg" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/plasticflaps/sturdy,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "gES" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -6821,11 +6792,16 @@
 /turf/open/floor/plating/platebotc,
 /area/mainship/medical/chemistry)
 "igh" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/stack/barbed_wire/half_stack,
-/obj/item/tool/crowbar,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment/corner,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/area/mainship/squads/req)
 "igO" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/wood,
@@ -8747,6 +8723,27 @@
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"kPn" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/stack/conveyor,
+/obj/item/stack/conveyor,
+/obj/item/stack/conveyor,
+/obj/item/stack/conveyor,
+/obj/item/stack/conveyor,
+/obj/item/stack/conveyor,
+/obj/item/tool/screwdriver,
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
+/obj/item/conveyor_switch_construct,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "kQn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11656,10 +11653,13 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/droppod)
 "ocK" = (
-/obj/structure/plasticflaps/sturdy,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/tool/weldpack,
+/obj/item/tool/weldpack,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "oda" = (
 /obj/structure/sink{
@@ -14520,9 +14520,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
 /obj/item/clothing/head/warning_cone,
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "rEM" = (
@@ -51085,7 +51082,7 @@ tzk
 aWk
 dpY
 eiU
-vAn
+tWD
 vAn
 vAn
 vAn
@@ -52380,11 +52377,11 @@ xkF
 hhf
 doG
 rpv
-eLx
+igh
 iYf
 iYf
 iYf
-exV
+ocK
 osF
 hXJ
 cCZ
@@ -52636,7 +52633,7 @@ gMb
 nAM
 xHi
 iiU
-gDg
+djj
 uIy
 syt
 syt
@@ -52892,8 +52889,8 @@ gMb
 gMb
 nAM
 xbi
-ocK
 eGl
+kPn
 xjF
 gUa
 gUa
@@ -54419,7 +54416,7 @@ dpY
 dpY
 aHp
 dpY
-igh
+exV
 cjl
 dpY
 dpY
