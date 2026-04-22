@@ -146,16 +146,16 @@
 		updatehealth()
 
 /mob/living/carbon/xenomorph/adjustToxLoss(amount)
-	return FALSE
+	return adjustBruteLoss(amount)
 
 /mob/living/carbon/xenomorph/setToxLoss(amount)
-	return FALSE
+	return setBruteLoss(amount)
 
 /mob/living/carbon/xenomorph/adjustCloneLoss(amount)
-	return FALSE
+	return adjustFireLoss(amount)
 
 /mob/living/carbon/xenomorph/setCloneLoss(amount)
-	return FALSE
+	return setFireLoss(amount)
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
