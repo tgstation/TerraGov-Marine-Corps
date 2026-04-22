@@ -23,6 +23,8 @@
 	)
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
+	///campaign stats organised by faction
+	var/list/datum/faction_stats/stat_list = list()
 	///List of death times by ckey. Used for respawn time
 	var/list/player_death_times = list()
 
@@ -34,6 +36,8 @@
 /datum/game_mode/hvh/pre_setup()
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(record_death))
+	for(var/faction in factions)
+		stat_list[faction] = new /datum/faction_stats(faction)
 
 /datum/game_mode/hvh/setup()
 	. = ..()
@@ -43,6 +47,9 @@
 	. = ..()
 	for(var/z_num in SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		set_z_lighting(z_num)
+
+/datum/game_mode/hvh/ghost_verbs(mob/dead/observer/observer)
+	return list(/datum/action/campaign_loadout)
 
 //sets TGMC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()

@@ -173,10 +173,6 @@
 	return GLOB.conscious_state
 
 /datum/individual_stats/ui_data(mob/user)
-	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-	if(!istype(current_mode))
-		CRASH("campaign_mission loaded without campaign game mode")
-
 	var/list/data = list()
 	var/mob/living/living_user = user
 	data["current_job"] = istype(living_user) ? living_user.job.title : null
@@ -262,10 +258,6 @@
 	return data
 
 /datum/individual_stats/ui_static_data(mob/user)
-	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-	if(!istype(current_mode))
-		CRASH("campaign_mission loaded without campaign game mode")
-
 	var/list/data = list()
 
 	var/ui_theme
@@ -299,10 +291,6 @@
 	. = ..()
 	if(.)
 		return
-
-	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
-	if(!istype(current_mode))
-		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/living/user = usr
 
@@ -367,10 +355,11 @@
 			if(!istype(user) || user.stat)
 				to_chat(user, span_warning("Must be alive to do this!"))
 				return
-			var/datum/campaign_mission/current_mission = get_current_mission()
-			if(!current_mission || current_mission.mission_state == MISSION_STATE_FINISHED)
-				to_chat(user, span_warning("Wait for the next mission to be selected!"))
-				return
+			if(iscampaigngamemode(SSticker.mode))
+				var/datum/campaign_mission/current_mission = get_current_mission()
+				if(!current_mission || current_mission.mission_state == MISSION_STATE_FINISHED)
+					to_chat(user, span_warning("Wait for the next mission to be selected!"))
+					return
 			var/obj/item/card/id/user_id = user.get_idcard()
 			if(!(user_id.id_flags & CAN_BUY_LOADOUT))
 				to_chat(user, span_warning("You have already selected a loadout for this mission."))
