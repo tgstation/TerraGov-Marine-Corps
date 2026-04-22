@@ -157,6 +157,12 @@
 /mob/living/carbon/xenomorph/setCloneLoss(amount)
 	return setFireLoss(amount)
 
+/mob/living/carbon/xenomorph/adjustOxyLoss(amount)
+	return adjustFireLoss(amount)
+
+/mob/living/carbon/xenomorph/setOxyLoss(amount)
+	return setFireLoss(amount)
+
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)
 		return FALSE
