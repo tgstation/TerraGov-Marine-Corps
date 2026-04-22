@@ -72,7 +72,7 @@
 	. = ..()
 
 	for(var/turf/T AS in GLOB.sensor_towers)
-		new /obj/structure/sensor_tower(T)
+		new /obj/structure/campaign_objective/capture_objective/sensor_tower(T)
 
 	for(var/i in GLOB.xeno_encounter_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)

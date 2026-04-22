@@ -29,9 +29,6 @@
 
 /obj/structure/sensor_tower/Initialize(mapload)
 	. = ..()
-	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
-		new /obj/structure/campaign_objective/capture_objective/sensor_tower(loc)
-		qdel(src)
 	name += " " + num2text(id)
 	towerid = id
 	id++
