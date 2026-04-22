@@ -384,10 +384,19 @@
 	desc = "Heavy duty, airtight, plastic flaps."
 
 /obj/structure/plasticflaps/sturdy //Anti-unga flaps
-	desc = "Plastic flaps for transporting supplies."
+	desc = "Plastic flaps for transporting supplies. Use wrench to anchor and move it around!"
 	obj_flags = null
 	resistance_flags = XENO_DAMAGEABLE
 
+/obj/structure/plasticflaps/sturdy/wrench_act(mob/living/user, obj/item/tool)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	if(anchored)
+		balloon_alert(user, "Plastic flaps are unsecured")
+		anchored = FALSE
+	else
+		balloon_alert(user, "Plastic flaps are secured!")
+		anchored = TRUE
+	return TRUE
 
 	//Magmoor Cryopods
 
