@@ -3,7 +3,7 @@
 #define PRIMORDIAL_TIER_THREE "Primordial Tier Three"
 #define PRIMORDIAL_TIER_FOUR "Primordial Tier Four"
 
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Abilities"))//, "Primordial"))//uncomment to unlock globally
 GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	XENO_TIER_ONE = PRIMORDIAL_TIER_ONE,
 	XENO_TIER_TWO = PRIMORDIAL_TIER_TWO,
@@ -519,3 +519,47 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = ANY_PRIMORDIAL_PRICE
 	icon = "primosent"
+
+/datum/hive_upgrade/abilities
+	category = "Abilities"
+	gamemode_flags = ABILITY_ENCOUNTER
+	upgrade_flags = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MUST_BE_HIVE_RULER
+	var/ability
+	var/construction_ability = FALSE
+
+/datum/hive_upgrade/abilities/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+	GLOB.hive_datums[buyer.hivenumber].global_abilities += ability
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
+		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			continue
+		xeno.add_ability(ability)
+
+	if(!CHECK_BITFIELD(buyer.hive.hive_flags, HIVE_ALL_CAN_BUILD) && construction_ability)
+		buyer.hive.hive_flags += HIVE_ALL_CAN_BUILD
+
+	log_game("[buyer] has bought [name], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has bought [name]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
+/datum/hive_upgrade/abilities/weed
+	name = "Unrestricted weeds"
+	desc = "All castes can weed"
+	psypoint_cost = 500
+	ability = /datum/action/ability/activable/xeno/plant_weeds
+	icon = "weeds"
+
+/datum/hive_upgrade/abilities/wall
+	name = "Unrestricted walls"
+	desc = "All castes can wall"
+	psypoint_cost = 600
+	ability = /datum/action/ability/activable/xeno/secrete_resin
+	icon = "wall"
+
+/datum/hive_upgrade/abilities/resin
+	name = "Unrestricted fireproof jelly"
+	desc = "All castes can create fireproof jelly"
+	psypoint_cost = 500
+	ability = /datum/action/ability/xeno_action/create_jelly
+	icon = "jelly"

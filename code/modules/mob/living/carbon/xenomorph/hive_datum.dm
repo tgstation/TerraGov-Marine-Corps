@@ -30,6 +30,8 @@
 	var/list/obj/structure/xeno/mutation_chamber/spur/spur_chambers = list()
 	/// List of veil mutation chambers.
 	var/list/obj/structure/xeno/mutation_chamber/veil/veil_chambers = list()
+	///List of global ability blessing
+	var/list/global_abilities = list()
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()

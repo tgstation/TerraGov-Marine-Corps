@@ -200,6 +200,9 @@
 	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
 	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
 
+	for(var/global_ability in hive.global_abilities)
+		new_xeno.add_ability(global_ability)
+
 	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
 	// Update the turf just in case they moved, somehow.
 	var/turf/T = get_turf(src)
