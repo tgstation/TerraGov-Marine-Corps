@@ -43,7 +43,7 @@
 	///Tower xeno tactical point value for owning faction per process()
 	var/tower_xeno_tactical_point_value = 1
 	///Tower xeno strategic point value for owning faction per process()
-	var/tower_xeno_strategic_point_value = 4
+	var/tower_xeno_strategic_point_value = 3
 
 /datum/game_mode/hvh/combat_patrol/encounter/announce()
 	to_chat(world, "<b>The current game mode is - Free for all!</b>")
@@ -70,7 +70,7 @@
 /datum/game_mode/hvh/combat_patrol/encounter/post_setup()
 	. = ..()
 
-	var/num_towers = 3 + floor(length(GLOB.clients) / 7)
+	var/num_towers = max(3, (floor(length(GLOB.clients) / 5)))
 	capture_point_target = num_towers * 300
 
 	for(num_towers, num_towers < length(GLOB.sensor_towers))
