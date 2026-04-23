@@ -760,7 +760,6 @@
 /area/mainship/patrol_base/som)
 "iy" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/mainship/req_hvh,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -1401,6 +1400,9 @@
 /area/mainship/patrol_base/som)
 "qB" = (
 /obj/machinery/door/poddoor/mainship/req_hvh,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "qK" = (
@@ -1411,6 +1413,11 @@
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qW" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/supplydrop_console/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "qY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1795,6 +1802,7 @@
 "uc" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/donut_box,
+/obj/machinery/door_control/mainship/req_hvh,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -1937,6 +1945,12 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
+"vD" = (
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "vL" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
@@ -2008,6 +2022,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"wR" = (
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "wS" = (
 /obj/structure/prop/brokenvendor/engivend,
 /turf/open/floor/mainship/orange/full,
@@ -2147,6 +2167,9 @@
 /area/mainship/patrol_base)
 "xR" = (
 /obj/machinery/door/poddoor/mainship/req_hvh,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "yf" = (
@@ -2800,6 +2823,10 @@
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
+"FM" = (
+/obj/structure/supply_drop,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "FP" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
@@ -2915,6 +2942,9 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/mainship/req_hvh,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "Ho" = (
@@ -3228,6 +3258,10 @@
 	dir = 9
 	},
 /area/mainship/patrol_base)
+"Kh" = (
+/obj/structure/supply_drop/som,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "Ki" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/mainship/mono,
@@ -3485,7 +3519,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/xeno)
 "Nd" = (
-/obj/machinery/computer/ordercomp,
+/obj/machinery/computer/supplycomp/hvh,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "Ne" = (
@@ -3642,9 +3676,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "OA" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 2
-	},
+/obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -4279,6 +4311,13 @@
 /obj/structure/bed/chair,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
+"TY" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/supplydrop_console,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/mainship/squads/req)
 "TZ" = (
 /obj/machinery/door/poddoor/mainship/req_hvh{
 	dir = 2
@@ -4707,10 +4746,9 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "YN" = (
-/obj/effect/turf_decal/arrows/red{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "YR" = (
 /obj/structure/monorail{
@@ -5894,7 +5932,7 @@ aa
 aa
 aa
 ao
-Fk
+vD
 Fk
 LN
 Fk
@@ -5956,7 +5994,7 @@ Rv
 aa
 aa
 ao
-Fk
+qW
 Fk
 LN
 ft
@@ -6018,7 +6056,7 @@ aa
 aa
 aa
 ao
-Fk
+Kh
 Fk
 LN
 Fk
@@ -10982,7 +11020,7 @@ TZ
 ac
 ac
 yp
-ac
+wR
 Uz
 MS
 MS
@@ -11035,8 +11073,8 @@ wz
 nm
 WX
 Jn
+Jn
 YN
-SU
 uz
 ac
 ac
@@ -11098,7 +11136,7 @@ nm
 KS
 SM
 ct
-SU
+YN
 uz
 ac
 ac
@@ -11106,7 +11144,7 @@ TZ
 ac
 ac
 yp
-ac
+TY
 Uz
 MS
 MS
@@ -11168,7 +11206,7 @@ TZ
 ac
 ac
 yp
-ac
+FM
 Uz
 MS
 MS

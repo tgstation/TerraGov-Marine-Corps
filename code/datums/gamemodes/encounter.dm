@@ -1,10 +1,8 @@
-#define CAPTURE_POINT_TARGET 1600
-
 /datum/game_mode/hvh/combat_patrol/encounter
 	name = "Encounter"
 	config_tag = "Encounter"
 	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_INFESTATION|MODE_MUTATIONS_OBTAINABLE|MODE_PSY_POINTS|MODE_SILO_RESPAWN|MODE_ENCOUNTER|MODE_HUMAN_ONLY
-	xeno_abilities_flags = ABILITY_NUCLEARWAR
+	xeno_abilities_flags = ABILITY_ENCOUNTER
 	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_XENO)
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 8,
@@ -24,7 +22,7 @@
 		/datum/job/xenomorph = ENCOUNTER_LARVA_POINTS_NEEDED,
 	)
 	var/list/evo_requirements = list(
-		/datum/xeno_caste/queen = 8,
+		/datum/xeno_caste/queen = 6,
 	)
 	wave_timer_length = 2 MINUTES
 	max_game_time = 60 MINUTES
@@ -33,6 +31,7 @@
 	blacklist_ship_maps = null
 	whitelist_ground_maps = list(MAP_BIG_RED, MAP_ICE_COLONY, MAP_ICY_CAVES, MAP_DESPARITY, MAP_CORSAT, MAP_RESEARCH_OUTPOST, MAP_BLUESUMMERS, MAP_KUTJEVO_REFINERY, MAP_GELIDA_IV)
 
+	var/capture_point_target = 900
 	///TGMC's point count
 	var/TGMC_cap_points = 0
 	///SOM's point count
@@ -71,6 +70,17 @@
 /datum/game_mode/hvh/combat_patrol/encounter/post_setup()
 	. = ..()
 
+	var/weed_type
+	for(var/turf/T in GLOB.xeno_weed_node_turfs)
+		weed_type = pickweight(GLOB.weed_prob_list)
+		new weed_type(T)
+
+	var/num_towers = 3 + floor(length(GLOB.clients) / 7)
+	capture_point_target = num_towers * 300
+
+	for(num_towers, num_towers < length(GLOB.sensor_towers))
+		GLOB.sensor_towers -= pick(GLOB.sensor_towers)
+
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/campaign_objective/capture_objective/sensor_tower(T)
 
@@ -87,26 +97,26 @@
 
 /datum/game_mode/hvh/combat_patrol/encounter/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
-	items += "Terragov Marine Corps capture points: [TGMC_cap_points]/[CAPTURE_POINT_TARGET]"
-	items += "Sons of Mars capture points: [SOM_cap_points]/[CAPTURE_POINT_TARGET]"
-	items += "Xenomorph capture points: [XENO_cap_points]/[CAPTURE_POINT_TARGET]"
+	items += "Terragov Marine Corps capture points: [TGMC_cap_points]/[capture_point_target]"
+	items += "Sons of Mars capture points: [SOM_cap_points]/[capture_point_target]"
+	items += "Xenomorph capture points: [XENO_cap_points]/[capture_point_target]"
 
 //End game checks
 /datum/game_mode/hvh/combat_patrol/encounter/check_finished()
 	if(round_finished)
 		return TRUE
 
-	if(TGMC_cap_points >= CAPTURE_POINT_TARGET)
+	if(TGMC_cap_points >= capture_point_target)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
 
-	if(SOM_cap_points >= CAPTURE_POINT_TARGET)
+	if(SOM_cap_points >= capture_point_target)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
-	if(XENO_cap_points >= CAPTURE_POINT_TARGET)
+	if(XENO_cap_points >= capture_point_target)
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
@@ -133,7 +143,7 @@
 			continue
 		num_xenos++
 
-	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
+	var/desired_xeno_count = max(2, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 
 	if(xenos_to_add > 0)
