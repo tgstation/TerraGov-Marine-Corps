@@ -53,7 +53,7 @@
 		return
 
 	if(current_rounds < 1)
-		to_chat(user, span_warning("The [src] is empty."))
+		to_chat(user, span_warning("[src] is empty."))
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new
