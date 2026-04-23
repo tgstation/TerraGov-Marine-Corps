@@ -70,11 +70,6 @@
 /datum/game_mode/hvh/combat_patrol/encounter/post_setup()
 	. = ..()
 
-	var/weed_type
-	for(var/turf/T in GLOB.xeno_weed_node_turfs)
-		weed_type = pickweight(GLOB.weed_prob_list)
-		new weed_type(T)
-
 	var/num_towers = 3 + floor(length(GLOB.clients) / 7)
 	capture_point_target = num_towers * 300
 
