@@ -569,13 +569,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/fireball
 	name = "Fireball blessing"
 	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
-	psypoint_cost = 2500
+	psypoint_cost = 1200
 	ability = /datum/action/ability/activable/xeno/fireball
 	icon = "fireball"
 
 /datum/hive_upgrade/abilities/punch
 	name = "Unrestricted Punch blessing"
 	desc = "All castes can use the warrior's punch ability"
-	psypoint_cost = 2000
+	psypoint_cost = 1500
 	ability = /datum/action/ability/activable/xeno/warrior/punch
 	icon = "punch"
