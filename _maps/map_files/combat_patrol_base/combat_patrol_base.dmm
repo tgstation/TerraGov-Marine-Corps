@@ -2819,7 +2819,7 @@
 /area/mainship/patrol_base/som)
 "FM" = (
 /obj/structure/supply_drop,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "FP" = (
 /obj/machinery/telecomms/processor/preset_one,
@@ -2917,11 +2917,6 @@
 /area/mainship/patrol_base/xeno)
 "GQ" = (
 /obj/structure/largecrate/random/barrel/blue,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base)
-"GX" = (
-/obj/effect/turf_decal/warning_stripes/stripedsquare,
-/obj/effect/turf_decal/arrows/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Hc" = (
@@ -3369,6 +3364,11 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/patrol_base/xeno)
+"Lv" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/arrows/red,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Lz" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/mainship,
@@ -4313,9 +4313,7 @@
 "TY" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/supplydrop_console,
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "TZ" = (
 /obj/machinery/door/poddoor/mainship/req_hvh{
@@ -11074,7 +11072,7 @@ nm
 WX
 Jn
 Jn
-GX
+Lv
 uz
 ac
 ac
@@ -11136,7 +11134,7 @@ nm
 KS
 SM
 ct
-GX
+Lv
 uz
 ac
 ac
