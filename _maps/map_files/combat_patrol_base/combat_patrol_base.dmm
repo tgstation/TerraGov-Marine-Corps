@@ -1945,12 +1945,6 @@
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
-"vD" = (
-/obj/item/supply_beacon,
-/obj/item/supply_beacon,
-/obj/item/supply_beacon,
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
 "vL" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship/mono,
@@ -2826,7 +2820,7 @@
 "FM" = (
 /obj/structure/supply_drop,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/patrol_base)
 "FP" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
@@ -2923,6 +2917,11 @@
 /area/mainship/patrol_base/xeno)
 "GQ" = (
 /obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"GX" = (
+/obj/effect/turf_decal/warning_stripes/stripedsquare,
+/obj/effect/turf_decal/arrows/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Hc" = (
@@ -4317,7 +4316,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/squads/req)
+/area/mainship/patrol_base)
 "TZ" = (
 /obj/machinery/door/poddoor/mainship/req_hvh{
 	dir = 2
@@ -4746,10 +4745,11 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
 "YN" = (
-/obj/effect/turf_decal/warning_stripes/stripedsquare,
-/obj/effect/turf_decal/arrows/red,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base)
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/obj/item/supply_beacon,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "YR" = (
 /obj/structure/monorail{
 	dir = 5
@@ -5932,7 +5932,7 @@ aa
 aa
 aa
 ao
-vD
+YN
 Fk
 LN
 Fk
@@ -11074,7 +11074,7 @@ nm
 WX
 Jn
 Jn
-YN
+GX
 uz
 ac
 ac
@@ -11136,7 +11136,7 @@ nm
 KS
 SM
 ct
-YN
+GX
 uz
 ac
 ac
