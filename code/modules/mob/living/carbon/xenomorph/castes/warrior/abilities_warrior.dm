@@ -492,6 +492,10 @@
 	)
 	target_flags = ABILITY_MOB_TARGET
 
+/datum/action/ability/activable/xeno/warrior/punch/encounter
+	keybinding_signals = null
+	cooldown_duration = 30 SECONDS
+
 /datum/action/ability/activable/xeno/warrior/punch/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 	return ..()

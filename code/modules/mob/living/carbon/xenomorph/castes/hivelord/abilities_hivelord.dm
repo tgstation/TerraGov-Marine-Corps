@@ -253,6 +253,9 @@
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
+/datum/action/ability/xeno_action/create_jelly/encounter
+	keybinding_signals = null
+
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)

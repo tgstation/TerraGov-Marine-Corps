@@ -46,6 +46,9 @@
 	/// The turf that was last weeded. Used for auto weeding.
 	var/turf/last_weeded_turf
 
+/datum/action/ability/activable/xeno/plant_weeds/encounter
+	keybinding_signals = null
+
 /datum/action/ability/activable/xeno/plant_weeds/New(Target)
 	. = ..()
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
@@ -234,6 +237,9 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	var/dragging = FALSE
 	/// The percentage of maximum health to heal the owner whenever a structure is built.
 	var/heal_percentage = 0
+
+/datum/action/ability/activable/xeno/secrete_resin/encounter
+	keybinding_signals = null
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)

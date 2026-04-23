@@ -549,33 +549,33 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	name = "Unrestricted weeds"
 	desc = "All castes can weed"
 	psypoint_cost = 500
-	ability = /datum/action/ability/activable/xeno/plant_weeds
+	ability = /datum/action/ability/activable/xeno/plant_weeds/encounter
 	icon = "weeds"
 
 /datum/hive_upgrade/abilities/wall
 	name = "Unrestricted walls"
 	desc = "All castes can wall"
-	psypoint_cost = 1500
-	ability = /datum/action/ability/activable/xeno/secrete_resin
+	psypoint_cost = 1200
+	ability = /datum/action/ability/activable/xeno/secrete_resin/encounter
 	icon = "wall"
 
 /datum/hive_upgrade/abilities/resin
 	name = "Unrestricted fireproof jelly"
 	desc = "All castes can create fireproof jelly"
 	psypoint_cost = 500
-	ability = /datum/action/ability/xeno_action/create_jelly
+	ability = /datum/action/ability/xeno_action/create_jelly/encounter
 	icon = "jelly"
 
 /datum/hive_upgrade/abilities/fireball
 	name = "Fireball blessing"
 	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
-	psypoint_cost = 1200
-	ability = /datum/action/ability/activable/xeno/fireball
+	psypoint_cost = 1000
+	ability = /datum/action/ability/activable/xeno/fireball/encounter
 	icon = "fireball"
 
 /datum/hive_upgrade/abilities/punch
 	name = "Unrestricted Punch blessing"
 	desc = "All castes can use the warrior's punch ability"
-	psypoint_cost = 1500
-	ability = /datum/action/ability/activable/xeno/warrior/punch
+	psypoint_cost = 1200
+	ability = /datum/action/ability/activable/xeno/warrior/punch/encounter
 	icon = "punch"
