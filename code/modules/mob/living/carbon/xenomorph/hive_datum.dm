@@ -31,7 +31,7 @@
 	/// List of veil mutation chambers.
 	var/list/obj/structure/xeno/mutation_chamber/veil/veil_chambers = list()
 	///List of global ability blessing
-	var/list/global_abilities = list()
+	var/list/datum/action/ability/global_abilities = list()
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
@@ -1078,6 +1078,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
+	new_xeno.hive = src
 	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/alien/new_larva.ogg')
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))

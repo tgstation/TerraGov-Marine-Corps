@@ -524,7 +524,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Abilities"
 	gamemode_flags = ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MUST_BE_HIVE_RULER
-	var/ability
+	var/datum/action/ability/ability
 	var/construction_ability = FALSE
 
 /datum/hive_upgrade/abilities/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -533,6 +533,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	GLOB.hive_datums[buyer.hivenumber].global_abilities += ability
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
 		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			continue
+		if((ability in xeno.xeno_caste.actions) && !ability.cooldown_duration)
 			continue
 		xeno.add_ability(ability)
 
@@ -553,7 +555,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/wall
 	name = "Unrestricted walls"
 	desc = "All castes can wall"
-	psypoint_cost = 600
+	psypoint_cost = 1200
 	ability = /datum/action/ability/activable/xeno/secrete_resin
 	icon = "wall"
 
@@ -563,3 +565,17 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 500
 	ability = /datum/action/ability/xeno_action/create_jelly
 	icon = "jelly"
+
+/datum/hive_upgrade/abilities/fireball
+	name = "Fireball blessing"
+	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
+	psypoint_cost = 1500
+	ability = /datum/action/ability/activable/xeno/fireball
+	icon = "fireball"
+
+/datum/hive_upgrade/abilities/punch
+	name = "Unrestricted Punch blessing"
+	desc = "All castes can use the warrior's punch ability"
+	psypoint_cost = 1000
+	ability = /datum/action/ability/activable/xeno/warrior/punch
+	icon = "punch"

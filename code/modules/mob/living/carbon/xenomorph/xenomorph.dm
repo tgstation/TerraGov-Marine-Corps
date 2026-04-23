@@ -77,6 +77,13 @@
 	set_jump_component()
 	AddComponent(/datum/component/seethrough_mob)
 
+	if(hive)
+		for(var/ga in hive.global_abilities)
+			var/datum/action/ability/global_ability = ga //WHY???
+			if((global_ability in xeno_caste.actions) && !global_ability.cooldown_duration)
+				continue
+			add_ability(global_ability)
+
 /mob/living/carbon/xenomorph/register_init_signals()
 	. = ..()
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
