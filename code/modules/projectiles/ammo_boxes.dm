@@ -84,7 +84,7 @@
 /obj/item/big_ammo_box/fire_act(burn_level)
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 1, 0, 0, throw_range = FALSE, explosion_cause="ammo box cookoff") //blow it up.
+	explosion(loc, 0, 0, 1, 0, 0, throw_range = FALSE, explosion_cause="ammo box cookoff")
 	qdel(src)
 
 /obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
