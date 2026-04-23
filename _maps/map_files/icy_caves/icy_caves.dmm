@@ -10534,9 +10534,10 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
 "Zi" = (
+/obj/item/lightstick/anchored,
 /obj/effect/landmark/patrol_point/xeno/xeno_11,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Zj" = (
 /obj/structure/table,
 /obj/item/corncob,
@@ -20698,7 +20699,7 @@ tg
 my
 my
 Iw
-Zi
+DD
 DD
 VC
 ZP
@@ -28884,7 +28885,7 @@ YT
 YT
 YT
 YT
-JD
+Zi
 YT
 ZP
 ZP
