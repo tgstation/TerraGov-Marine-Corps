@@ -124,6 +124,7 @@
 		/obj/item/clothing/mask/cigarette = 75,
 		/obj/item/tool/lighter = 50,
 		/obj/item/tool/weldingtool = 25,
+		/obj/item/tool/pickaxe/plasmacutter = 5,
 	)
 
 	min_duration = 60

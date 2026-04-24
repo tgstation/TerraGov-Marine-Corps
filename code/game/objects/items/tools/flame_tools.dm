@@ -273,6 +273,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, span_notice("[src] is full."))
 
+/obj/item/clothing/mask/cigarette/surgery_tool_check()
+	return lit
+
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
 	if(lit)
 		return
@@ -602,6 +605,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			turn_off(user, FALSE)
 	else
 		return ..()
+
+/obj/item/tool/lighter/surgery_tool_check()
+	return heat
 
 /obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)

@@ -25,7 +25,8 @@
 	allowed_tools = list(
 		/obj/item/tool/surgery/scalpel = 100,
 		/obj/item/tool/kitchen/knife = 75,
-		/obj/item/shard = 50,
+		/obj/item/shard = 15,
+		/obj/item/weapon/shiv = 15,
 	)
 
 	min_duration = EYE_CUT_MIN_DURATION
@@ -130,6 +131,7 @@
 		/obj/item/clothing/mask/cigarette = 75,
 		/obj/item/tool/lighter = 50,
 		/obj/item/tool/weldingtool = 25,
+		/obj/item/tool/pickaxe/plasmacutter = 5,
 	)
 
 	min_duration = EYE_CAUTERISE_MIN_DURATION

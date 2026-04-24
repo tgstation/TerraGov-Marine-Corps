@@ -150,8 +150,10 @@
 		/obj/item/tool/kitchen/knife = 75,
 		/obj/item/shard = 50,
 		/obj/item/weapon/combat_knife = 25,
+		/obj/item/attachable/bayonet = 25,
+		/obj/item/weapon/shiv = 15,
 		/obj/item/stack/throwing_knife = 15,
-		/obj/item/weapon/sword/mercsword = 1,
+		/obj/item/weapon/sword = 5,
 	)
 	min_duration = DEFAT_MIN_DURATION
 	max_duration = DEFAT_MAX_DURATION

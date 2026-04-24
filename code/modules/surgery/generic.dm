@@ -114,8 +114,10 @@
 		/obj/item/tool/kitchen/knife = 75,
 		/obj/item/shard = 50,
 		/obj/item/weapon/combat_knife = 25,
+		/obj/item/attachable/bayonet = 25,
+		/obj/item/weapon/shiv = 15,
 		/obj/item/stack/throwing_knife = 15,
-		/obj/item/weapon/sword/mercsword = 1,
+		/obj/item/weapon/sword = 5,
 	)
 
 	min_duration = 60
@@ -248,6 +250,7 @@
 		/obj/item/clothing/mask/cigarette = 75,
 		/obj/item/tool/lighter = 50,
 		/obj/item/tool/weldingtool = 25,
+		/obj/item/tool/pickaxe/plasmacutter = 5, //you gotta be desperate
 	)
 
 	min_duration = CAUTERY_MIN_DURATION

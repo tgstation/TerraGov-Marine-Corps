@@ -223,6 +223,9 @@
 		return FALSE
 	return ..()
 
+/obj/item/tool/weldingtool/surgery_tool_check()
+	return welding
+
 ///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
