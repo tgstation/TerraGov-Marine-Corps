@@ -106,19 +106,8 @@
 	affected.createwound(BURN, 12.5)
 	affected.update_wounds()
 
-
-
 /datum/surgery_step/generic/cut_open
-	allowed_tools = list(
-		/obj/item/tool/surgery/scalpel = 100,
-		/obj/item/tool/kitchen/knife = 75,
-		/obj/item/shard = 50,
-		/obj/item/weapon/combat_knife = 25,
-		/obj/item/attachable/bayonet = 25,
-		/obj/item/weapon/shiv = 15,
-		/obj/item/stack/throwing_knife = 15,
-		/obj/item/weapon/sword = 5,
-	)
+	allowed_tools = SURGERY_TOOL_CUTTING
 
 	min_duration = 60
 	max_duration = 80
@@ -154,12 +143,7 @@
 
 
 /datum/surgery_step/generic/clamp_bleeders
-	allowed_tools = list(
-		/obj/item/tool/surgery/hemostat = 100,
-		/obj/item/stack/cable_coil = 75,
-		/obj/item/assembly/mousetrap = 20,
-	)
-
+	allowed_tools = SURGERY_TOOL_CLAMPING
 	min_duration = 40
 	max_duration = 60
 
@@ -194,11 +178,7 @@
 
 
 /datum/surgery_step/generic/retract_skin
-	allowed_tools = list(
-		/obj/item/tool/surgery/retractor = 100,
-		/obj/item/tool/crowbar = 75,
-		/obj/item/tool/kitchen/utensil/fork = 50,
-	)
+	allowed_tools = SURGERY_TOOL_RETRACTING
 
 	min_duration = 30
 	max_duration = 40
@@ -245,13 +225,7 @@
 
 
 /datum/surgery_step/generic/cauterize
-	allowed_tools = list(
-		/obj/item/tool/surgery/cautery = 100,
-		/obj/item/clothing/mask/cigarette = 75,
-		/obj/item/tool/lighter = 50,
-		/obj/item/tool/weldingtool = 25,
-		/obj/item/tool/pickaxe/plasmacutter = 5, //you gotta be desperate
-	)
+	allowed_tools = SURGERY_TOOL_CAUTERIZING
 
 	min_duration = CAUTERY_MIN_DURATION
 	max_duration = CAUTERY_MAX_DURATION
@@ -288,9 +262,9 @@
 ///Sewing people closed. Not fast, but works on corpses.
 /datum/surgery_step/generic/repair
 	allowed_tools = list(
-		/obj/item/tool/surgery/suture = 100,
-		/obj/item/stack/cable_coil = 75,
-		/obj/item/shard = 20,
+	/obj/item/tool/surgery/suture = 100,
+	/obj/item/stack/cable_coil = 75,
+	/obj/item/shard = 20,
 	)
 	surgery_skill_required = SKILL_SURGERY_TRAINED
 	open_step = 0

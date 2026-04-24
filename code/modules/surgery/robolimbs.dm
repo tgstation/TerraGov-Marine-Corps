@@ -21,16 +21,7 @@
 	return SURGERY_CAN_USE
 
 /datum/surgery_step/limb/cut
-	allowed_tools = list(
-		/obj/item/tool/surgery/scalpel = 100,
-		/obj/item/tool/kitchen/knife = 75,
-		/obj/item/shard = 50,
-		/obj/item/weapon/combat_knife = 25,
-		/obj/item/attachable/bayonet = 25,
-		/obj/item/weapon/shiv = 15,
-		/obj/item/stack/throwing_knife = 15,
-		/obj/item/weapon/sword = 5,
-	)
+	allowed_tools = SURGERY_TOOL_CUTTING
 
 	min_duration = ROBOLIMB_CUT_MIN_DURATION
 	max_duration = ROBOLIMB_CUT_MAX_DURATION
@@ -61,12 +52,7 @@
 
 
 /datum/surgery_step/limb/mend
-	allowed_tools = list(
-		/obj/item/tool/surgery/retractor = 100,
-		/obj/item/tool/crowbar = 75,
-		/obj/item/tool/kitchen/utensil/fork = 50,
-	)
-
+	allowed_tools = SURGERY_TOOL_RETRACTING
 	min_duration = ROBOLIMB_MEND_MIN_DURATION
 	max_duration = ROBOLIMB_MEND_MAX_DURATION
 	limb_step = 1
@@ -94,14 +80,7 @@
 
 
 /datum/surgery_step/limb/prepare
-	allowed_tools = list(
-		/obj/item/tool/surgery/cautery = 100,
-		/obj/item/clothing/mask/cigarette = 75,
-		/obj/item/tool/lighter = 50,
-		/obj/item/tool/weldingtool = 25,
-		/obj/item/tool/pickaxe/plasmacutter = 5,
-	)
-
+	allowed_tools = SURGERY_TOOL_CAUTERIZING
 	min_duration = ROBOLIMB_PREPARE_MIN_DURATION
 	max_duration = ROBOLIMB_PREPARE_MAX_DURATION
 	limb_step = 2

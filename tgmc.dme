@@ -157,6 +157,7 @@
 #include "code\__DEFINES\stripping.dm"
 #include "code\__DEFINES\structures.dm"
 #include "code\__DEFINES\supply.dm"
+#include "code\__DEFINES\surgery.dm"
 #include "code\__DEFINES\synthetic.dm"
 #include "code\__DEFINES\text.dm"
 #include "code\__DEFINES\tgs.config.dm"

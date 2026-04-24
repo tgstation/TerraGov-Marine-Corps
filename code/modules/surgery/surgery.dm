@@ -1,16 +1,5 @@
 /* SURGERY STEPS */
 
-GLOBAL_LIST_INIT(surgery_steps, init_surgery())
-
-/// Surgery Steps - Initialize all /datum/surgery_step into a list
-/proc/init_surgery()
-	var/list/surgeries = list()
-	for(var/surgery_step_type in subtypesof(/datum/surgery_step))
-		var/datum/surgery_step/step = new surgery_step_type
-		surgeries += step
-
-	return sort_surgeries(surgeries)
-
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
 
@@ -33,14 +22,28 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 	var/can_infect = 0 //Evil infection stuff that will make everyone hate me
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
+/datum/surgery_step/New()
+	. = ..()
+	if(islist(allowed_tools))
+		return
+	switch(allowed_tools)
+		if(SURGERY_TOOL_CUTTING)
+			allowed_tools = GLOB.surgery_cut_tools
+		if(SURGERY_TOOL_CLAMPING)
+			allowed_tools = GLOB.surgery_clamp_tools
+		if(SURGERY_TOOL_RETRACTING)
+			allowed_tools = GLOB.surgery_retract_tools
+		if(SURGERY_TOOL_CAUTERIZING)
+			allowed_tools = GLOB.surgery_cauterize_tools
+
 ///Returns how well tool is suited for this step
 /datum/surgery_step/proc/tool_quality(obj/item/tool)
-	for(var/obj/thing AS in allowed_tools)
-		if(!istype(tool, T))
+	for(var/option in allowed_tools)
+		if(!istype(tool, option))
 			continue
 		if(!tool.surgery_tool_check())
 			continue
-		return allowed_tools[T]
+		return allowed_tools[option]
 	return
 
 //Checks if this step applies to the user mob at all
