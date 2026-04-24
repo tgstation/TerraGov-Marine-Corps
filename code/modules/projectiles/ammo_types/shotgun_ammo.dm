@@ -246,7 +246,7 @@
 	max_range = 15
 	damage = 17
 	damage_falloff = 0.25
-	penetration = 15
+	penetration = 20
 	sundering = 1.5
 
 /datum/ammo/bullet/shotgun/tx15_flechette/spread
@@ -260,7 +260,7 @@
 	shell_speed = 3
 	max_range = 15
 	damage = 60
-	penetration = 30
+	penetration = 20
 	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
