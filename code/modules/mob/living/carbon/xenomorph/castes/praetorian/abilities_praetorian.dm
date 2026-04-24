@@ -703,11 +703,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /// Ends the ability by punishing the owner.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/failed_pull()
 	SIGNAL_HANDLER
-	xeno_owner.Knockdown(1 SECONDS)
-	xeno_owner.add_slowdown(0.9)
 	succeed_activate()
 	add_cooldown()
 	cleanup_variables()
+	xeno_owner.Knockdown(1 SECONDS)
+	xeno_owner.add_slowdown(0.9)
 
 /// Cleans up any unneeded variables, signals, and undoes any traits that the ability gave.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/cleanup_variables()
