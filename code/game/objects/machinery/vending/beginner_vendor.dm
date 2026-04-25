@@ -16,6 +16,8 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		/datum/outfit/quick/beginner/engineer/builder,
 		/datum/outfit/quick/beginner/engineer/burnitall,
 		/datum/outfit/quick/beginner/engineer/pcenjoyer,
+		/datum/outfit/quick/beginner/engineer/point_sentry,
+		/datum/outfit/quick/beginner/engineer/mortar,
 		/datum/outfit/quick/beginner/corpsman/lifesaver,
 		/datum/outfit/quick/beginner/corpsman/hypobelt,
 		/datum/outfit/quick/beginner/smartgunner/sg29,

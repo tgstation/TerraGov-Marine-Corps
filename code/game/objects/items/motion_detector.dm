@@ -5,6 +5,7 @@
 	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	attachment_action_type = /datum/action/item_action/toggle
+	/// The component that gives all the functions of the motion detector.
 	var/datum/component/motion_detector/motion_detector_component
 
 /obj/item/attachable/motiondetector/Destroy()

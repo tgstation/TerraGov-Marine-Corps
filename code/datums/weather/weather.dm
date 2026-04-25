@@ -54,7 +54,9 @@
 	/// Areas that are protected and excluded from the affected areas.
 	var/list/protected_areas = list()
 	/// The list of z-levels that this weather is actively affecting
-	var/impacted_z_levels
+	var/list/impacted_z_levels
+	/// Areas affected by weather have their blend modes changed
+	var/list/impacted_areas_blend_modes = list()
 
 	/// Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
 	var/overlay_layer = AREA_LAYER
@@ -62,6 +64,13 @@
 	var/overlay_plane = ABOVE_LIGHTING_PLANE
 	/// If the weather has no purpose other than looks
 	var/aesthetic = FALSE
+	/// If this bit of weather should also draw an overlay that's uneffected by lighting onto the area
+	/// Taken from weather_glow.dmi
+	var/use_glow = TRUE
+	/// List of all overlays to apply to our turfs
+	var/list/overlay_cache
+	/// whether to play a warning to players that the weather is inbound
+	var/play_screen_indicator = FALSE
 
 	/// The stage of the weather, from 1-4
 	var/stage = END_STAGE
@@ -92,6 +101,7 @@
 /datum/weather/proc/telegraph()
 	if(stage == STARTUP_STAGE)
 		return
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_TELEGRAPH(type), src)
 	stage = STARTUP_STAGE
 	var/list/affectareas = get_areas(area_type)
 	for(var/V in protected_areas)
@@ -109,6 +119,8 @@
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
+		if(play_screen_indicator)
+			impacted_mob.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("WEATHER WARNING", "[capitalize(name)] inbound. Seek shelter", RIGHT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/rightaligned)
 		if(telegraph_message)
 			to_chat(impacted_mob, telegraph_message)
 		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
@@ -127,6 +139,7 @@
 /datum/weather/proc/start()
 	if(stage >= MAIN_STAGE)
 		return
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_START(type), src)
 	stage = MAIN_STAGE
 	update_areas()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
@@ -151,6 +164,7 @@
 /datum/weather/proc/wind_down()
 	if(stage >= WIND_DOWN_STAGE)
 		return
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_WINDDOWN(type), src)
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
@@ -175,6 +189,7 @@
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
 		return TRUE
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_END(type), src)
 	stage = END_STAGE
 	SSweather.processing -= src
 	update_areas()
@@ -200,28 +215,61 @@
 /datum/weather/proc/weather_act(mob/living/L)
 	return
 
+
 /**
  * Updates the overlays on impacted areas
- *
  */
 /datum/weather/proc/update_areas()
-	for(var/V in impacted_areas)
-		var/area/N = V
-		N.layer = overlay_layer
-		N.plane = overlay_plane
-		N.icon = 'icons/effects/weather_effects.dmi'
-		N.color = weather_color
-		switch(stage)
-			if(STARTUP_STAGE)
-				N.icon_state = telegraph_overlay
-			if(MAIN_STAGE)
-				N.icon_state = weather_overlay
-			if(WIND_DOWN_STAGE)
-				N.icon_state = end_overlay
-			if(END_STAGE)
-				N.color = null
-				N.icon_state = ""
-				N.icon = 'icons/turf/areas.dmi'
-				N.layer = initial(N.layer)
-				N.plane = initial(N.plane)
-				N.set_opacity(FALSE)
+	var/list/new_overlay_cache = generate_overlay_cache()
+	for(var/area/impacted as anything in impacted_areas)
+		if(length(overlay_cache))
+			impacted.overlays -= overlay_cache
+			if(impacted_areas_blend_modes[impacted])
+				// revert the blend mode to the old state
+				impacted.blend_mode = impacted_areas_blend_modes[impacted]
+				impacted_areas_blend_modes[impacted] = null
+		if(length(new_overlay_cache))
+			impacted.overlays += new_overlay_cache
+			// only change the blend mode if it's not default or overlay
+			if(impacted.blend_mode > BLEND_OVERLAY)
+				// save the old blend mode state
+				impacted_areas_blend_modes[impacted] = impacted.blend_mode
+				impacted.blend_mode = BLEND_OVERLAY
+
+	overlay_cache = new_overlay_cache
+
+/// Returns a list of visual offset -> overlays to use
+/datum/weather/proc/generate_overlay_cache()
+	// We're ending, so no overlays at all
+	if(stage == END_STAGE)
+		return list()
+
+	var/weather_state = ""
+	switch(stage)
+		if(STARTUP_STAGE)
+			weather_state = telegraph_overlay
+		if(MAIN_STAGE)
+			weather_state = weather_overlay
+		if(WIND_DOWN_STAGE)
+			weather_state = end_overlay
+
+	// Use all possible offsets
+	// Yes this is a bit annoying, but it's too slow to calculate and store these from turfs, and it shouldn't (I hope) look weird
+	var/list/gen_overlay_cache = list()
+	for(var/offset in 0 to SSmapping.max_plane_offset)
+		// Note: what we do here is effectively apply two overlays to each area, for every unique multiz layer they inhabit
+		// One is the base, which will be masked by lighting. the other is "glowing", and provides a nice contrast
+		// This method of applying one overlay per z layer has some minor downsides, in that it could lead to improperly doubled effects if some have alpha
+		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
+		// LU
+		if(use_glow)
+			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset)
+			glow_overlay.color = weather_color
+			gen_overlay_cache += glow_overlay
+
+		var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		new_weather_overlay.color = weather_color
+		gen_overlay_cache += new_weather_overlay
+
+	return gen_overlay_cache
+

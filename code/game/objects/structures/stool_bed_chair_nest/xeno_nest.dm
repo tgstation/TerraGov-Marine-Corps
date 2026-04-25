@@ -13,7 +13,7 @@
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
 	var/resisting_time = 0
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/structure/bed/nest/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(!ismob(grab.grabbed_thing))
@@ -40,7 +40,7 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
+		if(TIMER_COOLDOWN_RUNNING(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
 		if(!H.lying_angle)

@@ -21,6 +21,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/crate/can_close()
 	. = ..()
@@ -35,15 +36,14 @@
 	if(!.)
 		return
 
-	if(climbable)
-		INVOKE_ASYNC(src, PROC_REF(structure_shaken))
-		climbable = FALSE //Open crate is not a surface that works when climbing around
+	INVOKE_ASYNC(src, PROC_REF(structure_shaken))
+	remove_component(/datum/component/climbable)
 
 /obj/structure/closet/crate/close()
 	. = ..()
 	if(!.)
 		return
-	climbable = TRUE
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
@@ -253,7 +253,20 @@
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
 
+/obj/structure/closet/crate/mounted
+	name = "mounted weapon crate"
+	desc = "A robust crate containing stationary weapons."
+	icon_state = "closed_mounted_weapon"
+	icon_opened = "open_mounted_weapon"
+	icon_closed = "closed_mounted_weapon"
 
+/obj/structure/closet/crate/smart
+	name = "smart weapon crate"
+	desc = "A robust crate containing high-tech smartgun weapons and ammunitions."
+	icon_state = "closed_smart"
+	overlay_welded = "welded_smart"
+	icon_opened = "open_smart"
+	icon_closed = "closed_smart"
 
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. Used on rails, or dragged by hand."

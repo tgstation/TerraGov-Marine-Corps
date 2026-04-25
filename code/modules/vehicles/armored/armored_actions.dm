@@ -98,9 +98,10 @@
 	chassis.armored_flags ^= ARMORED_LIGHTS_ON
 	if(chassis.armored_flags & ARMORED_LIGHTS_ON)
 		action_icon_state = "mech_lights_on"
+		chassis.set_light(initial(chassis.light_range))
 	else
 		action_icon_state = "mech_lights_off"
-	chassis.set_light_on(chassis.armored_flags & ARMORED_LIGHTS_ON)
+		chassis.set_light(0)
 	chassis.balloon_alert(owner, "toggled lights [chassis.armored_flags & ARMORED_LIGHTS_ON ? "on":"off"]")
 	playsound(chassis,'sound/mecha/brass_skewer.ogg', 40, TRUE)
 	chassis.log_message("Toggled lights [(chassis.armored_flags & ARMORED_LIGHTS_ON)?"on":"off"].", LOG_MECHA)
@@ -121,10 +122,10 @@
 	chassis.log_message("Toggled zoom mode.", LOG_MECHA)
 	to_chat(owner, "<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 	if(chassis.zoom_mode)
-		owner.client.view_size.set_view_radius_to(4.5)
+		owner.client.view_size.add(3)
 		SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg', volume=50))
 	else
-		owner.client.view_size.set_view_radius_to("[chassis.vis_range_mod]x[chassis.vis_range_mod]")
+		owner.client.view_size.add(-3)
 	update_button_icon()
 
 /datum/action/vehicle/sealed/armored/zoom/remove_action(mob/M)
@@ -144,11 +145,11 @@
 /datum/action/vehicle/sealed/armored/horn/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_HORN))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_HORN))
 		return
 
 	chassis.visible_message("[chassis] honks its horn!")
-	playsound(chassis, 'sound/vehicles/horns/armored_horn.ogg', 70)
+	playsound(chassis.loc, 'sound/vehicles/horns/armored_horn.ogg', 70)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_HORN, 15 SECONDS) //To keep people's eardrums intact
 
 /datum/action/vehicle/sealed/armored/strafe
@@ -175,27 +176,26 @@
 /datum/action/vehicle/sealed/armored/smoke_screen
 	name = "Smokescreen"
 	action_icon_state = "mech_smoke"
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_MECHABILITY_SMOKE)
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_VEHICLEABILITY_SMOKE)
 	///Uses of this ability remaining
 	var/shots_remaining = 6
 
 /datum/action/vehicle/sealed/armored/smoke_screen/New(Target)
 	. = ..()
-
-	visual_references[VREF_MUTABLE_AMMO_COUNTER] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
+	visual_references[VREF_MUTABLE_AMMO_COUNTER] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT)
 
 /datum/action/vehicle/sealed/armored/smoke_screen/action_activate(trigger_flags)
 	if(!owner || !chassis || !(owner in chassis.occupants))
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_SMOKE))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_ARMORED_SMOKE))
 		return
 	if(!shots_remaining)
-		playsound(chassis, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)
+		playsound(chassis.loc, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)
 		return
 
 	shots_remaining --
 	chassis.visible_message("[chassis] pops smoke!")
-	playsound(chassis, 'sound/weapons/guns/fire/grenadelauncher.ogg', 80, TRUE)
+	playsound(chassis.loc, 'sound/weapons/guns/fire/grenadelauncher.ogg', 80, TRUE)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_SMOKE, 2 SECONDS)
 
 	var/list/source_turfs = list()
@@ -206,7 +206,7 @@
 	var/datum/ammo/ammo_type = /datum/ammo/bullet/micro_rail/smoke_burst/tank
 	for(var/turf/source_turf in source_turfs)
 		var/turf/target_turf = get_ranged_target_turf(source_turf, get_dir(chassis, source_turf), 5)
-		var/obj/projectile/projectile_to_fire = new /obj/projectile(source_turf)
+		var/atom/movable/projectile/projectile_to_fire = new /atom/movable/projectile(source_turf)
 		projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 		if(chassis.hitbox?.tank_desants)
 			projectile_to_fire.hit_atoms += chassis.hitbox.tank_desants
@@ -223,3 +223,37 @@
 	visual_references[VREF_MUTABLE_AMMO_COUNTER] = ammo_counter
 	button.add_overlay(ammo_counter)
 	return ..()
+
+/datum/action/vehicle/sealed/armored/tesla
+	name = "Tesla"
+	action_icon_state = "pulsearmor"
+	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_VEHICLEABILITY_TESLA)
+	COOLDOWN_DECLARE(tesla_cooldown)
+
+/datum/action/vehicle/sealed/armored/tesla/remove_action(mob/M)
+	clear_effects()
+	return ..()
+
+/datum/action/vehicle/sealed/armored/tesla/action_activate(trigger_flags)
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return
+	if(!COOLDOWN_FINISHED(src, tesla_cooldown))
+		chassis.balloon_alert(owner, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, tesla_cooldown))]!")
+		return
+
+	chassis.visible_message("[chassis] becomes electrified!")
+	playsound(chassis.loc, 'sound/magic/lightningshock.ogg', 100, TRUE)
+	COOLDOWN_START(src, tesla_cooldown, 30 SECONDS)
+	chassis.add_filter("vehicle_tesla", 1, outline_filter(1, COLOR_PULSE_BLUE))
+	addtimer(CALLBACK(src, PROC_REF(clear_effects)), 1 SECONDS)
+
+	for(var/mob/living/mob_desant in chassis?.hitbox?.tank_desants)
+		mob_desant.Stun(0.2 SECONDS)
+
+		var/away_dir = REVERSE_DIR(get_dir(mob_desant, chassis) || pick(GLOB.alldirs))
+		var/turf/target = get_ranged_target_turf(mob_desant, away_dir, 3)
+		mob_desant.throw_at(target, 3, 3, chassis)
+
+///Cleans up any visual effects
+/datum/action/vehicle/sealed/armored/tesla/proc/clear_effects()
+	chassis.remove_filter("vehicle_tesla")

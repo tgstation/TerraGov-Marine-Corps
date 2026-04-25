@@ -49,6 +49,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_stage = 0
 	/// does this show up on health analyzers
 	var/scannable = TRUE
+	/// Reagent priority in UI, lower value is higher priority
+	var/reagent_ui_priority = REAGENT_UI_BASE
 	/// if false stops metab in liverless mobs
 	var/self_consuming = FALSE
 	/// List of reagents removed by this chemical
@@ -196,3 +198,11 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		if(is_type_in_typecache(R, purge_list))
 			count--
 			L.reagents.remove_reagent(R.type,purge_rate)
+
+///Checks if an NPC should use give this to someone
+/datum/reagent/proc/ai_should_use(mob/living/target, inject_vol)
+	if(target.stat == DEAD)
+		return FALSE
+	if(overdose_threshold < inject_vol + target.reagents.get_reagent_amount(type))
+		return FALSE
+	return TRUE

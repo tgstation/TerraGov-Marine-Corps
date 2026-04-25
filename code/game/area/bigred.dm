@@ -234,6 +234,9 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
+/area/bigredv2/outside/office_complex/crashed_ship
+	name = "Derelict Canterbury"
+
 /area/bigredv2/outside/space_port
 	name = "Space Port"
 	icon_state = "green"

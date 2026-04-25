@@ -29,28 +29,28 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_label")
 		if(icon_state == "deliverycloset")
-			I.pixel_x = 2
+			I.pixel_w = 2
 			if(label_y == null)
 				label_y = rand(-6, 11)
-			I.pixel_y = label_y
+			I.pixel_z = label_y
 		else if(icon_state == "deliverycrate")
 			if(label_x == null)
 				label_x = rand(-8, 6)
-			I.pixel_x = label_x
-			I.pixel_y = -3
+			I.pixel_w = label_x
+			I.pixel_z = -3
 		. += I
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_tag")
 		if(icon_state == "deliverycloset")
 			if(tag_x == null)
 				tag_x = rand(-2, 3)
-			I.pixel_x = tag_x
-			I.pixel_y = 9
+			I.pixel_w = tag_x
+			I.pixel_z = 9
 		else if(icon_state == "deliverycrate")
 			if(tag_x == null)
 				tag_x = rand(-8, 6)
-			I.pixel_x = tag_x
-			I.pixel_y = -3
+			I.pixel_w = tag_x
+			I.pixel_z = -3
 		. += I
 
 /obj/structure/bigDelivery/examine(mob/user)
@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
 	for(var/i in 1 to length(GLOB.tagger_locations))
-		dat += "<td><a href='?src=[text_ref(src)];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
+		dat += "<td><a href='byond://?src=[text_ref(src)];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 		if (i%4==0)
 			dat += "</tr><tr>"
@@ -379,11 +379,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
+/obj/machinery/disposal/deliveryChute/attack_hand_alternate(mob/living/user)
+	return
+
 /obj/machinery/disposal/deliveryChute/update()
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/projectile) || istype(AM, /obj/effect))
+	if(istype(AM, /atom/movable/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
 		if(NORTH)

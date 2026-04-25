@@ -1,8 +1,9 @@
 /datum/species/human
 	name = "Human"
 	unarmed_type = /datum/unarmed_attack/punch
-	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	species_flags = HAS_LIPS|HAS_UNDERWEAR
 	count_human = TRUE
+	limb_type = SPECIES_LIMB_HUMAN
 
 	screams = list(MALE = SFX_MALE_SCREAM, FEMALE = SFX_FEMALE_SCREAM)
 	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)

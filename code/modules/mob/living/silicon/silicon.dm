@@ -88,7 +88,7 @@
 	to_chat(src, span_danger("*BZZZT*"))
 	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))
 
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
+/mob/living/silicon/apply_effect(effect = 0, effect_type = EFFECT_STUN, updating_health = FALSE)
 	return FALSE
 
 

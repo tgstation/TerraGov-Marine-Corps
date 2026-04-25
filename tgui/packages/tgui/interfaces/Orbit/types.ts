@@ -1,4 +1,4 @@
-import { BooleanLike } from 'common/react';
+import { BooleanLike } from 'tgui-core/react';
 
 export type OrbitData = {
   auto_observe: BooleanLike;
@@ -22,5 +22,6 @@ export type Observable = {
   full_name: string;
   nickname?: string;
   orbiters?: number;
+  ckey?: string;
   ref: string;
 };

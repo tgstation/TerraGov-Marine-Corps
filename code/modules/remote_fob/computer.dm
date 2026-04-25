@@ -1,4 +1,7 @@
 /////////////////////////////// the camera computer
+
+GLOBAL_LIST_EMPTY(remote_fob_computers)
+
 /obj/machinery/computer/camera_advanced/remote_fob
 	name = "FOB Construction Drone Control"
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
@@ -25,6 +28,7 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize(mapload)
 	. = ..()
+	GLOB.remote_fob_computers += src
 	metal_cade = new()
 	plast_cade = new()
 	toggle_wiring = new()
@@ -41,6 +45,7 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()
 	spawn_spot = null
+	GLOB.remote_fob_computers -= src
 	QDEL_NULL(metal_cade)
 	QDEL_NULL(plast_cade)
 	QDEL_NULL(toggle_wiring)
@@ -58,9 +63,9 @@
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
 	screen_overlay = "fob_transfer_emissive"
-	user.lighting_alpha = 120
+	user.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	user.update_sight()
 	eyeobj.name = "Remote Construction Drone"
-	eyeobj.register_facedir_signals(user)
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 
@@ -172,7 +177,6 @@
 	screen_overlay = "fob_emissive"
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
-	eyeobj.unregister_facedir_signals(user)
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	return ..()
 

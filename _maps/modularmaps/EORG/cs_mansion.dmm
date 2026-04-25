@@ -717,9 +717,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "Fu" = (
@@ -1057,9 +1055,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "Tw" = (

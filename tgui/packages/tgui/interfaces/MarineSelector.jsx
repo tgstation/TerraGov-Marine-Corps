@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -8,19 +6,21 @@ import {
   Modal,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {
   const { act, data } = useBackend();
   const [showEmpty, setShowEmpty] = useState(false);
-  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
+  const [showDesc, setShowDesc] = useState(null);
 
-  const categories = Object.keys(data.displayed_records)
+  const categories = Object.keys(data.displayed_products)
     .map((key) => ({
       ...data.cats[key],
       name: key,
-      entries: data.displayed_records[key],
+      entries: data.displayed_products[key],
     }))
     .filter(
       (category) =>
@@ -57,7 +57,12 @@ export const MarineSelector = (props) => {
           surplus vendors nearby.
         </Section>
         {categories.map((category) => (
-          <ItemCategory category={category} key={category.id} />
+          <ItemCategory
+            category={category}
+            key={category.id}
+            showDesc={showDesc}
+            setShowDesc={setShowDesc}
+          />
         ))}
       </Window.Content>
     </Window>
@@ -75,6 +80,8 @@ const ItemCategory = (props) => {
       remaining_points,
       total_points,
     },
+    showDesc,
+    setShowDesc,
   } = props;
 
   const cant_buy =
@@ -118,6 +125,8 @@ const ItemCategory = (props) => {
               key={display_record.id}
               cant_buy={cant_buy}
               remaining_points={remaining_points}
+              showDesc={showDesc}
+              setShowDesc={setShowDesc}
             />
           );
         })}
@@ -128,19 +137,20 @@ const ItemCategory = (props) => {
 
 const ItemLine = (props) => {
   const { act, data } = useBackend();
-  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const {
     display_record: {
       id,
-      prod_cost,
-      prod_index,
-      prod_color,
-      prod_name,
-      prod_desc,
+      product_cost,
+      product_index,
+      product_color,
+      product_name,
+      product_desc,
     },
     cant_buy,
     remaining_points,
+    showDesc,
+    setShowDesc,
   } = props;
   const colorToElement = {
     white: (
@@ -244,25 +254,27 @@ const ItemLine = (props) => {
       key={id}
       buttons={
         <>
-          {colorToElement[prod_color]}
-          {prod_cost > 0 && (
+          {colorToElement[product_color]}
+          {product_cost > 0 && (
             <Box inline width="75px" mr="6px" ml="6px">
-              {prod_cost} points
+              {product_cost} points
             </Box>
           )}
           <Button
-            disabled={cant_buy || prod_cost > remaining_points}
-            onClick={() => act('vend', { vend: prod_index })}
-            selected={prod_color === 'white'}
+            disabled={cant_buy || product_cost > remaining_points}
+            onClick={() => act('vend', { vend: product_index })}
+            selected={product_color === 'white'}
           >
             Vend
           </Button>
         </>
       }
-      label={prod_name}
+      label={product_name}
       labelColor="white"
     >
-      {!!prod_desc && <Button onClick={() => setShowDesc(prod_desc)}>?</Button>}
+      {!!product_desc && (
+        <Button onClick={() => setShowDesc(product_desc)}>?</Button>
+      )}
     </LabeledList.Item>
   );
 };

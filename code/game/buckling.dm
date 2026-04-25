@@ -38,13 +38,12 @@
 
 
 	if(buckling_mob.pulledby)
-		if(buckle_flags & BUCKLE_PREVENTS_PULL)
-			buckling_mob.pulledby.stop_pulling()
-		else if(isliving(buckling_mob.pulledby))
+		if(isliving(buckling_mob.pulledby))
 			var/mob/living/buckling_living = buckling_mob.pulledby
-			buckling_living.reset_pull_offsets(buckling_living, TRUE)
-			if(!anchored)
-				buckling_living.start_pulling(src)
+			buckling_living.stop_pulling()
+			buckling_living.start_pulling(src)
+		else
+			buckling_mob.pulledby.stop_pulling()
 
 	if(buckling_mob.loc != loc)
 		buckling_mob.forceMove(loc)
@@ -77,7 +76,7 @@
 		buckling_mob.IgniteMob()
 
 
-/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
+/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	if(!isliving(buckled_mob) || buckled_mob.buckled != src || (!(buckle_flags & CAN_BUCKLE) && !force))
 		return
 	. = buckled_mob
@@ -93,8 +92,17 @@
 
 	UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
+
+	if(can_fall)
+		var/turf/location = buckled_mob.loc
+		if(istype(location) && !buckled_mob.currently_z_moving)
+			location.zFall(buckled_mob)
+
 	post_unbuckle_mob(.)
 
+	if(!QDELETED(buckled_mob) && !buckled_mob.currently_z_moving && isturf(buckled_mob.loc)) // In the case they unbuckled to a flying movable midflight.
+		var/turf/pitfall = buckled_mob.loc
+		pitfall?.zFall(buckled_mob)
 
 /atom/movable/proc/unbuckle_all_mobs(force = FALSE)
 	if(!LAZYLEN(buckled_mobs))
@@ -145,14 +153,14 @@
 	if(!silent)
 		if(buckled_mob == user)
 			buckled_mob.visible_message(
-				span_notice("[buckled_mob] unbuckled [buckled_mob.p_them()]self from [src]."),
+				span_notice("[buckled_mob] unbuckles [buckled_mob.p_them()]self from [src]."),
 				span_notice("You unbuckle yourself from [src]."),
 				span_notice("You hear metal clanking"))
 		else
-			var/by_user = user ? " by [user]" : ""
+			var/by_user = user ? "by [user]" : ""
 			buckled_mob.visible_message(
-				span_notice("[buckled_mob] was unbuckled[by_user]!"),
-				span_notice("You were unbuckled from [src][by_user]]."),
+				span_notice("[buckled_mob] was unbuckled [by_user]!"),
+				span_notice("You were unbuckled from [src] [by_user]]."),
 				span_notice("You hear metal clanking."))
 	add_fingerprint(user, "unbuckle")
 	if(isliving(unbuckling_living.pulledby))

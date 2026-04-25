@@ -57,9 +57,9 @@
 		if(GLOB.datacore)
 			dat += GLOB.datacore.get_manifest(0) // make it monochrome
 		dat += "<br>"
-		dat += "<a href='?src=[text_ref(src)];choice=print'>Print</a><br>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=print'>Print</a><br>"
 		dat += "<br>"
-		dat += "<a href='?src=[text_ref(src)];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
 
 	else
 		var/header
@@ -88,21 +88,21 @@
 
 		if(!authenticated)
 			header += "<br><i>Please insert the cards into the slots</i><br>"
-			header += "Target: <a href='?src=[text_ref(src)];choice=modify'>[target_name]</a><br>"
-			header += "Confirm Identity: <a href='?src=[text_ref(src)];choice=scan'>[scan_name]</a><br>"
+			header += "Target: <a href='byond://?src=[text_ref(src)];choice=modify'>[target_name]</a><br>"
+			header += "Confirm Identity: <a href='byond://?src=[text_ref(src)];choice=scan'>[scan_name]</a><br>"
 		else
 			header += "<div align='center'><br>"
-			header += "<a href='?src=[text_ref(src)];choice=modify'>Remove [target_name]</a> || "
-			header += "<a href='?src=[text_ref(src)];choice=scan'>Remove [scan_name]</a> <br> "
-			header += "<a href='?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
-			header += "<a href='?src=[text_ref(src)];choice=logout'>Log Out</a></div>"
+			header += "<a href='byond://?src=[text_ref(src)];choice=modify'>Remove [target_name]</a> || "
+			header += "<a href='byond://?src=[text_ref(src)];choice=scan'>Remove [scan_name]</a> <br> "
+			header += "<a href='byond://?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
+			header += "<a href='byond://?src=[text_ref(src)];choice=logout'>Log Out</a></div>"
 
 		header += "<hr>"
 
 		var/jobs_all = ""
 		var/list/alljobs = (GLOB.jobs_regular_all - GLOB.jobs_som - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
-			jobs_all += "<a href='?src=[text_ref(src)];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
+			jobs_all += "<a href='byond://?src=[text_ref(src)];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
 
 		var/body
@@ -182,16 +182,16 @@
 				accesses += "<td style='width:14%' valign='top'>"
 				for(var/A in get_region_accesses(i))
 					if(A in modify.access)
-						accesses += "<a href='?src=[text_ref(src)];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='byond://?src=[text_ref(src)];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=[text_ref(src)];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+						accesses += "<a href='byond://?src=[text_ref(src)];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 					accesses += "<br>"
 				accesses += "</td>"
 			accesses += "</tr></table>"
 			body = "[carddesc]<br>[jobs]<br>[paygrade]<br><br>[accesses]" //CHECK THIS
 		else
-			body = "<a href='?src=[text_ref(src)];choice=auth'>{Log in}</a> <br><hr>"
-			body += "<a href='?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a>"
+			body = "<a href='byond://?src=[text_ref(src)];choice=auth'>{Log in}</a> <br><hr>"
+			body += "<a href='byond://?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 
 	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 800, 650)
@@ -210,7 +210,7 @@
 				GLOB.datacore.manifest_modify(modify.registered_name, modify.assignment)
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 				if(ishuman(usr))
-					modify.loc = usr.loc
+					modify.forceMove(drop_location())
 					if(!usr.get_active_held_item())
 						usr.put_in_hands(modify)
 					modify = null
@@ -221,24 +221,24 @@
 				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
-					I.loc = src
+					I.forceMove(src)
 					modify = I
 			authenticated = 0
 		if ("scan")
 			if (scan)
 				if(ishuman(usr))
-					scan.loc = usr.loc
+					modify.forceMove(drop_location())
 					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					scan = null
 				else
-					scan.loc = src.loc
+					modify.forceMove(drop_location())
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
-					I.loc = src
+					modify.forceMove(src)
 					scan = I
 			authenticated = 0
 		if ("auth")
@@ -347,10 +347,9 @@
 	screen_overlay = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	resistance_flags = INDESTRUCTIBLE
+	faction = FACTION_TERRAGOV
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
-	///Which faction this computer belongs to
-	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -386,14 +385,14 @@
 
 	if(!modify)
 		dat += "<br><i>Please insert the card into the slot:</i><br>"
-		dat += "Target: <a href='?src=[text_ref(src)];card=1'>[target_name]</a><br>"
+		dat += "Target: <a href='byond://?src=[text_ref(src)];card=1'>[target_name]</a><br>"
 	else
 		dat += "<br>"
-		dat += "<a href='?src=[text_ref(src)];card=1'>Remove [target_name]</a>"
+		dat += "<a href='byond://?src=[text_ref(src)];card=1'>Remove [target_name]</a>"
 
 	dat += "<hr>"
 
-	dat += "<BR><A href='?src=[text_ref(src)];squad=1'>Modify Squad</A><BR>"
+	dat += "<BR><A href='byond://?src=[text_ref(src)];squad=1'>Modify Squad</A><BR>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Squad Distribution Console</div>", 400, 300)
 	popup.set_content(dat)

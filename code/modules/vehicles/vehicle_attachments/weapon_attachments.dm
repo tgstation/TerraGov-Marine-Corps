@@ -15,13 +15,11 @@
 	. = ..()
 	mounted_gun = new mounted_gun(src)
 	mounted_gun.gun_fire_angle = firing_angle
-	//NODROP so that you can't just drop the gun or have someone take it off your hands
-	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
-	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
+	action_icon = mounted_gun.icon
+	action_icon_state = mounted_gun.icon_state
 
 /obj/item/vehicle_module/mounted_gun/Destroy()
-	if(mounted_gun)
-		QDEL_NULL(mounted_gun)
+	QDEL_NULL(mounted_gun)
 	return ..()
 
 /obj/item/vehicle_module/mounted_gun/on_unbuckle(datum/source, mob/living/unbuckled_mob, force = FALSE)
@@ -29,19 +27,35 @@
 		unbuckled_mob.dropItemToGround(mounted_gun, TRUE)
 	return ..()
 
-///Handles the weapon being dropped. The only way this should happen is if they unbuckle, and this makes sure they can't just take the gun and run off with it.
-/obj/item/vehicle_module/mounted_gun/proc/on_weapon_drop(obj/item/dropped, mob/user)
-	SIGNAL_HANDLER
-	dropped.forceMove(src)
-
 /obj/item/vehicle_module/mounted_gun/activate(mob/living/user)
 	if(mounted_gun.loc == user)
-		user.dropItemToGround(mounted_gun, TRUE)
+		on_weapon_equipped(null, user)
 		return FALSE
 	if(!user.put_in_active_hand(mounted_gun) && !user.put_in_inactive_hand(mounted_gun))
 		to_chat(user, span_warning("Could not equip weapon! Click [parent] with a free hand to equip."))
 		return FALSE
+	RegisterSignal(mounted_gun, COMSIG_MOVABLE_MOVED, PROC_REF(on_weapon_moved))
+	RegisterSignal(mounted_gun, COMSIG_ITEM_EQUIPPED, PROC_REF(on_weapon_equipped))
 	return TRUE
+
+///Handles the weapon being moved
+/obj/item/vehicle_module/mounted_gun/proc/on_weapon_moved(obj/item/source)
+	SIGNAL_HANDLER
+	if(ismob(mounted_gun.loc)) //we have to handle it after its fully equipped or it becomes cursed
+		return
+	reequip_weapon()
+
+///Handles the weapon being put into an equip slot
+/obj/item/vehicle_module/mounted_gun/proc/on_weapon_equipped(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	user.dropItemToGround(mounted_gun, TRUE)
+	reequip_weapon()
+
+///Safely puts the weapon back into storage
+/obj/item/vehicle_module/mounted_gun/proc/reequip_weapon()
+	UnregisterSignal(mounted_gun, list(COMSIG_MOVABLE_MOVED, COMSIG_ITEM_EQUIPPED))
+	mounted_gun.forceMove(src)
+
 
 /obj/item/vehicle_module/mounted_gun/volkite
 	name = "mounted Demi-Culverin"
@@ -50,11 +64,6 @@
 	icon_state = "bike_volkite"
 	should_use_obj_appeareance = FALSE
 	mounted_gun = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
-
-/obj/item/vehicle_module/mounted_gun/volkite/Initialize(mapload)
-	. = ..()
-	action_icon = mounted_gun.icon
-	action_icon_state = mounted_gun.icon_state
 
 ///bike volkite
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/demi_culverin
@@ -89,11 +98,6 @@
 	should_use_obj_appeareance = FALSE
 	mounted_gun = /obj/item/weapon/gun/bike_minigun
 
-/obj/item/vehicle_module/mounted_gun/minigun/Initialize(mapload)
-	. = ..()
-	action_icon = mounted_gun.icon
-	action_icon_state = mounted_gun.icon_state
-
 /obj/item/weapon/gun/bike_minigun
 	name = "dual V-44 light gatling guns"
 	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
@@ -124,5 +128,42 @@
 
 	recoil_unwielded = -2
 	scatter_unwielded = 10
+	damage_falloff_mult = 0.4
+	movement_acc_penalty_mult = 2
+
+//
+/obj/item/vehicle_module/mounted_gun/autocannon
+	name = "dual V-44 light gatling guns"
+	desc = "A pair of triple barreled 'light' gatling guns designed to be mounted in light vehicles such as the SOM hover bikes. A smaller calibre round is used for optimal internal magazine capacity, but makes up for this with a ferocious rate of fire."
+	icon = 'icons/obj/vehicles/big_bike.dmi'
+	icon_state = "bike_autocannon"
+	should_use_obj_appeareance = FALSE
+	mounted_gun = /obj/item/weapon/gun/bike_autocannon
+
+/obj/item/weapon/gun/bike_autocannon
+	name = "dual AC-32 light autocannons"
+	desc = "A pair of 20mm autocannons, designed to be mounted on light vehicles such as the heavy motorbike. It packs a heavy punch, providing formidable firepower and a large internal magazine."
+	icon = 'icons/obj/vehicles/vehicle_weapons.dmi'
+	icon_state = "bike_autocannon"
+	worn_icon_state = null
+	max_shells = 150
+	caliber = CALIBER_20
+	load_method = MAGAZINE
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/bike_autocannon
+	allowed_ammo_types = list(/obj/item/ammo_magazine/bike_autocannon)
+	w_class = WEIGHT_CLASS_HUGE
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	item_flags = NONE
+	equip_slot_flags = NONE
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_MAGAZINES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	fire_delay = 0.2 SECONDS
+
+	recoil_unwielded = -2
+	scatter_unwielded = 4
 	damage_falloff_mult = 0.4
 	movement_acc_penalty_mult = 2

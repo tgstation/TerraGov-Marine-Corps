@@ -78,3 +78,15 @@ GLOBAL_LIST_INIT(campaign_som_minor_loot, list(
 	/obj/item/implanter/blade = 3,
 	/obj/effect/supply_drop/jump_mod = 2,
 ))
+
+///Bike type by faction
+GLOBAL_LIST_INIT(campaign_bike_by_faction, list(
+	FACTION_TERRAGOV = /obj/vehicle/ridden/big_bike,
+	FACTION_SOM = /obj/vehicle/ridden/hover_bike,
+))
+
+///Cas disabler by faction
+GLOBAL_LIST_INIT(campaign_cas_disabler_by_faction, list(
+	FACTION_TERRAGOV = /datum/campaign_asset/asset_disabler/tgmc_cas/instant,
+	FACTION_SOM = /datum/campaign_asset/asset_disabler/som_cas/instant,
+))

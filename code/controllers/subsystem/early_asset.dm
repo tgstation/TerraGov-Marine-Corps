@@ -1,7 +1,11 @@
 /// Initializes any assets that need to be loaded ASAP, before the atoms SS initializes.
 SUBSYSTEM_DEF(early_assets)
 	name = "Early Assets"
-	init_order = INIT_ORDER_EARLY_ASSETS
+	dependents = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
+	init_stage = INITSTAGE_EARLY
 	flags = SS_NO_FIRE
 
 /datum/controller/subsystem/early_assets/Initialize()

@@ -29,7 +29,7 @@
 	if (user.get_active_held_item() != src)
 		return
 	if(spamcheck > world.time)
-		balloon_alert(user, "cooldown")
+		balloon_alert(user, "wait a while!")
 		return
 	playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 	spamcheck = world.time + 20

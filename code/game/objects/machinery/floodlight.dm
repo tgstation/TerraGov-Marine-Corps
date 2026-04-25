@@ -138,7 +138,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/deployable_item = /obj/machinery/deployable/floodlight
 
-/obj/item/deployable_floodlight/Initialize()
+/obj/item/deployable_floodlight/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/deployable_item, deployable_item, 5 SECONDS, 3 SECONDS)
 

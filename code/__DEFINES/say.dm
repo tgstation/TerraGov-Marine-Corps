@@ -43,14 +43,15 @@
 #define NOPASS (1<<2)
 
 
-#define FOLLOW_LINK(observer, target) "<a href=?src=[REF(observer)];track=[REF(target)]>(F)</a>"
-#define TURF_LINK(observer, turfy) "<a href=?src=[REF(observer)];jump=1;x=[turfy.x];y=[turfy.y];z=[turfy.z]>(T)</a>"
-#define FOLLOW_OR_TURF_LINK(observer, target, turfy) "<a href=?src=[REF(observer)];track=[REF(target)];jump=1;x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
+#define FOLLOW_LINK(observer, target) "<a href=byond://?src=[REF(observer)];track=[REF(target)]>(F)</a>"
+#define TURF_LINK(observer, turfy) "<a href=byond://?src=[REF(observer)];jump=1;x=[turfy.x];y=[turfy.y];z=[turfy.z]>(T)</a>"
+#define FOLLOW_OR_TURF_LINK(observer, target, turfy) "<a href=byond://?src=[REF(observer)];track=[REF(target)];jump=1;x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
 
 
 //Used in visible_message_flags, audible_message_flags and runechat_flags
 #define COMBAT_MESSAGE (1<<0)
 #define EMOTE_MESSAGE (1<<1)
+#define OOC_MESSAGE (1<<2)
 
 ///the area channel of the important_recursive_contents list, everything in here will be sent a signal when their last holding object changes areas
 #define RECURSIVE_CONTENTS_AREA_SENSITIVE "recursive_contents_area_sensitive"

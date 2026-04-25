@@ -6,7 +6,7 @@
 
 /obj/item/tool/multitool
 	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	icon_state = "multitool"
 	atom_flags = CONDUCT
 	force = 5
@@ -14,7 +14,6 @@
 	throwforce = 5
 	throw_range = 15
 	throw_speed = 3
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	tool_behaviour = TOOL_MULTITOOL
 
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
@@ -22,7 +21,7 @@
 /obj/item/tool/multitool/attack_self(mob/user)
 	. = ..()
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
 		return
 
 	var/area/current_area = get_area(src)
@@ -33,7 +32,7 @@
 		return
 
 	var/dist = get_dist(src, area_apc)
-	var/direction = angle_to_dir(Get_Angle(get_turf(src), get_turf(area_apc)))
+	var/direction = angle2dir(Get_Angle(get_turf(src), get_turf(area_apc)))
 	to_chat(user, span_notice("The local APC is located at [span_bold("[dist] units [dir2text(direction)]")]."))
 	user.balloon_alert(user, "[dist] units [dir2text(direction)]")
 
@@ -44,7 +43,7 @@
 	var/image/final_image = image(apc_appearance)
 
 	final_image.layer = WALL_OBJ_LAYER
-	final_image.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(final_image, GAME_PLANE, area_apc)
 	final_image.loc = get_turf(area_apc)
 	final_image.dir = apc_appearance.dir
 	final_image.alpha = 225

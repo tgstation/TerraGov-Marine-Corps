@@ -32,16 +32,16 @@
 	if((machine_stat & (BROKEN|MAINT)) || update_state)
 		return
 
-	. += emissive_appearance(icon, "apcox-[locked]")
+	. += emissive_appearance(icon, "apcox-[locked]", src)
 	. += mutable_appearance(icon, "apcox-[locked]")
-	. += emissive_appearance(icon, "apco3-[charging]")
+	. += emissive_appearance(icon, "apco3-[charging]", src)
 	. += mutable_appearance(icon, "apco3-[charging]")
 
-	. += emissive_appearance(icon, "apco0-[operating ? equipment : 0]")
+	. += emissive_appearance(icon, "apco0-[operating ? equipment : 0]", src)
 	. += mutable_appearance(icon, "apco0-[operating ? equipment : 0]")
-	. += emissive_appearance(icon, "apco1-[operating ? lighting : 0]")
+	. += emissive_appearance(icon, "apco1-[operating ? lighting : 0]", src)
 	. += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
-	. += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
+	. += emissive_appearance(icon, "apco2-[operating ? environ : 0]", src)
 	. += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
 
 /// Checks for what icon updates we will need to handle

@@ -65,13 +65,13 @@
 	time_on += 0.2 SECONDS
 	switch(time_on)
 		if(1 SECONDS to 2 SECONDS)
-			if(COOLDOWN_CHECK(src, alertcooldown))
+			if(COOLDOWN_FINISHED(src, alertcooldown))
 				to_chat(implant_owner, span_alert("You feel your spine tingle."))
 				COOLDOWN_START(src, alertcooldown, 10 SECONDS)
 			implant_owner.hallucination += 2
 			implant_owner.adjustFireLoss(1)
 		if(2.1 SECONDS to 5 SECONDS)
-			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
+			if(COOLDOWN_FINISHED(src, alertcooldown) || !exerted)
 				to_chat(implant_owner, span_userdanger("Your spine and brain feel like they're burning!"))
 				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 			exerted = TRUE

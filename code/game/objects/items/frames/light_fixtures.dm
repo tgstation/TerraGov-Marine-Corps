@@ -26,7 +26,7 @@
 		return
 	var/turf/loc = get_turf(user)
 	if(!isfloorturf(loc))
-		loc.balloon_alert(user, "bad spot")
+		loc.balloon_alert(user, "bad spot!")
 		return
 
 	user.balloon_alert_to_viewers("attaching")

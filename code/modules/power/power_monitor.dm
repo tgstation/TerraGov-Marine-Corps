@@ -41,8 +41,8 @@
 		return
 
 	var/t
-	t += "<BR><HR><A href='?src=[text_ref(src)];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='?src=[text_ref(src)];close=1'>Close</A>"
+	t += "<BR><HR><A href='byond://?src=[text_ref(src)];update=1'>Refresh</A>"
+	t += "<BR><HR><A href='byond://?src=[text_ref(src)];close=1'>Close</A>"
 
 	if(!powernet)
 		t += span_warning(" No connection")
@@ -100,7 +100,7 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 //copied from computer.dm

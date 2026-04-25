@@ -45,7 +45,8 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/ai_node,
+/obj/structure/table,
+/obj/structure/bedsheetbin,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "ch" = (
@@ -82,8 +83,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "cW" = (
-/obj/structure/table,
-/obj/structure/bedsheetbin,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "dl" = (
@@ -503,6 +503,13 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
+/area/bigredv2/outside/general_offices)
+"uZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "vi" = (
 /obj/structure/cable,
@@ -1035,7 +1042,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northeast/garbledradio)
 "TL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor,
@@ -1288,7 +1295,7 @@ IP
 XG
 Iz
 xA
-UM
+uZ
 xA
 bk
 XG

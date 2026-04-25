@@ -8,7 +8,11 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = PASS_AIR
+
+/obj/structure/bookcase/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_PAPER, -40, 5)
 
 /obj/structure/bookcase/Initialize(mapload)
 	. = ..()

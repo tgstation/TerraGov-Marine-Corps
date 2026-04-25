@@ -3,7 +3,7 @@
 	icon = 'icons/obj/powerloader.dmi'
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
-	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
+	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	allow_pass_flags = NONE
 	move_delay = 6
@@ -108,7 +108,7 @@
 	return ..()
 
 /obj/vehicle/ridden/powerloader/verb/enter_powerloader(mob/M)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Enter Power Loader"
 	set src in oview(1)
 
@@ -178,6 +178,20 @@
 /obj/item/powerloader_clamp/attack_self(mob/user)
 	if(user in linked_powerloader.buckled_mobs)
 		linked_powerloader.unbuckle_mob(user)
+
+///Loads an AM into the clamp
+/obj/item/powerloader_clamp/proc/do_load(atom/movable/new_clamped)
+	new_clamped.forceMove(linked_powerloader)
+	loaded = new_clamped
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+
+///Unloads our cargo somewhere
+/obj/item/powerloader_clamp/proc/do_unload(atom/new_loc)
+	loaded.forceMove(new_loc)
+	loaded = null
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/powerloader_wreckage
 	name = "\improper RPL-Y Cargo Loader wreckage"

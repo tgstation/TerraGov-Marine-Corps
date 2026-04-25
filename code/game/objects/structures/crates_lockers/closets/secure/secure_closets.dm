@@ -42,7 +42,7 @@
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Lock"
 
 	if(usr.incapacitated())

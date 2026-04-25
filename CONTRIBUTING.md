@@ -19,6 +19,9 @@
 10. [Rust in TGMC](#rust)
 11. [A word on Git](#a-word-on-git)
 
+#### Misc
+- [Quickly setting up a development database with ezdb](./guides/EZDB.md)
+
 ## Reporting Issues
 
 See [this page](https://github.com/tgstation/TerraGov-Marine-Corps/issues/new?template=bug_report.md) for a guide and format to issue reports.
@@ -32,8 +35,6 @@ First things first, we want to make it clear how you can contribute (if you've n
 ## Getting Started
 
 We don't have a strict list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
-
-If you'd still like some guidance to see which features are appreciated, check the thread [here](https://tgstation13.org/phpBB/viewtopic.php?f=65&t=20487).
 
 If you want to contribute the first thing you'll need to do is set up Git and clone the repository. Check out [this](https://tgstation13.org/wiki/TGMC:Guide_to_contributing) helpful guide.
 
@@ -55,11 +56,11 @@ They also control the general "perspective" of the game - how sprites should gen
 
 ### Maintainers
 
-Maintainers are the code quality control. If a proposed pull request doesn't meet [code specifications](#code-specifications), they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
+Maintainers are the code quality control. If a proposed pull request doesn't meet [code specifications](#code-specifications), they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing pull requests.
 
 Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
-They also control the design and balance directions, and may reject prs whose effects are deemed detrimental to the quality of the game.
+They also control the design and balance directions, and may reject pull requests whose effects are deemed detrimental to the quality of the game.
 
 #### Map Maintainers
 
@@ -73,7 +74,7 @@ They work with the maintainers to help advise them on concepts and ideas. They r
 
 ### Code specifications
 
-As mentioned before, you are expected to follow these specifications in order to make everyone's lives easier. It'll save both your time and ours, by making sure you don't have to make any changes and we don't have to ask you to. Thank you for reading this section!
+As mentioned before, you are expected to follow these specifications in order to make everyone's lives easier. It'll save both your time and ours, by making sure you don't have to make any changes and we don't have to ask you to.
 
 #### Object Oriented Code
 
@@ -239,7 +240,8 @@ Remember: Although this tradeoff makes sense in many cases, it doesn't cover the
 
 #### Prefer `Initialize()` over `New()` for atoms
 
-Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/tgstation/tgstation/blob/master/code/game/atoms.dm#L49
+Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded.
+
 While we normally encourage (and in some cases, even require) bringing out of date code up to date when you make unrelated changes near the out of date code, that is not the case for `New` -> `Initialize` conversions. These systems are generally more dependant on parent and children procs so unrelated random conversions of existing things can cause bugs that take months to figure out.
 
 ##### `Initialize()` must be used properly
@@ -338,9 +340,9 @@ This is bad:
 
 ```DM
 /datum/datum1/proc/proc1()
-	if (thing1)
-		if (!thing2)
-			if (thing3 == 30)
+	if(thing1)
+		if(!thing2)
+			if(thing3 == 30)
 				do stuff
 ```
 
@@ -348,11 +350,11 @@ This is good:
 
 ```DM
 /datum/datum1/proc/proc1()
-	if (!thing1)
+	if(!thing1)
 		return
-	if (thing2)
+	if(thing2)
 		return
-	if (thing3 != 30)
+	if(thing3 != 30)
 		return
 	do stuff
 ```
@@ -719,13 +721,13 @@ Note: While there has historically been a strong impulse to use associated lists
 
 #### Don't create code that hangs references
 
-This is part of the larger issue of hard deletes, read this file for more info: [Guide to Harddels](HARDDEL_GUIDE.md))
+This is part of the larger issue of hard deletes, read this file for more info: [Guide to Harddels](https://github.com/tgstation/TerraGov-Marine-Corps/blob/master/.github/HARDDEL_GUIDE.md))
 
 #### Other Notes
 
 -   Code should be modular where possible; if you are working on a new addition, then strongly consider putting it in its own file unless it makes sense to put it with similar ones (i.e. a new tool would go in the "tools.dm" file)
 
--   Bloated code may be necessary to add a certain feature, which means there has to be a judgement over whether the feature is worth having or not. You can help make this decision easier by making sure your code is modular.
+-   Bloated code may be necessary to add a certain feature, which means there has to be a judgement over whether the feature is worth having. You can help make this decision easier by making sure your code is modular.
 
 -   You are expected to help maintain the code that you add, meaning that if there is a problem then you are likely to be approached in order to fix any issues, runtimes, or bugs.
 
@@ -909,9 +911,9 @@ Areas should not be var-edited on a map to change it's name or attributes. All a
 
 All maps should be 255x255 at most because of known issues with how BYOND behaves with maps bigger than this.
 
-#### Working ai nodes network for ship maps and ground maps
+#### Working AI nodes network for ship maps and ground maps
 
-Ais should be able to go everywhere on the map and it should be a single network if possible (two levels maps get a pass). Nodes can be placed up to 15 tiles apart, including diagonally. Any walls or lava between two nodes will block the link between them. Remember that ais are stupid, and that some obstacles are impossible to cross for them, so make their paths simple.
+AIs should be able to go everywhere on the map and it should all be a single network if possible (two levels maps get a pass). Nodes can be placed up to 15 tiles apart, including diagonally. Any walls or lava between two nodes will block the link between them. Remember that AIs are stupid, and that some obstacles are impossible to cross for them, so make their paths simple.
 
 #### Limited marine supplies in shipside maps
 
@@ -938,34 +940,32 @@ Xenos should not be able to build near the fob before shutters are down. As such
 
 #### Working electrical system
 
-Every area must have an APC. A ground map must have roughly 10 generators, with working SMES nearby. A shipmap must be fully wired and its electrical system fully working at the start of the game
+Every area must have an APC. A ground map must have roughly 10 generators, with working SMES nearby. A shipmap must be fully wired and its electrical system fully working at the start of the game.
 
 #### Connected pipenet
 
-Every ship should have a believable and complete pipe system (ventilation, scrubbers). All pipes must belong to the same network. No pipes ending nowhere. Pipes groundside are not mandatory, but they add to the atmosphere and are usefull to xeno.
+Every ship should have a believable and complete pipe system (ventilation, scrubbers). All pipes must belong to the same network. No pipes leading to nowhere. Pipes groundside are not mandatory, but they add to the atmosphere and are useful to xenos.
 
-#### Xenos related items (walls, weeds, silos, etc.)
+#### Xeno related items (walls, weeds, silos, etc.)
 
 Everything related to xenos must be placed on map via a landmark, and not be directly added. This allows the map to be clean in HvH modes.
-Silos must be placed around the map for crash and hunt gamemode. A reasonable amount of turrets must be placed around the map, preferrably in caves and near silos.
-A reasonnable amount of weeds must be placed, near silos and turrets. You don't have to add resin walls or doors if you don't want to, but they add to the atmostphere.
-Adding corpse spawner also add to the atmospher, but they are not mandatory.
+Silos must be placed around the map for the Crash gamemode. The entirety of the map must have weed coverage, with no exceptions. You may add resin walls and doors around the map as well, however do not go overboard. You should also add some corpse spawner landmarks, although they are not mandatory.
 
 #### Fog around silos
 
-Any silo placed on map must be protected by enough fog. This fog only appears in crash gamemode and is here to prevent marines to go near xenos spawn locations
+Any silo placed on map must be protected by fog on all sides. Fog only appears in the Crash gamemode and is there to protect the xenos' spawn points.
 
 #### Intel and nuke disk computers
 
-There should be a reasonnable amount of intel computers placed in areas with apc. 3 nuke disk computer (yellow, red, blue) must be placed around the map. A nuke landmark has to be present as well somewhere.
+There should be a reasonnable amount of intel computers placed in areas with APCs. 3 nuke disk computers must be placed around the map, these typically come in sets, which are predetermined locations of 3 disk computers. You may only have one disk set if you so desire. A nuke landmark has to be present as well, typically in an area that is relatively hostile to marines.
 
 #### Miners
 
-Miners must be placed around the map. Platinium miners must be in locations easily defendable by xenos, typically caves. Phoron miners must not be placed too close to LZ, it should be somewhat an effort to secure any miner.
+Miners must be placed around the map. Platinium miners must be in locations easily defendable by xenos, typically caves. Phoron miners must not be placed too close to LZ, it should be somewhat challenging to secure and hold a miner, phoron or platinum.
 
 #### LZ requirements
 
-LZ must be marqued (lz1, lz2). The appropriate shuttle console landmark should be placed inside the fob. It must be surrounded by shutters. It has to have an apc to power the area, and a button to open the shutters.
+LZs must be marked (lz1, lz2). The appropriate shuttle console landmark should be placed inside the FOB. It must be surrounded by shutters. It has to have an APC to power the area, and a button to open the shutters.
 
 ## Pull Request Process
 
@@ -975,9 +975,9 @@ Anyone can review pull requests, and while only maintainers have write permissio
 
 -   Make sure your pull request complies to the requirements outlined in [this guide](http://tgstation13.org/wiki/Getting_Your_Pull_Accepted)
 
--   You are expected to have tested your pull requests if it is anything that would warrant testing. Text only changes, single number balance changes, and similar generally don't need testing, but anything else does. This means by extension web edits are disallowed for larger changes.
+-   You are expected to have tested your pull requests if it is anything that would warrant testing. Spellchecks and similar small, non consequential changes can be afforded minimal testing. Any other change should warrant a good bit of testing, nobody is comfortable in a situation where minimal testing could've prevented the need for a follow-up PR. This means, by extension, web edits are disallowed for larger changes.
 
--   You are going to be expected to describe your changes in the pull request description. Failing to do so could mean delaying it as we may have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data. For performance changes, you are expected to do some profiling. Ask around if you don't know how.
+-   You are going to be expected to describe your changes in the pull request description. Failing to do so could mean delaying it as we may have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data. For performance changes, you are expected to do some profiling. Ask around if you don't know how, especially if the changes require a full server of players.
 
 -   Use the changelog for large player-facing changes, it prevents our players from being caught unaware by changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
 
@@ -995,7 +995,7 @@ Anyone can review pull requests, and while only maintainers have write permissio
 
 ## Porting features/sprites/sounds/tools from other codebases
 
-If you are porting features/tools from other codebases, you must give them credit where it's due. Typically, crediting them in your pull request and the changelog is the recommended way of doing it. Take note of what license they use though, porting stuff from AGPLv3 and GPLv3 codebases are allowed.
+If you are porting features/tools from other codebases, you must give them credit where it's due. Typically, crediting them in your pull request, the changelog or co-authoring the original author in the pull request's commit history is the recommended way of doing it. Take note of what license they use though, porting stuff from AGPLv3 and GPLv3 codebases are allowed.
 
 Regarding sprites & sounds, you must credit the artist and possibly the codebase. All of our assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the codebase.
 
@@ -1029,7 +1029,10 @@ cargo build --release --target i686-unknown-linux-gnu --features pathfinder
 ```
 
 ## A word on Git
+This repository uses `LF` line endings for all code as specified in the **.gitattributes** and **.editorconfig** files.
 
-Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.
+Unless overridden or a non standard git binary is used the line ending settings should be applied to your clone automatically.
 
-Therefore, EOF settings of main repo are forbidden territory one must avoid wandering into, at risk of losing body and/or mind to the Git gods.
+Note: VSC requires an [extension](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) to take advantage of editorconfig.
+
+Github actions that require additional configuration are disabled on the repository until ACTION_ENABLER secret is created with non-empty value.

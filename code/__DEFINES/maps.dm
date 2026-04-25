@@ -35,8 +35,8 @@ require only minor tweaks.
 #define ZTRAIT_RAIN "weather_rain"
 #define ZTRAIT_SANDSTORM "weather_sandstorm"
 
-// number - bombcap is multiplied by this before being applied to bombs
-#define ZTRAIT_BOMBCAP_MULTIPLIER "Bombcap Multiplier"
+///boolean - does this z disable parallax?
+#define ZTRAIT_NOPARALLAX "No Parallax"
 
 // number - default gravity if there's no gravity generators or area overrides present
 #define ZTRAIT_GRAVITY "Gravity"
@@ -60,15 +60,9 @@ require only minor tweaks.
 // default trait definitions, used by SSmapping
 #define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_MAIN_SHIP = TRUE)
 #define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE)
-#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
+#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
-#define ZTRAITS_LAVALAND list(\
-	ZTRAIT_MINING = TRUE, \
-	ZTRAIT_LAVA_RUINS = TRUE, \
-	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
-#define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
 #define DL_TRAITS "traits"
@@ -86,6 +80,9 @@ require only minor tweaks.
 
 //Reserved/Transit turf type
 #define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
+
+/// A map key that corresponds to being one exclusively for Space.
+#define SPACE_KEY "space"
 
 //Ruin Generation
 
@@ -110,3 +107,23 @@ require only minor tweaks.
 #define MAP_ARMOR_STYLE_JUNGLE "jungle"
 #define MAP_ARMOR_STYLE_PRISON "prison"
 #define MAP_ARMOR_STYLE_DESERT "desert"
+
+// Bluespace shelter deploy checks for survival capsules
+/// Shelter spot is allowed
+#define SHELTER_DEPLOY_ALLOWED "allowed"
+/// Shelter spot has turfs that restrict deployment
+#define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
+/// Shelter spot has areas that restrict deployment
+#define SHELTER_DEPLOY_BAD_AREA "bad area"
+/// Shelter spot has anchored objects that restrict deployment
+#define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+/// Sheter spot has banned objects that restrict deployment
+#define SHELTER_DEPLOY_BANNED_OBJECTS "banned objects"
+/// Shelter spot is out of bounds from the maps x/y coordinates
+#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
+
+//Flags for survival capsules to ignore some deploy checks
+///Ignore anchored, dense objects in the area
+#define CAPSULE_IGNORE_ANCHORED_OBJECTS (1<<0)
+///Ignore banned objects in the area
+#define CAPSULE_IGNORE_BANNED_OBJECTS (1<<1)

@@ -3,6 +3,7 @@
 	display_name = "Bull"
 	upgrade_name = ""
 	caste_desc = "A well defended hit-and-runner."
+	base_strain_type = /mob/living/carbon/xenomorph/bull
 	caste_type_path = /mob/living/carbon/xenomorph/bull
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -31,9 +32,9 @@
 	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
+	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_traits = list(TRAIT_STUNIMMUNE)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 20, BIO = 35, FIRE = 50, ACID = 35)
@@ -50,6 +51,12 @@
 		/datum/action/ability/activable/xeno/bull_charge/headbutt,
 		/datum/action/ability/activable/xeno/bull_charge/gore,
 		/datum/action/ability/xeno_action/toggle_long_range/bull,
+	)
+
+	mutations = list(
+		/datum/mutation_upgrade/shell/unstoppable,
+		/datum/mutation_upgrade/spur/speed_demon,
+		/datum/mutation_upgrade/veil/railgun
 	)
 
 /datum/xeno_caste/bull/normal

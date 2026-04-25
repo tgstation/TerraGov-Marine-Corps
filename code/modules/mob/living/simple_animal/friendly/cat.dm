@@ -12,7 +12,6 @@
 	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	allow_pass_flags = PASS_MOB
 	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
@@ -76,6 +75,7 @@
 	health = 200
 	maxHealth = 200
 
+
 /mob/living/simple_animal/cat/martin
 	name = "Martin"
 	desc = "Requisition's very own caracal. You wonder how much requisition paid to get this dogdang creature on board."
@@ -87,6 +87,12 @@
 	emote_see = list("shakes its head.", "shivers.", "points at the supply console.", "looks at the abyss that is the ASRS Elevator.", "counts the requisition points.", "looks at the supply drop.", "stares at the marines inside requisition", "wants to order some pizza")
 	health = 200
 	maxHealth = 200
+
+
+/mob/living/simple_animal/cat/martin/martina
+	name = "Martina"
+	desc = "Requisition's 2nd caracal. And this one's female? What the hell is going on? Who's paying for this?"
+	gender = FEMALE
 
 
 /mob/living/simple_animal/cat/Life(seconds_per_tick, times_fired)

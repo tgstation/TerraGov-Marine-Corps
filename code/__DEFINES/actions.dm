@@ -1,3 +1,4 @@
+//use_state_flags
 #define ABILITY_USE_INCAP (1 << 0) // ignore incapacitated
 #define ABILITY_USE_LYING (1 << 1) // ignore lying down
 #define ABILITY_USE_BUCKLED (1 << 2) // ignore buckled
@@ -15,6 +16,7 @@
 #define ABILITY_DO_AFTER_ATTACK (1 << 15) //Let the xeno attack the object and perform the ability.
 #define ABILITY_USE_BURROWED (1 << 16) // ignore being burrowed
 
+//target_flags
 #define ABILITY_TURF_TARGET (1 << 0) // ability targets turfs
 #define ABILITY_MOB_TARGET (1 << 1) // ability targets mobs
 

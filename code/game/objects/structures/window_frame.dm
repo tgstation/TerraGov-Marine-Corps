@@ -5,13 +5,11 @@
 	icon_state = "white_window_frame-0"
 	base_icon_state = "white_window_frame"
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
-	layer = WINDOW_FRAME_LAYER
+	layer = TABLE_LAYER
 	density = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 150
-	climbable = TRUE
-	climb_delay = 1.5 SECONDS
 	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 50, BIO = 100, FIRE = 50, ACID = 0)
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
@@ -30,14 +28,10 @@
 
 /obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
-	var/weed_found
 	if(from_window_shatter)
-		for(var/obj/alien/weeds/weedwall/window/W in loc)
-			weed_found = W
+		for(var/obj/alien/weeds/weedwall/window/weed in loc)
+			weed.replace_weed(/obj/alien/weeds/weedwall/window/frame)
 			break
-	if(weed_found)
-		qdel(weed_found)
-		new /obj/alien/weeds/weedwall/window/frame(loc) //after smoothing to get the correct junction value
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
@@ -45,6 +39,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable, 1.5 SECONDS)
 
 /obj/structure/window_frame/proc/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -58,8 +53,7 @@
 	update_nearby_icons()
 	var/obj/alien/weeds/weedwall/window_wall_weeds = locate() in loc
 	if(window_wall_weeds)
-		qdel(window_wall_weeds)
-		new /obj/alien/weeds(loc)
+		window_wall_weeds.replace_weed(/obj/alien/weeds)
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
@@ -182,12 +176,6 @@
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
 	max_integrity = 300
-
-/obj/structure/window_frame/prison/hull
-	climbable = FALSE
-	allow_pass_flags = NONE
-	reinforced = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/structure/window_frame/mainship/dropship
 	smoothing_flags = SMOOTH_BITMASK

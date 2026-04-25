@@ -58,7 +58,7 @@
 	if(beacon_area.type in valid_deploy_areas)
 		return TRUE
 	if(user)
-		user.balloon_alert(user, "Cannot deploy here")
+		user.balloon_alert(user, "can't deploy here!")
 	return FALSE
 
 /obj/item/campaign_beacon/bunker_buster/bluespace

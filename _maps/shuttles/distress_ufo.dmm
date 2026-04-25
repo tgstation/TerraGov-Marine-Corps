@@ -74,6 +74,7 @@
 /area/shuttle/ert)
 "q" = (
 /obj/effect/landmark/distress,
+/obj/effect/ai_node,
 /turf/open/shuttle/brig,
 /area/shuttle/ert)
 "r" = (
@@ -88,6 +89,7 @@
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "t" = (
+/obj/effect/ai_node,
 /turf/open/shuttle/brig,
 /area/shuttle/ert)
 "u" = (
@@ -103,7 +105,7 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "x" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/effect/mapping_helpers/barricade/closed,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)

@@ -83,7 +83,7 @@
 	if(istype(thing, /datum/language_holder))
 		other = thing
 
-	else if(ismovableatom(thing))
+	else if(ismovable(thing))
 		var/atom/movable/AM = thing
 		other = AM.get_language_holder()
 
@@ -95,7 +95,7 @@
 
 
 /datum/language_holder/proc/get_atom()
-	if(ismovableatom(owner))
+	if(ismovable(owner))
 		. = owner
 	else if(istype(owner, /datum/mind))
 		var/datum/mind/M = owner
@@ -146,7 +146,7 @@
 		if(H.selected_default_language == L)
 			body += " - Default"
 		else
-			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
+			body += " - <a href='byond://?src=[REF(src)];default_language=[L]'>Set as Default</a>"
 		body += "<br><b>Description:</b> <i>[initial(L.desc)]</i>"
 		body += "<br><br>"
 

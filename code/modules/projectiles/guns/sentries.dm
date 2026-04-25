@@ -65,7 +65,7 @@
 	icon_state = "pod_sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	faction = FACTION_TERRAGOV
 	turret_range = 10
 	knockdown_threshold = 500
 	max_shells = 500
@@ -91,12 +91,10 @@
 	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
-	undeploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
-	sentry_iff_signal = SOM_IFF
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
 
@@ -143,9 +141,7 @@
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
-	var/obj/item/card/id/user_id = user?.get_idcard(TRUE)
-	if(user_id)
-		sentry_iff_signal = user_id?.iff_signal
+	faction = user.faction
 	addtimer(CALLBACK(src, PROC_REF(prime), user), det_time)
 
 ///Reverts the gun back to it's unarmed state, allowing it to be activated again
@@ -161,10 +157,11 @@
 	do_deploy(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
+	faction = FACTION_SOM
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	faction = FACTION_TERRAGOV
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
@@ -174,7 +171,7 @@
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	faction = FACTION_TERRAGOV
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/shuttle/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
@@ -184,7 +181,7 @@
 	max_integrity = INFINITY //Good luck killing it
 	fire_delay = 0.2 SECONDS
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	faction = FACTION_TERRAGOV
 	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
@@ -228,11 +225,10 @@
 	extra_delay = 0.3 SECONDS
 	scatter = 3
 
-	deploy_time = 3 SECONDS
+	deploy_time = 1 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol
-	sentry_iff_signal = TGMC_LOYALIST_IFF
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
 
 /obj/item/weapon/gun/sentry/premade
@@ -247,6 +243,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	faction = FACTION_TERRAGOV
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/premade/dumb
@@ -263,20 +260,24 @@
 	name = "malfunctioning ST-571 sentry gun"
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
-	sentry_iff_signal = NONE
+	faction = NONE
 
 /obj/item/weapon/gun/sentry/premade/canterbury
 	name = "SG-577 Gauss Dropship Turret"
 	ammo_datum_type = /datum/ammo/bullet/turret
-	sentry_iff_signal = TGMC_LOYALIST_IFF
 
 // Sniper Sentry
 
 /obj/item/weapon/gun/sentry/sniper_sentry
-	name = "\improper SRT-574 sentry gun"
+	name = "\improper SST-574 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "sniper_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
+	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -330,6 +331,8 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
 	icon_state = "shotgun_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -379,20 +382,21 @@
 // Flamethrower Sentry
 
 /obj/item/weapon/gun/sentry/flamer_sentry
-	name = "\improper SFT-573 sentry gun"
+	name = "\improper SFT-575 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
 	icon_state = "flamer_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
+	fire_sound = "gun_flamethrower"
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
-	max_shells = 200
-	fire_delay = 2 SECONDS
+	max_shells = 500
+	fire_delay = 0.1 SECONDS
 	burst_amount = 1
 
 	scatter = 5
 
-	ammo_datum_type = /datum/ammo/flamer
+	ammo_datum_type = /datum/ammo/flamethrower/sentry
 	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
 
@@ -404,7 +408,7 @@
 	)
 
 /obj/item/storage/box/crate/sentry_flamer
-	name = "\improper SHT-573 sentry crate"
+	name = "\improper SHT-575 sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -428,3 +432,56 @@
 /obj/item/storage/box/crate/sentry_flamer/PopulateContents()
 	new /obj/item/weapon/gun/sentry/flamer_sentry(src)
 	new /obj/item/ammo_magazine/sentry/flamer(src)
+
+/obj/item/weapon/gun/sentry/laser_sentry // yes this isnt a subtype of lasers, because we use normal ammo instead of batteries
+	name = "\improper SLT-576 sentry gun"
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a high-energy laser and a 500-shot magazine."
+	icon_state = "laser_sentry"
+	icon = 'icons/obj/machines/deployable/sentry/laser.dmi'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+
+	turret_range = 7
+	deploy_time = 5 SECONDS
+	max_shells = 500
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+
+	scatter = 0
+
+	ammo_datum_type = /datum/ammo/energy/lasersentry
+	default_ammo_type = /obj/item/ammo_magazine/sentry/laser
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/laser)
+
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/hsg_102,
+	)
+
+/obj/item/storage/box/crate/sentry_laser
+	name = "\improper SLT-576 sentry crate"
+	desc = "A large case containing all you need to set up an automated laser sentry."
+	icon_state = "sentry_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/sentry_laser/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_HUGE
+	storage_datum.storage_slots = 6
+	storage_datum.max_storage_space = 16
+	storage_datum.set_holdable(
+		can_hold_list = list(
+			/obj/item/weapon/gun/sentry/laser_sentry,
+			/obj/item/ammo_magazine/sentry/laser,
+		),
+		storage_type_limits_list = list(
+			/obj/item/weapon/gun/sentry/laser_sentry,
+			/obj/item/ammo_magazine/sentry/laser,
+		)
+	)
+
+/obj/item/storage/box/crate/sentry_laser/PopulateContents()
+	new /obj/item/weapon/gun/sentry/laser_sentry(src)
+	new /obj/item/ammo_magazine/sentry/laser(src)

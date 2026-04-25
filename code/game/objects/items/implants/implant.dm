@@ -57,7 +57,7 @@
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
-	if(!COOLDOWN_CHECK(src, activation_cooldown))
+	if(!COOLDOWN_FINISHED(src, activation_cooldown))
 		return FALSE
 	COOLDOWN_START(src, activation_cooldown, cooldown_time)
 	return TRUE

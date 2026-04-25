@@ -11,7 +11,6 @@
 	emote_see = list("stares at the ceiling.", "shivers.", "looks at the marines.", "looks at the research paper.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	pass_flags = PASS_LOW_STRUCTURE
 	response_help = "hugs"
 	response_disarm = "rudely paps"

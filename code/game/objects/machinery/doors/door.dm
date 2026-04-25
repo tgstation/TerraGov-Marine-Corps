@@ -3,18 +3,20 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_IN_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
-	layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
-	var/open_layer = DOOR_OPEN_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	var/open_layer = OPEN_DOOR_LAYER
+	var/closed_layer = CLOSED_DOOR_LAYER
 	var/id
 	var/secondsElectrified = 0
 	var/visible = TRUE
@@ -36,6 +38,13 @@
 	///what airlock we are linked with
 	var/obj/machinery/door/airlock/cycle_linked_airlock
 
+	/// Special operating mode for elevator doors
+	var/elevator_mode = FALSE
+	/// Current elevator status for processing
+	var/elevator_status
+	/// What specific lift ID do we link with?
+	var/transport_linked_id
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -53,12 +62,21 @@
 	var/turf/current_turf = get_turf(src)
 	current_turf.atom_flags &= ~ AI_BLOCKED
 
+	if(elevator_mode)
+		if(transport_linked_id)
+			elevator_status = LIFT_PLATFORM_LOCKED
+			GLOB.elevator_doors += src
+		else
+			stack_trace("Elevator door [src] ([x],[y],[z]) has no linked elevator ID!")
+
 	if(glass)
 		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
 		qdel(o)
+	if(elevator_mode)
+		GLOB.elevator_doors -= src
 	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
@@ -82,7 +100,7 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(TIMER_COOLDOWN_CHECK(M, COOLDOWN_BUMP))
+		if(TIMER_COOLDOWN_RUNNING(M, COOLDOWN_BUMP))
 			return	//This is to prevent shock spam.
 		TIMER_COOLDOWN_START(M, COOLDOWN_BUMP, openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
@@ -102,11 +120,13 @@
 	if(operating)
 		return
 
-	if(!src.requiresID())
+	if(!requiresID())
 		user = null
 
 	if(density)
-		if(allowed(user) || emergency || unrestricted_side(user))
+		if(elevator_mode && elevator_status == LIFT_PLATFORM_UNLOCKED)
+			open()
+		else if(allowed(user) || emergency || unrestricted_side(user))
 			if(cycle_linked_airlock)
 				if(!emergency && !cycle_linked_airlock.emergency && allowed(user))
 					cycle_linked_airlock.close()
@@ -199,6 +219,11 @@
 /obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
+	obj_flags &= ~(BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP)
+	for(var/turf/location in locs)
+		var/turf/above = GET_TURF_ABOVE(location)
+		for(var/atom/movable/falling AS in above)
+			above.zFall(falling)
 	update_appearance(UPDATE_ICON_STATE)
 
 	if(operating)
@@ -226,6 +251,7 @@
 		for(var/t in fillers)
 			var/obj/effect/opacifier/O = t
 			O.set_opacity(TRUE)
+	obj_flags |= BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP
 	operating = FALSE
 
 /obj/machinery/door/proc/requiresID()

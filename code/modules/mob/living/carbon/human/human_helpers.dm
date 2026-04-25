@@ -5,7 +5,7 @@
 	return g
 
 /proc/get_limb_icon_name(datum/species/S, gender, limb_name, ethnicity)
-	if(S.name == "Human" || S.name == "Synthetic")
+	if(S.limb_type == SPECIES_LIMB_HUMAN) // todo this section is fucking stupid and can be way more generic easily
 		switch(limb_name)
 			if ("torso", "chest")
 				return "[ethnicity]_torso_[get_gender_name(gender)]"
@@ -42,7 +42,7 @@
 
 			else
 				return null
-	else if(S.name == "Vatborn" || S.name == "Early Vat-Grown Human" || S.name == "Vat-Grown Human")
+	else if(S.limb_type == SPECIES_LIMB_CLONE)
 		switch(limb_name)
 			if ("torso", "chest")
 				return "torso_[get_gender_name(gender)]"
@@ -151,7 +151,7 @@
 		e_icon = E.icon_name
 
 	for(var/datum/limb/L in limbs)
-		L.icon_name = get_limb_icon_name(species, gender, L.display_name, e_icon)
+		L.icon_name = get_limb_icon_name(species, physique, L.display_name, e_icon)
 
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()
@@ -182,11 +182,13 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(get_organ_slot(ORGAN_SLOT_BRAIN))
-		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
-		if(brain && istype(brain))
-			return 1
-	return 0
+	var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!istype(brain))
+		return FALSE
+	var/datum/limb/braincase = get_limb(brain.parent_limb)
+	if(braincase.limb_status & LIMB_DESTROYED)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/has_eyes()
 	if(get_organ_slot(ORGAN_SLOT_EYES))
@@ -319,7 +321,7 @@
 	if(!has_working_organs())
 		return DEFIB_FAIL_BAD_ORGANS
 
-	if(health + getOxyLoss() + additional_health_increase <= get_death_threshold())
+	if((health + getOxyLoss() + additional_health_increase <= get_death_threshold()) && !HAS_TRAIT(src, TRAIT_IMMEDIATE_DEFIB))
 		return DEFIB_FAIL_TOO_MUCH_DAMAGE
 
 	return DEFIB_POSSIBLE
@@ -376,3 +378,15 @@
 	var/datum/internal_organ/organ = get_organ_slot(string)
 	internal_organs_by_name -= string
 	internal_organs -= organ
+
+/// Current active hand will interact with the other hand. Uses attackby and attack_hand.
+/mob/living/carbon/human/proc/interact_other_hand()
+	var/atom/active_hand = get_active_held_item()
+	var/atom/inactive_hand = get_inactive_held_item()
+
+	if(!inactive_hand)
+		return
+	if(!active_hand)
+		inactive_hand.attack_hand(src)
+		return
+	inactive_hand.attackby(active_hand, src)

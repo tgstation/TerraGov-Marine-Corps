@@ -1,10 +1,8 @@
 /obj/item/binoculars/fire_support
-	name = "tactical binoculars"
+	name = "fire support binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
-	icon_state = "range_finders"
+	icon_state = "fire_support"
 	w_class = WEIGHT_CLASS_SMALL
-	///Faction locks this item if specified
-	var/faction = null
 	///lase effect
 	var/image/laser_overlay
 	///lasing time
@@ -20,7 +18,7 @@
 		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
 	)
 
-/obj/item/binoculars/fire_support/Initialize()
+/obj/item/binoculars/fire_support/Initialize(mapload)
 	. = ..()
 	update_icon()
 	for(var/fire_support_type in mode_list)
@@ -77,9 +75,8 @@
 	user.update_sight()
 
 /obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
-	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
+	user.lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /obj/item/binoculars/fire_support/update_overlays()
@@ -107,20 +104,20 @@
 		if(mode_list[option].name != mode_selected)
 			continue
 		mode = mode_list[option]
-		user.balloon_alert(user, "[mode_selected] mode")
+		balloon_alert(user, "[mode_selected] mode")
 	update_icon()
 
 ///lases a target and calls fire support on it
 /obj/item/binoculars/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
 	if(user.do_actions)
-		balloon_alert_to_viewers("Busy")
+		balloon_alert(user, "busy!")
 		return
 	if(is_mainship_level(user.z))
-		user.balloon_alert(user, "Can't use here")
+		balloon_alert(user, "can't use these here!")
 		return
 	if(faction && user.faction != faction)
-		balloon_alert_to_viewers("Security locks engaged")
+		balloon_alert(user, "security locks engaged")
 		return
 	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
@@ -128,13 +125,13 @@
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		balloon_alert_to_viewers("No clear view")
+		balloon_alert(user, "no clear view!")
 		return
 
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	target_atom = target
-	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "sniper_laser", layer =-LASER_LAYER)
+	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "laser_target_yellow", layer =-LASER_LAYER)
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
@@ -142,6 +139,8 @@
 		unset_target()
 		return
 	if(!bino_checks(target, user))
+		playsound(user,'sound/machines/click.ogg', 25, 1)
+		unset_target()
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -151,16 +150,16 @@
 ///Internal bino checks, mainly around firemode
 /obj/item/binoculars/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	if(!mode)
-		balloon_alert_to_viewers("Select a mode!")
+		balloon_alert(user, "select a mode!")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		balloon_alert_to_viewers("[mode.name] unavailable")
+		balloon_alert(user, "[lowertext(mode.name)] unavailable!")
 		return FALSE
 	if(!mode.uses)
-		balloon_alert_to_viewers("[mode.name] expended")
+		balloon_alert(user, "[lowertext(mode.name)] expended!")
 		return FALSE
 	if(mode.cooldown_timer)
-		balloon_alert_to_viewers("On cooldown")
+		balloon_alert(user, "on cooldown!")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(isspacearea(targ_area))
@@ -177,7 +176,7 @@
 		return FALSE
 	if(target.z != user.z)
 		return FALSE
-	if(!(user in viewers(zoom_tile_offset + zoom_viewsize + 1, target)))
+	if(!line_of_sight(user, target, 30, TRUE))
 		return FALSE
 	return TRUE
 

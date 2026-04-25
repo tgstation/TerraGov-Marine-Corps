@@ -215,6 +215,9 @@
 	name = "Western Caves"
 	icon_state = "away1"
 
+/area/lv624/ground/caves/west1/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/east1
 	name = "Eastern Caves"
 	icon_state = "away"

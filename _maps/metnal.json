@@ -1,0 +1,21 @@
+{
+    "map_name": "Metnal Mining Operation",
+    "map_path": "map_files/Metnal_Operation",
+    "map_file": "Metnal_Operation.dmm",
+	"parallax_icon": "rock",
+	"environment_traits": {
+    },
+	"disk_sets": {
+		"set1": 1,
+		"set2": 1,
+		"set3": 1
+	},
+	"armor": "prison",
+	"quickbuilds": 2100,
+	"announce_text": "A scrambled automated distress signal has been picked up from the nearby Metnal Mining Operation, though attempts to establish communications with the outpost have been unsuccessful. The ship has jumped within range to investigate. TGMC, prepare to deploy!",
+	"traits":[{
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
+}
+

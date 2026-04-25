@@ -32,8 +32,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///This is added to the bullet's base accuracy
 	var/accuracy = 0
 	///How much the accuracy varies when fired
-	var/accuracy_var_low = 1
-	var/accuracy_var_high = 1
+	var/accuracy_variation = 1
 	///For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though
 	var/accurate_range = 5
 	///Snipers use this to simulate poor accuracy at close ranges
@@ -68,8 +67,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_type = BULLET
 	///How many stacks of sundering to apply to a mob on hit
 	var/sundering = 0
-	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
-	var/airburst_multiplier = 0.1
 	///What kind of behavior the ammo has
 	var/ammo_behavior_flags = NONE
 	///Determines what color our bullet will be when it flies
@@ -86,38 +83,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
-	///Multiplier for deflagrate chance
-	var/deflagrate_multiplier = 0.9
-	///Flat damage caused if fire_burst is triggered by deflagrate
-	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
-/datum/ammo/proc/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-/datum/ammo/proc/on_shield_block(mob/target_mob, obj/projectile/proj)
+/datum/ammo/proc/on_shield_block(mob/target_mob, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting dense turfs.
-/datum/ammo/proc/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting mobs.
-/datum/ammo/proc/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/proc/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	return
 
 ///Special effects when hitting objects.
-/datum/ammo/proc/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/proc/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/proc/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///Handles CC application on the victim
-/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, atom/movable/projectile/proj, max_range = 5, stun = 0, paralyze = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim)
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
@@ -142,26 +135,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
+	if(hard_size_threshold >= victim.mob_size && (stun || paralyze || knockback))
 		var/mob/living/living_victim = victim
 		if(living_victim.IsStun() || living_victim.IsParalyzed()) //Prevent chain stunning.
 			stun = 0
-			weaken = 0
+			paralyze = 0
 
-		if(stun || weaken)
-			var/list/stunlist = list(stun, weaken, stagger, slowdown)
+		if(stun || paralyze)
+			var/list/stunlist = list(stun, paralyze, stagger, slowdown)
 			if(SEND_SIGNAL(living_victim, COMSIG_LIVING_PROJECTILE_STUN, stunlist, armor_type, penetration))
 				stun = stunlist[1]
-				weaken = stunlist[2]
+				paralyze = stunlist[2]
 				stagger = stunlist[3]
 				slowdown = stunlist[4]
-			living_victim.apply_effects(stun,weaken)
+			living_victim.apply_effects(stun,paralyze)
 
 		if(knockback)
 			if(isxeno(victim))
 				impact_message += span_xenodanger("The blast knocks you off your feet!")
 			else
-				impact_message += span_highdanger("The blast knocks you off your feet!")
+				impact_message += span_userdanger("The blast knocks you off your feet!")
 			victim.knockback(proj, knockback, 5)
 
 	//Check for and apply soft CC
@@ -184,43 +177,42 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		#endif
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
-
-/datum/ammo/proc/airburst(atom/target, obj/projectile/proj)
-	if(!target || !proj)
+///Does AOE damage in a 1 tile radius
+/datum/ammo/proc/airburst(atom/target, atom/movable/projectile/proj, burst_damage = 20)
+	if(!target || !proj || burst_damage <= 0)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	for(var/mob/living/carbon/victim in orange(1, target))
-		if(proj.firer == victim)
-			continue
-		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
-			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
-///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
-/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
-	if(!target || !proj)
+	for(var/thing AS in orange(1, target))
+		if(isliving(thing))
+			var/mob/living/living_victim = thing
+			living_victim.visible_message(span_danger("[living_victim] is hit by backlash from \a [proj.name]!"),
+				isxeno(living_victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
+			living_victim.apply_damage(burst_damage, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE, attacker = proj.firer)
+		if(!isobj(thing))
+			continue
+		var/obj/obj_victim = thing
+		obj_victim.take_damage(burst_damage, proj.ammo.damage_type, armor_type, attack_dir = get_dir(target, obj_victim), blame_mob = proj.firer)
+
+///A probability based incendiary explosion triggered on living targets
+/datum/ammo/proc/deflagrate(mob/living/target, atom/movable/projectile/proj, deflag_damage = 15, deflagrate_mult = 1)
+	if(!isliving(target) || !proj || deflag_damage <= 0)
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	if(!istype(target, /mob/living))
+
+	var/deflagrate_chance = target.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_mult
+	if(!prob(deflagrate_chance))
 		return
 
-	var/mob/living/victim = target
-	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
-	if(prob(deflagrate_chance))
-		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
-		fire_burst(target, proj)
+	new /obj/effect/temp_visual/shockwave(get_turf(target), 2)
+	playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
 
-///the actual fireblast triggered by deflagrate
-/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
-	if(!target || !proj)
-		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in range(1, target))
 		if(victim == target)
 			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
 		else
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
-				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_userdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
-		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
+		victim.apply_damage(deflag_damage, BURN, blocked = FIRE, updating_health = TRUE, attacker = proj.firer)
 
 		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
 		victim.adjust_fire_stacks(5)
@@ -231,15 +223,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
  * Such a buckshot
  * origin_override used to have the new projectile(s) originate from a different source than the main projectile
 */
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, mob/living/shooter, atom/source, range, speed, angle, target, origin_override) //todo: Combine these procs with extra args or something, as they are quite similar
+/datum/ammo/proc/fire_bonus_projectiles(atom/movable/projectile/main_proj, mob/living/shooter, atom/source, range, speed, angle, target, origin_override) //todo: Combine these procs with extra args or something, as they are quite similar
 	var/effect_icon = ""
-	var/proj_type = /obj/projectile
-	if(istype(main_proj, /obj/projectile/hitscan))
-		proj_type = /obj/projectile/hitscan
-		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+	var/proj_type = /atom/movable/projectile
+	if(istype(main_proj, /atom/movable/projectile/hitscan))
+		proj_type = /atom/movable/projectile/hitscan
+		var/atom/movable/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		var/atom/movable/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -258,15 +250,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
-/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)
+/datum/ammo/proc/fire_directionalburst(atom/movable/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)
 	var/effect_icon = ""
-	var/proj_type = /obj/projectile
-	if(istype(main_proj, /obj/projectile/hitscan))
-		proj_type = /obj/projectile/hitscan
-		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+	var/proj_type = /atom/movable/projectile
+	if(istype(main_proj, /atom/movable/projectile/hitscan))
+		proj_type = /atom/movable/projectile/hitscan
+		var/atom/movable/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to projectile_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(loc_override ? loc_override : main_proj.loc, effect_icon)
+		var/atom/used_loc = loc_override ? loc_override : main_proj.loc
+		var/atom/movable/projectile/new_proj = new proj_type(used_loc, effect_icon)
+		// we do this so if we place inside something, we fly out of it instead of hitting it
+		new_proj.hit_atoms += used_loc.contents
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -295,15 +290,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 
-/datum/ammo/proc/drop_nade(turf/T)
+/datum/ammo/proc/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	return
 
 ///called on projectile process() when AMMO_SPECIAL_PROCESS flag is active
-/datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
+/datum/ammo/proc/ammo_process(atom/movable/projectile/proj, damage)
 	CRASH("ammo_process called with unimplemented process!")
 
 ///bounces the projectile by creating a new projectile and calculating an angle of reflection
-/datum/ammo/proc/reflect(turf/T, obj/projectile/proj, scatter_variance)
+/datum/ammo/proc/reflect(turf/T, atom/movable/projectile/proj, scatter_variance)
 	if(!bonus_projectiles_type) //while fire_bonus_projectiles does not require this var, it can cause infinite recursion in some cases, leading to death tiles
 		return
 	var/new_range = proj.proj_max_range - proj.distance_travelled

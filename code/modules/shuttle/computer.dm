@@ -24,12 +24,12 @@
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
-			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		if(!destination_found)
 			dat += "<B>Shuttle Locked</B><br>"
 			if(admin_controlled)
 				dat += "Authorized personnel only<br>"
-				dat += "<A href='?src=[REF(src)];request=1]'>Request Authorization</A><br>"
+				dat += "<A href='byond://?src=[REF(src)];request=1]'>Request Authorization</A><br>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")

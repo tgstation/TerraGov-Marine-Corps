@@ -118,6 +118,9 @@
 		return FALSE
 	can_draw_reagent(A, user, TRUE) //Always draws reagents on right click
 
+/obj/item/reagent_containers/hypospray/is_refuelable()
+	return FALSE
+
 ///If it's possible to draw from something. Will draw_blood() when targetting a carbon, or draw_reagent() when targetting a non-carbon
 /obj/item/reagent_containers/hypospray/proc/can_draw_reagent(atom/A, mob/living/user)
 	if(!A.reagents)
@@ -204,7 +207,7 @@
 	if(isturf(loc) || !description_overlay)
 		return
 	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
-	desc.pixel_x = 16
+	desc.pixel_w = 16
 	desc.maptext = MAPTEXT(description_overlay)
 	desc.maptext_width = 16
 	. += desc

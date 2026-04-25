@@ -3,22 +3,38 @@ SUBSYSTEM_DEF(silo)
 	wait = 1 MINUTES
 	priority = FIRE_PRIORITY_SILO
 	can_fire = FALSE
-	init_order = INIT_ORDER_SPAWNING_POOL
 	///How many larva points are added every minutes in total
 	var/current_larva_spawn_rate = 0
 
 /datum/controller/subsystem/silo/Initialize()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(start_spawning))
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(start_spawning))
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/active_humans = length(GLOB.humans_by_zlevel[SSmonitor.gamestate == SHIPSIDE ? "3" : "2"])
+	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
+
+	var/active_humans = 0
+	var/list/human_list = length(GLOB.humans_by_zlevel["[current_z]"]) ? GLOB.humans_by_zlevel["[current_z]"].Copy() : list()
+	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+		if(tank.z != current_z)
+			continue
+		if(tank.armored_flags & ARMORED_IS_WRECK)
+			continue
+		active_humans += tank.larva_value
+		human_list += tank.occupants
+
+	for(var/mob/living/carbon/human/human AS in human_list)
+		if(!human.key && !human.has_ai())
+			continue
+		active_humans++
+
 	var/active_xenos = xeno_job.total_positions - xeno_job.current_positions //burrowed
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
 			continue
 		active_xenos ++
+
 	//The larval spawn is based on the amount of silo, ponderated with a define. Larval follow a f(x) = (x + a)/(1 + a) * something law, which is smoother that f(x) = x * something
 	current_larva_spawn_rate = length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) ? SILO_OUTPUT_PONDERATION + length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) : 0
 	//We then are normalising with the number of alive marines, so the balance is roughly the same whether or not we are in high pop
@@ -42,6 +58,6 @@ SUBSYSTEM_DEF(silo)
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
 		can_fire = TRUE

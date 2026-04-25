@@ -36,7 +36,7 @@
 	. = ..()
 	if(!holding)
 		return
-	balloon_alert(user, "You pry [holding] out of [src]")
+	balloon_alert(user, "pried [holding] out")
 	playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 	holding.forceMove(drop_location())
 	holding = null
@@ -71,7 +71,7 @@
 
 	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
 	if(user)
-		balloon_alert(user, "Connected to [new_port]")
+		balloon_alert(user, "connected to [new_port]")
 
 	return TRUE
 
@@ -92,7 +92,7 @@
 
 	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
 	if(user)
-		balloon_alert(user, "Disconnected")
+		balloon_alert(user, "disconnected")
 
 	return TRUE
 

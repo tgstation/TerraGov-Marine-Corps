@@ -12,12 +12,12 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	max_integrity = 40
-	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	var/dropmetal = TRUE
@@ -80,14 +80,14 @@
 	. = ..()
 	buckled_bodybag?.set_glide_size(target)
 
-//Unsafe proc
+//Unsafe proc // TODO I should be using standard buckle code for this
 /obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
 	if(buckled_bodybag || buckled)
 		return
 	B.visible_message(span_notice("[user] buckles [B] to [src]!"))
 	B.roller_buckled = src
 	B.glide_modifier_flags |= GLIDE_MOD_BUCKLED
-	B.loc = loc
+	B.forceMove(loc)
 	B.setDir(dir)
 	B.layer = layer + 0.1
 	buckled_bodybag = B
@@ -139,13 +139,13 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "Brakes on")
+		balloon_alert(user, "brakes on")
 		anchored = TRUE
 	else
-		balloon_alert(user, "Brakes off")
+		balloon_alert(user, "brakes off")
 		anchored = FALSE
 
-/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
+/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user, params)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)
@@ -376,6 +376,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 		. += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
 
+/obj/structure/bed/medevac_stretcher/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
+
 /obj/structure/bed/medevac_stretcher/attack_hand_alternate(mob/living/user)
 	activate_medevac_teleport(user)
 
@@ -550,7 +553,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	timer_cooldown = max(last_teleport - world.time, 0)
 	if(!timer_cooldown)
 		if(holder)
-			balloon_alert(holder, "Medevac charged!")
+			balloon_alert(holder, "medevac charged")
 		playsound(loc,'sound/machines/ping.ogg', 10, FALSE)
 		STOP_PROCESSING(SSprocessing, src)
 	update_icon()
@@ -614,8 +617,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/list/obj/structure/bed/medevac_stretcher/linked_beds_deployed = list()
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 	var/obj/item/radio/headset/mainship/doc/radio
-	///The faction this beacon belongs to
-	var/faction
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()
@@ -747,7 +748,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(rollerbed in linked_beds)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
+					balloon_alert(user, "already linked!")
 				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
 			return TRUE
 		if(rollerbed.linked_beacon)
@@ -756,7 +757,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		rollerbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
+				balloon_alert(user, "linked")
 			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return TRUE
 
@@ -765,7 +766,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(stretcherbed in linked_beds_deployed)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
+					balloon_alert(user, "already linked!")
 				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
 			return TRUE
 		if(stretcherbed.linked_beacon)
@@ -774,7 +775,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		stretcherbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
+				balloon_alert(user, "linked")
 			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return TRUE
 

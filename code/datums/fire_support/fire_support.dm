@@ -55,6 +55,7 @@
 	if(!uses || !(fire_support_flags & FIRESUPPORT_AVAILABLE))
 		to_chat(user, span_notice("FIRE SUPPORT UNAVAILABLE"))
 		return
+	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration, TIMER_STOPPABLE)
 	uses --
 	addtimer(CALLBACK(src, PROC_REF(start_fire_support), target_turf), delay_to_impact)
 
@@ -62,12 +63,11 @@
 		playsound(target_turf, initiate_sound, 100)
 	if(initiate_chat_message)
 		to_chat(user, span_notice(initiate_chat_message))
-	if(portrait_type && initiate_screen_message && initiate_title)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[initiate_title]</u></span><br>" + initiate_screen_message, portrait_type)
+	if(portrait_type && initiate_title && initiate_screen_message)
+		user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(initiate_title, initiate_screen_message, LEFT_ALIGN_TEXT), portrait_type)
 
 ///Actually begins the fire support attack
 /datum/fire_support/proc/start_fire_support(turf/target_turf)
-	cooldown_timer = addtimer(VARSET_CALLBACK(src, cooldown_timer, null), cooldown_duration, TIMER_STOPPABLE)
 	select_target(target_turf)
 
 	if(start_visual)

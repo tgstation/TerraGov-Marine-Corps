@@ -13,18 +13,18 @@
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
 
-	over.MouseDrop_T(src,usr)
+	over.MouseDrop_T(src, usr, params)
 	return TRUE
 
 
 // recieve a mousedrop
-/atom/proc/MouseDrop_T(atom/dropping, mob/user)
+/atom/proc/MouseDrop_T(atom/dropping, mob/user, params)
 	SHOULD_CALL_PARENT(TRUE)
 	if(dropping.atom_flags & NOINTERACT)
 		return TRUE //Already handled
-	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user)
+	SEND_SIGNAL(src, COMSIG_MOUSEDROPPED_ONTO, dropping, user, params)
 
-/atom/movable/MouseDrop_T(atom/dropping, mob/user)
+/atom/movable/MouseDrop_T(atom/dropping, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -70,6 +70,9 @@
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
+	if(prefs.toggles_gameplay & TOGGLE_CLICKDRAG)
+		usr.ClickOn(over_object, over_location, params)
+		return
 	if(src_object == over_object)
 		usr.ClickOn(over_object, over_location, params)
 		return

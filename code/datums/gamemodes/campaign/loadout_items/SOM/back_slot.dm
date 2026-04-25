@@ -29,7 +29,7 @@
 	name = "X-fuel tank"
 	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the V-62 incinerator."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 50
+	purchase_cost = 100
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -61,7 +61,7 @@
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	purchase_cost = 25
-	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
+	item_typepath = /obj/item/weapon/gun/shotgun/som/back_slot
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 

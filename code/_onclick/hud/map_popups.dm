@@ -80,9 +80,10 @@
  *
  * Returns a map name.
  */
-/client/proc/create_popup(name, ratiox = 100, ratioy = 100)
+/client/proc/create_popup(name, title, ratiox = 100, ratioy = 100)
 	winclone(src, "popupwindow", name)
 	var/list/winparams = list()
+	winparams["title"] = title
 	winparams["size"] = "[ratiox]x[ratioy]"
 	winparams["on-close"] = "handle-popup-close [name]"
 	winset(src, "[name]", list2params(winparams))
@@ -105,13 +106,13 @@
  * Width and height are multiplied by 64 by default.
  */
 /client/proc/setup_popup(popup_name, width = 9, height = 9, \
-		tilesize = 2, bg_icon)
+		tilesize = 2, title, bg_icon)
 	if(!popup_name)
 		return
 	clear_map("[popup_name]_map")
-	var/x_value = world.icon_size * tilesize * width
-	var/y_value = world.icon_size * tilesize * height
-	var/map_name = create_popup(popup_name, x_value, y_value)
+	var/x_value = ICON_SIZE_X * tilesize * width
+	var/y_value = ICON_SIZE_Y * tilesize * height
+	var/map_name = create_popup(popup_name, title, x_value, y_value)
 
 	var/atom/movable/screen/background/background = new
 	background.assigned_map = map_name
@@ -135,3 +136,4 @@
 /client/verb/handle_popup_close(window_id as text)
 	set hidden = TRUE
 	clear_map("[window_id]_map")
+	SEND_SIGNAL(src, COMSIG_POPUP_CLEARED, window_id)

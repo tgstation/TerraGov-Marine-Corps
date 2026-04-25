@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Box, Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type SquadSelectorData = {
@@ -42,7 +42,7 @@ export const SquadSelector = (props) => {
                     selected={selectedSquad === squad.name}
                   >
                     {squad.name}
-                    <Box contents={squad.leader} />
+                    <Box>{squad.leader}</Box>
                   </Button>
                 </Stack.Item>
               ))}

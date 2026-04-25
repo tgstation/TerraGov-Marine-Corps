@@ -1,6 +1,7 @@
 /mob/living/carbon
 	gender = MALE
-	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	buckle_flags = CAN_BE_BUCKLED
 	///Contains icon generation and language information, set during New().
 	var/datum/species/species
 	///The amount of life ticks that have processed on this mob.
@@ -49,3 +50,7 @@
 	if(!istype(destination))
 		return
 	destination.blood_type = blood_type
+
+///Kick the player from this mob, replace it by a more competent ai
+/mob/living/carbon/proc/replace_by_ai()
+	return

@@ -46,25 +46,8 @@
 		current_aura.range = 6 + xeno_caste.aura_strength * 2
 		current_aura.strength = xeno_caste.aura_strength
 
-	switch(upgrade)
-		if(XENO_UPGRADE_NORMAL)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.normal_T2++
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.normal_T3++
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.normal_T4++
-		if(XENO_UPGRADE_PRIMO)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.primo_T2++
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.primo_T3++
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.primo_T4++
-			if(!silent)
-				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
+	if(upgrade == XENO_UPGRADE_PRIMO && !silent)
+		to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -81,6 +64,10 @@
 //-----RUNNER START-----//
 
 /mob/living/carbon/xenomorph/runner/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
+/mob/living/carbon/xenomorph/runner/melter/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
@@ -157,6 +144,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/praetorian/oppressor/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//
@@ -165,6 +156,10 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
@@ -207,6 +202,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+/mob/living/carbon/xenomorph/spitter/globadier
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/spitter/globadier/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
@@ -275,7 +277,20 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/king/conqueror/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----KING END----//
+//============//
+//---DRAGON START---//
+
+/mob/living/carbon/xenomorph/dragon/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+//----DRAGON END----//
+
 //============//
 //---CRUSHER START---//
 
@@ -305,6 +320,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/boiler/sizzler
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/boiler/sizzler/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 

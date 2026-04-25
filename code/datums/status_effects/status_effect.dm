@@ -58,8 +58,8 @@
 	if(tick_interval < world.time)
 		tick(delta_time)
 		tick_interval = world.time + initial(tick_interval)
-	if(duration != -1 && duration < world.time)
-		qdel(src)
+
+	check_duration()
 
 //Called whenever the buff is applied; returning FALSE will cause it to autoremove itself
 /datum/status_effect/proc/on_apply()
@@ -84,6 +84,13 @@
 
 /datum/status_effect/proc/nextmove_adjust()
 	return 0
+
+/// Use this for manually checking if the effect should've ended, when FASTPROCESSING just isn't fast enough
+/datum/status_effect/proc/check_duration()
+	if(duration != -1 && duration < world.time)
+		qdel(src)
+		return TRUE
+	return FALSE
 
 ////////////////
 // ALERT HOOK //
@@ -256,8 +263,7 @@
 		return FALSE
 	status_overlay = mutable_appearance(overlay_file, "[overlay_state][stacks]")
 	status_underlay = mutable_appearance(underlay_file, "[underlay_state][stacks]")
-	var/icon/I = icon(owner.icon, owner.icon_state, owner.dir)
-	var/icon_height = I.Height()
+	var/icon_height = owner.get_cached_height()
 	status_overlay.pixel_x = -owner.pixel_x
 	status_overlay.pixel_y = FLOOR(icon_height * 0.25, 1)
 	status_overlay.transform = matrix() * (icon_height/world.icon_size) //scale the status's overlay size based on the target's icon size

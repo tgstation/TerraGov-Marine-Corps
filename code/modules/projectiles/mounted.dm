@@ -4,7 +4,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
@@ -42,10 +42,6 @@
 	var/obj/item/weapon/gun/new_gun = get_internal_item()
 
 	new_gun?.set_gun_user(null)
-
-/obj/machinery/deployable/mounted/Destroy()
-	operator?.unset_interaction()
-	return ..()
 
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
@@ -139,7 +135,7 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans [src]!")]",
 		span_notice("You man the gun!"))
 
 	return ..()
@@ -167,7 +163,7 @@
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
 	user_old_move_resist = operator.move_resist
-	operator.move_resist = MOVE_FORCE_STRONG
+	operator.set_move_resist(MOVE_FORCE_STRONG)
 
 ///Updates the pixel offset of user so it looks like their manning the gun from behind
 /obj/machinery/deployable/mounted/proc/update_pixels(mob/user, mounting)
@@ -258,7 +254,7 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
+		to_chat(operator, span_warning("[src] cannot be rotated so violently."))
 		return FALSE
 	var/mob/living/carbon/human/user = operator
 
@@ -284,7 +280,6 @@
 
 	return FALSE
 
-
 ///Unsets the user from manning the internal gun
 /obj/machinery/deployable/mounted/on_unset_interaction(mob/user)
 	if(!operator)
@@ -292,31 +287,31 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
-		gun.toggle_aim_mode(operator)
-	gun?.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
+	if(gun)
+		if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
+			gun.toggle_aim_mode(operator)
+		gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
-	for(var/datum/action/action AS in gun.actions)
-		action.remove_action(operator)
+		for(var/datum/action/action AS in gun.actions)
+			action.remove_action(operator)
 
-	for(var/key in gun?.attachments_by_slot)
-		var/obj/item/attachable = gun.attachments_by_slot[key]
-		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
-			continue
-		var/obj/item/attachable/scope/scope = attachable
-		if(!scope.zoom)
-			continue
-		scope.zoom_item_turnoff(operator, operator)
+		for(var/key in gun.attachments_by_slot)
+			var/obj/item/attachable = gun.attachments_by_slot[key]
+			if(!attachable || !istype(attachable, /obj/item/attachable/scope))
+				continue
+			var/obj/item/attachable/scope/scope = attachable
+			if(!scope.zoom)
+				continue
+			scope.zoom_item_turnoff(operator, operator)
+		gun.set_gun_user(null)
 
 	operator.client?.view_size.reset_to_default()
-
+	operator.set_move_resist(user_old_move_resist)
 	operator = null
-	gun?.set_gun_user(null)
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
 	density = initial(density)
-	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun
 /obj/machinery/deployable/mounted/check_eye(mob/user)

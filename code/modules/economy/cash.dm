@@ -43,7 +43,7 @@
 
 /obj/item/spacecash/bundle
 	name = "stack of dollars"
-	icon_state = ""
+	icon_state = "blank"
 	desc = "They are worth 0 dollars."
 	worth = 0
 

@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/storage/labcoat/verb/toggle()
 	set name = "Toggle Labcoat Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!isliving(usr))

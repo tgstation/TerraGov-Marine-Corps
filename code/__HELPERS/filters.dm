@@ -22,6 +22,14 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"size" = 1
 		)
 	),
+	"bloom" = list(
+		"defaults" = list(
+			"threshold" = COLOR_BLACK,
+			"size" = 1,
+			"offset" = 0,
+			"alpha" = 255
+		)
+	),
 	/* Not supported because making a proper matrix editor on the frontend would be a huge dick pain.
 		Uncomment if you ever implement it
 	"color" = list(
@@ -199,6 +207,17 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(size))
 		.["size"] = size
 
+/proc/bloom_filter(threshold, size, offset, alpha)
+	. = list("type" = "bloom")
+	if(!isnull(threshold))
+		.["threshold"] = threshold
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(offset))
+		.["offset"] = offset
+	if(!isnull(alpha))
+		.["alpha"] = alpha
+
 /proc/layering_filter(icon, render_source, x, y, flags, color, transform, blend_mode)
 	. = list("type" = "layer")
 	if(!isnull(icon))
@@ -317,3 +336,59 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 		filter = in_atom.get_filter("wibbly-[i]")
 		animate(filter)
 		in_atom.remove_filter("wibbly-[i]")
+
+/obj/effect/abstract/normalmap_bumpy
+	icon = 'icons/effects/128x128.dmi'
+	icon_state = "normalmap_bumpy"
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	plane = GRAVITY_PULSE_PLANE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
+
+/**
+ * Adds a warping effect to the provided atom, while making it invisible
+ * Note: alpha on the target decreases the strength of the effect
+ * Also overrides any render target on the target atom temporarily while active
+ * do we want to consider a managed render target thing for this?
+ * @param invis_atom The atom to apply the effect to
+ * @param strength The strength of the effect, 100 is highest, 0 means no effect
+ */
+/atom/movable/proc/become_warped_invisible(strength=100)
+	if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+		CRASH("already warped invis, fix your code")
+	var/obj/effect/abstract/normalmap_bumpy/normal_bumpy = new(src)
+	var/render_tgt = "*warped_invis_[REF(normal_bumpy)]"
+	if(render_target)
+		render_tgt += "_oldtgt_" + render_target
+	normal_bumpy.alpha = (255/100) * strength
+	render_target = render_tgt
+	apply_wibbly_filters(normal_bumpy)
+	normal_bumpy.add_filter("mask", 1, alpha_mask_filter(-48, -48, render_source = render_target))
+	vis_contents += normal_bumpy
+	ADD_TRAIT(src, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)
+	RegisterSignal(src, COMSIG_ATOM_POST_UPDATE_OVERLAYS, PROC_REF(on_warped_overlays))
+	update_appearance(UPDATE_OVERLAYS)
+
+///signal handler to remove any emissives while we're warped invis
+/atom/movable/proc/on_warped_overlays(atom/movable/source, list/new_overlays)
+	SIGNAL_HANDLER
+	for(var/image/img AS in new_overlays)
+		if(PLANE_TO_TRUE(img.plane) == EMISSIVE_PLANE)
+			new_overlays -= img
+
+///Stops the warped invisibility effect
+/atom/movable/proc/stop_warped_invisible()
+	if(!HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+		return
+	var/list/split_result = splittext(render_target, "_oldtgt_")
+	var/ref_part = split_result[1]
+	if(length(split_result) > 1)
+		var/old_part = split_result[2]
+		render_target = old_part
+	else
+		render_target = null
+	ref_part = copytext(ref_part, 15)
+	var/obj/effect/abstract/normalmap_bumpy/normal_bumpy = locate(ref_part) in vis_contents
+	vis_contents -= normal_bumpy
+	qdel(normal_bumpy)
+	REMOVE_TRAIT(src, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)
+	UnregisterSignal(src, COMSIG_ATOM_POST_UPDATE_OVERLAYS)

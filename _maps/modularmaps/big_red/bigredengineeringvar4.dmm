@@ -245,6 +245,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
+"pk" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "pq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -670,13 +674,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
-"Ie" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "IN" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -1054,7 +1051,7 @@
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"
-Ie
+OK
 Sw
 uD
 Va
@@ -1553,7 +1550,7 @@ TA
 pY
 ug
 Oo
-GK
+pk
 Pw
 GK
 GK

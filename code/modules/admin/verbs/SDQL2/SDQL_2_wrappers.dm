@@ -224,7 +224,7 @@
 	winshow(player, window, show)
 
 /proc/_winget(player, control_id, params)
-	winget(player, control_id, params)
+	return winget(player, control_id, params)
 
 /proc/_winexists(player, control_id)
 	return winexists(player, control_id)

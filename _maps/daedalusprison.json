@@ -2,6 +2,7 @@
     "map_name": "Daedalus Prison",
     "map_path": "map_files/DaedalusPrison",
     "map_file": "DaedalusPrison.dmm",
+	"parallax_icon": "ice",
 	"environment_traits": {
         "COLD": true
     },
@@ -15,6 +16,8 @@
 	"quickbuilds": 2300,
 	"announce_text": "Coming from an icy planet within our jump drive range, a penal colony has sent out an emergency frequency that our comms array received. TGMC, prepare to deploy!",
 	"traits":[{
-		"weather_snowstorm": true
+		"weather_snowstorm": true,
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
 	}]
 }

@@ -9,8 +9,6 @@
 	atom_flags = ON_BORDER
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
-	climbable = TRUE
-	climb_delay = 10
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/platform/Initialize(mapload)
@@ -23,6 +21,8 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	if(density)
+		AddComponent(/datum/component/climbable)
 
 /obj/structure/platform/update_overlays()
 	. = ..()
@@ -77,7 +77,6 @@
 
 /obj/structure/platform/nondense
 	density = FALSE
-	climbable = FALSE
 	coverage = 0
 
 /obj/structure/platform/rockcliff
@@ -96,7 +95,6 @@
 
 /obj/structure/platform/rockcliff/icycliff/nondense
 	density = FALSE
-	climbable = FALSE
 	coverage = 0
 
 /obj/structure/platform/metalplatform
@@ -104,7 +102,6 @@
 
 /obj/structure/platform/metalplatform/nondense
 	density = FALSE
-	climbable = FALSE
 	coverage = 0
 
 /obj/structure/platform/trench
@@ -114,7 +111,6 @@
 
 /obj/structure/platform/trench/nondense
 	density = FALSE
-	climbable = FALSE
 	coverage = 0
 
 /obj/structure/platform/adobe
@@ -124,7 +120,6 @@
 
 /obj/structure/platform/adobe/nondense
 	density = FALSE
-	climbable = FALSE
 	coverage = 0
 
 //decorative corner platform bits

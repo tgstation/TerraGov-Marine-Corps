@@ -6,7 +6,6 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	atom_flags = NONE
 	item_flags = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	worn_icon_state = "nothing"
 	w_class = WEIGHT_CLASS_HUGE
@@ -27,6 +26,8 @@
 
 
 /obj/item/grab/on_thrown(mob/living/carbon/user, atom/target)
+	if(!ishuman(user))
+		return
 	if(!ismob(grabbed_thing))
 		return
 	if(user.grab_state < GRAB_NECK)

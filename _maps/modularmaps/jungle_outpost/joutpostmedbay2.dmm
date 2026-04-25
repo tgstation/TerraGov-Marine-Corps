@@ -66,6 +66,11 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
+"eZ" = (
+/obj/machinery/computer/body_scanconsole,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay)
 "ff" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell{
 	dir = 1
@@ -145,6 +150,7 @@
 /area/campaign/jungle_outpost/outpost/medbay)
 "js" = (
 /obj/machinery/light/small,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay)
 "jB" = (
@@ -166,6 +172,7 @@
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "kd" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/campaign/jungle_outpost/outpost/medbay)
 "kj" = (
@@ -290,6 +297,13 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"tZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
 "un" = (
 /obj/machinery/bioprinter,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -349,6 +363,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/campaign/jungle_outpost/outpost/medbay)
+"yC" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
 "yM" = (
@@ -434,6 +452,7 @@
 /area/campaign/jungle_outpost/outpost/medbay)
 "CW" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 8
 	},
@@ -650,6 +669,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay)
 "Ps" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "PG" = (
@@ -657,6 +677,12 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "PH" = (
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
+"Qa" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 1
 	},
@@ -672,6 +698,10 @@
 	dir = 6
 	},
 /turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/medbay)
+"Re" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "RU" = (
 /obj/structure/table/reinforced,
@@ -802,7 +832,7 @@ YO
 oN
 dR
 uo
-Iz
+Re
 hA
 uo
 un
@@ -823,7 +853,7 @@ nn
 (4,1,1) = {"
 cp
 vu
-Iz
+Re
 Iz
 Iz
 iQ
@@ -832,14 +862,14 @@ BL
 Mj
 uo
 Va
-Va
+yC
 Va
 Uy
-Iz
+Re
 vJ
 uo
 vQ
-Iz
+Re
 Iz
 mi
 Le
@@ -927,7 +957,7 @@ nn
 (8,1,1) = {"
 cp
 BL
-Iz
+Re
 Iz
 Iz
 vK
@@ -936,14 +966,14 @@ PH
 kd
 uo
 Va
-Va
+yC
 Va
 Uy
-Iz
+Re
 vK
 yY
 jo
-PH
+Qa
 vK
 pC
 CP
@@ -1017,9 +1047,9 @@ yY
 EC
 yY
 yY
-PH
+Qa
 Iz
-Sk
+eZ
 Iz
 Sk
 Iz
@@ -1097,7 +1127,7 @@ dI
 jI
 jH
 DH
-fA
+tZ
 Iz
 Jn
 CP

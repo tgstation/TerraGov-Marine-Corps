@@ -114,6 +114,8 @@
 			log_mentorsay(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_TRANSPORT)
+			log_transport(log_text)
 		if(LOG_MECHA)
 			log_mecha(log_text)
 		if(LOG_SPEECH_INDICATORS)
@@ -189,11 +191,11 @@
 	if(key)
 		if(C?.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.find_stealth_key()]'>"
+				. += "<a href='byond://?priv_msg=[C.find_stealth_key()]'>"
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[ckey]'>"
+				. += "<a href='byond://?priv_msg=[ckey]'>"
 			. += key
 		if(!C)
 			. += "\[DC\]"

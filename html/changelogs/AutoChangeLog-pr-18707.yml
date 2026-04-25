@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "HMG-08 ammo from Zombie Crash vendor is now the normal variant (500 bullets)."

@@ -31,6 +31,7 @@
 	GLOB.observer_list |= src
 
 	ghost_others = client.prefs.ghost_others
+	ghost_orbit = client.prefs.ghost_orbit
 
 	pick_form(client.prefs.ghost_form)
 	updateghostimages()

@@ -1,8 +1,10 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
 /mob/proc/gib()
+	playsound(src, 'sound/effects/gib.ogg', 90, TRUE, 8)
 	gib_animation()
 	spawn_gibs()
+	log_attack("[key_name(src)] has been gibbed.")
 	death(TRUE)
 
 
@@ -41,6 +43,8 @@
 		if(gibbing)
 			qdel(src)
 		return
+	if(deathmessage && !silent && !gibbing)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp", EMOTE_TYPE_IMPORTANT, deathmessage, FALSE)
 	set_stat(DEAD)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
@@ -48,10 +52,6 @@
 	if(client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.deaths++
-
-	if(deathmessage && !silent && !gibbing)
-		visible_message("<b>\The [name]</b> [deathmessage]")
-
 	if(!QDELETED(src) && gibbing)
 		qdel(src)
 

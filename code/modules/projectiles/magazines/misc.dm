@@ -104,6 +104,15 @@
 	current_rounds = 200
 	max_rounds = 200
 
+/obj/item/ammo_magazine/packet/smart_spottingrifle
+	name = "box of 12.7mm Smart Magnum"
+	desc = "A box containing 25 rounds of 12.7mm spotting rifle rounds."
+	icon_state = "smartspottingrifle"
+	default_ammo = /datum/ammo/bullet/spottingrifle
+	caliber = CALIBER_12x7
+	current_rounds = 25
+	max_rounds = 25
+
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
 	desc = "A box containing 150 rounds of A19 overpressured high velocity."
@@ -164,6 +173,7 @@
 	desc = "A packet containing 42 rounds of .454 casull."
 	icon_state = "454"
 	default_ammo = /datum/ammo/bullet/revolver/highimpact
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_454
 	current_rounds = 42
 	max_rounds = 42
@@ -200,13 +210,19 @@
 
 /obj/item/ammo_magazine/packet/p10x20mm
 	name = "packet of 10x20mm"
-	desc = "A packet containing 125 rounds of 10x20mm caseless."
+	desc = "A packet containing 240 rounds of 10x20mm caseless."
 	icon_state = "10x20mm"
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 240
+	max_rounds = 240
+
+/obj/item/ammo_magazine/packet/p10x20mm/ap
+	name = "packet of 10x20mm AP"
+	desc = "A packet containing 240 rounds of 10x20mm armor-piercing caseless."
+	icon_state = "10x20mm_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -223,7 +239,7 @@
 	name = "packet of .380 ACP"
 	desc = "A packet containing 210 rounds of .380 ACP."
 	caliber = CALIBER_380ACP
-	icon_state = "380acp"
+	icon_state = "380_acp"
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 210
@@ -236,8 +252,8 @@
 	icon_state = "41AE"
 	default_ammo = /datum/ammo/bullet/smg/heavy
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 160
-	max_rounds = 160
+	current_rounds = 165
+	max_rounds = 165
 
 /obj/item/ammo_magazine/packet/p41ae_squashhead
 	name = "packet of .41 AE squashhead"
@@ -246,5 +262,5 @@
 	icon_state = "41AE_squash"
 	default_ammo = /datum/ammo/bullet/smg/squash
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 160
-	max_rounds = 160
+	current_rounds = 165
+	max_rounds = 165

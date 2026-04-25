@@ -4,8 +4,8 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/equipment/cells_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/cells_right.dmi',
 	)
 	worn_icon_state = "cell"
 	force = 5
@@ -38,7 +38,7 @@
 	if(self_recharge)
 		START_PROCESSING(SSobj, src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/Destroy()
 	if(self_recharge)
@@ -49,7 +49,7 @@
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			SEND_SIGNAL(src, COMSIG_CELL_SELF_RECHARGE, charge_amount)
 	else
 		return PROCESS_KILL
@@ -71,7 +71,7 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")
 
-/obj/item/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user as mob) // todo shitcode fixme
 	if(!rigged)
 		return ..()
 
@@ -89,7 +89,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
-	overlays += new/obj/effect/overlay/danger
+	overlays += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 	spawn(rand(3,50))
 		spark_system.start(src)
 		explode()
@@ -222,13 +222,12 @@
 
 ///Explodes, scaling with cell charge
 /obj/item/cell/proc/explode()
-	var/turf/epicenter = get_turf(src)
 
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.05), -1, 4)
 
-	explosion(epicenter, 0, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(src, 0, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -263,6 +262,7 @@
 /obj/item/cell/crap/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
@@ -271,6 +271,7 @@
 /obj/item/cell/secborg/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
@@ -279,33 +280,40 @@
 /obj/item/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"
+	worn_icon_state = "hcell"
 	maxcharge = 10000
 
 /obj/item/cell/high/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/super
 	name = "super-capacity power cell"
 	icon_state = "scell"
+	worn_icon_state = "scell"
 	maxcharge = 20000
 
 /obj/item/cell/super/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
 	icon_state = "hpcell"
+	worn_icon_state = "hpcell"
 	maxcharge = 30000
 
 /obj/item/cell/hyper/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
+	update_appearance(UPDATE_ICON)
 
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
+	worn_icon_state = "icell"
 	maxcharge = 30000
 
 /obj/item/cell/infinite/use()
@@ -319,6 +327,9 @@
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1
+
+/obj/item/cell/rtg // todo should kill this subtype
+	charge_overlay = null
 
 /obj/item/cell/rtg/small
 	name = "recharger cell"
@@ -344,7 +355,6 @@
 	desc = "This is a radioisotope generator that can fit into APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
-	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 5000
 	self_recharge = TRUE
@@ -356,21 +366,16 @@
 	desc = "A large twisting piece of metal that acts as the power core of a mecha. You probably shouldn't lick it, despite the blue glow."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
-	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
+	charge_overlay = null
 	self_recharge = TRUE
-	maxcharge = 1000
-	charge_amount = 30
+	maxcharge = 1400
+	charge_amount = 150
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
-	maxcharge = 1250
-	charge_amount = 40
-
-/obj/item/cell/mecha/large
-	name = "large radiotope cell"
-	maxcharge = 1500
-	charge_amount = 50
+	maxcharge = 650
+	charge_amount = 200
 
 /obj/item/cell/night_vision_battery
 	name = "night vision goggle battery"

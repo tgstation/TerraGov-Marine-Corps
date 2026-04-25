@@ -4,6 +4,7 @@
 	desc = "A 30mm Autocannon for the LVRT 'Fallow'. A surprisingly powerful autocannon. Sadly, beltfeeding system was lost in the slew of budget cuts related to the system. It is loaded with 4 round clips."
 	icon_state = "icc_lvrt_autocannon"
 	fire_sound = SFX_AC_FIRE
+	interior_fire_sound = list('sound/vehicles/weapons/tank_autocannon_interior_fire_1.ogg', 'sound/vehicles/weapons/tank_autocannon_interior_fire_2.ogg')
 	ammo = /obj/item/ammo_magazine/tank/sarden_clip
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/sarden_clip, /obj/item/ammo_magazine/tank/sarden_clip/high_explosive)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -13,10 +14,11 @@
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/icc_lvrt_cannon
-	name = "\improper EM-2500 Low Veloity Cannon"
+	name = "\improper EM-2500 Low Velocity Cannon"
 	desc = "A 76mm low velocity cannon for the LVRT 'Fallow'. It has slow travel speed and solid explosive performance. It is loaded with 76mm shells."
 	icon_state = "icc_lvrt_cannon"
 	fire_sound = SFX_AC_FIRE
+	interior_fire_sound = list('sound/vehicles/weapons/tank_autocannon_interior_fire_1.ogg', 'sound/vehicles/weapons/tank_autocannon_interior_fire_2.ogg')
 	ammo = /obj/item/ammo_magazine/tank/icc_lowvel_cannon
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/icc_lowvel_cannon, /obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive)
 	variance = 0

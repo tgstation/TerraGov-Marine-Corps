@@ -1,4 +1,4 @@
-import { AnimatedNumber, Box } from '../../components';
+import { AnimatedNumber, Box } from 'tgui-core/components';
 
 export const BeakerContents = (props) => {
   const { beakerLoaded, beakerContents } = props;

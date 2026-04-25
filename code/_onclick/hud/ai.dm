@@ -1,5 +1,6 @@
 /atom/movable/screen/ai
 	icon = 'icons/mob/screen_ai.dmi'
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/ai/Click()
@@ -126,6 +127,50 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.drop_new_multicam()
 
+/atom/movable/screen/ai/floor_indicator
+	icon_state = "zindicator"
+	screen_loc = ui_ai_floor_indicator
+
+/atom/movable/screen/ai/floor_indicator/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	if(istype(hud_owner))
+		RegisterSignal(hud_owner, COMSIG_HUD_OFFSET_CHANGED, PROC_REF(update_z))
+		update_z()
+
+/atom/movable/screen/ai/floor_indicator/proc/update_z(datum/hud/source)
+	SIGNAL_HANDLER
+	var/mob/living/silicon/ai/ai = hud?.mymob //if you use this for anyone else i will find you
+	if(isnull(ai))
+		return
+	var/turf/locturf = isturf(ai.loc) ? get_turf(ai.eyeobj) : get_turf(ai) //must be a var cuz error
+	var/ai_z = locturf.z
+	var/text = "Floor<br/>[ai_z]"
+	if(SSmapping.level_trait(ai_z, ZTRAIT_STATION))
+		text = "Floor<br/>[ai_z - 1]"
+	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
+
+/atom/movable/screen/ai/go_up
+	name = "go up"
+	icon_state = "up"
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/ai/go_up/Click(location,control,params)
+	var/mob/ai = hud?.mymob //the core
+	flick("uppressed",src)
+	if(!isturf(ai.loc) || usr != ai) //aicard and stuff
+		return
+	ai.up()
+
+/atom/movable/screen/ai/go_up/down
+	name = "go down"
+	icon_state = "down"
+
+/atom/movable/screen/ai/go_up/down/Click(location,control,params)
+	var/mob/ai = hud?.mymob //the core
+	flick("downpressed",src)
+	if(!isturf(ai.loc) || usr != ai) //aicard and stuff
+		return
+	ai.down()
 
 /datum/hud/ai/New(mob/owner, ui_style, ui_color, ui_alpha = 230)
 	. = ..()
@@ -179,6 +224,13 @@
 //bioscan
 	using = new /atom/movable/screen/ai/bioscan(null, src)
 	using.screen_loc = ui_ai_bioscan
+	static_inventory += using
+
+	using = new /atom/movable/screen/ai/floor_indicator(null, src) //These come with their own predefined screen locs
+	static_inventory += using
+	using = new /atom/movable/screen/ai/go_up(null, src)
+	static_inventory += using
+	using = new /atom/movable/screen/ai/go_up/down(null, src)
 	static_inventory += using
 
 /atom/movable/screen/alert/ai_notify

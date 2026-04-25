@@ -94,7 +94,7 @@ to destroy them and players will be able to make replacements.
 	if(isscrewdriver(I))
 		machine_dir = turn(machine_dir, 90)
 		init_dirs = machine_dir
-		user.visible_message(span_notice("[user] adjusts the jumper on the [src]'s port configuration pins."), span_notice(" You adjust the jumper on the port configuration pins. Now set to [dir2text(machine_dir)]."))
+		user.visible_message(span_notice("[user] adjusts the jumper on the [src]'s port configuration pins."), span_notice("You adjust the jumper on the port configuration pins. Now set to [dir2text(machine_dir)]."))
 
 /obj/item/circuitboard/machine/unary_atmos/examine(mob/user)
 	. = ..()
@@ -205,3 +205,17 @@ to destroy them and players will be able to make replacements.
 	req_components = list(/obj/item/stock_parts/smes_coil = 1, /obj/item/stack/cable_coil = 30)
 
 
+//Tram
+/obj/item/circuitboard/machine/crossing_signal
+	name = "Crossing Signal"
+	build_path = /obj/machinery/transport/crossing_signal
+	req_components = list(
+		/obj/item/stock_parts/micro_laser/high = 1,
+	)
+
+/obj/item/circuitboard/machine/guideway_sensor
+	name = "Guideway Sensor"
+	build_path = /obj/machinery/transport/guideway_sensor
+	req_components = list(
+		/obj/item/assembly/prox_sensor = 1,
+	)

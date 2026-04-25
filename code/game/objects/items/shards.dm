@@ -15,7 +15,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
 	worn_icon_state = "shard-glass"
-	attack_verb = list("stabbed", "slashed", "sliced", "cut")
+	attack_verb = list("stabs", "slashes", "slices", "cuts")
 	var/source_sheet_type = /obj/item/stack/sheet/glass/glass
 	var/shardsize
 

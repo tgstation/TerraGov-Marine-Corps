@@ -40,7 +40,7 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/atv/bullet_act(obj/projectile/proj)
+/obj/vehicle/ridden/atv/bullet_act(atom/movable/projectile/proj)
 	if(prob(50) || !buckled_mobs)
 		return ..()
 	for(var/mob/buckled_mob AS in buckled_mobs)
@@ -48,7 +48,7 @@
 	return TRUE
 
 /obj/vehicle/ridden/atv/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, devastation_range = -1, light_impact_range = 2, flame_range = 3, flash_range = 4)
+	explosion(src, devastation_range = -1, light_impact_range = 2, flame_range = 3, flash_range = 4, explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/atv/Destroy()

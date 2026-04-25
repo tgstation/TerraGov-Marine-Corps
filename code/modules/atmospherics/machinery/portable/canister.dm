@@ -58,7 +58,6 @@
 /obj/machinery/portable_atmospherics/canister/update_overlays()
 	. = ..()
 	if(machine_stat & BROKEN)
-		cut_overlays()
 		return
 
 	var/old_update_flags = update_flags
@@ -71,8 +70,6 @@
 
 	if(update_flags == old_update_flags)
 		return
-
-	cut_overlays()
 	if(update_flags & HOLDING)
 		. += "can-open"
 	if(update_flags & CONNECTED)

@@ -90,7 +90,7 @@
 	if(!active)
 		return
 	active = FALSE
-	balloon_alert_to_viewers("Undeploying...")
+	balloon_alert_to_viewers("undeploying...")
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)

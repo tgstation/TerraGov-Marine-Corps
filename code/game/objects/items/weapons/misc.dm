@@ -8,7 +8,7 @@
 	force = 10
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	attack_verb = list("flogs", "whips", "lashes", "disciplines")
 
 /obj/item/weapon/chainofcommand/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -23,7 +23,7 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+	attack_verb = list("bludgeons", "whacks", "disciplines", "thrashes")
 
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"
@@ -35,7 +35,7 @@
 	throw_speed = 3
 	throw_range = 5
 	worn_icon_state = "broken_beer"
-	attack_verb = list("stabbed", "slashed", "attacked")
+	attack_verb = list("stabs", "slashes", "attacks")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
@@ -51,7 +51,7 @@
 	worn_icon_state = "powerfist"
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
-	attack_verb = list("smashed", "rammed", "power-fisted")
+	attack_verb = list("smashes", "rams", "power-fists")
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
@@ -73,7 +73,7 @@
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
 	var/powerused = setting * 20
-	. += "It's power setting is set to [setting]."
+	. += "Its power setting is set to [setting]."
 	if(cell)
 		. += "It has [round(cell.charge/powerused, 1)] level [setting] punches remaining."
 	else
@@ -85,7 +85,7 @@
 		setting = 1
 	else
 		setting += 1
-	balloon_alert(user, "Power level [setting].")
+	balloon_alert(user, "level [setting]")
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)
@@ -98,7 +98,7 @@
 	var/powerused = setting * 20
 	if(powerused > cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
-		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE)
+		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE, attacker = user)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
 		if(M == user)
 			to_chat(user, span_userdanger("You punch yourself!"))
@@ -107,20 +107,20 @@
 				span_userdanger("[user] punches you!"))
 		return ..()
 	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
-	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 	var/throw_distance = setting * LERP(5, 3, M.mob_size / MOB_SIZE_BIG)
-	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
+
+	M.knockback(user, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
 
@@ -138,24 +138,24 @@
 	user.transferItemToLoc(I,src)
 	cell = I
 	update_icon()
-	user.balloon_alert(user, "Cell inserted")
+	user.balloon_alert(user, "cell inserted")
 
 /obj/item/weapon/powerfist/attack_hand(mob/living/user)
 	if(!(user.get_inactive_held_item() == src))
 		return ..()
 	if(!cell)
-		user.balloon_alert(user, "No cell")
+		user.balloon_alert(user, "no cell!")
 		return
 	unload(user)
-	user.balloon_alert(user, "Cell removed")
+	user.balloon_alert(user, "cell removed")
 	return
 
 /obj/item/weapon/powerfist/attack_hand_alternate(mob/living/user)
 	if(!cell)
-		user.balloon_alert(user, "No cell")
+		user.balloon_alert(user, "no cell!")
 		return
 	unload(user)
-	user.balloon_alert(user, "Cell removed")
+	user.balloon_alert(user, "cell removed")
 	return
 
 /// Remove the cell from the powerfist
@@ -172,7 +172,7 @@
 	icon_state = "brick"
 	force = 30
 	throwforce = 40
-	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
+	attack_verb = list("smacks", "whacks", "bonks", "bricks", "thwacks", "socks", "donks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 
 /obj/item/stack/throwing_knife/stone
@@ -184,7 +184,7 @@
 	max_amount = 12
 	amount = 12
 	throw_delay = 0.3 SECONDS
-	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
+	attack_verb = list("smacks", "whacks", "bonks", "pelts", "thwacks", "cracks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 	singular_name = "stone"
 	atom_flags = DIRLOCK

@@ -30,7 +30,7 @@
 
 /obj/item/reagent_containers/glass/verb/attach_lid()
 	set name = "Attach/Detach lid"
-	set category = "Object"
+	set category = "IC.Object"
 	if(is_open_container())
 		to_chat(usr, span_notice("You put the lid on \the [src]."))
 		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)

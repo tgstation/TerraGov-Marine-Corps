@@ -1,4 +1,3 @@
-import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -9,7 +8,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
 type VendingData = {
@@ -209,7 +210,7 @@ const ProductEntry = (props: VendingProductEntryProps) => {
             onClick={() => act('vend', { vend: prod_ref })}
             disabled={!stock}
           >
-            <Box color={product_color} bold={1}>
+            <Box color={product_color} bold>
               Vend
             </Box>
           </Button>

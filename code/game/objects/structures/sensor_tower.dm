@@ -7,6 +7,7 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
+	faction = FACTION_SOM
 	///The timer for when the sensor tower activates
 	var/current_timer
 	///Time it takes for the sensor tower to fully activate
@@ -25,8 +26,6 @@
 	var/static/already_activated = FALSE
 	///How long is left in the game end timer. Recorded as a var to pause the timer while tower is activating
 	var/remaining_game_time
-	///The faction that owns this tower, and considered the defender
-	var/faction = FACTION_SOM
 
 /obj/structure/sensor_tower/Initialize(mapload)
 	. = ..()
@@ -45,7 +44,7 @@
 	if(!ishuman(user))
 		return
 	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
+		user.balloon_alert(user, "busy!")
 		return
 	if(user.faction == faction)
 		defender_interaction(user)
@@ -55,46 +54,46 @@
 ///Handles defender interactions with the tower
 /obj/structure/sensor_tower/proc/defender_interaction(mob/living/user)
 	if(!activated && !current_timer)
-		balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
+		balloon_alert(user, "not activated—keep it safe!")
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 
-	balloon_alert(user, "You begin to stop the activation process!")
+	balloon_alert(user, "stopping activation...")
 	if(!do_after(user, deactivate_time, NONE, src))
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 	if(!current_timer)
-		balloon_alert(user, "This sensor tower is not currently activated")
+		balloon_alert(user, "not activated!")
 		return
-	balloon_alert(user, "You stop the activation process!")
+	balloon_alert(user, "activation stopped")
 	deactivate()
 
 ///Handles attacker interactions with the tower
 /obj/structure/sensor_tower/proc/attacker_interaction(mob/living/user)
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Activating sensor tower...")
+	balloon_alert_to_viewers("activating sensor tower...")
 	if(!do_after(user, activate_time, NONE, src))
 		return
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Sensor tower activated!")
+	balloon_alert_to_viewers("sensor tower activated")
 	begin_activation()
 
 ///Checks whether an attack can currently activate this tower
 /obj/structure/sensor_tower/proc/attacker_state_check(mob/living/user)
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated!")
+		balloon_alert(user, "fully activated!")
 		return FALSE
 	if(current_timer)
-		balloon_alert(user, "This sensor tower is currently activating!")
+		balloon_alert(user, "currently activating!")
 		return FALSE
 	if(already_activated)
-		balloon_alert(user, "There's already a sensor tower being activated!")
+		balloon_alert(user, "another tower is being activated!")
 		return FALSE
 	return TRUE
 
@@ -104,13 +103,12 @@
 	already_activated = TRUE
 	toggle_game_timer()
 	update_icon()
-
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		if(human.faction == faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, deactivate it!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] is being activated, deactivate it!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is being activated, get ready to defend it team!", /atom/movable/screen/text/screen_text/picture/potrait)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] is being activated, get ready to defend it team!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait)
 
 ///When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert
 /obj/structure/sensor_tower/proc/finish_activation()
@@ -134,9 +132,9 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 		if(human.faction == faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, stop further towers from being activated!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] is fully activated, stop further towers from being activated!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", /atom/movable/screen/text/screen_text/picture/potrait)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] is fully activated, timer increased by [SENSOR_CAP_ADDITION_TIME_BONUS / 600] minutes.", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait)
 
 ///Stops timer if activating and sends an alert
 /obj/structure/sensor_tower/proc/deactivate()
@@ -147,9 +145,9 @@
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped, glory to Mars!", /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] activation process has been stopped, glory to Mars!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait/som_over)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[src] activation process has been stopped<br>" + ",rally up and get it together team!", /atom/movable/screen/text/screen_text/picture/potrait)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[src] activation process has been stopped, rally up and get it together team!", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/potrait)
 
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
 
@@ -173,6 +171,6 @@
 /obj/structure/sensor_tower/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(activated)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", VERY_HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", MINIMAP_LABELS_LAYER))
 	else
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))

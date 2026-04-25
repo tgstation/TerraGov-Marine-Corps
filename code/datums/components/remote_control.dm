@@ -15,7 +15,7 @@
 
 /datum/component/remote_control/Initialize(atom/movable/controlled, type, allow_interaction = FALSE)
 	. = ..()
-	if(!ismovableatom(controlled))
+	if(!ismovable(controlled))
 		return COMPONENT_INCOMPATIBLE
 	src.controlled = controlled
 	if(allow_interaction)
@@ -71,6 +71,9 @@
 			left_click_proc = CALLBACK(src, PROC_REF(uv_handle_click))
 		if(TURRET_TYPE_EXPLOSIVE)
 			left_click_proc = CALLBACK(src, PROC_REF(uv_handle_click_explosive))
+		if(TURRET_TYPE_CLAW)
+			left_click_proc = CALLBACK(src, PROC_REF(uv_handle_click_claw))
+			right_click_proc = CALLBACK(src, PROC_REF(uv_handle_right_click_claw))
 		else
 			left_click_proc = null
 
@@ -88,9 +91,9 @@
 
 /// called by control click, allow to interact with the target
 /datum/component/remote_control/proc/remote_interact(mob/user, atom/target, params)
-	if(!istype(target, /obj/structure/barricade/plasteel))
+	if(!istype(target, /obj/structure/barricade/folding))
 		return
-	var/obj/structure/barricade/plasteel/cade = target
+	var/obj/structure/barricade/folding/cade = target
 	if(!controlled.Adjacent(cade))
 		return
 	cade.toggle_open()
@@ -104,8 +107,19 @@
 
 ///Called when a explosive vehicle clicks and tries to explde itself
 /datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
-	explosion(get_turf(controlled), 1, 2, 3, 4)
+	explosion(get_turf(controlled), 1, 2, 3, 4, explosion_cause=user)
 	remote_control_off()
+	return TRUE
+
+///Called when a claw vehicle clicks and tries to grab/pull something
+/datum/component/remote_control/proc/uv_handle_click_claw(mob/user, atom/target, params)
+	var/obj/vehicle/unmanned/T = controlled
+	T.use_claw(target, user)
+	return TRUE
+
+/datum/component/remote_control/proc/uv_handle_right_click_claw(mob/user, atom/target, params)
+	var/obj/vehicle/unmanned/T = controlled
+	T.claw_shove(target, user)
 	return TRUE
 
 ///Self explanatory, toggles remote control
@@ -119,7 +133,7 @@
 ///Turns the remote control on
 /datum/component/remote_control/proc/remote_control_on(mob/living/newuser)
 	if(QDELETED(controlled))
-		newuser.balloon_alert(newuser, "The linked device is destroyed!")
+		newuser.balloon_alert(newuser, "linked device is gone!")
 		controlled = null
 		return
 	controlled.become_hearing_sensitive()

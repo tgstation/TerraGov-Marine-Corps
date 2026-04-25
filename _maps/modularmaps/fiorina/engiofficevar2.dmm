@@ -1,0 +1,264 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/prison,
+/area/fiorina/tumor/civres)
+"e" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/civres)
+"h" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"i" = (
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"n" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"o" = (
+/turf/closed/mineral/smooth/resin_hard,
+/area/fiorina/oob)
+"s" = (
+/turf/open/floor/prison/green/full{
+	dir = 9
+	},
+/area/fiorina/tumor/civres)
+"x" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/powercell{
+	pixel_y = 12
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"y" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/green/full{
+	dir = 9
+	},
+/area/fiorina/tumor/civres)
+"z" = (
+/obj/structure/coatrack,
+/obj/item/clothing/head/bowlerhat{
+	pixel_y = 15
+	},
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"A" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "Residential Apartment"
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/civres)
+"D" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"E" = (
+/obj/machinery/photocopier,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"F" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/weaponry/melee,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"J" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"L" = (
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"O" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"Q" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"S" = (
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"T" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"V" = (
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/civres)
+"X" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+"Z" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/clothing/head/beret/eng{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/book/manual/engineering_guide{
+	pixel_x = -4
+	},
+/turf/open/floor/prison/green/full{
+	dir = 4
+	},
+/area/fiorina/tumor/civres)
+
+(1,1,1) = {"
+a
+S
+i
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+Q
+h
+n
+a
+F
+S
+A
+"}
+(3,1,1) = {"
+S
+O
+D
+a
+x
+z
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+A
+J
+Z
+a
+V
+S
+A
+"}
+(6,1,1) = {"
+a
+S
+X
+a
+L
+E
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+o
+o
+o
+o
+o
+e
+e
+"}
+(9,1,1) = {"
+T
+o
+T
+s
+s
+y
+s
+"}

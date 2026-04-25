@@ -225,6 +225,12 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	cost = 2
 	slot = SLOT_R_HAND
 
+/datum/gear/card_deck
+	display_name = "Deck of cards"
+	path = /obj/item/toy/deck
+	cost = 2
+	slot = SLOT_R_HAND
+
 /datum/gear/rosary
 	display_name = "Rosary"
 	path = /obj/item/rosary

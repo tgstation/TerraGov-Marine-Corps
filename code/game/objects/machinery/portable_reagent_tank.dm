@@ -9,7 +9,7 @@
 	///Maximum units of reagents this container can hold
 	var/max_volume = 3000
 
-/obj/machinery/deployable/reagent_tank/Initialize()
+/obj/machinery/deployable/reagent_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, container_flags)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
@@ -74,7 +74,7 @@
 ///Process for drinking reagents directly from the dispenser's nozzle
 /obj/machinery/deployable/reagent_tank/proc/drink_from_nozzle(mob/living/user, is_xeno = FALSE)
 	if(isrobot(user) || issynth(user))
-		balloon_alert(user, "You are incapable of drinking!")
+		balloon_alert(user, "you can't drink!")
 		return FALSE
 	if(reagents?.total_volume)
 		if(!is_xeno)
@@ -89,7 +89,7 @@
 		reagents.reaction(user, INGEST)
 		reagents.trans_to(user, 5)
 		return TRUE
-	balloon_alert(user, "It's empty!")
+	balloon_alert(user, "it's empty!")
 
 /obj/machinery/deployable/reagent_tank/attackby(obj/item/I, mob/user, params)
 	if(I.is_refillable())
@@ -98,11 +98,11 @@
 
 /obj/machinery/deployable/reagent_tank/AltClick(mob/user)
 	if(is_refillable())
-		balloon_alert(user, "Dispense mode!")
+		balloon_alert(user, "dispense mode")
 		reagents.reagent_flags &= ~REFILLABLE
 		reagents.reagent_flags |= DRAINABLE
 	else
-		balloon_alert(user, "Refill mode!")
+		balloon_alert(user, "refill mode")
 		reagents.reagent_flags &= ~DRAINABLE
 		reagents.reagent_flags |= REFILLABLE
 	playsound(src, 'sound/effects/pop.ogg', 100)
@@ -133,7 +133,7 @@
 	///List of reagents this dispenser will start with
 	var/list/starting_reagents
 
-/obj/item/storage/reagent_tank/Initialize()
+/obj/item/storage/reagent_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, container_flags, starting_reagents)
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/reagent_tank, 3 SECONDS, 3 SECONDS)
@@ -174,7 +174,7 @@
 	return ..()
 
 /obj/item/storage/reagent_tank/do_quick_equip(mob/user)
-	balloon_alert(user, "Not deployed")
+	balloon_alert(user, "not deployed!")
 
 //Preset tanks so you can have these ready for a round and not need to drain the chem master's energy
 /obj/item/storage/reagent_tank/bicaridine

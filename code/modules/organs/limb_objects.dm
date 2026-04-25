@@ -30,7 +30,7 @@
 	else
 		e_icon = E.icon_name
 
-	icon_state = "[get_limb_icon_name(H.species, H.gender, name, e_icon)]"
+	icon_state = "[get_limb_icon_name(H.species, H.physique, name, e_icon)]"
 	setDir(SOUTH)
 	transform = turn(transform, rand(70,130))
 
@@ -109,7 +109,7 @@
 	H.regenerate_icons()
 
 	if(braindeath_on_decap)
-		brainmob.death()
+		brainmob.death(silent = TRUE)
 
 	GLOB.head_list += src
 

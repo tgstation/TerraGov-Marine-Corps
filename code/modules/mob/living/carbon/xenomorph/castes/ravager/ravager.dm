@@ -13,6 +13,8 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	bubble_icon = "alienroyal"
+	/// The amount of plasma to be gained for being on fire.
+	var/plasma_gain_from_fire = 50
 
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload)
 	. = ..()
@@ -25,28 +27,13 @@
 	. = ..()
 	if(stat)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RAVAGER_FLAMER_ACT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RAVAGER_FLAMER_ACT))
 		return FALSE
-	gain_plasma(50)
+	gain_plasma(plasma_gain_from_fire)
 	TIMER_COOLDOWN_START(src, COOLDOWN_RAVAGER_FLAMER_ACT, 1 SECONDS)
 	if(prob(30))
 		emote("roar")
 		to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 
-// ***************************************
-// *********** Ability related
-// ***************************************
-/mob/living/carbon/xenomorph/ravager/get_crit_threshold()
-	. = ..()
-	if(!endure)
-		return
-	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold
-
-/mob/living/carbon/xenomorph/ravager/get_death_threshold()
-	. = ..()
-	if(!endure)
-		return
-	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold
-
+/mob/living/carbon/xenomorph/ravager/bloodthirster
+	caste_base_type = /datum/xeno_caste/ravager/bloodthirster

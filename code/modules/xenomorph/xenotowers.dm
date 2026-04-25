@@ -4,8 +4,8 @@
 	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that shimmers and warps the ground around it."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "evotower"
-	bound_width = 64
-	bound_height = 64
+	pixel_x = -16
+	pixel_y = -16
 	obj_integrity = 600
 	max_integrity = 600
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
@@ -39,8 +39,8 @@
 	desc = "A sickly outcrop from the ground. It seems to allow for more advanced growth of the Xenomorphs."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
-	bound_width = 64
-	bound_height = 64
+	pixel_x = -16
+	pixel_y = -16
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL

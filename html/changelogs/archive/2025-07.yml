@@ -1,0 +1,355 @@
+2025-07-03:
+  Pariah919:
+  - balance: 'Nerfed a bunch of VSD''s guns to be more in line with their counterparts
+      in their class. Look at #18034 for more information!'
+2025-07-04:
+  Arturlang:
+  - bugfix: bike revs no longer appear to give you more fuel, where they were reducing
+      max fuel, now correctly removes fuel
+  Atropos:
+  - rscadd: Added new pepe emojis! (pepepog, pepeclown, reee, pepepray, pepenerd,
+      pepebed, pepeblanket)
+  - admin: Perms changes are now properly logged/shown
+  Lumipharon:
+  - bugfix: fixed a harddel with build holograms
+  revelation-8468:
+  - rscadd: 19 more stats for the round end panel. Also 1 personal stat.
+2025-07-07:
+  Runian:
+  - rscadd: Abduct, Dislocate, and Advance makes their affected targets flip to make
+      it much more obvious that the targets were affected by the ability.
+  - balance: Various effects from Oppressor's abilities now occur at the end of the
+      throw rather than the beginning.
+  - balance: Abduct now paralyzes for 0.2 seconds (from 0.5), slowdowns for 0.6 (from
+      0.8), and staggers for 3 seconds (from 4) multiplied by the amount of humans
+      affected (unchanged).
+  - balance: Dislocate and Tail Lash now paralyzes for 0.8 seconds (from 1) and staggers
+      for 2.4 seconds (from 3).
+  - balance: Advance now paralyzes for 1.5 seconds (from 2).
+  - bugfix: Abduct no longer causes affected humans to collide with other affected
+      humans while being thrown.
+2025-07-09:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced
+2025-07-10:
+  Lewdcifer:
+  - code_imp: Priority candidates for hive leadership now need the appropriate flag
+      to become rulers. This basically means that Dragon can no longer be a hive ruler
+      (and it shouldn't be, because it doesn't have pheros).
+  Lumipharon:
+  - balance: Xray lasers are weakened by piercing through things, like other piercing
+      ammo types
+  - bugfix: fixed some floor layering/plane issues
+  - balance: Corpses and items are thrown off vehicles on move
+  - balance: Sand now does 2 damage instead of 6 to humans, but also applies stagger
+  - balance: Snow now applies slowdown to humans and other small mobs
+  - balance: Pyrogen flame dash CD is 12 seconds instead of 4
+  - balance: Minion proof latches have been installed on all folding cades
+  ViperSnake01:
+  - bugfix: Fixed Warrior aggressive grab throw bug.
+  - balance: Snipers no longer apply the sniper stacking debuff if dont have IFF.
+  jonash07:
+  - bugfix: Fixes howi and mortar guis displaying NaN for latitude offset
+  mudzbe:
+  - qol: Plasmacutter description mentions it being self charging
+2025-07-13:
+  Runian:
+  - rscadd: 'There are 3 new structures, but currently only obtained through admin
+      intervention: Shell Mutation Chamber, Spur Mutation Chamber, and Veil Mutation
+      Chamber. They are required to gain biomass and use mutations.'
+  - rscadd: Within Hive Status, there is a new button labeled "Mutations" where you
+      can buy your caste/strain's specific mutations. It is disabled if your caste/strain
+      is not allowed to buy any.
+  - rscadd: Biomass is a new permanent resource that the Hive collectively owns. This
+      is gained by draining or cocooning while there is an existing mutation structure.
+  - qol: Within Hive Status, the Hive Blessings button is now visible to all xenomorphs.
+      However, only xenomorphs who usually have access to it can click and access
+      the Hive Blessings menu.
+  - code_imp: The framework for xenomorph mutations, only for Nuclear War.
+  TiviPlus:
+  - rscadd: Added mech pulse armor
+2025-07-15:
+  Runian:
+  - bugfix: Alerts from mutations now properly show up.
+2025-07-16:
+  mudzbe:
+  - balance: TE-9001 heavy laser emplacement cost reduced to 400
+2025-07-17:
+  Atropos:
+  - balance: You can no longer move during throws
+  - rscadd: Added medical overwatch to canterbury and big bury
+  - rscadd: Compact hive status now displays primo tiers
+  Lumipharon:
+  - balance: Greatly reduced the BFG's ability to pierce walls
+  - balance: Halved the number of grenades on crash
+  Mantlecrawler:
+  - balance: ' Double barrel unwielded recoil from 4 to 3'
+  - balance: ' Double barrel wielded recoil from 1 to 0.5'
+  Rug-Dealer:
+  - spellcheck: typo in heavylaser supply datum corrected (heayvlaser -> heavy_laser)
+  Runian:
+  - rscadd: Drone now has 5 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: On Nuclear War, the amount of xenomorphs required to evolve into Queen
+      is decreased by 2 if there can be a mech and another 2 if there can be a tank
+      roundstart.
+  ViperSnake01:
+  - balance: Tanglefoot minirockets price increased from 200 to 400
+  - balance: SST-574 Sniper Sentry now applies sniper stacking debuff.
+2025-07-19:
+  Isy232:
+  - rscadd: Roundstart population value provided to all players when the round starts.
+  - balance: Dragon locked to 50 roundstart population, King to 40.
+  - balance: Dragon xenos evolution requirement 13 => 8, King xenos evolution requirement
+      12 => 8.
+  Lumipharon:
+  - bugfix: fixed mech light rockets being hugely more powerful than intended
+  - balance: Surt reduces melee and acid armour by 10 each
+  - balance: Robots are no longer immune to being set on fire
+  - bugfix: fixed the caste swap button displaying the wrong time in nuke war
+  PibeCantina:
+  - bugfix: Makes zstairs indestructible
+  - bugfix: 'Zstairs layer above weeds
+
+      :cl:'
+  Runian:
+  - rscadd: Defender now has 9 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: 'Regenerate Skin now heals 12% of maximum health (50) total rather than:
+      25 burn damage and 25 brute damage.'
+  - rscadd: Melter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Globadier now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.)
+  - balance: Existing acid puddles now delete themselves to allow for new acid puddles
+      - this causes various abilities like Acid Dash and Acid Spray to have full effect
+      while on existing acid puddles.
+  - bugfix: Resin facehuggers no longer infinitely stack thin resin.
+  - code_imp: The creation of acid spray puddles is now done through xenomorph_spray().
+  - rscadd: Retrograde now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: You can no longer buy mutations that conflict with your currently owned
+      mutations.
+  - bugfix: Drone mutations that used to not update as structures were built now do
+      update accordingly.
+  - rscadd: Warrior now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - qol: Toggle Automatic Magazine Ejection (Weapon) now lets you choose between your
+      weapon and the weapon's attachments.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target now correctly
+      removes the trait involving immobilization.
+  - bugfix: Certain abilities that involve throwing yourself to hit a target no longer
+      causes you to appear to be floating on top of water.
+  - rscadd: Sentinel now has 5 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  revelation-8468:
+  - balance: The las sniper scope is now removeable.
+  - imageadd: Edits the las sniper scope to be seperate from the weapon sprite.
+  timothymtorres:
+  - bugfix: Fix quick vendor blacklisting marines from using points during crash
+2025-07-21:
+  Atropos:
+  - bugfix: fixed setting attrition in campaign, you can no longer accidentally set
+      it to 0
+  - bugfix: Tank/APC fabricator is now indestructible
+  PibeCantina:
+  - bugfix: fixed z level stairs being destructible
+  Runian:
+  - bugfix: King's evolution requirement is no longer overridden by the Nuclear War's
+      evolution requirement of 12.
+  - rscadd: Pyrogen now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Carrier now has 4 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Runner now has 9 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Sentinel's Drain Sting now works as intended.
+  - bugfix: Sentinel's mutation Acidic Slasher now correctly deals its Intoxicated
+      Stacks on slash.
+  - bugfix: Various mutations now correctly get their effects when mutation structures
+      are updated.
+  - rscadd: Bull now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Charging abilities no longer can cause your plasma to go negative and
+      also updates your plasma HUD.
+  - rscadd: Hivelord now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  TiviPlus:
+  - code_imp: cleaned up duplicate var defenitions in code
+  - spellcheck: as a result of the cleanup made some niche item descriptions less
+      boring
+  blackdav123:
+  - rscadd: Added new roof tilesets from Mojave Sun.
+  - soundadd: Added a new footstep for the new metal roofs.
+  - bugfix: Fixed smoothing on various tiles to work with the new roofs.
+2025-07-22:
+  Runian:
+  - rscadd: Sizzler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Crusher now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: The statistic counting the amount of victims affected by Crusher's Stomp
+      now properly counts that instead only counting victims who were directly stomped
+      on.
+  - code_imp: The damage for Crusher's Stomp ability is no longer stored in the caste,
+      but instead now stored in the ability itself.
+2025-07-23:
+  Rug-Dealer:
+  - bugfix: Tacbinos/rangefinders can now acquire targets (ctrl-click) on the 2 columns
+      at the edge of the screen in widescreen mode.
+  Runian:
+  - bugfix: Spray Acid Line now correctly extinguishes fire, stuns humans, etc.
+  - qol: Xenomorph structures spawned by admins within Valhalla or the Centcom Z-level
+      automatically assigns their hive to Fallen or Admeme respectively.
+  - qol: Valhalla xenomorphs can access the Mutations menu to view what mutations
+      are available to their caste and (potentially) buy mutations if they are capable
+      of doing so.
+  - rscadd: Behemoth now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Spitter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Ravager now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - balance: Resin doors can only take brute and burn damage.
+2025-07-24:
+  Lumipharon:
+  - balance: 'Campaign: AG nades are available as a secondary kit'
+2025-07-25:
+  Atropos:
+  - bugfix: fixed job descriptions displaying incorrect times
+  Lumipharon:
+  - balance: Foam and smoke reagents apply a floor to medical reagent amounts - very
+      low volumes will no longer heal mobs
+  - balance: 'Campaign: You no longer get rewarded for repairing stuff in spawn'
+  - bugfix: 'Campaign: Fixed the credit calculation using the wrong repair stat'
+  - balance: 'Campaign: Fire support missions are a little easier for the defenders'
+  - bugfix: fixed overclocked shields not working for smartgunners
+  - balance: 'Campaign: Light mechs are less tough, all mechs only have 1 repair pack'
+  - balance: 'Campaign: Razorburn secondary kit costs 15 credits, and has 1 large
+      and 2 small nades'
+  Rug-Dealer:
+  - rscadd: Strapping strappable items (non-harvester melees and shields) can now
+      be done via keybind.
+  - spellcheck: Rocket sledge mode change specifies "unique action" and not "spacebar".
+  Runian:
+  - rscadd: Boiler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Warlock now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Defiler now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Praetorian now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: The distance calculation for Warrior's lunge has been changed to allow
+      lunges beyond 5 tiles to be work.
+  - bugfix: Throws made at an angle now correctly stop when they're suppose to rather
+      than continuing until the end.
+  - bugfix: Runner mutations now correctly apply their effects.
+  - rscadd: Defender now has 9 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: A new round statistic that tracks how much overheal was given by Gorger's
+      Transfusion.
+  - code_imp: The adjustOverheal define is now a proc on the /xenomorph level.
+  - bugfix: Getting directly hit by Praetorian's Spray Acid Cone now ignores the cooldown
+      for taking acid damage - meaning that humans no longer can stop or ignore its
+      effects because just they were hit too recently by acid.
+  - rscadd: Hunter now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  blackdav123:
+  - balance: Campaign teleporter now starts with one less charge but gains one each
+      time the activation asset is used.
+  - balance: Campaign teleporter activation asset now costs 8 instead of 5
+  - balance: Campaign teleporter charges now cost 3 instead of 6, and give 3 charges
+      instead of 6.
+  - qol: Campaign teleporter now provides better information when examined.
+  mudzbe:
+  - qol: Adds a button to toggle tadpole shutters within the tadpole console
+  tomboy:
+  - rscadd: Add sh-410, new marine autoshotgun in marine weapon vendors and also valhalla
+      vendors
+2025-07-27:
+  Lumipharon:
+  - code_imp: Removed some redundant imitation sidemap overlays
+  - qol: Various multitile objects allow you to walk around on top of them normally,
+      instead of being stuck in place
+  - balance: EMP's slowdown mechs
+  Rug-Dealer:
+  - qol: Compasses now store the last set of coordinates they found, which can be
+      transmitted to mortars by clicking on them.
+  Runian:
+  - bugfix: Warlock can no longer switch their ammo type while Psychic Blast is in
+      the process of firing.
+  - balance: 'Mutations: The gas from Wide Gas is now significantly easier to see
+      through.'
+  - bugfix: 'Mutations: Unmoving Link now correctly grants armor.'
+  - bugfix: 'Mutations: Gaseous Spray now accounts for Primordial Boiler''s lance
+      globs.'
+  - bugfix: 'Mutations: The illusion from Fleeting Mirage now correctly flees instead
+      of standing still.'
+  - rscadd: Puppeteer now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Widow now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Bloodthirster now has 3 new mutations that they can purchase if their
+      hive has enough biomass and mutation structures. Not accessible without admin
+      intervention for now.
+  - spellcheck: 'Mutations: The description for Little More has been changed to be
+      more accurate about what it does.'
+  TheRealMrN:
+  - rscadd: Added a mech weapons vendor to Valhalla
+2025-07-28:
+  Runian:
+  - rscadd: Dancer now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+2025-07-30:
+  Runian:
+  - rscadd: King now has 4 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - bugfix: Psychic Summon now correctly sends a message in chat telling you that
+      it is no longer on cooldown.
+  - rscdel: Biomass for mutations no longer exists. Many, if not all, references to
+      it has been removed or changed.
+  - balance: For each disk that marines have fully completed, xenomorphs are able
+      to buy one additional mutation assuming other requirements are met.
+  - rscadd: Dragon now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - rscadd: Queen now has 4 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  TiviPlus:
+  - bugfix: Fixed boilers being unable to fire up/down zlevels
+2025-07-31:
+  Lumipharon:
+  - qol: 'Campaign: Fixed some missing blacklist/whitelist restrictions in loadouts'
+  Runian:
+  - rscadd: Conqueror now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.

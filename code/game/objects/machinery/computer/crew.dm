@@ -3,7 +3,7 @@
 #define DISPLAY_IN_TRANSIT 2
 
 /obj/machinery/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"
@@ -12,12 +12,20 @@
 	active_power_usage = 500
 //	circuit = /obj/item/circuitboard/computer/crew
 	interaction_flags = INTERACT_MACHINE_TGUI
+	faction = FACTION_TERRAGOV
+	///List of tracked jumpsuits
 	var/list/tracked = list()
+	///Crewmembers groundside
 	var/list/crewmembers_planetside = list()
+	///Crewmembers shipside
 	var/list/crewmembers_on_ship = list()
+	///Crewmembers in transit z-level
 	var/list/crewmembers_in_transit = list()
+	///Which z-level we display
 	var/displayed_z_level = DISPLAY_ON_SHIP
+	///The sorting proc used for current settings
 	var/cmp_proc = /proc/cmp_list_asc
+	///How the list will be sorted
 	var/sortkey = "name"
 
 /obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui)
@@ -113,11 +121,13 @@
 	updateUsrDialog()
 
 /obj/machinery/computer/crew/proc/scan()
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		var/obj/item/clothing/under/C = H.w_uniform
+	for(var/mob/living/carbon/human/human in GLOB.human_mob_list)
+		if(human.faction != faction)
+			continue
+		var/obj/item/clothing/under/C = human.w_uniform
 		if(!istype(C))
 			continue
-		if(C.has_sensor && H.mind)
+		if(C.has_sensor && human.mind)
 			add_to_tracked(C)
 	return TRUE
 

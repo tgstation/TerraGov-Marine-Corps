@@ -5,9 +5,11 @@
 */
 
 /datum/ammo/energy/xeno
-	barricade_clear_distance = 0
+	barricade_clear_distance = 1
 	///Plasma cost to fire this projectile
 	var/ability_cost
+	///do_after duration when using this ammo type
+	var/charge_time = 1 SECONDS
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -15,7 +17,7 @@
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
 	damage = 35
 	penetration = 10
 	sundering = 1
@@ -31,22 +33,26 @@
 	///AOE damage amount
 	var/aoe_damage = 45
 
-/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/T, obj/projectile/P)
-	if(!T || !isturf(T))
+/datum/ammo/energy/xeno/psy_blast/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
 		return
-	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
-	for(var/turf/target_turf AS in target_turfs)
-		for(var/atom/movable/target AS in target_turf)
+	playsound(target_turf, 'sound/effects/EMPulse.ogg', 50)
+	var/list/throw_list = list()
+
+	for(var/turf/cone_turf AS in generate_cone(target_turf, aoe_range, -1, 359, 359, pass_flags_checked = PASS_AIR))
+		for(var/target in cone_turf)
 			if(isliving(target))
+				if(isxeno(target))
+					continue
 				var/mob/living/living_victim = target
 				if(living_victim.stat == DEAD)
 					continue
-				if(!isxeno(living_victim))
-					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
-					staggerstun(living_victim, P, 10, slowdown = 1)
-					living_victim.do_jitter_animation(500)
-			else if(isobj(target))
+				throw_list += living_victim
+				living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
+				staggerstun(living_victim, proj, 10, slowdown = 1)
+				living_victim.do_jitter_animation(500)
+				continue
+			if(isobj(target))
 				var/obj/obj_victim = target
 				var/dam_mult = 1
 				if(!(obj_victim.resistance_flags & XENO_DAMAGEABLE))
@@ -56,49 +62,80 @@
 				if(isarmoredvehicle(target))
 					dam_mult -= 0.5
 				obj_victim.take_damage(aoe_damage * dam_mult, BURN, ENERGY, TRUE, armour_penetration = penetration)
-			if(target.anchored)
-				continue
 
-	new /obj/effect/temp_visual/shockwave(T, aoe_range + 2)
+	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	for(var/mob/living/throw_victim AS in throw_list)
+		var/victim_dist = get_dist(target_turf, throw_victim)
+		throw_victim.knockback((victim_dist > 0 ? target_turf : proj.firer), 3 - victim_dist, 1, knockback_force = MOVE_FORCE_NORMAL)
+
+/datum/ammo/energy/xeno/psy_blast/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj, proj)
 
-/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
-/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_blast/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance
+/datum/ammo/energy/xeno/psy_blast/psy_drain
+	name = "psychic drain"
+	damage = 24.5 // 35 * 0.7 = 24.5
+	damage_type = STAMINA
+	aoe_range = 1
+	aoe_damage = 31.5 // 45 * 0.7 = 31.5
+
+/datum/ammo/energy/xeno/psy_blast/psy_drain/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!isturf(target_turf))
+		return
+	playsound(target_turf, 'sound/effects/portal_opening.ogg', 50)
+	for(var/turf/cone_turf AS in generate_cone(target_turf, aoe_range, -1, 359, 359, pass_flags_checked = PASS_AIR))
+		for(var/mob/living/carbon/human/affected_human in cone_turf)
+			if(affected_human.stat == DEAD)
+				continue
+			affected_human.apply_damage(aoe_damage, STAMINA, null, ENERGY, FALSE, FALSE, TRUE, penetration, attacker = proj.firer)
+			staggerstun(affected_human, proj, 10, slowdown = 1)
+			affected_human.do_jitter_animation(500)
+			if(cone_turf != target_turf)
+				step_away(affected_human, target_turf, 1)
+	new /obj/effect/temp_visual/shockwave(target_turf, aoe_range + 2)
+
+/datum/ammo/energy/xeno/psy_blast/psy_drain/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	drop_nade(get_turf(target_mob), proj)
+	if(ishuman(target_mob))
+		var/mob/living/carbon/human/living_human = target_mob
+		living_human.Knockdown(0.3 SECONDS)
+
+/datum/ammo/energy/xeno/psy_lance
 	name = "psychic lance"
 	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE
 	damage = 60
 	penetration = 50
 	accuracy = 100
+	on_pierce_multiplier = 0.8
+	charge_time = 1 SECONDS
 	sundering = 5
-	max_range = 12
+	max_range = 9
+	accurate_range = 7
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
 	ability_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(isvehicle(target_obj))
-		var/obj/vehicle/veh_victim = target_obj
-		veh_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
+/datum/ammo/energy/xeno/psy_lance/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	if(!isvehicle(target_obj))
+		return
+	var/obj/vehicle/veh_victim = target_obj
+	var/veh_damage = 200
+	if(isgreyscalemecha(veh_victim))
+		veh_damage = 25
+	veh_victim.take_damage(veh_damage, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/energy/xeno/psy_lance/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(isxeno(target_mob))
 		return
 	staggerstun(target_mob, proj, 9, stagger = 1 SECONDS, slowdown = 2, knockback = 1)
-
-/datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	return
-
-/datum/ammo/energy/xeno/psy_blast/psy_lance/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	return

@@ -1,0 +1,386 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/prison,
+/area/fiorina/station/flight_deck)
+"d" = (
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/fiorina/lz/near_lzI)
+"e" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"f" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 1
+	},
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"g" = (
+/obj/item/stack/sandbags_empty/half,
+/turf/open/floor/prison,
+/area/fiorina/lz/near_lzI)
+"h" = (
+/obj/effect/spawner/random/misc/trash{
+	desc = "Wow, instant sand. They really have everything in space.";
+	name = "Insta-Sand! bag"
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/lz/near_lzI)
+"i" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"k" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 8
+	},
+/obj/effect/forcefield,
+/turf/open/space,
+/area/space)
+"l" = (
+/obj/effect/spawner/random/misc/trash{
+	desc = "Wow, instant sand. They really have everything in space.";
+	name = "Insta-Sand! bag"
+	},
+/turf/open/floor/prison,
+/area/fiorina/lz/near_lzI)
+"o" = (
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/lz/near_lzI)
+"p" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"q" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"r" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"s" = (
+/obj/structure/barricade/handrail{
+	dir = 1;
+	name = "solar lattice"
+	},
+/obj/effect/forcefield,
+/turf/open/space,
+/area/space)
+"t" = (
+/obj/structure/bedsheetbin{
+	name = "solar lattice";
+	pixel_y = 6
+	},
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull,
+/area/fiorina/oob)
+"u" = (
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"v" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 4
+	},
+/obj/effect/forcefield,
+/turf/open/space,
+/area/fiorina/oob)
+"w" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/platform,
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"x" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"y" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"A" = (
+/obj/structure/bedsheetbin{
+	name = "solar lattice";
+	pixel_y = 6
+	},
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull,
+/area/fiorina/oob)
+"B" = (
+/obj/effect/forcefield,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"C" = (
+/turf/open/floor/plating/ground/mars,
+/area/fiorina/lz/near_lzI)
+"D" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 1
+	},
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/space)
+"E" = (
+/obj/structure/platform_decoration/metalplatform_deco{
+	dir = 4
+	},
+/obj/effect/forcefield,
+/turf/open/space,
+/area/space)
+"G" = (
+/obj/effect/forcefield,
+/turf/open/space,
+/area/space)
+"H" = (
+/obj/effect/forcefield,
+/obj/structure/platform,
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"J" = (
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/space)
+"L" = (
+/obj/item/stack/sandbags_empty/half,
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/fiorina/lz/near_lzI)
+"M" = (
+/obj/effect/forcefield,
+/turf/open/floor/iron/solarpanel,
+/area/fiorina/oob)
+"N" = (
+/turf/open/floor/prison/darkyellow{
+	dir = 9
+	},
+/area/fiorina/lz/near_lzI)
+"P" = (
+/turf/open/floor/prison,
+/area/fiorina/lz/near_lzI)
+"Q" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/weld_vents,
+/turf/open/floor/prison/plate,
+/area/fiorina/lz/near_lzI)
+"R" = (
+/obj/item/stack/sandbags_empty/half,
+/turf/open/floor/prison/darkyellow,
+/area/fiorina/lz/near_lzI)
+"S" = (
+/obj/effect/forcefield,
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/mainship_hull,
+/area/fiorina/oob)
+"T" = (
+/obj/structure/platform_decoration/metalplatform_deco,
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/space)
+"U" = (
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull,
+/area/fiorina/oob)
+"W" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/darkyellow{
+	dir = 1
+	},
+/area/fiorina/lz/near_lzI)
+"X" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/fiorina/lz/near_lzI)
+"Y" = (
+/obj/item/stack/sandbags,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/lz/near_lzI)
+
+(1,1,1) = {"
+x
+r
+r
+r
+r
+r
+r
+r
+a
+"}
+(2,1,1) = {"
+r
+J
+G
+G
+S
+G
+G
+x
+r
+"}
+(3,1,1) = {"
+r
+T
+G
+G
+S
+G
+G
+k
+r
+"}
+(4,1,1) = {"
+x
+J
+y
+i
+A
+i
+B
+s
+r
+"}
+(5,1,1) = {"
+r
+J
+p
+M
+U
+M
+H
+s
+r
+"}
+(6,1,1) = {"
+r
+J
+q
+e
+t
+e
+w
+s
+r
+"}
+(7,1,1) = {"
+r
+D
+G
+G
+S
+G
+G
+E
+x
+"}
+(8,1,1) = {"
+r
+J
+G
+G
+S
+G
+G
+G
+x
+"}
+(9,1,1) = {"
+x
+r
+r
+r
+r
+x
+u
+f
+x
+"}
+(10,1,1) = {"
+x
+Y
+C
+C
+C
+r
+u
+v
+r
+"}
+(11,1,1) = {"
+g
+l
+o
+C
+C
+r
+G
+G
+r
+"}
+(12,1,1) = {"
+N
+L
+d
+o
+h
+r
+G
+G
+r
+"}
+(13,1,1) = {"
+W
+X
+Q
+R
+P
+x
+r
+r
+x
+"}

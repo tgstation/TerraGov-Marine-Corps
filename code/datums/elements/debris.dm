@@ -7,26 +7,29 @@
 	spawning = 10
 	lifespan = 0.7 SECONDS
 	fade = 0.4 SECONDS
-	drift = generator(GEN_CIRCLE, 0, 7)
-	scale = 0.7
+	position = generator(GEN_CIRCLE, 3, 3)
+	scale = 1
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.1, 0.15)
+	friction = generator(GEN_NUM, 0.3, 0.6)
+	rotation = generator(GEN_NUM, -20, 20)
 	spin = generator(GEN_NUM, -20, 20)
+	drift = generator(GEN_CIRCLE, 0, 9, SQUARE_RAND)
 
 /particles/impact_smoke
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke5"
 	width = 500
 	height = 500
-	count = 20
-	spawning = 20
+	count = 5
+	spawning = 15
 	lifespan = 0.7 SECONDS
-	fade = 8 SECONDS
-	grow = 0.1
-	scale = 0.2
+	fade = 3.3 SECONDS
+	grow = 0.065
+	drift = generator(GEN_CIRCLE, 8, 8)
+	scale = 0.1
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.1, 0.5)
+	friction = generator(GEN_NUM, 0.3, 0.6)
 
 /datum/element/debris
 	element_flags = ELEMENT_BESPOKE
@@ -35,13 +38,13 @@
 	///Icon state of debris when impacted by a projectile
 	var/debris = null
 	///Velocity of debris particles
-	var/debris_velocity = -15
+	var/debris_velocity = -40
 	///Amount of debris particles
 	var/debris_amount = 8
 	///Scale of particle debris
-	var/debris_scale = 0.7
+	var/debris_scale = 1
 
-/datum/element/debris/Attach(datum/target, _debris_icon_state, _debris_velocity = -15, _debris_amount = 8, _debris_scale = 0.7)
+/datum/element/debris/Attach(datum/target, _debris_icon_state, _debris_velocity = -40, _debris_amount = 8, _debris_scale = 1)
 	. = ..()
 	debris = _debris_icon_state
 	debris_velocity = _debris_velocity
@@ -53,18 +56,18 @@
 	. = ..()
 	UnregisterSignal(source, COMSIG_ATOM_BULLET_ACT)
 
-/datum/element/debris/proc/register_for_impact(datum/source, obj/projectile/proj)
+/datum/element/debris/proc/register_for_impact(datum/source, atom/movable/projectile/proj)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(on_impact), source, proj)
 
-/datum/element/debris/proc/on_impact(datum/source, obj/projectile/P)
+/datum/element/debris/proc/on_impact(datum/source, atom/movable/projectile/P)
 	if(!P.ammo.ping)
 		return
 	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, source), 1)
 	var/x_component = sin(angle) * debris_velocity
 	var/y_component = cos(angle) * debris_velocity
-	var/x_component_smoke = sin(angle) * -15
-	var/y_component_smoke = cos(angle) * -15
+	var/x_component_smoke = sin(angle) * -37
+	var/y_component_smoke = cos(angle) * -37
 	var/obj/effect/abstract/particle_holder/debris_visuals
 	var/obj/effect/abstract/particle_holder/smoke_visuals
 	var/position_offset = rand(-6,6)

@@ -221,3 +221,32 @@
 		return
 
 	interact(user)
+
+//Alternate attack with hand - lock/unlock the interface
+/obj/machinery/power/apc/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!can_use(user))
+		return
+
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
+		return
+
+	if(opened)
+		balloon_alert(user, "Close the cover first")
+		return
+
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		balloon_alert(user, "Close the panel first")
+		return
+
+	if(machine_stat & (BROKEN|MAINT))
+		balloon_alert(user, "Nothing happens")
+		return
+
+	if(!allowed(user))
+		balloon_alert(user, "Access denied")
+		return
+
+	locked = !locked
+	balloon_alert_to_viewers("[locked ? "locked" : "unlocked"]")
+	update_appearance()

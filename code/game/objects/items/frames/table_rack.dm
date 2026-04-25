@@ -17,7 +17,7 @@
 	)
 	worn_icon_state = "table_parts"
 	atom_flags = CONDUCT
-	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
+	attack_verb = list("slams", "bashes", "batters", "bludgeons", "thrashes", "whacks")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 	var/deconstruct_type = /obj/item/stack/sheet/metal
 	/// How much of `deconstruct_type` will be spawned on wrench?

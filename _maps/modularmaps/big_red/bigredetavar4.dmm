@@ -315,8 +315,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "rZ" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tool,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "sa" = (

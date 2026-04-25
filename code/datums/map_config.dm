@@ -22,9 +22,12 @@
 	var/list/environment_traits = list()
 	///Which disk sets this map has, key-value = name - weight for choosing.
 	var/list/disk_sets = list()
+	var/parallax_icon = ""
 	var/armor_style = "default"
 	var/quickbuilds = 1000
 	var/list/gamemodes = list()
+	/// Boolean - if TRUE, the "Up" and "Down" traits are automatically distributed to the map's z-levels. If FALSE; they're set via JSON.
+	var/height_autosetup = TRUE
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list()
@@ -97,6 +100,7 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	parallax_icon = json["parallax_icon"]
 	announce_text = json["announce_text"]
 
 	map_file = json["map_file"]
@@ -191,6 +195,9 @@
 			var/datum/game_mode/G = a
 			if(initial(G.config_tag))
 				gamemodes += initial(G.config_tag)
+
+	if ("height_autosetup" in json)
+		height_autosetup = json["height_autosetup"]
 
 	defaulted = FALSE
 	return TRUE

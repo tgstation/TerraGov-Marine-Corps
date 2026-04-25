@@ -82,8 +82,7 @@
 /area/bigredv2/outside/hydroponics)
 "dV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg1,
@@ -490,8 +489,7 @@
 /area/bigredv2/outside/general_offices)
 "wq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/ne)
@@ -872,8 +870,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Su" = (
-/obj/structure/rack,
-/obj/item/mass_spectrometer/adv,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/engine/atmosdark,
 /area/bigredv2/outside/general_offices)
 "Sw" = (
@@ -931,6 +928,7 @@
 /obj/item/stack/sheet/mineral/uranium{
 	amount = 50
 	},
+/obj/item/mass_spectrometer/adv,
 /turf/open/floor/engine/atmosdark,
 /area/bigredv2/outside/general_offices)
 "UY" = (

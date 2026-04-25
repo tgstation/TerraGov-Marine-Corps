@@ -3,43 +3,75 @@
  *
  * Uses the ultra-fast [Bresenham Line-Drawing Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm).
  */
-/proc/get_line(atom/starting_atom, atom/ending_atom)
-	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
-	var/current_y_step = starting_atom.y
+/proc/get_line(atom/starting_atom, atom/ending_atom, cardinal_moves = FALSE)
+	var/current_x = starting_atom.x //start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
+	var/current_y = starting_atom.y
 
-	var/list/line = list(get_turf(starting_atom))//get_turf(atom) is faster than locate(x, y, z)
+	var/list/line = list(get_turf(starting_atom)) //get_turf(atom) is faster than locate(x, y, z)
 
-	var/x_distance = ending_atom.x - current_x_step //x distance
-	var/y_distance = ending_atom.y - current_y_step
+	var/x_distance = ending_atom.x - current_x //x distance
+	var/y_distance = ending_atom.y - current_y
 
-	var/abs_x_distance = abs(x_distance)//Absolute value of x distance
+	var/abs_x_distance = abs(x_distance) //Absolute value of x distance
 	var/abs_y_distance = abs(y_distance)
 
-	var/x_distance_sign = SIGN(x_distance) //Sign of x distance (+ or -)
-	var/y_distance_sign = SIGN(y_distance)
+	var/x_step = SIGN(x_distance) //Sign of x distance (+ or -)
+	var/y_step = SIGN(y_distance)
 
-	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
-	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
-	if(abs_x_distance >= abs_y_distance) //x distance is greater than y
-		for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
-			y += abs_y_distance
+	var/error = abs_x_distance - abs_y_distance // The Bresenham error term
 
-			if(y >= abs_x_distance) //Every abs_y_distance steps, step once in y direction
-				y -= abs_x_distance
-				current_y_step += y_distance_sign
+	while(current_x != ending_atom.x || current_y != ending_atom.y)
+		var/double_error = error * 2
 
-			current_x_step += x_distance_sign //Step on in x direction
-			line += locate(current_x_step, current_y_step, starting_atom.z)//Add the turf to the list
-	else
-		for(var/distance_counter in 0 to (abs_y_distance - 1))
-			x += abs_x_distance
+		// Adjust X and/or Y based on error term
+		if(double_error > -abs_y_distance)
+			error -= abs_y_distance
+			current_x += x_step
 
-			if(x >= abs_y_distance)
-				x -= abs_y_distance
-				current_x_step += x_distance_sign
+		if(double_error < abs_x_distance)
+			error += abs_x_distance
+			current_y += y_step
 
-			current_y_step += y_distance_sign
-			line += locate(current_x_step, current_y_step, starting_atom.z)
+		line += locate(current_x, current_y, starting_atom.z)
+
+	return line
+
+/**
+ * Get a list of turfs in a line from `starting_atom` to `ending_atom`.
+ * Unlike get_line, this only takes cardinal steps, useful for checking movement or LOS
+ * Uses the ultra-fast [Bresenham Line-Drawing Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm).
+ */
+/proc/get_traversal_line(atom/starting_atom, atom/ending_atom)
+	var/current_x = starting_atom.x //start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
+	var/current_y = starting_atom.y
+
+	var/list/line = list(get_turf(starting_atom)) //get_turf(atom) is faster than locate(x, y, z)
+
+	var/x_distance = ending_atom.x - current_x //x distance
+	var/y_distance = ending_atom.y - current_y
+
+	var/abs_x_distance = abs(x_distance) //Absolute value of x distance
+	var/abs_y_distance = abs(y_distance)
+
+	var/x_step = SIGN(x_distance) //Sign of x distance (+ or -)
+	var/y_step = SIGN(y_distance)
+
+	var/error = abs_x_distance - abs_y_distance // The Bresenham error term
+
+	while(current_x != ending_atom.x || current_y != ending_atom.y)
+		var/double_error = error * 2
+
+		// Adjust X and/or Y based on error term
+		if(double_error > -abs_y_distance)
+			error -= abs_y_distance
+			current_x += x_step
+			line += locate(current_x, current_y, starting_atom.z) // Record X step
+
+		if(double_error < abs_x_distance)
+			error += abs_x_distance
+			current_y += y_step
+			line += locate(current_x, current_y, starting_atom.z) // Record Y step
+
 	return line
 
 ///Returns if a turf can be seen from another turf.
@@ -130,3 +162,35 @@
 		return INFINITY
 
 	return abs(A.x - B.x) + abs(A.y - B.y) + abs(A.z - B.z)
+
+/// Returns the turf at a given angle and range from the origin turf
+/proc/get_turf_at_angle_ranged(turf/origin, angle, range)
+	var/dx = sin(angle) * range
+	var/dy = cos(angle) * range
+	return locate(round(origin.x + dx), round(origin.y + dy), origin.z)
+
+///Gets a turf at an angle, up to increments number of steps away, NOT range
+///Only use this is you specifically care about steps, otherwise use get_turf_at_angle_ranged
+/proc/get_turf_at_angle_stepped(angle, turf/starting, increments)
+	var/pixel_x = 0
+	var/pixel_y = 0
+	for(var/i in 1 to increments)
+		pixel_x += sin(angle)+16*sin(angle)*2
+		pixel_y += cos(angle)+16*cos(angle)*2
+	var/new_x = starting.x
+	var/new_y = starting.y
+	while(pixel_x > 16)
+		pixel_x -= 32
+		new_x++
+	while(pixel_x < -16)
+		pixel_x += 32
+		new_x--
+	while(pixel_y > 16)
+		pixel_y -= 32
+		new_y++
+	while(pixel_y < -16)
+		pixel_y += 32
+		new_y--
+	new_x = clamp(new_x, 0, world.maxx)
+	new_y = clamp(new_y, 0, world.maxy)
+	return locate(new_x, new_y, starting.z)

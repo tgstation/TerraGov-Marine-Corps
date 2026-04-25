@@ -13,7 +13,7 @@
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
@@ -26,13 +26,33 @@
 	var/fuel_max = 1000
 	///reference to the attached sidecar, if present
 	var/obj/item/sidecar/attached_sidecar
-	COOLDOWN_DECLARE(enginesound_cooldown)
+	/// The looping sound that plays when the bike is not moving
+	var/datum/looping_sound/bike_idle/idle_sound
+	/// Which sound is played when the bike is unbuckled from
+	var/dismount_sound = 'sound/vehicles/bikedismount.ogg'
+	/// Alternative sound played when the bike is buckled to without fuel
+	var/dry_dismount_sound = 'sound/vehicles/bikedry.ogg'
+	/// A list of potential sounds played when the bike is revved via AltClick
+	var/list/rev_sounds = list(
+		'sound/vehicles/bikerev-1.ogg',
+		'sound/vehicles/bikerev-2.ogg',
+		'sound/vehicles/bikerev-3.ogg',
+		'sound/vehicles/bikerev-4.ogg',
+	)
+	/// Cooldown for revving the bike, to prevent spamming
+	COOLDOWN_DECLARE(rev_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
+	idle_sound = new()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 	motorbike_cover = mutable_appearance(icon, "motorbike_cover", MOB_LAYER + 0.1)
 	fuel_count = fuel_max
+
+/obj/vehicle/ridden/motorbike/Destroy()
+	if(isdatum(idle_sound))
+		QDEL_NULL(idle_sound)
+	return ..()
 
 /obj/vehicle/ridden/motorbike/examine(mob/user)
 	. = ..()
@@ -41,38 +61,59 @@
 	. += "To access internal storage click with an empty hand or drag the bike onto self."
 	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
+/obj/vehicle/ridden/motorbike/AltClick(mob/user)
+	if(!(user in buckled_mobs))
+		return FALSE
+	if(!COOLDOWN_FINISHED(src, rev_cooldown))
+		return FALSE
+	if(fuel_count < 5)
+		return FALSE
+	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
+	to_chat(user, span_notice("You rev the [src]'s engine."))
+	fuel_count -= 5
+	playsound(src, pick(rev_sounds), 50, TRUE, falloff = 3)
+	return TRUE
+
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
+	if(has_fuel())
+		idle_sound.start(src)
+	else
+		playsound(src, dry_dismount_sound, vol = 40, falloff = 1)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/post_unbuckle_mob(mob/living/M)
 	if(!LAZYLEN(buckled_mobs))
 		cut_overlay(motorbike_cover)
+	idle_sound.stop(src)
+	if(has_fuel())
+		playsound(src, dismount_sound, vol = 25, falloff = 1)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
+/// Returns a boolean indicating whether the motorbike has fuel left.
+/obj/vehicle/ridden/motorbike/proc/has_fuel()
+	return fuel_count > 0
+
 /obj/vehicle/ridden/motorbike/relaymove(mob/living/user, direction)
-	if(fuel_count <= 0)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
+	if(!has_fuel())
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BIKE_FUEL_MESSAGE))
 			to_chat(user, span_warning("There is no fuel left!"))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
+			idle_sound.stop(src)
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+/obj/vehicle/ridden/motorbike/relaydrive(mob/living/user, direction)
 	. = ..()
-	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
+	if(!.)
 		return
 	fuel_count--
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
 		for(var/mob/rider AS in buckled_mobs)
 			balloon_alert(rider, "[fuel_count/fuel_max*100]% fuel left")
-
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
-		COOLDOWN_START(src, enginesound_cooldown, 20)
-		playsound(get_turf(src), 'sound/vehicles/carrev.ogg', 100, TRUE)
 
 /obj/vehicle/ridden/motorbike/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
@@ -169,7 +210,7 @@
 	smoke.start()
 
 /obj/vehicle/ridden/motorbike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 2, flash_range = 0)
+	explosion(src, light_impact_range = 2, flash_range = 0, explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/Destroy()

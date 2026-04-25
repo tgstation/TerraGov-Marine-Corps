@@ -1,5 +1,6 @@
+import { Button, Flex, Input, NumberInput, Table } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Button, Flex, Input, NumberInput, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props) => {
@@ -21,11 +22,12 @@ export const Mortar = (props) => {
             <Flex direction="row" justify="space-between">
               <Flex.Item>
                 <NumberInput
+                  expensive
                   value={X}
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_target_x', {
                       target_x: value,
                     })
@@ -34,11 +36,12 @@ export const Mortar = (props) => {
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
+                  expensive
                   value={Y}
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_target_y', {
                       target_y: value,
                     })
@@ -47,11 +50,12 @@ export const Mortar = (props) => {
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
+                  expensive
                   value={DX}
                   minValue={-10}
                   width="43px"
                   maxValue={10}
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_dial_x', {
                       dial_one: value,
                     })
@@ -60,11 +64,12 @@ export const Mortar = (props) => {
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
+                  expensive
                   value={DY}
                   minValue={-10}
                   maxValue={10}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_dial_y', {
                       dial_two: value,
                     })
@@ -115,6 +120,7 @@ export const Mortar = (props) => {
                 </Table.Cell>
                 <Table.Cell>
                   <Input
+                    expensive
                     value={last_three_inputs['coords_one']['name']}
                     width="100px"
                     onChange={(e, value) =>
@@ -141,6 +147,7 @@ export const Mortar = (props) => {
                 </Table.Cell>
                 <Table.Cell>
                   <Input
+                    expensive
                     value={last_three_inputs['coords_two']['name']}
                     width="100px"
                     onChange={(e, value) =>
@@ -167,6 +174,7 @@ export const Mortar = (props) => {
                 </Table.Cell>
                 <Table.Cell>
                   <Input
+                    expensive
                     value={last_three_inputs['coords_three']['name']}
                     width="100px"
                     onChange={(e, value) =>

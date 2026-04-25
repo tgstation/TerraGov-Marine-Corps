@@ -144,6 +144,11 @@
 /obj/item/seeds/sugarcaneseed,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"oN" = (
+/obj/structure/flora/jungle/grass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle)
 "oY" = (
 /obj/structure/catwalk,
 /turf/open/ground/grass/beach/corner2{
@@ -200,10 +205,19 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"wf" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "wi" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 1
 	},
+/area/campaign/jungle_outpost/ground/jungle)
+"wj" = (
+/obj/structure/catwalk,
+/obj/effect/ai_node,
+/turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "wZ" = (
 /turf/open/floor/wood,
@@ -229,6 +243,14 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "CQ" = (
 /obj/structure/catwalk,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Dy" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "DM" = (
@@ -353,6 +375,12 @@
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
+"Pu" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/obj/effect/ai_node,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
 "PU" = (
 /obj/structure/catwalk,
 /obj/structure/platform,
@@ -383,6 +411,10 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
+"Up" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "WC" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/liquid/water/river/autosmooth,
@@ -408,6 +440,10 @@
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "Zs" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"ZG" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle)
 "ZH" = (
 /obj/structure/catwalk,
@@ -481,7 +517,7 @@ Zs
 ko
 lp
 cd
-wZ
+Up
 wZ
 wZ
 wZ
@@ -541,7 +577,7 @@ Az
 ko
 ko
 FG
-hH
+ZG
 wi
 ko
 Zs
@@ -581,12 +617,12 @@ Hl
 JT
 ko
 FG
-hH
+ZG
 ll
 FE
 ZH
 ZH
-ZH
+Dy
 ZH
 FE
 DU
@@ -607,7 +643,7 @@ iT
 MB
 CQ
 Rq
-CQ
+wj
 Ma
 HY
 Kq
@@ -615,7 +651,7 @@ hH
 hH
 hH
 hH
-Lu
+oN
 "}
 (11,1,1) = {"
 ko
@@ -701,7 +737,7 @@ ko
 mj
 ko
 eX
-ko
+wf
 eX
 Zs
 uB
@@ -767,7 +803,7 @@ dt
 If
 cI
 CQ
-PU
+Pu
 cx
 rI
 rI

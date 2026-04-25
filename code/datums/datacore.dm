@@ -3,17 +3,14 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 /datum/data
 	var/name = "data"
 
-
 /datum/data/record
 	name = "record"
 	var/list/fields = list()
-
 
 /datum/datacore
 	var/list/medical = list()
 	var/list/general = list()
 	var/list/security = list()
-
 
 // TODO: cleanup
 /datum/datacore/proc/get_manifest(monochrome, ooc)
@@ -237,8 +234,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"] = null
-	M.fields["last_scan_result"] = "No scan data on record" // body scanner results
+	M.fields["historic_scan"] = null
+	M.fields["historic_scan_time"] = 0
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	if(H.med_record)
@@ -312,9 +309,25 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["alg_d"] = "No allergies have been detected in this patient."
 	M.fields["cdi"] = "None"
 	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"] = 0
-	M.fields["last_scan_result"] = "No scan data on record"
+	M.fields["historic_scan"] = null
+	M.fields["historic_scan_time"] = 0
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	GLOB.datacore.medical += M
 	return M
+
+/**
+ * Finds and returns the medical record of `human` using their `real_name`.
+ *
+ * Setting `allow_record_creation` to TRUE will allow creating and returning a
+ * fresh record datum if one can't be found. Otherwise, null will be returned
+ * if no record can be found and creation isn't allowed.
+ */
+/proc/find_medical_record(mob/living/carbon/human/human, allow_record_creation = FALSE)
+	var/datum/data/record/final_record
+	for(var/datum/data/record/candidate in GLOB.datacore.medical)
+		if(candidate.fields["name"] == human.real_name)
+			final_record = candidate
+	if(isnull(final_record) && allow_record_creation)
+		final_record = create_medical_record(human)
+	return final_record

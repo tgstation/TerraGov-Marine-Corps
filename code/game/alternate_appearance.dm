@@ -35,11 +35,13 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	GLOB.active_alternate_appearances -= src
 	return ..()
 
+///Adds to a newly init'd mob if appropriate
 /datum/atom_hud/alternate_appearance/proc/onNewMob(mob/M)
 	if(mobShouldSee(M))
 		add_hud_to(M)
 
-/datum/atom_hud/alternate_appearance/proc/mobShouldSee(mob/M)
+///Logic for who should see this alt appearance
+/datum/atom_hud/alternate_appearance/proc/mobShouldSee(mob/M) //this is checked early in init, so many things may not be set by the time this runs
 	return FALSE
 
 /datum/atom_hud/alternate_appearance/add_to_hud(atom/A, image/I)
@@ -68,6 +70,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	transfer_overlays = options & AA_MATCH_TARGET_OVERLAYS
 	image = I
 	target = I.loc
+	LAZYADD(target.update_on_z, image)
 	if(transfer_overlays)
 		I.copy_overlays(target)
 
@@ -83,6 +86,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/Destroy()
 	. = ..()
+	LAZYREMOVE(target.update_on_z, image)
 	QDEL_NULL(image)
 	target = null
 	if(ghost_appearance)
@@ -96,8 +100,6 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/basic/remove_from_hud(atom/A)
 	. = ..()
 	A.hud_list -= appearance_key
-	if(. && !QDELETED(src))
-		qdel(src)
 
 /datum/atom_hud/alternate_appearance/basic/copy_overlays(atom/other, cut_old)
 	image.copy_overlays(other, cut_old)
@@ -122,13 +124,86 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	return isobserver(M)
 
 /datum/atom_hud/alternate_appearance/basic/one_person
+	///The mob that can see this
 	var/mob/seer
 
 /datum/atom_hud/alternate_appearance/basic/one_person/mobShouldSee(mob/M)
-	if(M == seer)
-		return TRUE
-	return FALSE
+	return M == seer
 
-/datum/atom_hud/alternate_appearance/basic/one_person/New(key, image/I, mob/living/M)
-	..(key, I, FALSE)
-	seer = M
+/datum/atom_hud/alternate_appearance/basic/one_person/New(key, image/I, mob/living/new_seer)
+	seer = new_seer
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/one_person/Destroy()
+	seer = null
+	return ..()
+
+/datum/atom_hud/alternate_appearance/basic/group
+	///The mobs that can see this
+	var/list/mob/seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/mobShouldSee(mob/M)
+	return M in seer_list
+
+/datum/atom_hud/alternate_appearance/basic/group/New(key, image/I, list/new_seers)
+	seer_list = new_seers
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/group/Destroy()
+	seer_list = null
+	return ..()
+
+//Reverse of above
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person
+	///The mob that CAN'T see this
+	var/mob/seer
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/mobShouldSee(mob/M)
+	return M != seer
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/New(key, image/I, mob/living/new_seer)
+	seer = new_seer
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/all_but_one_person/Destroy()
+	seer = null
+	return ..()
+
+/datum/atom_hud/alternate_appearance/basic/faction
+	add_ghost_version = TRUE
+	///The faction that will see this
+	var/visible_faction
+
+/datum/atom_hud/alternate_appearance/basic/faction/New(key, image/I, new_faction)
+	visible_faction = new_faction
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/faction/mobShouldSee(mob/M)
+	return M.faction == visible_faction
+
+/datum/atom_hud/alternate_appearance/basic/not_faction
+	add_ghost_version = TRUE
+	///The faction that will NOT see this
+	var/excluded_faction
+
+/datum/atom_hud/alternate_appearance/basic/not_faction/New(key, image/I, new_faction)
+	excluded_faction = new_faction
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/not_faction/mobShouldSee(mob/M)
+	return M.faction != excluded_faction
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction
+	add_ghost_version = TRUE
+	///The faction that will see this
+	var/list/visible_factions
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction/New(key, image/I, list/new_factions)
+	visible_factions = new_factions
+	return ..(key, I, FALSE)
+
+/datum/atom_hud/alternate_appearance/basic/multi_faction/mobShouldSee(mob/M)
+	for(var/option in visible_factions)
+		if(M.faction != option)
+			continue
+		return TRUE

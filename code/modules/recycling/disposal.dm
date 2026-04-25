@@ -8,7 +8,7 @@
 
 /obj/machinery/disposal
 	name = "disposal unit"
-	desc = "A pneumatic waste disposal unit."
+	desc = "A pneumatic waste disposal unit. Right click to eject."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
 	anchored = TRUE
@@ -180,6 +180,14 @@
 	flush()
 	update()
 
+/obj/machinery/disposal/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!can_interact(user))
+		return
+	user.visible_message(span_notice("[user] presses the eject button on [src]."),
+	span_notice("You press the eject button on [src]."))
+	eject()
+
 //Attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)
 	if(!isliving(user))
@@ -194,7 +202,7 @@
 /obj/machinery/disposal/proc/go_out(mob/user)
 
 	if(user.client)
-		user.client.eye = user.client.mob
+		user.client.set_eye(user.client.mob)
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
 	if(isliving(user))
@@ -225,11 +233,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='byond://?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='byond://?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='byond://?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"
@@ -528,7 +536,7 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			if(M.client) //If a client mob, update eye to follow this holder
-				M.client.eye = src
+				M.client.set_eye(src)
 
 	qdel(other)
 
@@ -551,7 +559,7 @@
 
 	var/mob/living/living_user = user
 
-	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
+	if(living_user.stat || TIMER_COOLDOWN_RUNNING(living_user, COOLDOWN_DISPOSAL))
 		return
 
 	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
@@ -1362,7 +1370,7 @@
 	if(!client)
 		return
 	client.perspective = MOB_PERSPECTIVE
-	client.eye = src
+	client.set_eye(src)
 
 /obj/effect/decal/cleanable/blood/gibs/pipe_eject(direction)
 	var/list/dirs

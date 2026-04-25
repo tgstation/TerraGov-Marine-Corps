@@ -23,13 +23,12 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 55
 	attack_speed = 15
-	attack_verb = list("stabbed", "thrust", "smashed", "thumped", "bashed", "attacked", "clubbed", "speared", "jabbed", "torn", "gored")
+	attack_verb = list("stabs", "thrusts", "smashes", "thumps", "bashes", "attacks", "clubs", "spears", "jabs", "tears", "gores")
 	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///Aura emitter
 	var/datum/aura_bearer/current_aura
 	///Start point for it to return to when called
@@ -111,12 +110,12 @@
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
-		user.balloon_alert(user, "On cooldown")
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_WARCRY))
+		user.balloon_alert(user, "on cooldown!")
 		return
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
-	user.visible_message(span_warning("[user] lifts up [src] triumphantly!"))
+	user.visible_message(span_boldnotice("[user] lifts up [src] triumphantly!"))
 	playsound(get_turf(src), 'sound/items/plantable_flag/flag_raised.ogg', 75)
 	addtimer(CALLBACK(src, PROC_REF(do_warcry), user), 1 SECONDS)
 
@@ -179,6 +178,7 @@
 	update_appearance(UPDATE_ICON_STATE)
 	if(deployer)
 		new_internal_item.lift_flag(deployer)
+		log_game("[key_name(deployer)] has deployed the flag at [AREACOORD(src)].")
 
 /obj/structure/plantable_flag/Destroy()
 	clear_internal_item()
@@ -223,3 +223,4 @@
 	if(!current_internal_item)
 		return
 	disassemble(user)
+	log_game("[key_name(user)] has undeployed the flag at [AREACOORD(src)].")

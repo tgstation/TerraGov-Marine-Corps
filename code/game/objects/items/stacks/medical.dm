@@ -29,25 +29,25 @@
 		return
 
 	if(!ishuman(M))
-		M.balloon_alert(user, "not a human")
+		M.balloon_alert(user, "not a human!")
 		return FALSE
 	var/mob/living/carbon/human/target = M
 
 	if(!ishuman(user))
-		target.balloon_alert(user, "not dextrous enough")
+		target.balloon_alert(user, "not dextrous enough!")
 		return FALSE
 
 	if(user.do_actions)
-		target.balloon_alert(user, "already busy")
+		target.balloon_alert(user, "already busy!")
 		return
 
-	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+	var/datum/limb/affecting = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
 	if(!affecting)
 		return FALSE
 
 	if(!can_affect_limb(affecting))
-		target.balloon_alert(user, "Limb is [affecting.limb_status & LIMB_ROBOT ? "robotic": "organic"]!")
+		target.balloon_alert(user, "limb is [affecting.limb_status & LIMB_ROBOT ? "robotic": "organic"]!")
 		return FALSE
 
 	return affecting
@@ -76,16 +76,16 @@
 	var/mob/living/carbon/human/patient = M //If we've got to this point, the parent proc already checked they're human
 
 	if(affecting.limb_status & LIMB_DESTROYED)
-		patient.balloon_alert(user, "limb destroyed")
-		return
+		patient.balloon_alert(user, "limb destroyed!")
+		return FALSE
 
 	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/list/patient_limbs = patient.limbs.Copy()
 	patient_limbs -= affecting
 	while(affecting && amount)
 		if(!do_after(user, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
-			patient.balloon_alert(user, "Stopped tending")
-			return
+			patient.balloon_alert(user, "stopped tending")
+			return FALSE
 		var/affected = heal_limb(affecting, unskilled_penalty)
 		if(affected)
 			use(1)
@@ -99,10 +99,13 @@
 				break
 			if(!length(patient_limbs))
 				break
-	patient.balloon_alert(user, "Finished tending")
+	patient.balloon_alert(user, "finished tending")
+	return TRUE
 
 /// return TRUE if a given limb can be healed by src, FALSE otherwise
 /obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)
+	if(!affecting)
+		return FALSE
 	if(affecting.limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!can_affect_limb(affecting))
@@ -235,17 +238,19 @@
 
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_level_needed)
 		if(user.do_actions)
-			M.balloon_alert(user, "already busy")
+			M.balloon_alert(user, "already busy!")
 			return FALSE
 		if(!do_after(user, unskilled_delay, NONE, M, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return FALSE
 
 	var/datum/limb/affecting = .
 	if(M == user && ((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT)))
-		user.balloon_alert(user, "You are using that arm!")
+		user.balloon_alert(user, "you're using that arm!")
 		return
 	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
 		use(1)
+		return TRUE
+	return FALSE
 
 
 #undef BANDAGE

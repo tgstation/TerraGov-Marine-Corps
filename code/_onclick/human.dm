@@ -10,7 +10,7 @@
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEW))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEW))
 		to_chat(H, span_warning("You can't bite your hand again yet..."))
 		return
 
@@ -64,8 +64,6 @@
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 
-	if(species?.spec_unarmedattack(src, A)) //Because species like monkeys dont use attack hand
-		return
 	A.attack_hand(src)
 
 	if(isnull(get_inactive_held_item()))

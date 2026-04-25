@@ -55,7 +55,7 @@
 	var/turf/start_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y - 6, 1, world.maxy), target_turf.z)
 	var/turf/end_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y + 6, 1, world.maxy), target_turf.z)
 
-	var/list/strafelist = get_line(start_turf, end_turf)
+	var/list/strafelist = get_traversal_line(start_turf, end_turf)
 	strafe_turfs(strafelist)
 
 ///lases each turf in the line one by one
@@ -117,6 +117,6 @@
 	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
-	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0)
+	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0, explosion_cause=name)
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)

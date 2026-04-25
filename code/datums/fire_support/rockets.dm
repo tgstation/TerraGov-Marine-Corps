@@ -9,7 +9,7 @@
 	initiate_screen_message = "Rockets hot, incoming!"
 
 /datum/fire_support/rockets/do_impact(turf/target_turf)
-	explosion(target_turf, 0, 2, 4, 6, 2)
+	explosion(target_turf, 0, 2, 4, 6, 2, explosion_cause=name)
 
 /datum/fire_support/rockets/unlimited
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
@@ -29,4 +29,4 @@
 	uses = 2
 
 /datum/fire_support/incendiary_rockets/do_impact(turf/target_turf)
-	explosion(target_turf, weak_impact_range = 4, flame_range = 4, throw_range = 2)
+	explosion(target_turf, weak_impact_range = 4, flame_range = 4, throw_range = 2, explosion_cause=name)

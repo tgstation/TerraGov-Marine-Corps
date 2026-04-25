@@ -41,9 +41,11 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_CLOSED_TURFS,
+		SMOOTH_GROUP_WALLS,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 	)
 	canSmoothWith = list(
+		SMOOTH_GROUP_WALLS,
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
@@ -53,7 +55,7 @@
 	)
 
 /turf/closed/wall/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
@@ -71,7 +73,7 @@
 	QDEL_NULL(bullethole_overlay)
 	return ..()
 
-/turf/closed/wall/ChangeTurf(newtype)
+/turf/closed/wall/ChangeTurf(path, list/new_baseturfs, flags)
 	if(acided_hole)
 		qdel(acided_hole)
 		acided_hole = null
@@ -99,7 +101,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/alien/weeds))
+			if(!(flags & CHANGETURF_KEEP_WEEDS) && istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
@@ -115,7 +117,7 @@
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(acided_hole && (xeno_attacker.mob_size == MOB_SIZE_BIG || xeno_attacker.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+	if(acided_hole && HAS_TRAIT(xeno_attacker, TRAIT_CAN_TEAR_HOLE)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(xeno_attacker)
 	else
 		return ..()
@@ -343,15 +345,11 @@
 
 		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
 		span_notice("You start repairing the damage to [src]."))
-		add_overlay(GLOB.welding_sparks)
-		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
-			cut_overlay(GLOB.welding_sparks)
+		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY)|| !iswallturf(src))
 			return
 
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
-		cut_overlay(GLOB.welding_sparks)
 		repair_damage(250, user)
 
 	else
@@ -360,23 +358,16 @@
 			if(0)
 				if(iswelder(I))
 					var/obj/item/tool/weldingtool/WT = I
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
 					span_notice("You begin slicing through the outer plating."))
-					add_overlay(GLOB.welding_sparks)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
+					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 						return
-
 					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 1
 					user.visible_message(span_notice("[user] slices through the outer plating."),
 					span_notice("You slice through the outer plating."))
-					cut_overlay(GLOB.welding_sparks)
 			if(1)
 				if(isscrewdriver(I))
 					user.visible_message(span_notice("[user] begins removing the support lines."),
@@ -397,21 +388,16 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
 					span_notice("You begin slicing through the metal cover."))
-					add_overlay(GLOB.welding_sparks)
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
+					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
 						return
 
 					d_state = 3
 					user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
 					span_notice("You press firmly on the cover, dislodging it."))
-					cut_overlay(GLOB.welding_sparks)
 			if(3)
 				if(iscrowbar(I))
 					user.visible_message(span_notice("[user] struggles to pry off the cover."),
@@ -477,21 +463,16 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the final layer."),
 					span_notice("You begin slicing through the final layer."))
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
-					add_overlay(GLOB.welding_sparks)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
+					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
 						return
 
 					new /obj/item/stack/rods(src)
 					user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
 					span_notice("The support rods drop out as you slice through the final layer."))
-					cut_overlay(GLOB.welding_sparks)
 					dismantle_wall()
 
 		return attack_hand(user)
@@ -528,7 +509,7 @@
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
 			user.drop_held_item()
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, SFX_SLAM, 40)
 	return TRUE

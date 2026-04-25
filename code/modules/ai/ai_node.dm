@@ -23,6 +23,7 @@
 	var/list/weights = list(
 		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
 		IDENTIFIER_ZOMBIE = list(NODE_LAST_VISITED = 0),
+		IDENTIFIER_HUMAN = list(NODE_LAST_VISITED = 0),
 		)
 
 /obj/effect/ai_node/Initialize(mapload)
@@ -86,6 +87,9 @@
 	var/current_score = 0
 	for(var/direction in adjacent_nodes) //We keep a score for the nodes and see which one is best
 		var/obj/effect/ai_node/node = adjacent_nodes[direction]
+		if(QDELETED(node)) //TODO: This shouldn't be happening in the first place, but there seems to be some issue with adjacency logic that means it is happening sometimes when a node is deleted
+			adjacent_nodes -= node
+			continue
 		current_score = 0
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]

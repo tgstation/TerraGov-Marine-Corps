@@ -1,6 +1,3 @@
-import { classes } from 'common/react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend, useLocalState } from '../../backend';
 import { IndividualData, PerkData } from './index';
 
 export const IndividualPerks = (props) => {
@@ -83,7 +83,7 @@ export const IndividualPerks = (props) => {
           </Stack>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={
             selectedPerk ? (

@@ -293,17 +293,23 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			special_filter += TTS_FILTER_RADIO
 		if(issilicon(src))
 			special_filter += TTS_FILTER_SILICON
-
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
+		if(!CONFIG_GET(flag/tts_no_whisper) || message_mode != MODE_WHISPER)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
 
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	var/image/I = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message_raw)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
+	var/image/say_popup = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message_raw)]", FLY_LAYER)
+	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)
+	say_popup.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), say_popup, speech_bubble_recipients, 30)
+	LAZYADD(update_on_z, say_popup)
+	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), say_popup), 3.5 SECONDS)
+
+/mob/living/proc/clear_saypopup(image/say_popup)
+	LAZYREMOVE(update_on_z, say_popup)
 
 /mob/living/GetVoice()
 	return name
@@ -311,7 +317,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 /mob/living/IsVocal()
 	. = ..()
 
-	if(HAS_TRAIT(src, TRAIT_MUTED))
+	if(HAS_TRAIT(src, TRAIT_MUTE))
 		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels
@@ -366,6 +372,8 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	while(length_regex.Find(tts_message))
 		var/replacement = tts_message[length_regex.index]+tts_message[length_regex.index]+tts_message[length_regex.index]
 		tts_message = replacetext(tts_message, length_regex.match, replacement, length_regex.index)
+
+	tts_message = html_decode(tts_message)
 
 	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 

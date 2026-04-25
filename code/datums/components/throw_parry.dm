@@ -1,52 +1,62 @@
-/**
- * This component allows a mob/living to parry thrown objects back towards its source provided certain conditions are met.
- * COMSIG_PARRY_TRIGGER together with a duration enables parrying for this time frame, durations do not stack and only the current latest ending one is used.
- * A thrown item being parried will prevent the throw from ending and returns said thrown object back towards its source with half its speed.
-**/
 /datum/component/throw_parry
-	///The mob/living this component interacts with, namely reacting to attempted throw impacts on it.
-	var/mob/living/living_parent
-	///Until which world.time the parry is active. Parries can only trigger if this is larger than the current world.time.
-	var/parry_until = 0
+	///Whether you need to be facing the thrown thing
+	var/directional
+	///The source of the parry, may differ from parent
+	var/atom/source_atom
+	///Removal timer if duration is set
+	var/removal_timer
 
+/datum/component/throw_parry/Initialize(duration, _directional = FALSE, source)
+	. = ..()
+	if(!isatom(parent))
+		return ELEMENT_INCOMPATIBLE
 
-/datum/component/throw_parry/Initialize()
-	if(!isliving(parent))
-		return COMPONENT_INCOMPATIBLE
-	living_parent = parent
+	if(duration)
+		removal_timer = addtimer(CALLBACK(src, PROC_REF(remove_self), parent), duration, TIMER_STOPPABLE)
+	directional = _directional
+	source_atom = source ? source : parent
+
+/datum/component/throw_parry/RemoveComponent()
+	source_atom.UnregisterSignal(parent, COMSIG_ELEMENT_PARRY_TRIGGERED)
+	source_atom = null
+	deltimer(removal_timer)
+	removal_timer = null
+	return ..()
 
 /datum/component/throw_parry/RegisterWithParent()
-	. = ..()
-	RegisterSignal(parent, COMSIG_THROW_PARRY_CHECK, PROC_REF(parry_check))
-	RegisterSignal(parent, COMSIG_PARRY_TRIGGER, PROC_REF(enable_parry))
+	RegisterSignal(parent, COMSIG_PRE_MOVABLE_IMPACT, PROC_REF(parry_check))
+	source_atom.RegisterSignal(parent, COMSIG_ELEMENT_PARRY_TRIGGERED, TYPE_PROC_REF(/atom, on_parry_throw))
 
 /datum/component/throw_parry/UnregisterFromParent()
-	. = ..()
-	UnregisterSignal(parent, list(
-		COMSIG_THROW_PARRY_CHECK,
-		COMSIG_PARRY_TRIGGER
-	))
+	UnregisterSignal(parent, COMSIG_PRE_MOVABLE_IMPACT)
+
+///reflects the thrown thing if checks are satisfied
+/datum/component/throw_parry/proc/parry_check(atom/reflector, atom/movable/thrown)
+	SIGNAL_HANDLER
+	if(isliving(reflector))
+		var/mob/living/living_reflector = reflector
+		if(living_reflector.stat)
+			return
+		if(living_reflector.resting)
+			return
+	if(directional && !(reflector.dir & REVERSE_DIR(get_dir(thrown.throw_source, reflector))))
+		return
+
+	thrown.set_throwing(FALSE)
+	SEND_SIGNAL(reflector, COMSIG_ELEMENT_PARRY_TRIGGERED, thrown)
+	INVOKE_NEXT_TICK(thrown, TYPE_PROC_REF(/atom/movable, throw_at), thrown.throw_source, 6, max(thrown.thrown_speed * 0.5, 1), reflector, TRUE)
+	return COMPONENT_PRE_MOVABLE_IMPACT_DODGED
+
+///Removes self after duration is up
+/datum/component/throw_parry/proc/remove_self(atom/reflector)
+	qdel(src)
 
 /**
- * This is triggered by an object attempting to impact into something with the parry component attached and checks whether the current conditions are valid to trigger a parry success.
- * The mob has to be conscious aswell as not resting and the parry duration must not have timed out.
- * * Returns TRUE on successful parry and nothing if failed, which is then handled by throwing code.
-**/
-/datum/component/throw_parry/proc/parry_check(parry_target, atom/movable/to_parry)
+ * Any special behavior when this atom parries something
+ * src is what is responsible for the parry
+ * reflector is what actually has the parry component, could be src
+ * thrown is the thing being reflected
+ */
+/atom/proc/on_parry_throw(atom/reflector, atom/movable/thrown)
 	SIGNAL_HANDLER
-	if(living_parent.stat >= UNCONSCIOUS)
-		return
-	if(living_parent.resting)
-		return
-	if(parry_until < world.time)
-		return
-	living_parent.visible_message(span_warning("[living_parent] deflects [to_parry]!"), span_notice("[isxeno(living_parent) ? "We" : "You"] bounce [to_parry] back towards its source!"))
-	return TRUE
-
-/**
- * Enables parrying for the passed duration. Multiple sources of enabling will not be directly summed up, instead using the latest ending one.
-**/
-/datum/component/throw_parry/proc/enable_parry(parry_triggerer, duration)
-	SIGNAL_HANDLER
-	parry_until = max(parry_until, world.time + duration)
-
+	reflector.visible_message(span_warning("[reflector] deflects [thrown]!"), span_notice("[isxeno(reflector) ? "We" : "You"] bounce [thrown] back towards its source!"))

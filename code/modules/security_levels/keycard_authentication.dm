@@ -73,20 +73,24 @@
 
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Red alert'>Red alert</A></li>"
+		for(var/iter_level_text AS in SSsecurity_level.available_levels)
+			var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
+			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH))
+				continue
+			dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</A></li>"
 
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
 
 	else if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];reset=1'>Back</A>"
 
 	else if(screen == 3)
 		dat += "Do you want to trigger the following event using your Silicon Privileges: <b>[event]</b>"
-		dat += "<p><A href='?src=[text_ref(src)];silicon_activate_event=1'>Activate</A>"
-		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];silicon_activate_event=1'>Activate</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];reset=1'>Back</A>"
 
 	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
 	popup.set_content(dat)
@@ -140,8 +144,8 @@
 	if(confirmed)
 		confirmed = FALSE
 		trigger_event(event)
-		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event].")
-		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed event [event].")
+		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed keycard auth event [event].")
+		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed keycard auth event [event].")
 	reset()
 
 /obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
@@ -160,15 +164,42 @@
 	busy = FALSE
 
 /obj/machinery/keycard_auth/proc/trigger_event()
+	var/potential_alert_level = SSsecurity_level.text_level_to_number(event)
+	if(potential_alert_level)
+		SSsecurity_level.set_level(potential_alert_level)
+		return
 	switch(event)
-		if("Red alert")
-			GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED)
 		if("Grant Emergency Maintenance Access")
-			GLOB.marine_main_ship.make_maint_all_access()
+			make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")
-			GLOB.marine_main_ship.revoke_maint_all_access()
+			revoke_maint_all_access()
+
+GLOBAL_VAR_INIT(maint_all_access, FALSE)
+/// Enables all access for maintenance airlocks
+/proc/make_maint_all_access()
+	GLOB.maint_all_access = TRUE
+	priority_announce(
+		title = "Attention!",
+		subtitle = "Shipside emergency declared.",
+		message = "The maintenance access requirement has been revoked on all maintenance airlocks.",
+		sound = 'sound/misc/notice1.ogg',
+		color_override = "grey"
+	)
+	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "enabled"))
+
+/// Disables all access for maintenance airlocks
+/proc/revoke_maint_all_access()
+	GLOB.maint_all_access = FALSE
+	priority_announce(
+		title = "Attention!",
+		subtitle = "Shipside emergency revoked.",
+		message = "The maintenance access requirement has been restored on all maintenance airlocks.",
+		sound = 'sound/misc/notice2.ogg',
+		color_override = "grey"
+	)
+	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "disabled"))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in (req_access+req_one_access)))
+	if(is_mainship_level(z) && GLOB.maint_all_access && (ACCESS_MARINE_ENGINEERING in (req_access+req_one_access)))
 		return TRUE
 	return ..(M)

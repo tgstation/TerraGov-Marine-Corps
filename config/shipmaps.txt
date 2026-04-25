@@ -34,3 +34,7 @@ endmap
 
 map iteron
 endmap
+
+map multiz_debug
+endmap
+

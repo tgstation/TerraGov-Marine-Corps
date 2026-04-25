@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A grotesque puppet of a puppeteer."
 	wound_type = ""
-
+	base_strain_type = /mob/living/carbon/xenomorph/puppet
 	caste_type_path = /mob/living/carbon/xenomorph/puppet
 
 	tier = XENO_TIER_MINION

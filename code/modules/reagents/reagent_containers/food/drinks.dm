@@ -220,6 +220,17 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
 
+/obj/item/reagent_containers/food/drinks/shaker/protein
+	name = "protein shake"
+	desc = "A Nanotrasen brand protein shake"
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "shaker_n"
+	amount_per_transfer_from_this = 120
+	list_reagents = list(
+		/datum/reagent/consumable/nutriment = 60,
+		/datum/reagent/consumable/nutriment/protein = 60
+	)
+
 /obj/item/reagent_containers/food/drinks/flask
 	name = "metal flask"
 	desc = "A metal flask with a decent liquid capacity."

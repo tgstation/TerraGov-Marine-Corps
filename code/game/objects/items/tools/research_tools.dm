@@ -20,7 +20,7 @@
 /obj/item/tool/research/excavation_tool/unique_action(mob/user)
 	. = ..()
 	if(user.skills.getRating(skill_type) < skill_threshold)
-		balloon_alert(user, "Not skilled enough")
+		balloon_alert(user, "not skilled enough!")
 		return
 
 	if(!do_after(user, 10 SECONDS, NONE, user.loc, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))

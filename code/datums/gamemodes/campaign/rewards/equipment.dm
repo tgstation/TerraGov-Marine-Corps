@@ -158,7 +158,7 @@
 	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
 	ui_icon = "scout"
 	uses = 2
-	cost = 6
+	cost = 10
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/scout,
 	)
@@ -212,7 +212,7 @@
 /datum/campaign_asset/equipment/heavy_armour_tgmc
 	name = "Tyr 2 heavy armour"
 	desc = "Heavy armor upgrades"
-	detailed_desc = "A pair of heavy armor suits equipped with 'Tyr 2' armour upgrades. Premier protection, but somewhat cumbersome."
+	detailed_desc = "A pair of heavy armor suits equipped with 'Tyr 2' armour upgrades. Premier protection, with limited shotgun stun resistance, but somewhat cumbersome."
 	ui_icon = "tyr"
 	uses = 2
 	cost = 4
@@ -224,7 +224,7 @@
 /datum/campaign_asset/equipment/shields_tgmc
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
-	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they provide resistance against projectile based stuns, at the cost of occupying a hand and slowing you down."
 	ui_icon = "riot_shield"
 	uses = 2
 	cost = 3
@@ -259,7 +259,7 @@
 /datum/campaign_asset/equipment/heavy_armour_som
 	name = "Lorica heavy armour"
 	desc = "Heavy armor upgrades"
-	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, but somewhat cumbersome."
+	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, with limited shotgun stun resistance, but somewhat cumbersome."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "lorica"
 	uses = 2
@@ -272,7 +272,7 @@
 /datum/campaign_asset/equipment/shields_som
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
-	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	detailed_desc = "A pair of heavy riot shields. They are able to withstand a tremendous amount of punishment, and they provide resistance against projectile based stuns, at the cost of occupying a hand and slowing you down."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
 	ui_icon = "riot_shield"
 	uses = 2
@@ -321,3 +321,20 @@
 	equipment_to_spawn = list(
 		/obj/item/binoculars/fire_support/campaign/som,
 	)
+
+/datum/campaign_asset/equipment/bike
+	name = "Assault bike"
+	desc = "A rugged assault bike"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a rugged two seater assault bike, available at your request. Provided excellent mobility and firepower."
+	ui_icon = "light_mech"
+	uses = 1
+	equipment_to_spawn = list(/obj/vehicle/ridden/big_bike)
+
+/datum/campaign_asset/equipment/som_bike
+	name = "Hover bike"
+	desc = "A powerful hover bike"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a sophisticated 2 seater hover bike, available at your request. Provided excellent mobility and firepower."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/som_req
+	ui_icon = "light_mech"
+	uses = 1
+	equipment_to_spawn = list(/obj/vehicle/ridden/hover_bike)

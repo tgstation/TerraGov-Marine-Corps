@@ -1,6 +1,6 @@
 /obj/item/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
+	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another. Unique action to activate, use to open the menu."
 	icon_state = "signaller"
 	worn_icon_state = "signaler"
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
@@ -86,13 +86,20 @@ Code:
 			code = new_code
 
 	if(href_list["send"])
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SIGNALLER_SEND))
-			to_chat(usr, span_warning("[src] is still recharging..."))
-			return
-		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
-		INVOKE_ASYNC(src, PROC_REF(signal))
+		INVOKE_ASYNC(src, PROC_REF(try_send_signal))
 
 	updateUsrDialog()
+
+/obj/item/assembly/signaler/unique_action(mob/user, special_treatment)
+	. = ..()
+	try_send_signal()
+
+/obj/item/assembly/signaler/proc/try_send_signal()
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SIGNALLER_SEND))
+		balloon_alert(usr, "Recharging")
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
+	signal()
 
 /obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)
 	. = ..()

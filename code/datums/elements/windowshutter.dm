@@ -24,11 +24,10 @@
 	var/obj/machinery/door/poddoor/shutters/mainship/pressure/P = new(get_turf(source))
 	P.density = TRUE
 	var/obj/structure/window/attachee = source
-	switch(attachee.junction)
-		if(4,5,8,9,12)
-			P.setDir(SOUTH)
-		else
-			P.setDir(EAST)
+	if(attachee.smoothing_junction & (NORTH_JUNCTION|SOUTH_JUNCTION))
+		P.setDir(EAST)
+	else
+		P.setDir(SOUTH)
 	addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/machinery/door, close)), 16)
 	Detach(source)
 

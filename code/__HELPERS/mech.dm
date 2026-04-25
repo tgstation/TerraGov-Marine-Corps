@@ -10,6 +10,8 @@
 					return /datum/mech_limb/head/assault
 				if(MECH_VANGUARD)
 					return /datum/mech_limb/head/vanguard
+				if(MECH_MEDIUM)
+					return /datum/mech_limb/head/medium
 		if(MECH_GREY_L_ARM, MECH_GREY_R_ARM)
 			switch(mech_type)
 				if(MECH_RECON)
@@ -18,6 +20,8 @@
 					return /datum/mech_limb/arm/assault
 				if(MECH_VANGUARD)
 					return /datum/mech_limb/arm/vanguard
+				if(MECH_MEDIUM)
+					return /datum/mech_limb/arm/medium
 		if(MECH_GREY_TORSO)
 			switch(mech_type)
 				if(MECH_RECON)
@@ -26,6 +30,8 @@
 					return /datum/mech_limb/torso/assault
 				if(MECH_VANGUARD)
 					return /datum/mech_limb/torso/vanguard
+				if(MECH_MEDIUM)
+					return /datum/mech_limb/torso/medium
 		if(MECH_GREY_LEGS)
 			switch(mech_type)
 				if(MECH_RECON)
@@ -34,4 +40,6 @@
 					return /datum/mech_limb/legs/assault
 				if(MECH_VANGUARD)
 					return /datum/mech_limb/legs/vanguard
+				if(MECH_MEDIUM)
+					return /datum/mech_limb/legs/medium
 	CRASH("Error getting mech type: [slot], [mech_type]")

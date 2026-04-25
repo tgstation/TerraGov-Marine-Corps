@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	var/last_damage_alert = 0
 	///Radio so that the sentry can scream for help
 	var/obj/item/radio/radio
-	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
+	///Iff signal of the sentry. Set by the deployer or internal gun fation
 	var/iff_signal = NONE
 	///For minimap icon change if sentry is firing
 	var/firing
@@ -39,20 +39,22 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 //------------------------------------------------------------------
 //Setup and Deletion
 
-/obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/mounted/sentry/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 
-	iff_signal = gun?.sentry_iff_signal ? gun.sentry_iff_signal : initial(iff_signal)
 	if(deployer)
+		faction = deployer.faction
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
+	else if(gun?.faction && (gun.faction in GLOB.faction_to_iff))
+		iff_signal = GLOB.faction_to_iff[gun.faction]
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 
-	radio = new(src)
+	radio = new /obj/item/radio/sentry(src, faction)
 
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -83,7 +85,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
 		else
 			marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]"))
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "sentry[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
 	. = ..()
@@ -110,7 +112,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
-		explosion(loc, light_impact_range = 3)
+		explosion(loc, light_impact_range = 3, explosion_cause=blame_mob)
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
@@ -299,7 +301,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	sentry_stop_fire()
-	visible_message(span_highdanger("The [name] is knocked over!"))
+	visible_message(span_userdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
@@ -385,7 +387,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(!gun)
 		return FALSE
 	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal))
+		if(nearby_human.faction != FACTION_ZOMBIE && (nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal)))
 			continue
 		potential_targets += nearby_human
 	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
@@ -416,6 +418,14 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(!internal_gun)
 		return
+	if(QDELETED(gun_target)) // Maybe they just got gibbed or deleted.
+		sentry_stop_fire()
+		return
+	if(isliving(gun_target))
+		var/mob/living/living_target = gun_target
+		if(living_target.stat == DEAD)
+			sentry_stop_fire()
+			return
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
 	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
@@ -459,11 +469,11 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	update_minimap_icon()
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
-/obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target)
+/obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target) //todo: this whole proc is giga stinky and can probably just use line_of_sight and check_path
 	if(target.loc == loc)
 		return TRUE
 	var/turf/starting_turf = get_turf(src)
-	var/list/turf/path = getline(starting_turf, target)
+	var/list/turf/path = get_traversal_line(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
 	path -= starting_turf
 	if(!length(path))
@@ -538,7 +548,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	name = "broken build-a-sentry"
 	desc = "You should not be seeing this unless a mapper, coder or admin screwed up."
 
-/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
+/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, obj/item/_internal_item, mob/deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
 	. = ..()
 	var/obj/item/internal_sentry = get_internal_item()
 	if(internal_sentry)
@@ -568,3 +578,16 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(!.)
 		return
 	internal_gun?.reset()
+
+//A sentry specific radio that sets its freq based on faction
+/obj/item/radio/sentry
+	freerange = TRUE
+
+/obj/item/radio/sentry/Initialize(mapload, new_faction)
+	faction = new_faction
+	if(faction in GLOB.faction_to_radio)
+		frequency = GLOB.faction_to_radio[faction]
+	else
+		frequency = FREQ_COMMON
+
+	return ..()

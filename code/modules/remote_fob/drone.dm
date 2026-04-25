@@ -42,8 +42,8 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)
-	user.see_invisible = FALSE
-	user.sight = SEE_SELF|SEE_TURFS
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	user.see_in_dark = 7
+	user.set_invis_see(0)
+	user.set_sight(SEE_SELF|SEE_TURFS)
+	user.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	user.sync_lighting_plane_cutoff()
 	return TRUE

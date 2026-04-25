@@ -1,48 +1,53 @@
-import { classes } from 'common/react';
-
-import { useLocalState } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
-  Divider,
+  Icon,
   LabeledList,
   Modal,
+  ProgressBar,
   Section,
   Stack,
   Tabs,
-} from '../../components';
+  Tooltip,
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
-import { MechWeapon, tabs } from './data';
+import {
+  MECHA_ASSEMBLY,
+  MECHA_WEAPONS,
+  MechVendData,
+  MechWeapon,
+  tabs,
+} from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
 
 export const MechVendor = (props) => {
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    'showDesc',
-    null,
-  );
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
-
+  const [showDesc, setShowDesc] = useState<MechWeapon | null>(null);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const { act, data } = useBackend<MechVendData>();
   return (
-    <Window title={'Mecha Assembler'} width={1440} height={650}>
+    <Window title={'Mecha Assembler'} width={1080} height={570}>
       {showDesc ? (
         <Modal width="500px">
           <Section
+            fill
             title={showDesc.name}
             buttons={
               <Button content="Dismiss" onClick={() => setShowDesc(null)} />
             }
           >
-            <Stack>
-              <Stack.Item>
+            <Stack fill>
+              <Stack.Item grow>
                 <Box
                   className={classes([
                     'mech_builder64x32',
                     showDesc.icon_state,
                   ])}
                   ml={5}
-                  mr={20}
-                  mt={3}
                   mb={9}
                   style={{
                     transform: 'scale(3) translate(20%, 20%)',
@@ -96,7 +101,7 @@ export const MechVendor = (props) => {
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
-                <Box ml={-38}>
+                <Box>
                   {showDesc.desc +
                     (showDesc.ammo_type
                       ? ' Loaded with: ' + showDesc.ammo_type + '.'
@@ -108,39 +113,58 @@ export const MechVendor = (props) => {
         </Modal>
       ) : null}
       <Window.Content>
-        <Section lineHeight={1.75} textAlign="center">
-          <Tabs fluid>
-            {tabs.map((tabname) => {
-              return (
-                <Tabs.Tab
-                  key={tabname}
-                  selected={tabname === selectedTab}
-                  fontSize="130%"
-                  onClick={() => setSelectedTab(tabname)}
-                >
-                  {tabname}
-                </Tabs.Tab>
-              );
-            })}
-          </Tabs>
-          <Divider />
-        </Section>
-        <PanelContent />
+        <Tabs fluid>
+          {tabs.map((tabname) => {
+            return (
+              <Tabs.Tab
+                key={tabname}
+                selected={tabname === selectedTab}
+                fontSize="130%"
+                textAlign="center"
+                onClick={() => setSelectedTab(tabname)}
+              >
+                {tabname}
+              </Tabs.Tab>
+            );
+          })}
+        </Tabs>
+        <Stack fill>
+          <Stack.Item>
+            <Tooltip
+              content="Weight determines the maximum weight of equipment and limbs mounted on your mech. Increased by equipping heavier legs."
+              position="top" // top cus right layers under the preview
+            >
+              <ProgressBar
+                style={{
+                  transform: 'rotate(270deg) translateX(-48%)',
+                  width: 480,
+                  marginLeft: -230,
+                  marginRight: -230,
+                }}
+                ranges={{
+                  bad: [0.8, Infinity],
+                  average: [0.5, 0.8],
+                  good: [-Infinity, 0.5],
+                }}
+                value={data.weight / data.max_weight}
+              >
+                <Icon
+                  name="weight-hanging"
+                  style={{
+                    transform: 'rotate(-270deg) translateX(-2%)',
+                  }}
+                />
+              </ProgressBar>
+            </Tooltip>
+          </Stack.Item>
+          <Stack.Item grow>
+            {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
+            {selectedTab === MECHA_WEAPONS && (
+              <MechWeapons setShowDesc={setShowDesc} />
+            )}
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );
-};
-
-const PanelContent = (props) => {
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
-  {
-    switch (selectedTab) {
-      case 'Mecha Assembly':
-        return <MechAssembly />;
-      case 'Weapons':
-        return <MechWeapons />;
-      default:
-        return null;
-    }
-  }
 };

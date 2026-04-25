@@ -3,6 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "densecrate"
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	density = TRUE
 	anchored = FALSE
 	var/dropmetal = TRUE
@@ -11,7 +12,7 @@
 	allow_pass_flags = PASSABLE|PASS_WALKOVER|PASS_LOW_STRUCTURE
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 
@@ -23,7 +24,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/largecrate/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 /obj/structure/largecrate/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	spawn_stuff()
@@ -234,7 +235,7 @@
 	. += span_notice("You need a blowtorch to weld this open!")
 
 /obj/structure/largecrate/random/barrel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"

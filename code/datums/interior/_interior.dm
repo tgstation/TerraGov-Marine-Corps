@@ -9,7 +9,7 @@
 	var/datum/callback/exit_callback
 	///occupants that entered this interior through the intended way
 	var/list/mob/occupants = list()
-	///turf reservation where we will load our interior
+	///turf reservation where we will load our interior // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF
 	var/datum/turf_reservation/reservation
 	///list of all loaded turfs. we keep this around in case we need to update linkages or similar
 	var/list/turf/loaded_turfs = list()
@@ -19,20 +19,19 @@
 /datum/interior/New(atom/container, datum/callback/exit_callback)
 	..()
 	src.container = container
+	ADD_TRAIT(container, TRAIT_HAS_INTERIOR, REF(src))
 	src.exit_callback = exit_callback
 	RegisterSignal(container, COMSIG_QDELETING, PROC_REF(handle_container_del))
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
 	INVOKE_NEXT_TICK(src, PROC_REF(init_map))
 
-///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new"
+///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new" // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF
 /datum/interior/proc/init_map()
 	var/datum/map_template/map = new template
-	reservation = SSmapping.RequestBlockReservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
+	reservation = SSmapping.request_turf_block_reservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
 
-	var/list/load_coords = reservation.bottom_left_coords.Copy()
-	load_coords[1] = load_coords[1] + INTERIOR_BUFFER_TILES
-	load_coords[2] = load_coords[2] + INTERIOR_BUFFER_TILES
-	var/turf/load_loc = locate(load_coords[1], load_coords[2], load_coords[3])
+	var/turf/load_turf = reservation.bottom_left_turfs[1]
+	var/turf/load_loc = locate(load_turf.x + INTERIOR_BUFFER_TILES, load_turf.y + INTERIOR_BUFFER_TILES, load_turf.z)
 	var/list/bounds = map.load(load_loc)
 	this_area = load_loc.loc
 
@@ -44,6 +43,7 @@
 	connect_atoms()
 
 /datum/interior/Destroy(force, ...)
+	REMOVE_TRAIT(container, TRAIT_HAS_INTERIOR, REF(src))
 	for(var/mob/occupant AS in occupants)
 		mob_leave(occupant)
 	exit_callback = null
@@ -98,6 +98,32 @@
 	SIGNAL_HANDLER
 	if(get_area(source) != this_area)
 		mob_leave(source, FALSE)
+
+///Pseudo-playsound() primarily intended for laying actual playsounds to the interior
+/datum/interior/proc/play_outside_sound(
+		turf/turf_source,
+		soundin,
+		vol,
+		vary = FALSE,
+		frequency,
+		falloff,
+		is_global,
+		channel,
+		ambient_sound,
+		sound/S,
+	)
+	. = list()
+	var/turf/middle_turf = loaded_turfs[floor(length(loaded_turfs) * 0.5)]
+	var/turf/origin_point = locate(clamp(middle_turf.x - container.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - container.y + turf_source.y, 1, world.maxy), middle_turf.z)
+	//origin point is regardless of owning atoms orientation for player QOL and simple sanity
+
+	for(var/mob/crew AS in occupants)
+		if(!crew.client)
+			continue
+		if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
+			continue
+		crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
+		. += crew
 
 #undef INTERIOR_BUFFER_TILES
 

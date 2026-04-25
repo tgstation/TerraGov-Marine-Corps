@@ -180,18 +180,13 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return FALSE
-	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	balloon_alert_to_viewers("Starts welding some damage")
-	add_overlay(GLOB.welding_sparks)
-	if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+	if(!O.use_tool(src, user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 	if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
-		cut_overlay(GLOB.welding_sparks)
 		return FALSE
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 	balloon_alert_to_viewers("[user] starts welds some damage")
-	cut_overlay(GLOB.welding_sparks)
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
@@ -296,7 +291,7 @@
 		return
 
 	if(!is_on)
-		. += span_info("It looks offline.")
+		. += span_info("It seems like it's offline.")
 	else
 		. += span_info("The power gauge reads: [power_gen_percent]%")
 	if(fusion_cell)

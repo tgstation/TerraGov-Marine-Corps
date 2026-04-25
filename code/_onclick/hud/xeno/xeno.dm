@@ -10,6 +10,8 @@
 	name = "toggle night vision"
 	icon_state = "nightvision2"
 	screen_loc = ui_alien_nightvision
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/alien/nightvision/Click()
 	. = ..()
@@ -17,12 +19,12 @@
 		return
 	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
-	switch(X.lighting_alpha)
-		if(LIGHTING_PLANE_ALPHA_INVISIBLE)
+	switch(X.lighting_cutoff)
+		if(LIGHTING_CUTOFF_FULLBRIGHT)
 			icon_state = "nightvision3"
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+		if(LIGHTING_CUTOFF_HIGH)
 			icon_state = "nightvision2"
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+		if(LIGHTING_CUTOFF_MEDIUM)
 			icon_state = "nightvision1"
 		else
 			icon_state = "nightvision0"
@@ -32,6 +34,8 @@
 	icon_state = "trackoff"
 	name = "queen locator (click for hive status)"
 	screen_loc = ui_queen_locator
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/alien/queen_locator/Click()
 	. = ..()
@@ -131,6 +135,9 @@
 	zone_sel = new /atom/movable/screen/zone_sel/alien(null, src)
 	zone_sel.update_icon()
 	static_inventory += zone_sel
+
+	combo_display = new /atom/movable/screen/combo(null, src)
+	infodisplay += combo_display
 
 /datum/hud/alien/persistent_inventory_update()
 	if(!mymob)

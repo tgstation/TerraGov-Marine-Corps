@@ -11,6 +11,8 @@
 	var/species_type = SPECIES_HUMAN
 	///Special effects that are inherent to our species
 	var/species_flags = NONE
+	///used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved
+	var/limb_type = SPECIES_LIMB_GENERIC
 
 	//----Icon stuff here
 	///Normal icon file
@@ -115,10 +117,8 @@
 	///type that gets set as our language_holder on proc/set_species
 	var/default_language_holder = /datum/language_holder
 
-	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
-	var/see_in_dark = 2
 	///Sets our mobs lighting_alpha on [/mob/living/carbon/human/update_sight]
-	var/lighting_alpha
+	var/lighting_cutoff
 
 	///Used for metabolizing reagents
 	var/reagent_tag
@@ -175,11 +175,12 @@
 	if(species_flags & GREYSCALE_BLOOD)
 		brute_damage_icon_state = "grayscale"
 
-///Handles creation of mob organs and limbs
-/datum/species/proc/create_organs(mob/living/carbon/human/organless_human)
+///Handles creation of mob limbs
+/datum/species/proc/create_limbs(mob/living/carbon/human/organless_human, old_species)
+	if(old_species)
+		//we already got limbs
+		return
 	organless_human.limbs = list()
-	organless_human.internal_organs = list()
-	organless_human.internal_organs_by_name = list()
 
 	//This is a basic humanoid limb setup
 	var/datum/limb/chest/new_chest = new(null, organless_human)
@@ -200,6 +201,15 @@
 	organless_human.limbs += new/datum/limb/foot/l_foot(new_l_leg, organless_human)
 	organless_human.limbs += new/datum/limb/foot/r_foot(new_r_leg, organless_human)
 
+///Creates the appropriate organs for the species
+/datum/species/proc/create_organs(mob/living/carbon/human/organless_human, old_species)
+	QDEL_LIST_NULL(organless_human.internal_organs)
+	QDEL_LIST_ASSOC_VAL(organless_human.internal_organs_by_name)
+	for(var/datum/limb/limb AS in organless_human.limbs)
+		limb.internal_organs = null
+
+	organless_human.internal_organs = list()
+	organless_human.internal_organs_by_name = list()
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		organless_human.internal_organs_by_name[organ] = new organ_type(organless_human)
@@ -281,9 +291,10 @@
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
 	return
 
-//TODO KILL ME
-///Snowflake proc for monkeys so they can call attackpaw
-/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
+///Called in revival procs, useful for special species behaviour like zombie revival
+/datum/species/proc/can_revive_to_crit(mob/living/carbon/human/H)
+	if(H.has_working_organs())
+		return TRUE
 	return FALSE
 
 ///Called on Life(), used for special behavior when the carbon human with this species is alive
@@ -360,7 +371,7 @@
 //Species unarmed attacks
 /datum/unarmed_attack
 	///Empty hand hurt intent verb
-	var/attack_verb = list("attack")
+	var/attack_verb = list("attacks")
 	///Extra empty hand attack damage
 	var/damage = 0
 	///Sound that plays when you land a punch
@@ -389,7 +400,7 @@
 	return FALSE
 
 /datum/unarmed_attack/bite
-	attack_verb = list("bite") // 'x has biteed y', needs work
+	attack_verb = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 5
@@ -402,15 +413,15 @@
 	return TRUE
 
 /datum/unarmed_attack/punch
-	attack_verb = list("punch")
+	attack_verb = list("punches")
 	damage = 3
 
 /datum/unarmed_attack/punch/strong
-	attack_verb = list("punch","bust","jab")
+	attack_verb = list("punches","busts","jabs")
 	damage = 10
 
 /datum/unarmed_attack/claws
-	attack_verb = list("scratch", "claw")
+	attack_verb = list("scratches", "claws")
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	damage = 5
@@ -418,12 +429,12 @@
 	edge = 1
 
 /datum/unarmed_attack/claws/strong
-	attack_verb = list("slash")
+	attack_verb = list("slashes")
 	damage = 10
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong
-	attack_verb = list("maul")
+	attack_verb = list("mauls")
 	damage = 15
 	shredding = 1
 
@@ -499,7 +510,7 @@
 		equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker, mob/living/carbon/human/victim)
 	var/datum/limb/organ = null
 	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
 		organ = def_zone
@@ -560,7 +571,7 @@
 			victim.adjustStaminaLoss(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life()
-	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage, attacker) //add attacker arg everywhere needed
 
 	if(updating_health)
 		victim.updatehealth()

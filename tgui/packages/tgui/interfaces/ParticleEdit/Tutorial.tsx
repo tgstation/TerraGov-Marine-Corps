@@ -1,16 +1,19 @@
-import { resolveAsset } from '../../assets';
-import { useLocalState } from '../../backend';
+import { useContext } from 'react';
 import {
   Box,
   Button,
+  Image,
   LabeledList,
   Modal,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { resolveAsset } from '../../assets';
+import { ParticleContext } from '.';
 
 export const ShowDesc = (props) => {
-  const [desc, setdesc] = useLocalState('desc', '');
+  const { desc, setDesc } = useContext(ParticleContext);
   return (
     <Modal
       width={'60em'}
@@ -20,29 +23,29 @@ export const ShowDesc = (props) => {
         title={'Var Details'}
         buttons={
           VarExplanation[desc].dataunit ? (
-            <Button content="Dismiss" onClick={() => setdesc('')} />
+            <Button content="Dismiss" onClick={() => setDesc('')} />
           ) : (
             <>
               <Button
                 content="Motion basics"
                 selected={desc === 'motion'}
-                onClick={() => setdesc('motion')}
+                onClick={() => setDesc('motion')}
               />
               <Button
                 content="Rand types"
                 selected={desc === 'randtypes'}
-                onClick={() => setdesc('randtypes')}
+                onClick={() => setDesc('randtypes')}
               />
               <Button
                 content="Generator types"
                 selected={desc === 'gentypes'}
-                onClick={() => setdesc('gentypes')}
+                onClick={() => setDesc('gentypes')}
               />
               <Button
                 icon="x"
                 tooltip={'Dismiss'}
                 color={'red'}
-                onClick={() => setdesc('')}
+                onClick={() => setDesc('')}
               />
             </>
           )
@@ -204,7 +207,7 @@ const VarExplanation = {
         Now while this is all nice and dandy how does it look like in practice?
         If you look at only one direction then movement will look like this:
         <br />
-        <Box as="img" src={resolveAsset('motion')} />
+        <Image src={resolveAsset('motion')} />
         <Box />
       </>
     ),
@@ -225,7 +228,7 @@ const VarExplanation = {
               <Stack vertical fill>
                 <Stack.Item bold>UNIFORM RAND(default):</Stack.Item>
                 <Stack.Item>
-                  <Box width={25} as="img" src={resolveAsset('uniform')} />
+                  <Image width={25} src={resolveAsset('uniform')} />
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -233,7 +236,7 @@ const VarExplanation = {
               <Stack vertical fill>
                 <Stack.Item bold>NORMAL RAND:</Stack.Item>
                 <Stack.Item>
-                  <Box as="img" width={28.2} src={resolveAsset('normal')} />
+                  <Image width={28.2} src={resolveAsset('normal')} />
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -245,7 +248,7 @@ const VarExplanation = {
               <Stack vertical fill>
                 <Stack.Item bold>LINEAR RAND:</Stack.Item>
                 <Stack.Item>
-                  <Box width={25} as="img" src={resolveAsset('linear')} />
+                  <Image width={25} src={resolveAsset('linear')} />
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -253,7 +256,7 @@ const VarExplanation = {
               <Stack vertical fill>
                 <Stack.Item bold>SQUARE RAND:</Stack.Item>
                 <Stack.Item>
-                  <Box as="img" width={25} src={resolveAsset('square_rand')} />
+                  <Image width={25} src={resolveAsset('square_rand')} />
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -288,8 +291,7 @@ const VarExplanation = {
             <Stack.Item width={11}>num</Stack.Item>
             <Stack.Item width={20}>A random number between A and B.</Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('num')}
                 width={15}
                 style={{
@@ -307,8 +309,7 @@ const VarExplanation = {
               A random vector on a line between A and B.
             </Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('vector')}
                 width={15}
                 style={{
@@ -326,8 +327,7 @@ const VarExplanation = {
               A random vector within a box whose corners are at A and B.
             </Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('box')}
                 width={15}
                 style={{
@@ -360,8 +360,7 @@ const VarExplanation = {
               at 0,0.
             </Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('circle')}
                 width={15}
                 style={{
@@ -380,8 +379,7 @@ const VarExplanation = {
               centered at 0,0,0.
             </Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('sphere')}
                 width={15}
                 style={{
@@ -413,8 +411,7 @@ const VarExplanation = {
               cube is between A*2 and B*2, centered at 0,0,0.)
             </Stack.Item>
             <Stack.Item>
-              <Box
-                as="img"
+              <Image
                 src={resolveAsset('cube')}
                 width={15}
                 style={{

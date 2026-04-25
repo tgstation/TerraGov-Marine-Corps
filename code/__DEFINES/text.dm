@@ -24,6 +24,17 @@
 /// Smallest size. (ie: whisper runechat) - Size options: 6pt 12pt 18pt.
 #define MAPTEXT_SPESSFONT(text) {"<span style='font-family: \"Spess Font\"; font-size: 6pt; line-height: 1.4; -dm-text-outline: 1px black'>[##text]</span>"}
 
+#define CENTER_ALIGN_TEXT "center"
+#define LEFT_ALIGN_TEXT "left"
+#define RIGHT_ALIGN_TEXT "right"
+
+
+#define MAPTEXT_HUDMESSAGE_TITLE(text, alignment) {"<span style='font-family: \"F25 Bank\"; font-size: 12pt; line-height: 1.25; text-align: [##alignment]'><u>[##text]</u></span>"}
+
+#define MAPTEXT_HUDMESSAGE(text, alignment) {"<span style='font-family: \"F25 Bank\"; font-size: 10pt; line-height: 1; text-align: [##alignment]; -dm-text-outline: 1px black'>[##text]</span>"}
+
+#define HUD_ANNOUNCEMENT_FORMATTING(title, text, alignment) (MAPTEXT_HUDMESSAGE_TITLE(##title, ##alignment) + "<br>" + MAPTEXT_HUDMESSAGE(##text, ##alignment))
+
 /**
  * Prepares a text to be used for maptext, using a variable size font.
  *
@@ -50,6 +61,12 @@
 
 /// Simply removes the < and > characters, and limits the length of the message.
 #define STRIP_HTML_SIMPLE(text, limit) (GLOB.angular_brackets.Replace(copytext(text, 1, limit), ""))
+
+/**
+ * stuff like `copytext(input, length(input))` will trim the last character of the input,
+ * because DM does it so it copies until the char BEFORE the `end` arg, so we need to bump `end` by 1 in these cases.
+ */
+#define PREVENT_CHARACTER_TRIM_LOSS(integer) (integer + 1)
 
 /// BYOND's string procs don't support being used on datum references (as in it doesn't look for a name for stringification)
 /// We just use this macro to ensure that we will only pass strings to this BYOND-level function without developers needing to really worry about it.

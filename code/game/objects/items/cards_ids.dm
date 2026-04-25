@@ -36,7 +36,7 @@
 
 /obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if (t)
@@ -121,7 +121,7 @@
 		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
 		return
 
-	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	name = "[(!paygrade) ? "" : "[get_paygrades(paygrade, TRUE, gender)]. "][(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.name = L.get_visible_name()
@@ -129,7 +129,7 @@
 
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
@@ -262,16 +262,15 @@
 	if(!.)
 		return
 	if(dogtag_taken)
-		stripper.balloon_alert(stripper, "Info tag already taken")
+		stripper.balloon_alert(stripper, "info tag already taken!")
 		return FALSE
 	if(owner.stat != DEAD)
-		stripper.balloon_alert(stripper, "[owner] isn't dead yet")
+		stripper.balloon_alert(stripper, "[owner.p_they()] [p_are()]n't dead yet!")
 		return FALSE
 
 /obj/item/card/id/dogtag/special_stripped_behavior(mob/stripper, mob/owner)
 	if(dogtag_taken)
 		return
-	stripper.balloon_alert(stripper, "Took info tag")
 	to_chat(stripper, span_notice("You take [owner]'s information tag, leaving the ID tag."))
 	dogtag_taken = TRUE
 	update_icon()

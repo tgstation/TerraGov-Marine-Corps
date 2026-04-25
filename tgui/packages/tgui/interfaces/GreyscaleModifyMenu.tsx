@@ -1,14 +1,15 @@
-import { useBackend } from '../backend';
 import {
-  Box,
   Button,
   ColorBox,
   Icon,
+  Image,
   Input,
   LabeledList,
   Section,
   Table,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type ColorEntry = {
@@ -40,7 +41,7 @@ const ColorDisplay = (props) => {
         <LabeledList.Item label="Full Color String">
           <Input
             value={colors.map((item) => item.value).join('')}
-            onChange={(_, value) =>
+            onChange={(value) =>
               act('recolor_from_string', { color_string: value })
             }
           />
@@ -58,7 +59,7 @@ const ColorDisplay = (props) => {
             />
             <Input
               value={item.value}
-              onChange={(_, value) =>
+              onChange={(value) =>
                 act('recolor', { color_index: item.index, new_color: value })
               }
             />
@@ -95,7 +96,7 @@ const PreviewDisplay = (props) => {
 
 const SingleSprite = (props) => {
   const { source } = props;
-  return <Box as="img" src={source} width="100%" />;
+  return <Image src={source} width="100%" />;
 };
 
 export const GreyscaleModifyMenu = (props) => {
@@ -104,10 +105,9 @@ export const GreyscaleModifyMenu = (props) => {
     <Window title="Greyscale Modification" width={325} height={800}>
       <Window.Content scrollable>
         <ColorDisplay />
-        <Button
-          content="Refresh Icon File"
-          onClick={() => act('refresh_file')}
-        />{' '}
+        <Button onClick={() => act('refresh_file')}>
+          Refresh Icon File
+        </Button>{' '}
         <Button content="Apply" onClick={() => act('apply')} />
         <PreviewDisplay />
       </Window.Content>

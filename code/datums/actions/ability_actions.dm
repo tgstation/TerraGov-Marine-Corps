@@ -47,55 +47,56 @@
 /datum/action/ability/handle_button_status_visuals()
 	if(!can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
-	else if(!action_cooldown_check())
+	else if(!action_cooldown_finished())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
-/datum/action/ability/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/can_use_action(silent, override_flags, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
 	var/to_check_flags = use_state_flags|override_flags
 
-	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_finished())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
+			carbon_owner.balloon_alert(carbon_owner, "wait [cooldown_remaining()] seconds!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
+			carbon_owner.balloon_alert(carbon_owner, "incapacitated!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
+			carbon_owner.balloon_alert(carbon_owner, "lying down!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
+			carbon_owner.balloon_alert(carbon_owner, "buckled!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
+			carbon_owner.balloon_alert(carbon_owner, "staggered!")
 		return FALSE
+
 
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
+			carbon_owner.balloon_alert(carbon_owner, "not right here!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
+			carbon_owner.balloon_alert(carbon_owner, "busy!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
+			carbon_owner.balloon_alert(carbon_owner, "burrowed!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
@@ -119,6 +120,7 @@
 
 /datum/action/ability/fail_activate()
 	update_button_icon()
+	return FALSE
 
 ///ability cost override allows for actions/abilities to override the normal ability costs
 /datum/action/ability/proc/succeed_activate(ability_cost_override)
@@ -132,7 +134,7 @@
 		carbon_owner.deduct_ability_cost(ability_cost_override)
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
-/datum/action/ability/proc/action_cooldown_check()
+/datum/action/ability/proc/action_cooldown_finished()
 	return !cooldown_timer
 
 ///Removes the cooldown
@@ -172,6 +174,7 @@
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
+	SIGNAL_HANDLER
 	return
 
 /datum/action/ability/activable
@@ -203,9 +206,9 @@
 	if(!.)
 		return
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
-		return
 	if(carbon_owner.selected_ability)
+		if(carbon_owner.selected_ability == src)
+			return
 		carbon_owner.selected_ability.deselect()
 	select()
 
@@ -225,7 +228,7 @@
 		carbon_owner.selected_ability = null
 	return ..()
 
-/datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/can_use_action(silent, override_flags, selecting)
 	if(selecting)
 		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()

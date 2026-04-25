@@ -6,8 +6,8 @@
 	atom_flags = ON_BORDER
 	allow_pass_flags = PASSABLE
 	opacity = FALSE
-	open_layer = CATWALK_LAYER
-	closed_layer = WINDOW_LAYER
+	open_layer = BELOW_OPEN_DOOR_LAYER
+	closed_layer = CLOSED_DOOR_LAYER
 	smoothing_groups = null
 
 	resistance_flags = RESIST_ALL

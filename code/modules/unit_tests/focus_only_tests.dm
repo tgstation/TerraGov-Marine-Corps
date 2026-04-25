@@ -8,3 +8,11 @@
 
 /// Checks for bad icon / icon state setups in cooking crafting menu
 /datum/unit_test/focus_only/bad_cooking_crafting_icons
+
+/datum/unit_test/focus_only/invalid_emissives
+
+/datum/unit_test/focus_only/topdown_filtering
+
+/datum/unit_test/focus_only/invalid_overlays
+
+/datum/unit_test/focus_only/openspace_clear

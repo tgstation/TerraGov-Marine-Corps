@@ -217,6 +217,10 @@
 "vA" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"vO" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "wu" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/tile/dark,
@@ -325,9 +329,17 @@
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/engineering)
 "FS" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"Gf" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "Go" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -429,7 +441,7 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "Nw" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -445,6 +457,14 @@
 "NJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/misc/earmuffs,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"NP" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "Ov" = (
@@ -638,7 +658,7 @@ ZG
 Yn
 su
 YG
-Lq
+Gf
 zK
 Yn
 ZG
@@ -679,7 +699,7 @@ QW
 Xb
 Qk
 QY
-YG
+vO
 QY
 Yn
 MH
@@ -767,20 +787,20 @@ Qk
 wu
 YG
 th
-YG
+vO
 YG
 SI
 YG
+Gf
+Lq
+Gf
+Lq
+Lq
+Gf
 Lq
 Lq
 Lq
-Lq
-Lq
-Lq
-Lq
-Lq
-Lq
-YG
+vO
 YG
 SI
 FS
@@ -802,7 +822,7 @@ lU
 Kf
 YG
 Nv
-Lq
+Gf
 jW
 Au
 Ty
@@ -836,7 +856,7 @@ Lo
 YG
 YG
 YG
-YG
+vO
 jL
 YG
 pp
@@ -858,7 +878,7 @@ qx
 gN
 YG
 YG
-YG
+vO
 YG
 YG
 YG
@@ -880,7 +900,7 @@ sh
 (14,1,1) = {"
 YG
 YG
-YG
+vO
 QY
 YG
 QY
@@ -888,13 +908,13 @@ YG
 rR
 Yn
 aS
-Lq
+Gf
 Lq
 cS
 Lq
-YG
+vO
 Go
-Go
+NP
 Go
 Ty
 qx
@@ -972,15 +992,15 @@ Zn
 (18,1,1) = {"
 Qk
 lC
-YG
+vO
 Lq
 Lq
-Lq
+Gf
 Lq
 cS
 Lq
 Lq
-Lq
+Gf
 YG
 Pe
 DQ
@@ -996,7 +1016,7 @@ KC
 Qk
 Yn
 KG
-YG
+vO
 YG
 ZU
 YG

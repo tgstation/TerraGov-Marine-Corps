@@ -73,14 +73,14 @@
 		t1 += "Operator: [last_configurator]<br>"
 
 	if (locked)
-		t1 += "<a href='?src=[text_ref(src)];login=1'>Swipe ID</a><hr>"
+		t1 += "<a href='byond://?src=[text_ref(src)];login=1'>Swipe ID</a><hr>"
 	else
-		t1 += "<a href='?src=[text_ref(src)];logout=1'>Block</a><hr>"
+		t1 += "<a href='byond://?src=[text_ref(src)];logout=1'>Block</a><hr>"
 
 		t1 += "Access requirement is set to "
-		t1 += one_access ? "<a style='color: green' href='?src=[text_ref(src)];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='?src=[text_ref(src)];one_access=1'>ALL</a><hr>"
+		t1 += one_access ? "<a style='color: green' href='byond://?src=[text_ref(src)];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='byond://?src=[text_ref(src)];one_access=1'>ALL</a><hr>"
 
-		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='?src=[text_ref(src)];access=all'>All</a><br>"
+		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='byond://?src=[text_ref(src)];access=all'>All</a><br>"
 
 		t1 += "<br>"
 
@@ -89,11 +89,11 @@
 			var/aname = get_access_desc(acc)
 
 			if (!conf_access || !length(conf_access) || !(acc in conf_access))
-				t1 += "<a href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 			else if(one_access)
-				t1 += "<a style='color: green' href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a style='color: green' href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 			else
-				t1 += "<a style='color: red' href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a style='color: red' href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 
 	var/datum/browser/popup = new(user, "airlock_electronics", "<div align='center'>Access Control</div>")
 	popup.set_content(t1)
@@ -150,3 +150,21 @@
 /obj/item/circuitboard/airlock/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
+
+/obj/item/circuitboard/computer/tram_controls
+	name = "Tram Controls"
+	build_path = /obj/machinery/computer/tram_controls
+	var/split_mode = FALSE
+
+/obj/item/circuitboard/computer/tram_controls/split
+	split_mode = TRUE
+
+/obj/item/circuitboard/computer/tram_controls/examine(mob/user)
+	. = ..()
+	. += span_info("The board is configured for [split_mode ? "split window" : "normal window"].")
+	. += span_notice("The board mode can be changed with a [EXAMINE_HINT("multitool")].")
+
+/obj/item/circuitboard/computer/tram_controls/multitool_act(mob/living/user)
+	split_mode = !split_mode
+	to_chat(user, span_notice("[src] positioning set to [split_mode ? "split window" : "normal window"]."))
+	return TRUE

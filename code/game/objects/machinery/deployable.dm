@@ -27,6 +27,11 @@
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
 
+	if(deployer)
+		faction = deployer.faction
+	else if(new_internal_item.faction)
+		faction = new_internal_item.faction
+
 	prepare_huds()
 	if(istype(deployer))
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
@@ -51,12 +56,8 @@
 
 /obj/machinery/deployable/disassemble(mob/user)
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return
-	return ..()
-
-/obj/machinery/deployable/Destroy()
-	operator?.unset_interaction()
 	return ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)

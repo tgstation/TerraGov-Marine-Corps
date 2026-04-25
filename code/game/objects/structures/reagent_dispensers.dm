@@ -44,8 +44,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
+	setup_reagents()
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
@@ -60,6 +59,10 @@
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
 
+///Sets up the correct reagents for the dispenser type
+/obj/structure/reagent_dispensers/proc/setup_reagents()
+	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
+
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
@@ -69,7 +72,8 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/water = 1000)
 
-
+/obj/structure/reagent_dispensers/watertank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -84,6 +88,9 @@
 	//Whether the tank is already exploding to prevent chain explosions
 	var/exploding = FALSE
 
+/obj/structure/reagent_dispensers/fueltank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
+
 /obj/structure/reagent_dispensers/fueltank/Destroy()
 	QDEL_NULL(rig)
 	return ..()
@@ -93,7 +100,7 @@
 	if(user != loc)
 		return
 	if(modded)
-		. += span_warning(" Fuel faucet is wrenched open, leaking the fuel!")
+		. += span_warning("Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
 		. += span_notice("There is some kind of device rigged to the tank.")
 
@@ -125,16 +132,6 @@
 /obj/structure/reagent_dispensers/fueltank/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
-		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			balloon_alert(user, "already full!")
-			return
-		if(!reagents.has_reagent(/datum/reagent/fuel, 1))
-			balloon_alert(user, "no valid fuel")
-			return
-		reagents.trans_to(W, W.max_fuel)
-		W.weld_tick = 0
-		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
@@ -169,7 +166,7 @@
 	add_overlay(overlay)
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(atom/movable/projectile/proj)
 	if(exploding)
 		return FALSE
 	. = ..()
@@ -188,11 +185,11 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4)
+		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fueltank explosion")
 	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3)
+		explosion(loc, light_impact_range = 3, flame_range = 3, explosion_cause="fueltank explosion")
 	else
-		explosion(loc, light_impact_range = 2, flame_range = 2)
+		explosion(loc, light_impact_range = 2, flame_range = 2, explosion_cause="fueltank explosion")
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
@@ -238,13 +235,13 @@
 
 	if(reagents.total_volume > 500)
 		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5)
+		explosion(loc, light_impact_range = 5, explosion_cause="xfueltank explosion")
 	else if(reagents.total_volume > 100)
 		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4)
+		explosion(loc, light_impact_range = 4, explosion_cause="xfueltank explosion")
 	else
 		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3)
+		explosion(loc, light_impact_range = 3, explosion_cause="xfueltank explosion")
 
 	qdel(src)
 

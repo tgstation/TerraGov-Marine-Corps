@@ -677,8 +677,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "Fr" = (
-/obj/structure/table,
-/obj/machinery/computer3/laptop/secure_data,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "FM" = (

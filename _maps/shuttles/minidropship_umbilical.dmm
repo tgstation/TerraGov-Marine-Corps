@@ -54,6 +54,10 @@
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
+"l" = (
+/obj/machinery/vending/nanoammo/directional/north,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "q" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -107,7 +111,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/transparent/dark_blue/full,
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 4;
 	id = "minidropship_podlock";
 	name = "inner door-control";
@@ -239,7 +243,7 @@ X
 F
 s
 q
-q
+l
 F
 F
 X

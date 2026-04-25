@@ -10,6 +10,7 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	allow_pass_flags = PASS_AIR
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
+	faction = FACTION_TERRAGOV
 	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
@@ -86,7 +87,7 @@
 	if(cloaktimer)
 		deactivate_cloak()
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DRONE_CLOAK))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_DRONE_CLOAK))
 		return
 	apply_wibbly_filters(src)
 	playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE)
@@ -95,7 +96,7 @@
 ///Plays effects and doafter effects for the drone
 /obj/vehicle/unmanned/droid/scout/proc/start_cloak(mob/user)
 	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src))
-		to_chat(user, span_warning(" WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
+		to_chat(user, span_warning("WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
 		remove_wibbly_filters(src)
 		return
 	remove_wibbly_filters(src)
@@ -153,7 +154,7 @@
 	if(is_ground_level(z) && !isdropshiparea(get_area(src))) //AI powerloader is confined to shipside or the alamo
 		to_chat(user, "Connection too weak, return the droid shipside first.")
 		return
-	if(!COOLDOWN_CHECK(src, clamp_cooldown))
+	if(!COOLDOWN_FINISHED(src, clamp_cooldown))
 		return
 	if(cargo && Adjacent(target) && istype(target, /obj/structure/closet))
 		var/obj/structure/closet/attackedcloset = clamptarget

@@ -19,10 +19,14 @@
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
@@ -240,6 +244,34 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/tdf/robot
+	name = "\improper Clubs class heavy chassis"
+	desc = "Heavy armor plating designed for self mounting on TDF combat robotics. It has self-sealing bolts for mounting on robotic owners inside. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	species_exception = list(/datum/species/robot)
+	icon_state = "tdf_robot"
+	worn_icon_state = "tdf_robot"
+	soft_armor = MARINE_ARMOR_HEAVY
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+
+/obj/item/clothing/suit/modular/tdf/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/suit/modular/tdf/robot/shield_overclocked
+	starting_attachments = list(
+		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/tdf/robot/tyr_two
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+
 //helmet
 
 /obj/item/clothing/head/modular/tdf
@@ -357,3 +389,18 @@
 
 /obj/item/clothing/head/modular/tdf/engi/welding
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/tdf/robot
+	name = "\improper Clubs Class Helmet"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TDF combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	species_exception = list(/datum/species/robot)
+	icon_state = "tdf_helmet_robot"
+	worn_icon_state = "tdf_helmet_robot"
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 60, BIO = 60, FIRE = 70, ACID = 70)
+
+/obj/item/clothing/head/modular/tdf/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+

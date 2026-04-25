@@ -51,7 +51,7 @@
 	var/icon_state = json_data["icon_state"]
 	if(prefix && !json_data["ignore_prefix"])
 		icon_state = prefix+icon_state
-	if(!(icon_state in icon_states(icon_file)))
+	if(!icon_exists(icon_file, icon_state))
 		CRASH("Configured icon state \[[icon_state]\] was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 
@@ -90,7 +90,14 @@
 	var/icon/icon
 
 /datum/greyscale_layer/hyperscale/Generate(list/colors, list/render_steps, datum/greyscale_config/parent)
-	return InternalGenerate(colors, render_steps, parent)
+	var/list/processed_colors = list()
+	if(!length(color_ids))
+		processed_colors = colors
+		// todo we REALLY should not be doing this. pls set these everywhere as needed!!!
+	else
+		for(var/i in color_ids)
+			processed_colors += colors[i]
+	return InternalGenerate(processed_colors, render_steps, parent)
 
 
 /datum/greyscale_layer/hyperscale/New(icon_file, list/json_data, prefix)
@@ -98,7 +105,7 @@
 	var/icon_state = json_data["icon_state"]
 	if(prefix && !json_data["ignore_prefix"])
 		icon_state = prefix + icon_state
-	if(!(icon_state in icon_states(icon_file)))
+	if(!icon_exists(icon_file, icon_state))
 		CRASH("Configured icon state \"[icon_state]\" was not found in [icon_file]. Double check your json configuration.")
 	icon = new(icon_file, icon_state)
 	icon.GrayScale()

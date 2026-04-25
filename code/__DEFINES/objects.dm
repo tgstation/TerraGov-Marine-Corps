@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Razor wire
 
 #define RAZORWIRE_BASE_DAMAGE 40
-#define RAZORWIRE_ENTANGLE_DELAY 5 SECONDS
+#define RAZORWIRE_ENTANGLE_DELAY 2 SECONDS
 #define RAZORWIRE_SOAK 5
 #define RAZORWIRE_MAX_HEALTH 100
 #define RAZORWIRE_MIN_DAMAGE_MULT_LOW 0.4 //attacking
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Drop pods
 
 ///This number + standard alamo launch time is when droppods are allowed to launch
-#define DROPPOD_DEPLOY_DELAY 10 MINUTES
+#define DROPPOD_DEPLOY_DELAY 2 MINUTES
 
 //Lights define
 #define CHECKS_PASSED 1
@@ -279,3 +279,5 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///Amount of fire stacks removed by extinguishers or similar effects
 #define EXTINGUISH_AMOUNT 20
+
+#define DEFAULT_FUEL_TYPE /datum/reagent/fuel

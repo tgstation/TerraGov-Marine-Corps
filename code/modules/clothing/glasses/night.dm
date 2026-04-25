@@ -13,8 +13,8 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
 	worn_icon_state = "glasses"
-	darkness_view = 7
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	toggleable = TRUE
 
 
 /obj/item/clothing/glasses/night/tx8
@@ -24,7 +24,6 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 12
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -36,7 +35,6 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 24
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -52,9 +50,10 @@
 	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
 	icon_state = "alien_lens"
 	worn_icon_state = "alien_lens"
-	darkness_view = 7
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 	item_flags = DELONDROP
+	toggleable = FALSE
+	active = TRUE
 
 /obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
 	. = ..()
@@ -66,10 +65,29 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
+
+/obj/item/clothing/glasses/night/m56_goggles/activate(mob/user)
+	. = ..()
+	if(!user)
+		return
+	if(active)
+		SEND_SIGNAL(user, COMSIG_KTLD_ACTIVATED, src)
+		RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(activate))
+	else
+		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
+
+/obj/item/clothing/glasses/night/m56_goggles/equipped(mob/user, slot)
+	. = ..()
+	if(!active)
+		return
+	RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(activate))
+
+/obj/item/clothing/glasses/night/m56_goggles/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_ITEM_ZOOM)
 
 /obj/item/clothing/glasses/night/sunglasses
 	name = "\improper KTLD sunglasses"
@@ -78,7 +96,6 @@
 	icon_state = "m56sunglasses"
 	worn_icon_state = "m56sunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
-	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
@@ -90,7 +107,6 @@
 	icon_state = "optgoggles"
 	worn_icon_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
-	darkness_view = 2
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	species_exception = list(/datum/species/robot)
@@ -110,13 +126,19 @@
 
 /obj/item/clothing/glasses/night/vsd
 	name = "\improper CM-12 night vision goggles"
-	desc = "V.S.D's standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
+	desc = "VSDs standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
 	icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "vsd_nvg"
 	worn_icon_state = "vsd_nvg"
 	deactive_state = "vsd_nvg_off"
-	darkness_view = 9
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	tint = COLOR_GREEN
+	tint = COLOR_VERY_SOFT_YELLOW
 	worn_layer = COLLAR_LAYER
+
+/obj/item/clothing/glasses/night/vsd/alt
+	name = "\improper CM-13 night vision faceplate"
+	desc = "VSDs night vision Faceplate, made for attachments to the Medium armor variant of their armor. Crash Core and your superior officers are not responsible for blindness and burning."
+	icon_state = "vsd_alt"
+	worn_icon_state = "vsd_alt"
+	deactive_state = "vsd_alt_off"

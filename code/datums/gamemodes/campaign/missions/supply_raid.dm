@@ -5,7 +5,7 @@
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	map_name = "Rocinante Base"
 	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_ICE
@@ -75,10 +75,7 @@
 	. = ..()
 	spawn_mech(defending_faction, 0, 1)
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
-	if(starting_faction == FACTION_TERRAGOV)
-		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
-	else if(starting_faction == FACTION_SOM)
-		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
+	attacking_team.add_asset(GLOB.campaign_cas_disabler_by_faction[starting_faction])
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
@@ -113,7 +110,7 @@
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
-	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	objectives_total = 8

@@ -260,16 +260,16 @@
 /area/oscar_outpost/outside/east)
 "cy" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/north)
 "cA" = (
@@ -315,16 +315,16 @@
 /area/oscar_outpost/outside/east)
 "cX" = (
 /obj/structure/table/reinforced,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/ground/coast{
 	dir = 1
 	},
@@ -961,8 +961,7 @@
 /area/oscar_outpost/outside/east)
 "jH" = (
 /obj/structure/platform{
-	dir = 4;
-	layer = 2.7
+	dir = 4
 	},
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -1365,7 +1364,7 @@
 /area/oscar_outpost/outside/northeast)
 "ox" = (
 /obj/structure/table/mainship,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 1;
 	mouse_opacity = 0
@@ -1547,7 +1546,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "pB" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 1;
 	mouse_opacity = 0
@@ -1601,12 +1600,12 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "pI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 1;
 	mouse_opacity = 0
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 4;
 	mouse_opacity = 0
@@ -1747,12 +1746,12 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/northwest)
 "ra" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 1;
 	mouse_opacity = 0
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 8;
 	mouse_opacity = 0
@@ -1764,12 +1763,12 @@
 /area/oscar_outpost)
 "rb" = (
 /obj/structure/table/mainship,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 1;
 	mouse_opacity = 0
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 4;
 	mouse_opacity = 0
@@ -2034,7 +2033,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/oscar_outpost/outside/northwest)
 "tB" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -2134,10 +2133,10 @@
 /obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/engine/cult{
@@ -2158,7 +2157,7 @@
 /area/oscar_outpost/outside/northwest)
 "uR" = (
 /obj/structure/table/mainship,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 4;
 	mouse_opacity = 0
@@ -2273,7 +2272,7 @@
 /area/oscar_outpost/outside/east)
 "wl" = (
 /obj/structure/table/mainship,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	alpha = 0;
 	dir = 8;
 	mouse_opacity = 0
@@ -2294,10 +2293,10 @@
 /obj/item/weapon/gun/hsg_102/hsg_nest/sandless{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/engine/cult{
@@ -2380,7 +2379,7 @@
 	dir = 1;
 	pixel_y = -5
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -4114,8 +4113,7 @@
 /area/oscar_outpost/outside/northwest)
 "Ol" = (
 /obj/structure/platform{
-	dir = 4;
-	layer = 2.7
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
@@ -4136,15 +4134,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/west)
-"Or" = (
-/obj/structure/platform{
-	dir = 8;
-	layer = 2.7
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 8
-	},
-/area/oscar_outpost)
 "Ox" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -4162,7 +4151,9 @@
 	},
 /area/oscar_outpost/outside/west)
 "OH" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "OI" = (
@@ -4309,15 +4300,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/northwest)
-"PK" = (
-/obj/structure/platform{
-	dir = 1;
-	layer = 2.7
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
-/area/oscar_outpost)
 "PM" = (
 /obj/item/mortal_shell/howitzer/he,
 /obj/item/mortal_shell/howitzer/he,
@@ -4754,7 +4736,9 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Tv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Tx" = (
@@ -12420,7 +12404,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 nw
 RH
 RH
@@ -12575,8 +12559,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ra
 wl
 ry
@@ -12730,8 +12714,8 @@ ZE
 FR
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 wr
 xR
@@ -12885,8 +12869,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 tB
 CE
@@ -13040,8 +13024,8 @@ ZE
 Ns
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 xh
 CE
@@ -13195,8 +13179,8 @@ cy
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 tB
 CE
@@ -13350,8 +13334,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 uM
 yc
@@ -13505,8 +13489,8 @@ ZE
 FR
 ZE
 ZE
-PK
-PK
+jP
+jP
 pB
 tB
 xR
@@ -13660,8 +13644,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 xh
 CE
@@ -13815,8 +13799,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 tB
 CE
@@ -13970,8 +13954,8 @@ ZE
 ZE
 ZE
 ZE
-PK
-PK
+jP
+jP
 ox
 uN
 CE
@@ -14125,8 +14109,8 @@ ZE
 FR
 ZE
 ZE
-PK
-PK
+jP
+jP
 rb
 uR
 ym
@@ -14280,7 +14264,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 mu
 jH
 jH
@@ -19241,9 +19225,9 @@ ZE
 ZE
 ZE
 iW
-Or
-Or
-Or
+RH
+RH
+RH
 qa
 qa
 qa
@@ -19397,12 +19381,12 @@ ZE
 ZE
 jP
 nB
-Or
-Or
-Or
-Or
-Or
-Or
+RH
+RH
+RH
+RH
+RH
+RH
 tO
 tO
 tO
@@ -26525,7 +26509,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 nw
 RH
 RH
@@ -26680,7 +26664,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ra
 wl
@@ -26835,7 +26819,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ox
 wr
@@ -26990,7 +26974,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ox
 tB
@@ -27145,7 +27129,7 @@ FR
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ox
 xh
@@ -27300,7 +27284,7 @@ uB
 uB
 ZE
 ZE
-PK
+jP
 jP
 ox
 tB
@@ -27455,7 +27439,7 @@ th
 th
 uc
 ZE
-PK
+jP
 jP
 ox
 uM
@@ -27610,7 +27594,7 @@ th
 th
 uc
 ZE
-PK
+jP
 jP
 ox
 tB
@@ -27765,7 +27749,7 @@ th
 th
 uc
 ZE
-PK
+jP
 jP
 ox
 xh
@@ -27920,7 +27904,7 @@ WS
 WS
 ZE
 ZE
-PK
+jP
 jP
 ox
 tB
@@ -28075,7 +28059,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ox
 tB
@@ -28230,7 +28214,7 @@ ZE
 ZE
 ZE
 ZE
-PK
+jP
 jP
 ry
 tm

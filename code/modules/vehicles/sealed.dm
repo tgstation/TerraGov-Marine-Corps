@@ -5,8 +5,11 @@
 	var/headlights_toggle = FALSE
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
-	///Current owning faction
-	var/faction
+
+
+/obj/vehicle/sealed/Initialize(mapload)
+	. = ..()
+	become_hearing_sensitive(ROUNDSTART_TRAIT)
 
 /obj/vehicle/sealed/generate_actions()
 	. = ..()
@@ -37,6 +40,10 @@
 		var/obj/machinery/door/conditionalwall = A
 		for(var/occupant in occupants)
 			conditionalwall.bumpopen(occupant)
+
+/obj/vehicle/sealed/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
 
 /obj/vehicle/sealed/after_add_occupant(mob/M)
 	. = ..()
@@ -181,7 +188,7 @@
 /// Sinced sealed vehicles (cars and mechs) don't have riding components, the actual movement is handled here from [/obj/vehicle/sealed/proc/relaymove]
 /obj/vehicle/sealed/proc/vehicle_move(mob/living/user, direction)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!COOLDOWN_CHECK(src, cooldown_vehicle_move))
+	if(!COOLDOWN_FINISHED(src, cooldown_vehicle_move))
 		return FALSE
 	COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
 	return !(SEND_SIGNAL(src, COMSIG_VEHICLE_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)

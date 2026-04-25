@@ -1,0 +1,462 @@
+2025-02-01:
+  jonash07:
+  - qol: KLTD smart goggles are located in the smartgunner equipment rack again
+  yyzsong:
+  - spellcheck: Updates item throwing chat messages to use the simple present tense
+      instead of the perfect present tense.
+2025-02-03:
+  Pariah919:
+  - balance: MMG and GPMG have vgrip now.
+  Runian:
+  - bugfix: Hive status GUI's width is now longer to fit all castes rather than cutting
+      them off.
+  Sun-Soaked:
+  - qol: mobs buckled to a jumping mob now jump alongside them
+2025-02-04:
+  PibeCantina:
+  - balance: Replaces plat miner on south ice colony with a phoron one
+  SomrNetwork:
+  - balance: Sizzler strain
+  TiviPlus:
+  - rscadd: 'New supersoldier stim: Heartstopper. Instantly kills you when you go
+      crit'
+  - bugfix: fixed robots being crittable when the flag is destroyed
+  - code_imp: added a on-crit proc
+  novaepee:
+  - rscadd: Give shipside medical an overwatch console
+2025-02-05:
+  Lumipharon:
+  - qol: Hive status screen groups strains by parent type
+  Neocloudy:
+  - admin: Mentor ghosts may now see LOOC from anywhere.
+  - admin: Staff may turn off LOOC spying in preferences.
+  - qol: LOOC now outputs in runechat.
+  - qol: Mentor OOC is slightly darker.
+  - qol: Msay is now tagged with "MENTOR:" to reduce confusion for admins.
+  - soundadd: Admin tickets turned into mentor tickets will not play the admin bwoink
+      sound, instead using the mentor bwoink sound.
+  - bugfix: Mentor PMs will not be super small anymore.
+  Rug-Dealer:
+  - bugfix: Modular chest plates now have the correct description for the armor they
+      provide.
+  - bugfix: Some arm and leg plates no longer have descriptions that state they provide
+      high protection and encumbrance.
+  Runian:
+  - balance: Warlock is no longer immobilized when casting with their psyblast ability.
+  Xander3359:
+  - bugfix: Fix "Toggle Seethrough" toggle being lost when gaining primo
+  jonash07:
+  - qol: vendors now vend the item into your selected hand
+  yyzsong:
+  - spellcheck: Updates armour module stylization
+2025-02-07:
+  Cheese:
+  - bugfix: Acid Maw stats no longer also include acid jaw stats.
+  Lumipharon:
+  - balance: Disposable AP and sunder reduced from 100 and 100, to 50 and 25
+  - balance: Highpower pistol seasonal removed from the game
+  ivanmixo:
+  - bugfix: Some SOM and marine hvh outfits' holster contents are once again filled
+2025-02-08:
+  The_Man:
+  - rscadd: Added new verb "Toggle Health Scan" for spectators.
+  - qol: If "Toggle Health Scan" is enabled, spectators will health scan on click.
+2025-02-09:
+  Runian:
+  - rscadd: New strain for Praetorian called Oppressor.
+  - rscadd: 'Oppressor abilities: Abduct, Dislocate, Advance, Tail Lash, and Item
+      Throw.'
+  - imageadd: 'Button icons for: Abduct, Advance, Tail Lash, and Item Throw,'
+  - bugfix: The display name for the Dancer strain has been changed to remove confusion
+      within the Strain Swap menu and to differentiate itself from the base caste.
+2025-02-10:
+  Kuro020:
+  - balance: Shoulder fire has been removed from the game
+  Lumipharon:
+  - balance: Non CIC overwatch consoles no longer have military functions
+  - code_imp: cleaned up Overwatch console code
+  - bugfix: Fireteams work for SOM
+  - bugfix: Fireteams can now be assigned screenwide as intended, instead of only
+      when adjacent
+  - bugfix: fixed items being burnt by lava while mid throw
+  - bugfix: fixed things visually submerging mid throw
+  - bugfix: fixed mobs not being immediately ignited when landing in fire/lava
+  Rug-Dealer:
+  - rscadd: Ghosts can now view the reagents in pills, pressurized reagent canisters,
+      and chem grenades on examine.
+  - rscadd: Added assault crewman to Valhalla, allowing you to test tanks and APCs
+      again.
+  Runian:
+  - rscadd: Hivemind gets a new ability that lets them use acid jaws/maws without
+      having to fly over to use them.
+  SandPoot:
+  - bugfix: Fixed hivemind's health hud/ui.
+  TiviPlus:
+  - server: Fixed certain things not saving in the DB
+  - bugfix: fixed the time of day being offset
+2025-02-11:
+  TiviPlus:
+  - rscadd: Adding !! after your message will now make it bigger and fatter in runechat
+  - rscadd: added a top left dropdown and a preferences button to see keybinds
+  - qol: There is now a fullscreen keybind (F11 by default)
+  - qol: The command bar now only shows under the chat, making the gameplay window
+      larger
+  - qol: The status bar (bar showing the name of what you hover over) now only shows
+      as a small box in the bottom left, making the gameplay and chat windows larger.
+      It can also be turned off in prefs now
+  - bugfix: fixed the UI being broken on Opendream (probably)
+  - bugfix: chat will no longer flicker on 516
+  - bugfix: The game will now only use fonts shipped with the game, due to some players
+      not having all fonts installed/ship correctly. as a result of this the lobby
+      menu, runechat, screen orders, etc may look different
+  - code_imp: Aligned skin.dmf with Tg's skin.dmf to make porting simple
+  - code_imp: Autofit viewport no longer has an arbitrary 1 second delay outside of
+      during the user connecting
+2025-02-12:
+  Kuro020:
+  - balance: Laser Rifle and MG can no longer equip rail scope
+  Lumipharon:
+  - bugfix: fixed a visual issue with beams
+  - bugfix: fixed mobs not hearing the OB sound some times
+  PibeCantina:
+  - qol: Makes the platforms on gelida non dense
+  Runian:
+  - balance: Xenomorph prep no longer ends when the tad launches, but when the TAD
+      begins to land outside any marine base (e.g. outside of LZ).
+  - bugfix: The additional buildings in Kutjevo Refinery's LZ are considered marine
+      base for consistency.
+  - bugfix: The area outside of Kutjevo Refinery's LZ is no longer considered a marine
+      base and will allow Hivemind to build in it once shutters open.
+  SandPoot:
+  - rscadd: Added Tesla turret, to shock xenos when they're too feisty!
+  - code_imp: zap_beam() returns affected xenos.
+  - rscadd: Fireman carried people can be laid on top of surgery tables directly instead
+      of having to drop to grab them again and click on the table.
+  Sun-Soaked:
+  - qol: joining the fallen hive of Valhalla no longer removes you from the living
+      hive's larva queue.
+  yyzsong:
+  - balance: combat robots may now wear the mimir armour module
+  - spellcheck: Unarmed attacks vs xenomorphs should now display correctly
+  - spellcheck: mMarine -> Marine
+2025-02-13:
+  Cheese (Code), Kuro (sprites), Mack (Ideasguy):
+  - rscadd: Added Globadier, a new spitter strain.
+  Isy232:
+  - balance: Officer/FC gloves are now insulated.
+  Lumipharon:
+  - spellcheck: Grammar fix for the overwatch console
+  - bugfix: Signalling an exploding detpack now simply disarms again instead of completely
+      deactivating
+  - bugfix: fixed bloodthirster charge being stronger than intended
+  - bugfix: Laser sentry no longer has offscreen range
+  Mannybrado:
+  - balance: increases health of standard tad variant windows/cockpit wall to 600(was
+      500) to match other tad variants
+  Sun-Soaked:
+  - rscadd: 'Adds 2 new abilities to Dancer: Baton Pass and Tail Hook'
+  - balance: Reworks Dancer's Impale and Tail Trip to make them stronger.
+  - balance: Reduces Dancer's speed slightly, while slightly increasing its HP and
+      armor.
+  - balance: Dancer's Dodge now lasts longer but has a longer cooldown.
+  - imageadd: Adds 2 new aoe swing effects.
+  distributivgesetz:
+  - config: Add PUBLIC_ADDRESS as a config option, serves to show the public IP for
+      players to connect to.
+  ivanmixo:
+  - code_imp: The names of args in the apply effects procs are more sane
+  novaepee:
+  - imageadd: New Lobby Art from Astolfo!
+  yyzsong:
+  - balance: Marine squad leaders may now take the radiopack as a backpack option
+2025-02-15:
+  Barnet2:
+  - spellcheck: Increases command message length to 200 characters from 120 and 100
+  Cheese:
+  - qol: Strain keybinds now use the strain name, rather than the parent name, in
+      the keybinding menu.
+  Lumipharon:
+  - bugfix: fixed hunter silence and sticky spit applying far less stagger than intended
+  - bugfix: fixed mech destruction effects
+  Neocloudy:
+  - spellcheck: New "titanic" weight class for any item larger than gigantic.
+  Rug-Dealer:
+  - rscadd: Added *trick emote that lets you do tricks on weapons and items alike.
+  TiviPlus:
+  - balance: Everyone except spatial agents can only spawn mechs once
+  - bugfix: having just spawned a mech now does not prevent you from spawning ammo
+  novaepee:
+  - rscadd: updating PoS medbay ONCE AGAIN for 2025!
+2025-02-16:
+  Apple-107:
+  - rscadd: Card decks are now available for Marines in Character Customization and
+      Marine Armaments Vendors
+  Lumipharon:
+  - bugfix: Mech pilots actually have mech skill
+  TiviPlus:
+  - balance: mech no longer has directional armor
+  - balance: the tank driver now gets the old periscopes tier of zoom and nightvision
+  - balance: the tank periscope has 1 extra range now
+  - bugfix: fixed periscope being usable while driving the tank
+  - balance: mechs no longer have tank controls
+  - bugfix: block movement keybind now lets you turn while you strafe correctly in
+      a mech
+  - bugfix: fixed mech turn sounds playing when they shouldnt
+2025-02-17:
+  Lumipharon:
+  - qol: Large grassy rock piles can be jumped onto and walked upon
+  - code_imp: Fixed modular mapping creating dup entries in areas_in_z
+  Pariah919:
+  - balance: Behemoth no longer has heavy footstep sounds.
+  - sounddel: Behemoth no longer has heavy footstep sounds.
+  TiviPlus:
+  - qol: teleport verb menu is tgui now
+  - rscadd: Added the ability to set custom fonts for the chat
+  - qol: changed a bunch of options to tgchat, e.g you can reorder tabs now
+  - qol: Stat panel looks more tgui like now
+  - qol: you can set a style for the stat panel now
+  - qol: the stat panel now takes your chat settings by default. this can be unlinked
+      and set seperately
+  - qol: removed limit of chat highlights. it just warns you about performance now
+  - qol: the req menu buy button now turns red when you can't afford the cart
+  - bugfix: typing in the command bar will be detected by the typing indicator
+  - bugfix: fixed a tgui bluescreen in the cargo UI
+  - bugfix: fixed numerous issues with UIs bluescreening or otherwise bugging out
+  - bugfix: TGMC clientside (ie you as a player) works on 516 now
+  - bugfix: fixed a number of hrefs to work on 516
+  - imageadd: updated the tgui icon library
+  - code_imp: We now cache spritesheets across rounds
+  - refactor: TGUI now uses the centralized SS13 npm library
+  - admin: play internet sound will now display (optionally) who played the song and
+      other info such as the link and the artist
+  - code_imp: and many other changes not included in this changelog
+  breadhunt:
+  - rscadd: Unique action for signalers now sends the signal
+  - rscadd: Unique action for detpacks now turns them on/off
+  - qol: Balloon alerts added to some detpack messages
+  yyzsong:
+  - qol: Acid Maws and Acid Jaws now notify ghosts when fired, and their point of
+      impact may be jumped to.
+2025-02-18:
+  Kuro020:
+  - balance: The marine standard smg, heavy smg and machine pistol's mag sizes have
+      been increased
+  - balance: The ammo packets for the smgs have had their total bullet count increased
+  Lumipharon:
+  - balance: Tank turret rotation adds a delay to firing
+  Mannybrado:
+  - balance: nerf laser turret range by 1 tile (8 -> 7)
+  nervere:
+  - refactor: Window flashing (i.e. taskbar notifications) while a ghost will now
+      only trigger for stuff related to round re-entry and adminhelps, instead of
+      it happening for everything.
+  novaepee:
+  - imageadd: Another lobby art from Zaha!
+2025-02-19:
+  novaepee:
+  - balance: medical rig can now hold tweezers and ESR-12
+2025-02-20:
+  Cheese (Ported from CM who ported it from RUTGMC):
+  - rscadd: 2 new cade types, made with plasteel and metal respectively.
+  Pariah919:
+  - balance: Target rifle changes. It has better handling, damage and bullet travel
+      time. But worse sunder.
+  RipGrayson:
+  - balance: Removed Russian Red from a few groundside maps.
+  Runian:
+  - balance: Pyrogen has been reworked.
+  - balance: Pyrogen's melee attacks do burn damage and inflict melting fire.
+  - balance: Firestorm's cooldown has been reduced to 12 seconds and create only one
+      firenado.
+  - balance: Firenados always go to their target destination and also create a melting
+      fire onto a nearby turf as it travels.
+  - balance: Firenados now deal damage upon direct contact. It deals 50 damage up
+      from 15.
+  - balance: Firenados go over certain objects like window frames.
+  - balance: Humans damaged by melting fire heal the associated Pyrogen for two health.
+  - balance: Direct hits from Fireball does burn damage against fire armor, rather
+      than toxin against bio.
+  - bugfix: Humans damaged by melting fire correctly gives the associated Pyrogen
+      five plasma.
+  - rscadd: Pyrogen has a new ability called Inferno.
+  - rscadd: Pyrogen has a new primordial ability called Infernal Trigger.
+  - rscdel: Pyrogen's old primordial ability Heat Ray has been removed.
+  - imageadd: Inferno and Infernal Trigger button sprites.
+  - imagedel: Heatray button sprite.
+  SandPoot:
+  - rscadd: Added codex for tesla turrets, GO READ IT.
+  - balance: Adjusted durability, cost and power drain for tesla turrets.
+  - balance: Lasgun cells no longer fit on tesla turrets.
+  - bugfix: Fixed ghosts toggling tesla turrets on and off.
+  - bugfix: Xenomorph plasma may not update from plasma drain debuff, it will now
+      apply properly.
+  - bugfix: Fixed deleting cells if giving up on disassembling.
+  - admin: Var-editing tesla turrets will be transferred over if var-editing.
+  TiviPlus:
+  - code_imp: It is now possible to set up a DB by just running ezdb.bat in tools/ezdb
+      when running the game locally
+  - balance: Mech has night vision
+  - qol: Merged Object and weapons tabs into the ic tab
+  - balance: Non-HvH mechs now spin to fire
+  - qol: Replaced crates teleporting with an animation where they fall from the sky
+  - bugfix: fixed a tutorial error
+  - code_imp: optimized certain operations run by hyperscale and certain icon systems
+  - qol: Mugshots announcements will automatically capitalize themselves
+  breadhunt:
+  - balance: 'Demolition detpack explosion: 3, 5, 6 -> 0, 7, 9'
+  - balance: 'Breach detpack explosion: 2, 2, 3 -> 3, 4, 4'
+  - balance: Breach charge will now explode on the opposite side of a wall, if it
+      is planted on a wall
+  ivanmixo:
+  - balance: Made some changes to curb stacking multiple snipers, check the PR for
+      a more verbose explanation
+2025-02-21:
+  Lumipharon:
+  - bugfix: fixed spears and other ranged melee items not being able to attack over
+      some objects as intended
+  - balance: Removed healing from non medical reagents
+2025-02-22:
+  Apple-107:
+  - rscadd: Marines can now hydrate themselves (Hydrocannon fits on most rifles that
+      could take an underbarrel)
+  Isy232:
+  - qol: Starting alien weed nodes have a much higher chance to be sticky weed nodes
+      rather than regular weed nodes.
+  Kuro020:
+  - balance: SG-62 buff's have been reverted
+  Lumipharon:
+  - bugfix: fixed detpacks not deleting after exploding
+  - bugfix: fixed some issues with items not being stored or withdrawn from storage
+      datums correctly
+  Rug-Dealer:
+  - spellcheck: thells -> shells
+  TiviPlus:
+  - balance: Mech now has destroyable limbs, to restore functionality fully repair
+      them. Both xenos and marines can see their HP by examining the mech
+  antropod:
+  - qol: Quick equip (pressing E) will try to put an item to the slot it was drawn
+      from.
+  novaepee:
+  - imageadd: ANOTHER Zaha lobby art
+  yyzsong:
+  - bugfix: Ghosts no longer fumble when opening the chemmaster's UI
+  - qol: The supply console now displays notes attached to certain supply packs
+2025-02-23:
+  Lumipharon:
+  - code_imp: Faction is defined at the AM level
+  - code_imp: Adds get_traversal_line, like get_line but filled in cardinal steps
+      when going diagonal
+  TiviPlus:
+  - bugfix: fixed some security/permissions issues with admin verbs
+  - bugfix: fixed trying to view too many runtimes crashing the server (this has yet
+      to happen)
+  - refactor: refactored admin verbs to simplify them and make them more secure
+  - admin: Reorganized the admin verb tabs. The following is the intended structure
+  - admin: Admin.main tab = relates to moderating/mentoring
+  - admin: admin.fun = event type verbs and fun stuff like music
+  - admin: debug = primarily intended for debugging and fixing things
+  - admin: server = server operations related stuff, config etc
+  - admin: some verbs were moved to the right click menu only
+  - admin: admins can now show/hide their verbs
+  - admin: fixed some admin procs not logging that they were used
+  - admin: added a sendmaps profiling verb for admins
+  - admin: Some verbs, like the imaginary friend verb, now can both be used to rclick
+      or through the verbs menu
+  - admin: the secrets tab verb was renamed to the utility tab verb
+  - admin: the display tags verb was moved to r_debug from r_admin
+  - admin: made some backend changes to how verbs are issued. it is now based on the
+      actual permissions checked, so everyone with access to a permission will have
+      all verbs marked with that permission by default. this may have added some previously
+      broken verbs and may have moved others' to be assigned to that permission
+2025-02-24:
+  Neocloudy:
+  - admin: Mentors can now hear and speak in OOC channels from anywhere, regardless
+      of faction and observer status (unless OOC is globally disabled).
+  - admin: When a staff member hears OOC channels, the speaker's name is highlighted
+      with PM/PP/JMP/FLW instead of a more info link.
+  - admin: '"Hear LOOC from anywhere" preference replaced with "Hear OOC from anywhere".'
+2025-02-25:
+  Mantlecrawler:
+  - bugfix: Valhalla drains no longer add larva points to the actual hive
+  Neocloudy:
+  - refactor: Refactored security levels and removed GLOB.marine_main_ship. Please
+      report any weird behavior with security levels, or the systems affected by this
+      removal (OB, railgun, maint all access, keycard authentication).
+  Rug-Dealer:
+  - bugfix: Combat robot corpsman beginner loadouts now spawn with medevac beacons
+      like their human counterparts.
+  The_Man:
+  - qol: Added Toggles and Follow subheaders to spectators.
+  TiviPlus:
+  - qol: Reworked the tank soundscape
+  - rscadd: Added a weight mechanic to mechs, where there is a weight limit to the
+      mech, and bodyparts and guns contribute to it
+  - rscadd: Mech power is now generated by the power module instead of the torso
+  - rscadd: Mech can now uses repair packs to repair
+  - balance: mech now has a dash built in
+  - balance: the mech sprint is now also built in
+  - bugfix: fixed mech stomp sounds playing when it sprinted
+  - balance: Mech can now be shuffled by xenos
+  yyzsong:
+  - spellcheck: You will no longer detach armor attachments "to" armour
+  - spellcheck: Inventory-related warnings will now display an article
+  - spellcheck: Officer's sword spellchecking
+  - spellcheck: The quartermaster's stamp & locker will no longer be arbitrarily capitalized
+  - spellcheck: Adds \improper to a lot of things that need it
+  - spellcheck: Capitalizes projectile damage text
+  - spellcheck: Adds a period to the armor equip interruption text
+  - spellcheck: Req capitalization (Those who know)
+  - spellcheck: Tactical binoculars -> pair of tactical binoculars
+  - spellcheck: Removes the random space from face-mangling text
+  - spellcheck: Makes grenade launchers report what grenade launcher type is firing,
+      as well as updating it to the simple present tense
+2025-02-26:
+  Lumipharon:
+  - rscadd: Mechs can now jump
+  TiviPlus:
+  - balance: rebalanced mech weapons
+  fleewave:
+  - bugfix: scorpion auto-spit doesn't get stuck shooting anymore
+  yyzsong:
+  - bugfix: Fixes bug preventing non-folding plasteel cades from being built on a
+      tile where there is already a non-folding plasteel cade, even when they are
+      facing in different directions
+2025-02-27:
+  Lewdcifer:
+  - code_imp: Minor clean-up of xeno vars. Gets rid of unnecessary overrides, uses
+      the attack_sound var, and implements an attack_effect var as setup for future
+      content.
+  Lumipharon:
+  - bugfix: fixed armour lock sprites appearing everywhere
+  Notamaniac:
+  - balance: Tank and APC now has 100 bio armor. Tank also gets 20 hard bio armor.
+  SandPoot:
+  - rscadd: Added some onscreen button verbs for ghosts.
+  - imageadd: Shitty sprite for the button.
+  TiviPlus:
+  - imageadd: replaced the armorlock icon with a new one
+  - admin: added edge dev tools verb to admins for UI debugging
+  - bugfix: fixed admin smites not logging
+  - code_imp: Added some tracking for tick allocation to subsystems
+  - admin: added focus mode var to controllers, which can be toggled to get a focused
+      profile of ONE subsystem
+  - admin: added admin tgui for viewing MC and controller statuses
+  - bugfix: fixed mech weight bar in the mech builder ui not coloring correctly
+  - rscadd: Added the !tgs seasonals command for checking the current seasonals from
+      discord
+  - code_imp: Discord PR announcer bot is back
+  - bugfix: fixed shuttle manipulator bluescreening, and not showing all options
+  - bugfix: fixed admin shuttle uploads being disabled for 6+ years for no reason
+  - bugfix: fixed mech spin-to-fire
+  - bugfix: Fixed engine turn off sounds actually being the engine turn on sounds
+2025-02-28:
+  Lumipharon:
+  - rscadd: Added dynamic human mob AI
+  TiviPlus:
+  - bugfix: fixed mech movespeeds being very out of wack with intended values
+  breadhunt:
+  - rscadd: Thermo-Bluespace Generator. Triples disk speed while active; explodes
+      when destroyed by xenos.
+  - imageadd: tbg.dmi
+  - soundadd: tbg_windup, tbg_winddown, tbg_mid1, tbg_mid2, tbg_mid3, tbg_mid4, tbg_mid5,
+      tbg_alarm

@@ -12,7 +12,7 @@
 	throw_speed = 5
 	throw_range = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
+	attack_verb = list("mops", "bashes", "bludgeons", "whacks")
 	var/mopping = 0
 	var/mopcount = 0
 
@@ -25,7 +25,7 @@
 	if(source.reagents.has_reagent(/datum/reagent/water, 1))
 		wash()
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if(istype(O, /obj/effect/decal/cleanable/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	source.reagents.reaction(src, TOUCH, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	source.reagents.remove_any(1)				//reaction() doesn't use up the reagents
@@ -33,9 +33,9 @@
 
 /obj/item/tool/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/decal/cleanable/rune))
 		if(reagents.total_volume < 1)
-			balloon_alert(user, "Mop is dry")
+			balloon_alert(user, "mop is dry!")
 			return
 
 		var/turf/T = get_turf(A)
@@ -43,7 +43,7 @@
 
 		if(do_after(user, 40, NONE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
-			balloon_alert(user, "Finished mopping")
+			balloon_alert(user, "finished")
 
 
 /obj/item/tool/wet_sign
@@ -60,7 +60,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 
 /obj/item/clothing/head/warning_cone
 	name = "warning cone"
@@ -73,7 +73,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 
@@ -98,16 +98,16 @@
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		balloon_alert(user, "Remove the [target.name] first")
+		balloon_alert(user, "take that off first!")
 	else if(isturf(target))
-		balloon_alert(user, "Scrubs \the [target.name]")
+		balloon_alert(user, "scrubbed")
 		var/turf/target_turf = target
 		target_turf.wash()
 	else if(istype(target,/obj/effect/decal/cleanable))
-		balloon_alert(user, "Scrubs \the [target.name] out")
+		balloon_alert(user, "scrubbed")
 		qdel(target)
 	else
-		balloon_alert(user, "Cleans \the [target.name]")
+		balloon_alert(user, "cleaned")
 		target.wash()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)

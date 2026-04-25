@@ -8,6 +8,7 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 	var/obj/item/card/id/idscan = null
 	var/authenticated = FALSE
@@ -18,10 +19,16 @@
 	var/department = CORPORATE_LIAISON
 	var/selected = "Nanotrasen"
 
-
 /obj/machinery/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.faxmachines += src
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 
 /obj/machinery/faxmachine/Destroy()
@@ -104,19 +111,19 @@
 			if(!ishuman(usr))
 				to_chat(usr, span_warning("You can't do it."))
 			else
-				message.loc = usr.loc
+				message.forceMove(usr.loc)
 				usr.put_in_hands(message)
 				to_chat(usr, span_notice("You take the paper out of \the [src]."))
 				message = null
 	if(href_list["scan"])
 		if(idscan)
 			if(ishuman(usr))
-				idscan.loc = usr.loc
+				idscan.forceMove(usr.loc)
 				if(!usr.get_active_held_item())
 					usr.put_in_hands(idscan)
 				idscan = null
 			else
-				idscan.loc = loc
+				idscan.forceMove(loc)
 				idscan = null
 		else
 			var/obj/item/I = usr.get_active_held_item()

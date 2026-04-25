@@ -20,9 +20,11 @@
 	var/storage_type = /datum/storage
 
 /obj/item/storage/Initialize(mapload, ...)
-	. = ..()
+	..()
 	create_storage(storage_type)
+	return INITIALIZE_HINT_LATELOAD
 
+/obj/item/storage/LateInitialize()
 	PopulateContents()
 
 ///Use this to fill your storage with items. USE THIS INSTEAD OF NEW/INIT

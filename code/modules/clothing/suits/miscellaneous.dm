@@ -218,7 +218,7 @@
 //Blue suit jacket toggle
 /obj/item/clothing/suit/suit/verb/toggle()
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -344,7 +344,7 @@
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade
 	)
 

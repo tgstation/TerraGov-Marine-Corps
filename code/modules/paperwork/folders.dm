@@ -74,11 +74,11 @@
 	var/dat
 
 	for(var/obj/item/paper/P in src)
-		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
+		dat += "<A href='byond://?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
+		dat += "<A href='byond://?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
 	for(var/obj/item/paper_bundle/Pb in src)
-		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Pb)]'>Remove</A> - <A href='?src=[text_ref(src)];browse=[text_ref(Pb)]'>[Pb.name]</A><BR>"
+		dat += "<A href='byond://?src=[text_ref(src)];remove=[text_ref(Pb)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];browse=[text_ref(Pb)]'>[Pb.name]</A><BR>"
 	var/datum/browser/popup = new(user, "folder", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
 	popup.open()
@@ -100,10 +100,10 @@
 			var/obj/item/paper/P = locate(href_list["read"])
 			if(P && (P.loc == src) && istype(P))
 				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse(HTML_SKELETON_TITLE(P.name, stars(P.info)+P.stamps), "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse(HTML_SKELETON_TITLE(P.name, P.info+P.stamps), "window=[P.name]")
 					onclose(usr, "[P.name]")
 		else if(href_list["look"])
 			var/obj/item/photo/P = locate(href_list["look"])

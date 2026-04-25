@@ -88,23 +88,27 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("slashed", "sliced", "cut", "clawed")
+	attack_verb = list("slashes", "slices", "cuts", "claws")
 
 //Hatchets and things to kill kudzu
 /obj/item/tool/hatchet
 	name = "hatchet"
 	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
 	icon = 'icons/obj/items/tools.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	icon_state = "hatchet"
 	atom_flags = CONDUCT
-	force = 35
+	force = 45
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 25
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	attack_verb = list("chopped", "torn", "cut")
+	attack_verb = list("chops", "tears", "cuts")
 
 /obj/item/tool/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
@@ -122,7 +126,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
-	attack_verb = list("chopped", "sliced", "cut", "reaped")
+	attack_verb = list("chops", "slices", "cuts", "reaps")
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return

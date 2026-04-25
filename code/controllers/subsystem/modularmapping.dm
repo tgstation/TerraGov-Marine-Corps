@@ -1,6 +1,9 @@
 SUBSYSTEM_DEF(modularmapping)
 	name = "Modular Mapping"
-	init_order = INIT_ORDER_MODULARMAPPING
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/mapping,
+	)
 	flags = SS_NO_FIRE
 	var/list/obj/effect/spawner/modularmap/markers = list()
 
@@ -13,4 +16,4 @@ SUBSYSTEM_DEF(modularmapping)
 	for(var/obj/effect/spawner/modularmap/map AS in markers)
 		map.load_modularmap()
 	markers.Cut()
-	repopulate_sorted_areas() //adds all the modular map areas to the list
+	require_area_resort() //adds all the modular map areas to the list

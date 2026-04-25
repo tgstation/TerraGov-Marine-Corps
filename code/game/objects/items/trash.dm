@@ -190,7 +190,7 @@
 	icon_state = "crushed_solocup"
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("bludgeoned", "whacked", "slapped")
+	attack_verb = list("bludgeons", "whacks", "slaps")
 
 /obj/item/trash/trashbag
 	name = "trash bag"
@@ -336,7 +336,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1
 
-/obj/item/trash/cuppa_joes/Initialize()
+/obj/item/trash/cuppa_joes/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)

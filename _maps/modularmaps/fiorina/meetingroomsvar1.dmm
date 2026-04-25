@@ -1,0 +1,642 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple{
+	dir = 5
+	},
+/area/fiorina/tumor/servers)
+"aP" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"da" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"dv" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/computer/security{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"fi" = (
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"gB" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/cans/cola{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"hT" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/tumor/servers)
+"id" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"jD" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"kU" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/tumor/servers)
+"lm" = (
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"mN" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"na" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"np" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/cans/dr_gibb{
+	pixel_y = 8;
+	pixel_x = 7
+	},
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/tumor/servers)
+"nZ" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/servers)
+"oS" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"pq" = (
+/obj/structure/prop/vehicle/crane{
+	dir = 8
+	},
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"pT" = (
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"sl" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 6
+	},
+/area/fiorina/tumor/servers)
+"sF" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/encryptionkey{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/machinery/prop/computer/communications{
+	dir = 4
+	},
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"tg" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"tn" = (
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"tH" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/tumor/servers)
+"tN" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"uf" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"ur" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/faxmachine,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/servers)
+"uD" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"uO" = (
+/obj/item/stock_parts/manipulator/pico,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"va" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/fiorina/tumor/servers)
+"vl" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"wj" = (
+/obj/structure/table/reinforced/prison,
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple{
+	dir = 9
+	},
+/area/fiorina/tumor/servers)
+"xH" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"yS" = (
+/turf/closed/wall/prison,
+/area/fiorina/tumor/servers)
+"zg" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
+/turf/open/floor/podhatch/floor,
+/area/fiorina/tumor/servers)
+"zv" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"CE" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/tumor/servers)
+"CO" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 9
+	},
+/area/fiorina/tumor/servers)
+"CV" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"DF" = (
+/obj/structure/bed/chair/comfy,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"DV" = (
+/obj/machinery/light/blue{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = 2
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"El" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"Ep" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/servers)
+"Fp" = (
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"Ft" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/oil/streak,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"HU" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"Jv" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"Kd" = (
+/obj/machinery/prop/structurelattice{
+	dir = 4
+	},
+/obj/machinery/prop/structurelattice{
+	dir = 4;
+	pixel_y = 9
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/servers)
+"LS" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple{
+	dir = 1
+	},
+/area/fiorina/tumor/servers)
+"Mn" = (
+/obj/machinery/light/blue{
+	dir = 8;
+	pixel_x = -5;
+	pixel_y = 19
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"MZ" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/tumor/servers)
+"Ng" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/turf/open/floor/prison/darkpurple{
+	dir = 6
+	},
+/area/fiorina/tumor/servers)
+"Np" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/marked{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"Ot" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 8
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"Oy" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/prison/darkpurple{
+	dir = 5
+	},
+/area/fiorina/tumor/servers)
+"OG" = (
+/turf/closed/mineral/smooth/resin_hard,
+/area/fiorina/oob)
+"OH" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"QB" = (
+/obj/item/flashlight/lamp,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"QF" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/newspaper,
+/turf/open/floor/prison/plate,
+/area/fiorina/tumor/servers)
+"QG" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 5
+	},
+/area/fiorina/tumor/servers)
+"Rd" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/darkpurple{
+	dir = 8
+	},
+/area/fiorina/tumor/servers)
+"RW" = (
+/turf/open/floor/podhatch/floor,
+/area/fiorina/tumor/servers)
+"Ss" = (
+/turf/open/floor/prison/darkpurple{
+	dir = 10
+	},
+/area/fiorina/tumor/servers)
+"Tl" = (
+/obj/structure/computer3frame,
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"TI" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"Vc" = (
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = -15
+	},
+/turf/closed/wall/prison,
+/area/fiorina/tumor/servers)
+"VM" = (
+/obj/structure/cable,
+/turf/open/floor/podhatch/floor,
+/area/fiorina/tumor/servers)
+"VZ" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/drinks/cans/cola{
+	pixel_x = -10;
+	pixel_y = 17
+	},
+/obj/machinery/prop/computer/communications{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"Wu" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/prop/computer/communications{
+	dir = 8
+	},
+/turf/open/floor/prison/darkpurple{
+	dir = 6
+	},
+/area/fiorina/tumor/servers)
+"WV" = (
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/tumor/servers)
+"XD" = (
+/obj/structure/prop/mainship/gelida/barrier,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"Yj" = (
+/obj/structure/bed/chair/comfy,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"YX" = (
+/obj/structure/cable,
+/turf/open/floor/prison/darkpurple,
+/area/fiorina/tumor/servers)
+"Za" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/drinks/golden_cup{
+	pixel_y = 11
+	},
+/turf/open/floor/prison,
+/area/fiorina/tumor/servers)
+"Zj" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10;
+	pixel_y = 13
+	},
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/prison/darkpurple/full,
+/area/fiorina/tumor/servers)
+"Zn" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/prop/mainship/gelida/barrier,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/fiorina/tumor/servers)
+
+(1,1,1) = {"
+da
+yS
+yS
+yS
+Kd
+kU
+nZ
+kU
+Kd
+yS
+yS
+yS
+yS
+"}
+(2,1,1) = {"
+yS
+mN
+lm
+uD
+lm
+lm
+id
+lm
+Ep
+Ep
+Mn
+ur
+QF
+"}
+(3,1,1) = {"
+Vc
+HU
+Fp
+lm
+va
+Ft
+El
+xH
+uf
+Np
+lm
+tn
+pq
+"}
+(4,1,1) = {"
+yS
+Tl
+aP
+wj
+VZ
+MZ
+CV
+CV
+sF
+Jv
+lm
+tn
+tn
+"}
+(5,1,1) = {"
+yS
+lm
+fi
+Za
+zg
+RW
+RW
+VM
+RW
+WV
+lm
+WV
+Zn
+"}
+(6,1,1) = {"
+yS
+tg
+Yj
+dv
+RW
+RW
+RW
+VM
+RW
+Ss
+Fp
+CO
+CE
+"}
+(7,1,1) = {"
+kU
+lm
+DF
+dv
+RW
+RW
+RW
+VM
+RW
+fi
+Fp
+tH
+XD
+"}
+(8,1,1) = {"
+Kd
+lm
+uO
+na
+RW
+RW
+RW
+VM
+VM
+YX
+pT
+LS
+tN
+"}
+(9,1,1) = {"
+Kd
+jD
+lm
+Oy
+gB
+Wu
+Ot
+Ot
+np
+vl
+Fp
+hT
+XD
+"}
+(10,1,1) = {"
+Vc
+QB
+oS
+lm
+Rd
+TI
+OH
+zv
+ah
+sl
+OG
+QG
+Ng
+"}
+(11,1,1) = {"
+yS
+Zj
+tg
+lm
+lm
+DV
+lm
+uD
+OG
+OG
+OG
+OG
+OG
+"}
+(12,1,1) = {"
+da
+da
+Ep
+Ep
+Ep
+yS
+da
+OG
+OG
+OG
+OG
+OG
+OG
+"}

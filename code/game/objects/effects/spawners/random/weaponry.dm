@@ -107,7 +107,7 @@
 	loot = list(
 		/obj/item/weapon/sword/machete,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/weapon/baseballbat,
 		/obj/item/weapon/baseballbat/metal,
 		/obj/item/weapon/broken_bottle,
@@ -123,10 +123,10 @@
 	spawn_loot_chance = 5
 	spawn_random_offset = TRUE
 	loot = list(
-		/obj/item/tool/kitchen/knife/shiv = 80,
-		/obj/item/tool/kitchen/knife/shiv/plasma = 12,
-		/obj/item/tool/kitchen/knife/shiv/titanium = 5,
-		/obj/item/tool/kitchen/knife/shiv/plastitanium = 3,
+		/obj/item/weapon/shiv = 80,
+		/obj/item/weapon/shiv/plasma = 12,
+		/obj/item/weapon/shiv/titanium = 5,
+		/obj/item/weapon/shiv/plastitanium = 3,
 	)
 
 ///BALLISTIC WEAPON AMMO///

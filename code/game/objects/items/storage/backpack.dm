@@ -198,6 +198,11 @@
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 
+/obj/item/storage/backpack/satchel/pmc
+	name = "PMC chestrig"
+	desc = "A heavy-duty chestrig used by Nanotrasen PMC contractors."
+	icon_state = "pmc_chestrig"
+
 //ERT backpacks.
 /obj/item/storage/backpack/ert
 	name = "emergency response team backpack"
@@ -330,7 +335,7 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold some bulky equipment such as sentry guns and teleporter pads and the HSG-102."
 	icon_state = "marinepackt"
 	worn_icon_state = "marinepackt"
 	storage_type = /datum/storage/backpack/tech
@@ -739,90 +744,13 @@
 	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling."
 	icon_state = "engineerpack"
 	worn_icon_state = "engineerpack"
-	var/max_fuel = 260
 	storage_type = /datum/storage/backpack/satchel
+	///how much fuel we can hold
+	var/max_fuel = 260
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
-	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
-	reagents = R
-	R.my_atom = WEAKREF(src)
-	R.add_reagent(/datum/reagent/fuel, max_fuel)
-
-
-/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/T = I
-		if(T.welding)
-			to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
-			return
-		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
-			return ..()
-
-		reagents.trans_to(I, T.max_fuel)
-		to_chat(user, span_notice("Welder refilled!"))
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-
-	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(FT.default_ammo != /datum/ammo/flamethrower)
-			to_chat(user, span_warning("Not the right kind of fuel!"))
-			return ..()
-		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
-			return ..()
-
-		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = CALIBER_FUEL
-		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
-		FT.update_icon()
-
-	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
-		var/obj/item/weapon/twohanded/rocketsledge/RS = I
-		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.reagents.get_reagent_amount(/datum/reagent/fuel)))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [RS] with fuel."))
-		RS.update_icon()
-
-	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
-		var/obj/item/weapon/twohanded/chainsaw/saw = I
-		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [saw] with fuel."))
-		saw.update_icon()
-
-	else
-		return ..()
-
-/obj/item/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
-		return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
-		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, span_notice("You crack the cap off the top of the pack and fill it back up again from the tank."))
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, span_notice("The pack is already full!"))
-		return
-	..()
-
-/obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
-	. = ..()
-	. += "[reagents.total_volume] units of fuel left!"
+	AddComponent(/datum/component/fuel_storage, max_fuel)
 
 /obj/item/storage/backpack/marine/engineerpack/som
 	name = "\improper SOM technician welderpack"
@@ -849,6 +777,11 @@
 	icon_state = "marinepack"
 	storage_type = /datum/storage/backpack/captain
 
+/obj/item/storage/backpack/lightpack/pmc
+	name = "PMC bag"
+	desc = "A heavy-duty bag used by Nanotrasen PMC contractors."
+	icon_state = "pmc_bag"
+
 /obj/item/storage/backpack/lightpack/som
 	name = "mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies."
@@ -869,3 +802,14 @@
 	name = "\improper Crasher branded combat backpack"
 	desc = "A backpack design from 21st century still proves to be a good design in the 25th century."
 	icon_state = "vsd_bag0"
+
+/obj/item/storage/backpack/lightpack/freelancer
+	name = "\improper Freelancer lightweight combat pack"
+	desc = "A small lightweight pack for expeditions and short-range operations. This one was made by MAGNUM mercenaries."
+	icon_state = "freelancer_satchel"
+
+/obj/item/storage/backpack/marine/corpsman/freelancer
+	name = "\improper Freelancer corpsman pack"
+	desc = "The backpack worn by MAGNUM corpsmen. It is significantly lighter than its Terran counterpart. You can recharge defibrillators by plugging them in."
+	icon_state = "freelancer_packm"
+	storage_type = /datum/storage/backpack/no_delay

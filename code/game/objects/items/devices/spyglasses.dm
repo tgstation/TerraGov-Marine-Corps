@@ -13,9 +13,7 @@
 	if("spypopup_map" in user.client.screen_maps) //alright, the popup this object uses is already IN use, so the window is open. no point in doing any other work here, so we're good.
 		return
 	user.client.setup_popup("spypopup", 3, 3, 2)
-	user.client.register_map_obj(linked_bug.cam_screen)
-	for(var/plane in linked_bug.cam_plane_masters)
-		user.client.register_map_obj(plane)
+	linked_bug.cam_screen.display_to(user) // todo does not get removed
 	linked_bug.update_view()
 
 /obj/item/clothing/glasses/regular/spy/equipped(mob/user, slot)
@@ -48,8 +46,7 @@
 	desc = "an advanced peice of espionage equipment in the shape of a pocket protector. it has a built in 360 degree camera for all your nefarious needs. Microphone not included."
 
 	var/obj/item/clothing/glasses/regular/spy/linked_glasses
-	var/atom/movable/screen/map_view/cam_screen
-	var/list/cam_plane_masters
+	var/atom/movable/screen/map_view/camera/cam_screen
 	// Ranges higher than one can be used to see through walls.
 	var/cam_range = 1
 	var/datum/movement_detector/tracker
@@ -59,31 +56,13 @@
 	tracker = new /datum/movement_detector(src, CALLBACK(src, PROC_REF(update_view)))
 
 	cam_screen = new
-	cam_screen.name = "screen"
-	cam_screen.assigned_map = "spypopup_map"
-	cam_screen.del_on_map_removal = FALSE
-	cam_screen.set_position(1, 1)
-
-	// We need to add planesmasters to the popup, otherwise
-	// blending fucks up massively. Any planesmaster on the main screen does
-	// NOT apply to map popups. If there's ever a way to make planesmasters
-	// omnipresent, then this wouldn't be needed.
-	cam_plane_masters = list()
-	for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
-		var/atom/movable/screen/plane_master/instance = new plane()
-		instance.assigned_map = "spypopup_map"
-		if(instance.blend_mode_override)
-			instance.blend_mode = instance.blend_mode_override
-		instance.del_on_map_removal = FALSE
-		instance.screen_loc = "spypopup_map:CENTER"
-		cam_plane_masters += instance
+	cam_screen.generate_view("spypopup_map_[REF(src)]")
 
 /obj/item/spy_bug/Destroy()
 	if(linked_glasses)
 		linked_glasses.linked_bug = null
-	qdel(cam_screen)
-	QDEL_LIST(cam_plane_masters)
-	qdel(tracker)
+	QDEL_NULL(cam_screen)
+	QDEL_NULL(tracker)
 	return ..()
 
 /obj/item/spy_bug/proc/update_view()//this doesn't do anything too crazy, just updates the vis_contents of its screen obj

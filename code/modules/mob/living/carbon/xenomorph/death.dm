@@ -20,11 +20,6 @@
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 
-	if(GLOB.xeno_stat_multiplicator_buff == 1) //if autobalance is on, it won't equal 1, so xeno respawn timer is not set
-		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE) //minions and tier fours have no respawn timer
-				GLOB.key_to_time_of_xeno_death[key] = world.time
-
 	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 
@@ -47,24 +42,6 @@
 
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
-
-	switch (upgrade)
-		if(XENO_UPGRADE_NORMAL)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.normal_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.normal_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.normal_T4--
-		if(XENO_UPGRADE_PRIMO)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.primo_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.primo_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.primo_T4--
 
 	eject_victim()
 
@@ -100,6 +77,7 @@
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
+	new /obj/effect/temp_visual/gib_particles(get_turf(src), get_blood_color())
 
 /mob/living/carbon/xenomorph/dust_animation()
 	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

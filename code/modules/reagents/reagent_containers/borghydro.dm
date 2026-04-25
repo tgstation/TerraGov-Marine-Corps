@@ -47,8 +47,8 @@
 		to_chat(user, span_warning("The injector is empty."))
 		return
 
-	to_chat(user, span_notice(" You inject [M] with the injector."))
-	to_chat(M, span_notice(" [user] injects you with the injector."))
+	to_chat(user, span_notice("You inject [M] with the injector."))
+	to_chat(M, span_notice("[user] injects you with the injector."))
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 	reagents.reaction(M, INJECT)
@@ -57,14 +57,14 @@
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
 		// to_chat(user, span_notice("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
-		to_chat(user, span_notice(" [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining."))
+		to_chat(user, span_notice("[t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining."))
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user)
 	var/selection = tgui_input_list(user, "Please select a reagent:", "Reagent", reagent_ids)
 	if(!selection)
 		return
 	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
-	to_chat(user, span_notice(" Synthesizer is now producing '[R.name]'."))
+	to_chat(user, span_notice("Synthesizer is now producing '[R.name]'."))
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 

@@ -12,7 +12,7 @@
 	throw_range = 2
 	throw_speed = 1
 	layer = MOB_LAYER
-	attack_verb = list("bapped")
+	attack_verb = list("baps")
 	var/amount = 0 //Amount of items clipped to the paper
 	var/page = 1
 	var/screen = 0
@@ -103,15 +103,15 @@
 		switch(screen)
 			if(0)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(1)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(2)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=[text_ref(src)];remove=1'>Remove [(istype(page, /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
 				dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
 		if(istype(page, /obj/item/paper))
 			var/obj/item/paper/P = page
@@ -180,7 +180,7 @@
 
 /obj/item/paper_bundle/verb/rename()
 	set name = "Rename bundle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	var/n_name = stripped_input(usr, "What would you like to label the bundle?", "Bundle Labelling")
@@ -189,7 +189,7 @@
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	to_chat(usr, span_notice("You loosen the bundle."))

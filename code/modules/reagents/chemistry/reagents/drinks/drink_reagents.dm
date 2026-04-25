@@ -5,10 +5,6 @@
 	taste_description = "oranges"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice
 
-/datum/reagent/consumable/orangejuice/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(-0.3)
-	return ..()
-
 /datum/reagent/consumable/tomatojuice
 	name = "Tomato Juice"
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
@@ -16,20 +12,12 @@
 	taste_description = "tomatoes"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice
 
-/datum/reagent/consumable/tomatojuice/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 0.2)
-	return ..()
-
 /datum/reagent/consumable/limejuice
 	name = "Lime Juice"
 	description = "The sweet-sour juice of limes."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "unbearable sourness"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/limejuice
-
-/datum/reagent/consumable/limejuice/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(-0.2)
-	return ..()
 
 /datum/reagent/consumable/carrotjuice
 	name = "Carrot Juice"
@@ -116,14 +104,14 @@
 /datum/reagent/consumable/potato_juice
 	name = "Potato Juice"
 	description = "Juice of the potato. Bleh."
-	nutriment_factor = 2 * FOOD_METABOLISM
+	nutriment_factor = 1 * FOOD_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "irish sadness"
 
 /datum/reagent/consumable/pickle
 	name = "Pickle Juice"
 	description = "More accurately, this is the brine the pickle was floating in"
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "vinegar brine"
 
@@ -145,25 +133,11 @@
 	color = "#DFDFDF" // rgb: 223, 223, 223
 	taste_description = "milk"
 
-/// Simple healing proc to avoid copy paste
-/datum/reagent/consumable/proc/milk_heal(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
-		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
-
-/datum/reagent/consumable/milk/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
-
 /datum/reagent/consumable/soymilk
 	name = "Soy Milk"
 	description = "An opaque white liquid made from soybeans."
 	color = "#DFDFC7" // rgb: 223, 223, 199
 	taste_description = "soy milk"
-
-/datum/reagent/consumable/soymilk/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
 
 /datum/reagent/consumable/cream
 	name = "Cream"
@@ -171,10 +145,6 @@
 	color = "#DFD7AF" // rgb: 223, 215, 175
 	taste_description = "creamy milk"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/cream
-
-/datum/reagent/consumable/cream/on_mob_life(mob/living/L, metabolism)
-	milk_heal(L, metabolism)
-	return ..()
 
 /datum/reagent/consumable/coffee
 	name = "Coffee"
@@ -226,10 +196,6 @@
 	adj_sleepy = -1
 	adj_temp = 10
 
-/datum/reagent/consumable/tea/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(-0.2)
-	return ..()
-
 /datum/reagent/consumable/lemonade
 	name = "Lemonade"
 	description = "Sweet, tangy lemonade. Good for the soul."
@@ -242,7 +208,7 @@
 	name = "Arnold Palmer"
 	description = "Encourages the patient to go golfing."
 	color = "#FFB766"
-	nutriment_factor = 10
+	nutriment_factor = 5
 	taste_description = "bitter tea"
 
 /datum/reagent/consumable/hot_ice_coffee
@@ -288,7 +254,7 @@
 	name = "root beer"
 	description = "A delightfully bubbly root beer, filled with so much sugar that it can actually speed up the user's trigger finger."
 	color = "#181008" // rgb: 24, 16, 8
-	nutriment_factor = 10
+	nutriment_factor = 5
 	custom_metabolism = 2 * REAGENTS_METABOLISM
 	taste_description = "a monstrous sugar rush"
 		/// If we activated the effect
@@ -399,10 +365,6 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/coffee/soy_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
-
 /datum/reagent/consumable/coffee/cafe_latte
 	name = "Cafe Latte"
 	description = "A nice, strong and tasty beverage while you are reading."
@@ -411,25 +373,13 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/coffee/cafe_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2)
-	return ..()
-
 /datum/reagent/consumable/doctor_delight
 	name = "The Doctor's Delight"
-	description = "A gulp a day keeps the Medibot away! A mixture of juices that heals most damage types fairly quickly at the cost of hunger."
+	description = "A gulp a day keeps the Medibot away!... Or so the advertisements claim, anyway."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
-	nutriment_factor = - 1
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
-
-/datum/reagent/consumable/doctor_delight/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-0.5, 0)
-	L.adjustFireLoss(-0.5, 0)
-	L.adjustToxLoss(-0.5, 0)
-	L.adjustOxyLoss(-0.5, 0)
-	return ..()
 
 /datum/reagent/consumable/cinderella
 	name = "Cinderella"
@@ -441,63 +391,63 @@
 	name = "Cherry Shake"
 	description = "A cherry flavored milkshake."
 	color = "#FFB6C1"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "creamy tart cherry"
 
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
 	description = "An exotic milkshake."
 	color = "#00F1FF"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "creamy blue cherry"
 
 /datum/reagent/consumable/vanillashake
 	name = "Vanilla Shake"
 	description = "A vanilla flavored milkshake. The basics are still good."
 	color = "#E9D2B2"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet creamy vanilla"
 
 /datum/reagent/consumable/caramelshake
 	name = "Caramel Shake"
 	description = "A caramel flavored milkshake. Your teeth hurt looking at it."
 	color = "#E17C00"
-	nutriment_factor = 10
+	nutriment_factor = 5
 	taste_description = "sweet rich creamy caramel"
 
 /datum/reagent/consumable/choccyshake
 	name = "Chocolate Shake"
 	description = "A frosty chocolate milkshake."
 	color = "#541B00"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet creamy chocolate"
 
 /datum/reagent/consumable/strawberryshake
 	name = "Strawberry Shake"
 	description = "A strawberry milkshake."
 	color = "#ff7b7b"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "sweet strawberries and milk"
 
 /datum/reagent/consumable/bananashake
 	name = "Banana Shake"
 	description = "A banana milkshake. Stuff that clowns drink at their honkday parties."
 	color = "#f2d554"
-	nutriment_factor = 8
+	nutriment_factor = 4
 	taste_description = "thick banana"
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
 	description = "A mix of pumpkin juice and coffee."
 	color = "#F4A460"
-	nutriment_factor = 3
+	nutriment_factor = 1.5
 	taste_description = "creamy pumpkin"
 
 /datum/reagent/consumable/gibbfloats
 	name = "Gibb Floats"
 	description = "Ice cream on top of a Dr. Gibb glass."
 	color = "#B22222"
-	nutriment_factor = 3
+	nutriment_factor = 1.5
 	taste_description = "creamy cherry"
 
 /datum/reagent/consumable/pumpkinjuice
@@ -533,7 +483,7 @@
 /datum/reagent/consumable/hot_coco
 	name = "Hot Coco"
 	description = "Made with love! And coco beans."
-	nutriment_factor = 2
+	nutriment_factor = 1
 	color = "#403010" // rgb: 64, 48, 16
 	adj_temp = 15
 	taste_description = "creamy chocolate"
@@ -541,7 +491,7 @@
 /datum/reagent/consumable/italian_coco
 	name = "Italian Hot Chocolate"
 	description = "Made with love! You can just imagine a happy Nonna from the smell."
-	nutriment_factor = 8
+	nutriment_factor = 4
 	color = "#57372A"
 	taste_description = "thick creamy chocolate"
 

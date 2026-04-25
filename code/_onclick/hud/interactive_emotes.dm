@@ -19,7 +19,7 @@
 	if(LAZYLEN(target.queued_interactions))
 		for(var/atom/movable/screen/interaction/element AS in target.queued_interactions)
 			if(element.initiator == src)
-				balloon_alert(src, "Slow your roll!")
+				balloon_alert(src, "slow your roll!")
 				return
 
 	interaction = new interaction()
@@ -53,7 +53,7 @@
 	///The reference to the existing timer
 	var/timer_id
 
-/atom/movable/screen/interaction/Initialize(mob/user)
+/atom/movable/screen/interaction/Initialize(mapload)
 	. = ..()
 	desc += "\nLeft-click to accept interaction. Right-click or SHIFT + left-click to decline."
 

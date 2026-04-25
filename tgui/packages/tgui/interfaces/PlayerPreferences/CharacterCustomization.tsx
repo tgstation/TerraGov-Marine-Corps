@@ -1,6 +1,3 @@
-import { capitalize } from 'common/string';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   Flex,
   LabeledList,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend } from '../../backend';
 import {
   SelectFieldPreference,
   TextFieldPreference,
@@ -20,6 +20,8 @@ export const CharacterCustomization = (props) => {
   const { act, data } = useBackend<CharacterCustomizationData>();
   const {
     random_name,
+    gender,
+    physique,
     r_hair,
     g_hair,
     b_hair,
@@ -42,11 +44,13 @@ export const CharacterCustomization = (props) => {
     return '#' + convert(red) + convert(green) + convert(blue);
   };
   const genders = ['male', 'female', 'plural', 'neuter'];
+  const physiques = ['use_gender', 'male', 'female'];
   const genderToName = {
     male: 'Male',
     female: 'Female',
     neuter: 'Object',
     plural: 'Other',
+    use_gender: 'Use Gender',
   };
   return (
     <>
@@ -103,9 +107,22 @@ export const CharacterCustomization = (props) => {
                     inline
                     key={thisgender}
                     content={capitalize(genderToName[thisgender])}
-                    checked={data['gender'] === thisgender}
+                    checked={gender === thisgender}
                     onClick={() =>
                       act('toggle_gender', { newgender: thisgender })
+                    }
+                  />
+                ))}
+              </LabeledList.Item>
+              <LabeledList.Item label={'Physique'}>
+                {physiques.map((thisphysique) => (
+                  <Button.Checkbox
+                    inline
+                    key={thisphysique}
+                    content={capitalize(genderToName[thisphysique])}
+                    checked={physique === thisphysique}
+                    onClick={() =>
+                      act('toggle_physique', { newphysique: thisphysique })
                     }
                   />
                 ))}
