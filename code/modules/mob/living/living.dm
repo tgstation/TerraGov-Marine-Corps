@@ -485,6 +485,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
+	GLOB.ssd_living_mobs += src
 	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, flashwindow = TRUE)
 
 //used in datum/reagents/reaction() proc

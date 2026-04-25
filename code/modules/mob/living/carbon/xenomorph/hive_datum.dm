@@ -1317,8 +1317,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/larva/Corrupted/Initialize(mapload)
+/mob/living/carbon/xenomorph/larva/Corrupted/iff/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
 	offer_mob()
 
 /mob/living/carbon/xenomorph/praetorian/Corrupted
