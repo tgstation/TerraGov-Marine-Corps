@@ -95,8 +95,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship/dropship_one{
-	pixel_x = -6;
-	pixel_y = -16
+	dir = 1
 	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 4
@@ -234,9 +233,7 @@
 /turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	pixel_y = 32
-	},
+/obj/machinery/camera/autoname/mainship/dropship_one,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "ba" = (
@@ -362,8 +359,7 @@
 /area/shuttle/dropship/alamo)
 "bI" = (
 /obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
+	dir = 8
 	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
@@ -624,8 +620,7 @@
 /area/shuttle/dropship/alamo)
 "IA" = (
 /obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 4;
-	pixel_x = -16
+	dir = 4
 	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1

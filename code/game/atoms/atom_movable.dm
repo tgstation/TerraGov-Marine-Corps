@@ -723,7 +723,7 @@
 		return
 	if(!isturf(loc))
 		return
-	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
+	var/dir_to_proj = angle2dir_cardinal(Get_Angle(hit_atom, old_throw_source))
 	if(ISDIAGONALDIR(dir_to_proj))
 		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
 		for(var/direction in cardinals)
@@ -742,7 +742,7 @@
 	else if(new_angle > 360)
 		new_angle -= 360
 
-	step(src, angle_to_dir(new_angle))
+	step(src, angle2dir(new_angle))
 
 /atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
@@ -755,13 +755,13 @@
 	else if(gravity > 1)
 		range = ROUND_UP(range * (2 - gravity))
 
-	if(!targetted_throw)
-		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
-
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
 
 	var/turf/origin = get_turf(src)
+
+	if(!targetted_throw)
+		target = get_turf_at_angle_ranged(origin, Get_Angle(origin, target), range)
 
 	if(spin)
 		animation_spin(5, 1)
@@ -1337,8 +1337,6 @@
 	if(src == user || !isturf(loc))
 		return FALSE
 	if(anchored || throwing)
-		return FALSE
-	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
 		return FALSE
 	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE

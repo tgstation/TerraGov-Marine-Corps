@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - rscadd: "Change placement of surgery room's items in Pillar of Spring for MD's ease of access when doing surgery"
-  - balance: "allow MDs in Pillar of Spring to use more surgery items for less WASD movement; very tactical"

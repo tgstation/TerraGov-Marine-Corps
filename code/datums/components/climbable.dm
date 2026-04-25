@@ -46,55 +46,86 @@
 ///Handles climbing on click drag
 /datum/component/climbable/proc/on_mousedrop(datum/source, atom/dropping, mob/user, params)
 	SIGNAL_HANDLER
+	if(!isliving(dropping))
+		return
 	if(!isliving(user))
 		return
-	if(dropping != user) //todo: helping someone else climb something would actually be cool
-		return
+	var/helper
+	if(dropping != user)
+		var/mob/living/living_dropping = dropping
+		if(user.mob_size < living_dropping.mob_size)
+			return
+		helper = user
 	var/turf/click_turf = find_climb_turf(user, params)
 	if(!click_turf) //how did you do this?
 		return
 
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user, click_turf)
+	INVOKE_ASYNC(src, PROC_REF(do_climb), dropping, click_turf, helper)
 
 ///Performs the climb, if able
-/datum/component/climbable/proc/do_climb(mob/living/user, turf/destination_turf)
-	if(user.do_actions || !can_climb(user, destination_turf, climb_target))
+///helper is the one triggering the climb, if the climber is not doing it themselves
+/datum/component/climbable/proc/do_climb(mob/living/climber, turf/destination_turf, mob/living/helper)
+	if(climber.do_actions || helper?.do_actions || !can_climb(climber, destination_turf, helper))
 		return
 
-	user.visible_message(span_warning("[user] starts [climb_target.atom_flags & ON_BORDER ? "leaping over" : "climbing onto"] \the [am_parent]!"))
+	if(helper)
+		climber.visible_message(span_warning("[helper] starts helping [climber] [climb_target.atom_flags & ON_BORDER ? "climb over" : "climb onto"] \the [am_parent]!"))
+	else
+		climber.visible_message(span_warning("[climber] starts [climb_target.atom_flags & ON_BORDER ? "leaping over" : "climbing onto"] \the [am_parent]!"))
 
-	ADD_TRAIT(user, TRAIT_IS_CLIMBING, REF(climb_target))
-	if(!do_after(user, climb_delay, IGNORE_HELD_ITEM, am_parent, BUSY_ICON_GENERIC))
-		REMOVE_TRAIT(user, TRAIT_IS_CLIMBING, REF(climb_target))
+	ADD_TRAIT(climber, TRAIT_IS_CLIMBING, REF(climb_target))
+	if(helper)
+		var/climber_turf = get_turf(climber)
+		//help your buddies over faster than climbing yourself
+		if(!do_after(helper, climb_delay * 0.5, IGNORE_HELD_ITEM, am_parent, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(climber_can_climb), climber, climber_turf)))
+			REMOVE_TRAIT(climber, TRAIT_IS_CLIMBING, REF(climb_target))
+			return
+	else if(!do_after(climber, climb_delay, IGNORE_HELD_ITEM, am_parent, BUSY_ICON_GENERIC))
+		REMOVE_TRAIT(climber, TRAIT_IS_CLIMBING, REF(climb_target))
 		return
-	REMOVE_TRAIT(user, TRAIT_IS_CLIMBING, REF(climb_target))
-	if(!can_climb(user, destination_turf, climb_target))
-		return
-
-	for(var/buckled in user.buckled_mobs)
-		user.unbuckle_mob(buckled)
-
-	user.forceMove(destination_turf)
-	user.visible_message(span_warning("[user] [climb_target.atom_flags & ON_BORDER ? "leaps over" : "climbs onto"] \the [am_parent]!"))
-
-///Checks to see if a mob can climb onto, or over this object
-/datum/component/climbable/proc/can_climb(mob/living/user, turf/destination_turf)
-	if(!climb_target.can_interact(user)) //todo: out of current scope but can_interact is cursed for this usage as it checks dexterity
+	REMOVE_TRAIT(climber, TRAIT_IS_CLIMBING, REF(climb_target))
+	if(!can_climb(climber, destination_turf, helper))
 		return
 
-	var/turf/user_turf = get_turf(user)
-	if(!istype(destination_turf) || !istype(user_turf))
+	for(var/buckled in climber.buckled_mobs)
+		climber.unbuckle_mob(buckled)
+
+	climber.forceMove(destination_turf)
+
+	if(helper)
+		climber.visible_message(span_warning("[helper] helps [climber] [climb_target.atom_flags & ON_BORDER ? "over" : "onto"] \the [am_parent]!"))
+	else
+		climber.visible_message(span_warning("[climber] [climb_target.atom_flags & ON_BORDER ? "leaps over" : "climbs onto"] \the [am_parent]!"))
+
+///Checks if the climber has moved during the do_after
+/datum/component/climbable/proc/climber_can_climb(mob/living/climber, turf/climber_turf)
+	if(climber.loc != climber_turf)
+		return FALSE
+	if(climber.do_actions)
+		return FALSE
+	return TRUE
+
+///Checks to see if a mob can climb onto, or over this object, or can be helped onto it by someone else
+/datum/component/climbable/proc/can_climb(mob/living/climber, turf/destination_turf, mob/living/helper)
+	if(!helper)
+		helper = climber
+
+	if(!climb_target.can_interact(helper)) //todo: out of current scope but can_interact is cursed for this usage as it checks dexterity
+		return
+
+	var/turf/origin_turf = get_turf(helper)
+	if(!istype(destination_turf) || !istype(origin_turf))
 		return
 	if(destination_turf.density)
 		return
-	if(!user.Adjacent(destination_turf))
+	if(!helper.Adjacent(destination_turf))
 		return
 
 	if((climb_target.atom_flags & ON_BORDER))
 		//for border objects specifically we need to either be on its turf, or the turf in front of it, depending which way we're going
 		var/valid_climb_turf = (destination_turf == am_parent.loc) ? get_step(am_parent, am_parent.dir) : am_parent.loc
-		if(user.loc != valid_climb_turf)
-			to_chat(user, span_warning("You need to be up against [am_parent] to leap over."))
+		if(helper.loc != valid_climb_turf)
+			to_chat(helper, span_warning("You need to be up against [am_parent] to leap over."))
 			return
 
 	for(var/atom/movable/AM AS in destination_turf.contents)
@@ -106,17 +137,17 @@
 			var/obj/structure/structure = AM
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(AM.density && (!(AM.atom_flags & ON_BORDER) || AM.dir & get_dir(destination_turf, user)))
-			to_chat(user, span_warning("There's \a [AM.name] in the way."))
+		if(AM.density && (!(AM.atom_flags & ON_BORDER) || AM.dir & get_dir(destination_turf, climber)))
+			to_chat(helper, span_warning("There's \a [AM.name] in the way."))
 			return
 
-	for(var/atom/movable/AM AS in user_turf.contents)
+	for(var/atom/movable/AM AS in origin_turf.contents)
 		if(isstructure(AM))
 			var/obj/structure/structure = AM
 			if(structure.allow_pass_flags & PASS_WALKOVER)
 				continue
-		if(AM.density && (AM.atom_flags & ON_BORDER) && AM.dir & get_dir(user, destination_turf))
-			to_chat(user, span_warning("There's \a [AM.name] in the way."))
+		if(AM.density && (AM.atom_flags & ON_BORDER) && AM.dir & get_dir(climber, destination_turf))
+			to_chat(helper, span_warning("There's \a [AM.name] in the way."))
 			return
 
 	return destination_turf
