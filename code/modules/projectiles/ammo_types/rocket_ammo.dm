@@ -105,8 +105,8 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_TARGET_TURF
 	damage = 100
 	penetration = 200
-	max_range = 30
-	shell_speed = 0.75
+	max_range = 25
+	shell_speed = 1.5
 	accurate_range = 21
 	handful_amount = 1
 
@@ -124,7 +124,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 275
 	penetration = 75
-	shell_speed = 7
+	shell_speed = 4
 	accurate_range = 24
 	max_range = 35
 
