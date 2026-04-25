@@ -33,11 +33,11 @@
 
 	var/capture_point_target = 900
 	///TGMC's point count
-	var/TGMC_cap_points = 0
+	var/tgmc_cap_points = 0
 	///SOM's point count
-	var/SOM_cap_points = 0
+	var/som_cap_points = 0
 	///Xenos' point count
-	var/XENO_cap_points = 0
+	var/xeno_cap_points = 0
 	///Tower req value for owning faction per process()
 	var/tower_req_value = 5
 	///Tower xeno tactical point value for owning faction per process()
@@ -56,16 +56,15 @@
 	. = ..()
 	for(var/obj/structure/campaign_objective/capture_objective/sensor_tower/tower in GLOB.campaign_objectives)
 		if(tower.owning_faction == FACTION_TERRAGOV)
-			TGMC_cap_points += 1
+			tgmc_cap_points += 1
 			SSpoints.supply_points[FACTION_TERRAGOV] += tower_req_value
 		else if(tower.owning_faction == FACTION_SOM)
-			SOM_cap_points+= 1
+			som_cap_points+= 1
 			SSpoints.supply_points[FACTION_SOM] += tower_req_value
 		else if(tower.owning_faction == FACTION_XENO)
-			XENO_cap_points += 1
+			xeno_cap_points += 1
 			SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, tower_xeno_tactical_point_value)
 			SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, tower_xeno_strategic_point_value)
-	return ..()
 
 /datum/game_mode/hvh/combat_patrol/encounter/post_setup()
 	. = ..()
@@ -92,26 +91,38 @@
 
 /datum/game_mode/hvh/combat_patrol/encounter/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
-	items += "Terragov Marine Corps capture points: [TGMC_cap_points]/[capture_point_target]"
-	items += "Sons of Mars capture points: [SOM_cap_points]/[capture_point_target]"
-	items += "Xenomorph capture points: [XENO_cap_points]/[capture_point_target]"
+	items += "Terragov Marine Corps capture points: [tgmc_cap_points]/[capture_point_target]"
+	items += "Sons of Mars capture points: [som_cap_points]/[capture_point_target]"
+	items += "Xenomorph capture points: [xeno_cap_points]/[capture_point_target]"
 
 //End game checks
 /datum/game_mode/hvh/combat_patrol/encounter/check_finished()
 	if(round_finished)
 		return TRUE
 
-	if(TGMC_cap_points >= capture_point_target)
+	if(tgmc_cap_points >= capture_point_target)
+		if((som_cap_points >= capture_point_target) || (xeno_cap_points >= capture_point_target))
+			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
+			round_finished = MODE_COMBAT_PATROL_DRAW
+			return TRUE
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
 
-	if(SOM_cap_points >= capture_point_target)
+	if(som_cap_points >= capture_point_target)
+		if((tgmc_cap_points >= capture_point_target) || (xeno_cap_points >= capture_point_target))
+			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
+			round_finished = MODE_COMBAT_PATROL_DRAW
+			return TRUE
 		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
-	if(XENO_cap_points >= capture_point_target)
+	if(xeno_cap_points >= capture_point_target)
+		if((som_cap_points >= capture_point_target) || (tgmc_cap_points >= capture_point_target))
+			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
+			round_finished = MODE_COMBAT_PATROL_DRAW
+			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
