@@ -80,7 +80,7 @@
 	if(hive)
 		for(var/ga in hive.global_abilities)
 			var/datum/action/ability/global_ability = ga //WHY???
-			if((global_ability in xeno_caste.actions) && !global_ability.cooldown_duration)
+			if(((global_ability.parent_type) in xeno_caste.actions) && !global_ability.cooldown_duration)
 				continue
 			add_ability(global_ability)
 
