@@ -571,41 +571,36 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
 	return
 
-
 /**
- * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability.
+ * Checks for any non-anchored mob, throwing them towards the shrike/owner using the ability.
  * While causing shake to anything in range with effects applied to humans affected.
  */
 /datum/action/ability/activable/xeno/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
-	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
-		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist > MOVE_FORCE_STRONG)
+	for(var/mob/living/mob_victim AS in cheap_get_living_near(get_turf(owner), VORTEX_RANGE))
+		if(mob_victim.anchored || isxeno(mob_victim) || mob_victim.move_resist > MOVE_FORCE_STRONG)
 			continue
-		if(ishuman(movable_victim))
-			var/mob/living/carbon/human/H = movable_victim
-			if(H.stat == DEAD)
+		if(ishuman(mob_victim))
+			var/mob/living/carbon/human/human_victim = mob_victim
+			if(human_victim.stat == DEAD)
 				continue
-			H.apply_effects(paralyze = 0.1 SECONDS)
-			H.adjust_stagger(2 SECONDS)
-			shake_camera(H, 2, 1)
-		else if(isitem(movable_victim))
-			var/turf/targetturf = get_turf(owner)
-			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
-			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
-		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
+			human_victim.apply_effects(paralyze = 0.1 SECONDS)
+			human_victim.adjust_stagger(2 SECONDS)
+			shake_camera(human_victim, 2, 1)
+		mob_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
-/// Randomly throws movable atoms in the radius of the vortex abilites range, different each use.
+/// Randomly throws mobs in the radius of the vortex abilites range, different each use.
 /datum/action/ability/activable/xeno/psychic_vortex/proc/vortex_push()
-	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
-		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
+	for(var/mob/living/mob_victim AS in cheap_get_living_near(get_turf(owner), VORTEX_RANGE))
+		if(mob_victim.anchored || isxeno(mob_victim) || mob_victim.move_resist == INFINITY)
 			continue
-		if(ishuman(movable_victim))
-			var/mob/living/carbon/human/human_victim = movable_victim
+		if(ishuman(mob_victim))
+			var/mob/living/carbon/human/human_victim = mob_victim
 			if(human_victim.stat == DEAD)
 				continue
 		var/turf/targetturf = get_turf(owner)
 		targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
-		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		mob_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 
 
 #define PSYCHIC_CHOKE_DAMAGE_THRESHOLD 5
