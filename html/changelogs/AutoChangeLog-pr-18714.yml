@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "SH-15 slugs reduced to 20 AP from 30"
+  - balance: "SH-15 flechette increased to 20 AP from 15"
+  - balance: "Campaign: The standard SH-15 has a bayonet instead of a barrel charger"

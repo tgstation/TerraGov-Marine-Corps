@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - imageadd: "All large ammo/shotgun shell boxes have inhand and back slot sprites"
+  - code_imp: "Large ammo boxes and large shotgun shell boxes are now the same typepath. All must be deployed to be used"
+  - balance: "Loading magazines using large ammo boxes takes 0.5 seconds instead of 1.5 seconds"
+  - qol: "You can undeploy and pick up large ammo boxes by right clicking them, in addition to click dragging to yourself"

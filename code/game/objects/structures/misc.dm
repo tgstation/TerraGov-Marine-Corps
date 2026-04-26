@@ -248,7 +248,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/stairs/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_CATWALK] = layer
+	footstep_overrides[FOOTSTEP_CATWALK] = get_footstep_layer(layer, plane)
 
 //stand alone stairs
 /obj/structure/stairs/edge

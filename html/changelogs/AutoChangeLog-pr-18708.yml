@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Xenomorphs no longer permanently lose health from radiation (cloneloss / toxin / oxygen damage). It is converted to brute or burn."

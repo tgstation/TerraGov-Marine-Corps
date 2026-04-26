@@ -145,7 +145,7 @@
 
 ///overrides the turf's normal footstep sound
 /obj/alien/weeds/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_RESIN] = layer
+	footstep_overrides[FOOTSTEP_RESIN] = get_footstep_layer(layer, plane)
 
 /obj/alien/weeds/on_loc_entered(datum/source, atom/movable/crosser)
 	if(!isxeno(crosser))

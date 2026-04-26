@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Abduct windup now scales with range"
-  - balance: "Abduct CD increased to 18 seconds from 12"
-  - balance: "Abduct stagger reduced to 1 second from 3 seconds per human caught"
-  - bugfix: "Abduct can be properly cancelled by stuns and stagger"

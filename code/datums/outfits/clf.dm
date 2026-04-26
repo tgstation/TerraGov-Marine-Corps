@@ -251,7 +251,7 @@
 
 /datum/outfit/job/clf/specialist/clf_heavyrifle
 	suit_store = /obj/item/weapon/gun/clf_heavyrifle
-	back = /obj/item/shotgunbox/clf_heavyrifle
+	back = /obj/item/big_ammo_box/clf_heavyrifle
 	belt = /obj/item/storage/belt/utility/full
 
 	webbing_contents = list(

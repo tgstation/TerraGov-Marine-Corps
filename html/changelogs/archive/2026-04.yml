@@ -138,3 +138,23 @@
   Runian:
   - bugfix: Agility's button icon correctly changes when it is toggled.
   - bugfix: Carriers can no longer store harmless huggers.
+2026-04-24:
+  Lumipharon:
+  - balance: Abduct windup now scales with range
+  - balance: Abduct CD increased to 18 seconds from 12
+  - balance: Abduct stagger reduced to 1 second from 3 seconds per human caught
+  - bugfix: Abduct can be properly cancelled by stuns and stagger
+  - bugfix: fixed a silo runtime
+  - balance: Multitile vehicles are not slowed by sticky weeds/resin
+  - bugfix: fixed abduct not working if you clicked too far away
+  - bugfix: fixed tail lash going through walls
+  Runian:
+  - bugfix: Xenomorphs no longer permanently lose health from radiation (cloneloss
+      / toxin / oxygen damage). It is converted to brute or burn.
+  - rscadd: HMG-08 ammo from Zombie Crash vendor is now the normal variant (500 bullets).
+  ivanmixo:
+  - bugfix: Removing job positions now bottoms out at 0
+2026-04-25:
+  Runian:
+  - bugfix: Abduct's self-knockdown is no longer reclusive and thus does not self-knockdown
+      for a absurd amount of time.

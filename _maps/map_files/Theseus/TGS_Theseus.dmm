@@ -20228,7 +20228,7 @@
 "xcs" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/regular,
-/obj/item/shotgunbox/blank,
+/obj/item/big_ammo_box/shotgun/blank,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
