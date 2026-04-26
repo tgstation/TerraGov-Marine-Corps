@@ -128,7 +128,7 @@
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
 	blip_image = image('icons/effects/blips.dmi', src, "close_blip_[identifier]")
-	blip_image.layer = BELOW_FULLSCREEN_LAYER
+	SET_PLANE_EXPLICIT(blip_image, ABOVE_HUD_PLANE, src)
 	operator.client.images += blip_image
 
 /obj/effect/blip/close_blip/remove_blip(mob/operator)
