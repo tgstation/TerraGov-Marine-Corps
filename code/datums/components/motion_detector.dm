@@ -135,7 +135,9 @@
 	. = ..()
 	if(!user?.client)
 		return INITIALIZE_HINT_QDEL
-	blip_image = image('icons/effects/blips.dmi', get_turf(user), "close_blip_[identifier]", pixel_w = x_offset * 32, pixel_z = y_offset * 32)
+	blip_image = image('icons/effects/blips.dmi', get_turf(user), "close_blip_[identifier]")
+	blip_image.pixel_w = x_offset * 32
+	blip_image.pixel_z = y_offset * 32
 	SET_PLANE_EXPLICIT(blip_image, ABOVE_HUD_PLANE, src)
 	user.client.images += blip_image
 
