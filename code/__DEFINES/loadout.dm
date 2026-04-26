@@ -253,6 +253,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/MarineMed,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/medical,
 	),
 	VENDOR_FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
@@ -262,9 +263,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/MarineMed/valhalla,
 		/obj/machinery/vending/cigarette/valhalla,
 		/obj/machinery/vending/tool/nopower/valhalla,
-	),
-	SQUAD_CORPSMAN = list(
-		/obj/machinery/vending/medical/shipside,
+		/obj/machinery/vending/medical/valhalla,
 	),
 	VENDOR_FACTION_CRASH = list(
 		/obj/machinery/vending/weapon/crash,
@@ -274,6 +273,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/MarineMed,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
+		/obj/machinery/vending/medical,
 	)
 ))
 
