@@ -152,7 +152,6 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
-	isshared = TRUE
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	products = list(
 		"Pill Bottle" = list(
@@ -237,6 +236,7 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/medical/shipside
+	isshared = TRUE
 	wrenchable = FALSE
 
 /obj/machinery/vending/medical/valhalla
