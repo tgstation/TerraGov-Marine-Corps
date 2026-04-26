@@ -68,4 +68,4 @@
 
 /obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
 	. = ..()
-	deactivate(user)
+	deactivate(user) // Handheld motion detectors should be only active while it is in their hand.
