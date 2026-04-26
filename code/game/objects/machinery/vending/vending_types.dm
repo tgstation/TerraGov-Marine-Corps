@@ -237,7 +237,6 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/medical/shipside
-	isshared = TRUE
 	wrenchable = FALSE
 
 /obj/machinery/vending/medical/valhalla
