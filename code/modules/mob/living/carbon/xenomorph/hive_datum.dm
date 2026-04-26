@@ -1321,6 +1321,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	. = ..()
 	AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
 	offer_mob()
+	GLOB.ssd_living_mobs += src
 
 /mob/living/carbon/xenomorph/praetorian/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
