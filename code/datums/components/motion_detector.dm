@@ -10,7 +10,7 @@
 	/// How far do we check?
 	var/range = 16
 	/// List of all blip effects.
-	var/list/obj/effect/blips_list = list()
+	var/list/obj/effect/blip/blips_list = list()
 
 /datum/component/motion_detector/Initialize()
 	if(!ishuman(parent))
@@ -37,7 +37,8 @@
 
 /// Clears the human's screen of all blips.
 /datum/component/motion_detector/proc/clear_blips()
-	QDEL_LIST(blips_list)
+	for(var/obj/effect/blip/blip AS in blips_list)
+		blip.remove_blip(human_parent)
 	blips_list.Cut()
 
 /// Scans a certain range for the recently moved and creates a blip for each of them.
@@ -89,53 +90,59 @@
 		dir = (dir ? dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
 		screen_pos_x = viewX
 	if(dir)
-		blips_list += new /obj/effect/edge_blip(null, status, human_parent, screen_pos_x, screen_pos_y, dir)
+		blips_list += new /obj/effect/blip/edge_blip(null, status, human_parent, screen_pos_x, screen_pos_y, dir)
 		return
-	blips_list += new /obj/effect/blip(get_turf(target), status, human_parent)
+	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, human_parent, screen_pos_x - (round(viewX * 0.5) + 1), screen_pos_y - (round(viewY * 0.5) + 1))
 
 // ***************************************
 // *********** Blips
 // ***************************************
 
-/obj/effect/blip
-	plane = HIGH_GAME_PLANE
-	layer = FLASH_LAYER
-	icon = 'icons/blanks/572x480.dmi' // Widescreen support!
-	icon_state = "nothing"
-	appearance_flags = NONE // In sum, this makes the effect visible if you're on the same screen as the turf it was created on.
-	pixel_x = -274
-	pixel_y = -224
+/// Remove the blip from the user's screen.
+/obj/effect/blip/proc/remove_blip(mob/user)
+	return
 
-/obj/effect/blip/Initialize(mapload, identifier, mob/user)
-	. = ..()
-	var/image/blip_image = new('icons/effects/blips.dmi', src, "close_blip_[identifier]")
-	blip_image.pixel_x = 274
-	blip_image.pixel_y = 224
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, "motion_sensor_blip", blip_image, user) // Cursed, but it works!
-
-/obj/effect/blip/Destroy()
-	remove_alt_appearance("motion_sensor_blip")
-	return ..()
-
-/obj/effect/edge_blip
-	plane = HIGH_GAME_PLANE
-	layer = FLASH_LAYER
+/obj/effect/blip/edge_blip
 	icon = 'icons/effects/blips.dmi'
-	/// The mob who can only see this blip.
-	var/mob/seer
+	plane = ABOVE_HUD_PLANE
+	/// A friendly/hostile identifier.
+	var/identifier = MOTION_DETECTOR_HOSTILE
 
-/obj/effect/edge_blip/Initialize(mapload, identifier, mob/user, screen_pos_x, screen_pos_y, direction)
+/obj/effect/blip/edge_blip/Initialize(mapload, identifier, mob/user, screen_pos_x, screen_pos_y, direction = SOUTH)
 	. = ..()
 	if(!user?.client)
 		return INITIALIZE_HINT_QDEL
-	icon_state = "edge_blip_[identifier]"
 	screen_loc = "[screen_pos_x],[screen_pos_y]"
+	user.client.screen += src
+	src.identifier = identifier
 	setDir(direction)
 	update_icon()
-	seer = user
-	seer.client.screen += src
 
-/obj/effect/edge_blip/Destroy()
-	seer?.client?.screen -= src
-	seer = null
+/obj/effect/blip/edge_blip/remove_blip(mob/user)
+	user?.client?.screen -= src
+	qdel(src)
+
+/obj/effect/blip/edge_blip/update_icon_state()
+	. = ..()
+	icon_state = "edge_blip_[identifier]"
+
+/obj/effect/blip/close_blip
+	plane = ABOVE_HUD_PLANE
+	/// The image shown to the user.
+	var/image/blip_image
+
+/obj/effect/blip/close_blip/Initialize(mapload, identifier, mob/user, x_offset, y_offset)
+	. = ..()
+	if(!user?.client)
+		return INITIALIZE_HINT_QDEL
+	blip_image = image('icons/effects/blips.dmi', get_turf(user), "close_blip_[identifier]", pixel_w = x_offset * 32, pixel_z = y_offset * 32)
+	SET_PLANE_EXPLICIT(blip_image, ABOVE_HUD_PLANE, src)
+	user.client.images += blip_image
+
+/obj/effect/blip/close_blip/remove_blip(mob/user)
+	user?.client?.images -= blip_image
+	qdel(src)
+
+/obj/effect/blip/close_blip/Destroy()
+	blip_image = null
 	return ..()
