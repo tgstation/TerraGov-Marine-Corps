@@ -1201,6 +1201,7 @@
 #include "code\game\objects\machinery\portable_reagent_tank.dm"
 #include "code\game\objects\machinery\recharger.dm"
 #include "code\game\objects\machinery\rechargestation.dm"
+#include "code\game\objects\machinery\refuel_station.dm"
 #include "code\game\objects\machinery\research.dm"
 #include "code\game\objects\machinery\robot_fabricator.dm"
 #include "code\game\objects\machinery\robotic_cradle.dm"
