@@ -1051,7 +1051,13 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
 "bld" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blX" = (
@@ -1212,7 +1218,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/vending/nanomed,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
@@ -7211,7 +7216,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/firealarm,
+/obj/structure/reagent_dispensers/fueltank/cas_fuel,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "iUK" = (
@@ -7836,6 +7841,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "jUl" = (
@@ -13023,7 +13029,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/hydrant/extinguisher,
+/obj/machinery/refuel_station,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "pZE" = (
@@ -14985,13 +14991,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/crew_quarters/toilet)
 "sBh" = (
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/structure/rack,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "sBq" = (
@@ -15647,6 +15653,12 @@
 	dir = 1
 	},
 /area/space)
+"tvQ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "txW" = (
 /obj/docking_port/stationary/ert_big,
 /turf/open/space,
@@ -17533,6 +17545,19 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"vMc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/structure/rack,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "vMp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -51467,10 +51492,10 @@ llC
 gek
 ycD
 lXN
+vMc
 arI
 arI
-arI
-arI
+tvQ
 mpj
 gmQ
 dpY
@@ -51724,8 +51749,8 @@ dpY
 dpY
 dpY
 dpY
-sBh
-bld
+dpY
+dpY
 dpY
 dpY
 uKp
@@ -55057,7 +55082,7 @@ lET
 tyN
 rYr
 tyN
-urD
+sBh
 lXN
 skU
 fmN
@@ -55314,7 +55339,7 @@ paT
 tyN
 wJQ
 tyN
-urD
+bld
 dpY
 dpY
 dpY
