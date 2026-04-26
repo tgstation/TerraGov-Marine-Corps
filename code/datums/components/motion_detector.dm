@@ -1,7 +1,7 @@
 /datum/component/motion_detector
 	/// The typed human of parent.
 	var/mob/living/carbon/human/human_parent
-	/// The ID of the timer that checks if anything nearby moved recently.
+	/// The timer id of a callback proc that checks if anything nearby moved recently.
 	var/scan_timer
 	/// How long between scans?
 	var/scan_time = 2 SECONDS
@@ -9,8 +9,8 @@
 	var/move_sensitivity = 1 SECONDS
 	/// How far do we check?
 	var/range = 16
-	/// List of all blips.
-	var/list/obj/effect/blip/blips_list = list()
+	/// List of all blip effects.
+	var/list/obj/effect/blips_list = list()
 
 /datum/component/motion_detector/Initialize()
 	if(!ishuman(parent))
@@ -20,7 +20,7 @@
 	human_parent = parent
 	clear_blips()
 	deltimer(scan_timer)
-	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE)
+	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/component/motion_detector/UnregisterFromParent()
 	human_parent = null
@@ -28,10 +28,16 @@
 	deltimer(scan_timer)
 	scan_timer = null
 
+/datum/component/motion_detector/vv_edit_var(var_name, var_value)
+	if(NAMEOF(src, scan_time) == var_name)
+		deltimer(scan_timer)
+		scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), var_value, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+		return TRUE
+	return ..()
+
 /// Clears the human's screen of all blips.
 /datum/component/motion_detector/proc/clear_blips()
-	for(var/obj/effect/blip/blip AS in blips_list)
-		blip.remove_blip(human_parent)
+	QDEL_LIST(blips_list)
 	blips_list.Cut()
 
 /// Scans a certain range for the recently moved and creates a blip for each of them.
@@ -83,58 +89,53 @@
 		dir = (dir ? dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
 		screen_pos_x = viewX
 	if(dir)
-		blips_list += new /obj/effect/blip/edge_blip(null, status, human_parent, screen_pos_x, screen_pos_y, dir)
+		blips_list += new /obj/effect/edge_blip(null, status, human_parent, screen_pos_x, screen_pos_y, dir)
 		return
-	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, human_parent)
+	blips_list += new /obj/effect/blip(get_turf(target), status, human_parent)
 
 // ***************************************
 // *********** Blips
 // ***************************************
 
-/// Remove the blip from the operator screen.
-/obj/effect/blip/proc/remove_blip(mob/operator)
-	return
+/obj/effect/blip
+	plane = HIGH_GAME_PLANE
+	layer = FLASH_LAYER
+	icon = 'icons/blanks/572x480.dmi' // Widescreen support!
+	icon_state = "nothing"
+	appearance_flags = NONE // In sum, this makes the effect visible if you're on the same screen as the turf it was created on.
+	pixel_x = -274
+	pixel_y = -224
 
-/obj/effect/blip/edge_blip
-	icon = 'icons/effects/blips.dmi'
-	plane = ABOVE_HUD_PLANE
-	/// A friendly/hostile identifier.
-	var/identifier = MOTION_DETECTOR_HOSTILE
-
-/obj/effect/blip/edge_blip/Initialize(mapload, identifier, mob/operator, screen_pos_x, screen_pos_y, direction = SOUTH)
+/obj/effect/blip/Initialize(mapload, identifier, mob/user)
 	. = ..()
-	if(!operator?.client)
+	var/image/blip_image = new('icons/effects/blips.dmi', src, "close_blip_[identifier]")
+	blip_image.pixel_x = 274
+	blip_image.pixel_y = 224
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, "motion_sensor_blip", blip_image, user) // Cursed, but it works!
+
+/obj/effect/blip/Destroy()
+	remove_alt_appearance("motion_sensor_blip")
+	return ..()
+
+/obj/effect/edge_blip
+	plane = HIGH_GAME_PLANE
+	layer = FLASH_LAYER
+	icon = 'icons/effects/blips.dmi'
+	/// The mob who can only see this blip.
+	var/mob/seer
+
+/obj/effect/edge_blip/Initialize(mapload, identifier, mob/user, screen_pos_x, screen_pos_y, direction)
+	. = ..()
+	if(!user?.client)
 		return INITIALIZE_HINT_QDEL
+	icon_state = "edge_blip_[identifier]"
 	screen_loc = "[screen_pos_x],[screen_pos_y]"
-	operator.client.screen += src
-	src.identifier = identifier
 	setDir(direction)
 	update_icon()
+	seer = user
+	seer.client.screen += src
 
-/obj/effect/blip/edge_blip/remove_blip(mob/operator)
-	operator?.client?.screen -= src
-	qdel(src)
-
-/obj/effect/blip/edge_blip/update_icon_state()
-	. = ..()
-	icon_state = "edge_blip_[identifier]"
-
-/obj/effect/blip/close_blip
-	plane = ABOVE_HUD_PLANE
-	var/image/blip_image
-
-/obj/effect/blip/close_blip/Initialize(mapload, identifier, mob/operator)
-	. = ..()
-	if(!operator?.client)
-		return INITIALIZE_HINT_QDEL
-	blip_image = image('icons/effects/blips.dmi', src, "close_blip_[identifier]")
-	SET_PLANE_EXPLICIT(blip_image, ABOVE_HUD_PLANE, src)
-	operator.client.images += blip_image
-
-/obj/effect/blip/close_blip/remove_blip(mob/operator)
-	operator?.client?.images -= blip_image
-	qdel(src)
-
-/obj/effect/blip/close_blip/Destroy()
-	blip_image = null
+/obj/effect/edge_blip/Destroy()
+	seer?.client?.screen -= src
+	seer = null
 	return ..()
