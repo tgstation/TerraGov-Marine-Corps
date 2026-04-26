@@ -18,7 +18,6 @@
 	cas_tank = null
 	return ..()
 
-///Searches for an adjacent CAS fuel tank and links it as the fuel source
 /obj/machinery/refuel_station/proc/find_cas_tank()
 	if(cas_tank)
 		UnregisterSignal(cas_tank, COMSIG_QDELETING)
@@ -26,7 +25,6 @@
 	if(cas_tank)
 		RegisterSignal(cas_tank, COMSIG_QDELETING, PROC_REF(on_cas_tank_destroyed))
 
-///Called when the linked CAS fuel silo is destroyed; destroys this station as well
 /obj/machinery/refuel_station/proc/on_cas_tank_destroyed(datum/source)
 	qdel(src)
 
@@ -53,11 +51,6 @@
 		return
 	transfer_fuel(tank, user, draining = TRUE)
 
-/**
- * Moves fuel between the CAS silo and the provided portable tank.
- * draining = FALSE (default): silo -> tank (refuel)
- * draining = TRUE:            tank -> silo (drain)
- */
 /obj/machinery/refuel_station/proc/transfer_fuel(obj/structure/reagent_dispensers/fueltank/tank, mob/living/user, draining = FALSE)
 	if(!cas_tank || QDELETED(cas_tank))
 		find_cas_tank()
