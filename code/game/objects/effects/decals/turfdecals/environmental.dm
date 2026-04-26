@@ -90,7 +90,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/turf_decal/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_WET] = layer
+	footstep_overrides[FOOTSTEP_WET] = get_footstep_layer(layer, plane)
 
 /obj/effect/turf_decal/riverdecal/edge
 	icon_state = "riverdecal_edge"

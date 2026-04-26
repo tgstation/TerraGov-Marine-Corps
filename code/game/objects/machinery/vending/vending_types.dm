@@ -578,15 +578,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		user?.balloon_alert(user, "contents organized")
 		return
 
-	else if(istype(I, /obj/item/shotgunbox))
-		var/obj/item/shotgunbox/big_shotgun_box = I
+	else if(istype(I, /obj/item/big_ammo_box))
+		var/obj/item/big_ammo_box/big_ammo_box = I
 		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
 			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
-			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)
-				while(big_shotgun_box.current_rounds >= shotgun_shell_box.max_rounds)
+			if(big_ammo_box.ammo_type == shotgun_shell_box.default_ammo)
+				while(big_ammo_box.current_rounds >= shotgun_shell_box.max_rounds)
 					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
 						break
-					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
+					big_ammo_box.current_rounds -= shotgun_shell_box.max_rounds
 				user?.balloon_alert(user, "shells organized")
 				return
 
