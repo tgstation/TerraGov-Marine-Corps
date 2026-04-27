@@ -70,7 +70,7 @@
 
 /datum/game_mode/hvh/combat_patrol/get_fund_value(base_amount)
 	//yes wave timer is a measure of time, but this is to give them a fixed point gen over time that won't vary with differing wave duration
-	return (base_amount * 2) + (wave_timer_length * 0.05)
+	return (base_amount * 2) + (wave_timer_length * HVH_WAVE_REWARD_MULT)
 
 //End game checks
 /datum/game_mode/hvh/combat_patrol/check_finished()
