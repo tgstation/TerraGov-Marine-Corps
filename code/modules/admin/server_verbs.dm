@@ -279,7 +279,7 @@ ADMIN_VERB(set_reboot_time, R_SERVER, "Set Reboot Timer", "Set the restart timer
 		SSticker.delay_end = FALSE
 		SSticker.admin_delay_notice = null
 
-	var/reboot_time = tgui_input_number(user, "Reboot in how many seconds?", "Restart time", 0, 600, 300, 30 SECONDS)
+	var/reboot_time = tgui_input_number(user, "Reboot in how many seconds?", "Restart time", 300, 600, 0, 30 SECONDS)
 	if(!isnum(reboot_time))
 		return
 	SSticker.Reboot(delay = reboot_time SECONDS)
@@ -289,7 +289,10 @@ ADMIN_VERB(set_reboot_time, R_SERVER, "Set Reboot Timer", "Set the restart timer
 
 ADMIN_VERB(delay_end, R_SERVER, "Delay Round End", "Delay the round end", ADMIN_CATEGORY_SERVER)
 	if(SSticker.delay_end)
-		tgui_alert(user, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"", "Alert", list("Ok"))
+		SSticker.delay_end = FALSE
+		SSticker.admin_delay_notice = null
+		log_admin("[key_name(user)] removed the restart delay.")
+		message_admins("[key_name_admin(user)] removed the restart delay. Note: This does not automatically trigger a new restart timer!")
 		return
 
 	var/delay_reason = input(user, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text

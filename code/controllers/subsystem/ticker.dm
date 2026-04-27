@@ -488,7 +488,10 @@ SUBSYSTEM_DEF(ticker)
 	START_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/reboot_timer/process()
-	if(isnull(SSticker.reboot_timer))
-		maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ DELAYED</center>")
-	else
+	if(!isnull(SSticker.reboot_timer))
 		maptext = MAPTEXT_PIXELLARI("<center>Server rebooting in:\n\ [DisplayTimeText(timeleft(SSticker.reboot_timer), 1)]</center>")
+		return
+	if(SSticker.delay_end)
+		maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ DELAYED</center>")
+		return
+	maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ Cancelled</center>")
