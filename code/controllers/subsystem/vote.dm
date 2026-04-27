@@ -99,8 +99,12 @@ SUBSYSTEM_DEF(vote)
 				. += option
 
 /// Announce the votes tally to everyone
-/datum/controller/subsystem/vote/proc/announce_result()
-	var/list/winners = get_result()
+/datum/controller/subsystem/vote/proc/announce_result(forced_result)
+	var/list/winners
+	if(forced_result)
+		winners = list(forced_result)
+	else
+		winners = get_result()
 	var/text
 
 	if(!length(winners))
@@ -147,9 +151,7 @@ SUBSYSTEM_DEF(vote)
 
 /// Apply the result of the vote if it's possible
 /datum/controller/subsystem/vote/proc/result(default_result)
-	. = default_result
-	if(!.)
-		. = announce_result()
+	. = announce_result(default_result)
 	if(!.)
 		return
 	var/restart = FALSE
