@@ -1030,3 +1030,12 @@
 
 /// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
 #define COMSIG_HEALTH_SCAN_DATA "health_scan_data"
+
+///Gamemode vote finished
+#define COMSIG_GAMEMODE_VOTE_RESULT "gamemode_vote_result"
+///shipmap vote finished
+#define COMSIG_SHIPMAP_VOTE_RESULT "shipmap_vote_result"
+///groundmap vote finished
+#define COMSIG_GROUNDMAP_VOTE_RESULT "groundmap_vote_result"
+///vote cancelled
+#define COMSIG_VOTE_CANCELLED "vote_cancelled"

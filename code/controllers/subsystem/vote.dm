@@ -28,14 +28,14 @@ SUBSYSTEM_DEF(vote)
 	var/list/voting = list()
 	/// If a vote is currently taking place
 	var/vote_happening = FALSE
-	/// The timer id of the shipmap vote
-	var/shipmap_timer_id
 	/// Pop up this vote screen on everyone's screen?
 	var/forced_popup = FALSE
 	/// Shuffle vote choices separately for each client? (topvoting NPC mitigation)
 	var/shuffle_choices = FALSE
 	/// Shuffle vote choices per ckey cache
 	var/list/shuffle_cache = list()
+	///whether we need to auto run a groundmap vote after shipmap, due to a gamemode change
+	var/force_groundmap_vote = FALSE
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -83,11 +83,11 @@ SUBSYSTEM_DEF(vote)
 			if(!C || C.is_afk())
 				non_voters -= non_voter_ckey
 		if(length(non_voters) > 0)
-			if(mode == "restart")
+			if(mode == SSVOTE_RESTART)
 				choices["Continue Playing"] += length(non_voters)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
-			else if(mode == "gamemode")
+			else if(mode == SSVOTE_GAMEMODE)
 				if(GLOB.master_mode in choices)
 					choices[GLOB.master_mode] += length(non_voters)
 					if(choices[GLOB.master_mode] >= greatest_votes)
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(vote)
 	var/text
 
 	if(!length(winners))
-		if(mode != "shipmap" && mode != "groundmap")
+		if(mode != SSVOTE_SHIPMAP && mode != SSVOTE_GROUNDMAP)
 			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 			cleanup_vote(text)
 			return
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(vote)
 		if(!votes)
 			votes = 0
 		text += "\n<b>[choices[i]]:</b> [votes]"
-	if(mode != "custom")
+	if(mode != SSVOTE_CUSTOM)
 		if(length(winners) > 1)
 			text = "<hr><b>Vote Tied Between:</b>"
 			for(var/option in winners)
@@ -154,48 +154,38 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/restart = FALSE
 	switch(mode)
-		if("restart")
+		if(SSVOTE_RESTART)
 			if(. == "Restart Round")
 				restart = TRUE
-		if("gamemode")
+		if(SSVOTE_GAMEMODE)
 			SSticker.save_mode(.) //changes the next game mode
-			if(GLOB.master_mode == .)
-				return
+			SEND_SIGNAL(src, COMSIG_GAMEMODE_VOTE_RESULT, .)
+
+			//if the game is in preround, we can play the newly voted mode immediately
 			if(SSticker.current_state < GAME_STATE_PLAYING)
-				//if the game is in preround, we can play the newly voted mode immediately
 				GLOB.master_mode = .
 				return
-			if(SSticker.current_state == GAME_STATE_PLAYING)
-				//If round is ongoing, we keep playing the round - vote for restart manually
+
+			//If round is ongoing, we keep playing the round - vote for restart manually
+			if(!SSticker.IsPostgame())
 				return
-			var/ship_change_required
-			var/ground_change_required
-			var/datum/game_mode/new_gamemode = config.pick_mode(.)
-			GLOB.master_mode = . //changes the current gamemode
-			//we check the gamemode's whitelists and blacklists to see if a map change and restart is required
-			if(!(new_gamemode.whitelist_ship_maps && (SSmapping.configs[SHIP_MAP].map_name in new_gamemode.whitelist_ship_maps)) && !(new_gamemode.blacklist_ship_maps && !(SSmapping.configs[SHIP_MAP].map_name in new_gamemode.blacklist_ship_maps)))
-				ship_change_required = TRUE
-			if(!(new_gamemode.whitelist_ground_maps && (SSmapping.configs[GROUND_MAP].map_name in new_gamemode.whitelist_ground_maps)) && !(new_gamemode.blacklist_ground_maps && !(SSmapping.configs[GROUND_MAP].map_name in new_gamemode.blacklist_ground_maps)))
-				ground_change_required = TRUE
-			//we queue up the required votes and restarts
-			if(ship_change_required && ground_change_required)
-				addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE), 5 SECONDS)
-				addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), CONFIG_GET(number/vote_period) + 5 SECONDS)
-				SSticker.Reboot("Restarting server when valid ship and ground map selected", (CONFIG_GET(number/vote_period) * 2) + 15 SECONDS)
-				return
-			else if(ship_change_required)
-				addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE), 5 SECONDS)
-				SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
-			else if(ground_change_required)
-				addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE), 5 SECONDS)
-				SSticker.Reboot("Restarting server when valid ground map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+
+			addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_SHIPMAP, null, TRUE), VOTE_TIMER_DELAY)
+			force_groundmap_vote = TRUE
 			return
-		if("groundmap")
+		if(SSVOTE_GROUNDMAP)
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)
-		if("shipmap")
+			SEND_SIGNAL(src, COMSIG_GROUNDMAP_VOTE_RESULT, .)
+		if(SSVOTE_SHIPMAP)
+			SEND_SIGNAL(src, COMSIG_SHIPMAP_VOTE_RESULT, .)
 			var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
 			SSmapping.changemap(VM, SHIP_MAP)
+
+			if(force_groundmap_vote)
+				addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_GROUNDMAP, null, TRUE), VOTE_TIMER_DELAY)
+				force_groundmap_vote = FALSE
+			return
 	if(restart)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins)
@@ -208,8 +198,6 @@ SUBSYSTEM_DEF(vote)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
-
-
 
 /// Register the vote of one player
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
@@ -265,9 +253,9 @@ SUBSYSTEM_DEF(vote)
 
 		reset()
 		switch(vote_type)
-			if("restart")
+			if(SSVOTE_RESTART)
 				choices.Add("Restart Round", "Continue Playing")
-			if("gamemode")
+			if(SSVOTE_GAMEMODE)
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
@@ -278,7 +266,7 @@ SUBSYSTEM_DEF(vote)
 					if(players < mode.required_players)
 						continue
 					choices.Add(mode.config_tag)
-			if("groundmap")
+			if(SSVOTE_GROUNDMAP)
 				multiple_vote = TRUE
 				if(!lower_admin && SSmapping.groundmap_voted)
 					to_chat(usr, span_warning("The next ground map has already been selected."))
@@ -309,7 +297,7 @@ SUBSYSTEM_DEF(vote)
 					shuffle_choices = TRUE
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
-			if("shipmap")
+			if(SSVOTE_SHIPMAP)
 				multiple_vote = TRUE
 				if(!lower_admin && SSmapping.shipmap_voted)
 					to_chat(usr, span_warning("The next ship map has already been selected."))
@@ -338,7 +326,7 @@ SUBSYSTEM_DEF(vote)
 					shuffle_choices = TRUE
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
-			if("custom")
+			if(SSVOTE_CUSTOM)
 				question = stripped_input(usr, "What is the vote for?")
 				if(!question)
 					return FALSE
@@ -365,7 +353,7 @@ SUBSYSTEM_DEF(vote)
 		initiator = initiator_key
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
-		if(mode == "custom")
+		if(mode == SSVOTE_CUSTOM)
 			text += "<br><i>[question]</i>"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
@@ -389,13 +377,6 @@ SUBSYSTEM_DEF(vote)
 	set category = "OOC"
 	set name = "Vote"
 	SSvote.ui_interact(usr)
-
-///Starts the automatic map vote at the end of each round
-/datum/controller/subsystem/vote/proc/automatic_vote()
-	reset()
-	initiate_vote("gamemode", null, TRUE, TRUE)
-	shipmap_timer_id = addtimer(CALLBACK(src, PROC_REF(initiate_vote), "shipmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
-	addtimer(CALLBACK(src, PROC_REF(initiate_vote), "groundmap", null, TRUE, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -465,6 +446,8 @@ SUBSYSTEM_DEF(vote)
 			if(usr.client.holder)
 				usr.log_message("[key_name_admin(usr)] cancelled a vote.", LOG_ADMIN)
 				message_admins("[key_name_admin(usr)] has cancelled the current vote.")
+				SEND_SIGNAL(src, COMSIG_VOTE_CANCELLED)
+				force_groundmap_vote = FALSE
 				reset()
 		if("toggle_restart")
 			if(usr.client.holder && upper_admin)
@@ -480,19 +463,19 @@ SUBSYSTEM_DEF(vote)
 				CONFIG_SET(flag/allow_vote_shipmap, !CONFIG_GET(flag/allow_vote_shipmap))
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
-				initiate_vote("restart",usr.key)
+				initiate_vote(SSVOTE_RESTART,usr.key)
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
-				initiate_vote("gamemode",usr.key)
+				initiate_vote(SSVOTE_GAMEMODE,usr.key)
 		if("groundmap")
 			if(CONFIG_GET(flag/allow_vote_groundmap) || usr.client.holder)
-				initiate_vote("groundmap",usr.key)
+				initiate_vote(SSVOTE_GROUNDMAP,usr.key)
 		if("shipmap")
 			if(CONFIG_GET(flag/allow_vote_shipmap) || usr.client.holder)
-				initiate_vote("shipmap",usr.key)
+				initiate_vote(SSVOTE_SHIPMAP,usr.key)
 		if("custom")
 			if(usr.client.holder)
-				initiate_vote("custom",usr.key)
+				initiate_vote(SSVOTE_CUSTOM,usr.key)
 		if("vote")
 			submit_vote(round(text2num(params["index"])))
 	return TRUE

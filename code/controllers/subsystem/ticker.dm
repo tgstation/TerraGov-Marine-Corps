@@ -24,7 +24,10 @@ SUBSYSTEM_DEF(ticker)
 	var/round_end_sound_sent = TRUE
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
-	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
+	///A message to display to anyone who tries to restart the world after a delay
+	var/admin_delay_notice = ""
+	///all roundend preparation done with, all that's left is reboot
+	var/ready_for_reboot = FALSE
 
 	var/time_left							//Pre-game timer
 	var/start_at
@@ -44,6 +47,10 @@ SUBSYSTEM_DEF(ticker)
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
 	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
+	///The display of how much time is left before a reboot, given to all clients post-game.
+	var/atom/movable/screen/reboot_timer/reboot_hud
+	/// ID of round reboot timer, if it exists
+	var/reboot_timer = null
 
 /datum/controller/subsystem/ticker/Initialize()
 	load_mode()
@@ -121,14 +128,18 @@ SUBSYSTEM_DEF(ticker)
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
-				mode.declare_completion(force_ending)
+				declare_completion(force_ending)
 				world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
-				addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, automatic_vote)), 2 SECONDS)
-				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 				for(var/client/C AS in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts
 
+		if(GAME_STATE_FINISHED)
+			if(ready_for_reboot)
+				if(isnull(reboot_timer))
+					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ DELAYED</center>")
+				else
+					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>Server rebooting in:\n\ [DisplayTimeText(timeleft(SSticker.reboot_timer), 1)]</center>")
 
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, span_boldnotice("<b>Enjoy the game!</b>"))
@@ -215,6 +226,59 @@ SUBSYSTEM_DEF(ticker)
 	else
 		LAZYADD(round_end_events, cb)
 
+/datum/controller/subsystem/ticker/proc/declare_completion()
+	set waitfor = FALSE
+	mode.declare_completion(force_ending)
+
+	if(isnull(reboot_hud))
+		reboot_hud = new()
+	for(var/client/C in GLOB.clients)
+		C?.screen += reboot_hud
+
+	ready_for_reboot = TRUE
+	standard_reboot()
+
+/datum/controller/subsystem/ticker/proc/standard_reboot()
+	if(!ready_for_reboot)
+		CRASH("Attempted standard reboot without ticker roundend completion")
+
+	Reboot(delay = (CONFIG_GET(number/vote_period) * 3) + (VOTE_TIMER_DELAY) * 5) //all 3 votes
+	SSvote.reset()
+
+	RegisterSignal(SSvote, COMSIG_VOTE_CANCELLED, PROC_REF(on_vote_cancel))
+	RegisterSignal(SSvote, COMSIG_GAMEMODE_VOTE_RESULT, PROC_REF(after_gamemode_vote))
+
+
+	SSvote.initiate_vote( SSVOTE_GAMEMODE, null, TRUE, TRUE)
+
+/datum/controller/subsystem/ticker
+	var/auto_running
+
+///Updates reboot time after gamemode vote and relistens, in case of admin forced vote
+/datum/controller/subsystem/ticker/proc/after_gamemode_vote(datum/source, result)
+	SIGNAL_HANDLER
+	Reboot(delay = (CONFIG_GET(number/vote_period) * 2) + (VOTE_TIMER_DELAY) * 4) //ship and groundmap to go
+
+	//override as admin could cancel auto votes before forcing gamemode vote again
+	RegisterSignal(SSvote, COMSIG_SHIPMAP_VOTE_RESULT, PROC_REF(after_shipmap_vote), TRUE)
+	RegisterSignal(SSvote, COMSIG_GROUNDMAP_VOTE_RESULT, PROC_REF(after_groundmap_vote), TRUE)
+
+///Updates reboot time after shipmape vote
+/datum/controller/subsystem/ticker/proc/after_shipmap_vote(datum/source, result)
+	SIGNAL_HANDLER
+	UnregisterSignal(SSvote, COMSIG_SHIPMAP_VOTE_RESULT)
+	Reboot(delay = CONFIG_GET(number/vote_period) + (VOTE_TIMER_DELAY * 3)) //only groundmap to go
+
+///Updates reboot time after groundmap vote
+/datum/controller/subsystem/ticker/proc/after_groundmap_vote(datum/source, result)
+	SIGNAL_HANDLER
+	UnregisterSignal(SSvote, COMSIG_GROUNDMAP_VOTE_RESULT)
+	Reboot(delay = VOTE_TIMER_DELAY * 2)
+
+///stops listening for map votes, in case of admin intervention
+/datum/controller/subsystem/ticker/proc/on_vote_cancel(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(SSvote, list(COMSIG_SHIPMAP_VOTE_RESULT, COMSIG_GROUNDMAP_VOTE_RESULT))
 
 /datum/controller/subsystem/ticker/proc/station_explosion_detonation(atom/bomb)
 	if(bomb)	//BOOM
@@ -223,13 +287,17 @@ SUBSYSTEM_DEF(ticker)
 		if(epi)
 			explosion(epi, 0, 256, 512, 0, silent = TRUE, explosion_cause="station_explosion_detonation")
 
+///Whether the game has started, including roundend.
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
-
+///Whether the game is currently in progress, excluding roundend
 /datum/controller/subsystem/ticker/proc/IsRoundInProgress()
 	return current_state == GAME_STATE_PLAYING
 
+///Whether the game is currently in progress, excluding roundend
+/datum/controller/subsystem/ticker/proc/IsPostgame()
+	return current_state == GAME_STATE_FINISHED
 
 /datum/controller/subsystem/ticker/Recover()
 	current_state = SSticker.current_state
@@ -296,12 +364,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/Reboot(reason, delay)
 	set waitfor = FALSE
 
-	if(usr && !check_rights(R_SERVER))
-		return
-
-	if(graceful)
-		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
-		world.Reboot(FALSE)
+	if(usr && !check_rights(R_SERVER, TRUE))
 		return
 
 	if(!delay)
@@ -309,24 +372,36 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldnotice("An admin has delayed the round end."))
+		to_chat(world, span_boldannounce("An admin has delayed the round end."))
 		return
 
-	to_chat(world, span_boldnotice("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
+	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
+
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
-	sleep(delay - (world.time - start_wait))
+	if(!isnull(reboot_timer)) //Override existing reboot timers.
+		deltimer(reboot_timer)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason), delay, TIMER_STOPPABLE)
 
-	if(delay_end && !skip_delay)
-		to_chat(world, span_boldnotice("Reboot was cancelled by an admin."))
-		return
+/datum/controller/subsystem/ticker/proc/reboot_callback(reason)
+	log_game(span_boldannounce("Rebooting World. [reason]"))
+	world.Reboot()
 
-	log_game("Rebooting World. [reason]")
-	to_chat_immediate(world, "<h3>[span_boldnotice("Rebooting...")]</h3>")
-
-	world.Reboot(TRUE)
-
+/**
+ * Deletes the current reboot timer and nulls the var
+ *
+ * Arguments:
+ * * user - the user that cancelled the reboot, may be null
+ */
+/datum/controller/subsystem/ticker/proc/cancel_reboot(mob/user)
+	if(!reboot_timer)
+		to_chat(user, span_warning("There is no pending reboot!"))
+		return FALSE
+	to_chat(world, span_boldannounce("An admin has delayed the round end."))
+	deltimer(reboot_timer)
+	reboot_timer = null
+	return TRUE
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
@@ -396,3 +471,21 @@ SUBSYSTEM_DEF(ticker)
 		possible_themes += themes
 	if(length(possible_themes))
 		return "[global.config.directory]/reboot_themes/[pick(possible_themes)]"
+
+/atom/movable/screen/reboot_timer
+	screen_loc = "CENTER:-140,TOP:-42"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	maptext_width = 340
+	maptext_height = 64
+	maptext = ""
+	layer = SCREENTIP_LAYER //This is basically an extra screentip
+
+/atom/movable/screen/reboot_timer/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+
+/atom/movable/screen/reboot_timer/process()
+	if(isnull(SSticker.reboot_timer))
+		maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ DELAYED</center>")
+	else
+		maptext = MAPTEXT_PIXELLARI("<center>Server rebooting in:\n\ [DisplayTimeText(timeleft(SSticker.reboot_timer), 1)]</center>")

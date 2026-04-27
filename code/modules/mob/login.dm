@@ -68,3 +68,6 @@
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
 	client.init_verbs()
+
+	if(SSticker.IsPostgame())
+		client.screen += SSticker.reboot_hud
