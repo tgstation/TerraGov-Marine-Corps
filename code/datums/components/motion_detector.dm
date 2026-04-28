@@ -92,7 +92,7 @@
 	if(dir)
 		blips_list += new /obj/effect/blip/edge_blip(null, status, human_parent, screen_pos_x, screen_pos_y, dir)
 		return
-	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, human_parent, screen_pos_x - (round(viewX * 0.5) + 1), screen_pos_y - (round(viewY * 0.5) + 1))
+	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, human_parent, target.x - center_view.x, target.y - center_view.y)
 
 // ***************************************
 // *********** Blips
