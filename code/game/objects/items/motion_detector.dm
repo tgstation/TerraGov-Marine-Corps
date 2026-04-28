@@ -12,7 +12,6 @@
 	return ..()
 
 /obj/item/attachable/motiondetector/update_icon_state()
-	. = ..()
 	icon_state = initial(icon_state) + (!active ? "" : "_on")
 
 /obj/item/attachable/motiondetector/activate(mob/user, turn_off)
