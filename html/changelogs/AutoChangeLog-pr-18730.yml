@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Right-click attacks against xenomorphs with a connected vali weapon now correctly gives green blood."
