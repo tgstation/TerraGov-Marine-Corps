@@ -20,9 +20,9 @@
 /obj/item/attachable/motiondetector/update_icon_state()
 	icon_state = initial(icon_state) + (!active ? "" : "_on")
 
-/obj/item/attachable/motiondetector/activate(mob/user, turn_off)
+/obj/item/attachable/motiondetector/activate(mob/user, turn_off, forced = FALSE)
 	. = ..()
-	if(active || turn_off)
+	if(!forced && (active || turn_off))
 		deactivate(user)
 		return
 	motion_detector_component.set_detecting_mob(user)
@@ -36,9 +36,19 @@
 	active = FALSE
 	update_icon()
 
+/// Activates/deactivates the attachment based on where the attached item's new item slot.
+/obj/item/attachable/motiondetector/proc/equipped_attached_item(attached_item, mob/user, slot)
+	SIGNAL_HANDLER
+	if(ishandslot(slot))
+		activate(user, forced = TRUE) // Catches if it equipped from a handslot to an another handslot.
+		return
+	if(!active)
+		return
+	deactivate(user)
+
 /obj/item/attachable/motiondetector/on_attach(attaching_item, mob/user)
 	. = ..()
-	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, PROC_REF(deactivate))
+	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, PROC_REF(equipped_attached_item))
 	RegisterSignal(attaching_item, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(deactivate))
 
 /obj/item/attachable/motiondetector/on_detach(detaching_item, mob/user)
