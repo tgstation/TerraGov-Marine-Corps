@@ -48,7 +48,7 @@
 
 	var/hostile_detected = FALSE
 	var/our_iff_signal = NONE
-	var/obj/item/card/id/detecting_id =  detecting_mob.get_idcard(FALSE)
+	var/obj/item/card/id/detecting_id = detecting_mob.get_idcard(FALSE)
 	if(detecting_id)
 		our_iff_signal = detecting_id.iff_signal
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(detecting_mob, range))
@@ -56,12 +56,17 @@
 			continue
 		if(nearby_human.last_move_time + move_sensitivity < world.time)
 			continue
-		var/detector_status = nearby_human.wear_id?.iff_signal & our_iff_signal ? MOTION_DETECTOR_FRIENDLY : MOTION_DETECTOR_HOSTILE
-		create_blip(nearby_human, detector_status)
-		if(detector_status == MOTION_DETECTOR_HOSTILE)
-			hostile_detected = TRUE
+		var/obj/item/card/id/nearby_id = nearby_human.get_idcard(FALSE)
+		if(our_iff_signal && nearby_id && CHECK_BITFIELD(nearby_id.iff_signal, our_iff_signal))
+			create_blip(nearby_human, MOTION_DETECTOR_FRIENDLY)
+			continue
+		create_blip(nearby_human, MOTION_DETECTOR_HOSTILE)
+		hostile_detected = TRUE
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(detecting_mob, range))
 		if(nearby_xeno.last_move_time + move_sensitivity < world.time)
+			continue
+		if(our_iff_signal && CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), our_iff_signal))
+			create_blip(nearby_xeno, MOTION_DETECTOR_FRIENDLY)
 			continue
 		create_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 		hostile_detected = TRUE
