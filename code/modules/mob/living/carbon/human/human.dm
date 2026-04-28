@@ -255,21 +255,18 @@
 	if(!id_card) //If there is no id, check the other hand
 		id_card = get_inactive_held_item()
 
-	if(istype(id_card, /obj/item/storage/wallet))
-		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
-
 	if(istype(id_card) && hand_first)
 		return id_card
 
 	if(wear_id)
 		id_card = wear_id
-	else if(belt)
+	else if(belt && isidcard(belt))
 		id_card = belt
 
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
+		if(W.front_id)
+			id_card = W.front_id
 
 	return istype(id_card) ? id_card : null
 
