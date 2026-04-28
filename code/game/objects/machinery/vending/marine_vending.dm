@@ -1590,7 +1590,6 @@
 			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
-			/obj/item/armor_module/module/tactical_sensor = -1,
 			/obj/item/attachable/heatlens = -1,
 			/obj/item/storage/backpack/lightpack = -1,
 			/obj/item/clothing/suit/storage/marine/riot = -1,
