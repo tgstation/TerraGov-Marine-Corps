@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(silo)
 	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
 
 	var/active_humans = 0
-	var/list/human_list = GLOB.humans_by_zlevel["[current_z]"].Copy()
+	var/list/human_list = length(GLOB.humans_by_zlevel["[current_z]"]) ? GLOB.humans_by_zlevel["[current_z]"].Copy() : list()
 	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
 		if(tank.z != current_z)
 			continue

@@ -3277,7 +3277,7 @@
 	},
 /area/slumbridge/inside/zeta/north)
 "crp" = (
-/obj/item/shotgunbox,
+/obj/item/big_ammo_box/shotgun,
 /obj/structure/rack,
 /turf/open/floor/mainship/red{
 	dir = 5
@@ -15777,7 +15777,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/caves/southeastcaves)
 "lIV" = (
-/obj/item/shotgunbox/buckshot,
+/obj/item/big_ammo_box/shotgun/buckshot,
 /obj/structure/rack,
 /turf/open/floor/mainship/red{
 	dir = 10
@@ -23623,7 +23623,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/dorms)
 "rmZ" = (
-/obj/item/shotgunbox/buckshot,
+/obj/item/big_ammo_box/shotgun/buckshot,
 /obj/structure/rack,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/sombase/east)

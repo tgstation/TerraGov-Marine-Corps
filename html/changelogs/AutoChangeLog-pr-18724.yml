@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - code_imp: "Some status effect typepaths have been replaced with their define variant."

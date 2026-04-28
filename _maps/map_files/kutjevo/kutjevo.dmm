@@ -2498,7 +2498,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/colony_N_East)
 "cMv" = (
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/med/operating)
 "cMC" = (
 /obj/structure/platform_decoration/metalplatform_deco{
@@ -3072,7 +3072,7 @@
 /area/kutjevo/interior/colony_South/power2)
 "dpf" = (
 /obj/effect/ai_node,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "dph" = (
 /obj/effect/ai_node,
@@ -3661,7 +3661,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "dVl" = (
 /obj/item/stack/sheet/wood,
@@ -3696,7 +3696,7 @@
 /turf/open/floor/kutjevo/tan/multi_tiles,
 /area/kutjevo/interior/filtration)
 "dWB" = (
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/med/triage)
 "dXC" = (
 /obj/structure/stairs/seamless{
@@ -3945,7 +3945,7 @@
 /area/kutjevo/interior/oob/dev_room)
 "ekh" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/med/operating)
 "ekw" = (
 /obj/structure/table/mainship,
@@ -6919,7 +6919,7 @@
 	pixel_x = 8;
 	pixel_y = 9
 	},
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "hoK" = (
 /turf/closed/wall/kutjevo,
@@ -11780,7 +11780,7 @@
 /area/kutjevo/exterior/spring)
 "mAH" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/med/operating)
 "mAI" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -12710,7 +12710,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/med_rec)
 "nAo" = (
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "nAy" = (
 /turf/open/floor/kutjevo/colors/orange,
@@ -14095,7 +14095,7 @@
 /area/kutjevo/exterior/lz_river)
 "oUG" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/med/triage)
 "oUM" = (
 /obj/machinery/light,
@@ -14567,7 +14567,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/kutjevo/catwalk,
+/turf/open/floor/plating/plating_catwalk/kutjevo,
 /area/kutjevo/interior/complex/botany)
 "ppB" = (
 /turf/open/floor/kutjevo/colors/orange/edge{

@@ -2202,6 +2202,7 @@
 #include "code\modules\power\apc\apc_attack.dm"
 #include "code\modules\power\apc\apc_tool_act.dm"
 #include "code\modules\power\singularity\emitter.dm"
+#include "code\modules\projectiles\ammo_boxes.dm"
 #include "code\modules\projectiles\ammo_datums.dm"
 #include "code\modules\projectiles\ammunition.dm"
 #include "code\modules\projectiles\gun_helpers.dm"

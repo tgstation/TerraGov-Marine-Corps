@@ -14504,7 +14504,7 @@
 /obj/item/target/syndicate,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/obj/item/shotgunbox/blank,
+/obj/item/big_ammo_box/shotgun/blank,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
