@@ -172,7 +172,7 @@ SUBSYSTEM_DEF(vote)
 			if(!SSticker.IsPostgame())
 				return
 
-			addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_SHIPMAP, null, TRUE), VOTE_TIMER_DELAY)
+			addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_SHIPMAP, null, TRUE, TRUE), VOTE_TIMER_DELAY)
 			force_groundmap_vote = TRUE
 			return
 		if(SSVOTE_GROUNDMAP)
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(vote)
 			SSmapping.changemap(VM, SHIP_MAP)
 
 			if(force_groundmap_vote)
-				addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_GROUNDMAP, null, TRUE), VOTE_TIMER_DELAY)
+				addtimer(CALLBACK(src, PROC_REF(initiate_vote), SSVOTE_GROUNDMAP, null, TRUE, TRUE), VOTE_TIMER_DELAY)
 				force_groundmap_vote = FALSE
 			return
 	if(restart)
