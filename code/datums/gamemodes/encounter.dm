@@ -87,7 +87,7 @@
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
 		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 
-	respawn_wave()
+	respawn_wave(FALSE)
 
 /datum/game_mode/hvh/combat_patrol/encounter/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
@@ -127,7 +127,7 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 
-/datum/game_mode/hvh/combat_patrol/encounter/respawn_wave()
+/datum/game_mode/hvh/combat_patrol/encounter/respawn_wave(repeat = TRUE)
 	var/list/player_list = count_humans(SSmapping.levels_by_trait(ZTRAIT_GROUND), COUNT_IGNORE_ALIVE_SSD)
 	var/active_som = length(player_list[1])
 	var/active_tgmc = length(player_list[2])

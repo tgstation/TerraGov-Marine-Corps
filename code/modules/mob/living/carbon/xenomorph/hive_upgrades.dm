@@ -546,8 +546,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return ..()
 
 /datum/hive_upgrade/abilities/weed
-	name = "Unrestricted weeds"
-	desc = "All castes can weed"
+	name = "Unrestricted resting weeds"
+	desc = "All castes can plant resting weed"
 	psypoint_cost = 500
 	ability = /datum/action/ability/activable/xeno/plant_weeds/encounter
 	icon = "weeds"
@@ -555,7 +555,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/wall
 	name = "Unrestricted walls"
 	desc = "All castes can wall"
-	psypoint_cost = 1200
+	psypoint_cost = 500
 	ability = /datum/action/ability/activable/xeno/secrete_resin/encounter
 	icon = "wall"
 

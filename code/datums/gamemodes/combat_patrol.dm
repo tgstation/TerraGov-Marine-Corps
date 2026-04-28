@@ -155,9 +155,10 @@
 	max_time_reached = TRUE
 
 ///Allows all the dead to respawn together
-/datum/game_mode/hvh/combat_patrol/proc/respawn_wave()
-	var/datum/game_mode/hvh/combat_patrol/D = SSticker.mode
-	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/combat_patrol, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
+/datum/game_mode/hvh/combat_patrol/proc/respawn_wave(repeat = TRUE)
+	if(repeat)
+		var/datum/game_mode/hvh/combat_patrol/D = SSticker.mode
+		D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/hvh/combat_patrol, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
