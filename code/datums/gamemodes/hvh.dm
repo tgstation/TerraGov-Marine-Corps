@@ -271,8 +271,9 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	return TRUE
 
 ///Allows all the dead to respawn together
-/datum/game_mode/hvh/proc/respawn_wave()
-	wave_timer = addtimer(CALLBACK(src, PROC_REF(respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
+/datum/game_mode/hvh/proc/respawn_wave(repeat = TRUE)
+	if(repeat)
+		wave_timer = addtimer(CALLBACK(src, PROC_REF(respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	var/respawn_list = player_death_times.Copy()
 	player_death_times.Cut()
