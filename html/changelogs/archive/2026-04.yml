@@ -158,3 +158,23 @@
   Runian:
   - bugfix: Abduct's self-knockdown is no longer reclusive and thus does not self-knockdown
       for a absurd amount of time.
+2026-04-26:
+  Lumipharon:
+  - bugfix: fixed some footstep overrides applying in the wrong order
+  - balance: SH-15 slugs reduced to 20 AP from 30
+  - balance: SH-15 flechette increased to 20 AP from 15
+  - balance: 'Campaign: The standard SH-15 has a bayonet instead of a barrel charger'
+  - imageadd: All large ammo/shotgun shell boxes have inhand and back slot sprites
+  - code_imp: Large ammo boxes and large shotgun shell boxes are now the same typepath.
+      All must be deployed to be used
+  - balance: Loading magazines using large ammo boxes takes 0.5 seconds instead of
+      1.5 seconds
+  - qol: You can undeploy and pick up large ammo boxes by right clicking them, in
+      addition to click dragging to yourself
+  - bugfix: Fixed some Kutjevo tiles going black or having other visual issues
+  - bugfix: Ship catwalk tiles actually update as expected when the catwalk is removed
+  Runian:
+  - bugfix: Acid Dash cannot be activated if you are in a middle of a leap.
+  - spellcheck: Acid Dash's description correctly tells you that you're dashing through
+      people, not pouncing onto people.
+  - refactor: Refactors Acid Dash in general and adds support for multiple recasts.

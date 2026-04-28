@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Acid Dash cannot be activated if you are in a middle of a leap."
-  - spellcheck: "Acid Dash's description correctly tells you that you're dashing through people, not pouncing onto people."
-  - refactor: "Refactors Acid Dash in general and adds support for multiple recasts."
