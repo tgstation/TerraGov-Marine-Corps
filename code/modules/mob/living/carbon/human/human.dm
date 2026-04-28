@@ -252,7 +252,7 @@
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	var/obj/item/card/id/id_card = get_active_held_item()
-	if(!id_card) //If there is no id, check the other hand
+	if(!istype(id_card)) // If there is no id, check the other hand.
 		id_card = get_inactive_held_item()
 
 	if(istype(id_card) && hand_first)
