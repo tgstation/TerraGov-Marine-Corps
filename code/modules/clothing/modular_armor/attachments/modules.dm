@@ -533,20 +533,10 @@
 	icon_state = "mod_armorlock"
 	worn_icon_state = "mod_armorlock_a"
 	slowdown = 0.1
-	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATE_STUNNED
 	slot = ATTACHMENT_SLOT_MODULE
 	toggle_signal = COMSIG_KB_ARMORMODULE
 	COOLDOWN_DECLARE(armorlock_cooldown)
-	///This is the armor amounts we will be adding and removing when armor lock is activated
-	var/datum/armor/locked_armor_mod = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-
-/obj/item/armor_module/module/armorlock/Initialize(mapload)
-	. = ..()
-	locked_armor_mod = getArmor(arglist(locked_armor_mod))
-
-/obj/item/armor_module/module/armorlock/Destroy()
-	. = ..()
-	locked_armor_mod = null
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, armorlock_cooldown))

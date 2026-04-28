@@ -121,6 +121,10 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
+		new_action = new /datum/action/item_action/toggle/stun_proof(src)
+	else
+		new_action = new(src)
 	if(toggle_signal)
 		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
