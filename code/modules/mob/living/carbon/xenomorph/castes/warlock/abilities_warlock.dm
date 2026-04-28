@@ -173,23 +173,7 @@
 	if(!silent)
 		owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
 
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(active_shield.dir)
-		if(NORTH)
-			lower_left = locate(active_shield.x - 1, active_shield.y, active_shield.z)
-			upper_right = locate(active_shield.x + 1, active_shield.y + 1, active_shield.z)
-		if(SOUTH)
-			lower_left = locate(active_shield.x - 1, active_shield.y - 1, active_shield.z)
-			upper_right = locate(active_shield.x + 1, active_shield.y, active_shield.z)
-		if(WEST)
-			lower_left = locate(active_shield.x - 1, active_shield.y - 1, active_shield.z)
-			upper_right = locate(active_shield.x, active_shield.y + 1, active_shield.z)
-		if(EAST)
-			lower_left = locate(active_shield.x, active_shield.y - 1, active_shield.z)
-			upper_right = locate(active_shield.x + 1, active_shield.y + 1, active_shield.z)
-
-	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+	for(var/turf/affected_tile AS in get_forward_square(xeno_owner, 1, 2, FALSE, FALSE))
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))

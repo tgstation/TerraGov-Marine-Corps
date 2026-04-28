@@ -478,7 +478,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/fake
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/clf_heavyrifle
-	back = /obj/item/shotgunbox/clf_heavyrifle
+	back = /obj/item/big_ammo_box/clf_heavyrifle
 	l_pocket = /obj/item/storage/pouch/grenade
 
 	belt_contents = list(

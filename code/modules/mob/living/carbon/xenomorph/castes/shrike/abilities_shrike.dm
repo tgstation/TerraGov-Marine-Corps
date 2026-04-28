@@ -245,25 +245,10 @@
 		xeno_owner.face_atom(target)
 	starting_direction = xeno_owner.dir
 
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(starting_direction)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 3, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 3, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 3, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 3, xeno_owner.y + 1, xeno_owner.z)
-
 	var/list/things_to_throw = list()
 	var/list/atom/movable/projectile/things_to_deflect = list()
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
+
+	for(var/turf/affected_tile AS in get_forward_square(xeno_owner, 1, 3, FALSE, FALSE))
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(isfire(affected))

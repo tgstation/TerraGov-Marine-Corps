@@ -4892,8 +4892,6 @@
 "fTy" = (
 /obj/item/trash/cigbutt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "fTZ" = (
@@ -5102,6 +5100,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/structure/disposalpipe/segment,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -15869,6 +15868,7 @@
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/structure/disposalpipe/segment,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -16629,8 +16629,6 @@
 /area/mainship/engineering/engineering_workshop)
 "uCj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "uCk" = (

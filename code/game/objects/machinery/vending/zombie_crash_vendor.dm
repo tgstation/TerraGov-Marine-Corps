@@ -94,7 +94,7 @@
 		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 14, "emplacement-heavysmartgun"),
 		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-heavysmartgun"),
 		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 14, "emplacement-heavymachinegun"),
-		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-heavymachinegun"),
+		/obj/item/ammo_magazine/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-heavymachinegun"),
 		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 14, "emplacement-minigun"),
 		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-minigun"),
 		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 14, "emplacement-autocannon"),

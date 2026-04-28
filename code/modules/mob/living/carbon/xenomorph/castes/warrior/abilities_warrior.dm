@@ -84,6 +84,10 @@
 	. = ..()
 	desc = "Move on all fours and loosen our scales. Increases movement speed by [abs(speed_modifier)], but reduces all soft armor by [armor_modifier]. Automatically disabled after using an ability."
 
+/datum/action/ability/xeno_action/toggle_agility/update_button_icon()
+	action_icon_state = toggled ? "agility_off" : initial(action_icon_state)
+	return ..()
+
 /datum/action/ability/xeno_action/toggle_agility/action_activate()
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")

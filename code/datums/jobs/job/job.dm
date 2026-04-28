@@ -248,7 +248,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(total_positions == -1)
 		CRASH("remove_job_positions called with [amount] amount for a job set to overflow")
 	var/previous_amount = total_positions
-	total_positions -= amount
+	total_positions = max(total_positions - amount, 0)
 	manage_job_lists(previous_amount)
 	return TRUE
 

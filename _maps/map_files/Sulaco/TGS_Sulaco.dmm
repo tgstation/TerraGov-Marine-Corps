@@ -364,7 +364,6 @@
 	},
 /area/sulaco/medbay/west)
 "abF" = (
-/obj/structure/cable,
 /obj/machinery/door_control{
 	dir = 1;
 	id = "or2privacyshutter";
@@ -372,6 +371,9 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -398,7 +400,6 @@
 	},
 /area/sulaco/medbay/west)
 "abM" = (
-/obj/structure/cable,
 /obj/machinery/door_control{
 	dir = 1;
 	id = "or1privacyshutter";
@@ -406,6 +407,9 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -865,7 +869,6 @@
 	},
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/storage/box/gloves,
-/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
 "adG" = (
@@ -874,7 +877,6 @@
 	},
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/storage/box/gloves,
-/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "adH" = (
@@ -924,14 +926,12 @@
 /area/sulaco/medbay/surgery_two)
 "adL" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/operating,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
 /area/sulaco/medbay/surgery_two)
 "adM" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -965,8 +965,6 @@
 	},
 /area/sulaco/medbay/storage)
 "adQ" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -981,7 +979,7 @@
 /area/sulaco/medbay/storage)
 "adS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/operating,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -13369,11 +13367,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_main_hall)
 "gsg" = (
-/obj/structure/cable,
-/obj/machinery/iv_drip,
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/operating,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "gsz" = (
@@ -18495,6 +18490,10 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -20248,6 +20247,10 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -25620,11 +25623,8 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "vsT" = (
-/obj/structure/cable,
-/obj/machinery/iv_drip,
-/obj/machinery/power/apc/mainship{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/operating,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
 "vtv" = (
