@@ -1,5 +1,5 @@
 /datum/component/motion_detector
-	/// The mob that everything is based around.
+	/// The mob that everything is based around. If null, the component will do nothing.
 	var/mob/detecting_mob
 	/// The timer id of a callback proc that checks if anything nearby moved recently.
 	var/scan_timer
@@ -13,11 +13,11 @@
 	var/list/obj/effect/blip/blips_list = list()
 
 /datum/component/motion_detector/Initialize(mob/detecting_mob)
-	if(!istype(detecting_mob))
-		return COMPONENT_INCOMPATIBLE
 	src.detecting_mob = detecting_mob
 
 /datum/component/motion_detector/RegisterWithParent()
+	if(!detecting_mob)
+		return
 	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /datum/component/motion_detector/UnregisterFromParent()
@@ -29,9 +29,22 @@
 /datum/component/motion_detector/vv_edit_var(var_name, var_value)
 	if(NAMEOF(src, scan_time) == var_name)
 		deltimer(scan_timer)
-		scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), var_value, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+		if(detecting_mob)
+			scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), var_value, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
 		return TRUE
 	return ..()
+
+/// Sets and handles all changes to the detecting_mob variable.
+/datum/component/motion_detector/proc/set_detecting_mob(mob/new_detecting_mob)
+	if(detecting_mob == new_detecting_mob)
+		return
+	clear_blips()
+	detecting_mob = new_detecting_mob
+	deltimer(scan_timer)
+	if(!detecting_mob)
+		scan_timer = null
+		return
+	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Clears the human's screen of all blips.
 /datum/component/motion_detector/proc/clear_blips()
@@ -41,9 +54,8 @@
 
 /// Scans a certain range for the recently moved and creates a blip for each of them.
 /datum/component/motion_detector/proc/do_scan()
-	// If they are not around to enjoy the blips, component goes away.
+	// If they are not around to enjoy the blips, they get no blips.
 	if(!detecting_mob?.client || detecting_mob.stat != CONSCIOUS)
-		RemoveComponent()
 		return
 
 	var/hostile_detected = FALSE
