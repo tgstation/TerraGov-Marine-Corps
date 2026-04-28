@@ -48,7 +48,7 @@
 
 	var/hostile_detected = FALSE
 	var/our_iff_signal = NONE
-	var/obj/item/card/id/detecting_id =  detecting_mob.get_idcard()
+	var/obj/item/card/id/detecting_id =  detecting_mob.get_idcard(FALSE)
 	if(detecting_id)
 		our_iff_signal = detecting_id.iff_signal
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(detecting_mob, range))
