@@ -388,3 +388,37 @@
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+
+// WALL CLEAR
+
+/turf/open/floor/wallclear
+    name = "Wall Clear"
+    icon = 'icons/turf/floors.dmi'
+    icon_state = "transparent"
+
+/turf/open/floor/wallclear/proc/clear_wall()
+	// space check
+	for(var/dir in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/neighbor = get_step(src, dir)
+		if(!neighbor || istype(neighbor, /turf/open/space/basic))
+			ChangeTurf(/turf/open/space/basic)
+			return
+
+	var/floor_path = /turf/open/floor/plating  // fallback
+	var/search_range = 1
+
+	while(search_range <= 10)
+		for(var/turf/open/floor/T in range(search_range, src))
+			if(istype(T, /turf/open/floor/wallclear))
+				continue
+			if(istype(get_area(T), /area/shuttle))
+				continue
+			floor_path = T.type
+			break
+		if(floor_path != /turf/open/floor/plating)
+			break
+		search_range++
+
+	for(var/obj/O in src)
+		qdel(O)
+	ChangeTurf(floor_path)

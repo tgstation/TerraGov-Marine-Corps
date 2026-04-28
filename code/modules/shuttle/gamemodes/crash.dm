@@ -5,9 +5,9 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "crash_site"
 	dir = SOUTH
-	width = 23
+	width = 29
 	height = 31
-	dwidth = 11
+	dwidth = 14
 	dheight = 15
 	hidden = TRUE  //To make them not block landings during distress
 
@@ -49,6 +49,12 @@
 	if(. != DOCKING_SUCCESS)
 		return
 	SSminimaps.redraw_map(z)
+	// wall clear
+	if(!istype(new_dock, /obj/docking_port/stationary/crashmode))
+		return
+	for(var/turf/open/floor/wallclear/WC in world)
+		WC.clear_wall()
+		to_chat(world, "debug: wall clear complete")
 
 /obj/docking_port/stationary/crashmode/hangar
 	name = "Hangar Pad One"
@@ -66,7 +72,7 @@
 /obj/docking_port/mobile/crashmode/widebury
 	name = "TGS Widebury"
 	dir = SOUTH
-	width = 23
-	height = 21
-	dwidth = 11
-	dheight = 10
+	width = 29
+	height = 27
+	dwidth = 14
+	dheight = 13

@@ -323,10 +323,6 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"vp" = (
-/obj/effect/landmark/start/job/crash/synthetic,
-/turf/open/floor/mainship/red/full,
-/area/shuttle/canterbury)
 "vG" = (
 /obj/machinery/shower{
 	dir = 1
@@ -539,6 +535,10 @@
 /obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
+"GF" = (
+/obj/effect/landmark/start/job/crash/synthetic,
+/turf/open/floor/mainship/red/full,
+/area/shuttle/canterbury)
 "GV" = (
 /obj/machinery/sleeper{
 	dir = 1
@@ -742,6 +742,9 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury)
+"VM" = (
+/turf/open/floor/wallclear,
+/area/shuttle/canterbury)
 "VR" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -871,20 +874,116 @@ ia
 ia
 ia
 ia
-hj
-hj
-hj
-hj
-hj
-hj
-wF
-wF
-wF
-cg
-cg
-cg
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
 "}
 (2,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
+"}
+(3,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
+"}
+(4,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+hj
+hj
+hj
+hj
+hj
+hj
+wF
+wF
+wF
+cg
+cg
+cg
+ia
+ia
+ia
+"}
+(5,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -906,8 +1005,14 @@ AG
 dS
 cg
 lT
+ia
+ia
+ia
 "}
-(3,1,1) = {"
+(6,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -929,8 +1034,14 @@ BV
 yV
 cg
 lT
+ia
+ia
+ia
 "}
-(4,1,1) = {"
+(7,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -952,8 +1063,14 @@ BV
 Wz
 cg
 lT
+ia
+ia
+ia
 "}
-(5,1,1) = {"
+(8,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -975,8 +1092,14 @@ BV
 ES
 cg
 lT
+ia
+ia
+ia
 "}
-(6,1,1) = {"
+(9,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -998,8 +1121,14 @@ oN
 cg
 cg
 cg
+ia
+ia
+ia
 "}
-(7,1,1) = {"
+(10,1,1) = {"
+ia
+ia
+ia
 ia
 cg
 cg
@@ -1021,8 +1150,14 @@ cg
 cg
 ia
 ia
+ia
+ia
+ia
 "}
-(8,1,1) = {"
+(11,1,1) = {"
+VM
+VM
+VM
 cg
 cg
 Zk
@@ -1044,8 +1179,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(9,1,1) = {"
+(12,1,1) = {"
+VM
+VM
+VM
 cg
 Ao
 BV
@@ -1067,8 +1208,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(10,1,1) = {"
+(13,1,1) = {"
+VM
+VM
+VM
 cg
 cg
 oV
@@ -1090,8 +1237,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(11,1,1) = {"
+(14,1,1) = {"
+VM
+VM
+VM
 Uz
 AG
 BV
@@ -1113,8 +1266,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(12,1,1) = {"
+(15,1,1) = {"
+VM
+VM
+VM
 Uz
 AG
 xe
@@ -1136,8 +1295,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(13,1,1) = {"
+(16,1,1) = {"
+VM
+VM
+VM
 Uz
 AG
 BV
@@ -1159,8 +1324,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(14,1,1) = {"
+(17,1,1) = {"
+VM
+VM
+VM
 cg
 cg
 BV
@@ -1182,8 +1353,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(15,1,1) = {"
+(18,1,1) = {"
+VM
+VM
+VM
 cg
 ae
 BV
@@ -1205,8 +1382,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(16,1,1) = {"
+(19,1,1) = {"
+VM
+VM
+VM
 cg
 cg
 dO
@@ -1228,8 +1411,14 @@ cg
 ia
 ia
 ia
+ia
+ia
+ia
 "}
-(17,1,1) = {"
+(20,1,1) = {"
+ia
+ia
+ia
 ia
 cg
 cg
@@ -1251,8 +1440,14 @@ cg
 cg
 ia
 ia
+ia
+ia
+ia
 "}
-(18,1,1) = {"
+(21,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1274,8 +1469,14 @@ me
 cg
 cg
 cg
+ia
+ia
+ia
 "}
-(19,1,1) = {"
+(22,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1297,8 +1498,14 @@ BV
 ku
 cg
 lT
+ia
+ia
+ia
 "}
-(20,1,1) = {"
+(23,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1307,7 +1514,7 @@ ia
 Sa
 rL
 AX
-vp
+GF
 cg
 VX
 RV
@@ -1320,8 +1527,14 @@ BV
 Wz
 cg
 lT
+ia
+ia
+ia
 "}
-(21,1,1) = {"
+(24,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1343,8 +1556,14 @@ BV
 yV
 cg
 lT
+ia
+ia
+ia
 "}
-(22,1,1) = {"
+(25,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1366,8 +1585,14 @@ AG
 Kq
 cg
 lT
+ia
+ia
+ia
 "}
-(23,1,1) = {"
+(26,1,1) = {"
+ia
+ia
+ia
 ia
 ia
 ia
@@ -1389,4 +1614,94 @@ BN
 cg
 cg
 cg
+ia
+ia
+ia
+"}
+(27,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
+"}
+(28,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
+"}
+(29,1,1) = {"
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+VM
+ia
+ia
+ia
 "}
