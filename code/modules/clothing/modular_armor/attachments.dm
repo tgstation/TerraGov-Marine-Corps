@@ -69,6 +69,8 @@
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
 	update_appearance(UPDATE_ICON)
 
+	if(!(attach_features_flags & ATTACH_ACTIVATION))
+		return
 	var/datum/action/item_action/toggle/new_toggle
 	if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
 		new_toggle = new /datum/action/item_action/toggle/stun_proof(src)
