@@ -100,6 +100,8 @@
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
+	if(attach_features_flags & ATTACH_ACTIVATION)
+		handle_actions(null, user, null)
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	parent = null
 	icon_state = initial(icon_state)
