@@ -117,6 +117,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	. = ..()
 	faction = new_faction
 	GLOB.faction_stats_datums[faction] = src
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
+	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
+
+	if(!iscampaigngamemode(SSticker.mode))
+		return
 	for(var/asset in GLOB.campaign_default_assets[faction])
 		add_asset(asset)
 	for(var/asset in GLOB.campaign_default_purchasable_assets[faction])
@@ -125,9 +130,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED, PROC_REF(mission_start))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
-
-	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
+	RegisterSignal(SSdcs, COMSIG_GLOB_HVH_RESPAWN_WAVE, PROC_REF(on_respawn_wave)) //used in non-campaign modes
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
@@ -352,6 +355,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/force_update_static_data()
 	SIGNAL_HANDLER
 	update_static_data_for_all_viewers()
+
+///Updates accumulated_mission_reward when respawn waves occur, for non-campaign modes
+/datum/faction_stats/proc/on_respawn_wave(datum/game_mode/hvh/source)
+	SIGNAL_HANDLER
+	accumulated_mission_reward += source.wave_timer_length * HVH_WAVE_REWARD_MULT
 
 //UI stuff//
 /datum/faction_stats/ui_assets(mob/user)

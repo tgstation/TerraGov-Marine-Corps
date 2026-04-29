@@ -178,3 +178,16 @@
   - spellcheck: Acid Dash's description correctly tells you that you're dashing through
       people, not pouncing onto people.
   - refactor: Refactors Acid Dash in general and adds support for multiple recasts.
+2026-04-29:
+  Lumipharon:
+  - rscadd: All HvH modes now use campaign loadout and perk systems
+  Runian:
+  - bugfix: Right-click attacks against xenomorphs with a connected vali weapon now
+      correctly gives green blood.
+  - code_imp: Some status effect typepaths have been replaced with their define variant.
+  sylvia-from-fulp-station:
+  - rscadd: added surgery tab to medical vendor (the NanotrasenMed Plus)
+  - rscadd: individual surgery tools to medical vendor.
+  - rscdel: removed medical vendor access requirement.
+  - rscdel: removed scalpel from surgery pouches webbings and trays.
+  - qol: you can add items from the medical vendor to your loadout as any job.

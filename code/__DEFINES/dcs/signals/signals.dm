@@ -147,6 +147,9 @@
 ///Opens the combat patrol base req doors
 #define COMSIG_GLOB_HVH_REQ "!hvh_req_opened"
 
+///Sent when a respawn wave triggers
+#define COMSIG_GLOB_HVH_RESPAWN_WAVE "!hvh_respawn_wave"
+
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
