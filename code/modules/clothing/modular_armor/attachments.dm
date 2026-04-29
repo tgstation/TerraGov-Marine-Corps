@@ -122,7 +122,7 @@
 		actions = null
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/new_action = new(src)
+	var/datum/action/item_action/toggle/new_action
 	if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
 		new_action = new /datum/action/item_action/toggle/stun_proof(src)
 	else
