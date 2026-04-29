@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - qol: "Mutations can be accessed via the \"Mutate\" verb in the Alien tab."

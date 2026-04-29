@@ -1,8 +1,0 @@
-author: "sylvia-from-fulp-station"
-delete-after: True
-changes:
-  - rscadd: "added surgery tab to medical vendor (the NanotrasenMed Plus)"
-  - rscadd: "individual surgery tools to medical vendor."
-  - rscdel: "removed medical vendor access requirement."
-  - rscdel: "removed scalpel from surgery pouches webbings and trays."
-  - qol: "you can add items from the medical vendor to your loadout as any job."
