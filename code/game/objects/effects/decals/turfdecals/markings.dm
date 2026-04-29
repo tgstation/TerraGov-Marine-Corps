@@ -172,6 +172,12 @@
 /obj/effect/turf_decal/logo/logo_peripheral
 	icon_state = "logo_peripheral"
 
+/obj/effect/turf_decal/nt
+	icon_state = "nt_central"
+
+/obj/effect/turf_decal/nt/nt_peripheral
+	icon_state = "nt_peripheral"
+
 /obj/effect/turf_decal/woodsiding
 	icon_state = "wood_siding"
 

@@ -6467,7 +6467,8 @@
 /area/mainship/living/starboard_garden)
 "fkW" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship/ntlogo/nt2,
+/obj/effect/turf_decal/nt,
+/turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
 "fld" = (
 /obj/structure/window/reinforced{
@@ -17385,7 +17386,8 @@
 /area/mainship/medical/chemistry)
 "nVh" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/ntlogo,
+/obj/effect/turf_decal/nt/nt_peripheral,
+/turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
 "nVu" = (
 /obj/structure/disposalpipe/segment,
@@ -25154,7 +25156,10 @@
 "ush" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/ntlogo/nt3,
+/obj/effect/turf_decal/nt/nt_peripheral{
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
 "usI" = (
 /obj/structure/cable,
