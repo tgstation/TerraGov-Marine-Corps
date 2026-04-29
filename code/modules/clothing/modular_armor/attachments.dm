@@ -67,7 +67,15 @@
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer, attach_sound = 'sound/machines/click.ogg')
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+	var/datum/action/item_action/toggle/new_toggle
+	if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
+		new_toggle = new /datum/action/item_action/toggle/stun_proof(src)
+	else
+		new_toggle = new(src)
+	if(toggle_signal)
+		new_toggle.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 
 /obj/item/armor_module/item_action_slot_check(mob/user, slot)
 	return FALSE //these should never be usable on their own
@@ -118,22 +126,12 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
-		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
-		old_action?.remove_action(user)
-		return
+	var/datum/action/item_action/toggle/toggle_action = locate(/datum/action/item_action/toggle) in actions
 
-	LAZYADD(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/new_action = locate(/datum/action/item_action/toggle) in actions
-	if(!new_action)
-		if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
-			new_action = new /datum/action/item_action/toggle/stun_proof(src)
-		else
-			new_action = new(src)
-	if(toggle_signal)
-		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
-	new_action.give_action(user)
+	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
+		toggle_action?.remove_action(user)
+		return
+	toggle_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
 	action.set_toggle(activate(user))
