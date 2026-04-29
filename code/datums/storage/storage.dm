@@ -369,6 +369,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/proc/on_alt_right_click(datum/source, mob/user)
 	SIGNAL_HANDLER
+	//todo: Else where in this datum it just checks ishuman, but it should really just check for dextrous
+	if(isliving && !user.dextrous) //bad xeno.
+		return
 	if(parent.Adjacent(user))
 		open(user)
 
