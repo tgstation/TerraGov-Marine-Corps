@@ -69,6 +69,9 @@
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
 	update_icon()
 
+/obj/item/armor_module/item_action_slot_check(mob/user, slot)
+	return FALSE //these should never be usable on their own
+
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
 	return TRUE
@@ -119,14 +122,15 @@
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
-		actions = null
 		return
+
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
-	var/datum/action/item_action/toggle/new_action
-	if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
-		new_action = new /datum/action/item_action/toggle/stun_proof(src)
-	else
-		new_action = new(src)
+	var/datum/action/item_action/toggle/new_action = locate(/datum/action/item_action/toggle) in actions
+	if(!new_action)
+		if(attach_features_flags & ATTACH_ACTIVATE_STUNNED)
+			new_action = new /datum/action/item_action/toggle/stun_proof(src)
+		else
+			new_action = new(src)
 	if(toggle_signal)
 		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
