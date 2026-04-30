@@ -968,17 +968,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
-///signal sent from /atom/proc/max_stack_merging()
-/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
+///Returns the max amount that be put into a stack in src without exceeding the weight limit
+/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks, list/max_list)
+	SIGNAL_HANDLER
 	if(is_type_in_typecache(stacks, typecacheof(storage_type_limits)))
 		return FALSE //No need for limits if we can bypass it.
 	var/weight_diff = initial(stacks.w_class) - max_w_class
 	if(weight_diff <= 0)
 		return FALSE //Nor if the limit is not higher than what we have.
-	var/max_amt = round((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	var/max_amt = floor((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
 	if(max_amt <= 0 || max_amt > stacks.max_amount)
 		stack_trace("[parent.name] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
-	return max_amt
+	max_list += max_amt
 
 ///Called from signal in order to update the color of our storage, it's "fullness" basically
 /datum/storage/proc/recalculate_storage_space(datum/source)
