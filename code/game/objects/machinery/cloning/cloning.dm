@@ -38,14 +38,12 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	screen_overlay = "body_scannerconsole_emissive"
 	density = FALSE
 	idle_power_usage = 50
-	resistance_flags = RESIST_ALL // For now, we should work out how we want xenos to counter this
-	//light_range = 3
-	//light_power = 0.6
-	//light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	resistance_flags = RESIST_ALL
 	dir = EAST
-
+	///Linked cloner tube
 	var/obj/machinery/cloning/vats/linked_machine
-	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
+	///Linked radio
+	var/obj/item/radio/headset/mainship/mcom/radio
 
 /obj/machinery/computer/cloning_console/vats/Initialize(mapload)
 	. = ..()
