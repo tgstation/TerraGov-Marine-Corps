@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "FK-88 HE shells are unguided by default, and have higher shell speed. AP shells have lower shell speed and minimum range"
