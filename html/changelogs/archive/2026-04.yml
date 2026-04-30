@@ -191,3 +191,6 @@
   - rscdel: removed medical vendor access requirement.
   - rscdel: removed scalpel from surgery pouches webbings and trays.
   - qol: you can add items from the medical vendor to your loadout as any job.
+2026-04-30:
+  Runian:
+  - qol: Mutations can be accessed via the "Mutate" verb in the Alien tab.
