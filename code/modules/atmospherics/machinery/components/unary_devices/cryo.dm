@@ -12,7 +12,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
 	light_range = 3
-	light_power = 0.6
+	light_power = 2
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 
 	var/autoeject = FALSE
