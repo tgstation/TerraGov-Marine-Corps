@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Capsule barricade deconstruction doesn't yield as many materials"
