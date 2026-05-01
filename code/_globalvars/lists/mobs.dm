@@ -212,10 +212,7 @@ GLOBAL_LIST_INIT(human_init_actions, list(
 	/datum/action/skill/issue_order/move,
 	/datum/action/skill/issue_order/hold,
 	/datum/action/skill/issue_order/focus,
-	/datum/action/innate/order/attack_order/personal,
-	/datum/action/innate/order/defend_order/personal,
-	/datum/action/innate/order/retreat_order/personal,
-	/datum/action/innate/order/rally_order/personal,
+	/datum/action/innate/order/selectable,
 	/datum/action/innate/message_squad,
 	/datum/action/ability/activable/build_designator,
 ))
