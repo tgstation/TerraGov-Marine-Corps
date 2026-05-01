@@ -133,7 +133,7 @@
 /// We start fading out the human and qdel them in set time
 /datum/species/zombie/proc/fade_out_and_qdel_in(mob/living/carbon/human/H, time = 5 SECONDS)
 	GLOB.round_statistics.zombies_permad++
-	GLOB.possessed_sentient_zombie_list -= H
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, FALSE)
 	fade_out(H)
 	QDEL_IN(H, time)
 

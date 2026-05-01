@@ -48,6 +48,8 @@
 
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
+	RegisterSignal(SSdcs, COMSIG_CHECK_MOB_VALID_POSSESS_TARGET, PROC_REF(on_attempt_possess_mob))
+	RegisterSignal(SSdcs, COMSIG_MOB_GHOSTIZE, PROC_REF(on_mob_ghostize))
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
@@ -204,3 +206,17 @@
 				SEND_SOUND(hearer, human_track)
 			else
 				SEND_SOUND(hearer, ghost_track)
+
+///Determines whether a mob is allowed to be possessed for use limiting the amount of sentient zombies
+/datum/game_mode/infestation/crash/zombie/proc/on_attempt_possess_mob(mob/source)
+	SIGNAL_HANDLER
+	if(!iszombie(source))
+		return
+	if(length(GLOB.possessed_sentient_zombie_list) >= GLOB.maximum_allowed_possessed_zombies)
+		return MOB_INVALID_POSSESS_TARGET
+
+/datum/game_mode/infestation/crash/zombie/proc/on_mob_ghostize(datum/source, mob/living/carbon/human/player, override = FALSE)
+	SIGNAL_HANDLER
+	if(override)
+		return
+	GLOB.possessed_sentient_zombie_list -= source

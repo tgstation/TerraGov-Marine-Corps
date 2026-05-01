@@ -476,3 +476,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 ///Returns the slowdown applied to the mob when moving through liquids like water
 /mob/proc/get_liquid_slowdown()
 	return MOB_WATER_SLOWDOWN
+
+/mob/proc/can_take_mob()
+	if(client)
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_CHECK_MOB_VALID_POSSESS_TARGET) & MOB_INVALID_POSSESS_TARGET)
+		return FALSE
+		to_chat(owner, span_warning("There are too few marines. Possessing additional zombies is currently disabled."))
+	return TRUE
