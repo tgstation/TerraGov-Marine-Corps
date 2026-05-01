@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(order_to_message, list(
 			name = "Send Retreat Order"
 			action_icon_state = "retreat"
 			verb_name = "retreat from"
-			arrow_type = /atom/movable/screen/arrow/defend_order_arrow //missing from the normal one? doesn't exist it seems
+			arrow_type = /atom/movable/screen/arrow/retreat_order_arrow
 			visual_type = /obj/effect/temp_visual/order/retreat_order
 		if(RALLY_ORDER)
 			name = "Send Rally Order"
