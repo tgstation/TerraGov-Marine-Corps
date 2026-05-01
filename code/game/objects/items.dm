@@ -296,8 +296,6 @@
 	. = ..()
 	if(.)
 		return
-	if(!user)
-		return
 	if(!istype(user))
 		return
 	if(anchored)
@@ -311,8 +309,11 @@
 		if(!current_storage.remove_from_storage(src, user.loc, user))
 			return
 
-	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
-		return
+	if(ismob(loc)) //you shouldn't be able to click on items directly if they are on a mob, other than your own inventory.
+		if(loc != user) //stops a tremendous number of exploits and ghost dupes due to byond being shitty.
+			return
+		if(!user.temporarilyRemoveItemFromInventory(src))
+			return
 
 	if(QDELETED(src))
 		return

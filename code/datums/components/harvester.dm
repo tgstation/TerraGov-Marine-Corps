@@ -233,7 +233,7 @@
 		if(/datum/reagent/medicine/tricordrazine)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, attacker = user)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
-			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
+			target.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
 		update_selected_reagent(null)

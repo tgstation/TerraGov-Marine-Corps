@@ -1,0 +1,13 @@
+2026-05-01:
+  Lumipharon:
+  - bugfix: fixed exploits around taking items from other mobs and ghost dupes
+  - bugfix: fixed an exploit that let certain xenos and other mobs equip and use items
+      they shouldn't be able to
+  - bugfix: fixed the proxy sensor datum triggering when it shouldn't
+  - bugfix: fixed build designator holograms not fully displaying
+  - balance: FK-88 HE shells are unguided by default, and have higher shell speed.
+      AP shells have lower shell speed and minimum range
+  - bugfix: fixed an exploit with stacking attachment abilities
+  - bugfix: fixed a visual issue for south facing wallmount objects
+  ivanmixo:
+  - balance: Capsule barricade deconstruction doesn't yield as many materials
