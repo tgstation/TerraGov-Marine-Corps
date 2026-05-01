@@ -76,6 +76,10 @@
 	// If you're not a Behemoth, then you're unworthy of the rock. Begone, pleb.
 	if(!isxenobehemoth(xeno_attacker))
 		return
+	// Using grab intent on a rock will let us grab it.
+	if(xeno_attacker.a_intent == INTENT_GRAB)
+		when_grabbed(xeno_attacker)
+		return
 	// Repairs the rock if it's damaged.
 	if(xeno_attacker.a_intent == INTENT_HELP)
 		// If it's at full integrity, then we don't need to do this.
@@ -94,10 +98,6 @@
 				balloon_alert(xeno_attacker, "Fully repaired ([obj_integrity]/[max_integrity])")
 				return
 			balloon_alert(xeno_attacker, "+[repair_amount] ([obj_integrity]/[max_integrity])")
-	// Using grab intent on a rock will let us grab it.
-	if(xeno_attacker.a_intent == INTENT_GRAB)
-		when_grabbed(xeno_attacker)
-		return
 	// Otherwise, we just get a cute little fluff interaction of the Behemoth eating rock.
 	xeno_attacker.do_attack_animation(src)
 	do_jitter_animation(jitter_loops = 1)
@@ -694,6 +694,7 @@
 			var/razorwire_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 			hit_razorwire.take_damage(razorwire_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, get_dir(hit_razorwire, xeno_owner), xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+			xeno_stats.melee_damage += razorwire_damage
 			xeno_stats.landslide_damage += razorwire_damage
 			hit_razorwire.update_icon()
 			xeno_owner.forceMove(hit_razorwire.loc) // This automatically entangles us. Refer to razorwire's on_cross proc.
@@ -743,6 +744,7 @@
 					var/vehicle_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * (ismecha(target_vehicle) ? LANDSLIDE_DAMAGE_MECHA_MODIFIER : LANDSLIDE_DAMAGE_VEHICLE_MODIFIER)
 					target_vehicle.take_damage(vehicle_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, null, get_dir(target_vehicle, xeno_owner), xeno_owner.xeno_caste.melee_ap, xeno_owner)
 					var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+					xeno_stats.melee_damage += vehicle_damage
 					xeno_stats.landslide_damage += vehicle_damage
 					atoms_hit += target_vehicle
 					continue
@@ -765,6 +767,7 @@
 	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * LANDSLIDE_DAMAGE_LIVING_MULTIPLIER
 	hit_living.apply_damage(damage, xeno_owner.xeno_caste.melee_damage_type, ran_zone(), xeno_owner.xeno_caste.melee_damage_armor, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.melee_damage += damage
 	xeno_stats.landslide_damage += damage
 	atoms_hit += hit_living
 
@@ -973,405 +976,42 @@
 	succeed_activate()
 
 
-/** Handles anything that should happen when this ability hits a given atom.
-This ability can hit almost everything in the game, but we do have a list of exceptions and prohibitions.
-If these aren't denied outright, then they are handled differently somehow to ensure intended functionality.
-
-Depending on the return value:
-* Returning ..() will proceed with the rest of the effects.
-* Returning TRUE will just let us know that the ability can happen without the rest of the effects.
-* Returning FALSE means the ability couldn't happen, usually because our target shouldn't be affected.
-*/
+/// Handles anything that should happen when this ability hits a given atom.
+/// Outside of specific cases, this calls the Warrior's punch_act proc since it's already doing what we need.
 /atom/proc/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
-	return TRUE
-
-/// Does anything that should happen to an atom when it is hit by anything thrown by this ability.
-/atom/proc/geocrush_impact(atom/causer)
-	return TRUE
+	return punch_act(xeno_owner, damage, FALSE)
 
 // Movable targets will be pushed back if possible.
 /atom/movable/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	. = ..()
-	if(!anchored)
-		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(geocrush_thrown_into))
-		RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(geocrush_post_throw))
-		RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(geocrush_drag))
-		knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
+	knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
+	return ..()
 
-/// Does anything that should happen to an atom when it is thrown into something.
-/atom/movable/proc/geocrush_thrown_into(datum/source, atom/hit_atom, speed)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
-	var/turf/affected_turf = get_turf(hit_atom)
-	playsound(affected_turf, 'sound/effects/alien/behemoth/landslide_impact.ogg', 30, TRUE)
-	new /obj/effect/temp_visual/behemoth/landslide/impact(affected_turf, get_dir(affected_turf, source))
-	hit_atom.geocrush_impact(source)
-
-/// Cleans up after a throw.
-/atom/movable/proc/geocrush_post_throw(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
-
-/// Any atoms on top will be dragged along when this one is thrown by this ability.
-/atom/movable/proc/geocrush_drag(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	for(var/atom/movable/movable_atom AS in old_loc)
-		movable_atom.forceMove(loc)
-
+// For living targets, we just damage them and apply effects.
 /mob/living/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
-	. = ..()
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "scream")
 	apply_damage(damage, damage_type, ran_zone(), armor_type, FALSE, FALSE, TRUE, armor_penetration, xeno_owner)
 	apply_damage(damage * GEOCRUSH_STAMINA_DAMAGE_MODIFIER, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, armor_penetration, xeno_owner)
 	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
+	xeno_stats.melee_damage += damage
 	xeno_stats.geocrush_damage += damage
 	Knockdown(GEOCRUSH_KNOCKDOWN)
 	add_slowdown(GEOCRUSH_SLOWDOWN)
 	adjust_stagger(GEOCRUSH_STAGGER)
-
-/mob/living/geocrush_impact(atom/causer)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "scream")
-	Knockdown(GEOCRUSH_KNOCKDOWN)
-	add_slowdown(GEOCRUSH_SLOWDOWN)
-	adjust_stagger(GEOCRUSH_STAGGER)
-	knockback(causer, 1, 1)
-
-/obj/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
-	. = ..()
-	Shake(duration = 0.5 SECONDS)
-	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
-
-// Opens the panel, and cuts the wires.
-// We don't break it because that would be very unbalanced.
-/obj/machinery/geocrush_act(...)
-	if(!(machine_stat & PANEL_OPEN))
-		machine_stat |= PANEL_OPEN
-	if(wires)
-		var/allcut = wires.is_all_cut()
-		if(!allcut)
-			wires.cut_all()
-	update_appearance()
-	return ..()
-
-// Stuff like atmospherics pipes, as well as vents and scrubbers.
-// These are more useful to us whole, rather than destroyed, so we prohibit them.
-/obj/machinery/atmospherics/geocrush_act(...)
-	return FALSE
-
-/obj/machinery/camera/geocrush_act(...)
-	deconstruct(FALSE)
+	knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
 	return TRUE
-
-// Map tables get broken.
-/obj/machinery/cic_maptable/geocrush_act(...)
-	if(!(machine_stat & BROKEN))
-		machine_stat |= BROKEN
-	return ..()
-
-/obj/machinery/computer/geocrush_act(...)
-	set_disabled()
-	return ..()
-
-/obj/machinery/conveyor/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// This will toggle the relevant doors as if we had pressed the button.
-/obj/machinery/door_control/geocrush_act(...)
-	button_pressed()
-	return ..()
-
-/obj/machinery/door/window/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	deconstruct(FALSE, xeno_owner)
-	return TRUE
-
-// These ones are unanchored, so we can push them back.
-/obj/machinery/factory/geocrush_act(...)
-	anchored = FALSE
-	return ..()
-
-/obj/machinery/faxmachine/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// This can be knocked back, even if it is anchored.
-/obj/machinery/faxmachine/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-// Nobody cares about these. They're basically props.
-/obj/machinery/gear/geocrush_act(...)
-	return FALSE
-
-/obj/machinery/griddle/geocrush_act(...)
-	anchored = FALSE
-	return ..()
-
-/obj/machinery/griddle/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-/obj/machinery/grill/geocrush_act(...)
-	anchored = FALSE
-	return ..()
-
-/obj/machinery/grill/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-/obj/machinery/holopad/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/machinery/iv_drip/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/machinery/keycard_auth/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// If there is a light set, then we'll break that first.
-// Otherwise, we assume it's just the fixture, and destroy it.
-/obj/machinery/light/geocrush_act(...)
-	if(!status)
-		broken()
-		return ..()
-	qdel(src)
-	return TRUE
-
-// This is also atmospherics stuff. We don't care about it.
-/obj/machinery/meter/geocrush_act(...)
-	return FALSE
-
-/obj/machinery/photocopier/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// Even more atmospherics stuff that we don't care about.
-/obj/machinery/portable_atmospherics/geocrush_act(...)
-	return FALSE
-
-// APCs are immediately broken.
-/obj/machinery/power/apc/geocrush_act(...)
-	beenhit += 4
-	update_appearance()
-	return ..()
-
-// We don't hit these for the same reasons we don't hit generators.
-/obj/machinery/power/fusion_engine/geocrush_act(...)
-	return FALSE
-
-// Sleepers get broken.
-/obj/machinery/sleeper/geocrush_act(...)
-	if(!(machine_stat & BROKEN))
-		machine_stat |= BROKEN
-	return ..()
-
-/obj/machinery/smartfridge/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/machinery/status_display/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/machinery/unboxer/geocrush_act(...)
-	anchored = FALSE
-	return ..()
-
-/obj/machinery/unboxer/geocrush_impact(atom/causer)
-	knockback(causer, 1, 1)
-
-// Vending machines will break when hit.
-/obj/machinery/vending/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	if(!(machine_stat & BROKEN))
-		malfunction()
-	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
-	return ..()
-
-// If anything makes impact against a vending machine, it'll be tipped over.
-/obj/machinery/vending/geocrush_impact(...)
-	. = ..()
-	if(tipped_level < 2)
-		tip_over()
-
-// Vending machines are also tipped over after being hit.
-// We do it at the end to ensure it can hit stuff beforehand.
-/obj/machinery/vending/geocrush_post_throw(...)
-	if(tipped_level < 2)
-		tip_over()
-	return ..()
-
-// Special exception for this one, since it's a wall mounted object.
-// We don't knock this one around, we just break it.
-/obj/machinery/vending/nanomed/geocrush_act(...)
-	if(!(machine_stat & BROKEN))
-		malfunction()
-	return TRUE
-
-// Structures are shaken, meaning anything on them gets effected.
-/obj/structure/geocrush_act(...)
-	structure_shaken()
-	return ..()
-
-/obj/structure/geocrush_impact(...)
-	. = ..()
-	structure_shaken()
-
-// We need the gains.
-/obj/structure/benchpress/geocrush_act(...)
-	return FALSE
-
-/obj/structure/cable/geocrush_act(...)
-	return FALSE
-
-/obj/structure/camera_assembly/geocrush_act(...)
-	deconstruct(FALSE)
-	return TRUE
-
-/obj/structure/catwalk/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/closet/geocrush_act(mob/living/carbon/xenomorph/xeno_owner)
-	deconstruct(FALSE, xeno_owner)
-	return TRUE
-
-/obj/structure/curtain/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/dropship_equipment/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
-	return ..()
-
-/obj/structure/dropship_equipment/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-/obj/structure/flora/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// Girders are broken before they are thrown.
-/obj/structure/girder/geocrush_act(...)
-	obj_break()
-	anchored = FALSE
-	return ..()
-
-/obj/structure/girder/geocrush_impact(atom/causer)
-	knockback(causer, 1, 1)
 
 // Most xeno structures, including resin doors, shouldn't be valid targets.
 /obj/structure/mineral_door/resin/geocrush_act(...)
 	return FALSE
 
-/obj/structure/musician/geocrush_act(...)
-	anchored = FALSE
-	return ..()
-
-/obj/structure/musician/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-// OB ammo (warheads, usually) explodes.
-/obj/structure/ob_ammo/geocrush_act(...)
-	obj_destruction()
-	return TRUE
-
-/obj/structure/ob_ammo/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-/obj/structure/prop/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/prop/geocrush_impact(atom/causer)
-	knockback(causer, 1, 1)
-
-// Reagent dispensers make a water effect before being deleted.
-/obj/structure/reagent_dispensers/geocrush_act(...)
-	new /obj/effect/particle_effect/water(loc)
-	qdel(src)
-	return TRUE
-
-/obj/structure/reagent_dispensers/geocrush_impact(atom/causer)
-	knockback(causer, 1, 1)
-
-// Fuel-based dispensers just explode instead.
-/obj/structure/reagent_dispensers/fueltank/geocrush_act(...)
-	explode()
-	return TRUE
-
-/obj/structure/reagent_dispensers/wallmounted/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/rock/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/ship_ammo/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
-	return ..()
-
-/obj/structure/ship_ammo/geocrush_impact(atom/causer)
-	. = ..()
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-// Signs on walls, like posters and stuff. We don't care about those.
-/obj/structure/sign/geocrush_act(...)
-	return FALSE
-
-/obj/structure/sink/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-/obj/structure/table/geocrush_act(...)
-	deconstruct(FALSE)
-	return TRUE
-
-/obj/structure/table/geocrush_impact(...)
-	. = ..()
-	deconstruct(FALSE)
-
-/obj/structure/window/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, ...)
-	deconstruct(FALSE, xeno_owner)
-	return TRUE
-
-/obj/structure/window/geocrush_impact(atom/causer)
-	. = ..()
-	deconstruct(FALSE, causer)
-
-/obj/structure/window_frame/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// All xeno structures should be invalid.
+// All xeno structures should also be invalid.
 /obj/structure/xeno/geocrush_act(...)
 	return FALSE
 
-// Except for earth pillars. We can knock these around for funsies.
+// Except for Earth Pillars. We can knock these around for funsies.
 /obj/structure/xeno/earth_pillar/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
-	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
-	// Sanity check in case we deal enough damage to destroy it.
-	if(QDELING(src))
-		return TRUE
 	throw_at(get_ranged_target_turf(src, get_dir(xeno_owner, src), GEOCRUSH_KNOCKBACK), GEOCRUSH_KNOCKBACK, 1, xeno_owner)
-	return TRUE
-
-/obj/vehicle/ridden/powerloader/geocrush_act(...)
-	deconstruct(FALSE)
-	return TRUE
-
-/obj/vehicle/ridden/powerloader/geocrush_impact(atom/causer)
-	throw_at(get_ranged_target_turf(src, get_dir(causer, src), 1), 1, 1, causer)
-
-/obj/vehicle/ridden/wheelchair/geocrush_act(...)
-	qdel(src)
-	return TRUE
-
-// We don't call parent on stuff like APCs and tanks because we shouldn't knock those around.
-/obj/vehicle/sealed/geocrush_act(mob/living/carbon/xenomorph/xeno_owner, damage, damage_type, armor_type, armor_penetration)
-	Shake(duration = 0.5 SECONDS)
-	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
-	take_damage(damage * GEOCRUSH_OBJECT_DAMAGE_MODIFIER, damage_type, armor_type, armour_penetration = armor_penetration)
+	return ..()
 
 /obj/effect/temp_visual/behemoth/geocrush
 	name = "Geocrush"

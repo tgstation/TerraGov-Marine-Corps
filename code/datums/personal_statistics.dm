@@ -105,13 +105,20 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/acid_jaw_uses = 0
 
 	// Behemoth stats
-	var/seize_uses = 0 // Amount of times we used Seize successfully.
-	var/earth_pillars_created = 0 // Amount of Earth Pillars we created.
-	var/earth_pillars_thrown = 0 // Amount of Earth Pillars we threw.
-	var/earth_pillar_repairs = 0 // Amount of integrity we repaired on Earth Pillars.
-	var/landslide_damage = 0 // Amount of damage dealt with Landslide.
-	var/geocrush_damage = 0 // Amount of damage dealt with Geocrush.
-	var/primal_wrath_healing = 0 // Amount of health we recovered with Primal Wrath.
+	/// Amount of times we used Seize successfully.
+	var/seize_uses = 0
+	/// Amount of Earth Pillars we created.
+	var/earth_pillars_created = 0
+	/// Amount of Earth Pillars we threw.
+	var/earth_pillars_thrown = 0
+	/// Amount of integrity we repaired on Earth Pillars.
+	var/earth_pillar_repairs = 0
+	/// Amount of damage dealt with Landslide.
+	var/landslide_damage = 0
+	/// Amount of damage dealt with Geocrush.
+	var/geocrush_damage = 0
+	/// Amount of health we recovered with Primal Wrath.
+	var/primal_wrath_healing = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -177,10 +184,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		stats += melee_damage ? "[melee_damage] melee damage dealt!" : "You dealt no melee damage."
 		stats += ""
 	if(landslide_damage)
-		stats += "Dealt [landslide_damage] damage with Landslide."
+		stats += "[landslide_damage] of your melee damage was inflicted by Landslide."
 		stats += ""
 	if(geocrush_damage)
-		stats += "Dealt [geocrush_damage] damage with Geocrush."
+		stats += "[geocrush_damage] of your melee damage was inflicted by Geocrush."
 		stats += ""
 	stats += friendly_fire_damage ? "You caused [friendly_fire_damage] damage to allies...<br>" : "You avoided committing acts of friendly fire!<br>"
 	stats += friendly_fire_recieved ? "You recieved [friendly_fire_recieved] damage from allies...<br>" : "You avoided receiving friendly fire!<br>"
