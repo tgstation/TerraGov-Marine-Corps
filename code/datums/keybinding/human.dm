@@ -182,35 +182,23 @@
 	description = "Order marines to aim better"
 	keybind_signal = COMSIG_KB_FOCUSORDER
 
-/datum/keybinding/human/rally_order
-	name = "rally_order"
-	full_name = "Send Rally Order"
-	description = "Order marines to rally"
-	keybind_signal = COMSIG_KB_RALLYORDER
-
 /datum/keybinding/human/send_order
 	name = "send_order"
 	full_name = "Send Order"
 	description = "Order marines a certain message"
 	keybind_signal = COMSIG_KB_SENDORDER
 
-/datum/keybinding/human/attack_order
-	name = "attack_order"
-	full_name = "Issue Attack Order"
-	description = "Order and rally marines to attack"
-	keybind_signal = COMSIG_KB_ATTACKORDER
+/datum/keybinding/human/ping_order
+	name = "ping_order"
+	full_name = "Issue Position Order"
+	description = "Order and rally marines to go somewhere"
+	keybind_signal = COMSIG_KB_PING_ORDER
 
-/datum/keybinding/human/defend_order
-	name = "defend_order"
-	full_name = "Issue Defend Order"
-	description = "Order and rally marines to defend"
-	keybind_signal = COMSIG_KB_DEFENDORDER
-
-/datum/keybinding/human/retreat_order
-	name = "retreat_order"
-	full_name = "Issue Retreat Order"
-	description = "Order and rally marines to retreat"
-	keybind_signal = COMSIG_KB_RETREATORDER
+/datum/keybinding/human/switch_ping_order
+	name = "switch_ping_order"
+	full_name = "Switch Position Order"
+	description = "Switch position order type"
+	keybind_signal = COMSIG_KB_SWITCH_PING_ORDER
 
 /datum/keybinding/human/vehicle_honk
 	name = "vehicle_honk"

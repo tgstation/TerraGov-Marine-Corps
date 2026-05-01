@@ -117,24 +117,17 @@ GLOBAL_VAR(human_ai_goal)
 	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
 	to_chat(src,span_ordercic("Command is urging you to [verb_name] [get_area(get_turf(target))]!"))
 
+//The order given by the CIC console
 /datum/action/innate/order/selectable
-	//to update
+	action_type = ACTION_SELECT
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER,
-		KEYBINDING_ALTERNATE = COMSIG_KB_RALLYORDER,
+		KEYBINDING_NORMAL = COMSIG_KB_PING_ORDER,
+		KEYBINDING_ALTERNATE = COMSIG_KB_SWITCH_PING_ORDER,
 	)
-
-	//COMSIG_KB_ATTACKORDER
-	//COMSIG_KB_DEFENDORDER
-	//COMSIG_KB_RETREATORDER
-	//COMSIG_KB_RALLYORDER
-
 	///Currently Selected order type
 	var/current_order
 	///Available order types
 	var/list/order_options = list(ATTACK_ORDER, DEFEND_ORDER, RETREAT_ORDER, RALLY_ORDER)
-	///Message list when issuing orders
-	var/list/message_list
 
 /datum/action/innate/order/selectable/New(Target)
 	. = ..()
@@ -151,12 +144,6 @@ GLOBAL_VAR(human_ai_goal)
 	if(current_order == RALLY_ORDER)
 		QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
 
-/datum/action/innate/order/selectable/action_activate()
-	var/mob/living/carbon/human/human = owner
-	if(!send_order(human, human.assigned_squad, human.faction))
-		return
-	owner.say(pick(message_list))
-
 /datum/action/innate/order/selectable/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_order))
 	return COMSIG_KB_ACTIVATED
@@ -167,7 +154,7 @@ GLOBAL_VAR(human_ai_goal)
 	for(var/order_type in order_options)
 		available_actions[order_type] = image(action_icon, icon_state = order_type)
 
-	var/new_order = show_radial_menu(owner, owner, available_actions)
+	var/new_order = show_radial_menu(owner, owner.client.eye, available_actions)
 	if(!new_order)
 		return
 
@@ -176,7 +163,7 @@ GLOBAL_VAR(human_ai_goal)
 ///Sets the selected order
 /datum/action/innate/order/selectable/proc/swap_order(new_order)
 	if(!new_order || new_order == current_order)
-		return
+		return FALSE
 
 	current_order = new_order
 
@@ -206,39 +193,26 @@ GLOBAL_VAR(human_ai_goal)
 			arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 			visual_type = /obj/effect/temp_visual/order/rally_order
 
-	message_list = GLOB.order_to_message[current_order]
 	update_button_icon()
 
-/datum/action/innate/order/attack_order
-	name = "Send Attack Order"
-	action_icon_state = "attack"
-	verb_name = "attack the enemy at"
-	arrow_type = /atom/movable/screen/arrow/attack_order_arrow
-	visual_type = /obj/effect/temp_visual/order/attack_order
+	return TRUE
 
-/datum/action/innate/order/defend_order
-	name = "Send Defend Order"
-	action_icon_state = "defend"
-	verb_name = "defend our position in"
-	arrow_type = /atom/movable/screen/arrow/defend_order_arrow
-	visual_type = /obj/effect/temp_visual/order/defend_order
+//The order given to leaders
+/datum/action/innate/order/selectable/personal
+	///Message list when issuing orders
+	var/list/message_list
 
-/datum/action/innate/order/retreat_order
-	name = "Send Retreat Order"
-	action_icon_state = "retreat"
-	verb_name = "retreat from"
-	visual_type = /obj/effect/temp_visual/order/retreat_order
+/datum/action/innate/order/selectable/personal/action_activate()
+	var/mob/living/carbon/human/human = owner
+	if(!send_order(human, human.assigned_squad, human.faction))
+		return
+	owner.say(pick(message_list))
 
-/datum/action/innate/order/rally_order
-	name = "Send Rally Order"
-	action_icon_state = "rally"
-	verb_name = "rally to"
-	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
-	visual_type = /obj/effect/temp_visual/order/rally_order
-
-/datum/action/innate/order/rally_order/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
+/datum/action/innate/order/selectable/personal/swap_order(new_order)
 	. = ..()
-	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
+	if(!.)
+		return
+	message_list = GLOB.order_to_message[current_order]
 
 #undef ATTACK_ORDER
 #undef DEFEND_ORDER
