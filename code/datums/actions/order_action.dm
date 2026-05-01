@@ -1,4 +1,6 @@
 
+//Defines for the different order types. Also corrospond to the icon_states
+
 #define ATTACK_ORDER "attack"
 #define DEFEND_ORDER "defend"
 #define RETREAT_ORDER "retreat"
@@ -11,9 +13,6 @@ GLOBAL_LIST_INIT(order_to_message, list(
 	RETREAT_ORDER = list(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!"),
 	RALLY_ORDER = list(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!"),
 ))
-
-//placeholder, this will end up being split by faction somehow
-GLOBAL_VAR(human_ai_goal)
 
 /datum/action/innate/order
 	background_icon_state = "template2"
