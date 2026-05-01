@@ -13,7 +13,6 @@
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
 			E.droplimb(gibbing = TRUE, silent = TRUE)
-	species.handle_gib(src)
 	return ..()
 
 /mob/living/carbon/human/gib_animation()
@@ -28,9 +27,6 @@
 		hgibs(loc)
 		new /obj/effect/temp_visual/gib_particles(get_turf(src), get_blood_color())
 
-/mob/living/carbon/human/dust()
-	species.handle_dust(src)
-	. = ..()
 
 
 /mob/living/carbon/human/spawn_dust_remains()
