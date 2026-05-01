@@ -638,8 +638,7 @@ below 100 is not dizzy
 			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
-		if(iszombie(src) && (length(GLOB.possessed_sentient_zombie_list) >= GLOB.maximum_allowed_possessed_zombies))
-			to_chat(M, span_warning("There are too few marines. Possessing additional zombies is currently disabled."))
+		if(!can_take_mob(M))
 			return FALSE
 
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")

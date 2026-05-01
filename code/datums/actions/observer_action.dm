@@ -64,7 +64,7 @@
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
 
-	if(!new_mob.can_take_mob())
+	if(!new_mob.can_take_mob(owner))
 		return FALSE
 
 	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")

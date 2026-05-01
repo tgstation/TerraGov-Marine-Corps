@@ -208,11 +208,12 @@
 				SEND_SOUND(hearer, ghost_track)
 
 ///Determines whether a mob is allowed to be possessed for use limiting the amount of sentient zombies
-/datum/game_mode/infestation/crash/zombie/proc/on_attempt_possess_mob(mob/source)
+/datum/game_mode/infestation/crash/zombie/proc/on_attempt_possess_mob(mob/source, mob/M)
 	SIGNAL_HANDLER
 	if(!iszombie(source))
 		return
 	if(length(GLOB.possessed_sentient_zombie_list) >= GLOB.maximum_allowed_possessed_zombies)
+		to_chat(M, span_warning("There are too few marines. Possessing additional zombies is currently disabled."))
 		return MOB_INVALID_POSSESS_TARGET
 
 /datum/game_mode/infestation/crash/zombie/proc/on_mob_ghostize(datum/source, mob/living/carbon/human/player, override = FALSE)
