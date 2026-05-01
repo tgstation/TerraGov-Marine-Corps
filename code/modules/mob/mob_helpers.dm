@@ -480,6 +480,6 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/can_take_mob(mob/M)
 	if(client)
 		return FALSE
-	if(SEND_SIGNAL(src, COMSIG_CHECK_MOB_VALID_POSSESS_TARGET, M) & MOB_INVALID_POSSESS_TARGET)
+	if(SEND_SIGNAL(SSdcs, COMSIG_CHECK_MOB_VALID_POSSESS_TARGET, src, M) & MOB_INVALID_POSSESS_TARGET)
 		return FALSE
 	return TRUE

@@ -50,6 +50,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
 	RegisterSignal(SSdcs, COMSIG_CHECK_MOB_VALID_POSSESS_TARGET, PROC_REF(on_attempt_possess_mob))
 	RegisterSignal(SSdcs, COMSIG_MOB_GHOSTIZE, PROC_REF(on_mob_ghostize))
+	RegisterSignal(SSdcs, COMSIG_MOB_POSSESSED, PROC_REF(on_mob_possessed))
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
@@ -208,16 +209,25 @@
 				SEND_SOUND(hearer, ghost_track)
 
 ///Determines whether a mob is allowed to be possessed for use limiting the amount of sentient zombies
-/datum/game_mode/infestation/crash/zombie/proc/on_attempt_possess_mob(mob/source, mob/M)
+/datum/game_mode/infestation/crash/zombie/proc/on_attempt_possess_mob(datum/source, mob/possession, mob/M)
 	SIGNAL_HANDLER
-	if(!iszombie(source))
+	if(!iszombie(possession))
 		return
 	if(length(GLOB.possessed_sentient_zombie_list) >= GLOB.maximum_allowed_possessed_zombies)
 		to_chat(M, span_warning("There are too few marines. Possessing additional zombies is currently disabled."))
 		return MOB_INVALID_POSSESS_TARGET
 
+///Special handling of ghosting behaviour
 /datum/game_mode/infestation/crash/zombie/proc/on_mob_ghostize(datum/source, mob/living/carbon/human/player, override = FALSE)
 	SIGNAL_HANDLER
 	if(override)
 		return
-	GLOB.possessed_sentient_zombie_list -= source
+	GLOB.possessed_sentient_zombie_list -= player
+
+///Special handling of mob possession
+/datum/game_mode/infestation/crash/zombie/proc/on_mob_possessed(datum/source, mob/new_mob)
+	if(!iszombie(new_mob))
+		return
+	if(new_mob in GLOB.possessed_sentient_zombie_list)
+		return
+	GLOB.possessed_sentient_zombie_list += new_mob

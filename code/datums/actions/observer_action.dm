@@ -38,7 +38,7 @@
 /datum/action/observer_action/take_ssd_mob/action_activate()
 	var/mob/dead/observer/dead_owner = owner
 
-	if(!GLOB.ssd_posses_allowed)
+	if(!GLOB.ssd_possess_allowed)
 		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
 		return
 
@@ -98,8 +98,7 @@
 
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
-	if(iszombie(new_mob))
-		GLOB.possessed_sentient_zombie_list += new_mob
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_POSSESSED, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/datum/job/j = new_human.job
 	var/datum/outfit/job/o = j.outfit
