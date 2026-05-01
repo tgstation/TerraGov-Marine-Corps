@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed an exploit that let certain xenos and other mobs equip and use items they shouldn't be able to"
