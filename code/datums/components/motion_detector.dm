@@ -18,7 +18,7 @@
 /datum/component/motion_detector/RegisterWithParent()
 	if(!detecting_mob)
 		return
-	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+	create_timer()
 
 /datum/component/motion_detector/UnregisterFromParent()
 	clear_blips()
@@ -28,11 +28,19 @@
 
 /datum/component/motion_detector/vv_edit_var(var_name, var_value)
 	if(NAMEOF(src, scan_time) == var_name)
-		deltimer(scan_timer)
-		if(detecting_mob)
-			scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), var_value, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+		if(!detecting_mob)
+			deltimer(scan_timer)
+			scan_timer = null
+			return TRUE
+		create_timer()
 		return TRUE
 	return ..()
+
+/// Creates (and replaces) the scan timer.
+/datum/component/motion_detector/proc/create_timer()
+	if(scan_timer)
+		deltimer(scan_timer)
+	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Sets and handles all changes to the detecting_mob variable.
 /datum/component/motion_detector/proc/set_detecting_mob(mob/new_detecting_mob)
@@ -40,11 +48,11 @@
 		return
 	clear_blips()
 	detecting_mob = new_detecting_mob
-	deltimer(scan_timer)
 	if(!detecting_mob)
+		deltimer(scan_timer)
 		scan_timer = null
 		return
-	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+	create_timer()
 
 /// Clears the human's screen of all blips.
 /datum/component/motion_detector/proc/clear_blips()
