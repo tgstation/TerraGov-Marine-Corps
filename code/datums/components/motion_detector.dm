@@ -1,10 +1,6 @@
 /datum/component/motion_detector
 	/// The mob that everything is based around. If null, the component will do nothing.
 	var/mob/detecting_mob
-	/// The timer id of a callback proc that checks if anything nearby moved recently.
-	var/scan_timer
-	/// How long between scans?
-	var/scan_time = 2 SECONDS
 	/// If something moved, how much time must pass before they do not show up on the scan?
 	var/move_sensitivity = 1 SECONDS
 	/// How far do we check?
@@ -18,43 +14,32 @@
 /datum/component/motion_detector/RegisterWithParent()
 	if(!detecting_mob)
 		return
-	create_timer()
+	START_PROCESSING(SSobj, src)
 
 /datum/component/motion_detector/UnregisterFromParent()
+	if(!detecting_mob)
+		return
+	STOP_PROCESSING(SSobj, src)
 	clear_blips()
 	detecting_mob = null
-	deltimer(scan_timer)
-	scan_timer = null
 
-/datum/component/motion_detector/vv_edit_var(var_name, var_value)
-	if(NAMEOF(src, scan_time) == var_name)
-		if(!detecting_mob)
-			deltimer(scan_timer)
-			scan_timer = null
-			return TRUE
-		create_timer()
-		return TRUE
-	return ..()
-
-/// Creates (and replaces) the scan timer.
-/datum/component/motion_detector/proc/create_timer()
-	if(scan_timer)
-		deltimer(scan_timer)
-	scan_timer = addtimer(CALLBACK(src, PROC_REF(do_scan)), scan_time, TIMER_LOOP|TIMER_STOPPABLE|TIMER_UNIQUE)
+/datum/component/motion_detector/process()
+	if(!detecting_mob)
+		return
+	do_scan()
 
 /// Sets and handles all changes to the detecting_mob variable.
 /datum/component/motion_detector/proc/set_detecting_mob(mob/new_detecting_mob)
 	if(detecting_mob == new_detecting_mob)
 		return
 	clear_blips()
+	if(!detecting_mob && new_detecting_mob)
+		START_PROCESSING(SSobj, src)
+	else if(detecting_mob && !new_detecting_mob)
+		STOP_PROCESSING(SSobj, src)
 	detecting_mob = new_detecting_mob
-	if(!detecting_mob)
-		deltimer(scan_timer)
-		scan_timer = null
-		return
-	create_timer()
 
-/// Clears the human's screen of all blips.
+/// Clears the mob's screen of all blips.
 /datum/component/motion_detector/proc/clear_blips()
 	for(var/obj/effect/blip/blip AS in blips_list)
 		blip.remove_blip(detecting_mob)
@@ -93,7 +78,7 @@
 
 	if(hostile_detected)
 		playsound(detecting_mob.loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
-	addtimer(CALLBACK(src, PROC_REF(clear_blips)), min(1 SECONDS, scan_time))
+	addtimer(CALLBACK(src, PROC_REF(clear_blips)), 2 SECONDS)
 
 /// Creates a colored blip for the detecting_mob's client that is either at: the target's location (if close enough) or on the edge of the client's screen (if far enough).
 /datum/component/motion_detector/proc/create_blip(mob/target, status)
