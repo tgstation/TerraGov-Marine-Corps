@@ -231,6 +231,7 @@
 			/obj/item/tool/research/xeno_analyzer = 2,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
+			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 		),
 	)
 	idle_power_usage = 211
