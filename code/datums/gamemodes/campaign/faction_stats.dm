@@ -588,11 +588,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Returns a list of people in the faction, both living and dead
 /datum/faction_stats/proc/get_notification_list()
-	//Historically we've continued to have issues with null entries getting into these glob lists, so we avoid AS is when interacting with this proc
+	//Historically we've continued to have issues with null entries getting into these glob lists, so we avoid AS is when interacting with the result of this proc
 	var/list/mob_list = list()
 	mob_list += GLOB.alive_human_list_faction[faction]
 	for(var/mob/ghost AS in GLOB.observer_list)
-		if(ghost.faction != faction)
+		if(ghost?.faction != faction)
 			continue
 		mob_list += ghost
 	return mob_list
