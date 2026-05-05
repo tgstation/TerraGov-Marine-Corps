@@ -19,17 +19,17 @@ if ! ( [ -x "$has_git" ] && [ -x "$has_curl" ] && [ -x "$has_pip3" ] && [ -f "/u
 	echo "We are about to try installing native dependencies, we will use 'sudo' if possible for this, but it may fail because the tgstation-server user doesn't have passwordless sudo."
 	echo "WE DO NOT RECOMMEND GRANTING PASSWORDLESS SUDO!!! Instead, install all the dependencies yourself with the following command:"
 	echo "............................................................................................................................................"
-	echo "sudo apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl libclang-dev g++-multilib python3 python3-pip"
+	echo "sudo apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl:i386 libclang-dev g++-multilib python3 python3-pip npm make"
 	echo "............................................................................................................................................"
 	echo "Attempting to install apt dependencies..."
 	if ! [ -x "$has_sudo" ]; then
 		dpkg --add-architecture i386
 		apt-get update
-		apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl libclang-dev g++-multilib python3 python3-pip
+		apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl:i386 libclang-dev g++-multilib python3 python3-pip npm make
 	else
 		sudo dpkg --add-architecture i386
 		sudo apt-get update
-		sudo apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl libclang-dev g++-multilib python3 python3-pip
+		sudo apt-get install -y lib32z1 git pkg-config libssl-dev:i386 libssl-dev zlib1g-dev:i386 curl:i386 libclang-dev g++-multilib python3 python3-pip npm make
 	fi
 fi
 
@@ -49,14 +49,3 @@ fi
 # 	echo "Ensuring yt-dlp is up-to-date with pip3..."
 # 	pip3 install yt-dlp -U --break-system-packages
 # fi
-
-#surfshack start
-# voice chat shit
-echo "Building socket lib..."
-cd $1/voicechat/pipes/unix
-make TGS_INSTANCE_ROOT=$TGS_INSTANCE_ROOT BYOND_VERSION=$3
-
-echo "installing node dependencies.."
-cd $1/voicechat/node
-npm install
-#surfshack end
