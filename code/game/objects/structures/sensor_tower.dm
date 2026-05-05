@@ -38,7 +38,7 @@
 	. = ..()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
-		icon_state += "_TerraGov"
+		icon_state += "_tgmc"
 
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
