@@ -11,3 +11,7 @@
   - bugfix: fixed a visual issue for south facing wallmount objects
   ivanmixo:
   - balance: Capsule barricade deconstruction doesn't yield as many materials
+2026-05-05:
+  Joe13413:
+  - balance: The lever action rifle seasonal shoots 2x faster, holds 4 more rounds,
+      has reduced recoil, and can take more attachments.
