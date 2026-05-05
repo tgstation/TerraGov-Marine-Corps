@@ -100,29 +100,24 @@
 	if(round_finished)
 		return TRUE
 
+	var/winning_teams = 1 * (tgmc_cap_points >= capture_point_target) + 1 *(som_cap_points >= capture_point_target) + 1 * (xeno_cap_points >= capture_point_target)
+
+	if(winning_teams > 1)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
+		round_finished = MODE_COMBAT_PATROL_DRAW
+		return TRUE
+
 	if(tgmc_cap_points >= capture_point_target)
-		if((som_cap_points >= capture_point_target) || (xeno_cap_points >= capture_point_target))
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
-			round_finished = MODE_COMBAT_PATROL_DRAW
-			return TRUE
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
 
 	if(som_cap_points >= capture_point_target)
-		if((tgmc_cap_points >= capture_point_target) || (xeno_cap_points >= capture_point_target))
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
-			round_finished = MODE_COMBAT_PATROL_DRAW
-			return TRUE
 		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
 	if(xeno_cap_points >= capture_point_target)
-		if((som_cap_points >= capture_point_target) || (tgmc_cap_points >= capture_point_target))
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]")
-			round_finished = MODE_COMBAT_PATROL_DRAW
-			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
