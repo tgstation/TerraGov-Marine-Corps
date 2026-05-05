@@ -300,7 +300,9 @@
 /// Used to intercept JUMP links.
 /obj/docking_port/mobile/marine_dropship/casplane/proc/handle_topic(datum/source, mob/user, list/href_list)
 	SIGNAL_HANDLER
-
+	//surfshack start
+	if(!can_interact(user))
+		return
 	if(href_list["cas_jump"])
 		if(user != eyeobj?.eye_user)
 			return

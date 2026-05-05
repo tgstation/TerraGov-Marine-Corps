@@ -9,11 +9,12 @@
 	///join_vc -> Topic -> open_vc
 
 /datum/controller/subsystem/voicechat/proc/voicechat_topic(atom/source, mob/user, href_list)
+	SIGNAL_HANDLER
 	var/client/C = user.client
 	if(href_list["origin"])
 		C << browse(null, "window=origin_locator")
-		UnregisterSignal(C, COMSIG_TOPIC)
 		open_vc(C, href_list["origin"], href_list["external"])
+		UnregisterSignal(C, COMSIG_TOPIC)
 
 /datum/controller/subsystem/voicechat/proc/generate_userCode(client/C)
 	if(!C)

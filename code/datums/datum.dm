@@ -260,13 +260,13 @@
  */
 /datum/Topic(href, list/href_list)
 	. = ..()
+	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
 	if(.)
 		return
 
 	if(!can_interact(usr))
 		return TRUE
 
-	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
 
 
 /datum/proc/can_interact(mob/user)
