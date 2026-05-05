@@ -91,6 +91,9 @@
 		if(capturing_faction == user.faction)
 			user.balloon_alert(user, "already capturing!")
 			return FALSE
+		else if(owning_faction && (owning_faction != user.faction) && (capturing_faction != user.faction))
+			user.balloon_alert(user, "the sensor is already decapturing!")
+			return FALSE
 		else
 			return TRUE //someone else is trying to cap it, whether you already own it or not
 
