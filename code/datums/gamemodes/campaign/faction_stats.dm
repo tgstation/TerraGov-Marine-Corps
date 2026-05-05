@@ -497,14 +497,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	var/mob/user = usr //the actual user
 	var/mob/living/user_body //the user's body, different if they're dead
-	if(isliving(usr))
-		user_body = usr
-	else
-		var/mob/dead/observer/observer_user = usr
+	if(!isliving(user))
+		var/mob/dead/observer/observer_user = user
 		user_body = observer_user.can_reenter_corpse.resolve()
-
-	if(!istype(user))
-		return
+	if(!user_body)
+		user_body = user
 
 	switch(action)
 		if("set_attrition_points")
