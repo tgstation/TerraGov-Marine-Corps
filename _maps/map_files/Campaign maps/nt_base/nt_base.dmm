@@ -1217,13 +1217,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/mining)
-"aXd" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/prison/darkpurple,
-/area/gelida/indoors/a_block/dorms)
 "aXn" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -5781,11 +5774,10 @@
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "enY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/structure/bed/chair/comfy{
+	dir = 1
 	},
-/obj/effect/ai_node,
-/obj/structure/bed/chair/comfy,
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/dorms)
 "eoh" = (
@@ -6053,12 +6045,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
-"euY" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/gelida/indoors/a_block/dorms)
 "eva" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/shuttle/dropship/floor,
@@ -7002,10 +6988,10 @@
 /area/gelida/indoors/a_block/admin)
 "eYs" = (
 /obj/structure/bed/chair/comfy{
-	dir = 8
+	dir = 1
 	},
-/obj/effect/ai_node,
-/turf/open/floor/prison,
+/obj/machinery/light,
+/turf/open/floor/prison/darkpurple,
 /area/gelida/indoors/a_block/dorms)
 "eYt" = (
 /obj/structure/platform_decoration{
@@ -8267,11 +8253,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/gelida/outdoors/colony_streets/east_central_street)
 "gcE" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
 	},
-/obj/machinery/light,
-/turf/open/floor/wood,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
 "gcX" = (
 /obj/structure/table/mainship,
@@ -17406,7 +17391,6 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/bridges/dorms_fitness)
 "mLc" = (
-/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/dorms)
@@ -20801,6 +20785,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/gelida/indoors/a_block/dorms)
 "peg" = (
@@ -41731,7 +41716,7 @@ uxt
 xlV
 pEB
 epB
-euY
+gcE
 jLi
 oAT
 vqV
@@ -45509,7 +45494,7 @@ dZy
 vwA
 tTp
 tTp
-gcE
+enY
 yfp
 sWl
 jPy
@@ -45728,7 +45713,7 @@ yfp
 yfp
 yfp
 pee
-enY
+vwA
 tTp
 tTp
 eyF
@@ -46843,7 +46828,7 @@ icP
 tNZ
 yfp
 gyo
-eYs
+jPy
 jPy
 vIE
 ylS
@@ -46852,7 +46837,7 @@ xlV
 mfl
 pxf
 qxW
-vaN
+vSd
 vaN
 tjx
 vaN
@@ -47062,7 +47047,7 @@ nPP
 gpd
 khq
 iXr
-aXd
+eYs
 yfp
 mmV
 vIE
