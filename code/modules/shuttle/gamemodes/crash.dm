@@ -54,6 +54,7 @@
 		return
 	for(var/turf/open/floor/wallclear/WC in world)
 		WC.clear_wall()
+		to_chat(world, "debug: wall clear complete")
 
 /obj/docking_port/stationary/crashmode/hangar
 	name = "Hangar Pad One"
