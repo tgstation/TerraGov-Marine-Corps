@@ -144,7 +144,7 @@
 	return ..()
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
-	name = "\improper Guardsman's plasma pistol"
+	name = "\improper Guardsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"
 	icon_state = "tx7w"
 	worn_icon_state = "tx7"
