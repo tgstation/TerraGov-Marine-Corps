@@ -93,10 +93,9 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_detected ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))
 
 /////
-
 /obj/machinery/camera/deployable/update_icon_state()
 	icon_state = base_icon_state
-	if(obj_integrity <= 0)
+	if(!(camera_flags & CAMERA_OPERATING))
 		icon_state += "_off"
 		return
 	if(threat_detected)

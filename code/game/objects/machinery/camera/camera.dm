@@ -139,7 +139,6 @@
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
-	repair_damage(max_integrity, user) //to kill
 	TOGGLE_BITFIELD(camera_flags, CAMERA_SNIPPED)
 	if(camera_flags & CAMERA_SNIPPED)
 		deactivate()
@@ -181,10 +180,6 @@
 	if((camera_flags & CAMERA_SNIPPED))
 		to_chat(xeno_attacker, span_warning("The camera is already disabled."))
 		return
-
-	//if(obj_integrity <= 0)
-	//	to_chat(xeno_attacker, span_warning("The camera is already disabled."))
-	//	return
 
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
@@ -228,7 +223,6 @@
 	if(!(camera_flags & CAMERA_OPERATING))
 		return //already ooff
 	DISABLE_BITFIELD(camera_flags, CAMERA_OPERATING)
-	obj_integrity = 0 //to unfuck
 	set_light(0)
 	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
@@ -253,17 +247,16 @@
 		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
 /obj/machinery/camera/update_icon_state()
-	. = ..()
-	if(obj_integrity <= 0)
-		icon_state = "camera_assembly"
-	else
+	if(camera_flags, CAMERA_OPERATING)
 		icon_state = base_icon_state
+		return
+	icon_state = camera_assembly
 
 /obj/machinery/camera/update_overlays()
 	. = ..()
 	if(machine_stat & EMPED)
 		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
-	if(obj_integrity <= 0)
+	if!((camera_flags & CAMERA_OPERATING))
 		return
 	. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
