@@ -496,12 +496,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		CRASH("campaign_mission loaded without campaign game mode")
 
 	var/mob/user = usr //the actual user
-	var/mob/living/user_body //the user's body, different if they're dead
+	var/mob/living/user_body = usr //the user's body, different if they're dead
 	if(!isliving(user))
 		var/mob/dead/observer/observer_user = user
 		user_body = observer_user.can_reenter_corpse.resolve()
-	if(!user_body)
-		user_body = user
+		if(!user_body) //if you have no body, you can't do anything
+			return
 
 	switch(action)
 		if("set_attrition_points")
