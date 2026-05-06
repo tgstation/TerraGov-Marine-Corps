@@ -70,3 +70,14 @@ echo "Compiling tgui..."
 cd "$1"
 chmod +x tools/bootstrap/node  # Workaround for https://github.com/tgstation/tgstation-server/issues/1167
 env TG_BOOTSTRAP_CACHE="$original_dir" TG_BOOTSTRAP_NODE_LINUX=1 CBT_BUILD_MODE="TGS" tools/bootstrap/node tools/build/build.js
+
+#surfshack start
+# voice chat shit
+echo "Building socket lib..."
+cd $1/voicechat/pipes/unix
+make TGS_INSTANCE_ROOT=$TGS_INSTANCE_ROOT BYOND_VERSION=$3
+
+echo "installing node dependencies.."
+cd $1/voicechat/node
+npm install
+#surfshack end

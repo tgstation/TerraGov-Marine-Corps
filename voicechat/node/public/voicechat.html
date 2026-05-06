@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="socketio.js"></script>
+    <script src="voicechat.js" defer></script>
+    <link rel="prefetch" as="image" href="stopclown.png">
+    <link rel="prefetch" as="image" href="fastclown.gif">
+</head>
+<body>
+    <!-- Main Status and Controls -->
+    <div class="main">
+        <div id="status" class="tooltip" data-tip="status update<br>gives info about the client and server">
+            Connecting...
+        </div>
+        <button id="mic" style="width:298px; margin-bottom: 3px;"  class="tooltip" data-tip="click to try to grant mic permissions again. On firefox you will need reset permissions blocking by clicking on the microphone to the left of the search bar">
+            try microphone again
+        </button>
+        <img class="tooltip" data-tip="voice connection status" id="room_status" src="stopclown.png">
+        <img class="tooltip" data-tip="voice activity indicator" id="voice_activity_status" src="megaphone.png">
+        <input class="tooltip slider" data-tip="master volume slider" type="range" min="0.01" max="1" value="0.6" step="0.01" id="volume_slider">
+    </div>
+
+    <!-- Action Buttons -->
+    <div id="buttons" class="buttons">
+        <button id="mute_toggle" class="tooltip" data-tip="toggle mute, colored = muted">mute</button>
+        <button id="deafen_toggle" class="tooltip" data-tip="toggle deafen, colored = deafened">deafen</button>
+        <button id="settings_button" class="tooltip" data-tip="open/close settings menu">open settings</button>
+    </div>
+
+    <!-- Settings Menu -->
+    <div id="settings">
+        <input class="tooltip slider" data-tip="gain slider: adjust microphone gain" id="input_slider" type="range" min="1" value="50" max="100">
+        <input class="tooltip slider" data-tip="sensitivity slider: adjust voice activity sensitivity" id="sensitivity_slider" type="range" min="0.001" value="0.04" max="0.2" step="0.001">
+        <select class="tooltip" data-tip="input selector: choose from available microphone devices" id="audioInput"></select>
+        <select id="audioOutput" class="tooltip" data-tip="output selector: choose from available speaker devices"></select>
+        <div class="mic_test_container">
+            <button class="tooltip" data-tip="mic test: click to test your mic">test mic</button>
+            <div id="mic_test_visual_indicator"></div>
+        </div>
+    </div>
+
+    <!-- Tooltip Display -->
+    <div id="tooltip_box" class="tooltip" data-tip="mouse over something for a tooltip:">
+        mouse over something for a tooltip:
+    </div>
+</body>
+</html>

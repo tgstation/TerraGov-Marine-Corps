@@ -2568,4 +2568,9 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
+#include "surfshack13\controllers\configuration\entries\voicechat_config.dm"
+#include "surfshack13\voicechat\_voicechat.dm"
+#include "surfshack13\voicechat\voicechat_clientstuff.dm"
+#include "surfshack13\voicechat\voicechat_routes.dm"
+#include "surfshack13\voicechat\voicechat_verbs.dm"
 // END_INCLUDE

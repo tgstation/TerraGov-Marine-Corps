@@ -3,6 +3,9 @@
 
 $include dbconfig.txt
 $include resources.txt
+##surfshack start
+$include voicechat.txt
+##surfshack end
 
 ## Server name: This appears at the top of the screen in-game.
 SERVER_NAME Something
