@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	. = ..()
 	proximity_monitor.set_range(0)
 
-/obj/machinery/camera/proc/remove_emp()
+/obj/machinery/camera/deployable/remove_emp()
 	if((machine_stat & EMPED))
 		playsound(loc, 'sound/machines/warning-buzzer.ogg', 40, FALSE)
 	return ..()
