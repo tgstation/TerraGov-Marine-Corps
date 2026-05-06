@@ -98,7 +98,7 @@
 	. = ..()
 	if(machine_stat & EMPED)
 		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
-	if(camera_flags & CAMERA_OPERATING)
+	if((camera_flags & CAMERA_OPERATING) && base_icon_state)
 		. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
