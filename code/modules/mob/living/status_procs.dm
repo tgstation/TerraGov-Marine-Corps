@@ -663,13 +663,18 @@
 /mob/living/proc/adjust_ear_damage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
-
+	//surfshack start
+	SEND_SIGNAL(src, COMSIG_EAR_DAMAGE_CHANGED, ear_deaf)
+	//surfshack end
 
 /mob/living/proc/set_ear_damage(damage = 0, deaf = 0)
 	if(!isnull(damage))
 		ear_damage = damage
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
+	//surfshack start
+	SEND_SIGNAL(src, COMSIG_EAR_DAMAGE_CHANGED, ear_deaf)
+	//surfshack end
 
 ///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
 /mob/living/proc/adjust_drugginess(amount)

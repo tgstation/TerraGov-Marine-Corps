@@ -612,6 +612,10 @@
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
 // /mob signals
+//surfshack start
+///from the base of /mob/living/proc/adjust_ear_damage, (ear_deaf)
+#define COMSIG_EAR_DAMAGE_CHANGED "ear_damaged_changed"
+//surfshack end
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbing)
 #define COMSIG_MOB_PRE_DEATH "mob_pre_death"
 	#define COMPONENT_CANCEL_DEATH (1<<0)						//interrupt death
