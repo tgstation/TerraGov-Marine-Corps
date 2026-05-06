@@ -111,7 +111,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	if(!(faction in GLOB.faction_to_minimap_flag))
 		return
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_detected ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "camera_[threat_detected ? "warning" : "passive"]", MINIMAP_LOCATOR_LAYER))
 
 ///Deletes itself on campaign mission end
 /obj/machinery/camera/deployable/proc/on_mission_end(datum/source, /datum/campaign_mission/ending_mission, winning_faction)
