@@ -18,6 +18,9 @@
 /// Called when the round has started, but before GAME_STATE_PLAYING.
 #define COMSIG_TICKER_ROUND_STARTING "comsig_ticker_round_starting"
 
+/// Called when round has ended
+#define COMSIG_TICKER_ROUND_ENDED "comsig_ticker_round_ending"
+
 // Point of interest signals
 /// Sent from base of /datum/controller/subsystem/points_of_interest/proc/on_poi_element_added : (atom/new_poi)
 #define COMSIG_ADDED_POINT_OF_INTEREST "added_point_of_interest"
