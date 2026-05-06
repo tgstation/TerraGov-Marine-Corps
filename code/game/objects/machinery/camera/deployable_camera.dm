@@ -49,11 +49,11 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 
 /obj/machinery/camera/deployable/reactivate()
 	. = ..()
-	proximity_monitor.set_range(sense_range)
+	proximity_monitor?.set_range(sense_range)
 
 /obj/machinery/camera/deployable/deactivate(mob/user)
 	. = ..()
-	proximity_monitor.set_range(0)
+	proximity_monitor?.set_range(0)
 
 /obj/machinery/camera/deployable/remove_emp()
 	if((machine_stat & EMPED))
