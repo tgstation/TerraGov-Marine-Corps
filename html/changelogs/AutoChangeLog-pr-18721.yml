@@ -1,0 +1,7 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Tactical sensors now show blips through walls."
+  - bugfix: "Xenomorphs with friendly IFF correctly creates friendly blips for motion sensors."
+  - bugfix: "Wearing a belt while having your only ID in your hand now correctly indicates that you have an ID to many things that check for your ID."
+  - refactor: "Motion detection (as seen with the tactical sensor) is now a component."
