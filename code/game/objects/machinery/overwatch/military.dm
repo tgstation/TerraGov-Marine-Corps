@@ -84,6 +84,10 @@
 	. = ..()
 	UnregisterSignal(user, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_ORDER_SELECTED, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
+	if(cic_mini)
+		cic_mini.target = user
+		cic_mini.give_action(user)
+		actions += cic_mini
 
 /obj/machinery/computer/camera_advanced/overwatch/military/get_dat()
 	var/dat

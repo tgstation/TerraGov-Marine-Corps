@@ -10,16 +10,19 @@
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
 	light_power = 0
-
+	///Camera net we belong to
 	var/datum/cameranet/parent_cameranet
+	///Camera networks we should be in
 	var/list/network = list("marinemainship")
+	///Unique identifier
 	var/c_tag = null
-
+	///Current area
 	var/area/myarea = null
-
+	///Standard view range
 	var/view_range = 7
+	///Camera range when range reduced
 	var/short_range = 2
-
+	///Camera behavior flags
 	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
 
 /obj/machinery/camera/Initialize(mapload, newDir)
@@ -85,18 +88,18 @@
 			pixel_z = 0
 			pixel_w = 24
 
+/obj/machinery/camera/update_icon_state()
+	if(camera_flags & CAMERA_OPERATING)
+		icon_state = base_icon_state
+		return
+	icon_state = "camera_assembly"
 
-/obj/machinery/camera/proc/camera_ui_data()
-	return list(
-		"name" = c_tag ? c_tag : "unnamed camera",
-		"ref" = ref(src)
-	)
-
-/obj/machinery/camera/proc/setViewRange(num = 7)
-	view_range = num
-
-	parent_cameranet.updateVisibility(src, 0)
-
+/obj/machinery/camera/update_overlays()
+	. = ..()
+	if(machine_stat & EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+	if(camera_flags & CAMERA_OPERATING)
+		. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -125,15 +128,13 @@
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 				O << browse(HTML_SKELETON_TITLE(itemname, info), "window=[itemname]")
 
-
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
-	I.play_tool_sound(src, 40)
-	update_appearance(UPDATE_ICON)
+	I.play_tool_sound(src, 25)
 	return TRUE
 
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
@@ -144,8 +145,10 @@
 		deactivate()
 	else
 		reactivate()
+	I.play_tool_sound(src, 25)
 	if(user)
 		visible_message(span_danger("[user] [(camera_flags & CAMERA_SNIPPED) ? "deactivates" : "reactivates"] [src]!"))
+	return TRUE
 
 /obj/machinery/camera/multitool_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -154,7 +157,6 @@
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
 	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
-
 
 /obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -171,7 +173,6 @@
 		deconstruct(TRUE)
 
 	return TRUE
-
 
 /obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -200,10 +201,29 @@
 	deactivate()
 	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"))
 
+/obj/machinery/camera/emp_act(severity)
+	. = ..()
+	machine_stat |= EMPED
+	deactivate()
+
+	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/camera/get_remote_view_fullscreens(mob/user)
+	if(view_range == short_range) //unfocused
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
+
+
+/obj/machinery/camera/update_remote_sight(mob/living/user)
+	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
+	user.set_sight(NONE)
+	return TRUE
+
 ///Reenables the camera
 /obj/machinery/camera/proc/reactivate()
 	if(camera_flags & CAMERA_OPERATING)
-		return //already on
+		return
 	if((camera_flags & CAMERA_SNIPPED) || (machine_stat & EMPED) || !(camera_flags & CAMERA_TURNED_ON))
 		return //something still wrong with it
 	camera_flags |= CAMERA_OPERATING
@@ -221,7 +241,7 @@
 ///Turns off the camera
 /obj/machinery/camera/proc/deactivate(mob/user)
 	if(!(camera_flags & CAMERA_OPERATING))
-		return //already ooff
+		return
 	DISABLE_BITFIELD(camera_flags, CAMERA_OPERATING)
 	set_light(0)
 	parent_cameranet.removeCamera(src)
@@ -246,20 +266,6 @@
 			continue
 		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
-/obj/machinery/camera/update_icon_state()
-	if(camera_flags, CAMERA_OPERATING)
-		icon_state = base_icon_state
-		return
-	icon_state = camera_assembly
-
-/obj/machinery/camera/update_overlays()
-	. = ..()
-	if(machine_stat & EMPED)
-		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
-	if!((camera_flags & CAMERA_OPERATING))
-		return
-	. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
-
 ///Turns the camera on or off
 /obj/machinery/camera/proc/toggle_cam()
 	TOGGLE_BITFIELD(camera_flags, CAMERA_TURNED_ON)
@@ -274,21 +280,25 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/camera/emp_act(severity)
-	. = ..()
-	machine_stat |= EMPED
-	deactivate()
+///Camera table UI data
+/obj/machinery/camera/proc/camera_ui_data()
+	return list(
+		"name" = c_tag ? c_tag : "unnamed camera",
+		"ref" = ref(src)
+	)
 
-	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
-	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
-	update_appearance(UPDATE_ICON)
+///Sets the view range of the camera
+/obj/machinery/camera/proc/setViewRange(num = 7)
+	view_range = num
+
+	parent_cameranet.updateVisibility(src, 0)
 
 ///Lifts EMP effects
 /obj/machinery/camera/proc/remove_emp()
+	if(!(machine_stat & EMPED))
+		return
 	machine_stat &= ~EMPED
 	reactivate()
-	update_appearance(UPDATE_OVERLAYS)
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 
 /obj/machinery/camera/proc/can_see()
 	var/turf/pos = get_turf(src)
@@ -331,7 +341,7 @@
 		if(C.can_use())	// check if camera disabled
 			return C
 
-
+///Turns the light on or off
 /obj/machinery/camera/proc/Togglelight(on = FALSE)
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		for(var/obj/machinery/camera/cam in A.lit_cameras)
@@ -342,23 +352,11 @@
 	else
 		set_light(initial(light_range), initial(light_power))
 
-
-/obj/machinery/camera/get_remote_view_fullscreens(mob/user)
-	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
-
-
-/obj/machinery/camera/update_remote_sight(mob/living/user)
-	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
-	user.set_sight(NONE)
-	return TRUE
-
+//This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname
 	light_range = 1
 	light_power = 0.2
-	var/number = 0 //camera number in area
 
-//This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/static/list/id_by_area = list()

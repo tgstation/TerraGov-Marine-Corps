@@ -1,5 +1,6 @@
 GLOBAL_VAR_INIT(deployed_cameras, 0)
 
+///How frequently a deployable cam will detect stuff
 #define DEPLOYABLE_CAM_ALERT_TIME 10 SECONDS
 
 /obj/machinery/camera/deployable
@@ -13,9 +14,11 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	var/obj/item/radio/internal_radio
 	///proximity monitor for threat detection
 	var/datum/proximity_monitor/proximity_monitor
+	///How far the proxy sensor will reach
 	var/sense_range = 7
-	COOLDOWN_DECLARE(proxy_alert_cooldown)
+	///Whether its currently detecting something
 	var/threat_detected = FALSE
+	COOLDOWN_DECLARE(proxy_alert_cooldown)
 
 /obj/machinery/camera/deployable/Initialize(mapload, newDir, new_faction)
 	. = ..()
@@ -36,22 +39,37 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	pixel_z = 16
 	pixel_w = 0
 
-/obj/machinery/camera/deployable/toggle_cam(mob/user, displaymessage = TRUE)
-	. = ..()
-	if(!proximity_monitor)
-		return
+/obj/machinery/camera/deployable/update_icon_state()
+	icon_state = base_icon_state
 	if(!(camera_flags & CAMERA_OPERATING))
-		proximity_monitor.set_range(0)
+		icon_state += "_off"
 		return
+	if(threat_detected)
+		icon_state += "_threat"
+
+/obj/machinery/camera/deployable/reactivate()
+	. = ..()
 	proximity_monitor.set_range(sense_range)
+
+/obj/machinery/camera/deployable/deactivate(mob/user)
+	. = ..()
+	proximity_monitor.set_range(0)
+
+/obj/machinery/camera/proc/remove_emp()
+	if((machine_stat & EMPED))
+		playsound(loc, 'sound/machines/warning-buzzer.ogg', 40, FALSE)
+	return ..()
 
 /obj/machinery/camera/deployable/HasProximity(atom/movable/AM)
 	if(!COOLDOWN_FINISHED(src, proxy_alert_cooldown))
 		return
 	if(!valid_prox_target(AM))
 		return
+	if(!(line_of_sight(src, AM, sense_range)))
+		return
 	sense(AM)
 
+///Whether this thing should trigger the sensor
 /obj/machinery/camera/deployable/proc/valid_prox_target(atom/movable/AM)
 	if(AM.faction == faction)
 		return FALSE
@@ -69,6 +87,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 
 	return FALSE
 
+///Reacts to sensing something
 /obj/machinery/camera/deployable/proc/sense(atom/movable/baddie)
 	COOLDOWN_START(src, proxy_alert_cooldown, DEPLOYABLE_CAM_ALERT_TIME)
 	threat_detected = TRUE
@@ -77,6 +96,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	internal_radio.talk_into(src, "[baddie] detected in [AREACOORD(src)]")
 	playsound(get_turf(src), 'sound/machines/triple_beep.ogg', 100, TRUE, 9)
 	update_minimap_icon()
+	setDir(get_dir(src, baddie))
 	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), DEPLOYABLE_CAM_ALERT_TIME)
 
@@ -86,20 +106,12 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	update_minimap_icon()
 	update_appearance(UPDATE_ICON)
 
+///Updates the minimap icon
 /obj/machinery/camera/deployable/proc/update_minimap_icon()
 	if(!(faction in GLOB.faction_to_minimap_flag))
 		return
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_detected ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))
-
-/////
-/obj/machinery/camera/deployable/update_icon_state()
-	icon_state = base_icon_state
-	if(!(camera_flags & CAMERA_OPERATING))
-		icon_state += "_off"
-		return
-	if(threat_detected)
-		icon_state += "_threat"
 
 ///Deletes itself on campaign mission end
 /obj/machinery/camera/deployable/proc/on_mission_end(datum/source, /datum/campaign_mission/ending_mission, winning_faction)
@@ -133,4 +145,5 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	dat += " [GLOB.deployed_cameras]"
 	newcam.name = dat
 	newcam.c_tag = newcam.name
+	playsound(get_turf(src), 'sound/items/rped.ogg', 40)
 	qdel(src)
