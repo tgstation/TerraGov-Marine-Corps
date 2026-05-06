@@ -75,6 +75,9 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 		return FALSE
 
 	if(isliving(AM))
+		var/mob/living/living_target = AM
+		if(living_target.stat == DEAD)
+			return FALSE
 		return TRUE
 
 	if(!isobj(AM))
