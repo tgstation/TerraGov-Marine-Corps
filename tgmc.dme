@@ -2571,6 +2571,7 @@
 #include "surfshack13\code\__DEFINES\voicechat_defines.dm"
 #include "surfshack13\code\__HELPERS\faction_helpers.dm"
 #include "surfshack13\code\controllers\configuration\entries\voicechat_config.dm"
+#include "surfshack13\code\modules\client\ooc_flags.dm"
 #include "surfshack13\code\voicechat\_voicechat.dm"
 #include "surfshack13\code\voicechat\voice_overlay.dm"
 #include "surfshack13\code\voicechat\voicechat_clientstuff.dm"

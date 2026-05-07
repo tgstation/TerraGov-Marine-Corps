@@ -390,7 +390,9 @@
 	Master.UpdateTickRate()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
 	fully_created = TRUE
-
+	//surfshack start
+	country_flag = ip2country(address)
+	//surfshack end
 
 
 //////////////////

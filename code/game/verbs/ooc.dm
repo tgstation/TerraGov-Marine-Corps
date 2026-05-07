@@ -124,10 +124,11 @@
 		if(check_other_rights(recv_client, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = recv_client == src
+		var/parsed_country_flag = country2chat_flag(country_flag)
 		if(display_colour)
-			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>[parsed_country_flag] OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 		else
-			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
+			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("[parsed_country_flag] OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/xooc_wrapper()

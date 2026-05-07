@@ -141,3 +141,7 @@
 	var/intended_direction = NONE
 	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
 	var/window_scaling
+	//surfshack start
+	///country flag the client is connecting from
+	var/country_flag
+	//surfshack end

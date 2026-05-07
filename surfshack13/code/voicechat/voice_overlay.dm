@@ -1,10 +1,10 @@
 /mob/proc/toggle_voice_overlay(on = TRUE, voice_icon_state = "default")
 	if(on)
 		if(!voice_image)
-			voice_image = mutable_appearance('surfshack13/icon/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
+			voice_image = mutable_appearance('surfshack13/icons/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
 		else if(voice_image.icon_state != voice_icon_state)
 			cut_overlay(voice_image)
-			voice_image = mutable_appearance('surfshack13/icon/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
+			voice_image = mutable_appearance('surfshack13/icons/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
 		add_overlay(voice_image)
 	else
 		if(!voice_image)
