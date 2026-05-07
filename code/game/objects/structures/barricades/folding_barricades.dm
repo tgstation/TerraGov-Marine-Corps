@@ -92,26 +92,6 @@
 
 	toggle_open(null, user)
 
-/obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
-	if(state == (barricade_flags & BARRICADE_OPEN))
-		return
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	TOGGLE_BITFIELD(barricade_flags, BARRICADE_OPEN)
-	density = !density
-
-	user?.visible_message(span_notice("[user] flips [src] [(barricade_flags & BARRICADE_OPEN) ? "open" :"closed"]."),
-		span_notice("You flip [src] [(barricade_flags & BARRICADE_OPEN) ? "open" :"closed"]."))
-
-	if(!linked || !linkable)
-		update_appearance(UPDATE_ICON)
-		return
-	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
-			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
-				cade.toggle_open(barricade_flags & BARRICADE_OPEN)
-
-	update_appearance(UPDATE_ICON)
-
 /obj/structure/barricade/folding/update_overlays()
 	. = ..()
 	if(!linked)
@@ -136,6 +116,27 @@
 			take_damage(rand(50, 150), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 75), BRUTE, BOMB)
+
+///Toggle open or closed
+/obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
+	if(state == (barricade_flags & BARRICADE_OPEN))
+		return
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	TOGGLE_BITFIELD(barricade_flags, BARRICADE_OPEN)
+	density = !density
+
+	user?.visible_message(span_notice("[user] flips [src] [(barricade_flags & BARRICADE_OPEN) ? "open" :"closed"]."),
+		span_notice("You flip [src] [(barricade_flags & BARRICADE_OPEN) ? "open" :"closed"]."))
+
+	if(!linked || !linkable)
+		update_appearance(UPDATE_ICON)
+		return
+	for(var/direction in GLOB.cardinals)
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
+			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
+				cade.toggle_open(barricade_flags & BARRICADE_OPEN)
+
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/folding/capsule
 	name = "capsule-deployed folding plasteel barricade"

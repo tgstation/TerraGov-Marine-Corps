@@ -26,11 +26,7 @@
 //Screwdriver, then wrench, then crowbar to deconstruct
 
 /obj/structure/barricade/screwdriver_act(mob/living/user, obj/item/I)
-	if(!(barricade_flags & BARRICADE_CAN_MOVE))
-		return FALSE
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-	if(!COOLDOWN_FINISHED(src, tool_cooldown))
+	if(!deconstruct_tool_check(user))
 		return FALSE
 
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
@@ -42,11 +38,7 @@
 			return close_panel(user, I)
 
 /obj/structure/barricade/crowbar_act(mob/living/user, obj/item/I)
-	if(!(barricade_flags & BARRICADE_CAN_MOVE))
-		return FALSE
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-	if(!COOLDOWN_FINISHED(src, tool_cooldown))
+	if(!deconstruct_tool_check(user))
 		return FALSE
 	if(build_state != BARRICADE_LOOSE)
 		return FALSE
@@ -54,11 +46,7 @@
 	return pull_apart(user, I)
 
 /obj/structure/barricade/wrench_act(mob/living/user, obj/item/I)
-	if(!(barricade_flags & BARRICADE_CAN_MOVE))
-		return FALSE
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-	if(!COOLDOWN_FINISHED(src, tool_cooldown))
+	if(!deconstruct_tool_check(user))
 		return FALSE
 
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
@@ -67,6 +55,16 @@
 			return unanchor_bolts(user, I)
 		if(BARRICADE_LOOSE)
 			return anchor_bolts(user, I)
+
+///Generic checks to see if we can do a decon/recon step
+/obj/structure/barricade/proc/deconstruct_tool_check(mob/living/user)
+	if(!(barricade_flags & BARRICADE_CAN_MOVE))
+		return FALSE
+	if(LAZYACCESS(user.do_actions, src))
+		return FALSE
+	if(!COOLDOWN_FINISHED(src, tool_cooldown))
+		return FALSE
+	return TRUE
 
 ///opens the bolt panel
 /obj/structure/barricade/proc/open_panel(mob/living/user, obj/item/I)

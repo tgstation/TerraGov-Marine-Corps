@@ -304,3 +304,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define BARRICADE_ANCHORED 1
 ///Cade is normal
 #define BARRICADE_FIRM 2
+
+///bomb upgrade
+#define CADE_TYPE_BOMB "concussive armor"
+///general upgrade
+#define CADE_TYPE_MELEE "ballistic armor"
+///acid upgrade
+#define CADE_TYPE_ACID "caustic armor"

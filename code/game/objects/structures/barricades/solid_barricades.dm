@@ -1,8 +1,5 @@
 
-#define CADE_TYPE_BOMB "concussive armor"
-#define CADE_TYPE_MELEE "ballistic armor"
-#define CADE_TYPE_ACID "caustic armor"
-
+///Sheets required to add an upgrade to a barricade
 #define CADE_UPGRADE_REQUIRED_SHEETS 1
 
 //cade armor defines
@@ -94,56 +91,6 @@
 	balloon_alert_to_viewers("base repaired")
 	update_appearance(UPDATE_ICON)
 
-
-/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
-	if(barricade_upgrade_type)
-		balloon_alert(user, "already upgraded!")
-		return FALSE
-	if(obj_integrity < max_integrity)
-		balloon_alert(user, "not at full health!")
-		return FALSE
-
-	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
-		balloon_alert(user, "[CADE_UPGRADE_REQUIRED_SHEETS] metal sheets required!")
-		return FALSE
-
-	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "burn_obj"))
-	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
-
-	if(!choice)
-		return
-
-	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-		balloon_alert(user, "fumbling...")
-		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-			return FALSE
-
-	balloon_alert_to_viewers("attaching [choice]...")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		return FALSE
-	if(barricade_upgrade_type)
-		balloon_alert(user, "already upgraded!")
-		return FALSE
-
-	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
-		return FALSE
-
-	switch(choice)
-		if(CADE_TYPE_BOMB)
-			soft_armor = soft_armor.modifyRating(BOMB = CADE_UPGRADE_BOMB)
-		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(MELEE = CADE_UPGRADE_MELEE["melee"], BULLET = CADE_UPGRADE_MELEE["bullet"], LASER = CADE_UPGRADE_MELEE["laser"], ENERGY = CADE_UPGRADE_MELEE["energy"])
-		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(ACID = CADE_UPGRADE_ACID)
-			resistance_flags |= UNACIDABLE
-
-	barricade_upgrade_type = choice
-	balloon_alert_to_viewers("[choice] attached")
-
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
-	update_appearance(UPDATE_ICON)
-
 /obj/structure/barricade/solid/return_stack(disassembled = TRUE)
 	var/stack_amt = destroyed_stack_amount
 	if(disassembled)
@@ -212,6 +159,56 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
 
+///Tries to add an upgrade to the cade
+/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
+	if(barricade_upgrade_type)
+		balloon_alert(user, "already upgraded!")
+		return FALSE
+	if(obj_integrity < max_integrity)
+		balloon_alert(user, "not at full health!")
+		return FALSE
+
+	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
+		balloon_alert(user, "[CADE_UPGRADE_REQUIRED_SHEETS] metal sheets required!")
+		return FALSE
+
+	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "burn_obj"))
+	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
+
+	if(!choice)
+		return
+
+	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+		balloon_alert(user, "fumbling...")
+		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
+
+	balloon_alert_to_viewers("attaching [choice]...")
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return FALSE
+	if(barricade_upgrade_type)
+		balloon_alert(user, "already upgraded!")
+		return FALSE
+
+	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
+		return FALSE
+
+	switch(choice)
+		if(CADE_TYPE_BOMB)
+			soft_armor = soft_armor.modifyRating(BOMB = CADE_UPGRADE_BOMB)
+		if(CADE_TYPE_MELEE)
+			soft_armor = soft_armor.modifyRating(MELEE = CADE_UPGRADE_MELEE["melee"], BULLET = CADE_UPGRADE_MELEE["bullet"], LASER = CADE_UPGRADE_MELEE["laser"], ENERGY = CADE_UPGRADE_MELEE["energy"])
+		if(CADE_TYPE_ACID)
+			soft_armor = soft_armor.modifyRating(ACID = CADE_UPGRADE_ACID)
+			resistance_flags |= UNACIDABLE
+
+	barricade_upgrade_type = choice
+	balloon_alert_to_viewers("[choice] attached")
+
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
+	update_appearance(UPDATE_ICON)
+
 /obj/structure/barricade/solid/capsule
 	name = "capsule-deployed metal barricade"
 	desc = parent_type::desc + " Deconstruction will yield less materials due to being deployed via capsule."
@@ -229,3 +226,8 @@
 	base_icon_state = "plasteel"
 	skill_level = SKILL_ENGINEER_PLASTEEL
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
+
+#undef CADE_UPGRADE_REQUIRED_SHEETS
+#undef CADE_UPGRADE_BOMB
+#undef CADE_UPGRADE_MELEE
+#undef CADE_UPGRADE_ACID
