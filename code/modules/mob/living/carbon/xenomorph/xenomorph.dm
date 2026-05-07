@@ -77,11 +77,7 @@
 	set_jump_component()
 	AddComponent(/datum/component/seethrough_mob)
 
-	if(hive)
-		for(var/datum/action/ability/global_ability AS in hive.global_abilities)
-			if(((global_ability.parent_type) in xeno_caste.actions) && !global_ability.cooldown_duration)
-				continue
-			add_ability(global_ability)
+	sync_global_abilities()
 
 /mob/living/carbon/xenomorph/register_init_signals()
 	. = ..()
@@ -613,3 +609,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	// Light from being on fire is not from us, but from an overlay attached to us. Therefore, we don't need to worry about it.
 	set_light_range_power_color(0, 0)
 	set_light_on(FALSE)
+
+/// Gives the xeno global abilities from the hive's global ability list
+/mob/living/carbon/xenomorph/proc/sync_global_abilities()
+	if(hive)
+		for(var/datum/action/ability/global_ability AS in hive.global_abilities)
+			if(((global_ability.parent_type) in xeno_caste.actions) && !global_ability.cooldown_duration)
+				continue
+			add_ability(global_ability)

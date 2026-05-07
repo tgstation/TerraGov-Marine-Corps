@@ -48,12 +48,7 @@
 
 	if(upgrade == XENO_UPGRADE_PRIMO && !silent)
 		to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
-		if(hive)
-			for(var/ga in hive.global_abilities)
-				var/datum/action/ability/global_ability = ga //WHY???
-				if(((global_ability.parent_type) in xeno_caste.actions) && !global_ability.cooldown_duration)
-					continue
-				add_ability(global_ability)
+		sync_global_abilities()
 
 	generate_name() //Give them a new name now
 
