@@ -30,7 +30,7 @@
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/static/list/connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
@@ -120,7 +120,7 @@
 	is_wired = TRUE
 	remove_component(/datum/component/climbable)
 	modify_max_integrity(max_integrity + 50)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
 	if(!is_wired || LAZYACCESS(user.do_actions, src))
@@ -137,7 +137,7 @@
 	can_wire = TRUE
 	is_wired = FALSE
 	AddComponent(/datum/component/climbable)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	new /obj/item/stack/barbed_wire(loc)
 
 
@@ -145,11 +145,7 @@
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
-		var/stack_amt = destroyed_stack_amount
-		if(disassembled)
-			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
-		if(stack_amt)
-			new stack_type (loc, stack_amt)
+		return_stack(disassembled)
 	return ..()
 
 /obj/structure/barricade/ex_act(severity)
@@ -163,11 +159,11 @@
 			take_damage(rand(10, 33), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(10, BRUTE, BOMB)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/setDir(newdir)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/update_icon_state()
 	. = ..()
@@ -217,6 +213,14 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		take_damage(base_acid_damage * S.strength, BURN, ACID)
 
+///Refunds stacks on destruction or disassembly
+/obj/structure/barricade/proc/return_stack(disassembled = TRUE)
+	var/stack_amt = destroyed_stack_amount
+	if(disassembled)
+		stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
+	if(stack_amt)
+		new stack_type (loc, stack_amt)
+
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -262,7 +266,7 @@
 	max_integrity = 75
 	stack_type = /obj/item/stack/snow
 	stack_amount = 5
-	destroyed_stack_amount = 0
+	destroyed_stack_amount = 3
 	can_wire = FALSE
 
 
@@ -366,7 +370,7 @@
 
 	repair_damage(max_integrity, user)
 	balloon_alert_to_viewers("repaired")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /*----------------------*/
@@ -472,7 +476,7 @@
 
 	repair_damage(max_integrity * 0.3, user)
 	balloon_alert_to_viewers("base repaired")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
@@ -519,13 +523,25 @@
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
-	stack_amount += 1
-
 	balloon_alert_to_viewers("[choice] attached")
 
 	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
+/obj/structure/barricade/solid/return_stack(disassembled = TRUE)
+	var/stack_amt = destroyed_stack_amount
+	if(disassembled)
+		stack_amt = round(stack_amount * (obj_integrity/max_integrity))
+	if(!stack_amt)
+		return
+	//upgrades are always metal, so for non metal cades we need to split them out
+	if(barricade_upgrade_type)
+		if(stack_type == /obj/item/stack/sheet/metal)
+			stack_amt += CADE_UPGRADE_REQUIRED_SHEETS
+		else
+			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
+
+	new stack_type(loc, stack_amt)
 
 /obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
@@ -597,7 +613,7 @@
 			build_state = BARRICADE_METAL_LOOSE
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
-			update_icon() //unanchored changes layer
+			update_appearance(UPDATE_ICON) //unanchored changes layer
 			return TRUE
 
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
@@ -631,7 +647,7 @@
 			build_state = BARRICADE_METAL_ANCHORED
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
-			update_icon() //unanchored changes layer
+			update_appearance(UPDATE_ICON) //unanchored changes layer
 			return TRUE
 
 
@@ -687,8 +703,7 @@
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
-			stack_amount -= 1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return TRUE
 
 
@@ -703,7 +718,7 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/solid/capsule
 	name = "capsule-deployed metal barricade"
@@ -848,8 +863,8 @@
 				linked = !linked
 				for(var/direction in GLOB.cardinals)
 					for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
-						cade.update_icon()
-				update_icon()
+						cade.update_appearance(UPDATE_ICON)
+				update_appearance(UPDATE_ICON)
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
 			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
 				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
@@ -892,7 +907,7 @@
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
 			build_state = BARRICADE_PLASTEEL_LOOSE
-			update_icon() //unanchored changes layer
+			update_appearance(UPDATE_ICON) //unanchored changes layer
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
@@ -914,7 +929,7 @@
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
 			build_state = BARRICADE_PLASTEEL_ANCHORED
-			update_icon() //unanchored changes layer
+			update_appearance(UPDATE_ICON) //unanchored changes layer
 
 /obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -948,7 +963,7 @@
 
 	repair_damage(max_integrity * 0.3, user)
 	balloon_alert_to_viewers("base repaired")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/folding/attack_hand(mob/living/user)
 	. = ..()
@@ -968,14 +983,14 @@
 		span_notice("You flip [src] [is_open ? "open" :"closed"]."))
 
 	if(!linked || !linkable)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
 				cade.toggle_open(is_open)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/folding/update_overlays()
 	. = ..()
@@ -997,7 +1012,7 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 75), BRUTE, BOMB)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/folding/capsule
 	name = "capsule-deployed folding plasteel barricade"
@@ -1087,7 +1102,7 @@
 
 		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		balloon_alert_to_viewers("repaired")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/solid/deployable
 	icon = 'icons/obj/structures/barricades/folding.dmi'
