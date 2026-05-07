@@ -237,6 +237,16 @@ const ItemLine = (props) => {
         Mech Equipment
       </Box>
     ),
+    sentry: (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Laser
+      </Box>
+    ),
+    'sentry-ammo': (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Laser
+      </Box>
+    ),
     'emplacement-laser': (
       <Box inline mr="6px" ml="6px" color="#fff385ff">
         Laser
