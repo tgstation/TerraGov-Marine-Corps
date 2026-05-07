@@ -262,10 +262,10 @@
 	//stat is used to ensure dead people dont have talking overlays
 	if(is_active && room && !M.stat)
 		userCodes_active |= userCode
-		M.toggle_voice_overlay()
+		M.toggle_voice_overlay(TRUE)
 	else
 		userCodes_active -= userCode
-		M.toggle_voice_overlay()
+		M.toggle_voice_overlay(FALSE)
 
 
 // Mutes or deafens a user's microphone
