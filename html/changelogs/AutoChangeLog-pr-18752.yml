@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "King roar and some other xeno abilities are more effective at extinguishing or weakening fire"
+  - code_imp: "Cleaned up a bunch of fire related arg/var names for clarity"
