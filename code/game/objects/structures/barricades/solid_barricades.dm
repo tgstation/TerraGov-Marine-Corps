@@ -1,8 +1,4 @@
 
-#define BARRICADE_METAL_LOOSE 0
-#define BARRICADE_METAL_ANCHORED 1
-#define BARRICADE_METAL_FIRM 2
-
 #define CADE_TYPE_BOMB "concussive armor"
 #define CADE_TYPE_MELEE "ballistic armor"
 #define CADE_TYPE_ACID "caustic armor"
@@ -29,7 +25,7 @@
 	base_icon_state = "metal"
 	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE
 	///Build state of the barricade
-	var/build_state = BARRICADE_METAL_FIRM
+	var/build_state = BARRICADE_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
@@ -168,11 +164,11 @@
 /obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
 	switch(build_state)
-		if(BARRICADE_METAL_FIRM)
+		if(BARRICADE_FIRM)
 			. += span_info("The protection panel is still tighly screwed in place.")
-		if(BARRICADE_METAL_ANCHORED)
+		if(BARRICADE_ANCHORED)
 			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
-		if(BARRICADE_METAL_LOOSE)
+		if(BARRICADE_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
@@ -187,7 +183,7 @@
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
-		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -198,10 +194,10 @@
 				return TRUE
 
 			balloon_alert_to_viewers("bolt protection panel replaced")
-			build_state = BARRICADE_METAL_FIRM
+			build_state = BARRICADE_FIRM
 			return TRUE
 
-		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
+		if(BARRICADE_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -213,7 +209,7 @@
 				return TRUE
 
 			balloon_alert_to_viewers("bolt protection panel removed")
-			build_state = BARRICADE_METAL_ANCHORED
+			build_state = BARRICADE_ANCHORED
 			return TRUE
 
 
@@ -221,7 +217,7 @@
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
-		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -232,13 +228,13 @@
 				return TRUE
 
 			balloon_alert_to_viewers("anchor bolts loosened")
-			build_state = BARRICADE_METAL_LOOSE
+			build_state = BARRICADE_LOOSE
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
 			update_appearance(UPDATE_ICON) //unanchored changes layer
 			return TRUE
 
-		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
+		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
@@ -266,7 +262,7 @@
 				return TRUE
 
 			balloon_alert_to_viewers("anchor bolts secured")
-			build_state = BARRICADE_METAL_ANCHORED
+			build_state = BARRICADE_ANCHORED
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
 			update_appearance(UPDATE_ICON) //unanchored changes layer
@@ -277,7 +273,7 @@
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
-		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
+		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -294,7 +290,7 @@
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			deconstruct(!get_self_acid())
 			return TRUE
-		if(BARRICADE_METAL_FIRM)
+		if(BARRICADE_FIRM)
 
 			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
 				balloon_alert(user, "no upgrades to remove!")
@@ -358,7 +354,3 @@
 	destroyed_stack_amount = 1
 	base_icon_state = "plasteel"
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
-
-#undef BARRICADE_METAL_LOOSE
-#undef BARRICADE_METAL_ANCHORED
-#undef BARRICADE_METAL_FIRM

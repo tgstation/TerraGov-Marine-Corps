@@ -1,8 +1,4 @@
 
-#define BARRICADE_PLASTEEL_LOOSE 0
-#define BARRICADE_PLASTEEL_ANCHORED 1
-#define BARRICADE_PLASTEEL_FIRM 2
-
 /obj/structure/barricade/folding
 	name = "folding plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
@@ -49,9 +45,9 @@
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM)
 			. += span_info("The protection panel is still tighly screwed in place.")
-		if(BARRICADE_PLASTEEL_ANCHORED)
+		if(BARRICADE_ANCHORED)
 			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
-		if(BARRICADE_PLASTEEL_LOOSE)
+		if(BARRICADE_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 /obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
@@ -88,8 +84,8 @@
 
 			balloon_alert_to_viewers("bolt protection panel removed")
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			build_state = BARRICADE_PLASTEEL_ANCHORED
-		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			build_state = BARRICADE_ANCHORED
+		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
 				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -119,7 +115,7 @@
 					for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 						cade.update_appearance(UPDATE_ICON)
 				update_appearance(UPDATE_ICON)
-		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
+		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
 			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
 				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -151,7 +147,7 @@
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
 
 	switch(build_state)
-		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
 				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
@@ -160,9 +156,9 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
-			build_state = BARRICADE_PLASTEEL_LOOSE
+			build_state = BARRICADE_LOOSE
 			update_appearance(UPDATE_ICON) //unanchored changes layer
-		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
+		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
 				balloon_alert(user, "can't anchor here!")
@@ -182,7 +178,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
-			build_state = BARRICADE_PLASTEEL_ANCHORED
+			build_state = BARRICADE_ANCHORED
 			update_appearance(UPDATE_ICON) //unanchored changes layer
 
 /obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
@@ -290,7 +286,3 @@
 	base_icon_state = "folding_metal"
 	linkable = FALSE
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
-
-#undef BARRICADE_PLASTEEL_LOOSE
-#undef BARRICADE_PLASTEEL_ANCHORED
-#undef BARRICADE_PLASTEEL_FIRM
