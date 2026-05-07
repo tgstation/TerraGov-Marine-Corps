@@ -253,7 +253,7 @@
 		for(var/atom/movable/affected AS in affected_tile)
 			if(isfire(affected))
 				var/obj/fire/fire = affected
-				fire.reduce_fire(10)
+				fire.reduce_fire(10, 10)
 				continue
 			if(projectile_cooldown_mulitplier && istype(affected, /atom/movable/projectile))
 				things_to_deflect += affected

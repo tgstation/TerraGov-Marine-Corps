@@ -468,7 +468,7 @@
 				continue
 			if(isfire(victim))
 				var/obj/fire/fire = victim
-				fire.reduce_fire(5 * current_iterations)
+				fire.reduce_fire(5 * current_iterations, 2 * current_iterations)
 				continue
 	pre_stop_crush()
 
