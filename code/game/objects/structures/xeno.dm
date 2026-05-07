@@ -70,6 +70,14 @@
 		return
 	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
 		return
+	//we don't want to slowdown the crosser if there is something on top of the resin
+	for(var/obj/object in orange(0, crosser))
+		if(!object.density)
+			continue
+		if(object == crosser)
+			continue
+		return
+
 	if(ismecha(crosser))
 		var/obj/vehicle/sealed/vehicle = crosser
 		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
