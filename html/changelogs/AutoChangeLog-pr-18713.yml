@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added some more makeshift surgery tool options for some surgery steps"
+  - bugfix: "Using makeshift surgery tools checks to see if they are in a valid state, such as a welder being on, etc"
+  - code_imp: "Some generic surgery steps use a shared global list of tool options instead of copy paste lists"
