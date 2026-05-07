@@ -19,7 +19,7 @@
 /obj/structure/barricade/welder_act(mob/living/user, obj/item/I)
 	if(!(barricade_flags & BARRICADE_STANDARD_REPAIR))
 		return FALSE
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skill_level, 1)
+	. = welder_repair_act(user, I, get_repair_amount(), 2.5 SECONDS, 0.3, skill_level, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
 

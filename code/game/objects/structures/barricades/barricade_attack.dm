@@ -47,16 +47,80 @@
 		return TRUE
 
 	if(istype(I, stack_type))
-		apply_stack(I, user)
+		return apply_stack(I, user)
+
+	if(istype(I, /obj/item/stack/barbed_wire))
+		return try_wire(I, user)
+
+///Applies the cades stack type to itself
+/obj/structure/barricade/proc/apply_stack(obj/item/stack/sheet/stack, mob/user)
+	if(barricade_flags & BARRICADE_STANDARD_REPAIR) //marine cades
+		return repair_base(stack, user)
+	return stack_repair(stack, user) //everything else
+
+///Repairs severely damaged cades
+/obj/structure/barricade/proc/repair_base(obj/item/stack/sheet/stack, mob/user)
+	if(obj_integrity >= max_integrity * 0.3)
+		return FALSE
+	if(stack.get_amount() < BARRICADE_REPAIR_STACK_AMOUNT)
+		balloon_alert(user, "[BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets required!")
+		return FALSE
+	if(LAZYACCESS(user.do_actions, src))
+		return
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
-	if(!istype(I, /obj/item/stack/barbed_wire) || !(barricade_flags & BARRICADE_CAN_WIRE))
+	balloon_alert_to_viewers("repairing base...")
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return TRUE
+	if(QDELETED(src))
+		return TRUE
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return TRUE
+	if(!stack.use(BARRICADE_REPAIR_STACK_AMOUNT))
+		return TRUE
+
+	repair_damage(max_integrity * 0.3, user)
+	balloon_alert_to_viewers("base repaired")
+	update_appearance(UPDATE_ICON)
+	return TRUE
+
+///Repairs the cade with its stack type
+/obj/structure/barricade/proc/stack_repair(obj/item/stack/sheet/stack, mob/user)
+	if(obj_integrity >= max_integrity)
+		balloon_alert(user, "already repaired!")
+		return FALSE
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	if(get_self_acid())
 		balloon_alert(user, "it's melting!")
 		return TRUE
 
-	var/obj/item/stack/barbed_wire/B = I
+	balloon_alert_to_viewers("repairing...")
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
+		return TRUE
+	if(QDELETED(src))
+		return TRUE
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return TRUE
+	if(!stack.use(1))
+		return TRUE
+
+	repair_damage(get_repair_amount(), user)
+	balloon_alert_to_viewers("repaired")
+	update_appearance(UPDATE_ICON)
+	return TRUE
+
+///Tries to add barbed wire to the cade
+/obj/structure/barricade/proc/try_wire(obj/item/stack/barbed_wire/wire, mob/user)
+	if(!(barricade_flags & BARRICADE_CAN_WIRE))
+		return FALSE
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return TRUE
 
 	balloon_alert_to_viewers("setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !(barricade_flags & BARRICADE_CAN_WIRE))
@@ -68,36 +132,7 @@
 		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	B.use(1)
+	if(!wire.use(1))
+		return
 	wire()
 	return TRUE
-
-///Applies the cades stack type to itself
-/obj/structure/barricade/proc/apply_stack(obj/item/stack/sheet/stack, mob/user)
-	if(obj_integrity >= max_integrity * 0.3)
-		return
-	if(!(barricade_flags & BARRICADE_STANDARD_REPAIR))
-		return
-	if(stack.get_amount() < BARRICADE_REPAIR_STACK_AMOUNT)
-		balloon_alert(user, "[BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets required!")
-		return
-	if(LAZYACCESS(user.do_actions, src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return
-
-	balloon_alert_to_viewers("repairing base...")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-		return
-	if(QDELETED(src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return
-	if(!stack.use(BARRICADE_REPAIR_STACK_AMOUNT))
-		return
-
-	repair_damage(max_integrity * 0.3, user)
-	balloon_alert_to_viewers("base repaired")
-	update_appearance(UPDATE_ICON)

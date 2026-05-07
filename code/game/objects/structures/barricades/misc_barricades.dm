@@ -17,9 +17,8 @@
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, /obj/item/tool/shovel))
-		return
-	return shovel_decon(I, user)
+	if(istype(I, /obj/item/tool/shovel))
+		return shovel_decon(I, user)
 
 /*----------------------*/
 // GUARD RAIL
@@ -59,32 +58,8 @@
 /obj/structure/barricade/wooden/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
-/obj/structure/barricade/wooden/apply_stack(obj/item/stack/sheet/stack, mob/user)
-	if(obj_integrity >= max_integrity)
-		return
-	if(stack.get_amount() < 1)
-		balloon_alert(user, "need more wood!")
-		return
-	if(LAZYACCESS(user.do_actions, src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return
-
-	balloon_alert_to_viewers("repairing...")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-		return
-	if(QDELETED(src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return TRUE
-	if(!stack.use(1))
-		return
-
-	repair_damage(max_integrity, user)
-	balloon_alert_to_viewers("repaired")
-	update_appearance(UPDATE_ICON)
+/obj/structure/barricade/wooden/get_repair_amount()
+	return max_integrity
 
 /*----------------------*/
 // CONCRETE
@@ -123,42 +98,16 @@
 /obj/structure/barricade/sandbags/setDir(newdir)
 	. = ..()
 	if(dir == SOUTH)
-		pixel_y = -7
+		pixel_z = -7
 	else
-		pixel_y = 0
+		pixel_z = 0
 
 /obj/structure/barricade/sandbags/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, /obj/item/tool/shovel))
-		return
-	return shovel_decon(I, user)
+	if(istype(I, /obj/item/tool/shovel))
+		return shovel_decon(I, user)
 
-/obj/structure/barricade/sandbags/apply_stack(obj/item/stack/sheet/stack, mob/user)
-	if(obj_integrity >= max_integrity)
-		balloon_alert(user, "already repaired!")
-		return
-	if(stack.get_amount() < 1)
-		balloon_alert(user, "not enough sandbags!")
-		return
-	if(LAZYACCESS(user.do_actions, src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return
-
-	balloon_alert_to_viewers("replacing sandbags...")
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
-		return
-	if(QDELETED(src))
-		return
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return
-	if(!stack.use(1))
-		return
-
-	repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-	balloon_alert_to_viewers("repaired")
-	update_appearance(UPDATE_ICON)
+/obj/structure/barricade/sandbags/get_repair_amount()
+	return max_integrity * 0.2

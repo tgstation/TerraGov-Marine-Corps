@@ -138,6 +138,10 @@
 	if(stack_amt)
 		new stack_type (loc, stack_amt)
 
+///How much this cade should be repaired by any ordinary effect
+/obj/structure/barricade/proc/get_repair_amount()
+	return 85 //weld value
+
 ///Adds barbed wire
 /obj/structure/barricade/proc/wire()
 	DISABLE_BITFIELD(barricade_flags, BARRICADE_CAN_WIRE)

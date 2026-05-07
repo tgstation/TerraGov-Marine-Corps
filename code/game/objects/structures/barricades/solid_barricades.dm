@@ -128,13 +128,8 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(I, /obj/item/stack/sheet/metal)) //for non-metal cades, we can't use apply_stack since its not our stack type
-		return  attempt_barricade_upgrade(I, user)
-
-/obj/structure/barricade/solid/apply_stack(obj/item/stack/sheet/stack, mob/user)
-	if(obj_integrity >= max_integrity * 0.3)
-		return attempt_barricade_upgrade(stack, user)
-	return ..()
+	if(istype(I, /obj/item/stack/sheet/metal)) //we can't use apply_stack for non-metal cades since its not our stack type
+		return attempt_barricade_upgrade(I, user)
 
 ///Tries to add an upgrade to the cade
 /obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user)
