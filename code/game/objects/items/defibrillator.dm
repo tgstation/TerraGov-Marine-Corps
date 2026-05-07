@@ -304,7 +304,7 @@
 	//Checks if the patient is wearing a camera. Then it turns it on if it's off.
 	if(istype(patient.wear_ear, /obj/item/radio/headset/mainship))
 		var/obj/item/radio/headset/mainship/cam_headset = patient.wear_ear
-		if(!(cam_headset?.camera?.camera_flags & CAMERA_OPERATING))
+		if(!(cam_headset?.camera?.camera_flags & CAMERA_TURNED_ON))
 			cam_headset.camera.toggle_cam()
 	if(user.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]

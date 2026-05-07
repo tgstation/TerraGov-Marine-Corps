@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //cameras
 #define SOM_CAMERA_NETWORK "som_camera_network"
 
-///Camera is operational
+///Camera is actually active and operational
 #define CAMERA_OPERATING (1<<0)
 ///Whether it can light up when an AI views it
 #define CAMERA_AI_LIGHT (1<<1)

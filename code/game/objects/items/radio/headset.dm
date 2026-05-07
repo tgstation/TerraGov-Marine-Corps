@@ -248,7 +248,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
-	if(!(camera.camera_flags & CAMERA_OPERATING))
+	if(!(camera.camera_flags & CAMERA_TURNED_ON))
 		camera.toggle_cam()
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
 	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
-	if(camera.camera_flags & CAMERA_OPERATING)
+	if(camera.camera_flags & CAMERA_TURNED_ON)
 		camera.toggle_cam()
 	if(sl_direction)
 		disable_sl_direction()

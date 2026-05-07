@@ -41,13 +41,31 @@
 
 
 	parent_cameranet.cameras += src
+	//if(camera_flags & CAMERA_OPERATING)
+	activate()
+	//
+	//parent_cameranet.addCamera(src)
+
+	//myarea = get_area(src)
+	//if(myarea)
+	//	LAZYADD(myarea.cameras, src)
+
+	//update_appearance(UPDATE_ICON)
+
+/*
+/obj/machinery/camera/proc/activate()
+	camera_flags |= CAMERA_OPERATING
 	parent_cameranet.addCamera(src)
-
-	myarea = get_area(src)
-	if(myarea)
-		LAZYADD(myarea.cameras, src)
-
 	update_appearance(UPDATE_ICON)
+	if(isturf(loc))
+		myarea = get_area(src)
+		LAZYADD(myarea.cameras, src)
+		set_light(initial(light_range), initial(light_power))
+	else
+		myarea = null
+	var/turf/our_turf = get_turf(src)
+	parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
+*/
 
 /obj/machinery/camera/Destroy()
 	if(can_use())
@@ -226,15 +244,17 @@
 		return
 	if((camera_flags & CAMERA_SNIPPED) || (machine_stat & EMPED) || !(camera_flags & CAMERA_TURNED_ON))
 		return //something still wrong with it
+	activate()
+
+/obj/machinery/camera/proc/activate()
 	camera_flags |= CAMERA_OPERATING
 	parent_cameranet.addCamera(src)
 	update_appearance(UPDATE_ICON)
-	if(isturf(loc))
-		myarea = get_area(src)
-		LAZYADD(myarea.cameras, src)
-		set_light(initial(light_range), initial(light_power))
-	else
-		myarea = null
+	myarea = get_area(src)
+	if(!myarea)
+		return
+	LAZYADD(myarea.cameras, src)
+	set_light(initial(light_range), initial(light_power))
 	var/turf/our_turf = get_turf(src)
 	parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 
