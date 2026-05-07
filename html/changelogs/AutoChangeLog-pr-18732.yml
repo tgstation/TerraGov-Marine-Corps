@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Sticky resin/weeds no longer slown you down when moving over dense objects"
