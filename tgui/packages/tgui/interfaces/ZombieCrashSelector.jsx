@@ -239,12 +239,7 @@ const ItemLine = (props) => {
     ),
     sentry: (
       <Box inline mr="6px" ml="6px" color="#fff385ff">
-        Laser
-      </Box>
-    ),
-    'sentry-ammo': (
-      <Box inline mr="6px" ml="6px" color="#fff385ff">
-        Laser
+        Sentry
       </Box>
     ),
     'emplacement-laser': (
