@@ -143,7 +143,7 @@
 /// returns the desired voicechat room for alive mobs from faction
 /datum/controller/subsystem/voicechat/proc/get_mob_living_room(mob/M)
 	var/mob_alignment = get_mob_faction_alignment(M)
-	swtich(mob_alignment)
+	switch(mob_alignment)
 		if(ALIGNEMENT_FRIENDLY)
 			. = ROOM_MARINE
 		if(ALIGNEMENT_NEUTRAL)
@@ -152,6 +152,7 @@
 			. = ROOM_XENO
 		else
 			WARNING("Mob alignment not assigned to voicechat room {alignement: [mob_alignment || "null"]}")
+
 
 /datum/controller/subsystem/voicechat/proc/add_to_room(mob/M)
 	SIGNAL_HANDLER
@@ -250,29 +251,21 @@
 	if(!C || !C.mob)
 		return
 	var/mob/M = C.mob
-	var/image/speaker
-	if(!userCodes_speaking_icon[userCode])
-		speaker = image('icons/mob/effects/talk.dmi', icon_state = "voice")
-		speaker.alpha = 200
-		userCodes_speaking_icon[userCode] = speaker
-	else
-		speaker = userCodes_speaking_icon[userCode]
-
 	var/mob/old_mob = userCode_mob_map[userCode]
 	if(M != old_mob)
 		if(old_mob)
-			old_mob.overlays -= speaker
+			old_mob.toggle_voice_overlay(FALSE)
 		userCode_mob_map[userCode] = M
 
-	var/room = userCode_room_map[userCode]
 
+	var/room = userCode_room_map[userCode]
 	//stat is used to ensure dead people dont have talking overlays
 	if(is_active && room && !M.stat)
 		userCodes_active |= userCode
-		M.add_overlay(speaker)
+		M.toggle_voice_overlay()
 	else
 		userCodes_active -= userCode
-		M.cut_overlay(speaker)
+		M.toggle_voice_overlay()
 
 
 // Mutes or deafens a user's microphone

@@ -132,6 +132,10 @@
 
 	/// what icon the mob uses for speechbubbles
 	var/bubble_icon = "default"
+	//surfshack start
+	///The current voice overlay image
+	var/mutable_appearance/voice_image
+	//surfshack end
 	///the icon currently used for the typing indicator's bubble
 	var/active_typing_indicator
 	///the icon currently used for the thinking indicator's bubble
