@@ -138,7 +138,7 @@
 		reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
 
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	if(!is_wired)
+	if(!(barricade_flags & BARRICADE_IS_WIRED))
 		return
 	if(zombie.a_intent != INTENT_HARM)
 		return
