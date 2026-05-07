@@ -215,7 +215,10 @@ GLOBAL_VAR(restart_counter)
 		if(I in input)
 			handler = topic_handlers[I]
 			break
-
+	//surfshack start
+	if(SSvoicechat)
+		SSvoicechat.handle_topic(T , addr)
+	//surfshack end
 	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
