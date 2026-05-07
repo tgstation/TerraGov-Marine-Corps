@@ -17,27 +17,9 @@
 	. = ..()
 	if(.)
 		return
-
-	//Removing the barricades
-	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
+	if(!istype(I, /obj/item/tool/shovel))
 		return
-	var/obj/item/tool/shovel/ET = I
-
-	if(ET.folded)
-		return
-
-	if(LAZYACCESS(user.do_actions, src))
-		balloon_alert(user, "already shoveling!")
-		return
-
-	user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
-
-	if(!do_after(user, ET.shovelspeed, NONE, src, BUSY_ICON_BUILD))
-		return
-
-	if(ET.folded)
-		return
-	deconstruct(!get_self_acid())
+	return shovel_decon(I, user)
 
 /*----------------------*/
 // GUARD RAIL
@@ -77,34 +59,27 @@
 /obj/structure/barricade/wooden/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
-/obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(!istype(I, /obj/item/stack/sheet/wood))
-		return
-	var/obj/item/stack/sheet/wood/D = I
+/obj/structure/barricade/wooden/apply_stack(obj/item/stack/sheet/stack, mob/user)
 	if(obj_integrity >= max_integrity)
 		return
-
-	if(D.get_amount() < 1)
+	if(stack.get_amount() < 1)
 		balloon_alert(user, "need more wood!")
 		return
-
 	if(LAZYACCESS(user.do_actions, src))
+		return
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
 		return
 
 	balloon_alert_to_viewers("repairing...")
-
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
-
+	if(QDELETED(src))
+		return
 	if(get_self_acid())
 		balloon_alert(user, "it's melting!")
 		return TRUE
-
-	if(!D.use(1))
+	if(!stack.use(1))
 		return
 
 	repair_damage(max_integrity, user)
@@ -156,42 +131,34 @@
 	. = ..()
 	if(.)
 		return
+	if(!istype(I, /obj/item/tool/shovel))
+		return
+	return shovel_decon(I, user)
 
-	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
-		var/obj/item/tool/shovel/ET = I
-		if(ET.folded)
-			return TRUE
-		balloon_alert_to_viewers("disassembling...")
-		if(!do_after(user, ET.shovelspeed, NONE, src, BUSY_ICON_BUILD))
-			return TRUE
-		user.visible_message(span_notice("[user] disassembles [src]."),
-		span_notice("You disassemble [src]."))
-		deconstruct(!get_self_acid())
-		return TRUE
+/obj/structure/barricade/sandbags/apply_stack(obj/item/stack/sheet/stack, mob/user)
+	if(obj_integrity >= max_integrity)
+		balloon_alert(user, "already repaired!")
+		return
+	if(stack.get_amount() < 1)
+		balloon_alert(user, "not enough sandbags!")
+		return
+	if(LAZYACCESS(user.do_actions, src))
+		return
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return
 
-	if(istype(I, /obj/item/stack/sandbags))
-		if(obj_integrity == max_integrity)
-			balloon_alert(user, "already repaired!")
-			return
-		var/obj/item/stack/sandbags/D = I
-		if(D.get_amount() < 1)
-			balloon_alert(user, "not enough sandbags!")
-			return
-		balloon_alert_to_viewers("replacing sandbags...")
+	balloon_alert_to_viewers("replacing sandbags...")
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
+		return
+	if(QDELETED(src))
+		return
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return
+	if(!stack.use(1))
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
-
-		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
-			return
-
-		if(get_self_acid())
-			balloon_alert(user, "it's melting!")
-			return
-
-		if(!D.use(1))
-			return
-
-		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-		balloon_alert_to_viewers("repaired")
-		update_appearance(UPDATE_ICON)
+	repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+	balloon_alert_to_viewers("repaired")
+	update_appearance(UPDATE_ICON)

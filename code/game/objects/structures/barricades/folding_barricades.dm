@@ -51,40 +51,6 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(!istype(I, stack_type))
-		return
-	var/obj/item/stack/sheet/stack = I
-	if(obj_integrity >= max_integrity * 0.3)
-		return
-
-	if(stack.get_amount() < 2)
-		balloon_alert(user, "[BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets required!")
-		return
-
-	if(LAZYACCESS(user.do_actions, src))
-		return
-
-	balloon_alert_to_viewers("repairing base...")
-
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-		return
-
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return TRUE
-
-	if(!stack.use(2))
-		return
-
-	repair_damage(max_integrity * 0.3, user)
-	balloon_alert_to_viewers("base repaired")
-	update_appearance(UPDATE_ICON)
-
 /obj/structure/barricade/folding/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

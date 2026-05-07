@@ -165,3 +165,21 @@
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	deconstruct(!get_self_acid())
 	return TRUE
+
+///Shovels the barricade, for snow cades and such
+/obj/structure/barricade/proc/shovel_decon(obj/item/tool/shovel/shovel, mob/user)
+	if(user.a_intent == INTENT_HARM)
+		return FALSE
+	if(shovel.folded)
+		return TRUE
+	if(LAZYACCESS(user.do_actions, src))
+		balloon_alert(user, "busy!")
+		return
+
+	balloon_alert_to_viewers("disassembling...")
+	if(!do_after(user, shovel.shovelspeed, NONE, src, BUSY_ICON_BUILD))
+		return TRUE
+	user.visible_message(span_notice("[user] disassembles [src]."),
+	span_notice("You disassemble [src]."))
+	deconstruct(!get_self_acid())
+	return TRUE

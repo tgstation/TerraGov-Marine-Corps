@@ -56,41 +56,6 @@
 		if(CADE_TYPE_ACID)
 			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[base_icon_state]+burn_upgrade_[damage_state]")
 
-/obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(!istype(I, /obj/item/stack/sheet/metal))
-		return
-
-	var/obj/item/stack/sheet/metal/metal_sheets = I
-	if(obj_integrity >= max_integrity * 0.3)
-		return attempt_barricade_upgrade(I, user, params)
-
-	if(metal_sheets.get_amount() < 2)
-		balloon_alert(user, "2 metal sheets needed!")
-		return FALSE
-
-	if(LAZYACCESS(user.do_actions, src))
-		return
-
-	balloon_alert_to_viewers("repairing base...")
-
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-		return FALSE
-
-	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
-		return TRUE
-
-	if(!metal_sheets.use(2))
-		return FALSE
-
-	repair_damage(max_integrity * 0.3, user)
-	balloon_alert_to_viewers("base repaired")
-	update_appearance(UPDATE_ICON)
-
 /obj/structure/barricade/solid/return_stack(disassembled = TRUE)
 	var/stack_amt = destroyed_stack_amount
 	if(disassembled)
@@ -158,6 +123,11 @@
 			take_damage(rand(50, 100), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
+
+/obj/structure/barricade/solid/apply_stack(obj/item/I, mob/user, params)
+	if(obj_integrity >= max_integrity * 0.3)
+		return attempt_barricade_upgrade(I, user, params)
+	return ..()
 
 ///Tries to add an upgrade to the cade
 /obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
