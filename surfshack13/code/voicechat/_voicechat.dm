@@ -36,8 +36,7 @@ SUBSYSTEM_DEF(voicechat)
 		message_admins("library test failed cant start voicechat")
 		return SS_INIT_FAILURE
 
-	add_rooms(list("living", "ghost"))
-	add_rooms(list("lobby"), proximity_mode = FALSE)
+	add_rooms(list(ROOM_MARINE, ROOM_XENO, ROOM_GHOST))
 	start_node()
 
 	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_ENDED, PROC_REF(on_round_end)) //moves everyone to no prox room at round end.

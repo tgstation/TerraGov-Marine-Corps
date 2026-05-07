@@ -140,6 +140,19 @@
 		return
 	clear_userCode(userCode)
 
+/// returns the desired voicechat room for alive mobs from faction
+/datum/controller/subsystem/voicechat/proc/get_mob_living_room(mob/M)
+	var/mob_alignment = get_mob_faction_alignment(M)
+	swtich(mob_alignment)
+		if(ALIGNEMENT_FRIENDLY)
+			. = ROOM_MARINE
+		if(ALIGNEMENT_NEUTRAL)
+			. = ROOM_MARINE
+		if(ALIGNEMENT_HOSTILE)
+			. = ROOM_XENO
+		else
+			WARNING("Mob alignment not assigned to voicechat room {alignement: [mob_alignment || "null"]}")
+
 /datum/controller/subsystem/voicechat/proc/add_to_room(mob/M)
 	SIGNAL_HANDLER
 	if(!M)
@@ -149,7 +162,8 @@
 	var/userCode = client_userCode_map[C]
 	if(!C || !userCode)
 		return
-	move_userCode_to_room(userCode, "living")
+	var/room = get_mob_living_room(M)
+	move_userCode_to_room(userCode, room)
 
 /datum/controller/subsystem/voicechat/proc/on_mob_death(mob/M)
 	SIGNAL_HANDLER
@@ -173,28 +187,26 @@
 	if(!C || !userCode)
 		return
 
-
-
 	var/room
 
-	// everyone goes to no prox to yell at each other at round end and round start.
-	if(isnewplayer(M) || SSticker.current_state == GAME_STATE_FINISHED)
-		room = "lobby"
+	// // everyone goes to no prox to yell at each other at round end and round start.
+	// if(isnewplayer(M) || SSticker.current_state == GAME_STATE_FINISHED)
+	// 	room = "lobby"
 
-	else if(isdead(M) || M.stat == DEAD)
-		room = "ghost"
+	if(isdead(M) || M.stat == DEAD)
+		room = ROOM_GHOST
 
 	else if(isliving(M))
 		if(ear_deaf || HAS_TRAIT(M, TRAIT_KNOCKEDOUT) || HAS_TRAIT(M, TRAIT_MUTE))
 			clear_from_room(M)
 		else
-			room = "living"
+			room = get_mob_living_room(M)
 
 	if(room && userCode_room_map[userCode] != room)
 		move_userCode_to_room(userCode, room)
-		//for lobby chat as ticker isnt intialized.
-		if(SSticker.current_state < GAME_STATE_PLAYING)
-			send_locations()
+		// //for lobby chat as ticker isnt intialized.
+		// if(SSticker.current_state < GAME_STATE_PLAYING)
+		// 	send_locations()
 
 /datum/controller/subsystem/voicechat/proc/on_client_leaving_game(client/C)
 	var/userCode = client_userCode_map[C]
@@ -223,10 +235,9 @@
 
 	if(from_byond)
 		send_json(alist(cmd= "disconnect", userCode= userCode))
-	//for lobby chat
-
-	if(SSticker.current_state < GAME_STATE_PLAYING)
-		send_locations()
+	// //for lobby chat
+	// if(SSticker.current_state < GAME_STATE_PLAYING)
+	// 	send_locations()
 
 
 
