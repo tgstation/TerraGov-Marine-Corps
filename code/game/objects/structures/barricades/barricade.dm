@@ -21,6 +21,11 @@
 	var/acid_smoke_damage = 2
 	///Barricade behavior flags
 	var/barricade_flags = BARRICADE_DAMAGE_STATES
+	///Build state of the barricade
+	var/build_state = BARRICADE_FIRM
+	///The skill type of this cade, used for fumble checks
+	var/skill_level = SKILL_ENGINEER_METAL //actually level
+	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
@@ -51,6 +56,15 @@
 			. += span_warning("It's quite beat up, but it's holding together.")
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
+	if(!(barricade_flags & BARRICADE_CAN_MOVE))
+		return
+	switch(build_state)
+		if(BARRICADE_FIRM)
+			. += span_info("The protection panel is still tighly screwed in place.")
+		if(BARRICADE_ANCHORED)
+			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
+		if(BARRICADE_LOOSE)
+			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 /obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
@@ -115,25 +129,6 @@
 	remove_component(/datum/component/climbable)
 	modify_max_integrity(max_integrity + 50)
 	update_appearance(UPDATE_ICON)
-
-/obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!(barricade_flags & BARRICADE_IS_WIRED) || LAZYACCESS(user.do_actions, src))
-		return FALSE
-
-	balloon_alert_to_viewers("removing wire...")
-
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		return TRUE
-
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	balloon_alert_to_viewers("removed")
-	modify_max_integrity(max_integrity - 50)
-	barricade_flags |= BARRICADE_CAN_WIRE
-	DISABLE_BITFIELD(barricade_flags, BARRICADE_IS_WIRED)
-	AddComponent(/datum/component/climbable)
-	update_appearance(UPDATE_ICON)
-	new /obj/item/stack/barbed_wire(loc)
-
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))

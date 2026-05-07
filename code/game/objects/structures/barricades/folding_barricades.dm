@@ -12,18 +12,12 @@
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	base_icon_state = "folding_plasteel"
-	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE
-	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
-	///What state is our barricade in for construction steps?
-	var/build_state = BARRICADE_PLASTEEL_FIRM
-	///Whether something is happening with the cade currently
-	var/busy = FALSE
+	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE
+	skill_level = SKILL_ENGINEER_PLASTEEL
 	///wether we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	///If we can be linked to nearby cades of the sametype
 	var/linkable = TRUE
-	///The skill type of this cade, used for fumble checks
-	var/skilltype = SKILL_ENGINEER_PLASTEEL
 
 /obj/structure/barricade/folding/Initialize(mapload, mob/user)
 	. = ..()
@@ -39,147 +33,28 @@
 		return FALSE
 	return ..()
 
-/obj/structure/barricade/folding/examine(mob/user)
-	. = ..()
-
-	switch(build_state)
-		if(BARRICADE_PLASTEEL_FIRM)
-			. += span_info("The protection panel is still tighly screwed in place.")
-		if(BARRICADE_ANCHORED)
-			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
-		if(BARRICADE_LOOSE)
-			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
-
 /obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skilltype, 1)
+	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skill_level, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
 
-/obj/structure/barricade/folding/screwdriver_act(mob/living/user, obj/item/I)
-	if(!isscrewdriver(I))
+/obj/structure/barricade/foldable/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
 		return
-
-	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
-		return
-
-	if(LAZYACCESS(user.do_actions, src))
-		return
-
-	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
-
-	switch(build_state)
-		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
-				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return
-
-			for(var/obj/structure/barricade/B in loc)
-				if(B != src && B.dir == dir)
-					balloon_alert(user, "already a barricade here!")
-					return
-
-			if(!do_after(user, 1, NONE, src, BUSY_ICON_BUILD))
-				return
-
-			balloon_alert_to_viewers("bolt protection panel removed")
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			build_state = BARRICADE_ANCHORED
-		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
-				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return
-			balloon_alert_to_viewers("bolt protection panel replaced")
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			build_state = BARRICADE_PLASTEEL_FIRM
-
-/obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
-	if(!iscrowbar(I))
-		return
-
-	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
-		return
-
-	if(LAZYACCESS(user.do_actions, src))
-		return
-
-	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
-
-	switch(build_state)
-		if(BARRICADE_PLASTEEL_FIRM)
-			if(linkable)
-				balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
-				linked = !linked
-				for(var/direction in GLOB.cardinals)
-					for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
-						cade.update_appearance(UPDATE_ICON)
-				update_appearance(UPDATE_ICON)
-		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
-			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
-				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return
-			balloon_alert_to_viewers("disassembling...")
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			busy = TRUE
-
-			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				busy = FALSE
-				return
-
-			busy = FALSE
-			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
-			span_notice("You take [src]'s panels apart."))
-			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!get_self_acid())
-
-/obj/structure/barricade/folding/wrench_act(mob/living/user, obj/item/I)
-	if(!iswrench(I))
-		return
-
-	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
-		return
-
-	if(LAZYACCESS(user.do_actions, src))
-		return
-
-	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
-
-	switch(build_state)
-		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
-				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return
-			balloon_alert_to_viewers("anchor bolts loosened")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			anchored = FALSE
-			modify_max_integrity(initial(max_integrity) * 0.5)
-			build_state = BARRICADE_LOOSE
-			update_appearance(UPDATE_ICON) //unanchored changes layer
-		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
-			var/turf/mystery_turf = get_turf(src)
-			if(!isopenturf(mystery_turf))
-				balloon_alert(user, "can't anchor here!")
-				return
-
-			var/turf/open/T = mystery_turf
-			var/area/area = get_area(T)
-			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-				balloon_alert(user, "can't anchor here!")
-				return
-
-			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
-				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return
-			balloon_alert_to_viewers("secured bolts")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			anchored = TRUE
-			modify_max_integrity(initial(max_integrity))
-			build_state = BARRICADE_ANCHORED
-			update_appearance(UPDATE_ICON) //unanchored changes layer
+	if(build_state != BARRICADE_FIRM)
+		return FALSE
+	if(!linkable)
+		return FALSE
+	balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
+	linked = !linked
+	for(var/direction in LeftAndRightOfDir(dir))
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
+			if(cade.dir != dir)
+				continue
+			cade.update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -285,4 +160,5 @@
 	destroyed_stack_amount = 3
 	base_icon_state = "folding_metal"
 	linkable = FALSE
+	skill_level = SKILL_ENGINEER_METAL
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)

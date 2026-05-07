@@ -23,9 +23,7 @@
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	base_icon_state = "metal"
-	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE
-	///Build state of the barricade
-	var/build_state = BARRICADE_FIRM
+	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
@@ -163,14 +161,6 @@
 
 /obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
-	switch(build_state)
-		if(BARRICADE_FIRM)
-			. += span_info("The protection panel is still tighly screwed in place.")
-		if(BARRICADE_ANCHORED)
-			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
-		if(BARRICADE_LOOSE)
-			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
-
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/solid/welder_act(mob/living/user, obj/item/I)
@@ -178,152 +168,43 @@
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
 
-
-/obj/structure/barricade/solid/screwdriver_act(mob/living/user, obj/item/I)
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-	switch(build_state)
-		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
-
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
-
-			balloon_alert_to_viewers("bolt protection panel replaced")
-			build_state = BARRICADE_FIRM
-			return TRUE
-
-		if(BARRICADE_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
-
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
-
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
-
-			balloon_alert_to_viewers("bolt protection panel removed")
-			build_state = BARRICADE_ANCHORED
-			return TRUE
-
-
-/obj/structure/barricade/solid/wrench_act(mob/living/user, obj/item/I)
-	if(LAZYACCESS(user.do_actions, src))
-		return FALSE
-	switch(build_state)
-		if(BARRICADE_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
-
-			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
-
-			balloon_alert_to_viewers("anchor bolts loosened")
-			build_state = BARRICADE_LOOSE
-			anchored = FALSE
-			modify_max_integrity(initial(max_integrity) * 0.5)
-			update_appearance(UPDATE_ICON) //unanchored changes layer
-			return TRUE
-
-		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-
-			var/turf/mystery_turf = get_turf(src)
-			if(!isopenturf(mystery_turf))
-				balloon_alert(user, "can't anchor here!")
-				return TRUE
-
-			var/turf/open/T = mystery_turf
-			var/area/area = get_area(T)
-			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-				balloon_alert(user, "can't anchor here!")
-				return TRUE
-
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
-
-			for(var/obj/structure/barricade/B in loc)
-				if(B != src && B.dir == dir)
-					balloon_alert(user, "already a barricade here!")
-					return TRUE
-
-			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
-
-			balloon_alert_to_viewers("anchor bolts secured")
-			build_state = BARRICADE_ANCHORED
-			anchored = TRUE
-			modify_max_integrity(initial(max_integrity))
-			update_appearance(UPDATE_ICON) //unanchored changes layer
-			return TRUE
-
-
 /obj/structure/barricade/solid/crowbar_act(mob/living/user, obj/item/I)
-	if(LAZYACCESS(user.do_actions, src))
+	. = ..()
+	if(.)
+		return
+	if(build_state != BARRICADE_FIRM)
 		return FALSE
-	switch(build_state)
-		if(BARRICADE_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
+	if(!barricade_upgrade_type)
+		balloon_alert(user, "no upgrades to remove!")
+		return FALSE
 
-			balloon_alert_to_viewers("disassembling")
+	if(user.skills.getRating(SKILL_CONSTRUCTION) < skill_level)
+		var/fumbling_time = 5 SECONDS * ( skill_level - user.skills.getRating(SKILL_CONSTRUCTION))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
 
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
+	balloon_alert_to_viewers("removing armor plates...")
 
-			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
-			span_notice("You take [src]'s panels apart."))
-			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!get_self_acid())
-			return TRUE
-		if(BARRICADE_FIRM)
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return FALSE
 
-			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
-				balloon_alert(user, "no upgrades to remove!")
-				return TRUE
+	balloon_alert_to_viewers("removed armor plates")
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
-				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
-				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
-					return TRUE
+	switch(barricade_upgrade_type)
+		if(CADE_TYPE_BOMB)
+			soft_armor = soft_armor.modifyRating(BOMB = -CADE_UPGRADE_BOMB)
+		if(CADE_TYPE_MELEE)
+			soft_armor = soft_armor.modifyRating(MELEE = -CADE_UPGRADE_MELEE["melee"], BULLET = -CADE_UPGRADE_MELEE["bullet"], LASER = -CADE_UPGRADE_MELEE["laser"], ENERGY = -CADE_UPGRADE_MELEE["energy"])
+		if(CADE_TYPE_ACID)
+			soft_armor = soft_armor.modifyRating(ACID = -CADE_UPGRADE_ACID)
+			resistance_flags &= ~UNACIDABLE
 
-			balloon_alert_to_viewers("removing armor plates...")
-
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
-				return TRUE
-
-			balloon_alert_to_viewers("removed armor plates")
-			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-
-			switch(barricade_upgrade_type)
-				if(CADE_TYPE_BOMB)
-					soft_armor = soft_armor.modifyRating(BOMB = -CADE_UPGRADE_BOMB)
-				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(MELEE = -CADE_UPGRADE_MELEE["melee"], BULLET = -CADE_UPGRADE_MELEE["bullet"], LASER = -CADE_UPGRADE_MELEE["laser"], ENERGY = -CADE_UPGRADE_MELEE["energy"])
-				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(ACID = -CADE_UPGRADE_ACID)
-					resistance_flags &= ~UNACIDABLE
-
-			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
-			barricade_upgrade_type = null
-			update_appearance(UPDATE_ICON)
-			return TRUE
-
+	new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
+	barricade_upgrade_type = null
+	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/structure/barricade/solid/ex_act(severity)
 	switch(severity)
@@ -353,4 +234,5 @@
 	stack_amount = BUILD_COST_PLASTEEL_CADE
 	destroyed_stack_amount = 1
 	base_icon_state = "plasteel"
+	skill_level = SKILL_ENGINEER_PLASTEEL
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)

@@ -5,6 +5,8 @@
 	coverage = 100
 	base_icon_state = "folding"
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 25, BIO = 100, FIRE = 100, ACID = 30)
+
+	//BARRICADE_CAN_MOVE remove this
 	///Whether this item can be deployed or undeployed
 	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
