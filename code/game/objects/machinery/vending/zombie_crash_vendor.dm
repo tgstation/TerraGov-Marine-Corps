@@ -90,7 +90,7 @@
 
 		// Emplacements
 		/obj/item/storage/box/crate/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Sentry crate", 50, "sentry"),
-		/obj/item/ammo_magazine/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Ammo", 10, "emplacement-laser"),
+		/obj/item/ammo_magazine/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Ammo", 10, "sentry-ammo"),
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 10, "emplacement-laser"),
 		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-laser"), // Cheap due to low ammo capacity.
 		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 14, "emplacement-heavysmartgun"),
