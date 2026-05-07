@@ -29,14 +29,13 @@
 			take_damage(rand(10, 33), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(10, BRUTE, BOMB)
-	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(acid_smoke_damage * S.strength, BURN, ACID)
+		take_damage(2 * S.strength, BURN, ACID)
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -128,7 +128,7 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(I, obj/item/stack/sheet/metal/metal_sheets)) //for non-metal cades, we can't use apply_stack since its not our stack type
+	if(istype(I, /obj/item/stack/sheet/metal)) //for non-metal cades, we can't use apply_stack since its not our stack type
 		return  attempt_barricade_upgrade(I, user)
 
 /obj/structure/barricade/solid/apply_stack(obj/item/stack/sheet/stack, mob/user)
@@ -153,7 +153,7 @@
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
-		return
+		return FALSE
 
 	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
 		balloon_alert(user, "fumbling...")
@@ -164,6 +164,8 @@
 	balloon_alert_to_viewers("attaching [choice]...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
+	if(QDELETED(src))
+		return TRUE
 	if(barricade_upgrade_type)
 		balloon_alert(user, "already upgraded!")
 		return FALSE

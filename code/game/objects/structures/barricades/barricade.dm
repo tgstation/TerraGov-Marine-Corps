@@ -17,8 +17,6 @@
 	var/stack_amount = 5
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
-	///Damage caused by acid smoke
-	var/acid_smoke_damage = 2
 	///Barricade behavior flags
 	var/barricade_flags = BARRICADE_DAMAGE_STATES
 	///Build state of the barricade
