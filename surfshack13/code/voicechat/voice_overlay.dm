@@ -3,13 +3,13 @@
 		if(!voice_image)
 			voice_image = mutable_appearance('surfshack13/icon/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
 		else if(voice_image.icon_state != voice_icon_state)
-			overlays -= voice_image
+			cut_overlay(voice_image)
 			voice_image = mutable_appearance('surfshack13/icon/mob/effects/voice_overlay.dmi', icon_state = voice_icon_state)
-		overlays |= voice_image
+		add_overlay(voice_image)
 	else
 		if(!voice_image)
 			return
-		overlays -= voice_image
+		cut_overlay(voice_image)
 
 /mob/living/carbon/xenomorph/toggle_voice_overlay(on, voice_icon_state)
 	if(mob_size == MOB_SIZE_BIG)
