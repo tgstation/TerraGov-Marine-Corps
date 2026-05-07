@@ -15,3 +15,11 @@
   Joe13413:
   - balance: The lever action rifle seasonal shoots 2x faster, holds 4 more rounds,
       has reduced recoil, and can take more attachments.
+2026-05-07:
+  Runian:
+  - bugfix: Tactical sensors now show blips through walls.
+  - bugfix: Xenomorphs with friendly IFF correctly creates friendly blips for motion
+      sensors.
+  - bugfix: Wearing a belt while having your only ID in your hand now correctly indicates
+      that you have an ID to many things that check for your ID.
+  - refactor: Motion detection (as seen with the tactical sensor) is now a component.
