@@ -140,7 +140,7 @@
 
 ///How much this cade should be repaired by any ordinary effect
 /obj/structure/barricade/proc/get_repair_amount()
-	return 85 //weld value
+	return ROUND_UP(max_integrity / stack_amount)
 
 ///Adds barbed wire
 /obj/structure/barricade/proc/wire()

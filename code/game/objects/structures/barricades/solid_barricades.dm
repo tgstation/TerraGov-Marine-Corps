@@ -124,6 +124,9 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
 
+/obj/structure/barricade/solid/get_repair_amount()
+	return BARRICADE_REPAIR_WELD_AMOUNT
+
 /obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)

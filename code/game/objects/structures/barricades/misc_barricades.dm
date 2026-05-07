@@ -20,6 +20,9 @@
 	if(istype(I, /obj/item/tool/shovel))
 		return shovel_decon(I, user)
 
+/obj/structure/barricade/wooden/get_repair_amount()
+	return max_integrity / stack_amount
+
 /*----------------------*/
 // GUARD RAIL
 /*----------------------*/
@@ -57,9 +60,6 @@
 
 /obj/structure/barricade/wooden/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
-
-/obj/structure/barricade/wooden/get_repair_amount()
-	return max_integrity
 
 /*----------------------*/
 // CONCRETE
@@ -108,6 +108,3 @@
 		return
 	if(istype(I, /obj/item/tool/shovel))
 		return shovel_decon(I, user)
-
-/obj/structure/barricade/sandbags/get_repair_amount()
-	return max_integrity * 0.2

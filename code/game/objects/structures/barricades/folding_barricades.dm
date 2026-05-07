@@ -83,6 +83,9 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 75), BRUTE, BOMB)
 
+/obj/structure/barricade/folding/get_repair_amount()
+	return BARRICADE_REPAIR_WELD_AMOUNT
+
 ///Toggle open or closed
 /obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
 	if(state == (barricade_flags & BARRICADE_OPEN))

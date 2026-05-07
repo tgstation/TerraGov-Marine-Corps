@@ -298,6 +298,9 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 ///Stacks needed to repair severely damaged cades
 #define BARRICADE_REPAIR_STACK_AMOUNT 2
 
+///Stacks needed to repair severely damaged cades
+#define BARRICADE_REPAIR_WELD_AMOUNT 85
+
 ///Cade is movable
 #define BARRICADE_LOOSE 0
 ///Cade is anchored but bolts exposed
