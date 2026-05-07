@@ -52,22 +52,26 @@
 		return TRUE
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !(barricade_flags & BARRICADE_CAN_WIRE))
-		return
+		return FALSE
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return TRUE
 
 	var/obj/item/stack/barbed_wire/B = I
 
 	balloon_alert_to_viewers("setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !(barricade_flags & BARRICADE_CAN_WIRE))
-		return
-
+		return TRUE
+	if(QDELETED(src))
+		return TRUE
 	if(get_self_acid())
 		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-
 	B.use(1)
 	wire()
+	return TRUE
 
 ///Applies the cades stack type to itself
 /obj/structure/barricade/proc/apply_stack(obj/item/stack/sheet/stack, mob/user)

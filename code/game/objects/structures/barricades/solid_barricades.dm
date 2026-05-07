@@ -124,13 +124,20 @@
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
 
-/obj/structure/barricade/solid/apply_stack(obj/item/I, mob/user, params)
+/obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(istype(I, obj/item/stack/sheet/metal/metal_sheets)) //for non-metal cades, we can't use apply_stack since its not our stack type
+		return  attempt_barricade_upgrade(I, user)
+
+/obj/structure/barricade/solid/apply_stack(obj/item/stack/sheet/stack, mob/user)
 	if(obj_integrity >= max_integrity * 0.3)
-		return attempt_barricade_upgrade(I, user, params)
+		return attempt_barricade_upgrade(stack, user)
 	return ..()
 
 ///Tries to add an upgrade to the cade
-/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
+/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user)
 	if(barricade_upgrade_type)
 		balloon_alert(user, "already upgraded!")
 		return FALSE
@@ -178,6 +185,7 @@
 
 	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
 	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/structure/barricade/solid/capsule
 	name = "capsule-deployed metal barricade"

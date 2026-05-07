@@ -1381,6 +1381,7 @@
 #include "code\game\objects\structures\window_frame.dm"
 #include "code\game\objects\structures\xeno.dm"
 #include "code\game\objects\structures\barricades\barricade.dm"
+#include "code\game\objects\structures\barricades\barricade_attack.dm"
 #include "code\game\objects\structures\barricades\barricade_tool_acts.dm"
 #include "code\game\objects\structures\barricades\deployable_barricades.dm"
 #include "code\game\objects\structures\barricades\folding_barricades.dm"
