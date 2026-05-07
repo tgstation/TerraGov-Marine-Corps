@@ -23,8 +23,8 @@
 	var/barricade_flags = BARRICADE_DAMAGE_STATES
 	///Build state of the barricade
 	var/build_state = BARRICADE_FIRM
-	///The skill type of this cade, used for fumble checks
-	var/skill_level = SKILL_ENGINEER_METAL //actually level
+	///The skill level for maintaining this barricade
+	var/skill_level = SKILL_ENGINEER_METAL
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 
 /obj/structure/barricade/Initialize(mapload, mob/user)

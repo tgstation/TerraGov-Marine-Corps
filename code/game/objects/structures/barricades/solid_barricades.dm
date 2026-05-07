@@ -23,7 +23,7 @@
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	base_icon_state = "metal"
-	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE
+	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE|BARRICADE_STANDARD_REPAIR
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
@@ -163,11 +163,6 @@
 	. = ..()
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
-/obj/structure/barricade/solid/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_METAL, 1)
-	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
-
 /obj/structure/barricade/solid/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
@@ -216,8 +211,6 @@
 			take_damage(rand(50, 100), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 50), BRUTE, BOMB)
-
-	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/solid/capsule
 	name = "capsule-deployed metal barricade"

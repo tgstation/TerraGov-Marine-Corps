@@ -12,7 +12,7 @@
 	destroyed_stack_amount = 2
 	hit_sound = "sound/effects/metalhit.ogg"
 	base_icon_state = "folding_plasteel"
-	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE
+	barricade_flags = parent_type::barricade_flags|BARRICADE_CAN_WIRE|BARRICADE_CAN_MOVE|BARRICADE_STANDARD_REPAIR
 	skill_level = SKILL_ENGINEER_PLASTEEL
 	///wether we react with other cades next to us ie when opening or so
 	var/linked = FALSE
@@ -33,12 +33,7 @@
 		return FALSE
 	return ..()
 
-/obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skill_level, 1)
-	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
-
-/obj/structure/barricade/foldable/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
 		return
@@ -141,8 +136,6 @@
 			take_damage(rand(50, 150), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(rand(25, 75), BRUTE, BOMB)
-
-	update_appearance(UPDATE_ICON)
 
 /obj/structure/barricade/folding/capsule
 	name = "capsule-deployed folding plasteel barricade"

@@ -292,6 +292,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define BARRICADE_OPEN (1<<3)
 ///It can be disassembled and moved
 #define BARRICADE_CAN_MOVE (1<<4)
+///Can be repaired with a welder
+#define BARRICADE_STANDARD_REPAIR (1<<5)
 
 ///Stacks needed to repair severely damaged cades
 #define BARRICADE_REPAIR_STACK_AMOUNT 2
