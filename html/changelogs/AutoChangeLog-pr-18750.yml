@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "The spotting rifle checks the SG skill instead of the rifle skill"
