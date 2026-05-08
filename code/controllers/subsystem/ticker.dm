@@ -360,7 +360,7 @@ SUBSYSTEM_DEF(ticker)
 	fdel(F)
 	WRITE_FILE(F, the_mode)
 
-
+///Sets the reboot timer if valid
 /datum/controller/subsystem/ticker/proc/Reboot(reason, delay)
 	set waitfor = FALSE
 
@@ -387,9 +387,10 @@ SUBSYSTEM_DEF(ticker)
 		deltimer(reboot_timer)
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason), delay, TIMER_STOPPABLE)
 
+///Actually reboots the server
 /datum/controller/subsystem/ticker/proc/reboot_callback(reason)
 	log_game(span_boldannounce("Rebooting World. [reason]"))
-	world.Reboot()
+	world.Reboot(TRUE)
 
 /**
  * Deletes the current reboot timer and nulls the var
