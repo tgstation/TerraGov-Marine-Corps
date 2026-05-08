@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed being able to rotate certain chairs you shouldn't be able to, allowing you to hide your sprite entirely"
