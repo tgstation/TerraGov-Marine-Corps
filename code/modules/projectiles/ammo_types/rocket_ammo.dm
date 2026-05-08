@@ -89,8 +89,9 @@
 	var/turf/target_turf = get_turf(target_mob)
 	if(!isxeno(target_mob))
 		if(!(target_mob.status_flags & GODMODE))
-			log_attack("[key_name(target_mob)] has been gibbed by [src], fired by [key_name(proj.firer)].")
-			msg_admin_ff("[ADMIN_LOOKUPFLW(target_mob)] was gibbed by a tank shell fired by [ADMIN_LOOKUPFLW(proj.firer)] at [ADMIN_VERBOSEJMP(target_turf)]")
+			if(!is_centcom_level(epicenter.z))
+				log_attack("[key_name(target_mob)] has been gibbed by [src], fired by [key_name(proj.firer)].")
+				msg_admin_ff("[ADMIN_LOOKUPFLW(target_mob)] was gibbed by a tank shell fired by [ADMIN_LOOKUPFLW(proj.firer)] at [ADMIN_VERBOSEJMP(target_turf)]")
 			target_mob.gib()
 	else
 		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)

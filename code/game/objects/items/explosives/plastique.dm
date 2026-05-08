@@ -198,7 +198,7 @@
 /mob/living/carbon/human/plastique_act(mob/living/plastique_user)
 	var/turf/location = get_turf(src)
 	. = ..()
-	if(QDELETED(src))
+	if(QDELETED(src) && !is_centcom_level(location.z))
 		log_attack("[key_name(src)] was gibbed with C4 by [key_name(plastique_user)] at [AREACOORD(location)]")
 		msg_admin_ff("[ADMIN_LOOKUPFLW(src)] was gibbed with C4 by [ADMIN_LOOKUPFLW(plastique_user)] at [ADMIN_VERBOSEJMP(location)]")
 

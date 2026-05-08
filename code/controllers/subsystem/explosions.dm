@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(explosions)
 
 	if(adminlog)
 		log_attack("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [loc_name(epicenter)], Apparent cause: [explosion_cause]. Mob responsible: [key_name(blame_mob)].")
-		if(blame_mob)
+		if(blame_mob && !is_centcom_level(epicenter.z))
 			msg_admin_ff("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)], Apparent cause: [ADMIN_LOOKUPFLW(explosion_cause)]. Mob responsible: [ADMIN_LOOKUPFLW(blame_mob)]")
 
 	if(max_range >= 6 || heavy_impact_range)
