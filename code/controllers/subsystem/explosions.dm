@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(explosions)
 	var/started_at = REALTIMEOFDAY
 
 	if(adminlog)
-		log_attack("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [loc_name(epicenter)], Apparent cause: [explosion_cause]. Mob responsible: [blame_mob].")
+		log_attack("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [loc_name(epicenter)], Apparent cause: [explosion_cause]. Mob responsible: [key_name(blame_mob)].")
 		if(blame_mob)
 			msg_admin_ff("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)], Apparent cause: [ADMIN_LOOKUPFLW(explosion_cause)]. Mob responsible: [ADMIN_LOOKUPFLW(blame_mob)]")
 
