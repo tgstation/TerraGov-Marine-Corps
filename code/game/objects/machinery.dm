@@ -231,18 +231,18 @@
 			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_RESTORED)
 			. = TRUE
 
-	update_icon()
+	update_appearance()
 
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
 		if(use_power && machine_current_charge > idle_power_usage) //Does it have an integrated battery/reserve power to tap into?
 			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
-			update_icon()
+			update_appearance()
 			return TRUE
 		else if(machine_current_charge > active_power_usage)
 			machine_current_charge -= min(machine_current_charge, active_power_usage)
-			update_icon()
+			update_appearance()
 			return TRUE
 		else
 			return FALSE
@@ -253,7 +253,7 @@
 				var/power_usage = clamp(machine_max_charge - machine_current_charge, 0, 500)
 				machine_current_charge += power_usage //recharge internal cell at max rate of 500
 				use_power(power_usage, power_channel)
-				update_icon()
+				update_appearance()
 			else
 				use_power(idle_power_usage, power_channel)
 
@@ -357,4 +357,4 @@
 
 	machine_stat |= DISABLED
 	density = FALSE
-	update_icon()
+	update_appearance()

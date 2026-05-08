@@ -5,6 +5,7 @@
 	icon_state = "vehicle_chair"
 	resistance_flags = RESIST_ALL
 	dir = EAST
+	can_rotate = FALSE
 
 /obj/structure/bed/chair/loader_seat/update_overlays()
 	. = ..()
@@ -32,6 +33,7 @@
 	dir = EAST
 	buckling_x = -2
 	buckling_y = 0
+	can_rotate = FALSE
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
 	///The skill required to man this chair
