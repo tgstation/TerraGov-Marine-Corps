@@ -184,12 +184,12 @@
 	if(exploding)
 		return
 	exploding = TRUE
-	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause = src, blame_mob = blame_mob)
-	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3, explosion_cause = src, blame_mob = blame_mob)
-	else
-		explosion(loc, light_impact_range = 2, flame_range = 2, explosion_cause = src, blame_mob = blame_mob)
+	var/explosion_strength = 2
+	if(reagents.total_volume > 500)
+		explosion_strength = 4
+	else if(reagents.total_volume > 100)
+		explosion_strength = 3
+	explosion(loc, light_impact_range = explosion_strength, flame_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
@@ -232,17 +232,13 @@
 	if(exploding)
 		return
 	exploding = TRUE
-
+	var/explosion_strength = 3
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5, explosion_cause = src, blame_mob = blame_mob)
+		explosion_strength = 5
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4, explosion_cause = src, blame_mob = blame_mob)
-	else
-		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3, explosion_cause = src, blame_mob = blame_mob)
-
+		explosion_strength = 4
+	flame_radius(explosion_strength, loc, 40, 46, 31, 30, colour = "blue")
+	explosion(loc, light_impact_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/spacefuel

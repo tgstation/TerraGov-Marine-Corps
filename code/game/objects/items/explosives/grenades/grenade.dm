@@ -96,7 +96,7 @@
 	notify_ai_hazard()
 	return TRUE
 
-///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
+///Detonation effects
 /obj/item/explosive/grenade/proc/prime(mob/user)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/idiot = loc
