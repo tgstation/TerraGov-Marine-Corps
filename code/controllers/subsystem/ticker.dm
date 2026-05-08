@@ -367,6 +367,11 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER, TRUE))
 		return
 
+	if(graceful)
+		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
+		world.Reboot(FALSE)
+		return
+
 	if(!delay)
 		delay = CONFIG_GET(number/mission_end_countdown) * 10
 
