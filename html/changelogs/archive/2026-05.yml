@@ -44,3 +44,12 @@
   - balance: Non player mobs can push other mobs normally
   - qol: Important stuff such as objectives and the nuke layers higher on the minimap
   - rscadd: 'Campaign: Buying and using assets can be done even when dead'
+2026-05-09:
+  AzonStarfall:
+  - qol: Gave the FC a little privacy in his quarters on Arachne. No peeking!
+  - qol: Optimized Arachne Medbay and the Medbay operating rooms.
+  - rscadd: Arachne's firing range walls have been modified to a new bulletproof variant.
+  - qol: Organized the Arachne Tadpole hangar area.
+  - qol: Gave Arachne's Requisitions some long-awaited factory space!
+  mudzbe:
+  - rscadd: Add sentry and ammo to zombie crash vendor
