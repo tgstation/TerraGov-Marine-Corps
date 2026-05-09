@@ -324,7 +324,7 @@
 			continue
 		if(isfire(victim))
 			var/obj/fire/fire = victim
-			fire.reduce_fire(10)
+			fire.reduce_fire(FLAMER_STANDARD_BURN_DURATION, 10)
 
 ///cleans up when the charge up is finished or interrupted
 /datum/action/ability/activable/xeno/shattering_roar/proc/finish_charging()
