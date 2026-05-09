@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - balance: "Zombie healrate reduced by 30%, regular zombie health reduced by 20%, zombium per hit reduced by 22%"
+  - balance: "Increased time between spawn waves, increased zombie tunnel wave size"
