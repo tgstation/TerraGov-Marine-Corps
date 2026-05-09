@@ -254,8 +254,12 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	var/message = get_deploy_point_message(user)
 	if(!message)
 		return
-	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", message, LEFT_ALIGN_TEXT), GLOB.faction_to_portrait[user.faction])
+
+	var/sound = SFX_QUEEN
+	if(!isxeno(user))
+		sound = "sound/effects/CIC_order.ogg"
+	user.playsound_local(user, sound, 10, 1)
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(isxeno(user) ? "Queen Mother" : "OVERWATCH", message, LEFT_ALIGN_TEXT), GLOB.faction_to_portrait[user.faction])
 
 ///Returns a message to play to a mob when they deploy into the AO
 /datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)

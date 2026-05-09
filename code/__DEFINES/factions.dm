@@ -138,6 +138,7 @@ GLOBAL_LIST_INIT(faction_to_squad_hud, list(
 GLOBAL_LIST_INIT(faction_to_portrait, list(
 	FACTION_TERRAGOV = /atom/movable/screen/text/screen_text/picture/potrait,
 	FACTION_SOM = /atom/movable/screen/text/screen_text/picture/potrait/som_over,
+	FACTION_XENO = /atom/movable/screen/text/screen_text/picture/potrait/queen_mother,
 ))
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
