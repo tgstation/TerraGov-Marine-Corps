@@ -163,8 +163,7 @@
 	var/shield_status_modifier = get_shield_status_modifier()
 
 	switch(attack_type)
-	//BELOW IS INCORRECT, WRONG WAY AROUND UNLESS STONED OUT OF MIND
-		if(COMBAT_TOUCH_ATTACK) //Touch attacks return false if the associated negative effect is blocked
+		if(COMBAT_TOUCH_ATTACK)
 			return touch_block(incoming_damage, damage_type, penetration)
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK) //we return the amount of damage that bypasses the shield
 			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * shield_status_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
@@ -188,14 +187,14 @@
 ///Block chance calculation
 /datum/component/shield/proc/item_pure_block_chance(attack_type, incoming_damage, damage_type, silent, penetration)
 	switch(attack_type)
-		if(COMBAT_TOUCH_ATTACK) //Touch attacks return false if the associated negative effect is blocked
+		if(COMBAT_TOUCH_ATTACK)
 			return touch_block(incoming_damage, damage_type, penetration)
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
 			if(prob(cover.getRating(damage_type) - penetration))
 				return 0
 			return incoming_damage
 
-//Touch attacks return true if the associated negative effect penetrates the shield
+///Touch attacks return true if the associated negative effect penetrates the shield
 /datum/component/shield/proc/touch_block(incoming_damage, damage_type, penetration)
 	var/obj/item/parent_item = parent
 	incoming_damage = parent_item.modify_by_armor(incoming_damage, damage_type, penetration)
