@@ -12,10 +12,11 @@
 		cut_overlay(voice_image)
 
 /mob/living/carbon/xenomorph/toggle_voice_overlay(on, voice_icon_state)
-	if(mob_size == MOB_SIZE_BIG)
-		voice_icon_state = "ayy_lmao"
-	else
-		voice_icon_state = "ayy"
+	if(on)
+		if(mob_size == MOB_SIZE_BIG)
+			voice_icon_state = "ayy_lmao"
+		else
+			voice_icon_state = "ayy"
 	. = ..()
 
 
