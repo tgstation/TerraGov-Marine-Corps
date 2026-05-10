@@ -48,7 +48,7 @@
 
 	if(upgrade == XENO_UPGRADE_PRIMO && !silent)
 		to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
-		sync_global_abilities()
+		sync_hive_abilities()
 
 	generate_name() //Give them a new name now
 
