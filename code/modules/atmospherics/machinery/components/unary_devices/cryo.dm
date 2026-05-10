@@ -1,4 +1,6 @@
 #define CRYOMOBS 'icons/obj/cryo_mobs.dmi'
+///Temp that the cryo tube applies to occupants
+#define CRYO_TEMP 100
 
 /obj/machinery/atmospherics/components/unary/cryo_cell
 	name = "cryo cell"
@@ -14,29 +16,15 @@
 	light_range = 3
 	light_power = 2
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
-
+	///Whether we will autoeject when the occupant is fully healed
 	var/autoeject = FALSE
-
-	var/temperature = 100
-
-	var/efficiency = 1
-	var/sleep_factor = 0.00125
-	var/unconscious_factor = 0.001
-	var/heat_capacity = 20000
-	var/conduction_coefficient = 0.3
-
+	///The stored beaker for healing reagents
 	var/obj/item/reagent_containers/glass/beaker = null
-	var/reagent_transfer = 0
-
+	///Internal radio for announcing stuff
 	var/obj/item/radio/headset/mainship/doc/radio
-	var/idle_ticks_until_shutdown = 60 //Number of ticks permitted to elapse without a patient before the cryotube shuts itself off to save processing
-
-	var/running_anim = FALSE
-
-	var/escape_in_progress = FALSE
-	var/message_cooldown
-	var/breakout_time = 300
-
+	//Number of ticks permitted to elapse without a patient before the cryotube shuts itself off to save processing
+	var/idle_ticks_until_shutdown = 60
+	///The mob to be healed
 	var/mob/living/carbon/occupant
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize(mapload)
@@ -46,48 +34,11 @@
 	radio = new(src)
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
-	if(!occupant)
-		return
-	if(occupant.stat == DEAD)
-		return
-	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss() && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
-		go_out(TRUE)
-		return
-	occupant.bodytemperature = 100 //Atmos is long gone, we'll just set temp directly.
-	occupant.Sleeping(20 SECONDS)
-
-	//You'll heal slowly just from being in an active pod, but chemicals speed it up.
-	if(occupant.getOxyLoss())
-		occupant.adjustOxyLoss(-1)
-	if (occupant.getToxLoss())
-		occupant.adjustToxLoss(-1)
-	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
-	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
-	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
-	var/has_cryo_medicine = has_cryo || has_clonexa
-	if(beaker && !has_cryo_medicine)
-		beaker.reagents.trans_to(occupant, 1, 10)
-		beaker.reagents.reaction(occupant)
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
-	..(dir, dir)
+	return ..(dir, dir)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/RefreshParts()
-	var/C
-	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-		C += M.rating
-
-	efficiency = initial(efficiency) * C
-	sleep_factor = initial(sleep_factor) * C
-	unconscious_factor = initial(unconscious_factor) * C
-	heat_capacity = initial(heat_capacity) / C
-	conduction_coefficient = initial(conduction_coefficient) * C
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
+/obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
 	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		. +=  span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
 	if(occupant)
 		if(on)
 			. += "Someone's inside [src]!"
@@ -99,6 +50,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(beaker)
+	go_out()
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity)
@@ -110,6 +62,9 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
+		return
+	if(A == occupant)
+		occupant = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
 	. = ..()
@@ -133,47 +88,6 @@
 		return
 	. += emissive_appearance(icon, "cell_emissive", src, alpha = src.alpha)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
-	if(!on || !occupant || !is_operational())
-		running_anim = FALSE
-		return
-	cut_overlays()
-	if(occupant_overlay.pixel_y != 23) // Same effect as occupant_overlay.pixel_y == 22 || occupant_overlay.pixel_y == 24
-		anim_up = occupant_overlay.pixel_y == 22 // Same effect as if(occupant_overlay.pixel_y == 22) anim_up = TRUE ; if(occupant_overlay.pixel_y == 24) anim_up = FALSE
-	if(anim_up)
-		occupant_overlay.pixel_y++
-	else
-		occupant_overlay.pixel_y--
-	add_overlay(occupant_overlay)
-	add_overlay("cover-on")
-	addtimer(CALLBACK(src, PROC_REF(run_anim), anim_up, occupant_overlay), 7, TIMER_UNIQUE)
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/go_out(auto_eject = null, dead = null)
-	if(!( occupant ))
-		return
-	if (occupant.client)
-		occupant.client.set_eye(occupant.client.mob)
-		occupant.client.perspective = MOB_PERSPECTIVE
-	if(occupant in contents)
-		occupant.forceMove(get_step(loc, dir))
-	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
-		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
-	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
-		turn_off()
-		playsound(loc, 'sound/machines/ping.ogg', 100, 14)
-		var/reason = "Reason for release:</b> Patient recovery."
-		if(dead)
-			reason = "<b>Reason for release:</b> Patient death."
-		radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
-	occupant.record_time_in_cryo()
-	occupant = null
-	update_icon()
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_off()
-	on = FALSE
-	stop_processing()
-	update_icon()
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
 	..()
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -184,40 +98,20 @@
 		stop_processing()
 		return
 
-	if(occupant)
-		if(occupant.stat != DEAD)
-			idle_ticks_until_shutdown = 60 //reset idle ticks on usage
-			process_occupant()
-		else
-			go_out(TRUE, TRUE) //Whether auto-eject is on or not, we don't permit literal deadbeats to hang around.
-	else
-		idle_ticks_until_shutdown = max(idle_ticks_until_shutdown--,0) //decrement by 1 if there is no patient.
-		if(!idle_ticks_until_shutdown) //shut down after all ticks elapsed to conserve on processing
+	if(!occupant)
+		idle_ticks_until_shutdown--
+		if(idle_ticks_until_shutdown <= 0)
 			turn_off()
-			idle_ticks_until_shutdown = 60 //reset idle ticks
+		return
 
-	return TRUE
-
+	if(occupant.stat == DEAD)
+		go_out(TRUE, TRUE) //Whether auto-eject is on or not, we don't permit literal deadbeats to hang around.
+		return
+	idle_ticks_until_shutdown = initial(idle_ticks_until_shutdown) //reset idle ticks on usage
+	process_occupant()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
-	if(message_cooldown <= world.time)
-		message_cooldown = world.time + 50
-		to_chat(user, span_warning("[src]'s door won't budge!"))
-
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/verb/move_eject()
-	set name = "Eject occupant"
-	set category = "IC.Object"
-	set src in oview(1)
-	if(usr == occupant) //If the user is inside the tube...
-		if (usr.stat == DEAD) //and he's not dead....
-			return
-		to_chat(usr, span_notice("Auto release sequence activated. You will be released when you have recovered."))
-		autoeject = TRUE
-		return
-	if (usr.stat != CONSCIOUS)
-		return
-	go_out()
+	self_release()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -296,30 +190,21 @@
 
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
-	if (machine_stat & (NOPOWER|BROKEN))
-		to_chat(usr, span_warning("The cryo cell is not functioning."))
+/obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
+	return // can't ventcrawl in or out of cryo.
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(!occupant)
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(!ishuman(M))
-		to_chat(usr, span_notice("\ [src] is compatible with humanoid anatomies only!"))
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	if (occupant)
-		to_chat(usr, span_danger("The cryo cell is already occupied!"))
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
-	if (M.abiotic())
-		to_chat(usr, span_warning("Subject may not have abiotic items on."))
-		return
-	if(put_in) //Select an appropriate message
-		visible_message(span_notice("[usr] puts [M] in [src]."), 3)
-	else
-		visible_message(span_notice("[usr] climbs into [src]."), 3)
-	M.forceMove(src)
-	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
-		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
-	occupant = M
-	occupant.time_entered_cryo = world.time
-	update_icon()
-	return TRUE
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/living/user)
 	. = ..()
@@ -368,7 +253,7 @@
 		else
 			data["occupant"]["temperaturestatus"] = "bad"
 
-	data["cellTemperature"] = round(temperature)
+	data["cellTemperature"] = CRYO_TEMP
 
 	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	var/beakerContents = list()
@@ -403,29 +288,119 @@
 				beaker = null
 				. = TRUE
 
+///Activates the tube
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, span_warning("The cryo cell is not functioning."))
 		return
 	on = TRUE
+	idle_ticks_until_shutdown = initial(idle_ticks_until_shutdown)
 	start_processing()
 	update_icon()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
-	return // can't ventcrawl in or out of cryo.
+///Turns off the tube
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_off()
+	on = FALSE
+	stop_processing()
+	update_icon()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+///Heals the occupant
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
-		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
+	if(occupant.stat == DEAD)
 		return
-	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(xeno_attacker, 2 SECONDS))
+	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss() && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
+		go_out(TRUE)
 		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()
+	occupant.bodytemperature = CRYO_TEMP //Atmos is long gone, we'll just set temp directly.
+	occupant.Sleeping(20 SECONDS)
+	//You'll heal slowly just from being in an active pod, but chemicals speed it up.
+	if(occupant.getOxyLoss())
+		occupant.adjustOxyLoss(-1)
+	if (occupant.getToxLoss())
+		occupant.adjustToxLoss(-1)
+	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
+	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
+	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
+	var/has_cryo_medicine = has_cryo || has_clonexa
+	if(beaker && !has_cryo_medicine)
+		beaker.reagents.trans_to(occupant, 1, 10)
+		beaker.reagents.reaction(occupant)
 
+///Puts a mob inside
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
+	if (machine_stat & (NOPOWER|BROKEN))
+		to_chat(usr, span_warning("The cryo cell is not functioning."))
+		return
+	if(!ishuman(M))
+		to_chat(usr, span_notice("\ [src] is compatible with humanoid anatomies only!"))
+		return
+	if (occupant)
+		to_chat(usr, span_danger("The cryo cell is already occupied!"))
+		return
+	if (M.abiotic())
+		to_chat(usr, span_warning("Subject may not have abiotic items on."))
+		return
+	if(put_in) //Select an appropriate message
+		visible_message(span_notice("[usr] puts [M] in [src]."), 3)
+	else
+		visible_message(span_notice("[usr] climbs into [src]."), 3)
+	M.forceMove(src)
+	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
+		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
+	occupant = M
+	occupant.time_entered_cryo = world.time
+	occupant.set_remote_control(src)
+	update_icon()
+	return TRUE
+
+///Ejects the occupant
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/go_out(auto_eject = null, dead = null)
+	if(!occupant)
+		return
+	if(occupant in contents)
+		occupant.forceMove(get_step(loc, dir))
+	occupant.bodytemperature = max(occupant.bodytemperature, BODYTEMP_COLD_DAMAGE_LIMIT_ONE + 1)
+	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
+		turn_off()
+		playsound(loc, 'sound/machines/ping.ogg', 100, 14)
+		var/reason = "Reason for release:</b> Patient recovery."
+		if(dead)
+			reason = "<b>Reason for release:</b> Patient death."
+		radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+	occupant.record_time_in_cryo()
+	occupant.set_remote_control(null)
+	occupant = null
+	update_icon()
+
+///Ejects the occupant, including yourself
+/obj/machinery/atmospherics/components/unary/cryo_cell/verb/move_eject()
+	set name = "Eject occupant"
+	set category = "IC.Object"
+	set src in oview(1)
+
+	if(usr != occupant)
+		if(usr.stat != CONSCIOUS)
+			return
+		go_out()
+		return
+
+	if(usr.stat == DEAD)
+		return
+	self_release()
+
+///Allows the occupant to self release
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/self_release()
+	if(!occupant)
+		return
+	if(!on)
+		go_out()
+		return
+	if(autoeject)
+		return
+	to_chat(occupant, span_notice("Auto release sequence activated. You will be released when you have recovered."))
+	autoeject = TRUE
 
 #undef CRYOMOBS
+#undef CRYO_TEMP
