@@ -53,3 +53,11 @@
   - qol: Gave Arachne's Requisitions some long-awaited factory space!
   mudzbe:
   - rscadd: Add sentry and ammo to zombie crash vendor
+2026-05-10:
+  ivanmixo:
+  - qol: Moved the default keybinds for select buildtype and place hologram
+  mudzbe:
+  - balance: Zombie healrate reduced by 30%, regular zombie health reduced by 20%,
+      zombium per hit reduced by 22%
+  - balance: Increased time between spawn waves, increased zombie tunnel wave size
+  - balance: Campaign NT base adjustment, makes map less one sided

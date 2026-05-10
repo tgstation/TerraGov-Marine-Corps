@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - qol: "Moved the default keybinds for select buildtype and place hologram"
