@@ -31,7 +31,7 @@
 	blacklist_ship_maps = null
 	whitelist_ground_maps = list(MAP_BIG_RED, MAP_ICE_COLONY, MAP_ICY_CAVES, MAP_DESPARITY, MAP_CORSAT, MAP_RESEARCH_OUTPOST, MAP_BLUESUMMERS, MAP_KUTJEVO_REFINERY, MAP_GELIDA_IV)
 
-	var/capture_point_target = 900
+	var/capture_point_target = 1200
 	///TGMC's point count
 	var/tgmc_cap_points = 0
 	///SOM's point count
@@ -44,6 +44,8 @@
 	var/tower_xeno_tactical_point_value = 1
 	///Tower xeno strategic point value for owning faction per process()
 	var/tower_xeno_strategic_point_value = 3
+	///How much pop is required for every additional tower to spawn
+	var/num_towers_per_pop = 6
 
 /datum/game_mode/hvh/combat_patrol/encounter/announce()
 	to_chat(world, "<b>The current game mode is - Free for all!</b>")
@@ -69,8 +71,8 @@
 /datum/game_mode/hvh/combat_patrol/encounter/post_setup()
 	. = ..()
 
-	var/num_towers = max(3, (floor(length(GLOB.clients) / 5)))
-	capture_point_target = num_towers * 300
+	var/num_towers = max(3, (floor(length(GLOB.clients) / num_towers_per_pop)))
+	capture_point_target = num_towers * 400
 
 	for(num_towers, num_towers < length(GLOB.sensor_towers))
 		GLOB.sensor_towers -= pick(GLOB.sensor_towers)
