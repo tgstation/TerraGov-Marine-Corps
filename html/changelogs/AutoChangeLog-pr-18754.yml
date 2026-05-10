@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Smartgunners, Engineers and Corpsman (in that order) are prioritised over standard marines for selecting the faction leader"
