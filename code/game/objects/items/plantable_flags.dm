@@ -24,6 +24,7 @@
 	force = 55
 	attack_speed = 15
 	attack_verb = list("stabs", "thrusts", "smashes", "thumps", "bashes", "attacks", "clubs", "spears", "jabs", "tears", "gores")
+	hitsound = SFX_SWING_HIT
 	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2
