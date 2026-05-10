@@ -263,13 +263,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/grunt_rnr)
-"arI" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "atc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -338,10 +331,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ayg" = (
 /obj/structure/bed/stool{
@@ -461,16 +451,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"aFJ" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/landinglight/cas{
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "aGd" = (
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship/cargo,
@@ -515,7 +495,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/yellow_cargo/arrow{
+	dir = 1
+	},
 /area/mainship/hallways/hangar)
 "aIy" = (
 /obj/structure/bed/chair/office/dark{
@@ -561,15 +543,6 @@
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"aKj" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/landinglight/cas{
-	pixel_y = 4
-	},
-/turf/open/floor/mainship/yellow_cargo/arrow{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
 "aKk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron/kitchen,
@@ -589,16 +562,6 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
-"aKX" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/machinery/landinglight/cas{
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "aLA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/structure/sign/poster{
@@ -1057,8 +1020,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/hydrant/extinguisher,
-/turf/open/floor/mainship/mono,
+/obj/machinery/dropship_part_fabricator,
+/turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
 "blX" = (
 /obj/machinery/vending/tool,
@@ -1218,9 +1181,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
+/obj/machinery/refuel_station,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "byk" = (
@@ -7841,8 +7803,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/machinery/firealarm,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/yellow_cargo,
 /area/mainship/hallways/hangar)
 "jUl" = (
 /obj/structure/cable,
@@ -10919,6 +10880,17 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"nui" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "nuX" = (
 /obj/effect/ai_node,
 /obj/machinery/iv_drip,
@@ -11101,6 +11073,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"nFt" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "nFD" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12313,8 +12291,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/item/radio/intercom/general,
-/turf/open/floor/mainship/yellow_cargo,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "pii" = (
 /obj/effect/soundplayer/deltaplayer,
@@ -13029,7 +13006,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/refuel_station,
+/obj/machinery/firealarm,
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "pZE" = (
@@ -13816,6 +13800,15 @@
 	},
 /obj/structure/stairs/seamless{
 	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"qWq" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -14995,6 +14988,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /obj/machinery/vending/nanomed,
@@ -17545,19 +17541,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"vMc" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "vMp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17963,7 +17946,7 @@
 "wqq" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wqw" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -18867,16 +18850,6 @@
 /obj/structure/sign/safety/cryogenic,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
-"xqb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/dropship_part_fabricator,
-/turf/open/floor/mainship/yellow_cargo,
-/area/mainship/hallways/hangar)
 "xqr" = (
 /obj/item/trash/chips,
 /turf/open/floor/wood,
@@ -19184,6 +19157,9 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "xGl" = (
@@ -51492,9 +51468,9 @@ llC
 gek
 ycD
 lXN
-vMc
-arI
-arI
+tvQ
+tvQ
+tvQ
 tvQ
 mpj
 gmQ
@@ -52769,7 +52745,7 @@ ptb
 tyN
 wEZ
 tyN
-iTX
+nui
 aFn
 kDx
 kDx
@@ -53027,7 +53003,7 @@ tyN
 uud
 tyN
 bxX
-aFJ
+aFn
 kDx
 kDx
 kDx
@@ -53283,9 +53259,9 @@ sZZ
 tyN
 wEZ
 tyN
-xqb
-aKj
-plN
+iTX
+aFn
+tHk
 csW
 csW
 csW
@@ -53541,8 +53517,8 @@ tyN
 bDH
 tyN
 pid
-aKj
-gVZ
+aFn
+cfw
 kDx
 kDx
 kDx
@@ -53798,7 +53774,7 @@ tXB
 wEZ
 tFM
 axK
-aKX
+aFn
 nbW
 xDq
 xDq
@@ -55083,7 +55059,7 @@ tyN
 rYr
 tyN
 sBh
-lXN
+qWq
 skU
 fmN
 fmN
@@ -55340,8 +55316,8 @@ tyN
 wJQ
 tyN
 bld
-dpY
-dpY
+luk
+nFt
 dpY
 dpY
 dpY

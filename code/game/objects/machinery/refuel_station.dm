@@ -8,16 +8,17 @@
 	///The adjacent CAS fuel tank used as the fuel source
 	var/obj/structure/reagent_dispensers/fueltank/cas_fuel/cas_tank
 
+/// Locates and links the adjacent CAS fuel tank on startup.
 /obj/machinery/refuel_station/Initialize(mapload)
 	. = ..()
 	find_cas_tank()
 
+/// Clears station fuel tank references during deletion.
 /obj/machinery/refuel_station/Destroy()
-	if(cas_tank)
-		UnregisterSignal(cas_tank, COMSIG_QDELETING)
 	cas_tank = null
 	return ..()
 
+/// Finds the adjacent CAS tank and updates deletion signal tracking.
 /obj/machinery/refuel_station/proc/find_cas_tank()
 	if(cas_tank)
 		UnregisterSignal(cas_tank, COMSIG_QDELETING)
@@ -25,9 +26,11 @@
 	if(cas_tank)
 		RegisterSignal(cas_tank, COMSIG_QDELETING, PROC_REF(on_cas_tank_destroyed))
 
+/// Deletes the station when its linked CAS tank is deleted.
 /obj/machinery/refuel_station/proc/on_cas_tank_destroyed(datum/source)
 	qdel(src)
 
+/// Handles normal interaction and refuels a tank on the station.
 /obj/machinery/refuel_station/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -41,6 +44,7 @@
 		return
 	transfer_fuel(tank, user)
 
+/// Handles alternate interaction and drains a station tank back into the silo.
 /obj/machinery/refuel_station/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(.)
@@ -51,29 +55,13 @@
 		return
 	transfer_fuel(tank, user, draining = TRUE)
 
+/// Transfers fuel between the silo and station tank depending on direction.
 /obj/machinery/refuel_station/proc/transfer_fuel(obj/structure/reagent_dispensers/fueltank/tank, mob/living/user, draining = FALSE)
-	if(!cas_tank || QDELETED(cas_tank))
+	if(QDELETED(cas_tank))
 		find_cas_tank()
-	if(!cas_tank || QDELETED(cas_tank))
+	if(QDELETED(cas_tank))
 		user.balloon_alert(user, "No fuel silo nearby!")
 		return
-	var/datum/reagents/source = draining ? tank.reagents : cas_tank.reagents
-	var/datum/reagents/dest   = draining ? cas_tank.reagents : tank.reagents
-	if(!source?.total_volume)
-		user.balloon_alert(user, draining ? "Tank is empty!" : "Fuel silo is empty!")
-		return
-	if(!dest)
-		return
-	if(dest.total_volume >= dest.maximum_volume)
-		user.balloon_alert(user, draining ? "Fuel silo is full!" : "Tank already full!")
-		return
-	var/space = dest.maximum_volume - dest.total_volume
-	var/transferred = source.trans_to(draining ? cas_tank : tank, space)
-	if(transferred > 0)
-		playsound(src, 'sound/effects/refill.ogg', 25, 1, 3)
-		if(draining)
-			user.balloon_alert(user, "Drained ([cas_tank.reagents.total_volume]/[cas_tank.reagents.maximum_volume]u in silo)")
-		else
-			user.balloon_alert(user, "Refueled ([tank.reagents.total_volume]/[tank.reagents.maximum_volume]u)")
-	else
-		user.balloon_alert(user, "Transfer failed!")
+	var/obj/structure/reagent_dispensers/fueltank/source = draining ? tank : cas_tank
+	var/obj/structure/reagent_dispensers/fueltank/destination = draining ? cas_tank : tank
+	destination.try_refuel(source, source.get_fueltype(), user)
