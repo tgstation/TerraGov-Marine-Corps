@@ -20,7 +20,7 @@
 	///Byond tick delay between left click attacks
 	var/attack_speed = CLICK_CD_MELEE_WEAPON_DEFAULT
 	///Byond tick delay between right click alternate attacks
-	var/attack_speed_alternate = CLICK_CD_MELEE_WEAPON_DEFAULT
+	var/attack_speed_alternate = null
 	///Used in attackby() to say how something was attacked "[x] [z.attack_verb] [y] with their [z]!" Should be in simple present tense!
 	var/list/attack_verb
 
@@ -191,6 +191,9 @@
 
 	if(autobalance_monitor_value)
 		AddComponent(/datum/component/autobalance_monitor, autobalance_monitor_value)
+
+	if(!isnum(attack_speed_alternate))
+		attack_speed_alternate = attack_speed
 
 /obj/item/Destroy()
 	if(ismob(loc))
