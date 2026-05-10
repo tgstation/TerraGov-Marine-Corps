@@ -103,20 +103,25 @@
 	. = ..()
 	if(.)
 		return
-	if(iscrowbar(I))
-		if(covered)
-			var/obj/item/stack/catwalk/R = new(user.loc)
-			R.add_to_stacks(user)
-			covered = FALSE
-			update_turf_overlay()
-			return
-	if(istype(I, /obj/item/stack/catwalk))
-		if(!covered)
-			var/obj/item/stack/catwalk/E = I
-			E.use(1)
-			covered = TRUE
-			update_turf_overlay()
-			return
+	if(!istype(I, /obj/item/stack/catwalk))
+		return
+	if(covered)
+		return
+	var/obj/item/stack/catwalk/E = I
+	E.use(1)
+	covered = TRUE
+	update_turf_overlay()
+	return
+
+/turf/open/floor/plating/plating_catwalk/crowbar_act(mob/living/user, obj/item/I)
+	if(!covered)
+		return FALSE
+	I.play_tool_sound(src, 80)
+	var/obj/item/stack/catwalk/catwalk = new(user.loc)
+	catwalk.add_to_stacks(user)
+	covered = FALSE
+	update_turf_overlay()
+	return TRUE
 
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'

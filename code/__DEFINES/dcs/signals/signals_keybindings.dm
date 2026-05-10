@@ -93,14 +93,16 @@
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
 #define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
+
 #define COMSIG_KB_MOVEORDER "keybind_moveorder"
 #define COMSIG_KB_HOLDORDER "keybind_holdorder"
 #define COMSIG_KB_FOCUSORDER "keybind_focusorder"
-#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+
 #define COMSIG_KB_SENDORDER "keybind_sendorder"
-#define COMSIG_KB_ATTACKORDER "keybind_attackorder"
-#define COMSIG_KB_DEFENDORDER "keybind_defendorder"
-#define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+
+#define COMSIG_KB_PING_ORDER "keybind_ping_order"
+#define COMSIG_KB_SWITCH_PING_ORDER "keybind_switch_ping_order"
+
 #define COMSIG_KB_VEHICLEHONK "keybind_vehiclehonk"
 
 //Item toggle keybinds

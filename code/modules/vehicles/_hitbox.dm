@@ -60,7 +60,7 @@
 	root.Shake(pixelshiftx, pixelshifty, duration, shake_interval)
 
 /obj/hitbox/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_HULL] = 4.5
+	footstep_overrides[FOOTSTEP_HULL] = get_footstep_layer(root.layer, root.plane)
 
 ///signal handler for handling PASS_WALKOVER
 /obj/hitbox/proc/can_cross_hitbox(datum/source, atom/mover)

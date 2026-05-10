@@ -153,7 +153,6 @@
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -211,15 +210,27 @@
 			/obj/item/storage/reagent_tank/tricordrazine = 1,
 			/obj/item/storage/reagent_tank/bktt = 1,
 		),
-		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = 2,
-			/obj/item/tool/research/excavation_tool = -1,
+		"Surgical Equipment" = list(
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/reagent_containers/spray/surgery = -1,
 			/obj/item/tool/soap = 3,
-			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
+			/obj/item/tool/surgery/scalpel/manager = -1,
+			/obj/item/tool/surgery/hemostat = -1,
+			/obj/item/tool/surgery/retractor = -1,
+			/obj/item/tool/surgery/cautery = -1,
+			/obj/item/tool/surgery/circular_saw = -1,
+			/obj/item/tool/surgery/surgical_membrane = -1,
+			/obj/item/tool/surgery/bonegel = -1,
+			/obj/item/tool/surgery/bonesetter = -1,
+			/obj/item/tool/surgery/FixOVein = -1,
+			/obj/item/tool/surgery/suture = -1,
+		),
+		"Misc" = list(
+			/obj/item/tool/research/xeno_analyzer = 2,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/clothing/glasses/hud/health = 6,
 		),
 	)
 	idle_power_usage = 211
@@ -286,15 +297,28 @@
 			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/splint = -1,
 		),
-		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = -1,
-			/obj/item/tool/research/excavation_tool = -1,
+		"Surgical Equipment" = list(
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/reagent_containers/spray/surgery = -1,
 			/obj/item/tool/soap = -1,
-			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
+			/obj/item/tool/surgery/scalpel/manager = -1,
+			/obj/item/tool/surgery/scalpel = -1,
+			/obj/item/tool/surgery/hemostat = -1,
+			/obj/item/tool/surgery/retractor = -1,
+			/obj/item/tool/surgery/cautery = -1,
+			/obj/item/tool/surgery/circular_saw = -1,
+			/obj/item/tool/surgery/surgical_membrane = -1,
+			/obj/item/tool/surgery/bonegel = -1,
+			/obj/item/tool/surgery/bonesetter = -1,
+			/obj/item/tool/surgery/FixOVein = -1,
+			/obj/item/tool/surgery/suture = -1,
+		),
+		"Misc" = list(
+			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
@@ -578,15 +602,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		user?.balloon_alert(user, "contents organized")
 		return
 
-	else if(istype(I, /obj/item/shotgunbox))
-		var/obj/item/shotgunbox/big_shotgun_box = I
+	else if(istype(I, /obj/item/big_ammo_box))
+		var/obj/item/big_ammo_box/big_ammo_box = I
 		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
 			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
-			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)
-				while(big_shotgun_box.current_rounds >= shotgun_shell_box.max_rounds)
+			if(big_ammo_box.ammo_type == shotgun_shell_box.default_ammo)
+				while(big_ammo_box.current_rounds >= shotgun_shell_box.max_rounds)
 					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
 						break
-					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
+					big_ammo_box.current_rounds -= shotgun_shell_box.max_rounds
 				user?.balloon_alert(user, "shells organized")
 				return
 

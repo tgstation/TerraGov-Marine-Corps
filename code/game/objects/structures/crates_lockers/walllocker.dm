@@ -24,7 +24,7 @@
 			pixel_z = -48
 		if(SOUTH)
 			pixel_w = -16
-			pixel_z = -16
+			pixel_z = 16
 		if(EAST)
 			pixel_w = -48
 			pixel_z = -12
@@ -118,7 +118,7 @@
 			pixel_z = -48
 		if(SOUTH)
 			pixel_w = -16
-			pixel_z = -16
+			pixel_z = 16
 		if(EAST)
 			pixel_w = -48
 			pixel_z = -12
@@ -180,7 +180,7 @@
 			pixel_z = -48
 		if(SOUTH)
 			pixel_w = -16
-			pixel_z = -16
+			pixel_z = 16
 		if(EAST)
 			pixel_w = -48
 			pixel_z = -12

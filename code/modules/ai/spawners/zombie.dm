@@ -16,8 +16,8 @@
 			/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
 		) = 5,
 	)
-	spawnamount = 2
-	spawndelay = 25 SECONDS
+	spawnamount = 3
+	spawndelay = 34 SECONDS
 	maxamount = 50
 	///Currently is considered under threat
 	var/threat_warning = FALSE

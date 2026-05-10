@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Attempting to move while in a cryo tube will trigger autoeject functionality"
+  - code_imp: "Cleaned up cryo code"

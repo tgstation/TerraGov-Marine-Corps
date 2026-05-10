@@ -25,8 +25,6 @@
 	)
 	///The current mission type being played
 	var/datum/campaign_mission/current_mission
-	///campaign stats organised by faction
-	var/list/datum/faction_stats/stat_list = list()
 	///List of timers to auto open the respawn window
 	var/list/respawn_timers = list()
 
@@ -39,8 +37,6 @@
 
 /datum/game_mode/hvh/campaign/pre_setup()
 	. = ..()
-	for(var/faction in factions)
-		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(end_mission))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)

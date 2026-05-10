@@ -138,3 +138,59 @@
   Runian:
   - bugfix: Agility's button icon correctly changes when it is toggled.
   - bugfix: Carriers can no longer store harmless huggers.
+2026-04-24:
+  Lumipharon:
+  - balance: Abduct windup now scales with range
+  - balance: Abduct CD increased to 18 seconds from 12
+  - balance: Abduct stagger reduced to 1 second from 3 seconds per human caught
+  - bugfix: Abduct can be properly cancelled by stuns and stagger
+  - bugfix: fixed a silo runtime
+  - balance: Multitile vehicles are not slowed by sticky weeds/resin
+  - bugfix: fixed abduct not working if you clicked too far away
+  - bugfix: fixed tail lash going through walls
+  Runian:
+  - bugfix: Xenomorphs no longer permanently lose health from radiation (cloneloss
+      / toxin / oxygen damage). It is converted to brute or burn.
+  - rscadd: HMG-08 ammo from Zombie Crash vendor is now the normal variant (500 bullets).
+  ivanmixo:
+  - bugfix: Removing job positions now bottoms out at 0
+2026-04-25:
+  Runian:
+  - bugfix: Abduct's self-knockdown is no longer reclusive and thus does not self-knockdown
+      for a absurd amount of time.
+2026-04-26:
+  Lumipharon:
+  - bugfix: fixed some footstep overrides applying in the wrong order
+  - balance: SH-15 slugs reduced to 20 AP from 30
+  - balance: SH-15 flechette increased to 20 AP from 15
+  - balance: 'Campaign: The standard SH-15 has a bayonet instead of a barrel charger'
+  - imageadd: All large ammo/shotgun shell boxes have inhand and back slot sprites
+  - code_imp: Large ammo boxes and large shotgun shell boxes are now the same typepath.
+      All must be deployed to be used
+  - balance: Loading magazines using large ammo boxes takes 0.5 seconds instead of
+      1.5 seconds
+  - qol: You can undeploy and pick up large ammo boxes by right clicking them, in
+      addition to click dragging to yourself
+  - bugfix: Fixed some Kutjevo tiles going black or having other visual issues
+  - bugfix: Ship catwalk tiles actually update as expected when the catwalk is removed
+  Runian:
+  - bugfix: Acid Dash cannot be activated if you are in a middle of a leap.
+  - spellcheck: Acid Dash's description correctly tells you that you're dashing through
+      people, not pouncing onto people.
+  - refactor: Refactors Acid Dash in general and adds support for multiple recasts.
+2026-04-29:
+  Lumipharon:
+  - rscadd: All HvH modes now use campaign loadout and perk systems
+  Runian:
+  - bugfix: Right-click attacks against xenomorphs with a connected vali weapon now
+      correctly gives green blood.
+  - code_imp: Some status effect typepaths have been replaced with their define variant.
+  sylvia-from-fulp-station:
+  - rscadd: added surgery tab to medical vendor (the NanotrasenMed Plus)
+  - rscadd: individual surgery tools to medical vendor.
+  - rscdel: removed medical vendor access requirement.
+  - rscdel: removed scalpel from surgery pouches webbings and trays.
+  - qol: you can add items from the medical vendor to your loadout as any job.
+2026-04-30:
+  Runian:
+  - qol: Mutations can be accessed via the "Mutate" verb in the Alien tab.
