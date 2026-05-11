@@ -61,3 +61,15 @@
       zombium per hit reduced by 22%
   - balance: Increased time between spawn waves, increased zombie tunnel wave size
   - balance: Campaign NT base adjustment, makes map less one sided
+2026-05-11:
+  Lumipharon:
+  - bugfix: fixed a bug with merging stacks in storage
+  - bugfix: The flag actually has attack sounds now
+  - bugfix: fixed right click attacks ignoring the proper weapon attack delay
+  - rscadd: 'Campaign: Smartgunners, Engineers and Corpsman (in that order) are prioritised
+      over standard marines for selecting the faction leader'
+  - qol: Detpack sounds no longer travel across the entire map
+  - qol: Attempting to move while in a cryo tube will trigger autoeject functionality
+  - code_imp: Cleaned up cryo code
+  - qol: Positional order actions are now a single action that you right click/alt
+      activate to swap order types

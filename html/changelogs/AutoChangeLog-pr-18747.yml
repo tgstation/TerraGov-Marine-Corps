@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Positional order actions are now a single action that you right click/alt activate to swap order types"
