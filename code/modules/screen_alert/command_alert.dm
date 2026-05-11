@@ -96,7 +96,7 @@
 		mob_receiver.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(announcement_title, text, LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner), override_color)
 		to_chat(mob_receiver, assemble_alert(
 			title = announcement_title,
-			subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
+			subtitle = "Sent by [human_owner.get_paygrade(PAYGRADE_FULL) ? human_owner.get_paygrade(PAYGRADE_FULL) : human_owner.job.title] [human_owner.real_name]",
 			message = text,
 			color_override = override_color
 		))
