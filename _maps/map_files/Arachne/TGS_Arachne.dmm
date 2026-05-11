@@ -1638,11 +1638,7 @@
 	},
 /area/mainship/medical)
 "bve" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/firealarm,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
+/obj/structure/reagent_dispensers/fueltank/cas_fuel,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "bvr" = (
@@ -8032,12 +8028,12 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/upper_medical)
 "gCp" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/closet/emcloset,
 /obj/item/clothing/mask/gas,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "gCY" = (
@@ -8469,16 +8465,9 @@
 /turf/closed/wall/mainship/bulletproof,
 /area/mainship/shipboard/firing_range)
 "gVz" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/obj/machinery/door_control{
-	id = "fuelshed";
-	name = "Fuel Shed Lockdown"
+/obj/machinery/refuel_station,
+/obj/machinery/light/mainship{
+	dir = 1
 	},
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -14677,10 +14666,14 @@
 	},
 /area/mainship/shipboard/firing_range)
 "lOS" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/machinery/light/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -18669,12 +18662,6 @@
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
-	},
-/area/mainship/hallways/hangar)
-"oWp" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/mainship/orange{
-	dir = 6
 	},
 /area/mainship/hallways/hangar)
 "oWF" = (
@@ -27218,7 +27205,11 @@
 /area/mainship/hallways/hangar)
 "vXT" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/light/mainship,
+/obj/machinery/door_control{
+	id = "fuelshed";
+	name = "Fuel Shed Lockdown";
+	dir = 1
+	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -28963,6 +28954,9 @@
 /area/mainship/hallways/starboard_hallway)
 "xwu" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -41847,7 +41841,7 @@ xlh
 baL
 baL
 hIO
-oWp
+dmG
 xez
 gCp
 xwu
