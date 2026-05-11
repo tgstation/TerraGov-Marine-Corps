@@ -17638,7 +17638,7 @@
 /area/kutjevo/interior/complex/med/auto_doc)
 "sGW" = (
 /obj/structure/cable,
-/obj/machinery/power/geothermal,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "sHg" = (
@@ -18786,7 +18786,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/geothermal,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "tQL" = (
