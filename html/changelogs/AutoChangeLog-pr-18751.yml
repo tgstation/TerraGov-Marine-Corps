@@ -1,0 +1,5 @@
+author: "sylvia-from-fulp-station"
+delete-after: True
+changes:
+  - qol: "changes the description of nanite injectors to better reflect the negative side effects of medical nanites."
+  - qol: "you cant use nanites on other players."
