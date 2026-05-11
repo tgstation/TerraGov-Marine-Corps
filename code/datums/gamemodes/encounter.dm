@@ -39,7 +39,7 @@
 	///Xenos' point count
 	var/xeno_cap_points = 0
 	///Tower req value for owning faction per process()
-	var/tower_req_value = 5
+	var/tower_req_value = 8
 	///Tower xeno tactical point value for owning faction per process()
 	var/tower_xeno_tactical_point_value = 1
 	///Tower xeno strategic point value for owning faction per process()
