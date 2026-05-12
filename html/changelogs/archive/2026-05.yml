@@ -73,3 +73,14 @@
   - code_imp: Cleaned up cryo code
   - qol: Positional order actions are now a single action that you right click/alt
       activate to swap order types
+2026-05-12:
+  AzonStarfall:
+  - rscadd: Added a bulk fuel silo for CAS. Reduced number of free-floating fuel tanks
+      in the hangar bay.
+  - qol: Reduced CAS fuel tank management requirements. Use one tank, and refuel when
+      it's empty.
+  - balance: Standardized starting CAS fuel across all maps.
+  sylvia-from-fulp-station:
+  - qol: changes the description of nanite injectors to better reflect the negative
+      side effects of medical nanites.
+  - qol: you cant use nanites on other players.
