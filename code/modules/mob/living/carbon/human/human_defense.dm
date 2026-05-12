@@ -407,23 +407,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
-	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
-		return
-	if(!get_organ_slot(ORGAN_SLOT_HEART))
-		to_chat(user, span_notice("The heart is no longer here!"))
-		return
-	log_combat(user, src, "ripped [src]'s heart", I)
-	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	remove_organ_slot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/heart/heart = new
-	heart.die()
-	user.put_in_hands(heart)
-	if(iszombie(src))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), heart), 9.5 SECONDS)
-		QDEL_IN(heart, 10 SECONDS)
-	chestburst = CARBON_CHEST_BURSTED
-	update_burst()
+	rip_out_heart(user, TRUE)
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()
