@@ -269,6 +269,15 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //cameras
 #define SOM_CAMERA_NETWORK "som_camera_network"
 
+///Camera is actually active and operational
+#define CAMERA_OPERATING (1<<0)
+///Whether it can light up when an AI views it
+#define CAMERA_AI_LIGHT (1<<1)
+///Wires are snipped
+#define CAMERA_SNIPPED (1<<2)
+///Camera has been toggled on
+#define CAMERA_TURNED_ON (1<<3)
+
 ///Burn level applied by lava if it calls fire_act
 #define LAVA_BURN_LEVEL 60
 
