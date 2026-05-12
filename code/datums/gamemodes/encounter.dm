@@ -146,7 +146,7 @@
 			continue
 		num_xenos++
 
-	var/desired_xeno_count = max(2, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
+	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 
 	if(xenos_to_add > 0)
