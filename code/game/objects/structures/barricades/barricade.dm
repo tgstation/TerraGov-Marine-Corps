@@ -124,19 +124,19 @@
 		. += image(icon, icon_state = "[base_icon_state]_wire", layer = dir == NORTH ? layer : ABOVE_MOB_LAYER) //it will layer under certain upgrades in some cases otherwise
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))
-		new /obj/item/stack/barbed_wire(loc)
-	if(stack_type)
-		return_stack(disassembled)
-	return ..()
+	. = return_stack(disassembled)
+	..()
 
 ///Refunds stacks on destruction or disassembly
 /obj/structure/barricade/proc/return_stack(disassembled = TRUE)
+	. = list()
+	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))
+		. += new /obj/item/stack/barbed_wire(loc)
 	var/stack_amt = destroyed_stack_amount
 	if(disassembled)
 		stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 	if(stack_amt)
-		new stack_type (loc, stack_amt)
+		. += new stack_type (loc, stack_amt)
 
 ///How much this cade should be repaired by any ordinary effect
 /obj/structure/barricade/proc/get_repair_amount()
@@ -171,3 +171,50 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
+
+
+////////////////////
+/obj/item/tool/deconstructor
+	name = "deconstructor 5000"
+	desc = "Deconstructs stuff."
+	icon_state = "deconstructor"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
+	//force = 40
+	//throwforce = 10
+	//sharp = IS_SHARP_ITEM_BIG
+	//edge = 1
+	w_class = WEIGHT_CLASS_NORMAL
+	//attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
+	//hitsound = 'sound/weapons/bladeslice.ogg'
+
+	var/skill_level = SKILL_CONSTRUCTION_PLASTEEL
+
+/obj/item/tool/deconstructor/preattack(atom/target, mob/user, params)
+	if(!isbarricade(target))
+		return
+
+	var/obj/target_object = target
+	//COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+	if(user.skills.getRating(SKILL_CONSTRUCTION) < skill_level)
+		var/fumbling_time = 5 SECONDS * (skill_level - user.skills.getRating(SKILL_CONSTRUCTION))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
+	balloon_alert_to_viewers("disassembling...")
+	playsound(loc, 'sound/items/jaws_pry.ogg', 25, 1)
+
+	if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return TRUE
+
+	user.visible_message(span_notice("[user] takes [target_object] apart."),
+	span_notice("You take [target_object] apart."))
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+	var/list/stack_list = target_object.deconstruct(!get_self_acid())
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/human_user = user
+	for(var/obj/item/stack/stack AS in stack_list)
+		if(human_user.s_active?.on_attackby(human_user.s_active, stack, human_user)) //stored in currently open storage
+			continue
+		human_user.equip_to_appropriate_slot(stack, FALSE)
+	return TRUE

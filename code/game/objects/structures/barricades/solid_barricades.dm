@@ -57,6 +57,9 @@
 			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[base_icon_state]+burn_upgrade_[damage_state]")
 
 /obj/structure/barricade/solid/return_stack(disassembled = TRUE)
+	. = list()
+	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))
+		. += new /obj/item/stack/barbed_wire(loc)
 	var/stack_amt = destroyed_stack_amount
 	if(disassembled)
 		stack_amt = round(stack_amount * (obj_integrity/max_integrity))
@@ -67,9 +70,9 @@
 		if(stack_type == /obj/item/stack/sheet/metal)
 			stack_amt += CADE_UPGRADE_REQUIRED_SHEETS
 		else
-			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
+			. += new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 
-	new stack_type(loc, stack_amt)
+	. += new stack_type(loc, stack_amt)
 
 /obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
