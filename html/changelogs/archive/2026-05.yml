@@ -11,3 +11,76 @@
   - bugfix: fixed a visual issue for south facing wallmount objects
   ivanmixo:
   - balance: Capsule barricade deconstruction doesn't yield as many materials
+2026-05-05:
+  Joe13413:
+  - balance: The lever action rifle seasonal shoots 2x faster, holds 4 more rounds,
+      has reduced recoil, and can take more attachments.
+2026-05-07:
+  Runian:
+  - bugfix: Tactical sensors now show blips through walls.
+  - bugfix: Xenomorphs with friendly IFF correctly creates friendly blips for motion
+      sensors.
+  - bugfix: Wearing a belt while having your only ID in your hand now correctly indicates
+      that you have an ID to many things that check for your ID.
+  - refactor: Motion detection (as seen with the tactical sensor) is now a component.
+2026-05-08:
+  Lumipharon:
+  - rscadd: Added some more makeshift surgery tool options for some surgery steps
+  - bugfix: Using makeshift surgery tools checks to see if they are in a valid state,
+      such as a welder being on, etc
+  - code_imp: Some generic surgery steps use a shared global list of tool options
+      instead of copy paste lists
+  - bugfix: fixed some minor intercom position issues
+  - balance: King roar and some other xeno abilities are more effective at extinguishing
+      or weakening fire
+  - code_imp: Cleaned up a bunch of fire related arg/var names for clarity
+  - bugfix: Sticky resin/weeds no longer slown you down when moving over dense objects
+  - bugfix: fixed being able to rotate certain chairs you shouldn't be able to, allowing
+      you to hide your sprite entirely
+  - bugfix: fixed certain jungle walls being called 'GM'
+  - bugfix: The spotting rifle checks the SG skill instead of the rifle skill
+  - bugfix: fixed an issue with forcemoving beds with bodybags buckled to them
+  - bugfix: fixed APC, cloner and cryo lights
+  - balance: Non player mobs can push other mobs normally
+  - qol: Important stuff such as objectives and the nuke layers higher on the minimap
+  - rscadd: 'Campaign: Buying and using assets can be done even when dead'
+2026-05-09:
+  AzonStarfall:
+  - qol: Gave the FC a little privacy in his quarters on Arachne. No peeking!
+  - qol: Optimized Arachne Medbay and the Medbay operating rooms.
+  - rscadd: Arachne's firing range walls have been modified to a new bulletproof variant.
+  - qol: Organized the Arachne Tadpole hangar area.
+  - qol: Gave Arachne's Requisitions some long-awaited factory space!
+  mudzbe:
+  - rscadd: Add sentry and ammo to zombie crash vendor
+2026-05-10:
+  ivanmixo:
+  - qol: Moved the default keybinds for select buildtype and place hologram
+  mudzbe:
+  - balance: Zombie healrate reduced by 30%, regular zombie health reduced by 20%,
+      zombium per hit reduced by 22%
+  - balance: Increased time between spawn waves, increased zombie tunnel wave size
+  - balance: Campaign NT base adjustment, makes map less one sided
+2026-05-11:
+  Lumipharon:
+  - bugfix: fixed a bug with merging stacks in storage
+  - bugfix: The flag actually has attack sounds now
+  - bugfix: fixed right click attacks ignoring the proper weapon attack delay
+  - rscadd: 'Campaign: Smartgunners, Engineers and Corpsman (in that order) are prioritised
+      over standard marines for selecting the faction leader'
+  - qol: Detpack sounds no longer travel across the entire map
+  - qol: Attempting to move while in a cryo tube will trigger autoeject functionality
+  - code_imp: Cleaned up cryo code
+  - qol: Positional order actions are now a single action that you right click/alt
+      activate to swap order types
+2026-05-12:
+  AzonStarfall:
+  - rscadd: Added a bulk fuel silo for CAS. Reduced number of free-floating fuel tanks
+      in the hangar bay.
+  - qol: Reduced CAS fuel tank management requirements. Use one tank, and refuel when
+      it's empty.
+  - balance: Standardized starting CAS fuel across all maps.
+  sylvia-from-fulp-station:
+  - qol: changes the description of nanite injectors to better reflect the negative
+      side effects of medical nanites.
+  - qol: you cant use nanites on other players.

@@ -7478,14 +7478,10 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "aPU" = (
-/obj/effect/decal/cleanable/cobweb2,
-/obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
 /obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+	dir = 5
 	},
-/turf/open/floor/prison,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "aPW" = (
 /turf/closed/wall/mainship/outer,
@@ -7557,11 +7553,8 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/prison,
+/obj/structure/closet/emcloset,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "aQy" = (
 /turf/open/floor/cult,
@@ -13972,6 +13965,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall)
+"hhS" = (
+/obj/machinery/refuel_station,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "hhZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16622,6 +16619,9 @@
 	dir = 10
 	},
 /obj/item/clothing/head/warning_cone,
+/obj/machinery/light/mainship{
+	dir = 4
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "kgo" = (
@@ -17225,6 +17225,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
+"kWS" = (
+/obj/structure/reagent_dispensers/fueltank/cas_fuel,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "kXj" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -21719,6 +21723,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/droppod)
+"qIi" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "qID" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -22534,11 +22544,8 @@
 /turf/open/floor/prison/red,
 /area/mainship/shipboard/weapon_room)
 "rGn" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/prison,
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "rGz" = (
 /obj/structure/table/mainship/nometal,
@@ -22571,6 +22578,10 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
+"rHV" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "rId" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -27730,6 +27741,16 @@
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"yaf" = (
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/structure/rack,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "yai" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -27949,6 +27970,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"ymc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "ymf" = (
 /obj/machinery/firealarm,
 /turf/open/floor/prison/red{
@@ -60508,7 +60535,7 @@ mju
 eqb
 qku
 kfN
-wlT
+tCl
 hlA
 kRv
 tCl
@@ -60765,9 +60792,9 @@ mju
 mju
 tDJ
 mju
-mju
-mju
-mju
+ymc
+ymc
+ymc
 aPU
 aQx
 rGn
@@ -61021,10 +61048,10 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
 mju
+hhS
+jtC
+yaf
 aPg
 aQh
 aQh
@@ -61278,10 +61305,10 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
-mDu
+mju
+kWS
+jtC
+rHV
 aPg
 aQg
 tWu
@@ -61535,10 +61562,10 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
-mDu
+mju
+jtC
+qIi
+rHV
 aPg
 aQh
 aQu
@@ -61792,10 +61819,10 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
-mDu
+mju
+mju
+mju
+mju
 aPg
 aQh
 aQv
