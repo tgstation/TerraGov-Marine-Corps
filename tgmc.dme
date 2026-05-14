@@ -1130,6 +1130,7 @@
 #include "code\game\objects\items\tanks\tank_types.dm"
 #include "code\game\objects\items\tanks\tanks.dm"
 #include "code\game\objects\items\tools\cleaning_tools.dm"
+#include "code\game\objects\items\tools\deconstructor.dm"
 #include "code\game\objects\items\tools\extinguisher.dm"
 #include "code\game\objects\items\tools\flame_tools.dm"
 #include "code\game\objects\items\tools\hydro_tools.dm"
