@@ -208,7 +208,7 @@
 		if(!(magazine.type in valid_ammo))
 			continue
 		if(!behavior_datum.try_store_item(magazine))
-			return
+			break
 		ammo_count ++
 	if(!ammo_count)
 		behavior_datum.try_speak("No ammo for me here!")
