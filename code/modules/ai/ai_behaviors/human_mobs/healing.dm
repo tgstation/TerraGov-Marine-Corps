@@ -48,14 +48,20 @@
 ///Someone is healing us
 /datum/ai_behavior/human/proc/parent_being_healed(mob/living/source, mob/living/carbon/human/healer) //add player healing sig? only AI healing currently
 	SIGNAL_HANDLER
-	human_ai_state_flags |= HUMAN_AI_HEALING
-	RegisterSignals(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED), PROC_REF(on_heal_end)) //DOC IS NOT SET AS A TARGET, SO THIS MAY FAIL IF THEY JUST GET GIBBED OR SOMETHING
+	human_ai_state_flags |= HUMAN_AI_BEING_HEALED
+	RegisterSignals(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED, COMSIG_QDELETING), PROC_REF(on_heal_end))
 
-///Our healing ended, successfully or otherwise
+///We finish healing ourselves, or being healed by another
 /datum/ai_behavior/human/proc/on_heal_end(mob/living/carbon/human/healer)
 	SIGNAL_HANDLER
-	UnregisterSignal(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED))
-	human_ai_state_flags &= ~HUMAN_AI_HEALING
+	UnregisterSignal(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED, COMSIG_QDELETING))
+	human_ai_state_flags &= ~HUMAN_AI_BEING_HEALED
+	late_initialize()
+
+/datum/ai_behavior/human/proc/on_heal_other_end(mob/living/carbon/human/patient)
+	SIGNAL_HANDLER
+	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
+	human_ai_state_flags &= ~HUMAN_AI_HEALING_OTHER
 	late_initialize()
 
 ///Decides if we should do something when another mob goes crit
@@ -145,6 +151,8 @@
 
 ///Tries to heal another mob
 /datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient)
+	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
+		return
 	if(patient.InCritical()) //crit heal is always priority
 		heal_by_type(patient, OXY)
 
@@ -161,11 +169,11 @@
 		return
 
 	try_speak(pick(healing_chat))
-	human_ai_state_flags |= HUMAN_AI_HEALING
+	human_ai_state_flags |= HUMAN_AI_HEALING_OTHER
 
 	if(patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
 		if(!attempt_revive(patient))
-			on_heal_end(mob_parent)
+			on_heal_other_end(patient)
 			return
 
 	SEND_SIGNAL(patient, COMSIG_AI_HEALING_MOB, mob_parent)
@@ -176,5 +184,4 @@
 	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
-	on_heal_end(mob_parent)
-	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
+	on_heal_other_end(patient)
