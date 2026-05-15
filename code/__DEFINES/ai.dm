@@ -95,6 +95,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Obstacle can be ignored
 #define AI_OBSTACLE_IGNORED "ai_obstacle_ignored"
 
+//human_ai_behavior_flags
+
 ///If the mob parent can heal itself and so should flee
 #define HUMAN_AI_SELF_HEAL (1<<0)
 ///Uses weapons
@@ -105,6 +107,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_NO_FF (1<<3)
 ///Will try avoid hazards when possible
 #define HUMAN_AI_AVOID_HAZARDS (1<<4)
+
+//human_ai_state_flags
 
 ///Currently shooting
 #define HUMAN_AI_FIRING (1<<0)
