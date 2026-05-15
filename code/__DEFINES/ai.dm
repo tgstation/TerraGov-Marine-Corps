@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_FIRING (1<<0)
 ///Looking for weapons
 #define HUMAN_AI_NEED_WEAPONS (1<<1)
-///Healing or being healed
+///Being healed by another NPC
 #define HUMAN_AI_BEING_HEALED (1<<2)
 ///Healing self
 #define HUMAN_AI_SELF_HEALING (1<<3)
