@@ -1724,7 +1724,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/effect/landmark/start/job/medicalofficer,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bYP" = (
@@ -6067,6 +6067,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "hua" = (
@@ -10848,6 +10849,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/bridgebunks)
+"nqY" = (
+/obj/effect/landmark/start/job/medicalofficer,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "nrK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -48149,7 +48154,7 @@ ttT
 aAu
 ouq
 lAT
-lAT
+uMj
 vPk
 oNh
 rHK
@@ -48406,7 +48411,7 @@ xOg
 kWu
 usa
 gnK
-lSQ
+lAT
 mnH
 vBY
 eBB
@@ -48663,7 +48668,7 @@ xAX
 aoQ
 loc
 lAT
-uMj
+lSQ
 aiP
 gNc
 rHK
@@ -49176,7 +49181,7 @@ aWk
 aQX
 mvs
 kYM
-lAT
+nqY
 ksa
 pDg
 ieX
