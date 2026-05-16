@@ -12,6 +12,7 @@
 
 	resistance_flags = RESIST_ALL
 
+	/// For supply shuttle integration
 	var/obj/docking_port/mobile/supply/linked_pad
 
 /obj/machinery/door/poddoor/railing/Initialize(mapload)
@@ -20,17 +21,19 @@
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	
+	if(dir == SOUTH)
+		closed_layer = ABOVE_MOB_LAYER
+	layer = closed_layer
+
+	// Register with transport elevator system if linked to one
+	if(transport_linked_id)
+		elevator_mode = TRUE
+		GLOB.elevator_doors += src
 
 /obj/machinery/door/poddoor/railing/opened
 	icon_state = "railing0"
 	density = FALSE
-
-
-/obj/machinery/door/poddoor/railing/Initialize(mapload)
-	. = ..()
-	if(dir == SOUTH)
-		closed_layer = ABOVE_MOB_LAYER
-	layer = closed_layer
 
 /obj/machinery/door/poddoor/railing/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	. = ..()
@@ -43,6 +46,8 @@
 	if(linked_pad)
 		linked_pad.railings -= src
 		linked_pad = null
+	if(elevator_mode)
+		GLOB.elevator_doors -= src
 	return ..()
 
 /obj/machinery/door/poddoor/railing/open()
