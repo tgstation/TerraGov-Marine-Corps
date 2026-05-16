@@ -122,7 +122,7 @@
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/dispenser, 0, 0)
 
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
-	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 		return ..()
 	storage_datum.open(user)
 

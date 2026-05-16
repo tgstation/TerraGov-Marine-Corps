@@ -169,7 +169,7 @@
 	update_icon()
 
 /obj/item/storage/reagent_tank/attack_hand(mob/living/user)
-	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 		return storage_datum.open(user)
 	return ..()
 

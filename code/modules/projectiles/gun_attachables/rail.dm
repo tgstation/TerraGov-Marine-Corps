@@ -143,7 +143,7 @@
 
 /obj/item/attachable/buildasentry/on_attach(attaching_item, mob/user)
 	. = ..()
-	ENABLE_BITFIELD(master_gun.item_flags, IS_DEPLOYABLE)
+	ENABLE_BITFIELD(master_gun.deployment_flags, IS_DEPLOYABLE)
 	master_gun.deployable_item = /obj/machinery/deployable/mounted/sentry/buildasentry
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddComponent(/datum/component/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
@@ -152,7 +152,7 @@
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
-	DISABLE_BITFIELD(detaching_gun.item_flags, IS_DEPLOYABLE)
+	DISABLE_BITFIELD(detaching_gun.deployment_flags, IS_DEPLOYABLE)
 	qdel(detaching_gun.GetComponent(/datum/component/deployable_item))
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
