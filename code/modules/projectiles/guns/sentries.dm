@@ -103,7 +103,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployment_flags = IS_DEPLOYABLE
 
-	max_shots = 150
 	rounds_per_shot = 12
 	fire_delay = 0.2 SECONDS
 	scatter = -3

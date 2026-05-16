@@ -50,8 +50,9 @@
 	if(max_shells)
 		trait_list += "It can normally hold [max_shells] rounds."
 
-	if(max_shots)
-		trait_list += "Its maximum capacity is normally [max_shots] shots worth of power."
+	if(gun_features_flags & GUN_ENERGY && ispath(default_ammo_type, /obj/item/cell))
+		var/obj/item/cell/default_cell = default_ammo_type
+		trait_list += "Its maximum capacity is normally [default_cell::maxcharge / rounds_per_shot] shots worth of power."
 
 	var/list/loading_ways = list()
 	if(load_method & SINGLE_CASING)

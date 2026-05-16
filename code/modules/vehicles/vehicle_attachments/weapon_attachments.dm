@@ -80,7 +80,6 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE|AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	ammo_level_icon = null
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	max_shots = 90
 	ammo_datum_type = /datum/ammo/energy/volkite/demi_culverin
 	rounds_per_shot = 20
 	fire_delay = 0.1 SECONDS
