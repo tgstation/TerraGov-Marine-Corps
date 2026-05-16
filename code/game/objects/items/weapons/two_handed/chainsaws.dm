@@ -53,7 +53,7 @@
 	worn_icon_state = initial(worn_icon_state)
 
 ///Proc to turn the chainsaw on or off
-/obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
+/obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user) //todo
 	if(!active)
 		force = initial(force)
 		hitsound = initial(hitsound)
@@ -167,7 +167,7 @@
 	additional_damage = 60
 
 /// Allow the chainsword variant to be activated without being wielded
-/obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user)
+/obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user) //todo
 	. = ..()
 	if(CHECK_BITFIELD(item_flags, WIELDED))
 		return

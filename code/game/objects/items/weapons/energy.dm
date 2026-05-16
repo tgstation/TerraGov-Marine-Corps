@@ -1,5 +1,6 @@
 /obj/item/weapon/energy
 	atom_flags = NOBLOODY
+	item_flags = ITEM_ACTIVATABLE
 	icon = 'icons/obj/items/weapons/energy.dmi'
 
 /obj/item/weapon/energy/suicide_act(mob/user)
@@ -26,8 +27,8 @@
 	user.visible_message(span_danger("[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
-/obj/item/weapon/energy/axe/attack_self(mob/user)
-	active = !active
+/obj/item/weapon/energy/axe/toggle_active(new_state, mob/user)
+	. = ..()
 	if(active)
 		to_chat(user, span_notice("The axe is now energised."))
 		force = force_activated
@@ -77,24 +78,13 @@
 	QDEL_NULL(special_attack)
 	return ..()
 
-/obj/item/weapon/energy/sword/attack_self(mob/living/user)
-	switch_state(src, user)
-
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	H.update_inv_l_hand()
-	H.update_inv_r_hand()
-
 /obj/item/weapon/energy/sword/surgery_tool_check()
 	return active
 
-///Handles all the state switch stuff
-/obj/item/weapon/energy/sword/proc/switch_state(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-	toggle_active()
+/obj/item/weapon/energy/sword/toggle_active(new_state, mob/user)
+	. = ..()
 	if(active)
-		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
+		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_off))
 		toggle_item_bump_attack(user, TRUE)
 		hitsound = 'sound/weapons/blade1.ogg'
 		force = force_activated
@@ -118,6 +108,17 @@
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
 		special_attack?.remove_action(user)
+
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.update_inv_l_hand()
+	H.update_inv_r_hand()
+
+///Signal handler to turn the weapon off
+/obj/item/weapon/energy/sword/proc/switch_off(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	toggle_active(FALSE, user)
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
@@ -144,7 +145,7 @@
 	force_activated = 50
 	sword_color = "on"
 
-/obj/item/weapon/energy/sword/som/switch_state(datum/source, mob/living/user)
+/obj/item/weapon/energy/sword/som/toggle_active(new_state, mob/user)
 	. = ..()
 	if(active)
 		flick("som_sword_open", src)

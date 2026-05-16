@@ -49,9 +49,6 @@
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
-	update_item_state()
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
 	return TRUE
 
 /obj/item/proc/unwield(mob/user)
@@ -65,7 +62,6 @@
 		name = copytext(name, 1, sf)
 	else
 		name = "[initial(name)]"
-	update_item_state()
 	remove_offhand(user)
 	return TRUE
 
@@ -84,20 +80,22 @@
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
 
-/obj/item/proc/toggle_wielded(user, wielded)
+/obj/item/proc/toggle_wielded(mob/user, wielded)
 	if(wielded)
 		item_flags |= WIELDED
 	else
 		item_flags &= ~WIELDED
 
+	update_item_state()
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
+
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
 	if(!.)
 		return
-	toggle_active(TRUE)
+	//toggle_active(TRUE)
 
 	if(wieldsound)
 		playsound(user, wieldsound, 15, 1)
@@ -108,7 +106,7 @@
 	. = ..()
 	if(!.)
 		return
-	toggle_active(FALSE)
+	//toggle_active(FALSE)
 
 	if(unwieldsound)
 		playsound(user, unwieldsound, 15, 1)
@@ -117,12 +115,11 @@
 
 // TODO port tg wielding component
 /obj/item/weapon/twohanded/attack_self(mob/user)
-	. = ..()
-
 	if(item_flags & WIELDED)
 		unwield(user)
 	else
 		wield(user)
+	return ..()
 
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand

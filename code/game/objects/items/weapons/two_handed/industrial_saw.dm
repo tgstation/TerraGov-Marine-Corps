@@ -11,6 +11,7 @@
 	throwforce = 40
 	attack_speed = 18
 	equip_slot_flags = ITEM_SLOT_BACK
+	item_flags = parent_type::item_flags|ITEM_ACTIVATABLE
 
 /obj/item/weapon/twohanded/industrial_saw/update_icon(updates)
 	. = ..()
@@ -28,12 +29,6 @@
 	else
 		worn_icon_state = "[base_icon_state]_off"
 
-/obj/item/weapon/twohanded/industrial_saw/toggle_active(new_state)
-	. = ..()
-	if(!.)
-		return
-	toggle_motor()
-
 /obj/item/weapon/twohanded/industrial_saw/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -43,32 +38,47 @@
 	toggle_item_bump_attack(user, FALSE)
 	toggle_active(FALSE)
 
-/obj/item/weapon/twohanded/industrial_saw/wield(mob/user)
+/obj/item/weapon/twohanded/industrial_saw/toggle_wielded(mob/user, wielded)
+	. = ..()
+	if(wielded) //being activatable means attack_self already triggers it
+		return
+	toggle_active(wielded, user)
+
+/obj/item/weapon/twohanded/industrial_saw/unique_action(mob/user)
+	toggle_active(TRUE, user)
+
+/obj/item/weapon/twohanded/industrial_saw/toggle_active(new_state, mob/user) //update all instances of this
 	. = ..()
 	if(!.)
+		return
+	if(!active)
+		toggle_motor(user)
+		return
+	try_start(user)
+
+///Ttries to start the engine
+/obj/item/weapon/twohanded/industrial_saw/proc/try_start(mob/user)
+	if(!(item_flags & WIELDED))
+		toggle_active(FALSE, user)
 		return
 	playsound(loc, 'sound/weapons/chainsawstart.ogg', 100, 1)
-	toggle_active(FALSE)
-	if(!do_after(user, SKILL_TASK_TRIVIAL, NONE, src, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
+	if(!do_after(user, SKILL_TASK_TRIVIAL, NONE, src, BUSY_ICON_DANGER, null,PROGRESS_BRASS) || !(item_flags & WIELDED))
+		toggle_active(FALSE, user)
 		return
-	toggle_active(TRUE)
+	toggle_motor(user)
 
-/obj/item/weapon/twohanded/industrial_saw/unwield(mob/user)
-	. = ..()
-	if(!.)
-		return
-	toggle_active(FALSE)
-
-///Toggles the saw on or off
-/obj/item/weapon/twohanded/industrial_saw/proc/toggle_motor()
-	update_appearance(UPDATE_ICON)
-	if(!active)
+///Actually turns the motor on or off
+/obj/item/weapon/twohanded/industrial_saw/proc/toggle_motor(mob/user)
+	if(active)
+		attack_speed = 3
+		penetration = 20
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		hitsound = 'sound/weapons/chainsawhit.ogg'
+	else
 		attack_speed = initial(attack_speed)
 		penetration = initial(penetration)
 		hitsound = initial(hitsound)
-		return
 
-	attack_speed = 3
-	penetration = 20
-	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-	hitsound = 'sound/weapons/chainsawhit.ogg'
+	update_appearance(UPDATE_ICON)
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()

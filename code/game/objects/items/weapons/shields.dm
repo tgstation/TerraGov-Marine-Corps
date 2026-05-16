@@ -186,6 +186,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon_state = "eshield0" // eshield1 for expanded
 	atom_flags = CONDUCT|NOBLOODY
+	item_flags = ITEM_ACTIVATABLE
 	force = 3
 	throwforce = 5
 	throw_speed = 1
@@ -201,8 +202,8 @@
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-/obj/item/weapon/shield/energy/attack_self(mob/living/user)
-	toggle_active()
+/obj/item/weapon/shield/energy/toggle_active(new_state, mob/user)
+	. = ..()
 	icon_state = "eshield[active]"
 	if(active)
 		force = on_force

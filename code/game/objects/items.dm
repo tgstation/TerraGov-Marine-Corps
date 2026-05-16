@@ -1232,14 +1232,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
-/obj/item/proc/toggle_active(new_state)
+/obj/item/proc/toggle_active(new_state, mob/user)
 	if(!isnull(new_state))
 		if(new_state == active)
 			return
 		active = new_state
 	else
 		active = !active
-	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
+	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active, user)
 	return TRUE
 
 ///Generates worn icon for sprites on-mob.

@@ -88,6 +88,7 @@
 	worn_icon_state = null
 	hitsound = null
 	w_class = WEIGHT_CLASS_TINY
+	item_flags = ITEM_ACTIVATABLE
 	force = 8
 	sharp = 0
 	edge = 0
@@ -97,8 +98,8 @@
 	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
-/obj/item/weapon/butterfly/attack_self(mob/user)
-	active = !active
+/obj/item/weapon/butterfly/toggle_active(new_state, mob/user)
+	. = ..()
 	if(active)
 		to_chat(user, span_notice("You flip out your [src]."))
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
@@ -110,15 +111,15 @@
 		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
-		return
-	to_chat(user, span_notice("The [src] can now be concealed."))
-	force = initial(force)
-	edge = FALSE
-	sharp = IS_NOT_SHARP_ITEM
-	hitsound = initial(hitsound)
-	icon_state = initial(icon_state)
-	w_class = initial(w_class)
-	attack_verb = initial(attack_verb)
+	else
+		to_chat(user, span_notice("The [src] can now be concealed."))
+		force = initial(force)
+		edge = FALSE
+		sharp = IS_NOT_SHARP_ITEM
+		hitsound = initial(hitsound)
+		icon_state = initial(icon_state)
+		w_class = initial(w_class)
+		attack_verb = initial(attack_verb)
 
 /obj/item/weapon/butterfly/switchblade
 	name = "switchblade"

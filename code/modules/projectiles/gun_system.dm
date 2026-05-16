@@ -684,13 +684,12 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/toggle_wielded(user, wielded)
-	if(wielded)
-		item_flags |= WIELDED
-		update_mouse_pointer()
-	else
-		item_flags &= ~(WIELDED|FULLY_WIELDED)
-		update_mouse_pointer(TRUE)
+/obj/item/weapon/gun/toggle_wielded(mob/user, wielded)
+	. = ..()
+	if(!wielded)
+		item_flags &= ~FULLY_WIELDED
+
+	update_mouse_pointer(!wielded)
 
 //----------------------------------------------------------
 			//							    \\

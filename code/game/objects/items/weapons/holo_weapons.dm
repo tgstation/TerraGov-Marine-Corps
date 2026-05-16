@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	item_flags = NOBLUDGEON
+	item_flags = NOBLUDGEON|ITEM_ACTIVATABLE
 	var/sword_color
 
 /obj/item/weapon/holo/esword/Initialize(mapload)
@@ -18,9 +18,9 @@
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-/obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
-	toggle_active()
-	if (active)
+/obj/item/weapon/holo/esword/toggle_active(new_state, mob/user)
+	. = ..()
+	if(active)
 		force = 30
 		icon_state = "sword[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
