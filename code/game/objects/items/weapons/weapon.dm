@@ -29,7 +29,7 @@
 		trait_list += "This is a <U>one handed</U> weapon.<br>"
 
 	trait_list += "<U>Force:</U> [force] <br>"
-	trait_list += "<U>Armour Pentetration:</U> [penetration] <br>"
+	trait_list += "<U>Armour Penetration:</U> [penetration] <br>"
 	trait_list += "<U>Attack Delay:</U> [attack_speed] <br>"
 	trait_list += "<U>Throw Force:</U> [throwforce] <br>"
 
