@@ -28,33 +28,40 @@
 	if(!(item_flags & TWOHANDED))
 		trait_list += "This is a <U>one handed</U> weapon.<br>"
 
-	trait_list += "<U>Force:</U> [force] <br>"
-	trait_list += "<U>Armour Penetration:</U> [penetration] <br>"
-	trait_list += "<U>Attack Delay:</U> [attack_speed] <br>"
-	trait_list += "<U>Throw Force:</U> [throwforce] <br>"
+	trait_list += "<U>Force:</U> [force]"
+	trait_list += "<U>Armour Penetration:</U> [penetration]"
+	trait_list += "<U>Attack Delay:</U> [attack_speed]"
+	trait_list += "<U>Throw Force:</U> [throwforce]"
 
 	if(item_flags & TWOHANDED)
-		trait_list += "This is a <U>two handed</U> weapon.<br>"
+		trait_list += "<br>This is a <U>two handed</U> weapon.<br>"
 		get_wielded_mechanic_info(trait_list)
 	if(item_flags & ITEM_ACTIVATABLE)
-		trait_list += "This weapon requires <U>activation</U> for proper use.<br>"
+		trait_list += "<br>This weapon requires <U>activation</U> for proper use.<br>"
 		get_activated_codex_mechanic_info(trait_list)
 
 	if(sharp && edge)
-		trait_list += "This is a <U>sharp</U> and <U>edged</U> weapon.<br>"
+		trait_list += "This is a <U>sharp</U> and <U>edged</U> weapon."
 	else if(sharp)
-		trait_list += "This is a <U>sharp</U> weapon.<br>"
+		trait_list += "This is a <U>sharp</U> weapon."
 	else if(edge)
-		trait_list += "This is an <U>edged</U> weapon.<br>"
+		trait_list += "This is an <U>edged</U> weapon."
 	else
-		trait_list += "This is a blunt weapon.<br>"
+		trait_list += "This is a blunt weapon."
 
-	trait_list += "<U>Equip slots:</U> Suit storage[equip_slot_flags & ITEM_SLOT_BELT ? ", belt slot" : ""][equip_slot_flags & ITEM_SLOT_BACK ? ", back slot" : ""].<br>"
+	var/list/slot_options = list("Suit storage")
+	if(equip_slot_flags & ITEM_SLOT_BELT)
+		slot_options += "Belt slot"
+	if(equip_slot_flags & ITEM_SLOT_BACK)
+		slot_options += "Back slot"
+	if(w_class <= WEIGHT_CLASS_SMALL)
+		slot_options += "Pocket slots"
+	trait_list += "<U>Equip slots:</U> [english_list(slot_options)]<br>"
 
 ///adds codex info for wielded state
 /obj/item/weapon/proc/get_wielded_mechanic_info(list/trait_list)
-	trait_list += "<U>Wielded Force:</U> [force_activated] <br>"
+	trait_list += "<U>Wielded Force:</U> [force_activated]"
 
 ///Adds codex info for activated state
 /obj/item/weapon/proc/get_activated_codex_mechanic_info(list/trait_list)
-	trait_list += "<U>Activated Force:</U> [force_activated] <br>"
+	trait_list += "<U>Activated Force:</U> [force_activated]"

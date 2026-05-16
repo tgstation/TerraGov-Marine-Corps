@@ -88,5 +88,5 @@
 	user.update_inv_r_hand()
 
 /obj/item/weapon/twohanded/industrial_saw/get_activated_codex_mechanic_info(list/trait_list)
-	trait_list += "<U>Activated Attack speed:</U> [active_attack_speed] <br>"
-	trait_list += "<U>Activated Penetration:</U> [active_penetration] <br>"
+	trait_list += "<U>Activated Attack speed:</U> [active_attack_speed]"
+	trait_list += "<U>Activated Penetration:</U> [active_penetration]"
