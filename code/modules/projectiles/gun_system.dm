@@ -510,7 +510,7 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
-	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	else
@@ -607,11 +607,11 @@
 		. += "[dat.Join(" ")]"
 
 	examine_ammo_count(user)
-	if(!CHECK_BITFIELD(item_flags, IS_DEPLOYED))
-		if(CHECK_BITFIELD(item_flags, IS_DEPLOYABLE))
+	if(!CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
+		if(CHECK_BITFIELD(deployment_flags, IS_DEPLOYABLE))
 			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
-	if(!CHECK_BITFIELD(item_flags, DEPLOYED_NO_ROTATE))
+	if(!CHECK_BITFIELD(deployment_flags, DEPLOYED_NO_ROTATE))
 		. += span_notice("Left or Right Click on a nearby tile to aim towards it.")
 		return
 	. += span_notice("Click-Drag to yourself to undeploy.")
@@ -828,7 +828,7 @@
 
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
-	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(item_flags, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
+	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(deployment_flags, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return NONE
 	if(gun_fire_angle && (get_between_angles(Get_Angle(get_turf(src), target), dir2angle(loc.dir)) > (gun_fire_angle / 2)))
 		return NONE
@@ -917,7 +917,7 @@
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
 	var/proj_scatter = projectile_to_fire.ammo.scatter
 
-	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(item_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED)))
+	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(deployment_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED)))
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
 		proj_scatter += gun_scatter + scatter
 	else
@@ -1742,7 +1742,7 @@
 		if(master_gun && !(master_gun.item_flags & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
 			return FALSE
-	if(CHECK_BITFIELD(gun_features_flags, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return FALSE
 	if(CHECK_BITFIELD(gun_features_flags, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(gun_features_flags, GUN_ATTACHMENT_FIRE_ONLY))
@@ -1816,13 +1816,13 @@
 	gun_accuracy_mod = 0
 	gun_scatter = 0
 
-	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(item_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED) ))
+	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(deployment_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED) ))
 		wielded_fire = TRUE
 		gun_accuracy_mult = accuracy_mult
 	else
 		gun_accuracy_mult = accuracy_mult_unwielded
 
-	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+	if(CHECK_BITFIELD(deployment_flags, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
 		gun_scatter += deployed_scatter_change
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST)
@@ -1860,7 +1860,7 @@
 
 ///Generates screenshake if the gun has recoil
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
-	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED) || !gun_user)
+	if(CHECK_BITFIELD(deployment_flags, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if((item_flags & FULLY_WIELDED) || master_gun)

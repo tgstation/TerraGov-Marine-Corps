@@ -20,7 +20,7 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployable_item = /obj/machinery/deployable/mounted/sentry
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	deploy_time = 5 SECONDS
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
@@ -64,7 +64,7 @@
 	desc = "A fully automatic turret with AI targeting capabilities, designed specifically for deploying inside a paired drop pod shell. Armed with a M30 autocannon and a 500-round drum magazine. Designed to sweeping a landing area to support orbital assaults."
 	icon_state = "pod_sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
-	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	faction = FACTION_TERRAGOV
 	turret_range = 10
 	knockdown_threshold = 500
@@ -101,7 +101,7 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 
 	max_shots = 150
 	rounds_per_shot = 12
@@ -158,21 +158,21 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	faction = FACTION_SOM
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	faction = FACTION_TERRAGOV
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
 	turret_range = 9
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	faction = FACTION_TERRAGOV
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/shuttle/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
@@ -182,7 +182,7 @@
 	fire_delay = 0.2 SECONDS
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	faction = FACTION_TERRAGOV
-	item_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	deployment_flags = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
@@ -244,7 +244,7 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	faction = FACTION_TERRAGOV
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/premade/dumb
 	name = "\improper Modified ST-571 sentry gun"

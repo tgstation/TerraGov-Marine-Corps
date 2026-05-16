@@ -193,7 +193,7 @@
 	icon_state = "teleporter"
 
 	max_integrity = 200
-	item_flags = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK

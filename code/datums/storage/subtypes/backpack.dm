@@ -70,7 +70,7 @@
 
 /datum/storage/backpack/dispenser/open(mob/user)
 	var/obj/item/dispenser = parent
-	if(CHECK_BITFIELD(dispenser.item_flags, IS_DEPLOYED))
+	if(CHECK_BITFIELD(dispenser.deployment_flags, IS_DEPLOYED))
 		return ..()
 
 /datum/storage/backpack/dispenser/attempt_draw_object(mob/living/user)

@@ -39,7 +39,7 @@
 	if(item_flags & TWOHANDED)
 		trait_list += "<U>Wielded Force:</U> [force_activated] <br>"
 	else if(force_activated > force)
-		trait_list += "<U>Activated Force:</U> [force_activated] <br>"
+		trait_list += "<U>Activated Force:</U> [force_activated] <br>" //won't work for toggl, need to add a proc
 
 	trait_list += "<U>Armour Pentetration:</U> [penetration] <br>"
 	trait_list += "<U>Attack Delay:</U> [attack_speed] <br>"

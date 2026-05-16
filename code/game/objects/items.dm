@@ -39,6 +39,8 @@
 	var/w_class = WEIGHT_CLASS_NORMAL
 	///flags for item stuff that isn't clothing/equipping specific.
 	var/item_flags = NONE
+	///behavior flags relating to item deployment
+	var/deployment_flags = NONE
 	///This is used to determine on which slots an item can fit.
 	var/equip_slot_flags = NONE
 	///Last slot that item was equipped to (aka sticky slot)
@@ -1425,9 +1427,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Handles registering if an item is flagged as deployed or not
 /obj/item/proc/toggle_deployment_flag(deployed)
 	if(deployed)
-		ENABLE_BITFIELD(item_flags, IS_DEPLOYED)
+		ENABLE_BITFIELD(deployment_flags, IS_DEPLOYED)
 	else
-		DISABLE_BITFIELD(item_flags, IS_DEPLOYED)
+		DISABLE_BITFIELD(deployment_flags, IS_DEPLOYED)
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
