@@ -27,18 +27,22 @@
 	user.visible_message(span_danger("[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
+/obj/item/weapon/energy/axe/update_icon_state()
+	if(active)
+		icon_state = "axe1"
+	else
+		icon_state = initial(icon_state)
+
 /obj/item/weapon/energy/axe/toggle_active(new_state, mob/user)
 	. = ..()
 	if(active)
 		to_chat(user, span_notice("The axe is now energised."))
 		force = force_activated
-		icon_state = "axe1"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 3500
 	else
 		to_chat(user, span_notice("The axe can now be concealed."))
 		force = initial(force)
-		icon_state = "axe0"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
 
@@ -81,6 +85,16 @@
 /obj/item/weapon/energy/sword/surgery_tool_check()
 	return active
 
+/obj/item/weapon/energy/sword/get_activated_codex_mechanic_info(list/trait_list)
+	. = ..()
+	trait_list += "<U>Activated Penetration:</U> [active_penetration] <br>"
+
+/obj/item/weapon/energy/sword/update_icon_state()
+	if(active)
+		icon_state = "[initial(icon_state)]_[sword_color]"
+	else
+		icon_state = initial(icon_state)
+
 /obj/item/weapon/energy/sword/toggle_active(new_state, mob/user)
 	. = ..()
 	if(active)
@@ -91,7 +105,6 @@
 		throwforce = force_activated
 		penetration = active_penetration
 		heat = 3500
-		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
 		if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
@@ -104,16 +117,12 @@
 		throwforce = initial(throwforce)
 		penetration = initial(penetration)
 		heat = 0
-		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
 		special_attack?.remove_action(user)
 
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	H.update_inv_l_hand()
-	H.update_inv_r_hand()
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
 
 ///Signal handler to turn the weapon off
 /obj/item/weapon/energy/sword/proc/switch_off(datum/source, mob/living/user)

@@ -12,6 +12,10 @@
 	attack_speed = 18
 	equip_slot_flags = ITEM_SLOT_BACK
 	item_flags = parent_type::item_flags|ITEM_ACTIVATABLE
+	///Attack speed when active
+	var/active_attack_speed = 3
+	///Penetration when active
+	var/active_penetration = 20
 
 /obj/item/weapon/twohanded/industrial_saw/update_icon(updates)
 	. = ..()
@@ -70,8 +74,8 @@
 ///Actually turns the motor on or off
 /obj/item/weapon/twohanded/industrial_saw/proc/toggle_motor(mob/user)
 	if(active)
-		attack_speed = 3
-		penetration = 20
+		attack_speed = active_attack_speed
+		penetration = active_penetration
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 		hitsound = 'sound/weapons/chainsawhit.ogg'
 	else
@@ -82,3 +86,7 @@
 	update_appearance(UPDATE_ICON)
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
+
+/obj/item/weapon/twohanded/industrial_saw/get_activated_codex_mechanic_info(list/trait_list)
+	trait_list += "<U>Activated Attack speed:</U> [active_attack_speed] <br>"
+	trait_list += "<U>Activated Penetration:</U> [active_penetration] <br>"

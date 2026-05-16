@@ -98,6 +98,12 @@
 	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
+/obj/item/weapon/butterfly/update_icon_state()
+	if(active)
+		icon_state = "butterflyknife_open"
+	else
+		icon_state = initial(icon_state)
+
 /obj/item/weapon/butterfly/toggle_active(new_state, mob/user)
 	. = ..()
 	if(active)
@@ -108,7 +114,6 @@
 		edge = TRUE
 		sharp = IS_SHARP_ITEM_ACCURATE
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	else
@@ -117,7 +122,6 @@
 		edge = FALSE
 		sharp = IS_NOT_SHARP_ITEM
 		hitsound = initial(hitsound)
-		icon_state = initial(icon_state)
 		w_class = initial(w_class)
 		attack_verb = initial(attack_verb)
 

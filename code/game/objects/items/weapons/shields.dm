@@ -202,6 +202,9 @@
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
+/obj/item/weapon/holo/esword/update_icon_state()
+	icon_state = "eshield[active]"
+
 /obj/item/weapon/shield/energy/toggle_active(new_state, mob/user)
 	. = ..()
 	icon_state = "eshield[active]"
