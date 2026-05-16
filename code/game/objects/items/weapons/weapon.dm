@@ -7,11 +7,6 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
 	)
 	hitsound = SFX_SWING_HIT
-	var/caliber = "missing from codex" //codex
-	var/load_method = null //codex, defines are below.
-	var/max_shells = 0 //codex, bullets, shotgun shells TODO: KILL THESE TWO VARS
-	var/scope_zoom = FALSE//codex
-	var/self_recharge = FALSE //codex
 	///force level if two handed, activated etc
 	var/force_activated = 0
 

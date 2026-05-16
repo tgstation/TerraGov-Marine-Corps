@@ -117,11 +117,6 @@
 
 	. += jointext(trait_list, "<br>")
 
-/obj/item/weapon/gun/energy/get_weapon_codex_mechanic_info(list/trait_list)
-	. = ..()
-	if(self_recharge)
-		trait_list += "It recharges itself over time."
-
 /obj/item/weapon/gun/energy/lasgun/lasrifle/get_weapon_codex_mechanic_info(list/trait_list)
 	. = ..()
 	if(!mode_list)

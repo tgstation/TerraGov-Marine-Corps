@@ -383,6 +383,15 @@
 	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
 	var/placed_overlay_iconstate = "rifle"
 
+//Dumb codex vars that need to be deleted at some point. Seriously, they are not even reliable
+	///Ammo caliber
+	var/caliber = "missing from codex"
+	///how its loaded
+	var/load_method = null
+	///Max ammo it normally has
+	var/max_shells = 0
+	///whether it can scope
+	var/scope_zoom = FALSE
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
