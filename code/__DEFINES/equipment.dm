@@ -106,6 +106,8 @@
 #define IN_STORAGE (1<<13)
 ///If an item can be restocked/refilled in a vendor, despite not being infinite supply
 #define CAN_REFILL (1<<14)
+///Can be toggled on and off
+#define ITEM_ACTIVATABLE (1<<15)
 
 //deployment_flags
 ///Item can be deployed into a machine
