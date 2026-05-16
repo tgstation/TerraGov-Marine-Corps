@@ -41,13 +41,13 @@
 		get_activated_codex_mechanic_info(trait_list)
 
 	if(sharp && edge)
-		trait_list += "This is a <U>sharp</U> and <U>edged</U> weapon."
+		trait_list += "<br>This is a <U>sharp</U> and <U>edged</U> weapon."
 	else if(sharp)
-		trait_list += "This is a <U>sharp</U> weapon."
+		trait_list += "<br>This is a <U>sharp</U> weapon."
 	else if(edge)
-		trait_list += "This is an <U>edged</U> weapon."
+		trait_list += "<br>This is an <U>edged</U> weapon."
 	else
-		trait_list += "This is a blunt weapon."
+		trait_list += "<br>This is a blunt weapon."
 
 	var/list/slot_options = list("Suit storage")
 	if(equip_slot_flags & ITEM_SLOT_BELT)
