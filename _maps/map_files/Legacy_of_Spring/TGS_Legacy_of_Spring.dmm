@@ -15520,7 +15520,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/button/elevator/directional/south,
+/obj/machinery/button/elevator/directional/south{
+	id = "hangar"
+	},
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
