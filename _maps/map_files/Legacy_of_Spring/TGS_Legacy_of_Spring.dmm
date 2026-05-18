@@ -19879,7 +19879,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
 /area/mainship/hallways/upper_hallway)
 "bME" = (
 /obj/structure/cable,
@@ -22314,12 +22316,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"gIH" = (
-/obj/machinery/firealarm{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/upper_hallway)
 "gII" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -24141,6 +24137,11 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/upper_hallway)
+"jTu" = (
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/upper_hallway)
 "jVk" = (
 /obj/effect/turf_decal/logo/logo_peripheral{
 	dir = 4
@@ -25746,7 +25747,9 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
 /area/mainship/hallways/upper_hallway)
 "nnu" = (
 /obj/machinery/light/mainship,
@@ -27292,11 +27295,6 @@
 /obj/effect/decal/cleanable/blood/oil/streak,
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/hangar)
-"qry" = (
-/turf/closed/wall/mainship/bulletproof{
-	soft_armor = list("melee" = 0, "bullet" = s, "laser" = 200, "energy" = 200, "bomb" = 200, "bio" = 0, "fire" = 0, "acid" = 0)
-	},
-/area/mainship/shipboard/firing_range)
 "qsJ" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer1,
@@ -27366,12 +27364,6 @@
 	dir = 9
 	},
 /area/mainship/command/self_destruct)
-"qDU" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/upper_hallway)
 "qDV" = (
 /obj/structure/sign/mait{
 	dir = 4
@@ -27828,6 +27820,10 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/mainship/squads/general)
+"rAm" = (
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/weapon_room)
 "rDa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -52090,17 +52086,17 @@ aAX
 alI
 aof
 sCe
-ajs
-ajs
-qDU
-ajs
-ajs
-ajs
-ajs
-qDU
-gIH
-ajs
-ajs
+aJr
+aJr
+dyg
+aJr
+aJr
+aJr
+aJr
+dyg
+yjr
+aJr
+aJr
 sCe
 aTt
 azh
@@ -52364,17 +52360,17 @@ aWz
 cMK
 ajQ
 sCe
-ajs
-ajs
+jTu
+jTu
 bMf
-ajs
+jTu
 nlS
-ajs
-ajs
+jTu
+jTu
 bMf
-ajs
-ajs
-ajs
+jTu
+jTu
+jTu
 sCe
 amC
 afA
@@ -52504,7 +52500,7 @@ lCo
 aho
 aho
 aSH
-abB
+rAm
 aSH
 aho
 aho
@@ -54443,7 +54439,7 @@ jTr
 hVf
 vHq
 aCB
-qry
+aCB
 aCB
 aCB
 vcv
