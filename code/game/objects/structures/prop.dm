@@ -2100,8 +2100,24 @@
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	density = FALSE
+	atom_flags = ON_BORDER
+	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
+	density = TRUE
 	icon_state = "railing"
+
+/obj/structure/prop/mainship/railing/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/prop/mainship/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	if(density && (get_dir(loc, target) & dir))
+		if(ismob(mover) && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING))
+			return FALSE
+	return ..()
 
 /obj/structure/prop/mainship/railing/corner
 	name = "railing"

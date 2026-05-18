@@ -75,6 +75,9 @@
 		new_overlay.pixel_x = -32
 		. += new_overlay
 
+/obj/structure/platform/under_layer
+	layer = BELOW_TABLE_LAYER
+
 /obj/structure/platform/nondense
 	density = FALSE
 	coverage = 0
