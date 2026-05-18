@@ -22590,6 +22590,7 @@
 /area/mainship/hallways/lower_hallway)
 "hro" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "hrV" = (
