@@ -2139,10 +2139,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "afT" = (
-/obj/structure/window/framed/mainship/toughened,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
 	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "afU" = (
@@ -13428,8 +13428,8 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "aKg" = (
-/obj/structure/window/framed/mainship/toughened,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "aKh" = (
@@ -14343,6 +14343,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "aMH" = (
+/mob/living/simple_animal/corgi/walten,
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
 	},
@@ -20741,6 +20742,12 @@
 	dir = 8
 	},
 /area/mainship/living/bridgebunks)
+"dFm" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/self_destruct)
 "dGC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -21979,6 +21986,14 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/engineering/upper_engineering)
+"giz" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "giB" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 8
@@ -22436,6 +22451,9 @@
 /area/mainship/medical/upper_medical)
 "heL" = (
 /obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -22570,6 +22588,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/lower_hallway)
+"hro" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "hrV" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -22846,6 +22868,9 @@
 "hTh" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -23775,6 +23800,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/upper_hallway)
+"jLw" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/self_destruct)
 "jMh" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -27851,6 +27880,15 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/briefing)
+"spR" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/command/self_destruct)
 "spS" = (
 /obj/effect/turf_decal/trimline/yellow/line{
 	dir = 8
@@ -28169,6 +28207,9 @@
 /area/mainship/medical/medical_science)
 "sMf" = (
 /obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -29174,6 +29215,14 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"uOc" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/command/self_destruct)
 "uOB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -37919,7 +37968,7 @@ jFy
 bGm
 atm
 hTh
-heL
+spR
 heL
 aHP
 bGm
@@ -38055,9 +38104,9 @@ azM
 hta
 aFP
 qFS
-amP
-amP
-amP
+jLw
+hro
+dFm
 hta
 aFP
 rnF
@@ -38193,8 +38242,8 @@ amP
 eSM
 aFL
 sMf
-ahI
-ahI
+giz
+uOc
 aEA
 eSM
 amP
@@ -51824,14 +51873,14 @@ aVR
 aVR
 gLp
 awG
+aDB
+aDB
 wPZ
 aDB
 ang
 ang
 aDB
 wPZ
-aDB
-aDB
 aDB
 mid
 aDB
@@ -51960,6 +52009,8 @@ awt
 uix
 lpH
 mlG
+dah
+dah
 czh
 kYV
 ahv
@@ -51968,8 +52019,6 @@ aHo
 ano
 kYV
 lRR
-lpH
-lpH
 mlG
 dah
 dah
@@ -52098,14 +52147,14 @@ azo
 azo
 azo
 azo
+azo
+azo
 itF
 afN
 aKd
 aKd
 aOL
 itF
-azo
-azo
 azo
 azo
 azo
@@ -53744,12 +53793,12 @@ aKF
 ajd
 cKH
 avt
+oMy
+acw
 aAh
 aAh
 acw
 oMy
-acw
-acw
 acw
 acw
 acw
@@ -53881,10 +53930,10 @@ abz
 aYC
 kYV
 ano
+aDW
+aDW
 eyu
 aHo
-aDW
-aDW
 aDW
 aDW
 aDW
@@ -54019,9 +54068,9 @@ agd
 abz
 aNt
 aVR
+aVR
+aVR
 vYI
-aVR
-aVR
 aVR
 aVR
 aVR
