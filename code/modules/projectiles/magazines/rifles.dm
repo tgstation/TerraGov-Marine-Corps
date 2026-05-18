@@ -260,6 +260,7 @@
 	desc = "A series of 3 belt boxes linked together for the MG-60 general purpose machinegun, incredibly impractical to use undeployed."
 	reload_delay = 10 SECONDS
 	max_rounds = 600
+	w_class = WEIGHT_CLASS_BULKY
 	scatter_mod = 20
 	scatter_unwielded_mod = 60
 	wield_delay_mod = 12 SECONDS
