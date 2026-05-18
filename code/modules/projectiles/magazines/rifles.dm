@@ -258,6 +258,7 @@
 /obj/item/ammo_magazine/standard_gpmg/big
 	name = "\improper MG-60 GPMG triple box magazine (10x26mm)"
 	desc = "A series of 3 belt boxes linked together for the MG-60 general purpose machinegun, incredibly impractical to use undeployed."
+	icon_state = "t60b"
 	w_class = WEIGHT_CLASS_BULKY
 	reload_delay = 8 SECONDS
 	max_rounds = 600
