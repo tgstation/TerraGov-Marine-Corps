@@ -144,6 +144,8 @@
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
+///Opens the combat patrol base req doors
+#define COMSIG_GLOB_HVH_REQ "!hvh_req_opened"
 
 ///Sent when a respawn wave triggers
 #define COMSIG_GLOB_HVH_RESPAWN_WAVE "!hvh_respawn_wave"
