@@ -329,11 +329,6 @@
 	destroyed_stack_amount = 0
 	resistance_flags = RESIST_ALL
 
-/obj/structure/barricade/railing/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
 /*----------------------*/
 // WOOD
 /*----------------------*/

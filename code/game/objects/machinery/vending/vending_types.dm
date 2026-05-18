@@ -667,13 +667,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -14
+			pixel_z = -14
 		if(SOUTH)
-			pixel_y = 26
+			pixel_z = 26
 		if(EAST)
-			pixel_x = -19
+			pixel_w = -19
 		if(WEST)
-			pixel_x = 21
+			pixel_w = 21
 
 /obj/machinery/vending/security
 	name = "\improper SecTech"
