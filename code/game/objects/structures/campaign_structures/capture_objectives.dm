@@ -87,6 +87,9 @@
 
 ///Checks if this objective can be captured
 /obj/structure/campaign_objective/capture_objective/proc/capture_check(mob/living/user)
+	if(user.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(capturing_faction)
 		if(capturing_faction == user.faction)
 			user.balloon_alert(user, "already capturing!")
