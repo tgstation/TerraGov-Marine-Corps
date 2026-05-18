@@ -46,10 +46,10 @@
 	var/last_move_target
 	/// TimerID to our door reset timer, made by emergency opening doors
 	var/door_reset_timerid
-	/// Earliest world.time this panel can accept another UI action
-	var/next_input_time = 0
 	/// Delay between accepted UI actions to prevent rapid spam toggles
-	var/input_cooldown = 6 SECONDS
+	var/input_cooldown_duration = 6 SECONDS
+	/// Cooldown tracker for panel UI actions
+	COOLDOWN_DECLARE(input_cooldown)
 	/// The light mask overlay we use
 	light_power = 0.5 // Minimums, we want the button to glow if it has a mask, not light an area
 	light_range = 1.5
@@ -257,7 +257,7 @@
 
 	var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 	if(lift)
-		var/is_in_input_cooldown = world.time < next_input_time
+		var/is_in_input_cooldown = !COOLDOWN_FINISHED(src, input_cooldown)
 		data["lift_exists"] = TRUE
 		data["currently_moving"] = (lift.controller_status & CONTROLS_LOCKED) || is_in_input_cooldown
 		data["currently_moving_to_floor"] = last_move_target
@@ -290,7 +290,7 @@
 	if(!check_panel())
 		return TRUE // We shouldn't be usable right now, update UI
 
-	if(world.time < next_input_time)
+	if(!COOLDOWN_FINISHED(src, input_cooldown))
 		return TRUE // Panel is cooling down, update UI
 
 	switch(action)
@@ -309,7 +309,7 @@
 				return TRUE // We shouldn't be moving anything, update UI
 
 			INVOKE_ASYNC(lift, TYPE_PROC_REF(/datum/transport_controller/linear, move_to_zlevel), desired_z, CALLBACK(src, PROC_REF(check_panel)), usr)
-			next_input_time = world.time + input_cooldown
+			COOLDOWN_START(src, input_cooldown, input_cooldown_duration)
 			last_move_target = desired_z
 			return TRUE // Succcessfully initiated a move. Regardless of whether it actually works, update the UI
 
@@ -326,7 +326,7 @@
 			// Open all elevator doors, it's an emergency dang it!
 			lift.update_lift_doors(action = CYCLE_OPEN)
 			door_reset_timerid = addtimer(CALLBACK(src, PROC_REF(reset_doors)), 3 MINUTES, TIMER_UNIQUE|TIMER_STOPPABLE)
-			next_input_time = world.time + input_cooldown
+			COOLDOWN_START(src, input_cooldown, input_cooldown_duration)
 			return TRUE // We opened up all the doors, update the UI so the emergency button is replaced correctly
 
 		if("reset_doors")
@@ -335,7 +335,7 @@
 
 			deltimer(door_reset_timerid)
 			reset_doors()
-			next_input_time = world.time + input_cooldown
+			COOLDOWN_START(src, input_cooldown, input_cooldown_duration)
 			return TRUE // We closed all the doors, update the UI so the door button is replaced correctly
 
 /// Callback for move_to_zlevel to ensure the elevator can continue to move.

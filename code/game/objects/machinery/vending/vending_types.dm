@@ -659,7 +659,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/obj/machinery/vending/nanoblood/Initialize(mapload, ...)
+/obj/machinery/vending/nanoblood/Initialize(mapload, ndir)
+	. = ..()
+	setDir(ndir ? ndir : dir)
+
+/obj/machinery/vending/nanoblood/setDir(newdir)
 	. = ..()
 	switch(dir)
 		if(NORTH)

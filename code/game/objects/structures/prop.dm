@@ -871,7 +871,6 @@
 	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
 	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
 	icon_state = "small_flag_tgmc_planted"
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	max_integrity = 100
 	layer = ABOVE_OBJ_LAYER
 	coverage = 0
@@ -2100,24 +2099,8 @@
 	name = "railing"
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	atom_flags = ON_BORDER
-	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
-	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
-	density = TRUE
+	density = FALSE
 	icon_state = "railing"
-
-/obj/structure/prop/mainship/railing/Initialize(mapload)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/structure/prop/mainship/railing/CanAllowThrough(atom/movable/mover, turf/target)
-	if(density && (get_dir(loc, target) & dir))
-		if(ismob(mover) && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING))
-			return FALSE
-	return ..()
 
 /obj/structure/prop/mainship/railing/corner
 	name = "railing"

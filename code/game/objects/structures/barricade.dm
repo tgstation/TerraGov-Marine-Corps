@@ -313,6 +313,34 @@
 	can_wire = FALSE
 
 /*----------------------*/
+// RAILING
+/*----------------------*/
+
+/obj/structure/barricade/railing
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "railing"
+	barricade_type = "railing"
+	can_change_dmg_state = FALSE
+	can_wire = FALSE
+	stack_type = null
+	stack_amount = 0
+	destroyed_stack_amount = 0
+	resistance_flags = RESIST_ALL
+
+/obj/structure/barricade/railing/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+/obj/structure/barricade/railing/corner
+	name = "railing"
+	desc = "Basic railing meant to protect idiots like you from falling."
+	density = FALSE
+	icon_state = "railing_corner"
+
+/*----------------------*/
 // WOOD
 /*----------------------*/
 
