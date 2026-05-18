@@ -9048,14 +9048,13 @@
 /area/mainship/command/cic)
 "ayo" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 2;
-	soft_armor = list("melee" = 20, "bullet" = 200, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 100, "acid" = 0)
-	},
 /obj/machinery/door/firedoor{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 2
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "ayp" = (
 /turf/open/floor/mainship/silver,
@@ -26038,14 +26037,13 @@
 	},
 /area/mainship/hallways/hangar_lower)
 "nOb" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 2;
-	soft_armor = list("melee" = 20, "bullet" = 200, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 100, "acid" = 0)
-	},
 /obj/machinery/door/firedoor{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 2
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "nOr" = (
 /obj/structure/closet/secure_closet/military_police,
