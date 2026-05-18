@@ -334,12 +334,6 @@
 	if(.)
 		return
 
-/obj/structure/barricade/railing/corner
-	name = "railing"
-	desc = "Basic railing meant to protect idiots like you from falling."
-	density = FALSE
-	icon_state = "railing_corner"
-
 /*----------------------*/
 // WOOD
 /*----------------------*/
