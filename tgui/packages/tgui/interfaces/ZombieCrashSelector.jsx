@@ -347,7 +347,7 @@ const ItemLine = (props) => {
         Flamer
       </Box>
     ),
-    'ammo': (
+    ammo: (
       <Box inline mr="6px" ml="6px" color="#ff00b3ff">
         Ammo
       </Box>

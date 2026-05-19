@@ -136,7 +136,7 @@
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_WEAPONS, "Flamethrower", 2, "weapon-flamer"),
 		/obj/item/ammo_magazine/flamer_tank/large/X = list(CAT_WEAPONS, "\"X\" Fuel Tank (75u)", 6, "weapon-flamer"),
 		/obj/item/ammo_magazine/flamer_tank/backtank/X = list(CAT_WEAPONS, "\"X\" Fuel Backpack (500u)", 30, "weapon-flamer"), // 1x backpack = 6.67x tanks; discount of 10 points.
-		/obj/item/ammo_magazine/standard_gpmg/big = list(CAT_WEAPONS, "\"MG-60\" triple box mag", 1, "ammo"),
+		/obj/item/ammo_magazine/standard_gpmg/big = list(CAT_WEAPONS, "\"MG-60\" quadruple box mag", 1, "ammo"),
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
 	)
