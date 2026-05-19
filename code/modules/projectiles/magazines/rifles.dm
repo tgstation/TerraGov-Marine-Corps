@@ -262,9 +262,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	reload_delay = 8 SECONDS
 	max_rounds = 600
-	scatter_mod = 20
-	scatter_unwielded_mod = 60
-	wield_delay_mod = 12 SECONDS
+	scatter_mod = 15
+	wield_delay_mod = 6 SECONDS
 
 //-------------------------------------------------------
 //PR-412L1 HEAVY PULSE RIFLE

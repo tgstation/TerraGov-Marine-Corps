@@ -347,6 +347,11 @@ const ItemLine = (props) => {
         Flamer
       </Box>
     ),
+    'ammo': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Ammo
+      </Box>
+    ),
     'fun-random': (
       <Box inline mr="6px" ml="6px" color="#BA55D3">
         Random
