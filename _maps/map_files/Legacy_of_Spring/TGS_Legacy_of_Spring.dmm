@@ -8574,10 +8574,8 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
 "axr" = (
-/obj/structure/table/mainship{
-	parts = ss
-	},
 /obj/effect/spawner/random/misc/table_lighting,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/wood,
 /area/mainship/medical/cmo_office)
 "axs" = (
@@ -17551,10 +17549,8 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "aVT" = (
-/obj/structure/table/mainship{
-	parts = ss
-	},
 /obj/effect/spawner/random/misc/table_lighting,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "aVU" = (
