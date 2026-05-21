@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "The Ripley powerloader has had it's hover engines removed"
-  - bugfix: "Fixed a runtime whenever exiting a ripley"
