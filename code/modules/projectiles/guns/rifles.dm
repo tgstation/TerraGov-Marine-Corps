@@ -42,6 +42,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t18stock,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
@@ -132,6 +133,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t12stock,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
@@ -309,6 +311,7 @@
 		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight/under,
@@ -921,6 +924,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
@@ -1001,6 +1005,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_gpmg)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/verticalgrip,
@@ -1701,6 +1706,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx11)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bayonet/converted,
@@ -1785,6 +1791,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,

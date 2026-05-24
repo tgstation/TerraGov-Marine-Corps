@@ -51,6 +51,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/foldable/t19stock,
 		/obj/item/attachable/compensator,
@@ -113,6 +114,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -176,6 +178,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,

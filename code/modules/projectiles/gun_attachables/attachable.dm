@@ -262,6 +262,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(add_aim_mode)
 			var/datum/action/item_action/aim_mode/action_to_delete = locate() in master_gun.actions
 			QDEL_NULL(action_to_delete)
+			REMOVE_TRAIT(master_gun, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 		if(delay_mod)
 			master_gun.modify_fire_delay(-delay_mod)
 		if(burst_delay_mod)
