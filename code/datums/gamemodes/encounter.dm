@@ -39,13 +39,15 @@
 	///Xenos' point count
 	var/xeno_cap_points = 0
 	///Tower req value for owning faction per process()
-	var/tower_req_value = 8
+	var/tower_req_value = 6
 	///Tower xeno tactical point value for owning faction per process()
 	var/tower_xeno_tactical_point_value = 1
 	///Tower xeno strategic point value for owning faction per process()
 	var/tower_xeno_strategic_point_value = 3
 	///How much pop is required for every additional tower to spawn
 	var/num_towers_per_pop = 6
+	///minimum amount of xenos
+	var/minimum_xenos = 1
 
 /datum/game_mode/hvh/combat_patrol/encounter/announce()
 	to_chat(world, "<b>The current game mode is - Free for all!</b>")
@@ -146,7 +148,7 @@
 			continue
 		num_xenos++
 
-	var/desired_xeno_count = max(1, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
+	var/desired_xeno_count = max(minimum_xenos, floor(active_humans/ ENCOUNTER_XENO_HUMAN_RATIO))
 	var/xenos_to_add = desired_xeno_count - num_xenos
 
 	if(xenos_to_add > 0)
