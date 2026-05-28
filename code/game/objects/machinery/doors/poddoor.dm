@@ -250,6 +250,11 @@
 	id = "req_hvh"
 	resistance_flags = RESIST_ALL
 
+/obj/machinery/door/poddoor/mainship/req_hvh/Initialize(mapload)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		RegisterSignals(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(open))
+	return ..()
+
 /obj/machinery/door/poddoor/timed_late
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"

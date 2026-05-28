@@ -1312,7 +1312,7 @@
 /area/mainship/patrol_base/som)
 "pL" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/mainship/req_hvh/som,
+/obj/machinery/door_control/mainship/req_hvh,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
