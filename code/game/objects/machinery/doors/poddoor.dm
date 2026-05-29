@@ -255,6 +255,7 @@
 	return ..()
 
 /obj/machinery/door/poddoor/mainship/req_hvh/proc/open_req()
+	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
 		open()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
