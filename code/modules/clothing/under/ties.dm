@@ -62,9 +62,10 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	var/recipient_name //name of the person this is awarded to.
-	var/recipient_rank
-	var/medal_citation
+	var/recipient_name //! The name of the recipient of the medal
+	var/recipient_rank //! The rank of the recipient of the medal
+	var/medal_citation //! The citation of the medal
+	var/medal_uid //! The unique identifier of the medal. If blank the medal is not persistent.
 
 /obj/item/clothing/tie/medal/examine(mob/user)
 	. = ..()
@@ -73,15 +74,18 @@
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
 	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the TGMC"
+	medal_uid = "distinguished_conduct"
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
 	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
 	icon_state = "bronze_heart"
+	medal_uid = "bronze_heart"
 
 /obj/item/clothing/tie/medal/nobel_science
 	name = "nobel sciences award"
 	desc = "A bronze medal which represents significant contributions to the field of science or engineering."
+	medal_uid = "nobel_science"
 
 /obj/item/clothing/tie/medal/silver
 	name = "silver medal"
@@ -91,10 +95,12 @@
 /obj/item/clothing/tie/medal/silver/valor
 	name = "medal of valor"
 	desc = "A silver medal awarded for acts of exceptional valor."
+	medal_uid = "medal_of_valor"
 
 /obj/item/clothing/tie/medal/silver/security
 	name = "robust security award"
 	desc = "An award for distinguished combat and sacrifice in defence of TGMC's interests. Often awarded to security staff."
+	medal_uid = "robust_security"
 
 /obj/item/clothing/tie/medal/gold
 	name = "gold medal"
@@ -104,16 +110,19 @@
 /obj/item/clothing/tie/medal/gold/captain
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to TGMC, and their undisputable authority over their crew."
+	medal_uid = "medal_of_captaincy"
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
+	medal_uid = "medal_of_heroism"
 
 /obj/item/clothing/tie/medal/letter/commendation
 	name = "letter of commendation"
 	desc = "A letter printed on cardstock often filled with praise for the person it is intended for."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "commendation"
+	medal_uid = "letter_of_commendation"
 
 //Armbands
 /obj/item/clothing/tie/armband
