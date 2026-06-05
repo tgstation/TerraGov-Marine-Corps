@@ -152,3 +152,13 @@
 /// but since subsystem wait only considers the last fire,
 /// we need to multiply wait enough that it matches the 2 second interval Life is actually running on
 #define SS_MOBS_BUCKET_DELAY 4
+
+//Delay between auto votes
+#define VOTE_TIMER_DELAY 5 SECONDS
+
+#define SSVOTE_GAMEMODE "gamemode"
+#define SSVOTE_SHIPMAP "shipmap"
+#define SSVOTE_GROUNDMAP "groundmap"
+#define SSVOTE_RESTART "restart"
+#define SSVOTE_CUSTOM "custom"
+
