@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
 GLOBAL_LIST_EMPTY_TYPED(humans_by_zlevel, /list/mob/living/carbon/human)			//z level /list/list of alive humans
+GLOBAL_LIST_EMPTY(possessed_sentient_zombie_list)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
