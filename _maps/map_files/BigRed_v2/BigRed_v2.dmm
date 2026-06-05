@@ -11041,6 +11041,10 @@
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/e)
+"jzp" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "jzH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -13972,6 +13976,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"qfd" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "qfk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -46423,7 +46431,7 @@ hjp
 xaJ
 xaJ
 xaJ
-xaJ
+jzp
 bNC
 xaJ
 xaJ
@@ -48771,7 +48779,7 @@ gCQ
 gCQ
 sQi
 sQi
-sQi
+qfd
 sQi
 sQi
 gCQ

@@ -3,7 +3,7 @@
 #define PRIMORDIAL_TIER_THREE "Primordial Tier Three"
 #define PRIMORDIAL_TIER_FOUR "Primordial Tier Four"
 
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Abilities"))//, "Primordial"))//uncomment to unlock globally
 GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	XENO_TIER_ONE = PRIMORDIAL_TIER_ONE,
 	XENO_TIER_TWO = PRIMORDIAL_TIER_TWO,
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a silo that generates xeno larvas over time."
 	psypoint_cost = RESIN_SILO_PRICE
 	icon = "larvasilo"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of evolution point generation by 0.2 and maturity point generation by 0.4 per tower."
 	psypoint_cost = EVOLUTION_TOWER_PRICE
 	icon = "evotower"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/psychictower
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the number of available slots of higher tier castes."
 	psypoint_cost = PSYCHIC_RELAY_PRICE
 	icon = "maturitytower"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	building_type = /obj/structure/xeno/psychictower
 
 /datum/hive_upgrade/building/pherotower
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = PHEROMONE_TOWER_PRICE
 	icon = "pherotower"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
 	building_time = 5 SECONDS
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a spawner that generates ai xenos over time"
 	psypoint_cost = SPAWNER_PRICE
 	icon = "spawner"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/spawner
 
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting."
 	psypoint_cost = ACID_POOL_PRICE
 	icon = "pool"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/acid_pool
 
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs an acid maw that allows the hive to bombard its enemies from afar. Must be placed outdoors."
 	psypoint_cost = ACID_JAWS_PRICE
 	icon = "jaws"
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/acid_maw/acid_jaws
 
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a tunnel entrance, allowing for rapid repositioning"
 	icon = "tunnel"
 	psypoint_cost = 75
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 
 /datum/hive_upgrade/building/tunnel/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog, and on a weeded area."
 	icon = "acidturret"
 	psypoint_cost = XENO_ACID_TURRET_PRICE
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	///How long to build one turret
 	var/build_time = 10 SECONDS
@@ -519,3 +519,63 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = ANY_PRIMORDIAL_PRICE
 	icon = "primosent"
+
+/datum/hive_upgrade/abilities
+	category = "Abilities"
+	gamemode_flags = ABILITY_ENCOUNTER
+	upgrade_flags = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MUST_BE_HIVE_RULER
+	var/datum/action/ability/ability
+	var/construction_ability = FALSE
+
+/datum/hive_upgrade/abilities/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+	GLOB.hive_datums[buyer.hivenumber].hive_abilities += ability
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
+		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			continue
+		if(((ability::parent_type) in xeno.xeno_caste.actions) && !ability::cooldown_duration)
+			continue
+		xeno.add_ability(ability)
+
+	if(!CHECK_BITFIELD(buyer.hive.hive_flags, HIVE_ALL_CAN_BUILD) && construction_ability)
+		buyer.hive.hive_flags += HIVE_ALL_CAN_BUILD
+
+	log_game("[buyer] has bought [name], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has bought [name]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
+/datum/hive_upgrade/abilities/weed
+	name = "Unrestricted resting weeds"
+	desc = "All castes can plant resting weed"
+	psypoint_cost = 500
+	ability = /datum/action/ability/activable/xeno/plant_weeds/encounter
+	icon = "weeds"
+
+/datum/hive_upgrade/abilities/wall
+	name = "Unrestricted walls"
+	desc = "All castes can wall"
+	psypoint_cost = 500
+	ability = /datum/action/ability/activable/xeno/secrete_resin/encounter
+	icon = "wall"
+
+/datum/hive_upgrade/abilities/resin
+	name = "Unrestricted fireproof jelly"
+	desc = "All castes can create fireproof jelly"
+	psypoint_cost = 500
+	ability = /datum/action/ability/xeno_action/create_jelly/encounter
+	icon = "jelly"
+
+/datum/hive_upgrade/abilities/fireball
+	name = "Fireball blessing"
+	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
+	psypoint_cost = 1000
+	ability = /datum/action/ability/activable/xeno/fireball/encounter
+	icon = "fireball"
+
+/datum/hive_upgrade/abilities/punch
+	name = "Unrestricted Punch blessing"
+	desc = "All castes can use the warrior's punch ability"
+	psypoint_cost = 1200
+	ability = /datum/action/ability/activable/xeno/warrior/punch/encounter
+	icon = "punch"

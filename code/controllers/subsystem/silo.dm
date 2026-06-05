@@ -46,7 +46,8 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate *= SSticker.mode.silo_scaling
 	//We scale the rate based on the current ratio of humans to xenos
 	var/current_human_to_xeno_ratio = active_humans / active_xenos
-	current_larva_spawn_rate *= clamp(current_human_to_xeno_ratio / XENO_MARINE_RATIO , 0.7, 1)
+	var/desired_human_to_xeno_ratio = CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER) ? ENCOUNTER_XENO_HUMAN_RATIO : XENO_MARINE_RATIO
+	current_larva_spawn_rate *= clamp(current_human_to_xeno_ratio / desired_human_to_xeno_ratio , 0.7, 1)
 
 	GLOB.round_statistics.larva_from_silo += current_larva_spawn_rate / xeno_job.job_points_needed
 
