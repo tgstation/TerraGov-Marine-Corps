@@ -306,7 +306,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
-				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 					new_action.give_action(living_user)
 		else //The action should already be there by now.
 			return
@@ -321,7 +321,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
-				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+				if((src == living_user.l_hand || src == living_user.r_hand) && !CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 					old_action.remove_action(living_user)
 			qdel(old_action)
 
@@ -554,7 +554,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(chosen_gun.reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(deployment_flags, IS_DEPLOYED))
 		return FALSE
 	return TRUE
 
@@ -611,7 +611,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if((item_flags & FULLY_WIELDED) || (item_flags & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
+	if((item_flags & FULLY_WIELDED) || (deployment_flags & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -638,7 +638,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
-	if(!(item_flags & WIELDED) && !(item_flags & IS_DEPLOYED))
+	if(!(item_flags & WIELDED) && !(deployment_flags & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	if(!user.wear_id)
@@ -649,10 +649,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(user.do_actions)
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, aim_time, (item_flags & IS_DEPLOYED) ? NONE : IGNORE_USER_LOC_CHANGE, (item_flags & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR))
+		if(!do_after(user, aim_time, (deployment_flags & IS_DEPLOYED) ? NONE : IGNORE_USER_LOC_CHANGE, (deployment_flags & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
-	if(!(item_flags & WIELDED) && !(item_flags & IS_DEPLOYED))
+	if(!(item_flags & WIELDED) && !(deployment_flags & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	user.overlays += aim_mode_visual
@@ -670,7 +670,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(deployment_flags & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
 	return COMSIG_KB_ACTIVATED
@@ -678,7 +678,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the muzzle attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_muzzle_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(deployment_flags & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_MUZZLE, gun_user)
 	return COMSIG_KB_ACTIVATED
@@ -686,7 +686,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(deployment_flags & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_UNDER, gun_user)
 	return COMSIG_KB_ACTIVATED

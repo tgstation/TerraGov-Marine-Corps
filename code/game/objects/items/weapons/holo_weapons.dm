@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	item_flags = NOBLUDGEON
+	item_flags = NOBLUDGEON|ITEM_ACTIVATABLE
 	var/sword_color
 
 /obj/item/weapon/holo/esword/Initialize(mapload)
@@ -18,17 +18,21 @@
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-/obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
-	toggle_active()
-	if (active)
-		force = 30
+/obj/item/weapon/holo/esword/update_icon_state()
+	if(active)
 		icon_state = "sword[sword_color]"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/weapon/holo/esword/toggle_active(new_state, mob/user)
+	. = ..()
+	if(active)
+		force = 30
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = 3
-		icon_state = "sword0"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, span_notice("[src] can now be concealed."))

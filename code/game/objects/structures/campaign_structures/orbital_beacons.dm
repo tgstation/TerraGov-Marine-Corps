@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "motion_4"
 	w_class = WEIGHT_CLASS_SMALL
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	///Type path for what this deploys into
 	var/deployable_type
 	///Time to deploy
