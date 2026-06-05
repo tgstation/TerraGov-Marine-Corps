@@ -216,3 +216,7 @@
 /datum/map_template/shuttle/escape_shuttle
 	shuttle_id = SHUTTLE_ESCAPE_SHUTTLE
 	name = "Escape Shuttle"
+
+/datum/map_template/shuttle/widebury
+	shuttle_id = SHUTTLE_WIDEBURY
+	name = "Widebury"
