@@ -93,10 +93,10 @@
 
 	if(!building_stack)
 		remove_from_engineering_list(hologram)
-		try_speak(pick(unable_to_build_chat))
+		custom_speak(pick(unable_to_build_chat))
 		return
 
-	try_speak(pick(building_chat))
+	custom_speak(pick(building_chat))
 	hologram.attackby(building_stack, mob_parent)
 	on_engineering_end(hologram)
 

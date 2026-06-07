@@ -18,14 +18,14 @@
 	if(isturf(target))
 		if(istype(target, /turf/closed/interior/tank/door))
 			set_interact_target(target)
-			try_speak(pick(receive_order_chat))
+			faction_list_speak(GLOB.ai_receive_order_lines)
 			return
 		set_atom_to_walk_to(target)
 		return
 	var/atom/movable/movable_target = target
 	if(!movable_target.faction) //atom defaults to null faction, so apc's etc
 		set_interact_target(movable_target)
-		try_speak(pick(receive_order_chat))
+		faction_list_speak(GLOB.ai_receive_order_lines)
 		return
 	if(movable_target.faction != mob_parent.faction)
 		set_combat_target(movable_target)
@@ -35,7 +35,7 @@
 		if(!living_target.stat)
 			set_escorted_atom(null, living_target)
 	set_interact_target(movable_target)
-	try_speak(pick(receive_order_chat))
+	faction_list_speak(GLOB.ai_receive_order_lines)
 
 ///Adds an atom to the interest list
 /datum/ai_behavior/human/proc/add_atom_of_interest(atom/new_atom)
