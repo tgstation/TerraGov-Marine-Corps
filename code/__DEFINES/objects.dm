@@ -281,3 +281,36 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define EXTINGUISH_AMOUNT 20
 
 #define DEFAULT_FUEL_TYPE /datum/reagent/fuel
+
+///Whether this barricade has damaged states
+#define BARRICADE_DAMAGE_STATES (1<<0)
+///Can this barricade type be wired
+#define BARRICADE_CAN_WIRE (1<<1)
+///Is this barricade wired?
+#define BARRICADE_IS_WIRED (1<<2)
+///Whether this is open
+#define BARRICADE_OPEN (1<<3)
+///It can be disassembled and moved
+#define BARRICADE_CAN_MOVE (1<<4)
+///Can be repaired with a welder
+#define BARRICADE_STANDARD_REPAIR (1<<5)
+
+///Stacks needed to repair severely damaged cades
+#define BARRICADE_REPAIR_STACK_AMOUNT 2
+
+///Stacks needed to repair severely damaged cades
+#define BARRICADE_REPAIR_WELD_AMOUNT 85
+
+///Cade is movable
+#define BARRICADE_LOOSE 0
+///Cade is anchored but bolts exposed
+#define BARRICADE_ANCHORED 1
+///Cade is normal
+#define BARRICADE_FIRM 2
+
+///bomb upgrade
+#define CADE_TYPE_BOMB "concussive armor"
+///general upgrade
+#define CADE_TYPE_MELEE "ballistic armor"
+///acid upgrade
+#define CADE_TYPE_ACID "caustic armor"
