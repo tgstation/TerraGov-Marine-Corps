@@ -430,6 +430,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_mmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
@@ -467,7 +468,6 @@
 	damage_falloff_mult = 0.25
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
-	actions_types = list(/datum/action/item_action/aim_mode)
 
 /obj/item/weapon/gun/standard_mmg/toggle_auto_aim_mode(mob/living/carbon/human/user) //somewhat redundant, but just for clarity to the user
 	if(!(item_flags & IS_DEPLOYED))
