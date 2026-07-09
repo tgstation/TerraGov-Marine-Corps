@@ -29,6 +29,9 @@ endmap
 map arachne
 endmap
 
+map legacy_of_spring
+endmap
+
 map combat_patrol_base
 endmap
 
