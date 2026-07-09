@@ -1,0 +1,9 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscadd: "Added the TGS Legacy of Spring"
+  - rscadd: "Added a wall-mounted version of the marine blood vendor."
+  - rscadd: "Added a dedicated marine factory vendor."
+  - bugfix: "Added a method to allow poddoor railings to trigger on transport elevator arrival/departure."
+  - imageadd: "Added various flavor mapping props."
+  - config: "Added new configuration settings for the TGS Legacy of Spring"
