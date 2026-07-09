@@ -155,6 +155,11 @@
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
 
+	/// buffer for how many times z_travel_cd was violated by src
+	var/z_change_buffer_count = 0
+	//cooldown done when you change z levels willingly
+	COOLDOWN_DECLARE(z_travel_cd)
+
 	///The world.time of when this mob was last lying down
 	var/last_rested = 0
 	///The world.time of when this mob became unconscious
