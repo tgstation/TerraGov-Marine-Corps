@@ -85,6 +85,9 @@
 	name = "Atmospherics Port"
 	icon_state = "portatmos"
 
+/area/mainship/engineering/atmos
+	name = "Atmospherics"
+	icon_state = "atmos"
 
 /area/mainship/shipboard
 	minimap_color = MINIMAP_AREA_SEC
@@ -143,6 +146,11 @@
 
 /area/mainship/hallways/hangar
 	name = "Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/mainship/hallways/hangar_lower
+	name = "Lower Hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -221,6 +229,17 @@
 	name = "Hallway Starboard"
 	icon_state = "starboard"
 
+/area/mainship/hallways/upper_hallway
+	name = "Upper Hallway"
+	icon_state = "starboard"
+
+/area/mainship/hallways/lower_hallway
+	name = "Lower Hallway"
+	icon_state = "port"
+
+/area/mainship/hallways/sd_hallway
+	name = "Self Destruct Hallway"
+	icon_state = "lowerhull"
 
 /area/mainship/hallways/port_ert
 	name = "Port ERT Hangar"
@@ -233,6 +252,15 @@
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/mainship/hallways/upper_ert
+	name = "Upper ERT Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/mainship/hallways/lower_ert
+	name = "Lower ERT Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/mainship/hull
 	minimap_color = MINIMAP_AREA_CAVES
@@ -240,7 +268,6 @@
 /area/mainship/hull/lower_hull
 	name = "Hull Lower"
 	icon_state = "lowerhull"
-
 
 /area/mainship/hull/upper_hull
 	name = "Hull Upper"
@@ -253,6 +280,22 @@
 /area/mainship/hull/starboard_hull
 	name = "Hull Starboard"
 	icon_state = "upperhull"
+
+/area/mainship/hull/upper/upper_port_hull
+	name = "Upper Hull Port"
+	icon_state = "upperhull"
+
+/area/mainship/hull/upper/upper_starboard_hull
+	name = "Upper Hull Starboard"
+	icon_state = "upperhull"
+
+/area/mainship/hull/lower/lower_port_hull
+	name = "Lower Hull Port"
+	icon_state = "lowerhull"
+
+/area/mainship/hull/lower/lower_starboard_hull
+	name = "Lower Hull Starboard"
+	icon_state = "lowerhull"
 
 /area/mainship/living
 	minimap_color = MINIMAP_AREA_LIVING
@@ -354,9 +397,17 @@
 	icon_state = "livingspace"
 	minimap_color = MINIMAP_AREA_COMMAND
 
+/area/mainship/living/field_command_bunks
+	name = "Field Commander's Bunk"
+	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/living/chapel
 	name = "Chapel"
+	icon_state = "officerrnr"
+
+/area/mainship/living/courtroom
+	name = "Courtroom"
 	icon_state = "officerrnr"
 
 /area/mainship/medical
@@ -392,7 +443,7 @@
 	icon_state = "operating"
 
 /area/mainship/medical/medical_science
-	name = "Medical Research laboratories"
+	name = "Medical Research Laboratories"
 	icon_state = "science"
 
 
@@ -440,6 +491,21 @@
 	name = "Common Squads Preparation"
 	icon_state = "req"
 
+/area/mainship/squads/squad_lead
+	name = "Squad Leader Preparation"
+	icon_state = "alpha"
+
+/area/mainship/squads/squad_corpsman
+	name = "Squad Corpsman Preparation"
+	icon_state = "alpha"
+
+/area/mainship/squads/squad_engineer
+	name = "Squad Engineer Preparation"
+	icon_state = "alpha"
+
+/area/mainship/squads/squad_gunner
+	name = "Smartgunner Preparation"
+	icon_state = "alpha"
 
 /area/mainship/squads/general/som
 
@@ -448,6 +514,10 @@
 	icon_state = "req"
 	minimap_color = MINIMAP_AREA_REQ
 
+/area/mainship/squads/factory
+	name = "Factory Workshop"
+	icon_state = "req"
+	minimap_color = MINIMAP_AREA_REQ	
 
 /area/mainship/powered //for objects not intended to lose power
 	name = "Powered"
@@ -456,7 +526,7 @@
 
 /area/mainship/hallways/hangar/droppod
 	name = "Drop Pod Bay"
-	icon_state = "storage"
+	icon_state = "hangar"
 
 /area/mainship/living/evacuation
 	name = "Evacuation"
