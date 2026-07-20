@@ -95,3 +95,9 @@
 
 /obj/machinery/door/poddoor/railing/proc/do_close()
 	operating = FALSE
+
+/obj/machinery/door/poddoor/railing/supply
+	id = "supply_elevator_railing"
+
+/obj/machinery/door/poddoor/railing/supply/som
+	id = "supply_SOM_elevator_railing"
