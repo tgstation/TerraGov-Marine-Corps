@@ -24,6 +24,11 @@
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
 
+/obj/structure/showcase/seven
+	icon = 'icons/obj/vehicles_2x1.dmi'
+	icon_state = "bike"
+	desc = "A beautiful ural motorcycle that have seen wear and tear but looked after and taken care of with much love. You see a TerraGov Marine corp logo decal on it with a R-44 combat revolver sticker next to it."
+
 /obj/structure/showcase/coinpress
 	icon_state = "coinpress0"
 

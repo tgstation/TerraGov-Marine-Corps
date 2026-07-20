@@ -1417,6 +1417,7 @@
 	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
 	caliber = CALIBER_12x7
 	slot = ATTACHMENT_SLOT_UNDER
+	gun_skill_category = SKILL_SMARTGUN
 	max_shells = 5
 	default_ammo_type =/obj/item/ammo_magazine/rifle/standard_spottingrifle
 	allowed_ammo_types = list(

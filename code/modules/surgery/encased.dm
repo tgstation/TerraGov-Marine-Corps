@@ -49,11 +49,7 @@
 
 
 /datum/surgery_step/open_encased/retract
-	allowed_tools = list(
-		/obj/item/tool/surgery/retractor = 100,
-		/obj/item/tool/crowbar = 75,
-	)
-
+	allowed_tools = SURGERY_TOOL_RETRACTING
 	min_duration = RETRACT_OPEN_ENCASED_MIN_DURATION
 	max_duration = RETRACT_OPEN_ENCASED_MAX_DURATION
 	open_case_step = 2.5
@@ -88,11 +84,7 @@
 
 
 /datum/surgery_step/open_encased/close
-	allowed_tools = list(
-		/obj/item/tool/surgery/retractor = 100,
-		/obj/item/tool/crowbar = 75,
-	)
-
+	allowed_tools = SURGERY_TOOL_RETRACTING
 	min_duration = RETRACT_CLOSE_ENCASED_MIN_DURATION
 	max_duration = RETRACT_CLOSE_ENCASED_MAX_DURATION
 	open_case_step = 3
@@ -145,14 +137,7 @@
 	return ..()
 
 /datum/surgery_step/fat_removal
-	allowed_tools = list(
-		/obj/item/tool/surgery/scalpel = 100,
-		/obj/item/tool/kitchen/knife = 75,
-		/obj/item/shard = 50,
-		/obj/item/weapon/combat_knife = 25,
-		/obj/item/stack/throwing_knife = 15,
-		/obj/item/weapon/sword/mercsword = 1,
-	)
+	allowed_tools = SURGERY_TOOL_CUTTING
 	min_duration = DEFAT_MIN_DURATION
 	max_duration = DEFAT_MAX_DURATION
 	priority = 2
