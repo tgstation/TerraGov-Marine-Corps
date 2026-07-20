@@ -224,7 +224,6 @@
 /atom/movable/effect/xeno_tunnel/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 50, TRUE, falloff = 2)
-	playsound(loc, 'sound/effects/alien/behemoth/rumble.ogg', 100, TRUE, falloff = 2.5)
 	balloon_alert_to_viewers("!!!")
 	visible_message(span_userdanger("You see a tunnel emmerging!"))
 	QDEL_IN(src, 7)
