@@ -7,3 +7,14 @@
       arrival/departure.
   - imageadd: Added various flavor mapping props.
   - config: Added new configuration settings for the TGS Legacy of Spring
+2026-07-21:
+  Lumipharon:
+  - code_imp: fixed the install_byond.sh
+  mudzbe:
+  - rscadd: 'Added Encounter gamemode: 3 Teams, TGMC, SOM, xenos fight for control
+      over sensor towers, control over towers gives humans req points, for xenos both
+      kinds of psy points'
+  - rscadd: Added req area to combat patrol outpost, accessible on Encounter
+  - rscadd: Hive abilities, purchasable blessings that grant every caste access to
+      abilities, they can use if they have enough plasma, accessible on Encounter
+  - rscadd: Added Fireball, punch, resting weed, wall, fireproof jelly hive abilities
