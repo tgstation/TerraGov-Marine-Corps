@@ -4,7 +4,7 @@ GLOBAL_VAR_INIT(dsay_allowed, TRUE)
 GLOBAL_VAR_INIT(enter_allowed, TRUE)
 GLOBAL_VAR_INIT(respawn_allowed, TRUE)
 GLOBAL_VAR_INIT(valhalla_allowed, TRUE)
-GLOBAL_VAR_INIT(ssd_posses_allowed, TRUE)
+GLOBAL_VAR_INIT(ssd_possess_allowed, TRUE)
 GLOBAL_VAR_INIT(xeno_enter_allowed, TRUE)
 
 GLOBAL_VAR_INIT(respawntime, 30 MINUTES)
