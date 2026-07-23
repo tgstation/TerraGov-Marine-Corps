@@ -53,6 +53,9 @@
 	var/mob/living/carbon/xenomorph/xeno_owner
 
 /datum/action/ability/activable/xeno/New(Target)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_BUFFED_XENO_ABILITIES))
+		cooldown_duration = cooldown_duration/3
+		ability_cost = ability_cost /3
 	. = ..()
 	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions/general.dmi', "borders_center", ACTION_LAYER_EMPOWERED)
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence

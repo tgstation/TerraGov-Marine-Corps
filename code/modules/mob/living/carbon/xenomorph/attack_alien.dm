@@ -180,6 +180,8 @@
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
 			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))
+		else if(iszombie(src))
+			rip_out_heart(X, FALSE)
 		else
 			to_chat(X, span_warning("[src] is dead, why would we want to touch it?"))
 		return FALSE

@@ -139,6 +139,8 @@
 		/obj/item/ammo_magazine/standard_gpmg/big = list(CAT_WEAPONS, "\"MG-60\" quadruple box mag", 1, "ammo"),
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
+		/mob/living/carbon/xenomorph/larva/Corrupted/iff = list(CAT_FUN, "Corrupted larva with IFF", 30, "fun-random"),
+		/obj/item/storage/backpack/marine/duffelbag/xenosaddle = list(CAT_FUN, "Xeno Saddle", 5, "fun-random"),
 	)
 	/// The total amount of pooled points that have been gained. Shared across all vendors.
 	var/static/total_pooled_points = 0
