@@ -18,3 +18,16 @@
   - rscadd: Hive abilities, purchasable blessings that grant every caste access to
       abilities, they can use if they have enough plasma, accessible on Encounter
   - rscadd: Added Fireball, punch, resting weed, wall, fireproof jelly hive abilities
+2026-07-23:
+  Lumipharon:
+  - bugfix: fixed NPC's not holding still when healing in some cases
+  - qol: Added some missing feedback for certain abilities that can be blocked by
+      shields
+  - balance: Warrior lunge can be blocked by shields similarly to runners or hunters.
+  - bugfix: fixed shield code working the wrong way for certain interactions
+  - code_imp: Shield code works sensibly for touch interactions
+  - bugfix: fixed an infinite loop bug with gnome teleportation
+  - bugfix: NPC's will properly take ammo from ammo boxes
+  mudzbe:
+  - rscdel: Remove flaregun from civil war uniform
+  - rscadd: Added big MG60 belt box to zcrash vendor

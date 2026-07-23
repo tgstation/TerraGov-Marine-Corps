@@ -1,7 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Added some missing feedback for certain abilities that can be blocked by shields"
-  - balance: "Warrior lunge can be blocked by shields similarly to runners or hunters."
-  - bugfix: "fixed shield code working the wrong way for certain interactions"
-  - code_imp: "Shield code works sensibly for touch interactions"
