@@ -174,22 +174,22 @@
 		return
 	if(proj.damage > 10 && prob(60) && (proj.ammo.damage_type in list(BRUTE, BURN)))
 		log_attack("[key_name(proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
-		explode()
+		explode(proj.firer)
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
-/obj/structure/reagent_dispensers/fueltank/proc/explode()
+/obj/structure/reagent_dispensers/fueltank/proc/explode(mob/blame_mob)
 	if(exploding)
 		return
 	exploding = TRUE
-	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fueltank explosion")
-	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3, explosion_cause="fueltank explosion")
-	else
-		explosion(loc, light_impact_range = 2, flame_range = 2, explosion_cause="fueltank explosion")
+	var/explosion_strength = 2
+	if(reagents.total_volume > 500)
+		explosion_strength = 4
+	else if(reagents.total_volume > 100)
+		explosion_strength = 3
+	explosion(loc, light_impact_range = explosion_strength, flame_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
@@ -227,22 +227,18 @@
 	icon_state = "xweldtank"
 	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
 
-/obj/structure/reagent_dispensers/fueltank/xfuel/explode()
+/obj/structure/reagent_dispensers/fueltank/xfuel/explode(mob/blame_mob)
 	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
-
+	var/explosion_strength = 3
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5, explosion_cause="xfueltank explosion")
+		explosion_strength = 5
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4, explosion_cause="xfueltank explosion")
-	else
-		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3, explosion_cause="xfueltank explosion")
-
+		explosion_strength = 4
+	flame_radius(explosion_strength, loc, 40, 46, 31, 30, colour = "blue")
+	explosion(loc, light_impact_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/spacefuel
