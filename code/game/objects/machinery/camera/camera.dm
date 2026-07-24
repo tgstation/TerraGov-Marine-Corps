@@ -3,29 +3,30 @@
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "camera_icon"
+	base_icon_state = "camera"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
 	light_power = 0
-
+	///Camera net we belong to
 	var/datum/cameranet/parent_cameranet
+	///Camera networks we should be in
 	var/list/network = list("marinemainship")
+	///Unique identifier
 	var/c_tag = null
-	var/status = TRUE
+	///Current area
 	var/area/myarea = null
-
+	///Standard view range
 	var/view_range = 7
+	///Camera range when range reduced
 	var/short_range = 2
-
-	var/in_use_lights = FALSE
-	var/internal_light = TRUE //Whether it can light up when an AI views it
+	///Camera behavior flags
+	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
-	icon_state = "camera"
-
 	setDir(newDir ? newDir : dir)
 
 	for(var/i in network)
@@ -40,18 +41,35 @@
 
 
 	parent_cameranet.cameras += src
+	//if(camera_flags & CAMERA_OPERATING)
+	activate()
+	//
+	//parent_cameranet.addCamera(src)
+
+	//myarea = get_area(src)
+	//if(myarea)
+	//	LAZYADD(myarea.cameras, src)
+
+	//update_appearance(UPDATE_ICON)
+
+/*
+/obj/machinery/camera/proc/activate()
+	camera_flags |= CAMERA_OPERATING
 	parent_cameranet.addCamera(src)
-
-	myarea = get_area(src)
-	if(myarea)
+	update_appearance(UPDATE_ICON)
+	if(isturf(loc))
+		myarea = get_area(src)
 		LAZYADD(myarea.cameras, src)
-
-	update_icon()
-
+		set_light(initial(light_range), initial(light_power))
+	else
+		myarea = null
+	var/turf/our_turf = get_turf(src)
+	parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
+*/
 
 /obj/machinery/camera/Destroy()
 	if(can_use())
-		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
+		toggle_cam() //kick anyone viewing out and remove from the camera chunks
 
 	parent_cameranet.cameras -= src
 	if(isarea(myarea))
@@ -63,13 +81,13 @@
 /obj/machinery/camera/examine(mob/user)
 	. = ..()
 
-	if(!status)
+	if(!(camera_flags = CAMERA_OPERATING))
 		. += span_info("It's currently deactivated.")
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
 			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		. += span_info("Its maintenance panel is currently open.")
-		if(!status && powered())
+		if(!(camera_flags = CAMERA_OPERATING) && powered())
 			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 /obj/machinery/camera/setDir(newdir)
@@ -88,18 +106,18 @@
 			pixel_z = 0
 			pixel_w = 24
 
+/obj/machinery/camera/update_icon_state()
+	if(camera_flags & CAMERA_OPERATING)
+		icon_state = base_icon_state
+		return
+	icon_state = "camera_assembly"
 
-/obj/machinery/camera/proc/camera_ui_data()
-	return list(
-		"name" = c_tag ? c_tag : "unnamed camera",
-		"ref" = ref(src)
-	)
-
-/obj/machinery/camera/proc/setViewRange(num = 7)
-	view_range = num
-
-	parent_cameranet.updateVisibility(src, 0)
-
+/obj/machinery/camera/update_overlays()
+	. = ..()
+	if(machine_stat & EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+	if((camera_flags & CAMERA_OPERATING) && base_icon_state)
+		. += emissive_appearance(icon, "[base_icon_state]_emissive", src)
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -128,27 +146,27 @@
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 				O << browse(HTML_SKELETON_TITLE(itemname, info), "window=[itemname]")
 
-
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
-	I.play_tool_sound(src)
-	update_icon()
+	I.play_tool_sound(src, 25)
 	return TRUE
-
 
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
-	repair_damage(max_integrity, user)
-	toggle_cam(user, TRUE)
-	I.play_tool_sound(src)
-	update_icon()
+	TOGGLE_BITFIELD(camera_flags, CAMERA_SNIPPED)
+	if(camera_flags & CAMERA_SNIPPED)
+		deactivate()
+	else
+		reactivate()
+	I.play_tool_sound(src, 25)
+	if(user)
+		visible_message(span_danger("[user] [(camera_flags & CAMERA_SNIPPED) ? "deactivates" : "reactivates"] [src]!"))
 	return TRUE
-
 
 /obj/machinery/camera/multitool_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -157,7 +175,6 @@
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
 	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
-
 
 /obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -175,12 +192,11 @@
 
 	return TRUE
 
-
 /obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(obj_integrity <= 0)
+	if((camera_flags & CAMERA_SNIPPED))
 		to_chat(xeno_attacker, span_warning("The camera is already disabled."))
 		return
 
@@ -191,7 +207,7 @@
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"))
 		return
 
@@ -199,21 +215,61 @@
 	sparks.set_up(2, 0, src)
 	sparks.attach(src)
 	sparks.start()
-
+	DISABLE_BITFIELD(camera_flags, CAMERA_SNIPPED)
 	deactivate()
 	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"))
 
+/obj/machinery/camera/emp_act(severity)
+	. = ..()
+	machine_stat |= EMPED
+	deactivate()
 
+	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/camera/get_remote_view_fullscreens(mob/user)
+	if(view_range == short_range) //unfocused
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
+
+
+/obj/machinery/camera/update_remote_sight(mob/living/user)
+	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
+	user.set_sight(NONE)
+	return TRUE
+
+///Reenables the camera
+/obj/machinery/camera/proc/reactivate()
+	if(camera_flags & CAMERA_OPERATING)
+		return
+	if((camera_flags & CAMERA_SNIPPED) || (machine_stat & EMPED) || !(camera_flags & CAMERA_TURNED_ON))
+		return //something still wrong with it
+	activate()
+
+/obj/machinery/camera/proc/activate()
+	camera_flags |= CAMERA_OPERATING
+	parent_cameranet.addCamera(src)
+	update_appearance(UPDATE_ICON)
+	myarea = get_area(src)
+	if(!myarea)
+		return
+	LAZYADD(myarea.cameras, src)
+	set_light(initial(light_range), initial(light_power))
+	var/turf/our_turf = get_turf(src)
+	parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
+
+///Turns off the camera
 /obj/machinery/camera/proc/deactivate(mob/user)
-	status = FALSE
-	obj_integrity = 0
+	if(!(camera_flags & CAMERA_OPERATING))
+		return
+	DISABLE_BITFIELD(camera_flags, CAMERA_OPERATING)
 	set_light(0)
 	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	var/turf/camnet_turf = get_turf(src)
 	parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
@@ -230,60 +286,39 @@
 			continue
 		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
-/obj/machinery/camera/update_icon_state()
-	. = ..()
-	if(obj_integrity <= 0)
-		icon_state = "camera_assembly"
+///Turns the camera on or off
+/obj/machinery/camera/proc/toggle_cam()
+	TOGGLE_BITFIELD(camera_flags, CAMERA_TURNED_ON)
+	if(camera_flags & CAMERA_TURNED_ON)
+		reactivate()
 	else
-		icon_state = "camera"
-
-/obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
-	status = !status
-	if(can_use())
-		parent_cameranet.addCamera(src)
-		if(isturf(loc))
-			myarea = get_area(src)
-			LAZYADD(myarea.cameras, src)
-			set_light(initial(light_range), initial(light_power))
-		else
-			myarea = null
-		var/turf/our_turf = get_turf(src)
-		parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
-	else
-		parent_cameranet.removeCamera(src)
-		if(isarea(myarea))
-			LAZYREMOVE(myarea.cameras, src)
 		deactivate()
 
-	var/change_msg = "deactivates"
-	if(status)
-		change_msg = "reactivates"
-
-	if(displaymessage)
-		if(user)
-			visible_message(span_danger("[user] [change_msg] [src]!"))
-		else
-			visible_message(span_danger("\The [src] [change_msg]!"))
-
-	update_icon() //update Initialize() if you remove this.
-
-	// now disconnect anyone using the camera
-	//Apparently, this will disconnect anyone even if the camera was re-activated.
-	//I guess that doesn't matter since they can't use it anyway?
-	for(var/mob/O in GLOB.player_list)
-		if(O.client && O.client.eye == src)
-			O.unset_interaction()
-			O.reset_perspective(null)
-			to_chat(O, "The screen bursts into static.")
-
-
+///Whether this is in an active state
 /obj/machinery/camera/proc/can_use()
-	if(!status)
-		return FALSE
-	if(machine_stat & EMPED)
+	if(!(camera_flags & CAMERA_OPERATING))
 		return FALSE
 	return TRUE
 
+///Camera table UI data
+/obj/machinery/camera/proc/camera_ui_data()
+	return list(
+		"name" = c_tag ? c_tag : "unnamed camera",
+		"ref" = ref(src)
+	)
+
+///Sets the view range of the camera
+/obj/machinery/camera/proc/setViewRange(num = 7)
+	view_range = num
+
+	parent_cameranet.updateVisibility(src, 0)
+
+///Lifts EMP effects
+/obj/machinery/camera/proc/remove_emp()
+	if(!(machine_stat & EMPED))
+		return
+	machine_stat &= ~EMPED
+	reactivate()
 
 /obj/machinery/camera/proc/can_see()
 	var/turf/pos = get_turf(src)
@@ -326,7 +361,7 @@
 		if(C.can_use())	// check if camera disabled
 			return C
 
-
+///Turns the light on or off
 /obj/machinery/camera/proc/Togglelight(on = FALSE)
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		for(var/obj/machinery/camera/cam in A.lit_cameras)
@@ -337,29 +372,11 @@
 	else
 		set_light(initial(light_range), initial(light_power))
 
-
-/obj/machinery/camera/get_remote_view_fullscreens(mob/user)
-	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
-
-
-/obj/machinery/camera/update_remote_sight(mob/living/user)
-	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
-	user.set_sight(NONE)
-	return TRUE
-
+//This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname
 	light_range = 1
 	light_power = 0.2
-	var/number = 0 //camera number in area
 
-/obj/machinery/camera/autoname/update_overlays()
-	. = ..()
-	if(obj_integrity <= 0)
-		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", src)
-
-//This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/static/list/id_by_area = list()
@@ -398,7 +415,7 @@
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
 	name = "laser camera"
-	icon_state = ""
+	base_icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
 	resistance_flags = RESIST_ALL
@@ -412,7 +429,7 @@
 
 /obj/machinery/camera/beacon_cam
 	name = "beacon camera"
-	icon_state = ""
+	base_icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("supply beacons")
 	resistance_flags = RESIST_ALL
@@ -432,12 +449,9 @@
 /obj/machinery/camera/autoname/lz_camera
 	name = "landing zone camera"
 	icon_state = "editor_icon"
+	base_icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("landing zones")
-
-/obj/machinery/camera/autoname/lz_camera/Initialize(mapload)
-	. = ..()
-	icon_state = "" //remove visibility on map load
 
 /obj/machinery/camera/autoname/lz_camera/emp_act(severity)
 	return

@@ -168,8 +168,8 @@
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
-			if(cam_headset?.camera?.status)
-				cam_headset.camera.toggle_cam(null, FALSE)
+			if(cam_headset?.camera?.camera_flags & CAMERA_TURNED_ON)
+				cam_headset.camera.toggle_cam()
 				playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
