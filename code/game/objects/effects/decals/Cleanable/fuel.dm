@@ -7,10 +7,10 @@
 	dir = NORTHEAST //Spawns with a diagonal direction, for spread optimization.
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
-	///Used for the fire_lvl of the resulting fire
-	var/fire_lvl = 15
-	///Used for the burn_lvl of the resulting fire
-	var/burn_lvl = 15
+	///Used for the burn_time of the resulting fire
+	var/burn_time = 15
+	///Used for the burn_level of the resulting fire
+	var/burn_level = 15
 	var/f_color = "red"
 
 
@@ -21,8 +21,8 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
-	burn_lvl += rand(-15, 15)
-	fire_lvl += rand(-10, 20)
+	burn_level += rand(-15, 15)
+	burn_time += rand(-10, 20)
 	if(newDir)
 		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
@@ -94,7 +94,7 @@
 	if(igniter)
 		visible_message(span_warning("[igniter] ignites the spilled fuel!"))
 	var/turf/S = get_turf(src)
-	S.ignite(fire_lvl, burn_lvl, f_color)
+	S.ignite(burn_time, burn_level, f_color)
 	for(var/D in CARDINAL_DIRS)
 		var/turf/T = get_step(S, D)
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
@@ -125,6 +125,6 @@
 	spread_fail_chance = 0 //percent
 
 /obj/effect/decal/cleanable/liquid_fuel/xfuel
-	fire_lvl = 25
-	burn_lvl = 25
+	burn_time = 25
+	burn_level = 25
 	f_color = "blue"

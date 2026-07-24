@@ -237,6 +237,11 @@ const ItemLine = (props) => {
         Mech Equipment
       </Box>
     ),
+    sentry: (
+      <Box inline mr="6px" ml="6px" color="#fff385ff">
+        Sentry
+      </Box>
+    ),
     'emplacement-laser': (
       <Box inline mr="6px" ml="6px" color="#fff385ff">
         Laser
@@ -340,6 +345,11 @@ const ItemLine = (props) => {
     'weapon-flamer': (
       <Box inline mr="6px" ml="6px" color="#ff00b3ff">
         Flamer
+      </Box>
+    ),
+    ammo: (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Ammo
       </Box>
     ),
     'fun-random': (

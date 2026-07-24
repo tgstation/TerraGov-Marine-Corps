@@ -99,6 +99,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
 	)
 
+/datum/action/ability/activable/xeno/fireball/encounter
+	cooldown_duration = 30 SECONDS
+	keybinding_signals = null
+
 /datum/action/ability/activable/xeno/fireball/use_ability(atom/target)
 	playsound(get_turf(xeno_owner), 'sound/effects/wind.ogg', 50)
 	if(!do_after(xeno_owner, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))

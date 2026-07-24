@@ -998,7 +998,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_gpmg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_gpmg)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_gpmg, /obj/item/ammo_magazine/standard_gpmg/big)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
@@ -1417,6 +1417,7 @@
 	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
 	caliber = CALIBER_12x7
 	slot = ATTACHMENT_SLOT_UNDER
+	gun_skill_category = SKILL_SMARTGUN
 	max_shells = 5
 	default_ammo_type =/obj/item/ammo_magazine/rifle/standard_spottingrifle
 	allowed_ammo_types = list(

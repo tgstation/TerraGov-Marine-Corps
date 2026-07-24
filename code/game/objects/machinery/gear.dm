@@ -33,3 +33,9 @@
 
 /obj/machinery/gear/vehicle // todo do for suppply as well instead of varediting
 	id = "vehicle_elevator_gear"
+
+/obj/machinery/gear/supply
+	id = "supply_elevator_gear"
+
+/obj/machinery/gear/supply/som
+	id = "supply_SOM_elevator_gear"
