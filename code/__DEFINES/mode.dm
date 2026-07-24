@@ -36,8 +36,8 @@
 // Mode defines.
 /// Should larva queue information be displayed in the status tab?
 #define MODE_INFESTATION (1<<0)
-/// Should late joining be disabled?
-#define MODE_NO_LATEJOIN (1<<1)
+/// Should encounter gamemode modifiers be enabled
+#define MODE_ENCOUNTER (1<<1)
 /// Should shutters automatically open after a certain period of time?
 #define MODE_LATE_OPENING_SHUTTER_TIMER (1<<2)
 ///  Should fog that only xenomorphs can passthrough be created?
@@ -186,6 +186,7 @@
 
 #define NUCLEAR_WAR_LARVA_POINTS_NEEDED 10
 #define CRASH_LARVA_POINTS_NEEDED 8
+#define ENCOUNTER_LARVA_POINTS_NEEDED 15
 
 #define FREE_XENO_AT_START 2
 

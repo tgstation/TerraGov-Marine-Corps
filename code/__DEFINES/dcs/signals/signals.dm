@@ -487,6 +487,9 @@
 
 #define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
 
+/// from /datum/storage/proc/handle_item_insertion when an item is stored in src
+#define COMSIG_ITEM_STORED "item_stored"
+
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)

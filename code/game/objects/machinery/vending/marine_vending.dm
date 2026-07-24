@@ -835,6 +835,26 @@
 		)
 	)
 
+/obj/machinery/vending/reqtorio_supply
+	name = "\improper Factory Supplies Vendor"
+	desc = "A large vendor for dispensing factory supplies. Restricted to cargo personnel only."
+	icon_state = "robotics"
+	icon_vend = "robotics-vend"
+	icon_deny = "robotics-deny"
+	wrenchable = FALSE
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+	products = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/unboxer = 1,
+			/obj/item/stack/conveyor/thirty = 10,
+			/obj/item/conveyor_switch_construct = 10,
+	)
+
 /obj/machinery/vending/lasgun
 	name = "\improper Terra Experimental cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
