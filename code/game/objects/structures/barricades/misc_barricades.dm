@@ -49,9 +49,8 @@
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "railing"
-	barricade_type = "railing"
-	can_change_dmg_state = FALSE
-	can_wire = FALSE
+	base_icon_state = "railing"
+	barricade_flags = NONE
 	stack_type = null
 	stack_amount = 0
 	destroyed_stack_amount = 0
