@@ -4,7 +4,8 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
-	anchored = TRUE
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	allow_pass_flags = NONE
 	move_delay = 6
 	light_system = HYBRID_LIGHT
@@ -91,7 +92,7 @@
 /// Sets the powerloader's actual move delay (as it is handled in the component).
 /obj/vehicle/ridden/powerloader/proc/set_vehicle_speed()
 	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
-	vehicle_component.vehicle_move_delay = move_delay
+	vehicle_component?.vehicle_move_delay = move_delay
 
 /obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)

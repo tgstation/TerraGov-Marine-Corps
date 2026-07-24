@@ -412,8 +412,6 @@
 		return
 	if(moving_diagonally) // No pushing in diagonal move
 		return
-	if(!client)
-		return
 	var/mob/mob_to_push = AM
 	if(istype(mob_to_push) && mob_to_push.lying_angle)
 		return

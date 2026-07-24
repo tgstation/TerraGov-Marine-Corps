@@ -278,6 +278,10 @@
 	id = "ROlobby"
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 
+/obj/machinery/door_control/mainship/req_hvh
+	name = "Requisition Shutters"
+	id = "req_hvh"
+
 /obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"
 	id = "ROlobby1"

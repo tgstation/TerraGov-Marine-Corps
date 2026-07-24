@@ -119,6 +119,8 @@
 	toggle(user)
 	user.changeNext_move(CLICK_CD_LONG)
 
+/obj/item/tool/pickaxe/plasmacutter/surgery_tool_check()
+	return powered
 
 //Toggles the cutter off and on
 /obj/item/tool/pickaxe/plasmacutter/proc/toggle(mob/user, silent)

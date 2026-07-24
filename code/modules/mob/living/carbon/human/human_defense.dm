@@ -124,6 +124,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)

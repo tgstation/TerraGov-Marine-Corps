@@ -171,6 +171,8 @@ GLOBAL_LIST_INIT(jobs_squad_standard, list(SQUAD_MARINE, SOM_SQUAD_MARINE))
 #define LARVA_POINTS_REGULAR 3.25
 ///How many marines per xeno at optimal ratio
 #define XENO_MARINE_RATIO 2.46
+///How many marines per xenos for the encounter gamemode
+#define ENCOUNTER_XENO_HUMAN_RATIO 3
 
 #define SURVIVOR_POINTS_REGULAR 1
 

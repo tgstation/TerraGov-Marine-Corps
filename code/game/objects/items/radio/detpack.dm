@@ -299,7 +299,7 @@
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
 		user.drop_held_item()
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
+		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, TRUE, 9)
 		var/location
 		location = target
 		forceMove(location)
@@ -335,11 +335,11 @@
 
 /obj/item/detpack/proc/do_play_sound_normal()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE, 12, 0.3)
 
 /obj/item/detpack/proc/do_play_sound_loud()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE, 12, 0.3) //Gets louder as we count down to armaggedon
 
 /obj/item/detpack/proc/disarm(turn_off = TRUE)
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
@@ -376,7 +376,7 @@
 		disarm()
 
 	//Time to go boom
-	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
+	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE, 12, 0.3)
 	boom = TRUE
 	var/turf/det_location = get_turf(plant_target)
 	plant_target.ex_act(EXPLODE_DEVASTATE)
