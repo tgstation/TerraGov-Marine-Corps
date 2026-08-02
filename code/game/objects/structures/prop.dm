@@ -850,12 +850,27 @@
 	icon_state = "fueltank_broken"
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 
+/obj/structure/prop/mainship/tgmc_table_flag
+	name = "\improper mini Terragov flag"
+	desc = "A tiny flag bearing the symbol of Terragov. It looks very demure."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "tgmc_table_flag"
+
 /obj/structure/prop/flag
 	name = "\improper Terragov flag"
 	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
 	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
 	icon_state = "flag_tgmc_planted"
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	max_integrity = 100
+	layer = ABOVE_OBJ_LAYER
+	coverage = 0
+
+/obj/structure/prop/half_flag
+	name = "\improper Terragov flag"
+	desc = "A flag bearing the symbol of Terragov. It doesn't seem as inspirational as other flags might be."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "small_flag_tgmc_planted"
 	max_integrity = 100
 	layer = ABOVE_OBJ_LAYER
 	coverage = 0

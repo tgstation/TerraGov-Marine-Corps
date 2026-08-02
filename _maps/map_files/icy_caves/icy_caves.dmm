@@ -892,6 +892,10 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
+"el" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "em" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -10529,6 +10533,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"Zi" = (
+/obj/item/lightstick/anchored,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Zj" = (
 /obj/structure/table,
 /obj/item/corncob,
@@ -19932,7 +19941,7 @@ SR
 SR
 SR
 SR
-SR
+el
 im
 tq
 tq
@@ -28876,7 +28885,7 @@ YT
 YT
 YT
 YT
-JD
+Zi
 YT
 ZP
 ZP

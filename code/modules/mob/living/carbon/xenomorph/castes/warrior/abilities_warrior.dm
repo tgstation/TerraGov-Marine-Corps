@@ -268,6 +268,14 @@
 
 /// Do the grab on the target, and clean all previous vars
 /datum/action/ability/activable/xeno/warrior/lunge/proc/lunge_grab(atom/A)
+	if(ishuman(A) && (angle2dir(Get_Angle(xeno_owner.throw_source ? xeno_owner.throw_source : get_turf(xeno_owner), A)) in reverse_nearby_direction(A.dir)))
+		var/mob/living/carbon/human/human_target = A
+		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
+			xeno_owner.set_throwing(FALSE)
+			playsound(get_turf(A), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
+			xeno_owner.visible_message(span_xenowarning("[xeno_owner] is knocked back!"), span_xenowarning("We are knocked back!"))
+			return
 	clean_lunge_target()
 	xeno_owner.swap_hand()
 	if(xeno_owner.start_pulling(A) && isliving(A) && !xeno_owner.issamexenohive(A))
@@ -495,6 +503,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
 	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/warrior/punch/encounter
+	keybinding_signals = null
+	cooldown_duration = 30 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/punch/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")

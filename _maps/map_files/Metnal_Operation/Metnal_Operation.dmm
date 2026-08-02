@@ -8,6 +8,10 @@
 "aan" = (
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/west)
+"aaB" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south)
 "aaL" = (
 /obj/effect/acid_hole,
 /turf/closed/wall/r_wall/prison,
@@ -1714,6 +1718,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"blz" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating,
+/area/metnal/inside/landingzoneone)
 "blI" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -6338,6 +6346,7 @@
 /area/metnal/caves/southeast/garbledradio)
 "emc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/central)
 "emk" = (
@@ -7802,6 +7811,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"fia" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/northwest)
 "fij" = (
 /obj/structure/sink{
 	dir = 4
@@ -9279,6 +9292,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/south)
+"glA" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/mainship/mono,
+/area/metnal/inside/garage)
 "glN" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -9887,6 +9904,11 @@
 "gJP" = (
 /turf/open/floor/mainship/mono,
 /area/metnal/outside/southwest)
+"gLl" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/effect/landmark/sensor_tower,
+/turf/open/ground/grass/weedable,
+/area/metnal/inside/Headquarters)
 "gLp" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -11341,6 +11363,10 @@
 	},
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"hJZ" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/prison,
+/area/metnal/inside/research)
 "hKc" = (
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite/full,
@@ -15543,6 +15569,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"kzj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/security)
 "kzl" = (
 /obj/item/clothing/shoes/slippers,
 /obj/effect/decal/cleanable/dirt,
@@ -18351,6 +18382,12 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
+"mre" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/metnal/inside/substation)
 "msd" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/weed_node,
@@ -25390,6 +25427,10 @@
 "qUX" = (
 /turf/open/lavaland/basalt/cave,
 /area/metnal/outside/south)
+"qUY" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/cargo)
 "qVc" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -26478,6 +26519,10 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
+"rHb" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southwest)
 "rHk" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -27251,6 +27296,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"skg" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/rock)
 "skn" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/misc/structure/barrel,
@@ -32581,6 +32630,11 @@
 	dir = 8
 	},
 /area/metnal/outside/east)
+"vyY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/sensor_tower,
+/turf/open/urban/street/asphalt,
+/area/metnal/outside/north)
 "vzg" = (
 /obj/machinery/constructable_frame,
 /obj/item/stock_parts/capacitor,
@@ -33877,6 +33931,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"wpZ" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southeast)
 "wqe" = (
 /obj/structure/largecrate/goat,
 /turf/open/floor/prison/sterilewhite,
@@ -41442,7 +41500,7 @@ saP
 voG
 fCf
 eTM
-iyv
+mre
 lqk
 jzI
 wmQ
@@ -45007,7 +45065,7 @@ cZJ
 cZJ
 cZJ
 cDk
-cZJ
+fia
 cZJ
 cZJ
 cDk
@@ -49380,7 +49438,7 @@ jVs
 jVs
 jVs
 kEc
-kEc
+rHb
 kEc
 bYE
 gJM
@@ -50349,7 +50407,7 @@ ihg
 vQI
 dcy
 azc
-dcy
+glA
 lGV
 txa
 eXQ
@@ -53107,7 +53165,7 @@ pvZ
 pvZ
 hRA
 pvZ
-pvZ
+vyY
 pvZ
 pvZ
 oFy
@@ -56708,7 +56766,7 @@ edg
 edg
 jVs
 rqS
-rqS
+skg
 ogR
 jVs
 xVR
@@ -57390,7 +57448,7 @@ xha
 ihq
 kNL
 jOF
-ihD
+gLl
 fbf
 aRp
 kNL
@@ -57488,7 +57546,7 @@ gJM
 gJM
 gJM
 gJM
-gJM
+aaB
 gJM
 rFo
 jVs
@@ -61193,7 +61251,7 @@ bjB
 kev
 bOG
 lJl
-bSz
+qUY
 bSz
 gVA
 uFT
@@ -65928,7 +65986,7 @@ rDs
 jvw
 fMD
 nhP
-fMD
+hJZ
 eaL
 fMD
 vos
@@ -66371,7 +66429,7 @@ gdw
 jVs
 jVs
 dda
-dda
+wpZ
 ild
 dda
 jVs
@@ -70865,7 +70923,7 @@ gGG
 gGG
 gGG
 gGG
-gGG
+blz
 gGG
 gGG
 gGG
@@ -72156,7 +72214,7 @@ qNA
 nRY
 xsu
 gxu
-gxu
+kzj
 ona
 cDA
 fdv

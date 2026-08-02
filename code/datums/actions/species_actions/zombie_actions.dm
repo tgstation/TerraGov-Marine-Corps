@@ -157,6 +157,7 @@
 			var/mob/living/living_owner = owner
 			living_owner.Paralyze(stun_duration)
 			living_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()

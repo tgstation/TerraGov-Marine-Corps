@@ -214,6 +214,8 @@
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		ADD_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
@@ -222,6 +224,8 @@
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		REMOVE_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
