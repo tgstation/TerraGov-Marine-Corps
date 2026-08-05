@@ -169,7 +169,7 @@
 /datum/species/zombie/psi_zombie
 	name = "Psi zombie" //reanimated by psionic ability
 	slowdown = -0.5
-	heal_rate = 20 // Sectoids are incredibly rare so i dont want to nerf them
+	heal_rate = 20
 	total_health = 200
 	faction = FACTION_SECTOIDS
 	claw_type = /obj/item/weapon/zombie_claw/no_zombium
