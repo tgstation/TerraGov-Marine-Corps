@@ -251,7 +251,7 @@
 	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/mainship/req_hvh/Initialize(mapload)
-	RegisterSignals(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(open_req))
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(open_req))
 	return ..()
 
 /obj/machinery/door/poddoor/mainship/req_hvh/proc/open_req()
