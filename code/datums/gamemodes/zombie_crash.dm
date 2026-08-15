@@ -1,8 +1,8 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
-	xeno_abilities_flags = ABILITY_CRASH
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS|MODE_BUFFED_XENO_ABILITIES
+	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -20,6 +20,7 @@
 		/datum/job/terragov/squad/engineer = 5,
 	)
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	restricted_castes = list(/datum/xeno_caste/puppeteer)
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
@@ -86,10 +87,11 @@
 			continue
 		zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
 
-///Counts humans and zombies not in valhalla
-/datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+///Counts humans, corrupted xenos and zombies not in valhalla
+/datum/game_mode/infestation/crash/zombie/proc/count_humans_xenos_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
 	var/num_zombies = 0
+	var/num_xenos = 0
 
 	for(var/z in z_levels)
 		for(var/mob/living/carbon/human/H  in GLOB.humans_by_zlevel["[z]"])
@@ -105,14 +107,32 @@
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-	return list(num_humans, num_zombies)
+
+		for(var/i in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
+			if(!X.client && X.afk_status == MOB_DISCONNECTED)
+				continue
+			if(is_xeno_in_forbidden_zone(X))
+				continue
+			if(isspaceturf(X.loc))
+				continue
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
+			// Never count hivemind
+			if(isxenohivemind(X))
+				continue
+
+			num_xenos++
+	return list(num_humans, num_zombies, num_xenos)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
 		return
 
-	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
+	var/list/living_player_list = count_humans_xenos_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/num_humans = living_player_list[1] + living_player_list[3]
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
