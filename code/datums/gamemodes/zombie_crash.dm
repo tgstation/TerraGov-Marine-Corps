@@ -2,7 +2,7 @@
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
 	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
-	xeno_abilities_flags = ABILITY_CRASH
+	xeno_abilities_flags = ABILITY_ENCOUNTER
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -60,6 +60,8 @@
 	SIGNAL_HANDLER
 	check_finished()
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_TUNNEL)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_TUNNEL)
 
 /datum/game_mode/infestation/crash/zombie/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
 	. = ..()
