@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Add Encounter hive abilities to Zombie Crash"
+  - rscadd: "Xenos get tactical and strategic psy points from destroying tunnels in Zombie Crash"
