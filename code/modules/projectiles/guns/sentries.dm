@@ -60,7 +60,7 @@
 	)
 
 /obj/item/weapon/gun/sentry/big_sentry/Initialize(mapload, spawn_empty)
-	default_ammo_type = (iszombiecrashgamemode(SSticker.mode) ? /obj/item/ammo_magazine/sentry/incendiary : /obj/item/ammo_magazine/sentry)
+	default_ammo_type = new (iszombiecrashgamemode(SSticker.mode) ? /obj/item/ammo_magazine/sentry/incendiary : /obj/item/ammo_magazine/sentry)
 	. = ..()
 
 /obj/item/weapon/gun/sentry/pod_sentry
