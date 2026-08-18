@@ -88,6 +88,7 @@
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
+#define CALIBER_10X30_INCENDIARY "10x30mm Incendiary caseless"
 #define CALIBER_20 "20mm" //Dualcannon
 #define CALIBER_LASER "Laser cartridge" //Laser Sentry
 

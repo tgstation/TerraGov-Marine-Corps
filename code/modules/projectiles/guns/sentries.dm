@@ -34,7 +34,7 @@
 
 /obj/item/storage/box/crate/sentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
-	new /obj/item/ammo_magazine/sentry(src)
+	iszombiecrashgamemode(SSticker.mode) ? (new /obj/item/ammo_magazine/sentry/incendiary(src)) : (new /obj/item/ammo_magazine/sentry(src))
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
@@ -50,7 +50,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry, /obj/item/ammo_magazine/sentry/incendiary)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
@@ -58,6 +58,10 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+
+/obj/item/weapon/gun/sentry/big_sentry/Initialize(mapload, spawn_empty)
+	default_ammo_type = (iszombiecrashgamemode(SSticker.mode) ? /obj/item/ammo_magazine/sentry/incendiary : /obj/item/ammo_magazine/sentry)
+	. = ..()
 
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"

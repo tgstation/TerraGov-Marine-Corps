@@ -1,6 +1,6 @@
 /obj/item/ammo_magazine/sentry
 	name = "\improper M30 box magazine (10x28mm Caseless)"
-	desc = "A drum of 50 10x28mm caseless rounds for the ST-571 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	desc = "A drum of 500 10x28mm caseless rounds for the ST-571 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "sentry"
 	icon = 'icons/obj/items/ammo/sentry.dmi'
@@ -8,6 +8,13 @@
 	caliber = CALIBER_10X28
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
+
+/obj/item/ammo_magazine/sentry/incendiary
+	name = "\improper M30I Incendiary box magazine (10x28mm Caseless)"
+	desc = "A drum of 500 Incendiary 10x28mm caseless rounds for the ST-571 sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	icon_state = "sentry_incendiary"
+	caliber = CALIBER_10X30_INCENDIARY
+	default_ammo = /datum/ammo/bullet/turret/incendiary
 
 /obj/item/ammo_magazine/minisentry
 	name = "\improper M30 box magazine (10x20mm Caseless)"
