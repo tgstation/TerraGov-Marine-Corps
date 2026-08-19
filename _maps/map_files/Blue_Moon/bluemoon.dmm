@@ -16226,8 +16226,8 @@
 /area/bluemoon/caves/facility/omicron)
 "sQb" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bluemoon/outside/building/toolshed)
+/turf/open/floor/plating/ground/snow/layer0,
+/area/bluemoon/outside/e)
 "sQc" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
@@ -23978,9 +23978,9 @@ uwk
 wce
 uwk
 uwk
-uJX
-uJX
-uJX
+uwk
+uwk
+uwk
 uwk
 rtc
 uJX
@@ -24124,11 +24124,11 @@ uwk
 uwk
 uwk
 uwk
-uJX
-uJX
-uJX
-uJX
-uJX
+uwk
+uwk
+uwk
+uwk
+uwk
 uwk
 rtc
 uJX
@@ -24276,7 +24276,7 @@ uJX
 uJX
 uJX
 uJX
-uJX
+uwk
 xUB
 xUB
 cGh
@@ -33546,10 +33546,10 @@ veR
 nDc
 tkp
 wjc
-wXy
+sQb
 rVD
 nJG
-sQb
+nJG
 nJG
 nJG
 nJG
