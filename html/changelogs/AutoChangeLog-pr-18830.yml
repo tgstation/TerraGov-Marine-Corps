@@ -1,0 +1,4 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Added PR-412 Pulse Rifle and 12 guage incendiary box to zcrash vendor"
