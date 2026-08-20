@@ -34,7 +34,15 @@
 
 /obj/item/storage/box/crate/sentry/PopulateContents()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
-	iszombiecrashgamemode(SSticker.mode) ? (new /obj/item/ammo_magazine/sentry/incendiary(src)) : (new /obj/item/ammo_magazine/sentry(src))
+	new /obj/item/ammo_magazine/sentry(src)
+
+/obj/item/storage/box/crate/sentry/incendiary
+	name = "\improper ST-571 sentry incendiary crate"
+	desc = "A large case containing all you need to set up an automated sentry. Comes with incendiary ammo."
+
+/obj/item/storage/box/crate/sentry/incendiary/PopulateContents()
+	new /obj/item/weapon/gun/sentry/big_sentry/incendiary(src)
+	new /obj/item/ammo_magazine/sentry/incendiary(src)
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
@@ -59,10 +67,8 @@
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
 
-/obj/item/weapon/gun/sentry/big_sentry/Initialize(mapload, spawn_empty)
-	if(iszombiecrashgamemode(SSticker.mode))
-		default_ammo_type = /obj/item/ammo_magazine/sentry/incendiary
-	. = ..()
+/obj/item/weapon/gun/sentry/big_sentry/incendiary
+	default_ammo_type = /obj/item/ammo_magazine/sentry/incendiary
 
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"

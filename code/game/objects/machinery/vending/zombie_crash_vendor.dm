@@ -89,7 +89,7 @@
 		/obj/item/mecha_parts/mecha_equipment/laser_sword = list(CAT_MECH, "Laser sword", 10, "mech-weapon"),
 
 		// Emplacements
-		/obj/item/storage/box/crate/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Sentry crate", 50, "sentry"),
+		/obj/item/storage/box/crate/sentry/incendiary = list(CAT_EMPLACEMENTS, "\"ST-571\" Incendiary Sentry crate", 50, "sentry"),
 		/obj/item/ammo_magazine/sentry/incendiary = list(CAT_EMPLACEMENTS, "\"ST-571\" Incendiary Ammo", 10, "sentry"),
 		/obj/item/ammo_magazine/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Ammo", 6, "sentry"),
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 10, "emplacement-laser"),
