@@ -136,8 +136,9 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
-	user.client.view_size.unsupress() //The parent proc suppresses the view size, so we need to unsuppress it here to allow the view size to be set to view_range.
+	user.client.view_size.supress_changes = FALSE //The parent proc suppresses the viewport, so we need to unsuppress it here to allow the view size to be set to view_range.
 	user.client.view_size.set_view_radius_to(view_range)
+	user.client.view_size.supress_changes = TRUE //Resuppress the viewport to prevent the user from changing it while using the console.
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
