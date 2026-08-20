@@ -137,10 +137,8 @@
 		/obj/item/ammo_magazine/flamer_tank/large/X = list(CAT_WEAPONS, "\"X\" Fuel Tank (75u)", 6, "weapon-flamer"),
 		/obj/item/ammo_magazine/flamer_tank/backtank/X = list(CAT_WEAPONS, "\"X\" Fuel Backpack (500u)", 30, "weapon-flamer"), // 1x backpack = 6.67x tanks; discount of 10 points.
 		/obj/item/ammo_magazine/standard_gpmg/big = list(CAT_WEAPONS, "\"MG-60\" quadruple box mag", 1, "ammo"),
-		/obj/item/weapon/gun/rifle/m412 = list(CAT_WEAPONS, "\"PR-412\" Pulse Rifle", 3, "weapon-misc"),
+		/obj/item/weapon/gun/rifle/m412 = list(CAT_WEAPONS, "\"PR-412\" Pulse Rifle", 6, "weapon-misc"),
 		/obj/item/ammo_magazine/rifle/incendiary = list(CAT_WEAPONS, "\"PR-412\" Incendiary magazine", 1, "ammo"),
-		/obj/item/weapon/gun/smg/som = list(CAT_WEAPONS, "\"V-21 Vector\" Submachinegun", 1, "weapon-misc"),
-		/obj/item/ammo_magazine/smg/som/incendiary = list(CAT_WEAPONS, "\"V-21 Vector\" Incendiary magazine", 1, "ammo"),
 		/obj/item/ammo_magazine/shotgun/incendiary = list(CAT_WEAPONS, "12 Guage Incendiary ammo box", 1, "ammo"),
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
