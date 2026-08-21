@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Added ST-571 incendiary ammo variant, purchasable in zombie crash vendor"
+  - qol: "ST-571 sentries and crates spawn with incendiary ammo on zombie crash"
