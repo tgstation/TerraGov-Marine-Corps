@@ -81,7 +81,6 @@
 #define CALIBER_FUEL_THICK "UT-Napthal Fuel"
 #define CALIBER_WATER "Water"
 #define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and SR-26 Sniper?
-#define CALIBER_10X28_INCENDIARY "10x28mm Incendiary caseless"
 #define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
 #define CALIBER_10G_RAIL "10 gauge rail"
 
