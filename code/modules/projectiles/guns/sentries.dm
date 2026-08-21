@@ -36,6 +36,14 @@
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
+/obj/item/storage/box/crate/sentry/incendiary
+	name = "\improper ST-571 sentry incendiary crate"
+	desc = "A large case containing all you need to set up an automated sentry. Comes with incendiary ammo."
+
+/obj/item/storage/box/crate/sentry/incendiary/PopulateContents()
+	new /obj/item/weapon/gun/sentry/big_sentry/incendiary(src)
+	new /obj/item/ammo_magazine/sentry/incendiary(src)
+
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
@@ -50,7 +58,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry, /obj/item/ammo_magazine/sentry/incendiary)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
@@ -58,6 +66,9 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/hsg_102,
 	)
+
+/obj/item/weapon/gun/sentry/big_sentry/incendiary
+	default_ammo_type = /obj/item/ammo_magazine/sentry/incendiary
 
 /obj/item/weapon/gun/sentry/pod_sentry
 	name = "\improper ST-583 sentry gun"

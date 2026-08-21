@@ -534,3 +534,12 @@
 /// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
+
+/obj/effect/landmark/sentry
+	name = "Sentry crate landmark"
+	icon = 'icons/obj/items/storage/marine_box.dmi'
+	icon_state = "sentry_case"
+
+/obj/effect/landmark/sentry/Initialize(mapload)
+	GLOB.sentry_crate_spawns += src
+	return ..()
