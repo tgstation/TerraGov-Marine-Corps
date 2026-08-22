@@ -726,6 +726,8 @@ SUBSYSTEM_DEF(minimaps)
 
 ///Sets our map
 /datum/action/minimap/proc/set_map(z_level)
+	if(map?.tracked_z == z_level)
+		return
 	map = SSminimaps.fetch_minimap_object(z_level, minimap_flags)
 	RegisterSignal(map, COMSIG_QDELETING, PROC_REF(on_map_del))
 
