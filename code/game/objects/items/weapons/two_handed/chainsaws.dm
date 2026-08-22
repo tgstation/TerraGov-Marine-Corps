@@ -75,7 +75,6 @@
 	if(!active)
 		return
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
-	user.changeNext_move(attack_speed) //this is here because attacking object for some reason doesn't respect weapon attack speed
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && active) //turn off the chainsaw after one last attack when fuel ran out
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))

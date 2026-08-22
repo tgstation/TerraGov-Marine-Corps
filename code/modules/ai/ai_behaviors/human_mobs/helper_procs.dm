@@ -79,26 +79,15 @@
 	attack(target, user)
 
 /obj/item/weapon/ai_use(mob/living/target, mob/living/user)
-	if(!(item_flags & TWOHANDED))
-		return
-	if(item_flags & WIELDED)
-		return
-	wield(user)
-	return TRUE
-
-/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
-	if(!active)
-		attack_self(user)
+	if(item_flags & TWOHANDED)
+		if(item_flags & WIELDED)
+			return
+		wield(user)
 		return TRUE
-
-/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		switch_state(null, user)
-		return TRUE
-
-/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		attack_self(user)
+	if(item_flags & ITEM_ACTIVATABLE)
+		if(active)
+			return
+		toggle_active(TRUE, user)
 		return TRUE
 
 /obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
