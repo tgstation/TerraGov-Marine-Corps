@@ -17,7 +17,7 @@
 		return
 	. = damage_amount
 	obj_integrity = max(obj_integrity - damage_amount, 0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	//BREAKING FIRST
 	if(integrity_failure && obj_integrity <= integrity_failure)
