@@ -115,6 +115,7 @@
 #define SHUTTLE_SUPPLY "supply"
 #define SHUTTLE_SOM_SUPPLY "supply_SOM"
 #define SHUTTLE_VEHICLE_SUPPLY "vehicle_supply"
+#define SHUTTLE_WIDEBURY "widebury"
 
 /// Announcement cooldown for marine dropship takeoff alarms
 #define TAKEOFF_ALARM_ANNOUNCEMENT_COOLDOWN (60 SECONDS)

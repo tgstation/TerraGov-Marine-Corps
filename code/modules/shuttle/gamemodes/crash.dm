@@ -5,9 +5,9 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "crash_site"
 	dir = SOUTH
-	width = 19
+	width = 23
 	height = 31
-	dwidth = 9
+	dwidth = 11
 	dheight = 15
 	hidden = TRUE  //To make them not block landings during distress
 
@@ -62,3 +62,11 @@
 	height = 31
 	dwidth = 9
 	dheight = 15
+
+/obj/docking_port/mobile/crashmode/widebury
+	name = "TGS Widebury"
+	dir = SOUTH
+	width = 23
+	height = 21
+	dwidth = 11
+	dheight = 10
