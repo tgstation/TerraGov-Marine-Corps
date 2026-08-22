@@ -225,7 +225,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, handle_ob_firing_effects), target), impact_time - (0.5 SECONDS))
-	var/impact_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, impact_callback), target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
+	var/impact_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, impact_callback), target, inaccurate_fuel, user), impact_time, TIMER_STOPPABLE)
 
 	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='byond://?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
 	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
@@ -233,8 +233,8 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
 
-/obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
-	tray.warhead.warhead_impact(target, inaccurate_fuel)
+/obj/structure/orbital_cannon/proc/impact_callback(target, inaccurate_fuel, mob/firer)
+	tray.warhead.warhead_impact(target, inaccurate_fuel, firer)
 
 	ob_cannon_busy = FALSE
 	chambered_tray = FALSE
@@ -358,7 +358,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	var/warhead_kind
 
 ///Explode the warhead
-/obj/structure/ob_ammo/warhead/proc/warhead_impact()
+/obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
 	return
 
 /obj/structure/ob_ammo/warhead/explosive
@@ -366,9 +366,9 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	warhead_kind = "explosive"
 	icon_state = "ob_warhead_1"
 
-/obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
+/obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
 	. = ..()
-	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt, explosion_cause=src)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 0, 15 - inaccuracy_amt, explosion_cause = src, blame_mob = firer)
 
 
 
@@ -378,7 +378,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "ob_warhead_2"
 
 
-/obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
+/obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 46, burn_duration = 40, colour = "blue")
@@ -391,7 +391,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	warhead_kind = "cluster"
 	icon_state = "ob_warhead_3"
 
-/obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
+/obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
 	set waitfor = FALSE
 	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
@@ -399,7 +399,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, explosion_cause=src)
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, explosion_cause = src, blame_mob = firer)
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -408,7 +408,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "ob_warhead_4"
 
 
-/obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+/obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
 	. = ..()
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	smoke.set_up(25, target, 30 - (inaccuracy_amt * 2))//Vape nation
@@ -576,8 +576,8 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("NOTICE - \The [src] has fired."))
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/ship_rail_gun, impact_rail_gun), target), 1 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/ship_rail_gun, impact_rail_gun), target, user), 1 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
 
-/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
-	rail_gun_ammo.detonate_on(T)
+/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/target_turf, mob/firer)
+	rail_gun_ammo.detonate_on(target_turf, firer)
 	cannon_busy = FALSE

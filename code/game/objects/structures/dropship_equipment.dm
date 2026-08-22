@@ -834,7 +834,7 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
+/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir, mob/firer)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, TRUE)
@@ -862,7 +862,7 @@
 	for(var/turf/impact in predicted_dangerous_turfs)
 		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
 
-	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir), ammo_travelling_time)
+	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir, firer), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun
