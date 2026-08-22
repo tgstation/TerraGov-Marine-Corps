@@ -6,6 +6,7 @@
 	anchored = TRUE
 	allow_pass_flags = PASSABLE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
+	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE

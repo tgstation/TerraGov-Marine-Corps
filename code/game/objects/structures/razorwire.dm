@@ -20,18 +20,17 @@
 	var/sheet_type2 = /obj/item/stack/rods
 
 /obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	. = list()
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
-			new sheet_type(loc)
-		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-		salvage.amount = max(1, round(4 * (obj_integrity / max_integrity) ) )
+			. += new sheet_type(loc)
+		. += new sheet_type2(loc, max(1, round(4 * (obj_integrity / max_integrity))))
 	else
 		if(prob(50))
-			new sheet_type(loc)
+			. += new sheet_type(loc)
 		if(prob(50))
-			var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-			salvage.amount = rand(1,4)
-	return ..()
+			. += new sheet_type2(loc, rand(1,4))
+	..()
 
 /obj/structure/razorwire/Initialize(mapload)
 	. = ..()
