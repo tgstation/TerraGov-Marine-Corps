@@ -253,14 +253,12 @@
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
-	head = /obj/item/clothing/head/helmet/space/rig/mining
 	glasses = /obj/item/clothing/glasses/meson
 	shoes = /obj/item/clothing/shoes/black
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	back = /obj/item/storage/backpack/satchel/som
 	l_hand = /obj/item/weapon/twohanded/sledgehammer
 	r_pocket = /obj/item/reagent_containers/cup/glass/flask
-	wear_suit = /obj/item/clothing/suit/space/rig/mining
 	ears = /obj/item/radio/survivor
 
 	backpack_contents = list(

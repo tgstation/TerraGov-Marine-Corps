@@ -2,7 +2,7 @@
 	name = "Zombie"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 100
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT|SPECIES_NO_HUG
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|SPECIES_NO_HUG
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
@@ -23,7 +23,7 @@
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
 	///How much burn and burn damage can you heal every Life tick (half a sec)
-	var/heal_rate = 7
+	var/heal_rate = 0.5 // i would remove this entirely but otherwise it's functionally better to just leave them in crit so they don't revive at all. This whole thing is a design mess.
 	var/faction = FACTION_ZOMBIE
 	var/claw_type = /obj/item/weapon/zombie_claw
 	///Whether this zombie type can jump
@@ -33,11 +33,6 @@
 
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	for(var/datum/limb/limb AS in H.limbs)
-		if(!istype(limb, /datum/limb/head))
-			continue
-		limb.vital = FALSE
-		break
 
 	H.set_undefibbable()
 	H.faction = faction
@@ -60,10 +55,6 @@
 	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
-	var/datum/action/rally_zombie/rally_zombie = new
-	rally_zombie.give_action(H)
-	var/datum/action/set_agressivity/set_zombie_behaviour = new
-	set_zombie_behaviour.give_action(H)
 	if(can_jump)
 		H.set_jump_component(cost = 0)
 
@@ -92,17 +83,18 @@
 		H.set_jump_component()
 
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
-	if(prob(10))
+	if(prob(2))
 		playsound(get_turf(H), pick(sounds), 50)
+
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(4))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(2))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 			else if (istype(limb, /datum/limb/hand/r_hand))
 				H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
 			H.update_body()
-		else if(limb.limb_status & LIMB_BROKEN && prob(20))
+		else if(limb.limb_status & LIMB_BROKEN && prob(5))
 			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 
 	if(H.health != total_health)
@@ -137,23 +129,25 @@
 	QDEL_IN(H, time)
 
 /datum/species/zombie/fast
-	name = "Fast zombie"
-	slowdown = 0
+	name = "Runner zombie"
+	total_health = 50 // dies to a gentle breeze
+	slowdown = -0.5
 	can_jump = TRUE
 
 /datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.transform = matrix().Scale(0.8, 0.8)
+	H.transform = matrix().Scale(0.9, 0.9)
+	H.add_atom_colour(COLOR_RED, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
+	H.transform = matrix().Scale(1/(0.9), 1/(0.9))
+	H.remove_atom_colour(COLOR_RED, FIXED_COLOR_PRIORITY)
 
 /datum/species/zombie/tank
 	name = "Tank zombie"
 	slowdown = 1
-	heal_rate = 30
-	total_health = 350
+	total_health = 300
 	claw_type = /obj/item/weapon/zombie_claw/tank
 
 /datum/species/zombie/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
@@ -171,8 +165,7 @@
 
 /datum/species/zombie/strong
 	name = "Strong zombie" //These are zombies created from marines, they are stronger, but of course rarer
-	slowdown = -0.5
-	heal_rate = 20
+	slowdown = 0.2
 	total_health = 200
 	claw_type = /obj/item/weapon/zombie_claw/strong
 
@@ -217,7 +210,7 @@
 /datum/species/zombie/hunter
 	name = "Hunter zombie"
 	total_health = 175
-	slowdown = 0
+	slowdown = 0.2
 	can_jump = TRUE
 	claw_type = /obj/item/weapon/zombie_claw/strong
 	action_list = list(/datum/action/ability/activable/pounce)
@@ -232,8 +225,8 @@
 
 /datum/species/zombie/boomer
 	name = "Boomer zombie"
-	heal_rate = 20
 	total_health = 250
+	claw_type = /obj/item/weapon/zombie_claw/boomer
 	action_list = list(
 		/datum/action/ability/activable/bile_spit,
 		/datum/action/ability/boomer_explode,
