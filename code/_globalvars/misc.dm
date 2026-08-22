@@ -38,3 +38,6 @@ GLOBAL_PROTECT(key_to_time_of_strain_swap)
 
 ///List of ssd living mobs
 GLOBAL_LIST_EMPTY(ssd_living_mobs)
+
+///Maximum allowed number of possessed sentient zombies
+GLOBAL_VAR_INIT(maximum_allowed_possessed_zombies, 0)

@@ -38,7 +38,7 @@
 /datum/action/observer_action/take_ssd_mob/action_activate()
 	var/mob/dead/observer/dead_owner = owner
 
-	if(!GLOB.ssd_posses_allowed)
+	if(!GLOB.ssd_possess_allowed)
 		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
 		return
 
@@ -63,6 +63,10 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
+
+	if(!new_mob.can_take_mob(owner))
+		return FALSE
+
 	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
 		return
 
@@ -94,6 +98,7 @@
 
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_POSSESSED, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/datum/job/j = new_human.job
 	var/datum/outfit/job/o = j.outfit

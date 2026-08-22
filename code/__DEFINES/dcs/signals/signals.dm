@@ -700,6 +700,11 @@
 #define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
 /// from /mob/proc/key_down(): (key, client/client, full_key)
 #define COMSIG_MOB_KEYDOWN "mob_key_down"
+///Signal for when a mob is possessed
+#define COMSIG_MOB_POSSESSED "mob_possessed"
+///Checks if a mob is valid to be possessed, from /mob/can_take_mob()
+#define COMSIG_CHECK_MOB_VALID_POSSESS_TARGET "check_mob_valid_possess_target"
+	#define MOB_INVALID_POSSESS_TARGET (1<<0)
 ///From mob/living/carbon/human/has_ai()
 #define COMSIG_HUMAN_HAS_AI "human_has_ai"
 	#define MOB_HAS_AI (1<<0)
