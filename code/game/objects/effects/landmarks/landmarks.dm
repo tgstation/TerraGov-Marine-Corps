@@ -169,6 +169,16 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/encounter_silo_spawn
+	name = "encounter xeno silo spawn landmark"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
+
+/obj/effect/landmark/encounter_silo_spawn/Initialize(mapload)
+	GLOB.xeno_encounter_resin_silo_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/xeno_spawner_spawn
 	name = "xeno spawner spawn landmark"
 	icon = 'icons/Xeno/3x3building.dmi'
@@ -524,3 +534,12 @@
 /// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
+
+/obj/effect/landmark/sentry
+	name = "Sentry crate landmark"
+	icon = 'icons/obj/items/storage/marine_box.dmi'
+	icon_state = "sentry_case"
+
+/obj/effect/landmark/sentry/Initialize(mapload)
+	GLOB.sentry_crate_spawns += src
+	return ..()

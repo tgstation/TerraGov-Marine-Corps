@@ -404,7 +404,7 @@
 	return TRUE
 
 /obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+	footstep_overrides[FOOTSTEP_PLATING] = get_footstep_layer(layer, plane)
 
 /obj/proc/do_deploy(mob/user, turf/location)
 	if(!istype(location))

@@ -147,7 +147,12 @@
 	icon_state = "containment_window"
 	opacity = FALSE
 
-
+/turf/closed/wall/mainship/bulletproof
+	name = "bulletproof wall"
+	desc = "A huge chunk of metal used to seperate rooms and make up the ship. Impervious to small arms fire."
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
+	
+	
 /turf/closed/wall/desert
 	name = "wall"
 	icon = 'icons/turf/walls/chigusa.dmi'

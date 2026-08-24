@@ -80,6 +80,9 @@
 			return
 	if(ismob(A))
 		var/mob/M = A
+		if(reagents.has_reagent(/datum/reagent/medicalnanites) && M != user)
+			user.balloon_alert(user, "nanites must be self-administered!")
+			return
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
 		if(M.faction != user.faction && !M.incapacitated())

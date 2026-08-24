@@ -317,6 +317,10 @@
 #define MINIMAP_BLIPS_LAYER 11
 #define MINIMAP_LOCATOR_LAYER 12
 #define MINIMAP_LABELS_LAYER 13
+///Layer for important things like objectives
+#define MINIMAP_PRIORITY_LAYER 16
+///Layer for the nuke itself, generally nothing is more important
+#define MINIMAP_NUKE_LAYER 19
 #define INTRO_LAYER 20
 
 #define FOV_EFFECT_LAYER 100
@@ -385,3 +389,6 @@
 /// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
 /// If you modify this, you'll need to modify the tsx file too
 #define MAX_EXPECTED_Z_DEPTH 3
+
+///returns a number that combined plane and layer such that anything visually higher has a higher number, to ensure sound consistancy for footstep overrides
+#define get_footstep_layer(layer, plane) TOPDOWN_LAYER * 2 * (100 + plane) + layer

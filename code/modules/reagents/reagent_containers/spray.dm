@@ -118,6 +118,8 @@
 /obj/item/reagent_containers/spray/surgery
 	name = "sterilizing spray"
 	desc = "Infection and necrosis are a thing of the past!"
+	icon_state = "surgery"
+	worn_icon_state = "surgery"
 	volume = 100
 	list_reagents = list(/datum/reagent/space_cleaner = 50, /datum/reagent/sterilizine = 50)
 

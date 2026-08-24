@@ -249,7 +249,7 @@
 	carbon_owner.visible_message(span_danger("[carbon_owner] slams their shield forwards!"))
 	playsound(carbon_owner, 'sound/effects/alien/tail_swipe2.ogg', 30, 1)
 	var/hit_something = FALSE
-	for(var/mob/living/victim in get_step(carbon_owner, angle_to_dir(Get_Angle(carbon_owner, A))))
+	for(var/mob/living/victim in get_step(carbon_owner, angle2dir(Get_Angle(carbon_owner, A))))
 		if((victim.lying_angle))
 			continue
 		hit_something = TRUE

@@ -4541,6 +4541,10 @@
 "dff" = (
 /turf/closed/wall,
 /area/magmoor/hydroponics/north)
+"dfz" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/civilian/jani)
 "dfE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -7437,6 +7441,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"eXE" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "eYa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -55095,7 +55104,7 @@ lRD
 aPs
 aPs
 lxN
-uyJ
+eXE
 aPs
 aPs
 aPs
@@ -62256,7 +62265,7 @@ xYz
 rtA
 rtA
 fzh
-rtA
+dfz
 gje
 sED
 noU

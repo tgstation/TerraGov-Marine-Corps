@@ -24,6 +24,11 @@
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
 
+/obj/structure/showcase/seven
+	icon = 'icons/obj/vehicles_2x1.dmi'
+	icon_state = "bike"
+	desc = "A beautiful ural motorcycle that have seen wear and tear but looked after and taken care of with much love. You see a TerraGov Marine corp logo decal on it with a R-44 combat revolver sticker next to it."
+
 /obj/structure/showcase/coinpress
 	icon_state = "coinpress0"
 
@@ -248,7 +253,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/stairs/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_CATWALK] = layer
+	footstep_overrides[FOOTSTEP_CATWALK] = get_footstep_layer(layer, plane)
 
 //stand alone stairs
 /obj/structure/stairs/edge

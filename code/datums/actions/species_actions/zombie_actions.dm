@@ -151,12 +151,13 @@
 	if(living_target.faction == owner.faction) //we leap past friendlies
 		return
 
-	if(ishuman(living_target) && (angle_to_dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle2dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			var/mob/living/living_owner = owner
 			living_owner.Paralyze(stun_duration)
 			living_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()

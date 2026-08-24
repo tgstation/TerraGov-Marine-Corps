@@ -336,10 +336,10 @@
 /obj/machinery/cell_charger,
 /obj/item/radio,
 /obj/item/tool/crowbar,
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bn" = (
@@ -509,7 +509,7 @@
 "bZ" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (

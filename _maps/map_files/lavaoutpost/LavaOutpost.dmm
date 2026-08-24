@@ -683,6 +683,10 @@
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"hL" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/tile/white,
+/area/lavaland/security/infocenter)
 "hO" = (
 /obj/machinery/light{
 	dir = 1
@@ -2380,6 +2384,11 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"zq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "zv" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/tile/white,
@@ -24339,7 +24348,7 @@ cI
 mO
 vX
 Fr
-Pa
+hL
 uo
 Pa
 wD
@@ -28329,7 +28338,7 @@ Ju
 nb
 ad
 Kr
-mI
+zq
 mI
 by
 rv

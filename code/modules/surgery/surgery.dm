@@ -1,16 +1,5 @@
 /* SURGERY STEPS */
 
-GLOBAL_LIST_INIT(surgery_steps, init_surgery())
-
-/// Surgery Steps - Initialize all /datum/surgery_step into a list
-/proc/init_surgery()
-	var/list/surgeries = list()
-	for(var/surgery_step_type in subtypesof(/datum/surgery_step))
-		var/datum/surgery_step/step = new surgery_step_type
-		surgeries += step
-
-	return sort_surgeries(surgeries)
-
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
 
@@ -35,10 +24,13 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 ///Returns how well tool is suited for this step
 /datum/surgery_step/proc/tool_quality(obj/item/tool)
-	for(var/T in allowed_tools)
-		if(istype(tool, T))
-			return allowed_tools[T]
-	return 0
+	for(var/option in allowed_tools)
+		if(!istype(tool, option))
+			continue
+		if(!tool.surgery_tool_check())
+			continue
+		return allowed_tools[option]
+	return
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
@@ -230,3 +222,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 	var/in_progress = 0
 	var/is_same_target = "" //Safety check to prevent surgery juggling
 	var/necro = 0
+
+///Any special conditions to ensure the tool is valid to use, such as being turned on etc
+/obj/proc/surgery_tool_check()
+	return TRUE

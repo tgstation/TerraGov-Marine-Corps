@@ -65,6 +65,7 @@
 	density = TRUE
 	coverage = 80
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
+	obj_flags = CAN_BE_HIT
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE
@@ -228,6 +229,25 @@
 		if(EXPLODE_LIGHT)
 			take_damage(rand(75, 125), BRUTE, BOMB)
 
+/obj/machinery/vending/set_ai_block()
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+	//Vendors can be passed in one way or another by all NPC's so we never set AI_BLOCK unless the vendor is indestructable
+	if(density && (resistance_flags & INDESTRUCTIBLE))
+		current_turf.atom_flags |= AI_BLOCKED
+		return
+
+	current_turf.atom_flags &= ~AI_BLOCKED
+
+/obj/machinery/vending/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!isxeno(user))
+		return ..()
+	var/mob/living/carbon/xenomorph/xeno_attacker = user
+	xeno_attacker.a_intent = INTENT_DISARM
+	attack_alien(xeno_attacker)
+	xeno_attacker.a_intent = INTENT_HARM
+
 /**
  * Builds shared vendors inventory
  * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
@@ -319,6 +339,7 @@
 	else
 		tipped_level = 0
 
+///Flips it over and makes it passable
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	A.Turn(90)
@@ -328,7 +349,9 @@
 	density = FALSE
 	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
+	set_ai_block()
 
+///Puts the vendor back up
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
 	var/matrix/A = matrix()
@@ -338,6 +361,7 @@
 	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
 	density = initial(density)
+	set_ai_block()
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -380,16 +404,11 @@
 
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
+		set_ai_block()
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.atom_flags |= AI_BLOCKED
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.atom_flags &= ~AI_BLOCKED
 	else if(isitem(I))
 		var/obj/item/to_stock = I
 		stock(to_stock, user)

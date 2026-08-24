@@ -250,6 +250,32 @@
 	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
 
+/obj/structure/reagent_dispensers/fueltank/cas_fuel
+	name = "CAS fuel silo"
+	desc = "A large tank designed to hold fuel for close air support. Keep away from sources of flame."
+	icon = 'icons/obj/structures/cas_fuel.dmi'
+	icon_state = "big_tank"
+	layer = ABOVE_MOB_LAYER
+	bound_width = 64
+	anchored = TRUE
+	max_integrity = 5000
+	coverage = 95
+	tank_volume = 5000
+	list_reagents = list(/datum/reagent/fuel = 3000)
+
+///Blows up the CAS silo with 2x the radius of a standard fueltank explosion
+/obj/structure/reagent_dispensers/fueltank/cas_fuel/explode()
+	if(exploding)
+		return
+	exploding = TRUE
+	if(reagents.total_volume > 500)
+		explosion(loc, light_impact_range = 8, flame_range = 8, explosion_cause="fuel silo explosion")
+	else if(reagents.total_volume > 100)
+		explosion(loc, light_impact_range = 6, flame_range = 6, explosion_cause="fuel silo explosion")
+	else
+		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fuel silo explosion")
+	qdel(src)
+
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."

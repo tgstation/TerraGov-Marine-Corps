@@ -52,6 +52,9 @@
 	. = ..()
 	toggle_action.remove_action(user)
 
+/obj/item/jetpack_marine/is_refuelable()
+	return TRUE
+
 /obj/item/jetpack_marine/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_left == fuel_max)
 		user?.balloon_alert(user, "full")

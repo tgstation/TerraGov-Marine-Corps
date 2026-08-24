@@ -78,7 +78,7 @@
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
 	///how wide of a cone the flamethrower produces on wide mode.
-	var/cone_angle = 55
+	var/cone_angle = 60
 
 /obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
@@ -151,20 +151,20 @@
 	playsound(loc, fire_sound, 50, 1)
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
-	var/old_turfs = list(get_turf(src))
-	var/range = flame_max_range
 	var/start_location = get_turf(src)
 	var/current_target = get_turf(target)
+	var/old_turfs = list(start_location)
+
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
 			var/path_to_target = get_line(start_location, current_target) //todo: use get_traversal_line and change recursive_flame_straight to use get_dist_euclidean for range
 			path_to_target -= start_location
-			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
+			recursive_flame_straight(1, old_turfs, path_to_target, flame_max_range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_cone(get_turf(src), range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
-			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
+			var/list/turf/turfs_to_ignite = generate_cone(start_location, flame_max_range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, flame_max_range, current_target, start_location, flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
 	return TRUE
@@ -235,8 +235,8 @@
 		return FALSE
 
 	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flamer_features_flags, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
-	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
-	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
+	var/burn_level = initial(loaded_ammo.burn_level) * burn_level_mod
+	var/burn_time = initial(loaded_ammo.burn_time) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
@@ -305,8 +305,8 @@
 	)
 	lit_overlay_icon_state = "v62_lit"
 	lit_overlay_offset_x = 0
-	flame_max_range = 8
-	cone_angle = 40
+	flame_max_range = 7
+	cone_angle = 45
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
@@ -454,20 +454,20 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
+/turf/proc/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
 	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
-		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
-		var/new_burn_level = min(burn_lvl + old_fire.burn_level, burn_lvl * 1.5)
+		var/new_fire_level = min(burn_time + old_fire.burn_ticks, burn_time * 2)
+		var/new_burn_level = min(burn_level + old_fire.burn_level, burn_level * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new fire_type(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new fire_type(src, burn_time, burn_level, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
-/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/open/floor/plating/ground/snow/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
 		update_appearance()
@@ -558,8 +558,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	)
 	lit_overlay_icon_state = "c21_lit"
 	lit_overlay_offset_x = 0
-	flame_max_range = 9
-	cone_angle = 40
+	flame_max_range = 8
+	cone_angle = 45
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/vsd
 	allowed_ammo_types = list(

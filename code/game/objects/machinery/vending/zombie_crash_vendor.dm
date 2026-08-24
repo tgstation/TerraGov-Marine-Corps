@@ -89,12 +89,15 @@
 		/obj/item/mecha_parts/mecha_equipment/laser_sword = list(CAT_MECH, "Laser sword", 10, "mech-weapon"),
 
 		// Emplacements
+		/obj/item/storage/box/crate/sentry/incendiary = list(CAT_EMPLACEMENTS, "\"ST-571\" Incendiary Sentry crate", 50, "sentry"),
+		/obj/item/ammo_magazine/sentry/incendiary = list(CAT_EMPLACEMENTS, "\"ST-571\" Incendiary Ammo", 10, "sentry"),
+		/obj/item/ammo_magazine/sentry = list(CAT_EMPLACEMENTS, "\"ST-571\" Ammo", 6, "sentry"),
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = list(CAT_EMPLACEMENTS, "\"TE-9001\" Emplacement", 10, "emplacement-laser"),
 		/obj/item/cell/lasgun/heavy_laser = list(CAT_EMPLACEMENTS, "\"TE-9001\" Laser Ammo", 6, "emplacement-laser"), // Cheap due to low ammo capacity.
 		/obj/item/weapon/gun/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Emplacement", 14, "emplacement-heavysmartgun"),
 		/obj/item/ammo_magazine/hsg_102 = list(CAT_EMPLACEMENTS, "\"HSG-102\" Ammo", 10, "emplacement-heavysmartgun"),
 		/obj/item/weapon/gun/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Emplacement", 14, "emplacement-heavymachinegun"),
-		/obj/item/ammo_magazine/heavymachinegun/small = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-heavymachinegun"),
+		/obj/item/ammo_magazine/heavymachinegun = list(CAT_EMPLACEMENTS, "\"HMG-08\" Ammo", 10, "emplacement-heavymachinegun"),
 		/obj/item/weapon/gun/standard_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Emplacement", 14, "emplacement-minigun"),
 		/obj/item/ammo_magazine/heavy_minigun = list(CAT_EMPLACEMENTS, "\"MG-2005\" Ammo", 10, "emplacement-minigun"),
 		/obj/item/weapon/gun/standard_auto_cannon = list(CAT_EMPLACEMENTS, "\"ATR-22\" Emplacement", 14, "emplacement-autocannon"),
@@ -134,6 +137,10 @@
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard = list(CAT_WEAPONS, "Flamethrower", 2, "weapon-flamer"),
 		/obj/item/ammo_magazine/flamer_tank/large/X = list(CAT_WEAPONS, "\"X\" Fuel Tank (75u)", 6, "weapon-flamer"),
 		/obj/item/ammo_magazine/flamer_tank/backtank/X = list(CAT_WEAPONS, "\"X\" Fuel Backpack (500u)", 30, "weapon-flamer"), // 1x backpack = 6.67x tanks; discount of 10 points.
+		/obj/item/ammo_magazine/standard_gpmg/big = list(CAT_WEAPONS, "\"MG-60\" quadruple box mag", 1, "ammo"),
+		/obj/item/weapon/gun/rifle/m412 = list(CAT_WEAPONS, "\"PR-412\" Pulse Rifle", 6, "weapon-misc"),
+		/obj/item/ammo_magazine/rifle/incendiary = list(CAT_WEAPONS, "\"PR-412\" Incendiary magazine", 1, "ammo"),
+		/obj/item/ammo_magazine/shotgun/incendiary = list(CAT_WEAPONS, "12 Guage Incendiary ammo box", 1, "ammo"),
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
 		/mob/living/carbon/xenomorph/larva/Corrupted/iff = list(CAT_FUN, "Corrupted larva with IFF", 30, "fun-random"),

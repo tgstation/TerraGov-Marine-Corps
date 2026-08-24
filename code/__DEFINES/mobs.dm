@@ -550,6 +550,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 #define HIVE_CAN_HIJACK (1<<0)
 #define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
+///All xenos in the hive can build, allows non building castes to not block building
+#define HIVE_ALL_CAN_BUILD (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4

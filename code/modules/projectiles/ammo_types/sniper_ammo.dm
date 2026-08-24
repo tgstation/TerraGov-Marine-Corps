@@ -37,10 +37,9 @@
 	damage = 90
 	penetration = 0
 	sundering = 30
-	airburst_multiplier = 0.5
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	airburst(target_mob, proj)
+	airburst(target_mob, proj, 45)
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"

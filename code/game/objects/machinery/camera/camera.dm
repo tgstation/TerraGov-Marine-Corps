@@ -77,12 +77,16 @@
 	switch(dir)
 		if(NORTH)
 			pixel_z = -16
+			pixel_w = 0
 		if(SOUTH)
 			pixel_z = 32
+			pixel_w = 0
 		if(EAST)
-			pixel_w = -16
+			pixel_z = 0
+			pixel_w = -24
 		if(WEST)
-			pixel_w = 16
+			pixel_z = 0
+			pixel_w = 24
 
 
 /obj/machinery/camera/proc/camera_ui_data()

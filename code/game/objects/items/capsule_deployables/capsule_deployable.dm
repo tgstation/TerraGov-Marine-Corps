@@ -1,3 +1,8 @@
+///Throws mobs out of the target area
+#define CAPSULE_THROW_MOB (1<<0)
+///Stuns mobs in the target area
+#define CAPSULE_STUN_MOB (1<<1)
+
 /obj/item/deploy_capsule
 	name = "mystery capsule"
 	desc = "An emergency shelter stored within a pocket of bluespace."
@@ -10,8 +15,8 @@
 	var/datum/map_template/capsule/template
 	///If true, this capsule is primed and will deploy the area if conditions are met.
 	var/primed = FALSE
-	///Will this capsule yeet mobs back once the area is deployed?
-	var/yeet_back = TRUE
+	///Behavior flags
+	var/capsule_flags = CAPSULE_THROW_MOB|CAPSULE_STUN_MOB
 
 /obj/item/deploy_capsule/Destroy()
 	template = null // without this, capsules would be one use. per round.
@@ -68,8 +73,8 @@
 		primed = FALSE
 		return
 
-	if(yeet_back)
-		yote_nearby(deploy_location)
+	handle_mobs(deploy_location)
+
 	template.load(deploy_location, centered = TRUE)
 	playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
 	var/datum/effect_system/smoke_spread/bad/smoke = new
@@ -90,14 +95,23 @@
 		if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS, SHELTER_DEPLOY_OUTSIDE_MAP, SHELTER_DEPLOY_BANNED_OBJECTS)
 			loc.visible_message(span_warning("[src] doesn't have room to deploy! You need to clear a [template.width]x[template.height] area!"))
 
-/// Throws any mobs near the deployed location away from the item / shelter
+/// Throws and/or stuns any mobs near the deployed location away from the item
 /// Does some math to make closer mobs get thrown further
-/obj/item/deploy_capsule/proc/yote_nearby(turf/deploy_location)
+/obj/item/deploy_capsule/proc/handle_mobs(turf/deploy_location)
+	if(!(capsule_flags & CAPSULE_STUN_MOB) && !(capsule_flags & CAPSULE_THROW_MOB))
+		return
+
 	var/width = template.width
 	var/height = template.height
 	var/base_x_throw_distance = ceil(width / 2)
 	var/base_y_throw_distance = ceil(height / 2)
 	for(var/mob/living/did_not_stand_back in range(loc, "[width]x[height]"))
+		if(capsule_flags & CAPSULE_STUN_MOB && !isxeno(did_not_stand_back))
+			did_not_stand_back.Paralyze(2 SECONDS)
+
+		if(!(capsule_flags & CAPSULE_THROW_MOB))
+			continue
+
 		var/dir_to_center = get_dir(deploy_location, did_not_stand_back) || pick(GLOB.alldirs)
 		// Aiming to throw the target just enough to get them out of the range of the shelter
 		// IE: Stronger if they're closer, weaker if they're further away
@@ -111,8 +125,6 @@
 		else if(dir_to_center & (EAST|WEST))
 			throw_dist = base_x_throw_distance - x_component + 1
 
-		if(!isxeno(did_not_stand_back))
-			did_not_stand_back.Paralyze(2 SECONDS)
 		did_not_stand_back.safe_throw_at(get_edge_target_turf(did_not_stand_back, dir_to_center), throw_dist, 3, force = MOVE_FORCE_OVERPOWERING)
 
 //Non-default pods
@@ -124,3 +136,7 @@
 
 /obj/item/deploy_capsule/barricade/get_ignore_flags()
 	return CAPSULE_IGNORE_ANCHORED_OBJECTS
+
+//For HvH use, no stun as they'd be exceptionally deadly
+/obj/item/deploy_capsule/barricade/no_stun
+	capsule_flags = CAPSULE_THROW_MOB

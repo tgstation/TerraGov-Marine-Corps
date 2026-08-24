@@ -789,10 +789,10 @@
 			/obj/item/big_ammo_box = -1,
 			/obj/item/big_ammo_box/smg = -1,
 			/obj/item/big_ammo_box/mg = -1,
-			/obj/item/shotgunbox = -1,
-			/obj/item/shotgunbox/buckshot = -1,
-			/obj/item/shotgunbox/flechette = -1,
-			/obj/item/shotgunbox/tracker = -1,
+			/obj/item/big_ammo_box/shotgun = -1,
+			/obj/item/big_ammo_box/shotgun/buckshot = -1,
+			/obj/item/big_ammo_box/shotgun/flechette = -1,
+			/obj/item/big_ammo_box/shotgun/tracker = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = -1,
@@ -833,6 +833,26 @@
 			/obj/item/mecha_ammo/vendable/flamer = -1,
 			/obj/item/mecha_ammo/vendable/rpg = -1,
 		)
+	)
+
+/obj/machinery/vending/reqtorio_supply
+	name = "\improper Factory Supplies Vendor"
+	desc = "A large vendor for dispensing factory supplies. Restricted to cargo personnel only."
+	icon_state = "robotics"
+	icon_vend = "robotics-vend"
+	icon_deny = "robotics-deny"
+	wrenchable = FALSE
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+	products = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/unboxer = 1,
+			/obj/item/stack/conveyor/thirty = 10,
+			/obj/item/conveyor_switch_construct = 10,
 	)
 
 /obj/machinery/vending/lasgun
@@ -1770,7 +1790,7 @@
 			/obj/item/weapon/gun/rifle/dpm = -1,
 			/obj/item/ammo_magazine/rifle/dpm = -1,
 			/obj/item/weapon/gun/clf_heavyrifle = -1,
-			/obj/item/shotgunbox/clf_heavyrifle = -1,
+			/obj/item/big_ammo_box/clf_heavyrifle = -1,
 			/obj/item/weapon/gun/launcher/rocket/icc = -1,
 			/obj/item/ammo_magazine/rocket/icc = -1,
 			/obj/item/ammo_magazine/rocket/icc/heat = -1,

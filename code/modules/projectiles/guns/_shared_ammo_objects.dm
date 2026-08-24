@@ -154,12 +154,13 @@
 /obj/fire/proc/affect_atom(atom/affected)
 	return
 
-///Reduces duration of fire
-/obj/fire/proc/reduce_fire(amount = 1)
-	if(amount <= 0)
+///Reduces fire duration or level
+/obj/fire/proc/reduce_fire(duration = 1, level = 0)
+	if(duration <= 0 && level <= 0)
 		return
-	burn_ticks -= amount
-	if(burn_ticks > 0)
+	burn_ticks -= duration
+	burn_level -= level
+	if(burn_ticks > 0 && burn_level > 0)
 		update_appearance(UPDATE_ICON)
 	else
 		qdel(src)

@@ -33,19 +33,18 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(activate_corruption))
-	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", MINIMAP_BLIPS_LAYER))
 	if(is_ground_level(z))
 		GLOB.generators_on_ground += 1
 	if(corrupted)
 		corrupt(corrupted)
+	else
+		update_appearance()
 
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
 		GLOB.generators_on_ground -= 1
-	if(corrupted && is_ground_level(z))
-		GLOB.corrupted_generators -= 1
-		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[corrupted])
+	decorrupt()
 	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
@@ -61,10 +60,12 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon_state()
 	. = ..()
+	if(corrupted)
+		icon_state = "off"
+		return
 	switch(buildstate)
 		if(GEOTHERMAL_NO_DAMAGE)
 			if(is_on)
-				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
 				switch(power_gen_percent)
 					if(25)
 						icon_state = "on25"
@@ -76,17 +77,12 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 						icon_state = "on100"
 			else
 				icon_state = "off"
-				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
 		if(GEOTHERMAL_HEAVY_DAMAGE)
 			icon_state = "weld"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
 		if(GEOTHERMAL_MEDIUM_DAMAGE)
 			icon_state = "wire"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
 		if(GEOTHERMAL_LIGHT_DAMAGE)
 			icon_state = "wrench"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
-
 
 /obj/machinery/power/geothermal/update_overlays()
 	. = ..()
@@ -109,6 +105,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		if(GEOTHERMAL_LIGHT_DAMAGE)
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
+	if(corrupted)
+		desc += " It appears to be covered in some strange secreted resin..."
 
 
 ///Allow generators to generate psych points
@@ -140,7 +138,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	if(!check_failure()) //Wait! Check to see if it breaks during processing
 		if(power_gen_percent < 100)
 			power_gen_percent++
-			update_icon()
+			update_appearance()
 			switch(power_gen_percent)
 				if(10)
 					visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to whirr as it powers up.")]")
@@ -170,7 +168,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		fail_rate = initial(fail_rate)
 		is_on = FALSE
 		power_gen_percent = 0
-		update_icon()
+		update_appearance()
 		cur_tick = 0
 		stop_processing()
 		return TRUE
@@ -262,12 +260,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		if(is_ground_level(z))
-			GLOB.corrupted_generators -= 1
-			SSticker.mode?.update_silo_death_timer(GLOB.hive_datums[corrupted])
-		corrupted = 0
-		stop_processing()
-		update_icon()
+		decorrupt()
+
 	if(buildstate != GEOTHERMAL_HEAVY_DAMAGE) //Already repaired!
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
@@ -285,7 +279,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 
 	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 	user.balloon_alert(user, "You weld the internals back together.")
-	update_icon()
+	update_appearance()
 	record_generator_repairs(user)
 	return TRUE
 
@@ -309,7 +303,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	buildstate = GEOTHERMAL_LIGHT_DAMAGE
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
-	update_icon()
+	update_appearance()
 	record_generator_repairs(user)
 	return TRUE
 
@@ -333,10 +327,11 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	buildstate = GEOTHERMAL_NO_DAMAGE
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
-	update_icon()
+	update_appearance()
 	record_generator_repairs(user)
 	return TRUE
 
+///Corrupts the generator
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
 	is_on = FALSE
@@ -346,9 +341,21 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	power_gen_percent = 0
 	cur_tick = 0
-	icon_state = "off"
-	update_icon()
+	update_appearance()
 	start_processing()
+
+///Removes corruption from the generator
+/obj/machinery/power/geothermal/proc/decorrupt()
+	if(!corrupted)
+		return
+	var/current_hive = corrupted
+	corrupted = null
+	if(is_ground_level(z))
+		GLOB.corrupted_generators -= 1
+		SSticker?.mode.update_silo_death_timer(GLOB.hive_datums[current_hive])
+
+	stop_processing()
+	update_appearance()
 
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"

@@ -58,7 +58,6 @@
 
 	if(isliving(movable_to_move))
 		var/mob/living_to_move = movable_to_move
-		new /atom/movable/effect/rappel_rope(target_turf)
 		living_to_move.trainteleport(target_turf)
 	else
 		movable_to_move.forceMove(target_turf)
@@ -68,10 +67,28 @@
 			if(moved_vehicle.hitbox)
 				deploy_list += moved_vehicle.hitbox.tank_desants
 
-	var/list/layer_list = list()
+
 	for(var/atom/movable/AM AS in deploy_list)
 		if(isliving(AM))
 			add_spawn_protection(AM)
+
+	do_deployment_effects(target_turf, movable_to_move, mobs_moving, deploy_list)
+
+	for(var/user in mobs_moving)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
+
+/obj/effect/landmark/patrol_point/proc/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
+	var/list/layer_list = list()
+
+	if(isliving(movable_to_move))
+		new /atom/movable/effect/rappel_rope(target_turf)
+
+	for(var/atom/movable/AM AS in deploy_list)
+		layer_list[AM] = AM.layer
+
+		if(isliving(AM))
+			var/mob/living/living_deployer = AM
+			living_deployer.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
 
 		AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
 		var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
@@ -83,26 +100,41 @@
 		animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
 		animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
-	addtimer(CALLBACK(src, PROC_REF(end_rappel), deploy_list, layer_list, mobs_moving), RAPPEL_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(end_deployment_effects), deploy_list, layer_list, mobs_moving), RAPPEL_DURATION)
 
-	for(var/user in mobs_moving)
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
+/obj/effect/landmark/patrol_point/xeno/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
+	new /atom/movable/effect/xeno_tunnel(target_turf)
 
 ///Temporarily applies godmode to prevent spawn camping
 /obj/effect/landmark/patrol_point/proc/add_spawn_protection(mob/living/user)
-	user.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
 	user.status_flags |= GODMODE
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
-///Ends the rappel effects
-/obj/effect/landmark/patrol_point/proc/end_rappel(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
+///Ends the deployment effects
+/obj/effect/landmark/patrol_point/proc/end_deployment_effects(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
 		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
 		AM.layer = layer_list[AM]
-		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
 		if(ismecha(AM) || isarmoredvehicle(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
+	for(var/user in mobs_moving)
+		shake_camera(user, 0.2 SECONDS, 0.5)
+
+	notify_deploy_finished(movables_to_move)
+
+/obj/effect/landmark/patrol_point/xeno/end_deployment_effects(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
+	return
+
+///sends a signal for every movable moved. Intended to be sent when any deployment visuals are finished, in end_deploy_effects()
+/obj/effect/landmark/patrol_point/proc/notify_deploy_finished(list/movables_to_move)
+	for(var/atom/movable/AM AS in movables_to_move)
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2) //these args should be killed but that can be done in a later pr
+
+/obj/effect/landmark/patrol_point/xeno/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
+	for(var/atom/movable/AM AS in deploy_list)
+		new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
+		playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 	for(var/user in mobs_moving)
 		shake_camera(user, 0.2 SECONDS, 0.5)
 
@@ -136,6 +168,20 @@
 	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
+/obj/effect/landmark/patrol_point/xeno
+	faction = FACTION_XENO
+
+/obj/effect/landmark/patrol_point/xeno/xeno_11
+	name = "Xeno exit point 1"
+	icon_state = "purple_1"
+	id = "Xeno_1"
+	minimap_icon = "xeno_patrol_1"
+
+/obj/effect/landmark/patrol_point/xeno/xeno_21
+	name = "Xeno exit point 2"
+	icon_state = "purple_2"
+	id = "Xeno_2"
+	minimap_icon = "xeno_patrol_2"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"
@@ -164,6 +210,23 @@
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)
 	QDEL_IN(src, 5)
+
+/atom/movable/effect/xeno_tunnel
+	name = "tunnel"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+	layer = BELOW_MOB_LAYER
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+//Rope animation for standard deploy points
+/atom/movable/effect/xeno_tunnel/Initialize(mapload)
+	. = ..()
+	playsound(loc, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 50, TRUE, falloff = 2)
+	balloon_alert_to_viewers("!!!")
+	visible_message(span_userdanger("You see a tunnel emmerging!"))
+	QDEL_IN(src, 7)
 
 #undef PATROL_POINT_RAPPEL_EFFECT
 #undef RAPPEL_DURATION

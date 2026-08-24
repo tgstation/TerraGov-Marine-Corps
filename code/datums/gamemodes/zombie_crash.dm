@@ -2,7 +2,7 @@
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
 	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS|MODE_BUFFED_XENO_ABILITIES
-	xeno_abilities_flags = ABILITY_NUCLEARWAR
+	xeno_abilities_flags = ABILITY_ENCOUNTER
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -49,6 +49,8 @@
 		new /obj/effect/ai_node/spawner/zombie(i)
 	for(var/i in GLOB.zombie_crash_vendor_landmarks)
 		new /obj/machinery/marine_selector/zombie_crash(get_turf(i))
+	for(var/i in GLOB.sentry_crate_spawns)
+		new /obj/item/storage/box/crate/sentry/incendiary(get_turf(i))
 
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
@@ -61,6 +63,8 @@
 	SIGNAL_HANDLER
 	check_finished()
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_TUNNEL)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_TUNNEL)
 
 /datum/game_mode/infestation/crash/zombie/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
 	. = ..()

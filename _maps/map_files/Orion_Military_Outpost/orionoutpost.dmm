@@ -1388,6 +1388,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/landing_pad2_external)
+"gW" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/outpostn)
 "gX" = (
 /obj/structure/platform{
 	dir = 10
@@ -2556,6 +2560,10 @@
 /obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostcent)
+"mK" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveE)
 "mL" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship/orange,
@@ -18690,7 +18698,7 @@ BH
 oq
 Xy
 GU
-Xy
+gW
 Xy
 dA
 Tq
@@ -32201,7 +32209,7 @@ Fg
 Fg
 Fg
 Fg
-Fg
+mK
 Fg
 tb
 Fg

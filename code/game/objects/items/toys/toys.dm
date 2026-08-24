@@ -561,6 +561,8 @@
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
 #define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost
+///Max number of teleport attempts before giving up
+#define GNOME_MAX_TELE_ATTEMPTS 50
 
 /obj/item/toy/plush/gnome
 	name = "gnome"
@@ -579,8 +581,6 @@
 	var/gnome_move_range = 5
 	///how many failed teleports we've done
 	var/teleport_retries = 0
-	///sanity cap to prevent gnome spending too much time calculating possible teleport areas, it's theoretically possible to store the gnome in an impossible area so we need to check this
-	var/max_tries = 50
 	///list for keeping track of the mobs around us
 	var/mob/possible_mobs = list()
 	///list for keeping track of items in current gnome turf
@@ -655,19 +655,16 @@
 
 ///handles gnome teleportation when not being observed by players
 /obj/item/toy/plush/gnome/living/proc/teleport_routine(turf/targetturf)
-	var/loopcount
-	while(!length(possible_mobs))
-		loopcount += 1
-		var/area/targetarea = get_area(targetturf)
-		if(!targetarea || !targetturf)
-			targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
-			continue
-		//find teleport locations within radius gnome_move_range of targetturf. once found, we verify that it's valid, set our new targetturf to it and move gnome to the new location
+	for(var/i = 1 to GNOME_MAX_TELE_ATTEMPTS)
+		if(!targetturf)
+			targetturf = get_turf(src)
+			if(!targetturf)
+				return //he's in nullspace, Jim
 		targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
-		targetarea = get_area(targetturf)
-		if(get_teleport_prereqs(targetturf) || loopcount >= max_tries) //try different turfs within range until we find something that passes get_teleport_prereqs or we hit max amount of loops
-			teleport_retries = 0 //teleported successfully, clear teleport_retries
+		if(get_teleport_prereqs(targetturf)) //try different turfs within range until we find something that passes get_teleport_prereqs or we hit max amount of loops
 			break
+
+	teleport_retries = 0
 	forceMove(targetturf)
 	flick("gnome_return", src)
 
@@ -779,6 +776,7 @@
 #undef HIGH_GNOME_MOVE_RANGE
 #undef STANDARD_GNOME_PIPE_CHANCE
 #undef GNOME_EXCLUSION_RANGE
+#undef GNOME_MAX_TELE_ATTEMPTS
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"

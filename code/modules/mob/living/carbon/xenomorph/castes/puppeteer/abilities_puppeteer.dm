@@ -176,6 +176,7 @@
 	ADD_TRAIT(victim, TRAIT_HOLLOW, TRAIT_GENERIC)
 	victim.spawn_gibs()
 	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
+	puppet.name = victim.name
 	puppet.voice = victim.voice
 	add_puppet(puppet)
 	add_cooldown()

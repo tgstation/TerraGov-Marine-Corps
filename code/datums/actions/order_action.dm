@@ -1,3 +1,19 @@
+
+//Defines for the different order types. Also corrospond to the icon_states
+
+#define ATTACK_ORDER "attack"
+#define DEFEND_ORDER "defend"
+#define RETREAT_ORDER "retreat"
+#define RALLY_ORDER "rally"
+
+///Message lists by order type
+GLOBAL_LIST_INIT(order_to_message, list(
+	ATTACK_ORDER = list(";MARINES, FIGHT! SHOOT! KILL!!", ";BLAST THEM!", ";MAKE THEM EAT LEAD!", ";END THEM!", ";ATTACK HERE!", ";CHARGE!", ";RUN THEM OVER!"),
+	DEFEND_ORDER = list(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!", ";DON'T PUSH! STAY HERE!"),
+	RETREAT_ORDER = list(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!"),
+	RALLY_ORDER = list(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!"),
+))
+
 /datum/action/innate/order
 	background_icon_state = "template2"
 	///the word used to describe the action when notifying marines
@@ -100,108 +116,104 @@
 	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
 	to_chat(src,span_ordercic("Command is urging you to [verb_name] [get_area(get_turf(target))]!"))
 
-/datum/action/innate/order/attack_order
-	name = "Send Attack Order"
-	action_icon_state = "attack"
-	verb_name = "attack the enemy at"
-	arrow_type = /atom/movable/screen/arrow/attack_order_arrow
-	visual_type = /obj/effect/temp_visual/order/attack_order
-
-//These 'personal' subtypes are the ones not used by overwatch; like what SL or FC gets
-/datum/action/innate/order/attack_order/personal
+//The order given by the CIC console
+/datum/action/innate/order/selectable
+	action_type = ACTION_SELECT
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_ATTACKORDER,
+		KEYBINDING_NORMAL = COMSIG_KB_PING_ORDER,
+		KEYBINDING_ALTERNATE = COMSIG_KB_SWITCH_PING_ORDER,
 	)
+	///Currently Selected order type
+	var/current_order
+	///Available order types
+	var/list/order_options = list(ATTACK_ORDER, DEFEND_ORDER, RETREAT_ORDER, RALLY_ORDER)
 
-/datum/action/innate/order/attack_order/personal/should_show()
+/datum/action/innate/order/selectable/New(Target)
+	. = ..()
+	swap_order(ATTACK_ORDER)
+
+/datum/action/innate/order/selectable/should_show()
 	. = ..()
 	if(!.)
 		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/attack_order/personal/action_activate()
-	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";MARINES, FIGHT! SHOOT! KILL!!", ";BLAST THEM!", ";MAKE THEM EAT LEAD!", ";END THEM!", ";ATTACK HERE!", ";CHARGE!", ";RUN THEM OVER!")
-		owner.say(message)
-
-/datum/action/innate/order/defend_order
-	name = "Send Defend Order"
-	action_icon_state = "defend"
-	verb_name = "defend our position in"
-	arrow_type = /atom/movable/screen/arrow/defend_order_arrow
-	visual_type = /obj/effect/temp_visual/order/defend_order
-
-/datum/action/innate/order/defend_order/personal
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_DEFENDORDER,
-	)
-
-/datum/action/innate/order/defend_order/personal/should_show()
+/datum/action/innate/order/selectable/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
 	. = ..()
-	if(!.)
+	if(current_order == RALLY_ORDER)
+		QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
+
+/datum/action/innate/order/selectable/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(choose_order))
+	return COMSIG_KB_ACTIVATED
+
+///Choose the selected order
+/datum/action/innate/order/selectable/proc/choose_order()
+	var/list/available_actions = list()
+	for(var/order_type in order_options)
+		available_actions[order_type] = image(action_icon, icon_state = order_type)
+
+	var/new_order = show_radial_menu(owner, owner.client.eye, available_actions)
+	if(!new_order)
 		return
-	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/order/defend_order/personal/action_activate()
-	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!", ";DON'T PUSH! STAY HERE!")
-		owner.say(message)
+	swap_order(new_order)
 
-/datum/action/innate/order/retreat_order
-	name = "Send Retreat Order"
-	action_icon_state = "retreat"
-	verb_name = "retreat from"
-	visual_type = /obj/effect/temp_visual/order/retreat_order
+///Sets the selected order
+/datum/action/innate/order/selectable/proc/swap_order(new_order)
+	if(!new_order || new_order == current_order)
+		return FALSE
 
-/datum/action/innate/order/retreat_order/personal
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_RETREATORDER,
-	)
+	current_order = new_order
 
-/datum/action/innate/order/retreat_order/personal/should_show()
-	. = ..()
-	if(!.)
-		return
-	return owner.skills.getRating(skill_name) >= skill_min
+	switch(current_order)
+		if(ATTACK_ORDER)
+			name = "Send Attack Order"
+			action_icon_state = "attack"
+			verb_name = "attack the enemy at"
+			arrow_type = /atom/movable/screen/arrow/attack_order_arrow
+			visual_type = /obj/effect/temp_visual/order/attack_order
+		if(DEFEND_ORDER)
+			name = "Send Defend Order"
+			action_icon_state = "defend"
+			verb_name = "defend our position in"
+			arrow_type = /atom/movable/screen/arrow/defend_order_arrow
+			visual_type = /obj/effect/temp_visual/order/defend_order
+		if(RETREAT_ORDER)
+			name = "Send Retreat Order"
+			action_icon_state = "retreat"
+			verb_name = "retreat from"
+			arrow_type = /atom/movable/screen/arrow/retreat_order_arrow
+			visual_type = /obj/effect/temp_visual/order/retreat_order
+		if(RALLY_ORDER)
+			name = "Send Rally Order"
+			action_icon_state = "rally"
+			verb_name = "rally to"
+			arrow_type = /atom/movable/screen/arrow/rally_order_arrow
+			visual_type = /obj/effect/temp_visual/order/rally_order
 
-/datum/action/innate/order/retreat_order/personal/action_activate()
-	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
-		owner.say(message)
+	update_button_icon()
 
-//placeholder, this will end up being split by faction somehow
-GLOBAL_VAR(human_ai_goal)
+	return TRUE
 
-/datum/action/innate/order/rally_order
-	name = "Send Rally Order"
-	action_icon_state = "rally"
-	verb_name = "rally to"
-	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
-	visual_type = /obj/effect/temp_visual/order/rally_order
+//The order given to leaders
+/datum/action/innate/order/selectable/personal
+	///Message list when issuing orders
+	var/list/message_list
 
-/datum/action/innate/order/rally_order/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
-	. = ..()
-	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
-
-/datum/action/innate/order/rally_order/personal
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
-	)
-
-/datum/action/innate/order/rally_order/personal/should_show()
-	. = ..()
-	if(!.)
-		return
-	return owner.skills.getRating(skill_name) >= skill_min
-
-/datum/action/innate/order/rally_order/personal/action_activate()
+/datum/action/innate/order/selectable/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(!send_order(human, human.assigned_squad, human.faction))
 		return
-	var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
-	owner.say(message)
+	owner.say(pick(message_list))
 
-	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(owner), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
+/datum/action/innate/order/selectable/personal/swap_order(new_order)
+	. = ..()
+	if(!.)
+		return
+	message_list = GLOB.order_to_message[current_order]
+
+#undef ATTACK_ORDER
+#undef DEFEND_ORDER
+#undef RETREAT_ORDER
+#undef RALLY_ORDER

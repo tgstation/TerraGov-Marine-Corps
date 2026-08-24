@@ -92,7 +92,7 @@
 			target_mob.gib()
 	else
 		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
+	drop_nade(target_turf, proj)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	explosion(target_turf, 1, 4, 6, 0, 3, explosion_cause = proj)
@@ -105,8 +105,8 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_TARGET_TURF
 	damage = 100
 	penetration = 200
-	max_range = 30
-	shell_speed = 0.75
+	max_range = 25
+	shell_speed = 1.5
 	accurate_range = 21
 	handful_amount = 1
 
@@ -124,7 +124,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 275
 	penetration = 75
-	shell_speed = 7
+	shell_speed = 4
 	accurate_range = 24
 	max_range = 35
 
@@ -243,7 +243,7 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_obj))
+	drop_nade(get_turf(target_obj), proj)
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
@@ -372,7 +372,7 @@
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_obj))
+	drop_nade(get_turf(target_obj), proj)
 	if(isvehicle(target_obj) || ishitbox(target_obj))
 		proj.damage *= 3 //this is specifically designed to hurt vehicles
 
@@ -448,7 +448,7 @@
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
-	drop_nade(target_turf)
+	drop_nade(target_turf, proj)
 	proj.proj_max_range -= 5
 	shake_camera(target_mob, 0.2 SECONDS, 2)
 
@@ -490,7 +490,7 @@
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_mob, proj)
 	staggerstun(target_mob, proj, slowdown = 0.2, knockback = 1)
-	drop_nade(det_turf)
+	drop_nade(det_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 

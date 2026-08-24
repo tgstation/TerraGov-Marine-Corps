@@ -112,6 +112,9 @@
 /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot
 	image_to_play = "custom"
 
+/atom/movable/screen/text/screen_text/picture/potrait/queen_mother
+	image_to_play = "queen_mother"
+
 #define MAX_NON_COMMTITLE_LEN 9
 
 /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot/Initialize(mapload, datum/hud/hud_owner, mob/living/mugshottee)

@@ -137,4 +137,4 @@
 ///Change minimap icon if its on or off
 /obj/machinery/computer/code_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[key_color]_disk[current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[key_color]_disk[current_timer ? "_on" : "_off"]", MINIMAP_PRIORITY_LAYER))

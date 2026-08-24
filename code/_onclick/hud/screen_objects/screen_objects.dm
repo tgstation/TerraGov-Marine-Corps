@@ -795,6 +795,11 @@
 	icon_state = "Defend_arrow"
 	duration = CIC_ORDER_DURATION
 
+/atom/movable/screen/arrow/retreat_order_arrow
+	name = "Retreat order arrow"
+	icon_state = "Retreat_arrow"
+	duration = CIC_ORDER_DURATION
+
 /atom/movable/screen/arrow/hunter_mark_arrow
 	name = "hunter mark arrow"
 	icon_state = "Red_arrow"
