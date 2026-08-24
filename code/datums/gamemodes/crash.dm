@@ -115,6 +115,9 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+	for(var/i in GLOB.sentry_crate_spawns)
+		new /obj/item/storage/box/crate/sentry(get_turf(i))
+
 	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
