@@ -93,6 +93,7 @@ GLOBAL_LIST_EMPTY(landmarks_round_start)		//landmarks that require action at rou
 
 GLOBAL_LIST_EMPTY(map_items)
 GLOBAL_LIST_EMPTY(sentry_crate_spawns)
+GLOBAL_LIST_EMPTY(corrupted_larva_spawns)
 GLOBAL_LIST_EMPTY(fog_blocker_locations)		//list of turfs marked by /obj/effect/landmark/lv624/fog_blocker
 GLOBAL_LIST_EMPTY(xeno_spawn_protection_locations)
 GLOBAL_LIST_EMPTY(fog_blockers)

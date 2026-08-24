@@ -204,6 +204,8 @@
 #define ZOMBIE_CRASH_POINTS_MAXIMUM 60
 /// The marine pop considered to be high pop, only for Zombie Crash.
 #define HIGH_MARINE_POP_ZOMBIE_CRASH 20
+/// The xeno stat multiplier usually set by autobalance, modifies GLOB.xeno_stat_multiplicator_buff
+#define ZOMBIE_CRASH_XENO_STAT_MULTIPLIER 2.5
 
 #define NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED 40 // This amount of clients must be connected at gamemode setup to get the first mech pilot slot.
 #define NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT 20 // After meeting NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED, a mech pilot slot is open for each set of X clients.

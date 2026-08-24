@@ -45,12 +45,16 @@
 			continue
 		corpse.create_zombie()
 
+	GLOB.xeno_stat_multiplicator_buff = ZOMBIE_CRASH_XENO_STAT_MULTIPLIER
+
 	for(var/i in (GLOB.zombie_spawner_turfs + GLOB.xeno_resin_silo_turfs))
 		new /obj/effect/ai_node/spawner/zombie(i)
 	for(var/i in GLOB.zombie_crash_vendor_landmarks)
 		new /obj/machinery/marine_selector/zombie_crash(get_turf(i))
 	for(var/i in GLOB.sentry_crate_spawns)
 		new /obj/item/storage/box/crate/sentry/incendiary(get_turf(i))
+	for(var/i in GLOB.corrupted_larva_spawns)
+		new /mob/living/carbon/xenomorph/larva/Corrupted/iff(get_turf(i))
 
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))

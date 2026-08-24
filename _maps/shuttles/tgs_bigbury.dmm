@@ -557,6 +557,10 @@
 "cR" = (
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
+"da" = (
+/obj/effect/landmark/corrupted_larva,
+/turf/open/floor/mainship/blue/full,
+/area/shuttle/canterbury/cic)
 "fL" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -861,6 +865,11 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
+"EI" = (
+/obj/structure/cable,
+/obj/effect/landmark/corrupted_larva,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
 "Fl" = (
 /obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
@@ -1004,6 +1013,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"SS" = (
+/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "TE" = (
@@ -1331,7 +1344,7 @@ uu
 bN
 al
 FZ
-ac
+SS
 ab
 uZ
 an
@@ -1429,7 +1442,7 @@ bH
 MY
 ao
 bD
-as
+EI
 as
 nM
 as
@@ -1492,7 +1505,7 @@ Uo
 Uo
 ad
 bJ
-MY
+da
 bQ
 al
 ac
@@ -1529,7 +1542,7 @@ Uw
 bR
 al
 JX
-ac
+SS
 ab
 ms
 an
