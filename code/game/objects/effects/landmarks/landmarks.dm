@@ -543,3 +543,12 @@
 /obj/effect/landmark/sentry/Initialize(mapload)
 	GLOB.sentry_crate_spawns += src
 	return ..()
+
+/obj/effect/landmark/corrupted_larva
+	name = "Corrupted larva landmark"
+	icon = 'icons/Xeno/castes/larva.dmi'
+	icon_state = "Larva"
+
+/obj/effect/landmark/corrupted_larva/Initialize(mapload)
+	GLOB.corrupted_larva_spawns += src
+	return ..()

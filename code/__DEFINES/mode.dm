@@ -50,7 +50,7 @@
 #define MODE_PSY_POINTS_ADVANCED (1<<6)
 /// Should hijacking the Alamo be an option? This does not prevent capturing the Alamo.
 #define MODE_HIJACK_POSSIBLE (1<<7)
-/// Should xenomorph be allowed to grab dead humans?
+/// [THIS BITFIELD IS UNUSED] Should xenomorph be allowed to grab dead humans?
 #define MODE_XENO_GRAB_DEAD_ALLOWED (1<<8)
 /// Should resin silos have additional effects beyond serving as a respawn point? This includes, but not limited to: pheromones and larva point generation.
 #define MODE_SILO_RESPAWN (1<<9)
@@ -204,6 +204,8 @@
 #define ZOMBIE_CRASH_POINTS_MAXIMUM 60
 /// The marine pop considered to be high pop, only for Zombie Crash.
 #define HIGH_MARINE_POP_ZOMBIE_CRASH 20
+/// The xeno stat multiplier usually set by autobalance, modifies GLOB.xeno_stat_multiplicator_buff
+#define ZOMBIE_CRASH_XENO_STAT_MULTIPLIER 2.5
 
 #define NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED 40 // This amount of clients must be connected at gamemode setup to get the first mech pilot slot.
 #define NUCLEAR_WAR_MECH_INTERVAL_PER_SLOT 20 // After meeting NUCLEAR_WAR_MECH_MINIMUM_POP_REQUIRED, a mech pilot slot is open for each set of X clients.
