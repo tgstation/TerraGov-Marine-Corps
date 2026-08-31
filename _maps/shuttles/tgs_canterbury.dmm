@@ -57,7 +57,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
-/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
 "am" = (
@@ -735,6 +734,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qi" = (
+/obj/effect/landmark/corrupted_larva,
 /obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
