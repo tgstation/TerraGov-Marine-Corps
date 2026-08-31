@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS|MODE_BUFFED_XENO_ABILITIES
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
 	xeno_abilities_flags = ABILITY_ENCOUNTER
 	required_players = 1
 	valid_job_types = list(
