@@ -360,10 +360,14 @@
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/machines/deployable/mg08.dmi'
-	icon_state = "mg08"
+	icon_state = "mg08_ground_empty"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+		slot_l_hand_str = 'icons/obj/machines/deployable/mg08.dmi',
+		slot_r_hand_str = 'icons/obj/machines/deployable/mg08.dmi',
+	)
+	worn_item_state_slots = list(
+		slot_l_hand_str = "mg08_inhand_left",
+		slot_r_hand_str = "mg08_inhand_right",
 	)
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
@@ -394,10 +398,35 @@
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted/moveable
+	deployable_item = /obj/machinery/deployable/mounted/moveable/heavymachinegun
 
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+
+// is this overengineered? yes
+/obj/item/weapon/gun/heavymachinegun/proc/get_magazine_icon_state(prefix, suffix = "")
+	var/obj/item/ammo_magazine/loaded_magazine = current_chamber_position > length(chamber_items) ? null : chamber_items[current_chamber_position]
+	if(istype(loaded_magazine) && loaded_magazine.loc == src)
+		var/loaded_icon_state = "[prefix]_[loaded_magazine.base_icon_state][suffix]"
+		if(icon_exists(icon, loaded_icon_state))
+			return loaded_icon_state
+		else
+			return "[prefix]_[/obj/item/ammo_magazine/heavymachinegun::base_icon_state][suffix]"
+	return "[prefix]_empty[suffix]"
+
+/obj/item/weapon/gun/heavymachinegun/update_icon_state()
+	. = ..()
+	icon_state = get_magazine_icon_state("mg08_ground")
+
+/obj/machinery/deployable/mounted/moveable/heavymachinegun
+	has_anchored_sprite = TRUE
+
+/obj/machinery/deployable/mounted/moveable/heavymachinegun/update_icon_state()
+	. = ..()
+	var/obj/item/weapon/gun/heavymachinegun/internal_gun = get_internal_item()
+	if(!istype(internal_gun))
+		return
+	icon_state = internal_gun.get_magazine_icon_state("mg08_deployed", anchored ? "_anchored" : "")
 
 
 
