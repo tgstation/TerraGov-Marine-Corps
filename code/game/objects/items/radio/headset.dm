@@ -180,8 +180,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	///The type of minimap this headset gives access to
+	/// The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	/// The squad network this headset's camera is currently on
 	var/squad_network
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
