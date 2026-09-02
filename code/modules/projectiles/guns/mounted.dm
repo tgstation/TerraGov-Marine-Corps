@@ -48,7 +48,7 @@
 	burst_accuracy_bonus = 1
 	burst_scatter_mult = 0
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
@@ -88,7 +88,7 @@
 		/obj/item/ammo_magazine/hsg_102,
 		/obj/item/ammo_magazine/hsg_102/hsg_nest,
 	)
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/item/weapon/gun/hsg_102/hsg_nest/sandless
@@ -118,7 +118,7 @@
 	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	aim_time = 2 SECONDS
@@ -144,7 +144,7 @@
 	icon = 'icons/obj/machines/deployable/minigun.dmi'
 	icon_state = "minigun_nest"
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
 
@@ -179,7 +179,7 @@
 	burst_scatter_mult = 0.65
 	extra_delay = 1.5 SECONDS
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
@@ -224,7 +224,7 @@
 	deployed_scatter_change = -10
 	fire_delay = 0.7 SECONDS
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -282,7 +282,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable
 	icon_state = "heavylaser_deployable"
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 
 //-------------------------------------------------------
 //FK-88 mounted heavy infantry support gun
@@ -307,7 +307,7 @@
 	deployed_scatter_change = -10
 	fire_delay = 10 SECONDS
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_ANCHORED_FIRING_ONLY
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_ANCHORED_FIRING_ONLY
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
@@ -380,7 +380,7 @@
 
 	burst_amount = 1
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -447,7 +447,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t27)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -470,13 +470,13 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 
 /obj/item/weapon/gun/standard_mmg/toggle_auto_aim_mode(mob/living/carbon/human/user) //somewhat redundant, but just for clarity to the user
-	if(!(item_flags & IS_DEPLOYED))
+	if(!(deployment_flags & IS_DEPLOYED))
 		user.balloon_alert(user, "Not deployed")
 		return
 	return ..()
 
 /obj/item/weapon/gun/standard_mmg/toggle_aim_mode(mob/living/carbon/human/user)
-	if(!HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) && !(item_flags & IS_DEPLOYED))
+	if(!HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) && !(deployment_flags & IS_DEPLOYED))
 		user.balloon_alert(user, "Not deployed")
 		return
 	return ..()
@@ -521,7 +521,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/clf_heavyrifle)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = 8, "stock_y" = 0)
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -569,7 +569,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_ROTATE_ANCHORED|DEPLOYED_ANCHORED_FIRING_ONLY
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -660,7 +660,7 @@
 	fire_delay = 1.1 SECONDS
 	burst_amount = 0
 	accuracy_mult = 1.2
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -724,7 +724,7 @@
 		/obj/item/ammo_magazine/icc_hmg,
 	)
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	aim_fire_delay = 0.05 SECONDS
@@ -777,7 +777,7 @@
 	burst_accuracy_bonus = 1
 	burst_scatter_mult = 0
 
-	item_flags = IS_DEPLOYABLE|TWOHANDED
+	deployment_flags = IS_DEPLOYABLE
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
