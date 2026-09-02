@@ -1,0 +1,7 @@
+2026-09-02:
+  Arturlang:
+  - bugfix: squad transfer not updating squad cameras
+  Deputi:
+  - qol: Zombie hearts can be removed regardless of intent and will drop on the floor
+      instead of going in your empty hand.
+  - bugfix: Zombies can no longer damage dead bodies.
