@@ -9,6 +9,14 @@
 	aim_mode_movement_mult = -0.35
 	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "", /obj/item/weapon/gun/shotgun/som = "")
 
+/obj/item/attachable/smartsight
+	name = "T-48 smart sight"
+	desc = "A rail-mounted smart sight designed to assist with precision aiming. Allows the use of aim mode."
+	icon_state = "sniper"
+	icon = 'icons/obj/items/guns/attachments/scope.dmi'
+	slot = ATTACHMENT_SLOT_RAIL
+	add_aim_mode = TRUE
+
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
 	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."

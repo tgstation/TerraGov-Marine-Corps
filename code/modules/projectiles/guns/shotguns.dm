@@ -691,6 +691,7 @@
 	item_map_variant_flags = NONE
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/flashlight,

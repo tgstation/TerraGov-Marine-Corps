@@ -51,6 +51,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/foldable/t19stock,
 		/obj/item/attachable/compensator,
@@ -67,7 +68,8 @@
 	starting_attachment_types = list(/obj/item/attachable/foldable/t19stock)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = -4, "stock_y" = 16)
-
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.55
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
@@ -113,6 +115,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -176,6 +179,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/smartsight,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,

@@ -626,3 +626,8 @@ WEAPONS
 	name = "Sledgehammer"
 	contains = list(/obj/item/weapon/twohanded/sledgehammer)
 	cost = 50
+
+/datum/supply_packs/weapons/smartsight
+	name = "T-48 smart sight attachment"
+	contains = list(/obj/item/attachable/smartsight)
+	cost = 50
