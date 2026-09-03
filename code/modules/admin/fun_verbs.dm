@@ -157,7 +157,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", AD
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 ADMIN_VERB(award_medal, R_FUN, "Award a Medal", "Award a medal to a marine player", ADMIN_CATEGORY_FUN)
-	give_medal_award()
+	do_award_medal(user.mob)
 
 ADMIN_VERB(custom_info, R_FUN, "Change Custom Info", "Set a custom info to show to everyone and new joining players", ADMIN_CATEGORY_FUN)
 	var/new_info = tgui_input_text(user, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE, encode = FALSE)
