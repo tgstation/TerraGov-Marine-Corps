@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Deployable cameras now have built in radio proximity sensors"
+  - bugfix: "fixed some missing tool sounds"
+  - bugfix: "fixed LZ cameras not being invisible"
+  - refactor: "refactored some camera code"
