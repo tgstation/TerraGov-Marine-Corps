@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed a plasteel duplication exploit"
-  - refactor: "refactored barricade code"

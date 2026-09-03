@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "EMS-02 heal foam grenades cost 3 points instead of 8 in the medic vendor"
-  - balance: "EMS-02 heal foam grenades have their stronger heal last for 3 more ticks, total duration unchanged"
-  - bugfix: "Fixed EMS-02 heal foam grenades from runtiming whenever they get purged"

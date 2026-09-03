@@ -5,3 +5,17 @@
   - qol: Zombie hearts can be removed regardless of intent and will drop on the floor
       instead of going in your empty hand.
   - bugfix: Zombies can no longer damage dead bodies.
+2026-09-03:
+  Lumipharon:
+  - rscadd: Deployable cameras now have built in radio proximity sensors
+  - bugfix: fixed some missing tool sounds
+  - bugfix: fixed LZ cameras not being invisible
+  - refactor: refactored some camera code
+  - admin: Greatly improved explosion logging
+  - bugfix: fixed strip menu failing when equipping items to certain slots
+  - balance: EMS-02 heal foam grenades cost 3 points instead of 8 in the medic vendor
+  - balance: EMS-02 heal foam grenades have their stronger heal last for 3 more ticks,
+      total duration unchanged
+  - bugfix: Fixed EMS-02 heal foam grenades from runtiming whenever they get purged
+  - bugfix: fixed a plasteel duplication exploit
+  - refactor: refactored barricade code
