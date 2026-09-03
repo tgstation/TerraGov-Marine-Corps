@@ -195,7 +195,7 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging || xeno_attacker.endurance_active)
+	if (xeno_attacker.fortify || xeno_attacker.endurance_active)
 		return FALSE
 
 	switch(xeno_attacker.a_intent)
