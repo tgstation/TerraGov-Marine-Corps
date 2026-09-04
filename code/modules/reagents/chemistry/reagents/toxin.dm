@@ -652,7 +652,7 @@
 
 /datum/reagent/zombium/on_mob_life(mob/living/L, metabolism)
 	. = ..()
-	if(prob(10))
+	if(prob(1))
 		L.emote("cough")
 
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
@@ -663,13 +663,13 @@
 
 /datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
 	if(prob(5))
-		L.emote("gasp")
+		L.emote("pain")
 	L.adjustOxyLoss(1.5)
 	L.adjustToxLoss(1.5)
 
 /datum/reagent/zombium/overdose_crit_process(mob/living/L, metabolism)
-	if(prob(50))
-		L.emote("gasp")
+	if(prob(5))
+		L.emote("scream")
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
 
