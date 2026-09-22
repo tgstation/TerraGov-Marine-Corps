@@ -419,8 +419,8 @@
 
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
 	//Taking off the duffelbag has a channel
-	if(user.back != parent || !do_after(user, 3 SECONDS))
-		return
+	//if(user.back != parent || !do_after(user, 3 SECONDS)) //todo: fucking xander why god, how god
+	//	return
 
 	switch(over_object.name)
 		if("r_hand")
@@ -431,9 +431,9 @@
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
 		return TRUE
-	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
-		return TRUE
+	//var/mob/living/carbon/carbon_user = user
+	//if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS)) //todo: figure out how to unfuck this. xander for fuck sake
+	//	return TRUE
 	return ..()
 
 /datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
