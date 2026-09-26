@@ -123,8 +123,8 @@
 		. += image(icon, icon_state = "[base_icon_state]_wire", layer = dir == NORTH ? layer : ABOVE_MOB_LAYER) //it will layer under certain upgrades in some cases otherwise
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	. = return_stack(disassembled)
 	..()
-	return return_stack(disassembled)
 
 ///Refunds stacks on destruction or disassembly
 /obj/structure/barricade/proc/return_stack(disassembled = TRUE)
