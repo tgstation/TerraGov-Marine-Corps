@@ -16,15 +16,13 @@
 	var/user_old_move_resist
 	///If the gun has different sprites for being anchored.
 	var/has_anchored_sprite = FALSE
-	///If the gun has different sprites for having nothing loaded.
-	var/has_empty_sprite = TRUE
 
 ///generates the icon based on how much ammo it has and whether it is anchored.
 /obj/machinery/deployable/mounted/update_icon_state()
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	icon_state = default_icon_state
-	if(has_empty_sprite && gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
+	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
 		icon_state += "_e"
 	if(has_anchored_sprite && anchored)
 		icon_state += "_anchored"

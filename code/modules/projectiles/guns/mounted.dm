@@ -362,12 +362,8 @@
 	icon = 'icons/obj/machines/deployable/mg08.dmi'
 	icon_state = "mg08"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/obj/machines/deployable/mg08.dmi',
-		slot_r_hand_str = 'icons/obj/machines/deployable/mg08.dmi',
-	)
-	worn_item_state_slots = list(
-		slot_l_hand_str = "mg08_inhand_left",
-		slot_r_hand_str = "mg08_inhand_right",
+		slot_l_hand_str = 'icons/mob/inhands/guns/mg08_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/mg08_right_1.dmi',
 	)
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
@@ -405,7 +401,6 @@
 
 /obj/machinery/deployable/mounted/moveable/heavymachinegun
 	has_anchored_sprite = TRUE
-	has_empty_sprite = FALSE
 
 /obj/machinery/deployable/mounted/moveable/heavymachinegun/update_overlays()
 	. = ..()
