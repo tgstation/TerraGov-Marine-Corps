@@ -17,20 +17,15 @@
 	///If the gun has different sprites for being anchored.
 	var/has_anchored_sprite = FALSE
 
-///generates the icon based on how much ammo it has.
+///generates the icon based on how much ammo it has and whether it is anchored.
 /obj/machinery/deployable/mounted/update_icon_state()
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
+	icon_state = default_icon_state
 	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
-		icon_state = default_icon_state + "_e"
-	else
-		icon_state = default_icon_state
-
-	if(has_anchored_sprite)
-		if(anchored)
-			icon_state = default_icon_state + "_anchored"
-		else
-			icon_state = default_icon_state
+		icon_state += "_e"
+	if(has_anchored_sprite && anchored)
+		icon_state += "_anchored"
 
 	hud_set_gun_ammo()
 
