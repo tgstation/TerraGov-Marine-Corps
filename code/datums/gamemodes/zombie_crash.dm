@@ -116,20 +116,19 @@
 				continue
 			num_humans++
 
-		for(var/i in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
-			var/mob/living/carbon/xenomorph/X = i
-			if(!istype(X)) // Small fix?
+		for(var/mob/living/carbon/xenomorph/xeno in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
+			if(!istype(xeno)) // Small fix?
 				continue
-			if(!X.client && X.afk_status == MOB_DISCONNECTED)
+			if(!xeno.client && xeno.afk_status == MOB_DISCONNECTED)
 				continue
-			if(is_xeno_in_forbidden_zone(X))
+			if(is_xeno_in_forbidden_zone(xeno))
 				continue
-			if(isspaceturf(X.loc))
+			if(isspaceturf(xeno.loc))
 				continue
-			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+			if(xeno.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
 				continue
 			// Never count hivemind
-			if(isxenohivemind(X))
+			if(isxenohivemind(xeno))
 				continue
 
 			num_xenos++
