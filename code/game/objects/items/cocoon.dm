@@ -40,12 +40,16 @@
 		. += span_notice("There seems to be someone inside it. You think you can open it with a sharp object.")
 
 /obj/structure/cocoon/process()
+	//Gives marine cloneloss for a total of 30.
+	victim.adjustCloneLoss(0.5)
+
+	if(iszombie(victim))//The victim has no lifeforce to drain
+		return
+
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
 	psych_points_output = clamp(psych_points_output, COCOON_PSY_POINTS_REWARD_MIN, COCOON_PSY_POINTS_REWARD_MAX)
 	SSpoints.add_strategic_psy_points(hivenumber, psych_points_output)
 	SSpoints.add_tactical_psy_points(hivenumber, psych_points_output*0.25)
-	//Gives marine cloneloss for a total of 30.
-	victim.adjustCloneLoss(0.5)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
