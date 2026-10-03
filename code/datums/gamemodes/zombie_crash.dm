@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS|MODE_PSY_POINTS
 	xeno_abilities_flags = ABILITY_ENCOUNTER
 	required_players = 1
 	valid_job_types = list(
@@ -69,6 +69,8 @@
 	. = ..()
 	global_rally_zombies(generating_computer, TRUE)
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_CYCLE)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_CYCLE)
 
 /// Evenly distributes an amount of points to all alive humans who are actively playing. Minimum/maximum points scales on population.
 /datum/game_mode/infestation/crash/zombie/proc/give_all_humans_points(flat, minimum, maximum)
