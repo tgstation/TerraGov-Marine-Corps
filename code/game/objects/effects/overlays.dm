@@ -128,7 +128,7 @@
 	. = ..()
 	notify_ai_hazard()
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/datum/atom_hud/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV] //this currently only supports visibility for TGMC mobs, not other factions.
 	squad_hud.add_to_hud(src)
 	set_visuals()
 
@@ -157,7 +157,7 @@
 	icon_state_on = "pod_laser"
 
 /obj/effect/overlay/blinking_laser/marine/pod_warning/set_visuals()
-	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV]
+	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV] //this currently only supports visibility for TGMC mobs, not other factions.
 	if(!new_hud_list)
 		return
 
