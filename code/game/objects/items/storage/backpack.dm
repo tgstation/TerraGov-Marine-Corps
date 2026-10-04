@@ -418,7 +418,7 @@
 	access_delay = 0
 
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
-	Taking off the duffelbag has a channel
+	//Taking off the duffelbag has a channel
 	if(user.back != parent || !do_after(user, 3 SECONDS)) //todo: this shouldn't sleep but I can't think of a fix right now
 		return
 

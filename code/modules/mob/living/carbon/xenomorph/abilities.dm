@@ -312,7 +312,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	if(xeno_owner.selected_ability != src)
 		return ..()
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(choose_resin_type))
+	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
+	if(!resin_choice)
+		return
+	set_resin_type(buildable_structures[GLOB.resin_images_list.Find(resin_choice)])
 
 /datum/action/ability/activable/xeno/secrete_resin/alternate_action_activate()
 	//Right click on secrete resin button cycles through to the next construction type (old method of changing structures).
@@ -352,13 +355,6 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 			build_resin_modifier = 0.5
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * xeno_owner.health / xeno_owner.maxHealth))) * build_resin_modifier
-
-///Lets the user choose the resin type
-/datum/action/ability/activable/xeno/secrete_resin/proc/choose_resin_type()
-	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
-	if(!resin_choice)
-		return
-	set_resin_type(buildable_structures[GLOB.resin_images_list.Find(resin_choice)])
 
 ///Sets the resin type to produce
 /datum/action/ability/activable/xeno/secrete_resin/proc/set_resin_type(new_resin, silent = FALSE)
