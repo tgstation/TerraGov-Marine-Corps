@@ -25,8 +25,8 @@ TUNNEL
 	. = ..()
 	LAZYADDASSOC(GLOB.xeno_tunnels_by_hive, hivenumber, src)
 	prepare_huds()
-	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
-		xeno_tac_hud.add_to_hud(src)
+	var/datum/atom_hud/xeno_tactical/xeno_tac_hud = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Add to the xeno tachud
+	xeno_tac_hud.add_to_hud(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
 	var/area/tunnel_area = get_area(src)
 	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
@@ -42,8 +42,8 @@ TUNNEL
 
 	LAZYREMOVE(GLOB.xeno_tunnels_by_hive[hivenumber], src)
 
-	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //HUD clean up
-		xeno_tac_hud.remove_from_hud(src)
+	var/datum/atom_hud/xeno_tactical/xeno_tac_hud = GLOB.huds[DATA_HUD_XENO_TACTICAL] //HUD clean up
+	xeno_tac_hud.remove_from_hud(src)
 	SSminimaps.remove_marker(src)
 
 	return ..()

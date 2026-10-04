@@ -578,10 +578,9 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_BASIC].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(M)
+		for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BASIC, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_HEART))
+			var/datum/atom_hud/hud = GLOB.huds[hud_key]
+			hud.remove_from_hud(M)
 
 	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
@@ -629,10 +628,9 @@
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(user)
-	GLOB.huds[DATA_HUD_BASIC].add_to_hud(user)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(user)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(user)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BASIC, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.add_to_hud(user)
 
 	addtimer(CALLBACK(src, PROC_REF(on_decloak)), 1)
 
