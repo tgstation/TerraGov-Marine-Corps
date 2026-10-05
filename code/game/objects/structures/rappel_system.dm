@@ -306,7 +306,7 @@
 	attacker.balloon_alert(attacker, "disabling the sky-rope system...")
 	step(attacker, get_dir(attacker, rope))
 	balloon_alert_to_viewers("the system is visibly buckling!")
-	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRU, MEDIUM_SOUND_RANGEE)
+	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	Shake(duration = 2.5 SECONDS)
 	if(!do_after(attacker, 5 SECONDS, NONE, rope, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
@@ -332,7 +332,7 @@
 	playsound(rope, 'sound/effects/metal_crash.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	playsound(rope, 'sound/effects/sparks1.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
-	playsound(src, 'sound/effects/creak1.ogg', 50, TRUE), MEDIUM_SOUND_RANGE
+	playsound(src, 'sound/effects/creak1.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 
 	var/datum/effect_system/spark_spread/sparks = new
 	sparks.set_up(5, 0, src)
