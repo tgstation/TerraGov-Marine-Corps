@@ -94,5 +94,5 @@
 ///Actually refills src with fuel from a container
 /obj/proc/do_refuel(atom/refueler, fuel_type, mob/user)
 	refueler.reagents.trans_to(src, reagents.maximum_volume)
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
 	user?.balloon_alert(user, "refilled")

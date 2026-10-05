@@ -835,7 +835,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
-			playsound(loc, windup_sound, 30, TRUE)
+			playsound(loc, windup_sound, 30, TRUE, MEDIUM_SOUND_RANGE)
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
@@ -851,7 +851,7 @@
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/atom/movable/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
-		playsound(src, dry_fire_sound, 25, 1, 5)
+		playsound(src, dry_fire_sound, 25, 1, SHORT_SOUND_RANGE)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
@@ -897,7 +897,7 @@
 	if(heat_amount >= 100)
 		STOP_PROCESSING(SSprocessing, src)
 		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
-		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, 5)
+		playsound(src, 'sound/weapons/guns/interact/gun_overheat.ogg', 25, 1, SHORT_SOUND_RANGE)
 		//overheat gives either you a bonus or penalty depending on gun, by default it is +10% time.
 		var/overheat_time = (heat_amount/cool_amount*overheat_multiplier) SECONDS
 		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
@@ -1106,7 +1106,7 @@
 	var/atom/movable/projectile/projectile_to_fire = in_chamber
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
-		playsound(src, dry_fire_sound, 25, 1, 5)
+		playsound(src, dry_fire_sound, 25, 1, SUPER_SHORT_SOUND_RANGE)
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return
 
@@ -1471,7 +1471,7 @@
 	var/obj/item/mag = chamber_items[current_chamber_position]
 	if(!mag)
 		return
-	playsound(src, unload_sound, 25, 1, 5)
+	playsound(src, unload_sound, 25, 1, SHORT_SOUND_RANGE)
 	user?.visible_message(span_notice("[user] unloads [mag] from [src]."),
 	span_notice("You unload [mag] from [src]."), null, 4)
 	if(drop && !(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_magazine_features_flags(mag), MAGAZINE_WORN)))
@@ -1561,7 +1561,7 @@
 	if(num_of_casings)
 		casing.current_casings += num_of_casings
 		casing.update_appearance()
-	playsound(current_turf, sound_to_play, 25, 1, 5)
+	playsound(current_turf, sound_to_play, 25, 1, SUPER_SHORT_SOUND_RANGE)
 
 
 ///Gets a projectile to fire from the magazines ammo type.

@@ -151,7 +151,7 @@
 
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
-	playsound(loc, arm_sound, 25, 1, 6)
+	playsound(loc, arm_sound, 25, TRUE, SHORT_SOUND_RANGE)
 	faction = user.faction
 	addtimer(CALLBACK(src, PROC_REF(prime), user), det_time)
 

@@ -17,7 +17,7 @@
 		if(INTENT_HELP)
 			if(on_fire && human_user != src)
 				fire_stacks = max(fire_stacks - 1, 0)
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 					span_warning("You try to put out the fire on [src]!"), null, 5)
 				if(fire_stacks <= 0)
@@ -28,7 +28,7 @@
 
 			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(burning && human_user != src)
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
 				burning.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
@@ -165,7 +165,7 @@
 
 			if (randn <= 25)
 				apply_effect(3 SECONDS, EFFECT_PARALYZE)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				visible_message(span_danger("[human_user] pushes [src] over!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
 				return
@@ -178,12 +178,12 @@
 				else
 					drop_held_item()
 					visible_message(span_danger("[human_user] disarms [src]!"), null, null, 5)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				log_combat(user, src, "disarmed")
 				return
 
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 			visible_message(span_danger("[human_user] attempts to disarm [src]!"), null, null, 5)
 			log_combat(human_user, src, "missed a disarm")
 
