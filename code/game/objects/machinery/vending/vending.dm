@@ -128,8 +128,6 @@
 
 	/// String of slogans separated by semicolons, optional
 	var/product_slogans = ""
-	///String of small ad messages in the vending screen - random chance
-	var/product_ads = ""
 
 	//These are where the vendor holds their item info with /datum/vending_product
 

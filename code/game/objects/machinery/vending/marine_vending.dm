@@ -5,7 +5,25 @@
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	wrenchable = FALSE
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "If it moves, it's hostile!;\
+	How many enemies have you killed today?;\
+	Shoot first, perform autopsy later!;\
+	Your ammo is right here.;\
+	Guns!;\
+	Die, scumbag!;\
+	Don't shoot me bro!;\
+	Shoot them, bro.;\
+	Get some!;\
+	More guns!;\
+	Guns solve all of life's problems!;\
+	If at first you don't succeed, shoot it more!;\
+	Freedom issued here!;\
+	Recommended for ages 13 and over.;\
+	You can never have enough firepower.;\
+	Guns. Lots of guns.;\
+	More guns than a video game!;\
+	We have more guns than the competition!"
 	isshared = TRUE
 
 	products = list(
@@ -713,8 +731,18 @@
 	seasonal_items = list()
 
 /obj/machinery/vending/cigarette/colony
-	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	product_slogans = "Koorlander Gold, for the refined palate.;\
+	Lady Fingers, for the dainty smoker.;\
+	Lady Fingers, treat your palete with pink!;\
+	The big blue K means a cool fresh day!;\
+	For the taste that cools your mood, look for the big blue K!;\
+	Refined smokers go for Gold!;\
+	Lady Fingers are preferred by women who appreciate a cool smoke.;\
+	Lady Fingers are the number one cigarette this side of Gateway!;\
+	The tobacco connoisseur prefers Koorlander Gold.;\
+	For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;\
+	For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;\
+	The Colonial Administration Bureau would like to remind you that smoking kills."
 	products = list(
 		/obj/item/storage/fancy/cigarettes/kpack = 15,
 		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
@@ -868,7 +896,13 @@
 	active_power_usage = 50
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
-	product_slogans = "Static Shock!;Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_slogans = "Static Shock!;\
+	Power cell running low? Recharge here!;\
+	Need a charge?;Power up!;\
+	Electrifying!;\
+	Empower yourself!;\
+	Robots are reminded not to insert appendages into the field charger.;\
+	Warning: Do not lick live electrode."
 	products = list(
 		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2, /obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
 	)
@@ -906,7 +940,24 @@
 	icon_deny = "sustenance-deny"
 	wrenchable = FALSE
 	isshared = TRUE
-	product_ads = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bites!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "Standard Issue Marine food!;\
+	It's good for you, and not the worst thing in the world.;\
+	Just fucking eat it.;\
+	You should have joined the Air Force if you wanted better food.;\
+	1200 calories in just a few bites!;\
+	Get that tabaso sauce to make it tasty!;\
+	Try the cornbread.;\
+	Try the pizza.;\
+	Try the pasta.;\
+	Try the tofu, wimp.;\
+	Try the pork.;\
+	9 Flavors of Protein!;\
+	You'll never guess the mystery flavor!;\
+	Gobble up the goodness!;\
+	You're skin and bones marine, eat!;\
+	Gobble gobble.;\
+	Save some for the rest of them!"
 	products = list(
 		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
@@ -943,7 +994,20 @@
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
+	slogan_delay = 4 MINUTES
+	product_slogans = "Go save some lives!;\
+	The best stuff for your medbay.;\
+	Only the finest tools.;\
+	All natural chemicals!;\
+	This stuff saves lives.;\
+	Don't you want some?;\
+	Winners do drugs. Are you a winner?;\
+	Floor pills now available in family packs.;\
+	Juice up to your eyeballs!;\
+	Pre-Med or be-dead!;\
+	Drugs - fun for the whole family!;\
+	Now without child safety caps!;\
+	Enhance your performance!"
 	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
 	isshared = TRUE
@@ -1050,7 +1114,17 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;\
+	Totally came from an ethical source!;\
+	O negative is the universal donor, use it!;\
+	Prevent hypovolemic shock starting today!\
+	The need for blood is rising.;\
+	Recycling blood since 2096.;\
+	Additive free!;\
+	Now available in fruity flavours!;\
+	You can always do with a top up...;\
+	Why so pale?;\
+	Slurp it up!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1083,7 +1157,15 @@
 	icon_deny = "surplus_armor_deny"
 	isshared = TRUE
 	wrenchable = FALSE
-	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;\
+	Armour up marine!;\
+	Thank your armor later when you didn't die!;\
+	I remember PAS, do you remember PAS?;\
+	Time to paint the rainbow!;\
+	So many selections to choose from!;\
+	Increase your estimated life expectancy above 3.65 minutes!;\
+	Thin skin? Thick armour!"
 	products = list(
 		"Xenonauten" = list(
 			/obj/item/clothing/suit/modular/xenonauten/light = -1,
@@ -1241,7 +1323,16 @@
 	icon_deny = "surplus_clothes_deny"
 	wrenchable = FALSE
 	isshared = TRUE
-	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "Be the musician that you parents never approve you of.;\
+	You gotta look good when you're in the battlefield.;\
+	We have all types of hats here!;\
+	What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;\
+	Sometimes, a beret is better than a helmet.;\
+	Drip is the priority, marine.;\
+	The fashion of war!;\
+	Your butt won't look big in this!;\
+	Die in style!"
 	products = list(
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
@@ -1440,7 +1531,10 @@
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
-	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	product_slogans = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;\
+	Dress whites, fresh off the ironing board!;\
+	Why kill in armor when you can kill in style?;\
+	These uniforms are so sharp you'd cut yourself just looking at them!"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -1989,6 +2083,15 @@
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	icon_vend = "tool-vend"
+	slogan_delay = 6 MINUTES
+	product_slogans = "Get your tools here. Youtool!;\
+	Get your tools here, you tool.;\
+	Giving, not taking.;\
+	Simple tools for simple people.;\
+	Sponsored by the Tools for Tools charity since 2129.;\
+	Stick a wrench in it!;\
+	Welding masks sold separately.;\
+	Do not insert into eye socket."
 	isshared = TRUE
 	wrenchable = FALSE
 	products = list(
