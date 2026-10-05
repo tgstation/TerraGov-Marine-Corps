@@ -48,6 +48,9 @@
 /obj/item/proc/attack_self(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 	add_fingerprint(user, "attack_self")
+	if(item_flags & ITEM_ACTIVATABLE)
+		toggle_active(!active, user)
+		return
 	if(!can_interact(user))
 		return
 	interact(user)

@@ -5,9 +5,11 @@
 		slot_r_hand_str = 'icons/mob/inhands/weapons/twohanded_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_BULKY
-	var/wieldsound
-	var/unwieldsound
 	item_flags = TWOHANDED
+	///Sound when wielding
+	var/wieldsound
+	///sound when unwielding
+	var/unwieldsound
 
 /obj/item/weapon/twohanded/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	unwield(user)
@@ -20,6 +22,8 @@
 /obj/item/weapon/twohanded/pickup(mob/user)
 	unwield(user)
 
+///Tries to two hand the item
+///Returns TRUE if successful
 /obj/item/proc/wield(mob/user)
 	if(!(item_flags & TWOHANDED) || item_flags & WIELDED)
 		return FALSE
@@ -49,11 +53,10 @@
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
-	update_item_state()
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
 	return TRUE
 
+///Tries to stop two handing the item
+///Returns TRUE if successful
 /obj/item/proc/unwield(mob/user)
 	if(!CHECK_MULTIPLE_BITFIELDS(item_flags, TWOHANDED|WIELDED))
 		return FALSE
@@ -65,10 +68,21 @@
 		name = copytext(name, 1, sf)
 	else
 		name = "[initial(name)]"
-	update_item_state()
 	remove_offhand(user)
 	return TRUE
 
+///Toggles wielded on and off
+/obj/item/proc/toggle_wielded(mob/user, wielded)
+	if(wielded)
+		item_flags |= WIELDED
+	else
+		item_flags &= ~WIELDED
+
+	update_item_state()
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
+
+///Puts a blocker item in your off hand when wielding an item
 /obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	if(!user.put_in_inactive_hand(offhand))
@@ -79,25 +93,17 @@
 	offhand.desc = "Your second grip on [src]."
 	return TRUE
 
+///Removes the offhand blocker
 /obj/item/proc/remove_offhand(mob/user)
 	to_chat(user, span_notice("You are now carrying [src] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
-
-/obj/item/proc/toggle_wielded(user, wielded)
-	if(wielded)
-		item_flags |= WIELDED
-	else
-		item_flags &= ~WIELDED
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
 	if(!.)
 		return
-	toggle_active(TRUE)
 
 	if(wieldsound)
 		playsound(user, wieldsound, 15, 1)
@@ -108,7 +114,6 @@
 	. = ..()
 	if(!.)
 		return
-	toggle_active(FALSE)
 
 	if(unwieldsound)
 		playsound(user, unwieldsound, 15, 1)
@@ -117,12 +122,11 @@
 
 // TODO port tg wielding component
 /obj/item/weapon/twohanded/attack_self(mob/user)
-	. = ..()
-
 	if(item_flags & WIELDED)
 		unwield(user)
 	else
 		wield(user)
+	return ..()
 
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand

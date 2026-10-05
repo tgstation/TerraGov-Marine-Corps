@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "minelayer"
 	max_integrity = 200
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	w_class = WEIGHT_CLASS_NORMAL
 	///amount of currently stored mines
 	var/stored_mines = 0

@@ -85,7 +85,6 @@
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_1.dmi',
 	)
 	caliber = CALIBER_PLASMA
-	max_shots = 10
 	icon = 'icons/obj/items/guns/energy.dmi'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
