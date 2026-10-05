@@ -1,0 +1,40 @@
+2026-10-05:
+  Arturlang:
+  - admin: can now enable tracy midround
+  - bugfix: repo building on latest versions of byond
+  Lewdcifer:
+  - rscadd: Behemoth has been COMPLETELY reworked from the ground up.
+  - spellcheck: The changelog only offers a very brief overview, so if you're interested
+      in specifics, refer to the pull request.
+  - rscadd: Added a new ability, Seize. Fast movement option that requires Earth Pillars
+      to function.
+  - rscadd: Added a new ability, Geocrush. Heavy melee damage.
+  - rscdel: Rolling ability removed.
+  - rscdel: Seismic Fracture removed.
+  - balance: Redesigned Earth Riser, as well as Earth Pillars, to be faster, resilient,
+      and versatile, but more limited in access, damage, and range.
+  - balance: You can now climb and jump over Earth Pillars.
+  - balance: Landslide redesigned to be much faster in execution, similarly to its
+      now deprecated Primordial variant, at the expense of damage and reach.
+  - balance: Primal Wrath, the Behemoth's primordial ability, has been completely
+      redesigned. Instead of upgrading all of your abilities, it will now restore
+      all damage taken in a time window, while providing a few seconds of invulnerability,
+      in exchange for a stacking temporary debuff.
+  - balance: Allied xenos can no longer ride the Behemoth.
+  - rscadd: Added various statistic trackers for several Behemoth actions.
+  - soundadd: Added a few new sounds for Earth Pillars, Landslide, and Geocrush.
+  - sounddel: Removed unused sounds related to Behemoth.
+  - imageadd: Added some new sprites for Earth Pillars, Landslide, and Geocrush. Also
+      reorganized Behemoth's stuff.
+  - imagedel: Removed unused sprites related to Behemoth.
+  - bugfix: Squashed some bugs and fixed some glitches or unintended behavior related
+      to Behemoth.
+  - refactor: Refactored most, if not all, coding related to Behemoth.
+  Lumipharon:
+  - rscadd: Adds the RFD to the engineering vendor, allowing for quick and convenient
+      deconstruction of barricades and razorwire
+  - rscadd: Added some more vendor slogans
+  mudzbe:
+  - rscadd: Xenos also get psy points from disk cycles
+  - bugfix: Fix xenos not getting psy points from tunnels,
+  - rscdel: Zombies cannot be drained by cocoons
