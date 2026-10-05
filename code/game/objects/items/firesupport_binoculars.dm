@@ -128,20 +128,20 @@
 		balloon_alert(user, "no clear view!")
 		return
 
-	playsound(src, 'sound/effects/nightvision.ogg', 35)
+	playsound(src, 'sound/effects/nightvision.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	target_atom = target
 	laser_overlay = image('icons/obj/items/projectiles.dmi', icon_state = "laser_target_yellow", layer =-LASER_LAYER)
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
-		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		playsound(user,'sound/machines/click.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
 		return
 	if(!bino_checks(target, user))
-		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		playsound(user,'sound/machines/click.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
 		return
 
-	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 	mode.initiate_fire_support(get_turf(target_atom), user)
 	unset_target()
 
@@ -190,7 +190,7 @@
 /obj/item/binoculars/fire_support/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/target_turf = get_turf(A)
 	to_chat(user, span_notice("COORDINATES: LONGITUDE [target_turf.x]. LATITUDE [target_turf.y]."))
-	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 
 
 /obj/item/binoculars/fire_support/campaign

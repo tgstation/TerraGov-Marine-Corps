@@ -169,11 +169,7 @@ SUBSYSTEM_DEF(explosions)
 	// Calculate far explosion sound range. Only allow the sound effect for heavy/devastating explosions.
 	// 3/7/14 will calculate to 80 + 35
 
-	var/far_dist = 0
-	far_dist += weak_impact_range * 3
-	far_dist += light_impact_range * 4
-	far_dist += heavy_impact_range * 5
-	far_dist += devastation_range * 20
+	var/far_dist = max(devastation_range * 20, heavy_impact_range * 5, light_impact_range * 4, weak_impact_range * 3)
 
 	var/frequency = GET_RAND_FREQUENCY
 	var/sound/explosion_sound = SFX_EXPLOSION_LARGE
@@ -202,7 +198,8 @@ SUBSYSTEM_DEF(explosions)
 		listeners += ai_eye
 
 	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[epicenter.z])
-		var/dist = get_dist(get_turf(listener), epicenter)
+		var/turf/listener_turf = get_turf(listener)
+		var/dist = get_dist_euclidean(listener_turf, epicenter)
 		if(dist > far_dist)
 			continue
 

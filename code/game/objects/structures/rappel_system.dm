@@ -148,8 +148,8 @@
 			passed_skillcheck = FALSE
 
 	if(passed_skillcheck && do_after(user, 4 SECONDS, NONE, rope, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
-		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
-		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 		user.forceMove(target_turf)
 		rappel_animation(user)
 		var/turf/target_floor = get_turf(rope)
@@ -199,7 +199,7 @@
 		QDEL_NULL(disabled_smoke)
 	update_icon_state()
 	balloon_alert_to_viewers("pings happily—self repair complete")
-	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
+	playsound(src, 'sound/machines/ping.ogg', 50, FALSE, MEDIUM_SOUND_RANGE)
 
 ///Human animation for dropping down
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/rappel_animation(mob/living/user)
@@ -232,9 +232,9 @@
 	if(!(rappel_area.area_flags & MARINE_BASE))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ)
 
-	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
-	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
-	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, LOUD_SOUND_RANGE, 2.5)
+	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	target.balloon_alert_to_viewers("!!!")
 	target.visible_message(span_userdanger("You see a dropship fly overhead and begin dropping ropes!"))
 	balloon_alert_to_viewers("hisses and unlocks!")
@@ -270,9 +270,9 @@
 	var/turf/target = get_turf(rope)
 	target.balloon_alert_to_viewers("retracted")
 	balloon_alert_to_viewers("clicks locked as the ropes reel back")
-	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
-	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
-	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, LOUD_SOUND_RANGE, 2.5)
+	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	flick("rope_up", rope)
 
 	addtimer(CALLBACK(src, PROC_REF(reel_in)), 0.4 SECONDS)
@@ -306,8 +306,8 @@
 	attacker.balloon_alert(attacker, "disabling the sky-rope system...")
 	step(attacker, get_dir(attacker, rope))
 	balloon_alert_to_viewers("the system is visibly buckling!")
-	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE)
-	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
+	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRU, MEDIUM_SOUND_RANGEE)
+	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 	Shake(duration = 2.5 SECONDS)
 	if(!do_after(attacker, 5 SECONDS, NONE, rope, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		rappel_condition = RAPPEL_CONDITION_GOOD
@@ -329,10 +329,10 @@
 	rappel_condition = RAPPEL_CONDITION_DAMAGED
 	rappel_state = RAPPEL_STATE_RETRACTING
 
-	playsound(rope, 'sound/effects/metal_crash.ogg', 50, TRUE)
-	playsound(rope, 'sound/effects/sparks1.ogg', 50, TRUE)
-	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE)
-	playsound(src, 'sound/effects/creak1.ogg', 50, TRUE)
+	playsound(rope, 'sound/effects/metal_crash.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(rope, 'sound/effects/sparks1.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(src, 'sound/effects/creak1.ogg', 50, TRUE), MEDIUM_SOUND_RANGE
 
 	var/datum/effect_system/spark_spread/sparks = new
 	sparks.set_up(5, 0, src)
@@ -396,7 +396,7 @@
 		return
 	user.forceMove(get_turf(parent_system))
 
-	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE)
+	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE)
 
 //Ghosts teleport to the rappel system when they click on the rope
 /obj/effect/rappel_rope/tadpole/attack_ghost(mob/dead/observer/user)

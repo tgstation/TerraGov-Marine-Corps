@@ -682,7 +682,7 @@
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
 	no_footstep_particle = FALSE
-	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
+	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE, LOUD_SOUND_RANGE)
 	var/obj/effect/abstract/particle_holder/landing_particles
 	var/turf/current_turf = get_turf(src)
 	if(iswater(current_turf))

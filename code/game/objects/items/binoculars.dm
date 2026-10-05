@@ -179,13 +179,13 @@
 		if(MODE_RANGE_FINDER)
 			to_chat(user, span_notice("You switch [src] to range finding mode."))
 	update_icon()
-	playsound(user, 'sound/items/binoculars.ogg', 15, 1, SHORT_SOUND_RANGE)
+	playsound(user, 'sound/items/binoculars.ogg', 15, 1, SUPPRESSED_SOUND_RANGE)
 
 /obj/item/binoculars/tactical/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)
 	targetturf = TU
 	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
-	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -224,7 +224,7 @@
 		return
 	if(user.do_actions)
 		return
-	playsound(src, 'sound/effects/nightvision.ogg', 35)
+	playsound(src, 'sound/effects/nightvision.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), NONE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
@@ -238,7 +238,7 @@
 			log_game("[key_name(user)] has begun lasing a CAS mission at [AREACOORD(TU)].")
 			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
 			laser = CS
-			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 			while(laser)
 				if(!do_after(user, 5 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
@@ -251,7 +251,7 @@
 			targetturf = TU
 			to_chat(user, span_notice("COORDINATES TARGETED BY ARTILLERY [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			log_game("[key_name(user)] has lased a mortar mission at [AREACOORD(TU)].")
-			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
 			mortar.recieve_target(TU,user)
 			return
@@ -267,7 +267,7 @@
 			else
 				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
-				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 				if(!do_after(user, 2 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
@@ -286,7 +286,7 @@
 			else
 				var/obj/effect/overlay/temp/laser_target/ob/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
-				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)
 				if(!do_after(user, 15 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
@@ -313,7 +313,7 @@
 	var/warhead_type = GLOB.orbital_cannon.tray.warhead.name
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]"))
-		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, TRUE, LOUD_SOUND_RANGE)
 	to_chat(user, span_notice("FIRING REQUEST RECIEVED. CLEAR TARGET AREA"))
 	log_attack("[key_name(user)] fired a [warhead_type] in [AREACOORD(current_turf)].")
 	message_admins("[ADMIN_TPMONTY(user)] fired a [warhead_type] in [ADMIN_VERBOSEJMP(current_turf)].")

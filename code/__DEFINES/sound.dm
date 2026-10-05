@@ -25,14 +25,23 @@
 /// Setting SOUND_AUDIBLE_VOLUME_MIN to 10 for the above will result in 11x11 radius (121 turfs)
 #define SOUND_AUDIBLE_VOLUME_MIN 3
 
+///Extremely loud sounds
 #define VERY_LOUD_SOUND_RANGE 36
+///Loud sounds
 #define LOUD_SOUND_RANGE 24
-///Default range of a sound.
+///Sound range of gunfire
+#define FIREARM_SOUND_RANGE 24
+///Default range of a sound
 #define DEFAULT_SOUND_RANGE 17
+///Moderate sound range
 #define MEDIUM_SOUND_RANGE 12
+///Nominal screen range sounds
 #define SHORT_SOUND_RANGE 8
+///Low sound range
 #define SUPER_SHORT_SOUND_RANGE 5
+///Very quiet/stealthy sounds
 #define SUPPRESSED_SOUND_RANGE 3
+///Adjacent only range
 #define ADJACENT_SOUND_RANGE 1
 
 ///Percentage of sound's range where no falloff is applied
