@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(explosions)
  * - explosion_direction: The angle in which the explosion is pointed (for directional explosions.)
  * - explosion_arc: The angle of the arc covered by a directional explosion (if 360 the explosion is non-directional.)
  */
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA, tiny = FALSE, protect_epicenter = FALSE, atom/explosion_cause = null, explosion_direction = 0, explosion_arc = 360)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA, tiny = FALSE, protect_epicenter = FALSE, atom/explosion_cause = null, explosion_direction = 0, explosion_arc = 360, mob/blame_mob = null)
 	return SSexplosions.explode(arglist(args))
 
 /**
@@ -138,8 +138,9 @@ SUBSYSTEM_DEF(explosions)
  * - explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
  * - explosion_direction: The angle in which the explosion is pointed (for directional explosions.)
  * - explosion_arc: The angle of the arc covered by a directional explosion (if 360 the explosion is non-directional.)
+ * - blame_mob: The actual mob that caused this explosion, if available
  */
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA, tiny = FALSE, protect_epicenter = FALSE, atom/explosion_cause = null, explosion_direction = 0, explosion_arc = 360)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA, tiny = FALSE, protect_epicenter = FALSE, atom/explosion_cause = null, explosion_direction = 0, explosion_arc = 360, mob/blame_mob = null)
 	explosion_cause = explosion_cause ? explosion_cause : epicenter
 
 	epicenter = get_turf(epicenter)
@@ -155,30 +156,10 @@ SUBSYSTEM_DEF(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 
-	// Now begins a bit of a logic train to find out whodunnit.
-	var/who_did_it = "N/A"
-	var/who_did_it_game_log = "N/A"
-
-	// Projectiles have special handling. They rely on a firer var and not fingerprints. Check special cases for firer being
-	// mecha, mob or an object such as the gun itself. Handle each uniquely.
-	if(istype(explosion_cause, /atom/movable/projectile)) // todo we mostly pass ammo datums cus drop explosion doesnt pass the projectiles-pls fix
-		var/atom/movable/projectile/fired_projectile = explosion_cause
-		if(ismob(fired_projectile.firer))
-			who_did_it = "\[Projectile firer: [ADMIN_LOOKUPFLW(fired_projectile.firer)]\]"
-			who_did_it_game_log = "\[Projectile firer: [key_name(fired_projectile.firer)]\]"
-		else // no fuckin idea?? better just send the obj that did it
-			who_did_it = "\[Projectile firer: [fired_projectile.firer], ref:[text_ref(fired_projectile.firer)]\]"
-			who_did_it_game_log = "\[Projectile firer: [fired_projectile.firer], ref:[text_ref(fired_projectile.firer)]]\]"
-	// Otherwise if the explosion cause is an atom, try get the ref. could be fingerprints but alas our logging sucks
-	else if(istype(explosion_cause))
-		who_did_it = "\[Exploder: [explosion_cause], ref:[text_ref(explosion_cause)]\]"
-		who_did_it_game_log = "\[Exploder: [explosion_cause], ref:[text_ref(explosion_cause)]]\]"
-
 	if(adminlog)
-		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [loc_name(epicenter)], Possible cause: [explosion_cause]. Last fingerprints: [who_did_it].")
-		var/datum/game_mode/infestation/xenomode = SSticker.mode
-		if(istype(xenomode) && (xenomode.round_stage != INFESTATION_MARINE_CRASHING) && is_mainship_level(epicenter.z))
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)], Possible cause: [explosion_cause]. Last fingerprints: [who_did_it_game_log]")
+		log_attack("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [loc_name(epicenter)], Apparent cause: [explosion_cause]. Mob responsible: [key_name(blame_mob)].")
+		if(blame_mob && !is_centcom_level(epicenter.z))
+			msg_admin_ff("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [weak_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)], Apparent cause: [ADMIN_LOOKUPFLW(explosion_cause)]. Mob responsible: [ADMIN_LOOKUPFLW(blame_mob)]")
 
 	if(max_range >= 6 || heavy_impact_range)
 		new /obj/effect/temp_visual/shockwave(epicenter, max_range)

@@ -215,6 +215,7 @@
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
 		headset.add_minimap()
+		headset.set_squad_camera_network(src)
 		if(headset.sl_direction && new_squaddie != squad_leader)
 			SSdirection.start_tracking(tracking_id, new_squaddie)
 
@@ -259,6 +260,7 @@
 	if(istype(headset))
 		headset.remove_minimap()
 		headset.set_frequency(initial(headset.frequency))
+		headset.set_squad_camera_network(null)
 
 	for(var/datum/data/record/sheet AS in GLOB.datacore.general)
 		if(sheet.fields["name"] == leaving_squaddie.real_name)

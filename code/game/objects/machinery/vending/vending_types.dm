@@ -33,7 +33,25 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	icon_vend = "boozeomat-vend"
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;\
+	Alcohol is humanity's friend. Would you abandon a friend?;\
+	Quite delighted to serve you!;\
+	Is nobody thirsty on this station? Drink up!;\
+	Booze is good for you!;\
+	Alcohol is humanity's best friend.;\
+	Quite delighted to serve you!;\
+	Care for a nice, cold beer?;\
+	Nothing cures you like booze!;\
+	Have a sip!;\
+	Have a drink!;\
+	Have a beer!;\
+	Beer is good for you!;\
+	Only the finest alcohol!;\
+	Best quality booze since 2053!;\
+	Award-winning wine!;\
+	Maximum alcohol!;\
+	Man loves beer.;\
+	A toast for progress!"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/bottle/gin = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/whiskey = -1,
@@ -68,7 +86,6 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/assist
-	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	icon_vend = "generic-vend"
 	icon_deny = "generic-deny"
 	products = list(
@@ -83,7 +100,20 @@
 /obj/machinery/vending/coffee
 	name = "\improper Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
-	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
+	product_slogans = "Have a drink!;\
+	Drink up!;\
+	It's good for you!;\
+	Would you like a hot joe?;\
+	I'd kill for some coffee!;\
+	The best beans in the galaxy.;\
+	Only the finest brew for you.;\
+	Mmmm. Nothing like a coffee.;\
+	I like coffee, don't you?;\
+	Coffee helps you work!;\
+	Try some tea.;\
+	We hope you like the best!;\
+	Try our new chocolate!;\
+	Admin conspiracies."
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	icon_deny = "coffee-deny"
@@ -100,7 +130,13 @@
 /obj/machinery/vending/snack
 	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;\
+	at an EAT!;\
+	Eat a Nanotrasen brand packaged hamburger.;\
+	Eat a Nanotrasen brand packaged hot dog.;\
+	Eat a Nanotrasen brand packaged burrito.;\
+	Fatten up!;\
+	Its called bulking!"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
@@ -126,7 +162,13 @@
 	name = "\improper Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;\
+	Souto Classic. You can't beat that tangerine goodness!;\
+	Souto Cherry. The sweet flavor of a cool winter morning!;\
+	Souto Lime. For that sweet and sour flavor that you know and love!;\
+	Souto Grape. There's nothing better than a grape soda.;\
+	Nanotrasen Fruit Beer. Nothing came from that lawsuit!;\
+	Nanotrasen Spring Water. It came from a spring!"
 	icon_deny = "Cola_Machine-deny"
 	icon_vend = "Cola_Machine-vend"
 	products = list(
@@ -152,7 +194,15 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
-	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	slogan_delay = 10 MINUTES
+	product_slogans = "Go save some lives!;\
+	he best stuff for your medbay.;\
+	Only the finest tools.;\
+	Natural chemicals!;\
+	This stuff saves lives.;\
+	Don't you want some?;\
+	Ping!;\
+	Equipment for the home enthusiast surgeon!"
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -367,7 +417,7 @@
 /obj/machinery/vending/nanomed
 	name = "\improper NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+	product_slogans = "" //silent for no spam
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	icon_vend = "wallmed-vend"
@@ -444,7 +494,12 @@
 /obj/machinery/vending/nanoammo
 	name = "\improper NanoAmmo"
 	desc = "Wall-mounted ammunition dispenser.  Can't hold infinite ammo, but it holds more than you need."
-	product_ads = "Get you some!;More ammo than you'll ever need.;I'm small but my firepower isn't!;I dispense ammo, you dispense pain.;Give 'em hell!"
+	slogan_delay = 5 MINUTES
+	product_slogans = "Get you some!;\
+	More ammo than you'll ever need.;\
+	I'm small but my firepower isn't!;\
+	I dispense ammo, you dispense pain.;\
+	Give 'em hell!"
 	icon_state = "nanoammo"
 	icon_deny = "nanoammo-deny"
 	icon_vend = "nanoammo-vend"
@@ -636,10 +691,58 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, FALSE, armor_penetration)
 		return TRUE
 
+/obj/machinery/vending/nanoblood
+	name = "\improper NanoBlood"
+	desc = "Wall-mounted blood dispenser. Holds more than you'll need. Hopefully."
+	product_slogans = "" //silent for no spam
+	icon_state = "wallblood"
+	icon_vend = "wallblood-vend"
+	icon_deny = "wallblood-deny"
+	density = FALSE
+	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	products = list(
+		/obj/item/reagent_containers/blood/APlus = 5,
+		/obj/item/reagent_containers/blood/AMinus = 5,
+		/obj/item/reagent_containers/blood/BPlus = 5,
+		/obj/item/reagent_containers/blood/BMinus = 5,
+		/obj/item/reagent_containers/blood/OPlus = 5,
+		/obj/item/reagent_containers/blood/OMinus = 5,
+		/obj/item/reagent_containers/blood/empty = 10,
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/obj/machinery/vending/nanoblood/Initialize(mapload, ndir)
+	. = ..()
+	setDir(ndir ? ndir : dir)
+
+/obj/machinery/vending/nanoblood/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_z = -14
+		if(SOUTH)
+			pixel_z = 26
+		if(EAST)
+			pixel_w = -19
+		if(WEST)
+			pixel_w = 21
+
 /obj/machinery/vending/security
 	name = "\improper SecTech"
 	desc = "A security equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	slogan_delay = 6 MINUTES
+	product_slogans = "Crack capitalist skulls!;\
+	eat some heads in!;\
+	Don't forget - harm is good!;\
+	Your weapons are right here.;\
+	Handcuffs!;\
+	Freeze, scumbag!;\
+	Don't tase me bro!;\
+	Tase them, bro.;\
+	Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	icon_vend = "sec-vend"
@@ -659,8 +762,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 /obj/machinery/vending/hydronutrients
 	name = "\improper NutriMax"
 	desc = "A plant nutrients vendor."
-	//product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
-	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
+	slogan_delay = 2 MINUTES
+	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;\
+	Now with 50% less stink!;\
+	Plants are people too!"
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
 	icon_vend = "nutri-vend"
@@ -679,8 +784,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 /obj/machinery/vending/hydroseeds
 	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
-	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
-	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
+	slogan_delay = 2 MINUTES
+	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;\
+	Hands down the best seed selection on the station!;\
+	Also certain mushroom varieties available, more for experts! Get certified today!"
 	icon_state = "seeds"
 	icon_deny = "seeds-deny"
 	icon_vend = "seeds-vend"
@@ -731,9 +838,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 	name = "\improper MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
-	//product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
 	vend_reply = "Have an enchanted evening!"
-	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
+	product_slogans = "Sling spells the proper way with MagiVend!;\
+	Be your own Houdini! Use MagiVend!"
 	products = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/clothing/suit/wizrobe = 1,
@@ -746,7 +853,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 /obj/machinery/vending/dinnerware
 	name = "\improper Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
-	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
+	slogan_delay = 6 MINUTES
+	product_slogans = "Mm, food stuffs!;\
+	Food and food accessories.;\
+	Get your plates!;\
+	You like forks?;\
+	I like forks.;\
+	Woo, utensils.;\
+	You don't really need these..."
 	icon_state = "dinnerware"
 	icon_vend = "dinnerware-vend"
 	icon_deny = "dinnerware-deny"
@@ -767,7 +881,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 	name = "BODA"
 	desc = "An old sweet water vending machine,how did this end up here?"
 	icon_state = "sovietsoda"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	slogan_delay = 3 MINUTES
+	product_slogans = "For Tsar and Country.;\
+	Have you fulfilled your nutrition quota today?;\
+	Very nice!;\
+	We are simple people, for this is all we eat.;\
+	If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda = 30,
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola = 20,

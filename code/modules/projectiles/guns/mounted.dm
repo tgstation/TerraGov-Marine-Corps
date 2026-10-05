@@ -362,8 +362,8 @@
 	icon = 'icons/obj/machines/deployable/mg08.dmi'
 	icon_state = "mg08"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/mg08_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/mg08_right_1.dmi',
 	)
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
@@ -394,10 +394,23 @@
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted/moveable
+	deployable_item = /obj/machinery/deployable/mounted/moveable/heavymachinegun
 
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+
+/obj/machinery/deployable/mounted/moveable/heavymachinegun
+	has_anchored_sprite = TRUE
+
+/obj/machinery/deployable/mounted/moveable/heavymachinegun/update_overlays()
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	if(!length(internal_gun?.chamber_items))
+		return
+	var/magazine_overlay = internal_gun.get_magazine_overlay(internal_gun.chamber_items[internal_gun.current_chamber_position])
+	if(!magazine_overlay)
+		return
+	. += "[magazine_overlay]_deployed"
 
 
 

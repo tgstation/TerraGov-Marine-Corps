@@ -3970,6 +3970,10 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_west)
+"su" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/west)
 "sv" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/lz1)
@@ -9275,6 +9279,11 @@
 	dir = 1
 	},
 /area/outpost/hallway/south_cent)
+"RC" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "RD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/yard/central)
@@ -14610,7 +14619,7 @@ Hg
 jW
 yA
 zh
-zh
+su
 nR
 XX
 XX
@@ -25094,7 +25103,7 @@ MG
 MU
 MG
 CU
-wz
+RC
 wz
 wz
 wz

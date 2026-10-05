@@ -124,6 +124,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
@@ -396,11 +398,8 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Perception distorting effects of the psychic scream*
 
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
-	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || (user.a_intent != INTENT_HARM && !iszombie(src)))
 		return ..()
-	if(iszombie(user))
-		to_chat(user, span_warning("You shouldn't rip out another zombie's heart."))
-		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
@@ -418,7 +417,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	remove_organ_slot(ORGAN_SLOT_HEART)
 	var/obj/item/organ/heart/heart = new
 	heart.die()
-	user.put_in_hands(heart)
+	user.dropItemToGround(heart)
 	if(iszombie(src))
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), heart), 9.5 SECONDS)
 		QDEL_IN(heart, 10 SECONDS)

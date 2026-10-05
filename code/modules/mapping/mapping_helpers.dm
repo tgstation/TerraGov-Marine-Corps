@@ -570,7 +570,7 @@
 	var/obj/structure/barricade/foundbarricade = locate(/obj/structure/barricade) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
-	if(foundbarricade.is_wired || !foundbarricade.can_wire)
+	if((foundbarricade.barricade_flags & BARRICADE_IS_WIRED) || !(foundbarricade.barricade_flags & BARRICADE_CAN_WIRE))
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [foundbarricade] wired but it's already wired!")
 	foundbarricade.wire()
 
@@ -641,7 +641,7 @@
 	var/obj/structure/barricade/folding/foundbarricade = locate(/obj/structure/barricade/folding) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
-	if(foundbarricade.is_open)
+	if(foundbarricade.barricade_flags & BARRICADE_OPEN)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to open [foundbarricade] but it's already open!")
 	foundbarricade.toggle_open()
 

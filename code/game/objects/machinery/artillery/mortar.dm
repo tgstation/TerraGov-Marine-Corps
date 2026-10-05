@@ -420,7 +420,7 @@
 	name = "artillery camera"
 	network = list("terragovartillery")
 	alpha = 0 //we shouldn't be able to see this!
-	internal_light = FALSE
+	camera_flags = CAMERA_OPERATING
 	c_tag = "impact camera"
 	resistance_flags = RESIST_ALL
 

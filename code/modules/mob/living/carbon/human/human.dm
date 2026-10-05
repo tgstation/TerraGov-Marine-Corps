@@ -68,8 +68,10 @@
 	//and display them
 	add_to_all_mob_huds()
 
-	GLOB.huds[DATA_HUD_BASIC].add_hud_to(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
+	var/datum/atom_hud/basic_hud = GLOB.huds[DATA_HUD_BASIC]
+	basic_hud.add_hud_to(src)
+	var/datum/atom_hud/heart_hud = GLOB.huds[DATA_HUD_XENO_HEART]
+	heart_hud.add_to_hud(src)
 
 /mob/living/carbon/human/register_init_signals()
 	. = ..()

@@ -13,8 +13,7 @@
 
 /obj/structure/platform/Initialize(mapload)
 	. = ..()
-	update_icon()
-	icon_state = null
+	update_appearance(UPDATE_ICON)
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
@@ -24,55 +23,59 @@
 	if(density)
 		AddComponent(/datum/component/climbable)
 
+/obj/structure/platform/update_icon_state()
+	icon_state = null
+	//Platform appearance is handled entirely through overlays, the default icon state is largely used for mapping visual purposes
+
 /obj/structure/platform/update_overlays()
 	. = ..()
 	var/image/new_overlay
 
 	if(dir & EAST)
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, EAST)
-		new_overlay.pixel_x = 32
+		new_overlay.pixel_w = 32
 		. += new_overlay
 
 	if(dir & WEST)
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, WEST)
-		new_overlay.pixel_x = -32
+		new_overlay.pixel_w = -32
 		. += new_overlay
 
 	if(dir & NORTH)
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTH)
-		new_overlay.pixel_y = 32
+		new_overlay.pixel_z = 32
 		new_overlay.layer = ABOVE_MOB_LAYER //perspective
 		. += new_overlay
 
 	if(dir & SOUTH)
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTH)
-		new_overlay.pixel_y = -32
+		new_overlay.pixel_z = -32
 		. += new_overlay
 
 	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHEAST))
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTHEAST)
-		new_overlay.pixel_y = 32
-		new_overlay.pixel_x = 32
+		new_overlay.pixel_z = 32
+		new_overlay.pixel_w = 32
 		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
 		. += new_overlay
 
 	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHWEST))
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTHWEST)
-		new_overlay.pixel_y = 32
-		new_overlay.pixel_x = -32
+		new_overlay.pixel_z = 32
+		new_overlay.pixel_w = -32
 		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
 		. += new_overlay
 
 	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHEAST))
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTHEAST)
-		new_overlay.pixel_y = -32
-		new_overlay.pixel_x = 32
+		new_overlay.pixel_z = -32
+		new_overlay.pixel_w = 32
 		. += new_overlay
 
 	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHWEST))
 		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTHWEST)
-		new_overlay.pixel_y = -32
-		new_overlay.pixel_x = -32
+		new_overlay.pixel_z = -32
+		new_overlay.pixel_w = -32
 		. += new_overlay
 
 /obj/structure/platform/nondense

@@ -46,6 +46,10 @@
 	/// The turf that was last weeded. Used for auto weeding.
 	var/turf/last_weeded_turf
 
+/datum/action/ability/activable/xeno/plant_weeds/encounter
+	keybinding_signals = null
+	weed_type = /obj/alien/weeds/node/resting
+
 /datum/action/ability/activable/xeno/plant_weeds/New(Target)
 	. = ..()
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
@@ -234,6 +238,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	var/dragging = FALSE
 	/// The percentage of maximum health to heal the owner whenever a structure is built.
 	var/heal_percentage = 0
+
+/datum/action/ability/activable/xeno/secrete_resin/encounter
+	keybinding_signals = null
+	scaling_wait = 3 SECONDS //They are less suited to building
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
@@ -1349,7 +1357,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
 	ability_cost = 100
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
@@ -1470,7 +1478,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	action_icon_state = "square2x2"
 	action_icon = 'icons/Xeno/patterns.dmi'
 	target_flags = ABILITY_TURF_TARGET
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
@@ -1620,3 +1628,27 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 			iterx = iterx - 1
 		starty = starty + 1
 	return turfs
+
+
+// ***************************************
+// *********** Xeno Warnings
+// ***************************************
+/obj/effect/temp_visual/xeno_warning
+	icon = 'icons/xeno/Effects.dmi'
+	icon_state = "generic_warning"
+	layer = BELOW_MOB_LAYER
+
+/obj/effect/temp_visual/xeno_warning/Initialize(mapload, _duration = 0.5 SECONDS, _color = COLOR_VIOLET)
+	. = ..()
+	duration = _duration
+	color = _color
+	animate(src, time = duration - 0.5 SECONDS)
+	animate(alpha = 0, time = 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT)
+	notify_ai_hazard()
+
+/// Warns nearby players, in any way or form, of an incoming ability and the range it will affect.
+/proc/xeno_warning(list/turf/target_turfs, duration, color)
+	if(!length(target_turfs))
+		CRASH("do_warning([length(target_turfs)]): improper argument")
+	for(var/turf/target_turf AS in target_turfs)
+		new /obj/effect/temp_visual/xeno_warning(target_turf, duration, color)

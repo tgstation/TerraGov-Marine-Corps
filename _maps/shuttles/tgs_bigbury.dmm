@@ -675,12 +675,12 @@
 	id = "Interior_Emergency_umbilical";
 	name = "Emergency door-control"
 	},
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/plasteel/small_stack,
 /obj/item/stack/sheet/plasteel/small_stack,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "qE" = (

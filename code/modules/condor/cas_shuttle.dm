@@ -249,6 +249,7 @@
 
 ///Handles clicking on a target while in CAS mode
 /obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
+	SIGNAL_HANDLER
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
@@ -270,7 +271,7 @@
 	if(!COOLDOWN_FINISHED(active_weapon, last_fired))
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
-	active_weapon.open_fire(target, attackdir)
+	active_weapon.open_fire(target, attackdir, source)
 	record_cas_activity(active_weapon)
 
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)

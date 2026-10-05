@@ -84,3 +84,7 @@
   - qol: changes the description of nanite injectors to better reflect the negative
       side effects of medical nanites.
   - qol: you cant use nanites on other players.
+2026-05-21:
+  Lumipharon:
+  - bugfix: The Ripley powerloader has had it's hover engines removed
+  - bugfix: Fixed a runtime whenever exiting a ripley

@@ -486,3 +486,11 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 // If set, enables the "Link forum account" OOC verb
 /datum/config_entry/string/forum_link_uri
+
+/// If admins with +DEBUG can initialize byond-tracy midround.
+/datum/config_entry/flag/allow_tracy_start
+	protection = CONFIG_ENTRY_LOCKED
+
+/// If admins with +DEBUG can queue byond-tracy to run the next round.
+/datum/config_entry/flag/allow_tracy_queue
+	protection = CONFIG_ENTRY_LOCKED

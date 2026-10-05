@@ -94,7 +94,7 @@
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
 	return "It's loaded with \a [src]."
 
-/obj/structure/ship_ammo/proc/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/proc/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	return
 
 //CAS impact prediction.
@@ -262,7 +262,7 @@
 
 	return strafelist
 
-/obj/structure/ship_ammo/cas/heavygun/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/heavygun/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
 	strafe_turfs(get_turfs_to_impact(impact, attackdir))
 
@@ -314,9 +314,9 @@
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
 
-/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN, explosion_cause="railgun")//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN, explosion_cause = "railgun", blame_mob = firer)//no messaging admin, that'd spam them.
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
@@ -366,7 +366,7 @@
 		end = get_step(end, attackdir)
 	return get_traversal_line(beginning, end)
 
-/obj/structure/ship_ammo/cas/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/laser_battery/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	var/list/turf/lazertargets = get_turfs_to_impact(impact, attackdir)
 	process_lazer(lazertargets)
 	if(!ammo_count)
@@ -407,9 +407,9 @@
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
-/obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer)
 	qdel(src)
 
 //ATGMs, defined by 3 second travel time and tight explosion sizes.
@@ -456,9 +456,9 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/napalm
 	crosshair = 'icons/UI_Icons/cas_crosshairs/napalm.dmi'
 
-/obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer)
 	flame_radius(fire_range, impact, 30, 60) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
@@ -484,9 +484,9 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/banshee
 	crosshair = 'icons/UI_Icons/cas_crosshairs/banshee.dmi'
 
-/obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range, explosion_cause=src) //more spread out, with flames
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range, explosion_cause = src, blame_mob = firer) //more spread out, with flames
 	qdel(src)
 
 //The fatty is well.. Fat.
@@ -504,10 +504,10 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 	crosshair = 'icons/UI_Icons/cas_crosshairs/fatty.dmi'
 
-/obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src) //first explosion is small to trick xenos into thinking its a minirocket.
-	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact), 3 SECONDS)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact, firer), 3 SECONDS)
 
 /**
  * proc/delayed_detonation(turf/impact)
@@ -516,13 +516,13 @@
  * * (turf/impact): targets impacted turf from first explosion
  */
 
-/obj/structure/ship_ammo/cas/rocket/fatty/proc/delayed_detonation(turf/impact)
+/obj/structure/ship_ammo/cas/rocket/fatty/proc/delayed_detonation(turf/impact, mob/firer)
 	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
 	for(var/i=1 to 8)
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, explosion_cause=src)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, explosion_cause = src, blame_mob = firer)
 	qdel(src)
 
 // This is the "Default" heavy rocket.
@@ -578,9 +578,9 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
 	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket.dmi'
 
-/obj/structure/ship_ammo/cas/minirocket/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
@@ -604,7 +604,7 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
 	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_incend.dmi'
 
-/obj/structure/ship_ammo/cas/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	. = ..()
 	flame_radius(fire_range, impact)
 
@@ -620,7 +620,7 @@
 	light_explosion_range = 2
 	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_smoke.dmi'
 
-/obj/structure/ship_ammo/cas/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
 	var/datum/effect_system/smoke_spread/tactical/S = new
 	S.set_up(7, impact)// Large radius, but dissipates quickly
@@ -638,9 +638,9 @@
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
 	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_tangle.dmi'
 
-/obj/structure/ship_ammo/cas/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0, explosion_cause=src)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0, explosion_cause = src, blame_mob = firer)
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
@@ -659,7 +659,7 @@
 	prediction_type = CAS_AMMO_HARMLESS
 	crosshair = 'icons/UI_Icons/cas_crosshairs/rocket_flare.dmi'
 
-/obj/structure/ship_ammo/cas/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
 	addtimer(CALLBACK(src, PROC_REF(drop_cas_flare), impact), 1.5 SECONDS)
 	if(!ammo_count)
@@ -691,9 +691,9 @@
 	crosshair = 'icons/UI_Icons/cas_crosshairs/tiny.dmi'
 
 
-/obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer)
 
 // Four hundos have no real gimmick beyond being a bigger payload.
 /obj/structure/ship_ammo/cas/bomb/fourhundred
@@ -749,9 +749,9 @@
 	crosshair = 'icons/UI_Icons/cas_crosshairs/dandelion.dmi'
 
 
-/obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
 	impact.ceiling_debris_check(2)
-	explosion(impact, heavy_explosion_range, light_explosion_range, explosion_cause=src)
+	explosion(impact, heavy_explosion_range, light_explosion_range, explosion_cause = src, blame_mob = firer)
 
 /obj/structure/ship_ammo/cas/bomblet/medium
 	name = "\improper AOE-75lb 'Poppies' stack"

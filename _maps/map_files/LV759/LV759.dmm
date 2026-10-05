@@ -88311,6 +88311,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/south_hallway)
+"pNq" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/ground/sandrock,
+/area/lv759/indoors/caves/central_caves)
 "pNt" = (
 /obj/structure/window/framed/urban/spaceport{
 	dir = 8
@@ -96893,6 +96897,10 @@
 /obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
+"rrW" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/ground/sandrock,
+/area/lv759/indoors/caves/north_caves)
 "rsa" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -154018,7 +154026,7 @@ pbh
 kPD
 meQ
 kgG
-kgG
+pNq
 kRv
 sFp
 sQn
@@ -156893,7 +156901,7 @@ cMi
 pjR
 miQ
 pjR
-pjR
+rrW
 pWA
 pjR
 pjR

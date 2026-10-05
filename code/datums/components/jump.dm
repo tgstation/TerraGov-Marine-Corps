@@ -194,7 +194,7 @@
 		return TRUE
 
 /obj/structure/barricade/is_jumpable(mob/living/jumper)
-	if(is_wired)
+	if(barricade_flags & BARRICADE_IS_WIRED)
 		return FALSE
 	return ..()
 

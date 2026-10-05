@@ -36,8 +36,8 @@
 // Mode defines.
 /// Should larva queue information be displayed in the status tab?
 #define MODE_INFESTATION (1<<0)
-/// Should late joining be disabled?
-#define MODE_NO_LATEJOIN (1<<1)
+/// Should encounter gamemode modifiers be enabled
+#define MODE_ENCOUNTER (1<<1)
 /// Should shutters automatically open after a certain period of time?
 #define MODE_LATE_OPENING_SHUTTER_TIMER (1<<2)
 ///  Should fog that only xenomorphs can passthrough be created?
@@ -186,6 +186,7 @@
 
 #define NUCLEAR_WAR_LARVA_POINTS_NEEDED 10
 #define CRASH_LARVA_POINTS_NEEDED 8
+#define ENCOUNTER_LARVA_POINTS_NEEDED 15
 
 #define FREE_XENO_AT_START 2
 
@@ -198,6 +199,10 @@
 #define ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX 120
 #define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN 20
 #define ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX 240
+#define ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_TUNNEL 400
+#define ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_TUNNEL 50
+#define ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_CYCLE 50
+#define ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_CYCLE 10
 #define ZOMBIE_CRASH_POINTS_MAXIMUM 60
 /// The marine pop considered to be high pop, only for Zombie Crash.
 #define HIGH_MARINE_POP_ZOMBIE_CRASH 20

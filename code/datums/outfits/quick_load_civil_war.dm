@@ -14,7 +14,7 @@
 	belt = /obj/item/storage/belt/shotgun/martini/full
 	back = /obj/item/weapon/gun/shotgun/double/martini
 	r_pocket = /obj/item/storage/pouch/firstaid
-	l_pocket = /obj/item/storage/holster/flarepouch/full
+	l_pocket = /obj/item/storage/holster/flarepouch/full/nogun
 
 	r_pocket_contents = list(
 		/obj/item/storage/pill_bottle/tramadol = 1,

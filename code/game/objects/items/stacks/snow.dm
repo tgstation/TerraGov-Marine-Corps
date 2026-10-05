@@ -115,8 +115,8 @@
 		if(O.density)
 			if(!(O.atom_flags & ON_BORDER) || O.dir == user.dir)
 				return
-	var/obj/structure/barricade/snow/SB = new(user.loc, user.dir)
+	var/obj/structure/barricade/snow/cade = new(user.loc, user)
 	user.visible_message(span_notice("[user] assembles a snow barricade."),
 	span_notice("You assemble a snow barricade."))
-	SB.setDir(user.dir)
+	cade.setDir(user.dir)
 	use(5)

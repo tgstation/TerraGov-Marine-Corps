@@ -115,6 +115,12 @@ ADMIN_VERB(shutdown_server, R_SERVER, "Shutdown Server", "Shuts the server down.
 	sleep(world.tick_lag) //so messages can get sent to players.
 	qdel(world) //there are a few ways to shutdown the server, but this is by far my favorite
 
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", ADMIN_CATEGORY_SERVER)
+	if(!SSticker.cancel_reboot(user))
+		return
+	log_admin("[key_name(user)] cancelled the pending world reboot.")
+	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
+
 ADMIN_VERB(toggle_ooc, R_SERVER, "Toggle OOC", "Toggles OOC for non-admins.", ADMIN_CATEGORY_SERVER)
 	GLOB.ooc_allowed = !GLOB.ooc_allowed
 
@@ -263,27 +269,48 @@ ADMIN_VERB(delay_start, R_SERVER, "Delay Round Start", "Delay the start of the r
 		log_admin("[key_name(user)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		message_admins("[ADMIN_TPMONTY(user.mob)] set the pre-game delay to [DisplayTimeText(newtime)].")
 
-ADMIN_VERB(delay_end, R_SERVER, "Delay Round End", "Delay the round end", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(set_reboot_time, R_SERVER, "Set Reboot Timer", "Set the restart timer.", ADMIN_CATEGORY_SERVER)
 	if(!SSticker)
 		return
 
-	if(SSticker.admin_delay_notice)
+	if(SSticker.delay_end)
 		if(alert(user, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
 			return
+		SSticker.delay_end = FALSE
 		SSticker.admin_delay_notice = null
-	else
-		var/reason = input(user, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
-		if(!reason)
-			return
-		if(SSticker.admin_delay_notice)
-			to_chat(user, span_warning("Someone already delayed the round end meanwhile."))
-			return
-		SSticker.admin_delay_notice = reason
 
-	SSticker.delay_end = !SSticker.delay_end
+	var/reboot_time = tgui_input_number(user, "Reboot in how many seconds?", "Restart time", 300, 600, 0, 30 SECONDS)
+	if(!isnum(reboot_time))
+		return
+	SSticker.Reboot(delay = reboot_time SECONDS)
 
-	log_admin("[key_name(user)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><h4>[ADMIN_TPMONTY(user.mob)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
+	log_admin("[key_name(user)] set the server to restart in [reboot_time] seconds.")
+	message_admins("<hr><h4>[ADMIN_TPMONTY(user.mob)] set the server to restart in [reboot_time] seconds.</h4><hr>")
+
+ADMIN_VERB(delay_end, R_SERVER, "Delay Round End", "Delay the round end", ADMIN_CATEGORY_SERVER)
+	if(SSticker.delay_end)
+		SSticker.delay_end = FALSE
+		SSticker.admin_delay_notice = null
+		log_admin("[key_name(user)] removed the restart delay.")
+		message_admins("[key_name_admin(user)] removed the restart delay. Note: This does not automatically trigger a new restart timer!")
+		return
+
+	var/delay_reason = input(user, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+
+	if(isnull(delay_reason))
+		return
+
+	if(SSticker.delay_end)
+		tgui_alert(user, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"", "Alert", list("Ok"))
+		return
+
+	SSticker.delay_end = TRUE
+	SSticker.admin_delay_notice = delay_reason
+	if(SSticker.reboot_timer)
+		SSticker.cancel_reboot(user)
+
+	log_admin("[key_name(user)] delayed the round end for reason: [SSticker.admin_delay_notice]")
+	message_admins("[key_name_admin(user)] delayed the round end for reason: [SSticker.admin_delay_notice]")
 
 ADMIN_VERB(toggle_gun_restrictions, R_FUN, "Toggle Gun Restrictions", "Toggle restriction on MP guns", ADMIN_CATEGORY_FUN)
 	if(!config)

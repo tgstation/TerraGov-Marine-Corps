@@ -22,6 +22,9 @@
 	var/y_offset = 0
 	COOLDOWN_DECLARE(next_fire)
 
+/obj/machinery/computer/supplydrop_console/som
+	faction = FACTION_SOM
+
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED, PROC_REF(ping_beacon))
@@ -77,6 +80,9 @@
 			for(var/beacon_name in beacon_list)
 				var/datum/supply_beacon/beacon = beacon_list[beacon_name]
 				if(!is_ground_level(beacon.drop_location.z))
+					beacon_list -= beacon_name
+					continue
+				if(beacon.faction != faction)
 					beacon_list -= beacon_name
 					continue
 			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]

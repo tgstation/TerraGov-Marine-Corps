@@ -1,0 +1,6 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - rscadd: "Xenos also get psy points from disk cycles"
+  - bugfix: "Fix xenos not getting psy points from tunnels,"
+  - rscdel: "Zombies cannot be drained by cocoons"

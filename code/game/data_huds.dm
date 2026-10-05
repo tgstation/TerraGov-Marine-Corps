@@ -11,35 +11,35 @@
 	return
 
 /mob/living/carbon/human/add_to_all_mob_huds()
-	for(var/h in GLOB.huds)
-		if(istype(h, /datum/atom_hud/xeno)) //this one is xeno only
+	for(var/hud_key, hud in GLOB.huds)
+		if(istype(hud, /datum/atom_hud/xeno)) //this one is xeno only
 			continue
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
+		var/datum/atom_hud/atom_hud = hud
+		atom_hud.add_to_hud(src)
 
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
-	for(var/h in GLOB.huds)
-		if(!istype(h, /datum/atom_hud/xeno))
+	for(var/hud_key, hud in GLOB.huds)
+		if(!istype(hud, /datum/atom_hud/xeno))
 			continue
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
+		var/datum/atom_hud/atom_hud = hud
+		atom_hud.add_to_hud(src)
 
 /atom/proc/remove_from_all_mob_huds()
 	return
 
 /mob/living/carbon/human/remove_from_all_mob_huds()
-	for(var/h in GLOB.huds)
-		if(istype(h, /datum/atom_hud/xeno))
+	for(var/hud_key, hud in GLOB.huds)
+		if(istype(hud, /datum/atom_hud/xeno))
 			continue
-		var/datum/atom_hud/hud = h
-		hud.remove_from_hud(src)
+		var/datum/atom_hud/atom_hud = hud
+		atom_hud.remove_from_hud(src)
 
 /mob/living/carbon/xenomorph/remove_from_all_mob_huds()
-	for(var/h in GLOB.huds)
-		if(!istype(h, /datum/atom_hud/xeno))
+	for(var/hud_key, hud in GLOB.huds)
+		if(!istype(hud, /datum/atom_hud/xeno))
 			continue
-		var/datum/atom_hud/hud = h
-		hud.remove_from_hud(src)
+		var/datum/atom_hud/atom_hud = hud
+		atom_hud.remove_from_hud(src)
 
 /datum/atom_hud/simple //Naked-eye observable statuses.
 	hud_icons = list(STATUS_HUD_SIMPLE)
@@ -510,8 +510,6 @@
 	holder.icon = 'icons/mob/hud/xeno_health.dmi'
 	var/plasma_amount = xeno_caste.plasma_max? round(plasma_stored * 100 / xeno_caste.plasma_max, 10) : 0
 	holder.overlays += xeno_caste.plasma_icon_state? "[xeno_caste.plasma_icon_state][plasma_amount]" : null
-	var/wrath_amount = xeno_caste.wrath_max? round(wrath_stored * 100 / xeno_caste.wrath_max, 10) : 0
-	holder.overlays += "wrath[wrath_amount]"
 
 /mob/living/carbon/xenomorph/update_aura_overlay()
 	var/image/holder = hud_list[PHEROMONE_HUD]

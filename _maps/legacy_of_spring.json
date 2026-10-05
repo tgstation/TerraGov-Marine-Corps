@@ -1,0 +1,9 @@
+{
+    "map_name": "Legacy of Spring",
+    "map_path": "map_files/Legacy_of_Spring",
+    "map_file": "TGS_Legacy_of_Spring.dmm",
+    "traits": [{
+		"Marine Main Ship": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
+}

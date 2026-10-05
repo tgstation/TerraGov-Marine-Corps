@@ -5438,6 +5438,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
+"ezb" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating,
+/area/lawankaoutpost/colony/biologics_storage)
 "ezr" = (
 /turf/open/floor,
 /area/lawankaoutpost/colony/atmos)
@@ -19573,6 +19577,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
+"qbc" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/south)
 "qbg" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#7a8c54";
@@ -56051,7 +56059,7 @@ pWO
 pWO
 pWO
 cXy
-pWO
+qbc
 pWO
 pWO
 xGW
@@ -59984,7 +59992,7 @@ cwe
 veS
 veS
 oMX
-mcj
+ezb
 iNo
 eVW
 vEg

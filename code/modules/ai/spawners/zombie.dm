@@ -39,7 +39,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED)
 	QDEL_NULL(proximity_monitor)
 
-/obj/effect/ai_node/spawner/zombie/plastique_act()
+/obj/effect/ai_node/spawner/zombie/plastique_act(mob/living/plastique_user)
 	spawn_defenders()
 
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)

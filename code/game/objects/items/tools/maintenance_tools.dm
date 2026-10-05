@@ -20,6 +20,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
+	usesound = 'sound/items/screwdriver.ogg'
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
@@ -71,6 +72,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
+	usesound = 'sound/items/wirecutter.ogg'
 	attack_verb = list("pinches", "nips")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1

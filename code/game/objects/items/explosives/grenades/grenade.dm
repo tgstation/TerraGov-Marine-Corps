@@ -92,12 +92,12 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	det_timer = addtimer(CALLBACK(src, PROC_REF(prime), user), det_time, TIMER_STOPPABLE)
 	notify_ai_hazard()
 	return TRUE
 
-///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
-/obj/item/explosive/grenade/proc/prime()
+///Detonation effects
+/obj/item/explosive/grenade/proc/prime(mob/user)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/idiot = loc
 		var/in_hand = FALSE
@@ -114,7 +114,7 @@
 			if(idiot.ckey)
 				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
 				personal_statistics.grenade_hand_delimbs ++
-	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause=src)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause = src, blame_mob = user)
 	qdel(src)
 
 ///Adjusts det time, used for grenade launchers
