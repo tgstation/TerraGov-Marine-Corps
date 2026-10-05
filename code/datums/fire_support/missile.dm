@@ -39,7 +39,7 @@
 	var/outer_range = 9
 
 /datum/fire_support/rad_missile/do_impact(turf/target_turf)
-	playsound(target_turf, 'sound/effects/portal_opening.ogg', 100, FALSE)
+	playsound(target_turf, 'sound/effects/portal_opening.ogg', 100, FALSE, LOUD_SOUND_RANGE)
 	for(var/mob/living/victim in hearers(outer_range, target_turf))
 		var/strength
 		var/sound_level
