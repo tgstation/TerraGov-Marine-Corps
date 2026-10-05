@@ -5,7 +5,6 @@
 #define CHARGE_BULL (1<<1)
 #define CHARGE_BULL_HEADBUTT (1<<2)
 #define CHARGE_BULL_GORE (1<<3)
-#define CHARGE_BEHEMOTH (1<<4)
 
 #define STOP_CRUSHER_ON_DEL (1<<0)
 
@@ -229,9 +228,6 @@
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
 					playsound(charger, SFX_ALIEN_FOOTSTEP_LARGE, 50)
-			if(CHARGE_BEHEMOTH)
-				if(MODULUS(valid_steps_taken, 2) == 0)
-					playsound(charger, SFX_BEHEMOTH_ROLLING, 30)
 
 	lastturf = charger.loc
 
@@ -268,10 +264,8 @@
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
 
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
+	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE) && !isliving(crushed))
 		do_stop_momentum()
-		if(charge_type & CHARGE_BEHEMOTH)
-			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		if(istype(crushed, /obj/structure/razorwire))
 			var/obj/structure/razorwire/crushed_wire = crushed
 			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
@@ -625,7 +619,7 @@
 		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
-		if(CHARGE_CRUSH, CHARGE_BULL, CHARGE_BEHEMOTH)
+		if(CHARGE_CRUSH, CHARGE_BULL)
 			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
 			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc
