@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Adds the RFD to the engineering vendor, allowing for quick and convenient deconstruction of barricades and razorwire"
