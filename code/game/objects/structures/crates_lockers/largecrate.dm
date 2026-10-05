@@ -226,7 +226,7 @@
 		span_notice("You weld open \the [src]."),
 		span_notice("You hear loud hissing and the sound of metal falling over."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
-		deconstruct(TRUE)
+	deconstruct(TRUE)
 	return TRUE
 
 

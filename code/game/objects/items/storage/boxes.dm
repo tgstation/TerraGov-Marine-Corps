@@ -253,7 +253,7 @@
 		M.light_match()
 	else
 		playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
-				return TRUE
+	return TRUE
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"

@@ -92,7 +92,7 @@ Stepping directly on the mine will also blow it up
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-		update_icon()
+	update_icon()
 	if(user)
 		user.drop_held_item()
 		setDir(user.dir)
