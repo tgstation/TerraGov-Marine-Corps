@@ -82,6 +82,7 @@
 
 		to_chat(user, span_notice("Constructing support lattice ..."))
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		ReplaceWithLattice()
 
 	else if(istype(I, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
@@ -94,6 +95,8 @@
 			return
 		qdel(L)
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		S.build(src)
+		S.use(1)
 
 
 /turf/open/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)

@@ -240,16 +240,20 @@
 	spawn_number = 14
 
 /obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/match))
-		var/obj/item/tool/match/M = I
+	if(!istype(I, /obj/item/tool/match))
+		return ..()
 
-		if(M.heat || M.burnt)
-			return ..()
+	var/obj/item/tool/match/M = I
 
-		if(prob(50))
-			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
-		else
-			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
+	if(M.heat || M.burnt)
+		return ..()
+
+	if(prob(50))
+		playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
+		M.light_match()
+	else
+		playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
+				return TRUE
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"

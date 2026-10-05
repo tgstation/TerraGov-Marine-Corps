@@ -227,7 +227,7 @@
 	if(.)
 		return
 	if(ishuman(usr))
-		pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1, SUPPRESSED_SOUND_RANGE), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1, SUPPRESSED_SOUND_RANGE), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1), SUPPRESSED_SOUND_RANGE)
+		playsound(src, pick(list('sound/machines/computer_typing1.ogg', 'sound/machines/computer_typing2.ogg', 'sound/machines/computer_typing3.ogg')), 5, TRUE, SUPPRESSED_SOUND_RANGE)
 
 ///So Xenos can smash computers out of the way without actually breaking them
 /obj/machinery/computer/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)

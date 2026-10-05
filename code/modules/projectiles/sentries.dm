@@ -378,6 +378,8 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25)
 
+	sentry_start_fire()
+
 ///Checks the nearby mobs for eligability. If they can be targets it stores them in potential_targets. Returns TRUE if there are targets, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/scan()
 	var/obj/item/weapon/gun/gun = get_internal_item()

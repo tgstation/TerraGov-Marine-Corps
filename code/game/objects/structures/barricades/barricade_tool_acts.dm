@@ -8,6 +8,8 @@
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+	balloon_alert_to_viewers("removed")
+	modify_max_integrity(max_integrity - 50)
 	barricade_flags |= BARRICADE_CAN_WIRE
 	DISABLE_BITFIELD(barricade_flags, BARRICADE_IS_WIRED)
 	AddComponent(/datum/component/climbable)
@@ -161,6 +163,7 @@
 	user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 	span_notice("You take [src]'s panels apart."))
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	deconstruct(!get_self_acid())
 	return TRUE
 
 ///Shovels the barricade, for snow cades and such

@@ -119,6 +119,7 @@
 			to_chat(user, span_notice("You turn off the light."))
 		set_light(0)
 	playsound(src,'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
+	update_icon()
 	turn_light(user, !light_on)
 
 /obj/machinery/deployable/floodlight/update_icon_state()
@@ -229,4 +230,6 @@
 		to_chat(user, span_notice("Nothing happens."))
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
+	toggle_lights(turned_on ? FALSE : TRUE)
+	update_icon()
 	return TRUE

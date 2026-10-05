@@ -226,6 +226,15 @@
 		span_notice("You weld open \the [src]."),
 		span_notice("You hear loud hissing and the sound of metal falling over."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+		deconstruct(TRUE)
+	return TRUE
+
+
+/obj/structure/largecrate/random/barrel/examine(mob/user)
+	. = ..()
+	. += span_notice("You need a blowtorch to weld this open!")
+
+/obj/structure/largecrate/random/barrel/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/largecrate/random/barrel

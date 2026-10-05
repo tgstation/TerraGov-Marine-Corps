@@ -73,6 +73,8 @@
 	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1, SHORT_SOUND_RANGE)
 		return
+	if(source.incapacitated(TRUE))
+		return
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
@@ -227,6 +229,7 @@
 	if(ammo.current_rounds > 0)
 		return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	eject_ammo()
 	if(LAZYACCESS(current_firer.do_actions, src) || length(ammo_magazine) < 1)
 		return AUTOFIRE_SUCCESS
 	var/obj/item/ammo_magazine/tank/new_mag = ammo_magazine[1]

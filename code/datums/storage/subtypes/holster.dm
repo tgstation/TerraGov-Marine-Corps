@@ -38,6 +38,25 @@
 	if(silent)
 		return
 	playsound(parent, draw_sound, 15, 1, SHORT_SOUND_RANGE)
+
+/datum/storage/holster/backholster
+	max_w_class = WEIGHT_CLASS_NORMAL //normal items
+	max_storage_space = 24
+	access_delay = 1.5 SECONDS ///0 out for satchel types
+
+/datum/storage/holster/backholster/rpg
+	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_BULKY
+	access_delay = 0.5 SECONDS
+
+/datum/storage/holster/backholster/rpg/freelancer
+	storage_slots = 7
+	max_storage_space = 30
+	max_w_class = WEIGHT_CLASS_BULKY
+	access_delay = 0.5 SECONDS
+
+/datum/storage/holster/backholster/rpg/New(atom/parent)
+	. = ..()
 	set_holdable(
 		can_hold_list = list(
 			/obj/item/ammo_magazine/rocket,

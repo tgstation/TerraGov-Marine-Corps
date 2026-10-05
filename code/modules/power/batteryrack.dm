@@ -106,6 +106,12 @@
 			return
 
 		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
+		M.state = 2
+		M.icon_state = "box_1"
+		for(var/obj/O in component_parts)
+			O.forceMove(loc)
+		qdel(src)
 
 	else if((istype(I, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(I, /obj/item/cell) && (cells_amount < 5)))
 		if(charge >= (capacity / 100))

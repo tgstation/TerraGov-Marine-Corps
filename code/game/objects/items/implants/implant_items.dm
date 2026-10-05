@@ -57,6 +57,9 @@
 /obj/item/implant/deployitem/blade/put_in_slots()
 	. = ..()
 	playsound(implant_owner.loc, 'sound/weapons/wristblades_on.ogg', 15, TRUE, SHORT_SOUND_RANGE)
+
+/obj/item/implant/deployitem/blade/fetch_item()
+	. = ..()
 	playsound(implant_owner.loc, 'sound/weapons/wristblades_off.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 
 /obj/item/weapon/sword/mantisblade

@@ -1307,7 +1307,7 @@
 
 	flick("outlet-open", src)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0, MEDIUM_SOUND_RANGE)
-	sleep(2 SECONDS) //Wait until correct animation frame //Wait until correct animation frame
+	sleep(2 SECONDS) //Wait until correct animation frame
 	playsound(src, 'sound/machines/hiss.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 
 	if(H)

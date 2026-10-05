@@ -35,6 +35,8 @@
 		user.balloon_alert(user, "need [ARMORED_WRECK_PLASTEEL_REQ]")
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+	armored_flags |= ARMORED_WRECK_PREP_STAGE_ONE
+	balloon_alert_to_viewers("wreck prepped!")
 
 ///The fastening process for the fulton on the wreck, the final stage of extraction
 /obj/vehicle/sealed/armored/proc/prep_wreck(mob/user)

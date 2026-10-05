@@ -117,6 +117,7 @@
 		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		special_attack?.remove_action(user)
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"

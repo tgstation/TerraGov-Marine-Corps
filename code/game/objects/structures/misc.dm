@@ -89,6 +89,45 @@
 		reagents.trans_to(I, 5)
 		to_chat(user, span_notice("You wet [I] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+
+/obj/structure/shipmast
+	name = "Ships Mast"
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
+	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
+	layer = ABOVE_MOB_LAYER
+	density = TRUE
+	anchored = TRUE
+
+/obj/structure/shipmast/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	switch(user.a_intent)
+		if(INTENT_HELP)
+			visible_message("[usr] rubs the [src] for good luck.")
+		if(INTENT_DISARM)
+			visible_message("[usr] pushes the [src]. It's surprisingly solid.")
+		if(INTENT_GRAB)
+			visible_message("[usr] hugs the [src].")
+		if(INTENT_HARM)
+			visible_message("[usr] punches the [src] while letting out a muttered curse.")
+
+//ICE COLONY RESEARCH DECORATION-----------------------//
+//Most of icons made by ~Morrinn
+/obj/structure/xenoautopsy
+	name = "Research thingies"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "jarshelf_9"
+
+/obj/structure/xenoautopsy/jar_shelf
+	name = "jar shelf"
+	icon_state = "jarshelf_0"
+	var/randomise = 1 //Random icon
+
+/obj/structure/xenoautopsy/jar_shelf/Initialize(mapload)
+	. = ..()
+	if(randomise)
 		icon_state = "jarshelf_[rand(0,9)]"
 
 /obj/structure/xenoautopsy/tank

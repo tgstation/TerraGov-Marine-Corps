@@ -959,6 +959,7 @@
 	// If we have a spur mutation, using this ability while we have a pillar will make us deal additional damage.
 	if(spur_mutation && xeno_owner.held_pillar)
 		playsound(target.loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+		new /obj/effect/temp_visual/behemoth/earth_pillar/creation/destruction(target.loc)
 		xeno_owner.held_pillar.take_damage(xeno_owner.held_pillar.max_integrity * EARTH_MIGHT_PILLAR_DAMAGE, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, xeno_owner.dir, 100, xeno_owner)
 		xeno_owner.held_pillar.when_dropped(xeno_owner, target.loc)
 		ability_damage *= EARTH_MIGHT_ADDITIONAL_DAMAGE

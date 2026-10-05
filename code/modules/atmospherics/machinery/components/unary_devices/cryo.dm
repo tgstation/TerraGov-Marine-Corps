@@ -204,6 +204,13 @@
 	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	go_out()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	ui_interact(user)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

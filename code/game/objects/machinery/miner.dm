@@ -306,6 +306,8 @@
 		add_tick = 0
 		say("[stored_mineral] Ore shipment\s is ready to be exported.")
 		playsound(loc,'sound/machines/ping.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
+	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
+		stop_processing()
 	else
 		add_tick += 1
 

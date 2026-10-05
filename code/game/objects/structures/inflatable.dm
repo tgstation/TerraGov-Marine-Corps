@@ -94,6 +94,7 @@
 		return
 	deflated = TRUE
 	playsound(loc, 'sound/machines/hiss.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	visible_message("[src] [violent ? "rapidly" : "slowly"] deflates!")
 	flick("wall_[violent ? "popping" : "deflating"]", src)
 	addtimer(CALLBACK(src, PROC_REF(post_deflate), violent), violent ? 1 SECONDS : 5 SECONDS)
 

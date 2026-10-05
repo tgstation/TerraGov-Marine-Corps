@@ -136,9 +136,11 @@
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
 		playsound(user,'sound/machines/click.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
+		unset_target()
 		return
 	if(!bino_checks(target, user))
 		playsound(user,'sound/machines/click.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
+		unset_target()
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35, FALSE, SHORT_SOUND_RANGE)

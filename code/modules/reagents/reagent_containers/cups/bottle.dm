@@ -257,6 +257,9 @@
 	B.icon = I
 
 	playsound(src, SFX_SHATTER, 25, 1, MEDIUM_SOUND_RANGE)
+	user.put_in_active_hand(B)
+
+	qdel(src)
 
 /obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target as mob, mob/living/user as mob)
 
