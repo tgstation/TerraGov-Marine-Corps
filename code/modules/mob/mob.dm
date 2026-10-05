@@ -100,14 +100,14 @@
 	return TRUE
 
 /**
- * Show a message to all player mobs who sees this atom
- * Show a message to the src mob (if the src is a mob)
+ * Show a message to all player mobs who sees this atom \
+ * Show a message to the src mob (if the src is a mob) \
  * Use for atoms performing visible actions
  * message is output to anyone who can see, e.g. "The [src] does something!"
- * self_message (optional) is what the src mob sees e.g. "You do something!"
- * blind_message (optional) is what blind people will hear e.g. "You hear something!"
- * vision_distance (optional) define how many tiles away the message can be seen.
- * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
+ * - self_message (optional) is what the src mob sees e.g. "You do something!"
+ * - blind_message (optional) is what blind people will hear e.g. "You hear something!"
+ * - vision_distance (optional) define how many tiles away the message can be seen.
+ * - ignored_mob (optional) doesn't show any message to a given mob if they're present within the variable, this can be a list.
  */
 /atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
 	var/turf/T = get_turf(src)
