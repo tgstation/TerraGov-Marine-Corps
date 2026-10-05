@@ -23,7 +23,6 @@
 	var/build_state = BARRICADE_FIRM
 	///The skill level for maintaining this barricade
 	var/skill_level = SKILL_ENGINEER_METAL
-	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 
 /obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
@@ -124,19 +123,19 @@
 		. += image(icon, icon_state = "[base_icon_state]_wire", layer = dir == NORTH ? layer : ABOVE_MOB_LAYER) //it will layer under certain upgrades in some cases otherwise
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))
-		new /obj/item/stack/barbed_wire(loc)
-	if(stack_type)
-		return_stack(disassembled)
-	return ..()
+	. = return_stack(disassembled)
+	..()
 
 ///Refunds stacks on destruction or disassembly
 /obj/structure/barricade/proc/return_stack(disassembled = TRUE)
+	. = list()
+	if(disassembled && (barricade_flags & BARRICADE_IS_WIRED))
+		. += new /obj/item/stack/barbed_wire(loc)
 	var/stack_amt = destroyed_stack_amount
 	if(disassembled)
 		stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 	if(stack_amt)
-		new stack_type (loc, stack_amt)
+		. += new stack_type (loc, stack_amt)
 
 ///How much this cade should be repaired by any ordinary effect
 /obj/structure/barricade/proc/get_repair_amount()
