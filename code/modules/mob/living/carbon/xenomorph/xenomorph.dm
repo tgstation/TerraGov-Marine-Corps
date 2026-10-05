@@ -612,6 +612,9 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 /mob/living/carbon/xenomorph/proc/sync_hive_abilities()
 	if(hive)
 		for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
+			if(xeno_caste.caste_flags & CASTE_IS_A_MINION)
+				continue
+
 			if(((hive_ability::parent_type) in xeno_caste.actions) && !hive_ability::cooldown_duration)
 				continue
 			add_ability(hive_ability)
