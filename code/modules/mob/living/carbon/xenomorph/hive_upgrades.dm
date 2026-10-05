@@ -531,10 +531,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 	GLOB.hive_datums[buyer.hivenumber].hive_abilities += ability
+	message_admins("A [ability]")
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
+		message_admins("A1")
 		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			message_admins("A2")
 			continue
-		if(((ability::parent_type) in xeno.xeno_caste.actions) && !ability::cooldown_duration)
+
+		if(((ability::parent_type) in (xeno.xeno_caste.actions)) && !ability::cooldown_duration)
+			message_admins("A3 [ability.parent_type], [ability.cooldown_duration]")
 			continue
 		xeno.add_ability(ability)
 
@@ -548,7 +553,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/weed
 	name = "Unrestricted resting weeds"
 	desc = "All castes can plant resting weed"
-	psypoint_cost = 500
+	psypoint_cost = 000
 	ability = /datum/action/ability/activable/xeno/plant_weeds/encounter
 	icon = "weeds"
 
@@ -569,7 +574,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/fireball
 	name = "Fireball blessing"
 	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
-	psypoint_cost = 1000
+	psypoint_cost = 0000
 	ability = /datum/action/ability/activable/xeno/fireball/encounter
 	icon = "fireball"
 

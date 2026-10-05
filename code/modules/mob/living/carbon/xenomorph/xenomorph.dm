@@ -612,8 +612,18 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 
 /// Gives the xeno hive abilities from the hive's ability list
 /mob/living/carbon/xenomorph/proc/sync_hive_abilities()
+	message_admins("B [hive], [hive.hive_abilities]")
 	if(hive)
-		for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
+		// for(var/ga in hive.global_abilities)
+		// 	var/datum/action/ability/global_ability = ga //WHY???
+		for(var/a in (hive.hive_abilities))
+			var/datum/action/ability/hive_ability = a
+			message_admins("B4")
+			if(((hive_ability.parent_type) in xeno_caste.actions) && !hive_ability.cooldown_duration)
+				continue
+			add_ability(hive_ability)
+		for(var/datum/action/ability/hive_ability in hive.hive_abilities)
+			message_admins("B3")
 			if(((hive_ability.parent_type) in xeno_caste.actions) && !hive_ability.cooldown_duration)
 				continue
 			add_ability(hive_ability)

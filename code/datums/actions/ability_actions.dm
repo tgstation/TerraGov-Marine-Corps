@@ -285,7 +285,9 @@
 
 ///adds an ability to the mob
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
+	message_admins("C")
 	if(!new_ability)
+		message_admins("C2")
 		return
 	new_ability = new new_ability(src)
 	new_ability.give_action(src)
