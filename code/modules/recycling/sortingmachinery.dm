@@ -368,6 +368,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	density = TRUE
 	icon_state = "intake"
 
+	can_be_landed_on = FALSE
 	var/c_mode = 0
 
 /obj/machinery/disposal/deliveryChute/Initialize(mapload)

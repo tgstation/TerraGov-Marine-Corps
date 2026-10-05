@@ -126,7 +126,11 @@
 		if(!M.client)
 			continue
 
-		if(M == ignored_mob)
+		if(islist(ignored_mob) && length(ignored_mob))
+			var/list/list_of_ignored_mobs = ignored_mob
+			if(M in list_of_ignored_mobs)
+				continue
+		else if (M == ignored_mob)
 			continue
 
 		var/msg = message

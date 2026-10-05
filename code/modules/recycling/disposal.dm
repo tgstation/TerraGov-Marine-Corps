@@ -24,6 +24,7 @@
 	var/flush_count = 0 //This var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
 	var/disposal_pressure = 0
+	var/can_be_landed_on = TRUE
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize(mapload)
@@ -35,10 +36,15 @@
 	else
 		trunk.set_linked(src)	//Link the pipe trunk to self
 
-
 	update()
 	start_processing()
 
+	if(!can_be_landed_on)
+		return
+	var/static/list/connections = list(
+		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(mob_landed_on),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/disposal/Destroy()
 	if(length(contents))
@@ -431,6 +437,29 @@
 		return FALSE
 	else
 		return ..()
+
+/obj/machinery/disposal/proc/mob_landed_on(turf/landing_spot, mob/lander, feedback = TRUE, dispose = TRUE)
+	if(QDELETED(lander) || QDELETED(src))
+		return FALSE
+	// According to MouseDrop_T, those are not allowed
+	if(!isliving(lander) || isAI(lander) || isxeno(lander) || lander.anchored || lander.buckled || lander.mob_size >= MOB_SIZE_BIG)
+		return FALSE
+
+	var/list/going_to_fall = list(lander)
+	for(var/mob/rider in lander.buckled_mobs)
+		lander.unbuckle_mob(rider)
+		if(mob_landed_on(loc, rider, feedback = FALSE, dispose = FALSE))
+			going_to_fall += rider
+	lander.forceMove(src)
+	. = TRUE
+
+	if(dispose)
+		INVOKE_ASYNC(src, PROC_REF(flush))
+
+	if(!feedback)
+		return
+	visible_message(span_warning("[english_list(going_to_fall)] land[(length(going_to_fall) == 1) || "s"] inside [src]!"), ignored_mob = going_to_fall)
+	to_chat(going_to_fall, span_boldwarning("You land inside [src]!"))
 
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
