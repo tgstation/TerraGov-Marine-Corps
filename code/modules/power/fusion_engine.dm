@@ -211,15 +211,10 @@
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-	balloon_alert_to_viewers("Starts securing [src]'s wiring")
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user,  10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), NONE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 		return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-	buildstate = FUSION_ENGINE_LIGHT_DAMAGE
-	balloon_alert_to_viewers("Secures [src]'s wiring")
-	update_icon()
-	record_generator_repairs(user)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
@@ -236,15 +231,10 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	balloon_alert_to_viewers("Starts repairing [src]'s tubing")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user,  15 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), NONE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 		return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	buildstate = FUSION_ENGINE_NO_DAMAGE
-	balloon_alert_to_viewers("Repairs [src]'s tubing")
-	update_icon()
-	record_generator_repairs(user)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /obj/machinery/power/fusion_engine/crowbar_act(mob/living/user, obj/item/O)
@@ -264,8 +254,7 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-	balloon_alert_to_viewers("Starts prying [src]'s fuel bay open")
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), NONE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
 		return FALSE
 	balloon_alert_to_viewers("Pries [src]'s fuel bay open and removes the cell")

@@ -34,9 +34,7 @@
 	if(!plasteel.use(ARMORED_WRECK_PLASTEEL_REQ))
 		user.balloon_alert(user, "need [ARMORED_WRECK_PLASTEEL_REQ]")
 		return
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	armored_flags |= ARMORED_WRECK_PREP_STAGE_ONE
-	balloon_alert_to_viewers("wreck prepped!")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 ///The fastening process for the fulton on the wreck, the final stage of extraction
 /obj/vehicle/sealed/armored/proc/prep_wreck(mob/user)
@@ -51,7 +49,7 @@
 		return
 
 	while(wreck_repair_stage < ARMORED_WRECK_STAGE_MAX)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		if(!do_after(user, (5 + skill_diff) SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 		if(wreck_repair_stage >= ARMORED_WRECK_STAGE_MAX)

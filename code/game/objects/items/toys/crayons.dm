@@ -102,11 +102,6 @@
 		return ..()
 
 	user.visible_message(span_notice("[user] takes a bite of \the [src] and swallows it."))
-	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
-	uses -= 5
-	if(uses <= 0)
-		qdel(src)
-
-	M.adjustToxLoss(1) // add a little bit of toxic damage
+	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE) // add a little bit of toxic damage
 	if(istype(src, /obj/item/toy/crayon/mime))
 		M.apply_status_effect(STATUS_EFFECT_MUTED, 30 SECONDS)

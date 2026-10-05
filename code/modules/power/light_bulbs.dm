@@ -137,5 +137,4 @@
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = IS_SHARP_ITEM_SIMPLE
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		update()
+		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1, MEDIUM_SOUND_RANGE)

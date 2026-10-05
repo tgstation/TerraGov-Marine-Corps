@@ -171,6 +171,6 @@
 	. = ..()
 	if(CHECK_BITFIELD(item_flags, WIELDED))
 		return
-	playsound(loc, 'sound/machines/switch.ogg', 25)
+	playsound(loc, 'sound/machines/switch.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	toggle_active()
 	toggle_motor(user)

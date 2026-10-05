@@ -112,7 +112,7 @@
 
 			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
-				playsound(loc, attack.miss_sound, 25, TRUE)
+				playsound(loc, attack.miss_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 				visible_message(span_danger("[human_user] [attack_verb] at [src], but misses!"), null, null, 5)
 				log_combat(human_user, src, "[attack_verb]", "(missed)")
 				if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
@@ -127,7 +127,7 @@
 			if(!lying_angle)
 				damage = rand(1, max_dmg)
 
-			playsound(loc, attack.attack_sound, 25, TRUE)
+			playsound(loc, attack.attack_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 			visible_message(span_danger("[human_user] [attack_verb] [src]!"), null, null, 5)
 			var/list/hit_report = list()

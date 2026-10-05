@@ -57,7 +57,7 @@
 /obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
 	. = ..()
 	if((reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used))
-		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 	update_icon()
 
@@ -79,14 +79,14 @@
 		paralyze = crush_paralyze_amount
 		knockback = 0
 		balloon_alert(user, "mode: CRUSH")
-		playsound(loc, 'sound/machines/switch.ogg', 25)
+		playsound(loc, 'sound/machines/switch.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
 	stun = knockback_stun_amount
 	paralyze = knockback_paralyze_amount
 	knockback = 1
 	balloon_alert(user, "mode: KNOCKBACK")
-	playsound(loc, 'sound/machines/switch.ogg', 25)
+	playsound(loc, 'sound/machines/switch.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(!CHECK_BITFIELD(item_flags, WIELDED))

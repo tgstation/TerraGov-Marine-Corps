@@ -129,6 +129,6 @@
 
 /datum/emote/living/carbon/xenomorph/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	if(istype(user, /mob/living/carbon/xenomorph/larva))
-		playsound(user.loc, SFX_ALIEN_ROAR_LARVA, 15)
+		playsound(user.loc, SFX_ALIEN_ROAR_LARVA, 15, FALSE, SHORT_SOUND_RANGE)
 	else
 		return ..()

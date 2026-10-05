@@ -45,8 +45,7 @@
 	attack_speed = 16
 
 /obj/item/weapon/twohanded/glaive/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"

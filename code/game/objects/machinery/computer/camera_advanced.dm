@@ -92,7 +92,7 @@
 	current_user = null
 	user.unset_interaction()
 	user.client.view_size.unsupress()
-	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
+	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
@@ -419,16 +419,16 @@
 		if(length(tempnetwork))
 			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
-	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
+	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	var/camera = tgui_input_list(owner, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
-	playsound(src, SFX_TERMINAL_TYPE, 25, 0)
+	playsound(src, SFX_TERMINAL_TYPE, 25, 0, MEDIUM_SOUND_RANGE)
 
 	if(!C)
-		playsound(origin, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)
+		playsound(origin, 'sound/machines/terminal_prompt_deny.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 		return
 
-	playsound(origin, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
+	playsound(origin, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	remote_eye.setLoc(get_turf(C))
 	L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 	L.clear_fullscreen("flash", 3)

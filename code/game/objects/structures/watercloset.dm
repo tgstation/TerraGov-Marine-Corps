@@ -57,7 +57,7 @@
 
 	if(iscrowbar(I))
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
@@ -335,7 +335,7 @@
 		return
 
 	balloon_alert_to_viewers("washing hands...")
-	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
+	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	busy = TRUE
 	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC))

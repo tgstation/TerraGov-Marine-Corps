@@ -145,7 +145,7 @@
 		var/turf/currentturf = get_turf(src)
 		if(is_type_in_list(dirtyobject, cleantypes))
 			if(is_cleanable(dirtyobject) && has_cleaned)
-				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+				playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				currentturf.wet_floor()
 				has_cleaned = FALSE
 			flick("cleanbot-c", src)

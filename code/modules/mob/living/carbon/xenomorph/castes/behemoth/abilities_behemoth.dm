@@ -690,7 +690,7 @@
 		if(istype(movable_checked, /obj/structure/razorwire) && movable_checked.anchored) // Razorwire will stop our charge and entangle us. Effects partially mirrored from Crusher's charge.
 			end_charge()
 			var/obj/structure/razorwire/hit_razorwire = movable_checked
-			playsound(hit_razorwire.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+			playsound(hit_razorwire.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			var/razorwire_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 			hit_razorwire.take_damage(razorwire_damage, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, get_dir(hit_razorwire, xeno_owner), xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
@@ -958,8 +958,7 @@
 	var/ability_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 	// If we have a spur mutation, using this ability while we have a pillar will make us deal additional damage.
 	if(spur_mutation && xeno_owner.held_pillar)
-		playsound(target.loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 25, TRUE)
-		new /obj/effect/temp_visual/behemoth/earth_pillar/creation/destruction(target.loc)
+		playsound(target.loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		xeno_owner.held_pillar.take_damage(xeno_owner.held_pillar.max_integrity * EARTH_MIGHT_PILLAR_DAMAGE, xeno_owner.xeno_caste.melee_damage_type, xeno_owner.xeno_caste.melee_damage_armor, TRUE, xeno_owner.dir, 100, xeno_owner)
 		xeno_owner.held_pillar.when_dropped(xeno_owner, target.loc)
 		ability_damage *= EARTH_MIGHT_ADDITIONAL_DAMAGE

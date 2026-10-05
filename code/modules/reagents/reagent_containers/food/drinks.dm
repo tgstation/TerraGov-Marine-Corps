@@ -37,7 +37,7 @@
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return TRUE
 		else
 			var/mob/living/carbon/H = M
@@ -58,7 +58,7 @@
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
 
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return TRUE
 
 	return FALSE

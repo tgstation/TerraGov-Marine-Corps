@@ -479,7 +479,7 @@
 		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
 		span_xenowarning("We feel a soothing chill."))
 
-	playsound(target, SFX_ALIEN_DROOL, 25)
+	playsound(target, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()

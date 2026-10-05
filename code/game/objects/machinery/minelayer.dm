@@ -36,13 +36,13 @@
 	var/turf/turf_list = RANGE_TURFS(range, loc)
 	var/obj/item/card/id/id = user.get_idcard()
 	iff_signal = id?.iff_signal
-	playsound(loc, 'sound/machines/click.ogg', 25, 1)
+	playsound(loc, 'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(throw_mine), turf_list), 2 SECONDS)
 
 ///this proc is used to check for valid turfs and throw mines
 /obj/machinery/deployable/minelayer/proc/throw_mine(list/turf/list_of_turfs)
 	if(!stored_amount > 0 || !length(list_of_turfs))
-		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	var/turf/target_turf = pick_n_take(list_of_turfs)
 	if(target_turf.density || turf_block_check(src, target_turf) || locate(/obj/item/explosive/mine) in range(1, target_turf) || !line_of_sight(loc, target_turf))
@@ -51,7 +51,7 @@
 	var/obj/item/explosive/mine/mine_to_throw = new /obj/item/explosive/mine(loc)
 	mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
 	stored_amount--
-	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(place_mine), target_turf, mine_to_throw), cooldown)
 	addtimer(CALLBACK(src, PROC_REF(throw_mine), list_of_turfs), cooldown)
 

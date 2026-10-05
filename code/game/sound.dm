@@ -43,12 +43,12 @@
  * * source: what played the sound.
  * * soundin: the .ogg to use.
  * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
- * * vary: to make the frequency var of the sound vary (mostly unused).
+ * * vary: to make the frequency var of the sound vary.
  * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
-/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE)
+/proc/playsound(atom/source, soundin, vol as num, vary = FALSE, sound_range = DEFAULT_SOUND_RANGE, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -69,9 +69,6 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || SSsounds.random_available_channel()
 
-	if(!sound_range)
-		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
-
 	if(!frequency)
 		frequency = GET_RANDOM_FREQ
 	var/sound/S = isdatum(soundin) ? soundin : sound(get_sfx(soundin))
@@ -82,27 +79,24 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
 	var/turf/below_turf = GET_TURF_BELOW(turf_source)
 
-	// todo replace me with CALCULATE_MAX_SOUND_AUDIBLE_DISTANCE from tg so we dont have massive ass ranges fnr
-	var/audible_distance = sound_range
-
 	if(ignore_walls)
-		listeners = get_hearers_in_range(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		listeners = get_hearers_in_range(sound_range, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
 		if(above_turf && istransparentturf(above_turf))
-			listeners += get_hearers_in_range(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+			listeners += get_hearers_in_range(sound_range, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 		if(below_turf && istransparentturf(turf_source))
-			listeners += get_hearers_in_range(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+			listeners += get_hearers_in_range(sound_range, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 	else //these sounds don't carry through walls
-		listeners = get_hearers_in_view(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		listeners = get_hearers_in_view(sound_range, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 		if(above_turf && istransparentturf(above_turf))
-			listeners += get_hearers_in_view(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+			listeners += get_hearers_in_view(sound_range, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 		if(below_turf && istransparentturf(turf_source))
-			listeners += get_hearers_in_view(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+			listeners += get_hearers_in_view(sound_range, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
 		for(var/mob/listening_ghost as anything in SSmobs.dead_players_by_zlevel[source_z])
-			if(get_dist(listening_ghost, turf_source) <= audible_distance)
+			if(get_dist(listening_ghost, turf_source) <= sound_range)
 				listeners += listening_ghost
 
 	// snowflake, ai eyes dont have a client
@@ -111,12 +105,17 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		var/turf/eye_turf = get_turf(ai_eye)
 		if(!eye_turf || eye_turf.z != turf_source.z)
 			continue
-		if(get_dist(eye_turf, turf_source) <= audible_distance)
+		if(get_dist(eye_turf, turf_source) <= sound_range)
 			listeners += ai_eye
 
 
 	for(var/mob/listener AS in listeners)
-		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE)) //todo: kill this. this seems fucking horrible
+			continue
+		var/turf/mob_turf = get_turf(listener)
+		if(!mob_turf)
+			continue
+		if(get_dist_euclidean(mob_turf, turf_source) > sound_range)
 			continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
@@ -124,7 +123,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	//todo stop ignoring walls
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		var/is_same_z = (armor.z == source_z) || (armor.z == above_turf?.z) || (armor.z == below_turf?.z)
-		if(!armor.interior || !is_same_z || get_dist(armor.loc, turf_source) > sound_range)
+		if(!armor.interior || !is_same_z || get_dist_euclidean(armor.loc, turf_source) > sound_range)
 			continue
 		// sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
 		if(armor == source)
@@ -153,7 +152,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
  * * turf_source - The turf our sound originates from
  * * soundin - the .ogg or SFX of our sound
  * * vol - Changes the volume of our sound, relevant when measuring falloff
- * * vary - to make the frequency var of the sound vary (mostly unused).
+ * * vary - to make the frequency var of the sound vary.
  * * frequency - Optional: if vary is set, this is how much we vary by (or a random amount if not given any value)
  * * falloff - Optional: Calculates falloff if not passed a value
  * * is_global - if false, sets our environment to SOUND_ENVIRONMENT_ROOM

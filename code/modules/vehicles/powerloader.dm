@@ -46,7 +46,7 @@
 	if(!LAZYLEN(buckled_mobs) || buckled_mob.buckled != src)
 		return FALSE
 	if(user == buckled_mob)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 		return ..()
 	buckled_mob.visible_message(
@@ -59,12 +59,12 @@
 	silent = TRUE
 	. = ..()
 	if(.)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 
 /obj/vehicle/ridden/powerloader/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
 	move_delay = max(2, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
@@ -83,7 +83,7 @@
 /obj/vehicle/ridden/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	overlays.Cut()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	move_delay = initial(move_delay)
 	set_vehicle_speed()
 	icon_state = "powerloader_open"

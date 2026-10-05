@@ -53,14 +53,7 @@
 
 			mybucket.reagents.trans_to(I, 5)	//
 			to_chat(user, span_notice("You wet [I] in [mybucket]."))
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-
-		else if(!mymop)
-			user.drop_held_item()
-			mymop = I
-			I.forceMove(src)
-			update_icon()
-			updateUsrDialog()
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You put [I] into [src]."))
 
 	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)

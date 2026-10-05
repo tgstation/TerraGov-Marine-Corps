@@ -109,7 +109,7 @@
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 		span_notice("You start disassembling [src]."))
 
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
@@ -138,7 +138,7 @@
 /obj/structure/table/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
 	if(.)
-		playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	if(user.a_intent == INTENT_HARM)
 		return
@@ -552,7 +552,7 @@
 
 	if(iswrench(I))
 		deconstruct(TRUE)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 
 	if(user.a_intent != INTENT_HARM)

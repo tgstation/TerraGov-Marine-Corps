@@ -38,7 +38,7 @@
 	xeno_owner.face_atom(target_human)
 	xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
 	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] flays and rips skin and flesh from [target_human]!"))
-	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
+	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE, MEDIUM_SOUND_RANGE)
 	target_human.emote("scream")
 	xeno_owner.emote("roar")
 	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15, attacker = owner)
@@ -74,7 +74,7 @@
 
 /datum/action/ability/activable/xeno/pincushion/use_ability(atom/victim)
 	var/turf/current_turf = get_turf(owner)
-	playsound(xeno_owner.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
+	playsound(xeno_owner.loc, 'sound/bullets/spear_armor1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_warning("[xeno_owner] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
 
 	var/atom/movable/projectile/spine = new /atom/movable/projectile(current_turf)
@@ -457,7 +457,7 @@
 	victim.balloon_alert(owner, "[choice]")
 	victim.apply_status_effect(effect_path, xeno_owner)
 	victim.med_hud_set_status()
-	playsound(get_turf(xeno_owner), SFX_ALIEN_DROOL, 25)
+	playsound(get_turf(xeno_owner), SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	add_cooldown()
 
 // ***************************************

@@ -29,7 +29,7 @@
 	var/turf/target_turf = get_turf(remote_eye)
 	var/area/target_area = get_area(target_turf)
 	if(origin.rappel_condition < RAPPEL_CONDITION_GOOD || target_turf.density || target_area.ceiling > CEILING_GLASS)
-		playsound(origin, 'sound/machines/buzz-two.ogg', 25)
+		playsound(origin, 'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
 	C.playsound_local(origin, 'sound/effects/binoctarget.ogg', 35)
@@ -248,7 +248,7 @@
 	update_icon_state()
 	rope.update_icon_state()
 
-	playsound(src, 'sound/machines/hiss.ogg', 25)
+	playsound(src, 'sound/machines/hiss.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	balloon_alert_to_viewers("hums as the rope reels in")
 	rope.balloon_alert_to_viewers("starts reeling up...")
 
@@ -262,7 +262,7 @@
 
 	if(rappel_condition == RAPPEL_CONDITION_HOOKED)
 		rappel_state = RAPPEL_STATE_USABLE
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
 	rappel_state = RAPPEL_STATE_LOCKED

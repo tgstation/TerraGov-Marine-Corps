@@ -106,7 +106,4 @@
 		M.setDir(user.dir)
 		user.visible_message(span_notice("[user] assembles a [M]."),
 		span_notice("You assemble a [M]."))
-		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-		M.update_icon()
-		use(1)
-		user.record_structures_built()
+		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)

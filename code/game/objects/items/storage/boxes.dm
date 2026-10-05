@@ -247,13 +247,9 @@
 			return ..()
 
 		if(prob(50))
-			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			M.light_match()
+			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
 		else
-			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
-		return TRUE
-	else
-		return ..()
+			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"

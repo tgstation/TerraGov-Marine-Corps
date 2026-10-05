@@ -26,7 +26,7 @@
 		return
 	holster.holstered_item = item
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
-	playsound(parent, sheathe_sound, 15, 1)
+	playsound(parent, sheathe_sound, 15, 1, SHORT_SOUND_RANGE)
 
 /datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
@@ -37,26 +37,7 @@
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	if(silent)
 		return
-	playsound(parent, draw_sound, 15, 1)
-
-/datum/storage/holster/backholster
-	max_w_class = WEIGHT_CLASS_NORMAL //normal items
-	max_storage_space = 24
-	access_delay = 1.5 SECONDS ///0 out for satchel types
-
-/datum/storage/holster/backholster/rpg
-	storage_slots = 5
-	max_w_class = WEIGHT_CLASS_BULKY
-	access_delay = 0.5 SECONDS
-
-/datum/storage/holster/backholster/rpg/freelancer
-	storage_slots = 7
-	max_storage_space = 30
-	max_w_class = WEIGHT_CLASS_BULKY
-	access_delay = 0.5 SECONDS
-
-/datum/storage/holster/backholster/rpg/New(atom/parent)
-	. = ..()
+	playsound(parent, draw_sound, 15, 1, SHORT_SOUND_RANGE)
 	set_holdable(
 		can_hold_list = list(
 			/obj/item/ammo_magazine/rocket,

@@ -275,7 +275,7 @@
 	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
-	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
@@ -392,7 +392,7 @@
 			if(DROPSHIP_CHAIR_UNBUCKLED)
 				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
 				span_warning("You begin loosening the bolts on \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
@@ -404,7 +404,7 @@
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message(span_warning("[user] begins unfolding \the [src]."),
 				span_warning("You begin unfolding \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return

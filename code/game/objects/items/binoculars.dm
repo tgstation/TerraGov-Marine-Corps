@@ -179,7 +179,7 @@
 		if(MODE_RANGE_FINDER)
 			to_chat(user, span_notice("You switch [src] to range finding mode."))
 	update_icon()
-	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
+	playsound(user, 'sound/items/binoculars.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 /obj/item/binoculars/tactical/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)

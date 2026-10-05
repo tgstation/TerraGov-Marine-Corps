@@ -143,8 +143,7 @@
 ///Cloaks the probe and stops processing until it moves again.
 /obj/vehicle/unmanned/deployable/tiny/martian/proc/begin_cloaking()
 	cloaked = TRUE
-	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE)
-	become_warped_invisible(30)
+	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	STOP_PROCESSING(SSobj, src)
 
 /obj/vehicle/unmanned/deployable/tiny/martian/process()

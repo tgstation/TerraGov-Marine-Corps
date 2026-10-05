@@ -314,7 +314,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_mask == src)
 				H.update_inv_wear_mask()
-	playsound(src, 'sound/items/cig_light.ogg', 15, 1)
+	playsound(src, 'sound/items/cig_light.ogg', 15, 1, SHORT_SOUND_RANGE)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/cigarette/process()
@@ -325,7 +325,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime < 0)
 		if(ismob(loc))
 			to_chat(M, span_notice("Your [name] goes out."))
-			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
+			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1, SHORT_SOUND_RANGE)
 		die()
 		return
 
@@ -348,7 +348,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
 		user.visible_message(span_notice("[user] calmly drops and treads on the lit [src], putting it out instantly."))
-		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
+		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1, SHORT_SOUND_RANGE)
 		die()
 	return ..()
 
@@ -588,7 +588,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			worn_icon_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				user.visible_message(span_rose("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."))
-				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 			else
 				if(prob(95))
 					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src]."))
@@ -599,7 +599,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src],  however [user.p_they()] burn [user.p_their()] finger in the process."))
-				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 			set_light_on(TRUE)
 		else
 			turn_off(user, FALSE)
@@ -617,10 +617,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!silent)
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
-				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
-				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 		set_light_on(FALSE)
 		return TRUE
 	return FALSE

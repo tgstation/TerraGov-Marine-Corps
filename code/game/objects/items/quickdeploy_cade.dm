@@ -19,7 +19,7 @@
 	if(can_place(user)) //can_place() handles sending the error and success messages to the user
 		var/obj/O = new thing_to_deploy(get_turf(user))
 		O.setDir(user.dir)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE) //Spaghetti or wrong type spawned
 		qdel(src)
 
 /obj/item/quikdeploy/proc/can_place(mob/user)

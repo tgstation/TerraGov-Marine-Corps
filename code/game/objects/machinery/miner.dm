@@ -122,7 +122,7 @@
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message(span_notice("[user] attaches the [miner_upgrade_type] to the [src]!"))
 	qdel(upgrade)
-	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
+	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
@@ -199,14 +199,14 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
 	if(!do_after(user, 120, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	miner_integrity = 0.66 * max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
@@ -223,14 +223,14 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
 	if(!do_after(user, 150, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	miner_integrity = max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
@@ -305,9 +305,7 @@
 		stored_mineral += 1
 		add_tick = 0
 		say("[stored_mineral] Ore shipment\s is ready to be exported.")
-		playsound(loc,'sound/machines/ping.ogg', 20, FALSE)
-	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
-		stop_processing()
+		playsound(loc,'sound/machines/ping.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 	else
 		add_tick += 1
 
@@ -326,7 +324,7 @@
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 		span_danger("We slash \the [src]!"), null, 5)
-		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE, MEDIUM_SOUND_RANGE)
 		miner_integrity -= 25
 		set_miner_status()
 		if(miner_status == MINER_DESTROYED && xeno_attacker.client)

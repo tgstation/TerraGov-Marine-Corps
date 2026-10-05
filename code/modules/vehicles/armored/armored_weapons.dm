@@ -71,9 +71,7 @@
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
 	if(!ammo || ammo.current_rounds <= 0)
-		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
-		return
-	if(source.incapacitated(TRUE))
+		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1, SHORT_SOUND_RANGE)
 		return
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
@@ -228,8 +226,7 @@
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 	if(ammo.current_rounds > 0)
 		return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	eject_ammo()
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(LAZYACCESS(current_firer.do_actions, src) || length(ammo_magazine) < 1)
 		return AUTOFIRE_SUCCESS
 	var/obj/item/ammo_magazine/tank/new_mag = ammo_magazine[1]

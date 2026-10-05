@@ -91,13 +91,7 @@ Stepping directly on the mine will also blow it up
 	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
-	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
-	update_icon()
-	if(user)
-		user.drop_held_item()
-		setDir(user.dir)
-	else
-		setDir(pick(CARDINAL_ALL_DIRS))
+	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 
@@ -178,7 +172,7 @@ Stepping directly on the mine will also blow it up
 	span_danger("[icon2html(src, viewers(living_victim))] \The [src] clicks as you move in front of it."), \
 	span_danger("You hear a click."))
 
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 	return TRUE
 
@@ -193,7 +187,7 @@ Stepping directly on the mine will also blow it up
 		return
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
-	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/slice.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Trigger an actual explosion and delete the mine.

@@ -256,10 +256,7 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 
-	playsound(src, SFX_SHATTER, 25, 1)
-	user.put_in_active_hand(B)
-
-	qdel(src)
+	playsound(src, SFX_SHATTER, 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/item/reagent_containers/food/drinks/bottle/attack(mob/living/target as mob, mob/living/user as mob)
 

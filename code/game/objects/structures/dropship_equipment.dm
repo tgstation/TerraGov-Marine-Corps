@@ -485,7 +485,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		console.say("Emitter system recharging. Unable to deploy smoke.")
-		playsound(console, 'sound/machines/buzz-sigh.ogg', 25)
+		playsound(console, 'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
 	pellet_type = new(landing_spot)

@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(!target_zone)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
@@ -124,7 +124,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 

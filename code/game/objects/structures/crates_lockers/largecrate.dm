@@ -225,16 +225,7 @@
 	user.visible_message(span_notice("[user] welds \the [src] open."),
 		span_notice("You weld open \the [src]."),
 		span_notice("You hear loud hissing and the sound of metal falling over."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	deconstruct(TRUE)
-	return TRUE
-
-
-/obj/structure/largecrate/random/barrel/examine(mob/user)
-	. = ..()
-	. += span_notice("You need a blowtorch to weld this open!")
-
-/obj/structure/largecrate/random/barrel/add_debris_element()
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/largecrate/random/barrel
@@ -297,7 +288,7 @@
 	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
 	if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return TRUE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user, span_notice("You cut the straps away."))
 	icon_state = "secure_crate"
 	strapped = FALSE

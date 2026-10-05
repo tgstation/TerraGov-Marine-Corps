@@ -374,12 +374,7 @@
 
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
-	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	xeno_owner.Immobilize(self_immobilize_duration)
-	xeno_owner.forceMove(get_turf(living_target))
-	living_target.Knockdown(stun_duration)
-	if(attack_on_pounce)
-		living_target.attack_alien_harm(xeno_owner)
+	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	GLOB.round_statistics.runner_pounce_victims++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_pounce_victims")
 

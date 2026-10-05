@@ -220,26 +220,7 @@
 					overlays.Cut()
 					update_icon()
 
-					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1)
-					work_animation()
-			else
-				recording_recipe[reagent_name] += amount
-			. = TRUE
-		if("remove")
-			if(!is_operational() || recording_recipe)
-				return
-			var/amount = text2num(params["amount"])
-			if(beaker && (amount in possible_transfer_amounts))
-				beaker.reagents.remove_all(amount)
-				work_animation()
-				. = TRUE
-		if("eject")
-			replace_beaker(usr)
-			. = TRUE
-		if("dispense_recipe")
-			if(!is_operational() || QDELETED(cell))
-				return
-			if(clearing_recipe)
+					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				if(tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No")) == "Yes")
 					usr.client.prefs.chem_macros.Remove(params["recipe"])
 					usr.client.prefs.save_preferences()

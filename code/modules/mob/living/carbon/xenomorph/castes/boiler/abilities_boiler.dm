@@ -392,7 +392,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	P.generate_bullet(xeno_owner.ammo)
 	P.proj_max_range += bonus_max_range
 	P.fire_at(target, xeno_owner, xeno_owner, xeno_owner.ammo.max_range + bonus_max_range, xeno_owner.ammo.shell_speed)
-	playsound(xeno_owner, 'sound/effects/blobattack.ogg', 25, 1)
+	playsound(xeno_owner, 'sound/effects/blobattack.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	var/unique_glob = TRUE
 	switch(xeno_owner.ammo.type)
@@ -578,7 +578,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	carbon_target.apply_damage(steam_damage * stacks, damagetype = BURN, blocked = ACID)
 	xenomorph_spray(get_turf(carbon_target), 5 SECONDS, steam_damage * stacks)
-	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
+	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	to_chat(carbon_target, span_danger("You are burned by the hot steam!")) //I'm just going to operate under the assumption that xvx combat will never be a meaningful thing.
 
 	switch(stacks)

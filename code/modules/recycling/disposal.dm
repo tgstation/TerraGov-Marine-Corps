@@ -83,12 +83,12 @@
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				to_chat(user, span_notice("You remove the screws around the power connection."))
 				return
 			else if(mode == -1)
 				mode = 0
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				to_chat(user, span_notice("You attach the screws around the power connection."))
 				return
 		else if(iswelder(I) && mode == -1)
@@ -100,7 +100,7 @@
 				to_chat(user, span_warning("You need more welding fuel to complete this task."))
 				return
 
-			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+			playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
 			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				return
@@ -382,7 +382,7 @@
 
 	sleep(1 SECONDS)
 	if(last_sound < world.time + 1)
-		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0, SHORT_SOUND_RANGE)
 		last_sound = world.time
 	sleep(0.5 SECONDS) //Wait for animation to finish
 
@@ -409,7 +409,7 @@
 //Called when holder is expelled from a disposal, should usually only occur if the pipe network is modified
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
 	var/turf/target
-	playsound(src, 'sound/machines/hiss.ogg', 25, 0)
+	playsound(src, 'sound/machines/hiss.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	if(H) //Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
 		for(var/atom/movable/AM in H)
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
@@ -564,7 +564,7 @@
 
 	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
 
-	playsound(loc, 'sound/effects/clang.ogg', 25)
+	playsound(loc, 'sound/effects/clang.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 
 //Disposal pipes
@@ -674,7 +674,7 @@
 		else //Otherwise limit to 10 tiles
 			target = get_ranged_target_turf(T, direction, 10)
 
-		playsound(src, 'sound/machines/hiss.ogg', 25, 0)
+		playsound(src, 'sound/machines/hiss.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 		if(H)
 			for(var/atom/movable/AM in H)
 				AM.loc = T
@@ -686,7 +686,7 @@
 
 	else //No specified direction, so throw in random direction
 
-		playsound(src, 'sound/machines/hiss.ogg', 25, 0)
+		playsound(src, 'sound/machines/hiss.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 		if(H)
 			for(var/atom/movable/AM in H)
 				target = get_offset_target_turf(T, rand(5) - rand(5), rand(5) - rand(5))
@@ -726,7 +726,7 @@
 			to_chat(user, span_warning("You need more welding fuel to cut [src]."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -1033,7 +1033,7 @@
 			return
 
 		sort_tag = O.currTag
-		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("Changed tag to '[sort_tag]'."))
 		updatename()
 		updatedesc()
@@ -1106,7 +1106,7 @@
 			return
 
 		sortType = O.currTag
-		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("Changed filter to '[sortType]'."))
 		updatename()
 		updatedesc()
@@ -1223,7 +1223,7 @@
 			to_chat(user, span_warning("You need more welding fuel to cut the pipe."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -1306,9 +1306,9 @@
 /obj/structure/disposaloutlet/proc/expel(obj/structure/disposalholder/H)
 
 	flick("outlet-open", src)
-	playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0)
-	sleep(2 SECONDS) //Wait until correct animation frame
-	playsound(src, 'sound/machines/hiss.ogg', 25, 0)
+	playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0, MEDIUM_SOUND_RANGE)
+	sleep(2 SECONDS) //Wait until correct animation frame //Wait until correct animation frame
+	playsound(src, 'sound/machines/hiss.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 
 	if(H)
 		for(var/atom/movable/AM in H)
@@ -1326,10 +1326,10 @@
 	if(isscrewdriver(I))
 		mode = !mode
 		if(mode)
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You remove the screws around the power connection."))
 		else
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You attach the screws around the power connection."))
 
 	else if(iswelder(I) && mode)
@@ -1338,7 +1338,7 @@
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
 		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))

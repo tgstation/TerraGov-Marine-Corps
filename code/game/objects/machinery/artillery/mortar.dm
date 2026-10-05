@@ -168,7 +168,7 @@
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
 		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
 		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /**
  * this proc is used because pointers suck and references would break the saving of coordinates.
@@ -239,7 +239,7 @@
 		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
 		user.transferItemToLoc(I, src)
 		AI.associate_artillery(src)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		ai_targeter = I
 
 	if(istype(I, /obj/item/compass))
@@ -247,7 +247,7 @@
 		coords["targ_x"] = compass.target_turf.x
 		coords["targ_y"] = compass.target_turf.y
 		say("Targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	if(!istype(I, /obj/item/binoculars/tactical))
@@ -300,7 +300,7 @@
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///perform any individual sprite-specific visuals here
 /obj/machinery/deployable/mortar/proc/perform_firing_visuals()

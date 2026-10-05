@@ -100,7 +100,7 @@
 	toggle_active(TRUE)
 
 	if(wieldsound)
-		playsound(user, wieldsound, 15, 1)
+		playsound(user, wieldsound, 15, 1, SHORT_SOUND_RANGE)
 
 	force = force_activated
 
@@ -111,7 +111,7 @@
 	toggle_active(FALSE)
 
 	if(unwieldsound)
-		playsound(user, unwieldsound, 15, 1)
+		playsound(user, unwieldsound, 15, 1, SHORT_SOUND_RANGE)
 
 	force = initial(force)
 

@@ -235,10 +235,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	try_ejecting(xeno_attacker)
 
 /obj/machinery/autodoc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
@@ -441,7 +441,7 @@
 	final_record.fields["autodoc_data"] = generate_autodoc_surgery_list(patient)
 	use_power(active_power_usage)
 	visible_message(span_notice("\The [src] pings as it stores the scan report of [patient.real_name]."))
-	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+	playsound(loc, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /// Verb to move yourself into the autodoc.
 /obj/machinery/autodoc/verb/move_inside()
@@ -462,7 +462,7 @@
 		return
 	if(locked && !allowed(usr)) // Check access if locked.
 		to_chat(usr, span_warning("Access denied."))
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	do_eject()
 
@@ -740,14 +740,14 @@
 							return
 					if(stored_metal < LIMB_METAL_AMOUNT)
 						say("Metal reserves depleted.")
-						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
+						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 						surgery_list -= active_surgery
 						active_surgery = null
 						loop_in_time(1)
 						return
 					if(limb_ref.parent.limb_status & LIMB_DESTROYED)
 						say("Limb attachment failed.")
-						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
+						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 						surgery_list -= active_surgery
 						active_surgery = null
 						loop_in_time(1)
@@ -1361,14 +1361,14 @@
 			connected.locked = !connected.locked
 		else
 			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(href_list["noticetoggle"]) //Toggle notifications on/off if we have authorization.
 		if(allowed(usr))
 			release_notice = !release_notice
 		else
 			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(href_list["automatictoggle"] && !connected.is_active())
 		connected.automatic_mode = !connected.automatic_mode

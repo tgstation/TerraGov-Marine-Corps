@@ -95,12 +95,12 @@
 
 	balloon_alert_to_viewers("removing armor plates...")
 
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	balloon_alert_to_viewers("removed armor plates")
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	switch(barricade_upgrade_type)
 		if(CADE_TYPE_BOMB)
@@ -186,7 +186,7 @@
 	barricade_upgrade_type = choice
 	balloon_alert_to_viewers("[choice] attached")
 
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

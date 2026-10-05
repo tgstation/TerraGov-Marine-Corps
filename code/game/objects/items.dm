@@ -1379,7 +1379,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The basic spin trick
 /obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
 	set waitfor = 0
-	playsound(user, 'sound/effects/spin.ogg', 25, 1)
+	playsound(user, 'sound/effects/spin.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice("You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
@@ -1387,7 +1387,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice("You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(0.3 SECONDS)
-	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
+	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
@@ -1407,7 +1407,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!loc || !user)
 		return
 	invisibility = 0
-	playsound(user, 'sound/effects/thud.ogg', 25, 1)
+	playsound(user, 'sound/effects/thud.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(user.get_active_held_item() != src)
 		return

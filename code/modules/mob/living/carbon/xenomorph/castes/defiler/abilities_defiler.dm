@@ -108,7 +108,7 @@
 	add_cooldown()
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target)
-	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(xeno_owner, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
@@ -255,7 +255,7 @@
 		toggle_particles(FALSE)
 		return
 	var/turf/T = get_turf(xeno_owner)
-	playsound(T, 'sound/effects/smoke.ogg', 25)
+	playsound(T, 'sound/effects/smoke.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(time_left > 1)
 		emitted_gas.set_up(radius, T)
 	else //last emission is larger
@@ -483,7 +483,7 @@
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.reagents.add_reagent(reagent_slash_reagent, reagent_slash_amount)
-	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	xeno_owner.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [xeno_owner]'s spines!"))
 
 	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics

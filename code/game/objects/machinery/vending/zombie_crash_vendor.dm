@@ -200,7 +200,7 @@
 		flick("marinerequisitions-deny", src)
 		return
 
-	playsound(src, SFX_VENDING, 25, 0)
+	playsound(src, SFX_VENDING, 25, 0, MEDIUM_SOUND_RANGE)
 	flick("marinerequisitions-vend", src)
 	use_power(active_power_usage)
 

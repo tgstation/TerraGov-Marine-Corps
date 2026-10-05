@@ -135,12 +135,10 @@
 	target_atom.apply_fire_support_laser(laser_overlay)
 	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(can_see_target), target, user)))
 		to_chat(user, span_danger("You lose sight of your target!"))
-		playsound(user,'sound/machines/click.ogg', 25, 1)
-		unset_target()
+		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	if(!bino_checks(target, user))
-		playsound(user,'sound/machines/click.ogg', 25, 1)
-		unset_target()
+		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)

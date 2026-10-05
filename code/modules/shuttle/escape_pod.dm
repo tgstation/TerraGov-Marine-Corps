@@ -38,7 +38,7 @@
 /obj/docking_port/mobile/escape_pod/proc/launch(manual = FALSE)
 	if(!can_launch || launch_status == NOLAUNCH)
 		return
-	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1)
+	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(manual)
 		launch_status = EARLY_LAUNCHED
 	else
@@ -65,7 +65,7 @@
 /obj/docking_port/mobile/escape_pod/proc/do_launch()
 	if(!can_launch)
 		return
-	playsound(return_center_turf(),'sound/effects/escape_pod_launch.ogg', 25, 1)
+	playsound(return_center_turf(),'sound/effects/escape_pod_launch.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	count_escaped_humans()
 	SSshuttle.moveShuttleToTransit(id, TRUE)
 

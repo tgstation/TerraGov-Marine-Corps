@@ -101,7 +101,7 @@
 	active = !active
 	if(active)
 		to_chat(user, span_notice("You flip out your [src]."))
-		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1, SHORT_SOUND_RANGE)
 		force = 15
 		throwforce = 12
 		edge = TRUE
