@@ -102,6 +102,7 @@
 /datum/action/ability/activable/xeno/fireball/encounter
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = null
+	hive_ability = TRUE
 
 /datum/action/ability/activable/xeno/fireball/use_ability(atom/target)
 	playsound(get_turf(xeno_owner), 'sound/effects/wind.ogg', 50)

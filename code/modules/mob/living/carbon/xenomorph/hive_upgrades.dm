@@ -524,22 +524,18 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Abilities"
 	gamemode_flags = ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MUST_BE_HIVE_RULER
-	var/datum/action/ability/ability
+	var/datum/action/ability/ability = new()
 	var/construction_ability = FALSE
 
 /datum/hive_upgrade/abilities/on_buy(mob/living/carbon/xenomorph/buyer)
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 	GLOB.hive_datums[buyer.hivenumber].hive_abilities += ability
-	message_admins("A [ability]")
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
-		message_admins("A1")
 		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
-			message_admins("A2")
 			continue
 
-		if(((ability::parent_type) in (xeno.xeno_caste.actions)) && !ability::cooldown_duration)
-			message_admins("A3 [ability.parent_type], [ability.cooldown_duration]")
+		if(((ability::parent_type) in xeno.xeno_caste.actions) && !ability::cooldown_duration)
 			continue
 		xeno.add_ability(ability)
 

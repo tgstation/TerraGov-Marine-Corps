@@ -19,6 +19,8 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Cooldown map text holder
 	var/obj/effect/countdown/action_cooldown/countdown
+	/// Is a xeno hive ability
+	var/hive_ability = FALSE
 
 /datum/action/ability/New(Target)
 	. = ..()
@@ -285,9 +287,7 @@
 
 ///adds an ability to the mob
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
-	message_admins("C")
 	if(!new_ability)
-		message_admins("C2")
 		return
 	new_ability = new new_ability(src)
 	new_ability.give_action(src)

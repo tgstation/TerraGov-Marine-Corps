@@ -483,6 +483,8 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
+	sync_hive_abilities()
+
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
@@ -579,6 +581,10 @@
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
 	reference_hive.update_tier_limits() //Update our tier limits.
+
+	for(var/datum/action/ability/ability in mob_abilities)
+		if(ability.hive_ability)
+			remove_ability(ability)
 
 /datum/hive_status/proc/setup_nuke_hud_timer(source, thing)
 	SIGNAL_HANDLER
