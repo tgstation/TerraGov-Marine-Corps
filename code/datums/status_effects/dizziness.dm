@@ -2,7 +2,6 @@
 /datum/status_effect/stacking/dizzy
 	id = "dizzy"
 	tick_interval = 2 SECONDS
-	stack_decay = 1
 	consumed_on_threshold = FALSE
 	max_stacks = 1000
 	stack_threshold = 100
@@ -13,14 +12,8 @@
 		return
 	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
 
-/datum/status_effect/stacking/dizzy/add_stacks(stacks_added)
-	. = ..()
-	if(!owner)
-		return
-	var/restingpwr = 3
-	if(owner.stat || owner.resting)
-		restingpwr += 12
-	stack_decay = restingpwr
+/datum/status_effect/stacking/dizzy/stack_decay_effect()
+	stack_decay = owner.get_resting_power()
 
 /datum/status_effect/stacking/dizzy/threshold_cross_effect()
 	INVOKE_ASYNC(src, PROC_REF(dizzy_process))
@@ -28,6 +21,8 @@
 ///does the shakey
 /datum/status_effect/stacking/dizzy/proc/dizzy_process()
 	while(threshold_crossed)
+		if(QDELETED(src))
+			break
 		if(owner.client)
 			var/amplitude = stacks*(sin(stacks * 0.044 * world.time) + 1) / 70
 			owner.client.pixel_x = amplitude * sin(0.008 * stacks * world.time)

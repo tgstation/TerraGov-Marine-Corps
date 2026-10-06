@@ -2,7 +2,6 @@
 /datum/status_effect/stacking/jitter
 	id = "jitter"
 	tick_interval = 2 SECONDS
-	stack_decay = 1
 	consumed_on_threshold = FALSE
 	max_stacks = 1000
 
@@ -12,14 +11,8 @@
 		return
 	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
 
-/datum/status_effect/stacking/jitter/add_stacks(stacks_added)
-	. = ..()
-	if(!owner)
-		return
-	var/restingpwr = 3
-	if(owner.stat || owner.resting)
-		restingpwr += 12
-	stack_decay = restingpwr
+/datum/status_effect/stacking/jitter/stack_decay_effect()
+	stack_decay = owner.get_resting_power()
 	owner.do_jitter_animation(stacks)
 
 //status procs for jitter

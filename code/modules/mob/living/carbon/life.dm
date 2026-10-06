@@ -95,16 +95,6 @@
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()
-	var/pwr = (stat || resting) ? 1 : 0
-	var/restingpwr = 3 + 12 * pwr
-
-	if(drowsyness)
-		adjustDrowsyness(-restingpwr)
-		blur_eyes(2)
-		if(drowsyness > 18 && prob(5))
-			Sleeping(2 SECONDS)
-			Unconscious(10 SECONDS)
-
 	if(staminaloss > -max_stamina)
 		handle_staminaloss()
 
@@ -151,7 +141,7 @@
 			adjustToxLoss(0.2)
 			if(prob(10) && !stat)
 				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
-				adjustDrowsyness(5)
+				adjust_drowziness(5)
 
 		if(drunkenness >= 91)
 			adjustBrainLoss(0.2, TRUE)

@@ -48,7 +48,7 @@
 	L.Unconscious(40 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
-	L.setDrowsyness(L.drowsyness, 20)
+	L.drowzy(20)
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -234,7 +234,7 @@
 		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.drowzy(30)
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
@@ -447,7 +447,7 @@
 	L.SetUnconscious(0)
 	L.SetParalyzed(0)
 	L.set_dizziness(0)
-	L.setDrowsyness(0)
+	L.set_drowziness(0)
 	// Remove all speech related status effects
 	for(var/effect in typesof(/datum/status_effect/speech))
 		L.remove_status_effect(effect)
@@ -479,7 +479,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
-	L.adjustDrowsyness(-0.5 SECONDS)
+	L.adjust_drowziness(-0.5 SECONDS)
 	L.AdjustUnconscious(-2 SECONDS)
 	L.AdjustStun(-2 SECONDS)
 	L.AdjustParalyzed(-2 SECONDS)
@@ -531,7 +531,7 @@
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
-	L.adjustDrowsyness(-5)
+	L.adjust_drowziness(-5)
 	L.adjust_dizziness(-5)
 	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
@@ -1134,7 +1134,7 @@
 	switch(current_cycle)
 		if(1 to 9)
 			L.adjustToxLoss(effect_str)
-			L.adjustDrowsyness(5)
+			L.adjust_drowziness(5)
 		if(10 to 50)
 			L.adjustToxLoss(1.25*effect_str)
 			L.Sleeping(10 SECONDS)
@@ -1186,7 +1186,7 @@
 
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
 	L.adjust_dizziness(-1)
-	L.adjustDrowsyness(-1)
+	L.adjust_drowziness(-1)
 	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-2 SECONDS)
 	var/mob/living/carbon/C = L

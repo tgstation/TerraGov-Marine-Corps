@@ -167,7 +167,7 @@
 	L.adjust_jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -233,12 +233,12 @@
 		if(7 to 10)
 			if(prob(10))
 				L.Sleeping(10 SECONDS)
-			L.drowsyness = max(L.drowsyness, 20)
+			L.drowzy(20)
 		if(11 to 80)
 			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
-			L.drowsyness = max(L.drowsyness, 30)
+			L.drowzy(30)
 		if(81 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -264,7 +264,7 @@
 		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 

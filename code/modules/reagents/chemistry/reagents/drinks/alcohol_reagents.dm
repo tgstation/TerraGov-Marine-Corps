@@ -113,7 +113,7 @@
 
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.adjust_dizziness(-4)
-	L.adjustDrowsyness(-2)
+	L.adjust_drowziness(-2)
 	L.AdjustSleeping(-6 SECONDS)
 	L.adjust_jitter(5)
 	return ..()
@@ -156,7 +156,7 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
-	L.adjustDrowsyness(-7)
+	L.adjust_drowziness(-7)
 	L.AdjustSleeping(-80 SECONDS)
 	L.adjust_jitter(5)
 	return ..()
@@ -845,7 +845,7 @@
 	L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 	switch(current_cycle)
 		if(40 to 49)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 		if(51 to 200)
 			L.Sleeping(6 SECONDS)
 		if(201 to INFINITY)

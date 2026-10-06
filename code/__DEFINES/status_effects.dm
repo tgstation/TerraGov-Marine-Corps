@@ -98,6 +98,8 @@
 #define STATUS_EFFECT_DIZZY /datum/status_effect/stacking/dizzy
 ///hallucination effect
 #define STATUS_EFFECT_HALLUCINATION /datum/status_effect/stacking/hallucination
+///drowziness effect
+#define STATUS_EFFECT_DROWZINESS /datum/status_effect/stacking/drowziness
 
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting

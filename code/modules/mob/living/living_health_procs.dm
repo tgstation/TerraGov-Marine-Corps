@@ -174,24 +174,6 @@
 /mob/living/proc/set_Losebreath(amount, forced = FALSE)
 	return
 
-/mob/living/proc/adjustDrowsyness(amount)
-	if(status_flags & GODMODE)
-		return FALSE
-	setDrowsyness(max(drowsyness + amount, 0))
-
-/mob/living/proc/setDrowsyness(amount)
-	if(status_flags & GODMODE)
-		return FALSE
-	if(drowsyness == amount)
-		return
-	. = drowsyness //Old value
-	drowsyness = amount
-	if(drowsyness)
-		if(!.)
-			add_movespeed_modifier(MOVESPEED_ID_DROWSINESS, TRUE, 0, NONE, TRUE, 6)
-		return
-	remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
-
 ///Adjusts the blood volume, with respect to the minimum and maximum values
 /mob/living/proc/adjust_blood_volume(amount)
 	if(!amount)

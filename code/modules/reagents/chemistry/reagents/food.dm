@@ -27,7 +27,7 @@
 	if(adj_dizzy != 0)
 		L.adjust_dizziness(adj_dizzy)
 	if(adj_drowsy != 0)
-		L.adjustDrowsyness(adj_drowsy)
+		L.adjust_drowziness(adj_drowsy)
 	if(adj_sleepy != 0)
 		L.AdjustSleeping(adj_sleepy)
 	return TRUE
@@ -321,7 +321,7 @@
 	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.Unconscious(6 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"

@@ -1243,3 +1243,9 @@
 		return
 
 	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])
+
+///Returns the 'strength' of the mobs restiveness
+/mob/living/proc/get_resting_power()
+	. = 3
+	if(stat || resting)
+		. += 12
