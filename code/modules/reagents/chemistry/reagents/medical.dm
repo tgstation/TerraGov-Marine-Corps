@@ -115,7 +115,7 @@
 	return ..()
 
 /datum/reagent/medicine/paracetamol/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 2)
+	L.hallucinate(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
 	L.apply_damage(0.5*effect_str, TOX)
 
@@ -139,7 +139,8 @@
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 2) //Hallucinations and oxy damage
+	L.hallucinate(2) //Hallucinations and oxy damage
+
 	L.apply_damage(effect_str, OXY)
 
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/L, metabolism)
@@ -401,7 +402,7 @@
 	return ..()
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
+	L.adjust_hallucination(-2.5*effect_str)
 	L.adjustToxLoss(-effect_str)
 	return ..()
 
@@ -438,7 +439,7 @@
 	L.setOxyLoss(0)
 	L.heal_overall_damage(5, 5)
 	L.adjustToxLoss(-5)
-	L.hallucination = 0
+	L.set_hallucination(0)
 	L.setBrainLoss(0)
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
@@ -483,7 +484,7 @@
 	L.AdjustStun(-2 SECONDS)
 	L.AdjustParalyzed(-2 SECONDS)
 	L.adjustToxLoss(effect_str)
-	L.hallucination = max(0, L.hallucination - 10)
+	L.adjust_hallucination(-10)
 	switch(current_cycle)
 		if(1 to 10)
 			L.adjustStaminaLoss(-7.5*effect_str)
@@ -961,7 +962,7 @@
 		L.emote(pick("twitch","blink_r","shiver"))
 		L.adjustStaminaLoss(20)
 	if(prob(20))
-		L.hallucination += 10
+		L.adjust_hallucination(10)
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(10))
@@ -971,7 +972,7 @@
 		L.adjustStaminaLoss(35)
 		L.Stun(2 SECONDS)
 	if(prob(20))
-		L.hallucination += 15
+		L.adjust_hallucination(15)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -981,7 +982,7 @@
 		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(3 SECONDS)
 	if(prob(20))
-		L.hallucination += 20
+		L.adjust_hallucination(20)
 		L.adjust_dizziness(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -994,7 +995,7 @@
 		L.Stun(8 SECONDS)
 		L.do_jitter_animation(200)
 	if(prob(20))
-		L.hallucination += 30
+		L.adjust_hallucination(30)
 		L.adjust_dizziness(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)

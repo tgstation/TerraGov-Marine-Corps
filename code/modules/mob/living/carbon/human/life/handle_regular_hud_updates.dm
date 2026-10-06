@@ -101,13 +101,15 @@
 		hud_used.healths.icon_state = "health0"
 		return
 
-	switch(hal_screwyhud)
-		if(1)
-			hud_used.healths.icon_state = "health6"
-			return
-		if(2)
-			hud_used.healths.icon_state = "health7"
-			return
+	var/datum/status_effect/stacking/hallucination/hallucinating = is_hallucinating()
+	if(hallucinating)
+		switch(hallucinating.screwyhud)
+			if(1)
+				hud_used.healths.icon_state = "health6"
+				return
+			if(2)
+				hud_used.healths.icon_state = "health7"
+				return
 
 	if(health < get_crit_threshold())
 		hud_used.healths.icon_state = "health6"

@@ -136,7 +136,7 @@
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.hallucination += 2
+	L.adjust_hallucination(2)
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)

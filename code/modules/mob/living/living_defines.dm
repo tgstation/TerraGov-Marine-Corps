@@ -54,8 +54,6 @@
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	///Directly affects how long a mob will hallucinate for
-	var/hallucination = 0
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE

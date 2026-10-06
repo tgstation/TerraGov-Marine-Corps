@@ -105,11 +105,6 @@
 			Sleeping(2 SECONDS)
 			Unconscious(10 SECONDS)
 
-	if(hallucination >= 20) // hallucinations require stacking before triggering
-		handle_hallucinations()
-
-
-
 	if(staminaloss > -max_stamina)
 		handle_staminaloss()
 
@@ -119,7 +114,7 @@
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
 				AdjustSleeping(-2 SECONDS)
 		if(!isxeno(src))
-			if(prob(2) && health && !hallucination)
+			if(prob(2) && health && !is_hallucinating())
 				emote("snore")
 
 	if(drunkenness)

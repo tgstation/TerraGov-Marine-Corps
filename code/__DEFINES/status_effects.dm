@@ -96,6 +96,8 @@
 #define STATUS_EFFECT_JITTER /datum/status_effect/stacking/jitter
 ///dizziness effect
 #define STATUS_EFFECT_DIZZY /datum/status_effect/stacking/dizzy
+///hallucination effect
+#define STATUS_EFFECT_HALLUCINATION /datum/status_effect/stacking/hallucination
 
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting

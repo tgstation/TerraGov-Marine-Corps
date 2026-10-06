@@ -152,7 +152,7 @@
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
-	L.hallucination += 10
+	L.adjust_hallucination(10)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)

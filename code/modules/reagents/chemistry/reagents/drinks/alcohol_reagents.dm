@@ -49,7 +49,7 @@
 		L.druggy(druggy)
 
 	if(halluci)
-		L.hallucination += halluci
+		L.adjust_hallucination(halluci)
 
 	return ..()
 
@@ -259,7 +259,7 @@
 
 /datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/L, metabolism)
 	if(prob(10))
-		L.hallucination += 4 //Reference to the urban myth
+		L.adjust_hallucination(4) //Reference to the urban myth
 	return ..()
 
 /datum/reagent/consumable/ethanol/hooch
@@ -287,12 +287,12 @@
 	switch(current_cycle)
 		if(1 to 19)
 			L.adjust_jitter(2)
-			L.hallucination = max(L.hallucination, 3)
+			L.hallucinate(3)
 			if(prob(1))
 				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 10)
+			L.hallucinate(10)
 			L.adjust_jitter(3)
 			L.adjust_dizziness(2)
 			L.set_drugginess(10)
@@ -300,7 +300,7 @@
 				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 60)
+			L.hallucinate(60)
 			L.adjust_jitter(4)
 			L.adjust_dizziness(4)
 			L.set_drugginess(30)
@@ -310,7 +310,7 @@
 				L.adjustToxLoss(0.5)
 		if(120 to 199)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 60)
+			L.hallucinate(60)
 			L.adjust_jitter(4)
 			L.adjust_dizziness(4)
 			L.druggy(60 SECONDS)
@@ -327,7 +327,7 @@
 		if(200 to INFINITY)
 			L.set_timed_status_effect(5 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.adjustToxLoss(1)
-			L.hallucination = max(L.hallucination, 60)
+			L.hallucinate(60)
 			L.adjust_jitter(4)
 			L.adjust_dizziness(4)
 			L.druggy(60 SECONDS)
