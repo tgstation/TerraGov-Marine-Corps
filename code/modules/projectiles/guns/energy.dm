@@ -148,7 +148,6 @@
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	worn_icon_state = "m43"
-	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
@@ -201,7 +200,6 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
-	max_shots = 100//codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/pulsebolt
 	muzzleflash_iconstate = "muzzle_flash_pulse"
@@ -251,7 +249,6 @@
 	icon = 'icons/obj/items/guns/energy64.dmi'
 	icon_state = "tx73"
 	worn_icon_state = "tx73"
-	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -383,7 +380,6 @@
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	muzzle_flash_color = COLOR_TESLA_BLUE
 	ammo_level_icon = "tesla"
-	max_shots = 6 //codex stuff
 	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
 	turret_flags = TURRET_INACCURATE
@@ -431,7 +427,6 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "ter"
 	worn_icon_state = "ter"
-	max_shots = 60
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -539,7 +534,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	equip_slot_flags = ITEM_SLOT_BELT
 	gun_skill_category = SKILL_PISTOLS
-	max_shots = 20 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_level_icon = null
 	rounds_per_shot = 30
@@ -620,7 +614,6 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	icon_state = "tec"
 	worn_icon_state = "tec"
-	max_shots = 50
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/carbine
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOBURST
@@ -752,7 +745,6 @@
 	icon_state = "tes"
 	worn_icon_state = "tes"
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 20
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	rounds_per_shot = 30
 	damage_falloff_mult = 0
@@ -853,7 +845,6 @@
 	worn_icon_state = "tem"
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	max_shots = 150 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -960,7 +951,6 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	worn_icon_state = "tex"
-	max_shots = 40 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/incendiary
 	rounds_per_shot = 15
 	attachable_allowed = list(
@@ -1029,7 +1019,6 @@
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
-	max_shots = 50
 	ammo_datum_type = /datum/ammo/energy/volkite
 	rounds_per_shot = 24
 	default_ammo_type = /obj/item/cell/lasgun/volkite
@@ -1067,7 +1056,6 @@
 	worn_icon_state = "vx12"
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_skill_category = SKILL_PISTOLS
-	max_shots = 15
 	rounds_per_shot = 36
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	default_ammo_type = /obj/item/cell/lasgun/volkite/small
@@ -1091,7 +1079,6 @@
 	icon_state = "vx12c"
 	worn_icon_state = "vx12"
 	ammo_datum_type = /datum/ammo/energy/volkite/medium/custom
-	max_shots = 27
 	rounds_per_shot = 20
 	scatter = -2
 	scatter_unwielded = 4
@@ -1103,7 +1090,6 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	worn_icon_state = "charger"
-	max_shots = 45
 	rounds_per_shot = 32
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -1147,7 +1133,6 @@
 		slot_r_hand_str = 'icons/mob/inhands/guns/energy_right_64.dmi',
 	)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
-	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	rounds_per_shot = 36
 	default_ammo_type = /obj/item/cell/lasgun/volkite
@@ -1198,7 +1183,6 @@
 	)
 	ammo_level_icon = null
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
 	rounds_per_shot = 30
 	default_ammo_type = null

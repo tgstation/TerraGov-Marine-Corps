@@ -6,7 +6,8 @@
 	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	item_flags = TWOHANDED
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
 	deployable_item = /obj/machinery/deployable/mortar/howitzer
 	faction = FACTION_TERRAGOV

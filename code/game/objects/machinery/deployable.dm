@@ -69,7 +69,7 @@
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(CHECK_BITFIELD(_internal_item.deployment_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
@@ -78,7 +78,7 @@
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(!CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(!CHECK_BITFIELD(_internal_item.deployment_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		return ..()
 	disassemble(user)
 
