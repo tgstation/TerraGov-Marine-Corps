@@ -46,7 +46,7 @@
 				O.take_damage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * O.alcohol_tolerance, 0)) * 0.002), TRUE)
 
 	if(druggy != 0)
-		L.set_drugginess(druggy)
+		L.druggy(druggy)
 
 	if(halluci)
 		L.hallucination += halluci
@@ -183,7 +183,7 @@
 	color = "#666340" // rgb: 102, 99, 64
 	taste_description = "dryness"
 	boozepwr = 10
-	druggy = 50
+	druggy = 50 SECONDS
 
 /datum/reagent/consumable/ethanol/gin
 	name = "Gin"
@@ -313,7 +313,7 @@
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.druggy(60 SECONDS)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 			if(prob(30))
@@ -330,7 +330,7 @@
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.druggy(60 SECONDS)
 			if(ishuman(L) && prob(10))
 				var/mob/living/carbon/human/H = L
 				var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -540,7 +540,7 @@
 	color = COLOR_MOSTLY_PURE_RED
 	taste_description = "death, the destroyer of worlds"
 	boozepwr = 45
-	druggy = 30
+	druggy = 30 SECONDS
 
 /datum/reagent/consumable/ethanol/whiskeysoda
 	name = "Whiskey Soda"

@@ -23,15 +23,14 @@
 		return
 	if(registered_z)
 		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
-		update_z(null)
+		update_z(null) //why is this done on life?
 
 
-//this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
+//this updates all special effects: knockdown, etc.., DELETE ME!!
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
-	handle_drugged()
 	handle_slowdown()
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
@@ -70,11 +69,6 @@
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_drugged()
-	if(druggy)
-		adjust_drugginess(-1)
-	return druggy
 
 /mob/living/proc/handle_staminaloss()
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)

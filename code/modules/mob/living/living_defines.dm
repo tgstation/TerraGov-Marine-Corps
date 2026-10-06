@@ -49,7 +49,6 @@
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
 	var/list/stamina_regen_modifiers = list()
 	var/is_dizzy = FALSE
-	var/druggy = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0

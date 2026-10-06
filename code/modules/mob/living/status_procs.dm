@@ -671,22 +671,59 @@
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
-///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
-/mob/living/proc/adjust_drugginess(amount)
-	druggy = max(druggy + amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-	else
-		clear_fullscreen("high")
+////////////////////////////// DRUGGY ////////////////////////////////////
 
-///Sets mob's drugginess to provided amount, minimum 0. Adds or removes druggy overlay as appropriate.
+///Returns if drugged
+/mob/living/proc/is_drugged()
+	return has_status_effect(STATUS_EFFECT_DRUGGY)
+
+///Returns remaining druggy duration
+/mob/living/proc/amount_drugged()
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	return current_drugginess ? current_drugginess.duration - world.time : 0
+
+///Applies druggy from current world time unless existing duration is higher
+/mob/living/proc/druggy(amount)
+	if(status_flags & GODMODE)
+		return
+
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(current_drugginess)
+		current_drugginess.duration = max(world.time + amount, current_drugginess.duration)
+	else if(amount > 0)
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
+
+///Used to set drugginess to a set amount, commonly to remove it
 /mob/living/proc/set_drugginess(amount)
-	druggy = max(amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-	else
-		clear_fullscreen("high")
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(amount <= 0)
+		if(current_drugginess)
+			qdel(current_drugginess)
+		return
+	if(status_flags & GODMODE)
+		return
 
+	if(current_drugginess)
+		current_drugginess.duration = world.time + amount
+	else
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
+
+///Applies drugginess or adds to existing duration
+/mob/living/proc/adjust_drugginess(amount)
+	if(status_flags & GODMODE)
+		return
+
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(current_drugginess)
+		current_drugginess.duration += amount
+	else if(amount > 0)
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
 
 /mob/living/proc/adjust_bodytemperature(amount, min_temp = 0, max_temp = INFINITY)
 	if(bodytemperature < min_temp || bodytemperature > max_temp)

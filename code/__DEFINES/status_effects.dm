@@ -87,6 +87,10 @@
 #define STATUS_EFFECT_LIFEDRAIN /datum/status_effect/incapacitating/lifedrain // Lifesteal for every xeno that hits this mob, applied by globadier
 
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
+
+///drugged effect
+#define STATUS_EFFECT_DRUGGY /datum/status_effect/incapacitating/druggy
+
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
 #define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire
