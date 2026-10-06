@@ -13,6 +13,9 @@
 		return
 	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
 
+/datum/status_effect/stacking/drowziness/on_owner_death(datum/source)
+	qdel(src)
+
 /datum/status_effect/stacking/drowziness/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
 	return ..()

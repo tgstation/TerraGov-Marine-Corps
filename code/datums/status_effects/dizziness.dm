@@ -12,6 +12,9 @@
 		return
 	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
 
+/datum/status_effect/stacking/dizzy/on_owner_death(datum/source)
+	qdel(src)
+
 /datum/status_effect/stacking/dizzy/stack_decay_effect()
 	stack_decay = owner.get_resting_power()
 

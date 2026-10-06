@@ -1,6 +1,11 @@
 //Takes care of organ & limb related updates, such as broken and missing limbs
 /mob/living/carbon/human/handle_organs()
 	. = ..()
+	//this has to still be handled in life due to how shock mod is reset each life tick()
+	var/datum/status_effect/stacking/drunkenness/current_drunkenness = is_drunk()
+	if(!current_drunkenness)
+		return
+	reagent_shock_modifier += current_drunkenness.get_shock_modifier()
 
 	if(reagents && !CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
 		var/datum/internal_organ/liver/L

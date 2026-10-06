@@ -312,7 +312,7 @@
 	set_nutrition(400)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
-	drunkenness = 0
+	set_drunkenness(0)
 	disabilities = 0
 
 	if(handcuffed && !initial(handcuffed))

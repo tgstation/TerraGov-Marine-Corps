@@ -8,6 +8,7 @@
 
 	. = ..()
 
+	handle_status_effects()
 	handle_fire() //Check if we're on fire
 
 /mob/living/carbon/handle_regular_hud_updates()
@@ -17,7 +18,6 @@
 
 	handle_healths_hud_updates()
 	return TRUE
-
 
 /mob/living/carbon/proc/handle_healths_hud_updates()
 	if(hud_used?.healths)
@@ -93,7 +93,8 @@
 	adjustOxyLoss(damage_dealt)
 	death()
 
-/mob/living/carbon/handle_status_effects()
+//this updates various effects.., DELETE ME!!
+/mob/living/carbon/proc/handle_status_effects()
 	. = ..()
 	if(staminaloss > -max_stamina)
 		handle_staminaloss()
@@ -106,59 +107,6 @@
 		if(!isxeno(src))
 			if(prob(2) && health && !is_hallucinating())
 				emote("snore")
-
-	if(drunkenness)
-		drunkenness = max(drunkenness - (drunkenness * 0.03), 0)
-		if(drunkenness >= 6)
-			if(prob(25))
-				adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
-			adjust_jitter(-3)
-
-		if(drunkenness >= 11)
-			adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, 10 SECONDS)
-
-		if(drunkenness >= 41)
-			if(prob(25))
-				AdjustConfused(4 SECONDS)
-			if(amount_dizzied() < 450) // To avoid giving the player overly dizzy too
-				adjust_dizziness(8)
-
-		if(drunkenness >= 51)
-			if(prob(5))
-				AdjustConfused(10 SECONDS)
-				vomit()
-			if(amount_dizzied() < 600)
-				adjust_dizziness(12)
-
-		if(drunkenness >= 61)
-			if(prob(25))
-				blur_eyes(3)
-
-		if(drunkenness >= 71)
-			blur_eyes(4)
-
-		if(drunkenness >= 81)
-			adjustToxLoss(0.2)
-			if(prob(10) && !stat)
-				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
-				adjust_drowziness(5)
-
-		if(drunkenness >= 91)
-			adjustBrainLoss(0.2, TRUE)
-			if(prob(15 && !stat))
-				to_chat(src, span_warning("Just a quick nap..."))
-				Sleeping(80 SECONDS)
-
-		if(drunkenness >=101) //Let's be honest, you should be dead by now
-			adjustToxLoss(4)
-
-	switch(drunkenness) //painkilling effects
-		if(6 to 41)
-			reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-		if(41 to 81)
-			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
-		if(81 to INFINITY)
-			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
 
 	handle_disabilities()
 

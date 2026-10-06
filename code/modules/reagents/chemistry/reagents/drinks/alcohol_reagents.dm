@@ -37,8 +37,8 @@
 /datum/reagent/consumable/ethanol/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(C.drunkenness < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
-			C.drunkenness = max((C.drunkenness + (sqrt(volume) * boozepwr * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
+		if(C.amount_drunkenness() < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
+			C.adjust_drunkenness(sqrt(volume) * boozepwr * ALCOHOL_RATE) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			var/datum/internal_organ/liver/O = H.get_organ_slot(ORGAN_SLOT_LIVER)

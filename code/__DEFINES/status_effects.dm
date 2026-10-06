@@ -100,6 +100,8 @@
 #define STATUS_EFFECT_HALLUCINATION /datum/status_effect/stacking/hallucination
 ///drowziness effect
 #define STATUS_EFFECT_DROWZINESS /datum/status_effect/stacking/drowziness
+///drunkenness effect
+#define STATUS_EFFECT_DRUNKENNESS /datum/status_effect/stacking/drunkenness
 
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting

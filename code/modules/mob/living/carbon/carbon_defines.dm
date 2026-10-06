@@ -13,8 +13,6 @@
 	var/breath_failing = FALSE
 
 	var/list/internal_organs = list()
-	///Overall drunkenness - check handle_status_effects() in life.dm for effects
-	var/drunkenness = 0
 
 	var/rotate_on_lying = TRUE
 

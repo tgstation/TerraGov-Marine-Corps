@@ -2,7 +2,7 @@
 	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 
-	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
+	handle_status_effects()
 
 	handle_regular_hud_updates()
 
@@ -23,12 +23,7 @@
 		return
 	if(registered_z)
 		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
-		update_z(null) //why is this done on life?
-
-
-//this updates all special effects: knockdown, etc.., DELETE ME!!
-/mob/living/proc/handle_status_effects()
-	return //the battle is won, but the war goes on
+		update_z(null)
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
@@ -63,6 +58,7 @@
 /mob/living/proc/update_aura_overlay()
 	return
 
+///Organ processing for life()
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0

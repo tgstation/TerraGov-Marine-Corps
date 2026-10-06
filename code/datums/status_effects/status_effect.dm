@@ -92,11 +92,16 @@
 		return TRUE
 	return FALSE
 
-///Removes the status on death. Sig not registered by default
-/datum/status_effect/proc/on_owner_death(source)
+///Effects on owner death. Sig not registered by default
+/datum/status_effect/proc/on_owner_death(datum/source)
 	SIGNAL_HANDLER
-	qdel(src)
-	return
+	STOP_PROCESSING(SSfastprocess, src)
+	RegisterSignal(owner, COMSIG_MOB_REVIVE, PROC_REF(on_owner_revive))
+
+///Any effects when the owner comes back to life. Sig not registered by default
+/datum/status_effect/proc/on_owner_revive(datum/source)
+	SIGNAL_HANDLER
+	START_PROCESSING(SSfastprocess, src)
 
 ////////////////
 // ALERT HOOK //

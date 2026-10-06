@@ -198,7 +198,7 @@
 			O?.take_damage(0.2, TRUE)
 
 	// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
-	if(!owner.drunkenness && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
+	if(!owner.is_drunk() && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
 		heal_organ_damage(0.04)
 
 	// Do some reagent filtering/processing.

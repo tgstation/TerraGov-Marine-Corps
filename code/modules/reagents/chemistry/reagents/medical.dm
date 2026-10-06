@@ -456,7 +456,7 @@
 	L.set_jitter(0)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.drunkenness = 0
+		C.set_drunkenness(0)
 		C.disabilities = 0
 	return ..()
 
@@ -536,7 +536,7 @@
 	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.drunkenness = max(C.drunkenness-5, 0)
+		C.adjust_drunkenness(-5)
 	L.AdjustConfused(-10 SECONDS)
 	L.adjust_blurriness(-5)
 	L.AdjustUnconscious(-4 SECONDS)
@@ -1190,7 +1190,7 @@
 	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-2 SECONDS)
 	var/mob/living/carbon/C = L
-	C.drunkenness = max(C.drunkenness-4, 0)
+	C.adjust_drunkenness(-4)
 	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 0.5*effect_str, 0, 1)
 	return ..()
 

@@ -163,8 +163,8 @@
 		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
 		owner.adjustStaminaLoss(healing * 100)
 		owner.adjustCloneLoss(healing * health_ratio * 0.8)
-	if(human_owner?.drunkenness)
-		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
+	if(human_owner?.is_drunk())
+		human_owner.adjust_drunkenness(-human_owner.amount_drunkenness() * 0.03) //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
