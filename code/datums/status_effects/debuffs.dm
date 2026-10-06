@@ -1,6 +1,4 @@
 #define BASE_HEAL_RATE -0.0125
-#define DRUGGY_OVERLAY "high"
-
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -1106,18 +1104,4 @@
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
 
-//applies the druggy overlay. That's it
-/datum/status_effect/incapacitating/druggy
-	id = "druggy"
-
-/datum/status_effect/incapacitating/druggy/on_apply()
-	. = ..()
-	if(!.)
-		return
-	owner.overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-
-/datum/status_effect/incapacitating/druggy/on_remove()
-	owner.clear_fullscreen("high")
-	return ..()
-
-#undef DRUGGY_OVERLAY
+#undef BASE_HEAL_RATE
