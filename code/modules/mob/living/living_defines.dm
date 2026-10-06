@@ -124,8 +124,6 @@
 	///For the new Smoke Grenade
 	var/smokecloaked = FALSE
 
-	var/no_stun = FALSE
-
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 	///Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 	var/grab_resist_level = 0

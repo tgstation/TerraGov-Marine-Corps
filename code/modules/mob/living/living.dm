@@ -28,8 +28,7 @@
 
 //this updates all special effects: knockdown, etc.., DELETE ME!!
 /mob/living/proc/handle_status_effects()
-	if(no_stun)//anti-chainstun flag for alien tackles
-		no_stun = max(0, no_stun - 1) //decrement by 1.
+	return //the battle is won, but the war goes on
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
