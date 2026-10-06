@@ -69,7 +69,7 @@
 
 /mob/living/carbon/proc/do_vomit()
 	adjust_stagger(3 SECONDS)
-	add_slowdown(3)
+	adjust_slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)

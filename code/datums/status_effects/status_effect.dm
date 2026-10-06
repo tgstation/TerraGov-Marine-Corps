@@ -244,7 +244,8 @@
 			on_threshold_drop()
 		if(stacks_added > 0)
 			tick_interval += delay_before_decay //refreshes time until decay
-		stacks = min(stacks, max_stacks)
+		if(isnum(max_stacks))
+			stacks = min(stacks, max_stacks)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		status_underlay.icon_state = "[underlay_state][stacks]"
 		owner.add_overlay(status_overlay)

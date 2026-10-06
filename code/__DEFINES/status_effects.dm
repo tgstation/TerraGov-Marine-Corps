@@ -91,6 +91,9 @@
 ///drugged effect
 #define STATUS_EFFECT_DRUGGY /datum/status_effect/incapacitating/druggy
 
+///drugged effect
+#define STATUS_EFFECT_SLOWDOWN /datum/status_effect/stacking/slowdown
+
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
 #define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire

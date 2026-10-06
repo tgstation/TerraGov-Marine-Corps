@@ -55,7 +55,7 @@
 	if(stagger_amount > 0)
 		adjust_stagger(stagger_amount)
 	adjust_sunder(sunder_amount)
-	add_slowdown(slowdown_amount)
+	adjust_slowdown(slowdown_amount)
 
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 

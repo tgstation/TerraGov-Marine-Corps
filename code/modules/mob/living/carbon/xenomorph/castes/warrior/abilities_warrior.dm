@@ -461,7 +461,7 @@
 			living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 			shake_camera(living_target, 1, 1)
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
-			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
+			living_target.adjust_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
 			living_target.adjust_blurriness(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
 			living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
 			RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
@@ -668,7 +668,7 @@
 	new visual_effect(get_turf(src))
 	playsound(src, sound_effect, 50, 1)
 	shake_camera(src, 1, 1)
-	add_slowdown(slowdown_stacks)
+	adjust_slowdown(slowdown_stacks)
 	adjust_stagger(stagger_stacks)
 	adjust_blurriness(slowdown_stacks)
 	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE, attacker = xeno)

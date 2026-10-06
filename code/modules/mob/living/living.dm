@@ -31,8 +31,6 @@
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
-	handle_slowdown()
-
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any

@@ -144,8 +144,6 @@
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
 
-	///Temporary penalty on movement. Regenerates each tick.
-	var/slowdown = 0
 	///Id of the timer to set the afk status to MOB_DISCONNECTED
 	var/afk_timer_id
 	///If this mob is afk

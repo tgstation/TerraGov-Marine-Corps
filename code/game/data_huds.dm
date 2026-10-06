@@ -87,7 +87,7 @@
 /datum/atom_hud/medical/pain
 	hud_icons = list(PAIN_HUD)
 
-/mob/proc/med_hud_set_health()
+/mob/proc/med_hud_set_health() //todo: this shouldn't need to be in life()
 	return
 
 /mob/living/carbon/xenomorph/med_hud_set_health()
@@ -373,7 +373,7 @@
 				simple_status_hud.icon_state = "stagger"
 				status_hud.icon_state = "stagger"
 				return TRUE
-			if(slowdown)
+			if(is_slowed())
 				simple_status_hud.icon_state = "slowdown"
 				status_hud.icon_state = "slowdown"
 				return TRUE

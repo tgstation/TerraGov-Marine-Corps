@@ -197,17 +197,6 @@
 		return
 	med_hud_set_health() // Todo: Make all damage update health so we can just kill pointless life updates entirely.
 
-/mob/living/carbon/xenomorph/handle_slowdown()
-	if(slowdown)
-		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Initial slowdown is: <b>[slowdown]</b>")
-		#endif
-		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
-		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
-		#endif
-	return slowdown
-
 /mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
 	if(frenzy_aura == new_aura)
 		return

@@ -103,7 +103,7 @@
 
 	ParalyzeNoChain(1 SECONDS) //Short stun
 	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
-	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
 

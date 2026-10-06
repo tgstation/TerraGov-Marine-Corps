@@ -27,4 +27,4 @@
 		return
 	if(L.mob_size > MOB_SIZE_HUMAN)
 		return
-	L.adjust_slowdown(1)
+	L.slowdown(1)

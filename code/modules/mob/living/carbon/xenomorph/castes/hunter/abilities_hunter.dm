@@ -186,7 +186,7 @@
 		return
 	if(can_sneak_attack)
 		M.adjust_stagger(3 SECONDS)
-		M.add_slowdown(1)
+		M.adjust_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
 ///Special sneak attack when stealthed
@@ -212,7 +212,7 @@
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
-	target.add_slowdown(staggerslow_stacks)
+	target.adjust_slowdown(staggerslow_stacks)
 	if(blinding_stacks)
 		target.blind_eyes(blinding_stacks)
 	if(sneak_attack_stun_duration)
