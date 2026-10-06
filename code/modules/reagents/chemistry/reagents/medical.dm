@@ -445,14 +445,14 @@
 	L.SetStun(0, FALSE)
 	L.SetUnconscious(0)
 	L.SetParalyzed(0)
-	L.dizziness = 0
+	L.set_dizziness(0)
 	L.setDrowsyness(0)
 	// Remove all speech related status effects
 	for(var/effect in typesof(/datum/status_effect/speech))
 		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
-	L.jitteriness = 0
+	L.set_jitter(0)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = 0
@@ -531,7 +531,7 @@
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
-	L.dizzy(-5)
+	L.adjust_dizziness(-5)
 	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -982,7 +982,7 @@
 		L.Stun(3 SECONDS)
 	if(prob(20))
 		L.hallucination += 20
-		L.dizzy(60)
+		L.adjust_dizziness(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 
@@ -995,7 +995,7 @@
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.dizzy(80)
+		L.adjust_dizziness(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 	if(prob(15) && ishuman(L))
@@ -1086,7 +1086,7 @@
 				H.name = H.get_visible_name()
 		if(35 to INFINITY)
 			L.adjustToxLoss(effect_str)
-			L.dizzy(5)
+			L.adjust_dizziness(5)
 			L.adjust_jitter(5)
 	return ..()
 
@@ -1184,7 +1184,7 @@
 	reagent_ui_priority = REAGENT_UI_BASE
 
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(-1)
+	L.adjust_dizziness(-1)
 	L.adjustDrowsyness(-1)
 	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-2 SECONDS)

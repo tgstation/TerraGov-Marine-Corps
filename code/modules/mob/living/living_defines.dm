@@ -48,15 +48,12 @@
 	var/stamina_regen_multiplier = 1
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
 	var/list/stamina_regen_modifiers = list()
-	var/is_dizzy = FALSE
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/dizziness = 0
-	var/jitteriness = 0
 	///Directly affects how long a mob will hallucinate for
 	var/hallucination = 0
 	var/disabilities = NONE
@@ -134,8 +131,6 @@
 	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
 	 */
 	var/blood_volume = 0
-	///Multiplier.
-	var/heart_multi = 1
 
 	var/list/embedded_objects
 

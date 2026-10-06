@@ -6,6 +6,12 @@
 	consumed_on_threshold = FALSE
 	max_stacks = 1000
 
+/datum/status_effect/stacking/jitter/on_creation(mob/living/new_owner, stacks_to_apply)
+	. = ..()
+	if(!.)
+		return
+	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
+
 /datum/status_effect/stacking/jitter/add_stacks(stacks_added)
 	. = ..()
 	if(!owner)

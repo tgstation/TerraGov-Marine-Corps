@@ -92,6 +92,12 @@
 		return TRUE
 	return FALSE
 
+///Removes the status on death. Sig not registered by default
+/datum/status_effect/proc/on_owner_death(source)
+	SIGNAL_HANDLER
+	qdel(src)
+	return
+
 ////////////////
 // ALERT HOOK //
 ////////////////

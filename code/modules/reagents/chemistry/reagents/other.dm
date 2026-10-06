@@ -142,7 +142,7 @@
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-		L.dizzy(8)
+		L.adjust_dizziness(8)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -495,7 +495,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(2)
+	L.adjust_dizziness(2)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)

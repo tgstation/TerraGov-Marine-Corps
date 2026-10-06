@@ -98,10 +98,6 @@
 	var/pwr = (stat || resting) ? 1 : 0
 	var/restingpwr = 3 + 12 * pwr
 
-	//Dizziness
-	if(dizziness)
-		dizzy(-restingpwr)
-
 	if(drowsyness)
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
@@ -139,15 +135,15 @@
 		if(drunkenness >= 41)
 			if(prob(25))
 				AdjustConfused(4 SECONDS)
-			if(dizziness < 450) // To avoid giving the player overly dizzy too
-				dizzy(8)
+			if(amount_dizzied() < 450) // To avoid giving the player overly dizzy too
+				adjust_dizziness(8)
 
 		if(drunkenness >= 51)
 			if(prob(5))
 				AdjustConfused(10 SECONDS)
 				vomit()
-			if(dizziness < 600)
-				dizzy(12)
+			if(amount_dizzied() < 600)
+				adjust_dizziness(12)
 
 		if(drunkenness >= 61)
 			if(prob(25))
