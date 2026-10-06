@@ -41,7 +41,7 @@
 	return current_slow ? current_slow.stacks : 0
 
 ///Applies slow unless existing stacks is higher
-/mob/living/proc/slowdown(amount, ignore_canstun = FALSE)
+/mob/living/proc/slowdown(amount)
 	if(amount <= 0)
 		return //wrong proc
 	if(status_flags & GODMODE)
@@ -62,7 +62,7 @@
 	return current_slow
 
 ///Used to set slow to a set amount, commonly to remove it
-/mob/living/proc/set_slowdown(amount, ignore_canstun = FALSE)
+/mob/living/proc/set_slowdown(amount)
 	var/datum/status_effect/stacking/slowdown/current_slow = is_slowed()
 	if(amount <= 0)
 		if(current_slow)
@@ -83,7 +83,7 @@
 	return current_slow
 
 ///Applies slow or adds to existing duration
-/mob/living/proc/adjust_slowdown(amount, ignore_canstun = FALSE)
+/mob/living/proc/adjust_slowdown(amount)
 	if(amount > 0)
 		if(status_flags & GODMODE)
 			return

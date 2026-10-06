@@ -515,7 +515,7 @@
 	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
-	L.jitter(-5)
+	L.adjust_jitter(-5)
 	if(prob(80))
 		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))

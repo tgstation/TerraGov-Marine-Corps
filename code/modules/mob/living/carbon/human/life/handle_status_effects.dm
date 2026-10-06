@@ -18,7 +18,7 @@
 	if(protection_aura)
 		var/aura_recovery_multiplier = 0.5 + 0.5 * protection_aura //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
 		dizzy(- 3 * aura_recovery_multiplier)
-		jitter(- 3 * aura_recovery_multiplier)
+		adjust_jitter(- 3 * aura_recovery_multiplier)
 
 	return ..()
 

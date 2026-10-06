@@ -32,7 +32,7 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.30)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.30)
-		L.jitter(5)
+		L.adjust_jitter(5)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/on_mob_delete(mob/living/L, metabolism)
@@ -44,7 +44,7 @@
 	return ..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
-	L.jitter(5) //Overdose causes a spasm
+	L.adjust_jitter(5) //Overdose causes a spasm
 	L.Unconscious(40 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
@@ -171,7 +171,7 @@
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
-	L.jitter(3)
+	L.adjust_jitter(3)
 	L.AdjustConfused(0.6 SECONDS)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
@@ -375,7 +375,7 @@
 	return ..()
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, metabolism)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, metabolism)
@@ -525,7 +525,7 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
-		L.jitter(10)
+		L.adjust_jitter(10)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
@@ -616,7 +616,7 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
-		L.jitter(10)
+		L.adjust_jitter(10)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
@@ -1087,7 +1087,7 @@
 		if(35 to INFINITY)
 			L.adjustToxLoss(effect_str)
 			L.dizzy(5)
-			L.jitter(5)
+			L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/medicine/rezadone/overdose_process(mob/living/L, metabolism)
@@ -1453,7 +1453,7 @@
 		if(20)//avg cloneloss of 1/tick and 10 additional units made
 			to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
 		if (21 to INFINITY)
-			L.jitter(5)
+			L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/medicine/regrow
@@ -1476,7 +1476,7 @@
 		limb_regrown = TRUE
 		limb.biotize()
 		to_chat(human, span_userdanger("You feel unbelievable pain as your [limb.display_name] regrows before your eyes!"))
-		human.jitter(10)
+		human.adjust_jitter(10)
 		human.Paralyze(1 SECONDS)
 		human.adjustStaminaLoss(20)
 	if(!limb_regrown)

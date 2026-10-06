@@ -90,9 +90,10 @@
 
 ///drugged effect
 #define STATUS_EFFECT_DRUGGY /datum/status_effect/incapacitating/druggy
-
-///drugged effect
+///slowdown effect
 #define STATUS_EFFECT_SLOWDOWN /datum/status_effect/stacking/slowdown
+///jitter effect
+#define STATUS_EFFECT_JITTER /datum/status_effect/stacking/jitter
 
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting

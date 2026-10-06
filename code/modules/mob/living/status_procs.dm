@@ -586,9 +586,6 @@
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
 
-/mob/living/proc/jitter(amount)
-	jitteriness = clamp(jitteriness + amount,0, 1000)
-
 /mob/living/proc/dizzy(amount)
 	return // For the time being, only carbons get dizzy.
 

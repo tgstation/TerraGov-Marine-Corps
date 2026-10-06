@@ -109,10 +109,6 @@
 			Sleeping(2 SECONDS)
 			Unconscious(10 SECONDS)
 
-	if(jitteriness)
-		do_jitter_animation(jitteriness)
-		jitter(-restingpwr)
-
 	if(hallucination >= 20) // hallucinations require stacking before triggering
 		handle_hallucinations()
 
@@ -135,7 +131,7 @@
 		if(drunkenness >= 6)
 			if(prob(25))
 				adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
-			jitter(-3)
+			adjust_jitter(-3)
 
 		if(drunkenness >= 11)
 			adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, 10 SECONDS)

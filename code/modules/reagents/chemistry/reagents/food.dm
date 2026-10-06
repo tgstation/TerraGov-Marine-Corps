@@ -251,7 +251,7 @@
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
-	L.jitter(5) //Turn super salty
+	L.adjust_jitter(5) //Turn super salty
 	if(prob(10))
 		L.Paralyze(20 SECONDS)
 	if(prob(10))
@@ -298,14 +298,14 @@
 				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
-			L.jitter(10)
+			L.adjust_jitter(10)
 			L.dizzy(10)
 			L.set_drugginess(35)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
-			L.jitter(20)
+			L.adjust_jitter(20)
 			L.dizzy(20)
 			L.set_drugginess(40)
 			if(prob(30))
