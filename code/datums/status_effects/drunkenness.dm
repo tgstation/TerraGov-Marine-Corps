@@ -17,7 +17,7 @@
 	. = ..()
 	if(!owner)
 		return
-	stack_decay = stacks * 0.03
+	stack_decay = max(stacks * 0.03, 0.3)
 
 /datum/status_effect/stacking/drunkenness/stack_decay_effect()
 	if(stacks <= 5)
@@ -65,6 +65,7 @@
 	if(stacks >=101) //Let's be honest, you should be dead by now
 		owner.adjustToxLoss(4)
 
+///Level of pain relief provided by being drunk
 /datum/status_effect/stacking/drunkenness/proc/get_shock_modifier()
 	if(stacks > 80)
 		return PAIN_REDUCTION_HEAVY
