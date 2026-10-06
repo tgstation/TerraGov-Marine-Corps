@@ -582,9 +582,9 @@
 	hivenumber = XENO_HIVE_NONE // failsafe value
 	reference_hive.update_tier_limits() //Update our tier limits.
 
-	for(var/datum/action/ability/ability in mob_abilities)
-		if(ability.hive_ability)
-			remove_ability(ability)
+	for(var/datum/action/ability/ability in hive.hive_abilities)
+		if(ability in mob_abilities)
+			ability.remove_action(src)
 
 /datum/hive_status/proc/setup_nuke_hud_timer(source, thing)
 	SIGNAL_HANDLER

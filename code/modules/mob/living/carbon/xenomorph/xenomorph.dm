@@ -611,6 +611,10 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 /// Gives the xeno hive abilities from the hive's ability list
 /mob/living/carbon/xenomorph/proc/sync_hive_abilities()
 	if(hive)
+		for(var/datum/action/ability/ability in mob_abilities)//In case an hive ability is removed by VV and for corrupted xenos where this function is duplicately called
+			if(ability.hive_ability)
+				ability.remove_action(src)
+
 		for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
 			if(xeno_caste.caste_flags & CASTE_IS_A_MINION)
 				continue

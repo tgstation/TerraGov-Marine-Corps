@@ -291,10 +291,3 @@
 		return
 	new_ability = new new_ability(src)
 	new_ability.give_action(src)
-
-///Removes an ability from a mob
-/mob/living/carbon/proc/remove_ability(datum/action/ability/old_ability)
-	for(var/datum/action/ability/action_datum in mob_abilities)
-		if(action_datum.type != old_ability)
-			continue
-		qdel(action_datum)
