@@ -199,14 +199,12 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!do_after(user, 120, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 1.2 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	miner_integrity = 0.66 * max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
@@ -223,14 +221,12 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!do_after(user, 150, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	miner_integrity = max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),

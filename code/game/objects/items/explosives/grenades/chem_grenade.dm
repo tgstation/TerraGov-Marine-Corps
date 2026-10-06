@@ -57,7 +57,7 @@
 			else
 				stage_change(CG_READY)
 				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
-				I.play_tool_sound(src, 25)
+				I.play_tool_sound(src)
 
 		else if(stage == CG_READY && !nadeassembly)
 			det_time = det_time == 50 ? 30 : 50	//toggle between 30 and 50

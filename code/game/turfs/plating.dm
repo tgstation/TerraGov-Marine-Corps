@@ -33,7 +33,7 @@
 		return
 
 	to_chat(user, span_warning("You fix some dents on the broken plating."))
-	playsound(src, 'sound/items/welder.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	I.play_tool_sound(src)
 	burnt = FALSE
 	broken = FALSE
 	update_icon()

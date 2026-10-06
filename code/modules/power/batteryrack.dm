@@ -105,7 +105,7 @@
 			to_chat(user, span_warning("Turn off the [src] before dismantling it."))
 			return
 
-		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 		M.state = 2
 		M.icon_state = "box_1"

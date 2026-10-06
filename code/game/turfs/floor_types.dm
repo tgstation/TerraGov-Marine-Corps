@@ -462,12 +462,11 @@
 	if(iswrench(I))
 		user.visible_message(span_notice("[user] starts removing [src]'s protective cover."),
 		span_notice("You start removing [src]'s protective cover."))
-		playsound(src, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		if(LAZYLEN(user.do_actions))
 			balloon_alert(user, "busy!")
 			return
-		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 3 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		new /obj/item/stack/rods(src, 2)

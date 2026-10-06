@@ -11,7 +11,6 @@
 	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	tool_behaviour = TOOL_WRENCH
 
-
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -232,7 +231,7 @@
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
 
-/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount = 1, volume = 25, datum/callback/extra_checks = CALLBACK(src, PROC_REF(isOn)), user_display = BUSY_ICON_GENERIC)
 	var/list/icons = target.get_weld_spark_icon_and_state()
 	var/mutable_appearance/sparks = mutable_appearance(icons[1], icons[2], WELDING_TOOL_EFFECT_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)

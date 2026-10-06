@@ -199,7 +199,7 @@
 		if(!buildstacktype)
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		if(dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)

@@ -60,17 +60,16 @@
 		if("01")
 			if(iswelder(I) && !anchored)
 				var/obj/item/tool/weldingtool/WT = I
-				if(!WT.remove_fuel(0, user))
-					to_chat(user, span_notice("You need more welding fuel to dissassemble the windoor assembly."))
+				if(!WT.isOn())
+					to_chat(user, span_notice("Welding tool is not on."))
 					return
 
 				user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
-				playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
-				if(!src || !WT.isOn())
+				if(!src)
 					return
 				to_chat(user, span_notice("You dissasembled the windoor assembly!"))
 				new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
@@ -80,10 +79,9 @@
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
 			else if(iswrench(I) && !anchored)
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You've secured the windoor assembly!"))
@@ -95,10 +93,9 @@
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
 			else if(iswrench(I) && anchored)
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You've unsecured the windoor assembly!"))
@@ -150,10 +147,9 @@
 		if("02")
 			//Removing wire from the assembly. Step 5 undone.
 			if(iswirecutter(I) && !electronics)
-				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You cut the windoor wires.!"))
@@ -180,10 +176,9 @@
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
 			else if(isscrewdriver(I) && electronics)
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				if(!electronics)
@@ -204,10 +199,9 @@
 					to_chat(user, span_warning("The assembly is missing electronics."))
 					return
 				DIRECT_OUTPUT(user, browse(null, "window=windoor_access"))
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 
-				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				density = TRUE //Shouldn't matter but just incase

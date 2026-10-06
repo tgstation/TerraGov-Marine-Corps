@@ -37,7 +37,7 @@
 	if(!holding)
 		return
 	balloon_alert(user, "pried [holding] out")
-	playsound(src, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	I.play_tool_sound(src)
 	holding.forceMove(drop_location())
 	holding = null
 	update_icon()
