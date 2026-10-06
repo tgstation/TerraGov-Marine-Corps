@@ -101,10 +101,6 @@
 		hud_used.healths.icon_state = "health0"
 		return
 
-	if(analgesic)
-		hud_used.healths.icon_state = "health_numb"
-		return
-
 	switch(hal_screwyhud)
 		if(1)
 			hud_used.healths.icon_state = "health6"

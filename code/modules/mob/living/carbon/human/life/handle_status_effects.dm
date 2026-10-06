@@ -1,14 +1,5 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/handle_status_effects()
-	. = ..()
-
-
-	//The analgesic effect wears off slowly
-	analgesic = max(0, analgesic - 1)
-
-	return TRUE
-
 /mob/living/carbon/human/finish_aura_cycle()
 	var/update_required = FALSE
 	if(set_mobility_aura(received_auras[AURA_HUMAN_MOVE] || 0))

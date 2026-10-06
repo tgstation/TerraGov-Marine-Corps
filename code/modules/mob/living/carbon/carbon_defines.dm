@@ -6,8 +6,6 @@
 	var/datum/species/species
 	///The amount of life ticks that have processed on this mob.
 	var/life_tick = 0
-	///when this is set, the mob isn't affected by shock or pain. life should decrease this by 1 every tick
-	var/analgesic = 0
 	///Whether or not the mob is handcuffed
 	var/obj/item/restraints/handcuffs/handcuffed
 
