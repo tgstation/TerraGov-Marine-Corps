@@ -95,7 +95,6 @@
 
 //this updates various effects.., DELETE ME!!
 /mob/living/carbon/proc/handle_status_effects()
-	. = ..()
 	if(staminaloss > -max_stamina)
 		handle_staminaloss()
 
