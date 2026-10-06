@@ -38,3 +38,8 @@
   - rscadd: Xenos also get psy points from disk cycles
   - bugfix: Fix xenos not getting psy points from tunnels,
   - rscdel: Zombies cannot be drained by cocoons
+2026-10-06:
+  Lumipharon:
+  - rscadd: All weapons now have codex entries
+  - code_imp: Deployment flags are their on var instead of item_flags
+  - refactor: refactored various bits of weapon code
