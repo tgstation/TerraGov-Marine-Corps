@@ -524,7 +524,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Abilities"
 	gamemode_flags = ABILITY_ENCOUNTER
 	upgrade_flags = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MUST_BE_HIVE_RULER
-	var/datum/action/ability/ability = new()
+	var/datum/action/ability/ability
 	var/construction_ability = FALSE
 
 /datum/hive_upgrade/abilities/on_buy(mob/living/carbon/xenomorph/buyer)

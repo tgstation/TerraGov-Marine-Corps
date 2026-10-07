@@ -507,7 +507,6 @@
 /datum/action/ability/activable/xeno/warrior/punch/encounter
 	keybinding_signals = null
 	cooldown_duration = 30 SECONDS
-	hive_ability = TRUE
 
 /datum/action/ability/activable/xeno/warrior/punch/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")

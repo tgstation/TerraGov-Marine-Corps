@@ -19,8 +19,6 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Cooldown map text holder
 	var/obj/effect/countdown/action_cooldown/countdown
-	/// Is a xeno hive ability
-	var/hive_ability = FALSE
 
 /datum/action/ability/New(Target)
 	. = ..()

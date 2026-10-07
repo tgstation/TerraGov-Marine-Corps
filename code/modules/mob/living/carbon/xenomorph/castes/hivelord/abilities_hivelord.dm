@@ -255,7 +255,6 @@
 
 /datum/action/ability/xeno_action/create_jelly/encounter
 	keybinding_signals = null
-	hive_ability = TRUE
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()

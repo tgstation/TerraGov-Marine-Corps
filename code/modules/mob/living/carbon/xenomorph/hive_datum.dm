@@ -528,6 +528,10 @@
 	else
 		remove_from_lists(X)
 
+	for(var/datum/action/ability/ability AS in X.mob_abilities)//In case an hive ability is removed by VV and for corrupted xenos where this function is duplicately called
+		if(ability.type in hive_abilities)
+			ability.remove_action(X)
+
 	nuke_hud_timer?.remove_from(X)
 	post_removal(X)
 	return TRUE
@@ -574,10 +578,6 @@
 	if(hive.living_xeno_ruler == src)
 		hive.set_ruler(null)
 		hive.update_ruler()
-
-	for(var/datum/action/ability/ability in hive.hive_abilities)
-		if(ability in mob_abilities)
-			ability.remove_action(src)
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 

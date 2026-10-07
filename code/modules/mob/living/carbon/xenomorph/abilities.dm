@@ -49,7 +49,6 @@
 /datum/action/ability/activable/xeno/plant_weeds/encounter
 	keybinding_signals = null
 	weed_type = /obj/alien/weeds/node/resting
-	hive_ability = TRUE
 
 /datum/action/ability/activable/xeno/plant_weeds/New(Target)
 	. = ..()
@@ -243,7 +242,6 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 /datum/action/ability/activable/xeno/secrete_resin/encounter
 	keybinding_signals = null
 	scaling_wait = 3 SECONDS //They are less suited to building
-	hive_ability = TRUE
 
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/ability/activable/xeno/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
