@@ -553,7 +553,7 @@
 
 	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
 	L.do_attack_animation(src, used_item = I)
-	playsound(src, 'sound/effects/natural/vegetation_hit.ogg', 25, 1)
+	playsound(src, 'sound/effects/natural/vegetation_hit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /obj/structure/flora/jungle/vines/Initialize(mapload)

@@ -108,11 +108,11 @@
 	ready = !ready
 	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
 	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
-	playsound(get_turf(src), SFX_SPARKS, 25, TRUE, 4)
+	playsound(get_turf(src), SFX_SPARKS, 25, TRUE, SUPPRESSED_SOUND_RANGE)
 	if(ready)
-		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 45, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOn.ogg', 45, FALSE, SHORT_SOUND_RANGE)
 	else
-		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 45, 0)
+		playsound(get_turf(src), 'sound/items/defib_safetyOff.ogg', 45, FALSE, SHORT_SOUND_RANGE)
 	update_icon()
 
 
@@ -208,7 +208,7 @@
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [patient]'s chest."),
 	span_notice("You start setting up the paddles on [patient]'s chest."))
-	playsound(get_turf(src),'sound/items/defib_charge.ogg', 45, 0) // Don't vary this, it should be exactly 7 seconds
+	playsound(get_turf(src),'sound/items/defib_charge.ogg', 45) // Don't vary this, it should be exactly 7 seconds
 
 	if(!do_after(user, 7 SECONDS, NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		to_chat(user, span_warning("You stop setting up the paddles on [patient]'s chest."))
@@ -222,7 +222,7 @@
 	sparks.start()
 	dcell.use(charge_cost)
 	update_icon()
-	playsound(get_turf(src), 'sound/items/defib_release.ogg', 45, 1)
+	playsound(get_turf(src), 'sound/items/defib_release.ogg', 45, TRUE)
 	user.visible_message(span_notice("[user] shocks [patient] with the paddles."),
 	span_notice("You shock [patient] with the paddles."))
 	patient.visible_message(span_warning("[patient]'s body convulses a bit."))
@@ -277,7 +277,7 @@
 
 	if(fail_reason)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Resuscitation failed - [fail_reason]"))
-		playsound(src, 'sound/items/defib_failed.ogg', 45, FALSE)
+		playsound(src, 'sound/items/defib_failed.ogg', 45)
 		return
 
 	ghost = patient.get_ghost(TRUE)
@@ -289,7 +289,7 @@
 
 	to_chat(patient, span_notice("<i><font size=4>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane...</font></i>"))
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Resuscitation successful."))
-	playsound(get_turf(src), 'sound/items/defib_success.ogg', 45, 0)
+	playsound(get_turf(src), 'sound/items/defib_success.ogg', 45)
 	patient.updatehealth()
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")

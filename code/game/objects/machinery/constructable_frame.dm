@@ -41,7 +41,7 @@
 					to_chat(user, span_warning("You need five lengths of cable to add them to the frame."))
 					return
 
-				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				user.visible_message(span_notice("[user] starts adding cables to [src]."),
 				span_notice("You start adding cables to [src]."))
 				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
@@ -56,14 +56,14 @@
 				icon_state = "box_1"
 
 			if(iswrench(I))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				to_chat(user, span_notice("You dismantle the frame"))
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
 
 		if(2)
 			if(istype(I, /obj/item/circuitboard/machine))
-				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				to_chat(user, span_notice("You add the circuit board to the frame."))
 				var/obj/item/circuitboard/machine/circuit = I
 				if(!user.transferItemToLoc(I, src))
@@ -82,7 +82,7 @@
 				to_chat(user, desc)
 
 			if(iswirecutter(I))
-				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				to_chat(user, span_notice("You remove the cables."))
 				state = 1
 				icon_state = "box_0"
@@ -91,7 +91,7 @@
 
 		if(3)
 			if(iscrowbar(I))
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				state = 2
 				circuit.forceMove(loc)
 				circuit = null
@@ -115,7 +115,7 @@
 						break
 
 				if(component_check)
-					playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+					playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					var/obj/machinery/new_machine = new circuit.build_path(loc)
 					new_machine.component_parts.Cut()
 					circuit.construct(new_machine)
@@ -128,7 +128,7 @@
 
 			for(var/i in req_components)
 				if(istype(I, text2path(i)) && (req_components[i] > 0))
-					playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+					playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					if(iscablecoil(I))
 						var/obj/item/stack/cable_coil/CP = I
 						if(CP.get_amount() > 1)

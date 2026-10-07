@@ -765,7 +765,7 @@
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
 	xeno_owner.gain_plasma(250)
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
-	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)

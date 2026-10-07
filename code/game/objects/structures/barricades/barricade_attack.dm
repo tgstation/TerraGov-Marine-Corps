@@ -131,7 +131,7 @@
 		balloon_alert(user, "it's melting!")
 		return TRUE
 
-	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!wire.use(1))
 		return
 	wire()

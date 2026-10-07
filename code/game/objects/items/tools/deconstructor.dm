@@ -32,7 +32,7 @@
 			return FALSE
 
 	balloon_alert_to_viewers("disassembling...")
-	playsound(loc, 'sound/items/jaws_pry.ogg', 25, 1)
+	playsound(loc, 'sound/items/jaws_pry.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 	if(QDELETED(decon_target))
@@ -40,7 +40,7 @@
 
 	user.visible_message(span_notice("[user] takes [decon_target] apart."),
 	span_notice("You take [decon_target] apart."))
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	var/list/stack_list = decon_target.deconstruct(!get_self_acid(), user)
 	if(!ishuman(user))
 		return TRUE

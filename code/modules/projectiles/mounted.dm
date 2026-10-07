@@ -266,7 +266,7 @@
 
 	setDir(angle)
 	user.set_interaction(src)
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	operator.visible_message("[operator] rotates the [src].","You rotate [src].")
 	update_pixels(user, TRUE)
 

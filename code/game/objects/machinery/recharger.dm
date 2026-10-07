@@ -30,7 +30,7 @@
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(!allowed)
 		return

@@ -54,7 +54,7 @@
 
 		user.visible_message(span_notice("[user] starts repairing [src] with [R]."),
 		"<span class='notice'>You start repairing [src] with [R]")
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
 			return
@@ -68,7 +68,7 @@
 		cut = 0
 		density = TRUE
 		icon = initial(icon)
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
 
@@ -79,11 +79,11 @@
 		return
 	user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 	"<span class='notice'>You start cutting through [src] with [I]")
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 		return
 
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] cuts through [src] with [I]."),
 	"<span class='notice'>You cut through [src] with [I]")
 	deconstruct(TRUE)

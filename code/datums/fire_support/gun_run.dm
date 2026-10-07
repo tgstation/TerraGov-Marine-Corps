@@ -28,7 +28,7 @@
 ///Takes the top 3 turfs and miniguns them, then repeats until none left
 /datum/fire_support/gau/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed
-	playsound(strafelist[1], 'sound/weapons/gauimpact.ogg', 40, 1, 20, falloff = 3)
+	playsound(strafelist[1], 'sound/weapons/gauimpact.ogg', 40, TRUE, LOUD_SOUND_RANGE, 3)
 	for(var/i=1 to 3)
 		strafed = strafelist[1]
 		strafelist -= strafed
@@ -61,7 +61,7 @@
 ///lases each turf in the line one by one
 /datum/fire_support/laser/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed = strafelist[1]
-	playsound(strafed, 'sound/effects/pred_vision.ogg', 30, 1)
+	playsound(strafed, 'sound/effects/pred_vision.ogg', 30, 1, LOUD_SOUND_RANGE)
 	for(var/target in strafed)
 		if(isliving(target))
 			var/mob/living/living_target = target
@@ -114,7 +114,7 @@
 ///Takes the top 3 turfs and miniguns them, then repeats until none left
 /datum/fire_support/volkite/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed
-	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
+	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, LOUD_SOUND_RANGE, 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
 	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0, explosion_cause=name)

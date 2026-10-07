@@ -77,7 +77,7 @@
 		hostile_detected = TRUE
 
 	if(hostile_detected)
-		playsound(detecting_mob.loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+		playsound(detecting_mob.loc, 'sound/items/tick.ogg', 100, 0, SHORT_SOUND_RANGE, 2)
 	addtimer(CALLBACK(src, PROC_REF(clear_blips)), 1 SECONDS)
 
 /// Creates a colored blip for the detecting_mob's client that is either at: the target's location (if close enough) or on the edge of the client's screen (if far enough).

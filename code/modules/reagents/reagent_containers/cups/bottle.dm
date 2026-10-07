@@ -256,7 +256,7 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 
-	playsound(src, SFX_SHATTER, 25, 1)
+	playsound(src, SFX_SHATTER, 25, 1, MEDIUM_SOUND_RANGE)
 	user.put_in_active_hand(B)
 
 	qdel(src)

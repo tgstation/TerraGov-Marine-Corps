@@ -61,7 +61,7 @@
 	. = ..()
 	if(.)
 		return
-	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	user.visible_message(span_warning("[user] kicks [src]."), \
 						span_warning("You kick [src]."), \
@@ -73,12 +73,12 @@
 		return
 
 	if(iswirecutter(I))
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		new /obj/item/stack/rods(loc, 2)
 		qdel(src)
 
 	else if(isscrewdriver(I) && isopenturf(loc))
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		anchored = !anchored
 		user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
 							span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor."))

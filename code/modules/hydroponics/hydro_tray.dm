@@ -615,7 +615,7 @@
 		update_icon()
 
 	else if(iswrench(I))
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 

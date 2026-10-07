@@ -287,7 +287,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 	if(ishuman(source))
 		to_chat(source, span_notice("[icon2html(src, source)] You switch to <b>[gun_firemode]</b>."))
-	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1, SHORT_SOUND_RANGE)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 	setup_bullet_accuracy()
 	return TRUE
@@ -434,7 +434,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	set desc = "Toggle the safety of the held gun."
 
 	balloon_alert(usr, "Safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "off" : "on"].")
-	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1, SHORT_SOUND_RANGE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
 	else

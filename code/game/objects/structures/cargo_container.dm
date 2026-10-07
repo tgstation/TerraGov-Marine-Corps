@@ -16,7 +16,7 @@
 	. = ..()
 	if(.)
 		return
-	playsound(loc, 'sound/effects/clang.ogg', 25, 1)
+	playsound(loc, 'sound/effects/clang.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	var/damage_dealt
 	if(istype(user,/mob/living/carbon/human))

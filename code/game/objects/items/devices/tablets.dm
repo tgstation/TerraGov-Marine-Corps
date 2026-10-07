@@ -145,7 +145,7 @@
 		var/obj/machinery/camera/selected_camera
 
 		active_camera = cameras[camera_reference]
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 		if(!selected_camera)
 			return TRUE

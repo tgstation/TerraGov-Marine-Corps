@@ -29,7 +29,7 @@
 
 	succeed_activate()
 
-	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1)
+	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] spews forth a wide cone of acid!"), \
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
 			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
 		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
-		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
+		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
 	cleanup_variables()
@@ -782,7 +782,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	carbon_target.Shake(duration = 0.1 SECONDS)
 	xeno_owner.do_attack_animation(carbon_target)
 	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
-	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
+	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))

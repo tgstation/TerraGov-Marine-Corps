@@ -7,7 +7,7 @@
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	balloon_alert_to_viewers("removed")
 	modify_max_integrity(max_integrity - 50)
 	barricade_flags |= BARRICADE_CAN_WIRE
@@ -77,7 +77,7 @@
 		return TRUE
 
 	balloon_alert_to_viewers("bolt protection panel removed")
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	build_state = BARRICADE_ANCHORED
 	return TRUE
 
@@ -89,7 +89,7 @@
 			return TRUE
 
 	balloon_alert_to_viewers("bolt protection panel replaced")
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	build_state = BARRICADE_FIRM
 	return TRUE
 
@@ -99,7 +99,7 @@
 		var/fumbling_time = 1 SECONDS * (skill_level - user.skills.getRating(SKILL_CONSTRUCTION))
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 
@@ -136,7 +136,7 @@
 		balloon_alert(user, "already a barricade here!")
 		return FALSE
 
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
@@ -155,14 +155,14 @@
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	balloon_alert_to_viewers("disassembling...")
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 	span_notice("You take [src]'s panels apart."))
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	deconstruct(!get_self_acid())
 	return TRUE
 

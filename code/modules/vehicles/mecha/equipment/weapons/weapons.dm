@@ -229,7 +229,7 @@
 		proj_scatter += holding.scatter_mod //todo: we can probably just make the scatter_modmod apply directly to the gun like attachments do
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, max(proj_scatter, 0), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
-	playsound(chassis, fire_sound, 25, TRUE)
+	playsound(chassis, fire_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	chassis.use_power(energy_drain)
@@ -379,7 +379,7 @@
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	ASYNC
 		attempt_rearm(current_firer)
 
@@ -487,7 +487,7 @@
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return TRUE
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 //used for projectile initilisation (priming flashbang) and additional logging

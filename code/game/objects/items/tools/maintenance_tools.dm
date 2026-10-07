@@ -287,7 +287,7 @@
 		M = loc
 	if(!welding)
 		if(get_fuel() > 0)
-			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
+			playsound(loc, 'sound/items/weldingtool_on.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			welding = TRUE
 			set_light_on(TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
@@ -303,7 +303,7 @@
 				balloon_alert(M, "no fuel!")
 			return
 	else
-		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		force = 3
 		damtype = BRUTE
 		welding = FALSE

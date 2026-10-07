@@ -130,7 +130,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, I.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 ///Signal handler for hard del of hostile
 /obj/structure/xeno/xeno_turret/proc/unset_hostile()

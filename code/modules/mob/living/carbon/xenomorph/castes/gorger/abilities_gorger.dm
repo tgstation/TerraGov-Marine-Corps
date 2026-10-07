@@ -144,9 +144,9 @@
 		if(!do_after(xeno_owner, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
 			break
 		xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);
-		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"));
-		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE);
-		target_human.emote("scream");
+		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"))
+		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE, MEDIUM_SOUND_RANGE)
+		target_human.emote("scream")
 		target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, attacker = owner)
 		var/drain_healing = GORGER_DRAIN_HEAL
 		HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE)
@@ -274,7 +274,7 @@
 	add_cooldown()
 	succeed_activate()
 
-	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0)
+	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_xenodanger("[xeno_owner] smashes her fists into the ground!"), \
 	span_xenodanger("We smash our fists into the ground!"))
 

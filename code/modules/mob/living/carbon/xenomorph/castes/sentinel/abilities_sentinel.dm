@@ -78,7 +78,7 @@
 	if(HAS_TRAIT(xeno_target, TRAIT_INTOXICATION_IMMUNE))
 		xeno_target.balloon_alert(xeno_owner, "Immune to Intoxication")
 		return
-	playsound(xeno_target, 'sound/effects/spray3.ogg', 20, TRUE)
+	playsound(xeno_target, 'sound/effects/spray3.ogg', 20, TRUE, MEDIUM_SOUND_RANGE)
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 	if(debuff)
 		debuff.add_stacks(intoxication_stacks)

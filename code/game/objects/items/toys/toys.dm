@@ -188,7 +188,7 @@
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	src.visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
-	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	playsound(src, 'sound/effects/snap.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /obj/item/toy/snappop/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
@@ -205,7 +205,7 @@
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
-	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	playsound(src, 'sound/effects/snap.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /*
@@ -290,7 +290,7 @@
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		to_chat(user, span_notice("You play with [src]."))
-		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
+		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1, SHORT_SOUND_RANGE)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/living/user)
@@ -300,7 +300,7 @@
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, span_notice("You play with [src]."))
-			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
+			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1, SHORT_SOUND_RANGE)
 			cooldown = world.time
 			return
 
@@ -707,7 +707,7 @@
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isfood(object))
 					qdel(object)
-					playsound(src,'sound/items/eatfood.ogg', 25, 1)
+					playsound(src,'sound/items/eatfood.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					visible_message(span_warning("[src] consumes \the [object]."))
 					break
 		if(3)
@@ -737,7 +737,7 @@
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isinjector(object))
 					qdel(object)
-					playsound(src,'sound/items/hypospray.ogg', 25, 1)
+					playsound(src,'sound/items/hypospray.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					visible_message(span_warning("[src] injects \the [object] into its arm."))
 					break
 		if(7)

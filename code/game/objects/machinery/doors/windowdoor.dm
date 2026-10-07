@@ -95,7 +95,7 @@
 		operating = TRUE
 	icon_state = "[base_state]open"
 	do_animate("opening")
-	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
+	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(finish_open)), 1 SECONDS)
 	return TRUE
 
@@ -117,7 +117,7 @@
 	operating = TRUE
 	icon_state = base_state
 	do_animate("closing")
-	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
+	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	density = TRUE
 
@@ -141,7 +141,7 @@
 		return TRUE
 
 	else if(operating == -1 && iscrowbar(I))
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))

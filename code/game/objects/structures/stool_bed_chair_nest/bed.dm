@@ -199,7 +199,7 @@
 		if(!buildstacktype)
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)
@@ -390,17 +390,17 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return
 
 	if(!linked_beacon)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
 		return
 
 	if(user.faction != linked_beacon.faction)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
 	if(world.time < last_teleport )
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
 		return
 
@@ -409,23 +409,23 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return
 
 	if(!linked_beacon.planted)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine linked medvac beacon isn't planted and active!"))
 		return
 
 	if(!linked_beacon.check_power())
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine linked medvac beacon is unpowered."))
 		return
 
 	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s beacon is out of range!"))
 		return
 
 	user.visible_message(span_warning("[user] activates [src]'s bluespace engine, causing it to rev to life."),
 	span_warning("You activate [src]'s bluespace engine, causing it to rev to life."))
-	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
+	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	teleport_timer = addtimer(CALLBACK(src, PROC_REF(medevac_teleport), user), MEDEVAC_TELE_DELAY, TIMER_STOPPABLE|TIMER_UNIQUE) //Activate after 5 second delay.
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(on_mob_unbuckle))
 	busy = TRUE
@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	busy = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
-	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	visible_message(span_warning("[src]'s safeties kick in, no longer detecting a buckled user."))
 
 
@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	busy = FALSE
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon."))
 		return
 	var/mob/living/M
@@ -452,16 +452,16 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	else if(buckled_bodybag)
 		M = locate(/mob/living) in buckled_bodybag.contents
 	else
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
 		return
 	if(!M) //We need a mob to teleport or no deal
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
 		return
 
 	if(M.faction != linked_beacon.faction)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
@@ -554,7 +554,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!timer_cooldown)
 		if(holder)
 			balloon_alert(holder, "medevac charged")
-		playsound(loc,'sound/machines/ping.ogg', 10, FALSE)
+		playsound(loc,'sound/machines/ping.ogg', 10, FALSE, SUPER_SHORT_SOUND_RANGE)
 		STOP_PROCESSING(SSprocessing, src)
 	update_icon()
 
@@ -670,7 +670,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
 	icon_state = "med_1"
-	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+	playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	faction = user.faction
 
 /obj/item/medevac_beacon/attack_hand(mob/living/user)
@@ -685,7 +685,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
 		icon_state = "med_0"
-		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/click.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -721,7 +721,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return
 		locked = !locked
 		user.visible_message(span_notice("[user] [locked ? "locks" : "unlocks"] [src]'s interface."),
@@ -729,7 +729,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	else if(istype(I, /obj/item/roller/medevac))
 		if(locked)
 			to_chat(user, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return
 
 		add_stretcher(I, user)
@@ -749,7 +749,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			if(!silent)
 				if(user)
 					balloon_alert(user, "already linked!")
-				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return TRUE
 		if(rollerbed.linked_beacon)
 			rollerbed.linked_beacon.remove_stretcher(rollerbed)
@@ -758,7 +758,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(!silent)
 			if(user)
 				balloon_alert(user, "linked")
-			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	var/obj/structure/bed/medevac_stretcher/stretcherbed = target_bed
@@ -767,7 +767,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			if(!silent)
 				if(user)
 					balloon_alert(user, "already linked!")
-				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return TRUE
 		if(stretcherbed.linked_beacon)
 			stretcherbed.linked_beacon.remove_stretcher(stretcherbed)
@@ -776,7 +776,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(!silent)
 			if(user)
 				balloon_alert(user, "linked")
-			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	return	FALSE

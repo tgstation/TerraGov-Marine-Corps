@@ -60,7 +60,7 @@
 	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	playsound(loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	flick("[base_state]_flash", src)
 	last_flash = world.time
 	use_power(active_power_usage)

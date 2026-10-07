@@ -307,7 +307,7 @@
 	if(xeno_attacker.a_intent == INTENT_HARM)
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(damage_amount))
-			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes \the [src] beyond recognition!"), \
 			span_danger("We enter a frenzy and smash \the [src] apart!"), null, 5)
 			malfunction()
@@ -315,7 +315,7 @@
 		else
 			xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 			span_danger("We slash \the [src]!"), null, 5)
-			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	if(tipped_level)
@@ -400,7 +400,7 @@
 		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		anchored = !anchored
 		set_ai_block()
 		if(anchored)
@@ -653,7 +653,7 @@
 /obj/machinery/vending/proc/release_item(datum/vending_product/product, mob/user)
 	SSblackbox.record_feedback("tally", "vendored", 1, product.product_name)
 	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
-	playsound(src, vending_sound ? vending_sound : SFX_VENDING, 25, 0)
+	playsound(src, vending_sound ? vending_sound : SFX_VENDING, 25, 0, MEDIUM_SOUND_RANGE)
 	var/obj/item/new_item
 	if(ispath(product.product_path,/obj/item/weapon/gun))
 		new_item = new product.product_path(get_turf(src), 1)

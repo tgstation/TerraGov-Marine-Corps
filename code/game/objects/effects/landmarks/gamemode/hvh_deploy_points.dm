@@ -117,7 +117,7 @@
 		AM.layer = layer_list[AM]
 		if(ismecha(AM) || isarmoredvehicle(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
-			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
+			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)
 	for(var/user in mobs_moving)
 		shake_camera(user, 0.2 SECONDS, 0.5)
 
@@ -195,8 +195,8 @@
 //Rope animation for standard deploy points
 /atom/movable/effect/rappel_rope/Initialize(mapload)
 	. = ..()
-	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
-	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
+	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE, 2)
+	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, LOUD_SOUND_RANGE, 2.5)
 	balloon_alert_to_viewers("!!!")
 	visible_message(span_userdanger("You see a dropship fly overhead and begin dropping ropes!"))
 	ropeanimation()

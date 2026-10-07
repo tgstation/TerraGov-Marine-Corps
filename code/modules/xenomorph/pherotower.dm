@@ -21,7 +21,7 @@
 
 //Pheromone towers start off with recovery.
 	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
-	playsound(src, SFX_ALIEN_DROOL, 25)
+	playsound(src, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/structure/xeno/pherotower/ex_act(severity)
@@ -49,7 +49,7 @@
 	QDEL_NULL(current_aura)
 	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	balloon_alert(xeno_attacker, "[phero_choice]")
-	playsound(src, SFX_ALIEN_DROOL, 25)
+	playsound(src, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/structure/xeno/pherotower/update_icon_state()
