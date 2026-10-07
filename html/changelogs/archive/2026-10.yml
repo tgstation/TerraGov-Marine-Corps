@@ -38,3 +38,16 @@
   - rscadd: Xenos also get psy points from disk cycles
   - bugfix: Fix xenos not getting psy points from tunnels,
   - rscdel: Zombies cannot be drained by cocoons
+2026-10-06:
+  Lumipharon:
+  - rscadd: All weapons now have codex entries
+  - code_imp: Deployment flags are their on var instead of item_flags
+  - refactor: refactored various bits of weapon code
+2026-10-07:
+  mudzbe:
+  - rscadd: Added corrupted larva, runner saddle and IFF tag to zcrash vendor
+  - rscadd: Xenos can perma zombies
+  - rscadd: Added roundstart larva spawns to zombie crash, (widebury integration pending)
+  - balance: Xenos have reduced ability cost and duration to 1/3, and access to nuke
+      war abilities on zombie crash, xenos count as humans for spawning zombies
+  - bugfix: Corrupted xenos are offered when created

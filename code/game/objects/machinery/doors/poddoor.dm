@@ -61,7 +61,7 @@
 			flick("pdoorc0", src)
 		if("closing")
 			flick("pdoorc1", src)
-	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	playsound(loc, 'sound/machines/blastdoor.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/machinery/door/poddoor/opened
 	density = FALSE

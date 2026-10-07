@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Sounds use a default max range of 17 instead of defaulting to a value based on volume. Hopefully reduces lag at high pop"
+  - qol: "tweaked various sound's maxrange"

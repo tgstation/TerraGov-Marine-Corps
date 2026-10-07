@@ -102,7 +102,7 @@
 		return ..()
 
 	user.visible_message(span_notice("[user] takes a bite of \the [src] and swallows it."))
-	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
+	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
 	uses -= 5
 	if(uses <= 0)
 		qdel(src)

@@ -103,7 +103,7 @@
 ///Turns it off or on
 /obj/item/implant/sandevistan/proc/toggle(silent = FALSE)
 	if(!active)
-		playsound(implant_owner, 'sound/effects/spinal_implant_on.ogg', 60)
+		playsound(implant_owner, 'sound/effects/spinal_implant_on.ogg', 60, FALSE, MEDIUM_SOUND_RANGE)
 		implant_owner.add_movespeed_modifier(type, priority = 100, multiplicative_slowdown = speed_modifier)
 		implant_owner.next_move_modifier -= action_modifier
 		RegisterSignal(implant_owner, MOB_GET_DO_AFTER_COEFFICIENT, PROC_REF(apply_do_after_mod))
@@ -114,7 +114,7 @@
 		START_PROCESSING(SSfastprocess, src)
 		GLOB.round_statistics.sandevistan_uses++
 	else
-		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70)
+		playsound(implant_owner, 'sound/effects/spinal_implant_off.ogg', 70, FALSE, MEDIUM_SOUND_RANGE)
 		implant_owner.next_move_modifier += action_modifier
 		UnregisterSignal(implant_owner, list(MOB_GET_DO_AFTER_COEFFICIENT, MOB_GET_MISS_CHANCE_MOD))
 		implant_owner.remove_movespeed_modifier(type)

@@ -35,7 +35,7 @@
 			if(reagents.total_volume)
 				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user)
 				reagents.trans_to(H, 10)
-			playsound(H.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(H.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return 1
 		else
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
@@ -51,7 +51,7 @@
 				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user, M)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, 10)
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return 1
 	return 0
 

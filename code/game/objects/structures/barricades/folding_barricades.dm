@@ -90,7 +90,7 @@
 /obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
 	if(state == (barricade_flags & BARRICADE_OPEN))
 		return
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	TOGGLE_BITFIELD(barricade_flags, BARRICADE_OPEN)
 	density = !density
 

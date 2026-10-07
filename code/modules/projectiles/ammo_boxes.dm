@@ -132,7 +132,7 @@
 	else
 		to_chat(user, span_notice("You put [rounds_to_move] rounds in [mag]."))
 
-	playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///Attempts to store the handful into src
 /obj/item/big_ammo_box/proc/store_handful(obj/item/ammo_magazine/loose, mob/user)
@@ -152,7 +152,7 @@
 		loose.update_appearance()
 
 	to_chat(user, span_notice("You put [rounds_to_move] rounds in [src]."))
-	playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///Tries to undeploy and pick up src
 /obj/item/big_ammo_box/proc/attempt_undeploy(mob/living/user)

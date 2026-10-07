@@ -203,7 +203,7 @@
 		balloon_alert(user, "Remove bulb first")
 		return TRUE
 
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.visible_message("[user] opens [src]'s casing.", \
 		"You open [src]'s casing.", "You hear a noise.")
 	var/obj/machinery/light_construct/newlight
@@ -376,11 +376,10 @@
 
 ///proc to toggle power on and off for light
 /obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
+	playsound(loc, pick(list('sound/effects/lightfizz.ogg', 'sound/effects/lightfizz2.ogg', 'sound/effects/lightfizz3.ogg', 'sound/effects/lightfizz4.ogg', 'sound/effects/lightfizz5.ogg', 'sound/effects/lightfizz.ogg', 'sound/effects/lightfizz6.ogg')), 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	if(!light_flicker_state)
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		update(FALSE)
 	else
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		turn_light(null, FALSE)
 
 ///break the light and make sparks if was on
@@ -390,7 +389,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
+			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(status == LIGHT_OK && has_power())
 			var/datum/effect_system/spark_spread/spark_spread = new /datum/effect_system/spark_spread(src)
 			spark_spread.set_up(3, 1, loc)

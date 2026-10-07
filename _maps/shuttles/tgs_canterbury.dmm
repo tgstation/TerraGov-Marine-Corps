@@ -733,6 +733,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"qi" = (
+/obj/effect/landmark/corrupted_larva,
+/obj/effect/landmark/corrupted_larva,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "qK" = (
 /obj/structure/cable,
 /obj/machinery/computer/sleep_console,
@@ -1097,7 +1102,7 @@ an
 bp
 bq
 bq
-aD
+qi
 an
 bu
 cy

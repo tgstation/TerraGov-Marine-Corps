@@ -58,7 +58,7 @@
 		else	//can only use it  5 times a minute
 			to_chat(user, span_warning("*click* *click*"))
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	var/flashfail = 0
 
 	if(iscarbon(M))
@@ -113,7 +113,7 @@
 		else	//can only use it  5 times a minute
 			user.show_message(span_warning("*click* *click*"), 2)
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 	//flick("flash2", src)
 

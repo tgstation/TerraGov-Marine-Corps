@@ -21,7 +21,7 @@
 		return ..()
 	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
 		span_danger("Our grab was blocked by [src]'s shield!"), null, 5)
-	playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, TRUE) //Feedback
+	playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, TRUE, MEDIUM_SOUND_RANGE) //Feedback
 	return FALSE
 
 
@@ -29,7 +29,7 @@
 
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
+	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	X.visible_message(span_warning("\The [X] shoves [src]!"),
 	span_warning("We shove [src]!"), null, 5)
 	return TRUE
@@ -99,7 +99,7 @@
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
-		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		X.do_attack_animation(src)
 		X.visible_message(span_danger("\The [X] lunges at [src]!"), \
 		span_danger("We lunge at [src]!"), null, 5)
@@ -109,7 +109,7 @@
 	X.do_attack_animation(src, attack_effect)
 
 	//The normal attack proceeds
-	playsound(loc, X.attack_sound, 25, 1)
+	playsound(loc, X.attack_sound, 25, 1, MEDIUM_SOUND_RANGE)
 	X.visible_message("[attack_message1]", \
 	"[attack_message2]")
 
@@ -137,7 +137,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 
@@ -151,7 +151,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start(src)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -170,16 +170,18 @@
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
 			if(cam_headset?.camera?.camera_flags & CAMERA_TURNED_ON)
 				cam_headset.camera.toggle_cam()
-				playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+				playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1, MEDIUM_SOUND_RANGE)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
 		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
-			playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+			playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1, MEDIUM_SOUND_RANGE)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
 			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))
+		else if(iszombie(src))
+			rip_out_heart(X, FALSE)
 		else
 			to_chat(X, span_warning("[src] is dead, why would we want to touch it?"))
 		return FALSE

@@ -50,7 +50,7 @@
 	return TRUE
 
 /obj/machinery/self_destruct/console/toggle(lock)
-	playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1)
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return ..()
 
 
@@ -123,7 +123,7 @@
 
 /obj/machinery/self_destruct/rod/toggle(lock)
 	. = ..()
-	playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(lock)
 		activate_time = null
 		density = FALSE
@@ -141,12 +141,12 @@
 	switch(active_state)
 		if(SELF_DESTRUCT_MACHINE_ACTIVE)
 			to_chat(user, span_notice("You twist and release the control rod, arming it."))
-			playsound(src, 'sound/machines/switch.ogg', 25, 1)
+			playsound(src, 'sound/machines/switch.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			icon_state = "rod_4"
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 		if(SELF_DESTRUCT_MACHINE_ARMED)
 			to_chat(user, span_notice("You twist and release the control rod, disarming it."))
-			playsound(src, 'sound/machines/switch.ogg', 25, 1)
+			playsound(src, 'sound/machines/switch.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			icon_state = "rod_3"
 			active_state = SELF_DESTRUCT_MACHINE_ACTIVE
 		else

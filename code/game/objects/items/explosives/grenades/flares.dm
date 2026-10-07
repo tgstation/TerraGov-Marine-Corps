@@ -116,7 +116,7 @@
 	damtype = BURN
 	update_icon()
 	set_light_on(TRUE)
-	playsound(src,'sound/items/flare.ogg', 15, 1)
+	playsound(src,'sound/items/flare.ogg', 15, 1, SHORT_SOUND_RANGE)
 	GLOB.activated_flares += src
 	START_PROCESSING(SSobj, src)
 

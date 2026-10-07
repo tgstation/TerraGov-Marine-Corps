@@ -178,7 +178,7 @@
 /datum/action/ability/xeno_action/conqueror_dash/proc/activate_dash(direction)
 	xeno_owner.add_pass_flags(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_WALKOVER, CONQUEROR_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
-	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE)
+	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE, SUPPRESSED_SOUND_RANGE)
 	var/turf/turf_target = get_ranged_target_turf(xeno_owner, direction, CONQUEROR_DASH_RANGE)
 	for(var/turf/turf_to_check AS in get_line(xeno_owner.loc, turf_target) - xeno_owner.loc)
 		for(var/atom/atom_to_check AS in turf_to_check)
@@ -430,7 +430,7 @@
 			if(potential_mob.stat == DEAD || potential_mob.issamexenohive(xeno_owner))
 				continue
 			if(!potential_mob.Adjacent(xeno_owner))
-				playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 7, TRUE)
+				playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_charge.ogg', 7, TRUE, SUPPRESSED_SOUND_RANGE)
 				step_towards(xeno_owner, potential_mob, get_dist(xeno_owner, potential_mob) - 1)
 			break
 
@@ -458,8 +458,8 @@
 		combo_jab(living_target)
 	else if(findtext(combo_streak, COMBO_RIGHT_RIGHT, combo_check))
 		combo_kick(living_target)
-	playsound(living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 20, TRUE)
-	playsound(xeno_owner, 'sound/voice/alien/roar2.ogg', 20, TRUE)
+	playsound(living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 20, TRUE, MEDIUM_SOUND_RANGE)
+	playsound(xeno_owner, 'sound/voice/alien/roar2.ogg', 20, TRUE, MEDIUM_SOUND_RANGE)
 	reset_combo(TRUE)
 	add_cooldown()
 
@@ -482,7 +482,7 @@
 /// A simple hook.
 /datum/action/ability/activable/xeno/conqueror_will/proc/no_combo(mob/living/living_target)
 	playsound(living_target, SFX_CONQUEROR_WILL_HOOK, 35, TRUE)
-	playsound(living_target, SFX_CONQUEROR_WILL_EXTRA, 15, TRUE)
+	playsound(living_target, SFX_CONQUEROR_WILL_EXTRA, 15, TRUE, SHORT_SOUND_RANGE)
 	new /obj/effect/temp_visual/conqueror/hook(living_target.loc)
 
 /// A well delivered punch to a weak point, incapacitating the target for the duration.
@@ -872,7 +872,7 @@
 	xeno_owner.status_flags |= (GODMODE|INCORPOREAL)
 	xeno_owner.add_pass_flags(PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING, CONQUEROR_ABILITY_TRAIT)
 	xeno_owner.alpha = 0
-	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 25, TRUE)
+	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	new /obj/effect/temp_visual/conqueror/reappearance(xeno_owner.loc)
 	xeno_owner.forceMove(valid_turfs[check_distance])
 	addtimer(CALLBACK(src, PROC_REF(do_reappearance), reappearance_turfs), CONQUEROR_DOMINATION_CASTING_DELAY)
@@ -886,9 +886,9 @@
 	xeno_owner.remove_pass_flags(PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING, CONQUEROR_ABILITY_TRAIT)
 	xeno_owner.alpha = initial(xeno_owner.alpha)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_roar.ogg', 45, TRUE)
-	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 10, TRUE)
+	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	new /obj/effect/temp_visual/conqueror/reappearance(xeno_owner.loc)
-	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_explosion.ogg', 8, TRUE)
+	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_explosion.ogg', 8, TRUE, SUPPRESSED_SOUND_RANGE)
 	new /obj/effect/temp_visual/conqueror/domination(xeno_owner.loc)
 	for(var/turf/affected_turf AS in affected_turfs)
 		for(var/mob/mob_target in affected_turf)
@@ -1077,7 +1077,7 @@
 		for(var/atom/atom_to_check AS in turf_to_check)
 			if(atom_to_check.CanPass(xeno_owner, turf_to_check))
 				new /obj/effect/temp_visual/conqueror/dash_trail(turf_to_check, get_dir(xeno_owner, target))
-	playsound(new_turf, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE)
+	playsound(new_turf, 'sound/effects/alien/behemoth/landslide_charge.ogg', 8, TRUE, SUPPRESSED_SOUND_RANGE)
 	playsound(target, 'sound/effects/alien/conqueror/will_kick.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/conqueror/hook/punch(target.loc)
 	xeno_owner.forceMove(new_turf)

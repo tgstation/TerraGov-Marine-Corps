@@ -152,7 +152,7 @@
 			to_chat(user, span_notice("You need more welding fuel."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(istext(glass))
 			user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
 			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
@@ -189,7 +189,7 @@
 			qdel(src)
 
 	else if(iswrench(I) && state == 0)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(anchored)
 			user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
 		else
@@ -219,7 +219,7 @@
 		to_chat(user, span_notice("You wire the airlock."))
 
 	else if(iswirecutter(I) && state == 1 )
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
@@ -230,7 +230,7 @@
 		state = 0
 
 	else if(istype(I, /obj/item/circuitboard/airlock) && state == 1 && I.icon_state != "door_electronics_smoked")
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
@@ -244,7 +244,7 @@
 		electronics = I
 
 	else if(iscrowbar(I) && state == 2)
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove the electronics from the airlock assembly.")
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
@@ -268,7 +268,7 @@
 			return
 
 		if(istype(S, /obj/item/stack/sheet/glass/reinforced))
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD) && !glass)
 				return
@@ -284,7 +284,7 @@
 			if(S.get_amount() < 2)
 				return
 
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD) && !glass)
 				return
@@ -296,7 +296,7 @@
 			glass = "[M]"
 
 	else if(isscrewdriver(I) && state == 2 )
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("Now finishing the airlock."))
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))

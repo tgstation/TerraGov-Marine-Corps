@@ -338,7 +338,7 @@
 	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
 		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
 	H.stop_pulling()
 	return FALSE

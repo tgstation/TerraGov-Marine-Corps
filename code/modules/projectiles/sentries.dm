@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/emp_act(severity)
 	. = ..()
 	machine_stat |= EMPED
-	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	playsound(loc, 'sound/magic/lightningshock.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //will need to add something later to be additive or something
 	update_appearance(UPDATE_OVERLAYS)
 
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/proc/remove_emp()
 	machine_stat &= ~EMPED
 	update_appearance(UPDATE_OVERLAYS)
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50)
 
 //----------------------------------------------------------------------------
 // Sentry Functions
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(SENTRY_ALERT_DESTROYED)
 			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
 
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/deployable/mounted/sentry/process()
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if((machine_stat & EMPED) || !scan())
 		sentry_stop_fire()
 		return
-	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
+	playsound(loc, 'sound/items/detector.ogg', 25)
 
 	sentry_start_fire()
 

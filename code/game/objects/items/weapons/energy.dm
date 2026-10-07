@@ -106,7 +106,7 @@
 		penetration = active_penetration
 		heat = 3500
 		w_class = WEIGHT_CLASS_BULKY
-		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
+		playsound(src, 'sound/weapons/saberon.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
 			special_attack.give_action(user)
 	else
@@ -118,7 +118,7 @@
 		penetration = initial(penetration)
 		heat = 0
 		w_class = WEIGHT_CLASS_SMALL
-		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
+		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		special_attack?.remove_action(user)
 
 	user.update_inv_l_hand()

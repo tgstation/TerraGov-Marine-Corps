@@ -185,7 +185,7 @@
 		M.emote("me", EMOTE_TYPE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 25, 1)
+			playsound(loc, M.attack_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
@@ -692,7 +692,7 @@
 /mob/living/carbon/human/proc/play_xylophone()
 	visible_message(span_warning("[src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice("You begin to play a spooky refrain on your ribcage."),span_warning("You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-	playsound(loc, song, 25, 1)
+	playsound(loc, song, 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/human/proc/is_lung_ruptured()

@@ -110,7 +110,7 @@
 		return
 
 	if(isscrewdriver(I) && circuit)
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 

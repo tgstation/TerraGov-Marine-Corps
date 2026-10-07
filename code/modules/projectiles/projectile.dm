@@ -920,7 +920,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 ///visual and audio feedback for hits
 /atom/movable/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit)
-		playsound(M, ammo.sound_hit, 50, 1)
+		playsound(M, ammo.sound_hit, 50, TRUE, MEDIUM_SOUND_RANGE)
 	if(M.stat != DEAD)
 		animation_flash_color(M)
 
@@ -1269,7 +1269,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/human/bullet_soak_effect(atom/movable/projectile/proj)
 	if(!proj.ammo.sound_armor)
 		return ..()
-	playsound(src, proj.ammo.sound_armor, 50, TRUE)
+	playsound(src, proj.ammo.sound_armor, 50, TRUE, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/proc/do_shrapnel_roll(atom/movable/projectile/proj, damage)
@@ -1441,7 +1441,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 			proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(fire_sound)
-			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE, FIREARM_SOUND_RANGE)
 		return
 
 	angle_between_bullets = 360 / (length(bullets) / rotations)
@@ -1454,7 +1454,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(play_sound % 3 && fire_sound)
-			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, FALSE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, FALSE, FIREARM_SOUND_RANGE)
 		stoplag(1)
 
 #undef BULLET_FEEDBACK_PEN

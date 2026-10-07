@@ -303,7 +303,7 @@
 	if(xeno_attacker.do_actions)
 		return FALSE
 
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(hasPower())
 		xeno_attacker.visible_message(span_warning("\The [xeno_attacker] digs into \the [src] and begins to pry it open."), \
@@ -442,7 +442,7 @@
 			to_chat(user, span_warning("Large doors seem impossible to disassemble."))
 			return
 
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
 		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
@@ -510,10 +510,10 @@
 	machine_stat ^= PANEL_OPEN
 	if(machine_stat & PANEL_OPEN)
 		to_chat(user, span_notice("You open [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
 		to_chat(user, span_notice("You close [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/machinery/door/airlock/open(forced = FALSE)
@@ -524,9 +524,9 @@
 		return
 	use_power(active_power_usage)
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
+		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
-		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
+		playsound(loc, 'sound/machines/airlock.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
 
@@ -559,9 +559,9 @@
 
 	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
+		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
-		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
+		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		killthis?.ex_act(2)//Smashin windows

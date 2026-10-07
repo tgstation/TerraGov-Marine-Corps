@@ -74,7 +74,7 @@
 	// 301 damage. Enough to kill normal and thick walls.
 	// Only reason why this is not ChangeTurf is to stop special walls from getting one-shot (e.g more health / melee armor).
 	take_damage(max(0, plasmacutter.force * (2 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /turf/closed/wall/resin/thick
@@ -144,7 +144,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
@@ -168,7 +168,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, I.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()

@@ -72,7 +72,7 @@
 	if(!isxenobehemoth(xeno_attacker))
 		return
 	xeno_attacker.do_attack_animation(src)
-	playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 10, TRUE)
+	playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 	span_xenonotice(BEHEMOTH_ROCK_EATING_MESSAGES), null, 5)
 

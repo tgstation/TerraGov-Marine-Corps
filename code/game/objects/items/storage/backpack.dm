@@ -263,13 +263,13 @@
 /obj/item/storage/backpack/marine/corpsman/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
 	if(amount > cell.charge)
-		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(cell.charge)
 			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, its battery only having enough power to partially recharge the defibrillator for [cell.charge] amount. "
 		else
 			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, as its battery is completely depleted of charge. "
 	else
-		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
@@ -567,7 +567,7 @@
 	wearer = M
 
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
-	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
+	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions
@@ -625,7 +625,7 @@
 	camo_active = FALSE
 
 	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your cloak's camouflage has deactivated!"))
-	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 	user.alpha = initial(user.alpha)
 
 	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BASIC, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_HEART))

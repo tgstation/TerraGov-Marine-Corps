@@ -143,6 +143,8 @@
 		/obj/item/ammo_magazine/shotgun/incendiary = list(CAT_WEAPONS, "12 Guage Incendiary ammo box", 1, "ammo"),
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
+		/mob/living/carbon/xenomorph/larva/Corrupted/iff = list(CAT_FUN, "Corrupted larva with IFF", 30, "fun-random"),
+		/obj/item/storage/backpack/marine/duffelbag/xenosaddle = list(CAT_FUN, "Xeno Saddle", 5, "fun-random"),
 	)
 	/// The total amount of pooled points that have been gained. Shared across all vendors.
 	var/static/total_pooled_points = 0
@@ -200,7 +202,7 @@
 		flick("marinerequisitions-deny", src)
 		return
 
-	playsound(src, SFX_VENDING, 25, 0)
+	playsound(src, SFX_VENDING, 25, 0, MEDIUM_SOUND_RANGE)
 	flick("marinerequisitions-vend", src)
 	use_power(active_power_usage)
 

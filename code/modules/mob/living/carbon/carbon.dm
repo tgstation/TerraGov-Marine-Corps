@@ -30,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, SFX_SPARKS, 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE, MEDIUM_SOUND_RANGE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning("[src] was shocked by the [source]!"), \
@@ -255,7 +255,7 @@
 
 	stop_pulling()
 	visible_message(span_warning("[src] slipped on \the [slip_source_name]!"), span_warning("You slipped on \the [slip_source_name]!"))
-	playsound(src, 'sound/misc/slip.ogg', 25, 1)
+	playsound(src, 'sound/misc/slip.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	Stun(stun_time)
 	Paralyze(paralyze_time)
 	. = TRUE

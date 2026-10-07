@@ -212,7 +212,7 @@
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /turf/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -349,7 +349,7 @@
 
 	. = M.attacked_by_alternate(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /**
  * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY AS A FEATURE

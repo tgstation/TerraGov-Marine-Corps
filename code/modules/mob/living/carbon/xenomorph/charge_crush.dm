@@ -287,7 +287,7 @@
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-		playsound(crushed_living.loc, crush_sound, 25, 1)
+		playsound(crushed_living.loc, crush_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle_mob(crushed_living)
 		animation_flash_color(crushed_living)
@@ -307,7 +307,7 @@
 		var/obj/crushed_obj = crushed
 		if(istype(crushed_obj, /obj/structure/xeno/silo) || istype(crushed_obj, /obj/structure/xeno/xeno_turret))
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
-		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1)
+		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1, MEDIUM_SOUND_RANGE)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
@@ -554,7 +554,7 @@
 	span_danger("The barbed wire slices into you!"), null, 5)
 	charger.Paralyze(0.5 SECONDS)
 	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, sharp = TRUE, updating_health = TRUE) //Armor is being ignored here.
-	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
@@ -610,7 +610,7 @@
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
 			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
 			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
-			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
+			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

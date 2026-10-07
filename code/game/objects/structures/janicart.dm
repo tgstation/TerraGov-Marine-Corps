@@ -53,7 +53,7 @@
 
 			mybucket.reagents.trans_to(I, 5)	//
 			to_chat(user, span_notice("You wet [I] in [mybucket]."))
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		else if(!mymop)
 			user.drop_held_item()

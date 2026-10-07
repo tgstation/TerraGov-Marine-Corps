@@ -146,12 +146,12 @@
 		return
 	user.visible_message(span_danger("[user] starts to force [grabbed_mob] into [src]!"), span_notice("You start to force [grabbed_mob] into [src]!"))
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob, user)))
-		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 
 	user.visible_message(span_danger("[user] microwaves [grabbed_mob]!"), span_notice("You microwave [grabbed_mob]!"), "You hear sizzling.")
 	log_combat(user, grabbed_mob, "microwaved")
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /obj/machinery/microwave/proc/microwave_victim(mob/living/victim, mob/living/user)
@@ -330,7 +330,7 @@
 
 /obj/machinery/microwave/proc/stop()
 	src.balloon_alert_to_viewers("complete")
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
@@ -345,11 +345,11 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
-	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1) // Play a splat sound
+	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1, MEDIUM_SOUND_RANGE) // Play a splat sound
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	visible_message(span_warning("The microwave gets covered in muck!"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments

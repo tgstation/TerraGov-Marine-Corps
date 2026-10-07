@@ -263,13 +263,13 @@
 	return strafelist
 
 /obj/structure/ship_ammo/cas/heavygun/detonate_on(turf/impact, attackdir = NORTH, mob/firer)
-	playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
+	playsound(impact, 'sound/effects/casplane_flyby.ogg', 40, FALSE, VERY_LOUD_SOUND_RANGE)
 	strafe_turfs(get_turfs_to_impact(impact, attackdir))
 
 ///Takes the top 3 turfs and miniguns them, then repeats until none left
 /obj/structure/ship_ammo/cas/heavygun/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed
-	playsound(strafelist[1], get_sfx("explosion"), 40, 1, 20, falloff = 3)
+	playsound(strafelist[1], get_sfx("explosion"), 40, 1, LOUD_SOUND_RANGE, falloff = 3)
 	for(var/i=1 to attack_width)
 		strafed = strafelist[1]
 		strafelist -= strafed
@@ -381,7 +381,7 @@
 
 ///Lazer ammo acts on the turf passed in
 /obj/structure/ship_ammo/cas/laser_battery/proc/laser_burn(turf/T)
-	playsound(T, 'sound/effects/pred_vision.ogg', 30, 1)
+	playsound(T, 'sound/effects/pred_vision.ogg', 30, TRUE, LOUD_SOUND_RANGE)
 	for(var/mob/living/L in T)
 		L.adjustFireLoss(120)
 		L.adjust_fire_stacks(20)

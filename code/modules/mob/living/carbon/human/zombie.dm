@@ -95,7 +95,7 @@
 	balloon_alert_to_viewers("prying open [src]...")
 	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
 		return
-	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(!density || operating) //Make sure it's still closed
 		return
@@ -106,7 +106,7 @@
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	zombie.visible_message(span_danger("[zombie] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1, MEDIUM_SOUND_RANGE)
 
 	var/allcut = wires.is_all_cut()
 

@@ -171,7 +171,7 @@
 ///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
 /obj/item/explosive/plastique/proc/warning_sound()
 	if(armed)
-		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, 5)
+		playsound(plant_target, 'sound/items/countdown.ogg', 20, TRUE, SUPER_SHORT_SOUND_RANGE)
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
 		alarm_sounded = TRUE
 		update_appearance(UPDATE_ICON)
@@ -179,12 +179,12 @@
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
-		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
+		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, MEDIUM_SOUND_RANGE)
 		explosion(plant_target, flash_range = 1) //todo: place as abuse of explosion
 		qdel(src)
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 0, 1, 0, 1, explosion_cause=src)
-	playsound(plant_target, SFX_EXPLOSION_SMALL, 100, FALSE, 25)
+	playsound(plant_target, SFX_EXPLOSION_SMALL, 100, FALSE, LOUD_SOUND_RANGE)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()

@@ -66,8 +66,7 @@
 	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
 	to_chat(user, span_notice("Synthesizer is now producing '[R.name]'."))
 	mode = reagent_ids.Find(selection)
-	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
-
+	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0, SHORT_SOUND_RANGE)
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()

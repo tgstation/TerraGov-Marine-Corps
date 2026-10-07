@@ -124,7 +124,7 @@
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE
@@ -213,7 +213,7 @@
 		leaked_reagent.reaction_turf(loc, amount)
 		reagents.remove_reagent(leaked_reagent.type, amount)
 
-	playsound(src, 'sound/effects/glob.ogg', 25, 1)
+	playsound(src, 'sound/effects/glob.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"

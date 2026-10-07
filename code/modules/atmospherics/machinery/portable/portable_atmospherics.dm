@@ -37,7 +37,7 @@
 	if(!holding)
 		return
 	balloon_alert(user, "pried [holding] out")
-	playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+	playsound(src, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	holding.forceMove(drop_location())
 	holding = null
 	update_icon()
@@ -69,7 +69,7 @@
 	pixel_y = new_port.pixel_y
 	update_icon()
 
-	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(user)
 		balloon_alert(user, "connected to [new_port]")
 
@@ -90,7 +90,7 @@
 	pixel_y = initial(pixel_y)
 	update_icon()
 
-	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(user)
 		balloon_alert(user, "disconnected")
 

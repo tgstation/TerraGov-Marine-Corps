@@ -186,7 +186,7 @@
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		amount--
 		thrown_thing = knife_to_throw
-	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	playsound(src, 'sound/effects/throw.ogg', 30, TRUE, SHORT_SOUND_RANGE)
 	visible_message(span_warning("[living_user] expertly throws [thrown_thing]."), null, null, 5)
 	update_icon()
 	return AUTOFIRE_CONTINUE
