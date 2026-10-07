@@ -309,12 +309,12 @@ FACTORY
 /datum/supply_packs/factory/plastique_incendiary_refill
 	name = "EX-62 Genghis incendiary charge assembly refill"
 	contains = list(/obj/item/factory_refill/plastique_incendiary_refill)
-	cost = 500
+	cost = 250
 
 /datum/supply_packs/factory/detpack_refill
 	name = "Detpack explosive assembly refill"
 	contains = list(/obj/item/factory_refill/detpack_refill)
-	cost = 250
+	cost = 150
 
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "T-50S mortar HE shell assembly refill"
