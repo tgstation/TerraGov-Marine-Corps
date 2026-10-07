@@ -413,7 +413,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		germ_level = 0
 		return
 
-	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))	//cryo stops germs from moving and doing their bad stuffs
+	if(owner.bodytemperature >= UPPER_CRYO_TEMP && !HAS_TRAIT(owner, TRAIT_STASIS))	//cryo stops germs from moving and doing their bad stuffs
 		//** Syncing germ levels with external wounds
 		handle_germ_sync()
 
@@ -517,7 +517,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(burn_dam < 0.1)
 		burn_dam = 0
 
-	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
+	if(owner.bodytemperature >= UPPER_CRYO_TEMP && !HAS_TRAIT(owner, TRAIT_STASIS))
 		for(var/datum/wound/W in wounds)
 			W.process()
 

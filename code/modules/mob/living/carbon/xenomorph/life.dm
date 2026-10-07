@@ -179,18 +179,6 @@
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	return
 
-/mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
-	var/env_temperature = loc.return_temperature()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
-		if(env_temperature > (T0C + 66))
-			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
-			updatehealth() //unused while atmos is off
-			throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
-			if(prob(20))
-				to_chat(src, span_warning("We feel a searing heat!"))
-		else
-			clear_alert(ALERT_FIRE)
-
 /mob/living/carbon/xenomorph/updatehealth()
 	. = ..()
 	if(!. || QDELING(src)) // For godmode / if they got gibbed via update_stat.

@@ -1039,7 +1039,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, metabolism)
-	if(L.bodytemperature < 170)
+	if(L.bodytemperature < UPPER_CRYO_TEMP)
 		L.adjustCloneLoss(-effect_str)
 		L.adjustOxyLoss(-effect_str)
 		L.heal_overall_damage(effect_str,effect_str)
@@ -1054,7 +1054,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
-	if(L.bodytemperature < 170)
+	if(L.bodytemperature < UPPER_CRYO_TEMP)
 		L.adjustCloneLoss(-3*effect_str)
 		L.adjustOxyLoss(-3*effect_str)
 		L.heal_overall_damage(3*effect_str,3*effect_str)
@@ -1270,7 +1270,7 @@
 		return
 	var/mob/living/carbon/human/host = L
 	host.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
-	if(host.bodytemperature < 170)
+	if(host.bodytemperature < UPPER_CRYO_TEMP)
 		for(var/datum/limb/limb_to_fix AS in host.limbs)
 			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
 				if(!(prob(20) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))

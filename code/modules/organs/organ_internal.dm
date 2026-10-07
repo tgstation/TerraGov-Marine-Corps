@@ -280,7 +280,7 @@
 
 	var/bypass = FALSE
 
-	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
+	if(owner.bodytemperature <= UPPER_CRYO_TEMP) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
 		bypass = TRUE
 
 	current_medicine_count += new_medicines //We want to include medicines that were individually both added and removed this tick
