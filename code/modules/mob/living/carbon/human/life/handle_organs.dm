@@ -9,7 +9,7 @@
 	if(reagents && !CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
 		var/overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
-			reagents.metabolize(src, overdosable, (species?.has_organ[ORGAN_SLOT_LIVER] || get_organ_slot(ORGAN_SLOT_LIVER))) //double check this works
+			reagents.metabolize(src, overdosable, (!species?.has_organ[ORGAN_SLOT_LIVER] || get_organ_slot(ORGAN_SLOT_LIVER)))
 
 	if(species && !(species.species_flags & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
 		//Nutrition decrease
