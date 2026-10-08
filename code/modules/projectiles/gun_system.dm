@@ -897,11 +897,11 @@
 		if(inactive_gun.rounds && !(inactive_gun.gun_features_flags & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
-	heat_amount += heat_per_fire
-	if(!(datum_flags & DF_ISPROCESSING))
-		START_PROCESSING(SSprocessing, src)
+
 	if(!heat_per_fire)
 		return AUTOFIRE_CONTINUE
+
+	heat_amount += heat_per_fire
 	if(heat_amount >= 100)
 		STOP_PROCESSING(SSprocessing, src)
 		var/obj/effect/abstract/particle_holder/overheat_smoke = new(src, /particles/overheat_smoke)
@@ -911,6 +911,8 @@
 		overheat_timer = addtimer(CALLBACK(src, PROC_REF(complete_overheat), overheat_smoke), overheat_time, TIMER_STOPPABLE)
 		heat_meter.animate_change(0, overheat_time)
 		return NONE
+	if(!(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSprocessing, src)
 	heat_meter.animate_change(heat_amount/100, fire_delay)
 	return AUTOFIRE_CONTINUE
 
