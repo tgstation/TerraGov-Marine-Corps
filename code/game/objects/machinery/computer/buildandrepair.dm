@@ -21,7 +21,7 @@
 			else if(iswelder(I))
 				var/obj/item/tool/weldingtool/WT = I
 
-				if(!WT.use_tool(src, user, 2 SECONDS, 1, user_display = BUSY_ICON_BUILD))
+				if(!WT.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You deconstruct the frame."))

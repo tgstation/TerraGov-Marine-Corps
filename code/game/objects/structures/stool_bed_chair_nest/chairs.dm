@@ -121,7 +121,7 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY))
+		if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_FRIENDLY))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
@@ -420,7 +420,7 @@
 
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
-		if(!I.use_tool(src, user, 2 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),

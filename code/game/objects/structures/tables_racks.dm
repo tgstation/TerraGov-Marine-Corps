@@ -457,7 +457,7 @@
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] weakens [src]."),
@@ -467,7 +467,7 @@
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
-	if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] welds [src] back together."),

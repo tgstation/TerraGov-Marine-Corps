@@ -154,7 +154,7 @@
 
 		if(istext(glass))
 			user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
-			if(!WT.use_tool(src, user, 4 SECONDS, 1, user_display = BUSY_ICON_BUILD))
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
 			to_chat(user, span_notice("You welded the [glass] plating off!"))
@@ -164,7 +164,7 @@
 
 		else if(glass == 1)
 			user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
-			if(!WT.use_tool(src, user, 4 SECONDS, 1, user_display = BUSY_ICON_BUILD))
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
 			to_chat(user, span_notice("You welded the glass panel out!"))
@@ -173,7 +173,7 @@
 
 		else if(!anchored)
 			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
-			if(!WT.use_tool(src, user, 4 SECONDS, 1, user_display = BUSY_ICON_BUILD))
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
 			to_chat(user, span_notice("You dissasembled the airlock assembly!"))
