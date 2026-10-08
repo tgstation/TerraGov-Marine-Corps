@@ -1,0 +1,5 @@
+author: "mudzbe"
+delete-after: True
+changes:
+  - bugfix: "Fix hive transfer bugs, fix corrupted xenos counting as normal hive"
+  - bugfix: "Support transfering hives with hive abilities, minions dont get them anymore"
