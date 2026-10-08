@@ -483,6 +483,9 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
+	if(!(src in (GLOB.alive_xeno_list_hive[HS.hivenumber])))
+		LAZYADD(GLOB.alive_xeno_list_hive[HS.hivenumber], src)
+
 	sync_hive_abilities()
 
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
@@ -528,9 +531,12 @@
 	else
 		remove_from_lists(X)
 
-	for(var/datum/action/ability/ability AS in X.mob_abilities)//In case an hive ability is removed by VV and for corrupted xenos where this function is duplicately called
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], X)
+
+	for(var/datum/action/ability/ability AS in X.mob_abilities)
 		if(ability.type in hive_abilities)
 			ability.remove_action(X)
+			qdel(ability)
 
 	nuke_hud_timer?.remove_from(X)
 	post_removal(X)
@@ -580,6 +586,8 @@
 		hive.update_ruler()
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
+
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hive.hivenumber], src)
 
 	var/datum/hive_status/reference_hive = hive
 	hive = null

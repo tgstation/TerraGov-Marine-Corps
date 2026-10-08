@@ -549,7 +549,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/weed
 	name = "Unrestricted resting weeds"
 	desc = "All castes can plant resting weed"
-	psypoint_cost = 500
+	psypoint_cost = 000
 	ability = /datum/action/ability/activable/xeno/plant_weeds/encounter
 	icon = "weeds"
 
@@ -570,7 +570,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/abilities/fireball
 	name = "Fireball blessing"
 	desc = "(WARNING CASTS WITH LOW PLASMA CANT USE) Xenos may use fireball"
-	psypoint_cost = 1000
+	psypoint_cost = 0000
 	ability = /datum/action/ability/activable/xeno/fireball/encounter
 	icon = "fireball"
 

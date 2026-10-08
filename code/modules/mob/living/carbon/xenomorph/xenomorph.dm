@@ -26,13 +26,8 @@
 	set_initial_hivenumber(prevent_ruler=do_not_set_as_ruler)
 	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
-	switch(stat)
-		if(CONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-		if(UNCONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
+	if(stat != DEAD)
+		GLOB.alive_xeno_list += src
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
@@ -610,15 +605,14 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 
 /// Gives the xeno hive abilities from the hive's ability list
 /mob/living/carbon/xenomorph/proc/sync_hive_abilities()
-	if(hive)
-		for(var/datum/action/ability/ability AS in mob_abilities)
-			if(ability.type in hive.hive_abilities)
-				ability.remove_action(src)
+	if(!hive)
+		return
 
-		for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
-			if(xeno_caste.caste_flags & CASTE_IS_A_MINION)
-				continue
+	for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
+		if(xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			continue
 
-			if(((hive_ability::parent_type) in xeno_caste.actions) && !hive_ability::cooldown_duration)
-				continue
-			add_ability(hive_ability)
+		if(((hive_ability::parent_type) in xeno_caste.actions) && !hive_ability::cooldown_duration)
+			continue
+
+		add_ability(hive_ability)
