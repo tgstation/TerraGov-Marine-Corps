@@ -483,8 +483,7 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
-	if(!(src in (GLOB.alive_xeno_list_hive[HS.hivenumber])))
-		LAZYADD(GLOB.alive_xeno_list_hive[HS.hivenumber], src)
+	LAZYOR(GLOB.alive_xeno_list_hive[HS.hivenumber], src)
 
 	sync_hive_abilities()
 
