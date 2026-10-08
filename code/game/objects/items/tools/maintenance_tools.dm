@@ -117,11 +117,14 @@
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
 
-	//blowtorch specific stuff
-	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
-	var/max_fuel = 20 	//The max amount of fuel the welder can hold
-	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
-	var/status = TRUE //When welder is secured on unsecured
+	///Whether or not the blowtorch is running
+	var/welding = 0
+	///The max amount of fuel the welder can hold
+	var/max_fuel = 20
+	///Used to slowly deplete the fuel when the tool is left on
+	var/weld_tick = 0
+	///When welder is secured on unsecured
+	var/status = TRUE
 
 /obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
