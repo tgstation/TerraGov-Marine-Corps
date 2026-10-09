@@ -1294,6 +1294,8 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 			to_chat(xeno_owner, span_warning("You can't do this while flying!"))
 		return FALSE
 
+/datum/action/ability/activable/xeno/psydrain/use_ability(mob/M)
+	var/mob/living/carbon/victim = M
 	xeno_owner.face_atom(victim) //Face towards the target so we don't look silly
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
@@ -1305,14 +1307,12 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		xeno_owner.stop_sound_channel(channel)
 		return FALSE
 	xeno_owner.stop_sound_channel(channel)
-	succeed_activate() //dew it
-
-/datum/action/ability/activable/xeno/psydrain/use_ability(mob/M)
-	var/mob/living/carbon/victim = M
 
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(xeno_owner, span_warning("Someone drained the life force of our victim before we could do it!"))
 		return fail_activate()
+
+	succeed_activate() //dew it
 
 	playsound(xeno_owner, 'sound/magic/end_of_psy_drain.ogg', 40)
 

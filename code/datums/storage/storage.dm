@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				return
 	if(!can_be_inserted(attacking_item, user))
 		if(user.s_active != src) //this would close the open storage otherwise
-			open(user)
+			INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK

@@ -419,7 +419,7 @@
 
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
 	//Taking off the duffelbag has a channel
-	if(user.back != parent || !do_after(user, 3 SECONDS))
+	if(user.back != parent || !do_after(user, 3 SECONDS)) //todo: this shouldn't sleep but I can't think of a fix right now
 		return
 
 	switch(over_object.name)
@@ -432,7 +432,7 @@
 	if(!iscarbon(user))
 		return TRUE
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS)) //todo: this shouldn't sleep but I can't think of a fix right now
 		return TRUE
 	return ..()
 

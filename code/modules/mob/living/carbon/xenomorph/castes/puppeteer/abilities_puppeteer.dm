@@ -67,12 +67,12 @@
 		return
 	if(xeno_owner.do_actions)
 		return FALSE
+
+/datum/action/ability/activable/xeno/pincushion/use_ability(atom/victim)
 	xeno_owner.face_atom(victim)
 	if(!do_after(xeno_owner, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
-	succeed_activate()
 
-/datum/action/ability/activable/xeno/pincushion/use_ability(atom/victim)
 	var/turf/current_turf = get_turf(owner)
 	playsound(xeno_owner.loc, 'sound/bullets/spear_armor1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_warning("[xeno_owner] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
@@ -81,8 +81,9 @@
 	spine.generate_bullet(/datum/ammo/xeno/spine)
 	spine.def_zone = xeno_owner.get_limbzone_target()
 	spine.fire_at(victim, xeno_owner, xeno_owner, range = 6, speed = 1)
-
+	succeed_activate()
 	add_cooldown()
+
 // ***************************************
 // *********** Dreadful Presence
 // ***************************************
@@ -164,13 +165,14 @@
 		return FALSE
 #endif
 
-	xeno_owner.face_atom(target_human)
-	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] begins carving out, doing all sorts of horrible things to [target_human]!"))
-	if(!do_after(xeno_owner, 8 SECONDS, IGNORE_HELD_ITEM, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
-		return FALSE
-	succeed_activate()
 
-/datum/action/ability/activable/xeno/refurbish_husk/use_ability(mob/living/carbon/human/victim)
+/datum/action/ability/activable/xeno/refurbish_husk/use_ability(atom/target)
+	var/mob/living/carbon/human/victim = target
+	xeno_owner.face_atom(victim)
+	xeno_owner.visible_message(victim, span_danger("[xeno_owner] begins carving out, doing all sorts of horrible things to [victim]!"))
+	if(!do_after(xeno_owner, 8 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
+		return FALSE
+
 	var/turf/victim_turf = get_turf(victim)
 
 	ADD_TRAIT(victim, TRAIT_HOLLOW, TRAIT_GENERIC)
@@ -180,6 +182,7 @@
 	puppet.voice = victim.voice
 	add_puppet(puppet)
 	add_cooldown()
+	succeed_activate()
 
 /// Adds a puppet to our list
 /datum/action/ability/activable/xeno/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
@@ -235,19 +238,19 @@
 			xeno_owner.balloon_alert(xeno_owner, "not adjacent!")
 		return FALSE
 
+/datum/action/ability/activable/xeno/puppet/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 	//reverse gib here
 	xeno_owner.visible_message(span_warning("[xeno_owner] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
 	if(!do_after(xeno_owner, 8 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
 	xeno_owner.visible_message(span_warning("[xeno_owner] forms a repulsive puppet!"))
-	succeed_activate()
 
-/datum/action/ability/activable/xeno/puppet/use_ability(atom/target)
 	var/turf/target_turf = get_turf(target)
 
 	var/datum/action/ability/activable/xeno/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno/refurbish_husk]
 	huskaction.add_puppet(new /mob/living/carbon/xenomorph/puppet(target_turf, owner))
+	succeed_activate()
 	add_cooldown()
 
 // ***************************************
