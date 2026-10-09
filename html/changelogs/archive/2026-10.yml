@@ -56,3 +56,7 @@
   - code_imp: Sounds use a default max range of 17 instead of defaulting to a value
       based on volume. Hopefully reduces lag at high pop
   - qol: tweaked various sound's maxrange
+2026-10-09:
+  mudzbe:
+  - bugfix: Fix hive transfer bugs, fix corrupted xenos counting as normal hive
+  - bugfix: Support transfering hives with hive abilities, minions dont get them anymore
