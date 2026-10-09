@@ -322,7 +322,7 @@
 		faction = new_faction
 	hud_possible = list(GLOB.faction_to_squad_hud[faction])
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	var/datum/atom_hud/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	squad_hud.add_to_hud(src)
 
 	var/image/holder = hud_list[hud_possible[1]]
@@ -332,7 +332,7 @@
 	holder.icon_state = icon_state_on
 
 /mob/camera/aiEye/remote/hud/Destroy()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	var/datum/atom_hud/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	squad_hud.remove_from_hud(src)
 	return ..()
 

@@ -273,8 +273,6 @@
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
-	var/datum/atom_hud/squad/mech_status_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV] //Add to the squad HUD
-	mech_status_hud.add_to_hud(src)
 	hud_set_mecha_health()
 	hud_set_mecha_battery()
 	update_icon()
@@ -318,8 +316,6 @@
 	emp_timer = null
 
 	GLOB.mechas_list -= src
-	var/datum/atom_hud/squad/mech_status_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
-	mech_status_hud.remove_from_hud(src)
 	return ..()
 
 /obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
