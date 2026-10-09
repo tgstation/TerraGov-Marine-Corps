@@ -212,7 +212,7 @@
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
-	target.adjust_slowdown(staggerslow_stacks)
+	target.slowdown(staggerslow_stacks)
 	if(blinding_stacks)
 		target.blind_eyes(blinding_stacks)
 	if(sneak_attack_stun_duration)

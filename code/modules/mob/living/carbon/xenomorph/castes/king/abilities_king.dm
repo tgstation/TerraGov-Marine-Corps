@@ -306,7 +306,7 @@
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE, attacker = owner)
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA, attacker = owner)
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
-			carbon_victim.adjust_slowdown(6 * severity)
+			carbon_victim.slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
 			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")

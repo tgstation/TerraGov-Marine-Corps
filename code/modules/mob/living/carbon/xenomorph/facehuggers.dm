@@ -808,7 +808,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 			continue
 
 		target.adjust_stagger(3 SECONDS)
-		target.adjust_slowdown(15)
+		target.slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 		target.ExtinguishMob()
 

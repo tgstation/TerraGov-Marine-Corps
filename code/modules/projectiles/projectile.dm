@@ -953,7 +953,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.projectile_behavior_flags & PROJECTILE_PRECISE_TARGET)
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		adjust_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+		slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
 	if(proj.firer && proj.firer.faction == faction)

@@ -184,7 +184,7 @@
 		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
 			living.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 3 SECONDS)
 			living.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 3 SECONDS)
-		living.adjust_slowdown(2)
+		living.slowdown(2)
 		log_attack("[living] was zapped by [source]")
 	return xenos
 

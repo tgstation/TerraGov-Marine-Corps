@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[carbon_victim.amount_slowed()]</b>"))
 		#endif
-		carbon_victim.adjust_slowdown(slowdown)
+		carbon_victim.slowdown(slowdown)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[carbon_victim.amount_slowed()]</b>"))
 		#endif
