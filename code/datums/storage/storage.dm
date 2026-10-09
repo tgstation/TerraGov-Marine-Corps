@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				return
 	if(!can_be_inserted(attacking_item, user))
 		if(user.s_active != src) //this would close the open storage otherwise
-			INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), user)
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
 			return COMPONENT_NO_ATTACK_HAND
-		else if(open(user))
+		else if(open(user)) //todo: xander stahp. This is fucked due to duffles, dispensers, please fix. Probably needs a can_open() proc.
 			return COMPONENT_NO_ATTACK_HAND
 	for(var/mob/M AS in content_watchers)
 		close(M)
