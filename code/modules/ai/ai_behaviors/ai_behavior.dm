@@ -368,7 +368,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_current_node(null)
 		fail_goal_path_count ++
 		if(fail_goal_path_count >= AI_MAX_GOAL_PATH_FAILS) //Failure usually means a mapping issue, or the mob/goal is outside of the normal game area
+			#ifdef TESTING
 			message_admins("[mob_parent] at [ADMIN_VERBOSEJMP(mob_parent)] failed to path to [goal_node] at [ADMIN_VERBOSEJMP(goal_node)].")
+			#endif
 			do_unset_target(goal_node)
 	look_for_next_node(previous_current_node)
 
