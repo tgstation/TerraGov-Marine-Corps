@@ -20,6 +20,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(xeno_owner.eaten_mob)
+		return TRUE
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
