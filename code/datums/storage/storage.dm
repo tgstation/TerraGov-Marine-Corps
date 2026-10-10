@@ -336,7 +336,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
 			return COMPONENT_NO_ATTACK_HAND
-		else if(open(user)) //todo: xander stahp. This is fucked due to duffles, dispensers, please fix. Probably needs a can_open() proc.
+		else if(can_open(user))
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 			return COMPONENT_NO_ATTACK_HAND
 	for(var/mob/M AS in content_watchers)
 		close(M)
@@ -372,8 +373,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	//todo: Else where in this datum it just checks ishuman, but it should really just check for dextrous
 	if(isliving(user) && !user.dextrous) //bad xeno.
 		return
-	if(parent.Adjacent(user))
-		open(user)
+	if(parent.Adjacent(user) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 
 /**
  * Called when you ctrl + left click on parent
@@ -386,7 +387,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/proc/on_attack_ghost(datum/source, mob/user)
 	SIGNAL_HANDLER
-	open(user)
+	if(!can_open(user))
+		return
+	INVOKE_ASYNC(src, PROC_REF(open), user)
 
 ///Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)
 /datum/storage/proc/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
@@ -397,8 +400,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.lying_angle)
 		return COMPONENT_NO_MOUSEDROP
 
-	if(over_object == user && parent.Adjacent(user)) // this must come before the screen objects only block
-		open(user)
+	if(over_object == user && parent.Adjacent(user) && can_open(user)) // this must come before the screen objects only block
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 		return COMPONENT_NO_MOUSEDROP
 
 	if(!istype(over_object, /atom/movable/screen))
@@ -414,7 +417,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.restrained() || user.stat)
 		return COMPONENT_NO_MOUSEDROP
 
-	put_storage_in_hand(source, over_object, user)
+	INVOKE_ASYNC(src, PROC_REF(put_storage_in_hand), source, over_object, user)
 	return COMPONENT_NO_MOUSEDROP
 
 ///Wrapper that puts the storage into our chosen hand
@@ -525,6 +528,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		lookers |= content_watcher_mob
 	return lookers
+
+///Any special behavior checks to see if we can open
+/datum/storage/proc/can_open(mob/user)
+	return TRUE
 
 ///Opens our storage, closes the storage if we are s_active
 /datum/storage/proc/open(mob/user)
