@@ -14,7 +14,7 @@
 /datum/ammo/bile_spit/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/mob/living/living_target = target_mob
 	shake_camera(target_mob, 1, 1)
-	living_target.add_slowdown(3)
+	living_target.slowdown(3)
 	living_target.adjust_stagger(3 SECONDS)
 	living_target.AdjustConfused(3 SECONDS)
 	living_target.blind_eyes(2)

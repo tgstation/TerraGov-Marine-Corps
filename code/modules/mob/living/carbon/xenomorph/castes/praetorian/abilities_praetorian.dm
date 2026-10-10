@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	//tier 1 debuffs
 	if(living_target.IsStaggered())
 		adjusted_mult += 0.15
-	if(living_target.IsSlowed())
+	if(living_target.is_slowed())
 		adjusted_mult += 0.15
 	if(living_target.IsConfused())
 		adjusted_mult += 0.15
@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			living_target.throw_at(xeno_owner, pull_distance, 3, xeno_owner)
 		else if(pull_distance < 0) // Outward (negative)
 			living_target.knockback(xeno_owner, -pull_distance, 1)
-		living_target.adjust_slowdown(buffed? 0.9 : 0.3)
+		living_target.slowdown(buffed? 0.9 : 0.3)
 		if(buffed)
 			living_target.AdjustKnockdown(0.1 SECONDS)
 		if(melting_fire_stacks)
@@ -666,7 +666,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
-	human_source.add_slowdown(0.6 * last_known_multiplier)
+	human_source.slowdown(0.6 * last_known_multiplier)
 	human_source.adjust_stagger(1 SECONDS * last_known_multiplier)
 	REMOVE_TRAIT(human_source, TRAIT_IMMOBILE, THROW_TRAIT)
 	human_source.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
@@ -694,7 +694,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
 			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
-		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
+		xeno_owner.slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
@@ -707,7 +707,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 	cleanup_variables()
 	xeno_owner.Knockdown(1 SECONDS)
-	xeno_owner.add_slowdown(0.9)
+	xeno_owner.slowdown(0.9)
 
 /// Cleans up any unneeded variables, signals, and undoes any traits that the ability gave.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/cleanup_variables()

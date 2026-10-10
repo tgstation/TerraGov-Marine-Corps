@@ -32,7 +32,7 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.30)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.30)
-		L.jitter(5)
+		L.adjust_jitter(5)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/on_mob_delete(mob/living/L, metabolism)
@@ -44,11 +44,11 @@
 	return ..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
-	L.jitter(5) //Overdose causes a spasm
+	L.adjust_jitter(5) //Overdose causes a spasm
 	L.Unconscious(40 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
-	L.setDrowsyness(L.drowsyness, 20)
+	L.drowzy(20)
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -115,7 +115,7 @@
 	return ..()
 
 /datum/reagent/medicine/paracetamol/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 2)
+	L.hallucinate(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
 	L.apply_damage(0.5*effect_str, TOX)
 
@@ -139,7 +139,8 @@
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 2) //Hallucinations and oxy damage
+	L.hallucinate(2) //Hallucinations and oxy damage
+
 	L.apply_damage(effect_str, OXY)
 
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/L, metabolism)
@@ -171,7 +172,7 @@
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.adjustStaminaLoss(5*effect_str)
 	L.set_drugginess(10)
-	L.jitter(3)
+	L.adjust_jitter(3)
 	L.AdjustConfused(0.6 SECONDS)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
@@ -233,7 +234,7 @@
 		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.drowzy(30)
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
@@ -375,7 +376,7 @@
 	return ..()
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, metabolism)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, metabolism)
@@ -401,7 +402,7 @@
 	return ..()
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
+	L.adjust_hallucination(-2.5*effect_str)
 	L.adjustToxLoss(-effect_str)
 	return ..()
 
@@ -438,24 +439,24 @@
 	L.setOxyLoss(0)
 	L.heal_overall_damage(5, 5)
 	L.adjustToxLoss(-5)
-	L.hallucination = 0
+	L.set_hallucination(0)
 	L.setBrainLoss(0)
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
 	L.SetStun(0, FALSE)
 	L.SetUnconscious(0)
 	L.SetParalyzed(0)
-	L.dizziness = 0
-	L.setDrowsyness(0)
+	L.set_dizziness(0)
+	L.set_drowziness(0)
 	// Remove all speech related status effects
 	for(var/effect in typesof(/datum/status_effect/speech))
 		L.remove_status_effect(effect)
 	L.SetConfused(0)
 	L.SetSleeping(0)
-	L.jitteriness = 0
+	L.set_jitter(0)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.drunkenness = 0
+		C.set_drunkenness(0)
 		C.disabilities = 0
 	return ..()
 
@@ -478,12 +479,12 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
-	L.adjustDrowsyness(-0.5 SECONDS)
+	L.adjust_drowziness(-0.5 SECONDS)
 	L.AdjustUnconscious(-2 SECONDS)
 	L.AdjustStun(-2 SECONDS)
 	L.AdjustParalyzed(-2 SECONDS)
 	L.adjustToxLoss(effect_str)
-	L.hallucination = max(0, L.hallucination - 10)
+	L.adjust_hallucination(-10)
 	switch(current_cycle)
 		if(1 to 10)
 			L.adjustStaminaLoss(-7.5*effect_str)
@@ -525,17 +526,17 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
-		L.jitter(10)
+		L.adjust_jitter(10)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
-	L.adjustDrowsyness(-5)
-	L.dizzy(-5)
+	L.adjust_drowziness(-5)
+	L.adjust_dizziness(-5)
 	L.adjust_timed_status_effect(-10 SECONDS, /datum/status_effect/speech/stutter)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.drunkenness = max(C.drunkenness-5, 0)
+		C.adjust_drunkenness(-5)
 	L.AdjustConfused(-10 SECONDS)
 	L.adjust_blurriness(-5)
 	L.AdjustUnconscious(-4 SECONDS)
@@ -616,7 +617,7 @@
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss(TRUE) * 0.20)
 		L.adjustFireLoss(-L.getFireLoss(TRUE) * 0.20)
-		L.jitter(10)
+		L.adjust_jitter(10)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
@@ -961,7 +962,7 @@
 		L.emote(pick("twitch","blink_r","shiver"))
 		L.adjustStaminaLoss(20)
 	if(prob(20))
-		L.hallucination += 10
+		L.adjust_hallucination(10)
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(10))
@@ -971,7 +972,7 @@
 		L.adjustStaminaLoss(35)
 		L.Stun(2 SECONDS)
 	if(prob(20))
-		L.hallucination += 15
+		L.adjust_hallucination(15)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -981,8 +982,8 @@
 		L.emote("me", EMOTE_TYPE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.Stun(3 SECONDS)
 	if(prob(20))
-		L.hallucination += 20
-		L.dizzy(60)
+		L.adjust_hallucination(20)
+		L.adjust_dizziness(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 
@@ -994,8 +995,8 @@
 		L.Stun(8 SECONDS)
 		L.do_jitter_animation(200)
 	if(prob(20))
-		L.hallucination += 30
-		L.dizzy(80)
+		L.adjust_hallucination(30)
+		L.adjust_dizziness(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 	if(prob(15) && ishuman(L))
@@ -1038,7 +1039,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, metabolism)
-	if(L.bodytemperature < 170)
+	if(L.bodytemperature < UPPER_CRYO_TEMP)
 		L.adjustCloneLoss(-effect_str)
 		L.adjustOxyLoss(-effect_str)
 		L.heal_overall_damage(effect_str,effect_str)
@@ -1053,7 +1054,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
-	if(L.bodytemperature < 170)
+	if(L.bodytemperature < UPPER_CRYO_TEMP)
 		L.adjustCloneLoss(-3*effect_str)
 		L.adjustOxyLoss(-3*effect_str)
 		L.heal_overall_damage(3*effect_str,3*effect_str)
@@ -1086,8 +1087,8 @@
 				H.name = H.get_visible_name()
 		if(35 to INFINITY)
 			L.adjustToxLoss(effect_str)
-			L.dizzy(5)
-			L.jitter(5)
+			L.adjust_dizziness(5)
+			L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/medicine/rezadone/overdose_process(mob/living/L, metabolism)
@@ -1133,7 +1134,7 @@
 	switch(current_cycle)
 		if(1 to 9)
 			L.adjustToxLoss(effect_str)
-			L.adjustDrowsyness(5)
+			L.adjust_drowziness(5)
 		if(10 to 50)
 			L.adjustToxLoss(1.25*effect_str)
 			L.Sleeping(10 SECONDS)
@@ -1184,12 +1185,12 @@
 	reagent_ui_priority = REAGENT_UI_BASE
 
 /datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(-1)
-	L.adjustDrowsyness(-1)
+	L.adjust_dizziness(-1)
+	L.adjust_drowziness(-1)
 	L.adjust_timed_status_effect(-2 SECONDS, /datum/status_effect/speech/stutter)
 	L.AdjustConfused(-2 SECONDS)
 	var/mob/living/carbon/C = L
-	C.drunkenness = max(C.drunkenness-4, 0)
+	C.adjust_drunkenness(-4)
 	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 0.5*effect_str, 0, 1)
 	return ..()
 
@@ -1269,7 +1270,7 @@
 		return
 	var/mob/living/carbon/human/host = L
 	host.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
-	if(host.bodytemperature < 170)
+	if(host.bodytemperature < UPPER_CRYO_TEMP)
 		for(var/datum/limb/limb_to_fix AS in host.limbs)
 			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
 				if(!(prob(20) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))
@@ -1453,7 +1454,7 @@
 		if(20)//avg cloneloss of 1/tick and 10 additional units made
 			to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
 		if (21 to INFINITY)
-			L.jitter(5)
+			L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/medicine/regrow
@@ -1476,7 +1477,7 @@
 		limb_regrown = TRUE
 		limb.biotize()
 		to_chat(human, span_userdanger("You feel unbelievable pain as your [limb.display_name] regrows before your eyes!"))
-		human.jitter(10)
+		human.adjust_jitter(10)
 		human.Paralyze(1 SECONDS)
 		human.adjustStaminaLoss(20)
 	if(!limb_regrown)

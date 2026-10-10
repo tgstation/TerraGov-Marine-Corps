@@ -406,7 +406,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	else
 		if(!issamexenohive(carbon_victim))
 			carbon_victim.adjust_stagger(3 SECONDS)
-			carbon_victim.add_slowdown(3)
+			carbon_victim.adjust_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
@@ -808,7 +808,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 			continue
 
 		target.adjust_stagger(3 SECONDS)
-		target.add_slowdown(15)
+		target.slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 		target.ExtinguishMob()
 

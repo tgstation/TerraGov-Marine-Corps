@@ -37,8 +37,8 @@
 /datum/reagent/consumable/ethanol/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(C.drunkenness < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
-			C.drunkenness = max((C.drunkenness + (sqrt(volume) * boozepwr * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
+		if(C.amount_drunkenness() < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
+			C.adjust_drunkenness(sqrt(volume) * boozepwr * ALCOHOL_RATE) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			var/datum/internal_organ/liver/O = H.get_organ_slot(ORGAN_SLOT_LIVER)
@@ -46,10 +46,10 @@
 				O.take_damage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * O.alcohol_tolerance, 0)) * 0.002), TRUE)
 
 	if(druggy != 0)
-		L.set_drugginess(druggy)
+		L.druggy(druggy)
 
 	if(halluci)
-		L.hallucination += halluci
+		L.adjust_hallucination(halluci)
 
 	return ..()
 
@@ -112,10 +112,10 @@
 	boozepwr = 45
 
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(-4)
-	L.adjustDrowsyness(-2)
+	L.adjust_dizziness(-4)
+	L.adjust_drowziness(-2)
 	L.AdjustSleeping(-6 SECONDS)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey
@@ -156,9 +156,9 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
-	L.adjustDrowsyness(-7)
+	L.adjust_drowziness(-7)
 	L.AdjustSleeping(-80 SECONDS)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/vodka
@@ -183,7 +183,7 @@
 	color = "#666340" // rgb: 102, 99, 64
 	taste_description = "dryness"
 	boozepwr = 10
-	druggy = 50
+	druggy = 50 SECONDS
 
 /datum/reagent/consumable/ethanol/gin
 	name = "Gin"
@@ -259,7 +259,7 @@
 
 /datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/L, metabolism)
 	if(prob(10))
-		L.hallucination += 4 //Reference to the urban myth
+		L.adjust_hallucination(4) //Reference to the urban myth
 	return ..()
 
 /datum/reagent/consumable/ethanol/hooch
@@ -286,23 +286,23 @@
 /datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 19)
-			L.jitter(2)
-			L.hallucination = max(L.hallucination, 3)
+			L.adjust_jitter(2)
+			L.hallucinate(3)
 			if(prob(1))
 				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 10)
-			L.jitter(3)
-			L.dizzy(2)
+			L.hallucinate(10)
+			L.adjust_jitter(3)
+			L.adjust_dizziness(2)
 			L.set_drugginess(10)
 			if(prob(5))
 				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 60)
-			L.jitter(4)
-			L.dizzy(4)
+			L.hallucinate(60)
+			L.adjust_jitter(4)
+			L.adjust_dizziness(4)
 			L.set_drugginess(30)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
@@ -310,10 +310,10 @@
 				L.adjustToxLoss(0.5)
 		if(120 to 199)
 			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
-			L.hallucination = max(L.hallucination, 60)
-			L.jitter(4)
-			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.hallucinate(60)
+			L.adjust_jitter(4)
+			L.adjust_dizziness(4)
+			L.druggy(60 SECONDS)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 			if(prob(30))
@@ -327,10 +327,10 @@
 		if(200 to INFINITY)
 			L.set_timed_status_effect(5 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.adjustToxLoss(1)
-			L.hallucination = max(L.hallucination, 60)
-			L.jitter(4)
-			L.dizzy(4)
-			L.druggy = max(L.druggy, 60)
+			L.hallucinate(60)
+			L.adjust_jitter(4)
+			L.adjust_dizziness(4)
+			L.druggy(60 SECONDS)
 			if(ishuman(L) && prob(10))
 				var/mob/living/carbon/human/H = L
 				var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -540,7 +540,7 @@
 	color = COLOR_MOSTLY_PURE_RED
 	taste_description = "death, the destroyer of worlds"
 	boozepwr = 45
-	druggy = 30
+	druggy = 30 SECONDS
 
 /datum/reagent/consumable/ethanol/whiskeysoda
 	name = "Whiskey Soda"
@@ -772,15 +772,15 @@
 /datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			L.dizzy(5)
+			L.adjust_dizziness(5)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 		if(51 to 100)
-			L.dizzy(5)
+			L.adjust_dizziness(5)
 			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
 				L.AdjustConfused(6 SECONDS)
 		if(101 to INFINITY)
-			L.dizzy(6)
+			L.adjust_dizziness(6)
 			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
 				L.AdjustConfused(10 SECONDS)
@@ -845,7 +845,7 @@
 	L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 	switch(current_cycle)
 		if(40 to 49)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 		if(51 to 200)
 			L.Sleeping(6 SECONDS)
 		if(201 to INFINITY)
@@ -865,16 +865,16 @@
 	switch(current_cycle)
 		if(15 to 45)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
-			L.jitter(2)
+			L.adjust_jitter(2)
 		if(46 to 65)
 			L.AdjustConfused(4 SECONDS)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
-			L.jitter(3)
+			L.adjust_jitter(3)
 		if(66 to 199)
 			L.set_drugginess(50)
 			if(prob(10))
 				L.vomit()
-			L.jitter(4)
+			L.adjust_jitter(4)
 			if(prob(5))
 				L.Sleeping(16 SECONDS)
 		if(200 to INFINITY)
@@ -882,7 +882,7 @@
 			L.AdjustConfused(4 SECONDS)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 			L.adjustToxLoss(2)
-			L.jitter(5)
+			L.adjust_jitter(5)
 			if(prob(10))
 				L.vomit()
 			L.Sleeping(6 SECONDS)
@@ -926,26 +926,26 @@
 	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, only_if_higher = TRUE)
 	switch(current_cycle)
 		if(1 to 5)
-			L.dizzy(10)
+			L.adjust_dizziness(10)
 			L.set_drugginess(30)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(6 to 10)
-			L.dizzy(20)
-			L.jitter(20)
+			L.adjust_dizziness(20)
+			L.adjust_jitter(20)
 			L.set_drugginess(45)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(11 to 200)
-			L.dizzy(40)
-			L.jitter(40)
+			L.adjust_dizziness(40)
+			L.adjust_jitter(40)
 			L.set_drugginess(60)
 			if(prob(30))
 				L.emote(pick("twitch","giggle"))
 		if(201 to INFINITY)
 			L.adjust_timed_status_effect(1 SECONDS, /datum/status_effect/speech/stutter)
-			L.jitter(60)
-			L.dizzy(60)
+			L.adjust_jitter(60)
+			L.adjust_dizziness(60)
 			L.set_drugginess(75)
 			if(prob(40))
 				L.emote(pick("twitch","giggle"))

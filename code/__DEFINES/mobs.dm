@@ -117,6 +117,8 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
+///Below this is considered cryo levels of cold
+#define UPPER_CRYO_TEMP 170
 //=================================================
 
 //disabilities

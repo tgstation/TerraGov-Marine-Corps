@@ -103,7 +103,7 @@
 
 	ParalyzeNoChain(1 SECONDS) //Short stun
 	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
-	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
 
@@ -173,24 +173,6 @@
 
 /mob/living/proc/set_Losebreath(amount, forced = FALSE)
 	return
-
-/mob/living/proc/adjustDrowsyness(amount)
-	if(status_flags & GODMODE)
-		return FALSE
-	setDrowsyness(max(drowsyness + amount, 0))
-
-/mob/living/proc/setDrowsyness(amount)
-	if(status_flags & GODMODE)
-		return FALSE
-	if(drowsyness == amount)
-		return
-	. = drowsyness //Old value
-	drowsyness = amount
-	if(drowsyness)
-		if(!.)
-			add_movespeed_modifier(MOVESPEED_ID_DROWSINESS, TRUE, 0, NONE, TRUE, 6)
-		return
-	remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
 
 ///Adjusts the blood volume, with respect to the minimum and maximum values
 /mob/living/proc/adjust_blood_volume(amount)
@@ -330,7 +312,7 @@
 	set_nutrition(400)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
-	drunkenness = 0
+	set_drunkenness(0)
 	disabilities = 0
 
 	if(handcuffed && !initial(handcuffed))

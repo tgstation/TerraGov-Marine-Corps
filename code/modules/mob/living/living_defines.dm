@@ -36,8 +36,6 @@
 	var/cloneloss = 0
 	/// Brain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/brainloss = 0
-	/// Drowsyness amount. Reduces movespeed and if inhaling smoke with a sleep trait [/mob/living/carbon/inhale_smoke] will cause them to fall asleep.
-	var/drowsyness = 0
 
 	var/last_staminaloss_dmg = 0
 	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
@@ -48,18 +46,12 @@
 	var/stamina_regen_multiplier = 1
 	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
 	var/list/stamina_regen_modifiers = list()
-	var/is_dizzy = FALSE
-	var/druggy = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/dizziness = 0
-	var/jitteriness = 0
-	///Directly affects how long a mob will hallucinate for
-	var/hallucination = 0
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE
@@ -125,8 +117,6 @@
 	///For the new Smoke Grenade
 	var/smokecloaked = FALSE
 
-	var/no_stun = FALSE
-
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 	///Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 	var/grab_resist_level = 0
@@ -137,16 +127,12 @@
 	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
 	 */
 	var/blood_volume = 0
-	///Multiplier.
-	var/heart_multi = 1
 
 	var/list/embedded_objects
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
 
-	///Temporary penalty on movement. Regenerates each tick.
-	var/slowdown = 0
 	///Id of the timer to set the afk status to MOB_DISCONNECTED
 	var/afk_timer_id
 	///If this mob is afk

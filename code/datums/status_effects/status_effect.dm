@@ -92,6 +92,17 @@
 		return TRUE
 	return FALSE
 
+///Effects on owner death. Sig not registered by default
+/datum/status_effect/proc/on_owner_death(datum/source)
+	SIGNAL_HANDLER
+	STOP_PROCESSING(SSfastprocess, src)
+	RegisterSignal(owner, COMSIG_MOB_REVIVE, PROC_REF(on_owner_revive))
+
+///Any effects when the owner comes back to life. Sig not registered by default
+/datum/status_effect/proc/on_owner_revive(datum/source)
+	SIGNAL_HANDLER
+	START_PROCESSING(SSfastprocess, src)
+
 ////////////////
 // ALERT HOOK //
 ////////////////
@@ -244,7 +255,8 @@
 			on_threshold_drop()
 		if(stacks_added > 0)
 			tick_interval += delay_before_decay //refreshes time until decay
-		stacks = min(stacks, max_stacks)
+		if(isnum(max_stacks))
+			stacks = min(stacks, max_stacks)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		status_underlay.icon_state = "[underlay_state][stacks]"
 		owner.add_overlay(status_overlay)

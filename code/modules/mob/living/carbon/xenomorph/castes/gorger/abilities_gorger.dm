@@ -300,13 +300,13 @@
 			M.take_overall_damage(20, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			to_chat(M, span_userdanger("[xeno_owner] slams her fists into you, crushing you to the ground!"))
 			M.adjust_stagger(2 SECONDS)
-			M.adjust_slowdown(3)
+			M.slowdown(3)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
 			to_chat(M, span_userdanger("Blood shatters the ground around you!"))
 			M.adjust_stagger(2 SECONDS)
-			M.adjust_slowdown(3)
+			M.slowdown(3)
 
 ///Stops particle spawning, then gives existing particles time to fade out before deleting them.
 /datum/action/ability/activable/xeno/oppose/proc/stop_particles(obj/effect/abstract/particle_holder/aoe_particles)

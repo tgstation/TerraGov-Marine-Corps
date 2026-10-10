@@ -1086,7 +1086,7 @@
 		var/mob/living/living_target = target
 		living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF SECONDS)
 		living_target.adjust_stagger(CONQUEROR_OBLITERATION_DEBUFF)
-		living_target.adjust_slowdown(CONQUEROR_OBLITERATION_DEBUFF)
+		living_target.slowdown(CONQUEROR_OBLITERATION_DEBUFF)
 		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, owner)
 		INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
 	else

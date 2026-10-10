@@ -244,7 +244,7 @@
 	var/list/stunlist = list(0, knockdown_duration, 0, 0)
 	if(SEND_SIGNAL(hit_mob, COMSIG_LIVING_JETPACK_STUN, stunlist, MELEE))
 		hit_mob.adjust_stagger(stunlist[3])
-		hit_mob.add_slowdown(stunlist[4])
+		hit_mob.adjust_slowdown(stunlist[4])
 		hit_mob.knockback(human_user, 1, 5, knockback_force = MOVE_FORCE_VERY_STRONG) //if we don't stun, we knockback
 	else
 		hit_mob.Knockdown(knockdown_duration)
