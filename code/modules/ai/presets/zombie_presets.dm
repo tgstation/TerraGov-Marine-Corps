@@ -15,7 +15,7 @@
 	ai_type = /datum/ai_behavior/xeno/zombie/patrolling
 
 /mob/living/carbon/human/species/zombie/ai/fast
-	race = "Fast zombie"
+	race = "Runner zombie"
 
 /mob/living/carbon/human/species/zombie/ai/fast/stay
 	ai_type = /datum/ai_behavior/xeno/zombie/idle

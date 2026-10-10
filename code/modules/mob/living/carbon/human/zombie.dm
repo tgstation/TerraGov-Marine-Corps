@@ -1,18 +1,9 @@
+/mob/living/carbon/human/species/zombie
+	gib_chance = 10
+
 ///Rallies nearby zombies
 /proc/global_rally_zombies(atom/rally_point, global_rally = FALSE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_ZOMBIE_RALLY, rally_point, global_rally)
-
-/datum/action/rally_zombie
-	name = "Rally Zombies"
-	action_icon_state = "rally_minions"
-	action_icon = 'icons/Xeno/actions/leader.dmi'
-
-/datum/action/rally_zombie/action_activate()
-	owner.balloon_alert(owner, "Zombies Rallied!")
-	global_rally_zombies(owner)
-	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
-	if(set_agressivity)
-		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
@@ -35,7 +26,7 @@
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = "zombie_claw_left"
 	base_icon_state = "zombie_claw"
-	force = 25
+	force = 15
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
@@ -43,7 +34,7 @@
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium is transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 7
+	var/zombium_per_hit = 2
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -64,11 +55,16 @@
 	target.attack_zombie(user, src, params, rightclick)
 
 /obj/item/weapon/zombie_claw/strong
-	force = 35
+	force = 20
+	zombium_per_hit = 4
+
+/obj/item/weapon/zombie_claw/boomer
+	zombium_per_hit = 8
 
 /obj/item/weapon/zombie_claw/tank
 	attack_speed = 12
-	force = 40
+	force = 25
+	zombium_per_hit = 4
 
 /obj/item/weapon/zombie_claw/no_zombium
 	zombium_per_hit = 0
