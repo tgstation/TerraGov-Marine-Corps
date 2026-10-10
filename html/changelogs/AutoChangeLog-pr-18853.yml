@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - admin: "NPC's will no longer send admin messages when their pathing fails"

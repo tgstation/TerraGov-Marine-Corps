@@ -60,3 +60,9 @@
   mudzbe:
   - bugfix: Fix hive transfer bugs, fix corrupted xenos counting as normal hive
   - bugfix: Support transfering hives with hive abilities, minions dont get them anymore
+2026-10-10:
+  Lumipharon:
+  - code_imp: Fixed some incorrect typecasts
+  - bugfix: fixed guns processing when they shouldn't be
+  - code_imp: cleaned up some sleep issues
+  - admin: NPC's will no longer send admin messages when their pathing fails
