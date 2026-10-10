@@ -87,7 +87,7 @@
 		if(WT.isOn())
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
-			if(WT.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+			if(WT.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_BUILD))
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))

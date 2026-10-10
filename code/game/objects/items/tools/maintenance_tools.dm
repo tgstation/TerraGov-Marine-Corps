@@ -11,7 +11,6 @@
 	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	tool_behaviour = TOOL_WRENCH
 
-
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -118,11 +117,14 @@
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
 
-	//blowtorch specific stuff
-	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
-	var/max_fuel = 20 	//The max amount of fuel the welder can hold
-	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
-	var/status = TRUE //When welder is secured on unsecured
+	///Whether or not the blowtorch is running
+	var/welding = 0
+	///The max amount of fuel the welder can hold
+	var/max_fuel = 20
+	///Used to slowly deplete the fuel when the tool is left on
+	var/weld_tick = 0
+	///When welder is secured on unsecured
+	var/status = TRUE
 
 /obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
@@ -232,7 +234,7 @@
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
 
-/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 25, datum/callback/extra_checks = CALLBACK(src, PROC_REF(isOn)), user_display = BUSY_ICON_GENERIC)
 	var/list/icons = target.get_weld_spark_icon_and_state()
 	var/mutable_appearance/sparks = mutable_appearance(icons[1], icons[2], WELDING_TOOL_EFFECT_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)

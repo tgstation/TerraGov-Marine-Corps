@@ -203,7 +203,7 @@
 		balloon_alert(user, "Remove bulb first")
 		return TRUE
 
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	I.play_tool_sound(src)
 	user.visible_message("[user] opens [src]'s casing.", \
 		"You open [src]'s casing.", "You hear a noise.")
 	var/obj/machinery/light_construct/newlight

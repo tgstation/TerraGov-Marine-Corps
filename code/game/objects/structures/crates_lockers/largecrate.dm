@@ -216,16 +216,11 @@
 
 
 /obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
-	if(!welder.isOn())
-		return FALSE
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		return TRUE
-	if(!welder.remove_fuel(1, user))
-		return TRUE
+	if(!welder.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+		return
 	user.visible_message(span_notice("[user] welds \the [src] open."),
 		span_notice("You weld open \the [src]."),
 		span_notice("You hear loud hissing and the sound of metal falling over."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	deconstruct(TRUE)
 	return TRUE
 
@@ -295,9 +290,8 @@
 /obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
-	if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!I.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_GENERIC))
 		return TRUE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user, span_notice("You cut the straps away."))
 	icon_state = "secure_crate"
 	strapped = FALSE

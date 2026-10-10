@@ -50,9 +50,8 @@
 	if(!kit.cell)
 		to_chat(user, span_warning("There is no cell to remove!"))
 		return
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!I.use_tool(src, user, 2 SECONDS))
 		return FALSE
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
 	user.put_in_hands(kit.cell)
 	kit.cell = null

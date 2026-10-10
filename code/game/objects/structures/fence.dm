@@ -79,11 +79,9 @@
 		return
 	user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 	"<span class='notice'>You start cutting through [src] with [I]")
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-	if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 		return
 
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.visible_message(span_notice("[user] cuts through [src] with [I]."),
 	"<span class='notice'>You cut through [src] with [I]")
 	deconstruct(TRUE)

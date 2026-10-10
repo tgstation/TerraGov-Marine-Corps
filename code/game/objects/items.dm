@@ -1157,7 +1157,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks, user_display = BUSY_ICON_GENERIC)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 25, datum/callback/extra_checks, user_display = BUSY_ICON_GENERIC)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -1208,13 +1208,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return !used
 
 // Plays item's usesound, if any.
-/obj/item/proc/play_tool_sound(atom/target, volume)
+/obj/item/proc/play_tool_sound(atom/target, volume = 25)
 	if(!target || !usesound || !volume)
 		return
 	var/played_sound = usesound
 	if(islist(usesound))
 		played_sound = pick(usesound)
-	playsound(target, played_sound, volume, 1)
+	playsound(target, played_sound, volume, TRUE, MEDIUM_SOUND_RANGE)
 
 
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.

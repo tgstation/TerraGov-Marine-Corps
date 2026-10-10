@@ -230,7 +230,7 @@
 			update_icon()
 			return
 
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		user.visible_message(span_warning("[user] cuts the fingertips off of the [src]."),span_warning("You cut the fingertips off of the [src]."))
 
 		clipped = TRUE

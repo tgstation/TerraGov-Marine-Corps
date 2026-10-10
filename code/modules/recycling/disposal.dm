@@ -83,12 +83,12 @@
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+				I.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the screws around the power connection."))
 				return
 			else if(mode == -1)
 				mode = 0
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+				I.play_tool_sound(src)
 				to_chat(user, span_notice("You attach the screws around the power connection."))
 				return
 		else if(iswelder(I) && mode == -1)
@@ -96,13 +96,13 @@
 				to_chat(user, span_warning("Eject the contents first!"))
 				return
 			var/obj/item/tool/weldingtool/W = I
-			if(!W.remove_fuel(0, user))
-				to_chat(user, span_warning("You need more welding fuel to complete this task."))
+			if(!W.isOn())
+				to_chat(user, span_warning("Welding tool not on."))
 				return
 
-			playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
-			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+
+			if(!W.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
 			to_chat(user, span_notice("You sliced the floorweld off the disposal unit."))
@@ -722,19 +722,13 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 
-		if(!W.remove_fuel(0, user))
-			to_chat(user, span_warning("You need more welding fuel to cut [src]."))
+		if(!W.isOn())
+			to_chat(user, span_warning("Welding tool not on."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-		//Check if anything changed over 2 seconds
-		var/turf/uloc = user.loc
-		var/atom/wloc = I.loc
 		user.visible_message(span_notice("[user] starts slicing [src]."),
 		span_notice("You start slicing [src]."))
-		sleep(3 SECONDS)
-		if(!W.isOn() || user.loc != uloc || wloc != I.loc)
-			to_chat(user, span_warning("You must stay still while welding [src]."))
+		if(!W.use_tool(src, user, 3 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		welded()
@@ -1219,19 +1213,14 @@
 
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
-		if(!W.remove_fuel(0, user))
-			to_chat(user, span_warning("You need more welding fuel to cut the pipe."))
+		if(!W.isOn())
+			to_chat(user, span_warning("Welding tool not on."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-		//Check if anything changed over 2 seconds
-		var/turf/uloc = user.loc
-		var/atom/wloc = I.loc
 		user.visible_message(span_notice("[user] starts slicing [src]."),
 		span_notice("You start slicing [src]."))
-		sleep(3 SECONDS)
-		if(!W.isOn() || user.loc != uloc && wloc != I.loc)
-			to_chat(user, span_warning("You must stay still while welding the pipe."))
+
+		if(!W.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		welded()
@@ -1325,23 +1314,21 @@
 
 	if(isscrewdriver(I))
 		mode = !mode
+		I.play_tool_sound(src)
 		if(mode)
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You remove the screws around the power connection."))
 		else
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, span_notice("You attach the screws around the power connection."))
 
 	else if(iswelder(I) && mode)
 		var/obj/item/tool/weldingtool/W = I
-		if(!W.remove_fuel(0, user))
-			to_chat(user, span_warning("You need more welding fuel to complete this task."))
+		if(!W.isOn())
+			to_chat(user, span_warning("Welding tool not on."))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+		if(!W.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))

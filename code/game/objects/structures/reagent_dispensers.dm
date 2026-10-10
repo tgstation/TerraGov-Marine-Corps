@@ -124,7 +124,7 @@
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	I.play_tool_sound(src)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE

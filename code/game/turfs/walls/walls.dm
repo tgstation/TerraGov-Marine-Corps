@@ -345,7 +345,7 @@
 
 		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
 		span_notice("You start repairing the damage to [src]."))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY)|| !iswallturf(src))
+		if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_FRIENDLY)|| !iswallturf(src))
 			return
 
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
@@ -360,7 +360,7 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
 					span_notice("You begin slicing through the outer plating."))
-					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, 25, null, BUSY_ICON_BUILD))
 						return
 					if(!iswallturf(src) || !WT?.isOn())
 						return
@@ -372,9 +372,8 @@
 				if(isscrewdriver(I))
 					user.visible_message(span_notice("[user] begins removing the support lines."),
 					span_notice("You begin removing the support lines."))
-					playsound(src, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, user_display = BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -389,7 +388,7 @@
 					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
 					span_notice("You begin slicing through the metal cover."))
 
-					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, 25, null, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src) || !WT?.isOn())
@@ -402,9 +401,8 @@
 				if(iscrowbar(I))
 					user.visible_message(span_notice("[user] struggles to pry off the cover."),
 					span_notice("You struggle to pry off the cover."))
-					playsound(src, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, 25, null, BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -417,9 +415,8 @@
 				if(iswrench(I))
 					user.visible_message(span_notice("[user] starts loosening the anchoring bolts securing the support rods."),
 					span_notice("You start loosening the anchoring bolts securing the support rods."))
-					playsound(src, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, user_display = BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -432,9 +429,8 @@
 				if(iswirecutter(I))
 					user.visible_message(span_notice("[user] begins uncrimping the hydraulic lines."),
 					span_notice("You begin uncrimping the hydraulic lines."))
-					playsound(src, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, user_display = BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -447,9 +443,8 @@
 				if(iscrowbar(I))
 					user.visible_message(span_notice("[user] struggles to pry off the inner sheath."),
 					span_notice("You struggle to pry off the inner sheath."))
-					playsound(src, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, user_display = BUSY_ICON_BUILD))
 						return
 
 					if(!iswallturf(src))
@@ -460,14 +455,13 @@
 					span_notice("You pry off the inner sheath."))
 			if(7)
 				if(iswelder(I))
-					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message(span_notice("[user] begins slicing through the final layer."),
 					span_notice("You begin slicing through the final layer."))
 
-					if(!I.use_tool(src, user, 6 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+					if(!I.use_tool(src, user, 6 SECONDS, user_display = BUSY_ICON_BUILD))
 						return
 
-					if(!iswallturf(src) || !WT?.isOn())
+					if(!iswallturf(src))
 						return
 
 					new /obj/item/stack/rods(src)

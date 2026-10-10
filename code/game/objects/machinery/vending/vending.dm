@@ -397,10 +397,9 @@
 		if(!wrenchable)
 			return
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		anchored = !anchored
 		set_ai_block()
 		if(anchored)

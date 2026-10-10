@@ -442,10 +442,9 @@
 			to_chat(user, span_warning("Large doors seem impossible to disassemble."))
 			return
 
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))
@@ -508,12 +507,11 @@
 		return
 
 	machine_stat ^= PANEL_OPEN
+	I.play_tool_sound(src)
 	if(machine_stat & PANEL_OPEN)
 		to_chat(user, span_notice("You open [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
 		to_chat(user, span_notice("You close [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/machinery/door/airlock/open(forced = FALSE)

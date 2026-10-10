@@ -64,13 +64,12 @@
 
 /obj/machinery/exportpad/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
+	I.play_tool_sound(src)
 	if(anchored)
 		to_chat(user, "You bolt the [src] to the ground, activating it.")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		icon_state = "broadcaster"
 		SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "asrs", MINIMAP_BLIPS_LAYER))
 	else
 		to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		icon_state = "broadcaster_off"
 		SSminimaps.remove_marker(src)
