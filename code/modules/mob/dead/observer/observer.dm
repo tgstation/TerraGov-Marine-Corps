@@ -241,8 +241,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!key || isaghost(src))
 		return FALSE
 	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
-	var/mob/dead/observer/ghost = new(src)
-	var/turf/T = get_turf(src)
+	var/turf/new_turf = get_turf(src)
+	if(!new_turf)
+		new_turf = SAFEPICK(GLOB.latejoin)
+	var/mob/dead/observer/ghost = new()
+	if(new_turf)
+		ghost.abstract_move(new_turf)
 
 	if(client)
 		animate(client, pixel_x = 0, pixel_y = 0)
@@ -272,12 +276,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind?.current = ghost
 	ghost.faction = faction
 
-	if(!T)
-		T = SAFEPICK(GLOB.latejoin)
-	if(!T)
+	if(!new_turf) //stack trace down here so you can still reenter your corpse
 		stack_trace("no latejoin landmark detected")
-
-	ghost.abstract_move(T)
 
 	return ghost
 
