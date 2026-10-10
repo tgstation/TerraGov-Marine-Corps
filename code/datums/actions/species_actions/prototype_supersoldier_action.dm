@@ -417,7 +417,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_uid = "powerloaderskillbuff"
 	stim_flags = STIM_ALLOW_DUPE
 	skills = list(SKILL_POWERLOADER = 1)
-	max_skills = list(SKILL_POWERLOADER = SKILL_POWERLOADER_PRO) // ensures RO and such are still better
+	max_skills = list(SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER) // ensures RO and such are still better
 
 /particles/stims
 	count = 10
