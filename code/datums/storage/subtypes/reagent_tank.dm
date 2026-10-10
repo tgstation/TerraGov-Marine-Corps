@@ -7,10 +7,11 @@
 	. = ..()
 	set_holdable(can_hold_list = list(/obj/item/reagent_containers, /obj/item/reagent_scanner))
 
-/datum/storage/reagent_tank/open(mob/user)
-	var/obj/item/reagent_tank = parent
-	if(CHECK_BITFIELD(reagent_tank.deployment_flags, IS_DEPLOYED))
-		return ..()
+/datum/storage/reagent_tank/can_open(mob/user)
+	var/obj/item/dispenser = parent
+	if(!CHECK_BITFIELD(dispenser.deployment_flags, IS_DEPLOYED))
+		return FALSE
+	. = ..()
 
 /datum/storage/reagent_tank/attempt_draw_object(mob/living/user)
 	var/obj/item/reagent_tank = parent
