@@ -262,6 +262,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(!zone)
 			visible_message(span_notice("\The [thrown_item] misses [src] narrowly!"), null, null, 5)
+			animatation_displace_reset(src)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 			return FALSE
@@ -278,7 +279,10 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/affecting = get_limb(zone)
 
 		if(affecting.limb_status & LIMB_DESTROYED)
-			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
+			visible_message(span_notice("\The [thrown_item] flies through where [src]'s [affecting.display_name] was!"), null, null, 5)
+			animatation_displace_reset(src)
+			if(living_thrower)
+				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 			return FALSE
 
 		thrown_item.set_throwing(FALSE) // Hit the limb.
