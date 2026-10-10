@@ -862,7 +862,7 @@
 		if(isclosedturf(turf_to_affect) || isspaceturf(turf_to_affect) || isspacearea(get_area(turf_to_affect)) || !line_of_sight(turf_target, turf_to_affect, radius, TRUE))
 			reappearance_turfs -= turf_to_affect
 			continue
-		new /obj/effect/temp_visual/behemoth/warning/conqueror(turf_to_affect, CONQUEROR_DOMINATION_CASTING_DELAY)
+		new /obj/effect/temp_visual/xeno_warning(turf_to_affect, CONQUEROR_DOMINATION_CASTING_DELAY, COLOR_VIOLET)
 	if(!check_distance || !length(reappearance_turfs))
 		xeno_owner.balloon_alert(xeno_owner, "Cannot go there")
 		return
@@ -915,9 +915,6 @@
 	duration = 7
 	pixel_x = -70
 	pixel_y = -28
-
-/obj/effect/temp_visual/behemoth/warning/conqueror
-	color = COLOR_VIOLET
 
 
 // ***************************************
