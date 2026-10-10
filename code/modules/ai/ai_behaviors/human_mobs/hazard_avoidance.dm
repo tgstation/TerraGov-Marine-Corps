@@ -111,7 +111,7 @@
 		if(prob(20))
 			try_speak(pick(cas_avoid_chat))
 		return
-	if(isfacehugger(hazard) || istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
+	if(isfacehugger(hazard) || istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/xeno_warning))
 		if(prob(20))
 			try_speak(pick(xeno_avoid_chat))
 		return
