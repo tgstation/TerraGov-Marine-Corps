@@ -11,6 +11,8 @@
 /area/orion_outpost/ground/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 	area_flags = CANNOT_NUKE
 
 /area/orion_outpost/surface
