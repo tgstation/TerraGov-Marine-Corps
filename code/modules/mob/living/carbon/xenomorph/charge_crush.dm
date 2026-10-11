@@ -131,6 +131,7 @@
 /datum/action/ability/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
 	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
+	charger.add_traits(list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE), CHARGING_TRAIT)
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -138,6 +139,7 @@
 /datum/action/ability/xeno_action/ready_charge/proc/do_stop_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE))
+	charger.remove_traits(list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE), CHARGING_TRAIT)
 	if(valid_steps_taken > 0) //If this is false, then do_stop_momentum() should have it handled already.
 		charger.is_charging = CHARGE_BUILDINGUP
 		charger.update_icons()
