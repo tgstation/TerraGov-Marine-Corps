@@ -140,6 +140,7 @@
 
 
 /obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE) //we only care if its a xeno or not
 	if(isxeno(mover))
 		return TRUE
 	if(istype(mover, /mob/illusion/xeno))
@@ -162,6 +163,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE) //we're always passable
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
