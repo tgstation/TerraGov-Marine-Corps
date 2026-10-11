@@ -193,15 +193,22 @@
 
 ///Triggers an event
 /obj/machinery/keycard_auth/proc/trigger_event()
-	var/potential_alert_level = SSsecurity_level.text_level_to_number(event)
-	if(potential_alert_level)
-		SSsecurity_level.set_level(potential_alert_level)
+	if(event = KEYCARD_AUTH_GRANT_MAINT_ACCESS)
+		if(GLOB.maint_all_access == TRUE)
+			return
+		make_maint_all_access()
 		return
-	switch(event)
-		if(KEYCARD_AUTH_GRANT_MAINT_ACCESS)
-			make_maint_all_access()
-		if(KEYCARD_AUTH_REVOKE_MAINT_ACCESS)
-			revoke_maint_all_access()
+
+	if(event = KEYCARD_AUTH_REVOKE_MAINT_ACCESS)
+		if(GLOB.maint_all_access == FALSE)
+			return
+		revoke_maint_all_access()
+		return
+
+	potential_alert_level = SSsecurity_level.text_level_to_number(event)
+	if(!potential_alert_level)
+		return
+	SSsecurity_level.set_level(potential_alert_level) //level switching already checks if we're at the same level
 
 //////////////////////////////////////////////////////
 GLOBAL_VAR_INIT(maint_all_access, FALSE)
