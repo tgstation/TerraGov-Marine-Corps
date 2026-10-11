@@ -593,7 +593,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(ammo.ammo_behavior_flags & AMMO_LEAVE_TURF)
 				ammo.on_leave_turf(turf_crossed_by, src)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
-			for(var/j in uncross_scheduled)
+			for(var/j in uncross_scheduled) //ideally we should trigger the window hit here, but this never seems to be populated for non-diag shots
 				var/atom/movable/thing_to_uncross = j
 				if(QDELETED(thing_to_uncross))
 					continue
@@ -712,6 +712,17 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.ammo_behavior_flags & AMMO_ENERGY))
 		return FALSE
+
+	if(atom_flags & ON_BORDER)
+		if(uncrossing)
+			if((REVERSE_DIR(cardinal_move) & dir) && !(allow_pass_flags & PASS_PROJECTILE)) //todo: when uncrossing, cardinal move is reversed for whatever reason, see if this is actually needed
+				return TRUE
+			return FALSE //this is a somewhat snowflake interaction to prevent you from hitting cades from behind, regardless of distance
+		else
+			if(!(cardinal_move & REVERSE_DIR(dir)))
+				proj.uncross_scheduled += src //if it doesn't block entry, we check on exit
+				return FALSE
+
 	if(!(allow_pass_flags & PASS_PROJECTILE))
 		return TRUE
 	if((proj.ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOVABLE) && !(allow_pass_flags & PASS_LOW_STRUCTURE)) //you're just shooting straight through stuff
@@ -719,13 +730,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
-	if(atom_flags & ON_BORDER)
-		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
-			if(!uncrossing)
-				proj.uncross_scheduled += src
-			return FALSE //No effect now, but we save the reference to check on exiting the tile.
-		if (uncrossing)
-			return FALSE //you don't hit the cade from behind.
 	if(proj.ammo.ammo_behavior_flags & AMMO_BETTER_COVER_RNG || proj.iff_signal) //sniper and IFF rounds are better at getting past cover
 		hit_chance *= 0.8
 	///50% better protection when shooting from outside accurate range.
