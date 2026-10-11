@@ -544,6 +544,7 @@
 
 	if(!deployed)
 		update_stats()
+		pickup(user)
 		user.put_in_hands(src)
 		return
 
@@ -555,17 +556,26 @@
 			return
 		storage_datum.open(user)
 
-/obj/item/storage/box/visual/MouseDrop(atom/over_object)
+/obj/item/storage/box/visual/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(!deployed)
 		return
 
-	if(!ishuman(over_object))
+	if(!ishuman(over))
 		return
 
-	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		deployed = FALSE
-		update_icon()
+	var/mob/living/carbon/human/human = over
+
+	if(human != usr)
+		return
+	if(human.incapacitated())
+		return
+	if(!Adjacent(human))
+		return
+	pickup(human)
+	if(!human.put_in_hands(src))
+		return
+	deployed = FALSE
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()
