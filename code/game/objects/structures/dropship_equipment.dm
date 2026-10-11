@@ -52,10 +52,7 @@
 	if(installed_equipment || attached_clamp.loaded != loaded_equipment)
 		return
 	to_chat(user, span_notice("You install [loaded_equipment] on [src]."))
-	loaded_equipment.forceMove(loc)
-	attached_clamp.loaded = null
-	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
+	attached_clamp.do_unload(loc)
 	installed_equipment = loaded_equipment
 	loaded_equipment.ship_base = src
 
