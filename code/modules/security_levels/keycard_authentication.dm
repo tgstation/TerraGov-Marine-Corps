@@ -15,6 +15,8 @@
 ///Revoke maint access event
 #define KEYCARD_AUTH_REVOKE_MAINT_ACCESS "Revoke Emergency Maintenance Access"
 
+GLOBAL_VAR_INIT(maint_all_access, FALSE)
+
 /obj/machinery/keycard_auth
 	name = "Keycard Authentication Device"
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
@@ -193,27 +195,25 @@
 
 ///Triggers an event
 /obj/machinery/keycard_auth/proc/trigger_event()
-	if(event = KEYCARD_AUTH_GRANT_MAINT_ACCESS)
+	if(event == KEYCARD_AUTH_GRANT_MAINT_ACCESS)
 		if(GLOB.maint_all_access == TRUE)
 			return
 		make_maint_all_access()
 		return
 
-	if(event = KEYCARD_AUTH_REVOKE_MAINT_ACCESS)
+	if(event == KEYCARD_AUTH_REVOKE_MAINT_ACCESS)
 		if(GLOB.maint_all_access == FALSE)
 			return
 		revoke_maint_all_access()
 		return
 
-	potential_alert_level = SSsecurity_level.text_level_to_number(event)
+	var/potential_alert_level = SSsecurity_level.text_level_to_number(event)
 	if(!potential_alert_level)
 		return
 	SSsecurity_level.set_level(potential_alert_level) //level switching already checks if we're at the same level
 
-//////////////////////////////////////////////////////
-GLOBAL_VAR_INIT(maint_all_access, FALSE)
 /// Enables all access for maintenance airlocks
-/proc/make_maint_all_access()
+/obj/machinery/keycard_auth/proc/make_maint_all_access()
 	GLOB.maint_all_access = TRUE
 	priority_announce(
 		title = "Attention!",
@@ -225,7 +225,7 @@ GLOBAL_VAR_INIT(maint_all_access, FALSE)
 	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "enabled"))
 
 /// Disables all access for maintenance airlocks
-/proc/revoke_maint_all_access()
+/obj/machinery/keycard_auth/proc/revoke_maint_all_access()
 	GLOB.maint_all_access = FALSE
 	priority_announce(
 		title = "Attention!",
