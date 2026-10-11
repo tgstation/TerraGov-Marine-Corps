@@ -396,7 +396,7 @@
 		user.drop_held_item()
 	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
-	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE, attacker = user)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
@@ -404,7 +404,7 @@
 	return TRUE
 
 /obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+	footstep_overrides[FOOTSTEP_PLATING] = get_footstep_layer(layer, plane)
 
 /obj/proc/do_deploy(mob/user, turf/location)
 	if(!istype(location))
@@ -416,7 +416,7 @@
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
 		return FALSE
-	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
 			balloon_alert(user, "can't disassemble!")
 		return FALSE

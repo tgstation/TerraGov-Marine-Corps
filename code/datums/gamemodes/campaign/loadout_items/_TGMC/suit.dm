@@ -141,7 +141,7 @@
 
 /datum/loadout_item/suit_slot/heavy_tyr
 	name = "H Tyr armor"
-	desc = "Heavy armor with a Tyr extra armor module. Provides incredible protection at the cost of with further reduced mobility."
+	desc = "Heavy armor with a Tyr extra armor module. Provides incredible protection and limited immunity to shotgun stuns, at the cost of with further reduced mobility."
 	req_desc = "Requires a ALF-51B or SMG-25."
 	ui_icon = "tyr"
 	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/tyr_two

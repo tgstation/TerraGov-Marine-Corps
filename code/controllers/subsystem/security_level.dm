@@ -8,7 +8,6 @@
 SUBSYSTEM_DEF(security_level)
 	name = "Security Level"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_SECURITY_LEVEL
 	/// Currently set security level
 	var/datum/security_level/current_security_level
 	/// Associative list of security level names -> datums

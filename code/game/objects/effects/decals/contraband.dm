@@ -69,7 +69,7 @@
 	if(.)
 		return
 	if(iswirecutter(I))
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(ruined)
 			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)
@@ -90,7 +90,7 @@
 			if(user.loc != temp_loc)
 				return
 			visible_message(span_warning("[user] rips [src] in a single, decisive motion!") )
-			playsound(src.loc, 'sound/items/poster_ripped.ogg', 25, 1)
+			playsound(src.loc, 'sound/items/poster_ripped.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			ruined = 1
 			icon_state = "poster_ripped"
 			name = "ripped poster"
@@ -131,7 +131,7 @@
 	flick("poster_being_set",D)
 	D.loc = src
 	qdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
-	playsound(D.loc, 'sound/items/poster_being_created.ogg', 25, 1)
+	playsound(D.loc, 'sound/items/poster_being_created.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	sleep(1.7 SECONDS)
 	if(!D)	return

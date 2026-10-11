@@ -114,7 +114,7 @@
 
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message(span_warning("[user] bangs against [src]!"),
 		span_warning("You bang against [src]!"),
 		span_warning("You hear a banging sound."))
@@ -122,7 +122,7 @@
 	else
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1, SHORT_SOUND_RANGE)
 		user.visible_message(span_notice("[user] knocks on [src]."),
 		span_notice("You knock on [src]."),
 		span_notice("You hear a knocking sound."))
@@ -153,7 +153,7 @@
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage * 2, BRUTE, MELEE)
 	return TRUE
 
@@ -169,17 +169,17 @@
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
 		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
 		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
 		else if(!reinf || (static_frame && state == 0))
 			deconstruct(TRUE)
@@ -187,7 +187,7 @@
 	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
@@ -411,6 +411,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_ESCAPESHUTTLE,
 	)
+	minimap_color = MINIMAP_FENCE
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 
@@ -490,6 +491,14 @@
 	max_integrity = 1000
 	deconstructable = FALSE
 	icon_state = "window-reinforced"
+
+/obj/structure/window/framed/mainship/bulletproof
+	name = "hardened bulletproof window"
+	desc = "A hardened silicate alloy window mounted within a special shock-absorbing frame, totally immune to small arms fire."
+	max_integrity = 500
+	deconstructable = FALSE
+	icon_state = "window-reinforced"
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/structure/window/framed/mainship/white
 	icon = 'icons/obj/smooth_objects/wwindow.dmi'

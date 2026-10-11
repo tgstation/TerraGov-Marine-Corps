@@ -51,7 +51,7 @@
 /obj/machinery/air_alarm/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	balloon_alert_to_viewers("[user] starts trying to pry [src] off the wall..")
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 5 SECONDS, NONE, src))
 		return
 

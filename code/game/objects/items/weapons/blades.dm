@@ -1,23 +1,3 @@
-/obj/item/tool/kitchen/knife/shiv
-	name = "glass shiv"
-	icon = 'icons/obj/items/weapons/knives.dmi'
-	icon_state = "shiv"
-	desc = "A makeshift glass shiv."
-	attack_verb = list("shanks", "shivs")
-	hitsound = 'sound/weapons/slash.ogg'
-
-/obj/item/tool/kitchen/knife/shiv/plasma
-	icon_state = "plasmashiv"
-	desc = "A makeshift plasma glass shiv."
-
-/obj/item/tool/kitchen/knife/shiv/titanium
-	icon_state = "titaniumshiv"
-	desc = "A makeshift titanium shiv."
-
-/obj/item/tool/kitchen/knife/shiv/plastitanium
-	icon_state = "plastitaniumshiv"
-	desc = "A makeshift plastitanium glass shiv."
-
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
 	icon_state = "combat_knife"
@@ -206,7 +186,7 @@
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		amount--
 		thrown_thing = knife_to_throw
-	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	playsound(src, 'sound/effects/throw.ogg', 30, TRUE, SHORT_SOUND_RANGE)
 	visible_message(span_warning("[living_user] expertly throws [thrown_thing]."), null, null, 5)
 	update_icon()
 	return AUTOFIRE_CONTINUE

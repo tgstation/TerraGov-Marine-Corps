@@ -169,6 +169,10 @@
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
+"aY" = (
+/obj/effect/landmark/zombie_spawner,
+/turf/open/floor/plating/mainship,
+/area/lv624/lazarus/crashed_ship/desparity)
 "aZ" = (
 /obj/effect/landmark/corpsespawner/security/burst,
 /turf/open/floor/plating,
@@ -3124,6 +3128,10 @@
 	dir = 1
 	},
 /area/lv624/ground/river3)
+"ql" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "qm" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river,
@@ -4147,6 +4155,11 @@
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
+"vs" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "vt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -4248,6 +4261,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/security/regular,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "vW" = (
@@ -5171,6 +5185,10 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
+"Az" = (
+/obj/effect/landmark/zombie_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "AC" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -8622,6 +8640,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "RS" = (
@@ -12246,7 +12265,7 @@ wh
 wh
 bT
 aD
-mU
+aY
 mU
 cl
 mU
@@ -15054,7 +15073,7 @@ wh
 ah
 nR
 ua
-qI
+vs
 ua
 ah
 wh
@@ -15667,7 +15686,7 @@ Va
 OF
 EH
 ft
-ft
+ql
 VW
 Om
 Om
@@ -19837,7 +19856,7 @@ wh
 wh
 Uq
 Uq
-Uq
+Az
 fm
 Uq
 Uq

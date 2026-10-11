@@ -89,7 +89,7 @@
 		if(WT.remove_fuel(1, user))
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
-			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			if(I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD)) // todo clean this proc up its so bay-ey :(
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \

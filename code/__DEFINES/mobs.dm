@@ -246,6 +246,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 /// If the limb's total damage percent is higher than this, it can be severed.
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+/// Factor for limb blood flow rate
+#define LIMB_FLOW_FACTOR 60
+/// Macro for a limb's blood flow rate based on its brute damage
+#define LIMB_FLOW_RATE(limb_brute) (limb_brute / LIMB_FLOW_FACTOR)
+/// Factor for IB wound flow rate
+#define INTERNAL_BLEEDING_FLOW_FACTOR 30
+/// Macro for an IB wound's blood flow rate based on blood volume and wound severity
+#define INTERNAL_BLEEDING_FLOW_RATE(blood_volume, intensity) (blood_volume - intensity / INTERNAL_BLEEDING_FLOW_FACTOR)
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -399,6 +407,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ROBOTIC_LIMBS (1<<18)
 #define GREYSCALE_BLOOD (1<<19)
 #define IS_INSULATED (1<<20)
+#define SPECIES_NO_HUG (1<<21)
 
 //=================================================
 
@@ -540,6 +549,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
+///All xenos in the hive can build, allows non building castes to not block building
+#define HIVE_ALL_CAN_BUILD (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -609,7 +621,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_BE_LEADER (1<<2) // Can we be selected as a hive leader (not to be confused with hive ruler)?
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<3) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
-#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
+#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
 
 ///How often we can swap strains
@@ -634,6 +646,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 10 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
+#define HUNTER_MIRAGE_ILLUSION_LIFETIME 10 SECONDS
 #define HUNTER_SILENCE_STAGGER_DURATION 1 SECONDS //Silence imposes this much stagger
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
 #define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
@@ -780,6 +793,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define BOILER_BOMBARD_COOLDOWN_REDUCTION 1.5 SECONDS
 /// Amount of stored globs needed to start glowing.
 #define	BOILER_LUMINOSITY_THRESHOLD 2
+/// Charge distance for Sizzler's acid dash
+#define BOILER_CHARGEDISTANCE 5
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
@@ -807,6 +822,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Defender defines
 #define DEFENDER_CHARGE_RANGE 4
+#define DEFENDER_REFLECT_TIME 0.6 SECONDS
 
 //Baneling defines
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so
@@ -842,13 +858,22 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define TIME_TO_DISSOLVE 5 SECONDS
 #define SPIDERLING_RAGE_RANGE 10 // how close a nearby human has to be in order to be targeted
 
-//Praetorian defines
-#define PRAE_CHARGEDISTANCE 5
-
 //Dancer defines
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
+
+// Behemoth mutation defines
+/// Maximum amount of Earth Pillars that we can create with this mutation active.
+#define FOUNDATIONS_MAXIMUM_AMOUNT 2
+/// Health reduction applied to Earth Pillars as a percentage.
+#define FOUNDATIONS_HEALTH_REDUCTION 0.4
+/// Additional damage provided by Earth Might as a percentage.
+#define EARTH_MIGHT_ADDITIONAL_DAMAGE 1.3
+/// Amount of damage done to Earth Pillars as a percentage
+#define EARTH_MIGHT_PILLAR_DAMAGE 0.5
+/// Additional range given to Seize.
+#define GUIDED_CLAIM_ADDITIONAL_RANGE 2
 
 //misc
 

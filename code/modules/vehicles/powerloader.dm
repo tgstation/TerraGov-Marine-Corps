@@ -4,7 +4,8 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
-	anchored = TRUE
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	allow_pass_flags = NONE
 	move_delay = 6
 	light_system = HYBRID_LIGHT
@@ -45,7 +46,7 @@
 	if(!LAZYLEN(buckled_mobs) || buckled_mob.buckled != src)
 		return FALSE
 	if(user == buckled_mob)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 		return ..()
 	buckled_mob.visible_message(
@@ -58,12 +59,12 @@
 	silent = TRUE
 	. = ..()
 	if(.)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 
 /obj/vehicle/ridden/powerloader/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
 	move_delay = max(2, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
@@ -82,7 +83,7 @@
 /obj/vehicle/ridden/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	overlays.Cut()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	move_delay = initial(move_delay)
 	set_vehicle_speed()
 	icon_state = "powerloader_open"
@@ -91,7 +92,7 @@
 /// Sets the powerloader's actual move delay (as it is handled in the component).
 /obj/vehicle/ridden/powerloader/proc/set_vehicle_speed()
 	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
-	vehicle_component.vehicle_move_delay = move_delay
+	vehicle_component?.vehicle_move_delay = move_delay
 
 /obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
@@ -178,6 +179,20 @@
 /obj/item/powerloader_clamp/attack_self(mob/user)
 	if(user in linked_powerloader.buckled_mobs)
 		linked_powerloader.unbuckle_mob(user)
+
+///Loads an AM into the clamp
+/obj/item/powerloader_clamp/proc/do_load(atom/movable/new_clamped)
+	new_clamped.forceMove(linked_powerloader)
+	loaded = new_clamped
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+
+///Unloads our cargo somewhere
+/obj/item/powerloader_clamp/proc/do_unload(atom/new_loc)
+	loaded.forceMove(new_loc)
+	loaded = null
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/powerloader_wreckage
 	name = "\improper RPL-Y Cargo Loader wreckage"

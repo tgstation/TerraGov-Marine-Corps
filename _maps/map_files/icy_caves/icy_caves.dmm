@@ -892,6 +892,10 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
+"el" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "em" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -3520,6 +3524,7 @@
 "rU" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "rV" = (
@@ -9014,6 +9019,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"RY" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/refinery)
 "RZ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -10524,6 +10533,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"Zi" = (
+/obj/item/lightstick/anchored,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Zj" = (
 /obj/structure/table,
 /obj/item/corncob,
@@ -15970,7 +15984,7 @@ fw
 DY
 DY
 DY
-DY
+RY
 DY
 Rf
 wQ
@@ -19927,7 +19941,7 @@ SR
 SR
 SR
 SR
-SR
+el
 im
 tq
 tq
@@ -23683,8 +23697,8 @@ ZP
 Mr
 tf
 hH
-iP
 xt
+iP
 tf
 SR
 SR
@@ -28871,7 +28885,7 @@ YT
 YT
 YT
 YT
-JD
+Zi
 YT
 ZP
 ZP

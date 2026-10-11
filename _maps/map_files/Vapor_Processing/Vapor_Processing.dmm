@@ -3976,6 +3976,10 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/lv624/ground/compound/se)
+"zI" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/ground,
+/area/lv624/ground/caves/central2)
 "zS" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -4420,6 +4424,10 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/lv624/lazarus/research)
+"Gr" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
 "Gu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -10230,7 +10238,7 @@ le
 lh
 lh
 lh
-le
+Gr
 le
 le
 lf
@@ -11062,7 +11070,7 @@ bc
 bc
 bc
 bc
-bc
+zI
 bc
 bc
 Pr

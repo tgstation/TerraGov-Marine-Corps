@@ -29,10 +29,12 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
-#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
+#define COMSIG_GLOB_NUKE_DEFUSED "!nuke_defused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
+
+#define COMSIG_GLOB_SILOLESS_COLLAPSE "!siloless_collapse"
 
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
@@ -63,6 +65,9 @@
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 #define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
+
+///from proc/global_rally_zombies()
+#define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -140,6 +145,9 @@
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
+///Sent when a respawn wave triggers
+#define COMSIG_GLOB_HVH_RESPAWN_WAVE "!hvh_respawn_wave"
+
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
@@ -156,6 +164,11 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
+/// From [/obj/effect/ai_node/spawner/zombie/Destroy()]
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!zombie_tunnel_destroyed"
+/// From [/obj/machinery/computer/code_generator/nuke/complete_segment()]: (/obj/machinery/computer/code_generator/nuke/generating_computer)
+#define COMSIG_GLOB_DISK_SEGMENT_COMPLETED "!disk_segment_completed"
+
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -169,6 +182,9 @@
 ///from /datum/element/jump when a jump has started and ended
 #define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
+
+///From /datum/component/throw_parry/parry_check() when a parry is successful
+#define COMSIG_ELEMENT_PARRY_TRIGGERED "element_parry_triggered"
 
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
@@ -416,6 +432,12 @@
 ///Movable deployed via a patrol point
 #define COMSIG_MOVABLE_PATROL_DEPLOYED "movable_patrol_deployed"
 
+///from /atom/can_climb()
+#define COMSIG_ATOM_CHECK_CLIMBABLE "atom_check_climbable"
+	#define COMPONENT_MOVABLE_CAN_CLIMB (1<<0)
+///from /atom/try_climb()
+#define COMSIG_ATOM_TRY_CLIMBABLE "atom_try_climbable"
+
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
@@ -462,6 +484,11 @@
 #define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 #define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
+
+#define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
+
+/// from /datum/storage/proc/handle_item_insertion when an item is stored in src
+#define COMSIG_ITEM_STORED "item_stored"
 
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
@@ -577,6 +604,8 @@
 
 #define COMSIG_ARMORED_FIRE "armored_fire"
 #define COMSIG_ARMORED_STOP_FIRE "armored_stop_fire"
+
+#define COMSIG_ARMORED_DO_EXTRACT "armored_do_extract"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -797,6 +826,8 @@
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+#define COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING "xenomorph_pre_health_regen_scaling"
+#define COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING "xenomorph_post_health_regen_scaling"
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 #define COMSIG_XENOMORPH_RESIN_JELLY_APPLIED "xenomorph_resin_jelly_applied"
@@ -888,10 +919,6 @@
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
 #define COMSIG_ABILITY_REANIMATE "ability_reanimate"
 
-// throw parry signals
-#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
-#define COMSIG_PARRY_TRIGGER "parry_trigger"
-
 // xeno iff tag signals
 #define COMSIG_XENO_IFF_CHECK "xeno_iff_check" //! Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.
 
@@ -912,6 +939,9 @@
 
 ///from /datum/action/ability/activable/build_designator/call_interaction()
 #define COMSIG_MOB_INTERACTION_DESIGNATED "mob_interaction_designated"
+
+///From /atom/add_slaved_npc()
+#define COMSIG_COMPONENT_ADD_NEW_SLAVE_NPC "component_add_new_slave_npc"
 
 // /datum/song signals
 
@@ -1006,3 +1036,12 @@
 
 /// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
 #define COMSIG_HEALTH_SCAN_DATA "health_scan_data"
+
+///Gamemode vote finished
+#define COMSIG_GAMEMODE_VOTE_RESULT "gamemode_vote_result"
+///shipmap vote finished
+#define COMSIG_SHIPMAP_VOTE_RESULT "shipmap_vote_result"
+///groundmap vote finished
+#define COMSIG_GROUNDMAP_VOTE_RESULT "groundmap_vote_result"
+///vote cancelled
+#define COMSIG_VOTE_CANCELLED "vote_cancelled"

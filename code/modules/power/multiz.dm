@@ -1,8 +1,8 @@
 /obj/structure/cable/multilayer/multiz //This bridges powernets betwen Z levels
 	name = "multi z layer cable hub"
 	desc = "A flexible, superconducting insulated multi Z layer hub for heavy-duty multi Z power transfer."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cablerelay-on"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "gsensor1"
 	cable_layer = CABLE_LAYER_1|CABLE_LAYER_2|CABLE_LAYER_3
 	machinery_layer = null
 	resistance_flags = RESIST_ALL //deleting multi-z connectors causes problems, so we don't

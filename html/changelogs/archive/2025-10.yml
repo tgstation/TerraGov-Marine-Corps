@@ -86,3 +86,51 @@
   blackdav123:
   - balance: Pyrogen now has higher plasma costs, but receives plasma when slashing
       marines or consuming firestacks with Fire Charge.
+2025-10-13:
+  Lumipharon:
+  - bugfix: fixed overhead do_after icons not appearing in many cases
+  - imageadd: 'Campaign: Palmaria is visible from space'
+  - qol: Buttons now layer over mobs
+  - bugfix: fixed vegetation sounds not working properly
+  breadhunt:
+  - rscadd: You can now punch punching bags
+2025-10-15:
+  Lumipharon:
+  - bugfix: fixed the observer menu showing blank in some cases
+  - bugfix: a variety of jobs will now correctly display their icon in the observer
+      menu
+  Runian:
+  - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
+      distance as Warrior.'
+2025-10-21:
+  Atropos:
+  - qol: Dylovene autoinjectors now inject 3 u by default
+  DaTruRiZZoB:
+  - bugfix: Fixed pointing while dead/incapacitated
+2025-10-23:
+  Lumipharon:
+  - admin: Fixed the job panel breaking if the gamemode fails to start 1 or more times
+2025-10-27:
+  Runian:
+  - bugfix: Ejecting out of an autodoc's automatic mode before it starts no longer
+      runtimes / breaks.
+2025-10-28:
+  Lumipharon:
+  - bugfix: fixed NPC's throwing grenades when they don't have a clear path
+  - bugfix: weather doesnt run on old campaign mission z levels
+  - qol: The crashed ship on Crash will show up on the minimap now
+  - qol: Windows appear on the minimap also
+  - rscadd: Added bloom effects to emissives
+  - bugfix: Vehicle lights can actually turn off and on
+  - bugfix: Stops floor emissives layering over things they shouldn't
+2025-10-30:
+  DaTruRiZZoB:
+  - qol: Sets SMES input/output to max by default
+  Joe13413, Lumipharon, harusha:
+  - rscadd: Added a new campaign mission, TGMC airfield. SoM must assault an airbase
+      defended by the TGMC, and destroy the fighters and the airstrip itself.
+  Lumipharon:
+  - bugfix: fixed minimap trackers not updating when a minimap is redrawn
+  - bugfix: NPC's will fight back when attacked while healing or doing similar tasks
+  - code_imp: mob attackers are properly tracked through the damage procs
+  - bugfix: fixed an autofire runtime

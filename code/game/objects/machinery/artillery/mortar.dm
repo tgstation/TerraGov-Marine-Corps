@@ -168,7 +168,7 @@
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
 		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
 		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /**
  * this proc is used because pointers suck and references would break the saving of coordinates.
@@ -239,7 +239,7 @@
 		to_chat(AI, span_notice("NOTICE - [src] has been linked to your systems, allowing for remote targeting. Use shift click to set a target."))
 		user.transferItemToLoc(I, src)
 		AI.associate_artillery(src)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		ai_targeter = I
 
 	if(istype(I, /obj/item/compass))
@@ -247,7 +247,7 @@
 		coords["targ_x"] = compass.target_turf.x
 		coords["targ_y"] = compass.target_turf.y
 		say("Targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	if(!istype(I, /obj/item/binoculars/tactical))
@@ -300,7 +300,7 @@
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///perform any individual sprite-specific visuals here
 /obj/machinery/deployable/mortar/proc/perform_firing_visuals()
@@ -420,7 +420,7 @@
 	name = "artillery camera"
 	network = list("terragovartillery")
 	alpha = 0 //we shouldn't be able to see this!
-	internal_light = FALSE
+	camera_flags = CAMERA_OPERATING
 	c_tag = "impact camera"
 	resistance_flags = RESIST_ALL
 
@@ -432,7 +432,7 @@
 	icon_state = "mortar"
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 0, ACID = 0)
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
 	var/deployable_item = /obj/machinery/deployable/mortar
 	resistance_flags = RESIST_ALL
@@ -461,7 +461,8 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. This one is a double barreled mortar that can hold 2 rounds, and is usually fitted in TAVs."
 	icon_state = "mortar_db"
 	max_integrity = 400
-	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	item_flags = TWOHANDED
+	deployment_flags = IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
 	deployable_item = /obj/machinery/deployable/mortar/double
 

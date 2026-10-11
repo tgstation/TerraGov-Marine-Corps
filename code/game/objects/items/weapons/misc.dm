@@ -41,7 +41,7 @@
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return ..()
 
 /obj/item/weapon/powerfist
@@ -98,7 +98,7 @@
 	var/powerused = setting * 20
 	if(powerused > cell.charge)
 		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
-		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE)
+		M.apply_damage((force * 0.2), BRUTE, user.zone_selected, MELEE, attacker = user)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
 		if(M == user)
 			to_chat(user, span_userdanger("You punch yourself!"))
@@ -107,13 +107,13 @@
 				span_userdanger("[user] punches you!"))
 		return ..()
 	if(M == user)
-		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+		user.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
 		to_chat(user, span_userdanger("You punch yourself!"))
 		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 		cell.charge -= powerused
 		return ..()
-	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE)
+	M.apply_damage(force * setting, BRUTE, user.zone_selected, MELEE, attacker = user)
 	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
 		span_userdanger("[user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
@@ -164,7 +164,7 @@
 		user.dropItemToGround(cell)
 	cell = null
 	update_icon()
-	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /obj/item/weapon/brick
 	name = "brick"

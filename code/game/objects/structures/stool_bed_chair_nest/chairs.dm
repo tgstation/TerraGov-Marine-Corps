@@ -19,7 +19,10 @@
 	buckle_lying = 0
 	buckling_y = 0
 	max_integrity = 20
+	layer = BELOW_TABLE_LAYER
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
+	///Whether this chair can be rotated via verb
+	var/can_rotate = TRUE //this only exists because spriters don't add directional sprites to all chair types, which allows for exploits.
 
 //directional variants mostly used for random spawners
 /obj/structure/bed/chair/east
@@ -48,7 +51,7 @@
 	if(LAZYLEN(buckled_mobs) && dir == NORTH)
 		layer = FLY_LAYER
 	else
-		layer = OBJ_LAYER
+		layer = initial(layer)
 
 
 /obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)
@@ -73,6 +76,8 @@
 	set category = "IC.Object"
 	set src in view(0)
 
+	if(!can_rotate)
+		return FALSE
 	var/mob/living/carbon/user = usr
 
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
@@ -166,6 +171,8 @@
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
 	resistance_flags = XENO_DAMAGEABLE
+	can_rotate = FALSE
+
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 
@@ -268,7 +275,7 @@
 	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
-	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
@@ -282,16 +289,15 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = FALSE
 
 /obj/structure/bed/chair/dropship
 	name = "dropship chair"
 	desc = "Holds you in place during high altitude drops."
 	icon_state = "shuttle_chair"
+	can_rotate = FALSE
 	/// Handles the chair buckle bars overlay
 	var/image/chairbar = null
 	buildstacktype = 0
@@ -386,7 +392,7 @@
 			if(DROPSHIP_CHAIR_UNBUCKLED)
 				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
 				span_warning("You begin loosening the bolts on \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
@@ -398,7 +404,7 @@
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message(span_warning("[user] begins unfolding \the [src]."),
 				span_warning("You begin unfolding \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
@@ -559,3 +565,4 @@
 	buildstacktype = null
 	resistance_flags = UNACIDABLE
 	dir = WEST
+	can_rotate = FALSE

@@ -12,7 +12,7 @@
 	layer = MOB_BELOW_PIGGYBACK_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	max_buckled_mobs = 2
 	max_occupants = 2
 	pixel_w = -17
@@ -80,5 +80,5 @@
 		return FALSE
 	COOLDOWN_START(src, rev_cooldown, 3 SECONDS)
 	to_chat(user, span_notice("You rev the [src]'s engine."))
-	playsound(src, pick('sound/vehicles/bikerev-1.ogg', 'sound/vehicles/bikerev-2.ogg'), 50, TRUE, falloff = 3)
+	playsound(src, pick('sound/vehicles/bikerev-1.ogg', 'sound/vehicles/bikerev-2.ogg', 'sound/vehicles/bikerev-3.ogg', 'sound/vehicles/bikerev-4.ogg'), 50, TRUE, falloff = 3)
 	return TRUE

@@ -30,7 +30,7 @@
 	/// (num) The max amount of loops to run for.
 	var/max_loops
 	///Range the sound will travel
-	var/range = 0
+	var/range = DEFAULT_SOUND_RANGE
 	///The rate the volume falls off. Higher = volume drops slower
 	var/falloff
 	///Frequency override

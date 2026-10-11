@@ -547,7 +547,7 @@
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
@@ -639,7 +639,7 @@
 		visual_fire.icon_state = "melting_low_stacks"
 	else
 		return
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
 		return
@@ -775,6 +775,8 @@
 /datum/status_effect/stacking/melting/can_gain_stacks()
 	if(owner.status_flags & GODMODE || owner.stat == DEAD)
 		return FALSE
+	if(owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
+		return
 	return ..()
 
 /datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)
@@ -801,7 +803,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 
 	debuff_owner.apply_damage(STATUS_EFFECT_MELTING_DAMAGE, BURN, null, FIRE)
@@ -889,7 +891,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT * (debuff_owner.mob_size > MOB_SIZE_HUMAN ? 1 : 0.5)) //this shreds humans otherwise
 
@@ -1025,7 +1027,7 @@
 	. = ..()
 	if(!owner)
 		return
-	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 4)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0

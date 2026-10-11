@@ -18,9 +18,9 @@
 	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
 	var/icon_state_mini = "item"
 	///Byond tick delay between left click attacks
-	var/attack_speed = 11
+	var/attack_speed = CLICK_CD_MELEE_WEAPON_DEFAULT
 	///Byond tick delay between right click alternate attacks
-	var/attack_speed_alternate = 11
+	var/attack_speed_alternate = null
 	///Used in attackby() to say how something was attacked "[x] [z.attack_verb] [y] with their [z]!" Should be in simple present tense!
 	var/list/attack_verb
 
@@ -39,6 +39,8 @@
 	var/w_class = WEIGHT_CLASS_NORMAL
 	///flags for item stuff that isn't clothing/equipping specific.
 	var/item_flags = NONE
+	///behavior flags relating to item deployment
+	var/deployment_flags = NONE
 	///This is used to determine on which slots an item can fit.
 	var/equip_slot_flags = NONE
 	///Last slot that item was equipped to (aka sticky slot)
@@ -157,6 +159,8 @@
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
+	/// Should [/datum/component/autobalance_monitor] be given? If so, what value should it use?
+	var/autobalance_monitor_value
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -186,6 +190,12 @@
 
 	if(current_variant)
 		update_icon()
+
+	if(autobalance_monitor_value)
+		AddComponent(/datum/component/autobalance_monitor, autobalance_monitor_value)
+
+	if(!isnum(attack_speed_alternate))
+		attack_speed_alternate = attack_speed
 
 /obj/item/Destroy()
 	if(ismob(loc))
@@ -291,8 +301,6 @@
 	. = ..()
 	if(.)
 		return
-	if(!user)
-		return
 	if(!istype(user))
 		return
 	if(anchored)
@@ -306,8 +314,11 @@
 		if(!current_storage.remove_from_storage(src, user.loc, user))
 			return
 
-	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
-		return
+	if(ismob(loc)) //you shouldn't be able to click on items directly if they are on a mob, other than your own inventory.
+		if(loc != user) //stops a tremendous number of exploits and ghost dupes due to byond being shitty.
+			return
+		if(!user.temporarilyRemoveItemFromInventory(src))
+			return
 
 	if(QDELETED(src))
 		return
@@ -544,12 +555,12 @@
 	if(H.species.hud?.equip_slots)
 		mob_equip = H.species.hud.equip_slots
 
-	if(!H.has_limb_for_slot(slot))
-		return FALSE
-
 	if(bitslot)
 		var/old_slot = slot
 		slot = slotbit2slotdefine(old_slot)
+
+	if(!H.has_limb_for_slot(slot))
+		return FALSE
 
 	if(H.species && !(slot in mob_equip))
 		return FALSE
@@ -1221,14 +1232,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
-/obj/item/proc/toggle_active(new_state)
+/obj/item/proc/toggle_active(new_state, mob/user)
 	if(!isnull(new_state))
 		if(new_state == active)
 			return
 		active = new_state
 	else
 		active = !active
-	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
+	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active, user)
+	update_appearance(UPDATE_ICON)
+	return TRUE
 
 ///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
@@ -1369,7 +1382,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The basic spin trick
 /obj/item/proc/basic_spin_trick(mob/living/carbon/human/user, direction = 1, obj/item/double)
 	set waitfor = 0
-	playsound(user, 'sound/effects/spin.ogg', 25, 1)
+	playsound(user, 'sound/effects/spin.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice("You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
@@ -1377,7 +1390,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice("You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(0.3 SECONDS)
-	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
+	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
@@ -1397,7 +1410,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!loc || !user)
 		return
 	invisibility = 0
-	playsound(user, 'sound/effects/thud.ogg', 25, 1)
+	playsound(user, 'sound/effects/thud.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(user.get_active_held_item() != src)
 		return
@@ -1415,9 +1428,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Handles registering if an item is flagged as deployed or not
 /obj/item/proc/toggle_deployment_flag(deployed)
 	if(deployed)
-		ENABLE_BITFIELD(item_flags, IS_DEPLOYED)
+		ENABLE_BITFIELD(deployment_flags, IS_DEPLOYED)
 	else
-		DISABLE_BITFIELD(item_flags, IS_DEPLOYED)
+		DISABLE_BITFIELD(deployment_flags, IS_DEPLOYED)
 
 ///Called by vendors when vending an item. Allows the item to specify what happens when it is given to the player.
 /obj/item/proc/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)

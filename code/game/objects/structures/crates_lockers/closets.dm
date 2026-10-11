@@ -160,7 +160,7 @@
 	density = FALSE
 	dump_contents()
 	update_icon()
-	playsound(loc, open_sound, 15, 1)
+	playsound(loc, open_sound, 15, 1, SHORT_SOUND_RANGE)
 	return TRUE
 
 
@@ -177,7 +177,7 @@
 	if(!opened || !can_close(user))
 		return FALSE
 	take_contents()
-	playsound(loc, close_sound, 15, 1)
+	playsound(loc, close_sound, 15, 1, SHORT_SOUND_RANGE)
 	opened = FALSE
 	density = TRUE
 	update_icon()
@@ -380,7 +380,7 @@
 	if(!opened)
 		dump_contents()
 		opened = TRUE
-		playsound(loc, open_sound, 15, 1) //Could use a more telltale sound for "being smashed open"
+		playsound(loc, open_sound, 15, 1, SHORT_SOUND_RANGE)
 		density = FALSE
 		welded = FALSE
 		update_icon()

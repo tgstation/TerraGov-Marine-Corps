@@ -236,7 +236,7 @@
 		return
 
 	src.anchored = !anchored
-	playsound(loc,'sound/mecha/mechanical_toggle.ogg', 20)
+	playsound(loc,'sound/mecha/mechanical_toggle.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 
 
 	to_chat(src, "<b>You are now [anchored ? "" : "un"]anchored.</b>")

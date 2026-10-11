@@ -1,6 +1,7 @@
 /mob/living/carbon/human/Initialize(mapload)
 	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
+	set_jump_component()
 	if(!species)
 		set_species()
 
@@ -27,7 +28,6 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
 	AddComponent(/datum/component/anti_juggling)
-	set_jump_component()
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
@@ -68,8 +68,10 @@
 	//and display them
 	add_to_all_mob_huds()
 
-	GLOB.huds[DATA_HUD_BASIC].add_hud_to(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
+	var/datum/atom_hud/basic_hud = GLOB.huds[DATA_HUD_BASIC]
+	basic_hud.add_hud_to(src)
+	var/datum/atom_hud/heart_hud = GLOB.huds[DATA_HUD_XENO_HEART]
+	heart_hud.add_to_hud(src)
 
 /mob/living/carbon/human/register_init_signals()
 	. = ..()
@@ -183,12 +185,12 @@
 		M.emote("me", EMOTE_TYPE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 25, 1)
+			playsound(loc, M.attack_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		dam_zone = ran_zone(dam_zone)
-		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE, attacker = M)
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -252,24 +254,21 @@
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	var/obj/item/card/id/id_card = get_active_held_item()
-	if(!id_card) //If there is no id, check the other hand
+	if(!istype(id_card)) // If there is no id, check the other hand.
 		id_card = get_inactive_held_item()
-
-	if(istype(id_card, /obj/item/storage/wallet))
-		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
 
 	if(istype(id_card) && hand_first)
 		return id_card
 
 	if(wear_id)
 		id_card = wear_id
-	else if(belt)
+	else if(belt && isidcard(belt))
 		id_card = belt
 
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
+		if(W.front_id)
+			id_card = W.front_id
 
 	return istype(id_card) ? id_card : null
 
@@ -693,7 +692,7 @@
 /mob/living/carbon/human/proc/play_xylophone()
 	visible_message(span_warning("[src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice("You begin to play a spooky refrain on your ribcage."),span_warning("You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-	playsound(loc, song, 25, 1)
+	playsound(loc, song, 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
@@ -800,7 +799,8 @@
 	reagents = R
 	R.my_atom = WEAKREF(src)
 
-	species.create_organs(src)
+	species.create_limbs(src, oldspecies)
+	species.create_organs(src, oldspecies)
 
 	dextrous = TRUE
 

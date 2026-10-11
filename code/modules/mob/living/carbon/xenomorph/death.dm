@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/proc/death_cry()
-	playsound(loc, prob(50) ? 'sound/voice/alien/death.ogg' : 'sound/voice/alien/death2.ogg', 25, 1)
+	playsound(loc, prob(50) ? 'sound/voice/alien/death.ogg' : 'sound/voice/alien/death2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
@@ -42,24 +42,6 @@
 
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
-
-	switch (upgrade)
-		if(XENO_UPGRADE_NORMAL)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.normal_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.normal_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.normal_T4--
-		if(XENO_UPGRADE_PRIMO)
-			switch(tier)
-				if(XENO_TIER_TWO)
-					SSmonitor.stats.primo_T2--
-				if(XENO_TIER_THREE)
-					SSmonitor.stats.primo_T3--
-				if(XENO_TIER_FOUR)
-					SSmonitor.stats.primo_T4--
 
 	eject_victim()
 

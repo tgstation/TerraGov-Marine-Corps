@@ -741,19 +741,9 @@
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
-	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
-	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
-		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
-
-	if(!total_heal_amount) //no healing left, no need to continue
-		return
-
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
-	if(burn_amount)
-		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
-
+	var/leftover_healing = total_heal_amount
+	HEAL_XENO_DAMAGE(patient, leftover_healing, FALSE)
+	GLOB.round_statistics.hivelord_healing_infusion += (total_heal_amount - leftover_healing)
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
 /datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient, seconds_per_tick)
@@ -770,7 +760,8 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD) //5% bonus per rank of our recovery aura
+	var/restored_sunder = patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD) //5% bonus per rank of our recovery aura
+	GLOB.round_statistics.hivelord_healing_infusion_sunder += -restored_sunder
 
 /atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
@@ -1032,3 +1023,21 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier -= damage_modifier
 	xeno_owner.remove_filter("[id]_outline")
+
+// ***************************************
+// *********** Cloaking
+// ***************************************
+/datum/status_effect/xenomorph_cloaking
+	id = "xenomorph_cloaking"
+	alert_type = null
+
+/datum/status_effect/xenomorph_cloaking/on_apply()
+	. = ..()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.set_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING, HUNTER_STEALTH_STILL_ALPHA)
+
+/datum/status_effect/xenomorph_cloaking/on_remove()
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.remove_alpha_source(ALPHA_SOURCE_XENOMORPH_CLOAKING)

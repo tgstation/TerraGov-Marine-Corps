@@ -12,12 +12,12 @@
 		visible_message(span_danger("[user] attempted to touch [src]!"), null, null, 5)
 		return FALSE
 
-	human_user.changeNext_move(7)
+	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
 			if(on_fire && human_user != src)
 				fire_stacks = max(fire_stacks - 1, 0)
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 					span_warning("You try to put out the fire on [src]!"), null, 5)
 				if(fire_stacks <= 0)
@@ -28,7 +28,7 @@
 
 			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(burning && human_user != src)
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
 				burning.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
@@ -112,7 +112,7 @@
 
 			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
-				playsound(loc, attack.miss_sound, 25, TRUE)
+				playsound(loc, attack.miss_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 				visible_message(span_danger("[human_user] [attack_verb] at [src], but misses!"), null, null, 5)
 				log_combat(human_user, src, "[attack_verb]", "(missed)")
 				if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
@@ -127,17 +127,17 @@
 			if(!lying_angle)
 				damage = rand(1, max_dmg)
 
-			playsound(loc, attack.attack_sound, 25, TRUE)
+			playsound(loc, attack.attack_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 			visible_message(span_danger("[human_user] [attack_verb] [src]!"), null, null, 5)
 			var/list/hit_report = list()
-			if(damage >= 4 && prob(25))
+			if((damage >= 4 && prob(25)) && !HAS_TRAIT(human_user, TRAIT_NO_STUN_ATTACK))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
 				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE)
+			apply_damage(damage, BRUTE, target_zone, MELEE, attack.sharp, attack.edge, updating_health = TRUE, attacker = user)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -152,34 +152,20 @@
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
-			//Accidental gun discharge
-			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP)
-				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
-					var/obj/item/weapon/gun/W = null
-					var/chance = 0
-
-					if (istype(l_hand,/obj/item/weapon/gun))
-						W = l_hand
-						chance = hand ? 40 : 20
-
-					if (istype(r_hand,/obj/item/weapon/gun))
-						W = r_hand
-						chance = !hand ? 40 : 20
-
-					if(prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
-						log_combat(human_user, src, "disarmed", "making their [W.name] go off")
-						var/list/turfs = list()
-						for(var/turf/T in view())
-							turfs += T
-						var/turf/target = pick(turfs)
-						return W.afterattack(target,src)
+			// Accidental gun discharge!
+			var/obj/item/weapon/gun/gun_in_hand
+			if(isgun(r_hand))
+				gun_in_hand = r_hand
+			else if(isgun(l_hand))
+				gun_in_hand = l_hand
+			if(gun_in_hand?.handle_disarm_misfire(src, human_user))
+				return
 
 			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 
 			if (randn <= 25)
 				apply_effect(3 SECONDS, EFFECT_PARALYZE)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				visible_message(span_danger("[human_user] pushes [src] over!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
 				return
@@ -192,12 +178,12 @@
 				else
 					drop_held_item()
 					visible_message(span_danger("[human_user] disarms [src]!"), null, null, 5)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				log_combat(user, src, "disarmed")
 				return
 
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 			visible_message(span_danger("[human_user] attempts to disarm [src]!"), null, null, 5)
 			log_combat(human_user, src, "missed a disarm")
 

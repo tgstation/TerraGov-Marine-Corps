@@ -22,10 +22,6 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 10),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
 	)
-	///The faction trying to destroy objectives
-	var/attacking_faction
-	///The faction trying to protect objectives
-	var/defending_faction
 	///Total number of objectives at round start
 	var/objectives_total = 3
 	///number of targets destroyed for a minor victory
@@ -55,10 +51,6 @@
 			MISSION_DEFENDING_FACTION = "All objectives destroyed, fallback, fallback!",
 		),
 	)
-
-/datum/campaign_mission/destroy_mission/New(initiating_faction)
-	. = ..()
-	set_factions()
 
 /datum/campaign_mission/destroy_mission/load_mission()
 	. = ..()
@@ -118,11 +110,6 @@
 		message_admins("Mission finished: [attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_LOSS : MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_LOSS : MISSION_OUTCOME_MAJOR_VICTORY
 	return TRUE
-
-///Sets the attacking and defending faction. Can be overridden to make the starting faction defenders
-/datum/campaign_mission/destroy_mission/proc/set_factions()
-	attacking_faction = starting_faction
-	defending_faction = hostile_faction
 
 ///Handles the destruction of an objective
 /datum/campaign_mission/destroy_mission/proc/objective_destroyed(datum/source, atom/destroyed_objective)

@@ -72,7 +72,7 @@
 	name = "Screech"
 	action_icon_state = "screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
-	desc = "A large area knockdown that causes pain and screen-shake."
+	desc = "A large area knockdown that deafens nearby enemies and disorentates them. Stun and stagger amount depends on distance from the target, maximum stun of 1.5 seconds."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -108,7 +108,7 @@
 			succeed_activate()
 			add_cooldown()
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 			GLOB.round_statistics.queen_screech++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
@@ -139,9 +139,9 @@
 				if(!xeno_owner.issamexenohive(affected_xeno))
 					continue
 				// Gives the benefit of Hivelord's Healing Infusion but it is halved in power (lower duration and less ticks of healing).
-				affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
+				affected_xeno.apply_status_effect(STATUS_EFFECT_HEALING_INFUSION, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("plasma_screech")
 			succeed_activate()
@@ -151,9 +151,9 @@
 				if(!xeno_owner.issamexenohive(affected_xeno) || !(affected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 					continue
 				// Gives the benefit of eatting powerfruit, but everything is halved (less plasma immediately restored, less plasma regen given, shorter duration).
-				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
+				affected_xeno.apply_status_effect(STATUS_EFFECT_PLASMA_SURGE, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("frenzy_screech")
 			succeed_activate()
@@ -165,7 +165,7 @@
 				// 30 seconds of 10% increase of melee damage.
 				affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	if(movement_speed_modifier)
 		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
@@ -325,7 +325,7 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
@@ -479,7 +479,7 @@
 		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
 		span_xenowarning("We feel a soothing chill."))
 
-	playsound(target, SFX_ALIEN_DROOL, 25)
+	playsound(target, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()

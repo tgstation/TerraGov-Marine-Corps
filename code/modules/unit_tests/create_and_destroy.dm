@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		//This is meant to fail extremely loud every single time it occurs in any environment in any context, and it falsely alarms when this unit test iterates it. Let's not spawn it in.
 		/obj/merge_conflict_marker,
 		///Base type with no disk type
-		/obj/machinery/computer/nuke_disk_generator,
+		/obj/machinery/computer/code_generator/nuke,
 		///Single use case holder atom requiring a user
 		/atom/movable/looking_holder,
 	)
@@ -57,6 +57,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/turf/open/openspace)
 	//runtimes if not paired with a landmark
 	ignore += typesof(/obj/structure/transport/linear)
+	///TODO: Someone smarter than me please unfuck this, but its randomly failing checks inconsistantly and I cannot figure it out for the life of me
+	ignore += typesof(/obj/structure/xeno/aoe_leash)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type

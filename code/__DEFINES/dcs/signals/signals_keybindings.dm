@@ -93,14 +93,16 @@
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
 #define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
+
 #define COMSIG_KB_MOVEORDER "keybind_moveorder"
 #define COMSIG_KB_HOLDORDER "keybind_holdorder"
 #define COMSIG_KB_FOCUSORDER "keybind_focusorder"
-#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+
 #define COMSIG_KB_SENDORDER "keybind_sendorder"
-#define COMSIG_KB_ATTACKORDER "keybind_attackorder"
-#define COMSIG_KB_DEFENDORDER "keybind_defendorder"
-#define COMSIG_KB_RETREATORDER "keybind_retreatorder"
+
+#define COMSIG_KB_PING_ORDER "keybind_ping_order"
+#define COMSIG_KB_SWITCH_PING_ORDER "keybind_switch_ping_order"
+
 #define COMSIG_KB_VEHICLEHONK "keybind_vehiclehonk"
 
 //Item toggle keybinds
@@ -142,6 +144,9 @@
 #define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
 #define COMSIG_MECHABILITY_OVERBOOST "mechability_overboost"
 #define COMSIG_MECHABILITY_PULSE_ARMOR "mechability_pulse_armor"
+
+#define COMSIG_VEHICLEABILITY_TESLA "vehicleability_tesla"
+#define COMSIG_VEHICLEABILITY_SMOKE "vehicleability_smoke"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 
@@ -373,13 +378,12 @@
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
 
-#define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
-#define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
-#define COMSIG_XENOABILITY_CANCEL_LANDSLIDE "xenoability_cancel_landslide"
 #define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
 #define COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE "xenoability_earth_riser_alternate"
-#define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
-#define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
+#define COMSIG_XENOABILITY_BEHEMOTH_SEIZE "xenoability_behemoth_seize"
+#define COMSIG_XENOABILITY_BEHEMOTH_SEIZE_ALTERNATE "xenoability_behemoth_seize_alternate"
+#define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
+#define COMSIG_XENOABILITY_GEOCRUSH "xenoability_geocrush"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"

@@ -158,7 +158,7 @@ Buildable meters
 	build_pipe(A)
 	A.on_construction(color, piping_layer)
 
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.visible_message( \
 		"[user] fastens \the [src].", \
 		span_notice("You fasten \the [src]."), \
@@ -214,7 +214,7 @@ Buildable meters
 		to_chat(user, span_warning("You need to fasten it to a pipe!"))
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
 
@@ -228,7 +228,7 @@ Buildable meters
 		return TRUE
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
-	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
+	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user, span_notice("You fasten the meter to the [loc.name]."))
 	qdel(src)
 

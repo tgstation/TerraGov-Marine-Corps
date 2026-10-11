@@ -16,6 +16,10 @@
 	penetration = 20
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/turret/incendiary
+	name = "incendiary autocannon bullet"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
 
@@ -75,9 +79,9 @@
 	max_range = 7
 	bullet_color = LIGHT_COLOR_FIRE
 
-/datum/ammo/flamer/drop_nade(turf/T)
-	flame_radius(2, T)
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+/datum/ammo/flamer/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	flame_radius(2, target_turf)
+	playsound(target_turf, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 
 
 /datum/ammo/flamer/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

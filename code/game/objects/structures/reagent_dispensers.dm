@@ -44,8 +44,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
+	setup_reagents()
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
@@ -60,6 +59,10 @@
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
 
+///Sets up the correct reagents for the dispenser type
+/obj/structure/reagent_dispensers/proc/setup_reagents()
+	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
+
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
@@ -69,7 +72,8 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/water = 1000)
 
-
+/obj/structure/reagent_dispensers/watertank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -83,6 +87,9 @@
 	var/obj/item/assembly_holder/rig
 	//Whether the tank is already exploding to prevent chain explosions
 	var/exploding = FALSE
+
+/obj/structure/reagent_dispensers/fueltank/setup_reagents()
+	AddComponent(/datum/component/fuel_storage, tank_volume, list_reagents[1])
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
 	QDEL_NULL(rig)
@@ -117,7 +124,7 @@
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
-	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(src, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE
@@ -125,16 +132,6 @@
 /obj/structure/reagent_dispensers/fueltank/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
-		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			balloon_alert(user, "already full!")
-			return
-		if(!reagents.has_reagent(/datum/reagent/fuel, 1))
-			balloon_alert(user, "no valid fuel")
-			return
-		reagents.trans_to(W, W.max_fuel)
-		W.weld_tick = 0
-		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
@@ -177,22 +174,22 @@
 		return
 	if(proj.damage > 10 && prob(60) && (proj.ammo.damage_type in list(BRUTE, BURN)))
 		log_attack("[key_name(proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
-		explode()
+		explode(proj.firer)
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
-/obj/structure/reagent_dispensers/fueltank/proc/explode()
+/obj/structure/reagent_dispensers/fueltank/proc/explode(mob/blame_mob)
 	if(exploding)
 		return
 	exploding = TRUE
-	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fueltank explosion")
-	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3, explosion_cause="fueltank explosion")
-	else
-		explosion(loc, light_impact_range = 2, flame_range = 2, explosion_cause="fueltank explosion")
+	var/explosion_strength = 2
+	if(reagents.total_volume > 500)
+		explosion_strength = 4
+	else if(reagents.total_volume > 100)
+		explosion_strength = 3
+	explosion(loc, light_impact_range = explosion_strength, flame_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(burn_level)
@@ -216,7 +213,7 @@
 		leaked_reagent.reaction_turf(loc, amount)
 		reagents.remove_reagent(leaked_reagent.type, amount)
 
-	playsound(src, 'sound/effects/glob.ogg', 25, 1)
+	playsound(src, 'sound/effects/glob.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "red barrel"
@@ -230,28 +227,50 @@
 	icon_state = "xweldtank"
 	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
 
-/obj/structure/reagent_dispensers/fueltank/xfuel/explode()
+/obj/structure/reagent_dispensers/fueltank/xfuel/explode(mob/blame_mob)
 	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
-
+	var/explosion_strength = 3
 	if(reagents.total_volume > 500)
-		flame_radius(5, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 5, explosion_cause="xfueltank explosion")
+		explosion_strength = 5
 	else if(reagents.total_volume > 100)
-		flame_radius(4, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 4, explosion_cause="xfueltank explosion")
-	else
-		flame_radius(3, loc, 40, 46, 31, 30, colour = "blue")
-		explosion(loc, light_impact_range = 3, explosion_cause="xfueltank explosion")
-
+		explosion_strength = 4
+	flame_radius(explosion_strength, loc, 40, 46, 31, 30, colour = "blue")
+	explosion(loc, light_impact_range = explosion_strength, explosion_cause = src, blame_mob = blame_mob)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/spacefuel
 	name = "spacecraft fuel-mix tank"
 	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
+
+/obj/structure/reagent_dispensers/fueltank/cas_fuel
+	name = "CAS fuel silo"
+	desc = "A large tank designed to hold fuel for close air support. Keep away from sources of flame."
+	icon = 'icons/obj/structures/cas_fuel.dmi'
+	icon_state = "big_tank"
+	layer = ABOVE_MOB_LAYER
+	bound_width = 64
+	anchored = TRUE
+	max_integrity = 5000
+	coverage = 95
+	tank_volume = 5000
+	list_reagents = list(/datum/reagent/fuel = 3000)
+
+///Blows up the CAS silo with 2x the radius of a standard fueltank explosion
+/obj/structure/reagent_dispensers/fueltank/cas_fuel/explode()
+	if(exploding)
+		return
+	exploding = TRUE
+	if(reagents.total_volume > 500)
+		explosion(loc, light_impact_range = 8, flame_range = 8, explosion_cause="fuel silo explosion")
+	else if(reagents.total_volume > 100)
+		explosion(loc, light_impact_range = 6, flame_range = 6, explosion_cause="fuel silo explosion")
+	else
+		explosion(loc, light_impact_range = 4, flame_range = 4, explosion_cause="fuel silo explosion")
+	qdel(src)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"

@@ -235,10 +235,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	try_ejecting(xeno_attacker)
 
 /obj/machinery/autodoc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
@@ -262,7 +262,7 @@
 	try_entering(user, grabbed_mob)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(atom/dropping, mob/user)
+/obj/machinery/autodoc/MouseDrop_T(atom/dropping, mob/user, params)
 	. = ..()
 	if(!ishuman(dropping) || !ishuman(user))
 		return
@@ -403,7 +403,7 @@
 	autodoc_scan(occupant)
 	if(automatic_mode)
 		say("Automatic mode engaged, initialising procedures.")
-		autostart_timer_id = addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
+		autostart_timer_id = addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /// Callback to start the surgery operation for automatic mode.
 /obj/machinery/autodoc/proc/auto_start()
@@ -441,7 +441,7 @@
 	final_record.fields["autodoc_data"] = generate_autodoc_surgery_list(patient)
 	use_power(active_power_usage)
 	visible_message(span_notice("\The [src] pings as it stores the scan report of [patient.real_name]."))
-	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+	playsound(loc, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /// Verb to move yourself into the autodoc.
 /obj/machinery/autodoc/verb/move_inside()
@@ -462,7 +462,7 @@
 		return
 	if(locked && !allowed(usr)) // Check access if locked.
 		to_chat(usr, span_warning("Access denied."))
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	do_eject()
 
@@ -502,14 +502,12 @@
 			var/datum/limb/head/operated_head = operated_limb
 			if(operated_head.disfigured || operated_head.face_surgery_stage > 0)
 				surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_FACIAL)
-		switch(operated_limb.limb_status)
-			if(LIMB_BROKEN)
-				surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_BROKEN)
-			if(LIMB_DESTROYED)
-				if(operated_limb.body_part != HEAD && !(operated_limb.parent.limb_status & LIMB_DESTROYED)) // We want to pick the missing limb that is most accurate: missing foot = foot, missing foot + leg = leg.
-					surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_MISSING)
-			if(LIMB_NECROTIZED)
-				surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_NECROTIZED)
+		if(operated_limb.limb_status & LIMB_BROKEN)
+			surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_BROKEN)
+		if(operated_limb.limb_status & LIMB_DESTROYED && operated_limb.body_part != HEAD && !(operated_limb.parent?.limb_status & LIMB_DESTROYED)) // We want to pick the missing limb that is most accurate: missing foot = foot, missing foot + leg = leg.
+			surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_MISSING)
+		if(operated_limb.limb_status & LIMB_NECROTIZED)
+			surgery_list += new /datum/autodoc_surgery(operated_limb, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_NECROTIZED)
 		var/already_added_surgery = FALSE
 		if(length(operated_limb.implants))
 			for(var/obj/item/implant_in_question AS in operated_limb.implants)
@@ -742,14 +740,14 @@
 							return
 					if(stored_metal < LIMB_METAL_AMOUNT)
 						say("Metal reserves depleted.")
-						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
+						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 						surgery_list -= active_surgery
 						active_surgery = null
 						loop_in_time(1)
 						return
 					if(limb_ref.parent.limb_status & LIMB_DESTROYED)
 						say("Limb attachment failed.")
-						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
+						playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 						surgery_list -= active_surgery
 						active_surgery = null
 						loop_in_time(1)
@@ -1293,7 +1291,7 @@
 			needed = FALSE
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
-				if(L.limb_status & LIMB_DESTROYED && !(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
+				if(L.limb_status & LIMB_DESTROYED && L.body_part != HEAD && !(L.parent?.limb_status & LIMB_DESTROYED))
 					N.fields["autodoc_manual"] += new /datum/autodoc_surgery(L, null, SURGERY_CATEGORY_LIMB, SURGERY_PROCEDURE_LIMB_MISSING)
 					needed = TRUE
 			if(!needed)
@@ -1363,14 +1361,14 @@
 			connected.locked = !connected.locked
 		else
 			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(href_list["noticetoggle"]) //Toggle notifications on/off if we have authorization.
 		if(allowed(usr))
 			release_notice = !release_notice
 		else
 			to_chat(usr, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(href_list["automatictoggle"] && !connected.is_active())
 		connected.automatic_mode = !connected.automatic_mode
@@ -1380,7 +1378,7 @@
 			connected.say("Automatic mode disengaged, awaiting manual inputs.")
 		if(connected.automatic_mode && !connected.autostart_timer_id)
 			connected.say("Automatic mode engaged, initialising procedures.")
-			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS)
+			connected.autostart_timer_id = addtimer(CALLBACK(connected, TYPE_PROC_REF(/obj/machinery/autodoc, auto_start)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 	if(href_list["surgery"])
 		if(connected.occupant)

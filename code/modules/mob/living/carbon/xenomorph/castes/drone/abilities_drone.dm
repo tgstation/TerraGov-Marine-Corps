@@ -139,7 +139,7 @@
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks > 0 && (target.health <= (target.maxHealth * bonus_healing_threshold)))
 			heal_multiplier += bonus_healing_additive_multiplier
-	playsound(target, SFX_ALIEN_DROOL, 25)
+	playsound(target, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	var/leftover_healing = heal_amount
@@ -158,7 +158,7 @@
 	name = "Enhancement"
 	action_icon_state = "enhancement"
 	action_icon = 'icons/Xeno/actions/drone.dmi'
-	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
+	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits. You can see if a xeno can be empowered by checking their codex."
 	cooldown_duration = 120 SECONDS
 	ability_cost = 0
 	keybinding_signals = list(

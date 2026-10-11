@@ -68,10 +68,10 @@
 					if(!isnull(GLOB.datacore.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.datacore.general, sortBy, order))
 							for(var/datum/data/record/E in GLOB.datacore.security)
-							dat += "<tr style='background-color:#00FF7F;'><td><A href='byond://?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
-							dat += "<td>[R.fields["id"]]</td>"
-							dat += "<td>[R.fields["rank"]]</td>"
-							dat += "<td>[R.fields["fingerprint"]]</td>"
+								dat += "<tr style='background-color:#00FF7F;'><td><A href='byond://?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
+								dat += "<td>[R.fields["id"]]</td>"
+								dat += "<td>[R.fields["rank"]]</td>"
+								dat += "<td>[R.fields["fingerprint"]]</td>"
 						dat += "</table><hr width='75%' />"
 					dat += "<br><br><A href='byond://?src=[text_ref(src)];choice=Log Out'>{Log Out}</A>"
 				if(2)
@@ -229,8 +229,8 @@ What a mess.*/
 				temp = "Record Not Found!"
 			else
 				for(var/datum/data/record/E in GLOB.datacore.security)
-				active1 = R
-				screen = 2
+					active1 = R
+					screen = 2
 
 		if ("Print Record")
 			if (!( printing ))

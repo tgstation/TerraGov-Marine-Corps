@@ -10,10 +10,7 @@
 	if(general_entry?.lore_text)
 		return general_entry.lore_text
 
-/obj/item/weapon/gun/get_mechanics_info()
-	. = ..()
-	var/list/traits = list()
-
+/obj/item/weapon/gun/get_weapon_codex_mechanic_info(list/trait_list)
 	var/skill_name
 	switch(gun_skill_category)
 		if(SKILL_RIFLES)
@@ -30,31 +27,32 @@
 			skill_name = "pistol skill"
 
 	if(skill_name)
-		traits += "This weapons is effected by the user's <U>[skill_name]</U> rating. <br>"
+		trait_list += "This weapons is effected by the user's <U>[skill_name]</U> rating. <br>"
 
 	if(gun_features_flags & GUN_WIELDED_FIRING_ONLY)
-		traits += "This can only be fired with a two-handed grip."
+		trait_list += "This can only be fired with a two-handed grip."
 	else
-		traits += "It's best fired with a two-handed grip."
+		trait_list += "It's best fired with a two-handed grip."
 
 
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
-		traits += "It has a safety switch. Alt-Click it to toggle safety."
+		trait_list += "It has a safety switch. Alt-Click it to toggle safety."
 
 	if(scope_zoom) //flawed, unless you check the codex for the first time when the scope is attached, this won't show. works for sniper rifles though.
-		traits += "It has a magnifying optical scope. It can be toggled with Use Scope verb."
+		trait_list += "It has a magnifying optical scope. It can be toggled with Use Scope verb."
 
 	if(burst_amount > 2)
-		traits += "It has multiple firemodes. Click the Toggle Burst Fire button to change it."
+		trait_list += "It has multiple firemodes. Click the Toggle Burst Fire button to change it."
 
 
-	traits += "<br>Caliber: [caliber]"
+	trait_list += "<br>Caliber: [caliber]"
 
 	if(max_shells)
-		traits += "It can normally hold [max_shells] rounds."
+		trait_list += "It can normally hold [max_shells] rounds."
 
-	if(max_shots)
-		traits += "Its maximum capacity is normally [max_shots] shots worth of power."
+	if(gun_features_flags & GUN_ENERGY && ispath(default_ammo_type, /obj/item/cell))
+		var/obj/item/cell/default_cell = default_ammo_type
+		trait_list += "Its maximum capacity is normally [default_cell::maxcharge / rounds_per_shot] shots worth of power."
 
 	var/list/loading_ways = list()
 	if(load_method & SINGLE_CASING)
@@ -67,87 +65,75 @@
 		loading_ways += "cells."
 	if(load_method & POWERPACK)
 		loading_ways += "it's powerpack."
-	traits += "Can be loaded using [english_list(loading_ways)]"
+	trait_list += "Can be loaded using [english_list(loading_ways)]"
 
 	if(attachable_allowed)
-		traits += "<br><U>You can attach</U>:"
+		trait_list += "<br><U>You can attach</U>:"
 		for(var/X in attachable_allowed)
 			var/obj/item/attachable/A = X
-			traits += "[initial(A.name)]"
+			trait_list += "[initial(A.name)]"
 
-	traits += "<br><U>Basic Statistics for this weapon are as follows</U>:"
+	trait_list += "<br><U>Basic Statistics for this weapon are as follows</U>:"
 	if(w_class)
-		traits += "Size: [w_class]"
+		trait_list += "Size: [w_class]"
 	if(force)
-		traits += "Base melee damage: [force]"
+		trait_list += "Base melee damage: [force]"
 	if(accuracy_mult)
-		traits += "Accuracy: [((accuracy_mult - 1) * 100) > 0 ? "+[(accuracy_mult - 1) * 100]" : "[(accuracy_mult - 1) * 100]"]%"
+		trait_list += "Accuracy: [((accuracy_mult - 1) * 100) > 0 ? "+[(accuracy_mult - 1) * 100]" : "[(accuracy_mult - 1) * 100]"]%"
 	if(damage_mult)
-		traits += "Damage modifier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
+		trait_list += "Damage modifier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
 	if(damage_falloff_mult)
-		traits += "Damage falloff: -[damage_falloff_mult] per tile travelled."
+		trait_list += "Damage falloff: -[damage_falloff_mult] per tile travelled."
 	if(recoil)
-		traits += "Recoil: [recoil]"
+		trait_list += "Recoil: [recoil]"
 	if(scatter)
-		traits += "Scatter angle: [scatter]"
+		trait_list += "Scatter angle: [scatter]"
 	if(burst_scatter_mult)
-		traits += "Burst scatter angle multiplier: x[burst_scatter_mult]"
+		trait_list += "Burst scatter angle multiplier: x[burst_scatter_mult]"
 	if(accuracy_mult_unwielded)
-		traits += "Accuracy unwielded modifier: [((accuracy_mult_unwielded - 1) * 100) > 0 ? "+[(accuracy_mult_unwielded - 1) * 100]" : "[(accuracy_mult_unwielded - 1) * 100]"]%"
+		trait_list += "Accuracy unwielded modifier: [((accuracy_mult_unwielded - 1) * 100) > 0 ? "+[(accuracy_mult_unwielded - 1) * 100]" : "[(accuracy_mult_unwielded - 1) * 100]"]%"
 	if(recoil_unwielded)
-		traits += "Recoil Unwielded: [recoil_unwielded]"
+		trait_list += "Recoil Unwielded: [recoil_unwielded]"
 	if(scatter_unwielded)
-		traits += "Unwielded Scatter angle: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]"
+		trait_list += "Unwielded Scatter angle: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]"
 	if(movement_acc_penalty_mult)
-		traits += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * 0.15) * 100]%"
+		trait_list += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * 0.15) * 100]%"
 	if(fire_delay)
-		traits += "Time between single-fire: [fire_delay / 10] seconds"
+		trait_list += "Time between single-fire: [fire_delay / 10] seconds"
 	if(wield_delay)
-		traits += "Wield delay: [wield_delay / 10] seconds"
+		trait_list += "Wield delay: [wield_delay / 10] seconds"
 	if(burst_amount > 1)
-		traits += "Shots fired on burst mode: [burst_amount]"
-		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+		trait_list += "Shots fired on burst mode: [burst_amount]"
+		trait_list += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
 	if(/datum/action/item_action/aim_mode in actions_types)
-		traits += "Can be aimed with to shoot past allies."
-		traits += "Time between aimed shots: [(fire_delay + aim_fire_delay) / 10] seconds"
+		trait_list += "Can be aimed with to shoot past allies."
+		trait_list += "Time between aimed shots: [(fire_delay + aim_fire_delay) / 10] seconds"
 
-	traits += "<br>"
+	trait_list += "<br>"
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry?.mechanics_text)
-		traits += general_entry.mechanics_text
+		trait_list += general_entry.mechanics_text
 
-	. += jointext(traits, "<br>")
+	. += jointext(trait_list, "<br>")
 
-/obj/item/weapon/gun/energy/get_mechanics_info()
-	. = ..()
-	var/list/traits = list()
-
-	if(self_recharge)
-		traits += "It recharges itself over time."
-
-	. += jointext(traits, "<br>")
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/get_mechanics_info()
+/obj/item/weapon/gun/energy/lasgun/lasrifle/get_weapon_codex_mechanic_info(list/trait_list)
 	. = ..()
 	if(!mode_list)
 		return
 
-	var/list/fire_modes = list()
-	fire_modes += "<br><U>Fire modes</U>:<br>"
+	trait_list += "<br><U>Fire modes</U>:<br>"
 
 	for(var/num AS in mode_list)
 		var/datum/lasrifle/mode = mode_list[num]
-		fire_modes += "<U>[num]</U>: [initial(mode.description)]"
+		trait_list += "<U>[num]</U>: [initial(mode.description)]"
 
-	. += jointext(fire_modes, "<br>")
-
-/obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
+/obj/item/weapon/gun/shotgun/pump/get_weapon_codex_mechanic_info(list/trait_list)
 	. = ..()
 	if(gun_skill_category == SKILL_RIFLES)
-		. += "<br><br>To work the weapon press spacebar.<br>"
+		trait_list += "<br><br>To work the weapon press spacebar.<br>"
 	else
-		. += "<br><br>To pump it press spacebar.<br>"
+		trait_list += "<br><br>To pump it press spacebar.<br>"
 
 /datum/codex_entry/energy_weapons
 	display_name = "energy weapons"

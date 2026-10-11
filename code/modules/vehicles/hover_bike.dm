@@ -12,7 +12,7 @@
 	layer = MOB_BELOW_PIGGYBACK_LAYER
 	allow_pass_flags = PASSABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	max_buckled_mobs = 2
 	max_occupants = 2
 	pixel_w = -22
@@ -30,6 +30,7 @@
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	update_icon()
 	animate_hover()
+	RegisterSignal(src, COMSIG_MOVABLE_PATROL_DEPLOYED, PROC_REF(animate_hover))
 
 /obj/vehicle/ridden/hover_bike/examine(mob/user)
 	. = ..()

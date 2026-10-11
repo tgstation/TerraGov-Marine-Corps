@@ -21,7 +21,7 @@
 	restricted_deployment = _restricted_deployment
 
 	var/obj/item/attached_item = parent
-	if(CHECK_BITFIELD(attached_item.item_flags, DEPLOY_ON_INITIALIZE))
+	if(CHECK_BITFIELD(attached_item.deployment_flags, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
 /datum/component/deployable_item/RegisterWithParent()
@@ -183,8 +183,6 @@
 
 	deployed_machine.post_disassemble(user)
 	undeployed_item.toggle_deployment_flag()
-
-	user.unset_interaction()
 
 	UnregisterSignal(undeployed_item, COMSIG_MOVABLE_MOVED)
 	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)

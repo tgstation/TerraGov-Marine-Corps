@@ -79,7 +79,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	. = ..()
 	if(!.)
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+	if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 		smokecloak_on()
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(!target_zone)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
@@ -124,6 +124,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
@@ -156,7 +158,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(weapon_sharp)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
-	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE, attacker = user)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -178,7 +180,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
@@ -196,7 +198,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
@@ -396,7 +398,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Perception distorting effects of the psychic scream*
 
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
-	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || (user.a_intent != INTENT_HARM && !iszombie(src)))
 		return ..()
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
@@ -404,20 +406,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
-	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
-		return
-	if(!get_organ_slot(ORGAN_SLOT_HEART))
-		to_chat(user, span_notice("The heart is no longer here!"))
-		return
-	log_combat(user, src, "ripped [src]'s heart", I)
-	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	remove_organ_slot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/heart/heart = new
-	heart.die()
-	user.put_in_hands(heart)
-	chestburst = CARBON_CHEST_BURSTED
-	update_burst()
+	rip_out_heart(user, TRUE)
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()

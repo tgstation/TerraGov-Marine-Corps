@@ -118,6 +118,17 @@
 
 /obj/effect/landmark/distress_item
 
+/obj/effect/landmark/valhalla_weed_node
+	name = "valhalla xeno weed node spawn landmark"
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weednode0"
+
+/obj/effect/landmark/valhalla_weed_node/Initialize(mapload)
+	var/weed_type = pickweight(GLOB.weed_prob_list)
+	new weed_type(loc)
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
 	icon = 'icons/Xeno/weeds.dmi'
@@ -158,6 +169,16 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/encounter_silo_spawn
+	name = "encounter xeno silo spawn landmark"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "weed_silo"
+
+/obj/effect/landmark/encounter_silo_spawn/Initialize(mapload)
+	GLOB.xeno_encounter_resin_silo_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/xeno_spawner_spawn
 	name = "xeno spawner spawn landmark"
 	icon = 'icons/Xeno/3x3building.dmi'
@@ -187,6 +208,25 @@
 	GLOB.xeno_jelly_pod_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/zombie_spawner
+	name = "zombie tunnel spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+
+/obj/effect/landmark/zombie_spawner/Initialize(mapload)
+	GLOB.zombie_spawner_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/zombie_vendor
+	name = "zombie crash progression vendor landmark"
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "marinerequisitions"
+
+/obj/effect/landmark/zombie_vendor/Initialize(mapload)
+	GLOB.zombie_crash_vendor_landmarks += src // Need to track where the landmark will move to after the round starts.
+	return ..()
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
@@ -388,9 +428,7 @@
 		/obj/item/weapon/gun/rifle/lmg_d,
 		/obj/item/weapon/gun/rifle/type71/commando,
 		/obj/item/weapon/gun/rifle/m412/elite,
-		/obj/item/weapon/gun/rifle/sniper/elite,
 		/obj/item/weapon/gun/smg/m25/elite,
-		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/icc_coilgun,
@@ -496,3 +534,21 @@
 /// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
+
+/obj/effect/landmark/sentry
+	name = "Sentry crate landmark"
+	icon = 'icons/obj/items/storage/marine_box.dmi'
+	icon_state = "sentry_case"
+
+/obj/effect/landmark/sentry/Initialize(mapload)
+	GLOB.sentry_crate_spawns += src
+	return ..()
+
+/obj/effect/landmark/corrupted_larva
+	name = "Corrupted larva landmark"
+	icon = 'icons/Xeno/castes/larva.dmi'
+	icon_state = "Larva"
+
+/obj/effect/landmark/corrupted_larva/Initialize(mapload)
+	GLOB.corrupted_larva_spawns += src
+	return ..()

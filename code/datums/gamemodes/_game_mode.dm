@@ -122,13 +122,15 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	return TRUE
 
+///Sets up the gamemode
+///Occurs before the game starts - game will not start if this fails to return TRUE, if bypass_checks is not also TRUE
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY|MODE_ENCOUNTER))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 
@@ -360,10 +362,24 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
+///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
+	return
+
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+///This is overridden on the child types. Called to start/stop the silo death timer.
+/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
+	return
+
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
+/datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
 ///Provides the amount of time left before the game ends, used for the stat panel
@@ -412,6 +428,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.zombies_permad)
+		parts += "[GLOB.round_statistics.zombies_permad] zombies were permanently killed."
 	if(SSevacuation.human_escaped)
 		parts += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
@@ -445,6 +463,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
 	if(GLOB.round_statistics.drone_essence_link_sunder)
 		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
+	if(GLOB.round_statistics.hivelord_healing_infusion)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion] health points restored through Hivelord's Healing Infusion."
+	if(GLOB.round_statistics.hivelord_healing_infusion_sunder)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion_sunder] sunder removed through Hivelord's Healing Infusion."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
@@ -587,6 +609,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			if(H.status_flags & XENO_HOST)
 				continue
 			if(H.faction == FACTION_XENO)
+				continue
+			if(H.faction == FACTION_ZOMBIE)
 				continue
 			if(isspaceturf(H.loc))
 				continue
@@ -1007,13 +1031,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
 	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
 		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
-	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+	for(var/obj/machinery/computer/disk_generator AS in GLOB.nuke_disk_generator_types)
 		var/spawn_loc
 		if(length(forced_disks))
 			spawn_loc = pick_n_take(forced_disks)
 		else
 			spawn_loc = pick_n_take(viable_disks)
-		new nuke_disk_generator(get_turf(spawn_loc))
+		new disk_generator(get_turf(spawn_loc))
 		qdel(spawn_loc)
 
 /// Add gamemode related items to statpanel

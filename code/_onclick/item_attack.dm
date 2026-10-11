@@ -10,9 +10,12 @@
 		return
 	// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
-	if(resolved || QDELETED(target) || QDELETED(src))
+	if(QDELETED(target) || QDELETED(src))
 		return
+	if(resolved)
+		return TRUE
 	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
+	return TRUE
 
 //Called before any other attack proc.
 /obj/item/proc/preattack(atom/target, mob/user, params)
@@ -45,6 +48,9 @@
 /obj/item/proc/attack_self(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 	add_fingerprint(user, "attack_self")
+	if(item_flags & ITEM_ACTIVATABLE)
+		toggle_active(!active, user)
+		return
 	if(!can_interact(user))
 		return
 	interact(user)
@@ -144,14 +150,14 @@
 
 	switch(attacking_item.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 			if(is_sharp(attacking_item))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 		if(STAMINA)
-			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 
 	visible_message(span_danger("[attack_message]"),
 		span_userdanger("[attack_message_local]"), null, COMBAT_MESSAGE_RANGE)
@@ -206,7 +212,7 @@
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /turf/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -343,7 +349,7 @@
 
 	. = M.attacked_by_alternate(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /**
  * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY AS A FEATURE
@@ -374,9 +380,9 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration, user)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message(span_danger("[attack_message]"),

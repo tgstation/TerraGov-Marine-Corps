@@ -137,38 +137,6 @@
 	else if(. >= 360)
 		. -= 360
 
-///Returns one of the 8 directions based on an angle
-/proc/angle_to_dir(angle)
-	switch(angle)
-		if(338 to 360, 0 to 22)
-			return NORTH
-		if(23 to 67)
-			return NORTHEAST
-		if(68 to 112)
-			return EAST
-		if(113 to 157)
-			return SOUTHEAST
-		if(158 to 202)
-			return SOUTH
-		if(203 to 247)
-			return SOUTHWEST
-		if(248 to 292)
-			return WEST
-		if(293 to 337)
-			return NORTHWEST
-
-///Returns one of the 4 cardinal directions based on an angle
-/proc/angle_to_cardinal_dir(angle)
-	switch(angle)
-		if(316 to 360, 0 to 45)
-			return NORTH
-		if(46 to 135)
-			return EAST
-		if(136 to 225)
-			return SOUTH
-		if(226 to 315)
-			return WEST
-
 ///returns degrees between two angles
 /proc/get_between_angles(degree_one, degree_two)
 	var/angle = abs(degree_one - degree_two) % 360
@@ -585,7 +553,7 @@
 	return turfs
 
 /proc/get_cardinal_dir(atom/A, atom/B)
-	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
+	return angle2dir_cardinal(Get_Angle(get_turf(A), get_turf(B)))
 
 /// If given a diagonal dir, return a corresponding cardinal dir. East/west preferred
 /proc/closest_cardinal_dir(dir)
@@ -1147,49 +1115,58 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
  *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
  *	Variables:
  *	center - where the cone begins, or center of a circle drawn with this
- *	max_row_count - how many rows are checked
+ *	max_dist - how far the cone should expand, in euclidean distance
  *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
- *	cone_width - big the angle of the cone is
- *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
+ *	cone_width - width of the cone in degrees
+ *	cone_angle - The direction of the cone in degrees
  *	blocked - whether the cone should take into consideration obstacles
  */
-/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
-	var/right_angle = cone_direction + cone_width/2
-	var/left_angle = cone_direction - cone_width/2
+/proc/generate_cone(atom/center, max_distance = 10, starting_row = 1, cone_width = 60, cone_angle = 0, blocked = TRUE, pass_flags_checked = NONE)
+	center = get_turf(center)
+	if(!center)
+		return
+	cone_width = min(cone_width, 359) //359 gives us a true circle, but 360 won't function due to north being 0, not 360
+	//NOTE: a width of less than 45 degrees will fail to draw a cone at certain extreme angles, as no adjacent turfs will be in cone width
+	var/right_angle = cone_angle + cone_width * 0.5
+	var/left_angle = cone_angle - cone_width * 0.5
 
-	//These are needed because degrees need to be from 0 to 359 for the checks to function
 	if(right_angle >= 360)
 		right_angle -= 360
-
 	if(left_angle < 0)
 		left_angle += 360
-	center = get_turf(center)
-	var/list/cardinals = GLOB.alldirs
-	var/list/turfs_to_check = list(center)
+
+	var/list/check_list = list(center)
+	var/list/visited = list(center)
 	var/list/cone_turfs = list(center)
 
-	for(var/row in 1 to max_row_count)
-		if(row > 2)
-			cardinals = GLOB.cardinals
-		for(var/turf/old_turf AS in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
-			for(var/direction AS in cardinals)
-				var/turf/turf_to_check = get_step(old_turf, direction) //checks all turfs around X
-				if(cone_turfs.Find(turf_to_check))
-					continue
-				var/turf_angle = Get_Angle(center, turf_to_check)
-				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
-					continue
-				if(turf_angle > right_angle && turf_angle < left_angle)
-					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
-					continue
+	while(length(check_list))
+		var/old_turf = check_list[1]
+		check_list.Remove(old_turf)
+
+		for(var/direction AS in GLOB.alldirs)
+			var/turf/turf_to_check = get_step(old_turf, direction)
+			if(!turf_to_check || visited.Find(turf_to_check))
+				continue
+			visited += turf_to_check
+
+			var/euclidean_dist = get_dist_euclidean(center, turf_to_check)
+			if(euclidean_dist > max_distance)
+				continue
+
+			var/turf_angle = Get_Angle(center, turf_to_check)
+			if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
+				continue
+			if(turf_angle > right_angle && turf_angle < left_angle)
+				continue
+
+			if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
+				continue
+
+			if(euclidean_dist >= starting_row)
 				cone_turfs += turf_to_check
-				turfs_to_check += turf_to_check
-			turfs_to_check -= old_turf
-		for(var/turf/checked_turf AS in cone_turfs)
-			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
-				cone_turfs -= checked_turf
-	return	cone_turfs
+			check_list += turf_to_check
+
+	return cone_turfs
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
@@ -1220,17 +1197,14 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 		if(!blocker.density) //Check if we're dense
 			continue
+		if(ismob(subject) && !blocker.check_climb(subject))
+			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE
 		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
-			var/obj/obj_blocker = blocker
-			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
-				return TRUE
-			var/obj/structure/blocker_structure = obj_blocker
-			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
-				return TRUE
+			return TRUE
 		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
 			return TRUE
 

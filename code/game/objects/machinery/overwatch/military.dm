@@ -3,16 +3,8 @@
 	var/obj/effect/overlay/temp/laser_target/ob/marked_lase
 	///Selected target for bombarding
 	var/obj/selected_target
-	///Selected order to give to marine
-	var/datum/action/innate/order/current_order
-	///datum used when sending an attack order
-	var/datum/action/innate/order/attack_order/send_attack_order
-	///datum used when sending a retreat order
-	var/datum/action/innate/order/retreat_order/send_retreat_order
-	///datum used when sending a defend order
-	var/datum/action/innate/order/defend_order/send_defend_order
-	///datum used when sending a rally order
-	var/datum/action/innate/order/rally_order/send_rally_order
+	///Action to order marines around
+	var/datum/action/innate/order/selectable/order_action
 	///Static list of CIC radial options for the camera when clicking on a marine
 	var/static/list/human_radial_options = list(
 		MESSAGE_SINGLE = image(icon = 'icons/mob/radial.dmi', icon_state = "cic_message_single"),
@@ -38,44 +30,24 @@
 
 /obj/machinery/computer/camera_advanced/overwatch/military/Initialize(mapload)
 	. = ..()
-	send_attack_order = new
-	send_defend_order = new
-	send_retreat_order = new
-	send_rally_order = new
+	order_action = new
 
 /obj/machinery/computer/camera_advanced/overwatch/military/Destroy()
-	QDEL_NULL(send_attack_order)
-	QDEL_NULL(send_defend_order)
-	QDEL_NULL(send_retreat_order)
-	QDEL_NULL(send_rally_order)
+	QDEL_NULL(order_action)
 	selected_target = null
-	current_order = null
 	marked_lase = null
 	return ..()
 
 /obj/machinery/computer/camera_advanced/overwatch/military/give_actions(mob/living/user)
 	. = ..()
-	if(send_attack_order)
-		send_attack_order.target = user
-		send_attack_order.give_action(user)
-		actions += send_attack_order
-	if(send_defend_order)
-		send_defend_order.target = user
-		send_defend_order.give_action(user)
-		actions += send_defend_order
-	if(send_retreat_order)
-		send_retreat_order.target = user
-		send_retreat_order.give_action(user)
-		actions += send_retreat_order
-	if(send_rally_order)
-		send_rally_order.target = user
-		send_rally_order.give_action(user)
-		actions += send_rally_order
+	if(order_action)
+		order_action.target = user
+		order_action.give_action(user)
+		actions += order_action
 
 /obj/machinery/computer/camera_advanced/overwatch/military/give_eye_control(mob/user)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, PROC_REF(send_order))
-	RegisterSignal(user, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(attempt_radial))
 	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(alert_lase))
 
@@ -436,21 +408,12 @@
 	new /obj/effect/overwatch_light(target)
 	use_power(10000)	//Huge light needs big power. Still less than autodocs.
 	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
-	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
+	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION / 10] Seconds"))
 
 //Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
-	if(!current_order)
-		var/mob/user = source
-		to_chat(user, span_warning("You have no order selected."))
-		return
-	current_order.send_order(target, faction = faction)
-
-///Setter for the current order
-/obj/machinery/computer/camera_advanced/overwatch/military/proc/set_order(datum/source, datum/action/innate/order/order)
-	SIGNAL_HANDLER
-	current_order = order
+	order_action.send_order(target, faction = faction)
 
 ///Messages all available squads
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/send_to_squads(txt)
@@ -486,7 +449,7 @@
 
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
-		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, LOUD_SOUND_RANGE)
 
 	if(A)
 		log_attack("[key_name(operator)] fired a [warhead_type]in for squad [current_squad] in [AREACOORD(T)].")
@@ -494,7 +457,7 @@
 	visible_message(span_boldnotice("Orbital bombardment request accepted. Orbital cannons are now calibrating."))
 	send_to_squads("ORBITAL BOMBARDMENT INBOUND AT [get_area(selected_target)]! Type: [warhead_type]!")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
+		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, LOUD_SOUND_RANGE)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
 
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, operator), 3.1 SECONDS)
 

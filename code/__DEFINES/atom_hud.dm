@@ -20,7 +20,7 @@
 #define XENO_REAGENT_HUD "xeno_reagent_hud" // displays sign based on reagent in human
 #define XENO_TACTICAL_HUD "xeno_tactical_hud" // displays xeno tactical elements such as tunnels and rally hive pings
 #define MACHINE_HEALTH_HUD "machine_health_hud" // displays machine health; part of /datum/atom_hud/squad
-#define MACHINE_AMMO_HUD "machine_ammo_hud" // displays machine ammo; part of /datum/atom_hud/squad
+#define MACHINE_AMMO_HUD "machine_ammo_hud" // displays machine ammo or power; part of /datum/atom_hud/squad
 #define XENO_DEBUFF_HUD "xeno_debuff_hud" // displays xeno debuffs; part of /datum/atom_hud/xeno_debuff
 #define HEART_STATUS_HUD "heart_status_hud" // display if revivable, along with blood level
 #define XENO_FIRE_HUD "xeno_fire_hud" // displays how many fire stacks a xeno has

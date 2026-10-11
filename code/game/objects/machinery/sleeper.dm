@@ -135,8 +135,8 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper"
 	density = TRUE
-	light_range = 1
-	light_power = 0.5
+	light_range = 3
+	light_power = 1
 	light_color = LIGHT_COLOR_BLUE
 	dir = EAST
 	var/mob/living/carbon/human/occupant = null
@@ -154,7 +154,7 @@
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -416,10 +416,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	go_out()
 
 /obj/machinery/sleeper/verb/eject()

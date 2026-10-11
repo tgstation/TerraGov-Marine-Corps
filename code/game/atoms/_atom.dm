@@ -115,6 +115,8 @@
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
 	var/datum/storage/storage_datum
+	/// All sources that affect or modify our alpha.
+	var/alpha_sources = list()
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -713,8 +715,11 @@ directive is properly returned.
 
 /atom/proc/max_stack_merging(obj/item/stack/S)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, ATOM_MAX_STACK_MERGING, S)
-	return FALSE //But if they do, limit is not an issue.
+	var/list/max_list = list() //yes this is dumb, please do a better solution
+	SEND_SIGNAL(src, ATOM_MAX_STACK_MERGING, S, max_list)
+	if(length(max_list))
+		return max_list[1]
+	return 0
 
 /atom/proc/recalculate_storage_space()
 	SHOULD_CALL_PARENT(TRUE)
@@ -1002,4 +1007,26 @@ directive is properly returned.
 ///What happens when with atom is melted by acid
 /atom/proc/do_acid_melt()
 	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
-	playsound(src, SFX_ACID_HIT, 25)
+	playsound(src, SFX_ACID_HIT, 25, FALSE, MEDIUM_SOUND_RANGE)
+
+/// Sets an alpha source before updating our alpha.
+/atom/proc/set_alpha_source(source, desired_alpha)
+	alpha_sources[source] = desired_alpha
+	update_alpha()
+
+/// Removes an alpha source before updating alpha.
+/atom/proc/remove_alpha_source(source)
+	if(!(source in alpha_sources))
+		return
+	alpha_sources -= source
+	update_alpha()
+
+/// Updates our alpha based on alpha sources.
+/atom/proc/update_alpha()
+	alpha = initial(alpha)
+	for(var/source_name AS in alpha_sources)
+		var/new_alpha = alpha_sources[source_name]
+		if(new_alpha >= alpha)
+			continue
+		alpha = new_alpha
+

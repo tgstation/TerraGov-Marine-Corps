@@ -757,7 +757,6 @@
 
 /obj/item/storage/pouch/surgery/PopulateContents()
 	new /obj/item/tool/surgery/scalpel/manager(src)
-	new /obj/item/tool/surgery/scalpel(src)
 	new /obj/item/tool/surgery/hemostat(src)
 	new /obj/item/tool/surgery/retractor(src)
 	new /obj/item/tool/surgery/cautery(src)
@@ -792,7 +791,6 @@
 	storage_datum.storage_slots = 5
 	storage_datum.max_w_class = WEIGHT_CLASS_NORMAL
 	storage_datum.sprite_slots = 4
-	storage_datum.draw_mode = TRUE
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/attachable/motiondetector,
 		/obj/item/radio,

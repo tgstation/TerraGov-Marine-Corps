@@ -153,13 +153,13 @@
 /obj/item/cell/lasgun/volkite/powerpack/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
 	if(amount > charge)
-		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(charge)
 			warning = "[src]'s powerpack recharge unit buzzes a warning, its battery only having enough power to partially recharge the cell for [charge] amount."
 		else
 			warning = "[src]'s powerpack recharge unit buzzes a warning, as its battery is completely depleted of charge."
 	else
-		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		warning = "[src]'s powerpack recharge unit cheerfully pings as it successfully recharges the cell."
 	. = min(charge, amount)
 	charge -= .

@@ -113,5 +113,10 @@
 #define SHUTTLE_DISTRESS "distress"
 #define SHUTTLE_ESCAPE_POD "escape_pod"
 #define SHUTTLE_SUPPLY "supply"
+#define SHUTTLE_SOM_SUPPLY "supply_SOM"
 #define SHUTTLE_VEHICLE_SUPPLY "vehicle_supply"
 
+/// Announcement cooldown for marine dropship takeoff alarms
+#define TAKEOFF_ALARM_ANNOUNCEMENT_COOLDOWN (60 SECONDS)
+/// The takeoff alarm will shut off after inactivity for this long
+#define TAKEOFF_ALARM_AUTOSHUTOFF_TIME (90 SECONDS)

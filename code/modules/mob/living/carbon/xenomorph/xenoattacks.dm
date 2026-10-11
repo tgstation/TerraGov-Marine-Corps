@@ -13,7 +13,7 @@
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[S] [S.attacktext] [src]!"), null, null, 5)
 			var/damage = S.melee_damage
-			apply_damage(damage, BRUTE, blocked = MELEE)
+			apply_damage(damage, BRUTE, blocked = MELEE, attacker = M)
 			UPDATEHEALTH(src)
 			log_combat(S, src, "attacked")
 
@@ -57,14 +57,14 @@
 
 			if(!H.melee_damage)
 				H.do_attack_animation(src)
-				playsound(loc, attack.miss_sound, 25, TRUE)
+				playsound(loc, attack.miss_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 				visible_message(span_danger("[H] tried to [pick(attack.attack_verb)] [src]!"), null, null, 5)
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			playsound(loc, attack.attack_sound, 25, TRUE)
+			playsound(loc, attack.attack_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 			visible_message(span_danger("[H] [pick(attack.attack_verb)] [src]!"), null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = user)
 
 
 //Hot hot Aliens on Aliens action.

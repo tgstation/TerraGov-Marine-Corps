@@ -22,6 +22,9 @@
 #define CAT_FCSUP "COMMANDER SUPPLIES"
 #define CAT_LOAD "LOADOUT"
 
+// Zombie Crash
+#define CAT_ZOMBIE_CRASH "ZOMBIE CRASH"
+
 // Synth Special Categories
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats
@@ -66,12 +69,15 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/pouch/explosive/razorburn = list(CAT_ENGSUP, "Pack of Razorburn grenades", 11, "engi-construction"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_ENGSUP, "Razorburn canister", 7, "engi-construction"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_small = list(CAT_ENGSUP, "Razorburn grenade", 3, "engi-construction"),
+		/obj/item/deploy_capsule/barricade = list(CAT_ENGSUP, "Barricade capsule", 18, "engi-construction"),
 		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "engi-tool"),
+		/obj/item/tool/deconstructor = list(CAT_ENGSUP, "Deconstructor", 10, "engi-tool"),
 		/obj/item/tool/weldingtool/hugetank = list(CAT_ENGSUP, "High-capacity industrial blowtorch", 5, "engi-tool"),
 		/obj/item/tool/handheld_charger = list(CAT_ENGSUP, "Hand-held cell charger", 3, "engi-tool"),
 		/obj/item/cell/rtg/large = list(CAT_ENGSUP, "Large recharger powercell", 15, "engi-tool"),
 		/obj/item/cell/rtg/small = list(CAT_ENGSUP, "Recharger powercell", 5, "engi-tool"),
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "engi-tool"),
+		/obj/effect/teleporter_linker = list(CAT_ENGSUP, "Teleporters", 30, "engi-tool"),
 		/obj/item/clothing/glasses/welding/superior = list(CAT_ENGSUP, "Superior welding goggles", 2, "engi-tool"),
 		/obj/item/armor_module/module/welding/superior = list(CAT_ENGSUP, "Superior welding module", 2, "engi-tool"),
 		/obj/item/explosive/plastique/genghis_charge = list(CAT_ENGSUP, "EX-62 Genghis incendiary charge", 15, "engi-explosive"),
@@ -80,9 +86,11 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "engi-explosive"),
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "engi-explosive"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
-		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
+		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 40, "engi-other"),
 		/obj/item/tesla_turret = list(CAT_ENGSUP, "Tesla Turret", 30, "engi-other"),
-		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
+		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 25, "engi-other"),
+		/obj/structure/closet/crate/uav_crate/turret = list(CAT_ENGSUP, "Light UV Machinegun", 15, "engi-other"),
+		/obj/item/uav_turret/claw = list(CAT_ENGSUP, "UV Claw", 5, "engi-other"),
 		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Unmanned Vehicle", 5, "engi-other"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "engi-other"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "engi-other"),
@@ -118,6 +126,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
+		/obj/item/explosive/grenade/chem_grenade/healing_foam = list(CAT_MEDSUP, "EMS-02 Healing Foam Grenade", 3, "corps-meds"),
 		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
@@ -256,6 +265,9 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/tool/nopower/valhalla,
 	),
 	SQUAD_CORPSMAN = list(
+		/obj/machinery/vending/medical/shipside,
+	),
+	SYNTHETIC = list(
 		/obj/machinery/vending/medical/shipside,
 	),
 	VENDOR_FACTION_CRASH = list(
