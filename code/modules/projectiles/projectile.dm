@@ -361,6 +361,13 @@
 		qdel(src)
 		return
 
+	//we manually add border objects to uncrossed for the origin turf, otherwise they'll never get checked
+	for(var/thing in loc)
+		var/atom/movable/AM = thing
+		if(!(AM.atom_flags & ON_BORDER))
+			continue
+		uncross_scheduled += AM
+
 	if(scan_loc && scan_a_turf(loc))
 		qdel(src)
 		return
