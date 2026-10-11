@@ -142,7 +142,8 @@
 			screen = KEYCARD_AUTH_SWIPE_NEEDED
 
 	if(href_list["silicon_activate_event"])
-		trigger_event(event)
+		event_triggered_by = usr
+		trigger_event()
 		log_game("[key_name(event_triggered_by)] triggered event [event].")
 		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered event [event].")
 		reset()
@@ -185,7 +186,7 @@
 
 ///Cleans up after the timer (and turns on if we swiped)
 /obj/machinery/keycard_auth/proc/finish_confirm(mob/event_confirmed_by)
-	trigger_event(event)
+	trigger_event()
 	log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed keycard auth event [event].")
 	message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed keycard auth event [event].")
 	reset()
