@@ -39,6 +39,7 @@
 
 /datum/game_mode/infestation/crash/zombie/post_setup()
 	. = ..()
+	balance_scales()
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		if(!(corpse.z in z_levels))
@@ -201,14 +202,17 @@
 			return TRUE
 	return FALSE
 
-/datum/game_mode/infestation/crash/zombie/announce()
-	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
-	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Phrenetic reports about an unidentified disease rapidly spreading throughout the site were received before it went silent. Your mission is to contain and destroy the source of the contagion by any means necessary, including use of the on-site nuclear device. Bio-warfare protocols active. Detonation Protocol Active, planet disposable. Marines disposable.",
-	title = "Mission classification: TOP SECRET",
-	type = ANNOUNCEMENT_PRIORITY,
-	color_override = "red")
+/datum/game_mode/infestation/crash/zombie/map_announce()
+	priority_announce(
+		title = "Mission classification: TOP SECRET",
+		message = "Scheduled for landing in T-[CRASH_DELAY_TIME / 600] Minutes. \
+		Prepare for landing. Phrenetic reports about an unidentified disease rapidly spreading throughout the site were received before it went silent. \
+		Your mission is to contain and destroy the source of the contagion by any means necessary, including use of the on-site nuclear device. \
+		Bio-warfare protocols active. Detonation Protocol Active, planet disposable. Marines disposable.",
+		type = ANNOUNCEMENT_PRIORITY,
+		color_override = "red"
+	)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
-	balance_scales()
 
 /datum/game_mode/infestation/crash/zombie/end_round_fluff()
 	. = ..()
