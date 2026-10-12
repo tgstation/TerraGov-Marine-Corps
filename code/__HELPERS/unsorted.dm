@@ -130,7 +130,7 @@
 	else //Exact pixel.
 		end_apx = ABS_COOR_OFFSET(end.x, x_offset)
 		end_apy = ABS_COOR_OFFSET(end.y, y_offset)
-	scatter = ( (rand(0, scatter, 45)) * (prob(50) ? 1 : -1) ) //Up to 45 degrees deviation to either side.
+	scatter = ( (rand(0, scatter)) * (prob(50) ? 1 : -1) ) //Up to 45 degrees deviation to either side.
 	. = round((90 - ATAN2(end_apx - ABS_COOR(start.x), end_apy - ABS_COOR(start.y))), 1) + scatter
 	if(. < 0)
 		. += 360
