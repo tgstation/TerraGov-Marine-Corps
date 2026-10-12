@@ -304,27 +304,19 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 			warhead = OA
 
 		to_chat(user, span_notice("You load [OA] into [src]."))
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		attached_clamp.do_unload(src)
 
-		if(!QDELETED(OA))
-			OA.forceMove(src)
-
-		attached_clamp.loaded = null
-		attached_clamp.update_icon()
 		update_icon()
 		return
 
 	if(fuel_amt)
-		var/obj/structure/ob_ammo/ob_fuel/OF = new(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = OF
+		var/obj/structure/ob_ammo/ob_fuel/OF = new(src)
+		attached_clamp.do_load(OF)
 		fuel_amt--
 	else if(warhead)
-		warhead.forceMove(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = warhead
+		attached_clamp.do_load(warhead)
 		warhead = null
 
-	attached_clamp.update_icon()
-	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	to_chat(user, span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 	update_icon()
 

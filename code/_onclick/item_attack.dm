@@ -123,12 +123,7 @@
 		to_chat(user, span_notice("[src] is bolted to the ground."))
 		return
 
-	forceMove(attached_clamp.linked_powerloader)
-	attached_clamp.loaded = src
-	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
-	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
+	attached_clamp.do_load(src)
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
