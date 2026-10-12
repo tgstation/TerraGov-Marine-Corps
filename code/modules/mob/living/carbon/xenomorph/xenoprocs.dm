@@ -560,11 +560,6 @@
 		return
 	return 1 - (sunder * 0.01)
 
-/mob/living/carbon/xenomorph/adjust_stagger(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
-		return FALSE
-	return ..()
-
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
 	if(!eaten_mob)
