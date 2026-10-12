@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Mobs shake slightly when a thrown item misses them, in the same way that bullet misses do"

@@ -428,6 +428,11 @@
 		if("l_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
 
+/datum/storage/backpack/duffelbag/can_open(mob/user)
+	if(!iscarbon(user))
+		return FALSE
+	. = ..()
+
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
 		return TRUE

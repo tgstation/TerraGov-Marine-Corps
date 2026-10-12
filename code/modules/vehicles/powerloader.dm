@@ -133,11 +133,19 @@
 	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
+	hitsound = 'sound/mecha/powerloader_attack.ogg'
 	// ITEM_ABSTRACT to prevent placing the item on a table/closet.
 	// DELONDROP to prevent giving the clamp to others.
 	item_flags = ITEM_ABSTRACT|DELONDROP
+	///The powerloader we are attached to
 	var/obj/vehicle/ridden/powerloader/linked_powerloader
-	var/obj/loaded
+	///The thing we are carrying
+	var/atom/movable/loaded
+
+/obj/item/powerloader_clamp/Destroy()
+	linked_powerloader = null
+	loaded = null
+	return ..()
 
 /obj/item/powerloader_clamp/dropped(mob/user)
 	// Don't call ..() so it's not deleted
@@ -153,12 +161,7 @@
 		linked_powerloader.unbuckle_mob(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
 		return TRUE
 	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
-		victim.forceMove(linked_powerloader)
-		loaded = victim
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-			span_notice("You grab [loaded] with [src]."))
+		do_load(victim)
 	return ..()
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
@@ -184,11 +187,23 @@
 /obj/item/powerloader_clamp/proc/do_load(atom/movable/new_clamped)
 	new_clamped.forceMove(linked_powerloader)
 	loaded = new_clamped
+	RegisterSignals(new_clamped, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clear_loaded))
 	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+	var/mob/user = linked_powerloader.occupants[1]
+	user.visible_message(span_notice("[user] grabs [new_clamped] with [src]."),
+		span_notice("You grab [new_clamped] with [src]."))
+
+///Clears loaded, in case it somehow got deleted or otherwise escaped our grasp
+/obj/item/powerloader_clamp/proc/clear_loaded(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	loaded = null
 	update_appearance(UPDATE_ICON)
 
 ///Unloads our cargo somewhere
 /obj/item/powerloader_clamp/proc/do_unload(atom/new_loc)
+	UnregisterSignal(loaded, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	loaded.forceMove(new_loc)
 	loaded = null
 	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)

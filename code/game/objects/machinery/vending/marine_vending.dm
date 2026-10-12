@@ -461,6 +461,7 @@
 /obj/machinery/vending/weapon/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -756,6 +757,7 @@
 /obj/machinery/vending/cigarette/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = -1,
 		/obj/item/storage/fancy/chemrettes = -1,
@@ -902,7 +904,7 @@
 	Electrifying!;\
 	Empower yourself!;\
 	Robots are reminded not to insert appendages into the field charger.;\
-	Warning: Do not lick live electrode."
+	Warning: licking live electrodes may be hazardous to your health."
 	products = list(
 		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2, /obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
 	)
@@ -978,6 +980,7 @@
 /obj/machinery/vending/marineFood/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
@@ -1056,6 +1059,7 @@
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -1117,7 +1121,7 @@
 	product_slogans = "The best blood on the market!;\
 	Totally came from an ethical source!;\
 	O negative is the universal donor, use it!;\
-	Prevent hypovolemic shock starting today!\
+	Prevent hypovolemic shock starting today!;\
 	The need for blood is rising.;\
 	Recycling blood since 2096.;\
 	Additive free!;\
@@ -1164,7 +1168,7 @@
 	I remember PAS, do you remember PAS?;\
 	Time to paint the rainbow!;\
 	So many selections to choose from!;\
-	Increase your estimated life expectancy above 3.65 minutes!;\
+	Increase your estimated life expectancy above 15 minutes!;\
 	Thin skin? Thick armour!"
 	products = list(
 		"Xenonauten" = list(
@@ -1314,6 +1318,7 @@
 /obj/machinery/vending/armor_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
@@ -1523,6 +1528,7 @@
 /obj/machinery/vending/uniform_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
@@ -1554,6 +1560,7 @@
 /obj/machinery/vending/dress_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
@@ -1561,6 +1568,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
@@ -1766,6 +1774,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Seasonal" = list(
 			/obj/item/weapon/gun/revolver/small = -1,
@@ -1968,6 +1977,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Machinery" = list(
 			/obj/item/conveyor_switch_construct = -1,
@@ -2109,6 +2119,7 @@
 
 /obj/machinery/vending/tool/nopower/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 
 /obj/machinery/vending/mech_vendor
 	name = "\improper Mech equipment vendor"

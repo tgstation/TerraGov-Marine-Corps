@@ -177,7 +177,7 @@
 	targetted_zlevel = new_z
 	z_indicator.set_indicated_z(targetted_zlevel)
 	for(var/mob/user AS in old_interactors)
-		interact(user)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, interact), user)
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()

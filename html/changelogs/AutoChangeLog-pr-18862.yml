@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed not being able to open storage with bulky items"
+  - code_imp: "Fixed some sig handler proc chains sleeping when they shouldn't"

@@ -162,6 +162,9 @@
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
+///Given by charging
+#define CHARGING_TRAIT "charging_trait"
+
 ///AM is currently submerged
 #define TRAIT_SUBMERGED "trait_submerged"
 ///AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior

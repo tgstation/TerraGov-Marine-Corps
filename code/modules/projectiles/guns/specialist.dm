@@ -200,10 +200,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_off(mob/user)
 	SIGNAL_HANDLER
+	STOP_PROCESSING(SSobj, src)
 	if(laser_target)
 		deactivate_laser_target()
 		accuracy_mult -= 0.50 //We lose a big accuracy bonus vs the now unlasered target
-		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
 	if(user?.client)
