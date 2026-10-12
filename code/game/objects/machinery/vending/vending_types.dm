@@ -131,7 +131,7 @@
 	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;\
-	at an EAT!;\
+	Eat an EAT!;\
 	Eat a Nanotrasen brand packaged hamburger.;\
 	Eat a Nanotrasen brand packaged hot dog.;\
 	Eat a Nanotrasen brand packaged burrito.;\
@@ -293,6 +293,7 @@
 	use_power = NO_POWER_USE
 	req_access = list()
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 	products = list(
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
@@ -928,6 +929,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 
 /obj/machinery/vending/engivend/nopower/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 
 //This one's from bay12
 /obj/machinery/vending/robotics
