@@ -419,7 +419,7 @@
 
 /datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
 	//Taking off the duffelbag has a channel
-	if(user.back != parent || !do_after(user, 3 SECONDS)) //todo: this shouldn't sleep but I can't think of a fix right now
+	if(user.back != parent || !do_after(user, 3 SECONDS))
 		return
 
 	switch(over_object.name)
@@ -428,11 +428,16 @@
 		if("l_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
 
+/datum/storage/backpack/duffelbag/can_open(mob/user)
+	if(!iscarbon(user))
+		return FALSE
+	. = ..()
+
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
 		return TRUE
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS)) //todo: this shouldn't sleep but I can't think of a fix right now
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
 		return TRUE
 	return ..()
 
