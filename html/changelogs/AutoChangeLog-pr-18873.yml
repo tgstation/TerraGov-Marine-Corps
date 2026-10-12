@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some bugs with power loaders if their loaded thing gets moved or deleted"
+  - soundadd: "added a missing clamp hit sound for power loader attacks"
