@@ -99,8 +99,3 @@
 		current_slow = apply_status_effect(STATUS_EFFECT_SLOWDOWN, amount)
 
 	return current_slow
-
-/mob/living/carbon/xenomorph/adjust_slowdown(amount)
-	if(is_charging >= CHARGE_ON)
-		return
-	return ..()
