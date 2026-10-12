@@ -45,10 +45,6 @@
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, xeno_owner))
-		if(!silent)
-			to_chat(xeno_owner, span_warning("We are too close to the fog."))
-		return FALSE
 
 /datum/action/ability/activable/xeno/devour/use_ability(atom/target)
 	if(xeno_owner.eaten_mob)
