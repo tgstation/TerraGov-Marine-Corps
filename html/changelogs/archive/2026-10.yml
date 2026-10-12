@@ -66,3 +66,23 @@
   - bugfix: fixed guns processing when they shouldn't be
   - code_imp: cleaned up some sleep issues
   - admin: NPC's will no longer send admin messages when their pathing fails
+2026-10-12:
+  Lumipharon:
+  - bugfix: fixed minimaps breaking when the Canterbury lands
+  - bugfix: Charging xenos are consistently immune to stagger
+  - refactor: refactored keycard authenticator code
+  - bugfix: fixed some bugs with power loaders if their loaded thing gets moved or
+      deleted
+  - soundadd: added a missing clamp hit sound for power loader attacks
+  - qol: Devour works next to fog again
+  - bugfix: fixed a few vendor slogan problems
+  - bugfix: fixed the devour ability for gorgers
+  - bugfix: fixed not being able to open storage with bulky items
+  - code_imp: Fixed some sig handler proc chains sleeping when they shouldn't
+  - bugfix: fixed a runtime with the refueling component
+  - bugfix: Hunter mirages can pass through fog
+  - bugfix: fixed vv particle editing and filteriffic
+  - bugfix: Crash/Zcrash display the correct time to land on round start, and no longer
+      display the nuke war ground map flavour text.
+  - qol: Mobs shake slightly when a thrown item misses them, in the same way that
+      bullet misses do

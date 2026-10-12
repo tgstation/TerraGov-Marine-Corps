@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Crash/Zcrash display the correct time to land on round start, and no longer display the nuke war ground map flavour text."
