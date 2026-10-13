@@ -1,10 +1,10 @@
-// ***************************************
-// *********** Normal fire
-// ***************************************
+#define FIRE_STACK_DECAY 1
+#define DAMPNESS_STACK_DECAY -1
+
 /datum/status_effect/stacking/fire
 	id = "fire"
 	tick_interval = 2 SECONDS
-	stack_decay = -1 //default is for not actually being on fire, i.e. wet
+	stack_decay = DAMPNESS_STACK_DECAY
 	consumed_on_threshold = FALSE
 	consumed_on_fadeout = FALSE //TODO: change this to only fade out on exactly 0
 	/// Owner of the debuff is limited to carbons.
@@ -13,12 +13,13 @@
 	//var/obj/vis_melt_fire/visual_fire //need to sort this out to work with xenos etc
 	///Are they actually burning
 	var/is_ignited = FALSE
-
+/*
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
 	icon = 'icons/mob/OnFire.dmi'
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
+*/
 
 /datum/status_effect/stacking/fire/on_creation(mob/living/new_owner, stacks_to_apply, ignite_on_start = TRUE)
 	if(stacks_to_apply > 0 && (!new_owner.can_ignite()))
@@ -30,36 +31,12 @@
 	debuff_owner = new_owner
 	if(ignite_on_start)
 		do_ignite()
-	//playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 
 /datum/status_effect/stacking/fire/can_have_status()
 	return TRUE
 
 /datum/status_effect/stacking/fire/can_gain_stacks()
 	return TRUE
-
-/datum/status_effect/stacking/fire/proc/do_ignite()
-	if(is_ignited)
-		return
-	if(stacks <= 0)
-		return //wet
-	if(!debuff_owner.can_ignite())
-		return
-	is_ignited = TRUE
-	consumed_on_fadeout = TRUE
-	stack_decay = 1
-	SEND_SIGNAL(debuff_owner, COMSIG_LIVING_IGNITED, stacks)
-	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
-
-	//debuff_owner.vis_contents += visual_fire
-	//debuff_owner.balloon_alert(debuff_owner, "melting fire!")
-	stack_decay_effect()
-	debuff_owner.update_fire()
-
-	debuff_owner.throw_alert(id, /atom/movable/screen/alert/fire)
-
-	to_chat(debuff_owner, span_danger("You are on fire! Use Resist to put yourself out!"))
-	debuff_owner.visible_message(span_danger("[debuff_owner] bursts into flames!"), isxeno(debuff_owner) ? span_xenodanger("You burst into flames!") : span_userdanger("You burst into flames!"))
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/fire/on_remove()
@@ -70,20 +47,19 @@
 	debuff_owner = null
 
 /datum/status_effect/stacking/fire/stack_decay_effect()
-	if(is_ignited && debuff_owner)
-		debuff_owner.update_fire()
-		return
-
-	if(stacks == 0) //dried up
-		qdel(src)
-	//playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
+	//if(is_ignited && debuff_owner)
+	//	debuff_owner.update_fire() //todo: make update_fire() only actually change shit if required
 
 /datum/status_effect/stacking/fire/add_stacks(stacks_added)
 	. = ..()
+	if(stacks == 0)
+		qdel(src)
+		return
+
 	if(stacks > 0)
-		stack_decay = 1 //make defines
+		stack_decay = FIRE_STACK_DECAY
 	else
-		stack_decay = -1
+		douse_fire()
 
 	if(is_ignited && debuff_owner)
 		debuff_owner.update_fire()
@@ -91,7 +67,38 @@
 /datum/status_effect/stacking/fire/fadeout_effect()
 	debuff_owner.adjust_bodytemperature(-80, 300)
 
-/// Called when the debuff's owner uses the Resist action for this debuff.
+///Actually sets them on fire
+/datum/status_effect/stacking/fire/proc/do_ignite()
+	if(is_ignited)
+		return
+	if(stacks <= 0)
+		return //wet
+	if(!debuff_owner.can_ignite())
+		return
+	is_ignited = TRUE
+	stack_decay = FIRE_STACK_DECAY
+	SEND_SIGNAL(debuff_owner, COMSIG_LIVING_IGNITED, stacks)
+	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+
+	//debuff_owner.vis_contents += visual_fire
+	//debuff_owner.balloon_alert(debuff_owner, "melting fire!")
+	//stack_decay_effect()
+	debuff_owner.update_fire()
+
+	debuff_owner.throw_alert(id, /atom/movable/screen/alert/fire)
+
+	to_chat(debuff_owner, span_danger("You are on fire! Use Resist to put yourself out!"))
+	debuff_owner.visible_message(span_danger("[debuff_owner] bursts into flames!"), isxeno(debuff_owner) ? span_xenodanger("You burst into flames!") : span_userdanger("You burst into flames!"))
+
+///If stacks go into negatives, we turn off the burning
+/datum/status_effect/stacking/fire/proc/douse_fire()
+	is_ignited = FALSE
+	stack_decay = DAMPNESS_STACK_DECAY
+	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
+	debuff_owner.update_fire()
+	debuff_owner.clear_alert(id)
+
+/// Called when the debuff's owner uses the Resist action for this debuff
 /datum/status_effect/stacking/fire/proc/call_resist_debuff()
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(resist_debuff)) // grilled cheese sandwich
@@ -101,11 +108,11 @@
 	if(!debuff_owner)
 		qdel(src)
 		return
-	if(length(debuff_owner.do_actions))
-		return
+	//if(length(debuff_owner.do_actions))
+	//	return
 	if(ishuman(debuff_owner))
 		debuff_owner.spin(30, 1.5)
-	debuff_owner.Paralyze(3 SECONDS)
+	debuff_owner.Paralyze(3 SECONDS) //check if you can spam this
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
@@ -114,7 +121,7 @@
 		debuff_owner.ExtinguishMob()
 		return
 
-	var/remove_amount = rand(3, 6)
+	var/remove_amount = min(rand(3, 6), stacks)
 	debuff_owner.visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
 	span_notice("You stop, drop, and roll!"), null, 5)
 
@@ -138,8 +145,9 @@
 	current_burning.do_ignite()
 	return TRUE
 
+///Checks if the mob can be set on fire
 /mob/living/proc/can_ignite()
-	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+	if(status_flags & GODMODE)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
 		return FALSE
@@ -149,6 +157,7 @@
 		return FALSE
 	return TRUE
 
+///Effects when set on fire
 /mob/living/proc/on_ignite()
 	return
 
@@ -164,13 +173,13 @@
 /mob/living/proc/update_fire()
 	return
 
-///fire impacts on tick
+///effects of being on fire
 /mob/living/proc/handle_fire(stacks)
 	SEND_SIGNAL(src, COMSIG_LIVING_HANDLE_FIRE) //this is only used by a rav mutation
 
 //////////////normal status setter procs
 
-///Adjusting the amount of fire_stacks we have on person
+///Adjusting the amount of fire_stacks we have - does not automatically ignite
 /mob/living/proc/adjust_fire_stacks(new_stacks)
 	if(QDELETED(src))
 		return
