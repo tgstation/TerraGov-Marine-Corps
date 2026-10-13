@@ -4767,7 +4767,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/lambda_lab)
 "aTB" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4843,7 +4843,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/lambda_lab)
 "aUB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9061,7 +9061,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/lambda_lab)
 "fiq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -54532,7 +54532,7 @@ gCQ
 gCQ
 gCQ
 gCQ
-pVH
+aEu
 aTy
 aUz
 aEu
@@ -54748,10 +54748,10 @@ nQA
 gCQ
 gCQ
 gCQ
-vyZ
-kKe
+xaJ
+nQA
 fhZ
-wRC
+aUy
 gCQ
 gCQ
 gCQ
@@ -54966,9 +54966,9 @@ gCQ
 gCQ
 gCQ
 gCQ
-vyZ
-haq
-wRC
+xaJ
+lwj
+aUy
 gCQ
 gCQ
 gCQ
@@ -55183,9 +55183,9 @@ pAz
 gCQ
 gCQ
 gCQ
-vyZ
-haq
-wRC
+xaJ
+lwj
+aUy
 gCQ
 gCQ
 gCQ
