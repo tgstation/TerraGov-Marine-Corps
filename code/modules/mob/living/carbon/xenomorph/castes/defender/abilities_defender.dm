@@ -397,7 +397,7 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	if(xeno_owner.on_fire && !resin_jelly_duration)
+	if(xeno_owner.is_on_fire() && !resin_jelly_duration)
 		to_chat(xeno_owner, span_xenowarning("We can't use that while on fire."))
 		return fail_activate()
 
@@ -429,12 +429,11 @@
 			status_effect.check_duration()
 	if(resin_jelly_duration)
 		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
-		if(xeno_owner.on_fire)
+		if(xeno_owner.is_on_fire())
 			for (var/mob/living/carbon/human/nearby_human in orange(1, xeno_owner))
 				if(nearby_human.stat == DEAD || !xeno_owner.Adjacent(nearby_human))
 					continue
-				nearby_human.adjust_fire_stacks(xeno_owner.fire_stacks)
-				nearby_human.IgniteMob()
+				nearby_human.adjust_burning(xeno_owner.amount_burning())
 			xeno_owner.ExtinguishMob()
 	if(ally_unsunder_multiplier)
 		var/mob/living/carbon/xenomorph/ideal_xenomorph_target

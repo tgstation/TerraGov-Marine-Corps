@@ -19,7 +19,7 @@
 	. = ..()
 	update_icons()
 
-/mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
+/mob/living/carbon/xenomorph/update_icons(state_change = TRUE) //todo: don't do this on fucking lifesdfhsdkjfhkjh
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
@@ -36,12 +36,17 @@
 				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
 				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
-	update_fire() //all 3 overlays depends on the xeno's stance, so we update them.
+		update_fire() //all 3 overlays depends on the xeno's stance, so we update them.
 	update_wounds()
 	update_snowflake_overlays()
 
 	hud_set_sunder()
 	hud_set_firestacks()
+
+/mob/living/carbon/xenomorph/set_lying_angle(new_lying)
+	. = ..()
+	if(is_on_fire())
+		update_fire()
 
 /mob/living/carbon/xenomorph/regenerate_icons()
 	..()
@@ -93,8 +98,8 @@
 /mob/living/carbon/xenomorph/update_fire()
 	if(!fire_overlay)
 		return
-	var/fire_light = min(fire_stacks * 0.2 , 3)
-	if(!on_fire)
+	var/fire_light = min(amount_burning() * 0.2 , 3)
+	if(!is_on_fire())
 		fire_light = 0
 	if(fire_light == fire_luminosity)
 		return
@@ -215,14 +220,14 @@
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon()
 	. = ..()
-	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
+	if(!owner.is_on_fire() || HAS_TRAIT(owner, TRAIT_BURROWED))
 		update_flame_light(0)
 	else
 		update_flame_light(owner.fire_luminosity)
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon_state()
 	. = ..()
-	if(!owner.on_fire)
+	if(!owner.is_on_fire())
 		icon_state = ""
 		return
 	if(HAS_TRAIT(owner, TRAIT_BURROWED))
@@ -235,7 +240,7 @@
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/update_overlays()
 	. = ..()
-	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
+	if(!owner.is_on_fire() || HAS_TRAIT(owner, TRAIT_BURROWED))
 		return
 	. += emissive_appearance(icon, icon_state, src)
 

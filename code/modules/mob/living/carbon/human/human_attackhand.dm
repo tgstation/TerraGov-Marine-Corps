@@ -15,15 +15,14 @@
 	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
-			if(on_fire && human_user != src)
-				fire_stacks = max(fire_stacks - 1, 0)
+			if(is_on_fire() && human_user != src) //todo: does this effect melting fire? //other todo: make this sig based maybe?
+				adjust_burning(-1)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 					span_warning("You try to put out the fire on [src]!"), null, 5)
-				if(fire_stacks <= 0)
+				if(!is_on_fire())
 					human_user.visible_message(span_danger("[human_user] has successfully extinguished the fire on [src]!"), \
 						span_notice("You extinguished the fire on [src]."), null, 5)
-					ExtinguishMob()
 				return TRUE
 
 			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)

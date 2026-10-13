@@ -274,8 +274,7 @@
 					log_combat(user, human_caught, "flamed", src)
 
 		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), BURN, FIRE, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
-		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
-		mob_caught.IgniteMob()
+		mob_caught.adjust_burning(rand(5, (burn_level * mob_flame_damage_mod)))
 
 		var/burn_message = "Augh! You are roasted by the flames!"
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_userdanger(burn_message))

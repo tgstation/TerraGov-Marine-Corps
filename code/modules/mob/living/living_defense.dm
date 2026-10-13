@@ -108,86 +108,6 @@
 
 // End BS12 momentum-transfer code.
 
-
-//Mobs on Fire
-/mob/living/proc/IgniteMob()
-	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
-		return FALSE
-	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
-		return FALSE
-	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-		return FALSE
-	if(fire_stacks > 0 && !on_fire)
-		on_fire = TRUE
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
-		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
-		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_userdanger("You burst into flames!"))
-		update_fire()
-		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
-		return TRUE
-
-/mob/living/carbon/xenomorph/IgniteMob()
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	. = ..()
-	if(!.)
-		return
-	update_fire()
-
-	for(var/obj/item/clothing/mask/facehugger/hugger in get_held_items())
-		hugger.kill_hugger()
-		dropItemToGround(hugger)
-
-///Puts out any fire on the mob
-/mob/living/proc/ExtinguishMob()
-	var/datum/status_effect/stacking/melting_fire/xeno_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	if(xeno_fire)
-		remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	if(!on_fire)
-		return FALSE
-	on_fire = FALSE
-	adjust_bodytemperature(-80, 300)
-	fire_stacks = 0
-	update_fire()
-	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-
-///Returns true if the mob is on fire
-/mob/living/proc/is_on_fire()
-	if(on_fire) //todo: someone please make normal fire a status effect
-		return TRUE
-	if(has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		return TRUE
-	return FALSE
-
-///Updates fire visuals
-/mob/living/proc/update_fire()
-	return
-
-///Adjusting the amount of fire_stacks we have on person
-/mob/living/proc/adjust_fire_stacks(add_fire_stacks)
-	if(QDELETED(src))
-		return
-	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
-		if(status_flags & GODMODE)
-			return
-		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
-	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
-	if(on_fire && fire_stacks <= 0)
-		ExtinguishMob()
-		return
-	update_fire()
-
-///Update fire stacks on life tick
-/mob/living/proc/handle_fire()
-	if(fire_stacks < 0)
-		fire_stacks++ //If we've doused ourselves in water to avoid fire, dry off slowly
-		fire_stacks = min(0, fire_stacks)//So we dry ourselves back to default, nonflammable.
-	if(!on_fire)
-		return 1
-	SEND_SIGNAL(src, COMSIG_LIVING_HANDLE_FIRE)
-	if(fire_stacks > 0)
-		adjust_fire_stacks(-1) //the fire is consumed slowly
-
 /mob/living/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
@@ -200,8 +120,7 @@
 
 	var/lava_damage = 20
 	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
-	adjust_fire_stacks(20)
-	IgniteMob()
+	adjust_burning(20)
 	return TRUE
 
 /mob/living/fire_act(burn_level)
@@ -219,29 +138,7 @@
 	to_chat(src, span_warning("You are burned!"))
 
 	. = TRUE
-	adjust_fire_stacks(burn_level)
-	if(on_fire || !fire_stacks)
-		return
-	IgniteMob()
-
-///Try and remove fire from ourselves
-/mob/living/proc/resist_fire(datum/source)
-	SIGNAL_HANDLER
-	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open/floor/plating/ground/snow))
-		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
-		span_notice("You extinguish yourself in the snow!"), null, 5)
-		ExtinguishMob()
-	else
-		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
-		span_notice("You stop, drop, and roll!"), null, 5)
-		if(fire_stacks <= 0)
-			visible_message(span_danger("[src] has successfully extinguished themselves!"), \
-			span_notice("You extinguish yourself."), null, 5)
-			ExtinguishMob()
-	Paralyze(3 SECONDS)
-
+	adjust_burning(burn_level)
 
 //Mobs on Fire end
 // When they are affected by a queens screech

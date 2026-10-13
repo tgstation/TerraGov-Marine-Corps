@@ -53,7 +53,7 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
-	if(on_fire)
+	if(is_on_fire())
 		ExtinguishMob()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0 && !(status_flags & INCORPOREAL))

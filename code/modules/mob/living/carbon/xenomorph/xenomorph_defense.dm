@@ -41,7 +41,10 @@ Contains most of the procs that are called when a xeno is attacked by something
 	amount *= 0.2 // replaces the old knock_down -5
 	return ..()
 
-/mob/living/carbon/xenomorph/adjust_fire_stacks(add_fire_stacks)
-	if(add_fire_stacks > 0 && ((xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) || (HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))))
+/mob/living/carbon/xenomorph/can_ignite()
+	. = ..()
+	if(!.)
 		return
-	return ..()
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return FALSE
+	return TRUE

@@ -37,7 +37,7 @@
 			return
 		deltimer(timer_id)
 		timer_id = null
-	if(!xenomorph_owner.on_fire)
+	if(!xenomorph_owner.is_on_fire())
 		return
 	var/plasma_cost = get_cost(get_total_structures())
 	if(xenomorph_owner.plasma_stored < plasma_cost)
@@ -124,7 +124,7 @@
 /// Adjusts fire stacks of the hit target by a variable amount.
 /datum/mutation_upgrade/veil/wet_claws/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	if(!target.on_fire)
+	if(!target.is_on_fire())
 		return
 	target.adjust_fire_stacks(get_stacks(get_total_structures()))
 

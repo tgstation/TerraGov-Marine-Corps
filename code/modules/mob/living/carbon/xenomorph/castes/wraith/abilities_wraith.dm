@@ -315,8 +315,8 @@
 	last_target_locs_list = list(get_turf(A))
 	target_initial_brute_damage = targeted.getBruteLoss()
 	target_initial_burn_damage = targeted.getFireLoss()
-	target_initial_fire_stacks = targeted.fire_stacks
-	target_initial_on_fire = targeted.on_fire
+	target_initial_fire_stacks = targeted.amount_burning()
+	target_initial_on_fire = targeted.is_on_fire()
 	if(isxeno(A))
 		var/mob/living/carbon/xenomorph/xeno_target = targeted
 		target_initial_sunder = xeno_target.sunder
@@ -362,8 +362,7 @@
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
 		if(target_initial_on_fire && target_initial_fire_stacks >= 0)
-			targeted.fire_stacks = target_initial_fire_stacks
-			targeted.IgniteMob()
+			targeted.set_burning(target_initial_fire_stacks)
 		else
 			targeted.ExtinguishMob()
 		if(isxeno(targeted))

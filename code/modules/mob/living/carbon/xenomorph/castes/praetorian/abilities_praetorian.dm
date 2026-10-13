@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/list/inrange = orange(1, xeno_owner)
 	var/melting_fire_stacks
 	if(spreads_fire && xeno_owner.is_on_fire())
-		melting_fire_stacks += xeno_owner.fire_stacks
+		melting_fire_stacks += xeno_owner.amount_burning()
 		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		if(melting_fire)
 			melting_fire_stacks += melting_fire.stacks
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/list/inrange = orange(2, xeno_owner)
 	var/melting_fire_stacks
 	if(spreads_fire && xeno_owner.is_on_fire())
-		melting_fire_stacks += xeno_owner.fire_stacks
+		melting_fire_stacks += xeno_owner.amount_burning()
 		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		if(melting_fire)
 			melting_fire_stacks += melting_fire.stacks

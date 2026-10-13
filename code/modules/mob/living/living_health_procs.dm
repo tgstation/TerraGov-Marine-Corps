@@ -283,7 +283,6 @@
 	setBrainLoss(0)
 	remove_all_status_effect()
 	ExtinguishMob()
-	fire_stacks = 0
 
 	// shut down ongoing problems
 	bodytemperature = get_standard_bodytemperature()

@@ -465,7 +465,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if(species?.species_flags & SPECIES_NO_HUG)
 		return FALSE
 
-	if(on_fire)
+	if(is_on_fire())
 		return FALSE
 
 	if(check_mask)

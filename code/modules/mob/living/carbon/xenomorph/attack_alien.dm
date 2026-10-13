@@ -202,7 +202,7 @@
 
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
-			if(on_fire)
+			if(is_on_fire())
 				xeno_attacker.visible_message(span_danger("[xeno_attacker] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
 				return FALSE
 

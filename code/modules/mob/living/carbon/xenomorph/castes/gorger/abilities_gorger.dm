@@ -43,7 +43,7 @@
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We have already swallowed one."))
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
