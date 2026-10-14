@@ -154,6 +154,13 @@
 	else
 		next_move_delay = move_delay
 
+/obj/vehicle/unmanned/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		if(M.client)
+			M.client.move_delay = world.time
+	return ..()
+
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -197,7 +204,7 @@
 	else
 		qdel(reload_ammo)
 	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
-	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	hud_set_uav_ammo()
 

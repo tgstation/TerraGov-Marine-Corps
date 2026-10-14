@@ -283,7 +283,7 @@
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
-	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
+	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, TRUE, SUPPRESSED_SOUND_RANGE)
 	to_chat(wearer, span_notice("Commencing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
 		to_chat(wearer, get_meds_beaker_contents())
@@ -375,7 +375,7 @@
 
 	connected_weapon = weapon_to_connect
 	ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
-	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
+	RegisterSignals(connected_weapon, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_ALTERNATE), PROC_REF(drain_resource))
 	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 

@@ -14,7 +14,7 @@
 
 /obj/structure/flora/footstep_override(atom/movable/source, list/footstep_overrides)
 	//set at the flora level, but the connection is only set where desired
-	footstep_overrides[FOOTSTEP_VEGETATION] = layer
+	footstep_overrides[FOOTSTEP_VEGETATION] = get_footstep_layer(layer, plane)
 
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
@@ -236,7 +236,7 @@
 	AddComponent(/datum/component/submerge_modifier, 10)
 
 /obj/structure/flora/grass/tallgrass/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_GRASS] = layer
+	footstep_overrides[FOOTSTEP_GRASS] = get_footstep_layer(layer, plane)
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
@@ -553,7 +553,7 @@
 
 	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
 	L.do_attack_animation(src, used_item = I)
-	playsound(src, 'sound/effects/natural/vegetation_hit.ogg', 25, 1)
+	playsound(src, 'sound/effects/natural/vegetation_hit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /obj/structure/flora/jungle/vines/Initialize(mapload)

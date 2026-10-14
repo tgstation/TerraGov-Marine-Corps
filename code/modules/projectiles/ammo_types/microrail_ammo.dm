@@ -184,10 +184,10 @@
 	///radius this smoke will encompass
 	var/smokeradius = 1
 
-/datum/ammo/smoke_burst/drop_nade(turf/T)
+/datum/ammo/smoke_burst/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(smokeradius, T, rand(5,9))
+	playsound(target_turf, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, target_turf, rand(5,9))
 	smoke.start()
 
 /datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

@@ -120,7 +120,7 @@
 	if(active_camera)
 		.["activeCamera"] = list(
 			name = active_camera.c_tag,
-			status = active_camera.status,
+			status = active_camera.camera_flags & CAMERA_OPERATING,
 			ref = ref(active_camera)
 		)
 
@@ -145,7 +145,7 @@
 		var/obj/machinery/camera/selected_camera
 
 		active_camera = cameras[camera_reference]
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 		if(!selected_camera)
 			return TRUE

@@ -9,14 +9,14 @@
 
 /obj/item/tool/surgery/retractor
 	name = "retractor"
-	desc = "Retracts stuff."
+	desc = "For fine manipulation during surgery."
 	icon_state = "retractor"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/surgery/hemostat
 	name = "hemostat"
-	desc = "You think you have seen this before."
+	desc = "For removing foreign objects during surgery."
 	icon_state = "hemostat"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
@@ -24,7 +24,7 @@
 
 /obj/item/tool/surgery/cautery
 	name = "cautery"
-	desc = "This stops bleeding."
+	desc = "For closing incisions to finish a surgery."
 	icon_state = "cautery"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
@@ -85,7 +85,7 @@
 */
 /obj/item/tool/surgery/circular_saw
 	name = "circular saw"
-	desc = "For heavy duty cutting."
+	desc = "For opening someone's ribcage, surgically."
 	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	atom_flags = CONDUCT
@@ -101,6 +101,7 @@
 //misc, formerly from code/defines/weapons.dm
 /obj/item/tool/surgery/bonegel
 	name = "bone gel"
+	desc = "For repairing fractures and closing ribcages."
 	icon_state = "bone-gel"
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -108,6 +109,7 @@
 
 /obj/item/tool/surgery/FixOVein
 	name = "FixOVein"
+	desc = "For fixing internal bleeding."
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1
@@ -117,6 +119,7 @@
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
 	icon_state = "bonesetter"
+	desc = "For setting fractured bone after bone gel is applied."
 	force = 8
 	throwforce = 9
 	throw_speed = 3
@@ -127,6 +130,7 @@
 /obj/item/tool/surgery/suture
 	name = "surgical suture"
 	icon_state = "suture"
+	desc = "For healing basic brute and burn damage during surgery."
 	force = 3
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -135,6 +139,7 @@
 /obj/item/tool/surgery/surgical_membrane
 	name = "surgical membrane"
 	icon_state = "surgical_membrane"
+	desc = "For repairing damaged organs and necrotized tissue during surgery."
 	force = 0
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL

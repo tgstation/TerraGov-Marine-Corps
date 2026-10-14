@@ -102,7 +102,7 @@
 
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
+			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				if(reagents.total_volume > bitesize)
@@ -1339,7 +1339,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_burrito/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "unwraps burrito")
 		package = FALSE
 		icon = 'icons/obj/items/food/mexican.dmi'
@@ -1357,7 +1357,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "unwraps hotdog")
 		package = FALSE
 		icon = 'icons/obj/items/food/food.dmi'
@@ -1388,7 +1388,7 @@
 
 /obj/item/reagent_containers/food/snacks/upp/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "pops the packaged seal")
 		package = FALSE
 		desc = "An extremely dried item of food, with little flavoring or coloration. Looks to be prepped for long term storage, but will expire without the packaging. Best to eat it now to avoid waste. At least things are equal."
@@ -1440,7 +1440,7 @@
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
 	if(package)
 		balloon_alert(user, "opens the package")
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 		new wrapper (user.loc)
 		icon_state = "[initial(icon_state)]-o"
@@ -1519,7 +1519,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_meal/attack_self(mob/user as mob)
 	if(package)
 		balloon_alert(user, "opens package")
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		name = "\improper" + flavor
 		desc = "The contents of a standard issue MRE. This one is " + flavor + "."
 		icon_state = flavor

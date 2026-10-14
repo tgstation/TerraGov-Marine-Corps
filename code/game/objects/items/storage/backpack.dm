@@ -263,13 +263,13 @@
 /obj/item/storage/backpack/marine/corpsman/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
 	if(amount > cell.charge)
-		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(cell.charge)
 			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, its battery only having enough power to partially recharge the defibrillator for [cell.charge] amount. "
 		else
 			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, as its battery is completely depleted of charge. "
 	else
-		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
@@ -335,7 +335,7 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and HSG-102 emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold some bulky equipment such as sentry guns and teleporter pads and the HSG-102."
 	icon_state = "marinepackt"
 	worn_icon_state = "marinepackt"
 	storage_type = /datum/storage/backpack/tech
@@ -427,6 +427,11 @@
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
 		if("l_hand")
 			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+
+/datum/storage/backpack/duffelbag/can_open(mob/user)
+	if(!iscarbon(user))
+		return FALSE
+	. = ..()
 
 /datum/storage/backpack/duffelbag/open(mob/user)
 	if(!iscarbon(user))
@@ -567,7 +572,7 @@
 	wearer = M
 
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
-	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
+	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions
@@ -578,10 +583,9 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_BASIC].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(M)
-		GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(M)
+		for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BASIC, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_HEART))
+			var/datum/atom_hud/hud = GLOB.huds[hud_key]
+			hud.remove_from_hud(M)
 
 	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
@@ -626,13 +630,12 @@
 	camo_active = FALSE
 
 	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your cloak's camouflage has deactivated!"))
-	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 	user.alpha = initial(user.alpha)
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(user)
-	GLOB.huds[DATA_HUD_BASIC].add_to_hud(user)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(user)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(user)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BASIC, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.add_to_hud(user)
 
 	addtimer(CALLBACK(src, PROC_REF(on_decloak)), 1)
 

@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(!target_zone)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
@@ -124,6 +124,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
@@ -260,6 +262,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(!zone)
 			visible_message(span_notice("\The [thrown_item] misses [src] narrowly!"), null, null, 5)
+			animatation_displace_reset(src)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 			return FALSE
@@ -276,7 +279,10 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/affecting = get_limb(zone)
 
 		if(affecting.limb_status & LIMB_DESTROYED)
-			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
+			visible_message(span_notice("\The [thrown_item] flies through where [src]'s [affecting.display_name] was!"), null, null, 5)
+			animatation_displace_reset(src)
+			if(living_thrower)
+				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 			return FALSE
 
 		thrown_item.set_throwing(FALSE) // Hit the limb.
@@ -396,34 +402,15 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Perception distorting effects of the psychic scream*
 
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
-	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || (user.a_intent != INTENT_HARM && !iszombie(src)))
 		return ..()
-	if(iszombie(user))
-		to_chat(user, span_warning("You shouldn't rip out another zombie's heart."))
-		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
-	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
-		return
-	if(!get_organ_slot(ORGAN_SLOT_HEART))
-		to_chat(user, span_notice("The heart is no longer here!"))
-		return
-	log_combat(user, src, "ripped [src]'s heart", I)
-	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	remove_organ_slot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/heart/heart = new
-	heart.die()
-	user.put_in_hands(heart)
-	if(iszombie(src))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), heart), 9.5 SECONDS)
-		QDEL_IN(heart, 10 SECONDS)
-	chestburst = CARBON_CHEST_BURSTED
-	update_burst()
+	rip_out_heart(user, TRUE)
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
 	. = ..()

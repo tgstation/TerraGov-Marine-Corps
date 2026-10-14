@@ -404,7 +404,7 @@
 	return TRUE
 
 /obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+	footstep_overrides[FOOTSTEP_PLATING] = get_footstep_layer(layer, plane)
 
 /obj/proc/do_deploy(mob/user, turf/location)
 	if(!istype(location))
@@ -416,7 +416,7 @@
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
 		return FALSE
-	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
 			balloon_alert(user, "can't disassemble!")
 		return FALSE

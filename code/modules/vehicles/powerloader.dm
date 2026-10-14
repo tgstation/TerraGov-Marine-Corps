@@ -4,7 +4,8 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
-	anchored = TRUE
+	move_force = MOVE_FORCE_VERY_STRONG
+	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	allow_pass_flags = NONE
 	move_delay = 6
 	light_system = HYBRID_LIGHT
@@ -45,7 +46,7 @@
 	if(!LAZYLEN(buckled_mobs) || buckled_mob.buckled != src)
 		return FALSE
 	if(user == buckled_mob)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 		return ..()
 	buckled_mob.visible_message(
@@ -58,12 +59,12 @@
 	silent = TRUE
 	. = ..()
 	if(.)
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		set_light(0)
 
 /obj/vehicle/ridden/powerloader/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
 	move_delay = max(2, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
@@ -82,7 +83,7 @@
 /obj/vehicle/ridden/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	overlays.Cut()
-	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	move_delay = initial(move_delay)
 	set_vehicle_speed()
 	icon_state = "powerloader_open"
@@ -91,7 +92,7 @@
 /// Sets the powerloader's actual move delay (as it is handled in the component).
 /obj/vehicle/ridden/powerloader/proc/set_vehicle_speed()
 	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
-	vehicle_component.vehicle_move_delay = move_delay
+	vehicle_component?.vehicle_move_delay = move_delay
 
 /obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
@@ -132,11 +133,19 @@
 	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
+	hitsound = 'sound/mecha/powerloader_attack.ogg'
 	// ITEM_ABSTRACT to prevent placing the item on a table/closet.
 	// DELONDROP to prevent giving the clamp to others.
 	item_flags = ITEM_ABSTRACT|DELONDROP
+	///The powerloader we are attached to
 	var/obj/vehicle/ridden/powerloader/linked_powerloader
-	var/obj/loaded
+	///The thing we are carrying
+	var/atom/movable/loaded
+
+/obj/item/powerloader_clamp/Destroy()
+	linked_powerloader = null
+	loaded = null
+	return ..()
 
 /obj/item/powerloader_clamp/dropped(mob/user)
 	// Don't call ..() so it's not deleted
@@ -152,12 +161,7 @@
 		linked_powerloader.unbuckle_mob(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
 		return TRUE
 	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
-		victim.forceMove(linked_powerloader)
-		loaded = victim
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-			span_notice("You grab [loaded] with [src]."))
+		do_load(victim)
 	return ..()
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
@@ -183,11 +187,23 @@
 /obj/item/powerloader_clamp/proc/do_load(atom/movable/new_clamped)
 	new_clamped.forceMove(linked_powerloader)
 	loaded = new_clamped
+	RegisterSignals(new_clamped, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(clear_loaded))
 	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	update_appearance(UPDATE_ICON)
+	var/mob/user = linked_powerloader.occupants[1]
+	user.visible_message(span_notice("[user] grabs [new_clamped] with [src]."),
+		span_notice("You grab [new_clamped] with [src]."))
+
+///Clears loaded, in case it somehow got deleted or otherwise escaped our grasp
+/obj/item/powerloader_clamp/proc/clear_loaded(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	loaded = null
 	update_appearance(UPDATE_ICON)
 
 ///Unloads our cargo somewhere
 /obj/item/powerloader_clamp/proc/do_unload(atom/new_loc)
+	UnregisterSignal(loaded, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	loaded.forceMove(new_loc)
 	loaded = null
 	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)

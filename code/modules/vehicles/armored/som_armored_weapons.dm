@@ -16,12 +16,13 @@
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 	///Range of this weapon
-	var/beam_range = 20
+	var/beam_range = 15
 	///Armor pen of this weapon
 	var/armor_pen = 20
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
-	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
+	var/turf/target_turf = get_turf_at_angle_ranged(source_turf, Get_Angle(source_turf, get_turf(current_target)), beam_range)
+
 	var/list/turf/beam_turfs = get_traversal_line(source_turf, target_turf)
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
@@ -31,6 +32,8 @@
 
 	for(var/turf/line_turf AS in beam_turfs)
 		if(isclosedturf(line_turf))
+			break
+		if(get_dist_euclidean(source_turf, target_turf) > beam_range)
 			break
 		for(var/range_turf in RANGE_TURFS(1, line_turf))
 			impacted_turfs |= range_turf

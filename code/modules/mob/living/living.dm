@@ -412,8 +412,6 @@
 		return
 	if(moving_diagonally) // No pushing in diagonal move
 		return
-	if(!client)
-		return
 	var/mob/mob_to_push = AM
 	if(istype(mob_to_push) && mob_to_push.lying_angle)
 		return
@@ -438,9 +436,8 @@
 			push_anchored = TRUE
 	if(ismob(AM))
 		var/atom/movable/mob_buckle = mob_to_push.buckled
-		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
-		// If neither are true, we're not pushing anymore.
-		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+		//If they're buckled to something, we need to be able to push that instead
+		if(mob_buckle && (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO)))
 			now_pushing = FALSE
 			return
 	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
@@ -549,11 +546,9 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_REAGENTS].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_DEBUFF].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(src)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_REAGENTS, DATA_HUD_XENO_DEBUFF, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -564,11 +559,9 @@
 
 	alpha = initial(alpha)
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_REAGENTS].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_DEBUFF].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_REAGENTS, DATA_HUD_XENO_DEBUFF, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.add_to_hud(src)
 
 	smokecloaked = FALSE
 

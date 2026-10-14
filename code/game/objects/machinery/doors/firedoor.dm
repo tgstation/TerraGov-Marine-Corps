@@ -131,7 +131,7 @@
 		to_chat(xeno_attacker, span_warning("\The [src] is already open!"))
 		return FALSE
 
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	xeno_attacker.visible_message(span_warning("\The [xeno_attacker] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
 
@@ -210,11 +210,8 @@
 
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
-		if(!W.remove_fuel(0, user))
-			return
 
-		balloon_alert_to_viewers("[blocked ? "unwelding" : "welding"]...")
-		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+		if(!I.use_tool(src, user, 3 SECONDS))
 			balloon_alert_to_viewers("interrupted!")
 			return
 
@@ -222,7 +219,6 @@
 		user.visible_message(span_alert("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		span_notice("You [blocked ? "weld" : "unweld"] \the [src] with \the [W]."),\
 		span_hear("You hear something being welded."))
-		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		update_icon()
 
 	else if(blocked)
@@ -286,7 +282,7 @@
 			flick("door_opening", src)
 		if("closing")
 			flick("door_closing", src)
-	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
+	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/machinery/door/firedoor/update_icon_state()
 	. = ..()

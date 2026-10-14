@@ -105,6 +105,7 @@ GLOBAL_LIST_EMPTY(alert_consoles)
 ///list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
+GLOBAL_LIST_EMPTY(xeno_encounter_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_spawner_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
@@ -120,6 +121,8 @@ GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
 
 GLOBAL_LIST_EMPTY(zombie_spawner_turfs)
+GLOBAL_LIST_EMPTY(zombie_crash_vendor_landmarks)
+GLOBAL_LIST_EMPTY(zombie_crash_vendors)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 

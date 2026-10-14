@@ -11,7 +11,6 @@
 	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	tool_behaviour = TOOL_WRENCH
 
-
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -20,6 +19,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
+	usesound = 'sound/items/screwdriver.ogg'
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
@@ -71,6 +71,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
+	usesound = 'sound/items/wirecutter.ogg'
 	attack_verb = list("pinches", "nips")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
@@ -116,11 +117,14 @@
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
 
-	//blowtorch specific stuff
-	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
-	var/max_fuel = 20 	//The max amount of fuel the welder can hold
-	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
-	var/status = TRUE //When welder is secured on unsecured
+	///Whether or not the blowtorch is running
+	var/welding = 0
+	///The max amount of fuel the welder can hold
+	var/max_fuel = 20
+	///Used to slowly deplete the fuel when the tool is left on
+	var/weld_tick = 0
+	///When welder is secured on unsecured
+	var/status = TRUE
 
 /obj/item/tool/weldingtool/Initialize(mapload)
 	. = ..()
@@ -223,11 +227,14 @@
 		return FALSE
 	return ..()
 
+/obj/item/tool/weldingtool/surgery_tool_check()
+	return welding
+
 ///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
 
-/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 25, datum/callback/extra_checks = CALLBACK(src, PROC_REF(isOn)), user_display = BUSY_ICON_GENERIC)
 	var/list/icons = target.get_weld_spark_icon_and_state()
 	var/mutable_appearance/sparks = mutable_appearance(icons[1], icons[2], WELDING_TOOL_EFFECT_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)
@@ -282,7 +289,7 @@
 		M = loc
 	if(!welding)
 		if(get_fuel() > 0)
-			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
+			playsound(loc, 'sound/items/weldingtool_on.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			welding = TRUE
 			set_light_on(TRUE)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
@@ -298,7 +305,7 @@
 				balloon_alert(M, "no fuel!")
 			return
 	else
-		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		force = 3
 		damtype = BRUTE
 		welding = FALSE

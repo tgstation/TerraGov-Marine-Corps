@@ -576,7 +576,19 @@
 
 ///Hits a mob in the way
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
-	bumped_mob.attackby(src, cutter)
+	if((bumped_mob.mob_size > MOB_SIZE_HUMAN) || (bumped_mob.mob_size == MOB_SIZE_HUMAN && prob(25)))
+		bumped_mob.attackby(src, cutter)
+		return
+
+	//mech sword is less reliable at instantly obliterating humans
+	playsound(get_turf(bumped_mob), SFX_SWING_HIT, 50, null, 9)
+
+	var/knock_dir = pick(LeftAndRightOfDir(get_dir(chassis, bumped_mob), always_diag = TRUE))
+	bumped_mob.knockback(chassis, 3, 3, knock_dir)
+
+	bumped_mob.ParalyzeNoChain(modify_by_armor(1 SECONDS, MELEE, def_zone = BODY_ZONE_CHEST) * 100 / bumped_mob.maxHealth)
+	bumped_mob.adjust_stagger(1 SECONDS)
+	bumped_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, FALSE, FALSE, TRUE, 0, cutter)
 
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)

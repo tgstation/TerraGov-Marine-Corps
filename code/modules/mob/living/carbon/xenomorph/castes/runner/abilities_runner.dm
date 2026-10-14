@@ -514,13 +514,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_MELTER,
 	)
+	paralyze_duration = 0.5 SECONDS
 	charge_range = 7
 	do_acid_spray_act = FALSE
-	stun_duration = 0.5 SECONDS
-
-/datum/action/ability/activable/xeno/charge/acid_dash/melter/New(Target)
-	. = ..()
-	desc = "Instantly dash for [charge_range] tiles, tackling the first marine in your path. If you manage to tackle someone, gain another cast of the ability."
 
 /datum/action/ability/activable/xeno/melter_shroud
 	name = "Melter Shroud"

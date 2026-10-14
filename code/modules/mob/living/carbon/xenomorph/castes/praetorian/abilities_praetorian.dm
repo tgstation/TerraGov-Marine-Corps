@@ -29,7 +29,7 @@
 
 	succeed_activate()
 
-	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1)
+	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] spews forth a wide cone of acid!"), \
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 ///Start the acid cone spray in the correct direction
 /datum/action/ability/activable/xeno/spray_acid/cone/proc/start_acid_spray_cone(turf/T, range)
-	var/facing = angle_to_dir(Get_Angle(owner, T))
+	var/facing = angle2dir(Get_Angle(owner, T))
 	owner.setDir(facing)
 	switch(facing)
 		if(NORTH, SOUTH, EAST, WEST)
@@ -585,13 +585,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	INVOKE_ASYNC(living_source, TYPE_PROC_REF(/mob, emote), "scream")
 	living_source.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * wallbang_multiplier, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = owner)
 
+#define OPPRESSOR_ADBDUCT_RANGE 7
+
 /datum/action/ability/activable/xeno/oppressor/abduct
 	name = "Abduct"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
 	)
@@ -616,8 +618,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
-	var/distance_to_target = get_dist(xeno_owner, A)
-	if(!distance_to_target)
+	if(A.z != xeno_owner.z)
+		return FALSE
+	var/distance = get_dist(xeno_owner, A)
+	if(distance > 9) //offscreen funny
+		return FALSE
+	if(distance == 0 || distance == -1 )
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too short")
 		return FALSE
@@ -629,29 +635,39 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/oppressor/abduct/use_ability(atom/A)
 	var/turf/targetted_turf = get_turf(A)
-	while(get_dist(xeno_owner, targetted_turf) > 7) // Allows targetting beyond maximum range to automatically do maximum range.
-		targetted_turf = get_step(targetted_turf, REVERSE_DIR(get_dir(xeno_owner, targetted_turf)))
+	var/turf/xeno_turf = get_turf(xeno_owner)
 
 	xeno_owner.face_atom(targetted_turf)
-	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
-		add_cooldown(1 SECONDS)
+	if(!do_after(owner, 0.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+		add_cooldown(cooldown_duration * 0.5)
 		return
 	xeno_owner.face_atom(targetted_turf)
-	turf_line = get_traversal_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
+	turf_line = get_traversal_line(get_step(xeno_turf, get_cardinal_dir(xeno_turf, targetted_turf)), check_path(xeno_turf, targetted_turf, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
-	for(var/turf/turf_from_line AS in turf_line)
+	for(var/i = 1 to length(turf_line))
+		var/turf/turf_from_line = turf_line[i]
+		if(get_dist(xeno_turf, turf_from_line) > OPPRESSOR_ADBDUCT_RANGE)
+			turf_line.Cut(i)
+			break
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
+
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.7 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
-	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
+	var/pull_time = 0.5 SECONDS + get_dist(xeno_owner, turf_line[length(turf_line)])
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), pull_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+	RegisterSignals(xeno_owner, list(
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_STAGGERED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		COMSIG_MOVABLE_MOVED,
+		), PROC_REF(failed_pull))
 
 /datum/action/ability/activable/xeno/oppressor/abduct/on_post_throw(datum/source)
 	. = ..()
 	var/mob/living/carbon/human/human_source = source
 	human_source.Paralyze(0.2 SECONDS * last_known_multiplier)
 	human_source.add_slowdown(0.6 * last_known_multiplier)
-	human_source.adjust_stagger(3 SECONDS * last_known_multiplier)
+	human_source.adjust_stagger(1 SECONDS * last_known_multiplier)
 	REMOVE_TRAIT(human_source, TRAIT_IMMOBILE, THROW_TRAIT)
 	human_source.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
 
@@ -679,7 +695,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
 			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
 		xeno_owner.add_slowdown(0.3 * last_known_multiplier)
-		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
+		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
 	cleanup_variables()
@@ -687,17 +703,23 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /// Ends the ability by punishing the owner.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/failed_pull()
 	SIGNAL_HANDLER
-	xeno_owner.Knockdown(1 SECONDS)
-	xeno_owner.add_slowdown(0.9)
 	succeed_activate()
 	add_cooldown()
 	cleanup_variables()
+	xeno_owner.Knockdown(1 SECONDS)
+	xeno_owner.add_slowdown(0.9)
 
 /// Cleans up any unneeded variables, signals, and undoes any traits that the ability gave.
 /datum/action/ability/activable/xeno/oppressor/abduct/proc/cleanup_variables()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
+	UnregisterSignal(xeno_owner, list(
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		SIGNAL_ADDTRAIT(TRAIT_STAGGERED),
+		SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED),
+		COMSIG_MOVABLE_MOVED,
+		))
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
 	ability_timer = null
@@ -711,6 +733,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /obj/effect/xeno/abduct_warning/Initialize(mapload)
 	. = ..()
 	notify_ai_hazard()
+
+#undef OPPRESSOR_ADBDUCT_RANGE
 
 // ***************************************
 // *********** Dislocate
@@ -758,7 +782,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	carbon_target.Shake(duration = 0.1 SECONDS)
 	xeno_owner.do_attack_animation(carbon_target)
 	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
-	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
+	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
 	RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
@@ -939,23 +963,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/oppressor/tail_lash/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
-
-	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+	for(var/turf/affected_tile AS in get_forward_square(xeno_owner, 1, 2))
 		affected_tile.Shake(duration = 0.1 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)

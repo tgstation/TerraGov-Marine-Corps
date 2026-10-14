@@ -30,6 +30,9 @@
 
 	. += span_notice("Use to inject into yourself. Unique Action to configure injection amount.")
 
+/obj/item/reagent_containers/hypospray/is_refuelable()
+	return FALSE
+
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
@@ -311,7 +314,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites
 	name = "nanomachines autoinjector"
-	desc = "An auto-injector loaded with medical nanites. A potent new method of healing that that reproduces using a subject's blood and has a brief but potentially dangerous activation period! Beware of Neurotoxin!"
+	desc = "An auto-injector loaded with medical nanites. You shouldn't use these unless you know what you are doing! Medical nanites will rapidly purge other healing chemicals, and drain the users blood to reproduce and heal them."
 	icon_state = "autoinjector-6"
 	amount_per_transfer_from_this = 1
 	volume = 1

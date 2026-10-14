@@ -79,26 +79,15 @@
 	attack(target, user)
 
 /obj/item/weapon/ai_use(mob/living/target, mob/living/user)
-	if(!(item_flags & TWOHANDED))
-		return
-	if(item_flags & WIELDED)
-		return
-	wield(user)
-	return TRUE
-
-/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
-	if(!active)
-		attack_self(user)
+	if(item_flags & TWOHANDED)
+		if(item_flags & WIELDED)
+			return
+		wield(user)
 		return TRUE
-
-/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		switch_state(null, user)
-		return TRUE
-
-/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		attack_self(user)
+	if(item_flags & ITEM_ACTIVATABLE)
+		if(active)
+			return
+		toggle_active(TRUE, user)
 		return TRUE
 
 /obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
@@ -208,7 +197,7 @@
 		if(!(magazine.type in valid_ammo))
 			continue
 		if(!behavior_datum.try_store_item(magazine))
-			return
+			break
 		ammo_count ++
 	if(!ammo_count)
 		behavior_datum.try_speak("No ammo for me here!")
@@ -403,6 +392,8 @@
 	//todo:walkover stuff?
 	if(user.can_jump() && is_jumpable(user))
 		return AI_OBSTACLE_JUMP
+	if(try_climb(user))
+		return AI_OBSTACLE_RESOLVED
 	if(faction == user.faction) //don't break our shit
 		return AI_OBSTACLE_FRIENDLY
 
@@ -414,17 +405,6 @@
 		return AI_OBSTACLE_ATTACK
 	if(obj_flags & CAN_BE_HIT)
 		return AI_OBSTACLE_ATTACK
-
-/obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(. == AI_OBSTACLE_IGNORED)
-		return
-	if(. == AI_OBSTACLE_JUMP)
-		return //jumping is always best
-	if(!can_climb(user))
-		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
-	return AI_OBSTACLE_RESOLVED
 
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
 	if(!can_interact(user) || !user.dextrous)

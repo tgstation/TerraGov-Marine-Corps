@@ -45,7 +45,7 @@
 	attack_speed = 16
 
 /obj/item/weapon/twohanded/glaive/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return ..()
 
 /obj/item/weapon/twohanded/glaive/damaged
@@ -55,7 +55,7 @@
 	force_activated = 28
 
 /obj/item/weapon/twohanded/sledgehammer
-	name = "sledge hammer"
+	name = "sledgehammer"
 	desc = "A heavy hammer that's good at smashing rocks, but would probably make a good weapon considering the circumstances."
 	icon_state = "sledgehammer"
 	worn_icon_state = "sledgehammer"
@@ -66,7 +66,7 @@
 	force_activated = 95
 	penetration = 10
 	attack_speed = 20
-	attack_verb = list("attacks", "wallops", "smashes", "shatters", "bashes")
+	attack_verb = list("attacks", "wallops", "smashes", "shatters", "bashes", "bludgeons", "hammers", "beats", "strikes")
 
 /obj/item/weapon/twohanded/sledgehammer/wield(mob/user)
 	. = ..()

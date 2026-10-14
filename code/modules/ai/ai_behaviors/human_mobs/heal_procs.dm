@@ -22,18 +22,21 @@
 	for(var/dam_type in dam_list)
 		if(dam_list[dam_type] <= 10)
 			if(dam_type == TOX)
-				address_toxins(patient)
+				. = address_toxins(patient)
 			continue
 		if(heal_by_type(patient, dam_type))
 			. = TRUE
 			continue
 
-///Deals with toxins in the patient if required
+/**
+ * Specifically deals with toxins in the patient
+ * If any toxin is above the threshold, we treat
+ */
 /datum/ai_behavior/human/proc/address_toxins(mob/living/carbon/human/patient)
 	for(var/datum/reagent/toxin/tox in patient.reagents.reagent_list)
 		if(tox.volume < 10) //arbitrary magic number, but there's no simple way to determine an appropriate threshold
 			continue
-		heal_by_type(patient, TOX)
+		. = heal_by_type(patient, TOX)
 		return
 
 ///Heal other ailments

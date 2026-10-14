@@ -29,7 +29,7 @@
 /datum/action/ability/emit_gas/action_activate()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	var/turf/owner_turf = get_turf(owner)
-	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	smoke.set_up(smokeradius, owner_turf, smoke_duration)
 	smoke.start()
 	toggle_particles(FALSE)
@@ -151,12 +151,13 @@
 	if(living_target.faction == owner.faction) //we leap past friendlies
 		return
 
-	if(ishuman(living_target) && (angle_to_dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle2dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			var/mob/living/living_owner = owner
 			living_owner.Paralyze(stun_duration)
 			living_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()
@@ -164,7 +165,7 @@
 ///Triggers the effect of a successful pounce on the target
 /datum/action/ability/activable/pounce/proc/trigger_pounce_effect(mob/living/living_target)
 	var/mob/living/living_owner = owner
-	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	living_owner.Immobilize(self_immobilize_duration)
 	living_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)
@@ -208,7 +209,7 @@
 	var/turf/own_turf = get_turf(owner)
 	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/neuro(own_turf)
 	smoke.set_up(3, own_turf, 4)
-	playsound(own_turf, 'sound/effects/blobattack.ogg', 25)
+	playsound(own_turf, 'sound/effects/blobattack.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	smoke.start()
 
 	owner.record_war_crime()

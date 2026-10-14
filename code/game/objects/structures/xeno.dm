@@ -20,11 +20,6 @@
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
-/// Destroy the alien effect when the weed it was on is destroyed
-/obj/alien/proc/weed_removed()
-	SIGNAL_HANDLER
-	obj_destruction(damage_flag = "melee")
-
 /obj/alien/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -57,6 +52,43 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		take_damage(rand(2, 20) * 0.1, BURN, ACID)
 
+/// Destroy the alien effect when the weed it was on is destroyed
+/obj/alien/proc/weed_removed()
+	SIGNAL_HANDLER
+	obj_destruction(damage_flag = "melee")
+
+///special behavior when atoms enter our loc
+/obj/alien/proc/on_loc_entered(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	return
+
+///Slows down non xeno crossers
+/obj/alien/proc/slow_down_crosser(atom/movable/crosser, slow_amount = 1)
+	if(isxeno(crosser))
+		return
+	if(crosser.throwing || crosser.buckled)
+		return
+	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
+		return
+	//we don't want to slowdown the crosser if there is something on top of the resin
+	for(var/obj/object in orange(0, crosser))
+		if(!object.density)
+			continue
+		if(object == crosser)
+			continue
+		return
+
+	if(ismecha(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
+		return
+	if(!ishuman(crosser))
+		return
+	var/mob/living/carbon/human/victim = crosser
+	if(victim.lying_angle)
+		return
+	victim.next_move_slowdown += slow_amount
+
 /*
 * Resin
 */
@@ -83,6 +115,7 @@
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
+	///slows things by this much on cross
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
 	var/refundable = TRUE
@@ -92,35 +125,12 @@
 /obj/alien/resin/sticky/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
+		COMSIG_ATOM_ENTERED = PROC_REF(on_loc_entered)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	SIGNAL_HANDLER
-	if(crosser.throwing || crosser.buckled)
-		return
-
-	if(issealedvehicle(crosser))
-		var/obj/vehicle/sealed/vehicle = crosser
-		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
-		return
-
-	if(!ishuman(crosser))
-		return
-
-	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
-		return
-
-	var/mob/living/carbon/human/victim = crosser
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += slow_amt
+/obj/alien/resin/sticky/on_loc_entered(datum/source, atom/movable/crosser)
+	slow_down_crosser(crosser, slow_amt)
 
 /obj/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -130,7 +140,7 @@
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE) //SFX
 		deconstruct(TRUE)
 		return
 
@@ -217,7 +227,7 @@
 		return TRUE
 
 	src.balloon_alert(xeno_attacker, "destroying...")
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(xeno_attacker, "destroyed")
 		qdel(src)
@@ -438,7 +448,7 @@
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
+		playsound(src, "sound/bullets/acid_impact1.ogg", 10, FALSE, SUPER_SHORT_SOUND_RANGE)
 	qdel(src)
 
 ////////////////

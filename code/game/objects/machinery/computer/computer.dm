@@ -118,16 +118,20 @@
 	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
+///Breaks the computer
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	density = FALSE
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
+///Unbreaks the computer
 /obj/machinery/computer/proc/repair()
 	machine_stat &= ~BROKEN
 	density = TRUE
 	durability = initial(durability)
-	update_icon()
+	set_ai_block()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
@@ -144,7 +148,8 @@
 		to_chat(user, span_notice("The [src] doesn't need welding!"))
 		return FALSE
 
-	if(!welder.tool_use_check(user, 2))
+	var/fuel_use = 2
+	if(!welder.tool_use_check(user, fuel_use))
 		return FALSE
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
@@ -156,21 +161,15 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, fuel_use, user_display = BUSY_ICON_BUILD))
 		return
-
-	if(!welder.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
-		return TRUE
 
 	user.visible_message(span_notice("[user] repairs [src]'s damage."),
 	span_notice("You repair [src]."))
 	machine_stat &= ~DISABLED //Remove the disabled flag
 	durability = initial(durability) //Reset its durability to its initial value
 	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -185,9 +184,7 @@
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)
@@ -223,7 +220,7 @@
 	if(.)
 		return
 	if(ishuman(usr))
-		pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1))
+		playsound(src, pick(list('sound/machines/computer_typing1.ogg', 'sound/machines/computer_typing2.ogg', 'sound/machines/computer_typing3.ogg')), 5, TRUE, SUPPRESSED_SOUND_RANGE)
 
 ///So Xenos can smash computers out of the way without actually breaking them
 /obj/machinery/computer/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -248,3 +245,18 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFxeno_attacker
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFxeno_attacker
 	Shake(duration = 0.5 SECONDS)
+
+/obj/machinery/computer/set_ai_block()
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+	if(density && !QDELETED(src) && (resistance_flags & INDESTRUCTIBLE))
+		current_turf.atom_flags |= AI_BLOCKED
+		return
+	current_turf.atom_flags &= ~AI_BLOCKED
+
+/obj/machinery/computer/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!isxeno(user) || resistance_flags & INDESTRUCTIBLE)
+		return ..()
+	var/mob/living/carbon/xenomorph/xeno_attacker = user
+	attack_alien(xeno_attacker)

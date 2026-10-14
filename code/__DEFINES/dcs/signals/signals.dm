@@ -145,6 +145,9 @@
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
+///Sent when a respawn wave triggers
+#define COMSIG_GLOB_HVH_RESPAWN_WAVE "!hvh_respawn_wave"
+
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
@@ -161,7 +164,10 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
-#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!ZOMBIE_TUNNEL_DESTROYED"
+/// From [/obj/effect/ai_node/spawner/zombie/Destroy()]
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!zombie_tunnel_destroyed"
+/// From [/obj/machinery/computer/code_generator/nuke/complete_segment()]: (/obj/machinery/computer/code_generator/nuke/generating_computer)
+#define COMSIG_GLOB_DISK_SEGMENT_COMPLETED "!disk_segment_completed"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -426,6 +432,12 @@
 ///Movable deployed via a patrol point
 #define COMSIG_MOVABLE_PATROL_DEPLOYED "movable_patrol_deployed"
 
+///from /atom/can_climb()
+#define COMSIG_ATOM_CHECK_CLIMBABLE "atom_check_climbable"
+	#define COMPONENT_MOVABLE_CAN_CLIMB (1<<0)
+///from /atom/try_climb()
+#define COMSIG_ATOM_TRY_CLIMBABLE "atom_try_climbable"
+
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
@@ -474,6 +486,9 @@
 #define COMSIG_UNMANNED_COORDINATES "unmanned_coordinates"
 
 #define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
+
+/// from /datum/storage/proc/handle_item_insertion when an item is stored in src
+#define COMSIG_ITEM_STORED "item_stored"
 
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
@@ -1021,3 +1036,12 @@
 
 /// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
 #define COMSIG_HEALTH_SCAN_DATA "health_scan_data"
+
+///Gamemode vote finished
+#define COMSIG_GAMEMODE_VOTE_RESULT "gamemode_vote_result"
+///shipmap vote finished
+#define COMSIG_SHIPMAP_VOTE_RESULT "shipmap_vote_result"
+///groundmap vote finished
+#define COMSIG_GROUNDMAP_VOTE_RESULT "groundmap_vote_result"
+///vote cancelled
+#define COMSIG_VOTE_CANCELLED "vote_cancelled"

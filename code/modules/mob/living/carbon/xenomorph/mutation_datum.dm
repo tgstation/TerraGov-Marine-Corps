@@ -131,3 +131,17 @@
 	if(!disk_color || (disk_color in completed_disk_colors))
 		return
 	completed_disk_colors += disk_color
+
+/mob/living/carbon/xenomorph/verb/open_mutation_menu()
+	set name = "Mutate"
+	set desc = "Opens the mutation selector menu."
+	set category = "Alien"
+
+	if((!(SSticker.mode?.round_type_flags & MODE_MUTATIONS_OBTAINABLE) && !HAS_TRAIT(src, TRAIT_VALHALLA_XENO)))
+		to_chat(src, span_warning("Mutations are disabled in this gamemode."))
+		return
+	if(!(xeno_caste.caste_flags & CASTE_MUTATIONS_ALLOWED))
+		to_chat(src, span_warning("Your caste cannot get mutations."))
+		return
+	SStgui.close_user_uis(src, GLOB.mutation_selector)
+	GLOB.mutation_selector.ui_interact(src)

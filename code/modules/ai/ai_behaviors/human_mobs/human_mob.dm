@@ -169,7 +169,8 @@
 
 /datum/ai_behavior/human/scheduled_move()
 	if(human_ai_state_flags & HUMAN_AI_BUSY_ACTION)
-		registered_for_move = FALSE
+		deltimer(next_move_timer)
+		next_move_timer = null
 		return
 	return ..()
 
@@ -239,8 +240,8 @@
 	remove_atom_of_interest(old_target)
 
 	if(QDELETED(old_target)) //if they're deleted we need to ensure engineering and medical stuff is cleaned up properly
-		if(human_ai_state_flags & HUMAN_AI_HEALING)
-			on_heal_end(old_target)
+		if(human_ai_state_flags & HUMAN_AI_HEALING_OTHER)
+			on_heal_other_end(old_target)
 		else
 			remove_from_heal_list(old_target)
 		if(human_ai_state_flags & HUMAN_AI_BUILDING)
@@ -258,8 +259,8 @@
 			remove_from_heal_list(old_target)
 	else
 		remove_from_heal_list(old_target)
-	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
-		on_heal_end(old_target)
+	if((human_ai_state_flags & HUMAN_AI_HEALING_OTHER) && !revive_target)
+		on_heal_other_end(old_target)
 	return ..()
 
 ///Sets run move intent if able

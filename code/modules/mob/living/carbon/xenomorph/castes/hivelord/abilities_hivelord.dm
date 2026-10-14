@@ -16,7 +16,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
 	ability_cost = 750
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 
 /datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -236,7 +236,7 @@
 
 	succeed_activate()
 
-	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
@@ -252,6 +252,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+
+/datum/action/ability/xeno_action/create_jelly/encounter
+	keybinding_signals = null
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -341,8 +344,8 @@
 	owner.visible_message(span_xenodanger("\the [owner] infuses [target] with mysterious energy!"), \
 	span_xenodanger("We empower [target] with our [src]!"))
 
-	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
-	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
+	playsound(target, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
+	playsound(owner, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
 	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
@@ -393,7 +396,7 @@
 	if(!xeno_owner.selected_plant)
 		return FALSE
 
-	playsound(src, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(src, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new xeno_owner.selected_plant(get_turf(owner))
 	add_cooldown()
 	return succeed_activate()
@@ -465,6 +468,6 @@
 /datum/action/ability/xeno_action/place_recovery_pylon/action_activate()
 	var/obj/structure/xeno/recovery_pylon/recovery_pylon = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber(), radius, damage_modifier)
 	to_chat(xeno_owner, span_xenonotice("We shape some resin into \a [recovery_pylon]."))
-	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()

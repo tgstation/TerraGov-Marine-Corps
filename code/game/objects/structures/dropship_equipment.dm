@@ -52,10 +52,7 @@
 	if(installed_equipment || attached_clamp.loaded != loaded_equipment)
 		return
 	to_chat(user, span_notice("You install [loaded_equipment] on [src]."))
-	loaded_equipment.forceMove(loc)
-	attached_clamp.loaded = null
-	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
+	attached_clamp.do_unload(loc)
 	installed_equipment = loaded_equipment
 	loaded_equipment.ship_base = src
 
@@ -167,10 +164,10 @@
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -190,6 +187,16 @@
 	var/point_cost = 0
 	///what kind of ammo this uses if any
 	var/ammo_type_used
+
+/obj/structure/dropship_equipment/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/dropship_equipment/Destroy()
 	QDEL_NULL(ammo_equipped)
@@ -475,7 +482,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		console.say("Emitter system recharging. Unable to deploy smoke.")
-		playsound(console, 'sound/machines/buzz-sigh.ogg', 25)
+		playsound(console, 'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
 	pellet_type = new(landing_spot)
@@ -824,7 +831,7 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
+/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir, mob/firer)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, TRUE)
@@ -852,7 +859,7 @@
 	for(var/turf/impact in predicted_dangerous_turfs)
 		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
 
-	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir), ammo_travelling_time)
+	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir, firer), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun

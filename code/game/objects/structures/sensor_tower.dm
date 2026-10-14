@@ -126,7 +126,7 @@
 	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 	mode.sensors_activated += 1
 
-	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	balloon_alert_to_viewers("[src] has finished activation!")
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
@@ -171,6 +171,6 @@
 /obj/structure/sensor_tower/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(activated)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", MINIMAP_LABELS_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", MINIMAP_PRIORITY_LAYER))
 	else
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", MINIMAP_PRIORITY_LAYER))

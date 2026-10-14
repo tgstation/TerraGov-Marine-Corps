@@ -184,7 +184,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "deactivated")
-		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
+		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, FALSE, ADJACENT_SOUND_RANGE)
 
 /**
 	Enable processing and calls out to register signals from the user.
@@ -200,7 +200,7 @@
 	START_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "activated")
-		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
+		playsound(parent,'sound/voice/b18/activate.ogg', 15, FALSE, ADJACENT_SOUND_RANGE)
 
 
 /**
@@ -260,7 +260,7 @@
 	var/pain = inject_chems(pain_chems, wearer, COOLDOWN_CHEM_PAIN, wearer.traumatic_shock, pain_threshold, "Painkiller", "User pain at performance impeding levels. Painkillers")
 
 	if(burns || brute || oxy || tox || pain)
-		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
+		playsound(parent,'sound/items/hypospray.ogg', 25, FALSE, ADJACENT_SOUND_RANGE)
 		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage."))
 
 /**
@@ -270,7 +270,7 @@
 
 	var/obj/item/I = parent // guarenteed by Initialize()
 
-	playsound(I,'sound/effects/refill.ogg', 25, 0, 1)
+	playsound(I,'sound/effects/refill.ogg', 25, FALSE, ADJACENT_SOUND_RANGE)
 
 	var/mob/living/carbon/human/H = I.loc // uncertain
 	if(!istype(H))

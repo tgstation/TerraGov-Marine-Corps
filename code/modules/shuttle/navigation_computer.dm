@@ -416,7 +416,7 @@
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = remote_eye.origin
 
-	playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)
+	playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 	var/list/L = list()
 	for(var/V in SSshuttle.stationary)
@@ -429,18 +429,18 @@
 		if(console.jumpto_ports[S.id])
 			L["([length(L)])[S.name]"] = S
 
-	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
+	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	var/selected = input("Choose location to jump to", "Locations", null) as null|anything in sortList(L)
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
 		return
-	playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+	playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(selected)
 		var/turf/T = get_turf(L[selected])
 		if(T)
-			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE)
+			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			remote_eye.setLoc(T)
 			to_chat(target, span_notice("Jumped to [selected]."))
 			C.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 			C.clear_fullscreen("flash", 3)
 	else
-		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)
+		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)

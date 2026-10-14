@@ -9,7 +9,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
@@ -47,6 +46,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/table/Destroy()
 	update_adjacent(loc) //so neighbouring tables get updated correctly
@@ -109,8 +109,7 @@
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 		span_notice("You start disassembling [src]."))
 
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
@@ -138,7 +137,7 @@
 /obj/structure/table/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
 	if(.)
-		playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	if(user.a_intent == INTENT_HARM)
 		return
@@ -204,8 +203,7 @@
 	usr.visible_message(span_warning("[usr] flips [src]!"),
 	span_warning("You flip [src]!"))
 
-	if(climbable)
-		structure_shaken()
+	structure_shaken()
 
 	flip_cooldown = world.time + 50
 
@@ -295,7 +293,6 @@
 	layer = initial(layer)
 	flipped = FALSE
 	coverage = 10
-	climbable = initial(climbable)
 	atom_flags &= ~ON_BORDER
 	obj_flags ^= BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
@@ -345,7 +342,7 @@
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 /obj/structure/table/wood/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_WOOD] = layer
+	footstep_overrides[FOOTSTEP_WOOD] = get_footstep_layer(layer, plane)
 
 /obj/structure/table/wood/fancy
 	name = "fancy wooden table"
@@ -460,7 +457,7 @@
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] weakens [src]."),
@@ -470,7 +467,7 @@
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
-	if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] welds [src] back together."),
@@ -523,11 +520,10 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	coverage = 20
-	climbable = TRUE
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/Initialize(mapload)
@@ -539,6 +535,7 @@
 		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
@@ -554,7 +551,7 @@
 
 	if(iswrench(I))
 		deconstruct(TRUE)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		I.play_tool_sound(src)
 		return
 
 	if(user.a_intent != INTENT_HARM)
