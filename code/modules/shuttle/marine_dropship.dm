@@ -784,8 +784,6 @@
 		if("automation_on")
 			shuttle.automatic_cycle_on = params["automation_on"]
 			if(!shuttle.automatic_cycle_on)
-				shuttle.stop_takeoff_alarm(announce = FALSE, skip_checks = TRUE)
-				COOLDOWN_RESET(shuttle, takeoff_alarm_toggle)
 				deltimer(shuttle.cycle_timer)
 		if("cycle_time_change")
 			shuttle.time_between_cycle = params["cycle_time_change"]
