@@ -172,12 +172,11 @@
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
-	if(!do_after(user, delay_disassembly, NONE, src, BUSY_ICON_BUILD))
-		return TRUE
+	if(!I.use_tool(src, user, delay_disassembly, user_display = BUSY_ICON_BUILD))
+		return
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
 	span_notice("You disassemble [src]."))
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	deconstruct(TRUE)
 	return TRUE
 

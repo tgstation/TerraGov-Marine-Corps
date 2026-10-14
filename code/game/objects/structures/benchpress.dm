@@ -18,7 +18,7 @@
 	update_icon()
 
 /obj/structure/benchpress/wrench_act(mob/living/user, obj/item/tool)
-	tool.play_tool_sound(src)
+	tool.play_tool_sound(src, 100)
 	if(anchored)
 		balloon_alert(user, "unsecured")
 		anchored = FALSE
@@ -31,7 +31,7 @@
 	if(anchored)
 		balloon_alert(user, "unsecure first!")
 		return FALSE
-	tool.play_tool_sound(src)
+	tool.play_tool_sound(src, 100)
 	balloon_alert(user, "deconstructing...")
 	if(!do_after(user, 10 SECONDS, target = src))
 		return FALSE

@@ -148,18 +148,15 @@
 
 	else if(iswelder(I) && (istext(glass) || glass == 1 || !anchored))
 		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			to_chat(user, span_notice("You need more welding fuel."))
+		if(!WT.isOn())
+			to_chat(user, span_notice("turn it on!"))
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(istext(glass))
 			user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
-			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
-			if(!WT.isOn())
-				return
 			to_chat(user, span_notice("You welded the [glass] plating off!"))
 			var/M = text2path("/obj/item/stack/sheet/mineral/[glass]")
 			new M(loc, 2)
@@ -167,21 +164,16 @@
 
 		else if(glass == 1)
 			user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
-			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
-			if(!WT.isOn())
-				return
 			to_chat(user, span_notice("You welded the glass panel out!"))
 			new /obj/item/stack/sheet/glass/reinforced(loc)
 			glass = 0
 
 		else if(!anchored)
 			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
-			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
-				return
-
-			if(!WT.isOn())
+			if(!WT.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return
 
 			to_chat(user, span_notice("You dissasembled the airlock assembly!"))
@@ -189,13 +181,12 @@
 			qdel(src)
 
 	else if(iswrench(I) && state == 0)
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(anchored)
 			user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
 		else
 			user.visible_message("[user] secures the airlock assembly to the floor.", "You start to secure the airlock assembly to the floor.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secured the airlock assembly!"))
@@ -219,10 +210,9 @@
 		to_chat(user, span_notice("You wire the airlock."))
 
 	else if(iswirecutter(I) && state == 1 )
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You cut the airlock wires.!"))
@@ -244,10 +234,9 @@
 		electronics = I
 
 	else if(iscrowbar(I) && state == 2)
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove the electronics from the airlock assembly.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))
@@ -296,10 +285,9 @@
 			glass = "[M]"
 
 	else if(isscrewdriver(I) && state == 2 )
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("Now finishing the airlock."))
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You finish the airlock!"))

@@ -121,7 +121,7 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY))
+		if(!I.use_tool(src, user, 5 SECONDS, 25, null, BUSY_ICON_FRIENDLY))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
@@ -392,9 +392,7 @@
 			if(DROPSHIP_CHAIR_UNBUCKLED)
 				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
 				span_warning("You begin loosening the bolts on \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
@@ -404,9 +402,7 @@
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message(span_warning("[user] begins unfolding \the [src]."),
 				span_warning("You begin unfolding \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
@@ -424,7 +420,7 @@
 
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
-		if(!I.use_tool(src, user, 2 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),

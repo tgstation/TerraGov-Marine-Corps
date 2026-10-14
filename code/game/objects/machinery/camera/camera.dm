@@ -152,7 +152,7 @@
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
-	I.play_tool_sound(src, 25)
+	I.play_tool_sound(src)
 	return TRUE
 
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
@@ -163,7 +163,7 @@
 		deactivate()
 	else
 		reactivate()
-	I.play_tool_sound(src, 25)
+	I.play_tool_sound(src)
 	if(user)
 		visible_message(span_danger("[user] [(camera_flags & CAMERA_SNIPPED) ? "deactivates" : "reactivates"] [src]!"))
 	return TRUE

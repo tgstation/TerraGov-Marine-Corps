@@ -199,7 +199,7 @@
 		if(!buildstacktype)
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		if(dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)
@@ -611,6 +611,10 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "med_0"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/beacon_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/beacon_right.dmi',
+	)
 	var/planted = FALSE
 	var/locked = FALSE
 	var/list/obj/item/roller/medevac/linked_beds = list()
