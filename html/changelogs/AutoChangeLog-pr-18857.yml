@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed an issue with ghosting out of mobs creating incorrect references in the important_recursive_contents list"
