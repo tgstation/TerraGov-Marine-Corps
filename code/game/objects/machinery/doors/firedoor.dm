@@ -210,11 +210,8 @@
 
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
-		if(!W.remove_fuel(0, user))
-			return
 
-		balloon_alert_to_viewers("[blocked ? "unwelding" : "welding"]...")
-		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+		if(!I.use_tool(src, user, 3 SECONDS))
 			balloon_alert_to_viewers("interrupted!")
 			return
 
@@ -222,7 +219,6 @@
 		user.visible_message(span_alert("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		span_notice("You [blocked ? "weld" : "unweld"] \the [src] with \the [W]."),\
 		span_hear("You hear something being welded."))
-		playsound(src, 'sound/items/welder.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		update_icon()
 
 	else if(blocked)

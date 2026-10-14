@@ -56,7 +56,7 @@
 				icon_state = "box_1"
 
 			if(iswrench(I))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+				I.play_tool_sound(src)
 				to_chat(user, span_notice("You dismantle the frame"))
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
@@ -82,7 +82,7 @@
 				to_chat(user, desc)
 
 			if(iswirecutter(I))
-				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+				I.play_tool_sound(src)
 				to_chat(user, span_notice("You remove the cables."))
 				state = 1
 				icon_state = "box_0"
@@ -91,7 +91,7 @@
 
 		if(3)
 			if(iscrowbar(I))
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+				I.play_tool_sound(src)
 				state = 2
 				circuit.forceMove(loc)
 				circuit = null
@@ -115,7 +115,7 @@
 						break
 
 				if(component_check)
-					playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+					I.play_tool_sound(src)
 					var/obj/machinery/new_machine = new circuit.build_path(loc)
 					new_machine.component_parts.Cut()
 					circuit.construct(new_machine)

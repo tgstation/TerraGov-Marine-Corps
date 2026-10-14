@@ -238,53 +238,52 @@
 			else
 				density = TRUE // We don't want disposal bins or outlets to go density 0
 			to_chat(user, "You attach the [nicetype] to the underfloor.")
-		playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		update()
 
 	else if(iswelder(I))
-		if(anchored)
-			var/obj/item/tool/weldingtool/W = I
-			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-				to_chat(user, "Welding the [nicetype] in place.")
-				if(do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-					to_chat(user, "The [nicetype] has been welded in place!")
-					update() // TODO: Make this neat
-					if(ispipe) // Pipe
-
-						var/pipetype = dpipetype()
-						var/obj/structure/disposalpipe/P = new pipetype(src.loc)
-						P.base_icon_state = base_state
-						P.setDir(dir)
-						P.dpdir = dpdir
-						P.updateicon()
-
-						//Needs some special treatment ;)
-						if(ptype==9 || ptype==10)
-							var/obj/structure/disposalpipe/sortjunction/SortP = P
-							SortP.updatedir()
-
-					else if(ptype==6) // Disposal bin
-						var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
-						P.mode = 0 // start with pump off
-
-					else if(ptype==7) // Disposal outlet
-
-						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
-						P.setDir(dir)
-						var/obj/structure/disposalpipe/trunk/Trunk = CP
-						Trunk.set_linked(P)
-
-					else if(ptype==8) // Disposal outlet
-
-						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
-						P.setDir(dir)
-
-					qdel(src)
-					return
-			else
-				to_chat(user, "You need more welding fuel to complete this task.")
-				return
-		else
+		if(!anchored)
 			to_chat(user, "You need to attach it to the plating first!")
 			return
+		var/obj/item/tool/weldingtool/W = I
+		if(!W.isOn())
+			to_chat(user, "Welder not on")
+			return
+
+		to_chat(user, "Welding the [nicetype] in place.")
+		if(!W.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
+			return FALSE
+
+		to_chat(user, "The [nicetype] has been welded in place!")
+		update() // TODO: Make this neat
+		if(ispipe) // Pipe
+
+			var/pipetype = dpipetype()
+			var/obj/structure/disposalpipe/P = new pipetype(src.loc)
+			P.base_icon_state = base_state
+			P.setDir(dir)
+			P.dpdir = dpdir
+			P.updateicon()
+
+			//Needs some special treatment ;)
+			if(ptype==9 || ptype==10)
+				var/obj/structure/disposalpipe/sortjunction/SortP = P
+				SortP.updatedir()
+
+		else if(ptype==6) // Disposal bin
+			var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
+			P.mode = 0 // start with pump off
+
+		else if(ptype==7) // Disposal outlet
+
+			var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
+			P.setDir(dir)
+			var/obj/structure/disposalpipe/trunk/Trunk = CP
+			Trunk.set_linked(P)
+
+		else if(ptype==8) // Disposal outlet
+
+			var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
+			P.setDir(dir)
+
+		qdel(src)

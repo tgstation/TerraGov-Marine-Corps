@@ -258,7 +258,7 @@
 		return FALSE
 
 	if(opened)
-		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+		if(!welder.use_tool(src, user, 2 SECONDS, 50))
 			balloon_alert(user, "not enough fuel!")
 			return TRUE
 		if(drop_material)
@@ -267,7 +267,7 @@
 		qdel(src)
 		return TRUE
 
-	if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+	if(!welder.use_tool(src, user, 2 SECONDS, 50))
 		balloon_alert(user, "not enough fuel!")
 		return TRUE
 	welded = !welded
