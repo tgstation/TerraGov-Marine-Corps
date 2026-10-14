@@ -324,6 +324,13 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		kill_hugger()
 		return FALSE
 
+	if(isxeno(loc))
+		return TRUE
+	if(ishuman(loc))
+		var/mob/living/carbon/human/human_carrier = loc
+		if(human_carrier.wear_mask == src)
+			return TRUE
+
 	if(isturf(loc))
 		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
@@ -336,10 +343,9 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
-		kill_hugger()
-		return FALSE
 
-	return TRUE
+	kill_hugger()
+	return FALSE
 
 /obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
 	if(iscarbon(AM))
