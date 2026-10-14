@@ -10,5 +10,6 @@
 GLOBAL_LIST_EMPTY(vending_records)
 GLOBAL_LIST_EMPTY(vending_hidden_records)
 GLOBAL_LIST_EMPTY(vending_coin_records)
-/// Assoc lazy list of vendor types that have had seasonals handled
-GLOBAL_LIST(seasonal_shared_vendors)
+/// List of vending machine types that have had seasonal items
+/// inserted in [/obj/machinery/vending/proc/on_persistence_init]
+GLOBAL_LIST_EMPTY(shared_vendors_with_late_loaded_seasonals)

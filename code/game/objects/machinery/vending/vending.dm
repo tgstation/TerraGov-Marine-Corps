@@ -201,10 +201,11 @@
 
 	if(length(seasonal_items))
 		if(!SSpersistence.initialized)
+			// SSpersistence doesn't exist for maploaded vendors, but we can wait for it easily enough
 			RegisterSignal(SSpersistence, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(on_persistence_init))
 		else
-			for(var/season in seasonal_items)
-				products[seasonal_items[season]] += SSpersistence.season_items[season]
+			for(var/season_key, season_name in seasonal_items)
+				products[season_name] += SSpersistence.season_items[season_key]
 			seasonal_items = null
 
 	if(isshared)
@@ -308,16 +309,14 @@
 		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category, product_max_capacity = max_capacities[entry])
 		recordlist += record
 
-/// After `SSpersistence` is initialized and seasonal items are set up on it,
-/// adds additional items according to the seasonal items under `SSpersistence`
-/obj/machinery/vending/proc/on_persistence_init(datum/controller/subsystem/persistence/source)
+/// Because Persistence is only initialized after Atoms, maploaded vendors
+/// must wait for Persistence to initialize to add additional seasonal items.
+/obj/machinery/vending/proc/on_persistence_init(datum/controller/subsystem/persistence/_source)
 	SIGNAL_HANDLER
 	UnregisterSignal(SSpersistence, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
-	// getting relevant seasonal items from SSpersistence
 	var/list/compiled_seasonal_items = list()
-	for(var/season_key in seasonal_items)
-		var/season_name = seasonal_items[season_key]
+	for(var/season_key, season_name in seasonal_items)
 		compiled_seasonal_items[season_name] += SSpersistence.season_items[season_key]
 
 	seasonal_items = null
@@ -326,9 +325,12 @@
 		build_inventory(compiled_seasonal_items, CAT_NORMAL)
 		return
 
-	if(LAZYACCESS(GLOB.seasonal_shared_vendors, type))
+	// fascinating. but this is the best I've had in mind, at any point,
+	// for preventing shared vendors from having duplicate seasonal items
+	if(GLOB.shared_vendors_with_late_loaded_seasonals.Find(type))
 		return
-	LAZYSET(GLOB.seasonal_shared_vendors, type, TRUE)
+
+	GLOB.shared_vendors_with_late_loaded_seasonals |= type
 	build_inventory(compiled_seasonal_items, CAT_NORMAL)
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
