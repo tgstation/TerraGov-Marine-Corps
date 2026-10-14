@@ -95,8 +95,7 @@
 
 	balloon_alert_to_viewers("removing armor plates...")
 
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 
 	balloon_alert_to_viewers("removed armor plates")

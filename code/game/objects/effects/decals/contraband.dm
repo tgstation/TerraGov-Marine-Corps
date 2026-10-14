@@ -69,7 +69,7 @@
 	if(.)
 		return
 	if(iswirecutter(I))
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		I.play_tool_sound(src)
 		if(ruined)
 			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)

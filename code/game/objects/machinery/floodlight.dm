@@ -120,6 +120,8 @@
 		set_light(0)
 	playsound(src,'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
 	update_icon()
+
+/obj/machinery/deployable/floodlight/attack_hand(mob/living/user)
 	turn_light(user, !light_on)
 
 /obj/machinery/deployable/floodlight/update_icon_state()

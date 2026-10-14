@@ -86,3 +86,23 @@
       display the nuke war ground map flavour text.
   - qol: Mobs shake slightly when a thrown item misses them, in the same way that
       bullet misses do
+2026-10-14:
+  Lewdcifer:
+  - bugfix: Fixed an issue caused by the latest Behemoth rework that made it so that
+      the Conqueror's Domination tile warning would no longer appear.
+  Lumipharon:
+  - imageadd: added mob sprites for nuke disks and beacons
+  - bugfix: fixed an issue with ghosting out of mobs creating incorrect references
+      in the important_recursive_contents list
+  - balance: Genghis charges are significantly cheaper
+  - imageadd: added inhand sprites for defibs, splints and kits
+  - bugfix: Ammo boxes lose acid on pickup like other items
+  - bugfix: fixed deployable floodlights not working
+  - bugfix: fixed projectiles hitting or ignoring border objects like windows incorrectly
+  - qol: Cinematics actually cover the entire gamescreen
+  - bugfix: Face huggers can no longer survive indefinitely when carried by humans,
+      other than on their face
+  - bugfix: fixed a couple of instances of welders using fuel when they shouldn't
+  - code_imp: tools use the correct use_tool() and play_tool_sound() procs
+  mudzbe:
+  - balance: Increase xeno autobalance buff on zcrash

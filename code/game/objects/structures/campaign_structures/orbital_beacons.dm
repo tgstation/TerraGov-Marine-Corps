@@ -24,6 +24,10 @@
 	name = "orbital beacon"
 	desc = "A bulky device that is used to provide precision guidance to powerful orbital weapon systems."
 	icon_state = "motion_4"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/beacon_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/beacon_right.dmi',
+	)
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS

@@ -141,10 +141,9 @@
 		return TRUE
 
 	else if(operating == -1 && iscrowbar(I))
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return TRUE
 
 		to_chat(user, span_notice("You removed the windoor electronics!"))

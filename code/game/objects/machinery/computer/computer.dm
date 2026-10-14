@@ -148,7 +148,8 @@
 		to_chat(user, span_notice("The [src] doesn't need welding!"))
 		return FALSE
 
-	if(!welder.tool_use_check(user, 2))
+	var/fuel_use = 2
+	if(!welder.tool_use_check(user, fuel_use))
 		return FALSE
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
@@ -160,21 +161,15 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
-	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(!I.use_tool(src, user, 5 SECONDS, fuel_use, user_display = BUSY_ICON_BUILD))
 		return
-
-	if(!welder.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
-		return TRUE
 
 	user.visible_message(span_notice("[user] repairs [src]'s damage."),
 	span_notice("You repair [src]."))
 	machine_stat &= ~DISABLED //Remove the disabled flag
 	durability = initial(durability) //Reset its durability to its initial value
 	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -189,9 +184,7 @@
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		var/obj/structure/computerframe/A = new(loc)
