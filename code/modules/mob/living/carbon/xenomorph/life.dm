@@ -29,7 +29,7 @@
 	handle_living_health_updates(seconds_per_tick)
 	handle_living_plasma_updates(seconds_per_tick)
 	update_action_button_icons()
-	update_icons(FALSE)
+	update_icons(FALSE) //todo: ideally we don't call this on life
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates(seconds_per_tick)
 	if(health < 0)

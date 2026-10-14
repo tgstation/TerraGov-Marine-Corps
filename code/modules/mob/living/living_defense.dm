@@ -165,7 +165,7 @@
 	var/acid_protection = max(1 - get_soft_acid_protection(), 0)
 	var/acid_hard_protection = get_hard_acid_protection()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
-		ExtinguishMob()
+		extinguish_mob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(15 * bio_protection)
 		to_chat(src, span_danger("It feels as if you've been dumped into an open fire!"))

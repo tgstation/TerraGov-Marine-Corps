@@ -15,7 +15,8 @@
 	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
-			if(is_on_fire() && human_user != src) //todo: does this effect melting fire? //other todo: make this sig based maybe?
+			var/datum/status_effect/stacking/fire/burning = has_status_effect(STATUS_EFFECT_BURNING)
+			if(burning && human_user != src)
 				adjust_burning(-1)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
@@ -25,13 +26,13 @@
 						span_notice("You extinguished the fire on [src]."), null, 5)
 				return TRUE
 
-			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(burning && human_user != src)
+			var/datum/status_effect/stacking/melting_fire/melting_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(melting_fire && human_user != src)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
-				burning.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
-				if(QDELETED(burning))
+				melting_fire.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
+				if(QDELETED(melting_fire))
 					human_user.visible_message(span_danger("[human_user] has successfully extinguished the fire on [src]!"), \
 					span_notice("You extinguished the fire on [src]."), null, 5)
 				return TRUE

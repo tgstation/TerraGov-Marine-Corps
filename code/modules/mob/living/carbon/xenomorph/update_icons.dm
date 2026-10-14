@@ -19,7 +19,7 @@
 	. = ..()
 	update_icons()
 
-/mob/living/carbon/xenomorph/update_icons(state_change = TRUE) //todo: don't do this on fucking lifesdfhsdkjfhkjh
+/mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)

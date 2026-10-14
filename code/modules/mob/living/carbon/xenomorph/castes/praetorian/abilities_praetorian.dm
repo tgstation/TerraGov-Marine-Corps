@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		if(melting_fire)
 			melting_fire_stacks += melting_fire.stacks
-		xeno_owner.ExtinguishMob()
+		xeno_owner.extinguish_mob()
 
 	for (var/mob/living/carbon/human/living_target in inrange)
 		if(living_target.stat == DEAD)
@@ -462,7 +462,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/datum/status_effect/stacking/melting_fire/melting_fire = xeno_owner.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		if(melting_fire)
 			melting_fire_stacks += melting_fire.stacks
-		xeno_owner.ExtinguishMob()
+		xeno_owner.extinguish_mob()
 
 	for (var/mob/living/carbon/human/living_target in inrange)
 		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))

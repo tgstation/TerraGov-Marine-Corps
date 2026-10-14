@@ -252,7 +252,7 @@
 
 	if(isliving(O))
 		var/mob/living/L = O
-		L.ExtinguishMob()
+		L.extinguish_mob()
 		L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
 		to_chat(L, span_warning("You've been drenched in water!"))
 		L.wash()

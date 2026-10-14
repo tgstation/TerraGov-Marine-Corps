@@ -434,7 +434,7 @@
 				if(nearby_human.stat == DEAD || !xeno_owner.Adjacent(nearby_human))
 					continue
 				nearby_human.adjust_burning(xeno_owner.amount_burning())
-			xeno_owner.ExtinguishMob()
+			xeno_owner.extinguish_mob()
 	if(ally_unsunder_multiplier)
 		var/mob/living/carbon/xenomorph/ideal_xenomorph_target
 		for(var/mob/living/carbon/xenomorph/nearby_xenomorph in orange(1, xeno_owner))

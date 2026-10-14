@@ -101,7 +101,7 @@
 	carbon_mob.wash()
 
 	if(carbon_mob.is_on_fire())
-		carbon_mob.ExtinguishMob()
+		carbon_mob.extinguish_mob()
 
 /turf/open/liquid/water/sea
 	name = "water"

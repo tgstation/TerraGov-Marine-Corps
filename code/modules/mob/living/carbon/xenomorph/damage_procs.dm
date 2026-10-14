@@ -1,32 +1,3 @@
-/mob/living/carbon/xenomorph/can_ignite()
-	. = ..()
-	if(!.)
-		return
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return FALSE
-	return TRUE
-
-/mob/living/carbon/xenomorph/on_ignite()
-	for(var/obj/item/clothing/mask/facehugger/hugger in get_held_items())
-		hugger.kill_hugger()
-		dropItemToGround(hugger)
-
-/mob/living/carbon/xenomorph/handle_fire(stacks)
-	. = ..()
-	if(resting)
-		adjust_burning(-1)
-
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) //&& on_fire //Sanity check; have to be on fire to actually take the damage.
-		return
-	apply_damage((stacks + 3), BURN, blocked = FIRE)
-
-/mob/living/carbon/xenomorph/fire_act(burn_level)
-	if(status_flags & GODMODE)
-		return
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	return ..()
-
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
 	var/hard_armor_remaining = get_hard_armor(armor_type, def_zone)
 

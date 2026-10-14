@@ -536,7 +536,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 			continue
 		if(isliving(relevant_atom))
 			var/mob/living/mob_caught = relevant_atom
-			mob_caught.ExtinguishMob()
+			mob_caught.extinguish_mob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, dir)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)

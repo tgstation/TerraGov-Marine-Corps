@@ -282,7 +282,7 @@
 	setCloneLoss(0)
 	setBrainLoss(0)
 	remove_all_status_effect()
-	ExtinguishMob()
+	extinguish_mob()
 
 	// shut down ongoing problems
 	bodytemperature = get_standard_bodytemperature()

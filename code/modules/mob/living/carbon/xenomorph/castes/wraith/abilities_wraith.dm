@@ -364,7 +364,7 @@
 		if(target_initial_on_fire && target_initial_fire_stacks >= 0)
 			targeted.set_burning(target_initial_fire_stacks)
 		else
-			targeted.ExtinguishMob()
+			targeted.extinguish_mob()
 		if(isxeno(targeted))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder

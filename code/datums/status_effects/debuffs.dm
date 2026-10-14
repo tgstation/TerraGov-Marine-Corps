@@ -438,7 +438,7 @@
 
 /datum/status_effect/spacefreeze/light/tick(delta_time)
 	if(owner.is_on_fire())
-		owner.ExtinguishMob()
+		owner.extinguish_mob()
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)

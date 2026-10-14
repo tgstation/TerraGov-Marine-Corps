@@ -43,7 +43,7 @@
 	if(xenomorph_owner.plasma_stored < plasma_cost)
 		return
 	xenomorph_owner.use_plasma(plasma_cost)
-	xenomorph_owner.ExtinguishMob()
+	xenomorph_owner.extinguish_mob()
 	for(var/obj/fire/fire_in_turf in get_turf(xenomorph_owner))
 		qdel(fire_in_turf)
 	if(timer_length) // To re-extinguish them if they were set on fire while the timer is active.

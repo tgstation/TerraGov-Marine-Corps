@@ -86,7 +86,7 @@
 				if(!is_on_fire())
 					xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire on [src]!"), \
 						span_notice("We extinguished the fire on [src]."), null, 5)
-					ExtinguishMob()
+					extinguish_mob()
 				return TRUE
 			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
