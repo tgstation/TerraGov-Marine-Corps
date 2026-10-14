@@ -310,7 +310,7 @@
 		recordlist += record
 
 /// Because Persistence is only initialized after Atoms, maploaded vendors
-/// must wait for Persistence to initialize to add additional seasonal items.
+/// must wait for Persistence to initialize to add additional seasonal items
 /obj/machinery/vending/proc/on_persistence_init(datum/controller/subsystem/persistence/_source)
 	SIGNAL_HANDLER
 	UnregisterSignal(SSpersistence, COMSIG_SUBSYSTEM_POST_INITIALIZE)
