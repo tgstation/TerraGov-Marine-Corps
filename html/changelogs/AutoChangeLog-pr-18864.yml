@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - bugfix: "Fixed an issue caused by the latest Behemoth rework that made it so that the Conqueror's Domination tile warning would no longer appear."
