@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed a couple of instances of welders using fuel when they shouldn't"
+  - code_imp: "tools use the correct use_tool() and play_tool_sound() procs"
