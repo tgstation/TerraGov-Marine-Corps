@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(assets)
 	name = "Assets"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/persistence,
 	)
 	flags = SS_NO_FIRE
 	var/list/datum/asset_cache_item/cache = list()
