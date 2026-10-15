@@ -449,7 +449,7 @@
 
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
-		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
+		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, LOUD_SOUND_RANGE)
 
 	if(A)
 		log_attack("[key_name(operator)] fired a [warhead_type]in for squad [current_squad] in [AREACOORD(T)].")
@@ -457,7 +457,7 @@
 	visible_message(span_boldnotice("Orbital bombardment request accepted. Orbital cannons are now calibrating."))
 	send_to_squads("ORBITAL BOMBARDMENT INBOUND AT [get_area(selected_target)]! Type: [warhead_type]!")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
+		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, LOUD_SOUND_RANGE)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
 
 	addtimer(CALLBACK(src, PROC_REF(do_fire_bombard), T, operator), 3.1 SECONDS)
 

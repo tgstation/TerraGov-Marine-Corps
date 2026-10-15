@@ -37,7 +37,7 @@
 
 ///Called when the plant reaches maturity
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
-	playsound(src, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(src, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	mature = TRUE
 	update_icon()
 
@@ -88,7 +88,7 @@
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
-	playsound(user, SFX_ALIEN_DROOL, 25)
+	playsound(user, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	balloon_alert(X, "Health restored")
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
 
@@ -130,7 +130,7 @@
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	playsound(user, SFX_ALIEN_DROOL, 25)
+	playsound(user, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	return ..()
 
 /obj/structure/xeno/plant/plasma_fruit
@@ -177,7 +177,7 @@
 	X.apply_status_effect(STATUS_EFFECT_PLASMA_SURGE, X.xeno_caste.plasma_max, bonus_regen, duration)
 	balloon_alert(X, "Plasma restored")
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	playsound(user, SFX_ALIEN_DROOL, 25)
+	playsound(user, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	return ..()
 
 

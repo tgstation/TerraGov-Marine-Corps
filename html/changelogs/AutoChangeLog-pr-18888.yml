@@ -1,0 +1,4 @@
+author: "termin-0"
+delete-after: True
+changes:
+  - bugfix: "Changed the NE cave entrance on Big Red to have shallow caves"

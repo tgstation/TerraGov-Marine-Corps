@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
-	playsound(get_turf(buyer), 'sound/weapons/pierce.ogg', 25, 1)
+	playsound(get_turf(buyer), 'sound/weapons/pierce.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -534,6 +534,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[buyer.hivenumber])
 		if(xeno.xeno_caste.caste_flags & CASTE_IS_A_MINION)
 			continue
+
 		if(((ability::parent_type) in xeno.xeno_caste.actions) && !ability::cooldown_duration)
 			continue
 		xeno.add_ability(ability)

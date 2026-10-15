@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(order_to_message, list(
 			hud_type = DATA_HUD_SQUAD_SOM
 		else
 			return
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
+	var/datum/atom_hud/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return
 	var/atom/movable/screen/arrow/arrow_hud = new arrow_type

@@ -78,7 +78,7 @@
 	template.load(deploy_location, centered = TRUE)
 	playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
 	var/datum/effect_system/smoke_spread/bad/smoke = new
-	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	smoke.set_up(floor((template.width + template.height) * 0.5), loc, 2)
 	smoke.start()
 	qdel(src)

@@ -242,7 +242,7 @@
 
 		reagents.trans_to(I, 5)
 		to_chat(user, span_notice("You wet [I] in [src]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/item/reagent_containers/glass/bucket/update_overlays()
 	. = ..()

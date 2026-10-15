@@ -361,6 +361,13 @@
 		qdel(src)
 		return
 
+	//we manually add border objects to uncrossed for the origin turf, otherwise they'll never get checked
+	for(var/thing in loc)
+		var/atom/movable/AM = thing
+		if(!(AM.atom_flags & ON_BORDER))
+			continue
+		uncross_scheduled += AM
+
 	if(scan_loc && scan_a_turf(loc))
 		qdel(src)
 		return
@@ -593,7 +600,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(ammo.ammo_behavior_flags & AMMO_LEAVE_TURF)
 				ammo.on_leave_turf(turf_crossed_by, src)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
-			for(var/j in uncross_scheduled)
+			for(var/j in uncross_scheduled) //ideally we should trigger the window hit here, but this never seems to be populated for non-diag shots
 				var/atom/movable/thing_to_uncross = j
 				if(QDELETED(thing_to_uncross))
 					continue
@@ -712,6 +719,17 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.ammo_behavior_flags & AMMO_ENERGY))
 		return FALSE
+
+	if(atom_flags & ON_BORDER)
+		if(uncrossing)
+			if((REVERSE_DIR(cardinal_move) & dir) && !(allow_pass_flags & PASS_PROJECTILE)) //todo: when uncrossing, cardinal move is reversed for whatever reason, see if this is actually needed
+				return TRUE
+			return FALSE //this is a somewhat snowflake interaction to prevent you from hitting cades from behind, regardless of distance
+		else
+			if(!(cardinal_move & REVERSE_DIR(dir)))
+				proj.uncross_scheduled += src //if it doesn't block entry, we check on exit
+				return FALSE
+
 	if(!(allow_pass_flags & PASS_PROJECTILE))
 		return TRUE
 	if((proj.ammo.ammo_behavior_flags & AMMO_PASS_THROUGH_MOVABLE) && !(allow_pass_flags & PASS_LOW_STRUCTURE)) //you're just shooting straight through stuff
@@ -719,13 +737,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
-	if(atom_flags & ON_BORDER)
-		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
-			if(!uncrossing)
-				proj.uncross_scheduled += src
-			return FALSE //No effect now, but we save the reference to check on exiting the tile.
-		if (uncrossing)
-			return FALSE //you don't hit the cade from behind.
 	if(proj.ammo.ammo_behavior_flags & AMMO_BETTER_COVER_RNG || proj.iff_signal) //sniper and IFF rounds are better at getting past cover
 		hit_chance *= 0.8
 	///50% better protection when shooting from outside accurate range.
@@ -920,7 +931,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 ///visual and audio feedback for hits
 /atom/movable/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit)
-		playsound(M, ammo.sound_hit, 50, 1)
+		playsound(M, ammo.sound_hit, 50, TRUE, MEDIUM_SOUND_RANGE)
 	if(M.stat != DEAD)
 		animation_flash_color(M)
 
@@ -1269,7 +1280,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/human/bullet_soak_effect(atom/movable/projectile/proj)
 	if(!proj.ammo.sound_armor)
 		return ..()
-	playsound(src, proj.ammo.sound_armor, 50, TRUE)
+	playsound(src, proj.ammo.sound_armor, 50, TRUE, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/proc/do_shrapnel_roll(atom/movable/projectile/proj, damage)
@@ -1441,7 +1452,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 			proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(fire_sound)
-			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, TRUE, FIREARM_SOUND_RANGE)
 		return
 
 	angle_between_bullets = 360 / (length(bullets) / rotations)
@@ -1454,7 +1465,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		proj.fire_at(null, firer, source, range, speed, current_angle, scan_loc = TRUE)
 		if(play_sound % 3 && fire_sound)
-			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, FALSE)
+			playsound(source, fire_sound, GUN_FIRE_SOUND_VOLUME, FALSE, FIREARM_SOUND_RANGE)
 		stoplag(1)
 
 #undef BULLET_FEEDBACK_PEN

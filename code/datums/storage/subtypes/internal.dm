@@ -484,5 +484,5 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/storage/internal/ammo_rack/on_attack_hand_alternate(datum/source, mob/living/user) //Override for subtype since this is in world storage
-	if(user.CanReach(source))
-		open(user)
+	if(user.CanReach(source) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)

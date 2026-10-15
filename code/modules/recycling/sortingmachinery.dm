@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			update_icon()
 		else
 			sortTag = O.currTag
-		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	else if(istype(I, /obj/item/tool/pen))
 		switch(tgui_alert(user, "What would you like to alter?", "Label", list("Title", "Description", "Cancel")))
@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			update_icon()
 		else
 			sortTag = O.currTag
-		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	else if(istype(I, /obj/item/tool/pen))
 		switch(tgui_alert(user, "What would you like to alter?", "Label", list("Title", "Description", "Cancel")))
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 												// travels through the pipes.
 
 	sleep(1 SECONDS)
-	playsound(src, 'sound/machines/disposalflush.ogg', 25, 0)
+	playsound(src, 'sound/machines/disposalflush.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	sleep(0.5 SECONDS) // wait for animation to finish
 
 	H.init(src)	// copy the contents of disposer to holder
@@ -434,24 +434,22 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 	if(isscrewdriver(I))
 		c_mode = !c_mode
+		I.play_tool_sound(src)
 		if(c_mode)
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You remove the screws around the power connection.")
 		else
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 
 	else if(istype(I, /obj/item/tool/weldingtool) && c_mode)
 		var/obj/item/tool/weldingtool/W = I
 
-		if(!W.remove_fuel(0, user))
-			to_chat(user, "You need more welding fuel to complete this task.")
+		if(!W.isOn())
+			to_chat(user, "Welder is not on.")
 			return
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+		if(!W.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, "You sliced the floorweld off the delivery chute.")

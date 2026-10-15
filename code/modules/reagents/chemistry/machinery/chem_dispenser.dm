@@ -220,7 +220,7 @@
 					overlays.Cut()
 					update_icon()
 
-					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1)
+					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					work_animation()
 			else
 				recording_recipe[reagent_name] += amount

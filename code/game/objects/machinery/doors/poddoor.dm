@@ -61,7 +61,7 @@
 			flick("pdoorc0", src)
 		if("closing")
 			flick("pdoorc1", src)
-	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	playsound(loc, 'sound/machines/blastdoor.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/machinery/door/poddoor/opened
 	density = FALSE
@@ -251,7 +251,7 @@
 	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/mainship/req_hvh/Initialize(mapload)
-	RegisterSignals(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(open_req))
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(open_req))
 	return ..()
 
 /obj/machinery/door/poddoor/mainship/req_hvh/proc/open_req()

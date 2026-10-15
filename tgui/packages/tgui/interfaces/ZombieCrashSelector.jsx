@@ -347,6 +347,11 @@ const ItemLine = (props) => {
         Flamer
       </Box>
     ),
+    'weapon-misc': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Weapon
+      </Box>
+    ),
     ammo: (
       <Box inline mr="6px" ml="6px" color="#ff00b3ff">
         Ammo

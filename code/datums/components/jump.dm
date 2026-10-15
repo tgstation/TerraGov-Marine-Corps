@@ -141,7 +141,7 @@
 		jump_start_time = null
 
 	if(jump_sound)
-		playsound(jumper, jump_sound, 65)
+		playsound(jumper, jump_sound, 65, FALSE, MEDIUM_SOUND_RANGE)
 
 	var/original_layer = jumper.layer
 
@@ -194,7 +194,7 @@
 		return TRUE
 
 /obj/structure/barricade/is_jumpable(mob/living/jumper)
-	if(is_wired)
+	if(barricade_flags & BARRICADE_IS_WIRED)
 		return FALSE
 	return ..()
 

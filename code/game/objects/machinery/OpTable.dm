@@ -95,7 +95,7 @@
 			if(anes_tank)
 				user.put_in_active_hand(anes_tank)
 				balloon_alert(user, "You remove \the [anes_tank] from \the [src].")
-				playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
+				playsound(loc, 'sound/effects/air_release.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				anes_tank = null
 				update_appearance(UPDATE_ICON)
 			else
@@ -104,7 +104,7 @@
 			if(blood_pack)
 				user.put_in_active_hand(blood_pack)
 				balloon_alert(user, "You remove \the [blood_pack] from \the [src].")
-				playsound(loc, 'sound/effects/pop.ogg', 25, 1)
+				playsound(loc, 'sound/effects/pop.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 				blood_pack = null
 				update_appearance(UPDATE_ICON)
 			else
@@ -293,7 +293,7 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		update_appearance(UPDATE_ICON)
 
 	if(istype(I, /obj/item/reagent_containers/blood))
@@ -302,7 +302,7 @@
 		user.transferItemToLoc(I, src)
 		blood_pack = I
 		to_chat(user, span_notice("You connect \the [blood_pack] to \the [src]."))
-		playsound(loc, 'sound/items/hypospray.ogg', 25, 1)
+		playsound(loc, 'sound/items/hypospray.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		update_appearance(UPDATE_ICON)
 
 	if(istype(I, /obj/item/riding_offhand))
