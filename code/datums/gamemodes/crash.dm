@@ -115,6 +115,9 @@
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
 
+	for(var/i in GLOB.sentry_crate_spawns)
+		new /obj/item/storage/box/crate/sentry(get_turf(i))
+
 	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
@@ -123,12 +126,10 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-
-/datum/game_mode/infestation/crash/announce()
-	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
+/datum/game_mode/infestation/crash/map_announce()
 	priority_announce(
-		message = "Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.",
 		title = "Good morning, marines.",
+		message = "Scheduled for landing in T-[CRASH_DELAY_TIME / 600] Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.",
 		type = ANNOUNCEMENT_PRIORITY,
 		color_override = "red"
 	)

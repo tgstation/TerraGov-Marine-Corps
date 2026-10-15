@@ -5,7 +5,6 @@
 #define CHARGE_BULL (1<<1)
 #define CHARGE_BULL_HEADBUTT (1<<2)
 #define CHARGE_BULL_GORE (1<<3)
-#define CHARGE_BEHEMOTH (1<<4)
 
 #define STOP_CRUSHER_ON_DEL (1<<0)
 
@@ -132,6 +131,7 @@
 /datum/action/ability/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
 	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
+	charger.add_traits(list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE), CHARGING_TRAIT)
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -139,6 +139,7 @@
 /datum/action/ability/xeno_action/ready_charge/proc/do_stop_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE))
+	charger.remove_traits(list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE), CHARGING_TRAIT)
 	if(valid_steps_taken > 0) //If this is false, then do_stop_momentum() should have it handled already.
 		charger.is_charging = CHARGE_BUILDINGUP
 		charger.update_icons()
@@ -229,9 +230,6 @@
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
 					playsound(charger, SFX_ALIEN_FOOTSTEP_LARGE, 50)
-			if(CHARGE_BEHEMOTH)
-				if(MODULUS(valid_steps_taken, 2) == 0)
-					playsound(charger, SFX_BEHEMOTH_ROLLING, 30)
 
 	lastturf = charger.loc
 
@@ -268,10 +266,8 @@
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
 
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
+	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE) && !isliving(crushed))
 		do_stop_momentum()
-		if(charge_type & CHARGE_BEHEMOTH)
-			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		if(istype(crushed, /obj/structure/razorwire))
 			var/obj/structure/razorwire/crushed_wire = crushed
 			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
@@ -293,7 +289,7 @@
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-		playsound(crushed_living.loc, crush_sound, 25, 1)
+		playsound(crushed_living.loc, crush_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle_mob(crushed_living)
 		animation_flash_color(crushed_living)
@@ -313,7 +309,7 @@
 		var/obj/crushed_obj = crushed
 		if(istype(crushed_obj, /obj/structure/xeno/silo) || istype(crushed_obj, /obj/structure/xeno/xeno_turret))
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
-		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1)
+		playsound(crushed_obj.loc, SFX_PUNCH, 25, 1, MEDIUM_SOUND_RANGE)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
@@ -560,7 +556,7 @@
 	span_danger("The barbed wire slices into you!"), null, 5)
 	charger.Paralyze(0.5 SECONDS)
 	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, sharp = TRUE, updating_health = TRUE) //Armor is being ignored here.
-	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
@@ -616,7 +612,7 @@
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
 			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
 			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
-			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
+			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -625,7 +621,7 @@
 		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
-		if(CHARGE_CRUSH, CHARGE_BULL, CHARGE_BEHEMOTH)
+		if(CHARGE_CRUSH, CHARGE_BULL)
 			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
 			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc

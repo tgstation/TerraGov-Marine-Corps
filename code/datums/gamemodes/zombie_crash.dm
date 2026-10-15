@@ -1,8 +1,8 @@
 /datum/game_mode/infestation/crash/zombie
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
-	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
-	xeno_abilities_flags = ABILITY_CRASH
+	round_type_flags = MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS|MODE_PSY_POINTS
+	xeno_abilities_flags = ABILITY_ENCOUNTER
 	required_players = 1
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -20,6 +20,7 @@
 		/datum/job/terragov/squad/engineer = 5,
 	)
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	restricted_castes = list(/datum/xeno_caste/puppeteer)
 
 /datum/game_mode/infestation/crash/zombie/can_start(bypass_checks = FALSE)
 	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
@@ -38,16 +39,23 @@
 
 /datum/game_mode/infestation/crash/zombie/post_setup()
 	. = ..()
+	balance_scales()
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		if(!(corpse.z in z_levels))
 			continue
 		corpse.create_zombie()
 
+	GLOB.xeno_stat_multiplicator_buff = ZOMBIE_CRASH_XENO_STAT_MULTIPLIER
+
 	for(var/i in (GLOB.zombie_spawner_turfs + GLOB.xeno_resin_silo_turfs))
 		new /obj/effect/ai_node/spawner/zombie(i)
 	for(var/i in GLOB.zombie_crash_vendor_landmarks)
 		new /obj/machinery/marine_selector/zombie_crash(get_turf(i))
+	for(var/i in GLOB.sentry_crate_spawns)
+		new /obj/item/storage/box/crate/sentry/incendiary(get_turf(i))
+	for(var/i in GLOB.corrupted_larva_spawns)
+		new /mob/living/carbon/xenomorph/larva/Corrupted/iff(get_turf(i))
 
 	addtimer(CALLBACK(src, PROC_REF(balance_scales)), 1 SECONDS)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED, PROC_REF(on_tunnel_destroyed))
@@ -60,11 +68,15 @@
 	SIGNAL_HANDLER
 	check_finished()
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MIN, ZOMBIE_CRASH_POINTS_PER_TUNNEL_MAX)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_TUNNEL)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_TUNNEL)
 
 /datum/game_mode/infestation/crash/zombie/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
 	. = ..()
 	global_rally_zombies(generating_computer, TRUE)
 	give_all_humans_points(ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MIN, ZOMBIE_CRASH_POINTS_PER_CYCLE_MAX)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_TACTICAL_PSY_POINTS_PER_CYCLE)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_CORRUPTED, ZOMBIE_CRASH_STRATEGIC_PSY_POINTS_PER_CYCLE)
 
 /// Evenly distributes an amount of points to all alive humans who are actively playing. Minimum/maximum points scales on population.
 /datum/game_mode/infestation/crash/zombie/proc/give_all_humans_points(flat, minimum, maximum)
@@ -86,10 +98,11 @@
 			continue
 		zcrash_vendor.add_personal_points(human, vendor_points_per_alive_marine)
 
-///Counts humans and zombies not in valhalla
-/datum/game_mode/infestation/crash/zombie/proc/count_humans_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+///Counts humans, corrupted xenos and zombies not in valhalla
+/datum/game_mode/infestation/crash/zombie/proc/count_humans_xenos_and_zombies(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
 	var/num_zombies = 0
+	var/num_xenos = 0
 
 	for(var/z in z_levels)
 		for(var/mob/living/carbon/human/H  in GLOB.humans_by_zlevel["[z]"])
@@ -105,14 +118,31 @@
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-	return list(num_humans, num_zombies)
+
+		for(var/mob/living/carbon/xenomorph/xeno in GLOB.hive_datums[XENO_HIVE_CORRUPTED].xenos_by_zlevel["[z]"])
+			if(!istype(xeno)) // Small fix?
+				continue
+			if(!xeno.client && xeno.afk_status == MOB_DISCONNECTED)
+				continue
+			if(is_xeno_in_forbidden_zone(xeno))
+				continue
+			if(isspaceturf(xeno.loc))
+				continue
+			if(xeno.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
+			// Never count hivemind
+			if(isxenohivemind(xeno))
+				continue
+
+			num_xenos++
+	return list(num_humans, num_zombies, num_xenos)
 
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
 		return
 
-	var/list/living_player_list = count_humans_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1]
+	var/list/living_player_list = count_humans_xenos_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/num_humans = living_player_list[1] + living_player_list[3]
 	var/num_zombies = living_player_list[2]
 	if(num_zombies * 0.125 >= num_humans) // if there's too much zombies, don't spawn even more
 		for(var/obj/effect/ai_node/spawner/zombie/spawner AS in GLOB.zombie_spawners)
@@ -172,14 +202,17 @@
 			return TRUE
 	return FALSE
 
-/datum/game_mode/infestation/crash/zombie/announce()
-	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
-	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Phrenetic reports about an unidentified disease rapidly spreading throughout the site were received before it went silent. Your mission is to contain and destroy the source of the contagion by any means necessary, including use of the on-site nuclear device. Bio-warfare protocols active. Detonation Protocol Active, planet disposable. Marines disposable.",
-	title = "Mission classification: TOP SECRET",
-	type = ANNOUNCEMENT_PRIORITY,
-	color_override = "red")
+/datum/game_mode/infestation/crash/zombie/map_announce()
+	priority_announce(
+		title = "Mission classification: TOP SECRET",
+		message = "Scheduled for landing in T-[CRASH_DELAY_TIME / 600] Minutes. \
+		Prepare for landing. Phrenetic reports about an unidentified disease rapidly spreading throughout the site were received before it went silent. \
+		Your mission is to contain and destroy the source of the contagion by any means necessary, including use of the on-site nuclear device. \
+		Bio-warfare protocols active. Detonation Protocol Active, planet disposable. Marines disposable.",
+		type = ANNOUNCEMENT_PRIORITY,
+		color_override = "red"
+	)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
-	balance_scales()
 
 /datum/game_mode/infestation/crash/zombie/end_round_fluff()
 	. = ..()

@@ -84,7 +84,7 @@
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
 	if(charges <= 0)
 		user.balloon_alert(user, "no charge!")
-		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
+		playsound(src, 'sound/items/blink_empty.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	var/turf/target_turf = get_turf(A)
 
@@ -142,7 +142,7 @@
 ///Recharges the drive, and sets another timer if not maxed out
 /obj/item/blink_drive/proc/recharge()
 	charges ++
-	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1)
+	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(charges < BLINK_DRIVE_MAX_CHARGES)
 		charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
 	else
@@ -151,7 +151,7 @@
 
 ///The effects applied on teleporting from or to a location
 /obj/item/blink_drive/proc/teleport_debuff_aoe(atom/movable/teleporter)
-	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1)
+	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	new /obj/effect/temp_visual/blink_drive(get_turf(teleporter))
 

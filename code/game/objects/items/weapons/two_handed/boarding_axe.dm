@@ -69,7 +69,7 @@
 	carbon_owner.Move(get_step(carbon_owner, angle2dir(Get_Angle(carbon_owner, A))), get_dir(carbon_owner, A))
 	carbon_owner.face_atom(A)
 	activate_particles(owner.dir)
-	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, 0, 5)
+	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, FALSE, SUPER_SHORT_SOUND_RANGE)
 	owner.visible_message(span_danger("[owner] Swing their weapon in a deadly arc!"))
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
@@ -89,7 +89,7 @@
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, attacker = owner)
 		human_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		human_victim.adjust_stagger(1 SECONDS)
-		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, FALSE, SUPER_SHORT_SOUND_RANGE)
 		shake_camera(human_victim, 2, 1)
 
 /// Handles the activation and deactivation of particles, as well as their appearance.

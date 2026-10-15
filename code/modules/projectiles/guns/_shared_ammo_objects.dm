@@ -106,7 +106,7 @@
 		return
 	burn_ticks -= EXTINGUISH_AMOUNT
 	if(burn_ticks <= 0)
-		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20)
+		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 		qdel(src)
 		return
 	update_appearance(UPDATE_ICON)

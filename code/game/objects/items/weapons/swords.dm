@@ -66,7 +66,7 @@
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
-	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
+	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, FALSE, SUPER_SHORT_SOUND_RANGE)
 	carbon_owner.throw_at(A, lunge_range, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
@@ -100,7 +100,7 @@
 	var/mob/living/carbon/human/human_victim = target
 	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, owner)
 	human_victim.adjust_stagger(1 SECONDS)
-	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, FALSE, SUPER_SHORT_SOUND_RANGE)
 	shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/sword/mercsword

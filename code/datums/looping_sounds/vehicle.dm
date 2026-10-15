@@ -26,4 +26,4 @@
 	mid_sounds = list('sound/misc/ds_signalled_alarm.ogg' = 1)
 
 /datum/looping_sound/looping_launch_announcement_alarm/tadpole
-	range = 11 // 1 screen away
+	range = MEDIUM_SOUND_RANGE

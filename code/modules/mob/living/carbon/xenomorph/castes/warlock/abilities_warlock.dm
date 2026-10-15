@@ -191,7 +191,7 @@
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, 'sound/voice/alien/roar_warlock.ogg', 25)
+	playsound(owner, 'sound/voice/alien/roar_warlock.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 	ability_cost = initial(ability_cost) // Revert this back to normal since it could be different.
 	GLOB.round_statistics.psy_shield_blasts++
@@ -257,7 +257,7 @@
 
 /// Unfreezes the projectles, then reflects them towards a specified atom or based on their relative incoming angle if nothing was specified.
 /obj/effect/xeno/shield/proc/reflect_projectiles(atom/targetted_atom)
-	playsound(loc, 'sound/effects/portal.ogg', 20)
+	playsound(loc, 'sound/effects/portal.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	var/direction_to_atom = angle2dir(Get_Angle(src, targetted_atom))

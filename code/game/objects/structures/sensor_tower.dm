@@ -126,7 +126,7 @@
 	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 	mode.sensors_activated += 1
 
-	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	balloon_alert_to_viewers("[src] has finished activation!")
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)

@@ -103,7 +103,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/plastique_incendiary
 	name = "EX-62 Genghis incendiary charge"
 	contains = list(/obj/item/explosive/plastique/genghis_charge)
-	cost = 150
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/explosives/detpack

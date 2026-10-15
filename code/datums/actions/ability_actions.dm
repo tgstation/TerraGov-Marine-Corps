@@ -216,11 +216,11 @@
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
 		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-			use_ability()
+			INVOKE_ASYNC(src, PROC_REF(use_ability))
 		return
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
-		action_activate()
+		INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/ability/activable/remove_action(mob/living/carbon/carbon_owner)
 	deselect()

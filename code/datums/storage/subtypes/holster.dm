@@ -26,7 +26,7 @@
 		return
 	holster.holstered_item = item
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
-	playsound(parent, sheathe_sound, 15, 1)
+	playsound(parent, sheathe_sound, 15, 1, SHORT_SOUND_RANGE)
 
 /datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
@@ -37,7 +37,7 @@
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	if(silent)
 		return
-	playsound(parent, draw_sound, 15, 1)
+	playsound(parent, draw_sound, 15, 1, SHORT_SOUND_RANGE)
 
 /datum/storage/holster/backholster
 	max_w_class = WEIGHT_CLASS_NORMAL //normal items

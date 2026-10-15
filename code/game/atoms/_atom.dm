@@ -1007,7 +1007,7 @@ directive is properly returned.
 ///What happens when with atom is melted by acid
 /atom/proc/do_acid_melt()
 	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
-	playsound(src, SFX_ACID_HIT, 25)
+	playsound(src, SFX_ACID_HIT, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /// Sets an alpha source before updating our alpha.
 /atom/proc/set_alpha_source(source, desired_alpha)
