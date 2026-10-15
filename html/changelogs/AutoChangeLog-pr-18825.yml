@@ -1,0 +1,7 @@
+author: "Deputi"
+delete-after: True
+changes:
+  - balance: "Orion Outpost starts fully covered in weeds."
+  - bugfix: "Orion Outpost Shallow and Deep caves are now at the appropriate depths."
+  - bugfix: "Orion Outpost Canteen APC covers the entire building now. Also added some light fixtures to the kitchen."
+  - bugfix: "Orion Outpost cave wall tiles now have a ceiling."
