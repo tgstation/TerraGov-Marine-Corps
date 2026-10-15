@@ -106,3 +106,9 @@
   - code_imp: tools use the correct use_tool() and play_tool_sound() procs
   mudzbe:
   - balance: Increase xeno autobalance buff on zcrash
+2026-10-15:
+  Deputi:
+  - bugfix: The Tadpole landing designator now expands your view range as intended.
+  Lewdcifer:
+  - balance: Supersoldiers can now stack their powerloader skill stims one level higher,
+      and achieve mastery.
