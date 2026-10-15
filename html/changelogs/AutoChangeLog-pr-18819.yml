@@ -1,0 +1,4 @@
+author: "Deputi"
+delete-after: True
+changes:
+  - bugfix: "The Tadpole landing designator now expands your view range as intended."
