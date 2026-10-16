@@ -212,11 +212,11 @@
 		carbon_owner.selected_ability.deselect()
 	select()
 
-/datum/action/ability/activable/keybind_activation()
+/datum/action/ability/activable/keybind_activation(turf/target)
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-			INVOKE_ASYNC(src, PROC_REF(use_ability))
+		if(can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+			INVOKE_ASYNC(src, PROC_REF(use_ability), target)
 		return
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting

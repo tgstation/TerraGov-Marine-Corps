@@ -178,7 +178,7 @@
 	description = "Enter an air vent and crawl through the pipe system."
 	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
 
-/datum/keybinding/xeno/vent/down(client/user)
+/datum/keybinding/xeno/vent/down(client/user, turf/target)
 	. = ..()
 	if(!isxeno(user.mob))
 		return
@@ -754,7 +754,7 @@
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD
 	hotkey_keys = list("Z")
 
-/datum/keybinding/xeno/conqueror_endurance_hold/up(client/user)
+/datum/keybinding/xeno/conqueror_endurance_hold/up(client/user, turf/target)
 	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP, TRUE)
 	return ..()
 
@@ -778,7 +778,7 @@
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD
 	hotkey_keys = list("F")
 
-/datum/keybinding/xeno/conqueror_obliteration_hold/up(client/user)
+/datum/keybinding/xeno/conqueror_obliteration_hold/up(client/user, turf/target)
 	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_UP, TRUE)
 	return ..()
 

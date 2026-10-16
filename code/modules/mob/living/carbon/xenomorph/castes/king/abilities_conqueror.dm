@@ -690,7 +690,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/xeno_action/conqueror_endurance/keybind_activation()
+/datum/action/ability/xeno_action/conqueror_endurance/keybind_activation(turf/target)
 	if(can_use_action())
 		INVOKE_ASYNC(src, PROC_REF(toggle_ability), TRUE)
 	return COMSIG_KB_ACTIVATED
@@ -968,7 +968,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/xeno_action/conqueror_obliteration/keybind_activation()
+/datum/action/ability/xeno_action/conqueror_obliteration/keybind_activation(turf/target)
 	if(can_use_action())
 		if(toggled)
 			INVOKE_ASYNC(src, PROC_REF(try_start_attack), TRUE)
