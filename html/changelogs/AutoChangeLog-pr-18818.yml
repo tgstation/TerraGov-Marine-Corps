@@ -1,6 +1,0 @@
-author: "Deputi"
-delete-after: True
-changes:
-  - balance: "Research Outpost starts fully covered in weeds."
-  - bugfix: "Replaced a missing cable underneath one of the Research Outpost geothermal generators."
-  - bugfix: "Slightly shifted a couple of resin walls in the NE corner of Research Outpost to fill a 1x1 gap."

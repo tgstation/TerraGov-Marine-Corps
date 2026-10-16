@@ -112,3 +112,17 @@
   Lewdcifer:
   - balance: Supersoldiers can now stack their powerloader skill stims one level higher,
       and achieve mastery.
+2026-10-16:
+  Deputi:
+  - balance: Orion Outpost starts fully covered in weeds.
+  - bugfix: Orion Outpost Shallow and Deep caves are now at the appropriate depths.
+  - bugfix: Orion Outpost Canteen APC covers the entire building now. Also added some
+      light fixtures to the kitchen.
+  - bugfix: Orion Outpost cave wall tiles now have a ceiling.
+  - balance: Research Outpost starts fully covered in weeds.
+  - bugfix: Replaced a missing cable underneath one of the Research Outpost geothermal
+      generators.
+  - bugfix: Slightly shifted a couple of resin walls in the NE corner of Research
+      Outpost to fill a 1x1 gap.
+  termin-0:
+  - bugfix: Changed the NE cave entrance on Big Red to have shallow caves
