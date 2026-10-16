@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(points)
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
+	///Assoc list of company points supply
+	var/company_supply_points = list()
 	///Assoc list of xeno strategic points: xeno_strategic_points_by_hive["hivenum"]
 	var/list/xeno_strategic_points_by_hive = list()
 	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
