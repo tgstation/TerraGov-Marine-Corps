@@ -20,3 +20,14 @@
 	if(stat > CONSCIOUS)
 		return
 	facedir(direction)
+
+///check for if this user is willingly moving up and down a z level a lot to cheese. ignores any stun resistsnace so its less cheesable
+/mob/living/proc/z_change_spam_check()
+	if(!COOLDOWN_FINISHED(src, z_travel_cd))
+		z_change_buffer_count++
+		if(z_change_buffer_count > LIVING_ZCHANGE_MAX_BUFFER_COUNT)
+			Stun(1 SECONDS, TRUE)
+			balloon_alert(src, "Confused!")
+	else
+		z_change_buffer_count = 0
+	COOLDOWN_START(src, z_travel_cd, LIVING_ZCHANGE_BUFFER_TIME)
