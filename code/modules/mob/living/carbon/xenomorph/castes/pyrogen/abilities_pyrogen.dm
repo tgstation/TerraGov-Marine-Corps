@@ -252,7 +252,7 @@
 	action_icon_state = "infernaltrigger"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Causes a chosen target's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area adjacent to them is set on fire."
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	ability_cost = 100
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(

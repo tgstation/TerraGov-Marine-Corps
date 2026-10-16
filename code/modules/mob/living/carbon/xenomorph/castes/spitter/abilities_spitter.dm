@@ -122,9 +122,12 @@
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_cost = 280
 	cooldown_duration = 5 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SCATTER_SPIT_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	/// The amount of deciseconds for the do_after.
 	var/cast_time = 0.5 SECONDS
 	/// Should the projectile get bonus damage from SPIT_UPGRADE_BONUS?

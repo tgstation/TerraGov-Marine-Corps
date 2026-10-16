@@ -457,9 +457,9 @@
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_HEAL_SELECT,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
 	/// Should this ability be usable on moving targets and use an alternative flavortext?
 	var/hivemind_heal = FALSE
 
@@ -510,17 +510,13 @@
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	ability_cost = 150
 	cooldown_duration = 8 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_SELECT
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
-	var/mob/living/carbon/xenomorph/last_xenomorph_transferred_to
-
-/datum/action/ability/activable/xeno/queen_give_plasma/Destroy()
-	last_xenomorph_transferred_to = null
-	return ..()
+	target_flags = ABILITY_XENO_TARGET
 
 /datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -546,48 +542,15 @@
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
-/datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
-
-/datum/action/ability/activable/xeno/queen_give_plasma/remove_action(mob/living/L)
-	. = ..()
-	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
-
-/datum/action/ability/activable/xeno/queen_give_plasma/alternate_action_activate()
-	if(!last_xenomorph_transferred_to)
-		return
-	try_use_ability(null, last_xenomorph_transferred_to)
-	return COMSIG_KB_ACTIVATED
-
-/// Signal handler for the queen_give_plasma action that checks can_use.
-/datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
-	SIGNAL_HANDLER
-	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-		return
-	use_ability(target)
-
 /datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
-	if(!last_xenomorph_transferred_to)
-		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
-		last_xenomorph_transferred_to = target
-	else if(last_xenomorph_transferred_to != target)
-		UnregisterSignal(last_xenomorph_transferred_to, COMSIG_QDELETING)
-		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
-		last_xenomorph_transferred_to = target
-
-	last_xenomorph_transferred_to.gain_plasma(300)
-	last_xenomorph_transferred_to.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
-	if(get_dist(owner, last_xenomorph_transferred_to) > 7)
+	var/mob/living/carbon/xenomorph/xeno_target = target
+	xeno_target.gain_plasma(300)
+	xeno_target.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
+	if(get_dist(owner, xeno_target) > 7)
 		// Out of screen transfer.
 		owner.balloon_alert(owner, "Transferred plasma")
 	add_cooldown()
 	succeed_activate()
-
-/// Should the last xenomorph get deleted, removes them from the ability as the last target.
-/datum/action/ability/activable/xeno/queen_give_plasma/proc/on_target_qdeleted(datum/source, force)
-	SIGNAL_HANDLER
-	last_xenomorph_transferred_to = null
 
 #define BULWARK_LOOP_TIME 1 SECONDS
 #define BULWARK_RADIUS 4

@@ -135,10 +135,12 @@
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	use_state_flags = ABILITY_USE_BUCKLED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DRAIN_STING_SELECT,
 	)
 	/// How far can the target be in order for the ability to work?
 	var/targetable_range = 1

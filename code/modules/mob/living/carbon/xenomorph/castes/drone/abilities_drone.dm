@@ -19,7 +19,7 @@
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
@@ -105,9 +105,9 @@
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACIDIC_SALVE_SELECT,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
 	/// Should cast time / do_after be ignored if the target meets the health threshold?
 	var/bypass_cast_time_on_threshold = FALSE
 	/// The max health threshold the target needs to be under to qualify for bonus healing. Target must be connected to the owner with Essence Link with 1+ stacks.

@@ -303,8 +303,10 @@
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.

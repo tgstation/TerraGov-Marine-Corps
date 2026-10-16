@@ -106,9 +106,12 @@
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FORWARD_CHARGE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET //this is not really ideal since we might want to charge at nonhuman movables, but better than nother
 	paralyze_duration = 4 SECONDS
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?

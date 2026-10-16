@@ -12,8 +12,10 @@
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGER_CHARGE_SELECT,
 	)
 	/// The amount of deciseconds that carbons will be paralyze if hit.
 	var/paralyze_duration = 2 SECONDS

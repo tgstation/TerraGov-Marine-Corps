@@ -215,8 +215,9 @@
 /datum/action/ability/activable/keybind_activation(turf/target)
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
-		if(can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-			INVOKE_ASYNC(src, PROC_REF(use_ability), target)
+		var/true_target = ability_target(target)
+		if(can_use_ability(true_target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+			INVOKE_ASYNC(src, PROC_REF(use_ability), true_target)
 		return
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
@@ -296,3 +297,23 @@
 		if(action_datum.type != old_ability)
 			continue
 		qdel(action_datum)
+
+#define TARGET_FLAGS_MACRO(typepath) \
+if(!istype(A, typepath)){\
+	. = locate(typepath) in get_turf(A);\
+	if(.){\
+		return;}}
+
+///Special behavior for identifying what atom to actually target
+/datum/action/ability/activable/proc/ability_target(atom/A)
+	if(target_flags & NONE)
+		return A
+	if(target_flags & ABILITY_MOB_TARGET)
+		TARGET_FLAGS_MACRO(/mob/living)
+	if(target_flags & ABILITY_XENO_TARGET)
+		TARGET_FLAGS_MACRO(/mob/living/carbon/xenomorph)
+	if(target_flags & ABILITY_HUMAN_TARGET)
+		TARGET_FLAGS_MACRO(/mob/living/carbon/human)
+	if(target_flags & ABILITY_TURF_TARGET)
+		return get_turf(A)
+	return A

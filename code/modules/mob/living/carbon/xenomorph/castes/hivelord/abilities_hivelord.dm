@@ -12,9 +12,12 @@
 	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
 	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RECYCLE_SELECT,
 	)
+	target_flags = ABILITY_XENO_TARGET
 	ability_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 
@@ -286,7 +289,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	/// The range in which this ability can be used.
 	var/heal_range = HIVELORD_HEAL_RANGE
 	/// The length of deciseconds that the Resin Jelly Coating status effect will be applied.

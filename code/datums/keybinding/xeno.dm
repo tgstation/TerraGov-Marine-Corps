@@ -6,12 +6,18 @@
 // Universal or multi-caste
 //
 
-/datum/keybinding/xeno/headbite
-	name = "headbite"
-	full_name = "Headbite / Psydrain"
-	description = "Permanently kill a target. / Gather psy and larva points from a body."
+/datum/keybinding/xeno/psydrain
+	name = "psydrain"
+	full_name = "Psydrain"
+	description = "Gather psy and larva points from a body."
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	hotkey_keys = list("J")
+
+/datum/keybinding/xeno/psydrain_select
+	name = "psydrain_select"
+	full_name = "Select Psydrain"
+	description = "Gather psy and larva points from a body."
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE_SELECT
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
@@ -19,6 +25,12 @@
 	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time."
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	hotkey_keys = list("K")
+
+/datum/keybinding/xeno/regurgitate_select
+	name = "regurgitate_select"
+	full_name = "Select Regurgitate / Cocoon"
+	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time."
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE_SELECT
 
 /datum/keybinding/xeno/blessingmenu
 	name = "blessings menu"
@@ -75,6 +87,12 @@
 	keybind_signal = COMSIG_XENOABILITY_RECYCLE
 	hotkey_keys = list("ShiftE")
 
+/datum/keybinding/xeno/recycle_select
+	name = "Recycle_select"
+	full_name = "Select Recycle Xenomorph"
+	description = "Recycles a fellow dead xenomorph"
+	keybind_signal = COMSIG_XENOABILITY_RECYCLE_SELECT
+
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
 	full_name = "Place acid well"
@@ -117,6 +135,12 @@
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/spray_acid_select
+	name = "spray_acid_select"
+	full_name = "Select Acid Spray"
+	description = "Sprays some acid"
+	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID_SELECT
+
 /datum/keybinding/xeno/xeno_spit
 	name = "xeno_spit"
 	full_name = "Spit"
@@ -143,6 +167,13 @@
 	full_name = "Neurotoxin Sting"
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+	hotkey_keys = list("ShiftE")
+
+/datum/keybinding/xeno/neurotox_sting_select
+	name = "neurotox_sting_select"
+	full_name = "Select Neurotoxin Sting"
+	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
+	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING_SELECT
 
 /datum/keybinding/xeno/ozelomelyn_sting
 	name = "ozelomelyn_sting"
@@ -151,12 +182,24 @@
 	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
 	hotkey_keys = list("ShiftE")
 
+/datum/keybinding/xeno/ozelomelyn_sting_select
+	name = "ozelomelyn_sting_select"
+	full_name = "Select Ozelomelyn Sting"
+	description = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING_SELECT
+
 /datum/keybinding/xeno/transfer_plasma
 	name = "transfer_plasma"
 	full_name = "Transfer Plasma"
 	description = "Give some of your plasma to a teammate."
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
 	hotkey_keys = list("N")
+
+/datum/keybinding/xeno/transfer_plasma_select
+	name = "transfer_plasma_select"
+	full_name = "Select Transfer Plasma"
+	description = "Give some of your plasma to a teammate."
+	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA_SELECT
 
 /datum/keybinding/xeno/toggle_charge
 	name = "toggle_charge"
@@ -341,12 +384,24 @@
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/throw_hugger_select
+	name = "throw_hugger_select"
+	full_name = "Carrier: Select Throw Hugger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER_SELECT
+
 /datum/keybinding/xeno/call_younger
 	name = "call_younger"
 	full_name = "Carrier: Call of Younger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER
 	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/call_younger_select
+	name = "call_younger_select"
+	full_name = "Carrier: Select Call of Younger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_YOUNGER_SELECT
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -416,6 +471,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
 	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/forward_charge_select
+	name = "forward charge_select"
+	full_name = "Defender: Select Forward charge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE_SELECT
 
 /datum/keybinding/xeno/tail_sweep
 	name = "tail_sweep"
@@ -487,6 +548,12 @@
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/defile_select
+	name = "defile_select"
+	full_name = "Defiler: Select Defile"
+	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
+	keybind_signal = COMSIG_XENOABILITY_DEFILE_SELECT
+
 /datum/keybinding/xeno/tentacle
 	name = "tentacle"
 	full_name = "Defiler: Tentacle"
@@ -506,6 +573,12 @@
 	description = "Heal a xenomorph with this."
 	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/acidic_salve_select
+	name = "acidic_salve_select"
+	full_name = "Drone: Select Acidic Salve"
+	description = "Heal a xenomorph with this."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE_SELECT
 
 /datum/keybinding/xeno/essence_link
 	name = "essence_link"
@@ -651,6 +724,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/hunter_pounce_select
+	name = "hunter_pounce_select"
+	full_name = "Hunter: Select Pounce"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
@@ -714,12 +793,24 @@
 	description = "Muddles the mind of an enemy, increasing their scatter for a while."
 	keybind_signal = COMSIG_XENOABILITY_OFFGUARD
 
+/datum/keybinding/xeno/off_guard_select
+	name = "off_guard_select"
+	full_name = "King: Select Off-guard"
+	description = "Muddles the mind of an enemy, increasing their scatter for a while."
+	keybind_signal = COMSIG_XENOABILITY_OFFGUARD_SELECT
+
 /datum/keybinding/xeno/shattering_roar
 	hotkey_keys = list("R")
 	name = "shattering_roar"
 	full_name = "King: Shattering roar"
 	description = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
 	keybind_signal = COMSIG_XENOABILITY_SHATTERING_ROAR
+
+/datum/keybinding/xeno/shattering_roar_select
+	name = "shattering_roar_select"
+	full_name = "King: Select Shattering roar"
+	description = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
+	keybind_signal = COMSIG_XENOABILITY_SHATTERING_ROAR_SELECT
 
 /datum/keybinding/xeno/zero_form_beam
 	hotkey_keys = list("R")
@@ -894,10 +985,16 @@
 
 /datum/keybinding/xeno/queen_heal
 	name = "queen_heal"
-	full_name = "Queen: Give Heal"
-	description = ""
+	full_name = "Queen: Heal"
+	description = "A shortrange ability that moderately heals a single xenomorph."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 	hotkey_keys = list("H")
+
+/datum/keybinding/xeno/queen_heal_select
+	name = "queen_heal_select"
+	full_name = "Queen: Select Heal"
+	description = "A shortrange ability that moderately heals a single xenomorph."
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL_SELECT
 
 /datum/keybinding/xeno/queen_give_plasma
 	name = "queen_give_plasma"
@@ -906,11 +1003,11 @@
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 	hotkey_keys = list("N")
 
-/datum/keybinding/xeno/queen_give_plasma_quickcast
-	name = "queen_give_plasma_quickcast"
-	full_name = "Queen: Give Plasma (Quickcast)"
+/datum/keybinding/xeno/queen_give_plasma_select
+	name = "queen_give_plasma_select"
+	full_name = "Queen: Select Give Plasma"
 	description = ""
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_SELECT
 
 /datum/keybinding/xeno/queen_hive_message
 	name = "queen_hive_message"
@@ -934,9 +1031,15 @@
 /datum/keybinding/xeno/ravager_charge
 	name = "ravager_charge"
 	full_name = "Ravager: Eviscerating Charge"
-	description = ""
+	description = "A powerful charge attack that damages and stuns anything in your path"
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/ravager_charge_select
+	name = "ravager_charge_select"
+	full_name = "Ravager: Select Eviscerating Charge"
+	description = "A powerful charge attack that damages and stuns anything in your path"
+	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE_SELECT
 
 /datum/keybinding/xeno/ravager_endure
 	name = "ravager_endure"
@@ -1024,6 +1127,12 @@
 	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/drain_sting_select
+	name = "drain_sting_select"
+	full_name = "Sentinel: Select Drain Sting"
+	description = "Sting a victim, draining any Intoxicated debuffs they may have, restoring you and dealing damage."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING_SELECT
+
 /datum/keybinding/xeno/toxicgrenade
 	name = "toxic_grenade"
 	full_name = "Sentinel: Toxic Grenade"
@@ -1037,6 +1146,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/psychic_fling_select
+	name = "psychic_fling_select"
+	full_name = "Shrike: Select Psychic Fling"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT
 
 /datum/keybinding/xeno/unrelenting_force
 	name = "unrelenting_force"
@@ -1054,9 +1169,15 @@
 /datum/keybinding/xeno/psychic_heal
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	description = "A powerful ability that greatly heals a single xenomorph within a short distance"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/psychic_heal_select
+	name = "psychic_cure_select"
+	full_name = "Shrike: Select Psychic Cure"
+	description = "A powerful ability that greatly heals a single xenomorph within a short distance"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 
 /datum/keybinding/xeno/psychic_storm
 	name = "gravnade"
@@ -1071,6 +1192,12 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/scatter_spit_select
+	name = "scatter_spit_select"
+	full_name = "Spitter: Select Scatter Spit"
+	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
+	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT_SELECT
 
 /datum/keybinding/xeno/toss_grenade
 	name = "toss_grenade"
@@ -1148,12 +1275,24 @@
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/lunge_select
+	name = "lunge_select"
+	full_name = "Warrior: Select Lunge"
+	description = "Charges towards a target, then neckgrabs them if they're adjacent to you. Stuns on upon grabbing for 1 second."
+	keybind_signal = COMSIG_XENOABILITY_LUNGE_SELECT
+
 /datum/keybinding/xeno/fling
 	name = "fling"
 	full_name = "Warrior: Fling"
 	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
 	keybind_signal = COMSIG_XENOABILITY_FLING
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/fling_select
+	name = "fling_select"
+	full_name = "Warrior: Select Fling"
+	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
+	keybind_signal = COMSIG_XENOABILITY_FLING_SELECT
 
 /datum/keybinding/xeno/grapple_toss
 	name = "grapple_toss"
@@ -1162,6 +1301,12 @@
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/grapple_toss_select
+	name = "grapple_toss_select"
+	full_name = "Warrior: Select Grapple Toss"
+	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
+	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS_SELECT
+
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"
@@ -1169,12 +1314,24 @@
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	hotkey_keys = list("R")
 
+/datum/keybinding/xeno/punch_select
+	name = "punch_select"
+	full_name = "Warrior: Select Punch"
+	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
+	keybind_signal = COMSIG_XENOABILITY_PUNCH_SELECT
+
 /datum/keybinding/xeno/jab
 	name = "jab"
 	full_name = "Warrior: Jab"
 	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
 	keybind_signal = COMSIG_XENOABILITY_JAB
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/jab_select
+	name = "jab_select"
+	full_name = "Warrior: Select Jab"
+	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
+	keybind_signal = COMSIG_XENOABILITY_JAB_SELECT
 
 /datum/keybinding/xeno/burrow
 	name = "burrow"

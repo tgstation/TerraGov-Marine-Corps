@@ -68,9 +68,11 @@
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DEFILE_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/defile/on_cooldown_finish()
@@ -427,7 +429,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
-	target_flags = ABILITY_MOB_TARGET
 	/// How many remaining reagent slashes does this xenomorph have?
 	var/reagent_slash_count = 0
 	/// How much units is injected on slash?

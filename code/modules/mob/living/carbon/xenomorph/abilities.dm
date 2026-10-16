@@ -539,10 +539,12 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFER_PLASMA,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRANSFER_PLASMA_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 
 /datum/action/ability/activable/xeno/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -786,8 +788,10 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 
 
 /datum/action/ability/activable/xeno/spray_acid
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SPRAY_ACID_SELECT,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
 	action_icon_state = "spray_acid"
@@ -1008,10 +1012,12 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 150
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_NEUROTOX_STING_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
@@ -1069,6 +1075,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_OZELOMELYN_STING_SELECT,
 	)
 	ability_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
@@ -1251,9 +1258,12 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	desc = "Drain the victim of its life force to gain larva and psych points"
 	ability_cost = 50
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HEADBITE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///How much larva points it gives (10 points for one larva in NW)
 	var/larva_point_reward = 1
@@ -1353,9 +1363,12 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	action_icon_state = "regurgitate"
 	desc = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_REGURGITATE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	ability_cost = 100
 	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 	///In how much time the cocoon will be ejected
