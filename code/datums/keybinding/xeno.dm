@@ -695,6 +695,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	hotkey_keys = list("H")
 
+/datum/keybinding/xeno/healing_infusion_select
+	name = "healing_infusion_select"
+	full_name = "Hivelord: Select Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION_SELECT
+
 /datum/keybinding/xeno/sow
 	name = "sow"
 	full_name = "Hivelord: Sow"

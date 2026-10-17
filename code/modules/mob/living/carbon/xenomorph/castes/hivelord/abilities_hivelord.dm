@@ -285,8 +285,10 @@
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_duration = 12.5 SECONDS
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HEALING_INFUSION_SELECT,
 	)
 	use_state_flags = ABILITY_USE_LYING
 	target_flags = ABILITY_XENO_TARGET

@@ -275,6 +275,7 @@
 #define COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON "xenoability_place_recovery_pylon"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
+#define COMSIG_XENOABILITY_HEALING_INFUSION_SELECT "xenoability_healing_infusion_select"
 #define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
 #define COMSIG_XENOABILITY_RECYCLE_SELECT "xenoability_recycle_select"
 
