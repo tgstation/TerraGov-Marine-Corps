@@ -523,6 +523,8 @@
 			if(!isliving(movable_checked) || xeno_owner.issamexenohive(movable_checked))
 				continue
 			var/mob/living/hit_living = movable_checked
+			if(hit_living.stat == DEAD)
+				continue
 			if(hit_living.loc == get_turf(target)) // Additional effects if a pillar lands on top of someone.
 				hit_living.AdjustKnockdown(EARTH_RISER_THROW_KNOCKDOWN)
 				hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
