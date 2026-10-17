@@ -552,7 +552,7 @@
 	return FALSE
 
 ///If we'd allow anything to travel out of us
-/turf/proc/zPassOut(direction)
+/turf/proc/zPassOut(direction, atom/movable/mover)
 	return FALSE
 
 /// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()

@@ -81,9 +81,11 @@
 		return TRUE
 	return FALSE
 
-/turf/open/openspace/zPassOut(direction)
+/turf/open/openspace/zPassOut(direction, atom/movable/mover)
 	if(direction == DOWN)
 		for(var/obj/contained_object in contents)
+			if(contained_object == mover) //we don't block ourselves
+				continue
 			if(contained_object.obj_flags & BLOCK_Z_OUT_DOWN)
 				return FALSE
 		return TRUE
