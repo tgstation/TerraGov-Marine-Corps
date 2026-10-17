@@ -146,35 +146,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Slime Grenade
 // ***************************************
-/datum/action/ability/xeno_action/sticky_grenade
+/datum/action/ability/xeno_action/toxic_grenade/sticky
 	name = "Slime grenade"
-	action_icon_state = "gas mine"
-	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed acid to stick to a target, which will then leave a trail of acid behind them. Will explode in a 3x3 of acid if not stuck."
 	ability_cost = 75
 	cooldown_duration = 45 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
-	)
-	///Type of nade to be thrown
-	var/nade_type = /obj/item/explosive/grenade/sticky/xeno/acid
-
-/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent, override_flags, selecting)
-	. = ..()
-	if(!.)
-		return
-	if(owner.l_hand || owner.r_hand)
-		if(!silent)
-			owner.balloon_alert(owner, "Cannot create grenade, need empty hands")
-		return FALSE
-
-/datum/action/ability/xeno_action/sticky_grenade/action_activate()
-	var/obj/item/explosive/grenade/sticky/xeno/acid/nade = new(owner.loc)
-	owner.put_in_hands(nade)
-	to_chat(owner, span_xenonotice("We vomit up a sticky lump.")) // Ewww...
-	add_cooldown()
-	succeed_activate()
-	nade.activate(owner)
+	nade_type = /obj/item/explosive/grenade/sticky/xeno/acid
 
 // ***************************************
 // *********** Dodge

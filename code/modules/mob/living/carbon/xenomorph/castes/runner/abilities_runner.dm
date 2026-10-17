@@ -391,8 +391,10 @@
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SNATCH_SELECT,
 	)
 	target_flags = ABILITY_HUMAN_TARGET
 	///If the runner have an item
@@ -512,9 +514,6 @@
 /datum/action/ability/activable/xeno/charge/acid_dash/melter
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_MELTER,
-	)
 	paralyze_duration = 0.5 SECONDS
 	charge_range = 7
 	do_acid_spray_act = FALSE
@@ -556,9 +555,12 @@
 	ability_cost = 100
 	cooldown_duration = 60 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	/// The particles effects from activation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// The acid level of the ability. Affects radius and movement speed.

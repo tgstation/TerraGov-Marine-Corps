@@ -344,10 +344,16 @@
 
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"
-	full_name = "Sizzler: Acid Dash"
+	full_name = "Acid Dash"
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Gain another cast if hitting a marine."
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/acid_dash_select
+	name = "acid_dash_select"
+	full_name = "Select Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Gain another cast if hitting a marine."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_SELECT
 
 /datum/keybinding/xeno/high_pressure_spit
 	name = "high_pressure_spit"
@@ -878,17 +884,18 @@
 	description = "Unleash your latent power. While enabled, you will create an area of effect that will slowly expand. Using the ability again will attack everyone caught within it."
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE
 
-/datum/keybinding/xeno/acid_dash_melter
-	name = "Melter: Acid Dash"
-	full_name = "Melter: Acid Dash"
-	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
-	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_MELTER
-
 /datum/keybinding/xeno/acidic_missile
 	name = "Melter: Acidic Missile"
 	full_name = "Melter: Acid Missile"
 	description = "Begin building up acid. If you're already building up acid, launch yourself at a target and splash acid all around you."
 	keybind_signal = COMSIG_XENOABILITY_ACIDIC_MISSILE
+	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/acidic_missile_select
+	name = "Melter: Acidic Missile_select"
+	full_name = "Melter: Select Acid Missile"
+	description = "Begin building up acid. If you're already building up acid, launch yourself at a target and splash acid all around you."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT
 
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
@@ -1112,6 +1119,12 @@
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/snatch_select
+	name = "snatch_select"
+	full_name = "Runner: Select Snatch"
+	description = "Take an item equipped by your target in your mouth, and carry it away."
+	keybind_signal = COMSIG_XENOABILITY_SNATCH_SELECT
+
 /datum/keybinding/xeno/toxic_slash
 	name = "toxic_slash"
 	full_name = "Sentinel: Toxic Slash"
@@ -1132,12 +1145,18 @@
 	description = "Sting a victim, draining any Intoxicated debuffs they may have, restoring you and dealing damage."
 	keybind_signal = COMSIG_XENOABILITY_DRAIN_STING_SELECT
 
-/datum/keybinding/xeno/toxicgrenade
+/datum/keybinding/xeno/toxic_grenade
 	name = "toxic_grenade"
-	full_name = "Sentinel: Toxic Grenade"
+	full_name = "Toxic Grenade"
 	description = "Throws a ball of resin containing a toxin that inflicts the Intoxicated debuff, dealing damage over time."
 	keybind_signal = COMSIG_XENOABILITY_TOXIC_GRENADE
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toxic_grenade_select
+	name = "toxic_grenade_select"
+	full_name = "Select Toxic Grenade"
+	description = "Throws a ball of resin containing a toxin that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_GRENADE_SELECT
 
 /datum/keybinding/xeno/psychic_fling
 	name = "psychic_fling"

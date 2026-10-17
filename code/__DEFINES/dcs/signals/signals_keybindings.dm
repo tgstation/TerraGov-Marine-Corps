@@ -178,8 +178,9 @@
 #define COMSIG_XENOABILITY_SPRAY_ACID "xenoability_spray_acid"
 #define COMSIG_XENOABILITY_SPRAY_ACID_SELECT "xenoability_spray_acid_select"
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
-#define COMSIG_XENOABILITY_ACID_DASH_MELTER "xenoability_acid_dash_melter"
+#define COMSIG_XENOABILITY_ACID_DASH_SELECT "xenoability_acid_dash_select"
 #define COMSIG_XENOABILITY_ACIDIC_MISSILE "xenoability_acidic_missile"
+#define COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT "xenoability_acidic_missile_select"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
@@ -204,6 +205,7 @@
 #define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
 #define COMSIG_XENOABILITY_DRAIN_STING_SELECT "xenoability_drain_sting_select"
 #define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
+#define COMSIG_XENOABILITY_TOXIC_GRENADE_SELECT "xenoability_toxic_grenade_select"
 
 #define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
 #define COMSIG_XENOABILITY_ACIDIC_SALVE_SELECT "xenoability_acidic_salve_select"
@@ -323,6 +325,7 @@
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 #define COMSIG_XENOABILITY_AUTO_EVASION "xenoability_auto_evasion"
 #define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
+#define COMSIG_XENOABILITY_SNATCH_SELECT "xenoability_snatch_select"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 

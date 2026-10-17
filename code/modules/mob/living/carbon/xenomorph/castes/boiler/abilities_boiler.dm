@@ -756,6 +756,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_DASH_SELECT,
 	)
 	paralyze_duration = 1 SECONDS
 	charge_range = BOILER_CHARGEDISTANCE
