@@ -391,7 +391,7 @@
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SNATCH_SELECT,
@@ -525,7 +525,7 @@
 	desc = "Creates see-through acid smoke below yourself."
 	ability_cost = 50
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 32 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_MELTER,
@@ -555,7 +555,7 @@
 	ability_cost = 100
 	cooldown_duration = 60 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT,

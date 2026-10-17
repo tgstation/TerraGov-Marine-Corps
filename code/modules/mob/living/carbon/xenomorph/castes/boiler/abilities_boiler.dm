@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	ability_cost = 200
 	cooldown_duration = 32 SECONDS // 32 is the default Bombard cooldown.
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_SHROUD_SELECT,
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(!line_of_sight(owner, target, 7))
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -730,7 +730,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(get_dist(target, owner) < 5 || get_dist(target, owner) > 13)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(!line_of_sight(owner, target))
 		return FALSE

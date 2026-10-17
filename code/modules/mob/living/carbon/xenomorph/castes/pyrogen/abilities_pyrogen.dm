@@ -45,7 +45,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, PYROGEN_CHARGEDISTANCE))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -194,7 +194,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 6) // If we can be seen.
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	return TRUE
 

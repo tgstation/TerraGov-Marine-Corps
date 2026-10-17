@@ -64,7 +64,7 @@
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,
@@ -218,7 +218,7 @@
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -330,7 +330,7 @@
 	desc = "Heal and remove debuffs from a target."
 	cooldown_duration = 1 MINUTES
 	ability_cost = 200
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT,
@@ -624,7 +624,7 @@
 	desc = "Channel at a distance to hold a human in your psychic grasp."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,

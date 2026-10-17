@@ -216,7 +216,7 @@
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
 		var/true_target = ability_target(target)
-		if(can_use_ability(true_target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+		if(can_use_ability(true_target, FALSE))
 			INVOKE_ASYNC(src, PROC_REF(use_ability), true_target)
 		return
 
@@ -240,10 +240,6 @@
 		return FALSE
 
 	var/to_check_flags = use_state_flags|override_flags
-
-	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(to_check_flags, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
-		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(to_check_flags, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE

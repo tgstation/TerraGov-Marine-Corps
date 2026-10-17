@@ -7,7 +7,7 @@
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Use to emit a cloud of blinding smoke."
 	cooldown_duration = 30 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
@@ -50,7 +50,7 @@
 		return FALSE
 	if(get_dist(carbon_target, owner) > 2)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	if(!line_of_sight(owner, carbon_target))
 		return FALSE
@@ -84,7 +84,7 @@
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	cooldown_duration = 10 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT,
@@ -119,7 +119,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	return TRUE
 
@@ -258,7 +258,7 @@
 
 /datum/action/ability/activable/bile_spit/use_ability(atom/A)
 	owner.do_jitter_animation(1000)
-	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_SELECTED_ABILITY) || !(A in range(get_screen_size(TRUE), owner)))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		fail_activate()
 		return
 
@@ -283,6 +283,6 @@
 		return FALSE
 	if(check_path(owner, target, PASS_PROJECTILE|PASS_MOB) != get_turf(target))
 		return
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	return TRUE

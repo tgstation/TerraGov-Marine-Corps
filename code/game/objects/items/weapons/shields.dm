@@ -282,6 +282,6 @@
 	modifiers -= "right"
 	params = list2params(modifiers)
 	var/target_atom = get_turf_on_clickcatcher(object, mob_source, params)
-	if(!can_use_ability(target_atom, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target_atom))
 		return
 	use_ability(target_atom)

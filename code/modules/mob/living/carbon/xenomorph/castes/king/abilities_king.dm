@@ -184,7 +184,7 @@
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim and movement for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_OFFGUARD_SELECT,
@@ -243,7 +243,7 @@
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
 	target_flags = ABILITY_TURF_TARGET
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SHATTERING_ROAR_SELECT,

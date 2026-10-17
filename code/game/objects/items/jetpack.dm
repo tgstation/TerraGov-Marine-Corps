@@ -180,7 +180,7 @@
 	var/atom/movable/movable_target = target
 	if(movable_target.faction == owner.faction)
 		return FALSE
-	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(movable_target))
 		return FALSE
 	var/obj/item/jetpack_marine/jetpack_parent = src.target
 	if(jetpack_parent.fuel_left < FUEL_USE)

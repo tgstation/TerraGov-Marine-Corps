@@ -137,7 +137,7 @@
 	ability_cost = 75
 	target_flags = ABILITY_HUMAN_TARGET
 	use_state_flags = ABILITY_USE_BUCKLED
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DRAIN_STING_SELECT,
@@ -241,7 +241,7 @@
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOXIC_GRENADE_SELECT,

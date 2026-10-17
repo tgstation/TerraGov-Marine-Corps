@@ -87,7 +87,7 @@
 
 //Overrides parent.
 /datum/action/ability/activable/xeno/psychic_shield/alternate_action_activate()
-	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+	if(can_use_ability(null, FALSE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 /datum/action/ability/activable/xeno/psychic_shield/action_activate()
