@@ -208,7 +208,7 @@
 #define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
 #define COMSIG_XENOABILITY_ACIDIC_SALVE_SELECT "xenoability_acidic_salve_select"
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
-#define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
+#define COMSIG_XENOABILITY_ESSENCE_LINK_SELECT "xenoability_essence_link_select"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"

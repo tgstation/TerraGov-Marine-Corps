@@ -587,12 +587,11 @@
 	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK
 	hotkey_keys = list("Q")
 
-/datum/keybinding/xeno/essence_link_remove
-	name = "essence_link_remove"
-	full_name = "Drone: End Essence Link"
-	description = "Forcibly end an Essence Link."
-	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE
-	hotkey_keys = list("E")
+/datum/keybinding/xeno/essence_link_select
+	name = "essence_link_select"
+	full_name = "Drone: Select Essence Link"
+	description = "Establish a link of plasma with a sister."
+	keybind_signal = COMSIG_XENOABILITY_ESSENCE_LINK_SELECT
 
 /datum/keybinding/xeno/enhancement
 	name = "enhancement"
