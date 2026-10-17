@@ -504,9 +504,10 @@
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_cost = 15
 	cooldown_duration = 10 SECONDS
+	keybind_flags = NONE
+	target_flags = NONE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PUNCH_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/warrior/punch/encounter
@@ -721,7 +722,6 @@
 	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_JAB_SELECT,
 	)
 	/// The amount of charges we currently have. Initial value is assumed to be the maximum.
 	var/current_charges = 3

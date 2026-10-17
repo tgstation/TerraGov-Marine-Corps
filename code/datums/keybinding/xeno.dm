@@ -1309,29 +1309,17 @@
 
 /datum/keybinding/xeno/punch
 	name = "punch"
-	full_name = "Warrior: Punch"
+	full_name = "Warrior: Select Punch"
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	hotkey_keys = list("R")
 
-/datum/keybinding/xeno/punch_select
-	name = "punch_select"
-	full_name = "Warrior: Select Punch"
-	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
-	keybind_signal = COMSIG_XENOABILITY_PUNCH_SELECT
-
 /datum/keybinding/xeno/jab
 	name = "jab"
-	full_name = "Warrior: Jab"
+	full_name = "Warrior: Select Jab"
 	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
 	keybind_signal = COMSIG_XENOABILITY_JAB
 	hotkey_keys = list("E")
-
-/datum/keybinding/xeno/jab_select
-	name = "jab_select"
-	full_name = "Warrior: Select Jab"
-	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
-	keybind_signal = COMSIG_XENOABILITY_JAB_SELECT
 
 /datum/keybinding/xeno/burrow
 	name = "burrow"

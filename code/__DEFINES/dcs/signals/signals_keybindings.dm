@@ -332,11 +332,9 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_FLING_SELECT "xenoability_fling_select"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
-#define COMSIG_XENOABILITY_PUNCH_SELECT "xenoability_punch_select"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS_SELECT "xenoability_grapple_toss_select"
 #define COMSIG_XENOABILITY_JAB "xenoability_jab"
-#define COMSIG_XENOABILITY_JAB_SELECT "xenoability_jab_select"
 
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
