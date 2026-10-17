@@ -1033,7 +1033,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
 "RD" = (
-/obj/machinery/power/geothermal/bigred,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
 "RW" = (
