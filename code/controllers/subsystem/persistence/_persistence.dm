@@ -15,14 +15,6 @@ SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
-	)
-	dependents = list(
-		// FIXME: vendors with seasonal items expect SSpersistence to be initialized before atoms.
-		// (and sidenote, tram hit counters expect the opposite, but they're unimplemented lol)
-		// SSpersistence should probably depend on SSatoms and atoms with persistence-related
-		// things (like weapon vendors) should be refactored so these things can wait, using
-		// a queue, a post-init signal registered to SSpersistence, or some other callback.
-		// that's a little out of scope for a subsystem refactor, though.
 		/datum/controller/subsystem/atoms,
 	)
 	flags = SS_NO_FIRE
@@ -75,7 +67,6 @@ SUBSYSTEM_DEF(persistence)
 	save_custom_loadouts_list()
 	save_last_game_mode_round_time()
 	save_player_number()
-	return
 
 ///Loads the last gamemode's round date
 /datum/controller/subsystem/persistence/proc/load_last_game_mode_round_time()

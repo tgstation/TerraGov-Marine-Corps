@@ -112,14 +112,21 @@
 	)
 	*/
 	/// Normal products that are always available on the vendor.
+	/// Nulled after products have been loaded.
 	var/list/products = list()
-	/** List of seasons whose products are added to the vendor's.
-	 *	Format for each entry is SEASON_NAME = "tab name"
+	/**
+	 * List of seasons whose products are added to this vendor.
+	 *
+	 * Formatted as (season identifier -> tab name).
+	 *
+	 * This is nulled after seasonal items have been loaded.
 	 */
 	var/list/seasonal_items = list()
 	/// Contraband products that are only available on vendor when hacked.
+	/// Nulled after contraband products have been loaded.
 	var/list/contraband = list()
 	/// Premium products that are only available when using a coin to pay for it.
+	/// Nulled after premium products have been loaded.
 	var/list/premium = list()
 	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
 	var/list/prices = list()
@@ -192,7 +199,14 @@
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_slogan = world.time + rand(0, slogan_delay)
 
-	build_seasonal_tabs()
+	if(length(seasonal_items))
+		if(!SSpersistence.initialized)
+			// SSpersistence doesn't exist for maploaded vendors, but we can wait for it easily enough
+			RegisterSignal(SSpersistence, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(on_persistence_init))
+		else
+			for(var/season_key, season_name in seasonal_items)
+				products[season_name] += SSpersistence.season_items[season_key]
+			seasonal_items = null
 
 	if(isshared)
 		build_shared_inventory()
@@ -295,10 +309,29 @@
 		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category, product_max_capacity = max_capacities[entry])
 		recordlist += record
 
-///Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification
-/obj/machinery/vending/proc/build_seasonal_tabs()
-	for(var/season in seasonal_items)
-		products[seasonal_items[season]] += SSpersistence.season_items[season]
+/// Because Persistence is only initialized after Atoms, maploaded vendors
+/// must wait for Persistence to initialize to add additional seasonal items
+/obj/machinery/vending/proc/on_persistence_init(datum/controller/subsystem/persistence/_source)
+	SIGNAL_HANDLER
+	UnregisterSignal(SSpersistence, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+
+	var/list/compiled_seasonal_items = list()
+	for(var/season_key, season_name in seasonal_items)
+		compiled_seasonal_items[season_name] += SSpersistence.season_items[season_key]
+
+	seasonal_items = null
+
+	if(!isshared)
+		build_inventory(compiled_seasonal_items, CAT_NORMAL)
+		return
+
+	// fascinating. but this is the best I've had in mind, at any point,
+	// for preventing shared vendors from having duplicate seasonal items
+	if(GLOB.shared_vendors_with_late_loaded_seasonals.Find(type))
+		return
+
+	GLOB.shared_vendors_with_late_loaded_seasonals |= type
+	build_inventory(compiled_seasonal_items, CAT_NORMAL)
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
