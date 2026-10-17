@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Slime Grenade
 // ***************************************
-/datum/action/ability/xeno_action/toxic_grenade/sticky
+/datum/action/ability/activable/xeno/toxic_grenade/sticky
 	name = "Slime grenade"
 	desc = "Throws a lump of compressed acid to stick to a target, which will then leave a trail of acid behind them. Will explode in a 3x3 of acid if not stuck."
 	ability_cost = 75

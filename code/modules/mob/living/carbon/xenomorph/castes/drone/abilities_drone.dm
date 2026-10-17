@@ -67,7 +67,7 @@
 
 /datum/action/ability/activable/xeno/essence_link/use_ability(atom/target)
 	if(existing_link)
-		if(!do_after(xeno_owner, 1 SECOND, NONE, target, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC)) //prevent accidental breaks
+		if(!do_after(xeno_owner, 1 SECONDS, NONE, target, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC)) //prevent accidental breaks
 			return
 		end_ability(TRUE)
 		return
