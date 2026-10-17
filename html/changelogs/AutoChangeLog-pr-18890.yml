@@ -1,5 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Added a 5 second cooldown for toggling the takeoff alarm on any marine dropship."
-  - bugfix: "Turning off automation will no longer force disable the takeoff alarm."

@@ -126,3 +126,8 @@
       Outpost to fill a 1x1 gap.
   termin-0:
   - bugfix: Changed the NE cave entrance on Big Red to have shallow caves
+2026-10-17:
+  Neocloudy:
+  - bugfix: Added a 5 second cooldown for toggling the takeoff alarm on any marine
+      dropship.
+  - bugfix: Turning off automation will no longer force disable the takeoff alarm.
