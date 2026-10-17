@@ -62,11 +62,11 @@
 
 /obj/item/weapon/baseballbat/equipped(mob/user, slot)
 	. = ..()
-	user.AddComponent(/datum/component/throw_parry, null, TRUE, src)
+	user.AddComponentFrom("[REF(src)]", /datum/component/throw_parry, TRUE, src)
 
 /obj/item/weapon/baseballbat/dropped(mob/user)
 	. = ..()
-	user.remove_component(/datum/component/throw_parry)
+	user.RemoveComponentSource("[REF(src)]", /datum/component/throw_parry)
 
 /obj/item/weapon/baseballbat/on_parry_throw(atom/reflector, atom/movable/thrown)
 	reflector.visible_message(span_warning("[reflector] smashes [thrown] with [src]!"))
