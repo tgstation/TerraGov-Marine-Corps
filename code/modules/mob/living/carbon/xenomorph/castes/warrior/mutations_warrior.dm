@@ -38,32 +38,32 @@
 
 //*********************//
 //         Spur        //
-//*********************//
-/datum/mutation_upgrade/spur/enhanced_strength
-	name = "Enhanced Strength"
-	desc = "Fling and Grapple Toss can now sends your target 1/2/3 tiles further."
-	/// For each structure, the amount to increase the range by.
-	var/range_per_structure = 1
+//*********************// This shit is so ass
+///datum/mutation_upgrade/spur/enhanced_strength
+//	name = "Enhanced Strength"
+//	desc = "Fling and Grapple Toss can now sends your target 1/2/3 tiles further."
+//	/// For each structure, the amount to increase the range by.
+//	var/range_per_structure = 1
 
-/datum/mutation_upgrade/spur/enhanced_strength/get_desc_for_alert(new_amount)
-	if(!new_amount)
-		return ..()
-	return "Fling and Grapple Toss can now sends your target [get_range(new_amount)] tiles further."
+///datum/mutation_upgrade/spur/enhanced_strength/get_desc_for_alert(new_amount)
+//	if(!new_amount)
+//		return ..()
+//	return "Fling and Grapple Toss can now sends your target [get_range(new_amount)] tiles further."
 
-/datum/mutation_upgrade/spur/enhanced_strength/on_structure_update(previous_amount, new_amount)
-	. = ..()
-	var/datum/action/ability/activable/xeno/warrior/fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/fling]
-	if(!fling_ability)
-		return
-	var/datum/action/ability/activable/xeno/warrior/grapple_toss/toss_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/grapple_toss]
-	if(!toss_ability)
-		return
-	fling_ability.starting_fling_distance += get_range(new_amount - previous_amount)
-	toss_ability.starting_toss_distance += get_range(new_amount - previous_amount)
+///datum/mutation_upgrade/spur/enhanced_strength/on_structure_update(previous_amount, new_amount)
+//	. = ..()
+//	var/datum/action/ability/activable/xeno/warrior/fling/fling_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/fling]
+//	if(!fling_ability)
+//		return
+//	var/datum/action/ability/activable/xeno/warrior/grapple_toss/toss_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/warrior/grapple_toss]
+//	if(!toss_ability)
+//		return
+//	fling_ability.starting_fling_distance += get_range(new_amount - previous_amount)
+///	toss_ability.starting_toss_distance += get_range(new_amount - previous_amount)
 
 /// Returns the amount that each ability's range should be increased by.
-/datum/mutation_upgrade/spur/enhanced_strength/proc/get_range(structure_count)
-	return range_per_structure * structure_count
+///datum/mutation_upgrade/spur/enhanced_strength/proc/get_range(structure_count)
+//	return range_per_structure * structure_count
 
 //*********************//
 //         Veil        //
