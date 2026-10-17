@@ -1548,30 +1548,65 @@
 	full_name = "Pyrogen: Fire Charge"
 	description = "Charge forward and attack a marine, extinguishing them if they're on fire, but dealing extra burn damage depending on how many firestacks they have."
 	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/firenado
 	name = "Fire Storm"
 	full_name = "Pyrogen: Fire Storm"
 	description = "Unleash 3 firenados that will slowly move towards your targeted turf."
 	keybind_signal = COMSIG_XENOABILITY_FIRENADO
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/fireball
 	name = "Fireball"
 	full_name = "Pyrogen: Fireball"
 	description = "Unleash a fireball after a small windup."
 	keybind_signal = COMSIG_XENOABILITY_FIREBALL
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/inferno
 	name = "Inferno"
 	full_name = "Pyrogen: Inferno"
 	description = "Immediately release a large radius of fire and burning nearby marines in the process."
 	keybind_signal = COMSIG_XENOABILITY_INFERNO
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/infernal_trigger
 	name = "Infernal Trigger"
 	full_name = "Pyrogen: Infernal Trigger"
 	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
 	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/firecharge_select
+	name = "Fire Charge_select"
+	full_name = "Pyrogen: Select Fire Charge"
+	description = "Charge forward and attack a marine, extinguishing them if they're on fire, but dealing extra burn damage depending on how many firestacks they have."
+	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE_SELECT
+
+/datum/keybinding/xeno/firenado_select
+	name = "Fire Storm_select"
+	full_name = "Pyrogen: Select Fire Storm"
+	description = "Unleash 3 firenados that will slowly move towards your targeted turf."
+	keybind_signal = COMSIG_XENOABILITY_FIRENADO_SELECT
+
+/datum/keybinding/xeno/fireball_select
+	name = "Fireball_select"
+	full_name = "Pyrogen: Select Fireball"
+	description = "Unleash a fireball after a small windup."
+	keybind_signal = COMSIG_XENOABILITY_FIREBALL_SELECT
+
+/datum/keybinding/xeno/inferno_select
+	name = "Inferno_select"
+	full_name = "Pyrogen: Select Inferno"
+	description = "Immediately release a large radius of fire and burning nearby marines in the process."
+	keybind_signal = COMSIG_XENOABILITY_INFERNO_SELECT
+
+/datum/keybinding/xeno/infernal_trigger_select
+	name = "Infernal Trigger_select"
+	full_name = "Pyrogen: Select Infernal Trigger"
+	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
+	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER_SELECT
 
 /datum/keybinding/xeno/backhand
 	name = "Backhand"

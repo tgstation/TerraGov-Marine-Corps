@@ -392,6 +392,11 @@
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
 #define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
 #define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
+#define COMSIG_XENOABILITY_FIRECHARGE_SELECT "xenoability_firecharge_select"
+#define COMSIG_XENOABILITY_FIRENADO_SELECT "xenoability_firenado_select"
+#define COMSIG_XENOABILITY_FIREBALL_SELECT "xenoability_fireball_select"
+#define COMSIG_XENOABILITY_INFERNO_SELECT "xenoability_inferno_select"
+#define COMSIG_XENOABILITY_INFERNAL_TRIGGER_SELECT "xenoability_infernal_trigger_select"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"

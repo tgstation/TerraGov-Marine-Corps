@@ -10,6 +10,7 @@
 	ability_cost = 75
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIRECHARGE_SELECT,
 	)
 	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	// Should they also slash upon hitting a mob?
@@ -95,8 +96,11 @@
 	desc = "Release a fireball that explodes in a 3x3 area on contact."
 	ability_cost = 300
 	cooldown_duration = 15 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIREBALL_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/fireball/encounter
@@ -158,8 +162,10 @@
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 300
 	cooldown_duration = 12 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIRENADO_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/firestorm/can_use_ability(atom/A, silent, override_flags)
@@ -208,8 +214,10 @@
 	desc = "After a short cast time, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 125
 	cooldown_duration = 18 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_INFERNO_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
@@ -255,8 +263,10 @@
 	target_flags = ABILITY_HUMAN_TARGET
 	ability_cost = 100
 	cooldown_duration = 6 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNAL_TRIGGER,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_INFERNAL_TRIGGER_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/infernal_trigger/can_use_ability(atom/A, silent, override_flags)
