@@ -10,6 +10,10 @@
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
 
+/datum/money_account/Destroy()
+	GLOB.all_money_accounts -= src
+	return ..()
+
 /datum/transaction
 	var/target_name = ""
 	var/purpose = ""

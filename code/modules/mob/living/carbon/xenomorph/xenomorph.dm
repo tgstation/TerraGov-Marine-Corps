@@ -272,6 +272,10 @@
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 
+	QDEL_LIST(owned_mutations)
+	QDEL_NULL(current_aura)
+	QDEL_NULL(leader_current_aura)
+
 	GLOB.alive_xeno_list -= src
 	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.xeno_mob_list -= src

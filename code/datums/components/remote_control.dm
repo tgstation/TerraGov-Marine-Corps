@@ -31,8 +31,11 @@
 
 
 /datum/component/remote_control/Destroy(force=FALSE, silent=FALSE)
+	if(is_controlling)
+		remote_control_off()
 	UnregisterSignal(controlled, COMSIG_PREQDELETED)
 	controlled = null
+	ctrl_click_proc = null
 	left_click_proc = null
 	right_click_proc = null
 	return ..()
