@@ -169,11 +169,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[carbon_victim.AmountStaggered()]</b>"))
 		#endif
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[carbon_victim.slowdown]</b>"))
+		to_chat(world, span_debuginfo("Damage: Initial slowdown is: <b>[carbon_victim.amount_slowed()]</b>"))
 		#endif
-		carbon_victim.add_slowdown(slowdown)
+		carbon_victim.slowdown(slowdown)
 		#if DEBUG_STAGGER_SLOWDOWN
-		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[carbon_victim.slowdown]</b>"))
+		to_chat(world, span_debuginfo("Damage: Final slowdown is: <b>[carbon_victim.amount_slowed()]</b>"))
 		#endif
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 

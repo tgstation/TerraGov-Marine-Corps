@@ -7,25 +7,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/xeno_attack = 8,
 ))
 
-
-/mob/living/carbon/proc/handle_hallucinations()
-	if(!hallucination)
-		return
-
-	hallucination = max(0, hallucination - 2) // Life ticks happen every 2 seconds
-
-	if(world.time < next_hallucination)
-		return
-
-	var/halpick = pickweight(GLOB.hallucination_list)
-	new halpick(src, FALSE)
-
-	next_hallucination = world.time + rand(10 SECONDS, 60 SECONDS)
-
-/mob/living/carbon/proc/set_screwyhud(hud_type)
-	hal_screwyhud = hud_type
-	handle_healths_hud_updates()
-
 /datum/hallucination
 	var/natural = TRUE
 	var/mob/living/carbon/target
@@ -299,8 +280,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /datum/hallucination/death/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
-	..()
-	target.set_screwyhud(SCREWYHUD_DEAD)
+	. = ..()
+	var/datum/status_effect/stacking/hallucination/status = target.is_hallucinating()
+	status.set_screwyhud(SCREWYHUD_DEAD)
 	target.Sleeping(30 SECONDS)
 	if(prob(50))
 		var/mob/fakemob
@@ -315,6 +297,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			sleep(rand(20, 50))
 			to_chat(target, span_deadsay("<b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\""))
 	sleep(rand(7 SECONDS, 9 SECONDS))
-	target.set_screwyhud(SCREWYHUD_NONE)
+	status.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)
 	qdel(src)

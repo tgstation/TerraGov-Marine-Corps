@@ -152,22 +152,22 @@
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
-	L.hallucination += 10
+	L.adjust_hallucination(10)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -233,12 +233,12 @@
 		if(7 to 10)
 			if(prob(10))
 				L.Sleeping(10 SECONDS)
-			L.drowsyness = max(L.drowsyness, 20)
+			L.drowzy(20)
 		if(11 to 80)
 			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
-			L.drowsyness = max(L.drowsyness, 30)
+			L.drowzy(30)
 		if(81 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -264,7 +264,7 @@
 		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
@@ -467,11 +467,11 @@
 		if(21 to 45)
 			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
-			L.jitter(4) //Shows that things are bad
+			L.adjust_jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-			L.jitter(8) //Shows that things are *really* bad
+			L.adjust_jitter(8) //Shows that things are *really* bad
 
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
@@ -705,13 +705,13 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(11 to 20)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
-			L.jitter(4)
+			L.adjust_jitter(4)
 		if(21 to 30)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-			L.jitter(6)
+			L.adjust_jitter(6)
 		if(31 to INFINITY)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.5 //bad times ahead
-			L.jitter(8)
+			L.adjust_jitter(8)
 
 	if(current_cycle > 21)
 		L.adjustStaminaLoss(effect_str)

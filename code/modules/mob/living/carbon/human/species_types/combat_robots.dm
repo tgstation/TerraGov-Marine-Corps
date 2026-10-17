@@ -75,7 +75,7 @@
 	if(H.health > -25) //Staggerslowed if below crit threshold
 		return
 	H.Stagger(2 SECONDS)
-	H.adjust_slowdown(1)
+	H.slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self

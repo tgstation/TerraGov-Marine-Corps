@@ -27,8 +27,8 @@
 	var/hit_paralyze_time = 1 SECONDS
 	///On a direct hit, how much do the victim's eyes get blurred?
 	var/hit_eye_blur = 11
-	///On a direct hit, how much drowsyness gets added to the target?
-	var/hit_drowsyness = 12
+	///On a direct hit, how much drowziness gets added to the target?
+	var/hit_drowziness = 12
 	///Base spread range
 	var/fixed_spread_range = 3
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
@@ -81,7 +81,7 @@
 
 	human_victim.Paralyze(hit_paralyze_time)
 	human_victim.blur_eyes(hit_eye_blur)
-	human_victim.adjustDrowsyness(hit_drowsyness)
+	human_victim.adjust_drowziness(hit_drowziness)
 
 	if(!reagent_transfer_amount)
 		return
@@ -135,7 +135,7 @@
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 	hit_paralyze_time = 1 SECONDS
 	hit_eye_blur = 1
-	hit_drowsyness = 1
+	hit_drowziness = 1
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
@@ -231,7 +231,7 @@
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 16
-	hit_drowsyness = 18
+	hit_drowziness = 18
 	fixed_spread_range = 2
 	accuracy = 100
 	accurate_range = 30
@@ -250,7 +250,7 @@
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
 	hit_paralyze_time = 1.5 SECONDS
 	hit_eye_blur = 4
-	hit_drowsyness = 2
+	hit_drowziness = 2
 	fixed_spread_range = 2
 	accuracy = 100
 	shell_speed = 1.5

@@ -156,7 +156,7 @@
 
 /obj/machinery/microwave/proc/microwave_victim(mob/living/victim, mob/living/user)
 	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20, attacker = user)
-	victim.jitter(5)
+	victim.adjust_jitter(5)
 	if(prob(10))
 		victim.emote("scream")
 		victim.adjustBrainLoss(5)
