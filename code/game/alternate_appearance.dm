@@ -1,12 +1,18 @@
 GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
-/atom/proc/remove_alt_appearance(key)
-	if(alternate_appearances)
-		for(var/K in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-			if(AA.appearance_key == key)
-				AA.remove_from_hud(src)
-				break
+///Removes an alternate appearance from src. By default also deletes the appearance entirely
+/atom/proc/remove_alt_appearance(key, destroy_on_remove = TRUE)
+	if(!alternate_appearances)
+		return
+	for(var/K in alternate_appearances)
+		var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
+		if(AA.appearance_key != key)
+			return
+		if(destroy_on_remove)
+			qdel(AA)
+		else
+			AA.remove_from_hud(src)
+		break
 
 /atom/proc/add_alt_appearance(type, key, ...)
 	if(!type || !key)
