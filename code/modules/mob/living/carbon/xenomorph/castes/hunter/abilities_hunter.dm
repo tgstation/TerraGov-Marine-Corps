@@ -665,8 +665,10 @@
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_cost = 50
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SILENCE_SELECT,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 	/// The multiplier of Silence's effects to the victim that the owner has selected with Hunter's Mark.

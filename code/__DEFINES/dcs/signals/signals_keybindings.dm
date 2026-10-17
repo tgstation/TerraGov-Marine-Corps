@@ -197,6 +197,7 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 #define COMSIG_XENOABILITY_SILENCE "xenoability_silence"
+#define COMSIG_XENOABILITY_SILENCE_SELECT "xenoability_silence_select"
 #define COMSIG_XENOABILITY_PLACE_PATTERN "xenoability_place_pattern"
 #define COMSIG_XENOABILITY_SELECT_PATTERN "xenoability_select_pattern"
 
