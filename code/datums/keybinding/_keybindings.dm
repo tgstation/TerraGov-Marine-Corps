@@ -11,11 +11,13 @@
 	if(!keybind_signal)
 		CRASH("Keybind [src] called unredefined down() without a keybind_signal.")
 
-/datum/keybinding/proc/down(client/user)
+/datum/keybinding/proc/down(client/user, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal, src), COMSIG_KB_ACTIVATED)
+	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal, src, target), COMSIG_KB_ACTIVATED)
 
-/datum/keybinding/proc/up(client/user)
+/datum/keybinding/proc/up(client/user, turf/target)
+	//SHOULD_CALL_PARENT(TRUE)
+	//SEND_SIGNAL(user.mob, DEACTIVATE_KEYBIND(keybind_signal), target)
 	return FALSE
 
 /datum/keybinding/proc/intercept_mouse_special(datum/source)

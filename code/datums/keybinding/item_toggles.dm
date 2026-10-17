@@ -10,10 +10,16 @@
 	hotkey_keys = list("G")
 
 /datum/keybinding/item/blinkdrive
-	name = "Blink drive"
+	name = "Blink drive toggle"
 	full_name = "Toggle blink drive"
 	description = "Toggles your blink drive on, allowing you to instantly teleport short distances."
 	keybind_signal = COMSIG_ITEM_TOGGLE_BLINKDRIVE
+
+/datum/keybinding/item/blinkdrive_active
+	name = "Blink drive"
+	full_name = "activate blink drive"
+	description = "instantly teleports you a short distance."
+	keybind_signal = COMSIG_ITEM_BLINKDRIVE_ACTIVATE
 	hotkey_keys = list("G")
 
 /datum/keybinding/item/toggle_strap

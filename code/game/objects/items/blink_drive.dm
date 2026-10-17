@@ -198,7 +198,11 @@
 	action_icon_state = "axe_sweep"
 	desc = "Teleport a short distance instantly."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_ITEM_BLINKDRIVE_ACTIVATE,
+		KEYBINDING_ALTERNATE = COMSIG_ITEM_TOGGLE_BLINKDRIVE,
+	)
 
 /datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
