@@ -4,7 +4,9 @@
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
-	return ..() //we're just changing the death message
+	. = ..()
+	if(xeno_caste.death_flick)
+		flick(xeno_caste.death_flick, src)
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
