@@ -36,10 +36,3 @@
 				return
 			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)
 			throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/stuffed)
-
-/mob/living/carbon/handle_fire()
-	. = ..()
-	if(.)
-		clear_alert(ALERT_FIRE)
-		return
-	throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)

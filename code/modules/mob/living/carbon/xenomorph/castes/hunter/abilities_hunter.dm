@@ -39,7 +39,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		to_chat(xeno_owner, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
 	return TRUE

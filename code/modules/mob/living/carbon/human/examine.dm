@@ -289,11 +289,11 @@
 			else
 				msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin!</b></i>")]\n"
 
-	if(fire_stacks > 0)
+	if(amount_burning() > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
+	if(amount_burning() < 0)
 		msg += "[t_He] look[p_s()] a little soaked.\n"
-	if(on_fire)
+	if(is_on_fire())
 		msg += "[span_boldwarning("[t_He] [t_is] on fire!")]\n"
 
 	var/list/wound_flavor_text = list() //List mapping each limb's display_name to its wound description

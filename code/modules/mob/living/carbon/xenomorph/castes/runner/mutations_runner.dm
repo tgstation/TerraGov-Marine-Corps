@@ -177,7 +177,7 @@
 		return FALSE
 	if(xenomorph_owner.IsStaggered())
 		return FALSE
-	if(xenomorph_owner.on_fire)
+	if(xenomorph_owner.is_on_fire())
 		return FALSE
 	if((xenomorph_owner.last_move_time < (world.time - movement_leniency)))
 		return FALSE

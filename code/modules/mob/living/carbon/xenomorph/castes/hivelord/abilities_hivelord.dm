@@ -27,7 +27,7 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "too far!")
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "not while on fire!")
 		return FALSE

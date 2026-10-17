@@ -109,7 +109,7 @@
 			return
 	else if(isliving(igniter))
 		var/mob/living/burner_mob = igniter
-		if(!burner_mob.on_fire)
+		if(!burner_mob.is_on_fire())
 			return
 	else
 		return
