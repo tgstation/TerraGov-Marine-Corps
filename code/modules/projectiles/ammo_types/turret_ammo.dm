@@ -16,6 +16,10 @@
 	penetration = 20
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/turret/incendiary
+	name = "incendiary autocannon bullet"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
 

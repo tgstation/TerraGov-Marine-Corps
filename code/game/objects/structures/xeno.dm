@@ -70,6 +70,14 @@
 		return
 	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
 		return
+	//we don't want to slowdown the crosser if there is something on top of the resin
+	for(var/obj/object in orange(0, crosser))
+		if(!object.density)
+			continue
+		if(object == crosser)
+			continue
+		return
+
 	if(ismecha(crosser))
 		var/obj/vehicle/sealed/vehicle = crosser
 		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
@@ -132,7 +140,7 @@
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE) //SFX
 		deconstruct(TRUE)
 		return
 
@@ -219,7 +227,7 @@
 		return TRUE
 
 	src.balloon_alert(xeno_attacker, "destroying...")
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(xeno_attacker, "destroyed")
 		qdel(src)
@@ -440,7 +448,7 @@
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
+		playsound(src, "sound/bullets/acid_impact1.ogg", 10, FALSE, SUPER_SHORT_SOUND_RANGE)
 	qdel(src)
 
 ////////////////

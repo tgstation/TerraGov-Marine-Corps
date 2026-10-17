@@ -30,6 +30,8 @@
 	var/list/obj/structure/xeno/mutation_chamber/spur/spur_chambers = list()
 	/// List of veil mutation chambers.
 	var/list/obj/structure/xeno/mutation_chamber/veil/veil_chambers = list()
+	///List of hive ability blessings
+	var/list/datum/action/ability/hive_abilities = list()
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
@@ -481,6 +483,10 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
+	LAZYOR(GLOB.alive_xeno_list_hive[HS.hivenumber], src)
+
+	sync_hive_abilities()
+
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
@@ -523,6 +529,13 @@
 			return FALSE
 	else
 		remove_from_lists(X)
+
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], X)
+
+	for(var/datum/action/ability/ability AS in X.mob_abilities)
+		if(ability.type in hive_abilities)
+			ability.remove_action(X)
+			qdel(ability)
 
 	nuke_hud_timer?.remove_from(X)
 	post_removal(X)
@@ -572,6 +585,8 @@
 		hive.update_ruler()
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
+
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hive.hivenumber], src)
 
 	var/datum/hive_status/reference_hive = hive
 	hive = null
@@ -1312,6 +1327,12 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/larva/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/larva/Corrupted/iff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
+	offer_mob()
+	LAZYOR(GLOB.ssd_living_mobs, src)
 
 /mob/living/carbon/xenomorph/praetorian/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED

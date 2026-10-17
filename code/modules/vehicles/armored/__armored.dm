@@ -193,7 +193,7 @@
 		return list(get_turf(entering_thing))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
+	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE, LOUD_SOUND_RANGE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)

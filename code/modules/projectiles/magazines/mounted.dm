@@ -26,6 +26,7 @@
 	icon_state_mini = "mag_drum_big_green"
 	magazine_flags = NONE
 	caliber = CALIBER_10X28
+	bonus_overlay = "mg08_drum"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 10 SECONDS
@@ -37,6 +38,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	icon_state = "mg08_small"
 	icon_state_mini = "mag_hmg"
+	bonus_overlay = "mg08_box"
 	max_rounds = 250
 	reload_delay = 5 SECONDS
 

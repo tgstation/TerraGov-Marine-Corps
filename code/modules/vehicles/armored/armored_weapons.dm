@@ -71,7 +71,7 @@
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
 	if(!ammo || ammo.current_rounds <= 0)
-		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
+		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1, SHORT_SOUND_RANGE)
 		return
 	if(source.incapacitated(TRUE))
 		return
@@ -213,7 +213,7 @@
 	do_fire(source_turf)
 	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
 	var/atom/sound_play_loc = interior_fire_sound && chassis.interior ? chassis : src
-	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary, FIREARM_SOUND_RANGE)
 	if(interior_fire_sound)
 		chassis.play_interior_sound(chassis.interior.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
@@ -228,7 +228,7 @@
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 	if(ammo.current_rounds > 0)
 		return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	eject_ammo()
 	if(LAZYACCESS(current_firer.do_actions, src) || length(ammo_magazine) < 1)
 		return AUTOFIRE_SUCCESS

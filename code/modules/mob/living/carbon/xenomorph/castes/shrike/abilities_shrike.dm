@@ -253,7 +253,7 @@
 		for(var/atom/movable/affected AS in affected_tile)
 			if(isfire(affected))
 				var/obj/fire/fire = affected
-				fire.reduce_fire(10)
+				fire.reduce_fire(10, 10)
 				continue
 			if(projectile_cooldown_mulitplier && istype(affected, /atom/movable/projectile))
 				things_to_deflect += affected
@@ -512,7 +512,7 @@
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 
-	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new /obj/structure/xeno/acidwell(T, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))

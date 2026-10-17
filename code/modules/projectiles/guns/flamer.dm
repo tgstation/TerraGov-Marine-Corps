@@ -235,8 +235,8 @@
 		return FALSE
 
 	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flamer_features_flags, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
-	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
-	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
+	var/burn_level = initial(loaded_ammo.burn_level) * burn_level_mod
+	var/burn_time = initial(loaded_ammo.burn_time) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
@@ -454,20 +454,20 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
+/turf/proc/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
 	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
-		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
-		var/new_burn_level = min(burn_lvl + old_fire.burn_level, burn_lvl * 1.5)
+		var/new_fire_level = min(burn_time + old_fire.burn_ticks, burn_time * 2)
+		var/new_burn_level = min(burn_level + old_fire.burn_level, burn_level * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new fire_type(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new fire_type(src, burn_time, burn_level, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
-/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/open/floor/plating/ground/snow/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
 		update_appearance()

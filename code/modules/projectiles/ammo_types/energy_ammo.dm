@@ -783,7 +783,7 @@
 	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 	///Fire burn time
-	var/heat = 12
+	var/burn_time = 12
 	///Fire damage
 	var/burn_damage = 9
 	///Fire color
@@ -794,7 +794,7 @@
 	var/burn_mod = 1
 	if(istype(target_turf, /turf/closed/wall))
 		burn_mod = 3
-	target_turf.ignite(heat, burn_damage * burn_mod, fire_color)
+	target_turf.ignite(burn_time, burn_damage * burn_mod, fire_color)
 
 	for(var/mob/living/mob_caught in target_turf)
 		if(mob_caught.stat == DEAD || mob_caught == target)

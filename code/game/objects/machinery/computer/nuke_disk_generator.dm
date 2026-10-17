@@ -37,7 +37,7 @@
 	return ..()
 
 /obj/machinery/computer/code_generator/nuke/complete_segment()
-	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)

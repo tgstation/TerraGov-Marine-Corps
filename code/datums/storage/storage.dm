@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				return
 	if(!can_be_inserted(attacking_item, user))
 		if(user.s_active != src) //this would close the open storage otherwise
-			open(user)
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -336,7 +336,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
 			return COMPONENT_NO_ATTACK_HAND
-		else if(open(user))
+		else if(can_open(user))
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 			return COMPONENT_NO_ATTACK_HAND
 	for(var/mob/M AS in content_watchers)
 		close(M)
@@ -372,8 +373,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	//todo: Else where in this datum it just checks ishuman, but it should really just check for dextrous
 	if(isliving(user) && !user.dextrous) //bad xeno.
 		return
-	if(parent.Adjacent(user))
-		open(user)
+	if(parent.Adjacent(user) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 
 /**
  * Called when you ctrl + left click on parent
@@ -386,7 +387,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/proc/on_attack_ghost(datum/source, mob/user)
 	SIGNAL_HANDLER
-	open(user)
+	if(!can_open(user))
+		return
+	INVOKE_ASYNC(src, PROC_REF(open), user)
 
 ///Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)
 /datum/storage/proc/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
@@ -397,8 +400,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.lying_angle)
 		return COMPONENT_NO_MOUSEDROP
 
-	if(over_object == user && parent.Adjacent(user)) // this must come before the screen objects only block
-		open(user)
+	if(over_object == user && parent.Adjacent(user) && can_open(user)) // this must come before the screen objects only block
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 		return COMPONENT_NO_MOUSEDROP
 
 	if(!istype(over_object, /atom/movable/screen))
@@ -414,7 +417,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.restrained() || user.stat)
 		return COMPONENT_NO_MOUSEDROP
 
-	put_storage_in_hand(source, over_object, user)
+	INVOKE_ASYNC(src, PROC_REF(put_storage_in_hand), source, over_object, user)
 	return COMPONENT_NO_MOUSEDROP
 
 ///Wrapper that puts the storage into our chosen hand
@@ -525,6 +528,10 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		lookers |= content_watcher_mob
 	return lookers
+
+///Any special behavior checks to see if we can open
+/datum/storage/proc/can_open(mob/user)
+	return TRUE
 
 ///Opens our storage, closes the storage if we are s_active
 /datum/storage/proc/open(mob/user)
@@ -766,6 +773,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			return FALSE
 	else
 		item.forceMove(parent)
+	SEND_SIGNAL(parent, COMSIG_ITEM_STORED, item)
 	RegisterSignal(item, COMSIG_MOVABLE_MOVED, PROC_REF(item_removed_from_storage))
 	item.on_enter_storage(parent)
 	if(length(holsterable_allowed))
@@ -971,17 +979,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
-///signal sent from /atom/proc/max_stack_merging()
-/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
+///Returns the max amount that be put into a stack in src without exceeding the weight limit
+/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks, list/max_list)
+	SIGNAL_HANDLER
 	if(is_type_in_typecache(stacks, typecacheof(storage_type_limits)))
 		return FALSE //No need for limits if we can bypass it.
 	var/weight_diff = initial(stacks.w_class) - max_w_class
 	if(weight_diff <= 0)
 		return FALSE //Nor if the limit is not higher than what we have.
-	var/max_amt = round((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	var/max_amt = floor((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
 	if(max_amt <= 0 || max_amt > stacks.max_amount)
 		stack_trace("[parent.name] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
-	return max_amt
+	max_list += max_amt
 
 ///Called from signal in order to update the color of our storage, it's "fullness" basically
 /datum/storage/proc/recalculate_storage_space(datum/source)

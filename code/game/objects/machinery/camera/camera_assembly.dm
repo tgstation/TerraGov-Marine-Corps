@@ -24,7 +24,7 @@
 		return
 
 	user.balloon_alert_to_viewers("attaching...")
-	playsound(loc, 'sound/machines/click.ogg', 15, 1)
+	playsound(loc, 'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
 	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc
 

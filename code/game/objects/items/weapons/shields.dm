@@ -101,7 +101,7 @@
 
 	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		cooldown = world.time + 2.5 SECONDS
 
 
@@ -163,7 +163,7 @@
 	integrity_failure = 50
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
 	slowdown = 0.3
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	strappable = FALSE
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/solid/deployable
@@ -186,6 +186,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon_state = "eshield0" // eshield1 for expanded
 	atom_flags = CONDUCT|NOBLOODY
+	item_flags = ITEM_ACTIVATABLE
 	force = 3
 	throwforce = 5
 	throw_speed = 1
@@ -201,18 +202,21 @@
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-/obj/item/weapon/shield/energy/attack_self(mob/living/user)
-	toggle_active()
+/obj/item/weapon/holo/esword/update_icon_state()
+	icon_state = "eshield[active]"
+
+/obj/item/weapon/shield/energy/toggle_active(new_state, mob/user)
+	. = ..()
 	icon_state = "eshield[active]"
 	if(active)
 		force = on_force
 		w_class = WEIGHT_CLASS_BULKY
-		playsound(user, 'sound/weapons/saberon.ogg', 25, TRUE)
+		playsound(user, 'sound/weapons/saberon.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
 		w_class = WEIGHT_CLASS_SMALL
-		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
+		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")
 

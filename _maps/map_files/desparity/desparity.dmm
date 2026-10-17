@@ -3128,6 +3128,10 @@
 	dir = 1
 	},
 /area/lv624/ground/river3)
+"ql" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "qm" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river,
@@ -4151,6 +4155,11 @@
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
+"vs" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "vt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -15064,7 +15073,7 @@ wh
 ah
 nR
 ua
-qI
+vs
 ua
 ah
 wh
@@ -15677,7 +15686,7 @@ Va
 OF
 EH
 ft
-ft
+ql
 VW
 Om
 Om

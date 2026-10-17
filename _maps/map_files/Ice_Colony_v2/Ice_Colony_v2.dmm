@@ -21455,6 +21455,11 @@
 	dir = 1
 	},
 /area/ice_colony/surface/research)
+"hMU" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "hNd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -23997,6 +24002,10 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating,
 /area/ice_colony/surface/clinic/lobby)
+"lvZ" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/north)
 "lwr" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -49595,7 +49604,7 @@ wOy
 wWA
 wWA
 iEO
-wWA
+hMU
 wWA
 bOk
 rvr
@@ -54282,7 +54291,7 @@ lGF
 fIm
 mQx
 fIm
-fIm
+lvZ
 fIm
 fIm
 fIm

@@ -9,6 +9,9 @@
 /obj/effect/turf_decal/warning_stripes/engineer
 	icon_state = "engineer"
 
+/obj/effect/turf_decal/warning_stripes/marine
+	icon_state = "marine"
+
 /obj/effect/turf_decal/warning_stripes/leader
 	icon_state = "leader"
 

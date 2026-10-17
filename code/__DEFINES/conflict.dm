@@ -142,6 +142,9 @@
 ///ammo count shown on mag sprite
 #define MAGAZINE_SHOW_AMMO (1<<5)
 
+///Standard flamer burn duration in 2 second ticks
+#define FLAMER_STANDARD_BURN_DURATION 17
+
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 

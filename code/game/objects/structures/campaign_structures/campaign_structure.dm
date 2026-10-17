@@ -70,7 +70,7 @@
 	var/new_icon_state = "campaign_objective"
 	if(objective_flags & CAMPAIGN_OBJECTIVE_DISABLED)
 		new_icon_state += "_disabled"
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, MINIMAP_PRIORITY_LAYER))
 
 ///Remaining time for overhead countdown if applicable
 /obj/structure/campaign_objective/proc/get_time_left()

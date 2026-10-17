@@ -73,6 +73,15 @@
 			return
 	user.forceMove(linked_point.loc)
 
+/obj/structure/patrol_point/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	. = ..()
+	if(.)
+		return
+	if(!Adjacent(xeno_attacker) || xeno_attacker.lying_angle || xeno_attacker.buckled || xeno_attacker.anchored)
+		return
+
+	activate_point(xeno_attacker, xeno_attacker)
+
 /obj/structure/patrol_point/tgmc_11
 	id = "TGMC_1"
 
@@ -85,6 +94,13 @@
 
 /obj/structure/patrol_point/som_21
 	id = "SOM_2"
+	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/xeno_11
+	id = "Xeno_1"
+
+/obj/structure/patrol_point/xeno_21
+	id = "Xeno_2"
 	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/tank

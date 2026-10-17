@@ -20,6 +20,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(xeno_owner.eaten_mob)
+		return TRUE
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
@@ -45,25 +47,18 @@
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, xeno_owner))
-		if(!silent)
-			to_chat(xeno_owner, span_warning("We are too close to the fog."))
-		return FALSE
-
-/datum/action/ability/activable/xeno/devour/action_activate()
-	. = ..()
-	if(!xeno_owner.eaten_mob)
-		return
-
-	var/channel = SSsounds.random_available_channel()
-	playsound(xeno_owner, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(xeno_owner, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
-		to_chat(owner, span_warning("We moved too soon!"))
-		xeno_owner.stop_sound_channel(channel)
-		return
-	xeno_owner.eject_victim()
 
 /datum/action/ability/activable/xeno/devour/use_ability(atom/target)
+	if(xeno_owner.eaten_mob)
+		var/channel = SSsounds.random_available_channel()
+		playsound(xeno_owner, 'sound/vore/escape.ogg', 40, channel = channel)
+		if(!do_after(xeno_owner, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
+			to_chat(owner, span_warning("We moved too soon!"))
+			xeno_owner.stop_sound_channel(channel)
+			return
+		xeno_owner.eject_victim()
+		return
+
 	var/mob/living/carbon/human/victim = target
 	xeno_owner.face_atom(victim)
 	xeno_owner.visible_message(span_danger("[xeno_owner] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
@@ -144,9 +139,9 @@
 		if(!do_after(xeno_owner, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
 			break
 		xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);
-		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"));
-		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE);
-		target_human.emote("scream");
+		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"))
+		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE, MEDIUM_SOUND_RANGE)
+		target_human.emote("scream")
 		target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, attacker = owner)
 		var/drain_healing = GORGER_DRAIN_HEAL
 		HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE)
@@ -207,14 +202,6 @@
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	target_health = target_xeno.health
-	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
-	transfuse_beam.visuals.alpha = 127
-	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
-		QDEL_NULL(transfuse_beam)
-		return FALSE
-	QDEL_NULL(transfuse_beam)
-	return TRUE
 
 ///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
 /datum/action/ability/activable/xeno/transfusion/proc/extra_health_check(mob/living/target)
@@ -225,6 +212,14 @@
 
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/target_xeno = target
+	target_health = target_xeno.health
+	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
+	transfuse_beam.visuals.alpha = 127
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+		QDEL_NULL(transfuse_beam)
+		return
+	QDEL_NULL(transfuse_beam)
+
 	var/heal_amount = target_xeno.maxHealth * heal_percentage
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	if(owner.client)
@@ -274,7 +269,7 @@
 	add_cooldown()
 	succeed_activate()
 
-	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0)
+	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_xenodanger("[xeno_owner] smashes her fists into the ground!"), \
 	span_xenodanger("We smash our fists into the ground!"))
 

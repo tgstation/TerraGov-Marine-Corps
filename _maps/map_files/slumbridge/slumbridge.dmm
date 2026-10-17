@@ -21980,6 +21980,10 @@
 	dir = 1
 	},
 /area/slumbridge/inside/zeta/south)
+"qgQ" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/slumbridge/caves/northeastcaves/garbledradio)
 "qgS" = (
 /turf/open/lavaland/basalt/dirt,
 /area/slumbridge/outside/northwest)
@@ -25284,6 +25288,10 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/hydrotreatment)
+"svK" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/dirt,
+/area/slumbridge/caves/southeastcaves/garbledradio)
 "svM" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark,
@@ -57434,7 +57442,7 @@ eZH
 eZH
 eZH
 eZH
-eZH
+svK
 eZH
 eZH
 eZH
@@ -58715,7 +58723,7 @@ hHf
 (141,1,1) = {"
 hHf
 nGD
-nGD
+qgQ
 nGD
 hHf
 hHf

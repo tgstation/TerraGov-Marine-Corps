@@ -1515,19 +1515,21 @@
 /datum/reagent/medicine/experimental_medical_salve/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_HEAVY
 	switch(current_cycle)
-		if(1 to 5) // big burst of healing + stamina initially
+		if(1 to 8) // big burst of healing + stamina initially
 			if(!particle_holder)
 				particle_holder = new(L, /particles/healing_cross)
 			L.heal_overall_damage(4*effect_str, 4*effect_str)
 			L.adjustStaminaLoss(-4*effect_str)
-		if(6 to 25) // smaller gradual healing
+		if(9 to 25) // smaller gradual healing
 			L.heal_overall_damage(1.5*effect_str, 1.5*effect_str)
-		if(26 to INFINITY) // purges itself quickly
-			if(particle_holder)
-				qdel(particle_holder)
-				particle_holder = null
-			holder.remove_reagent(/datum/reagent/medicine/experimental_medical_salve, 10)
-	return ..()
+	. = ..()
+	if(current_cycle < 26)
+		return
+	if(particle_holder)
+		qdel(particle_holder)
+		particle_holder = null
+	if(holder) // purges itself quickly
+		holder.remove_reagent(/datum/reagent/medicine/experimental_medical_salve, 10)
 
 /datum/reagent/medicine/experimental_medical_salve/on_mob_delete(mob/living/L, metabolism)
 	if(particle_holder)

@@ -48,6 +48,9 @@
 /obj/item/proc/attack_self(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 	add_fingerprint(user, "attack_self")
+	if(item_flags & ITEM_ACTIVATABLE)
+		toggle_active(!active, user)
+		return
 	if(!can_interact(user))
 		return
 	interact(user)
@@ -120,12 +123,7 @@
 		to_chat(user, span_notice("[src] is bolted to the ground."))
 		return
 
-	forceMove(attached_clamp.linked_powerloader)
-	attached_clamp.loaded = src
-	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
-	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
+	attached_clamp.do_load(src)
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
@@ -209,7 +207,7 @@
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /turf/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -346,7 +344,7 @@
 
 	. = M.attacked_by_alternate(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /**
  * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY AS A FEATURE

@@ -109,7 +109,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 		deconstruct(TRUE, xeno_attacker)
 		return
 

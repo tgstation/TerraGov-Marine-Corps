@@ -43,11 +43,19 @@
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium is transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 9
+	var/zombium_per_hit = 7
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/obj/item/weapon/zombie_claw/preattack(atom/target, mob/user, params)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		if(human_target.stat == DEAD)
+			to_chat(user, span_warning("[human_target] is already dead!"))
+			return TRUE
+	return ..()
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	. = ..()
@@ -87,7 +95,7 @@
 	balloon_alert_to_viewers("prying open [src]...")
 	if(!do_after(zombie, 4 SECONDS, IGNORE_HELD_ITEM, src))
 		return
-	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(zombie.loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(!density || operating) //Make sure it's still closed
 		return
@@ -98,7 +106,7 @@
 	zombie.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	zombie.visible_message(span_danger("[zombie] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1, MEDIUM_SOUND_RANGE)
 
 	var/allcut = wires.is_all_cut()
 
@@ -138,7 +146,7 @@
 		reagents.add_reagent(/datum/reagent/zombium, modify_by_armor(claw.zombium_per_hit, BIO, 0, zombie.get_limbzone_target()))
 
 /obj/structure/barricade/attack_zombie(mob/living/carbon/human/zombie, obj/item/weapon/zombie_claw/claw, params, rightclick)
-	if(!is_wired)
+	if(!(barricade_flags & BARRICADE_IS_WIRED))
 		return
 	if(zombie.a_intent != INTENT_HARM)
 		return

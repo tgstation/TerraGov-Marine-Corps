@@ -409,6 +409,12 @@
 	for(var/i in 1 to (storage_datum.storage_slots - flare_gun.w_class))
 		new /obj/item/explosive/grenade/flare(src)
 
+/obj/item/storage/holster/flarepouch/full/nogun
+	name = "flare pouch"
+
+/obj/item/storage/holster/flarepouch/full/nogun/PopulateContents()
+	for(var/i in 1 to (storage_datum.storage_slots))
+		new /obj/item/explosive/grenade/flare(src)
 
 /obj/item/storage/holster/icc_mg
 	name = "\improper ML-41 scabbard (10x26mm)"

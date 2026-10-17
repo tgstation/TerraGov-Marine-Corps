@@ -17,20 +17,15 @@
 	///If the gun has different sprites for being anchored.
 	var/has_anchored_sprite = FALSE
 
-///generates the icon based on how much ammo it has.
+///generates the icon based on how much ammo it has and whether it is anchored.
 /obj/machinery/deployable/mounted/update_icon_state()
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
+	icon_state = default_icon_state
 	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
-		icon_state = default_icon_state + "_e"
-	else
-		icon_state = default_icon_state
-
-	if(has_anchored_sprite)
-		if(anchored)
-			icon_state = default_icon_state + "_anchored"
-		else
-			icon_state = default_icon_state
+		icon_state += "_e"
+	if(has_anchored_sprite && anchored)
+		icon_state += "_anchored"
 
 	hud_set_gun_ammo()
 
@@ -235,18 +230,18 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
-		if(CHECK_BITFIELD(gun.item_flags, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
+		if(CHECK_BITFIELD(gun.deployment_flags, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
 			to_chat(operator, "[src] cannot be fired without it being anchored.")
 			return FALSE
 		operator.setDir(dir)
 		gun?.set_target(target)
 		update_appearance()
 		return TRUE
-	if(CHECK_BITFIELD(gun?.item_flags, DEPLOYED_NO_ROTATE))
+	if(CHECK_BITFIELD(gun?.deployment_flags, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
-	if(CHECK_BITFIELD(gun?.item_flags, DEPLOYED_NO_ROTATE_ANCHORED) && anchored)
+	if(CHECK_BITFIELD(gun?.deployment_flags, DEPLOYED_NO_ROTATE_ANCHORED) && anchored)
 		to_chat(operator, "[src] cannot be rotated while anchored.")
 		return FALSE
 
@@ -271,7 +266,7 @@
 
 	setDir(angle)
 	user.set_interaction(src)
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	operator.visible_message("[operator] rotates the [src].","You rotate [src].")
 	update_pixels(user, TRUE)
 

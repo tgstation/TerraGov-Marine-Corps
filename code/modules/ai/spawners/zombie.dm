@@ -16,8 +16,8 @@
 			/mob/living/carbon/human/species/zombie/ai/strong/patrol = 1,
 		) = 5,
 	)
-	spawnamount = 2
-	spawndelay = 25 SECONDS
+	spawnamount = 3
+	spawndelay = 34 SECONDS
 	maxamount = 50
 	///Currently is considered under threat
 	var/threat_warning = FALSE
@@ -39,7 +39,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED)
 	QDEL_NULL(proximity_monitor)
 
-/obj/effect/ai_node/spawner/zombie/plastique_act()
+/obj/effect/ai_node/spawner/zombie/plastique_act(mob/living/plastique_user)
 	spawn_defenders()
 
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 35, 1)

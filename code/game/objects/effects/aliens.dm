@@ -219,7 +219,7 @@
 /obj/effect/xenomorph/acid/proc/on_pickup(obj/item/item, mob/living/carbon/human/human_user)
 	human_user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as [human_user.p_they()] retrieves the acid-soaked [item]!"),
 	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [item]!"))
-	playsound(human_user, SFX_ACID_HIT, 25)
+	playsound(human_user, SFX_ACID_HIT, 25, FALSE, MEDIUM_SOUND_RANGE)
 	human_user.emote("pain")
 	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
 	var/limb_count = null

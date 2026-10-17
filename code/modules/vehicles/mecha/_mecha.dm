@@ -273,8 +273,6 @@
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
-	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds) //Add to the squad HUD
-		mech_status_hud.add_to_hud(src)
 	hud_set_mecha_health()
 	hud_set_mecha_battery()
 	update_icon()
@@ -318,8 +316,6 @@
 	emp_timer = null
 
 	GLOB.mechas_list -= src
-	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds)
-		mech_status_hud.remove_from_hud(src)
 	return ..()
 
 /obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
@@ -682,7 +678,7 @@
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
 	no_footstep_particle = FALSE
-	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
+	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE, LOUD_SOUND_RANGE)
 	var/obj/effect/abstract/particle_holder/landing_particles
 	var/turf/current_turf = get_turf(src)
 	if(iswater(current_turf))

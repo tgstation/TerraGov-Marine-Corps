@@ -317,6 +317,10 @@
 #define MINIMAP_BLIPS_LAYER 11
 #define MINIMAP_LOCATOR_LAYER 12
 #define MINIMAP_LABELS_LAYER 13
+///Layer for important things like objectives
+#define MINIMAP_PRIORITY_LAYER 16
+///Layer for the nuke itself, generally nothing is more important
+#define MINIMAP_NUKE_LAYER 19
 #define INTRO_LAYER 20
 
 #define FOV_EFFECT_LAYER 100

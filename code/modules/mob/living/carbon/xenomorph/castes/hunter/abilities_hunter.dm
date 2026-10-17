@@ -366,13 +366,15 @@
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
 			xeno_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
+			xeno_owner.visible_message(span_xenowarning("[xeno_owner] is knocked back!"), span_xenowarning("We are knocked back!"))
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()
 
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
-	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	xeno_owner.Immobilize(self_immobilize_duration)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)

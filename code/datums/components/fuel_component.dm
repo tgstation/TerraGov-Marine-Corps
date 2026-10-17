@@ -44,13 +44,16 @@
 	return_list += fuel_type
 
 ///Attempts to refuel something
-/datum/component/fuel_storage/proc/attempt_refuel(obj/source, obj/item/attacking, mob/user)
+/datum/component/fuel_storage/proc/attempt_refuel(obj/source, atom/dropping, mob/user)
 	SIGNAL_HANDLER
 	if(user.a_intent == INTENT_HARM)
 		return
-	if(!attacking.is_refuelable())
+	if(!isobj(dropping))
 		return
-	attacking.try_refuel(parent, fuel_type, user)
+	var/obj/drop_obj = dropping
+	if(!drop_obj.is_refuelable())
+		return
+	drop_obj.try_refuel(parent, fuel_type, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Shows remaining fuel on examine
@@ -94,5 +97,5 @@
 ///Actually refills src with fuel from a container
 /obj/proc/do_refuel(atom/refueler, fuel_type, mob/user)
 	refueler.reagents.trans_to(src, reagents.maximum_volume)
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, SUPPRESSED_SOUND_RANGE)
 	user?.balloon_alert(user, "refilled")

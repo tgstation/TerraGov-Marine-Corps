@@ -11,7 +11,7 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_SILENT_FOOTSTEPS))
 		return
-	playsound(src, stepsound, 40, TRUE)
+	playsound(src, stepsound, 40, TRUE, LOUD_SOUND_RANGE)
 
 ///Disconnects air tank- air port connection on mecha move
 /obj/vehicle/sealed/mecha/proc/disconnect_air()
