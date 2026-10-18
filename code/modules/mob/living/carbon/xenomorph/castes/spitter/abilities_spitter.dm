@@ -618,8 +618,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."
 	cooldown_duration = 2 MINUTES
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_ROCKET_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/acid_rocket/use_ability(atom/target)

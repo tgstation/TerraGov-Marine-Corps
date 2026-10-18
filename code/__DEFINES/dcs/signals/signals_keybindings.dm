@@ -372,6 +372,7 @@
 #define COMSIG_XENOABILITY_ACID_MINE "xenoability_acid_mine"
 #define COMSIG_XENOABILITY_GAS_MINE "xenoability_gas_mine"
 #define COMSIG_XENOABILITY_ACID_ROCKET "xenoability_acid_rocket"
+#define COMSIG_XENOABILITY_ACID_ROCKET_SELECT "xenoability_acid_rocket_select"
 
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"

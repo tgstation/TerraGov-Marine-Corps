@@ -1264,6 +1264,12 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_ROCKET
 	hotkey_keys = list("Y")
 
+/datum/keybinding/xeno/acid_rocket_select
+	name = "acid_rocket_select"
+	full_name = "Globadier: Select Acid Rocket"
+	description = "Fire a acid rocket at your target, after a short charge up."
+	keybind_signal = COMSIG_XENOABILITY_ACID_ROCKET_SELECT
+
 /datum/keybinding/xeno/psychic_shield
 	name = "Psychic Shield"
 	full_name = "Warlock: Psychic Shield"
