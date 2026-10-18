@@ -472,17 +472,16 @@
 // ***************************************
 // *********** Unleash puppets
 // ***************************************
-/datum/action/ability/activable/xeno/puppeteer_unleash
+/datum/action/ability/xeno_action/puppeteer_unleash
 	name = "Unleash Puppets"
 	action_icon_state = "enrage"
 	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Send out your puppets to attack nearby humans"
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,
 	)
 
-/datum/action/ability/activable/xeno/puppeteer_unleash/use_ability(atom/A)
+/datum/action/ability/xeno_action/puppeteer_unleash/action_activate(mob/living/victim)
 	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_ATTACK))
 		owner.balloon_alert(owner, "success")
 		owner.visible_message(span_warning("[owner] swiftly manipulates the psychic strings of the puppets, ordering them to attack!"))
@@ -492,17 +491,16 @@
 // ***************************************
 // *********** Recall puppets
 // ***************************************
-/datum/action/ability/activable/xeno/puppeteer_recall
+/datum/action/ability/xeno_action/puppeteer_recall
 	name = "Recall Puppets"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "rally"
 	desc = "Recall your puppets to follow you once more"
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALLPUPPETS,
 	)
 
-/datum/action/ability/activable/xeno/puppeteer_recall/use_ability(atom/A)
+/datum/action/ability/xeno_action/puppeteer_recall/action_activate(mob/living/victim)
 	if(SEND_SIGNAL(owner, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_RECALL))
 		owner.balloon_alert(owner, "success")
 		owner.visible_message(span_warning("[owner] quickly manipulates the psychic strings of the puppets, drawing them near!"))
