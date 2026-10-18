@@ -3,15 +3,13 @@
 	id = "drunkenness"
 	tick_interval = 2 SECONDS
 	consumed_on_threshold = FALSE
+	status_flags = STATUS_FLAG_CHECK_OWNER_DEATH
 
 /datum/status_effect/stacking/drunkenness/on_creation(mob/living/new_owner, stacks_to_apply)
 	if(!iscarbon(new_owner))
 		qdel(src)
 		return
-	. = ..()
-	if(!.)
-		return
-	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
+	return ..()
 
 /datum/status_effect/stacking/drunkenness/add_stacks(stacks_added)
 	. = ..()

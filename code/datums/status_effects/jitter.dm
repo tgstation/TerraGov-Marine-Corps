@@ -4,15 +4,7 @@
 	tick_interval = 2 SECONDS
 	consumed_on_threshold = FALSE
 	max_stacks = 1000
-
-/datum/status_effect/stacking/jitter/on_creation(mob/living/new_owner, stacks_to_apply)
-	. = ..()
-	if(!.)
-		return
-	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
-
-/datum/status_effect/stacking/jitter/on_owner_death(datum/source)
-	qdel(src)
+	status_flags = STATUS_FLAG_CHECK_OWNER_DEATH|STATUS_FLAG_OWNER_DEATH_DEL
 
 /datum/status_effect/stacking/jitter/stack_decay_effect()
 	stack_decay = owner.get_resting_power()

@@ -5,6 +5,7 @@
 	stack_decay = 2
 	consumed_on_threshold = FALSE
 	max_stacks = 1000
+	status_flags = STATUS_FLAG_CHECK_OWNER_DEATH
 	///fake health hud
 	var/screwyhud = SCREWYHUD_NONE
 	///Time when the next hallucination can occur
@@ -14,10 +15,7 @@
 	if(!iscarbon(new_owner))
 		qdel(src)
 		return
-	. = ..()
-	if(!.)
-		return
-	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
+	return ..()
 
 /datum/status_effect/stacking/hallucination/stack_decay_effect()
 	if(stacks < 20)

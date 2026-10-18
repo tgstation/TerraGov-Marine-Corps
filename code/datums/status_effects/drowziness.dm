@@ -3,18 +3,13 @@
 	id = "drowziness"
 	tick_interval = 2 SECONDS
 	consumed_on_threshold = FALSE
+	status_flags = STATUS_FLAG_CHECK_OWNER_DEATH|STATUS_FLAG_OWNER_DEATH_DEL
 
 /datum/status_effect/stacking/drowziness/on_creation(mob/living/new_owner, stacks_to_apply)
 	if(!iscarbon(new_owner))
 		qdel(src)
 		return
-	. = ..()
-	if(!.)
-		return
-	RegisterSignal(owner, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/status_effect, on_owner_death))
-
-/datum/status_effect/stacking/drowziness/on_owner_death(datum/source)
-	qdel(src)
+	return ..()
 
 /datum/status_effect/stacking/drowziness/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)

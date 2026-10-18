@@ -1,7 +1,6 @@
 //Status effects are used to apply temporary or permanent effects to mobs. Mobs are aware of their status effects at all times.
 //This file contains their code, plus code for applying and removing them.
 //When making a new status effect, add a define to status_effects.dm in __DEFINES for ease of use!
-
 /datum/status_effect
 	///Used for screen alerts
 	var/id = "effect"
@@ -19,6 +18,8 @@
 	var/alert_type = /atom/movable/screen/alert/status_effect
 	///the alert itself, if it exists
 	var/atom/movable/screen/alert/status_effect/linked_alert = null
+	///Special behavior falgs
+	var/status_flags = NONE
 
 /datum/status_effect/New(list/arguments)
 	on_creation(arglist(arguments))
@@ -31,6 +32,9 @@
 	if(!owner || !on_apply())
 		qdel(src)
 		return
+
+	if(status_flags & STATUS_FLAG_CHECK_OWNER_DEATH)
+		RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(on_owner_death))
 	if(duration != -1)
 		duration = world.time + duration
 	tick_interval = world.time + tick_interval
@@ -92,13 +96,16 @@
 		return TRUE
 	return FALSE
 
-///Effects on owner death. Sig not registered by default
+///Effects on owner death. Requires STATUS_FLAG_CHECK_OWNER_DEATH
 /datum/status_effect/proc/on_owner_death(datum/source)
 	SIGNAL_HANDLER
+	if(status_flags & STATUS_FLAG_CHECK_OWNER_DEATH)
+		qdel(src)
+		return
 	STOP_PROCESSING(SSfastprocess, src)
 	RegisterSignal(owner, COMSIG_MOB_REVIVE, PROC_REF(on_owner_revive))
 
-///Any effects when the owner comes back to life. Sig not registered by default
+///Any effects when the owner comes back to life if STATUS_FLAG_CHECK_OWNER_DEATH is used
 /datum/status_effect/proc/on_owner_revive(datum/source)
 	SIGNAL_HANDLER
 	START_PROCESSING(SSfastprocess, src)

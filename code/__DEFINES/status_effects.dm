@@ -9,6 +9,11 @@
 
 #define STATUS_EFFECT_REFRESH 3 // if it only allows one, and new instances just instead refresh the timer
 
+///Status effect does something when the owner dies
+#define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
+///Status effect on owner death effect is qdel
+#define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
+
 ///////////
 // BUFFS //
 ///////////
