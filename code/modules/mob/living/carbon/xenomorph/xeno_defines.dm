@@ -18,7 +18,7 @@
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
 	///Animation played on death
-	var/death_flick = NONE
+	var/death_flick = ""
 	var/gib_anim = "gibbed-a-corpse"
 	var/gib_flick = "gibbed-a"
 
