@@ -241,6 +241,8 @@
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
 #define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
+#define COMSIG_XENOABILITY_CRESTTOSS_SELECT "xenoability_cresttoss_select"
+#define COMSIG_XENOABILITY_ADVANCE_SELECT "xenoability_advance_select"
 
 #define COMSIG_XENOABILITY_DEVOUR "xenoability_devour"
 #define COMSIG_XENOABILITY_DRAIN "xenoability_drain"

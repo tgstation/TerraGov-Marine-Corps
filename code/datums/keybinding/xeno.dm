@@ -471,6 +471,18 @@
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/cresttoss_select
+	name = "cresttoss_select"
+	full_name = "Crusher: Select Crest Toss"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS_SELECT
+
+/datum/keybinding/xeno/advance_select
+	name = "advance_select"
+	full_name = "Crusher: Select Rapid Advance"
+	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE_SELECT
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"

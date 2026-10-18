@@ -86,8 +86,10 @@
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_cost = 75
 	cooldown_duration = 12 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CRESTTOSS_SELECT,
 	)
 	target_flags = ABILITY_MOB_TARGET
 	/// The amount to multiply the cooldown duration by if the ability was used on an allied xenomorph.
@@ -193,8 +195,10 @@
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_cost = 175
 	cooldown_duration = 30 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ADVANCE_SELECT,
 	)
 	///Max charge range
 	var/advance_range = 7
