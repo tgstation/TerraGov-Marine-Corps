@@ -1453,60 +1453,106 @@
 	full_name = "Puppeteer: Flay"
 	description = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	keybind_signal = COMSIG_XENOABILITY_FLAY
+	hotkey_keys = list("V")
 
 /datum/keybinding/xeno/pincushion
 	name = "Pincushion"
 	full_name = "Puppeteer: Pincushion"
 	description = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
 	keybind_signal = COMSIG_XENOABILITY_PINCUSHION
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/dread
 	name = "Dreadful Presence"
 	full_name = "Puppeteer: Dreadful Presence"
 	description = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	keybind_signal = COMSIG_XENOABILITY_DREADFULPRESENCE
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/refurbish_husk
 	name = "Refurbish Husk"
 	full_name = "Puppeteer: Refurbish Husk"
 	description = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
 	keybind_signal = COMSIG_XENOABILITY_REFURBISHHUSK
+	hotkey_keys = list("Z")
 
 /datum/keybinding/xeno/stitch_puppet
 	name = "Stitch Puppet"
 	full_name = "Puppeteer: Stitch Puppet"
 	description = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	keybind_signal = COMSIG_XENOABILITY_PUPPET
+	hotkey_keys = list("ShiftX")
 
 /datum/keybinding/xeno/organic_bomb
 	name = "Organic Bomb"
 	full_name = "Puppeteer: Organic Bomb"
 	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB
+	hotkey_keys = list("ShiftQ")
 
 /datum/keybinding/xeno/tendrils
 	name = "Tendrils"
 	full_name = "Puppeteer: Tendrils"
 	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	keybind_signal = COMSIG_XENOABILITY_TENDRILS
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/unleash_puppet
 	name = "Unleash puppets"
 	full_name = "Puppeteer: Unleash puppets"
 	description = "Unleash puppets to attack nearby humans."
 	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+	hotkey_keys = list("ShiftE")
 
 /datum/keybinding/xeno/recall_puppet
 	name = "Recall puppets"
 	full_name = "Puppeteer: Recall puppets"
 	description = "Recalls your puppets, making them follow you once more"
 	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
+	hotkey_keys = list("ShiftR")
 
 /datum/keybinding/xeno/bestow_blessing
 	name = "Bestow Blessings"
 	full_name = "Puppeteer: Bestow Blessings"
 	description = "Give blessings to your puppets."
 	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS
+	hotkey_keys = list("ShiftZ")
+
+/datum/keybinding/xeno/flay_select
+	name = "Flay_select"
+	full_name = "Puppeteer: Select Flay"
+	description = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
+	keybind_signal = COMSIG_XENOABILITY_FLAY_SELECT
+
+/datum/keybinding/xeno/pincushion_select
+	name = "Pincushion_select"
+	full_name = "Puppeteer: Select Pincushion"
+	description = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
+	keybind_signal = COMSIG_XENOABILITY_PINCUSHION_SELECT
+
+/datum/keybinding/xeno/refurbish_husk_select
+	name = "Refurbish Husk_select"
+	full_name = "Puppeteer: Select Refurbish Husk"
+	description = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
+	keybind_signal = COMSIG_XENOABILITY_REFURBISHHUSK_SELECT
+
+/datum/keybinding/xeno/organic_bomb_select
+	name = "Organic Bomb_select"
+	full_name = "Puppeteer: Select Organic Bomb"
+	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
+	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB_SELECT
+
+/datum/keybinding/xeno/tendrils_select
+	name = "Tendrils_select"
+	full_name = "Puppeteer: Select Tendrils"
+	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
+	keybind_signal = COMSIG_XENOABILITY_TENDRILS_SELECT
+
+/datum/keybinding/xeno/bestow_blessing_select
+	name = "Bestow Blessings_select"
+	full_name = "Puppeteer: Select Bestow Blessings"
+	description = "Give blessings to your puppets."
+	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS_SELECT
 
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"

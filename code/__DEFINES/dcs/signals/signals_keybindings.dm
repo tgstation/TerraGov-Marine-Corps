@@ -411,6 +411,13 @@
 #define COMSIG_XENOABILITY_RECALLPUPPETS "xenoability_recallpuppets"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
 
+#define COMSIG_XENOABILITY_TENDRILS_SELECT "xenoability_tendrils_select"
+#define COMSIG_XENOABILITY_ORGANICBOMB_SELECT "xenoability_puppeteerorganicbomb_select"
+#define COMSIG_XENOABILITY_REFURBISHHUSK_SELECT "xenoability_refurbishhusk_select"
+#define COMSIG_XENOABILITY_PINCUSHION_SELECT "xenoability_pincushion_select"
+#define COMSIG_XENOABILITY_FLAY_SELECT "xenoability_flay_select"
+#define COMSIG_XENOABILITY_BESTOWBLESSINGS_SELECT "xenoability_giveblessings_select"
+
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
 

@@ -57,21 +57,21 @@
 
 /datum/mutation_upgrade/spur/suffocating_presence/on_mutation_enabled()
 	. = ..()
-	var/datum/action/ability/xeno_action/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/dreadful_presence]
+	var/datum/action/ability/activable/xeno/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/dreadful_presence]
 	if(!dreadful_ability)
 		return
 	dreadful_ability.stamina_draining += get_damage(0)
 
 /datum/mutation_upgrade/spur/suffocating_presence/on_mutation_disabled()
 	. = ..()
-	var/datum/action/ability/xeno_action/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/dreadful_presence]
+	var/datum/action/ability/activable/xeno/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/dreadful_presence]
 	if(!dreadful_ability)
 		return
 	dreadful_ability.stamina_draining -= get_damage(0)
 
 /datum/mutation_upgrade/spur/suffocating_presence/on_structure_update(previous_amount, new_amount)
 	. = ..()
-	var/datum/action/ability/xeno_action/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/dreadful_presence]
+	var/datum/action/ability/activable/xeno/dreadful_presence/dreadful_ability = xenomorph_owner.actions_by_path[/datum/action/ability/activable/xeno/dreadful_presence]
 	if(!dreadful_ability)
 		return
 	dreadful_ability.stamina_draining += get_damage(new_amount - previous_amount, FALSE)
