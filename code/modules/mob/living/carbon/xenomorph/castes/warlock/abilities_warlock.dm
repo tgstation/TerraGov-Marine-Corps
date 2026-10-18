@@ -55,9 +55,10 @@
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles, the shield can only hold so much though... Activate again while active to detonate the shield forcibly, producing knockback. Must remain stationary to use."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_SHIELD_SELECT,
 	)
 	use_state_flags = ABILITY_USE_BUSY
 	/// The actual shield object created by this ability.
@@ -84,11 +85,6 @@
 /datum/action/ability/activable/xeno/psychic_shield/on_cooldown_finish()
 	owner.balloon_alert(owner, "Shield ready")
 	return ..()
-
-//Overrides parent.
-/datum/action/ability/activable/xeno/psychic_shield/alternate_action_activate()
-	if(can_use_ability(null, FALSE))
-		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 /datum/action/ability/activable/xeno/psychic_shield/action_activate()
 	if(xeno_owner.selected_ability == src && xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
@@ -320,6 +316,7 @@
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CRUSH_SELECT,
 	)
 	///The number of times we can expand our effect radius. Effectively a max radius
 	var/max_interations = 5
@@ -355,9 +352,6 @@
 			crush(target_turfs[1])
 		return
 
-	if(xeno_owner.selected_ability != src)
-		action_activate()
-		return
 	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
 

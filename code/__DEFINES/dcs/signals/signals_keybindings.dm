@@ -388,9 +388,10 @@
 #define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
-#define COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD "xenoability_trigger_psychic_shield"
+#define COMSIG_XENOABILITY_PSYCHIC_SHIELD_SELECT "xenoability_psychic_shield_select"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"
 #define COMSIG_XENOABILITY_PSYCHIC_CRUSH "xenoability_psychic_crush"
+#define COMSIG_XENOABILITY_PSYCHIC_CRUSH_SELECT "xenoability_psychic_crush_select"
 
 #define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
 #define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"

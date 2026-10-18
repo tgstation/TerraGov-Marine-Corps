@@ -1295,11 +1295,11 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD
 	hotkey_keys = list("E")
 
-/datum/keybinding/xeno/trigger_psychic_shield
-	name = "Trigger Psychic Shield"
-	full_name = "Warlock: Trigger Psychic Shield"
-	description = "Triggers the Psychic Shield ability without selecting it."
-	keybind_signal = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD
+/datum/keybinding/xeno/psychic_shield_select
+	name = "Psychic Shield_select"
+	full_name = "Warlock: Select Psychic Shield"
+	description = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_SHIELD_SELECT
 
 /datum/keybinding/xeno/psychic_blast
 	name = "Psychic Blast"
@@ -1314,6 +1314,12 @@
 	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/psychic_crush_select
+	name = "Psychic Crush_select"
+	full_name = "Warlock: Select Psychic Crush"
+	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH_SELECT
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
