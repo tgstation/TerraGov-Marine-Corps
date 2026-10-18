@@ -535,9 +535,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 ///Opens our storage, closes the storage if we are s_active
 /datum/storage/proc/open(mob/user)
-	if(!opened)
-		orient2hud()
-		opened = TRUE
 	if(use_sound && user.stat != DEAD)
 		playsound(parent.loc, use_sound, 25, 1, 3)
 
@@ -546,8 +543,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return TRUE
 	if(user.s_active) //We can only have 1 active storage at once
 		user.s_active.close(user)
+	orient2hud()
+	opened = TRUE
 	show_to(user)
 	return TRUE
+
+/datum/storage/proc/refresh_views()
+	var/list/lookers = can_see_content()
+	if(!length(lookers))
+		return
+	orient2hud()
+	for(var/mob/looker AS in lookers)
+		show_to(looker)
 
 ///Closes our storage
 /datum/storage/proc/close(mob/user)
@@ -786,9 +793,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			user.client?.screen -= item
 		if(!prevent_warning)
 			insertion_message(item, user)
-	orient2hud()
-	for(var/mob/M in can_see_content())
-		show_to(M)
+	refresh_views()
 	if(storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	parent.update_icon()
@@ -843,11 +848,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	else if(move_item)
 		item.moveToNullspace()
 
-	orient2hud()
-
-	for(var/i in can_see_content())
-		var/mob/M = i
-		show_to(M)
+	refresh_views()
 
 	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
