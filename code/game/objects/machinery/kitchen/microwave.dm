@@ -3,9 +3,10 @@
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
-	layer = GIB_LAYER
+	layer = ABOVE_OBJ_LAYER
 	density = TRUE
 	anchored = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_WALKOVER
 	coverage = 10
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -27,6 +28,13 @@
 
 /obj/machinery/microwave/Initialize(mapload)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
