@@ -136,7 +136,7 @@
 			balloon_alert(user, "Already busy!")
 			return FALSE
 		if(LAZYLEN(buckled_mobs))
-			balloon_alert("There is a rider already!")
+			balloon_alert(user, "There is a rider already!")
 			return TRUE
 		balloon_alert(user, "You start attaching the sidecar...")
 		if(!do_after(user, 3 SECONDS, NONE, src))
