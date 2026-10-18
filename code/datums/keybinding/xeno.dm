@@ -579,6 +579,12 @@
 	keybind_signal = COMSIG_XENOABILITY_TENTACLE
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/tentacle_select
+	name = "tentacle_select"
+	full_name = "Defiler: Select Tentacle"
+	description = "Allows the defiler to grab a tallhost or item from range and bring it towards the defiler."
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE_SELECT
+
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
 	full_name = "Defiler: Inject Egg (Neurogas)"

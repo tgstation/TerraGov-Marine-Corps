@@ -271,6 +271,7 @@
 #define COMSIG_XENOABILITY_DEFILE "xenoability_defile"
 #define COMSIG_XENOABILITY_DEFILE_SELECT "xenoability_defile_select"
 #define COMSIG_XENOABILITY_TENTACLE "xenoability tentacle"
+#define COMSIG_XENOABILITY_TENTACLE_SELECT "xenoability tentacle_select"
 
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"

@@ -529,8 +529,10 @@
 	desc = "Throw one of your tentacles forward to grab a target or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TENTACLE_SELECT,
 	)
 	///reference to beam tentacle
 	var/datum/beam/tentacle
