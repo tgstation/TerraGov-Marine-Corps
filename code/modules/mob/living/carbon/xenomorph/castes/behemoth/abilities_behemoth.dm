@@ -935,7 +935,7 @@
 			target = new_target
 		// If we don't have directional attacks enabled, then we just stop.
 		else
-			xeno_owner.balloon_alert("Not in range")
+			xeno_owner.balloon_alert(xeno_owner, "Not in range")
 			return
 
 ///////////////////// TARGET CHECKS /////////////////////
