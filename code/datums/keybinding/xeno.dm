@@ -685,6 +685,30 @@
 	keybind_signal = COMSIG_XENOABILITY_FEAST
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/devour_select
+	name = "devour_select"
+	full_name = "Gorger: Select Devour"
+	description = "Devour your victim to be able to carry it faster."
+	keybind_signal = COMSIG_XENOABILITY_DEVOUR_SELECT
+
+/datum/keybinding/xeno/drain_select
+	name = "drain_select"
+	full_name = "Gorger: Select Drain"
+	description = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN_SELECT
+
+/datum/keybinding/xeno/transfusion_select
+	name = "transfusion_select"
+	full_name = "Gorger: Select Transfusion"
+	description = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION_SELECT
+
+/datum/keybinding/xeno/psychic_link_select
+	name = "psychic link_select"
+	full_name = "Gorger: Select Psychic Link"
+	description = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK_SELECT
+
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
 	full_name = "Hivelord: Toggle Resin Walker"

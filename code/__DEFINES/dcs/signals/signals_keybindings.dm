@@ -254,6 +254,10 @@
 #define COMSIG_XENOABILITY_PSYCHIC_LINK "xenoability_psychic_link"
 #define COMSIG_XENOABILITY_CARNAGE "xenoability_carnage"
 #define COMSIG_XENOABILITY_FEAST "xenoability_feast"
+#define COMSIG_XENOABILITY_DEVOUR_SELECT "xenoability_devour_select"
+#define COMSIG_XENOABILITY_DRAIN_SELECT "xenoability_drain_select"
+#define COMSIG_XENOABILITY_TRANSFUSION_SELECT "xenoability_transfusion_select"
+#define COMSIG_XENOABILITY_PSYCHIC_LINK_SELECT "xenoability_psychic_link_select"
 
 #define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
 #define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"
