@@ -49,6 +49,7 @@
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
+		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_SWORDLUNGE_SELECT,
 	)
 	///Range of this ability
 	var/lunge_range = 2

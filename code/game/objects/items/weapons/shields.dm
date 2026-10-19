@@ -230,6 +230,7 @@
 	use_state_flags = ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SHIELDBASH,
+		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_SHIELDBASH_SELECT,
 	)
 
 /datum/action/ability/activable/weapon_skill/shield_bash/give_action(mob/living/L)

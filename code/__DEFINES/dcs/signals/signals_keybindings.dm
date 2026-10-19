@@ -117,6 +117,10 @@
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
 #define COMSIG_WEAPONABILITY_SHIELDBASH "weaponability_shieldbash"
 
+#define COMSIG_WEAPONABILITY_AXESWEEP_SELECT "weaponability_axesweep_select"
+#define COMSIG_WEAPONABILITY_SWORDLUNGE_SELECT "weaponability_swordlunge_select"
+#define COMSIG_WEAPONABILITY_SHIELDBASH_SELECT "weaponability_shieldbash_select"
+
 //Implant abilities
 #define COMSIG_IMPLANT_ABILITY_SANDEVISTAN "implant_ability_sandevistan"
 

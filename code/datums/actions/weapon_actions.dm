@@ -1,6 +1,7 @@
 //Stamina using weapon based abilities
 /datum/action/ability/activable/weapon_skill
 	action_icon = 'icons/mob/actions.dmi'
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	///Damage of this attack
 	var/damage
 	///Penetration of this attack
