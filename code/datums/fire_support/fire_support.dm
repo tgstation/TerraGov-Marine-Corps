@@ -73,7 +73,7 @@
 	if(start_visual)
 		new start_visual(target_turf)
 	if(start_sound)
-		playsound(target_turf, start_sound, 100, VERY_LOUD_SOUND_RANGE)
+		playsound(target_turf, start_sound, 100, FALSE, VERY_LOUD_SOUND_RANGE)
 
 ///Selects the final target turf(s) and calls impact procs
 /datum/fire_support/proc/select_target(turf/target_turf)
