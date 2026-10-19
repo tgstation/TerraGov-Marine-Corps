@@ -394,6 +394,10 @@
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
 #define COMSIG_XENOABILITY_SPIDERLING_MARK "xenoability_spiderling_mark"
 
+#define COMSIG_XENOABILITY_WEB_SPIT_SELECT "xenoability_web_spit_select"
+#define COMSIG_XENOABILITY_LEASH_BALL_SELECT "xenoability_leash_ball_select"
+#define COMSIG_XENOABILITY_WEB_HOOK_SELECT "xenoability_web_hook_select"
+
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD "xenoability_psychic_shield"
 #define COMSIG_XENOABILITY_PSYCHIC_SHIELD_SELECT "xenoability_psychic_shield_select"
 #define COMSIG_XENOABILITY_PSYCHIC_BLAST "xenoability_psychic_blast"

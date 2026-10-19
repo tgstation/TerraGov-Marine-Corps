@@ -1509,6 +1509,24 @@
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
 	hotkey_keys = list("V")
 
+/datum/keybinding/xeno/web_spit_select
+	name = "Web Spit_select"
+	full_name = "Widow: Select Web Spit"
+	description = "Spit web at your target. Hitting the target will impede their functions depending on their hit location."
+	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT_SELECT
+
+/datum/keybinding/xeno/leash_ball_select
+	name = "Leash Ball_select"
+	full_name = "Widow: Select Leash Ball"
+	description = "Spit a huge web ball of web that snares groups of targets for a brief while."
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL_SELECT
+
+/datum/keybinding/xeno/web_hook_select
+	name = "Web Hook_select"
+	full_name = "Widow: Select Web Hook"
+	description = "Shoot a strong web and pull yourself towards whatever it hits."
+	keybind_signal = COMSIG_XENOABILITY_WEB_HOOK_SELECT
+
 /datum/keybinding/xeno/rewind
 	name = "rewind"
 	full_name = "Wraith: Time Shift"
