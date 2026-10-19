@@ -48,6 +48,8 @@
 			UnregisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_VEIL)
 	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	on_structure_change(null, get_total_structures())
+	alert = null
+	xenomorph_owner = null
 	return ..()
 
 /// Called whenever the mutation is created/deleted or when the amount of structures has changed.
@@ -97,7 +99,7 @@
 
 /// Gets the total amount of structures for the mutation.
 /datum/mutation_upgrade/proc/get_total_structures()
-	if(!xenomorph_owner || !required_structure)
+	if(!xenomorph_owner?.hive || !required_structure)
 		return 0
 	switch(required_structure)
 		if(MUTATION_SHELL)

@@ -106,6 +106,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/Destroy()
+	for(var/mob/dead/observer/ghost in GLOB.player_list)
+		ghost.client?.images -= list(ghostimage_default, ghostimage_simple)
+
 	GLOB.ghost_images_default -= ghostimage_default
 	QDEL_NULL(ghostimage_default)
 
@@ -115,6 +118,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_menu)
+	clean_observetarget()
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
 	SSmobs.dead_players_by_zlevel[z] -= src
 

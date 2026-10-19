@@ -215,6 +215,8 @@
 
 /datum/progressicon/Destroy()
 	if(QDELETED(target))
+		if(target)
+			LAZYREMOVE(target.display_icons, display)
 		QDEL_NULL(display)
 		return ..()
 	target.display_icons[display]--

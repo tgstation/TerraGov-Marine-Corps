@@ -135,6 +135,7 @@ directive is properly returned.
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
+	managed_overlays = null
 
 	QDEL_NULL(light)
 
@@ -143,8 +144,8 @@ directive is properly returned.
 
 	if(alternate_appearances)
 		for(var/K in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-			AA.remove_from_hud(src)
+			var/datum/atom_hud/alternate_appearance/AA = LAZYACCESS(alternate_appearances, K)
+			AA?.remove_from_hud(src)
 
 	return ..()
 
