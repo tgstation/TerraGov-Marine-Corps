@@ -443,6 +443,8 @@
 #define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
 #define COMSIG_XENOABILITY_GEOCRUSH "xenoability_geocrush"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+#define COMSIG_XENOABILITY_LANDSLIDE_SELECT "xenoability_landslide_select"
+#define COMSIG_XENOABILITY_GEOCRUSH_SELECT "xenoability_geocrush_select"
 
 #define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"

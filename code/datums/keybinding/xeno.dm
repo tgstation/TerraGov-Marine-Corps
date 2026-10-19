@@ -1708,6 +1708,18 @@
 	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/landslide_select
+	name = "Landslide_select"
+	full_name = "Behemoth: Select Landslide"
+	description = "Charge forward in the nearest cardinal direction, affecting eligible targets in a wide path."
+	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE_SELECT
+
+/datum/keybinding/xeno/geocrush_select
+	name = "Geocrush_select"
+	full_name = "Behemoth: Select Geocrush"
+	description = "Attack a target, dealing heavy damage and applying various debuffs."
+	keybind_signal = COMSIG_XENOABILITY_GEOCRUSH_SELECT
+
 /datum/keybinding/xeno/firecharge
 	name = "Fire Charge"
 	full_name = "Pyrogen: Fire Charge"
