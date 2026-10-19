@@ -933,6 +933,12 @@
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/conqueror_dominance_select
+	name = "Conqueror's Domination_select"
+	full_name = "Conqueror: Select Domination"
+	description = "Teleport towards a target location, distorting reality, and creating powerful shockwaves upon reappearing."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION_SELECT
+
 /datum/keybinding/xeno/conqueror_obliteration_hold
 	name = "Conqueror's Obliteration (Hold)"
 	full_name = "Conqueror: Obliteration (Hold)"
