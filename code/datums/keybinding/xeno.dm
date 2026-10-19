@@ -932,30 +932,41 @@
 	full_name = "Dancer: Dodge"
 	description = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	keybind_signal = COMSIG_XENOABILITY_DODGE
+	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/impale
 	name = "Impale"
 	full_name = "Dancer: Impale"
 	description = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
 	keybind_signal = COMSIG_XENOABILITY_IMPALE
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/impale_select
+	name = "Impale_select"
+	full_name = "Dancer: Select Impale"
+	description = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
+	keybind_signal = COMSIG_XENOABILITY_IMPALE_SELECT
 
 /datum/keybinding/xeno/tail_trip
 	name = "Tail Trip"
 	full_name = "Dancer: Tail Trip"
 	description = "Twirl your tail around low to the ground, knocking over and disorienting any adjacent marines. Marked enemies receive stronger debuffs and are briefly stunned."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/tail_hook
 	name = "Tail Hook"
 	full_name = "Dancer: Tail Hook"
 	description = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
 	keybind_signal = COMSIG_XENOABILITY_TAILHOOK
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/baton_pass
 	name = "Baton Pass"
 	full_name = "Dancer: Baton Pass"
 	description = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Puts dodge on cooldown when used. Less effect on quick xenos."
 	keybind_signal = COMSIG_XENOABILITY_BATONPASS
+	hotkey_keys = list("V")
 
 /datum/keybinding/xeno/abduct
 	name = "Abduct"
@@ -992,6 +1003,24 @@
 	full_name = "Oppressor: Advance"
 	description = "Launch yourself with tremendous speed toward a location. Hitting a marine will cause them to be launched incredibly far."
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR
+
+/datum/keybinding/xeno/abduct_select
+	name = "Abduct_select"
+	full_name = "Oppressor: Select Abduct"
+	description = "After a delay, grab marines from a 7 tiles away. Canceling early has consequences."
+	keybind_signal = COMSIG_XENOABILITY_ABDUCT_SELECT
+
+/datum/keybinding/xeno/dislocate_select
+	name = "Dislocate_select"
+	full_name = "Oppressor: Select Dislocate"
+	description = "Punch a marine and knock them back by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_DISLOCATE_SELECT
+
+/datum/keybinding/xeno/advance_oppressor_select
+	name = "Advance (Oppressor)_select"
+	full_name = "Oppressor: Select Advance"
+	description = "Launch yourself with tremendous speed toward a location. Hitting a marine will cause them to be launched incredibly far."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR_SELECT
 
 /datum/keybinding/xeno/screech
 	name = "screech"

@@ -183,6 +183,7 @@
 #define COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT "xenoability_acidic_missile_select"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
+#define COMSIG_XENOABILITY_IMPALE_SELECT "xenoability_impale_select"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
 #define COMSIG_XENOABILITY_TAILHOOK "xenoability_tailhook"
 #define COMSIG_XENOABILITY_BATONPASS "xenoability_batonpass"
@@ -439,6 +440,9 @@
 #define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
 #define COMSIG_XENOABILITY_TAIL_LASH_SELECT "xenoability_tail_lash_select"
 #define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"
+#define COMSIG_XENOABILITY_ABDUCT_SELECT "xenoability_abduct_select"
+#define COMSIG_XENOABILITY_DISLOCATE_SELECT "xenoability_dislocate_select"
+#define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR_SELECT "xenoability_advance_oppressor_select"
 
 #define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
 #define COMSIG_XENOABILITY_FLY "xenoability_fly"

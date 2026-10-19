@@ -243,8 +243,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
 	ability_cost = 150
 	cooldown_duration = 15 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_IMPALE_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -500,7 +502,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BATONPASS,
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-\
+
 /datum/action/ability/activable/xeno/baton_pass/use_ability(atom/target)
 
 	var/obj/effect/temp_visual/baton_pass/baton = new
@@ -540,6 +542,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 
 /datum/action/ability/activable/xeno/oppressor
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	// If the affected hit a wall while being thrown, what percentage of the owner's melee damage should be dealt to them?
 	var/wallbang_multiplier = 0
 
@@ -573,6 +576,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ABDUCT_SELECT,
 	)
 	/// A list of turfs that will be used to get mobs who will get affected by the ability.
 	var/list/turf/turf_line
@@ -725,6 +729,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DISLOCATE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DISLOCATE_SELECT,
 	)
 	target_flags = ABILITY_MOB_TARGET
 
@@ -789,6 +794,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
 	)
 	use_state_flags = ABILITY_USE_STAGGERED
+	keybind_flags = NONE //we really need to be able to select a specific item for this to be useful
 	/// If they have moved at least a single tile since picking up an item.
 	var/has_moved_already = FALSE
 	/// If we are holding an item.
@@ -931,7 +937,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Knock back humans that are in front of you."
 	ability_cost = 50
 	cooldown_duration = 11 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_LASH,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TAIL_LASH_SELECT,
@@ -980,6 +985,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR_SELECT,
 	)
 	/// How long does it take to complete the do_after?
 	var/cast_time = 0.8 SECONDS
