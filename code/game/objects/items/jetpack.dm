@@ -152,7 +152,11 @@
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK,
+		KEYBINDING_ALTERNATE = COMSIG_ITEM_TOGGLE_JETPACK_SELECT,
+	)
 
 /datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
 	. = ..()

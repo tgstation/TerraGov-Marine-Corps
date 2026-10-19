@@ -107,8 +107,9 @@
 
 //Item toggle keybinds
 #define COMSIG_ITEM_TOGGLE_JETPACK "item_toggle_jetpack"
-#define COMSIG_ITEM_BLINKDRIVE_ACTIVATE "item_blinkdrive_activate"
+#define COMSIG_ITEM_TOGGLE_JETPACK_SELECT "item_toggle_jetpack_select"
 #define COMSIG_ITEM_TOGGLE_BLINKDRIVE "item_toggle_blinkdrive"
+#define COMSIG_ITEM_BLINKDRIVE_SELECT "item_blinkdrive__select"
 #define COMSIG_ITEM_TOGGLE_STRAP "item_toggle_strap"
 
 //Weapon related ability keybinds
