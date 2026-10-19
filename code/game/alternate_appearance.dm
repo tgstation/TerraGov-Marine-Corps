@@ -1,17 +1,20 @@
 GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
-///Removes an alternate appearance from src. By default also deletes the appearance entirely
+/**
+* Removes an alternate appearance from src
+* By default, will qdel the AA if if it no longer being displayed by any atoms
+*/
 /atom/proc/remove_alt_appearance(key, destroy_on_remove = TRUE)
 	if(!alternate_appearances)
 		return
 	for(var/K in alternate_appearances)
-		var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-		if(AA.appearance_key != key)
-			return
-		if(destroy_on_remove)
+		var/datum/atom_hud/alternate_appearance/AA = LAZYACCESS(alternate_appearances, K)
+		if(AA?.appearance_key != key)
+			continue
+
+		AA.remove_from_hud(src)
+		if(destroy_on_remove && !length(AA.hudatoms))
 			qdel(AA)
-		else
-			AA.remove_from_hud(src)
 		break
 
 /atom/proc/add_alt_appearance(type, key, ...)
@@ -33,6 +36,8 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	GLOB.active_alternate_appearances += src
 	appearance_key = key
 
+	//currently this excludes mobs without players when the AA is created, but all mobs created after the AA will have it applied
+	//This means if a player enters a preexisting mob, they won't see the AA
 	for(var/mob AS in GLOB.player_list)
 		if(mobShouldSee(mob))
 			add_hud_to(mob)
