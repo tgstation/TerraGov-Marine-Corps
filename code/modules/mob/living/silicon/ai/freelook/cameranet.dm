@@ -111,8 +111,29 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 
 /// Used for Cyborg cameras. Since portable cameras can be in ANY chunk.
 /datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
-	if(c.can_use())
-		majorChunkChange(c, 1)
+	if(!c.can_use())
+		return
+	var/turf/T = get_turf(c)
+	if(!T || T == c.last_portable_turf)
+		return
+	c.last_portable_turf = T
+	var/list/new_chunks = list()
+	var/x1 = max(0, T.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/y1 = max(0, T.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/x2 = min(world.maxx, T.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/y2 = min(world.maxy, T.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	for(var/x = x1; x <= x2; x += CHUNK_SIZE)
+		for(var/y = y1; y <= y2; y += CHUNK_SIZE)
+			var/datum/camerachunk/chunk = chunkGenerated(x, y, T.z)
+			if(chunk)
+				new_chunks += chunk
+	if(c.portable_chunks)
+		for(var/datum/camerachunk/old_chunk as anything in c.portable_chunks - new_chunks)
+			old_chunk.remove_camera(c)
+	for(var/datum/camerachunk/chunk as anything in new_chunks)
+		chunk.cameras["[T.z]"] |= c
+		chunk.camera_moved(c)
+	c.portable_chunks = new_chunks
 
 /**
  * Never access this proc directly!!!!
@@ -138,6 +159,7 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 					if(choice == 0)
 						// Remove the camera.
 						chunk.cameras["[T.z]"] -= c
+						chunk.camera_visible_turfs -= c
 					else if(choice == 1)
 						// You can't have the same camera in the list twice.
 						chunk.cameras["[T.z]"] |= c

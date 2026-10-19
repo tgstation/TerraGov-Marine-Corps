@@ -1076,8 +1076,8 @@
 	return TRUE
 
 
-/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
-	if(QDELETED(H?.camera) || oldloc == get_turf(src))
+/mob/living/carbon/human/do_camera_update(obj/item/radio/headset/mainship/H)
+	if(QDELETED(H?.camera))
 		return
 
 	var/datum/cameranet/net = H.camera.parent_cameranet
@@ -1095,7 +1095,7 @@
 	if(QDELETED(H.camera))
 		return
 
-	addtimer(CALLBACK(src, PROC_REF(do_camera_update), oldloc, H), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_camera_update), H), 1 SECONDS, TIMER_UNIQUE)
 
 
 /mob/living/carbon/human/get_language_holder()

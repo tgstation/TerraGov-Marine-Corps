@@ -24,6 +24,8 @@
 	var/short_range = 2
 	///Camera behavior flags
 	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
+	var/list/datum/camerachunk/portable_chunks
+	var/turf/last_portable_turf
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
@@ -74,6 +76,10 @@
 	parent_cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
+	for(var/datum/camerachunk/chunk as anything in portable_chunks)
+		chunk.remove_camera(src)
+	portable_chunks = null
+	last_portable_turf = null
 
 	return ..()
 
