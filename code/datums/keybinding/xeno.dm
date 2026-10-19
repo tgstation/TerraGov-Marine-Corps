@@ -359,8 +359,20 @@
 	name = "high_pressure_spit"
 	full_name = "Sizzler: High Pressure Spit"
 	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
-	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT_SELECT
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/smokescreen_spit_select
+	name = "smokescreen_spit_select"
+	full_name = "Sizzler: Select Smokescreen Spit"
+	description = "Empowers your next spit to create a smokescreen."
+	keybind_signal = COMSIG_XENOABILITY_SMOKESCREEN_SPIT
+
+/datum/keybinding/xeno/high_pressure_spit_select
+	name = "high_pressure_spit_select"
+	full_name = "Sizzler: Select High Pressure Spit"
+	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT_SELECT
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"

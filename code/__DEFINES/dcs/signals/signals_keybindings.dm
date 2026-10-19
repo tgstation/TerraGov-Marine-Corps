@@ -226,6 +226,8 @@
 #define COMSIG_XENOABILITY_SMOKESCREEN_SPIT "xenoability_smokescreen_spit"
 #define COMSIG_XENOABILITY_STEAM_RUSH "xenoability_steam_rush"
 #define COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT "xenoability_high_pressure_spit"
+#define COMSIG_XENOABILITY_SMOKESCREEN_SPIT_SELECT "xenoability_smokescreen_spit_select"
+#define COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT_SELECT "xenoability_high_pressure_spit_select"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
 #define COMSIG_XENOABILITY_THROW_HUGGER_SELECT "xenoability_throw_hugger_select"

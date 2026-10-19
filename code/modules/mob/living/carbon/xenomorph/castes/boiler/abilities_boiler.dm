@@ -679,8 +679,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "Spit a steam smokescreen to cover your advance or retreat. Direct hits stagger and slow."
 	ability_cost = 350
 	cooldown_duration = 75 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SMOKESCREEN_SPIT_SELECT,
 	)
 	/// The amount of time for the do_after.
 	var/cast_time = 3 SECONDS
@@ -864,8 +867,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "Fire a high pressure glob of acid that knocks back, stuns, and shatters the target."
 	ability_cost = 75
 	cooldown_duration = 25 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/high_pressure_spit/use_ability(atom/target)
