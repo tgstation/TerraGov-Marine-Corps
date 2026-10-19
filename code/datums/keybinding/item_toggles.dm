@@ -26,7 +26,7 @@
 	name = "Blink drive_select"
 	full_name = "Select blink drive"
 	description = "instantly teleports you a short distance."
-	keybind_signal = COMSIG_ITEM_BLINKDRIVE_SELECT
+	keybind_signal = COMSIG_ITEM_TOGGLE_BLINKDRIVE_SELECT
 
 /datum/keybinding/item/toggle_strap
 	name = "item_toggle_strap"

@@ -200,8 +200,8 @@
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_ITEM_BLINKDRIVE,
-		KEYBINDING_ALTERNATE = COMSIG_ITEM_BLINKDRIVE_SELECT,
+		KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE,
+		KEYBINDING_ALTERNATE = COMSIG_ITEM_TOGGLE_BLINKDRIVE_SELECT,
 	)
 
 /datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(atom/A, silent = FALSE, override_flags)
