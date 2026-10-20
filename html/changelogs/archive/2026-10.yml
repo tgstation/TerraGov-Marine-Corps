@@ -143,3 +143,8 @@
   - bugfix: Fixed a few balloon alerts
   mudzbe:
   - balance: Reduce zombie health and heal rate
+2026-10-20:
+  Arturlang:
+  - admin: del log verb now gives better debugging info
+  Lewdcifer:
+  - rscadd: You can now jump over microwaves and climb them.

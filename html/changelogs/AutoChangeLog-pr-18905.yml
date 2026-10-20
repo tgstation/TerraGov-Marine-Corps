@@ -1,4 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - admin: "del log verb now gives better debugging info"
