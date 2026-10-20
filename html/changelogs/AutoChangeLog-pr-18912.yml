@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Xenomorph mutations are now disabled by default for all gamemodes."
