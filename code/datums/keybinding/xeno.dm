@@ -1289,14 +1289,14 @@
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
 	description = "A powerful ability that greatly heals a single xenomorph within a short distance"
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/psychic_heal_select
 	name = "psychic_cure_select"
 	full_name = "Shrike: Select Psychic Cure"
 	description = "A powerful ability that greatly heals a single xenomorph within a short distance"
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT
 
 /datum/keybinding/xeno/psychic_storm
 	name = "gravnade"
