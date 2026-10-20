@@ -30,6 +30,7 @@
 	if(ready)
 		GLOB.ready_players -= src
 	GLOB.new_player_list -= src
+	SSticker.queued_players -= src
 	assigned_role = null
 	assigned_squad = null
 	new_character = null

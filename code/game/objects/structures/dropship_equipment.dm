@@ -428,7 +428,7 @@
 	/// Whether the system is currently enabled to activate on landing or not
 	var/enabled = FALSE
 	/// What type of smoke to use
-	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type
+	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type = /obj/item/explosive/grenade/smokebomb/drain/pellet
 	/// Cooldown for emitting smoke
 	var/cooldown_length = 10 MINUTES
 	COOLDOWN_DECLARE(use_cooldown)
@@ -485,8 +485,8 @@
 		playsound(console, 'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
-	pellet_type = new(landing_spot)
-	pellet_type.activate()
+	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet = new pellet_type(landing_spot)
+	pellet.activate()
 
 	COOLDOWN_START(src, use_cooldown, cooldown_length)
 	update_appearance()

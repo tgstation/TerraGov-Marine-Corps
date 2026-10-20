@@ -610,6 +610,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
 		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		map.stop_polling[owner] = TRUE
 		choosing = FALSE
 	return ..()
 

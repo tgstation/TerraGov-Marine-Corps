@@ -341,6 +341,10 @@
 			if(owner.assigned_transit == src)
 				log_world("A transit dock was qdeled while it was assigned to [owner].")
 				owner.assigned_transit = null
+			if(owner.previous == src)
+				owner.previous = null
+			if(owner.destination == src)
+				owner.destination = null
 			owner = null
 		if(!QDELETED(reserved_area))
 			qdel(reserved_area)

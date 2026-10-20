@@ -188,9 +188,9 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 	for(var/V in remove)
 		var/obj/machinery/camera/C = V
+		cameras_telegraphed -= C
 		if(QDELETED(C))
 			continue
-		cameras_telegraphed -= C
 		C.update_appearance(UPDATE_ICON)
 
 	for(var/V in add)

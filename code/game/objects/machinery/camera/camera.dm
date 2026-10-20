@@ -71,13 +71,20 @@
 
 /obj/machinery/camera/Destroy()
 	if(can_use())
-		toggle_cam() //kick anyone viewing out and remove from the camera chunks
+		deactivate() //kick anyone viewing out and remove from the camera chunks
 
 	parent_cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
+	myarea = null
+	for(var/chunk_key in parent_cameranet.chunks)
+		var/datum/camerachunk/chunk = parent_cameranet.chunks[chunk_key]
+		for(var/z_key in chunk.cameras)
+			chunk.cameras[z_key] -= src
+		chunk.camera_visible_turfs -= src
+		chunk.moved_cameras -= src
 	for(var/datum/camerachunk/chunk as anything in portable_chunks)
-		chunk.remove_camera(src)
+		chunk.queue_update()
 	portable_chunks = null
 	last_portable_turf = null
 
@@ -274,7 +281,8 @@
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	var/turf/camnet_turf = get_turf(src)
-	parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
+	if(camnet_turf)
+		parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
 	update_appearance(UPDATE_ICON)
 
 	for(var/i in GLOB.player_list)
