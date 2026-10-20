@@ -504,6 +504,7 @@
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_cost = 15
 	cooldown_duration = 10 SECONDS
+	target_flags = NONE //punch is often used specifically to target nonmob things, so we give players the control
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PUNCH_SELECT,
