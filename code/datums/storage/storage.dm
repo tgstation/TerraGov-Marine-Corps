@@ -820,6 +820,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!bypass_delay && !handle_access_delay(item, user))
 		return FALSE
 
+	if(item == holstered_item)
+		holstered_item = null
+
 	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
