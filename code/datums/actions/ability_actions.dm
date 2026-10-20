@@ -302,14 +302,20 @@ if(!istype(A, typepath)){\
 
 ///Special behavior for identifying what atom to actually target
 /datum/action/ability/activable/proc/ability_target(atom/A)
+	if(isturf(A) && owner.client) //for quick cast, A is always going to be a turf
+		var/datum/weakref/ref = SSmouse_entered.hover_refs[owner.client]
+		var/datum/resolved = ref.resolve()
+		if(resolved)
+			A = resolved
+
 	if(target_flags & NONE)
 		return A
-	if(target_flags & ABILITY_MOB_TARGET)
+	if((target_flags & ABILITY_MOB_TARGET) && !isliving(A))
 		TARGET_FLAGS_MACRO(/mob/living)
-	if(target_flags & ABILITY_XENO_TARGET)
+	if((target_flags & ABILITY_XENO_TARGET) && !isxeno(A))
 		TARGET_FLAGS_MACRO(/mob/living/carbon/xenomorph)
-	if(target_flags & ABILITY_HUMAN_TARGET)
+	if((target_flags & ABILITY_HUMAN_TARGET) && !ishuman(A))
 		TARGET_FLAGS_MACRO(/mob/living/carbon/human)
-	if(target_flags & ABILITY_TURF_TARGET)
+	if((target_flags & ABILITY_TURF_TARGET) && !isturf(A))
 		return get_turf(A)
 	return A
