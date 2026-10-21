@@ -101,7 +101,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/table/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
 		return FALSE

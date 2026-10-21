@@ -119,7 +119,7 @@
 	cut_overlays()
 
 
-/obj/structure/reagent_dispensers/fueltank/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_dispensers/fueltank/wrench_act(mob/user, obj/item/tool)
 	user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded

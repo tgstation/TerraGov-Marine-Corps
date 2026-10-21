@@ -43,7 +43,7 @@
 
 	return pull_apart(user, tool)
 
-/obj/structure/barricade/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/barricade/wrench_act(mob/user, obj/item/tool)
 	if(!deconstruct_tool_check(user))
 		return FALSE
 

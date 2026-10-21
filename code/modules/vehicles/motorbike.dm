@@ -168,7 +168,7 @@
 		if(EAST, WEST)
 			pixel_x = 0
 
-/obj/vehicle/ridden/motorbike/wrench_act(mob/living/user, obj/item/tool)
+/obj/vehicle/ridden/motorbike/wrench_act(mob/user, obj/item/tool)
 	if(!attached_sidecar)
 		balloon_alert(user, "No sidecar attached!")
 		return TRUE

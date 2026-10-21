@@ -651,7 +651,7 @@
 	user.put_in_hands(gun)
 	balloon_alert(user, "detached")
 
-/obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/tool)
+/obj/vehicle/sealed/armored/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
 		prep_wreck(user)

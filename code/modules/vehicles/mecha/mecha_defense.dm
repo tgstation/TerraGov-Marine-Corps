@@ -277,7 +277,7 @@
 	if(.)
 		try_damage_component(., user.zone_selected)
 
-/obj/vehicle/sealed/mecha/wrench_act(mob/living/user, obj/item/tool)
+/obj/vehicle/sealed/mecha/wrench_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(construction_state == MECHA_SECURE_BOLTS)

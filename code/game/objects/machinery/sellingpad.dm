@@ -62,7 +62,7 @@
 	addtimer(VARSET_CALLBACK(src, use_power, IDLE_POWER_USE), 30 SECONDS)
 
 
-/obj/machinery/exportpad/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/exportpad/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	tool.play_tool_sound(src)
 	if(anchored)

@@ -276,7 +276,7 @@
 	return TRUE
 
 
-/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/closet/wrench_act(mob/user, obj/item/tool)
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)

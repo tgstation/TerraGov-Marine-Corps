@@ -307,7 +307,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/power/geothermal/wrench_act(mob/user, obj/item/tool)
 	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return
 

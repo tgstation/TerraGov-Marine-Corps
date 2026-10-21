@@ -42,7 +42,7 @@
 	holding = null
 	update_icon()
 
-/obj/machinery/portable_atmospherics/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/portable_atmospherics/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!connected_port)
 		var/obj/machinery/atmospherics/components/unary/portables_connector/new_port = locate() in drop_location()

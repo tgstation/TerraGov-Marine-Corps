@@ -29,10 +29,10 @@
 /turf/open/floor/tram/crowbar_act(mob/user, obj/item/tool)
 	return
 
-/turf/open/floor/tram/wrench_act(mob/living/user, obj/item/item)
+/turf/open/floor/tram/wrench_act(mob/user, obj/item/tool)
 	..()
 	to_chat(user, span_notice("You begin removing the plate..."))
-	if(item.use_tool(src, user, 30, volume=80))
+	if(tool.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/tram))
 			return TRUE
 		if(floor_tile)

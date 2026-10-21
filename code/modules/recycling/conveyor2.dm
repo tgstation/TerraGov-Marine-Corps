@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		qdel(src)
 	return TRUE
 
-/obj/machinery/conveyor/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/conveyor/wrench_act(mob/user, obj/item/tool)
 	if(machine_stat & BROKEN)
 		return TRUE
 	tool.play_tool_sound(src)

@@ -31,7 +31,7 @@
 	. = ..()
 	song.ui_interact(user)
 
-/obj/structure/musician/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/musician/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	user.visible_message("[user] unfastens [src]", "you unfasten the [src]")
 	tool.play_tool_sound(src)

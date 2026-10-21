@@ -212,7 +212,7 @@
 	record_miner_repair(user)
 	return TRUE
 
-/obj/machinery/miner/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/miner/wrench_act(mob/user, obj/item/tool)
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)

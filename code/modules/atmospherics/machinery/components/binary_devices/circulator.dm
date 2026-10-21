@@ -31,7 +31,7 @@
 	else
 		icon_state = "circ-off-[flipped]"
 
-/obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/user, obj/item/tool)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	anchored = !anchored

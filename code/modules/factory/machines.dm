@@ -30,7 +30,7 @@
 	. += "It is currently facing [dir2text(dir)] and [anchored ? "" : "un"]secured."
 	. += "Processes one package every [cooldown_time / 10] seconds."
 
-/obj/machinery/factory/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/factory/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
 	tool.play_tool_sound(src)

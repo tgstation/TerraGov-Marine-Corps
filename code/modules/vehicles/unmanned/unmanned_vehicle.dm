@@ -162,7 +162,7 @@
 	return ..()
 
 ///Try to desequip the turret
-/obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/tool)
+/obj/vehicle/unmanned/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")

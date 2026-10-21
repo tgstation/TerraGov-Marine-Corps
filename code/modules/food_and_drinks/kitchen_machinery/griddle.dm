@@ -104,7 +104,7 @@
 	else
 		grill_loop.stop()
 
-/obj/machinery/griddle/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/griddle/wrench_act(mob/user, obj/item/tool)
 	..()
 	balloon_alert(user, "[anchored ? "un" : ""]securing...")
 	tool.play_tool_sound(src, 50)

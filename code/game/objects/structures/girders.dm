@@ -133,7 +133,7 @@
 	return FALSE
 
 
-/obj/structure/girder/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/girder/wrench_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 	switch(girder_state)

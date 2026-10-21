@@ -220,7 +220,7 @@
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/power/fusion_engine/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!iswrench(tool))
 		return FALSE

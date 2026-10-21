@@ -74,7 +74,7 @@
 		return
 	disassemble(user)
 
-/obj/machinery/deployable/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/deployable/wrench_act(mob/user, obj/item/tool)
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
