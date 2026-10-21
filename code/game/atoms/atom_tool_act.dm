@@ -1,7 +1,9 @@
 /**
  * Handles the usage of items with tool behaviors on this atom directly.
- *
  * Handles the tool_acts in particular, such as wrenches and screwdrivers.
+ *
+ * Return TRUE to cancel the attack.
+ * Return FALSE (or null) to continue the attack.
  */
 /atom/proc/tool_act(mob/user, obj/item/tool, list/modifiers)
 	SHOULD_CALL_PARENT(TRUE)
