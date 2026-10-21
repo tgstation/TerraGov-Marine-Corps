@@ -240,8 +240,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	start_processing()
 	return TRUE
 
-/obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/WT = I
+/obj/machinery/power/geothermal/welder_act(mob/user, obj/item/tool)
+	var/obj/item/tool/weldingtool/WT = tool
 	if(corrupted)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
@@ -257,7 +257,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		span_notice("You start carefully burning the resin off."))
 		user.balloon_alert(user, "You start carefully burning the resin off.")
 
-		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
+		if(!tool.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
 		decorrupt()
@@ -274,7 +274,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 		return
 
 	user.balloon_alert(user, "You start welding the internals back together.")
-	if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 
 	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
@@ -283,7 +283,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
+/obj/machinery/power/geothermal/wirecutter_act(mob/user, obj/item/tool)
 	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return
 
@@ -295,7 +295,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 			return
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!I.use_tool(src, user, 12 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 4, 0, 12) SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 12 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 4, 0, 12) SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return FALSE
@@ -307,7 +307,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/tool)
 	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return
 
@@ -319,7 +319,7 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 			return
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!I.use_tool(src, user, 15 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 15) SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 15 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 15) SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return FALSE

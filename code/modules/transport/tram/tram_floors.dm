@@ -26,7 +26,7 @@
 /turf/open/floor/tram/try_replace_tile(obj/item/stack/tile/replacement_tile, mob/user, params)
 	return
 
-/turf/open/floor/tram/crowbar_act(mob/living/user, obj/item/item)
+/turf/open/floor/tram/crowbar_act(mob/user, obj/item/tool)
 	return
 
 /turf/open/floor/tram/wrench_act(mob/living/user, obj/item/item)

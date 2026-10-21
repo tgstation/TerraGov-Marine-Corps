@@ -443,11 +443,11 @@
 		unbuckle_all_mobs(TRUE)
 	return ..()
 
-/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
+/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/user, obj/item/tool)
 	if(LAZYLEN(buckled_mobs))
 		balloon_alert(user, "someone's sitting in it!")
 		return
-	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
+	welder_repair_act(user, tool, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
 	chair_state = DROPSHIP_CHAIR_UNBUCKLED
 	update_icon()
 	return

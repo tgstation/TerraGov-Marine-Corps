@@ -146,16 +146,16 @@
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 				O << browse(HTML_SKELETON_TITLE(itemname, info), "window=[itemname]")
 
-/obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/camera/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	return TRUE
 
-/obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
+/obj/machinery/camera/wirecutter_act(mob/user, obj/item/tool)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	TOGGLE_BITFIELD(camera_flags, CAMERA_SNIPPED)
@@ -163,12 +163,12 @@
 		deactivate()
 	else
 		reactivate()
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	if(user)
 		visible_message(span_danger("[user] [(camera_flags & CAMERA_SNIPPED) ? "deactivates" : "reactivates"] [src]!"))
 	return TRUE
 
-/obj/machinery/camera/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/camera/multitool_act(mob/user, obj/item/tool)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 
@@ -176,16 +176,16 @@
 	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
 
-/obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/camera/welder_act(mob/user, obj/item/tool)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 
-	if(!I.tool_start_check(user, amount = 0))
+	if(!tool.tool_start_check(user, amount = 0))
 		return TRUE
 
 	to_chat(user, span_notice("You start to weld [src]..."))
 
-	if(I.use_tool(src, user, 100, volume = 50))
+	if(tool.use_tool(src, user, 100, volume = 50))
 		user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
 			span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
 		deconstruct(TRUE)

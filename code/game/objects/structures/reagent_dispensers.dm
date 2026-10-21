@@ -119,18 +119,18 @@
 	cut_overlays()
 
 
-/obj/structure/reagent_dispensers/fueltank/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/reagent_dispensers/fueltank/wrench_act(mob/living/user, obj/item/tool)
 	user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE
 
-/obj/structure/reagent_dispensers/fueltank/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/W = I
+/obj/structure/reagent_dispensers/fueltank/welder_act(mob/user, obj/item/tool)
+	var/obj/item/tool/weldingtool/W = tool
 	if(!W.welding)
 		return
 	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")

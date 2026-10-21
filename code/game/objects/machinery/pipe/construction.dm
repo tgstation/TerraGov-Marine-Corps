@@ -137,7 +137,7 @@ Buildable meters
 	if(iswrench(I))
 		return wrench_act(user, I)
 
-/obj/item/pipe/wrench_act(mob/living/user, obj/item/tool/wrench/W)
+/obj/item/pipe/wrench_act(mob/living/user, obj/item/tool)
 	if(!isturf(loc))
 		return TRUE
 
@@ -158,7 +158,7 @@ Buildable meters
 	build_pipe(A)
 	A.on_construction(color, piping_layer)
 
-	W.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	user.visible_message( \
 		"[user] fastens \the [src].", \
 		span_notice("You fasten \the [src]."), \
@@ -203,7 +203,7 @@ Buildable meters
 	if(!.)
 		return ..()
 
-/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/tool/wrench/W)
+/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/tool)
 
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)
@@ -214,11 +214,11 @@ Buildable meters
 		to_chat(user, span_warning("You need to fasten it to a pipe!"))
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
-	W.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
 
-/obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
+/obj/item/pipe_meter/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(.)
 		return TRUE
@@ -228,7 +228,7 @@ Buildable meters
 		return TRUE
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
-	S.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You fasten the meter to the [loc.name]."))
 	qdel(src)
 

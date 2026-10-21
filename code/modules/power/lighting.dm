@@ -196,14 +196,14 @@
 		electrocute_mob(user, get_area(src), src, 0.3)
 	broken()
 
-/obj/machinery/light/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/light/screwdriver_act(mob/user, obj/item/tool)
 	if(user.a_intent == INTENT_HARM)
 		return FALSE
 	if(status != LIGHT_EMPTY)
 		balloon_alert(user, "Remove bulb first")
 		return TRUE
 
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	user.visible_message("[user] opens [src]'s casing.", \
 		"You open [src]'s casing.", "You hear a noise.")
 	var/obj/machinery/light_construct/newlight

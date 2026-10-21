@@ -31,11 +31,11 @@
 	else
 		icon_state = "circ-off-[flipped]"
 
-/obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/tool)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	anchored = !anchored
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
 
 
@@ -83,16 +83,16 @@
 		return ..(target)
 	return FALSE
 
-/obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/user, obj/item/tool)
 	mode = !mode
 	to_chat(user, span_notice("You set [src] to [mode?"cold":"hot"] mode."))
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
+/obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/tool)
 	if(..())
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src]."))
 	return TRUE
 

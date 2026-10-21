@@ -33,7 +33,7 @@
 		return FALSE
 	return ..()
 
-/obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(.)
 		return

@@ -38,11 +38,11 @@
 	QDEL_NULL(grill_loop)
 	. = ..()
 
-/obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/griddle/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(atom_flags & NODECONSTRUCT)
 		return
-	if(default_deconstruction_crowbar(I, ignore_panel = TRUE))
+	if(default_deconstruction_crowbar(tool, ignore_panel = TRUE))
 		return
 	variant = rand(1,3)
 
@@ -104,11 +104,11 @@
 	else
 		grill_loop.stop()
 
-/obj/machinery/griddle/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/griddle/wrench_act(mob/living/user, obj/item/tool)
 	..()
 	balloon_alert(user, "[anchored ? "un" : ""]securing...")
-	I.play_tool_sound(src, 50)
-	if(!I.use_tool(src, user, 2 SECONDS))
+	tool.play_tool_sound(src, 50)
+	if(!tool.use_tool(src, user, 2 SECONDS))
 		return FALSE
 	balloon_alert(user, "[anchored ? "un" : ""]secured")
 	anchored = !anchored

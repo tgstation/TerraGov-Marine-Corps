@@ -632,10 +632,10 @@
 		balloon_alert(user, "detached")
 		return
 
-/obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
+/obj/vehicle/sealed/armored/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
 
-/obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
@@ -651,7 +651,7 @@
 	user.put_in_hands(gun)
 	balloon_alert(user, "detached")
 
-/obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
 		prep_wreck(user)
@@ -670,7 +670,7 @@
 	user.put_in_hands(gun)
 	balloon_alert(user, "detached")
 
-/obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")

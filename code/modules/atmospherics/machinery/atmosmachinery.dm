@@ -180,7 +180,7 @@
 	return ..()
 
 
-/obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/tool)
 	if(!can_unwrench(user))
 		return ..()
 

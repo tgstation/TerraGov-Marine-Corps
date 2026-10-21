@@ -111,7 +111,7 @@
 		setAnchored(FALSE)
 	return ..()
 
-/obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
+/obj/item/detpack/multitool_act(mob/user, obj/item/tool)
 	if(!armed && !on)
 		balloon_alert(user, "inactive!")
 		return
@@ -126,8 +126,8 @@
 			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <i>very</i> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
-	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
-	span_notice("You begin disarming [src] with [I]."))
+	user.visible_message(span_notice("[user] begins disarming [src] with [tool]."),
+	span_notice("You begin disarming [src] with [tool]."))
 
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return

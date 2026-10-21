@@ -726,45 +726,6 @@ directive is properly returned.
 	SEND_SIGNAL(src, ATOM_RECALCULATE_STORAGE_SPACE)
 	return //Nothing to see here.
 
-// Tool-specific behavior procs. To be overridden in subtypes.
-/atom/proc/crowbar_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/multitool_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/tool/multitool))
-		if(user && !silent)
-			to_chat(user, span_warning("[I] has no data buffer!"))
-		return FALSE
-	return TRUE
-
-
-/atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/wrench_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/wirecutter_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/welder_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/analyzer_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/atom/proc/fulton_act(mob/living/user, obj/item/I)
-	if(!isturf(loc))
-		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
-	to_chat(user, span_warning("Cannot extract [src]."))
-	return TRUE
-
-/atom/proc/plasmacutter_act(mob/living/user, obj/item/I)
-	return FALSE
-
 ///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return

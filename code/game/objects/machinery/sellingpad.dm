@@ -62,9 +62,9 @@
 	addtimer(VARSET_CALLBACK(src, use_power, IDLE_POWER_USE), 30 SECONDS)
 
 
-/obj/machinery/exportpad/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/exportpad/wrench_act(mob/living/user, obj/item/tool)
 	anchored = !anchored
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	if(anchored)
 		to_chat(user, "You bolt the [src] to the ground, activating it.")
 		icon_state = "broadcaster"

@@ -1,10 +1,10 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(preattack(target, user, params))
 		return
+	if(tool_act(user, src, params2list(params)))
+		return
 	if(rightclick)
 		return melee_attack_chain_alternate(user, target, params)
-	if(tool_behaviour && tool_attack_chain(user, target))
-		return
 	if(user.lying_angle)
 		user.balloon_alert(user, "can't while prone!")
 		return
@@ -20,29 +20,6 @@
 //Called before any other attack proc.
 /obj/item/proc/preattack(atom/target, mob/user, params)
 	return FALSE
-
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
-/obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	switch(tool_behaviour)
-		if(TOOL_CROWBAR)
-			return target.crowbar_act(user, src)
-		if(TOOL_MULTITOOL)
-			return target.multitool_act(user, src)
-		if(TOOL_SCREWDRIVER)
-			return target.screwdriver_act(user, src)
-		if(TOOL_WRENCH)
-			return target.wrench_act(user, src)
-		if(TOOL_WIRECUTTER)
-			return target.wirecutter_act(user, src)
-		if(TOOL_WELDER)
-			return target.welder_act(user, src)
-		if(TOOL_ANALYZER)
-			return target.analyzer_act(user, src)
-		if(TOOL_FULTON)
-			return target.fulton_act(user, src)
-		if(TOOL_PLASMACUTTER)
-			return target.plasmacutter_act(user, src)
-
 
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)

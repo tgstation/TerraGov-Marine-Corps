@@ -27,7 +27,7 @@
 		anchored = TRUE
 	return TRUE
 
-/obj/structure/benchpress/crowbar_act(mob/living/user, obj/item/tool)
+/obj/structure/benchpress/crowbar_act(mob/user, obj/item/tool)
 	if(anchored)
 		balloon_alert(user, "unsecure first!")
 		return FALSE

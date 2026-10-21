@@ -111,10 +111,10 @@
 		return FALSE
 
 
-/obj/structure/girder/welder_act(mob/living/user, obj/item/I)
+/obj/structure/girder/welder_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
-	var/obj/item/tool/weldingtool/welder = I
+	var/obj/item/tool/weldingtool/welder = tool
 	if(!welder.isOn())
 		return FALSE
 	switch(girder_state)
@@ -133,13 +133,13 @@
 	return FALSE
 
 
-/obj/structure/girder/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/girder/wrench_act(mob/living/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_BROKEN)
 			to_chat(user, span_notice("Now unbolting the remaining girder base."))
-			if(!I.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != GIRDER_BROKEN)
 				return TRUE
@@ -155,7 +155,7 @@
 				to_chat(usr, span_warning("The girder must be secured on the floor!"))
 				return FALSE
 			to_chat(user, span_notice("Now securing the girder"))
-			if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -166,7 +166,7 @@
 			return TRUE
 	return FALSE
 
-/obj/structure/girder/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/girder/crowbar_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
@@ -174,7 +174,7 @@
 			if(!anchored)
 				return FALSE
 			to_chat(user, span_notice("Now dislodging the girder..."))
-			if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(!anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -188,7 +188,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!I.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -199,7 +199,7 @@
 	return FALSE
 
 
-/obj/structure/girder/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/girder/screwdriver_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
@@ -207,7 +207,7 @@
 			if(anchored)
 				return FALSE
 			to_chat(user, span_notice("Now dissassembling the girder"))
-			if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -221,7 +221,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!I.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -234,7 +234,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!I.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, work_time, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -244,13 +244,13 @@
 	return FALSE
 
 
-/obj/structure/girder/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/girder/wirecutter_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_BROKEN_PATCHED)
 			to_chat(user, span_notice("Now cutting the metal plate..."))
-			if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			to_chat(user, span_notice("You finished cutting the metal plate!"))
 			deconstruct()
@@ -261,7 +261,7 @@
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
 			to_chat(user, span_notice("Now cutting the support struts..."))
-			if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
+			if(!tool.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE

@@ -51,8 +51,8 @@
 	hud_set_machine_health()
 
 ///Repairs machine
-/obj/machinery/deployable/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 120, 5 SECONDS)
+/obj/machinery/deployable/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 120, 5 SECONDS)
 
 /obj/machinery/deployable/disassemble(mob/user)
 	if(get_self_acid())
@@ -74,7 +74,7 @@
 		return
 	disassemble(user)
 
-/obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/wrench_act(mob/living/user, obj/item/tool)
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return

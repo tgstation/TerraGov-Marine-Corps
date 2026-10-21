@@ -65,9 +65,9 @@
 	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/plasmacutter_act(mob/living/user, obj/item/W)
-	if(isplasmacutter(W))
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
+/obj/machinery/atmospherics/components/unary/vent_scrubber/plasmacutter_act(mob/user, obj/item/tool)
+	if(isplasmacutter(tool))
+		var/obj/item/tool/pickaxe/plasmacutter/P = tool
 
 		if(!welded)
 			to_chat(user, span_warning("\The [P] can only cut open welds!"))
@@ -81,9 +81,9 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/W)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+/obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/user, obj/item/tool)
+	if(iswelder(tool))
+		var/obj/item/tool/weldingtool/WT = tool
 		if(WT.isOn())
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
