@@ -215,8 +215,8 @@
 	return ..()
 
 
-/obj/structure/largecrate/random/barrel/welder_act(mob/user, obj/item/tool/weldingtool/welder)
-	if(!welder.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+/obj/structure/largecrate/random/barrel/welder_act(mob/user, obj/item/tool)
+	if(!tool.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return
 	user.visible_message(span_notice("[user] welds \the [src] open."),
 		span_notice("You weld open \the [src]."),
