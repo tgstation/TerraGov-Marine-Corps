@@ -259,13 +259,13 @@ AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20
 ## How long in deciseconds after a mob with a headset camera moves before its camera updates the camera chunks around it.
 #CAMERA_MOVE_UPDATE_DELAY 10
 
-## How long in deciseconds a watched camera chunk waits before updating after a moving camera enters, moves in or leaves it.
+## How long in deciseconds a watched camera chunk waits before updating after a moving
 #CAMERA_CHUNK_MOVE_UPDATE_DELAY 25
 
 ## How long in deciseconds a watched camera chunk waits before fully updating after its visibility changes (turf changes, cameras turned on or off).
 #CAMERA_CHUNK_UPDATE_DELAY 25
 
-## The longest time in deciseconds a camera chunk goes between full updates; catches visibility changes nothing reports, like doors.
+## The longest time in deciseconds a camera chunk goes between full updates, just passively
 #CAMERA_CHUNK_FULL_UPDATE_INTERVAL 50
 
 ## Assets can opt-in to caching their results into `cache/`.
