@@ -37,15 +37,15 @@
 
 	return TRUE
 
-/obj/item/flash/afterattack(atom/target_atom, mob/user, list/modifiers)
+/obj/item/flash/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	if(.)
 		return
 
-	if(!ismob(target_atom))
+	if(!ismob(target))
 		return FALSE
 
-	var/mob/target_mob = target_atom
+	var/mob/target_mob = target
 	log_combat(user, target_mob, "attempted to flash", src)
 
 	if(!can_use(user))
