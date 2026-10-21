@@ -115,6 +115,7 @@
 
 /obj/item/limb/head/Destroy()
 	GLOB.head_list -= src
+	QDEL_NULL(brainmob)
 	return ..()
 
 /obj/item/limb/head/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head

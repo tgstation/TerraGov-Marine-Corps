@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(designator_types, list (
 	animate(new_hologram, 1 SECONDS, alpha = initial(new_hologram.alpha))
 	new_hologram.setDir(owner.dir)
 
-	RegisterSignal(hologram, COMSIG_QDELETING, PROC_REF(cleanup_hologram))
+	RegisterSignal(new_hologram, COMSIG_QDELETING, PROC_REF(cleanup_hologram))
 	hologram = new_hologram
 
 ///Updates the hologram position and validity

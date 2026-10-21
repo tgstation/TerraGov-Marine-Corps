@@ -153,6 +153,7 @@
 	return
 
 /obj/item/weapon/twohanded/offhand/forceMove(atom/destination)
-	if(!ismob(destination))
+	if(!ismob(destination) && !QDELING(src))
 		qdel(src)
+		return FALSE
 	return ..()

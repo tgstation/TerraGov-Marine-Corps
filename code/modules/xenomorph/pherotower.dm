@@ -37,6 +37,7 @@
 
 /obj/structure/xeno/pherotower/Destroy()
 	GLOB.hive_datums[hivenumber].pherotowers -= src
+	QDEL_NULL(current_aura)
 	return ..()
 
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.

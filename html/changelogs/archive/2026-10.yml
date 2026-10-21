@@ -131,3 +131,23 @@
   - bugfix: Added a 5 second cooldown for toggling the takeoff alarm on any marine
       dropship.
   - bugfix: Turning off automation will no longer force disable the takeoff alarm.
+2026-10-19:
+  Lewdcifer:
+  - bugfix: Fixed an issue where Behemoth's Earth Riser could move dead people.
+  Lumipharon:
+  - code_imp: cleaned up a redundant toxin subtype
+  - bugfix: Cinematics centered for widescreen mode
+  - bugfix: fixed some welder interactions that were broken by the recent sound updates
+  - qol: Bike mounted weapons behave much nicer when checking their firing angles
+  marivanwan:
+  - bugfix: Fixed a few balloon alerts
+  mudzbe:
+  - balance: Reduce zombie health and heal rate
+2026-10-20:
+  Arturlang:
+  - admin: del log verb now gives better debugging info
+  Lewdcifer:
+  - rscadd: You can now jump over microwaves and climb them.
+2026-10-21:
+  Runian:
+  - balance: Xenomorph mutations are now disabled by default for all gamemodes.
