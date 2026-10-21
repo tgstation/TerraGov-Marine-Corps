@@ -253,7 +253,12 @@
 		balloon_alert(user, "something's inside!")
 		return
 
-/obj/structure/closet/welder_act(mob/user, obj/item/tool/weldingtool/welder)
+/obj/structure/closet/welder_act(mob/user, obj/item/tool)
+	var/obj/item/tool/weldingtool/welder = tool
+	if(!iswelder(tool))
+		return FALSE
+
+	var/obj/item/tool/weldingtool/welder = tool
 	if(!welder.isOn())
 		return FALSE
 
