@@ -69,7 +69,7 @@
 		return
 
 	carbon_victim.adjust_stagger(stagger_duration)
-	carbon_victim.add_slowdown(slowdown_stacks)
+	carbon_victim.slowdown(slowdown_stacks)
 
 	set_reagents()
 	for(var/reagent_id in spit_reagents)
@@ -149,7 +149,7 @@
 	if(target_carbon.issamexenohive(proj.firer))
 		return
 	target_carbon.adjust_stagger(stagger_duration) //stagger briefly; useful for support
-	target_carbon.add_slowdown(slowdown_stacks) //slow em down
+	target_carbon.slowdown(slowdown_stacks) //slow em down
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
@@ -323,7 +323,7 @@
 		if(target_carbon.issamexenohive(proj.firer))
 			return
 		target_carbon.adjust_stagger(stagger_duration)
-		target_carbon.add_slowdown(slowdown_stacks)
+		target_carbon.slowdown(slowdown_stacks)
 
 ///Hitting an object causes the bomblet to fail and release transparent fast-dissipating smoke
 /datum/ammo/xeno/acid/smokescreen/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)

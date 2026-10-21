@@ -265,7 +265,7 @@
 		carbon_owner.do_attack_animation(victim, ATTACK_EFFECT_WEAK_PUNCH)
 		victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		victim.adjust_stagger(0.7 SECONDS)
-		victim.add_slowdown(2)
+		victim.adjust_slowdown(2)
 		shake_camera(victim, 2, 1)
 		break
 	if(!hit_something)

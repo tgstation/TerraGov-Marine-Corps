@@ -68,7 +68,7 @@
 			if(COOLDOWN_FINISHED(src, alertcooldown))
 				to_chat(implant_owner, span_alert("You feel your spine tingle."))
 				COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-			implant_owner.hallucination += 2
+			implant_owner.adjust_hallucination(2)
 			implant_owner.adjustFireLoss(1)
 		if(2.1 SECONDS to 5 SECONDS)
 			if(COOLDOWN_FINISHED(src, alertcooldown) || !exerted)
@@ -76,7 +76,7 @@
 				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 			exerted = TRUE
 			implant_owner.set_drugginess(10)
-			implant_owner.hallucination += 10
+			implant_owner.adjust_hallucination(10)
 			if(time_on > 3.6 SECONDS)
 				implant_owner.adjustCloneLoss(1)
 				implant_owner.adjustFireLoss(1)

@@ -457,7 +457,7 @@
 				carbon_victim.apply_damage(get_damage(), BRUTE, blocked = BOMB, attacker = owner)
 				carbon_victim.apply_damage(get_damage(), STAMINA, blocked = BOMB, attacker = owner)
 				carbon_victim.adjust_stagger(2 SECONDS * current_iterations)
-				carbon_victim.add_slowdown(3 * current_iterations)
+				carbon_victim.slowdown(3 * current_iterations)
 				continue
 			if(isvehicle(victim) || ishitbox(victim))
 				var/obj/obj_victim = victim
@@ -579,7 +579,7 @@
 			continue
 		victim.apply_damage(PSY_CRUSH_BASE_DAMAGE, BURN, blocked = BOMB, updating_health = TRUE, attacker = blame_mob)
 		victim.adjust_stagger(3 SECONDS)
-		victim.add_slowdown(3)
+		victim.slowdown(3)
 		victim.do_jitter_animation(500)
 
 /obj/effect/xeno/crush_orb/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
