@@ -254,7 +254,6 @@
 		return
 
 /obj/structure/closet/welder_act(mob/user, obj/item/tool)
-	var/obj/item/tool/weldingtool/welder = tool
 	if(!iswelder(tool))
 		return FALSE
 
