@@ -21,6 +21,7 @@
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
+	icon_state = "bullet_large_red"
 	hud_state = "sniper_fire"
 	accuracy = 0
 	damage_type = BURN

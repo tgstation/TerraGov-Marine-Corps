@@ -53,6 +53,7 @@
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
+	icon_state = "bullet_green"
 	hud_state = "pistol_ap"
 	damage = 20
 	penetration = 12.5
@@ -69,6 +70,7 @@
 
 /datum/ammo/bullet/pistol/superheavy
 	name = "high impact pistol bullet"
+	icon_state = "bullet_large"
 	hud_state = "pistol_superheavy"
 	damage = 45
 	penetration = 15
@@ -87,6 +89,7 @@
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
+	icon_state = "bullet_red"
 	hud_state = "pistol_fire"
 	damage_type = BURN
 	shrapnel_chance = 0
@@ -121,6 +124,7 @@
 
 /datum/ammo/bullet/pistol/gyrojet
 	name = "Micro Rocket"
+	icon_state = "bolter"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
 	damage = 40
