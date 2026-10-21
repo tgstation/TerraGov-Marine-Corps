@@ -240,7 +240,7 @@
 		SSmobs.clients_by_zlevel[new_z] += src
 	registered_z = new_z
 
-/mob/living/proc/do_camera_update(obj/item/radio/headset/mainship/headset)
+/mob/living/proc/do_camera_update(oldLoc)
 	return
 
 

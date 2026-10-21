@@ -24,8 +24,6 @@
 	var/short_range = 2
 	///Camera behavior flags
 	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
-	var/list/datum/camerachunk/portable_chunks
-	var/turf/last_portable_turf
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
@@ -81,12 +79,6 @@
 		var/datum/camerachunk/chunk = parent_cameranet.chunks[chunk_key]
 		for(var/z_key in chunk.cameras)
 			chunk.cameras[z_key] -= src
-		chunk.camera_visible_turfs -= src
-		chunk.moved_cameras -= src
-	for(var/datum/camerachunk/chunk as anything in portable_chunks)
-		chunk.queue_update()
-	portable_chunks = null
-	last_portable_turf = null
 
 	return ..()
 
