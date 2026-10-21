@@ -8,11 +8,16 @@
 
 /datum/ai_behavior/xeno/zombie/start_ai()
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_ZOMBIE_RALLY, PROC_REF(rally_zombie))
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY, PROC_REF(leader_rally))
 	return ..()
 
 /datum/ai_behavior/xeno/zombie/cleanup_signals()
 	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_ZOMBIE_RALLY)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_ZOMBIE_RALLY, COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY))
+
+/datum/ai_behavior/xeno/zombie/set_escort()
+	//we do not want zombies following friendly targets by default
+	return
 
 /datum/ai_behavior/xeno/zombie/process()
 	. = ..()
@@ -29,7 +34,7 @@
 	return //Zombies don't need to do anything to heal
 
 ///Rallies the zombie to a target
-/datum/ai_behavior/xeno/zombie/proc/rally_zombie(datum/source, atom/atom_to_escort, global_rally = FALSE)
+/datum/ai_behavior/xeno/zombie/proc/rally_zombie(datum/source, atom/atom_to_escort, global_rally = FALSE, list/follower_list)
 	SIGNAL_HANDLER
 	if(QDELETED(atom_to_escort) || mob_parent.ckey || atom_to_escort.z != mob_parent.z)
 		return
@@ -41,6 +46,15 @@
 	set_goal_node(new_goal_node = find_closest_node(atom_to_escort))
 	if(current_action == IDLE) ///Turns on passive zombies also
 		look_for_next_node()
+
+///signs up our owner to follow a player zombie if possible
+/datum/ai_behavior/xeno/zombie/proc/leader_rally(datum/source, atom/atom_to_escort, list/follower_list)
+	SIGNAL_HANDLER
+	if(QDELETED(atom_to_escort) || mob_parent.ckey || atom_to_escort.z != mob_parent.z)
+		return
+	if(get_dist(atom_to_escort, mob_parent) > target_distance)
+		return
+	follower_list[src] = mob_parent
 
 /datum/ai_behavior/xeno/zombie/patrolling
 	base_action = MOVING_TO_NODE
