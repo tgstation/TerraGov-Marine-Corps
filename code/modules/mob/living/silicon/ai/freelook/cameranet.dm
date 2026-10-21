@@ -111,8 +111,20 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 
 /// Used for Cyborg cameras. Since portable cameras can be in ANY chunk.
 /datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
-	if(c.can_use())
-		majorChunkChange(c, 1)
+	if(!c.can_use())
+		return
+	var/turf/T = get_turf(c)
+	if(!T || T == c.last_portable_turf)
+		return
+	c.last_portable_turf = T
+	var/list/new_chunks = get_chunks_around(T)
+	if(c.portable_chunks)
+		for(var/datum/camerachunk/old_chunk as anything in c.portable_chunks - new_chunks)
+			old_chunk.remove_camera(c)
+	for(var/datum/camerachunk/chunk as anything in new_chunks)
+		chunk.cameras["[T.z]"] |= c
+		chunk.camera_moved(c)
+	c.portable_chunks = new_chunks
 
 /**
  * Never access this proc directly!!!!
@@ -126,22 +138,29 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 		return
 
 	var/turf/T = get_turf(c)
-	if(T)
-		var/x1 = max(0, T.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-		var/y1 = max(0, T.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-		var/x2 = min(world.maxx, T.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-		var/y2 = min(world.maxy, T.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
-			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
-				var/datum/camerachunk/chunk = chunkGenerated(x, y, T.z)
-				if(chunk)
-					if(choice == 0)
-						// Remove the camera.
-						chunk.cameras["[T.z]"] -= c
-					else if(choice == 1)
-						// You can't have the same camera in the list twice.
-						chunk.cameras["[T.z]"] |= c
-					chunk.hasChanged()
+	if(!T)
+		return
+	for(var/datum/camerachunk/chunk as anything in get_chunks_around(T))
+		if(choice == 0)
+			// Remove the camera.
+			chunk.cameras["[T.z]"] -= c
+			chunk.camera_visible_turfs -= c
+		else if(choice == 1)
+			// You can't have the same camera in the list twice.
+			chunk.cameras["[T.z]"] |= c
+		chunk.hasChanged()
+
+/datum/cameranet/proc/get_chunks_around(turf/center)
+	. = list()
+	var/x1 = max(0, center.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/y1 = max(0, center.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/x2 = min(world.maxx, center.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	var/y2 = min(world.maxy, center.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
+	for(var/x = x1; x <= x2; x += CHUNK_SIZE)
+		for(var/y = y1; y <= y2; y += CHUNK_SIZE)
+			var/datum/camerachunk/chunk = chunkGenerated(x, y, center.z)
+			if(chunk)
+				. += chunk
 
 /// Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
 /datum/cameranet/proc/checkCameraVis(mob/living/target)
