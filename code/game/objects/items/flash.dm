@@ -30,6 +30,7 @@
 	times_used++
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	flick("flash_flashing", src)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 
 	for(var/mob/living/carbon/human/nearby_human in oviewers(3, null))
@@ -87,6 +88,9 @@
 		return
 	times_used++
 
+	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+	flick("flash_flashing", src)
+
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon_holder = loc
 		if(carbon_holder.flash_act())
@@ -115,7 +119,7 @@
 /obj/item/flash/proc/try_break(mob/user)
 	if(prob(times_used * 2)) // 5 = 10% maximum
 		broken = TRUE
-		icon_state = "flashburnt"
+		icon_state = "flash_burnt"
 		if(user)
 			to_chat(user, span_warning("The bulb has burnt out!"))
 		return TRUE
