@@ -148,3 +148,6 @@
   - admin: del log verb now gives better debugging info
   Lewdcifer:
   - rscadd: You can now jump over microwaves and climb them.
+2026-10-21:
+  Runian:
+  - balance: Xenomorph mutations are now disabled by default for all gamemodes.
