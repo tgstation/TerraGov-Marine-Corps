@@ -1,7 +1,7 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(preattack(target, user, params))
 		return
-	if(tool_act(user, src, params2list(params)))
+	if(target.tool_act(user, src, params2list(params)))
 		return
 	if(rightclick)
 		return melee_attack_chain_alternate(user, target, params)
