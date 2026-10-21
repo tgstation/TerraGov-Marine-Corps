@@ -34,7 +34,7 @@
 	return //Zombies don't need to do anything to heal
 
 ///Rallies the zombie to a target
-/datum/ai_behavior/xeno/zombie/proc/rally_zombie(datum/source, atom/atom_to_escort, global_rally = FALSE, list/follower_list)
+/datum/ai_behavior/xeno/zombie/proc/rally_zombie(datum/source, atom/atom_to_escort, global_rally = FALSE)
 	SIGNAL_HANDLER
 	if(QDELETED(atom_to_escort) || mob_parent.ckey || atom_to_escort.z != mob_parent.z)
 		return
