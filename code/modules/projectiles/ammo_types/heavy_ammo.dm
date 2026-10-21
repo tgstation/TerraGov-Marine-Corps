@@ -127,6 +127,7 @@
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
 	icon_state = "blue_bullet"
+	ping = "ping_s"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
