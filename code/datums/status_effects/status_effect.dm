@@ -99,7 +99,7 @@
 ///Effects on owner death. Requires STATUS_FLAG_CHECK_OWNER_DEATH
 /datum/status_effect/proc/on_owner_death(datum/source)
 	SIGNAL_HANDLER
-	if(status_flags & STATUS_FLAG_CHECK_OWNER_DEATH)
+	if(status_flags & STATUS_FLAG_OWNER_DEATH_DEL)
 		qdel(src)
 		return
 	STOP_PROCESSING(SSfastprocess, src)
