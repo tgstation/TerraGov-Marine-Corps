@@ -56,7 +56,6 @@
 	SEND_SIGNAL(tool, COMSIG_ITEM_TOOL_ACTED, src, user, tool_type)
 	return act_result
 
-
 /**
  * Tool-specific behavior procs.
  *
