@@ -1,5 +1,8 @@
+///Empty casing
 #define CG_EMPTY 1
+///Wired but not set
 #define CG_WIRED 2
+///Ready to use
 #define CG_READY 3
 
 /obj/item/explosive/grenade/chem_grenade
@@ -10,23 +13,32 @@
 	worn_icon_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
+	///What assembly stage the grenade is in
 	var/stage = CG_EMPTY
-	var/display_timer = FALSE
+	///The actual reagents containers in the grenade. Mixed on activation
 	var/list/obj/item/reagent_containers/glass/beakers = list()
+	///The types of containers allowed in the beaker list
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
-	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
+	///Blacklisted container types
+	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace)
+	///Chem splash area
 	var/affected_area = 3
+	///Trigger assembly
 	var/obj/item/assembly_holder/nadeassembly = null
+	///ckey of the person that attached the assembly
 	var/assemblyattacher
-	var/ignition_temp = 10 // The amount of heat added to the reagents when this grenade goes off.
-	var/threatscale = 1 // Used by advanced grenades to make them slightly more worthy.
-	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
-	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
+	///The amount of heat added to the reagents when this grenade goes off
+	var/ignition_temp = 10
+	///Chem volume multiplier
+	var/threatscale = 1
+	///If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
+	var/no_splash = FALSE
+	///Appears when examining empty casings.
+	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition."
 
 
 /obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
-	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
 
 /obj/item/explosive/grenade/chem_grenade/Destroy()
@@ -137,7 +149,6 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
-	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
 	if((user.skills.getRating(SKILL_MEDICAL) > SKILL_MEDICAL_NOVICE) || isobserver(usr))
 		if(length(beakers))
