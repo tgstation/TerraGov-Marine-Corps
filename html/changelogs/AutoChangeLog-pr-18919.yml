@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Flashes now make a sound and flicker when EMP'd."
+  - bugfix: "Flashes now flicker their flashing icon when activated."
+  - bugfix: "Synthetic and burnt-out flashes are no longer invisible."
