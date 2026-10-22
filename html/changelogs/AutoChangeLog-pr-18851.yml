@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "refactored various effects to be status effects instead of mob based"
-  - code_imp: "max_stacks for stacking status effects now work as intended, allowing for uncapped stacks if desired"

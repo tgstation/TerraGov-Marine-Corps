@@ -151,3 +151,12 @@
 2026-10-21:
   Runian:
   - balance: Xenomorph mutations are now disabled by default for all gamemodes.
+2026-10-22:
+  Lumipharon:
+  - refactor: refactored various effects to be status effects instead of mob based
+  - code_imp: max_stacks for stacking status effects now work as intended, allowing
+      for uncapped stacks if desired
+  Runian:
+  - rscadd: Flashes now make a sound and flicker when EMP'd.
+  - bugfix: Flashes now flicker their flashing icon when activated.
+  - bugfix: Synthetic and burnt-out flashes are no longer invisible.
