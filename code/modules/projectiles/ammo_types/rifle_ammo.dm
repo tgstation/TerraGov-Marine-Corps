@@ -31,6 +31,7 @@
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
+	icon_state = "bullet_large"
 	hud_state = "rifle_heavy"
 	damage = 30
 	penetration = 10
@@ -38,7 +39,7 @@
 
 /datum/ammo/bullet/rifle/heavy/ap
 	name = "heavy armor-piercing rifle bullet"
-	icon_state = "bullet_green"
+	icon_state = "bullet_large_green"
 	hud_state = "rifle_ap"
 	damage = 25
 	penetration = 30
@@ -66,7 +67,6 @@
 
 /datum/ammo/bullet/rifle/machinegun
 	name = "machinegun bullet"
-	icon_state = "bullet_large"
 	hud_state = "rifle_heavy"
 	damage = 25
 	penetration = 10
@@ -74,7 +74,6 @@
 
 /datum/ammo/bullet/rifle/som_machinegun
 	name = "machinegun bullet"
-	icon_state = "bullet_large"
 	hud_state = "rifle_heavy"
 	damage = 28
 	penetration = 12.5
