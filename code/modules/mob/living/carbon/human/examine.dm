@@ -175,11 +175,12 @@
 
 	//jitters
 	if(stat != DEAD)
-		if(jitteriness >= 300)
+		var/jitter_level = amount_jittered()
+		if(jitter_level >= 300)
 			msg += "[span_boldwarning("<B>[t_He] [t_is] convulsing violently!</B>")]\n"
-		else if(jitteriness >= 200)
+		else if(jitter_level >= 200)
 			msg += "[span_warning("[t_He] [t_is] extremely jittery.")]\n"
-		else if(jitteriness >= 100)
+		else if(jitter_level >= 100)
 			msg += "[span_warning("[t_He] [t_is] twitching ever so slightly.")]\n"
 
 	//splints

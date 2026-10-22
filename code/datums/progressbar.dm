@@ -12,6 +12,8 @@
 	var/mob/user
 	var/client/client
 	var/listindex
+	///The type of our last value for bar_loc, for debugging
+	var/location_type
 
 /datum/progressbar/New(mob/U, goal_number, atom/target, user_display, target_display)
 	. = ..()
@@ -32,6 +34,7 @@
 		return
 	bar = new bar_tag
 	bar.loc = target
+	location_type = target.type
 	SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, U)
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	LAZYINITLIST(user.progressbars)
@@ -215,6 +218,8 @@
 
 /datum/progressicon/Destroy()
 	if(QDELETED(target))
+		if(target)
+			LAZYREMOVE(target.display_icons, display)
 		QDEL_NULL(display)
 		return ..()
 	target.display_icons[display]--
@@ -259,3 +264,10 @@
 /image/progdisplay/unskilled
 	icon_state = "busy_questionmark"
 
+///Progress bars are very generic, and what hangs a ref to them depends heavily on the context in which they're used
+///So let's make hunting harddels easier yeah?
+/datum/progressbar/dump_harddel_info()
+	if(harddel_deets_dumped)
+		return
+	harddel_deets_dumped = TRUE
+	return "Owner's type: [location_type]"

@@ -6,6 +6,7 @@
 	layer = GIB_LAYER
 	density = TRUE
 	anchored = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_WALKOVER
 	coverage = 10
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -27,6 +28,13 @@
 
 /obj/machinery/microwave/Initialize(mapload)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
@@ -156,7 +164,7 @@
 
 /obj/machinery/microwave/proc/microwave_victim(mob/living/victim, mob/living/user)
 	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20, attacker = user)
-	victim.jitter(5)
+	victim.adjust_jitter(5)
 	if(prob(10))
 		victim.emote("scream")
 		victim.adjustBrainLoss(5)

@@ -9,6 +9,11 @@
 
 #define STATUS_EFFECT_REFRESH 3 // if it only allows one, and new instances just instead refresh the timer
 
+///Status effect does something when the owner dies
+#define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
+///Status effect on owner death effect is qdel
+#define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
+
 ///////////
 // BUFFS //
 ///////////
@@ -89,6 +94,22 @@
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
 ///the affected is on fire
 #define STATUS_EFFECT_BURNING /datum/status_effect/stacking/fire
+
+///drugged effect
+#define STATUS_EFFECT_DRUGGY /datum/status_effect/incapacitating/druggy
+///slowdown effect
+#define STATUS_EFFECT_SLOWDOWN /datum/status_effect/stacking/slowdown
+///jitter effect
+#define STATUS_EFFECT_JITTER /datum/status_effect/stacking/jitter
+///dizziness effect
+#define STATUS_EFFECT_DIZZY /datum/status_effect/stacking/dizzy
+///hallucination effect
+#define STATUS_EFFECT_HALLUCINATION /datum/status_effect/stacking/hallucination
+///drowziness effect
+#define STATUS_EFFECT_DROWZINESS /datum/status_effect/stacking/drowziness
+///drunkenness effect
+#define STATUS_EFFECT_DRUNKENNESS /datum/status_effect/stacking/drunkenness
+
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
 #define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire

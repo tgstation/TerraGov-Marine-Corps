@@ -43,16 +43,17 @@
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	if(hit_sound)
-		playsound(loc, hit_sound, 40, 1)
+		playsound(loc, hit_sound, 40, 1, MEDIUM_SOUND_RANGE)
 		return
 
-	switch(damage_type)
-		if(BRUTE)
-			if(damage_amount)
-				playsound(loc, 'sound/weapons/smash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-			else
-				playsound(loc, 'sound/weapons/tap.ogg', 25, 1, MEDIUM_SOUND_RANGE)
-			playsound(loc, 'sound/items/welder.ogg', 50, 1)
+	if(!damage_amount)
+		playsound(loc, 'sound/weapons/tap.ogg', 25, 1, SHORT_SOUND_RANGE)
+		return
+	if(damage_type == BRUTE)
+		playsound(loc, 'sound/weapons/smash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+		return
+	if(damage_type == BURN)
+		playsound(loc, 'sound/items/welder.ogg', 50, 1, MEDIUM_SOUND_RANGE)
 
 
 /obj/ex_act(severity)

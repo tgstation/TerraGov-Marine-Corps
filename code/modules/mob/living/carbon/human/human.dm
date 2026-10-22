@@ -170,7 +170,7 @@
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 		adjust_ear_damage(ear_damage_amount * bomb_armor_ratio, ear_damage_amount * 4 * bomb_armor_ratio)
 	adjust_stagger(stagger_amount * bomb_armor_ratio)
-	add_slowdown(slowdown_amount * bomb_armor_ratio)
+	slowdown(slowdown_amount * bomb_armor_ratio)
 
 	#ifdef DEBUG_HUMAN_ARMOR
 	to_chat(world, "DEBUG EX_ACT: bomb_armor_ratio: [bomb_armor_ratio], b_loss: [b_loss], f_loss: [f_loss]")

@@ -838,8 +838,6 @@
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(deployment_flags, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return NONE
-	if(gun_fire_angle && (get_between_angles(Get_Angle(get_turf(src), target), dir2angle(loc.dir)) > (gun_fire_angle / 2)))
-		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
@@ -952,9 +950,19 @@
 				proj_scatter = max(0, proj_scatter + max(0, movement_acc_penalty_mult))
 
 	projectile_to_fire.accuracy += gun_accuracy_mod //additive added after move delay mult
-	proj_scatter = max(proj_scatter, 0)
+	proj_scatter = clamp(proj_scatter, 0, 45)
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, proj_scatter, projectile_to_fire.p_x, projectile_to_fire.p_y)
+
+	if(gun_fire_angle)
+		if(abs(firing_angle - dir2angle(loc.dir)) > gun_fire_angle) //if we shooting in the complete opposite direction we just shoot forwards.
+			//This typically occurs due to byond not mouse polling, so if we move towards and past the thing we clicked on, we are trying to shoot backwards, unless we move our mouse
+			firing_angle = dir2angle(loc.dir) + rand(-proj_scatter, proj_scatter)
+		else //otherwise we just clamp the firing angle to the gun's firing angle, plus scatter
+			var/low_angle = dir2angle(loc.dir) - (gun_fire_angle * 0.5) - proj_scatter
+			var/high_angle = dir2angle(loc.dir) + (gun_fire_angle * 0.5) + proj_scatter
+
+			firing_angle = clamp(firing_angle, low_angle, high_angle)
 
 	//Finally, make with the pew pew!
 	if(!ismovable(projectile_to_fire))

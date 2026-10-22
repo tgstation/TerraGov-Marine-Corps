@@ -34,9 +34,22 @@
 
 /obj/machinery/computer/camera_advanced/overwatch/military/Destroy()
 	QDEL_NULL(order_action)
-	selected_target = null
+	set_selected_target(null)
 	marked_lase = null
 	return ..()
+
+/obj/machinery/computer/camera_advanced/overwatch/military/proc/set_selected_target(obj/new_target)
+	if(selected_target == new_target)
+		return
+	if(selected_target)
+		UnregisterSignal(selected_target, COMSIG_QDELETING)
+	selected_target = new_target
+	if(selected_target)
+		RegisterSignal(selected_target, COMSIG_QDELETING, PROC_REF(clear_selected_target))
+
+/obj/machinery/computer/camera_advanced/overwatch/military/proc/clear_selected_target(datum/source)
+	SIGNAL_HANDLER
+	set_selected_target(null)
 
 /obj/machinery/computer/camera_advanced/overwatch/military/give_actions(mob/living/user)
 	. = ..()
@@ -145,11 +158,11 @@
 
 	switch(href_list["operation"])
 		if("logout_main")
-			selected_target = null
+			set_selected_target(null)
 		if("back")
 			current_squad = null
 		if("use_cam")
-			selected_target = locate(href_list["selected_target"])
+			set_selected_target(locate(href_list["selected_target"]))
 		if("message")
 			if(current_squad && operator == usr)
 				if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
@@ -261,7 +274,7 @@
 		dat += "[span_warning("None")]<br>"
 	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 		dat += "[span_warning("None")]<br>"
-		selected_target = null
+		set_selected_target(null)
 	else
 		dat += "<font color='green'>[selected_target.name]</font><br>"
 	dat += "<A href='byond://?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
@@ -287,7 +300,7 @@
 		dat += "[span_warning("None")]<br>"
 	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 		dat += "[span_warning("None")]<br>"
-		selected_target = null
+		set_selected_target(null)
 	else
 		dat += "<font color='green'>[selected_target.name]</font><br>"
 	dat += "<A href='byond://?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
@@ -341,7 +354,7 @@
 			SSminimaps.add_marker(laser_target, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "ob_warning", MINIMAP_LOCATOR_LAYER))
 			addtimer(CALLBACK(src, PROC_REF(remove_mark_from_lase)), 30 SECONDS)
 		if(FIRE_LASE)
-			selected_target = laser_target
+			set_selected_target(laser_target)
 			handle_bombard()
 		if(ORBITAL_SPOTLIGHT)
 			attempt_spotlight(source, turf_target, params)

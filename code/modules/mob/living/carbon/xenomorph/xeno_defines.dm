@@ -17,7 +17,8 @@
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
-
+	///Animation played on death
+	var/death_flick = ""
 	var/gib_anim = "gibbed-a-corpse"
 	var/gib_flick = "gibbed-a"
 

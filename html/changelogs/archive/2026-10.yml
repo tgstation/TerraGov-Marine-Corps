@@ -106,3 +106,57 @@
   - code_imp: tools use the correct use_tool() and play_tool_sound() procs
   mudzbe:
   - balance: Increase xeno autobalance buff on zcrash
+2026-10-15:
+  Deputi:
+  - bugfix: The Tadpole landing designator now expands your view range as intended.
+  Lewdcifer:
+  - balance: Supersoldiers can now stack their powerloader skill stims one level higher,
+      and achieve mastery.
+2026-10-16:
+  Deputi:
+  - balance: Orion Outpost starts fully covered in weeds.
+  - bugfix: Orion Outpost Shallow and Deep caves are now at the appropriate depths.
+  - bugfix: Orion Outpost Canteen APC covers the entire building now. Also added some
+      light fixtures to the kitchen.
+  - bugfix: Orion Outpost cave wall tiles now have a ceiling.
+  - balance: Research Outpost starts fully covered in weeds.
+  - bugfix: Replaced a missing cable underneath one of the Research Outpost geothermal
+      generators.
+  - bugfix: Slightly shifted a couple of resin walls in the NE corner of Research
+      Outpost to fill a 1x1 gap.
+  termin-0:
+  - bugfix: Changed the NE cave entrance on Big Red to have shallow caves
+2026-10-17:
+  Neocloudy:
+  - bugfix: Added a 5 second cooldown for toggling the takeoff alarm on any marine
+      dropship.
+  - bugfix: Turning off automation will no longer force disable the takeoff alarm.
+2026-10-19:
+  Lewdcifer:
+  - bugfix: Fixed an issue where Behemoth's Earth Riser could move dead people.
+  Lumipharon:
+  - code_imp: cleaned up a redundant toxin subtype
+  - bugfix: Cinematics centered for widescreen mode
+  - bugfix: fixed some welder interactions that were broken by the recent sound updates
+  - qol: Bike mounted weapons behave much nicer when checking their firing angles
+  marivanwan:
+  - bugfix: Fixed a few balloon alerts
+  mudzbe:
+  - balance: Reduce zombie health and heal rate
+2026-10-20:
+  Arturlang:
+  - admin: del log verb now gives better debugging info
+  Lewdcifer:
+  - rscadd: You can now jump over microwaves and climb them.
+2026-10-21:
+  Runian:
+  - balance: Xenomorph mutations are now disabled by default for all gamemodes.
+2026-10-22:
+  Lumipharon:
+  - refactor: refactored various effects to be status effects instead of mob based
+  - code_imp: max_stacks for stacking status effects now work as intended, allowing
+      for uncapped stacks if desired
+  Runian:
+  - rscadd: Flashes now make a sound and flicker when EMP'd.
+  - bugfix: Flashes now flicker their flashing icon when activated.
+  - bugfix: Synthetic and burnt-out flashes are no longer invisible.

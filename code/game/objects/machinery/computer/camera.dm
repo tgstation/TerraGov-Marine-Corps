@@ -36,7 +36,21 @@
 
 /obj/machinery/computer/camera/Destroy()
 	QDEL_NULL(cam_screen)
+	set_active_camera(null)
 	return ..()
+
+/obj/machinery/computer/camera/proc/set_active_camera(obj/machinery/camera/new_camera)
+	if(active_camera == new_camera)
+		return
+	if(active_camera)
+		UnregisterSignal(active_camera, COMSIG_QDELETING)
+	active_camera = new_camera
+	if(active_camera)
+		RegisterSignal(active_camera, COMSIG_QDELETING, PROC_REF(on_active_camera_deleted))
+
+/obj/machinery/computer/camera/proc/on_active_camera_deleted(datum/source)
+	SIGNAL_HANDLER
+	set_active_camera(null)
 
 /obj/machinery/computer/camera/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	for(var/i in network)
@@ -103,7 +117,7 @@
 		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/C = cameras[c_tag]
-		active_camera = C
+		set_active_camera(C)
 		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 		// Show static if can't use the camera
@@ -132,7 +146,7 @@
 	cam_screen.hide_from(user)
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
-		active_camera = null
+		set_active_camera(null)
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		use_power(0)
 

@@ -1,5 +1,6 @@
 /**********************Planet**************************/
-
+//why does this typepath even exist, why is it a subtype of plating instead of /turf/open/ground, ahhh save me from cm era code
+//todo: remove this, dirt is not a type of metal plating.
 /turf/open/floor/plating/ground //Basic groundmap turf parent
 	name = "ground dirt"
 	icon = 'icons/turf/ground_map.dmi'
@@ -16,6 +17,9 @@
 	return icon_state
 
 /turf/open/floor/plating/ground/fire_act(burn_level)
+	return
+
+/turf/open/floor/plating/ground/welder_act(mob/living/user, obj/item/I)
 	return
 
 /turf/open/floor/plating/ground/dirt

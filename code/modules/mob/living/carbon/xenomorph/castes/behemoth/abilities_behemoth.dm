@@ -523,11 +523,13 @@
 			if(!isliving(movable_checked) || xeno_owner.issamexenohive(movable_checked))
 				continue
 			var/mob/living/hit_living = movable_checked
+			if(hit_living.stat == DEAD)
+				continue
 			if(hit_living.loc == get_turf(target)) // Additional effects if a pillar lands on top of someone.
 				hit_living.AdjustKnockdown(EARTH_RISER_THROW_KNOCKDOWN)
 				hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			hit_living.adjust_stagger(EARTH_RISER_THROW_STAGGER)
-			hit_living.add_slowdown(EARTH_RISER_THROW_SLOWDOWN)
+			hit_living.slowdown(EARTH_RISER_THROW_SLOWDOWN)
 			hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, xeno_owner.zone_selected, NONE, FALSE, FALSE, TRUE, xeno_owner.xeno_caste.melee_ap, xeno_owner)
 			step_towards(hit_living, target, get_dist(hit_living, target) - 1) // Drags you in.
 
@@ -935,7 +937,7 @@
 			target = new_target
 		// If we don't have directional attacks enabled, then we just stop.
 		else
-			xeno_owner.balloon_alert("Not in range")
+			xeno_owner.balloon_alert(xeno_owner, "Not in range")
 			return
 
 ///////////////////// TARGET CHECKS /////////////////////
@@ -995,7 +997,7 @@
 	xeno_stats.melee_damage += damage
 	xeno_stats.geocrush_damage += damage
 	Knockdown(GEOCRUSH_KNOCKDOWN)
-	add_slowdown(GEOCRUSH_SLOWDOWN)
+	slowdown(GEOCRUSH_SLOWDOWN)
 	adjust_stagger(GEOCRUSH_STAGGER)
 	knockback(xeno_owner, GEOCRUSH_KNOCKBACK, 1)
 	return TRUE

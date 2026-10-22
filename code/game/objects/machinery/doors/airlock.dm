@@ -49,7 +49,7 @@
 				return
 		else
 			return
-	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
+	else if(ishuman(user) && user.amount_hallucinating() > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
 		if(!H.gloves || H.gloves.siemens_coefficient)
 			to_chat(H, span_danger("You feel a powerful shock course through your body!"))
