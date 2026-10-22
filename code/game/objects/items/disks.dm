@@ -49,7 +49,7 @@
 /obj/item/disk/illegal_synth_firmware
 	name = "illegal synth firmware"
 	desc = "Utilizing a vulnerability to do with overuse of the number four, this hacked firmware allows for \
-	 Synthetic members of the TGMC to bypass their programmed safety locks and fire guns. Useless to non-synthetics."
+	Synthetic members of the TGMC to bypass their programmed safety locks and fire guns. Useless to non-synthetics."
 	icon_state = "datadisk7"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/disk_left.dmi',
