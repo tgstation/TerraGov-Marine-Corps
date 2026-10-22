@@ -366,7 +366,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/attack(mob/living/living_target, mob/living/user)
 	if(lit)
 		return ..()
-	if(!living_target.on_fire)
+	if(!living_target.is_on_fire())
 		return ..()
 	if(user == living_target)
 		light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))

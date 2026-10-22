@@ -163,9 +163,8 @@
 	if(enclosed || mecha_flags & SILICON_PILOT)
 		return
 	for(var/mob/living/cookedalive AS in occupants)
-		if(cookedalive.fire_stacks < 5)
-			cookedalive.adjust_fire_stacks(1)
-			cookedalive.IgniteMob()
+		if(cookedalive.amount_burning() < 5)
+			cookedalive.adjust_burning(1)
 
 /obj/vehicle/sealed/mecha/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)

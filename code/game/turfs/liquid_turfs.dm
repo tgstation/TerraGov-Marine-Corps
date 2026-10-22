@@ -100,8 +100,8 @@
 	var/mob/living/carbon/carbon_mob = arrived
 	carbon_mob.wash()
 
-	if(carbon_mob.on_fire)
-		carbon_mob.ExtinguishMob()
+	if(carbon_mob.is_on_fire())
+		carbon_mob.extinguish_mob()
 
 /turf/open/liquid/water/sea
 	name = "water"
@@ -268,13 +268,6 @@ ww
 	light_color = LIGHT_COLOR_LAVA
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
-
-/turf/open/liquid/lava/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(isliving(leaver))
-		var/mob/living/L = leaver
-		if(!islava(get_step(src, direction)) && !L.on_fire)
-			L.update_fire()
 
 /turf/open/liquid/lava/process()
 	if(!burn_stuff())

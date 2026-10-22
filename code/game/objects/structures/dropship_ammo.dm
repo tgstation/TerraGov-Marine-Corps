@@ -384,8 +384,7 @@
 	playsound(T, 'sound/effects/pred_vision.ogg', 30, TRUE, LOUD_SOUND_RANGE)
 	for(var/mob/living/L in T)
 		L.adjustFireLoss(120)
-		L.adjust_fire_stacks(20)
-		L.IgniteMob()
+		L.adjust_burning(20)
 	T.ignite(5, 30) //short but intense
 
 

@@ -1269,7 +1269,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		return FALSE
 	if(!xeno_owner.Adjacent(victim)) //checks if owner next to target
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
@@ -1385,7 +1385,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 		if(!silent)
 			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE

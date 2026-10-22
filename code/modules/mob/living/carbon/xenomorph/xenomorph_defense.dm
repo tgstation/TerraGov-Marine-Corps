@@ -22,7 +22,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 /mob/living/carbon/xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
-		ExtinguishMob()
+		extinguish_mob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(12 * (protection + 0.6))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS) && !CHECK_BITFIELD(xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
@@ -39,9 +39,4 @@ Contains most of the procs that are called when a xeno is attacked by something
 
 /mob/living/carbon/xenomorph/Paralyze(amount, updating, ignore_canstun)
 	amount *= 0.2 // replaces the old knock_down -5
-	return ..()
-
-/mob/living/carbon/xenomorph/adjust_fire_stacks(add_fire_stacks)
-	if(add_fire_stacks > 0 && ((xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) || (HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))))
-		return
 	return ..()

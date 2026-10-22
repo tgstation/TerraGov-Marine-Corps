@@ -471,7 +471,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 	if(species?.species_flags & SPECIES_NO_HUG)
 		return FALSE
 
-	if(on_fire)
+	if(is_on_fire())
 		return FALSE
 
 	if(check_mask)
@@ -816,7 +816,7 @@ GLOBAL_LIST_EMPTY(alive_hugger_list)
 		target.adjust_stagger(3 SECONDS)
 		target.slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
-		target.ExtinguishMob()
+		target.extinguish_mob()
 
 	kill_hugger(0.5 SECONDS)
 

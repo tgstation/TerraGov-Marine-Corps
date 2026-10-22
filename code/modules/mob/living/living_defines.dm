@@ -70,10 +70,6 @@
 	var/ranged_accuracy_mod = 0
 	///modifier to gun scatter
 	var/ranged_scatter_mod = 0
-	///The "Are we on fire?" var
-	var/on_fire
-	///Tracks how many stacks of fire we have on, max is
-	var/fire_stacks = 0
 	///more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 	var/metabolism_efficiency = 1
 
