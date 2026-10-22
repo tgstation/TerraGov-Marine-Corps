@@ -43,3 +43,48 @@
 /obj/item/disk/nuclear/blue
 	name = "blue nuclear authentication disk"
 	icon_state = "datadisk0"
+
+
+///zcrash point buy that lets a singular synthetic shoot guns
+/obj/item/disk/illegal_synth_firmware
+	name = "illegal synth firmware"
+	desc = "Utilizing a vulnerability to do with overuse of the number four, this hacked firmware allows for \
+	 Synthetic members of the TGMC to bypass their programmed safety locks and fire guns. Useless to non-synthetics."
+	icon_state = "datadisk7"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/disk_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/disk_right.dmi',
+	)
+	worn_icon_state = null
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/disk/illegal_synth_firmware/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!istype(M, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/target = M
+	allow_synthetic_gun_use(target, user)
+
+/obj/item/disk/illegal_synth_firmware/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	allow_synthetic_gun_use(user, user)
+
+/obj/item/disk/illegal_synth_firmware/proc/allow_synthetic_gun_use(mob/living/carbon/human/target, mob/user)
+	if(!issynth(target))
+		balloon_alert(user, "not a synthetic!")
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_SYNTH_CAN_FIRE_GUNS))
+		balloon_alert(user, "already hacked!")
+		return FALSE
+	ADD_TRAIT(target, TRAIT_SYNTH_CAN_FIRE_GUNS, REF(src))
+	target.set_skills(target.skills.setRating(combat = SKILL_COMBAT_DEFAULT))
+	playsound(target, 'sound/machines/warning-buzzer.ogg', 50)
+	target.visible_message(span_danger("[user] uses [src] to hack [target]!"), span_danger("SYSTEM TAMPERING DETECTED. SAFETY PROTOCOLS OFFLINE."))
+	qdel(src)
+	return TRUE
