@@ -24,7 +24,7 @@
 	var/list/camera_visible_turfs = list()
 	var/list/moved_cameras = list()
 	var/needs_full_update = TRUE
-	var/last_full_update = 0
+	COOLDOWN_DECLARE(full_update_cooldown)
 	var/x = 0
 	var/y = 0
 	var/lower_z
@@ -105,7 +105,7 @@
 /// The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
 /// Accepts an optional partial_update argument, that blocks any calls out to chunks that could affect us, like above or below
 /datum/camerachunk/proc/update(partial_update = FALSE)
-	if(needs_full_update || world.time >= last_full_update + CONFIG_GET(number/camera_chunk_full_update_interval))
+	if(needs_full_update || COOLDOWN_FINISHED(src, full_update_cooldown))
 		camera_visible_turfs = list()
 		for(var/z_level in lower_z to upper_z)
 			for(var/obj/machinery/camera/current_camera as anything in cameras["[z_level]"])
@@ -113,7 +113,7 @@
 				if(camera_turfs)
 					camera_visible_turfs[current_camera] = camera_turfs
 		needs_full_update = FALSE
-		last_full_update = world.time
+		COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
 	else
 		for(var/obj/machinery/camera/moved_camera as anything in moved_cameras)
 			var/list/camera_turfs = get_camera_visible_turfs(moved_camera)
@@ -211,7 +211,7 @@
 		for(var/turf/vis_turf as anything in camera_turfs)
 			visibleTurfs[vis_turf] = vis_turf
 	needs_full_update = FALSE
-	last_full_update = world.time
+	COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
 		var/image/new_static = turfs[obscured_turf]
