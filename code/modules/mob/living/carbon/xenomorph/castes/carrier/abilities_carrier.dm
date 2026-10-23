@@ -42,8 +42,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "throw_hugger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
 	desc = "Throw a facehugger at something. Using this ability on a facehugger already on the ground will recycle it to your storage."
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_THROW_HUGGER_SELECT,
 	)
 	cooldown_duration = 3 SECONDS
 	/// If the owner has the Resin Jelly Coating status effect, how much deciseconds should its duration be decreased by to grant thrown huggers fire immunity?
@@ -398,10 +400,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	desc = "Appeals to the larva inside a hugged target. The target loses their balance, gets pulled towards you, and their larva's growth progress accelerates."
 	ability_cost = 150
 	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CALL_YOUNGER_SELECT,
 	)
-
+	target_flags = ABILITY_HUMAN_TARGET
 
 /datum/action/ability/activable/xeno/call_younger/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

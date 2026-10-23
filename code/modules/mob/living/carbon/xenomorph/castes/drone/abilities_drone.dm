@@ -19,10 +19,11 @@
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_SELECT,
 	)
 	use_state_flags = ABILITY_USE_LYING
 
@@ -39,7 +40,15 @@
 	/// The percentage of max health healed to the linked target (and dealt to owner) if it was disconnected via alternative action.
 	var/disconnection_heal_percentage = 0
 
+/datum/action/ability/activable/xeno/essence_link/remove_action(mob/M)
+	if(existing_link)
+		end_ability()
+	return ..()
+
 /datum/action/ability/activable/xeno/essence_link/can_use_ability(mob/living/carbon/xenomorph/target, silent = FALSE, override_flags)
+	if(existing_link)
+		return ..()
+
 	if(!isxeno(target) || target.get_xeno_hivenumber() != xeno_owner.get_xeno_hivenumber())
 		return FALSE
 	if(!xeno_owner.Adjacent(target))
@@ -57,23 +66,23 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/essence_link/use_ability(atom/target)
-	if(!HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
-		target.balloon_alert(xeno_owner, "linking...")
-		if(!do_after(xeno_owner, DRONE_ESSENCE_LINK_WINDUP, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
-			xeno_owner.balloon_alert(xeno_owner, "link cancelled!")
+	if(existing_link)
+		if(!do_after(xeno_owner, 1 SECONDS, NONE, target, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC)) //prevent accidental breaks
 			return
-		xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target, lifesteal_percentage, revenge_modifier)
-		existing_link = xeno_owner.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
-		linked_target = target
-		target.balloon_alert(target, "essence link established")
-	succeed_activate()
-
-/datum/action/ability/activable/xeno/essence_link/alternate_action_activate()
-	if(!HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
-		xeno_owner.balloon_alert(xeno_owner, "no link to cancel!")
+		end_ability(TRUE)
 		return
-	end_ability(TRUE)
-	return COMSIG_KB_ACTIVATED
+
+	target.balloon_alert(xeno_owner, "linking...")
+	if(!do_after(xeno_owner, DRONE_ESSENCE_LINK_WINDUP, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+		xeno_owner.balloon_alert(xeno_owner, "link interrupted!")
+		return
+	if(!can_use_ability(target))
+		return
+	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target, lifesteal_percentage, revenge_modifier)
+	existing_link = xeno_owner.has_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
+	linked_target = target
+	target.balloon_alert(target, "essence link established")
+	succeed_activate()
 
 /// Ends the ability, removing signals and buffs.
 /datum/action/ability/activable/xeno/essence_link/proc/end_ability(was_manually_disconnected = FALSE)
@@ -105,9 +114,9 @@
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACIDIC_SALVE_SELECT,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
 	/// Should cast time / do_after be ignored if the target meets the health threshold?
 	var/bypass_cast_time_on_threshold = FALSE
 	/// The max health threshold the target needs to be under to qualify for bonus healing. Target must be connected to the owner with Essence Link with 1+ stacks.

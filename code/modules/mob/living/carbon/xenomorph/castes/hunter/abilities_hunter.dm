@@ -303,8 +303,10 @@
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
@@ -398,7 +400,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -663,8 +665,10 @@
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_cost = 50
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SILENCE_SELECT,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 	/// The multiplier of Silence's effects to the victim that the owner has selected with Hunter's Mark.

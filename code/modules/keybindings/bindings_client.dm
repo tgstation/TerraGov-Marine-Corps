@@ -1,6 +1,6 @@
 // Clients aren't datums so we have to define these procs indpendently.
 // These verbs are called for all key press and release events
-/client/verb/keyDown(_key as text)
+/client/verb/keyDown(_key as text, mousepos_x as num, mousepos_y as num, sizex as num, sizey as num)
 	set instant = TRUE
 	set hidden = TRUE
 
@@ -38,7 +38,7 @@
 		return
 
 	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
-		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
+		keyUp(keys_held[1], mousepos_x, mousepos_y, sizex, sizey) //We are going over the number of possible held keys, so let's remove the first one.
 
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking
 	keys_held[_key] = world.time
@@ -63,6 +63,8 @@
 			//we ensure that they are capitalised also by DM so they match.
 			_key = capitalize(_key)
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
+
+	var/list/click_data = get_loc_from_mousepos(mousepos_x, mousepos_y, sizex, sizey, src)
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
@@ -73,20 +75,18 @@
 				prefs.key_bindings -= full_key
 			prefs.save_keybinds()
 			continue
-		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
+		if(kb.down(src, click_data[1]) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
 	mob.focus?.key_down(_key, src, full_key)
 
 
-/client/verb/keyUp(_key as text)
+/client/verb/keyUp(_key as text, mousepos_x as num, mousepos_y as num, sizex as num, sizey as num)
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to length(keys_held))
-		if(keys_held[i] == _key)
-			keys_held[i] = null
-			break
+	if(!keys_held[_key])
+		return
 
 	keys_held -= _key
 	var/movement = movement_keys[_key]
@@ -95,11 +95,12 @@
 		if(!movement_locked && !(next_move_dir_add & movement))
 			next_move_dir_sub |= movement
 
+	var/list/click_data = get_loc_from_mousepos(mousepos_x, mousepos_y, sizex, sizey, src)
 	// We don't do full key for release, because for mod keys you
 	// can hold different keys and releasing any should be handled by the key binding specifically
 	for (var/kb_name in prefs.key_bindings[_key])
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
-		if(kb.up(src))
+		if(kb?.up(src, click_data[1]))
 			break
 
 /**

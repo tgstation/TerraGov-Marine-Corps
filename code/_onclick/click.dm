@@ -318,34 +318,22 @@
 
 	if(!selected_ability)
 		return FALSE
-	A = ability_target(A)
+	A = selected_ability.ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
-
-#define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
-	. = locate(typepath) in get_turf(A);\
-	if(.){\
-		return;}}
-
-/mob/living/carbon/proc/ability_target(atom/A)
-	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
-	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
-		return get_turf(A)
-	return A
 
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
 		return FALSE
-	A = ability_target(A)
+	A = selected_ability.ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
 	if(selected_ability) //If we have a selected ability that we can use, return TRUE
-		A = ability_target(A)
+		A = selected_ability.ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
 			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
@@ -421,7 +409,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
 		return ..()
 	if(selected_ability)
-		A = ability_target(A)
+		A = selected_ability.ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
 		return TRUE
@@ -435,7 +423,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 /mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
 	if(!selected_ability || (client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return ..()
-	A = ability_target(A)
+	A = selected_ability.ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 	return TRUE

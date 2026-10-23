@@ -4,7 +4,7 @@
 	desc = "Assault an organic, restoring health through the use of the their biomass."
 	ability_cost = 0
 	cooldown_duration = 35 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 
 /datum/action/ability/activable/xeno/feed/use_ability(mob/living/carbon/human/target_human)
 	xeno_owner.face_atom(target_human)

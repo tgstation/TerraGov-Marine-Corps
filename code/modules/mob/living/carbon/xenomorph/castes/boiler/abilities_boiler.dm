@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	ability_cost = 200
 	cooldown_duration = 32 SECONDS // 32 is the default Bombard cooldown.
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_SHROUD_SELECT,
@@ -641,7 +641,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(!line_of_sight(owner, target, 7))
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -679,8 +679,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "Spit a steam smokescreen to cover your advance or retreat. Direct hits stagger and slow."
 	ability_cost = 350
 	cooldown_duration = 75 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SMOKESCREEN_SPIT_SELECT,
 	)
 	/// The amount of time for the do_after.
 	var/cast_time = 3 SECONDS
@@ -730,7 +733,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return FALSE
 	if(get_dist(target, owner) < 5 || get_dist(target, owner) > 13)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(!line_of_sight(owner, target))
 		return FALSE
@@ -756,6 +759,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_DASH_SELECT,
 	)
 	paralyze_duration = 1 SECONDS
 	charge_range = BOILER_CHARGEDISTANCE
@@ -863,8 +867,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	desc = "Fire a high pressure glob of acid that knocks back, stuns, and shatters the target."
 	ability_cost = 75
 	cooldown_duration = 25 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/high_pressure_spit/use_ability(atom/target)
