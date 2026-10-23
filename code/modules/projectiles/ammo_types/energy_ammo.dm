@@ -54,7 +54,7 @@
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/ammo_process(atom/movable/projectile/proj, damage)
-	zap_beam(proj, 4, damage)
+	zap_beam(proj, 4, damage, max_targets = 5)
 
 /datum/ammo/energy/tesla/focused
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_IFF
@@ -64,7 +64,7 @@
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/focused/ammo_process(atom/movable/projectile/proj, damage)
-	zap_beam(proj, 3, damage)
+	zap_beam(proj, 3, damage, max_targets = 4)
 
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
