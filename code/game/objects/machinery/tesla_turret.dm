@@ -215,7 +215,7 @@
 	if(!max_zap_targets)
 		hud_set_tesla_battery()
 		return
-	var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_zap_targets))
+	var/xeno_amount = length(zap_beam(src, max_range, max_targets = max_zap_targets))
 	if(!xeno_amount)
 		hud_set_tesla_battery()
 		return
