@@ -70,7 +70,7 @@
 //submunitions for micro grenades
 /datum/ammo/bullet/micro_rail_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_variation = 5
 	damage = 20
@@ -85,6 +85,7 @@
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 5
@@ -105,7 +106,7 @@
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
-	icon_state = "bullet"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	sound_hit = SFX_BALLISTIC_HIT
 	sound_armor = SFX_BALLISTIC_ARMOR
