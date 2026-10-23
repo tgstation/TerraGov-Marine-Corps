@@ -141,6 +141,7 @@
 		/obj/item/weapon/gun/rifle/m412 = list(CAT_WEAPONS, "\"PR-412\" Pulse Rifle", 6, "weapon-misc"),
 		/obj/item/ammo_magazine/rifle/incendiary = list(CAT_WEAPONS, "\"PR-412\" Incendiary magazine", 1, "ammo"),
 		/obj/item/ammo_magazine/shotgun/incendiary = list(CAT_WEAPONS, "12 Guage Incendiary ammo box", 1, "ammo"),
+		/obj/item/disk/illegal_synth_firmware = list(CAT_WEAPONS, "Illegal synth firmware", 30, "weapon-firmware"), // Lets a synthetic fire guns.
 		// Fun
 		/obj/item/loot_box/tgmclootbox = list(CAT_FUN, "Lootbox", 120, "fun-random"),
 		/mob/living/carbon/xenomorph/larva/Corrupted/iff = list(CAT_FUN, "Corrupted larva with IFF", 30, "fun-random"),
