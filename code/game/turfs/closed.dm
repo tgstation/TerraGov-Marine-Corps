@@ -76,13 +76,13 @@
 	xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 	span_xenonotice(BEHEMOTH_ROCK_EATING_MESSAGES), null, 5)
 
-/turf/closed/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/turf/closed/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		to_chat(user, span_warning("[I] can't cut through this!"))
+		to_chat(user, span_warning("[tool] can't cut through this!"))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	if(!plasmacutter.start_cut(user, name, src))

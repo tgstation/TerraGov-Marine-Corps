@@ -45,11 +45,11 @@
 	. = ..()
 	. += "It is currently facing [dir2text(dir)], and is outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining."
 
-/obj/machinery/unboxer/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/unboxer/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
 
-/obj/machinery/unboxer/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/unboxer/screwdriver_act(mob/user, obj/item/tool)
 	setDir(turn(dir, 90))
 	balloon_alert(user, "facing [dir2text(dir)]")
 

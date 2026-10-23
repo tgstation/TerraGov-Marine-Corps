@@ -23,8 +23,8 @@
 	if(!burnt && prob(5))
 		burn_tile()
 
-/turf/open/floor/plating/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/welder = I
+/turf/open/floor/plating/welder_act(mob/user, obj/item/tool)
+	var/obj/item/tool/weldingtool/welder = tool
 
 	if(!broken && !burnt)
 		return
@@ -33,7 +33,7 @@
 		return
 
 	to_chat(user, span_warning("You fix some dents on the broken plating."))
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	burnt = FALSE
 	broken = FALSE
 	update_icon()
@@ -113,10 +113,10 @@
 	update_turf_overlay()
 	return
 
-/turf/open/floor/plating/plating_catwalk/crowbar_act(mob/living/user, obj/item/I)
+/turf/open/floor/plating/plating_catwalk/crowbar_act(mob/user, obj/item/tool)
 	if(!covered)
 		return FALSE
-	I.play_tool_sound(src, 80)
+	tool.play_tool_sound(src, 80)
 	var/obj/item/stack/catwalk/catwalk = new(user.loc)
 	catwalk.add_to_stacks(user)
 	covered = FALSE

@@ -102,7 +102,7 @@
 		music.link_to_panel(src)
 
 
-/obj/machinery/elevator_control_panel/multitool_act(mob/living/user)
+/obj/machinery/elevator_control_panel/multitool_act(mob/user, obj/item/tool)
 	var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 	if(!lift)
 		return
