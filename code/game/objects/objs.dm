@@ -412,17 +412,19 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
 
 /// Used as a callback for disassembly of deployables
-/obj/proc/can_disassemble()
-	return TRUE
-
-///Dissassembles the device
-/obj/proc/disassemble(mob/user)
+/obj/proc/can_disassemble(mob/user)
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
 		return FALSE
 	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
 			balloon_alert(user, "can't disassemble!")
+		return FALSE
+	return TRUE
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	if(!can_disassemble(user))
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE

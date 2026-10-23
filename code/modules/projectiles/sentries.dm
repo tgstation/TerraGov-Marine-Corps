@@ -523,10 +523,13 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			continue
 		return nearby_target
 
-/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+/obj/machinery/deployable/mounted/sentry/can_disassemble(mob/user)
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
-		return
+		return FALSE
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
 	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	. = ..()
 	if(!.)
