@@ -223,14 +223,20 @@
 	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	hud_set_tesla_battery()
 
-/obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
+/// I found out people have been turning it on during undeploy, grabbing some use out of it.
+/obj/machinery/deployable/tesla_turret/can_disassemble(mob/user)
 	if(active)
-		if(shock(marine, 70))
-			to_chat(marine, span_userdanger("You're shocked by \the [src]!"))
-		else
-			balloon_alert(marine, "turn it off first!")
-		return
+		balloon_alert(user, "interrupted by reactivation")
+		return FALSE
 	return ..()
+
+/obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
+	if(!active)
+		return ..()
+	if(shock(marine, 70))
+		to_chat(marine, span_userdanger("You're shocked by \the [src]!"))
+		return
+	balloon_alert(marine, "turn it off first!")
 
 /obj/machinery/deployable/tesla_turret/post_disassemble(mob/user)
 	. = ..()

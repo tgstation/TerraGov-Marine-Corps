@@ -531,10 +531,19 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	. = ..()
 	if(!.)
 		return
+	set_on(FALSE)
 	if(internal_gun?.turret_flags & TURRET_INACCURATE)
 		internal_gun.accuracy_mult += 0.15
 		internal_gun.scatter -= 10
 
+/obj/machinery/deployable/mounted/sentry/failed_disassemble(user)
+	. = ..()
+	set_on(TRUE)
+	/// Correct me if I'm wrong, but without this, if you cancel disassembly your turret goes accurate
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	if(internal_gun?.turret_flags & TURRET_INACCURATE)
+		internal_gun.accuracy_mult -= 0.15
+		internal_gun.scatter += 10
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)

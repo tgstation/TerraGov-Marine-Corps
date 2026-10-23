@@ -113,7 +113,7 @@
 		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target && (QDELETED(target_loc) || target_loc != target.loc))
 			. = FALSE
 			break
-		if(extra_checks && !extra_checks.Invoke())
+		if(extra_checks && !extra_checks.Invoke(user))
 			. = FALSE
 			break
 
