@@ -329,7 +329,7 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_tfoot_refill
 	name = "T-50S mortar tanglefoot Gas shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_tfoot_refill)
-	cost = 200
+	cost = 800
 
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "T-50S mortar flare shell assembly refill"
