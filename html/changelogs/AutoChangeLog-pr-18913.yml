@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Hitting objects will no longer play the burn damage sound when it isn't meant to"
