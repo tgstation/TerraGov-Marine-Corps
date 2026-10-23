@@ -164,7 +164,7 @@
 	return newbeam
 
 /// Shocks xenos, returns shocked xenos.
-/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs, max_targets = INFINITY)
+/proc/zap_beam(atom/source, zap_range, list/blacklistmobs, max_targets = INFINITY)
 	var/list/xenos = cheap_get_xenos_near(source, zap_range)
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
