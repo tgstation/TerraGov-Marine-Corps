@@ -471,6 +471,22 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	default = 20
 	min_val = 0
 
+/datum/config_entry/number/camera_move_update_delay
+	default = 1 SECONDS
+	min_val = 0
+
+/datum/config_entry/number/camera_chunk_move_update_delay
+	default = 2.5 SECONDS
+	min_val = 0
+
+/datum/config_entry/number/camera_chunk_update_delay
+	default = 2.5 SECONDS
+	min_val = 0
+
+/datum/config_entry/number/camera_chunk_full_update_interval
+	default = 5 SECONDS
+	min_val = 0
+
 /datum/config_entry/flag/cache_assets
 	default = TRUE
 
