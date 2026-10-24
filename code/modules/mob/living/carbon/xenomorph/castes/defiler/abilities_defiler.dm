@@ -571,7 +571,7 @@
 
 /datum/action/ability/activable/xeno/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
-	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(tentacle_end, icon_state = "curse0")
 	RegisterSignals(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
 	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
 	succeed_activate()
@@ -586,7 +586,7 @@
 		owner.balloon_alert(owner, "grab failed!")
 		clear_cooldown()
 		return
-	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(target, icon_state = "curse0")
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
 	target.balloon_alert_to_viewers("grabbed!")

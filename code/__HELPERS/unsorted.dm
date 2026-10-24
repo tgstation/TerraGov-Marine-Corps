@@ -105,8 +105,8 @@
 		end = get_turf(end)
 		if(!end)
 			CRASH("Get_Angle called for inexisting atoms (end): [isnull(start.loc) ? "null loc" : start.loc] [start] to [isnull(end.loc) ? "null loc" : end.loc] [end].") //Atoms are not on turfs.
-	var/dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
-	var/dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
+	var/dy = (ICON_SIZE_Y * end.y + end.pixel_y) - (ICON_SIZE_Y * start.y + start.pixel_y)
+	var/dx = (ICON_SIZE_X * end.x + end.pixel_x) - (ICON_SIZE_X * start.x + start.pixel_x)
 	if(!dy)
 		return (dx >= 0) ? 90 : 270
 	. = arctan(dx / dy)
