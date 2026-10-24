@@ -54,10 +54,10 @@
 /obj/machinery/deployable/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 120, 5 SECONDS)
 
-/obj/machinery/deployable/disassemble(mob/user)
+/obj/machinery/deployable/can_disassemble(mob/user)
 	if(get_self_acid())
 		balloon_alert(user, "it's melting!")
-		return
+		return FALSE
 	return ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
