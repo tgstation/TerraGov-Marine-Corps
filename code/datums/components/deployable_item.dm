@@ -173,7 +173,7 @@
 	if(!ishuman(user))
 		return
 	user.balloon_alert(user, "disassembling...")
-	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD, extra_checks = CALLBACK(deployed_machine, TYPE_PROC_REF(/obj, can_disassemble))))
+	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD, extra_checks = CALLBACK(deployed_machine, TYPE_PROC_REF(/obj, can_disassemble), user)))
 		deployed_machine.failed_disassemble(user)
 		return
 
