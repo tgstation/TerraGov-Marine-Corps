@@ -150,6 +150,7 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 			chunk.cameras["[T.z]"] |= c
 		chunk.hasChanged()
 
+/// Returns the already generated chunks around the given center turf.
 /datum/cameranet/proc/get_chunks_around(turf/center)
 	. = list()
 	var/x1 = max(0, center.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)

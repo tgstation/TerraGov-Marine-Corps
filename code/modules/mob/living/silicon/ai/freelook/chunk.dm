@@ -21,9 +21,13 @@
 	var/list/active_static_images = list()
 
 	var/changed = FALSE
+	/// Turfs in our grid each camera can see, keyed by camera
 	var/list/camera_visible_turfs = list()
+	/// Cameras that moved since the last update and need their view recalculated
 	var/list/moved_cameras = list()
+	/// Whether the next update has to recalculate every camera's view
 	var/needs_full_update = TRUE
+	/// Forces a full update of the chunk, checking all camera views
 	COOLDOWN_DECLARE(full_update_cooldown)
 	var/x = 0
 	var/y = 0
@@ -68,6 +72,7 @@
 	needs_full_update = TRUE
 	queue_update(update_now, update_delay_buffer)
 
+///Schedules an update if the chunk is watched, otherwise flags it to update once an eye looks at it
 /datum/camerachunk/proc/queue_update(update_now = 0, update_delay_buffer)
 	if(isnull(update_delay_buffer))
 		update_delay_buffer = CONFIG_GET(number/camera_chunk_update_delay)
@@ -76,10 +81,12 @@
 	else
 		changed = TRUE
 
+///Queues an update that only recalculates the view of the camera that moved
 /datum/camerachunk/proc/camera_moved(obj/machinery/camera/moved_camera)
 	moved_cameras[moved_camera] = TRUE
 	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
 
+///Removes a camera from this chunk and drops its cached view
 /datum/camerachunk/proc/remove_camera(obj/machinery/camera/removed_camera)
 	for(var/z_key in cameras)
 		cameras[z_key] -= removed_camera
@@ -87,6 +94,7 @@
 	moved_cameras -= removed_camera
 	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
 
+///Returns the turfs in our grid the camera can see as turf -> turf, or null if it can't see into this chunk
 /datum/camerachunk/proc/get_camera_visible_turfs(obj/machinery/camera/checked_camera)
 	if(QDELETED(checked_camera) || !checked_camera.can_use())
 		return

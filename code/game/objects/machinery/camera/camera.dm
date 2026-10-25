@@ -24,7 +24,9 @@
 	var/short_range = 2
 	///Camera behavior flags
 	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
+	///Chunks a moving camera was last added to, for cleanup purposes
 	var/list/datum/camerachunk/portable_chunks
+	///Turf a moving camera last updated its chunks from, for skipping updates if it's not moving
 	var/turf/last_portable_turf
 
 /obj/machinery/camera/Initialize(mapload, newDir)
