@@ -8,6 +8,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	desc = "The ROC-58 deployable camera, designed for use in the field to increase the tactical utility of overwatch."
 	network = list("marinesl", "marine")
 	icon_state = "deployable"
+	resistance_flags = UNACIDABLE
 	base_icon_state = "deployable"
 	layer = ABOVE_ALL_MOB_LAYER//it flies after all
 	///Radio so that the sentry can scream for help
