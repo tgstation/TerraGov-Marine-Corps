@@ -28,14 +28,14 @@
 			reagents.add_reagent(rid, amount, data)
 
 ///Handles effects when the snack is finished
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/consumer, mob/feeder)
 	if(reagents.total_volume)
 		return
 
-	consumer.dropItemToGround(src)
+	feeder.dropItemToGround(src)
 	if(trash)
 		var/obj/item/new_trash = new trash
-		consumer.put_in_hands(new_trash)
+		feeder.put_in_hands(new_trash)
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
@@ -87,8 +87,8 @@
 		else
 			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "you can't eat food!")
-				return return FALSE
-			if(carbon_mob.fullness >= NUTRITION_MAX)
+				return FALSE
+			if(fullness >= NUTRITION_MAX)
 				to_chat(user, span_warning("You cannot force any more of \the [src] to go down their throat."))
 				return FALSE
 
@@ -118,7 +118,7 @@
 					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, carbon_mob)
 					reagents.trans_to(carbon_mob, reagents.total_volume)
 				bitecount++
-				On_Consume(carbon_mob)
+				On_Consume(user)
 			return TRUE
 
 	return FALSE
@@ -686,7 +686,7 @@
 	. = ..()
 	unpopped = rand(1,10)
 
-/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/consumer, mob/feeder)
 	if(prob(unpopped))	//lol ...what's the point?
 		to_chat(consumer, span_warning("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
@@ -849,10 +849,10 @@
 	balloon_alert_to_viewers("unwraps [src]")
 	package = FALSE
 
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/consumer, mob/feeder)
 	to_chat(consumer, span_warning("Something inside of you suddently expands!</span>"))
 	balloon_alert_to_viewers("eats [src]", ignored_mobs = consumer)
-	consumer.dropItemToGround(src)
+	feeder.dropItemToGround(src)
 	if(!ishuman(consumer))
 		return ..()
 	//Do not try to understand.
