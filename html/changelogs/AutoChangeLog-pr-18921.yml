@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - code_imp: "Signals can now be registered to listen to any/specific tool behavior."
+  - code_imp: "Unique right-click interactions for items with tool behavior is now supported."
