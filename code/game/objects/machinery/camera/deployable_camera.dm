@@ -8,7 +8,6 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	desc = "The ROC-58 deployable camera, designed for use in the field to increase the tactical utility of overwatch."
 	network = list("marinesl", "marine")
 	icon_state = "deployable"
-	resistance_flags = UNACIDABLE
 	base_icon_state = "deployable"
 	layer = ABOVE_ALL_MOB_LAYER//it flies after all
 	///Radio so that the sentry can scream for help
@@ -20,6 +19,9 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	///Whether its currently detecting something
 	var/threat_detected = FALSE
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
+
+/obj/machinery/camera/deployable/dissolvability(acid_strength)
+	return 0.5
 
 /obj/machinery/camera/deployable/Initialize(mapload, newDir, new_faction)
 	. = ..()
