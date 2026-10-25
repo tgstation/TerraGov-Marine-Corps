@@ -68,27 +68,32 @@
 			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "you can't eat food!")
 				return
-			if(fullness <= NUTRITION_STARVING)
-				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
-			if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
-				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
-			if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
-				to_chat(M, span_warning("You take a bite of \the [src]."))
-			if(fullness > NUTRITION_WELLFED && fullness <= NUTRITION_OVERFED)
-				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
-			if(fullness > NUTRITION_OVERFED)
+			if(fullness >= NUTRITION_MAX)
 				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
 				return FALSE
+			if(fullness <= NUTRITION_STARVING)
+				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
+			else if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
+				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
+			else if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
+				to_chat(M, span_warning("You take a bite of \the [src]."))
+			else if(fullness > NUTRITION_WELLFED && fullness < NUTRITION_OVERFED)
+				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
+			else if(fullness > NUTRITION_OVERFED)
+				to_chat(M, span_warning("You try to force more of \the [src] to go down your throat."))
+				if(!do_after(user, 0.5 SECONDS, NONE, carbon_mob, BUSY_ICON_GENERIC))
+					return FALSE
+
 		else
 			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "you can't eat food!")
-				return
-			if(fullness <= NUTRITION_OVERFED)
-				user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
-				to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
-			else
-				carbon_mob.balloon_alert(user, "[carbon_mob.p_theyre()] full!")
+				return return FALSE
+			if(carbon_mob.fullness >= NUTRITION_MAX)
+				to_chat(user, span_warning("You cannot force any more of \the [src] to go down their throat."))
 				return FALSE
+
+			user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
+			to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
 
 			if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
 				return

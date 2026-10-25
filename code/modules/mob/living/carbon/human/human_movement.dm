@@ -47,3 +47,8 @@
 	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
+
+/mob/living/carbon/human/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+	if(nutrition >= NUTRITION_OVERFED) //we are entering the bulking meta
+		range = max(1, range - 1)
+	return ..()
