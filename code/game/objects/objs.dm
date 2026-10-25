@@ -427,12 +427,12 @@
 /obj/proc/post_disassemble(mob/user)
 	return TRUE
 
-/obj/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/obj/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) // Attack normally.

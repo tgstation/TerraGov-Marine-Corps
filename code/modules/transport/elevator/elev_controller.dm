@@ -34,7 +34,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	lift_weakref = WEAKREF(lift)
 /*
 // Multitooling emagged elevator buttons will fix the safeties
-/obj/machinery/button/elevator/multitool_act(mob/living/user)
+/obj/machinery/button/elevator/multitool_act(mob/user, obj/item/tool)
 	if(!(obj_flags & EMAGGED))
 		return ..()
 

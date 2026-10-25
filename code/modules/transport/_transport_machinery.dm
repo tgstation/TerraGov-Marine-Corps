@@ -122,7 +122,7 @@
 	update_appearance()
 	return TRUE
 
-/obj/machinery/transport/welder_act(mob/living/user, obj/item/tool)
+/obj/machinery/transport/welder_act(mob/user, obj/item/tool)
 	if(user.a_intent == HARM)
 		return
 	if(atom_integrity >= max_integrity)

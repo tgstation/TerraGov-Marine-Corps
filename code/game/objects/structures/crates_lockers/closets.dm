@@ -253,7 +253,11 @@
 		balloon_alert(user, "something's inside!")
 		return
 
-/obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
+/obj/structure/closet/welder_act(mob/user, obj/item/tool)
+	if(!iswelder(tool))
+		return FALSE
+
+	var/obj/item/tool/weldingtool/welder = tool
 	if(!welder.isOn())
 		return FALSE
 
@@ -276,14 +280,14 @@
 	return TRUE
 
 
-/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool/wrench/wrenchy_tool)
+/obj/structure/closet/wrench_act(mob/user, obj/item/tool)
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)
 		balloon_alert(user, "need a firmer floor!")
 		return TRUE
 	setAnchored(!anchored)
-	wrenchy_tool.play_tool_sound(src, 75)
+	tool.play_tool_sound(src, 75)
 	balloon_alert_to_viewers("[user] [anchored ? "anchors" : "unanchors"] the [src]")
 	return TRUE
 

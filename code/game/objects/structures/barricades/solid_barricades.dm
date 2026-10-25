@@ -78,7 +78,7 @@
 	. = ..()
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
-/obj/structure/barricade/solid/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(.)
 		return
@@ -95,7 +95,7 @@
 
 	balloon_alert_to_viewers("removing armor plates...")
 
-	if(!I.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 
 	balloon_alert_to_viewers("removed armor plates")
