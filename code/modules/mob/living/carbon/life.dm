@@ -8,6 +8,8 @@
 
 	. = ..()
 
+	handle_status_effects()
+
 /mob/living/carbon/handle_regular_hud_updates()
 	. = ..()
 	if(.)
