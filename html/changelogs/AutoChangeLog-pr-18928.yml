@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "The prefix that xenomorph names get from being part of a non-standard hive now correctly appends only one space."

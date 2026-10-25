@@ -143,21 +143,21 @@
 	return TRUE
 
 
-/obj/structure/camera_assembly/wirecutter_act(mob/user, obj/item/I)
+/obj/structure/camera_assembly/wirecutter_act(mob/user, obj/item/tool)
 	if(state != STATE_WIRED)
 		return FALSE
 
 	new /obj/item/stack/cable_coil(drop_location(), 2)
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You cut the wires from the circuits."))
 	state = STATE_WELDED
 	return TRUE
 
 
-/obj/structure/camera_assembly/wrench_act(mob/user, obj/item/I)
+/obj/structure/camera_assembly/wrench_act(mob/user, obj/item/tool)
 	if(state != STATE_WRENCHED)
 		return FALSE
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You detach [src] from its place."))
 	new /obj/item/frame/camera(drop_location())
 

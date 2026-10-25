@@ -36,7 +36,7 @@
 	. += span_notice("You need a crowbar to pry this open!")
 
 
-/obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/largecrate/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	user.visible_message(span_notice("[user] pries \the [src] open."),
 		span_notice("You pry open \the [src]."),
@@ -215,8 +215,8 @@
 	return ..()
 
 
-/obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
-	if(!welder.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+/obj/structure/largecrate/random/barrel/welder_act(mob/user, obj/item/tool)
+	if(!tool.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return
 	user.visible_message(span_notice("[user] welds \the [src] open."),
 		span_notice("You weld open \the [src]."),
@@ -281,16 +281,16 @@
 	var/strapped = 1
 
 
-/obj/structure/largecrate/random/secure/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/largecrate/random/secure/crowbar_act(mob/user, obj/item/tool)
 	if(strapped)
 		return FALSE
 	return ..()
 
 
-/obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/largecrate/random/secure/wirecutter_act(mob/user, obj/item/tool)
 	. = ..()
 	to_chat(user, span_notice("You begin to cut the straps off \the [src]..."))
-	if(!I.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_GENERIC))
+	if(!tool.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_GENERIC))
 		return TRUE
 	to_chat(user, span_notice("You cut the straps away."))
 	icon_state = "secure_crate"

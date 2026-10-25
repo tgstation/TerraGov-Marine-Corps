@@ -77,7 +77,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
+	SSadvanced_pathfinding.tile_pathfinding_to_do -= src
+	SSadvanced_pathfinding.node_pathfinding_to_do -= src
+	deltimer(next_move_timer)
 	current_node = null
+	goal_node = null
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
@@ -241,7 +245,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_node)
 		UnregisterSignal(current_node, COMSIG_QDELETING)
 	if(next_node)
-		RegisterSignal(current_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
+		RegisterSignal(next_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
 	current_node = next_node
 
 ///Signal handler when the ai is blocked by an obstacle
@@ -666,9 +670,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			look_for_next_node(should_reset_goal_nodes = TRUE)
 	if(current_node == old_target)
 		look_for_next_node()
+		if(current_node == old_target)
+			set_current_node(null)
 	if(escorted_atom == old_target)
 		if(!need_new_escort || !set_escort())
 			clean_escorted_atom()
+		else if(escorted_atom == old_target)
+			RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	if(combat_target == old_target)
 		combat_target = null
 	if(interact_target == old_target)

@@ -500,14 +500,14 @@
 
 	return TRUE
 
-/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/I)
+/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(no_panel)
 		to_chat(user, span_warning("\The [src] has no panel to open!"))
 		return
 
 	machine_stat ^= PANEL_OPEN
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	if(machine_stat & PANEL_OPEN)
 		to_chat(user, span_notice("You open [src]'s panel."))
 	else

@@ -160,3 +160,11 @@
   - rscadd: Flashes now make a sound and flicker when EMP'd.
   - bugfix: Flashes now flicker their flashing icon when activated.
   - bugfix: Synthetic and burnt-out flashes are no longer invisible.
+2026-10-23:
+  Lumipharon:
+  - bugfix: You can no longer weld certain kinds of damaged dirt turfs
+  - bugfix: Hitting objects will no longer play the burn damage sound when it isn't
+      meant to
+  - bugfix: fixed a SG goggle exploit
+  - bugfix: Baneling death animations no longer reoccur
+  - bugfix: Chem nades will no longer drain reagents out of things like welderbags
