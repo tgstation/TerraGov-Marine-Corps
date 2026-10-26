@@ -305,8 +305,8 @@ if(!istype(A, typepath)){\
 	//for quick cast, A is always going to be a turf, or null
 	if(owner.client)
 		var/datum/weakref/ref = SSmouse_entered.hover_refs[owner.client]
-		var/datum/resolved = ref.resolve()
-		if(resolved)
+		var/atom/resolved = ref.resolve() //only atoms ever get put into hover_refs
+		if(resolved && resolved.loc && resolved.loc != owner) //we check for loc for click catcher and UI elements/items
 			A = resolved
 
 	if(target_flags & NONE)
