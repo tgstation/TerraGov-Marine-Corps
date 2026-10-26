@@ -130,7 +130,7 @@
 	icon_state = "xeno_cocoon_open"
 
 /obj/structure/cocoon/can_be_pulled(user, force)
-	if(isxeno(user) && !victim)
+	if(isxeno(user) && victim)
 		return FALSE
 	return ..()
 
