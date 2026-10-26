@@ -131,7 +131,7 @@
 		return
 
 	// Non mobs speakers can be small
-	if (!ismob(target))
+	if (!(ismob(target) || ismobspeaker(target)))
 		extra_classes |= "small"
 
 	// Why are you yelling?
@@ -299,7 +299,14 @@
 		new /datum/chatmessage(raw_message, speaker, src, (runechat_flags & EMOTE_MESSAGE ? list("emote", "italics") : list("italics")))
 	else
 		new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
-
+		if(!istype(get_area(speaker), /area/interior))
+			return
+		for(var/obj/vehicle/sealed/armored/tank in GLOB.tank_list)
+			if(!tank.interior)
+				continue
+			if(!(speaker in tank.interior.occupants))
+				continue
+			new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), tank, src, spans)
 
 // Tweak these defines to change the available color ranges
 #define CM_COLOR_SAT_MIN 0.6
