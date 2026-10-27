@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some weird alt appearance issues"
+  - code_imp: "Alt appearances are actually deleted by default, when using remove_alt_appearance()"
