@@ -166,9 +166,9 @@
 	icon_state = "plasma_fruit_immature"
 	mature_icon_state = "plasma_fruit"
 	itemized_typepath = /obj/item/xenomorph_plant/plasma
-	/// How much bonus plasma should we restore during the duration? 1 being 100% from base regen
+	/// How much bonus plasma should we restore during the duration? 1 being 100% of base regen.
 	var/bonus_regen = 1
-	///How long should the buff last
+	/// How long should the buff last?
 	var/duration = 1 MINUTES
 
 /obj/structure/xeno/plant/plasma_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
@@ -241,7 +241,6 @@
 			xeno_structure.set_alpha_source(ALPHA_SOURCE_NIGHTSHADE, STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA)
 			camouflaged_structures.Add(xeno_structure)
 
-/// Called when someone is trying to interact with the plant, xenomorph or not.
 /obj/structure/xeno/plant/stealth_plant/try_use(mob/user)
 	if(ishuman(user))
 		balloon_alert(user, "nothing happens!")
@@ -367,7 +366,7 @@
 
 /obj/item/xenomorph_plant/stop_throw(flying, original_layer)
 	. = ..()
-	if(isturf(loc)) // Someone caught us.
+	if(isturf(loc)) // No one caught us.
 		deconstruct(FALSE)
 
 /// Creates and then immediately uses the plant on a mob.
