@@ -21,7 +21,7 @@
 	. = ..()
 	mature = _mature
 	if(!mature)
-		maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
+		maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time, TIMER_STOPPABLE)
 
 /obj/structure/xeno/plant/Destroy()
 	. = ..()
@@ -89,7 +89,7 @@
 /obj/structure/xeno/plant/proc/on_use(mob/user)
 	mature = FALSE
 	update_icon()
-	maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
+	maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time, TIMER_STOPPABLE)
 	return TRUE
 
 /// Called when the plant reaches maturity.
