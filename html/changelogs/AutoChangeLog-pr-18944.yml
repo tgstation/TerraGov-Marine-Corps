@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Xenomorphs can now pull cocoons that are empty/opened."
