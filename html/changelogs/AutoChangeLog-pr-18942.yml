@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscdel: "Crates can no longer be sold via a fulton."
