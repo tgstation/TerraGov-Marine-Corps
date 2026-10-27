@@ -1,0 +1,4 @@
+author: "Joe13413"
+delete-after: True
+changes:
+  - balance: "ROC-58 Observer cameras take 2x longer to melt with acid"
