@@ -20,6 +20,9 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	var/threat_detected = FALSE
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
 
+/obj/machinery/camera/deployable/dissolvability(acid_strength)
+	return 0.5
+
 /obj/machinery/camera/deployable/Initialize(mapload, newDir, new_faction)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(on_mission_end))
