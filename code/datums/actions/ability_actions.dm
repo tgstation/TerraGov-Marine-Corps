@@ -303,7 +303,7 @@ if(!istype(A, typepath)){\
 ///Special behavior for identifying what atom to actually target
 /datum/action/ability/activable/proc/ability_target(atom/A)
 	//for quick cast, A is always going to be a turf, or null
-	if(owner.client)
+	if(owner.client && (isturf(A) || isnull(A)))
 		var/datum/weakref/ref = SSmouse_entered.hover_refs[owner.client]
 		var/atom/resolved = ref.resolve() //only atoms ever get put into hover_refs
 		if(resolved && resolved.loc && resolved.loc != owner) //we check for loc for click catcher and UI elements/items
