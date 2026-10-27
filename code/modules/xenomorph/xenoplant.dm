@@ -335,6 +335,9 @@
 	if(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_BUILDER)
 		return attack_hand(xeno_attacker)
 	// Everyone else will eat it off the floor.
+	balloon_alert(user, "consuming...")
+	if(!do_after(user, 2 SECONDS, NONE, src))
+		return TRUE
 	use_plant_on(xeno_attacker)
 	qdel(src)
 	return TRUE
