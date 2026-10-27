@@ -253,8 +253,7 @@
 	balloon_alert(user, "shaking...")
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
-	on_use(user)
-	return TRUE
+	return on_use(user)
 
 /obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
 	visible_message(span_danger("[src] releases a burst of glowing pollen!"))
