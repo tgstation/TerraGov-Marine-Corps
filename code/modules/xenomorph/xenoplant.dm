@@ -12,8 +12,6 @@
 	var/mature = FALSE
 	/// How long does it take for the plant to be usable?
 	var/maturation_time = 2 MINUTES
-	/// The timer ID associated with maturity.
-	var/maturation_timer
 	/// Can this plant be picked up by a xenomorph? If so, what is the item typepath to be spawned?
 	var/obj/item/xenomorph_plant/itemized_typepath = null
 
@@ -21,13 +19,7 @@
 	. = ..()
 	mature = _mature
 	if(!mature)
-		maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time, TIMER_STOPPABLE)
-
-/obj/structure/xeno/plant/Destroy()
-	. = ..()
-	if(maturation_timer)
-		deltimer(maturation_timer)
-		maturation_timer = null
+		addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 
 /obj/structure/xeno/plant/can_interact(mob/user)
 	. = ..()
@@ -89,16 +81,13 @@
 /obj/structure/xeno/plant/proc/on_use(mob/user)
 	mature = FALSE
 	update_icon()
-	maturation_timer = addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(on_mature)), maturation_time)
 	return TRUE
 
 /// Called when the plant reaches maturity.
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
 	mature = TRUE
 	update_icon()
-	if(maturation_timer)
-		deltimer(maturation_timer)
-		maturation_timer = null
 	playsound(src, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/structure/xeno/plant/heal_fruit
