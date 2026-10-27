@@ -178,3 +178,11 @@
   mudzbe:
   - bugfix: Fix corrupted hive AIs treating tgmc as hostile, such as turrets and mob
       AIs
+2026-10-27:
+  Joe13413:
+  - balance: ROC-58 Observer cameras take 2x longer to melt with acid
+  Runian:
+  - rscdel: Crates can no longer be sold via a fulton.
+  SandPoot:
+  - qol: Observers can now jump between Z levels using their minimap, on multi-z locations
+      like certain shipmaps.

@@ -1,4 +1,0 @@
-author: "SandPoot"
-delete-after: True
-changes:
-  - qol: "Observers can now jump between Z levels using their minimap, on multi-z locations like certain shipmaps."
