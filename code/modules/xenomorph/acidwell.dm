@@ -11,9 +11,9 @@
 	max_integrity = 5
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
-
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
+	xeno_structure_flags = DEPART_DESTRUCTION_IMMUNE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
