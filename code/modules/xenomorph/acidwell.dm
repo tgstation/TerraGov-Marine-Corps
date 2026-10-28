@@ -21,7 +21,7 @@
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _hivenumber, _creator)
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))

@@ -37,7 +37,7 @@
 	/// Cooldown for exploding so that we don't get infinite loops.
 	COOLDOWN_DECLARE(explosion_cooldown)
 
-/obj/structure/xeno/earth_pillar/Initialize(mapload, mob/living/carbon/xenomorph/new_owner, health_reduction)
+/obj/structure/xeno/earth_pillar/Initialize(mapload, _hivenumber, mob/living/carbon/xenomorph/new_owner, health_reduction)
 	. = ..()
 	if(health_reduction)
 		max_integrity -= floor(max_integrity * health_reduction)
@@ -462,7 +462,7 @@
 		if(!isliving(atom_checked))
 			continue
 		step_away(atom_checked, target, 1, 1) // Displaced by a pillar spawning underneath.
-	var/obj/structure/xeno/earth_pillar/new_pillar = new(target, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
+	var/obj/structure/xeno/earth_pillar/new_pillar = new(target, xeno_owner.hivenumber, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
 	active_pillars += new_pillar
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_deleted))
 	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]

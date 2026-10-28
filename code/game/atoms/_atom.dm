@@ -243,7 +243,7 @@ directive is properly returned.
 /atom/proc/is_drainable()
 	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAINABLE)
 
-
+/// Called if something moved within range of any [/datum/proximity_monitor] that is within us.
 /atom/proc/HasProximity(atom/movable/AM)
 	return
 
