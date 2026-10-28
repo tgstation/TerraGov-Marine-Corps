@@ -196,7 +196,7 @@
 	icon_vend = "med-vend"
 	slogan_delay = 10 MINUTES
 	product_slogans = "Go save some lives!;\
-	he best stuff for your medbay.;\
+	The best stuff for your medbay.;\
 	Only the finest tools.;\
 	Natural chemicals!;\
 	This stuff saves lives.;\
