@@ -1,4 +1,3 @@
-#define UPDATE_BUFFER_TIME (2.5 SECONDS)
 
 // CAMERA CHUNK
 //
@@ -22,6 +21,14 @@
 	var/list/active_static_images = list()
 
 	var/changed = FALSE
+	/// Turfs in our grid each camera can see, keyed by camera
+	var/list/camera_visible_turfs = list()
+	/// Cameras that moved since the last update and need their view recalculated
+	var/list/moved_cameras = list()
+	/// Whether the next update has to recalculate every camera's view
+	var/needs_full_update = TRUE
+	/// Forces a full update of the chunk, checking all camera views
+	COOLDOWN_DECLARE(full_update_cooldown)
 	var/x = 0
 	var/y = 0
 	var/lower_z
@@ -58,33 +65,76 @@
  * instead be flagged to update the next time an AI Eye moves near it.
  *
  * update_delay_buffer is used for cameras that are moving around, which are cyborg inbuilt cameras and
- * mecha onboard cameras. This buffer should be usually lower than UPDATE_BUFFER_TIME because
+ * mecha onboard cameras. This buffer should be usually lower than the CAMERA_CHUNK_UPDATE_DELAY config because
  * otherwise a moving camera can run out of its own view before updating static.
  */
-/datum/camerachunk/proc/hasChanged(update_now = 0, update_delay_buffer = UPDATE_BUFFER_TIME)
+/datum/camerachunk/proc/hasChanged(update_now = 0, update_delay_buffer)
+	needs_full_update = TRUE
+	queue_update(update_now, update_delay_buffer)
+
+///Schedules an update if the chunk is watched, otherwise flags it to update once an eye looks at it
+/datum/camerachunk/proc/queue_update(update_now = 0, update_delay_buffer)
+	if(isnull(update_delay_buffer))
+		update_delay_buffer = CONFIG_GET(number/camera_chunk_update_delay)
 	if(seenby.len || update_now)
 		addtimer(CALLBACK(src, PROC_REF(update)), update_delay_buffer, TIMER_UNIQUE)
 	else
 		changed = TRUE
 
+///Queues an update that only recalculates the view of the camera that moved
+/datum/camerachunk/proc/camera_moved(obj/machinery/camera/moved_camera)
+	moved_cameras[moved_camera] = TRUE
+	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
+
+///Removes a camera from this chunk and drops its cached view
+/datum/camerachunk/proc/remove_camera(obj/machinery/camera/removed_camera)
+	for(var/z_key in cameras)
+		cameras[z_key] -= removed_camera
+	camera_visible_turfs -= removed_camera
+	moved_cameras -= removed_camera
+	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
+
+///Returns the turfs in our grid the camera can see as turf -> turf, or null if it can't see into this chunk
+/datum/camerachunk/proc/get_camera_visible_turfs(obj/machinery/camera/checked_camera)
+	if(QDELETED(checked_camera) || !checked_camera.can_use())
+		return
+	var/turf/camera_turf = get_turf(checked_camera)
+	if(!camera_turf || camera_turf.z < lower_z || camera_turf.z > upper_z)
+		return
+	var/turf/point = locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), camera_turf.z)
+	if(get_dist(point, camera_turf) > CHUNK_SIZE + (CHUNK_SIZE / 2))
+		return
+	. = list()
+	for(var/turf/vis_turf in checked_camera.can_see())
+		if(turfs[vis_turf])
+			.[vis_turf] = vis_turf
+
 
 /// The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
 /// Accepts an optional partial_update argument, that blocks any calls out to chunks that could affect us, like above or below
 /datum/camerachunk/proc/update(partial_update = FALSE)
+	if(needs_full_update || COOLDOWN_FINISHED(src, full_update_cooldown))
+		camera_visible_turfs = list()
+		for(var/z_level in lower_z to upper_z)
+			for(var/obj/machinery/camera/current_camera as anything in cameras["[z_level]"])
+				var/list/camera_turfs = get_camera_visible_turfs(current_camera)
+				if(camera_turfs)
+					camera_visible_turfs[current_camera] = camera_turfs
+		needs_full_update = FALSE
+		COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
+	else
+		for(var/obj/machinery/camera/moved_camera as anything in moved_cameras)
+			var/list/camera_turfs = get_camera_visible_turfs(moved_camera)
+			if(camera_turfs)
+				camera_visible_turfs[moved_camera] = camera_turfs
+			else
+				camera_visible_turfs -= moved_camera
+	moved_cameras.Cut()
+
 	var/list/updated_visible_turfs = list()
-
-	for(var/z_level in lower_z to upper_z)
-		for(var/obj/machinery/camera/current_camera as anything in cameras["[z_level]"])
-			if(!current_camera || !current_camera.can_use())
-				continue
-
-			var/turf/point = locate(src.x + (CHUNK_SIZE / 2), src.y + (CHUNK_SIZE / 2), z_level)
-			if(get_dist(point, current_camera) > CHUNK_SIZE + (CHUNK_SIZE / 2))
-				continue
-
-			for(var/turf/vis_turf in current_camera.can_see())
-				if(turfs[vis_turf])
-					updated_visible_turfs[vis_turf] = vis_turf
+	for(var/obj/machinery/camera/visible_camera as anything in camera_visible_turfs)
+		for(var/turf/vis_turf as anything in camera_visible_turfs[visible_camera])
+			updated_visible_turfs[vis_turf] = vis_turf
 
 	///new turfs that we couldnt see last update but can now
 	var/list/newly_visible_turfs = updated_visible_turfs - visibleTurfs
@@ -139,6 +189,7 @@
 	var/turf/upper_turf = get_highest_turf(locate(x, y, lower_z))
 	src.upper_z = upper_turf.z
 
+	var/list/all_local_cameras = list()
 	for(var/z_level in lower_z to upper_z)
 		var/list/local_cameras = list()
 		for(var/obj/machinery/camera/camera in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z_level)))
@@ -158,21 +209,21 @@
 			our_image.loc = lad
 			turfs[lad] = our_image
 
-		for(var/obj/machinery/camera/camera as anything in local_cameras)
-			if(!camera)
-				continue
+		all_local_cameras += local_cameras
 
-			if(!camera.can_use())
-				continue
-
-			for(var/turf/vis_turf in camera.can_see())
-				if(turfs[vis_turf])
-					visibleTurfs[vis_turf] = vis_turf
+	for(var/obj/machinery/camera/camera as anything in all_local_cameras)
+		var/list/camera_turfs = get_camera_visible_turfs(camera)
+		if(!camera_turfs)
+			continue
+		camera_visible_turfs[camera] = camera_turfs
+		for(var/turf/vis_turf as anything in camera_turfs)
+			visibleTurfs[vis_turf] = vis_turf
+	needs_full_update = FALSE
+	COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
 		var/image/new_static = turfs[obscured_turf]
 		active_static_images += new_static
 		obscuredTurfs[obscured_turf] = new_static
 
-#undef UPDATE_BUFFER_TIME
 #undef CHUNK_SIZE
