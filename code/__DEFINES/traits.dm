@@ -331,6 +331,8 @@
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 ///Turf trait for when a turf is transparent
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
+///movable trait for when a movable blocks turf transparency
+#define MOVABLE_Z_BLOCK_TRANSPARENT_TRAIT "movable_z_block_transparent"
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
 //structure traits

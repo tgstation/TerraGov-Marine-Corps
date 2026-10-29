@@ -301,7 +301,7 @@
 				var/turf/previous = T
 				while(below)
 					// If we find a non transparent previous, end
-					if(!istransparentturf(previous))
+					if(!previous.is_transparent())
 						break
 					if(IS_OPAQUE_TURF(below))
 						// If we're opaque but the tile above us is transparent, then we should be counted as part of the potential "space"
@@ -316,7 +316,7 @@
 				var/turf/above = GET_TURF_ABOVE(T)
 				while(above)
 					// If we find a non transparent turf, end
-					if(!istransparentturf(above) || IS_OPAQUE_TURF(above))
+					if(!above.is_transparent() || IS_OPAQUE_TURF(above))
 						break
 					INSERT_CORNERS(corners, above)
 					above = GET_TURF_ABOVE(above)
