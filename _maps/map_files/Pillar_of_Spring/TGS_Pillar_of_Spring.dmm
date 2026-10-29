@@ -5863,6 +5863,12 @@
 /obj/structure/sign/prop1,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"hfl" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "hgl" = (
 /obj/vehicle/ridden/motorbike,
 /turf/open/floor/mainship/mono,
@@ -8640,6 +8646,12 @@
 /obj/machinery/power/apc,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
+"kWb" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/yellow_cargo,
+/area/mainship/squads/general)
 "kWc" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -51220,7 +51232,7 @@ fwq
 fwq
 qMR
 gRV
-dpY
+hfl
 dpY
 dpY
 dpY
@@ -51477,7 +51489,7 @@ gmQ
 dpY
 icg
 tzk
-dpY
+tyN
 dpY
 dpY
 dpY
@@ -51734,7 +51746,7 @@ dpY
 dpY
 dpY
 lXb
-dpY
+xIb
 nYk
 pqC
 kwS
@@ -57674,7 +57686,7 @@ tzF
 vFb
 uyy
 aJV
-eMz
+kWb
 rIt
 isJ
 fee
