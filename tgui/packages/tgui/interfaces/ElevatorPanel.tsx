@@ -198,7 +198,7 @@ const FloorPanel = (props) => {
             fontWeight: 'bold',
           }}
         >
-          {current_floor - 1}
+          {current_floor}
         </Box>
       </Stack.Item>
     </Stack>

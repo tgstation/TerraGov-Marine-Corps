@@ -41,6 +41,9 @@
 /obj/machinery/lift_indicator/LateInitialize()
 	. = ..()
 
+	var/list/linked_zs = SSmapping.get_connected_levels(z)
+	if(length(linked_zs))
+		lowest_floor_offset = linked_zs[length(linked_zs)] - 1
 	for(var/datum/transport_controller/linear/possible_match as anything in SStransport.transports_by_type[TRANSPORT_TYPE_ELEVATOR])
 		if(possible_match.specific_transport_id != linked_elevator_id)
 			continue
