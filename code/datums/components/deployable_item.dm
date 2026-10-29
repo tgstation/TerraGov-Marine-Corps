@@ -170,8 +170,6 @@
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
-	if(!ishuman(user))
-		return
 	user.balloon_alert(user, "disassembling...")
 	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD, extra_checks = CALLBACK(deployed_machine, TYPE_PROC_REF(/obj, can_disassemble), user)))
 		deployed_machine.failed_disassemble(user)
