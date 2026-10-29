@@ -188,25 +188,6 @@
 	balloon_alert(user, "Cannot extract")
 	return TRUE
 
-
-/obj/structure/closet/crate/fulton_act(mob/user, obj/item/tool)
-	if(opened)
-		return FALSE //Place it in.
-
-	if(!SSpoints)
-		balloon_alert(user, "Failed to link with destination")
-		return TRUE
-
-	if(length(contents))
-		balloon_alert(user, "[src] not empty")
-		to_chat(user, span_warning("Maximum weight surpassed. Empty [src] in order to extract it."))
-		return TRUE
-
-	var/obj/item/fulton_extraction_pack/ext_pack = tool
-	ext_pack.extract(src, user)
-	return TRUE
-
-
 /obj/item/fulton_extraction_pack/adminbus //For adminbusing and doing quests.
 	tool_behaviour = null //We work on a different system here.
 	var/obj/structure/fulton_extraction_point/linked_extraction_point
