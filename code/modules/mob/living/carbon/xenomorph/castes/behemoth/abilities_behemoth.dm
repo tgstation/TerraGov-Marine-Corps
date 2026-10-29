@@ -23,7 +23,7 @@
 	hit_sound = SFX_BEHEMOTH_EARTH_PILLAR_HIT
 	destroy_sound = 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg'
 	obj_flags = CAN_BE_HIT|BLOCKS_CONSTRUCTION
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|DEPART_DESTRUCTION_IMMUNE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_THROW|PASS_AIR|PASS_WALKOVER
 	hud_possible = list(HEALTH_HUD_XENO)
 	/// The xeno owner that created this object. NOT the holder.
