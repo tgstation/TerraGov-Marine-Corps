@@ -113,7 +113,7 @@
 	span_notice("You stop, drop, and roll!"), null, 5)
 
 	if((stacks - remove_amount) <= 0)
-		debuff_owner.visible_message(span_danger("[debuff_owners] has successfully extinguished themselves!"), \
+		debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
 		span_notice("You extinguish yourself."), null, 5)
 
 	add_stacks(- remove_amount)
