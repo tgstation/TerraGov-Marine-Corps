@@ -8,7 +8,7 @@
 	},
 	"quickbuilds": 2300,
 	"armor": "desert",
-	"announce_text": "Morning marine... INTERN did you forget to calibrate sensors again? This is not a desert planet, it's a temperate one. Just look at the greenery on the sensors. Well, whatever, just get out there and do your job. You know the Explode nuke and get out of there.",
+	"announce_text": "Morning marines... INTERN did you forget to calibrate sensors again??? WHY THE FLOP IS MY ENTIRE CIC GREEN!!?? EVEN THE DAMN DOG IS GREEN!! Marines while i execute intern here you just get out there and do your job. You know the kill and explode nuke thing.",
 	"traits":[{
 		"weather_sandstorm": true,
 		"Baseturf": "/turf/open/floor/plating",
