@@ -11,9 +11,9 @@
 	max_integrity = 5
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
-
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
+	xeno_structure_flags = DEPART_DESTRUCTION_IMMUNE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -21,7 +21,7 @@
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _hivenumber, _creator)
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))

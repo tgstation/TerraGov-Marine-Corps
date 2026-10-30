@@ -593,7 +593,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		owner.balloon_alert(owner, "No Mines!")
 		return fail_activate()
 	var/turf/T = get_turf(owner)
-	new /obj/structure/xeno/acid_mine/gas_mine(T)
+	new /obj/structure/xeno/acid_mine/gas_mine(T, xeno_owner.hivenumber)
 	current_charges--
 	playsound(T, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
