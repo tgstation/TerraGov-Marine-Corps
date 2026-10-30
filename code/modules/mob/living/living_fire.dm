@@ -13,6 +13,8 @@
 	if(!can_ignite())
 		return FALSE
 	var/datum/status_effect/stacking/fire/current_burning = has_burning()
+	if(!current_burning)
+		return FALSE
 	if(current_burning.is_ignited)
 		return FALSE
 	if(current_burning.stacks <= 0)

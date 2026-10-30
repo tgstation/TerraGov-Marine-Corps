@@ -1,5 +1,6 @@
 #define FIRE_STACK_DECAY 1
 #define DAMPNESS_STACK_DECAY -1
+#define FIRE_MIN_STACKS -20
 
 /datum/status_effect/stacking/fire
 	id = "fire"
@@ -7,6 +8,7 @@
 	stack_decay = DAMPNESS_STACK_DECAY
 	consumed_on_threshold = FALSE
 	consumed_on_fadeout = FALSE
+	max_stacks = 20
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 		///Are they actually burning
@@ -80,6 +82,8 @@
 	is_ignited = FALSE
 	stack_decay = DAMPNESS_STACK_DECAY
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
+	if(stacks < FIRE_MIN_STACKS) //you can only get so damp
+		stacks = FIRE_MIN_STACKS
 	debuff_owner.update_fire()
 	debuff_owner.clear_alert(id)
 
@@ -99,19 +103,19 @@
 		debuff_owner.spin(30, 1.5)
 	debuff_owner.Paralyze(3 SECONDS) //check if you can spam this
 
-	var/turf/T = get_turf(src)
+	var/turf/T = get_turf(debuff_owner)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
-		debuff_owner.visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
+		debuff_owner.visible_message(span_danger("[debuff_owner] rolls in the snow, putting themselves out!"), \
 		span_notice("You extinguish yourself in the snow!"), null, 5)
 		debuff_owner.extinguish_mob()
 		return
 
 	var/remove_amount = min(rand(3, 6), stacks)
-	debuff_owner.visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+	debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
 	span_notice("You stop, drop, and roll!"), null, 5)
 
 	if((stacks - remove_amount) <= 0)
-		debuff_owner.visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+		debuff_owner.visible_message(span_danger("[debuff_owners] has successfully extinguished themselves!"), \
 		span_notice("You extinguish yourself."), null, 5)
 
 	add_stacks(- remove_amount)
