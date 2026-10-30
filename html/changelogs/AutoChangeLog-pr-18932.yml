@@ -1,0 +1,6 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - bugfix: "Turning on tesla turrets during disassembly will cancel it."
+  - bugfix: "TURRET_INACCURATE turrets will no longer lose their nerf if you start and cancel disassembly."
+  - qol: "Update tesla turret's codex (there's a stat (nerf) that wasn't visible before)."
