@@ -195,3 +195,9 @@
       200
   Runian:
   - bugfix: Xenomorphs can now pull cocoons that are empty/opened.
+2026-10-30:
+  SandPoot:
+  - bugfix: Turning on tesla turrets during disassembly will cancel it.
+  - bugfix: TURRET_INACCURATE turrets will no longer lose their nerf if you start
+      and cancel disassembly.
+  - qol: Update tesla turret's codex (there's a stat (nerf) that wasn't visible before).
