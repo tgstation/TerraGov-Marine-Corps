@@ -330,7 +330,7 @@
 	var/turf/pos = get_turf(src)
 	var/turf/directly_above = GET_TURF_ABOVE(pos)
 	var/check_lower = pos != get_lowest_turf(pos)
-	var/check_higher = directly_above && istransparentturf(directly_above) && (pos != get_highest_turf(pos))
+	var/check_higher = directly_above && directly_above.is_transparent() && (pos != get_highest_turf(pos))
 
 	var/list/see = get_hear(view_range, pos)
 	if(check_lower || check_higher)
@@ -338,7 +338,7 @@
 		for(var/turf/seen in see)
 			if(check_lower)
 				var/turf/visible = seen
-				while(visible && istransparentturf(visible))
+				while(visible && visible.is_transparent())
 					var/turf/below = GET_TURF_BELOW(visible)
 					for(var/turf/adjacent in range(1, below))
 						see += adjacent
@@ -346,7 +346,7 @@
 					visible = below
 			if(check_higher)
 				var/turf/above = GET_TURF_ABOVE(seen)
-				while(above && istransparentturf(above))
+				while(above && above.is_transparent())
 					for(var/turf/adjacent in range(1, above))
 						see += adjacent
 						see += adjacent.contents

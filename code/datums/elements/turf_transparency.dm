@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 		var/turf/visual_target = GET_TURF_ABOVE(to_display)
 		/// Basically, if we used to be under a non transparent turf, but are no longer in that position
 		/// Then we add to the transparent turf we're now under, and nuke the old object
-		if(!istransparentturf(visual_target))
+		if(!visual_target.is_transparent())
 			return
 
 		holding.vis_contents -= to_display
@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 	sources |= source
 
 	var/turf/visual_target = GET_TURF_ABOVE(to_display)
-	if(istransparentturf(visual_target) || isopenspaceturf(visual_target))
+	if(visual_target.is_transparent())
 		visual_target.vis_contents += to_display
 	else
 		var/obj/effect/abstract/z_holder/hold_this = new(visual_target)
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 	if(holding)
 		return
 
-	if(istransparentturf(parent) || isopenspaceturf(parent))
+	if(parent.is_transparent())
 		parent.vis_contents += orphan
 	else
 		var/obj/effect/abstract/z_holder/hold_this = new(parent)
