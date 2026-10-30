@@ -5793,11 +5793,6 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
-"hap" = (
-/obj/structure/rack,
-/obj/item/frame/table/gambling,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "hcb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
@@ -5863,12 +5858,6 @@
 /obj/structure/sign/prop1,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"hfl" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "hgl" = (
 /obj/vehicle/ridden/motorbike,
 /turf/open/floor/mainship/mono,
@@ -8437,6 +8426,9 @@
 /area/mainship/squads/req)
 "kLu" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kLK" = (
@@ -8499,6 +8491,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "kND" = (
@@ -50717,7 +50712,7 @@ tzk
 dpY
 dEC
 eAd
-hap
+tyN
 uxC
 uKp
 lGg
@@ -51232,7 +51227,7 @@ fwq
 fwq
 qMR
 gRV
-hfl
+dpY
 dpY
 dpY
 dpY
@@ -51489,7 +51484,7 @@ gmQ
 dpY
 icg
 tzk
-tyN
+dpY
 dpY
 dpY
 dpY
@@ -51746,7 +51741,7 @@ dpY
 dpY
 dpY
 lXb
-xIb
+dpY
 nYk
 pqC
 kwS
