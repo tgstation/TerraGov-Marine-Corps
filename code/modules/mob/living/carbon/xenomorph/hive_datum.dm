@@ -1169,7 +1169,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidates, waiter)
 	RegisterSignal(waiter, COMSIG_QDELETING, PROC_REF(cleanup_waiter))
 	var/new_position = LAZYLEN(candidates)
-	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, new_position)
+	update_larva_queue()
 	to_chat(waiter, span_warning("There are either no burrowed larva, you are on your xeno respawn timer, or there are no silos. You are in position [new_position] to become a Xenomorph."))
 	give_larva_to_next_in_queue() //Updates the queue for xeno respawn timer
 	return TRUE
@@ -1182,11 +1182,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYREMOVE(candidates, waiter)
 	UnregisterSignal(waiter, COMSIG_QDELETING)
 	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0)
+	update_larva_queue()
 	to_chat(waiter, span_warning("You left the Larva queue."))
-	var/client/client_in_queue
-	for(var/i in 1 to LAZYLEN(candidates))
-		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
 
 /// Propose larvas until their is no more candidates, or no more burrowed
 /datum/hive_status/proc/give_larva_to_next_in_queue()
@@ -1222,9 +1219,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(slot_occupied - slot_really_taken > 0)
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
-	for(var/i in 1 to LAZYLEN(candidates))
-		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+	update_larva_queue()
 
 /// Remove ref to avoid hard del and null error
 /datum/hive_status/proc/cleanup_waiter(datum/source)
@@ -1238,6 +1233,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
 		return FALSE
 	return TRUE
+
+/datum/hive_status/proc/update_larva_queue()
+	var/client/client_in_queue
+	var/amount = LAZYLEN(candidates)
+	for(var/i in 1 to amount)
+		client_in_queue = LAZYACCESS(candidates, i)
+		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+	SEND_SIGNAL(src, COMSIG_HIVE_LARVA_UPDATE, amount)
 
 ///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()

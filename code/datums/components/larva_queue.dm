@@ -9,11 +9,16 @@
 	var/position = 0
 	/// Our queue action
 	var/datum/action/join_larva_queue/action = null
+	/// Hive we're queueing for
+	var/datum/hive_status/hive
 
-/datum/component/larva_queue/Initialize()
+/datum/component/larva_queue/Initialize(datum/hive_status/hive)
 	. = ..()
 	if (QDELETED(parent)) // Client disconnect fuckery
 		return COMPONENT_INCOMPATIBLE
+	if(!istype(hive))
+		return COMPONENT_INCOMPATIBLE
+	src.hive = hive
 
 	var/client/client = parent
 	var/mob/double_check = client.mob // Clients always have a mob
@@ -23,6 +28,13 @@
 	waiter = client
 	action = new
 	add_queue_action()
+	RegisterSignal(hive, COMSIG_HIVE_LARVA_UPDATE, PROC_REF(update_button_maptext))
+	update_button_maptext(hive, LAZYLEN(hive.candidates))
+
+/datum/component/larva_queue/Destroy(force, silent)
+	UnregisterSignal(hive, COMSIG_HIVE_LARVA_UPDATE)
+	hive = null
+	return ..()
 
 /datum/component/larva_queue/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(add_queue_action))
@@ -91,22 +103,20 @@
 /datum/component/larva_queue/proc/set_queue_position(waiter, new_position)
 	SIGNAL_HANDLER
 	position = new_position
-	var/datum/hive_status/the_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!the_hive)
-		stack_trace("Where's the main hive? (XENO_HIVE_NORMAL NOT FOUND)")
+
+/datum/component/larva_queue/proc/update_button_maptext(datum/hive_status/hive, queue_size)
+	if(!position)
+		action.position_text = "[queue_size]"
 		return
-	action.button.maptext = MAPTEXT_TINY_UNICODE(span_center("[position]/[LAZYLEN(the_hive.candidates)]"))
-	action.button.maptext_x = 1
-	action.button.maptext_y = 3
-	if (position == 0) // No longer in queue
-		action.set_toggle(FALSE)
-		action.button.maptext = null
+	action.position_text = "[position]/[queue_size]"
+	action.update_button_icon()
 
 /// Action for joining the larva queue
 /datum/action/join_larva_queue
 	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
 	action_type = ACTION_TOGGLE
+	var/position_text
 
 /datum/action/join_larva_queue/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -122,3 +132,27 @@
 		set_toggle(TRUE)
 		return
 	set_toggle(FALSE)
+
+/datum/action/join_larva_queue/give_action(mob/M)
+	. = ..()
+	
+	var/mutable_appearance/larva_queue_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	visual_references[VREF_IMAGE_ONTOP] = larva_queue_maptext
+	larva_queue_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center("0"))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+/datum/action/join_larva_queue/remove_action(mob/M)
+	. = ..()
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	visual_references -= VREF_IMAGE_ONTOP
+
+/datum/action/join_larva_queue/update_button_icon()
+	if(!visual_references.Find(VREF_IMAGE_ONTOP))
+		return ..()
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	var/mutable_appearance/larva_queue_maptext = visual_references[VREF_IMAGE_ONTOP]
+	larva_queue_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center(position_text))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+	return ..()
+	
