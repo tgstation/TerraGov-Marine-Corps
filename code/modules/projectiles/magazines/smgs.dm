@@ -40,7 +40,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
 	icon_state_mini = "mag_smg"
-	max_rounds = 45
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
@@ -54,6 +54,12 @@
 	max_rounds = 80
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"
+
+/obj/item/ammo_magazine/smg/standard_smg/ap
+	name = "\improper SMG-90 submachine gun AP magazine (10x20mm)"
+	desc = "A 10x20mm AP caseless submachine gun magazine."
+	icon_state = "t90_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 //-------------------------------------------------------
 //SMG-45 SMG ammo
@@ -76,6 +82,19 @@
 	icon_state = "t45_sh"
 	icon_state_mini = "mag_heavy_smg_yellow"
 	bonus_overlay = "t45_mag_sh"
+
+//-------------------------------------------------------
+//RA-VAL, PMC SMG
+
+/obj/item/ammo_magazine/smg/val
+	name = "\improper RA-VAL magazine (9x39mm)"
+	desc = "A 9x39mm submachinegun magazine."
+	default_ammo = /datum/ammo/bullet/smg/val
+	caliber = CALIBER_9X39
+	icon_state = "val"
+	max_rounds = 50
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "mag_heavy_smg"
 
 //-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.

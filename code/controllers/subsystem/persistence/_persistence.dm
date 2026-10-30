@@ -13,7 +13,18 @@
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
-	init_order = INIT_ORDER_PERSISTENCE
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
+	dependents = list(
+		// FIXME: vendors with seasonal items expect SSpersistence to be initialized before atoms.
+		// (and sidenote, tram hit counters expect the opposite, but they're unimplemented lol)
+		// SSpersistence should probably depend on SSatoms and atoms with persistence-related
+		// things (like weapon vendors) should be refactored so these things can wait, using
+		// a queue, a post-init signal registered to SSpersistence, or some other callback.
+		// that's a little out of scope for a subsystem refactor, though.
+		/datum/controller/subsystem/atoms,
+	)
 	flags = SS_NO_FIRE
 
 	///Stores how long each season should last
@@ -42,6 +53,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
 		/datum/season_datum/weapons/guns/heavy_explosions,
+		/datum/season_datum/weapons/guns/heavy_remote,
 		),
 	)
 	///The saved list of custom outfits names
@@ -359,4 +371,22 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+	)
+
+/datum/season_datum/weapons/guns/heavy_remote
+	name = "Remote Weapons"
+	description = "Unmanned vehicles and MLRS for roundstart vendors."
+	item_list = list(
+		/obj/item/unmanned_vehicle_remote = 6,
+		/obj/vehicle/unmanned = 1,
+		/obj/vehicle/unmanned/medium = 1,
+		/obj/vehicle/unmanned/heavy = 1,
+		/obj/item/deployable_vehicle/tiny = 3,
+		/obj/item/uav_turret = 1,
+		/obj/item/ammo_magazine/box11x35mm = 3,
+		/obj/item/uav_turret/heavy = 1,
+		/obj/item/ammo_magazine/box12x40mm = 3,
+		/obj/item/uav_turret/claw = 1,
+		/obj/structure/closet/crate/mortar_ammo/mlrs_kit = 2,
+		/obj/item/storage/box/mlrs_rockets/gas = 4,
 	)

@@ -33,7 +33,7 @@
 		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
-/datum/action/innate/message_squad/can_use_action()
+/datum/action/innate/message_squad/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

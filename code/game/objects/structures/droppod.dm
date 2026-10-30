@@ -24,7 +24,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
@@ -53,8 +53,11 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS), PROC_REF(disable_launching))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
+	//testing only
+	if(SSticker.mode && istype(SSticker.mode, /datum/game_mode/infestation/sovl_war) && SSmonitor.gamestate != SHUTTERS_CLOSED)
+		disable_sovl_launching()
 	GLOB.droppod_list += src
 	update_icon()
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
@@ -84,19 +87,29 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	return TRUE
 
 ///Disables launching
-/obj/structure/droppod/proc/disable_launching()
+/obj/structure/droppod/proc/disable_launching(datum/source)
 	SIGNAL_HANDLER
 	launch_allowed = FALSE
 	update_icon()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 ///Allow this droppod to ignore dropdelay or otherwise reenable its use
-/obj/structure/droppod/proc/allow_drop()
+/obj/structure/droppod/proc/allow_drop(datum/source)
 	SIGNAL_HANDLER
 	operation_started = TRUE
 	launch_allowed = TRUE
 	update_icon()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
+
+//testing only
+/obj/structure/droppod/proc/allow_sovl_drop()
+	allow_drop()
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(disable_sovl_launching))
+
+/obj/structure/droppod/proc/disable_sovl_launching()
+	launch_allowed = FALSE
+	update_icon()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 /obj/structure/droppod/update_icon()
 	. = ..()
@@ -127,7 +140,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(drop_state != DROPPOD_READY)
 		if(!silent)
-			balloon_alert(buckling_mob, "Already used")
+			balloon_alert(buckling_mob, "already used!")
 		return FALSE
 	setDir(SOUTH) //this is dirty but supply elevator still tehnically being a shuttle forced my hand TODO: undirty this
 	. = ..()
@@ -150,7 +163,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	var/mob/notified_user = LAZYACCESS(buckled_mobs, 1)
 	. = checklanding(notified_user)
 	if(notified_user && .)
-		balloon_alert(notified_user, "Coordinates updated")
+		balloon_alert(notified_user, "coordinates updated")
 
 ///Updates the z-level this pod drops to
 /obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
@@ -166,29 +179,29 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	var/turf/target = optional_turf ? optional_turf : locate(target_x, target_y, target_z)
 	if(target.density)
 		if(user)
-			balloon_alert(user, "Dense area")
+			balloon_alert(user, "dense area!")
 		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
 		if(user)
-			balloon_alert(user, "Hazardous zone")
+			balloon_alert(user, "hazardous zone!")
 		return FALSE
 	var/area/targetarea = get_area(target)
 	if(targetarea.area_flags & NO_DROPPOD) // Thou shall not pass!
 		if(user)
-			balloon_alert(user, "Invalid area")
+			balloon_alert(user, "invalid area!")
 		return FALSE
 	if(!targetarea.outside)
 		if(user)
-			balloon_alert(user, "Roofed area")
+			balloon_alert(user, "roofed area!")
 		return FALSE
 	if(targetarea.ceiling > CEILING_METAL)
 		if(user)
-			balloon_alert(user, "Area underground")
+			balloon_alert(user, "area underground!")
 		return FALSE
 	for(var/atom/movable/object AS in target.contents)
 		if(object.density)
 			if(user)
-				balloon_alert(user, "Dense object detected")
+				balloon_alert(user, "dense object detected!")
 			return FALSE
 	return TRUE
 
@@ -308,7 +321,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
 	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
-	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
+	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100, FALSE, LOUD_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
@@ -327,7 +340,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
+		balloon_alert(buckling_mob, "can't use that!") // basically squad lead+ cant touch this
 		return FALSE
 	return ..()
 
@@ -459,7 +472,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		if(istype(attached_clamp.loaded, /obj/structure/droppod))
 			return //no recursive pods please
 		if(stored_object)
-			balloon_alert(user, "Occupied")
+			balloon_alert(user, "occupied!")
 			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -550,7 +563,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
 	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
-	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
+	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100, VERY_LOUD_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 /datum/action/innate/launch_droppod
@@ -570,7 +583,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 
-/datum/action/innate/set_drop_target/can_use_action()
+/datum/action/innate/set_drop_target/can_use_action(silent, override_flags, selecting)
 	if(choosing)
 		return FALSE
 	return ..()
@@ -597,6 +610,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
 		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		map.stop_polling[owner] = TRUE
 		choosing = FALSE
 	return ..()
 

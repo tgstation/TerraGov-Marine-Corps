@@ -48,13 +48,13 @@
 
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents?.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
-		balloon_alert(user, "None of [src] left")
+		to_chat(user, span_warning("There is nothing left of \the [src], oh no!"))
 		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
 	if(package)
-		balloon_alert(user, "Can't, package still on")
+		balloon_alert(user, "packaging still on!")
 		return FALSE
 
 	if(iscarbon(M))
@@ -64,29 +64,30 @@
 		nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
 		var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 
-		if(M == user)								//If you're eating it yourself
+		if(M == user) // If you're eating it yourself
 			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
-				balloon_alert(user, "can't eat food")
+				balloon_alert(user, "you can't eat food!")
 				return
 			if(fullness <= NUTRITION_STARVING)
-				balloon_alert(user, "hungrily chews [src]")
+				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
 			if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
-				balloon_alert(user, "hungrily eats [src]")
+				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
 			if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
-				balloon_alert(user, "takes bite of [src]")
+				to_chat(M, span_warning("You take a bite of \the [src]."))
 			if(fullness > NUTRITION_WELLFED && fullness <= NUTRITION_OVERFED)
-				balloon_alert(user, "nibbles on [src]")
+				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
 			if(fullness > NUTRITION_OVERFED)
-				balloon_alert(user, "cannot eat more of [src]")
+				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
 				return FALSE
 		else
 			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
-				balloon_alert(user, "can't eat food")
+				balloon_alert(user, "you can't eat food!")
 				return
 			if(fullness <= NUTRITION_OVERFED)
-				balloon_alert_to_viewers("tries to feed [carbon_mob]")
+				user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
+				to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
 			else
-				balloon_alert_to_viewers("tries to feed [carbon_mob] but can't")
+				carbon_mob.balloon_alert(user, "[carbon_mob.p_theyre()] full!")
 				return FALSE
 
 			if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
@@ -96,20 +97,15 @@
 
 			log_combat(user, carbon_mob, "fed", src, "Reagents: [rgt_list_text]")
 
-			balloon_alert_to_viewers("forces [carbon_mob] to eat")
+			user.balloon_alert_to_viewers("forces [carbon_mob] to eat")
+			to_chat(carbon_mob, span_userdanger("[user] forces you to eat \the [src]."))
 
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
+			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				if(reagents.total_volume > bitesize)
-					/*
-					* I totally cannot understand what this code supposed to do.
-					* Right now every snack consumes in 2 bites, my popcorn does not work right, so I simplify it. -- rastaf0
-					var/temp_bitesize = max(reagents.total_volume /2, bitesize)
-					reagents.trans_to(M, temp_bitesize)
-					*/
 					//Why is bitesize used instead of an actual portion???
 					record_reagent_consumption(bitesize, reagents.reagent_list, user, carbon_mob)
 					reagents.trans_to(M, bitesize)
@@ -1343,7 +1339,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_burrito/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "unwraps burrito")
 		package = FALSE
 		icon = 'icons/obj/items/food/mexican.dmi'
@@ -1361,7 +1357,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "unwraps hotdog")
 		package = FALSE
 		icon = 'icons/obj/items/food/food.dmi'
@@ -1392,7 +1388,7 @@
 
 /obj/item/reagent_containers/food/snacks/upp/attack_self(mob/user as mob)
 	if(package)
-		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		balloon_alert(user, "pops the packaged seal")
 		package = FALSE
 		desc = "An extremely dried item of food, with little flavoring or coloration. Looks to be prepped for long term storage, but will expire without the packaging. Best to eat it now to avoid waste. At least things are equal."
@@ -1444,7 +1440,7 @@
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
 	if(package)
 		balloon_alert(user, "opens the package")
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 		new wrapper (user.loc)
 		icon_state = "[initial(icon_state)]-o"
@@ -1523,7 +1519,7 @@
 /obj/item/reagent_containers/food/snacks/packaged_meal/attack_self(mob/user as mob)
 	if(package)
 		balloon_alert(user, "opens package")
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1, SHORT_SOUND_RANGE)
 		name = "\improper" + flavor
 		desc = "The contents of a standard issue MRE. This one is " + flavor + "."
 		icon_state = flavor

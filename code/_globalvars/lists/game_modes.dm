@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(faction_stats_datums)
 
 ///jobs by faction, ranked by seniority
 GLOBAL_LIST_INIT(ranked_jobs_by_faction, list(
-	FACTION_TERRAGOV = list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, SQUAD_LEADER),
-	FACTION_SOM = list(SOM_COMMANDER, SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN),
+	FACTION_TERRAGOV = list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_ENGINEER, SQUAD_CORPSMAN),
+	FACTION_SOM = list(SOM_COMMANDER, SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN),
 ))
 
 ///All jobs used in campaign
@@ -77,4 +77,16 @@ GLOBAL_LIST_INIT(campaign_som_minor_loot, list(
 	/obj/effect/supply_drop/charger = 4,
 	/obj/item/implanter/blade = 3,
 	/obj/effect/supply_drop/jump_mod = 2,
+))
+
+///Bike type by faction
+GLOBAL_LIST_INIT(campaign_bike_by_faction, list(
+	FACTION_TERRAGOV = /obj/vehicle/ridden/big_bike,
+	FACTION_SOM = /obj/vehicle/ridden/hover_bike,
+))
+
+///Cas disabler by faction
+GLOBAL_LIST_INIT(campaign_cas_disabler_by_faction, list(
+	FACTION_TERRAGOV = /datum/campaign_asset/asset_disabler/tgmc_cas/instant,
+	FACTION_SOM = /datum/campaign_asset/asset_disabler/som_cas/instant,
 ))

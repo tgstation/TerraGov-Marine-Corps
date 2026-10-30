@@ -55,6 +55,8 @@
 
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
+///NPC's will try this many times to path to a goal before ignoring it
+#define AI_MAX_GOAL_PATH_FAILS 10
 
 ///The AI will maintain a combat target within this range, even without LOS
 #define AI_COMBAT_TARGET_BLIND_DISTANCE 4 //required since byond LOS is not the same as true LOS, but also since either can be easily broken by stepping behind a corner etc
@@ -64,10 +66,13 @@
 ///AI will give up escorting something beyond this distance
 #define AI_ESCORTING_BREAK_DISTANCE 20
 
+//get escort priority ratings - calculates escort target by highest to lowest
+#define AI_ESCORT_RATING_ENSLAVED_WEAK 5
 #define AI_ESCORT_RATING_FACTION_GOAL 10
 #define AI_ESCORT_RATING_SQUAD_LEAD 13
 #define AI_ESCORT_RATING_CLOSE_FRIENDLY 15
 #define AI_ESCORT_RATING_BUDDY 16
+#define AI_ESCORT_RATING_ENSALVED_STRONG 25
 
 GLOBAL_LIST_EMPTY(all_nodes)
 
@@ -90,6 +95,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Obstacle can be ignored
 #define AI_OBSTACLE_IGNORED "ai_obstacle_ignored"
 
+//human_ai_behavior_flags
+
 ///If the mob parent can heal itself and so should flee
 #define HUMAN_AI_SELF_HEAL (1<<0)
 ///Uses weapons
@@ -101,19 +108,23 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 ///Will try avoid hazards when possible
 #define HUMAN_AI_AVOID_HAZARDS (1<<4)
 
+//human_ai_state_flags
+
 ///Currently shooting
 #define HUMAN_AI_FIRING (1<<0)
 ///Looking for weapons
 #define HUMAN_AI_NEED_WEAPONS (1<<1)
-///Healing or being healed
-#define HUMAN_AI_HEALING (1<<2)
+///Being healed by another NPC
+#define HUMAN_AI_BEING_HEALED (1<<2)
 ///Healing self
 #define HUMAN_AI_SELF_HEALING (1<<3)
 ///Building something
 #define HUMAN_AI_BUILDING (1<<4)
+///Healing someone else
+#define HUMAN_AI_HEALING_OTHER (1<<5)
 
 ///Any action that we generally don't want to interrupt
-#define HUMAN_AI_BUSY_ACTION (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING)
+#define HUMAN_AI_BUSY_ACTION (HUMAN_AI_SELF_HEALING|HUMAN_AI_BUILDING|HUMAN_AI_HEALING_OTHER|HUMAN_AI_BEING_HEALED)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)
@@ -265,75 +276,89 @@ GLOBAL_LIST_INIT(ai_infection_heal_items, list(
 ///List of squads that can be spawned, and the roles in them, sorted in spawn order
 GLOBAL_LIST_INIT(ai_squad_presets, list(
 	"SOM breachers" = list(
-		"SOM Breacher",
-		"SOM Breacher",
-		"SOM Breacher Leader",
-		"SOM Breacher Medic",
-		"SOM Breacher Specialist",
-		"SOM Breacher",
-		"SOM Breacher",
-		"SOM Breacher Specialist",
-		"SOM Breacher",
-		"SOM Breacher",
+		/datum/job/som/ert/breacher,
+		/datum/job/som/ert/breacher,
+		/datum/job/som/ert/leader/breacher,
+		/datum/job/som/ert/medic/breacher,
+		/datum/job/som/ert/breacher/specialist,
+		/datum/job/som/ert/breacher,
+		/datum/job/som/ert/breacher,
+		/datum/job/som/ert/breacher/specialist,
+		/datum/job/som/ert/breacher,
+		/datum/job/som/ert/breacher,
 	),
 	"SOM squad" = list(
-		"SOM Standard",
-		"SOM Standard",
-		"SOM Leader",
-		"SOM Medic",
-		"SOM Veteran",
-		"SOM Standard",
-		"SOM Specialist",
-		"SOM Veteran",
-		"SOM Standard",
-		"SOM Specialist",
+		/datum/job/som/ert/standard,
+		/datum/job/som/ert/standard,
+		/datum/job/som/ert/leader,
+		/datum/job/som/ert/medic,
+		/datum/job/som/ert/veteran,
+		/datum/job/som/ert/standard,
+		/datum/job/som/ert/specialist,
+		/datum/job/som/ert/veteran,
+		/datum/job/som/ert/standard,
+		/datum/job/som/ert/specialist,
 	),
 	"PMC squad" = list(
-		"PMC Standard",
-		"PMC Standard",
-		"PMC Leader",
-		"PMC Gunner",
-		"PMC Standard",
-		"PMC Standard",
-		"PMC Gunner",
-		"PMC Standard",
-		"PMC Standard",
-		"PMC Gunner",
+		/datum/job/pmc/standard,
+		/datum/job/pmc/standard,
+		/datum/job/pmc/leader,
+		/datum/job/pmc/gunner,
+		/datum/job/pmc/standard,
+		/datum/job/pmc/standard,
+		/datum/job/pmc/gunner,
+		/datum/job/pmc/standard,
+		/datum/job/pmc/standard,
+		/datum/job/pmc/gunner,
 	),
 	"ICC squad" = list(
-		"ICC Standard",
-		"ICC Standard",
-		"ICC Leader",
-		"ICC Medic",
-		"ICC Guardsman",
-		"ICC Standard",
-		"ICC Standard",
-		"ICC Guardsman",
-		"ICC Standard",
-		"ICC Guardsman",
+		/datum/job/icc/standard,
+		/datum/job/icc/standard,
+		/datum/job/icc/leader,
+		/datum/job/icc/medic,
+		/datum/job/icc/guard,
+		/datum/job/icc/standard,
+		/datum/job/icc/standard,
+		/datum/job/icc/guard,
+		/datum/job/icc/standard,
+		/datum/job/icc/guard,
 	),
 	"CLF squad" = list(
-		"CLF Standard",
-		"CLF Standard",
-		"CLF Leader",
-		"CLF Medic",
-		"CLF Specialist",
-		"CLF Standard",
-		"CLF Standard",
-		"CLF Specialist",
-		"CLF Standard",
-		"CLF Standard",
+		/datum/job/clf/standard,
+		/datum/job/clf/standard,
+		/datum/job/clf/leader,
+		/datum/job/clf/medic,
+		/datum/job/clf/specialist,
+		/datum/job/clf/standard,
+		/datum/job/clf/standard,
+		/datum/job/clf/specialist,
+		/datum/job/clf/standard,
+		/datum/job/clf/standard,
 	),
 	"Spec op squad" = list(
-		"Special Force Standard",
-		"Special Force Standard",
-		"Special Force Leader",
-		"Special Force Medic",
-		"Special Force Breacher",
-		"Special Force Standard",
-		"Special Force Standard",
-		"Special Force Breacher",
-		"Special Force Standard",
-		"Special Force Breacher",
+		/datum/job/special_forces/standard,
+		/datum/job/special_forces/standard,
+		/datum/job/special_forces/leader,
+		/datum/job/special_forces/medic,
+		/datum/job/special_forces/breacher,
+		/datum/job/special_forces/standard,
+		/datum/job/special_forces/standard,
+		/datum/job/special_forces/breacher,
+		/datum/job/special_forces/standard,
+		/datum/job/special_forces/breacher,
+	),
+	"TGMC" = list(
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/leader/npc,
+		/datum/job/terragov/squad/corpsman/npc,
+		/datum/job/terragov/squad/smartgunner/npc,
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/smartgunner/npc,
+		/datum/job/terragov/squad/standard/npc,
+		/datum/job/terragov/squad/smartgunner/npc,
 	),
 ))
+
+GLOBAL_LIST_EMPTY(zombie_spawners)

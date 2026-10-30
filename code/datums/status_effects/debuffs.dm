@@ -1,6 +1,5 @@
 #define BASE_HEAL_RATE -0.0125
 
-
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
@@ -162,8 +161,8 @@
 		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
 		owner.adjustStaminaLoss(healing * 100)
 		owner.adjustCloneLoss(healing * health_ratio * 0.8)
-	if(human_owner?.drunkenness)
-		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
+	if(human_owner?.is_drunk())
+		human_owner.adjust_drunkenness(-human_owner.amount_drunkenness() * 0.03) //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
@@ -416,10 +415,10 @@
 	. = ..()
 	if(!.)
 		return
-	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/mute/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_MUTE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 /datum/status_effect/spacefreeze
@@ -523,7 +522,7 @@
 	xenomorph_to_heal = expected_xenomorph_to_heal
 	healing_per_stack = expected_healing_per_stack
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
-	debuff_owner.balloon_alert(debuff_owner, "Intoxicated")
+	debuff_owner.balloon_alert(debuff_owner, "intoxicated!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
@@ -547,7 +546,7 @@
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
@@ -568,12 +567,11 @@
 	if(length(debuff_owner.do_actions))
 		return
 	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
-		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
+		debuff_owner?.balloon_alert(debuff_owner, "interrupted!")
 		return
 	if(QDELETED(src))
 		return
 	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
-	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
@@ -613,7 +611,7 @@
 	visual_fire.icon_state = "melting_low_stacks"
 	debuff_owner = new_owner
 	debuff_owner.vis_contents += visual_fire
-	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
+	debuff_owner.balloon_alert(debuff_owner, "melting fire!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
 	set_creator(new_creator)
@@ -636,9 +634,11 @@
 	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, FIRE, updating_health = TRUE)
 	if(stacks > 4)
 		visual_fire.icon_state = "melting_high_stacks"
-	else
+	else if (stacks > 0)
 		visual_fire.icon_state = "melting_low_stacks"
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	else
+		return
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
 		return
@@ -774,6 +774,8 @@
 /datum/status_effect/stacking/melting/can_gain_stacks()
 	if(owner.status_flags & GODMODE || owner.stat == DEAD)
 		return FALSE
+	if(owner.has_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING))
+		return
 	return ..()
 
 /datum/status_effect/stacking/melting/on_creation(mob/living/new_owner, stacks_to_apply)
@@ -785,7 +787,7 @@
 
 	. = ..()
 	debuff_owner = new_owner
-	debuff_owner.balloon_alert(debuff_owner, "Melting!")
+	debuff_owner.balloon_alert(debuff_owner, "melting!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/melting_status)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
@@ -800,7 +802,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 
 	debuff_owner.apply_damage(STATUS_EFFECT_MELTING_DAMAGE, BURN, null, FIRE)
@@ -888,7 +890,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT * (debuff_owner.mob_size > MOB_SIZE_HUMAN ? 1 : 0.5)) //this shreds humans otherwise
 
@@ -1024,7 +1026,7 @@
 	. = ..()
 	if(!owner)
 		return
-	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 4)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
@@ -1101,3 +1103,5 @@
 	name = "Lifedrain"
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
+
+#undef BASE_HEAL_RATE

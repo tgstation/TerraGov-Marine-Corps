@@ -88,8 +88,14 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
+	///How many humans this is worth for silo gen calcs
+	var/larva_value = 5
+	///How close a wrecked vehicle is to being prepared for repair
+	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
+	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
+		larva_value = 0
 	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
@@ -187,7 +193,7 @@
 		return list(get_turf(entering_thing))
 
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
+	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE, LOUD_SOUND_RANGE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
@@ -371,7 +377,6 @@
 	if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		return FALSE
 	if(!loc_override && !(entering_mob.loc in enter_locations(entering_mob)))
-		balloon_alert(entering_mob, "not at entrance")
 		return FALSE
 	return ..()
 
@@ -536,6 +541,9 @@
 	. = ..()
 	if(.)
 		return
+	if((armored_flags & ARMORED_IS_WRECK) && istype(I, /obj/item/stack/sheet/plasteel))
+		start_wreck_prep(user, I)
+		return
 	if(istype(I, /obj/item/armored_weapon))
 		var/obj/item/armored_weapon/gun = I
 		if(!(gun.type in permitted_weapons))
@@ -587,7 +595,10 @@
 		return ..()
 	if(!isliving(M))
 		return
-	try_easy_load(dropping, M)
+	if(try_easy_load(dropping, M))
+		return TRUE
+	if(isliving(dropping))
+		return ..() //we help them onto the vehicle
 
 /obj/vehicle/sealed/armored/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
 	return try_easy_load(grab.grabbed_thing, user)
@@ -621,10 +632,10 @@
 		balloon_alert(user, "detached")
 		return
 
-/obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
+/obj/vehicle/sealed/armored/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
 
-/obj/vehicle/sealed/armored/crowbar_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
@@ -640,8 +651,11 @@
 	user.put_in_hands(gun)
 	balloon_alert(user, "detached")
 
-/obj/vehicle/sealed/armored/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/wrench_act(mob/user, obj/item/tool)
 	. = ..()
+	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
+		prep_wreck(user)
+		return
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
 		return
@@ -656,7 +670,7 @@
 	user.put_in_hands(gun)
 	balloon_alert(user, "detached")
 
-/obj/vehicle/sealed/armored/screwdriver_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
 		balloon_alert(user, "not enough skill")
@@ -687,7 +701,7 @@
 ///Rotates the cannon overlay
 /obj/vehicle/sealed/armored/proc/swivel_turret(atom/A, new_weapon_dir)
 	if(!new_weapon_dir)
-		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
+		new_weapon_dir = angle2dir_cardinal(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam

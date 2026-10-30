@@ -69,7 +69,8 @@
 
 /datum/beam/Destroy()
 	QDEL_LIST(elements)
-	qdel(visuals)
+	if(visuals)
+		QDEL_NULL(visuals)
 	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	target = null
@@ -181,9 +182,9 @@
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
 		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
-			living.apply_status_effect(/datum/status_effect/noplasmaregen, 3 SECONDS)
-			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
-		living.add_slowdown(2)
+			living.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 3 SECONDS)
+			living.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 3 SECONDS)
+		living.slowdown(2)
 		log_attack("[living] was zapped by [source]")
 	return xenos
 

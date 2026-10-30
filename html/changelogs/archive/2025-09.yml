@@ -1,0 +1,205 @@
+2025-09-01:
+  TheRealMrN:
+  - balance: Moved the nuke closer to the center of the map on Blue Moon
+2025-09-02:
+  Runian:
+  - rscadd: Statistics involving Drone's Acidic Salve and Essence Link.
+2025-09-03:
+  Lumipharon:
+  - bugfix: fixed a runtime with mech weapons
+  - bugfix: Mech weapon windups work on the move like man portable weapons.
+  - rscadd: 'Campaign: TGMC tank gets incendiary canister rounds'
+  - balance: 'Campaign: TGMC tank is faster, slightly tougher from the front, and
+      notably tougher on the sides'
+  - balance: 'Campaign: SOM engineers can get detpacks again'
+  - balance: Mech laser sword always hits chest
+  Runian:
+  - qol: Round type flags are now easily editable bit fields for those with VV access.
+  - bugfix: It is no longer possible to infinitely hijack as an xenomorph.
+  - code_imp: MODE_DEAD_GRAB_FORBIDDEN, a round type flag, has been renamed to MODE_XENO_GRAB_DEAD_ALLOWED.
+      By default, xenos are not allowed to grab dead humans (no change) unless the
+      gamemode says otherwise.
+  - code_imp: MODE_HIJACK_POSSIBLE, a round type flag, is now used to allow xenomorphs
+      to hijack.
+  Scav:
+  - qol: Set the transfer amount of protein shakes to 120 units.
+  TiviPlus:
+  - bugfix: Tac binocs can now laze OB when looking up and down
+2025-09-04:
+  Lumipharon:
+  - bugfix: Removed a stray pixel on female monkeys
+  - code_imp: Fixed some funky barricade code
+  - qol: Plasteel upgrades are slightly more distinct from their metal counterparts
+  - imageadd: Improved barricade sprites, mainly fixing their positions and perspective
+2025-09-06:
+  Runian:
+  - rscadd: 6 more mutations for Hivelord.
+  - qol: Recovery Pylons now outline xenomorphs inside of it to make it obvious that
+      they're affected by it.
+  - balance: 'Mutations: Rejuvenating Build, one of Hivelord''s mutations, have been
+      moved to Shell from Spur.'
+  - code_imp: Innate healing is no longer a caste_flag and has been replaced by a
+      trait.
+  - bugfix: 'Mutations: Recurring Rage no longer spams you with balloon alerts when
+      you''re resting with Rage off cooldown.'
+  - balance: 'Mutations: Smashing Fling now scales at 150/175/200% damage from 100/125/150%
+      damage.'
+  - balance: 'Mutations: Psychic Choke is now a veil mutation.'
+  - balance: 'Mutations: Utility Fling has renamed to Body Fling, is now a spur mutation,
+      and no longer gives cooldown reduction. It now deals 150/175/200% damage and
+      paralyzes humans for 2 seconds if they are hit by flung xenomorphs.'
+2025-09-07:
+  Rug-Dealer:
+  - balance: Double barrel mortar now spawns roundstart, like the HSG nest.
+  - balance: 'Double barrel mortar spread: 2 -> 1'
+  - spellcheck: Makes it more obvious that the double barrel mortar exists.
+  Vany3045:
+  - rscadd: New specialist role for freelancers.
+  - balance: Many tweaks for freelancers and their stuff. Details are here [#18157](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18157#issue-3258258047).
+  - imageadd: new sprites for the freelancers equipment.
+2025-09-09:
+  Lumipharon:
+  - imageadd: added inhand sprites for the rebota
+  - admin: Unsetting custom info actually works
+  - bugfix: fixed some barricade sprite issues
+  - bugfix: fixed comms not working on the 1st mission of campaign
+2025-09-14:
+  Lumipharon:
+  - bugfix: fixed NPC's incorrectly interacting with doors in some cases
+  - bugfix: fixed chat windows not regaining focus if you pressed the hotkey with
+      the chat window already open
+  - qol: NPC's won't try resist off operating tables
+  - bugfix: fixed disk computers in crash sometimes bugging out
+  - bugfix: fixed a pixel offset bug when mounted weapons were deconstructed by someone
+      other than the operator
+  - qol: 'Campaign: A new faction leader is found after a short delay, after the old
+      leader is gibbed or goes DNR'
+  - bugfix: fixed a runtime with acid when snowtiles are replaced
+  Neocloudy:
+  - refactor: Bodyscanners and the feature for medical HUD users viewing old scans
+      now use TGUI.
+  - bugfix: This means viewing old scans is actually functional again. If you can
+      find a use case for it.
+  - bugfix: Fixed parts of the health scan themes which were broken in TGUI v6 and
+      changed certain colors.
+2025-09-16:
+  Scav:
+  - rscadd: 'New rouny emotes - :roai: , :rounycool: , :rounyblush: , :rounystare:
+      ,  :rounypopcorn: , :rounygun:'
+  blackdav123:
+  - bugfix: Fixed a runtime when pyrogen fire expires.
+2025-09-18:
+  Lumipharon:
+  - bugfix: fixed missing sprites for empty water tanks and space cash
+  - bugfix: NPC's will no longer get stuck on razorwire
+  - bugfix: fixed a layer issue on the SOM hoverbike
+2025-09-19:
+  Runian:
+  - bugfix: 'Mutations: Vitality Transfer now heals/transfers health as intended.'
+  - bugfix: Runner's Evasion now correctly dodges thrown objects.
+  - bugfix: See Through no longer causes those who have an modified alpha to become
+      even more invisible (e.g. Hunter).
+  blackdav123:
+  - balance: Xeno fruit death effects are now weaker.
+2025-09-20:
+  Runian:
+  - bugfix: Carrier traps and acid wells no longer activate when crushed by a shuttle.
+  - bugfix: Carrier traps that are filled with gas now trigger if the weeds underneath
+      are destroyed.
+2025-09-22:
+  Helg2:
+  - bugfix: Fixed the layer of pipes.
+  Runian:
+  - bugfix: 'Mutations: Rapid Fire''s fast cooldown duration now correctly scales
+      at 50/40/30% instead of 50/30/10%.'
+  blackdav123:
+  - bugfix: Quickbuild mode now properly turns off on crash when the ship lands.
+2025-09-23:
+  Atropos:
+  - rscadd: Added loadout vendors in req on sulaco
+  - bugfix: fixed incorrectly wired button on sulaco
+  Scav:
+  - balance: Added chemistry equipment to canterbury, rearranged mebay layout
+  - rscdel: Deleted the body scanner in canterbury medical
+  TheRealMrN:
+  - balance: Moved a Canterbury LZ on Blue Moon
+  - balance: Moved a silo on Blue Moon
+  blackdav123:
+  - balance: Moved crash landing sites on Orion Outpost to have better shutter positions
+      to exit and siege.
+2025-09-24:
+  Lumipharon:
+  - qol: 0 stamina HUD icon should be clearer
+  - balance: NPC's are now aware to the threat of facehuggers
+  Runian:
+  - bugfix: Guns vended by the automated weapons rack now have their gun-attachments
+      start empty.
+  blackdav123:
+  - rscadd: Added paper maps to the Utility tab of the marine vendor, these show groundside
+      like a map table would.
+2025-09-26:
+  Barnet2:
+  - rscdel: Prison Station can no longer be voted on Crash.
+  Lumipharon:
+  - code_imp: Updated typecacheof() to current TG code
+  - bugfix: 'Campaign: Fixed shotgun belts not being valid with shotgun primaries'
+2025-09-27:
+  RIPGrayson, TheRealMrN:
+  - bugfix: fixed NPC node issues across almost all maps
+2025-09-28:
+  Lumipharon:
+  - bugfix: Ungas can no longer remotely upgrade barricades with their megamind powers
+  - balance: NPC medics will now treat toxins in your system, not just toxin damage
+  - balance: Mech heavy cannon is slightly less accurate, and always aims chest
+  Runian:
+  - qol: Queen's Plasma Transfer ability can be reactivated via right-click/keybind
+      to use it again on the previous target.
+  - qol: If you have a medical hud, you can now examine the autodoc to see how many
+      seconds until the next surgery step happens.
+  - balance: Autodoc now accounts and can handle surgeries that are already started.
+  - balance: Autodoc's internal bleeding surgery now repairs all internal bleeding
+      at once just like its non-autodoc variant.
+  - balance: Autodoc now does the surgery step first and then waits rather than the
+      other way around.
+  - bugfix: Dragging or forcibly putting someone else into an autodoc now displays
+      correct chat message saying so.
+  - bugfix: Autodoc now only consumes as much metal required to fill it rather than
+      all of it.
+  - bugfix: Autodoc is now consistent in preventing people with abiotic items from
+      entering it.
+  - spellcheck: Corrects autodoc's many "avaliable" to "available".
+  - code_imp: Autodoc no longer uses sleep(). It now uses a timer.
+  - bugfix: The gamestate is now correctly changed to groundside if the Tadpole is
+      used to start the operation; this prevented AI from using their railgun.
+  Vany3045:
+  - rscadd: remastered the Nanotrasen PMC
+  - balance: A lot of tweaks for the PMC ERT. Details are here [#18044](https://github.com/tgstation/TerraGov-Marine-Corps/pull/18044#issue-3196882371)
+  - imageadd: new sprites for the PMC equipment
+  blackdav123:
+  - balance: Pyrogen fireball now detonates on the tile it hit an object, rather than
+      the object's tile.
+2025-09-29:
+  Lumipharon:
+  - code_imp: Ammo accuracy variation consolidated into a single var instead of two
+  - bugfix: fixed NPC's occasionally having their usable abilities set incorrectly
+  blackdav123:
+  - rscadd: Added Skink and Seraphim's Eye drones to campaign as options for engineer
+      secondaries.
+  - balance: Skink drone can now be shot when clicked on.
+2025-09-30:
+  Neocloudy:
+  - qol: Gibbing no longer sends a chat message for each limb dropped.
+  - qol: Humans won't stop pulling other humans when the pulled human dies.
+  Runian:
+  - rscadd: Setting Autodoc to automatic mode while someone is already inside now
+      begins the automatic surgery process.
+  - bugfix: Autodoc no longer can switch between manual/automatic modes while it is
+      active; prevents automatic mode from benefiting from manual mode speed.
+  - bugfix: Information from examining Autodoc is correctly given to those with medihuds
+      instead of the other way around.
+  Vany3045:
+  - bugfix: fixes SG-60 inhand sprites.
+  - bugfix: fixes typepaths for freelancer armor.
+  - bugfix: PMC SG-25 is now available in valhalla vendor.
+  - bugfix: Fixes replicating MK90M4 pistol magazine in valhalla vendor.
+  - bugfix: fixes missing items for freelancer loadouts.

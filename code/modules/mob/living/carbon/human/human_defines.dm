@@ -3,7 +3,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	blocks_emissive = EMISSIVE_BLOCK_NONE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
@@ -96,9 +96,6 @@
 
 	///The current standing icon
 	var/icon/stand_icon
-
-	///Used for determining if we need to process all limbs or just some or even none.
-	var/last_dam = -1
 
 	///This human's flavor text. Shows up when they're examined.
 	var/flavor_text = ""

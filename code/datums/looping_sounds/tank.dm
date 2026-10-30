@@ -9,6 +9,7 @@
 	start_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
 	start_length = 12
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/tank_idle_interior
 	mid_sounds = list(
@@ -40,6 +41,7 @@
 	vary = TRUE
 	mid_length = 20
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 
 /datum/looping_sound/som_tank_idle
@@ -48,6 +50,7 @@
 	)
 	mid_length = 20
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/som_tank_idle_interior
 	mid_sounds = list(
@@ -58,11 +61,15 @@
 	volume = 10
 
 /datum/looping_sound/som_tank_drive
+	mid_sounds = list(
+		'sound/vehicles/hover_tank/hover_1.ogg'=1,
+		'sound/vehicles/hover_tank/hover_2.ogg'=1,
+		'sound/vehicles/hover_tank/hover_3.ogg'=1,
+		'sound/vehicles/hover_tank/hover_4.ogg'=1,
+	)
 	mid_length = 12
 	volume = 50
-
-/datum/looping_sound/som_tank_drive/get_sound(starttime, _mid_sounds)
-	return get_sfx(SFX_HOVER_TANK)
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/som_tank_drive_interior
 	mid_sounds = list(

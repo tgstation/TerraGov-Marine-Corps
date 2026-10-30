@@ -116,8 +116,8 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 */
 
 GLOBAL_LIST_INIT(plasteel_radial_images, list(
-	"folding" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
-	"normal" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "new_plasteel_0"),
+	"folding" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "folding_plasteel_0"),
+	"normal" = image('icons/obj/structures/barricades/plasteel.dmi', icon_state = "plasteel_0"),
 	))
 
 /obj/item/stack/sheet/plasteel
@@ -207,7 +207,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 
 /obj/item/stack/sheet/wood/get_main_recipes()
 	. = ..()
-	. += GLOB.wood_recipes
+	for(var/item in GLOB.wood_recipes)
+		. += GLOB.wood_recipes[item]
 
 /obj/item/stack/sheet/wood/select_radial(mob/user)
 	if(user.get_active_held_item() != src)
@@ -322,7 +323,8 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 
 /obj/item/stack/sheet/cardboard/get_main_recipes()
 	. = ..()
-	. += GLOB.cardboard_recipes
+	for(var/item in GLOB.cardboard_recipes)
+		. += GLOB.cardboard_recipes[item]
 
 GLOBAL_LIST_INIT(stack_recipes, list (
 	/obj/item/stack/sheet/metal = GLOB.metal_recipes,

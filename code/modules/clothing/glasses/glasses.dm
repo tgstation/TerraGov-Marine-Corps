@@ -70,14 +70,15 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
+	SIGNAL_HANDLER
 	if(!toggleable)
 		return
 	active = !active
 
 	if(active && activation_sound)
-		playsound(get_turf(src), activation_sound, 15)
+		playsound(get_turf(src), activation_sound, 15, FALSE, SUPPRESSED_SOUND_RANGE)
 	else if(!active && deactivation_sound)
-		playsound(get_turf(src), deactivation_sound, 15)
+		playsound(get_turf(src), deactivation_sound, 15, FALSE, SUPPRESSED_SOUND_RANGE)
 
 	update_icon()	//Found out the hard way this has to be before update_inv_glasses()
 	user?.update_inv_glasses()
@@ -369,7 +370,7 @@
 		qdel(src)
 		user.put_in_hands(P)
 	else if(istype(I, /obj/item/clothing/glasses/night/m56_goggles))
-		var/obj/item/clothing/glasses/night/sunglasses/P = new
+		var/obj/item/clothing/glasses/night/m56_goggles/sunglasses/P = new
 		to_chat(user, span_notice("You fasten the KTLD sight to the inside of the glasses."))
 		qdel(I)
 		qdel(src)
@@ -500,7 +501,7 @@
 		return
 
 	if(battery && (battery.charge > battery.maxcharge / 2))
-		balloon_alert(user, "Battery already installed")
+		balloon_alert(user, "battery already installed!")
 		return
 	//Hot swap!
 	eject_battery()
@@ -533,7 +534,7 @@
 	else
 		if(!battery || battery.charge < active_energy_cost)
 			if(user)
-				balloon_alert(user, "No power")
+				balloon_alert(user, "no power!")
 			return FALSE	//Don't activate
 		START_PROCESSING(SSobj, src)
 		active_sound.start(src)

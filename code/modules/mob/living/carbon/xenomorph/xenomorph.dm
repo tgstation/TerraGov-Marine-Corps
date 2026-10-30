@@ -26,13 +26,8 @@
 	set_initial_hivenumber(prevent_ruler=do_not_set_as_ruler)
 	voice = "Woman (Journalist)" // TODO when we get tagging make this pick female only
 
-	switch(stat)
-		if(CONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-		if(UNCONSCIOUS)
-			GLOB.alive_xeno_list += src
-			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
+	if(stat != DEAD)
+		GLOB.alive_xeno_list += src
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
@@ -149,7 +144,7 @@
 /mob/living/carbon/xenomorph/proc/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
 	var/rank_name
-	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	var/prefix = "[hive.prefix ? "[hive.prefix] " : ""][xeno_caste.upgrade_name ? "[xeno_caste.upgrade_name] " : ""]"
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 		real_name = name
@@ -277,6 +272,10 @@
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
 
+	QDEL_LIST(owned_mutations)
+	QDEL_NULL(current_aura)
+	QDEL_NULL(leader_current_aura)
+
 	GLOB.alive_xeno_list -= src
 	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.xeno_mob_list -= src
@@ -313,7 +312,7 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
+		if(L.stat == DEAD && !(SSticker.mode.round_type_flags & MODE_XENO_GRAB_DEAD_ALLOWED)) // Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		if(pulling != L)
@@ -336,7 +335,7 @@
 	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
 		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
 	H.stop_pulling()
 	return FALSE
@@ -354,7 +353,7 @@
 	//updating all the mob's hud images
 	med_hud_set_health()
 	hud_set_plasma()
-	hud_set_pheromone()
+	update_aura_overlay()
 	//and display them
 	add_to_all_mob_huds()
 
@@ -483,11 +482,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	if(resting)
 		if(!COOLDOWN_FINISHED(src, xeno_resting_cooldown))
-			balloon_alert(src, "Cannot get up so soon after resting!")
+			balloon_alert(src, "can't get up so soon!")
 			return
 
 	if(!COOLDOWN_FINISHED(src, xeno_unresting_cooldown))
-		balloon_alert(src, "Cannot rest so soon after getting up!")
+		balloon_alert(src, "can't rest so soon!")
 		return
 	return ..()
 
@@ -577,7 +576,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 1)
 
-/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, mob/user)
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, mob/user, params)
 	. = ..()
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
@@ -607,3 +606,17 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	// Light from being on fire is not from us, but from an overlay attached to us. Therefore, we don't need to worry about it.
 	set_light_range_power_color(0, 0)
 	set_light_on(FALSE)
+
+/// Gives the xeno hive abilities from the hive's ability list
+/mob/living/carbon/xenomorph/proc/sync_hive_abilities()
+	if(!hive)
+		return
+
+	for(var/datum/action/ability/hive_ability AS in hive.hive_abilities)
+		if(xeno_caste.caste_flags & CASTE_IS_A_MINION)
+			continue
+
+		if(((hive_ability::parent_type) in xeno_caste.actions) && !hive_ability::cooldown_duration)
+			continue
+
+		add_ability(hive_ability)

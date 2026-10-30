@@ -275,6 +275,11 @@
 		/obj/item/reagent_containers/food/snacks,
 	))
 
+/datum/storage/internal/satchel
+	storage_slots = null
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL
+
 /datum/storage/internal/engineering
 	max_storage_space = 15
 	storage_slots = 5
@@ -312,6 +317,7 @@
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
 		/obj/item/minerupgrade,
+		/obj/item/deploy_capsule/barricade,
 	))
 
 /datum/storage/internal/medical
@@ -478,5 +484,5 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/storage/internal/ammo_rack/on_attack_hand_alternate(datum/source, mob/living/user) //Override for subtype since this is in world storage
-	if(user.CanReach(source))
-		open(user)
+	if(user.CanReach(source) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)

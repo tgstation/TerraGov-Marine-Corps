@@ -66,7 +66,7 @@
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
-	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
+	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, FALSE, SUPER_SHORT_SOUND_RANGE)
 	carbon_owner.throw_at(A, lunge_range, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
@@ -92,15 +92,15 @@
 	var/mob/living/carbon/carbon_owner = source
 	if(isobj(target))
 		var/obj/obj_victim = target
-		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
+		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
 		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		return
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/human_victim = target
-	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration, owner)
 	human_victim.adjust_stagger(1 SECONDS)
-	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, FALSE, SUPER_SHORT_SOUND_RANGE)
 	shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/sword/mercsword
@@ -163,25 +163,29 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	worn_icon_state = "machete"
+	worn_icon_state = "katana"
 	force = 50
-	throwforce = 10
+	penetration = 20
+	throwforce = 40
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/weapon/sword/katana/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."))
 	return(BRUTELOSS)
 
-//To do: replace the toys.
+/obj/item/weapon/sword/katana/samurai
+	name = "tachi"
+	desc = "A genuine replica of an ancient blade. This one is in remarkably good condition. It could do some damage to everyone, including yourself."
+	icon_state = "katana_red"
+	worn_icon_state = "katana_red"
+	force = 60
+	penetration = 15
+	w_class = WEIGHT_CLASS_BULKY
+
 /obj/item/weapon/sword/katana/replica
 	name = "replica katana"
 	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
 	force = 27
+	penetration = 0
 	throwforce = 7
-
-/obj/item/weapon/sword/katana/samurai
-	name = "\improper tachi"
-	desc = "A genuine replica of an ancient blade. This one is in remarkably good condition. It could do some damage to everyone, including yourself."
-	icon_state = "samurai_open"
-	force = 60
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY

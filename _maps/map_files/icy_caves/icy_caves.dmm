@@ -660,6 +660,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"cY" = (
+/obj/machinery/landinglight/lz1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "da" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -887,6 +892,10 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
+"el" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "em" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -1755,6 +1764,10 @@
 "jd" = (
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"je" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/LZ1)
 "jf" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/vomit,
@@ -3511,6 +3524,7 @@
 "rU" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "rV" = (
@@ -3842,6 +3856,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"tt" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "tu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -8998,6 +9019,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"RY" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/refinery)
 "RZ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -10101,13 +10126,6 @@
 	dir = 8
 	},
 /area/icy_caves/caves/weapon_vault)
-"Xq" = (
-/obj/effect/ai_node,
-/obj/machinery/landinglight/lz1{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Xr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
@@ -10515,6 +10533,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"Zi" = (
+/obj/item/lightstick/anchored,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Zj" = (
 /obj/structure/table,
 /obj/item/corncob,
@@ -11309,14 +11332,14 @@ Uu
 Uu
 Uu
 Uu
+fq
 Uu
 Uu
 Uu
 Uu
 Uu
 Uu
-Uu
-Uu
+fq
 ZP
 Ww
 ZP
@@ -11449,7 +11472,11 @@ Ww
 ZP
 ZP
 wL
-uw
+dW
+WT
+WT
+WT
+tt
 WT
 WT
 WT
@@ -11465,11 +11492,7 @@ WT
 WT
 WT
 WT
-Xq
 WT
-WT
-WT
-Xq
 Yj
 uw
 uw
@@ -12408,7 +12431,7 @@ Yn
 Yn
 Yn
 pH
-uw
+dW
 uw
 Ww
 ZP
@@ -12541,7 +12564,7 @@ Aq
 TM
 bU
 uw
-zM
+cY
 Yn
 Yn
 Yn
@@ -13469,16 +13492,15 @@ pR
 pR
 pR
 pR
-pR
+AW
 XO
 XO
 XO
 cQ
-UE
+je
 XW
 uw
-uw
-uw
+dW
 uw
 uw
 uw
@@ -13493,7 +13515,8 @@ uw
 uw
 uw
 uw
-dW
+uw
+uw
 uw
 uw
 uw
@@ -13634,7 +13657,7 @@ WD
 XW
 uw
 uw
-uw
+dW
 uw
 uw
 uw
@@ -13812,7 +13835,7 @@ HB
 uw
 uw
 uw
-uw
+dW
 uw
 Ww
 ZP
@@ -15102,12 +15125,12 @@ ZI
 ZI
 ZI
 ZI
-SR
+bl
 SR
 SR
 im
 Zl
-BZ
+cX
 Zl
 ZI
 ZI
@@ -15961,7 +15984,7 @@ fw
 DY
 DY
 DY
-DY
+RY
 DY
 Rf
 wQ
@@ -16347,9 +16370,9 @@ ZP
 ZP
 ZP
 ZP
-im
+bp
 SR
-SR
+bl
 ZI
 ZI
 ZI
@@ -17124,10 +17147,10 @@ qI
 XV
 ZI
 ZI
-SR
+bl
 SR
 im
-SR
+bl
 SR
 ZP
 ZP
@@ -17592,7 +17615,7 @@ Px
 Px
 Tz
 Tz
-Tz
+mz
 Tz
 Tz
 mz
@@ -19918,7 +19941,7 @@ SR
 SR
 SR
 SR
-SR
+el
 im
 tq
 tq
@@ -23674,8 +23697,8 @@ ZP
 Mr
 tf
 hH
-iP
 xt
+iP
 tf
 SR
 SR
@@ -28862,7 +28885,7 @@ YT
 YT
 YT
 YT
-JD
+Zi
 YT
 ZP
 ZP

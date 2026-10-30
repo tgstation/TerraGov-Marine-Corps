@@ -255,6 +255,16 @@
 	max_rounds = 200
 	reload_delay = 3 SECONDS
 
+/obj/item/ammo_magazine/standard_gpmg/big
+	name = "\improper MG-60 GPMG quadruple box magazine (10x26mm)"
+	desc = "A series of 4 belt boxes linked together for the MG-60 general purpose machinegun, incredibly impractical to use undeployed."
+	icon_state = "t60b"
+	w_class = WEIGHT_CLASS_BULKY
+	reload_delay = 8 SECONDS
+	max_rounds = 800
+	scatter_mod = 15
+	wield_delay_mod = 6 SECONDS
+
 //-------------------------------------------------------
 //PR-412L1 HEAVY PULSE RIFLE
 
@@ -280,6 +290,18 @@
 	icon_state_mini = "mag_rifle_big"
 	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 42
+
+//-------------------------------------------------------
+//PMC PR-416
+/obj/item/ammo_magazine/rifle/m416
+	name = "\improper RA-SH-416 magazine (10x25mm AP)"
+	desc = "A 10x25mm armor-piercing magazine."
+	caliber = CALIBER_10X25_CASELESS
+	icon_state = "pr416"
+	icon_state_mini = "mag_rifle_big"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/ap
+	max_rounds = 40
+
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -317,6 +339,18 @@
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 250
 	reload_delay = 2.5 SECONDS
+
+/obj/item/ammo_magazine/smart_gpmg
+	name = "\improper SG-60 box magazine (10x26mm HP)"
+	desc = "A belt box for the SG-60 machinegun."
+	icon_state = "sg60"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state_mini = "mag_gpmg"
+	caliber = CALIBER_10x26_CASELESS
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 250
+	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
 //SMART TARGET RIFLE AMMUNITION
@@ -385,6 +419,19 @@
 	icon_state = "sg153_fl"
 	icon_state_mini = "mag_rifle_cyan"
 	default_ammo = /datum/ammo/bullet/spottingrifle/flak
+
+//-------------------------------------------------------
+//SMARTRIFLE AMMUNITION
+
+/obj/item/ammo_magazine/rifle/standard_smartrifle
+	name = "\improper SG-25 magazine (10x26mm HP)"
+	desc = "A 10mm assault rifle magazine."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "sg25"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 100
+	icon_state_mini = "mag_rifle_big"
 
 
 //-------------------------------------------------------
@@ -837,7 +884,7 @@
 	caliber = CALIBER_410_AUTOSHOTGUN
 	icon_state = "sh410_ricochet"
 	icon_state_mini = "mag_sh410_ricochet"
-	default_ammo = /datum/ammo/bullet/shotgun/sh410_ricochet
+	default_ammo = /datum/ammo/bullet/shotgun/sh410_ricochet/two
 	max_rounds = 15
 	bonus_overlay = "sh410_ricochet"
 

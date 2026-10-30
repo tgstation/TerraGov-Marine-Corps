@@ -211,6 +211,8 @@
 		building_time += recipe.time * ( recipe.skill_req - user.skills.getRating(SKILL_CONSTRUCTION) ) * 0.5 // +50% time each skill point lacking.
 	if(recipe.skill_req && user.skills.getRating(SKILL_CONSTRUCTION) > recipe.skill_req)
 		building_time -= clamp(recipe.time * ( user.skills.getRating(SKILL_CONSTRUCTION) - recipe.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_MARINE_QUICKBUILD))
+		building_time = 0
 	if(building_time)
 		balloon_alert_to_viewers("building [recipe.title]")
 		if(!do_after(user, building_time, NONE, src, (building_time > recipe.time ? BUSY_ICON_UNSKILLED : BUSY_ICON_BUILD)))
@@ -279,16 +281,16 @@
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(!isopenturf(dest_turf))
-			builder.balloon_alert(builder, "cannot be made on a wall!")
+			builder.balloon_alert(builder, "can't be made on a wall!")
 			return FALSE
 		var/turf/open/open_turf = dest_turf
 		if(!open_turf.allow_construction)
-			builder.balloon_alert(builder, "cant build here!")
+			builder.balloon_alert(builder, "can't build here!")
 			return FALSE
 
 	var/area/area = get_area(dest_turf)
 	if(area.area_flags & NO_CONSTRUCTION)
-		builder.balloon_alert(builder, "cannot be made in this area!")
+		builder.balloon_alert(builder, "can't be made in this area!")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)

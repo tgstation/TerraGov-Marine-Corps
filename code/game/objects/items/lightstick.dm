@@ -22,7 +22,7 @@
 	if(L.mob_size != MOB_SIZE_BIG && prob(80))
 		return
 	visible_message(span_danger("[L] tramples the [src]!"))
-	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+	playsound(src, 'sound/weapons/genhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(isxeno(L) && prob(40))
 		qdel(src)
 		return
@@ -46,7 +46,7 @@
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
 	set_light(0,0)
-	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
+	playsound(user, 'sound/weapons/genhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/item/lightstick/anchored
 	icon_state = "lightstick_blue1"

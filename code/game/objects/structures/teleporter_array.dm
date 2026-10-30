@@ -134,7 +134,7 @@
 	var/list/destination_mobs = cheap_get_living_near(target_turf, 9)
 	for(var/mob/living/victim AS in destination_mobs)
 		victim.adjust_stagger(3 SECONDS)
-		victim.add_slowdown(3)
+		victim.slowdown(3)
 		to_chat(victim, span_warning("You feel nauseous as reality warps around you!"))
 
 	playsound(target_turf, 'sound/magic/lightningbolt.ogg', 75, 0)
@@ -179,7 +179,7 @@
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 
-/datum/action/innate/set_teleport_target/can_use_action()
+/datum/action/innate/set_teleport_target/can_use_action(silent, override_flags, selecting)
 	if(choosing)
 		return FALSE
 	return ..()

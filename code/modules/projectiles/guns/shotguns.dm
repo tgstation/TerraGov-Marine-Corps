@@ -285,6 +285,13 @@
 		/obj/item/attachable/bayonet/converted,
 	)
 
+/obj/item/weapon/gun/shotgun/pump/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/gyro,
+	)
+
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
@@ -626,7 +633,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 9 //codex
+	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -636,21 +643,26 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/bayonet/converted,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
-	fire_delay = 0.8 SECONDS
+	fire_delay = 0.4 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 7
-	recoil = 2
-	recoil_unwielded = 4
-	cock_delay = 0.6 SECONDS
+	recoil = 0
+	recoil_unwielded = 3
+	cock_delay = 0.2 SECONDS
 
 
 // ***********************************************
@@ -806,6 +818,10 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
 
+/obj/item/weapon/gun/shotgun/pump/t35/back_slot //we need an apparent dupe due to uses in assoc lists
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet/converted)
+
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
@@ -862,9 +878,13 @@
 	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+	autobalance_monitor_value = ZX_PRICE
 
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/shotgun/zx76/valhalla
+	autobalance_monitor_value = null
 
 //-------------------------------------------------------
 //V-51 SOM shotgun
@@ -894,7 +914,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight/under,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 18,"rail_x" = 26, "rail_y" = 22, "under_x" = 38, "under_y" = 12, "stock_x" = 14, "stock_y" = 16)
 
@@ -910,14 +929,17 @@
 	wield_delay = 0.85 SECONDS
 
 /obj/item/weapon/gun/shotgun/som/pointman
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/standard
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+
+/obj/item/weapon/gun/shotgun/som/back_slot
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 /obj/item/weapon/gun/shotgun/som/support
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/shotgun/som/burst
 	name = "\improper V-51B assault shotgun"
@@ -931,11 +953,11 @@
 
 /obj/item/weapon/gun/shotgun/som/burst/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/motiondetector)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/motiondetector)
 
 /obj/item/weapon/gun/shotgun/som/burst/ert
 	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
-	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/som, /obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

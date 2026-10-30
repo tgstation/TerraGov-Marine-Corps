@@ -130,7 +130,7 @@
 		message = ";" //radio message
 	switch(order_action)
 		if(ORDER_DESIGNATION_TYPE_MOVE)
-			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
+			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle2dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
 			message += "[ordered ? "[selected_mob], " : "everyone, "][pick("attack", "destroy", "target")] [target]!"
 		if(ORDER_DESIGNATION_TYPE_REPAIR)
@@ -175,12 +175,18 @@
 		return ORDER_DESIGNATION_TYPE_FOLLOW
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
-/obj/get_order_designation_type(mob/ordered) //todo:doesnt actually allow repairs at this level, but other procs refer to this level anyway
+/obj/get_order_designation_type(mob/ordered)
 	if(!faction || ordered.faction == faction)
 		return ORDER_DESIGNATION_TYPE_REPAIR
 	return ORDER_DESIGNATION_TYPE_ATTACK
 
 /obj/effect/build_designator/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
+/obj/structure/patrol_point/get_order_designation_type(mob/ordered)
+	return ORDER_DESIGNATION_TYPE_INTERACT
+
+/obj/machinery/button/get_order_designation_type(mob/ordered)
 	return ORDER_DESIGNATION_TYPE_INTERACT
 
 /obj/machinery/door/get_order_designation_type(mob/ordered)

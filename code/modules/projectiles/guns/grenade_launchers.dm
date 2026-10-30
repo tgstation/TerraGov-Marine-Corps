@@ -54,6 +54,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/sticky/trailblazer,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
@@ -199,6 +200,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flare/cas,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
+		/obj/item/explosive/grenade/sticky/pmc,
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/emp,
 	)
@@ -207,6 +209,10 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	attach_features_flags = NONE
+
+/obj/item/weapon/gun/grenade_launcher/underslung/integrated
+	attach_features_flags = NONE
+	icon_state = NONE
 
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"

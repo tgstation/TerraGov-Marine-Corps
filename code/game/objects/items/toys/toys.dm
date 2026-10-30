@@ -188,7 +188,7 @@
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	src.visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
-	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	playsound(src, 'sound/effects/snap.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /obj/item/toy/snappop/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
@@ -205,7 +205,7 @@
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
-	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	playsound(src, 'sound/effects/snap.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	qdel(src)
 
 /*
@@ -290,7 +290,7 @@
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		to_chat(user, span_notice("You play with [src]."))
-		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
+		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1, SHORT_SOUND_RANGE)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/living/user)
@@ -300,7 +300,7 @@
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, span_notice("You play with [src]."))
-			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
+			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1, SHORT_SOUND_RANGE)
 			cooldown = world.time
 			return
 
@@ -561,6 +561,8 @@
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
 #define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost
+///Max number of teleport attempts before giving up
+#define GNOME_MAX_TELE_ATTEMPTS 50
 
 /obj/item/toy/plush/gnome
 	name = "gnome"
@@ -579,8 +581,6 @@
 	var/gnome_move_range = 5
 	///how many failed teleports we've done
 	var/teleport_retries = 0
-	///sanity cap to prevent gnome spending too much time calculating possible teleport areas, it's theoretically possible to store the gnome in an impossible area so we need to check this
-	var/max_tries = 50
 	///list for keeping track of the mobs around us
 	var/mob/possible_mobs = list()
 	///list for keeping track of items in current gnome turf
@@ -655,19 +655,16 @@
 
 ///handles gnome teleportation when not being observed by players
 /obj/item/toy/plush/gnome/living/proc/teleport_routine(turf/targetturf)
-	var/loopcount
-	while(!length(possible_mobs))
-		loopcount += 1
-		var/area/targetarea = get_area(targetturf)
-		if(!targetarea || !targetturf)
-			targetturf = get_turf(src) //somehow we've lost our turf, use the one underneath us
-			continue
-		//find teleport locations within radius gnome_move_range of targetturf. once found, we verify that it's valid, set our new targetturf to it and move gnome to the new location
+	for(var/i = 1 to GNOME_MAX_TELE_ATTEMPTS)
+		if(!targetturf)
+			targetturf = get_turf(src)
+			if(!targetturf)
+				return //he's in nullspace, Jim
 		targetturf = locate(targetturf.x + rand(gnome_move_range * -1, gnome_move_range), targetturf.y + rand(gnome_move_range * -1, gnome_move_range), targetturf.z)
-		targetarea = get_area(targetturf)
-		if(get_teleport_prereqs(targetturf) || loopcount >= max_tries) //try different turfs within range until we find something that passes get_teleport_prereqs or we hit max amount of loops
-			teleport_retries = 0 //teleported successfully, clear teleport_retries
+		if(get_teleport_prereqs(targetturf)) //try different turfs within range until we find something that passes get_teleport_prereqs or we hit max amount of loops
 			break
+
+	teleport_retries = 0
 	forceMove(targetturf)
 	flick("gnome_return", src)
 
@@ -710,8 +707,8 @@
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isfood(object))
 					qdel(object)
-					playsound(src,'sound/items/eatfood.ogg', 25, 1)
-					balloon_alert_to_viewers("Consumes [object]")
+					playsound(src,'sound/items/eatfood.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+					visible_message(span_warning("[src] consumes \the [object]."))
 					break
 		if(3)
 			for(var/dirn in shuffle(GLOB.alldirs))
@@ -735,14 +732,13 @@
 			(balloon_alert_to_viewers("stifles a laugh")),
 			(balloon_alert_to_viewers("blinks")),
 			(balloon_alert_to_viewers("squints")),
-			(balloon_alert_to_viewers("glares")),
-			(balloon_alert_to_viewers("[src]'s eyes gleam malevolently")))
+			(balloon_alert_to_viewers("glares malevolently")))
 		if(6)
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isinjector(object))
 					qdel(object)
-					playsound(src,'sound/items/hypospray.ogg', 25, 1)
-					balloon_alert_to_viewers("Injects [object] into its arm")
+					playsound(src,'sound/items/hypospray.ogg', 25, 1, MEDIUM_SOUND_RANGE)
+					visible_message(span_warning("[src] injects \the [object] into its arm."))
 					break
 		if(7)
 			flick("gnome_hop", src)
@@ -780,6 +776,7 @@
 #undef HIGH_GNOME_MOVE_RANGE
 #undef STANDARD_GNOME_PIPE_CHANCE
 #undef GNOME_EXCLUSION_RANGE
+#undef GNOME_MAX_TELE_ATTEMPTS
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"

@@ -328,7 +328,7 @@
 ///Handles welder based repair of objects, normally called by welder_act
 /obj/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_DEFAULT, fuel_req = 2, fumble_time)
 	if(user.do_actions)
-		balloon_alert(user, "busy")
+		balloon_alert(user, "busy!")
 		return FALSE
 
 	if(user.a_intent == INTENT_HARM)
@@ -340,7 +340,7 @@
 		return FALSE
 
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
+		balloon_alert(user, "it's melting!")
 		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
@@ -396,7 +396,7 @@
 		user.drop_held_item()
 	step_towards(grabbed_mob, src)
 	var/damage = base_damage + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
-	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE, attacker = user)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
@@ -404,35 +404,47 @@
 	return TRUE
 
 /obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+	footstep_overrides[FOOTSTEP_PLATING] = get_footstep_layer(layer, plane)
 
 /obj/proc/do_deploy(mob/user, turf/location)
 	if(!istype(location))
 		location = get_turf(src)
 	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
 
-///Dissassembles the device
-/obj/proc/disassemble(mob/user)
+/// Used as a callback for disassembly of deployables
+/obj/proc/can_disassemble(mob/user)
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
 		return FALSE
-	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+	if(!ishuman(user))
+		return FALSE
+	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
-			balloon_alert(user, "Cannot disassemble")
+			balloon_alert(user, "can't disassemble!")
+		return FALSE
+	return TRUE
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	if(!can_disassemble(user))
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE
+
+/// Handles UNsuccessful disassembly tasks, opposite of below
+/obj/proc/failed_disassemble(mob/user)
+	return
 
 /// Handles successful disassembly tasks on a deployable, cannot be used for failure checks as disassembly has completed already
 /obj/proc/post_disassemble(mob/user)
 	return TRUE
 
-/obj/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/obj/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) // Attack normally.

@@ -28,7 +28,9 @@
 /datum/outfit/job/som/militia/standard/uzi
 	belt = /obj/item/storage/belt/knifepouch
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	backpack_contents = list(
+
+/datum/outfit/job/som/militia/standard/uzi/update_contents()
+	backpack_contents += list(
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/ammo_magazine/smg/uzi/extended = 8,
 	)
@@ -38,7 +40,8 @@
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
-	backpack_contents = list(
+/datum/outfit/job/som/militia/standard/skorpion/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/smg/skorpion = 7,
 	)
@@ -46,30 +49,30 @@
 /datum/outfit/job/som/militia/standard/mpi_km
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/standard
-
-	backpack_contents = list(
-		/obj/item/explosive/plastique = 1,
-		/obj/item/explosive/grenade/incendiary/molotov = 2,
-	)
-
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/mpi_km = 6,
+	)
+
+/datum/outfit/job/som/militia/standard/mpi_km/update_contents()
+	backpack_contents += list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/grenade/incendiary/molotov = 2,
 	)
 
 
 /datum/outfit/job/som/militia/standard/shotgun
 	belt = /obj/item/storage/belt/shotgun
 	suit_store = /obj/item/weapon/gun/shotgun/pump/standard
-
-	backpack_contents = list(
-		/obj/item/storage/box/m94 = 1,
-		/obj/item/explosive/plastique = 1,
-		/obj/item/stack/sheet/metal/medium_stack = 1,
-	)
-
 	belt_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 7,
 		/obj/item/ammo_magazine/handful/flechette = 7,
+	)
+
+/datum/outfit/job/som/militia/standard/shotgun/update_contents()
+	backpack_contents += list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/explosive/plastique = 1,
+		/obj/item/stack/sheet/metal/medium_stack = 1,
 	)
 
 
@@ -79,7 +82,8 @@
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
-	backpack_contents = list(
+/datum/outfit/job/som/militia/standard/fanatic/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/explosive/grenade/phosphorus/upp = 1,
 		/obj/item/ammo_magazine/smg/skorpion = 5,
@@ -88,27 +92,27 @@
 /datum/outfit/job/som/militia/standard/som_smg
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/smg/som/basic
-
-	backpack_contents = list(
-		/obj/item/explosive/plastique = 1,
-		/obj/item/explosive/grenade/incendiary/molotov = 2,
-	)
-
 	belt_contents = list(
 		/obj/item/ammo_magazine/smg/som = 6,
+	)
+
+/datum/outfit/job/som/militia/standard/som_smg/update_contents()
+	backpack_contents += list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/grenade/incendiary/molotov = 2,
 	)
 
 
 /datum/outfit/job/som/militia/standard/mpi_grenadier
 	belt = /obj/item/storage/belt/marine/som
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
-
-	backpack_contents = list(
-		/obj/item/explosive/grenade/som = 2,
-	)
-
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/mpi_km/black = 6,
+	)
+
+/datum/outfit/job/som/militia/standard/mpi_grenadier/update_contents()
+	backpack_contents += list(
+		/obj/item/explosive/grenade/som = 2,
 	)
 
 
@@ -146,41 +150,41 @@
 /datum/outfit/job/som/militia/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
 	r_pocket = /obj/item/storage/holster/flarepouch
-
-	backpack_contents = list(
-		/obj/item/ammo_magazine/smg/uzi/extended = 7,
-	)
-
 	r_pocket_contents = list(
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1,
 		/obj/item/explosive/grenade/flare = 6,
+	)
+
+/datum/outfit/job/som/militia/medic/uzi/update_contents()
+	backpack_contents += list(
+		/obj/item/ammo_magazine/smg/uzi/extended = 7,
 	)
 
 
 /datum/outfit/job/som/militia/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 	r_pocket = /obj/item/storage/holster/flarepouch
-
-	backpack_contents = list(
-		/obj/item/ammo_magazine/smg/skorpion = 7,
-	)
-
 	r_pocket_contents = list(
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1,
 		/obj/item/explosive/grenade/flare = 6,
+	)
+
+/datum/outfit/job/som/militia/medic/skorpion/update_contents()
+	backpack_contents += list(
+		/obj/item/ammo_magazine/smg/skorpion = 7,
 	)
 
 
 /datum/outfit/job/som/militia/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
 	r_pocket = /obj/item/storage/pouch/shotgun
-
-	backpack_contents = list(
+	r_pocket_contents = list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/handful/flechette = 2,
 	)
 
-	r_pocket_contents = list(
+/datum/outfit/job/som/militia/medic/paladin/update_contents()
+	backpack_contents += list(
 		/obj/item/ammo_magazine/handful/buckshot = 2,
 		/obj/item/ammo_magazine/handful/flechette = 2,
 	)
@@ -292,37 +296,143 @@
 	)
 
 
-/datum/outfit/job/freelancer/standard/one/campaign
+/datum/outfit/job/freelancer/standard/m412/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/two/campaign
+/datum/outfit/job/freelancer/standard/pump/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/three/campaign
+/datum/outfit/job/freelancer/standard/tx11/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/medic/campaign
+/datum/outfit/job/freelancer/medic/m25/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/one/campaign
+/datum/outfit/job/freelancer/medic/marksman/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/grenadier/two/campaign
+/datum/outfit/job/freelancer/grenadier/alf/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/leader/one/campaign
+/datum/outfit/job/freelancer/grenadier/hpr/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/leader/two/campaign
+/datum/outfit/job/freelancer/grenadier/tx55/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/pmc/standard/campaign
+/datum/outfit/job/freelancer/leader/m41a/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/leader/tx55/campaign
+	ears = /obj/item/radio/headset/mainship
+	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer_custom/combat_patrol
+
+/datum/outfit/job/freelancer/leader/tx11/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/val/stripesthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/standard/m416/stripesthree/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/pmc/gunner/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/pmc/leader/campaign
+/datum/outfit/job/pmc/gunner/sarge/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargetwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargethree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/sargefour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/joker/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokertwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokerthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/jokerfour/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripes/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripestwo/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripesthree/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/gunner/stripes/four/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/leader/m416/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/pmc/leader/gunner/campaign
 	ears = /obj/item/radio/headset/mainship
 
 /datum/outfit/job/icc/standard/mpi_km/campaign

@@ -9,6 +9,7 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "baneling" //used to match appropriate wound overlays
+	death_flick = "Baneling_Die"
 
 	// *** Melee Attacks *** //
 	melee_damage = 16

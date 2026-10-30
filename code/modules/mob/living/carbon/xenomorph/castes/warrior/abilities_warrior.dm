@@ -6,6 +6,7 @@
 
 /datum/action/ability/xeno_action/empower
 	name = "Empower"
+	desc = "You can be empowered by a primordial drone link."
 	/// Holds the fade-out timer.
 	var/fade_timer
 	/// The amount of abilities we've chained together.
@@ -83,6 +84,10 @@
 	. = ..()
 	desc = "Move on all fours and loosen our scales. Increases movement speed by [abs(speed_modifier)], but reduces all soft armor by [armor_modifier]. Automatically disabled after using an ability."
 
+/datum/action/ability/xeno_action/toggle_agility/update_button_icon()
+	action_icon_state = toggled ? "agility_off" : initial(action_icon_state)
+	return ..()
+
 /datum/action/ability/xeno_action/toggle_agility/action_activate()
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
@@ -129,13 +134,13 @@
 	new /obj/effect/temp_visual/warrior/impact(get_turf(living_target), get_dir(living_target, xeno_owner))
 	// mob/living/turf_collision() does speed * 5 damage on impact with a turf, and we don't want to go overboard, so we deduce that here.
 	var/thrown_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_IMPACT_DAMAGE_MULTIPLIER
-	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+	living_target.apply_damage(thrown_damage, BRUTE, blocked = MELEE, attacker = owner)
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
 		if(hit_living.issamexenohive(xeno_owner))
 			return
 		INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
-		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE)
+		hit_living.apply_damage(thrown_damage, BRUTE, blocked = MELEE, attacker = owner)
 		hit_living.Knockdown(WARRIOR_DISPLACE_KNOCKDOWN)
 		step_away(hit_living, living_target, 1, 1)
 	if(isobj(hit_atom))
@@ -206,7 +211,7 @@
 
 /datum/action/ability/activable/xeno/warrior/lunge/New(Target)
 	. = ..()
-	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies."
+	desc = "Lunge towards a target within [starting_lunge_distance] tiles, putting them in our grasp. Usable on allies and targets directly behind cover."
 
 /datum/action/ability/activable/xeno/warrior/lunge/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
@@ -263,6 +268,14 @@
 
 /// Do the grab on the target, and clean all previous vars
 /datum/action/ability/activable/xeno/warrior/lunge/proc/lunge_grab(atom/A)
+	if(ishuman(A) && (angle2dir(Get_Angle(xeno_owner.throw_source ? xeno_owner.throw_source : get_turf(xeno_owner), A)) in reverse_nearby_direction(A.dir)))
+		var/mob/living/carbon/human/human_target = A
+		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
+			xeno_owner.set_throwing(FALSE)
+			playsound(get_turf(A), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
+			xeno_owner.visible_message(span_xenowarning("[xeno_owner] is knocked back!"), span_xenowarning("We are knocked back!"))
+			return
 	clean_lunge_target()
 	xeno_owner.swap_hand()
 	if(xeno_owner.start_pulling(A) && isliving(A) && !xeno_owner.issamexenohive(A))
@@ -351,7 +364,7 @@
 	playsound(living_target, 'sound/weapons/alien_claw_block.ogg', 75, 1)
 	shake_camera(living_target, 1, 1)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_DISARM2)
-	var/fling_distance = WARRIOR_FLING_DISTANCE
+	var/fling_distance = starting_fling_distance
 	if(living_target.mob_size >= MOB_SIZE_BIG) // Penalize fling distance for big creatures.
 		fling_distance--
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
@@ -448,7 +461,7 @@
 			living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 			shake_camera(living_target, 1, 1)
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
-			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
+			living_target.slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
 			living_target.adjust_blurriness(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)
 			living_target.Paralyze(WARRIOR_GRAPPLE_TOSS_THROW_PARALYZE) // very important otherwise the guy can move right as you throw them
 			RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
@@ -490,6 +503,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
 	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/warrior/punch/encounter
+	keybinding_signals = null
+	cooldown_duration = 30 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/punch/on_cooldown_finish()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
@@ -651,11 +668,11 @@
 	new visual_effect(get_turf(src))
 	playsound(src, sound_effect, 50, 1)
 	shake_camera(src, 1, 1)
-	add_slowdown(slowdown_stacks)
+	slowdown(slowdown_stacks)
 	adjust_stagger(stagger_stacks)
 	adjust_blurriness(slowdown_stacks)
-	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE)
-	apply_damage(punch_damage, STAMINA, updating_health = TRUE)
+	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE, attacker = xeno)
+	apply_damage(punch_damage, STAMINA, updating_health = TRUE, attacker = xeno)
 	var/turf_behind = get_step(src, REVERSE_DIR(get_dir(src, xeno)))
 	if(!push)
 		return
@@ -694,7 +711,7 @@
 	name = "Flurry"
 	action_icon_state = "flurry"
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
-	desc = "Strike at your target with blinding speed."
+	desc = "Strike at your target with blinding speed. Dealing less damage but blinding your target."
 	ability_cost = 10
 	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(
@@ -733,7 +750,7 @@
 		return
 	return ..()
 
-/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags)
+/datum/action/ability/activable/xeno/warrior/punch/flurry/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(cooldown_timer && current_charges > 0)
 		return TRUE

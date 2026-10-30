@@ -11,9 +11,9 @@
 	max_integrity = 5
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
-
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
+	xeno_structure_flags = DEPART_DESTRUCTION_IMMUNE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -21,15 +21,16 @@
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _hivenumber, _creator)
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
-	var/static/list/connections = list(
+	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
@@ -40,11 +41,10 @@
 	SIGNAL_HANDLER
 	creator = null
 
-///Ensures that no acid gas will be released when the well is crushed by a shuttle
-/obj/structure/xeno/acidwell/proc/shuttle_crush()
+/// Deletes this first before it can get crushed by a shuttle.
+/obj/structure/xeno/acidwell/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
-
 
 /obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
@@ -109,7 +109,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 		deconstruct(TRUE, xeno_attacker)
 		return
 

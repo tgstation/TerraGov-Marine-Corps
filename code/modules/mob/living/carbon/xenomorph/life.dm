@@ -53,7 +53,7 @@
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.round_type_flags & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-	if(loc_weeds_type || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+	if(loc_weeds_type || HAS_TRAIT(src, TRAIT_INNATE_HEALING)) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE, seconds_per_tick)
 		else
@@ -92,7 +92,9 @@
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_PRE_HEALTH_REGEN_SCALING)
 		var/time_modifier = seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+		var/previous_regen_power = regen_power
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 30, 0, 1) //Ignores the cooldown, and gives a 50% boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
@@ -100,13 +102,14 @@
 			return
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 20, 1)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_POST_HEALTH_REGEN_SCALING, regen_power, previous_regen_power)
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
-	var/list/heal_data = list(amount)
+	var/list/heal_data = list(amount, amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data, seconds_per_tick)
 	HEAL_XENO_DAMAGE(src, heal_data[1], TRUE)
-	return heal_data[1]
+	return heal_data // [1] = amount of unused healing, [2] = raw healing
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates(seconds_per_tick)
 	var/turf/T = loc
@@ -120,11 +123,11 @@
 		if(plasma_stored < pheromone_cost)
 			use_plasma(plasma_stored, FALSE)
 			QDEL_NULL(current_aura)
-			src.balloon_alert(src, "Stop emitting, no plasma")
+			src.balloon_alert(src, "no plasma, emitting stopped!")
 		else
 			use_plasma(pheromone_cost * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD, FALSE)
 
-	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN) || !loc_weeds_type && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN) || !loc_weeds_type && !((xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN) || CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER)))
 		if(current_aura) //we only need to update if we actually used plasma from pheros
 			hud_set_plasma()
 		return
@@ -170,41 +173,17 @@
 
 	recovery_aura = received_auras[AURA_XENO_RECOVERY] || 0
 
-	hud_set_pheromone()
+	update_aura_overlay()
 	..()
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	return
-
-/mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
-	var/env_temperature = loc.return_temperature()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
-		if(env_temperature > (T0C + 66))
-			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
-			updatehealth() //unused while atmos is off
-			throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
-			if(prob(20))
-				to_chat(src, span_warning("We feel a searing heat!"))
-		else
-			clear_alert(ALERT_FIRE)
 
 /mob/living/carbon/xenomorph/updatehealth()
 	. = ..()
 	if(!. || QDELING(src)) // For godmode / if they got gibbed via update_stat.
 		return
 	med_hud_set_health() // Todo: Make all damage update health so we can just kill pointless life updates entirely.
-	update_wounds()
-
-/mob/living/carbon/xenomorph/handle_slowdown()
-	if(slowdown)
-		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Initial slowdown is: <b>[slowdown]</b>")
-		#endif
-		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
-		#if DEBUG_XENO_LIFE
-		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
-		#endif
-	return slowdown
 
 /mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
 	if(frenzy_aura == new_aura)

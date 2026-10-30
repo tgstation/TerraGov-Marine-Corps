@@ -164,7 +164,7 @@
 
 /datum/reagent/consumable/coffee/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.2, TOX)
-	L.jitter(2)
+	L.adjust_jitter(2)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
@@ -174,7 +174,7 @@
 
 /datum/reagent/consumable/coffee/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.5, TOX)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, span_warning("You spasm and pass out!"))
 		L.Unconscious(10 SECONDS)
@@ -246,7 +246,7 @@
 	targ_temp = BODYTEMP_NORMAL - 5
 
 /datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/L, metabolism)
-	L.jitter(10)
+	L.adjust_jitter(10)
 	L.set_drugginess(30)
 	return ..()
 
@@ -744,15 +744,15 @@
 			L.adjustStaminaLoss(-0.5*effect_str)
 		if(11 to 60)
 			L.adjustStaminaLoss(-0.25*effect_str)
-			L.jitter(1)
+			L.adjust_jitter(1)
 		if(61 to 150)
 			L.adjustStaminaLoss(0.25*effect_str)
 			L.apply_damage(5, TOX)
-			L.jitter(2)
+			L.adjust_jitter(2)
 		if(151 to INFINITY)
 			L.adjustStaminaLoss(2.5*effect_str)
 			L.apply_damage(10, TOX) //You're having a bad day.
-			L.jitter(5)
+			L.adjust_jitter(5)
 	return ..()
 
 /datum/reagent/consumable/coffee/icecoffee
@@ -811,5 +811,5 @@
 	targ_temp = BODYTEMP_NORMAL - 5
 
 /datum/reagent/consumable/rewriter/on_mob_life(mob/living/L, metabolism)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	return ..()

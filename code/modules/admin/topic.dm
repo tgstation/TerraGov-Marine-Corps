@@ -193,7 +193,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/atom/movable/AM = locate(href_list["observefollow"])
 		var/client/C = usr.client
 
-		if(!ismovableatom(AM))
+		if(!ismovable(AM))
 			return
 
 		if(isnewplayer(C.mob) || isnewplayer(AM))
@@ -2221,8 +2221,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_SOUND))
 			return
 
+		var/credit = href_list["credit"]
 		var/link_url = href_list["play_internet"]
 		if(!link_url)
 			return
 
-		web_sound(usr, link_url)
+		web_sound(usr, link_url, credit)

@@ -79,7 +79,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	. = ..()
 	if(!.)
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+	if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 		smokecloak_on()
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(!target_zone)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
@@ -124,6 +124,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+			visible_message(span_danger("[user]'s attack against [src] with [user.p_their()] [I] was blocked!"), null, null, 5)
 			return TRUE
 
 	var/applied_damage = modify_by_armor(damage, MELEE, I.penetration, target_zone)
@@ -156,7 +158,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(weapon_sharp)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
-	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
+	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE, attacker = user)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -178,7 +180,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
@@ -196,7 +198,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS && !(HAS_TRAIT(user, TRAIT_NO_STUN_ATTACK)))
 					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
@@ -260,6 +262,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(!zone)
 			visible_message(span_notice("\The [thrown_item] misses [src] narrowly!"), null, null, 5)
+			animatation_displace_reset(src)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 			return FALSE
@@ -276,7 +279,10 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/affecting = get_limb(zone)
 
 		if(affecting.limb_status & LIMB_DESTROYED)
-			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
+			visible_message(span_notice("\The [thrown_item] flies through where [src]'s [affecting.display_name] was!"), null, null, 5)
+			animatation_displace_reset(src)
+			if(living_thrower)
+				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 			return FALSE
 
 		thrown_item.set_throwing(FALSE) // Hit the limb.
@@ -327,6 +333,8 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!.)
 		return
 	if(stat || (species.species_flags & NO_PAIN))
+		return
+	if(soft_armor.getRating(FIRE) > 80) //Lets not spam screams if you are barely taking any damage
 		return
 	if(prob(75))
 		return
@@ -394,7 +402,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Perception distorting effects of the psychic scream*
 
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
-	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || (user.a_intent != INTENT_HARM && !iszombie(src)))
 		return ..()
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
@@ -402,22 +410,9 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
-	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
-		return
-	if(!get_organ_slot(ORGAN_SLOT_HEART))
-		to_chat(user, span_notice("The heart is no longer here!"))
-		return
-	log_combat(user, src, "ripped [src]'s heart", I)
-	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	remove_organ_slot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/heart/heart = new
-	heart.die()
-	user.put_in_hands(heart)
-	chestburst = CARBON_CHEST_BURSTED
-	update_burst()
+	rip_out_heart(user, TRUE)
 
-/mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
+/mob/living/carbon/human/welder_act(mob/user, obj/item/tool)
 	. = ..()
 
 	if(user.a_intent != INTENT_HELP)
@@ -429,18 +424,18 @@ Contains most of the procs that are called when a mob is attacked by something
 		return TRUE
 
 	if(!(affecting.limb_status & LIMB_ROBOT))
-		balloon_alert(user, "Limb not robotic")
+		balloon_alert(user, "limb not robotic!")
 		return TRUE
 
 	if(!affecting.brute_dam)
-		balloon_alert(user, "Nothing to fix!")
+		balloon_alert(user, "nothing to fix!")
 		return TRUE
 
 	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
+		balloon_alert(user, "busy!")
 		return TRUE
 
-	if(!I.tool_use_check(user, 2))
+	if(!tool.tool_use_check(user, 2))
 		return TRUE
 
 	var/repair_time = 1 SECONDS
@@ -451,12 +446,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
-	while(I.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
+	while(tool.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
 			UpdateDamageIcon()
-		if(!I.tool_use_check(user, 2))
+		if(!tool.tool_use_check(user, 2))
 			break
 		if(!affecting.brute_dam)
 			var/previous_limb = affecting
@@ -468,6 +463,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				affecting = checked_limb
 				break
 			if(previous_limb == affecting)
-				balloon_alert(user, "Dents fully repaired.")
+				balloon_alert(user, "dents fully repaired")
 				break
 	return TRUE

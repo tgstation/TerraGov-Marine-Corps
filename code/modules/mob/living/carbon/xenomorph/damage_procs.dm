@@ -55,11 +55,11 @@
 	if(stagger_amount > 0)
 		adjust_stagger(stagger_amount)
 	adjust_sunder(sunder_amount)
-	add_slowdown(slowdown_amount)
+	slowdown(slowdown_amount)
 
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/attacker)
 	if(status_flags & GODMODE)
 		return
 	if(damagetype != BRUTE && damagetype != BURN)
@@ -75,7 +75,7 @@
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, 0, 1, sharp, edge)
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage, attacker)
 
 	if(stat == DEAD)
 		return FALSE
@@ -144,6 +144,24 @@
 
 	if(updating_health)
 		updatehealth()
+
+/mob/living/carbon/xenomorph/adjustToxLoss(amount)
+	return adjustBruteLoss(amount)
+
+/mob/living/carbon/xenomorph/setToxLoss(amount)
+	return setBruteLoss(amount)
+
+/mob/living/carbon/xenomorph/adjustCloneLoss(amount)
+	return adjustFireLoss(amount)
+
+/mob/living/carbon/xenomorph/setCloneLoss(amount)
+	return setFireLoss(amount)
+
+/mob/living/carbon/xenomorph/adjustOxyLoss(amount)
+	return adjustFireLoss(amount)
+
+/mob/living/carbon/xenomorph/setOxyLoss(amount)
+	return setFireLoss(amount)
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)

@@ -9,7 +9,7 @@
 /obj/machinery/portable_atmospherics/scrubber/attack_hand(mob/living/user)
 	. = ..()
 	on = !on
-	balloon_alert(user, "You turn [src] [on ? "on" : "off"]")
+	balloon_alert(user, "turned [on ? "on" : "off"]")
 	update_icon()
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon_state()

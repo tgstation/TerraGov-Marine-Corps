@@ -95,7 +95,7 @@
 
 	if(cooldown < world.time - 25)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		cooldown = world.time
 
 /obj/item/storage/kitchen_tray/attack_self(mob/user)

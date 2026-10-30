@@ -30,9 +30,11 @@
 	/// (num) The max amount of loops to run for.
 	var/max_loops
 	///Range the sound will travel
-	var/range = 0
+	var/range = DEFAULT_SOUND_RANGE
 	///The rate the volume falls off. Higher = volume drops slower
 	var/falloff
+	///Frequency override
+	var/frequency
 	/// The ID of the timer that's used to loop the sounds.
 	var/timer_id
 	///(num) world.time when the datum started looping
@@ -115,7 +117,7 @@
 		if(direct)
 			SEND_SOUND(thing, sound_to_play)
 		else
-			playsound(thing, sound_to_play, volume, vary, range, falloff, channel=sound_channel, ambient_sound = src.ambient_sound)
+			playsound(thing, sound_to_play, volume, vary, range, falloff, frequency = src.frequency, channel=sound_channel, ambient_sound = src.ambient_sound)
 
 /**
  * Picks and returns soundfile

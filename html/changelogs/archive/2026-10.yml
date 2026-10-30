@@ -1,0 +1,203 @@
+2026-10-05:
+  Arturlang:
+  - admin: can now enable tracy midround
+  - bugfix: repo building on latest versions of byond
+  Lewdcifer:
+  - rscadd: Behemoth has been COMPLETELY reworked from the ground up.
+  - spellcheck: The changelog only offers a very brief overview, so if you're interested
+      in specifics, refer to the pull request.
+  - rscadd: Added a new ability, Seize. Fast movement option that requires Earth Pillars
+      to function.
+  - rscadd: Added a new ability, Geocrush. Heavy melee damage.
+  - rscdel: Rolling ability removed.
+  - rscdel: Seismic Fracture removed.
+  - balance: Redesigned Earth Riser, as well as Earth Pillars, to be faster, resilient,
+      and versatile, but more limited in access, damage, and range.
+  - balance: You can now climb and jump over Earth Pillars.
+  - balance: Landslide redesigned to be much faster in execution, similarly to its
+      now deprecated Primordial variant, at the expense of damage and reach.
+  - balance: Primal Wrath, the Behemoth's primordial ability, has been completely
+      redesigned. Instead of upgrading all of your abilities, it will now restore
+      all damage taken in a time window, while providing a few seconds of invulnerability,
+      in exchange for a stacking temporary debuff.
+  - balance: Allied xenos can no longer ride the Behemoth.
+  - rscadd: Added various statistic trackers for several Behemoth actions.
+  - soundadd: Added a few new sounds for Earth Pillars, Landslide, and Geocrush.
+  - sounddel: Removed unused sounds related to Behemoth.
+  - imageadd: Added some new sprites for Earth Pillars, Landslide, and Geocrush. Also
+      reorganized Behemoth's stuff.
+  - imagedel: Removed unused sprites related to Behemoth.
+  - bugfix: Squashed some bugs and fixed some glitches or unintended behavior related
+      to Behemoth.
+  - refactor: Refactored most, if not all, coding related to Behemoth.
+  Lumipharon:
+  - rscadd: Adds the RFD to the engineering vendor, allowing for quick and convenient
+      deconstruction of barricades and razorwire
+  - rscadd: Added some more vendor slogans
+  mudzbe:
+  - rscadd: Xenos also get psy points from disk cycles
+  - bugfix: Fix xenos not getting psy points from tunnels,
+  - rscdel: Zombies cannot be drained by cocoons
+2026-10-06:
+  Lumipharon:
+  - rscadd: All weapons now have codex entries
+  - code_imp: Deployment flags are their on var instead of item_flags
+  - refactor: refactored various bits of weapon code
+2026-10-07:
+  mudzbe:
+  - rscadd: Added corrupted larva, runner saddle and IFF tag to zcrash vendor
+  - rscadd: Xenos can perma zombies
+  - rscadd: Added roundstart larva spawns to zombie crash, (widebury integration pending)
+  - balance: Xenos have reduced ability cost and duration to 1/3, and access to nuke
+      war abilities on zombie crash, xenos count as humans for spawning zombies
+  - bugfix: Corrupted xenos are offered when created
+2026-10-08:
+  Lumipharon:
+  - code_imp: Sounds use a default max range of 17 instead of defaulting to a value
+      based on volume. Hopefully reduces lag at high pop
+  - qol: tweaked various sound's maxrange
+2026-10-09:
+  mudzbe:
+  - bugfix: Fix hive transfer bugs, fix corrupted xenos counting as normal hive
+  - bugfix: Support transfering hives with hive abilities, minions dont get them anymore
+2026-10-10:
+  Lumipharon:
+  - code_imp: Fixed some incorrect typecasts
+  - bugfix: fixed guns processing when they shouldn't be
+  - code_imp: cleaned up some sleep issues
+  - admin: NPC's will no longer send admin messages when their pathing fails
+2026-10-12:
+  Lumipharon:
+  - bugfix: fixed minimaps breaking when the Canterbury lands
+  - bugfix: Charging xenos are consistently immune to stagger
+  - refactor: refactored keycard authenticator code
+  - bugfix: fixed some bugs with power loaders if their loaded thing gets moved or
+      deleted
+  - soundadd: added a missing clamp hit sound for power loader attacks
+  - qol: Devour works next to fog again
+  - bugfix: fixed a few vendor slogan problems
+  - bugfix: fixed the devour ability for gorgers
+  - bugfix: fixed not being able to open storage with bulky items
+  - code_imp: Fixed some sig handler proc chains sleeping when they shouldn't
+  - bugfix: fixed a runtime with the refueling component
+  - bugfix: Hunter mirages can pass through fog
+  - bugfix: fixed vv particle editing and filteriffic
+  - bugfix: Crash/Zcrash display the correct time to land on round start, and no longer
+      display the nuke war ground map flavour text.
+  - qol: Mobs shake slightly when a thrown item misses them, in the same way that
+      bullet misses do
+2026-10-14:
+  Lewdcifer:
+  - bugfix: Fixed an issue caused by the latest Behemoth rework that made it so that
+      the Conqueror's Domination tile warning would no longer appear.
+  Lumipharon:
+  - imageadd: added mob sprites for nuke disks and beacons
+  - bugfix: fixed an issue with ghosting out of mobs creating incorrect references
+      in the important_recursive_contents list
+  - balance: Genghis charges are significantly cheaper
+  - imageadd: added inhand sprites for defibs, splints and kits
+  - bugfix: Ammo boxes lose acid on pickup like other items
+  - bugfix: fixed deployable floodlights not working
+  - bugfix: fixed projectiles hitting or ignoring border objects like windows incorrectly
+  - qol: Cinematics actually cover the entire gamescreen
+  - bugfix: Face huggers can no longer survive indefinitely when carried by humans,
+      other than on their face
+  - bugfix: fixed a couple of instances of welders using fuel when they shouldn't
+  - code_imp: tools use the correct use_tool() and play_tool_sound() procs
+  mudzbe:
+  - balance: Increase xeno autobalance buff on zcrash
+2026-10-15:
+  Deputi:
+  - bugfix: The Tadpole landing designator now expands your view range as intended.
+  Lewdcifer:
+  - balance: Supersoldiers can now stack their powerloader skill stims one level higher,
+      and achieve mastery.
+2026-10-16:
+  Deputi:
+  - balance: Orion Outpost starts fully covered in weeds.
+  - bugfix: Orion Outpost Shallow and Deep caves are now at the appropriate depths.
+  - bugfix: Orion Outpost Canteen APC covers the entire building now. Also added some
+      light fixtures to the kitchen.
+  - bugfix: Orion Outpost cave wall tiles now have a ceiling.
+  - balance: Research Outpost starts fully covered in weeds.
+  - bugfix: Replaced a missing cable underneath one of the Research Outpost geothermal
+      generators.
+  - bugfix: Slightly shifted a couple of resin walls in the NE corner of Research
+      Outpost to fill a 1x1 gap.
+  termin-0:
+  - bugfix: Changed the NE cave entrance on Big Red to have shallow caves
+2026-10-17:
+  Neocloudy:
+  - bugfix: Added a 5 second cooldown for toggling the takeoff alarm on any marine
+      dropship.
+  - bugfix: Turning off automation will no longer force disable the takeoff alarm.
+2026-10-19:
+  Lewdcifer:
+  - bugfix: Fixed an issue where Behemoth's Earth Riser could move dead people.
+  Lumipharon:
+  - code_imp: cleaned up a redundant toxin subtype
+  - bugfix: Cinematics centered for widescreen mode
+  - bugfix: fixed some welder interactions that were broken by the recent sound updates
+  - qol: Bike mounted weapons behave much nicer when checking their firing angles
+  marivanwan:
+  - bugfix: Fixed a few balloon alerts
+  mudzbe:
+  - balance: Reduce zombie health and heal rate
+2026-10-20:
+  Arturlang:
+  - admin: del log verb now gives better debugging info
+  Lewdcifer:
+  - rscadd: You can now jump over microwaves and climb them.
+2026-10-21:
+  Runian:
+  - balance: Xenomorph mutations are now disabled by default for all gamemodes.
+2026-10-22:
+  Lumipharon:
+  - refactor: refactored various effects to be status effects instead of mob based
+  - code_imp: max_stacks for stacking status effects now work as intended, allowing
+      for uncapped stacks if desired
+  Runian:
+  - rscadd: Flashes now make a sound and flicker when EMP'd.
+  - bugfix: Flashes now flicker their flashing icon when activated.
+  - bugfix: Synthetic and burnt-out flashes are no longer invisible.
+2026-10-23:
+  Lumipharon:
+  - bugfix: You can no longer weld certain kinds of damaged dirt turfs
+  - bugfix: Hitting objects will no longer play the burn damage sound when it isn't
+      meant to
+  - bugfix: fixed a SG goggle exploit
+  - bugfix: Baneling death animations no longer reoccur
+  - bugfix: Chem nades will no longer drain reagents out of things like welderbags
+2026-10-26:
+  Runian:
+  - code_imp: Signals can now be registered to listen to any/specific tool behavior.
+  - code_imp: Unique right-click interactions for items with tool behavior is now
+      supported.
+  - bugfix: The prefix that xenomorph names get from being part of a non-standard
+      hive now correctly appends only one space.
+  mudzbe:
+  - bugfix: Fix corrupted hive AIs treating tgmc as hostile, such as turrets and mob
+      AIs
+2026-10-27:
+  Joe13413:
+  - balance: ROC-58 Observer cameras take 2x longer to melt with acid
+  Runian:
+  - rscdel: Crates can no longer be sold via a fulton.
+  SandPoot:
+  - qol: Observers can now jump between Z levels using their minimap, on multi-z locations
+      like certain shipmaps.
+2026-10-28:
+  Lumipharon:
+  - qol: Detpacks are more audible at distance again
+  - bugfix: fixed some weird alt appearance issues
+  - code_imp: Alt appearances are actually deleted by default, when using remove_alt_appearance()
+  - balance: tfoot mortar req cost increased to 40 from 10, and for factorio 800 from
+      200
+  Runian:
+  - bugfix: Xenomorphs can now pull cocoons that are empty/opened.
+2026-10-30:
+  SandPoot:
+  - bugfix: Turning on tesla turrets during disassembly will cancel it.
+  - bugfix: TURRET_INACCURATE turrets will no longer lose their nerf if you start
+      and cancel disassembly.
+  - qol: Update tesla turret's codex (there's a stat (nerf) that wasn't visible before).

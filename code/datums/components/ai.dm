@@ -69,16 +69,16 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(!ai_behavior || QDELETED(parent))
 		return
 	var/mob/living/living_parent = parent
-	if(living_parent.stat == DEAD)
+	if(!ai_behavior.should_start_ai())
 		return
 	if(living_parent.client)
 		return
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
 		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
-		ai_behavior = null
+		QDEL_NULL(ai_behavior)
 		return
 	for(var/obj/effect/ai_node/node in range(7))
-		ai_behavior.current_node = node
+		ai_behavior.set_current_node(node)
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()

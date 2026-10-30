@@ -158,6 +158,21 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
 	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
 
+/obj/item/storage/holster/backholster/rpg/freelancer
+	name = "\improper Freelancer rocket bag"
+	desc = "This backpack can hold 6 67mm shells, in addition to a recoiless launcher."
+	icon_state = "freelancer_rocket"
+	storage_type = /datum/storage/holster/backholster/rpg/freelancer
+
+/obj/item/storage/holster/backholster/rpg/freelancer/full/PopulateContents()
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
 	desc = "This backpack can hold 4 RPGs, in addition to a RPG launcher."
@@ -215,9 +230,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
 	storage_type = /datum/storage/holster/backholster/flamer
-	///The internal fuel tank
-	var/obj/item/ammo_magazine/flamer_tank/internal/tank
-
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Sterling Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -225,51 +237,13 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
+	///The type of fuel this carries
+	var/fuel_type = DEFAULT_FUEL_TYPE
 
 /obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
-	tank = new
-	update_icon()
-
-/obj/item/storage/holster/backholster/flamer/MouseDrop_T(obj/item/W, mob/living/user)
-	. = ..()
-	if(istype(W,/obj/item/ammo_magazine/flamer_tank))
-		refuel(W, user)
-
-/obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
-	. = ..()
-	//uses the tank's proc to refuel
-	if(istype(O, /obj/structure/reagent_dispensers/fueltank))
-		tank.afterattack(O, user)
-	if(istype(O,/obj/item/ammo_magazine/flamer_tank))
-		refuel(O, user)
-
-/* Used to refuel the attached FL-86 flamer when it is put into the backpack
- *
- * param1 - The flamer tank, the actual tank we are refilling
- * param2 - The person wearing the backpack
-*/
-/obj/item/storage/holster/backholster/flamer/proc/refuel(obj/item/ammo_magazine/flamer_tank/flamer_tank, mob/living/user)
-	if(!istype(flamer_tank,/obj/item/ammo_magazine/flamer_tank))
-		return
-	if(get_dist(user, flamer_tank) > 1)
-		return
-	if(flamer_tank.current_rounds >= flamer_tank.max_rounds)
-		to_chat(user, span_warning("[flamer_tank] is already full."))
-		return
-	if(tank.current_rounds <= 0)
-		to_chat(user, span_warning("The [tank] is empty!"))
-		return
-	var/liquid_transfer_amount = min(tank.current_rounds, flamer_tank.max_rounds - flamer_tank.current_rounds)
-	tank.current_rounds -= liquid_transfer_amount
-	flamer_tank.current_rounds += liquid_transfer_amount
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, span_notice("[flamer_tank] is refilled with [lowertext(tank.caliber)]."))
-	update_icon()
-
-/obj/item/storage/holster/backholster/flamer/examine(mob/user)
-	. = ..()
-	. += "[tank.current_rounds] units of fuel left!"
+	AddComponent(/datum/component/fuel_storage, 280, fuel_type)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/holster/backholster/flamer/full/PopulateContents()
 	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
@@ -435,6 +409,12 @@
 	for(var/i in 1 to (storage_datum.storage_slots - flare_gun.w_class))
 		new /obj/item/explosive/grenade/flare(src)
 
+/obj/item/storage/holster/flarepouch/full/nogun
+	name = "flare pouch"
+
+/obj/item/storage/holster/flarepouch/full/nogun/PopulateContents()
+	for(var/i in 1 to (storage_datum.storage_slots))
+		new /obj/item/explosive/grenade/flare(src)
 
 /obj/item/storage/holster/icc_mg
 	name = "\improper ML-41 scabbard (10x26mm)"

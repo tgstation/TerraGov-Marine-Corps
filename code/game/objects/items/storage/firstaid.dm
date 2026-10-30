@@ -285,7 +285,7 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		user.balloon_alert(user, "Need an empty hand")
+		user.balloon_alert(user, "need an empty off-hand!")
 		return
 	if(length(contents))
 		var/obj/item/I = contents[1]

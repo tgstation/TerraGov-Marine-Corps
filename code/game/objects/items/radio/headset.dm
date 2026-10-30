@@ -73,14 +73,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			balloon_alert_to_viewers("pops out keys")
+			balloon_alert(user, "keys removed")
 
 		else
-			balloon_alert(user, "No keys to remove")
+			balloon_alert(user, "no keys to remove!")
 
 	else if(istype(I, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			balloon_alert(user, "Can't, headset is full")
+			balloon_alert(user, "headset is full!")
 			return
 
 		if(!keyslot)
@@ -148,13 +148,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(command)
 		use_command = !use_command
-		balloon_alert(user, "toggles loud mode")
+		balloon_alert(user, "high-volume mode [use_command ? "active" : "inactive"]")
 
 /obj/item/radio/headset/attack_self(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
-	balloon_alert(user, "toggles supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"].")
+	balloon_alert(user, "supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "active" : "inactive"]")
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()
@@ -180,8 +180,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	///The type of minimap this headset gives access to
+	/// The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	/// The squad network this headset's camera is currently on
+	var/squad_network
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
@@ -203,18 +205,31 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.c_tag = user.name
 		if(user.job)
 			camera.role_name = user.job.title
-		if(user.assigned_squad)
-			camera.network |= lowertext(user.assigned_squad.name)
+		set_squad_camera_network(user.assigned_squad)
 	possibly_deactivate_in_loc()
 	return ..()
 
 ///Explodes the headset if you put on an enemy's headset
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
-	balloon_alert_to_viewers("Explodes")
+	to_chat(user, span_userdanger("\The [src] explodes as you try to wear it!"))
 	playsound(user, 'sound/effects/explosion/micro1.ogg', 50, 1)
 	if(wearer)
 		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
+
+/**
+ * Points this headset's camera at a squad's camera network, dropping whichever network it was on before.
+ * Pass null to take the camera off its squad network entirely.
+ * Called on equip/drop and whenever the wearer joins or leaves a squad, so a transferred marine shows up on the right squad leader's tablet.
+ */
+/obj/item/radio/headset/mainship/proc/set_squad_camera_network(datum/squad/new_squad)
+	if(!camera)
+		return
+	if(squad_network)
+		camera.network -= squad_network
+	squad_network = new_squad ? lowertext(new_squad.name) : null
+	if(squad_network)
+		camera.network |= squad_network
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
@@ -225,8 +240,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
-		if(user.assigned_squad)
-			camera.network -= lowertext(user.assigned_squad.name)
+		set_squad_camera_network(null)
 	UnregisterSignal(user, list(COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE))
 	return ..()
 
@@ -248,24 +262,24 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
-	if(!camera.status)
-		camera.toggle_cam(null, FALSE)
+	if(!(camera.camera_flags & CAMERA_TURNED_ON))
+		camera.toggle_cam()
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	add_minimap()
-	balloon_alert(wearer, "toggles squad HUD on")
+	balloon_alert(wearer, "squad HUD active")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
 	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
-	if(camera.status)
-		camera.toggle_cam(null, FALSE)
+	if(camera.camera_flags & CAMERA_TURNED_ON)
+		camera.toggle_cam()
 	if(sl_direction)
 		disable_sl_direction()
 	remove_minimap()
-	balloon_alert(wearer, "toggles squad HUD off")
+	balloon_alert(wearer, "squad HUD inactive")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/radio/headset/mainship/proc/add_minimap()
@@ -315,7 +329,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		balloon_alert(wearer, "turn it on first")
+		balloon_alert(wearer, "turn it on first!")
 		return
 
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
@@ -327,7 +341,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = TRUE
-	balloon_alert(wearer, "toggles SL finder on")
+	balloon_alert(wearer, "SL finder active")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
@@ -345,7 +359,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
 	sl_direction = FALSE
-	balloon_alert(wearer, "toggles SL finder off")
+	balloon_alert(wearer, "SL finder inactive")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 
@@ -450,6 +464,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine
 	keyslot = /obj/item/encryptionkey/general
+	///Is designated as the squad leader, ensures correct radio channels
+	var/squad_leader = FALSE
 
 /obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
@@ -473,15 +489,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		name = dat + " radio headset"
 	return ..()
 
+/obj/item/radio/headset/mainship/marine/recalculateChannels()
+	. = ..()
+	if(squad_leader)
+		channels[RADIO_CHANNEL_COMMAND] = TRUE
+		secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(src, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
+
 /obj/item/radio/headset/mainship/marine/alpha
 	name = "marine alpha radio headset"
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 	minimap_type = /datum/action/minimap/marine
-
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize()
-	. = ..()
-	camera.network += list("alpha")
 
 
 /obj/item/radio/headset/mainship/marine/alpha/lead
@@ -507,10 +525,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_BRAVO
 	minimap_type = /datum/action/minimap/marine
 
-/obj/item/radio/headset/mainship/marine/bravo/LateInitialize()
-	. = ..()
-	camera.network += list("bravo")
-
 
 /obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
@@ -534,10 +548,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
 	minimap_type = /datum/action/minimap/marine
-
-/obj/item/radio/headset/mainship/marine/charlie/LateInitialize()
-	. = ..()
-	camera.network += list("charlie")
 
 
 /obj/item/radio/headset/mainship/marine/charlie/lead
@@ -563,10 +573,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 	minimap_type = /datum/action/minimap/marine
-
-/obj/item/radio/headset/mainship/marine/delta/LateInitialize()
-	. = ..()
-	camera.network += list("delta")
 
 
 /obj/item/radio/headset/mainship/marine/delta/lead
@@ -710,10 +716,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_zulu"
 	frequency = FREQ_ZULU
 
-/obj/item/radio/headset/mainship/som/zulu/LateInitialize()
-	. = ..()
-	camera.network += list("zulu")
-
 /obj/item/radio/headset/mainship/som/zulu/lead
 	name = "SOM zulu leader radio headset"
 	keyslot2 = /obj/item/encryptionkey/squadlead/som
@@ -732,10 +734,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "SOM yankee radio headset"
 	icon_state = "headset_marine_yankee"
 	frequency = FREQ_YANKEE
-
-/obj/item/radio/headset/mainship/som/yankee/LateInitialize()
-	. = ..()
-	camera.network += list("yankee")
 
 /obj/item/radio/headset/mainship/som/yankee/lead
 	name = "SOM yankee leader radio headset"
@@ -756,10 +754,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_xray"
 	frequency = FREQ_XRAY
 
-/obj/item/radio/headset/mainship/som/xray/LateInitialize()
-	. = ..()
-	camera.network += list("xray")
-
 /obj/item/radio/headset/mainship/som/xray/lead
 	name = "SOM xray leader radio headset"
 	keyslot2 = /obj/item/encryptionkey/squadlead/som
@@ -778,10 +772,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "SOM whiskey radio headset"
 	icon_state = "headset_marine_whiskey"
 	frequency = FREQ_WHISKEY
-
-/obj/item/radio/headset/mainship/som/whiskey/LateInitialize()
-	. = ..()
-	camera.network += list("whiskey")
 
 /obj/item/radio/headset/mainship/som/whiskey/lead
 	name = "SOM whiskey leader radio headset"

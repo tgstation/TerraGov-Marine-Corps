@@ -19,7 +19,10 @@
 	buckle_lying = 0
 	buckling_y = 0
 	max_integrity = 20
+	layer = BELOW_TABLE_LAYER
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
+	///Whether this chair can be rotated via verb
+	var/can_rotate = TRUE //this only exists because spriters don't add directional sprites to all chair types, which allows for exploits.
 
 //directional variants mostly used for random spawners
 /obj/structure/bed/chair/east
@@ -48,7 +51,7 @@
 	if(LAZYLEN(buckled_mobs) && dir == NORTH)
 		layer = FLY_LAYER
 	else
-		layer = OBJ_LAYER
+		layer = initial(layer)
 
 
 /obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)
@@ -73,6 +76,8 @@
 	set category = "IC.Object"
 	set src in view(0)
 
+	if(!can_rotate)
+		return FALSE
 	var/mob/living/carbon/user = usr
 
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
@@ -116,7 +121,7 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
-		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY))
+		if(!I.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_FRIENDLY))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
@@ -127,7 +132,7 @@
 
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
-	hit_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/natural/woodhit.ogg'
 
 /obj/structure/bed/chair/wood/normal
 	icon_state = "wooden_chair"
@@ -166,6 +171,8 @@
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
 	resistance_flags = XENO_DAMAGEABLE
+	can_rotate = FALSE
+
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 
@@ -268,7 +275,7 @@
 	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
-	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
@@ -282,16 +289,15 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = FALSE
 
 /obj/structure/bed/chair/dropship
 	name = "dropship chair"
 	desc = "Holds you in place during high altitude drops."
 	icon_state = "shuttle_chair"
+	can_rotate = FALSE
 	/// Handles the chair buckle bars overlay
 	var/image/chairbar = null
 	buildstacktype = 0
@@ -386,9 +392,7 @@
 			if(DROPSHIP_CHAIR_UNBUCKLED)
 				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
 				span_warning("You begin loosening the bolts on \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
@@ -398,9 +402,7 @@
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message(span_warning("[user] begins unfolding \the [src]."),
 				span_warning("You begin unfolding \the [src]."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
@@ -418,7 +420,7 @@
 
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
-		if(!I.use_tool(src, user, 2 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 2 SECONDS, 0, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),
@@ -441,11 +443,11 @@
 		unbuckle_all_mobs(TRUE)
 	return ..()
 
-/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
+/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/user, obj/item/tool)
 	if(LAZYLEN(buckled_mobs))
-		balloon_alert_to_viewers("You cannot repair this chair while someone is sitting in it")
+		balloon_alert(user, "someone's sitting in it!")
 		return
-	welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
+	welder_repair_act(user, tool, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
 	chair_state = DROPSHIP_CHAIR_UNBUCKLED
 	update_icon()
 	return
@@ -462,14 +464,14 @@
 	. = ..()
 	if(LAZYLEN(buckled_mobs) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		unbuckle_mob(buckled_mobs[1])
-		balloon_alert_to_viewers("This chair is too damaged to stay sitting in")
+		balloon_alert_to_viewers("it's too damaged!")
 
 /obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)
-		balloon_alert_to_viewers("This chair is too damaged to sit in")
+		balloon_alert_to_viewers("it's too damaged!")
 		return FALSE
 	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
-		balloon_alert(buckling_mob, "You don't feel worthy enough to sit in this chair")
+		balloon_alert(buckling_mob, "you're not a leader!")
 		return FALSE
 	if(buckling_x)
 		src.pixel_x = buckling_x
@@ -559,3 +561,4 @@
 	buildstacktype = null
 	resistance_flags = UNACIDABLE
 	dir = WEST
+	can_rotate = FALSE

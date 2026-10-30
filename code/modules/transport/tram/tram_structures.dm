@@ -99,7 +99,7 @@
 	if(.) //received damage
 		update_appearance()
 
-/obj/structure/tram/welder_act(mob/living/user, obj/item/tool)
+/obj/structure/tram/welder_act(mob/user, obj/item/tool)
 	if(obj_integrity >= max_integrity)
 		to_chat(user, span_warning("[src] is already in good condition!"))
 		return TRUE
@@ -452,7 +452,7 @@
 	deployed = FALSE
 	update_appearance()
 
-/obj/structure/tram/spoiler/welder_act(mob/living/user, obj/item/tool)
+/obj/structure/tram/spoiler/welder_act(mob/user, obj/item/tool)
 	if(!tool.tool_start_check(user, amount = 1))
 		return FALSE
 

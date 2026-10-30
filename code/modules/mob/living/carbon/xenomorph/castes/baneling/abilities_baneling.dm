@@ -43,7 +43,7 @@
 	if(!ability)
 		smoke_range = smoke_range / 2
 	smoke.set_up(smoke_range, owner_T, BANELING_SMOKE_DURATION)
-	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
+	playsound(owner_T, 'sound/effects/blobattack.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	smoke.start()
 
 	xeno_owner.record_war_crime()

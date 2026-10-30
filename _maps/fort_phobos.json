@@ -2,5 +2,6 @@
     "map_name": "Fort Phobos",
     "map_path": "map_files/Fort_Phobos",
     "map_file": "Fort_Phobos.dmm",
+	"parallax_icon": "Palmaria",
     "traits": [{"Marine Main Ship": true}]
 }

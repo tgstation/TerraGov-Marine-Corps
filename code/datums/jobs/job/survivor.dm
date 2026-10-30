@@ -173,31 +173,6 @@ Good luck, but do not expect to survive."}
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/roboticist
 
-
-/datum/outfit/job/survivor/roboticist
-	name = "Roboticist Survivor"
-	jobtype = /datum/job/survivor/roboticist
-
-	w_uniform = /obj/item/clothing/under/rank/roboticist
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
-	belt = /obj/item/storage/belt/utility/full
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/tox
-	ears = /obj/item/radio/survivor
-	glasses = /obj/item/clothing/glasses/welding/flipped
-	l_pocket = /obj/item/storage/pouch/electronics/full
-	r_pocket = /obj/item/flashlight/combat
-
-/datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
-
 // Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo
 	title = "Rambo Survivor"

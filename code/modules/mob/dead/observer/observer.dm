@@ -106,6 +106,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/Destroy()
+	for(var/mob/dead/observer/ghost in GLOB.player_list)
+		ghost.client?.images -= list(ghostimage_default, ghostimage_simple)
+
 	GLOB.ghost_images_default -= ghostimage_default
 	QDEL_NULL(ghostimage_default)
 
@@ -115,6 +118,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_menu)
+	clean_observetarget()
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
 	SSmobs.dead_players_by_zlevel[z] -= src
 
@@ -241,8 +245,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!key || isaghost(src))
 		return FALSE
 	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
-	var/mob/dead/observer/ghost = new(src)
-	var/turf/T = get_turf(src)
+	var/turf/new_turf = get_turf(src)
+	if(!new_turf)
+		new_turf = SAFEPICK(GLOB.latejoin)
+	var/mob/dead/observer/ghost = new()
+	if(new_turf)
+		ghost.abstract_move(new_turf)
 
 	if(client)
 		animate(client, pixel_x = 0, pixel_y = 0)
@@ -272,12 +280,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind?.current = ghost
 	ghost.faction = faction
 
-	if(!T)
-		T = SAFEPICK(GLOB.latejoin)
-	if(!T)
+	if(!new_turf) //stack trace down here so you can still reenter your corpse
 		stack_trace("no latejoin landmark detected")
-
-	ghost.abstract_move(T)
 
 	return ghost
 
@@ -341,6 +345,21 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			. += "Respawn timer: READY"
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+
+	if(SSticker.mode?.round_type_flags && MODE_INFESTATION)
+		var/text = "Monitor's Report: "
+		switch(SSmonitor.current_state)
+			if(XENOS_DELAYING)
+				text += "Marines Winning (High)"
+			if(XENOS_LOSING)
+				text += "Marines Winning (Moderate)"
+			if(STATE_BALANCED)
+				text += "None (Balanced)"
+			if(MARINES_LOSING)
+				text += "Xenomorphs Winning (Moderate)"
+			if(MARINES_DELAYING)
+				text += "Xenomorphs Winning (High)"
+		. += "[text] @ Adjusted: [SSmonitor.current_points] | Raw: [SSmonitor.raw_points]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

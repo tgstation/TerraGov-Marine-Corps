@@ -15,7 +15,7 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = BIO
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 16
 	damage = 50
 	damage_type = STAMINA
@@ -27,8 +27,8 @@
 	var/hit_paralyze_time = 1 SECONDS
 	///On a direct hit, how much do the victim's eyes get blurred?
 	var/hit_eye_blur = 11
-	///On a direct hit, how much drowsyness gets added to the target?
-	var/hit_drowsyness = 12
+	///On a direct hit, how much drowziness gets added to the target?
+	var/hit_drowziness = 12
 	///Base spread range
 	var/fixed_spread_range = 3
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
@@ -74,14 +74,14 @@
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_mob), proj.firer)
+	drop_nade(get_turf(target_mob), proj)
 	if(target_mob.stat == DEAD || !ishuman(target_mob))
 		return
 	var/mob/living/carbon/human/human_victim = target_mob
 
 	human_victim.Paralyze(hit_paralyze_time)
 	human_victim.blur_eyes(hit_eye_blur)
-	human_victim.adjustDrowsyness(hit_drowsyness)
+	human_victim.adjust_drowziness(hit_drowziness)
 
 	if(!reagent_transfer_amount)
 		return
@@ -96,27 +96,28 @@
 	if(ismecha(target_obj))
 		proj.damage *= 7 //Globs deal much higher damage to mechs.
 	var/turf/target_turf = get_turf(target_obj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj.firer)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_turf, proj)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj.firer)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T, atom/firer, range = 1)
+/datum/ammo/xeno/boiler_gas/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	set_smoke()
-	if(isxeno(firer))
-		var/mob/living/carbon/xenomorph/X = firer
-		smoke_system.strength = X.xeno_caste.bomb_strength
+	var/range = 1
+	if(isxeno(proj.firer))
+		var/mob/living/carbon/xenomorph/xeno = proj.firer
+		smoke_system.strength = xeno.xeno_caste.bomb_strength
 		range = fixed_spread_range
-	smoke_system.set_up(range, T)
+	smoke_system.set_up(range, target_turf)
 	smoke_system.start()
 	smoke_system = null
-	T.visible_message(danger_message)
+	target_turf.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
@@ -134,7 +135,7 @@
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 	hit_paralyze_time = 1 SECONDS
 	hit_eye_blur = 1
-	hit_drowsyness = 1
+	hit_drowziness = 1
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
@@ -230,7 +231,7 @@
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 16
-	hit_drowsyness = 18
+	hit_drowziness = 18
 	fixed_spread_range = 2
 	accuracy = 100
 	accurate_range = 30
@@ -249,7 +250,7 @@
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
 	hit_paralyze_time = 1.5 SECONDS
 	hit_eye_blur = 4
-	hit_drowsyness = 2
+	hit_drowziness = 2
 	fixed_spread_range = 2
 	accuracy = 100
 	shell_speed = 1.5

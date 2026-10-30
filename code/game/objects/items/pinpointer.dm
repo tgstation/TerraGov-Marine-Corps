@@ -49,14 +49,14 @@
 		tracked_list = GLOB.xeno_critical_structures_by_hive[tracked_hivenumber]
 
 	if(!length(tracked_list))
-		balloon_alert(user, "No signal")
+		balloon_alert(user, "no signal!")
 		return
 	target = tgui_input_list(user, "Select the structure you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)
 	if(target.z != pinpointer_loc.z)
-		balloon_alert(user, "Signal too weak")
+		balloon_alert(user, "signal too weak!")
 		target = null
 		return
 
@@ -72,14 +72,14 @@
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-	balloon_alert(user, "Pinpointer activated")
+	balloon_alert(user, "pinpointer activated")
 
 /obj/item/pinpointer/proc/deactivate(mob/living/user)
 	active = FALSE
 	target = null
 	STOP_PROCESSING(SSobj, src)
 	icon_state = "pinpointer_off"
-	balloon_alert(user, "Pinpointer deactivated")
+	balloon_alert(user, "pinpointer deactivated")
 
 /obj/item/pinpointer/process()
 	if(QDELETED(target))

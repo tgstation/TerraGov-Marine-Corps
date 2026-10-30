@@ -103,7 +103,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/plastique_incendiary
 	name = "EX-62 Genghis incendiary charge"
 	contains = list(/obj/item/explosive/plastique/genghis_charge)
-	cost = 150
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/explosives/detpack
@@ -140,7 +140,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
-	cost = 10
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/explosives/mlrs

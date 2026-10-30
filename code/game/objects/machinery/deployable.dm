@@ -27,6 +27,11 @@
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
 
+	if(deployer)
+		faction = deployer.faction
+	else if(new_internal_item.faction)
+		faction = new_internal_item.faction
+
 	prepare_huds()
 	if(istype(deployer))
 		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
@@ -46,17 +51,13 @@
 	hud_set_machine_health()
 
 ///Repairs machine
-/obj/machinery/deployable/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 120, 5 SECONDS)
+/obj/machinery/deployable/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 120, 5 SECONDS)
 
-/obj/machinery/deployable/disassemble(mob/user)
+/obj/machinery/deployable/can_disassemble(mob/user)
 	if(get_self_acid())
-		balloon_alert(user, "It's melting!")
-		return
-	return ..()
-
-/obj/machinery/deployable/Destroy()
-	operator?.unset_interaction()
+		balloon_alert(user, "it's melting!")
+		return FALSE
 	return ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
@@ -68,16 +69,16 @@
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(CHECK_BITFIELD(_internal_item.deployment_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
 
-/obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/wrench_act(mob/user, obj/item/tool)
 	var/obj/item/_internal_item = get_internal_item()
 	if(!_internal_item)
 		return
-	if(!CHECK_BITFIELD(_internal_item.item_flags, DEPLOYED_WRENCH_DISASSEMBLE))
+	if(!CHECK_BITFIELD(_internal_item.deployment_flags, DEPLOYED_WRENCH_DISASSEMBLE))
 		return ..()
 	disassemble(user)
 

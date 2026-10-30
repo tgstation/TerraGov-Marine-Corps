@@ -494,7 +494,7 @@
 	if(istype(A))
 		appearance = A.appearance
 		dir = A.dir
-		if(ismovableatom(A))
+		if(ismovable(A))
 			var/atom/movable/AM = A
 			step_x = AM.step_x
 			step_y = AM.step_y

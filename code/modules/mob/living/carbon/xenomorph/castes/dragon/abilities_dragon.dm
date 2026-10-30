@@ -25,7 +25,7 @@
 /datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	return ..()
 
@@ -47,10 +47,10 @@
 
 	var/was_successful = TRUE
 	if(do_after_length)
-		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+		xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		was_successful = do_after(xeno_owner, do_after_length, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
-		xeno_owner.move_resist = initial(xeno_owner.move_resist)
+		xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(was_successful && handle_regular_ability(target, affected_turfs))
 		return
@@ -106,7 +106,7 @@
 /// Performs a different interaction based on if there is a grabbed human.
 /datum/action/ability/activable/xeno/backhand/proc/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
 	xeno_owner.face_atom(grabbed_human)
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
 	if(do_after(xeno_owner, DRAGON_GRABBED_ABILITY_TIME, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
@@ -126,7 +126,7 @@
 				animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 		grabbed_human.take_overall_damage(get_damage() * 1.7, BRUTE, MELEE, max_limbs = 3, updating_health = TRUE) // 76.5
 		xeno_owner.gain_plasma(250)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	succeed_activate()
 	add_cooldown()
@@ -175,7 +175,7 @@
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 			if(!silent)
-				xeno_owner.balloon_alert(xeno_owner, "already landing")
+				xeno_owner.balloon_alert(xeno_owner, "already landing!")
 			return FALSE
 		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
 		var/found_los_xenos = FALSE
@@ -191,13 +191,13 @@
 		if(!weeds_found && !found_los_xenos)
 			if(!silent)
 				if(nearby_xenos.len > 1)
-					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight!")
 				else
-					xeno_owner.balloon_alert(xeno_owner, "no weeds")
+					xeno_owner.balloon_alert(xeno_owner, "no weeds!")
 			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already lifting")
+			xeno_owner.balloon_alert(xeno_owner, "already lifting!")
 		return FALSE
 	return ..()
 
@@ -206,11 +206,11 @@
 		start_landing()
 		return
 	xeno_owner.setDir(SOUTH)
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/dragon/flying_progress.ogg', 75, TRUE, 9)
 	var/was_successful = do_after(xeno_owner, 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return
@@ -412,7 +412,7 @@
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
 	xeno_owner.face_atom(grabbed_human)
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
 	if(do_after(xeno_owner, DRAGON_GRABBED_ABILITY_TIME, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
@@ -451,7 +451,7 @@
 		grabbed_human.take_overall_damage(get_damage() * 5.5, BURN, armor_type, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE) // 110
 		grabbed_human.knockback(xeno_owner, 5, 1)
 		xeno_owner.gain_plasma(250)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	succeed_activate()
 	add_cooldown()
@@ -459,7 +459,7 @@
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 8)
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(15)
 	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
@@ -551,7 +551,7 @@
 /// Undoes everything associated with starting the ability.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-15)
 	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED))
@@ -578,7 +578,7 @@
 /datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	return ..()
 
@@ -594,10 +594,10 @@
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 0.5 SECONDS)
 
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return
@@ -634,7 +634,7 @@
 				continue
 			if(isfire(impacted_atom))
 				var/obj/fire/fire = impacted_atom
-				fire.reduce_fire(20)
+				fire.reduce_fire(20, 10)
 				continue
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
@@ -683,11 +683,11 @@
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying!")
 		return FALSE
 	if(grabbed_human)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone")
+			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone!")
 		return FALSE
 	return ..()
 
@@ -698,10 +698,10 @@
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 0.5 SECONDS)
 
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return
@@ -765,7 +765,7 @@
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
 	xeno_owner.gain_plasma(250)
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
-	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)
@@ -820,7 +820,7 @@
 /datum/action/ability/activable/xeno/scorched_land/can_use_ability(atom/A, silent, override_flags)
 	if(!(xeno_owner.status_flags & INCORPOREAL))
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while landed")
+			xeno_owner.balloon_alert(xeno_owner, "cannot while landed!")
 		return FALSE
 	var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
 	var/found_los_xenos = FALSE
@@ -836,9 +836,9 @@
 	if(!weeds_found && !found_los_xenos)
 		if(!silent)
 			if(nearby_xenos.len > 1)
-				xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+				xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight!")
 			else
-				xeno_owner.balloon_alert(xeno_owner, "no weeds")
+				xeno_owner.balloon_alert(xeno_owner, "no weeds!")
 		return FALSE
 	return ..()
 
@@ -849,10 +849,10 @@
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 3 SECONDS)
 
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return

@@ -35,7 +35,7 @@
 	uid++
 	src.personal_uid = uid
 
-	render_source_atom.appearance_flags |= KEEP_APART
+	render_source_atom.appearance_flags |= (KEEP_APART|RESET_ALPHA)
 
 	render_source_atom.vis_flags |= (VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
 

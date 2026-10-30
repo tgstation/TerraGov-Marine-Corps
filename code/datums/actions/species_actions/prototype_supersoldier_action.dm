@@ -32,7 +32,7 @@
 	return ..()
 
 
-/datum/action/supersoldier_stims/can_use_action()
+/datum/action/supersoldier_stims/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -213,11 +213,11 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/datum/action/supersoldier_stims/stim AS in action.active_stims)
 		if((type == stim.type) && !(stim_flags & STIM_ALLOW_DUPE))
 			if(!silent)
-				owner.balloon_alert(owner, "cannot duplicate stim")
+				owner.balloon_alert(owner, "cannot duplicate stim!")
 			return FALSE
 	if(length(action.active_stims) >= MAX_ACTIVE_STIMS)
 		if(!silent)
-			owner.balloon_alert(owner, "too many stims")
+			owner.balloon_alert(owner, "too many stims!")
 		return FALSE
 	return TRUE
 
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	for(var/skill in max_skills)
 		if(owner.skills.getRating(skill) >= max_skills[skill])
 			if(!silent)
-				owner.balloon_alert(owner, "skill already too high")
+				owner.balloon_alert(owner, "skill already too high!")
 			return FALSE
 
 /datum/stim/skills/finish_cast(mob/living/owner)
@@ -417,7 +417,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_uid = "powerloaderskillbuff"
 	stim_flags = STIM_ALLOW_DUPE
 	skills = list(SKILL_POWERLOADER = 1)
-	max_skills = list(SKILL_POWERLOADER = SKILL_POWERLOADER_PRO) // ensures RO and such are still better
+	max_skills = list(SKILL_POWERLOADER = SKILL_POWERLOADER_MASTER) // if stacked high enough, can compare to RO and co.
 
 /particles/stims
 	count = 10

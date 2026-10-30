@@ -143,3 +143,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz, 0)
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+/obj/structure/stairs/multiz/seamless
+	icon_state = "stairs_seamless_inv"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz/seamless, 0)

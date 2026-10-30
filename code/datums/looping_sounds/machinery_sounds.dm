@@ -30,7 +30,7 @@
 	ambient_sound = TRUE
 
 /datum/looping_sound/water_res_loop
-	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1)
+	mid_sounds = list('sound/effects/natural/wave1.ogg' = 1, 'sound/effects/natural/wave2.ogg' = 1, 'sound/effects/natural/wave3.ogg' = 1)
 	mid_length = 4 SECONDS
 	volume = 28
 	range = 7
@@ -45,7 +45,7 @@
 	mid_sounds = list('sound/effects/radio_chatter/radio1.ogg' = 1, 'sound/effects/radio_chatter/radio2.ogg' = 1, 'sound/effects/radio_chatter/radio3.ogg' = 1, 'sound/effects/radio_chatter/radio4.ogg' = 1, 'sound/effects/radio_chatter/radio5.ogg' = 1, 'sound/effects/radio_chatter/radio6.ogg' = 1, 'sound/effects/radio_chatter/radio7.ogg' = 1, 'sound/effects/radio_chatter/radio8.ogg' = 1)
 	mid_length = 35 SECONDS
 	volume = 24
-	range = 8
+	range = SHORT_SOUND_RANGE
 	falloff = 1
 
 /datum/looping_sound/flickeringambient
@@ -84,6 +84,7 @@
 	mid_sounds = list('sound/machines/creak.ogg'=1)
 	mid_length = 8
 	volume = 60
+	range = MEDIUM_SOUND_RANGE
 
 /datum/looping_sound/scan_pulse
 	mid_sounds = list('sound/items/scan_pulse.wav' = 1)

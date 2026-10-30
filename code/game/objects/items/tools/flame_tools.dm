@@ -183,14 +183,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
+	if(!lit)
+		return
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
 	standing.overlays.Add(emissive_overlay)
-
-/obj/item/clothing/mask/cigarette/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -277,12 +273,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, span_notice("[src] is full."))
 
+/obj/item/clothing/mask/cigarette/surgery_tool_check()
+	return lit
+
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
 	if(lit)
 		return
 
 	lit = TRUE
-	turn_light(null, TRUE)
 	heat = 1000
 	name = "lit [name]"
 	attack_verb = list("burns", "singes")
@@ -316,7 +314,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_mask == src)
 				H.update_inv_wear_mask()
-	playsound(src, 'sound/items/cig_light.ogg', 15, 1)
+	playsound(src, 'sound/items/cig_light.ogg', 15, 1, SHORT_SOUND_RANGE)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/cigarette/process()
@@ -327,7 +325,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime < 0)
 		if(ismob(loc))
 			to_chat(M, span_notice("Your [name] goes out."))
-			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
+			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1, SHORT_SOUND_RANGE)
 		die()
 		return
 
@@ -350,7 +348,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
 		user.visible_message(span_notice("[user] calmly drops and treads on the lit [src], putting it out instantly."))
-		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
+		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1, SHORT_SOUND_RANGE)
 		die()
 	return ..()
 
@@ -497,7 +495,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(M, span_notice("Your [name] goes out, and you empty the ash."))
 			heat = 0
 			lit = FALSE
-			turn_light(null, FALSE)
 			icon_state = icon_off
 			worn_icon_state = icon_off
 			M.update_inv_wear_mask(0)
@@ -509,7 +506,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message(span_notice("[user] puts out [src]."))
 		heat = 0
 		lit = FALSE
-		turn_light(user, FALSE)
 		icon_state = icon_off
 		worn_icon_state = icon_off
 		STOP_PROCESSING(SSobj, src)
@@ -592,7 +588,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			worn_icon_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				user.visible_message(span_rose("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."))
-				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 			else
 				if(prob(95))
 					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src]."))
@@ -603,12 +599,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src],  however [user.p_they()] burn [user.p_their()] finger in the process."))
-				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1, SHORT_SOUND_RANGE)
 			set_light_on(TRUE)
 		else
 			turn_off(user, FALSE)
 	else
 		return ..()
+
+/obj/item/tool/lighter/surgery_tool_check()
+	return heat
 
 /obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)
@@ -618,10 +617,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!silent)
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
-				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
-				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1, SHORT_SOUND_RANGE)
 		set_light_on(FALSE)
 		return TRUE
 	return FALSE

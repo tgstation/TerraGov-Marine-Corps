@@ -10,7 +10,7 @@
 *		Trays
 */
 
-/obj/item/tool/kitchen
+/obj/item/tool/kitchen //todo: kill this shit
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/kitchen_left.dmi',
@@ -64,7 +64,7 @@
 		else
 			visible_message(span_notice("[user] feeds [M] some [loaded] from \the [src]"))
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
-		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
+		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
 		QDEL_NULL(loaded)
 		update_appearance(UPDATE_OVERLAYS)
 		return

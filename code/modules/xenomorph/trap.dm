@@ -19,13 +19,13 @@
 	///connection list for huggers
 	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
 	/// The amount of huggers that can be stored in this trap.
 	var/hugger_limit = 1
 
 /obj/structure/xeno/trap/Initialize(mapload, _hivenumber, _hugger_limit)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 	AddElement(/datum/element/connect_loc, listen_connections)
 	if(_hugger_limit)
 		hugger_limit = _hugger_limit
@@ -60,7 +60,7 @@
 			icon_state = "trap"
 
 /obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	if((damage_amount || damage_flag) && length(huggers) && loc)
+	if((damage_amount || damage_flag) && trap_type && loc)
 		trigger_trap()
 	return ..()
 
@@ -70,8 +70,8 @@
 	trap_type = new_trap_type
 	update_icon()
 
-///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
-/obj/structure/xeno/trap/proc/shuttle_crush()
+/// Deletes this first before it can get crushed by a shuttle.
+/obj/structure/xeno/trap/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
 
@@ -111,7 +111,7 @@
 		return
 	if(AM && (hivenumber == AM.get_xeno_hivenumber()))
 		return
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
@@ -192,7 +192,7 @@
 				set_trap_type(TRAP_ACID_STRONG)
 	else
 		return // nothing happened!
-	playsound(xeno_attacker.loc, 'sound/effects/refill.ogg', 25, 1)
+	playsound(xeno_attacker.loc, 'sound/effects/refill.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	balloon_alert(xeno_attacker, "Filled with [trap_type]")
 
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)

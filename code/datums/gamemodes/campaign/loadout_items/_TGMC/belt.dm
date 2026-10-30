@@ -64,7 +64,7 @@
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
 		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_BACK,
+		/obj/item/weapon/gun/shotgun/pump/t35/back_slot = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/belt/smg_holster

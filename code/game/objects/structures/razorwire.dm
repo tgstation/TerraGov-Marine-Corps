@@ -8,30 +8,29 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	coverage = 5
-	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
 	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
-	var/list/entangled_list
-	var/sheet_type = /obj/item/stack/barbed_wire
-	var/sheet_type2 = /obj/item/stack/rods
-	var/table_prefix = "" //used in update_icon()
 	max_integrity = RAZORWIRE_MAX_HEALTH
-	var/soak = 5
+	///List of mobs currently stuck in this razor
+	var/list/entangled_list
+	///First drop item type
+	var/sheet_type = /obj/item/stack/barbed_wire
+	///Second drop item type
+	var/sheet_type2 = /obj/item/stack/rods
 
 /obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	. = list()
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
-			new sheet_type(loc)
-		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-		salvage.amount = max(1, round(4 * (obj_integrity / max_integrity) ) )
+			. += new sheet_type(loc)
+		. += new sheet_type2(loc, max(1, round(4 * (obj_integrity / max_integrity))))
 	else
 		if(prob(50))
-			new sheet_type(loc)
+			. += new sheet_type(loc)
 		if(prob(50))
-			var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-			salvage.amount = rand(1,4)
-	return ..()
+			. += new sheet_type2(loc, rand(1,4))
+	..()
 
 /obj/structure/razorwire/Initialize(mapload)
 	. = ..()
@@ -59,7 +58,7 @@
 		return
 	if(!M.density)
 		return
-	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	var/def_zone = ran_zone()
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
@@ -96,7 +95,7 @@
 		return
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
-	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
+	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	var/def_zone = ran_zone()
 	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, MELEE, TRUE, updating_health = TRUE) //Apply damage as we tear free
 	return TRUE
@@ -159,7 +158,7 @@
 		user.visible_message(span_danger("[user] spartas [grabbed_mob]'s into [src]!"),
 		span_danger("You sparta [grabbed_mob]'s against [src]!"))
 		log_combat(user, grabbed_mob, "spartaed", "", "against \the [src]")
-		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	grabbed_mob.forceMove(loc)
@@ -168,17 +167,16 @@
 	span_danger("You throw [grabbed_mob] on [src]."))
 	return TRUE
 
-/obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/razorwire/wirecutter_act(mob/user, obj/item/tool)
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
-	if(!do_after(user, delay_disassembly, NONE, src, BUSY_ICON_BUILD))
-		return TRUE
+	if(!tool.use_tool(src, user, delay_disassembly, user_display = BUSY_ICON_BUILD))
+		return
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
 	span_notice("You disassemble [src]."))
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	deconstruct(TRUE)
 	return TRUE
 
@@ -187,7 +185,7 @@
 		return FALSE
 
 	xeno_attacker.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)

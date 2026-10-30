@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 				return
 	if(!can_be_inserted(attacking_item, user))
 		if(user.s_active != src) //this would close the open storage otherwise
-			open(user)
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), attacking_item, FALSE, user)
 	return COMPONENT_NO_AFTERATTACK
@@ -336,7 +336,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			item_to_attack = parent.contents[length(parent.contents)]
 			INVOKE_ASYNC(item_to_attack, TYPE_PROC_REF(/atom/movable, attack_hand), user)
 			return COMPONENT_NO_ATTACK_HAND
-		else if(open(user))
+		else if(can_open(user))
+			INVOKE_ASYNC(src, PROC_REF(open), user)
 			return COMPONENT_NO_ATTACK_HAND
 	for(var/mob/M AS in content_watchers)
 		close(M)
@@ -369,8 +370,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/proc/on_alt_right_click(datum/source, mob/user)
 	SIGNAL_HANDLER
-	if(parent.Adjacent(user))
-		open(user)
+	//todo: Else where in this datum it just checks ishuman, but it should really just check for dextrous
+	if(isliving(user) && !user.dextrous) //bad xeno.
+		return
+	if(parent.Adjacent(user) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 
 /**
  * Called when you ctrl + left click on parent
@@ -383,7 +387,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/proc/on_attack_ghost(datum/source, mob/user)
 	SIGNAL_HANDLER
-	open(user)
+	if(!can_open(user))
+		return
+	INVOKE_ASYNC(src, PROC_REF(open), user)
 
 ///Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)
 /datum/storage/proc/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
@@ -394,8 +400,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.lying_angle)
 		return COMPONENT_NO_MOUSEDROP
 
-	if(over_object == user && parent.Adjacent(user)) // this must come before the screen objects only block
-		open(user)
+	if(over_object == user && parent.Adjacent(user) && can_open(user)) // this must come before the screen objects only block
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 		return COMPONENT_NO_MOUSEDROP
 
 	if(!istype(over_object, /atom/movable/screen))
@@ -411,7 +417,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(user.restrained() || user.stat)
 		return COMPONENT_NO_MOUSEDROP
 
-	put_storage_in_hand(source, over_object, user)
+	INVOKE_ASYNC(src, PROC_REF(put_storage_in_hand), source, over_object, user)
 	return COMPONENT_NO_MOUSEDROP
 
 ///Wrapper that puts the storage into our chosen hand
@@ -501,14 +507,13 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 ///Hides our inventory from user, sets s_active to null and removes user from content_watchers
 /datum/storage/proc/hide_from(mob/user)
-	if(!user.client)
-		return
-	user.client.screen -= src.boxes
-	user.client.screen -= storage_start
-	user.client.screen -= storage_continue
-	user.client.screen -= storage_end
-	user.client.screen -= src.closer
-	user.client.screen -= parent.contents
+	if(user.client)
+		user.client.screen -= src.boxes
+		user.client.screen -= storage_start
+		user.client.screen -= storage_continue
+		user.client.screen -= storage_end
+		user.client.screen -= src.closer
+		user.client.screen -= parent.contents
 	if(user.s_active == src)
 		user.s_active = null
 	content_watchers -= user
@@ -523,11 +528,12 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		lookers |= content_watcher_mob
 	return lookers
 
+///Any special behavior checks to see if we can open
+/datum/storage/proc/can_open(mob/user)
+	return TRUE
+
 ///Opens our storage, closes the storage if we are s_active
 /datum/storage/proc/open(mob/user)
-	if(!opened)
-		orient2hud()
-		opened = TRUE
 	if(use_sound && user.stat != DEAD)
 		playsound(parent.loc, use_sound, 25, 1, 3)
 
@@ -536,8 +542,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return TRUE
 	if(user.s_active) //We can only have 1 active storage at once
 		user.s_active.close(user)
+	orient2hud()
+	opened = TRUE
 	show_to(user)
 	return TRUE
+
+/datum/storage/proc/refresh_views()
+	var/list/lookers = can_see_content()
+	if(!length(lookers))
+		return
+	orient2hud()
+	for(var/mob/looker AS in lookers)
+		show_to(looker)
 
 ///Closes our storage
 /datum/storage/proc/close(mob/user)
@@ -763,6 +779,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			return FALSE
 	else
 		item.forceMove(parent)
+	SEND_SIGNAL(parent, COMSIG_ITEM_STORED, item)
 	RegisterSignal(item, COMSIG_MOVABLE_MOVED, PROC_REF(item_removed_from_storage))
 	item.on_enter_storage(parent)
 	if(length(holsterable_allowed))
@@ -775,9 +792,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			user.client?.screen -= item
 		if(!prevent_warning)
 			insertion_message(item, user)
-	orient2hud()
-	for(var/mob/M in can_see_content())
-		show_to(M)
+	refresh_views()
 	if(storage_slots)
 		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	parent.update_icon()
@@ -810,6 +825,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!bypass_delay && !handle_access_delay(item, user))
 		return FALSE
 
+	if(item == holstered_item)
+		holstered_item = null
+
 	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
@@ -832,11 +850,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	else if(move_item)
 		item.moveToNullspace()
 
-	orient2hud()
-
-	for(var/i in can_see_content())
-		var/mob/M = i
-		show_to(M)
+	refresh_views()
 
 	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
@@ -849,14 +863,14 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
 	if(!length(refiller.contents))
-		user.balloon_alert(user, "[refiller] is empty.")
+		user.balloon_alert(user, "refilling container is empty!")
 		return
 
 	if(!can_be_inserted(refiller.contents[1], user))
-		user.balloon_alert(user, "[parent.name] is full.")
+		user.balloon_alert(user, "receiving container is full!")
 		return
 
-	user.balloon_alert(user, "Refilling.")
+	user.balloon_alert(user, "refilling...")
 
 	if(!do_after(user, 1.5 SECONDS, NONE, user, BUSY_ICON_GENERIC))
 		return
@@ -968,17 +982,18 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
-///signal sent from /atom/proc/max_stack_merging()
-/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)
+///Returns the max amount that be put into a stack in src without exceeding the weight limit
+/datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks, list/max_list)
+	SIGNAL_HANDLER
 	if(is_type_in_typecache(stacks, typecacheof(storage_type_limits)))
 		return FALSE //No need for limits if we can bypass it.
 	var/weight_diff = initial(stacks.w_class) - max_w_class
 	if(weight_diff <= 0)
 		return FALSE //Nor if the limit is not higher than what we have.
-	var/max_amt = round((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	var/max_amt = floor((stacks.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
 	if(max_amt <= 0 || max_amt > stacks.max_amount)
 		stack_trace("[parent.name] tried to max_stack_merging([stacks]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
-	return max_amt
+	max_list += max_amt
 
 ///Called from signal in order to update the color of our storage, it's "fullness" basically
 /datum/storage/proc/recalculate_storage_space(datum/source)
@@ -1025,7 +1040,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!ishuman(user) || user.incapacitated())
 		return
 	if(!length(parent.contents))
-		return user.balloon_alert(user, "Empty")
+		return user.balloon_alert(user, "empty!")
 	if(user.get_active_held_item())
 		return //User is already holding something.
 	if(holsterable_allowed && holstered_item) //If we have a holstered item in parent contents

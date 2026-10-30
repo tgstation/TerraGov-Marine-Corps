@@ -34,9 +34,9 @@
 			return
 
 	to_chat(usr, span_info("You requested: \"[request_url]\" to be played."), confidential = TRUE)
-	request_url = span_adminnotice("<b><font color='cyan'>MUSIC REQUEST: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [span_linkify(request_url)] [ADMIN_PLAY_INTERNET(request_url, credit)]")
+	request_url = span_adminnotice("<b><font color='purple'>MUSIC REQUEST: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [span_linkify(request_url)] [ADMIN_PLAY_INTERNET(request_url, credit)]")
 	for(var/client/admin_client in GLOB.admins)
 		if(check_other_rights(admin_client, R_ADMIN, FALSE))
 			to_chat(admin_client, request_url, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
 
-	SSblackbox.record_feedback("tally", "music_request", 1, "Music Request") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
+	SSblackbox.record_feedback("text", "music_request", 1, "Music Request") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!

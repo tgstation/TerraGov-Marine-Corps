@@ -24,7 +24,6 @@
 	var/windowknock_cooldown = 0
 	var/static_frame = FALSE //If true, can't move the window
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
-	var/damageable = TRUE
 	var/deconstructable = TRUE
 
 /obj/structure/window/add_debris_element()
@@ -115,7 +114,7 @@
 
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		user.visible_message(span_warning("[user] bangs against [src]!"),
 		span_warning("You bang against [src]!"),
 		span_warning("You hear a banging sound."))
@@ -123,7 +122,7 @@
 	else
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1, SHORT_SOUND_RANGE)
 		user.visible_message(span_notice("[user] knocks on [src]."),
 		span_notice("You knock on [src]."),
 		span_notice("You hear a knocking sound."))
@@ -154,7 +153,7 @@
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against \the [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against \the [src]")
 			grabbed_mob.Paralyze(2 SECONDS)
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	take_damage(damage * 2, BRUTE, MELEE)
 	return TRUE
 
@@ -168,19 +167,17 @@
 
 	else if(isscrewdriver(I) && deconstructable)
 		dismantle = TRUE
+		I.play_tool_sound(src)
 		if(reinf && state >= 1)
 			state = 3 - state
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
 		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
 		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
 		else if(!reinf || (static_frame && state == 0))
 			deconstruct(TRUE)
@@ -188,7 +185,7 @@
 	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		I.play_tool_sound(src)
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
@@ -412,6 +409,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 		SMOOTH_GROUP_ESCAPESHUTTLE,
 	)
+	minimap_color = MINIMAP_FENCE
 	///For perspective windows,so the window frame doesn't magically disappear.
 	var/window_frame
 
@@ -469,7 +467,6 @@
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	icon_state = "window-invincible"
@@ -492,6 +489,14 @@
 	max_integrity = 1000
 	deconstructable = FALSE
 	icon_state = "window-reinforced"
+
+/obj/structure/window/framed/mainship/bulletproof
+	name = "hardened bulletproof window"
+	desc = "A hardened silicate alloy window mounted within a special shock-absorbing frame, totally immune to small arms fire."
+	max_integrity = 500
+	deconstructable = FALSE
+	icon_state = "window-reinforced"
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/structure/window/framed/mainship/white
 	icon = 'icons/obj/smooth_objects/wwindow.dmi'
@@ -534,7 +539,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	icon_state = "window-invincible"
@@ -543,7 +547,6 @@
 	name = "hull window"
 	icon_state = "window-invincible"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 
@@ -580,7 +583,6 @@
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
@@ -665,7 +667,6 @@
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
 

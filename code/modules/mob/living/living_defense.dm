@@ -43,8 +43,8 @@
 			damage += base_damage * 2
 			grabbed_mob.visible_message(span_danger("<big>[user] crushes [grabbed_mob] against [src]!</big>"))
 			log_combat(user, grabbed_mob, "crushed", "", "against [src]")
-	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
-	apply_damage(damage, blocked = MELEE, updating_health = TRUE)
+	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
+	apply_damage(damage, blocked = MELEE, updating_health = TRUE, attacker = user)
 	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 	return TRUE
 
@@ -184,6 +184,7 @@
 		fire_stacks = min(0, fire_stacks)//So we dry ourselves back to default, nonflammable.
 	if(!on_fire)
 		return 1
+	SEND_SIGNAL(src, COMSIG_LIVING_HANDLE_FIRE)
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
 
@@ -250,7 +251,7 @@
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		if((S.smoke_traits & SMOKE_CAMO) && !(S.smoke_traits & SMOKE_XENO))
 			smokecloak_off()
 		return
 	if(status_flags & GODMODE)
@@ -311,7 +312,7 @@
 	adjustCloneLoss(rad_strength)
 	adjustStaminaLoss(rad_strength * 7)
 	adjust_stagger(rad_strength SECONDS * 0.5)
-	add_slowdown(rad_strength * 0.5)
+	slowdown(rad_strength * 0.5)
 	blur_eyes(rad_strength) //adds a visual indicator that you've just been irradiated
 	adjust_radiation(rad_strength * 20) //Radiation status effect, duration is in deciseconds
 	to_chat(src, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

@@ -44,9 +44,6 @@
 	// *** Pheromones *** //
 	aura_strength = 3 //The Shrike's aura is decent.
 
-	// *** Queen Abilities *** //
-	queen_leader_limit = 4
-
 	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"
 
@@ -81,8 +78,14 @@
 
 	mutations = list(
 		/datum/mutation_upgrade/shell/lone_healer,
+		/datum/mutation_upgrade/shell/shared_cure,
+		/datum/mutation_upgrade/shell/resistant_cure,
 		/datum/mutation_upgrade/spur/smashing_fling,
-		/datum/mutation_upgrade/veil/stand_in_recycler
+		/datum/mutation_upgrade/spur/body_fling,
+		/datum/mutation_upgrade/spur/gravity_tide,
+		/datum/mutation_upgrade/veil/delayed_condition,
+		/datum/mutation_upgrade/veil/deflective_force,
+		/datum/mutation_upgrade/veil/psychic_choke
 	)
 
 /datum/xeno_caste/shrike/normal

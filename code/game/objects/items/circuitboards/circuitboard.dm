@@ -164,7 +164,7 @@
 	. += span_info("The board is configured for [split_mode ? "split window" : "normal window"].")
 	. += span_notice("The board mode can be changed with a [EXAMINE_HINT("multitool")].")
 
-/obj/item/circuitboard/computer/tram_controls/multitool_act(mob/living/user)
+/obj/item/circuitboard/computer/tram_controls/multitool_act(mob/user, obj/item/tool)
 	split_mode = !split_mode
 	to_chat(user, span_notice("[src] positioning set to [split_mode ? "split window" : "normal window"]."))
 	return TRUE

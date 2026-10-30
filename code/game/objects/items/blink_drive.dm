@@ -83,8 +83,8 @@
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
 	if(charges <= 0)
-		user.balloon_alert(user, "no charge")
-		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
+		user.balloon_alert(user, "no charge!")
+		playsound(src, 'sound/items/blink_empty.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	var/turf/target_turf = get_turf(A)
 
@@ -94,7 +94,7 @@
 	var/target_distance = get_dist(user, target_turf)
 
 	if(target_distance > BLINK_DRIVE_RANGE)
-		user.balloon_alert(user, "too far")
+		user.balloon_alert(user, "too far!")
 		return
 
 	user.face_atom(target_turf)
@@ -142,7 +142,7 @@
 ///Recharges the drive, and sets another timer if not maxed out
 /obj/item/blink_drive/proc/recharge()
 	charges ++
-	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1)
+	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(charges < BLINK_DRIVE_MAX_CHARGES)
 		charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
 	else
@@ -151,13 +151,13 @@
 
 ///The effects applied on teleporting from or to a location
 /obj/item/blink_drive/proc/teleport_debuff_aoe(atom/movable/teleporter)
-	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1)
+	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	new /obj/effect/temp_visual/blink_drive(get_turf(teleporter))
 
 	for(var/mob/living/living_target in range(1, teleporter))
 		living_target.adjust_stagger(1 SECONDS)
-		living_target.add_slowdown(1)
+		living_target.slowdown(1)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 //codex stuff
@@ -205,7 +205,7 @@
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
 	if(is_mainship_level(carbon_owner.z))
-		carbon_owner.balloon_alert(carbon_owner, "can't use here")
+		carbon_owner.balloon_alert(carbon_owner, "can't use that here!")
 		return FALSE
 	return ..()
 

@@ -2,12 +2,8 @@
 // *********** Resin building
 // ***************************************
 /datum/action/ability/activable/xeno/secrete_resin/widow
-	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/turf/closed/wall/resin/regenerating/special/bulletproof,
-		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
@@ -137,7 +133,7 @@
 		xeno_attacker.balloon_alert(xeno_attacker, "yanked!")
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
 			span_xenonotice("We yank all the leashes from \the [src]!"))
-		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE)
+		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		for(var/mob/living/carbon/human/human_mob in leash_victims)
 			if(human_mob.stat == DEAD || human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
@@ -150,7 +146,7 @@
 			return
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
 			span_xenonotice("We pull down \the [src]."))
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	take_damage(max_integrity)
 
@@ -181,7 +177,7 @@
 	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 5
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
-/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -308,7 +304,7 @@
 	succeed_activate()
 
 /// Burrow code for xenomorphs
-/datum/action/ability/xeno_action/burrow/proc/xeno_burrow()
+/datum/action/ability/xeno_action/burrow/proc/xeno_burrow(datum/source, damage_amount, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(xeno_owner, TRAIT_BURROWED))
 		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))
@@ -440,7 +436,7 @@
 		owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
 	else
 		owner.balloon_alert(owner, "We're full, no charges gained!")
-	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE)
+	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
 

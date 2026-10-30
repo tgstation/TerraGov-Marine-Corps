@@ -31,10 +31,10 @@
 	. = ..()
 	song.ui_interact(user)
 
-/obj/structure/musician/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/musician/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	user.visible_message("[user] unfastens [src]", "you unfasten the [src]")
-	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	tool.play_tool_sound(src)
 	return TRUE
 
 /obj/structure/musician/piano

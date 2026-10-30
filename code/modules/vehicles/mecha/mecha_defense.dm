@@ -277,7 +277,7 @@
 	if(.)
 		try_damage_component(., user.zone_selected)
 
-/obj/vehicle/sealed/mecha/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/mecha/wrench_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(construction_state == MECHA_SECURE_BOLTS)
@@ -288,7 +288,7 @@
 		construction_state = MECHA_SECURE_BOLTS
 		to_chat(user, span_notice("You tighten the securing bolts."))
 
-/obj/vehicle/sealed/mecha/crowbar_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/mecha/crowbar_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(construction_state == MECHA_LOOSE_BOLTS)
@@ -299,8 +299,8 @@
 		construction_state = MECHA_LOOSE_BOLTS
 		to_chat(user, span_notice("You close the hatch to the power unit."))
 
-/obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
+/obj/vehicle/sealed/mecha/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
 
 /obj/vehicle/sealed/mecha/proc/full_repair(charge_cell)
 	obj_integrity = max_integrity

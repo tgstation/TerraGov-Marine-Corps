@@ -18,13 +18,13 @@
 	if(!endure)
 		return
 	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold + endure_ability.bonus_endure_threshold
+	return endure_ability.endure_threshold + endure_ability.endure_threshold_bonus
 
 /mob/living/carbon/xenomorph/get_death_threshold()
 	if(!endure)
 		return xeno_caste.crit_health
 	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
-	return endure_ability.endure_threshold + endure_ability.bonus_endure_threshold
+	return endure_ability.endure_threshold + endure_ability.endure_threshold_bonus
 
 ///Helper proc for giving the rally abilities
 /mob/living/carbon/xenomorph/proc/give_rally_abilities()
@@ -74,19 +74,19 @@
 ///Helper proc for removing ruler abilities
 /mob/living/carbon/xenomorph/proc/remove_ruler_abilities()
 	var/datum/action/ability/xeno_action/lead = actions_by_path[/datum/action/ability/xeno_action/set_xeno_lead]
-	if(lead)
+	if(lead && !(locate(/datum/action/ability/xeno_action/set_xeno_lead) in xeno_caste.actions))
 		lead.remove_action(src)
 	var/datum/action/ability/xeno_action/blessing_menu/bless = actions_by_path[/datum/action/ability/xeno_action/blessing_menu]
-	if(bless)
+	if(bless && !(locate(/datum/action/ability/xeno_action/blessing_menu) in xeno_caste.actions))
 		bless.remove_action(src)
 	var/datum/action/ability/xeno_action/hive_message/message = actions_by_path[/datum/action/ability/xeno_action/hive_message]
-	if(message)
+	if(message && !(locate(/datum/action/ability/xeno_action/hive_message) in xeno_caste.actions))
 		message.remove_action(src)
 	var/datum/action/ability/xeno_action/rally_hive/hive = actions_by_path[/datum/action/ability/xeno_action/rally_hive]
-	if(hive)
+	if(hive && !(locate(/datum/action/ability/xeno_action/rally_hive) in xeno_caste.actions))
 		hive.remove_action(src)
 	var/datum/action/ability/xeno_action/rally_minion/minion = actions_by_path[/datum/action/ability/xeno_action/rally_minion]
-	if(minion)
+	if(minion && !(locate(/datum/action/ability/xeno_action/rally_minion) in xeno_caste.actions))
 		minion.remove_action(src)
 
 

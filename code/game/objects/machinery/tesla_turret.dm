@@ -41,18 +41,22 @@
 
 /obj/item/tesla_turret/get_mechanics_info()
 	. = ..()
-	. += "It has a range of [max_range] tile\s."
+	. += "<blockquote style='outline: #9ebcd8 solid 1px; padding-left:3px'>"
+	. += "It has a range of <b>[max_range]</b> tile\s."
 	. += "<br>"
-	. += "It passively uses [passive_cost] power."
+	. += "It can affect a maximum of <b>[TESLA_TURRET_MAX_TARGETS]</b> xeno\s at a time."
 	. += "<br>"
-	. += "It will drain [active_cost] power per xenomorph hit."
+	. += "It passively uses <b>[passive_cost]</b> power."
+	. += "<br>"
+	. += "It will drain <b>[active_cost]</b> power per xenomorph hit."
+	. += "</blockquote>"
 
 /obj/item/tesla_turret/attack_self(mob/living/user)
 	. = ..()
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -63,7 +67,7 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
@@ -74,10 +78,10 @@
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -135,22 +139,25 @@
 
 /obj/machinery/deployable/tesla_turret/get_mechanics_info()
 	. = ..()
+	. += "<blockquote style='outline: #9ebcd8 solid 1px; padding-left:3px'>"
+	. += "It has a range of <b>[max_range]</b> tile\s."
 	. += "<br>"
-	. += "It has a range of [max_range] tile\s."
+	. += "It can affect a maximum of <b>[TESLA_TURRET_MAX_TARGETS]</b> xeno\s at a time."
 	. += "<br>"
-	. += "It passively uses [passive_cost] power."
+	. += "It passively uses <b>[passive_cost]</b> power."
 	. += "<br>"
-	. += "It will drain [active_cost] power per xenomorph hit."
+	. += "It will drain <b>[active_cost]</b> power per xenomorph hit."
+	. += "</blockquote>"
 
 /obj/machinery/deployable/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
 	if(!istype(inserting_item))
 		return
 	if(istype(inserting_item, /obj/item/cell/lasgun))
-		balloon_alert(user, "won't fit")
+		balloon_alert(user, "won't fit!")
 		return
 	if(battery)
-		balloon_alert(user, "already has")
+		balloon_alert(user, "already has one!")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
@@ -165,10 +172,10 @@
 	if(!in_range(src, user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(active)
-		balloon_alert(user, "turn off first")
+		balloon_alert(user, "turn it off first!")
 		return
 	user.put_in_hands(battery)
 	battery = null
@@ -180,10 +187,10 @@
 	if(isdead(user))
 		return
 	if(!battery)
-		balloon_alert(user, "no battery")
+		balloon_alert(user, "no battery!")
 		return
 	if(!battery.use(0))
-		balloon_alert(user, "no power")
+		balloon_alert(user, "no power!")
 		return
 	toggle(!active)
 
@@ -202,11 +209,11 @@
 
 /obj/machinery/deployable/tesla_turret/process()
 	if(!battery || !active || !battery.use(0))
-		balloon_alert_to_viewers("shuts off!")
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
 		return
 	if(!battery.use(passive_cost))
-		balloon_alert_to_viewers("shuts off!")
+		balloon_alert_to_viewers("shuts off")
 		toggle(FALSE, TRUE)
 		hud_set_tesla_battery()
 		return
@@ -223,14 +230,20 @@
 	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	hud_set_tesla_battery()
 
-/obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
+/// I found out people have been turning it on during undeploy, grabbing some use out of it.
+/obj/machinery/deployable/tesla_turret/can_disassemble(mob/user)
 	if(active)
-		if(shock(marine, 70))
-			balloon_alert_to_viewers("sparks!")
-		else
-			balloon_alert(marine, "turn off first!")
-		return
+		balloon_alert(user, "interrupted by reactivation")
+		return FALSE
 	return ..()
+
+/obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
+	if(!active)
+		return ..()
+	if(shock(marine, 70))
+		to_chat(marine, span_userdanger("You're shocked by \the [src]!"))
+		return
+	balloon_alert(marine, "turn it off first!")
 
 /obj/machinery/deployable/tesla_turret/post_disassemble(mob/user)
 	. = ..()

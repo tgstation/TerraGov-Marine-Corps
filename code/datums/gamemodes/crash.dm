@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN|MODE_DISALLOW_RAILGUN
+	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DISALLOW_RAILGUN|MODE_ALLOW_MARINE_QUICKBUILD|MODE_APC_ALL_ACCESS
 	xeno_abilities_flags = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -21,7 +21,7 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	respawn_time = 15 MINUTES
-	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS, MAP_PRISON_STATION)
 	tier_three_penalty = 1
 	tier_three_inclusion = TRUE
 	caste_swap_cooldown = 5 MINUTES
@@ -82,21 +82,11 @@
 
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, PROC_REF(crash_shuttle), actual_crash_site), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(crash_shuttle), actual_crash_site), CRASH_DELAY_TIME)
 
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/xeno/silo(i)
-		new /obj/structure/xeno/pherotower(i)
-
-	for(var/i in GLOB.xeno_spawner_turfs)
-		new /obj/structure/xeno/spawner(i, XENO_HIVE_NORMAL)
-
-	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
-		corpse.create_mob()
-
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
@@ -109,11 +99,24 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DEFUSED, PROC_REF(on_nuclear_defuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
+
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/xeno/silo(i)
+		new /obj/structure/xeno/pherotower(i)
+
+	for(var/i in GLOB.xeno_spawner_turfs)
+		new /obj/structure/xeno/spawner(i, XENO_HIVE_NORMAL)
+
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob()
+
+	for(var/i in GLOB.sentry_crate_spawns)
+		new /obj/item/storage/box/crate/sentry(get_turf(i))
 
 	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
@@ -123,12 +126,10 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-
-/datum/game_mode/infestation/crash/announce()
-	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
+/datum/game_mode/infestation/crash/map_announce()
 	priority_announce(
-		message = "Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.",
 		title = "Good morning, marines.",
+		message = "Scheduled for landing in T-[CRASH_DELAY_TIME / 600] Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.",
 		type = ANNOUNCEMENT_PRIORITY,
 		color_override = "red"
 	)
@@ -191,7 +192,7 @@
 	return FALSE
 
 
-/datum/game_mode/infestation/crash/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+/datum/game_mode/infestation/crash/on_nuclear_defuse(obj/machinery/nuclearbomb/bomb, mob/defuser)
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
@@ -227,6 +228,10 @@
 
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags = COUNT_IGNORE_HUMAN_SSD)
 	. = 0
+	var/round_duration = round((world.time - SSticker.round_start_time))
+	var/time_bonus = max(floor(round_duration / (10 MINUTES)) - 6, 0) //time bonus starts after 60 minutes
+	if(time_bonus)
+		. += (time_bonus * LARVA_POINTS_REGULAR)
 
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)
@@ -253,3 +258,15 @@
 		var/jobpoint_difference = get_jobpoint_difference() + amount
 		adjusted_jobworth_list[index] = clamp(jobpoint_difference, 0, amount)
 	return adjusted_jobworth_list
+
+/datum/game_mode/infestation/crash/on_disk_segment_completed(datum/source, generating_computer)
+	for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
+		if(!human.job)
+			continue
+		var/obj/item/card/id/user_id =  human.get_idcard()
+		if(!user_id)
+			continue
+		for(var/i in user_id.marine_points)
+			if(i == CAT_ZOMBIE_CRASH)
+				continue
+			user_id.marine_points[i] += 2

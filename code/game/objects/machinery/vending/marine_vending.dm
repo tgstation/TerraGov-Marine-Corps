@@ -5,7 +5,25 @@
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	wrenchable = FALSE
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "If it moves, it's hostile!;\
+	How many enemies have you killed today?;\
+	Shoot first, perform autopsy later!;\
+	Your ammo is right here.;\
+	Guns!;\
+	Die, scumbag!;\
+	Don't shoot me bro!;\
+	Shoot them, bro.;\
+	Get some!;\
+	More guns!;\
+	Guns solve all of life's problems!;\
+	If at first you don't succeed, shoot it more!;\
+	Freedom issued here!;\
+	Recommended for ages 13 and over.;\
+	You can never have enough firepower.;\
+	Guns. Lots of guns.;\
+	More guns than a video game!;\
+	We have more guns than the competition!"
 	isshared = TRUE
 
 	products = list(
@@ -66,10 +84,6 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
-			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
-			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
-			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
-			/obj/item/ammo_magazine/rifle/sh410_ricochet = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -224,6 +238,7 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/paper_map/marine = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
@@ -278,6 +293,7 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
 			/obj/item/ammo_magazine/rifle/martini = -1,
@@ -294,9 +310,6 @@
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
-			/obj/item/weapon/gun/rifle/light_autoshotgun = -1,
-			/obj/item/ammo_magazine/rifle/sh410_sabot = -1,
-			/obj/item/ammo_magazine/rifle/sh410_buckshot = -1,
 		),
 		"Machinegun" = list(
 			/obj/item/weapon/gun/rifle/standard_lmg = -1,
@@ -345,7 +358,7 @@
 			/obj/item/explosive/grenade/sticky = 75,
 			/obj/item/explosive/grenade/incendiary = 25,
 			/obj/item/explosive/grenade/smokebomb/cloak = 15,
-			/obj/item/explosive/grenade/smokebomb/antigas = 10,
+			/obj/item/explosive/grenade/smokebomb/antigas = 25,
 			/obj/item/explosive/grenade/mirage = 50,
 			/obj/item/explosive/grenade/bullet/laser = 15,
 			/obj/item/storage/box/m94 = 200,
@@ -432,10 +445,12 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/paper_map/marine = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
+			/obj/item/explosive/plastique = 12,
 		),
 	)
 
@@ -446,6 +461,7 @@
 /obj/machinery/vending/weapon/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -493,6 +509,7 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
 			/obj/item/ammo_magazine/rifle/martini = -1,
@@ -715,8 +732,18 @@
 	seasonal_items = list()
 
 /obj/machinery/vending/cigarette/colony
-	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	product_slogans = "Koorlander Gold, for the refined palate.;\
+	Lady Fingers, for the dainty smoker.;\
+	Lady Fingers, treat your palete with pink!;\
+	The big blue K means a cool fresh day!;\
+	For the taste that cools your mood, look for the big blue K!;\
+	Refined smokers go for Gold!;\
+	Lady Fingers are preferred by women who appreciate a cool smoke.;\
+	Lady Fingers are the number one cigarette this side of Gateway!;\
+	The tobacco connoisseur prefers Koorlander Gold.;\
+	For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;\
+	For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;\
+	The Colonial Administration Bureau would like to remind you that smoking kills."
 	products = list(
 		/obj/item/storage/fancy/cigarettes/kpack = 15,
 		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
@@ -730,6 +757,7 @@
 /obj/machinery/vending/cigarette/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = -1,
 		/obj/item/storage/fancy/chemrettes = -1,
@@ -791,10 +819,10 @@
 			/obj/item/big_ammo_box = -1,
 			/obj/item/big_ammo_box/smg = -1,
 			/obj/item/big_ammo_box/mg = -1,
-			/obj/item/shotgunbox = -1,
-			/obj/item/shotgunbox/buckshot = -1,
-			/obj/item/shotgunbox/flechette = -1,
-			/obj/item/shotgunbox/tracker = -1,
+			/obj/item/big_ammo_box/shotgun = -1,
+			/obj/item/big_ammo_box/shotgun/buckshot = -1,
+			/obj/item/big_ammo_box/shotgun/flechette = -1,
+			/obj/item/big_ammo_box/shotgun/tracker = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = -1,
@@ -818,8 +846,6 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_mmg/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full = -1,
 		),
 		"Mecha Ammo" = list(
 			/obj/item/mecha_ammo/vendable/pistol = -1,
@@ -839,6 +865,26 @@
 		)
 	)
 
+/obj/machinery/vending/reqtorio_supply
+	name = "\improper Factory Supplies Vendor"
+	desc = "A large vendor for dispensing factory supplies. Restricted to cargo personnel only."
+	icon_state = "robotics"
+	icon_vend = "robotics-vend"
+	icon_deny = "robotics-deny"
+	wrenchable = FALSE
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+	products = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/unboxer = 1,
+			/obj/item/stack/conveyor/thirty = 10,
+			/obj/item/conveyor_switch_construct = 10,
+	)
+
 /obj/machinery/vending/lasgun
 	name = "\improper Terra Experimental cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
@@ -852,7 +898,13 @@
 	active_power_usage = 50
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
-	product_slogans = "Static Shock!;Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_slogans = "Static Shock!;\
+	Power cell running low? Recharge here!;\
+	Need a charge?;Power up!;\
+	Electrifying!;\
+	Empower yourself!;\
+	Robots are reminded not to insert appendages into the field charger.;\
+	Warning: licking live electrodes may be hazardous to your health."
 	products = list(
 		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2, /obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
 	)
@@ -890,7 +942,24 @@
 	icon_deny = "sustenance-deny"
 	wrenchable = FALSE
 	isshared = TRUE
-	product_ads = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bites!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "Standard Issue Marine food!;\
+	It's good for you, and not the worst thing in the world.;\
+	Just fucking eat it.;\
+	You should have joined the Air Force if you wanted better food.;\
+	1200 calories in just a few bites!;\
+	Get that tabaso sauce to make it tasty!;\
+	Try the cornbread.;\
+	Try the pizza.;\
+	Try the pasta.;\
+	Try the tofu, wimp.;\
+	Try the pork.;\
+	9 Flavors of Protein!;\
+	You'll never guess the mystery flavor!;\
+	Gobble up the goodness!;\
+	You're skin and bones marine, eat!;\
+	Gobble gobble.;\
+	Save some for the rest of them!"
 	products = list(
 		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
@@ -911,6 +980,7 @@
 /obj/machinery/vending/marineFood/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
@@ -927,7 +997,20 @@
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?"
+	slogan_delay = 4 MINUTES
+	product_slogans = "Go save some lives!;\
+	The best stuff for your medbay.;\
+	Only the finest tools.;\
+	All natural chemicals!;\
+	This stuff saves lives.;\
+	Don't you want some?;\
+	Winners do drugs. Are you a winner?;\
+	Floor pills now available in family packs.;\
+	Juice up to your eyeballs!;\
+	Pre-Med or be-dead!;\
+	Drugs - fun for the whole family!;\
+	Now without child safety caps!;\
+	Enhance your performance!"
 	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
 	isshared = TRUE
@@ -976,6 +1059,7 @@
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -1034,7 +1118,17 @@
 	icon_state = "bloodvendor"
 	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
-	product_slogans = "The best blood on the market!;Totally came from an ethical source!;O negative is the universal donor, use it!;Prevent hypovolemic shock starting today!"
+	product_slogans = "The best blood on the market!;\
+	Totally came from an ethical source!;\
+	O negative is the universal donor, use it!;\
+	Prevent hypovolemic shock starting today!;\
+	The need for blood is rising.;\
+	Recycling blood since 2096.;\
+	Additive free!;\
+	Now available in fruity flavours!;\
+	You can always do with a top up...;\
+	Why so pale?;\
+	Slurp it up!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
@@ -1067,7 +1161,15 @@
 	icon_deny = "surplus_armor_deny"
 	isshared = TRUE
 	wrenchable = FALSE
-	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;\
+	Armour up marine!;\
+	Thank your armor later when you didn't die!;\
+	I remember PAS, do you remember PAS?;\
+	Time to paint the rainbow!;\
+	So many selections to choose from!;\
+	Increase your estimated life expectancy above 15 minutes!;\
+	Thin skin? Thick armour!"
 	products = list(
 		"Xenonauten" = list(
 			/obj/item/clothing/suit/modular/xenonauten/light = -1,
@@ -1113,6 +1215,8 @@
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/storage/marine/ballistic = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/facepaint/brown = -1,
+			/obj/item/facepaint/black = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1214,6 +1318,7 @@
 /obj/machinery/vending/armor_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
@@ -1223,7 +1328,16 @@
 	icon_deny = "surplus_clothes_deny"
 	wrenchable = FALSE
 	isshared = TRUE
-	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
+	slogan_delay = 6 MINUTES //there's a lot of these vendors
+	product_slogans = "Be the musician that you parents never approve you of.;\
+	You gotta look good when you're in the battlefield.;\
+	We have all types of hats here!;\
+	What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;\
+	Sometimes, a beret is better than a helmet.;\
+	Drip is the priority, marine.;\
+	The fashion of war!;\
+	Your butt won't look big in this!;\
+	Die in style!"
 	products = list(
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
@@ -1414,6 +1528,7 @@
 /obj/machinery/vending/uniform_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
@@ -1422,7 +1537,10 @@
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
-	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	product_slogans = "Hey! You! Stop looking like a turtle and start looking like a TRUE marine!;\
+	Dress whites, fresh off the ironing board!;\
+	Why kill in armor when you can kill in style?;\
+	These uniforms are so sharp you'd cut yourself just looking at them!"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -1442,6 +1560,7 @@
 /obj/machinery/vending/dress_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
@@ -1449,6 +1568,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
@@ -1474,7 +1594,7 @@
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
-			/obj/item/weapon/gun/shotgun/zx76 = -1,
+			/obj/item/weapon/gun/shotgun/zx76/valhalla = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
 			/obj/item/ammo_magazine/shotgun/beanbag = -1,
 			/obj/item/weapon/gun/minigun/valhalla = -1,
@@ -1520,13 +1640,13 @@
 			/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = -1,
 			/obj/item/weapon/gun/pistol/smart_pistol = -1,
 			/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = -1,
-			/obj/item/weapon/gun/rifle/tx8 = -1,
+			/obj/item/weapon/gun/rifle/tx8/valhalla = -1,
 			/obj/item/ammo_magazine/rifle/tx8 = -1,
 			/obj/item/ammo_magazine/rifle/tx8/impact = -1,
 			/obj/item/ammo_magazine/rifle/tx8/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
-			/obj/item/weapon/gun/rifle/sniper/antimaterial = -1,
+			/obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla = -1,
 			/obj/item/ammo_magazine/sniper = -1,
 			/obj/item/ammo_magazine/sniper/incendiary = -1,
 			/obj/item/ammo_magazine/sniper/flak = -1,
@@ -1613,6 +1733,7 @@
 			/obj/item/ammo_magazine/tank/ltb_cannon = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/apfds = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/canister = -1,
+			/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary = -1,
 			/obj/item/ammo_magazine/tank/autocannon = -1,
 			/obj/item/ammo_magazine/tank/autocannon/high_explosive = -1,
 			/obj/item/ammo_magazine/tank/bfg = -1,
@@ -1653,6 +1774,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Seasonal" = list(
 			/obj/item/weapon/gun/revolver/small = -1,
@@ -1771,7 +1893,7 @@
 			/obj/item/weapon/gun/rifle/dpm = -1,
 			/obj/item/ammo_magazine/rifle/dpm = -1,
 			/obj/item/weapon/gun/clf_heavyrifle = -1,
-			/obj/item/shotgunbox/clf_heavyrifle = -1,
+			/obj/item/big_ammo_box/clf_heavyrifle = -1,
 			/obj/item/weapon/gun/launcher/rocket/icc = -1,
 			/obj/item/ammo_magazine/rocket/icc = -1,
 			/obj/item/ammo_magazine/rocket/icc/heat = -1,
@@ -1783,12 +1905,34 @@
 			/obj/item/ammo_magazine/icc_hmg = -1,
 		),
 		"PMC" = list(
-			/obj/item/weapon/gun/rifle/sniper/elite = -1,
-			/obj/item/ammo_magazine/sniper/elite = -1,
-			/obj/item/weapon/gun/smg/m25/elite/pmc = -1,
-			/obj/item/ammo_magazine/smg/m25/ap = -1,
-			/obj/item/weapon/gun/rifle/m412/elite = -1,
-			/obj/item/ammo_magazine/rifle/ap = -1,
+			/obj/item/weapon/gun/rifle/sniper/pmc_railgun = -1,
+			/obj/item/ammo_magazine/railgun/pmc = -1,
+			/obj/item/ammo_magazine/railgun/pmc/smart = -1,
+			/obj/item/ammo_magazine/railgun/pmc/hvap = -1,
+			/obj/item/weapon/gun/smg/val = -1,
+			/obj/item/ammo_magazine/smg/val = -1,
+			/obj/item/weapon/gun/rifle/m416 = -1,
+			/obj/item/weapon/gun/rifle/m416/elite = -1,
+			/obj/item/ammo_magazine/rifle/m416 = -1,
+			/obj/item/weapon/gun/rifle/pmc_gpmg = -1,
+			/obj/item/ammo_magazine/smart_gpmg = -1,
+			/obj/item/weapon/gun/rifle/pmc_smartrifle = -1,
+			/obj/item/ammo_magazine/rifle/standard_smartrifle = -1,
+			/obj/item/weapon/gun/pistol/mk90 = -1,
+			/obj/item/ammo_magazine/pistol/mk90 = -1,
+			/obj/item/ammo_magazine/pistol/mk90/extended = -1,
+			/obj/item/weapon/gun/pistol/mk100_gyrojet = -1,
+			/obj/item/ammo_magazine/pistol/mk100_gyrojet = -1,
+		),
+		"Freelancers" = list(
+			/obj/item/weapon/gun/rifle/tx11/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/tx11 = -1,
+			/obj/item/weapon/gun/rifle/m41a/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/m41a = -1,
+			/obj/item/weapon/gun/rifle/tx55/freelancer_custom = -1,
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
+			/obj/item/weapon/gun/pistol/heavy/gold = -1,
+			/obj/item/ammo_magazine/pistol/heavy = -1,
 		),
 		"Syndicate" = list(
 			/obj/item/weapon/gun/rifle/vsd_rifle = -1,
@@ -1833,6 +1977,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	product_slogans = ""
 	products = list(
 		"Machinery" = list(
 			/obj/item/conveyor_switch_construct = -1,
@@ -1948,6 +2093,15 @@
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	icon_vend = "tool-vend"
+	slogan_delay = 6 MINUTES
+	product_slogans = "Get your tools here. Youtool!;\
+	Get your tools here, you tool.;\
+	Giving, not taking.;\
+	Simple tools for simple people.;\
+	Sponsored by the Tools for Tools charity since 2129.;\
+	Stick a wrench in it!;\
+	Welding masks sold separately.;\
+	Do not insert into eye socket."
 	isshared = TRUE
 	wrenchable = FALSE
 	products = list(
@@ -1965,6 +2119,7 @@
 
 /obj/machinery/vending/tool/nopower/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 
 /obj/machinery/vending/mech_vendor
 	name = "\improper Mech equipment vendor"

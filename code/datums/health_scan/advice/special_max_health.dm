@@ -12,5 +12,5 @@
 		ADVICE_TEXT = "Patient has [patient.maxHealth / LIVING_DEFAULT_MAX_HEALTH * 100]% constitution.",
 		ADVICE_TOOLTIP = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less maximum health than most humans." : "Patient has more maximum health than most humans.",
 		ADVICE_ICON = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? FA_ICON_FEATHER : FA_ICON_SHIELD_HEART,
-		ADVICE_ICON_COLOR = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink"
+		ADVICE_ICON_COLOR = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink",
 	)

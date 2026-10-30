@@ -119,11 +119,13 @@
 	toggle(user)
 	user.changeNext_move(CLICK_CD_LONG)
 
+/obj/item/tool/pickaxe/plasmacutter/surgery_tool_check()
+	return powered
 
 //Toggles the cutter off and on
 /obj/item/tool/pickaxe/plasmacutter/proc/toggle(mob/user, silent)
 	if(powered)
-		playsound(loc, 'sound/weapons/saberoff.ogg', 15)
+		playsound(loc, 'sound/weapons/saberoff.ogg', 15, FALSE, SHORT_SOUND_RANGE)
 		powered = FALSE
 		if(!silent && user)
 			user.visible_message(span_notice("[user] turns [src] off."),
@@ -134,7 +136,7 @@
 	if(!cell || cell.charge <= 0)
 		fizzle_message(user)
 		return
-	playsound(loc, 'sound/weapons/saberon.ogg', 15)
+	playsound(loc, 'sound/weapons/saberon.ogg', 15, FALSE, SHORT_SOUND_RANGE)
 	powered = TRUE
 	if(!silent && user)
 		user.visible_message(span_notice("[user] turns [src] on."),
@@ -144,13 +146,13 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
-	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!cell)
-		balloon_alert(user, "No battery installed")
+		balloon_alert(user, "no battery installed!")
 	else if(!powered)
-		balloon_alert(user, "Turned off")
+		balloon_alert(user, "turned off!")
 	else
-		balloon_alert(user, "Insufficient charge")
+		balloon_alert(user, "insufficient charge!")
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge, or attack a living creature! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
@@ -159,7 +161,7 @@
 		return FALSE
 	eyecheck(user)
 	if(SFX)
-		playsound(source, cutting_sound, 25, 1)
+		playsound(source, cutting_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		var/datum/effect_system/spark_spread/spark_system
 		spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, source)
@@ -169,19 +171,19 @@
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
-			balloon_alert(user, "Starts cutting apart")
+			balloon_alert(user, "cutting apart...")
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
 	eyecheck(user)
-	playsound(source, cutting_sound, 25, 1)
+	playsound(source, cutting_sound, 25, 1, MEDIUM_SOUND_RANGE)
 	var/datum/effect_system/spark_spread/spark_system
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, source)
 	spark_system.attach(source)
 	spark_system.start(source)
 	use_charge(user, charge_amount, FALSE)
-	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
+	balloon_alert(user, "charge remaining: [cell.charge]/[cell.maxcharge]")
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
 
@@ -204,7 +206,7 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = PLASMACUTTER_BASE_COST, mention_charge = TRUE)
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
+		balloon_alert(user, "charge remaining: [cell.charge]/[cell.maxcharge]")
 	update_plasmacutter()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
@@ -224,8 +226,8 @@
 		if(powered)
 			powered = FALSE
 			if(!silent)
-				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
-				balloon_alert(user, "Insufficient charge")
+				playsound(loc, 'sound/weapons/saberoff.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
+				balloon_alert(user, "insufficient charge!")
 				to_chat(user, span_warning("The plasma cutter abruptly shuts down due to a lack of power!"))
 		force = 5
 		damtype = BRUTE
@@ -244,7 +246,7 @@
 	if(!powered)
 		fizzle_message(user)
 	else
-		playsound(M, cutting_sound, 25, 1)
+		playsound(M, cutting_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		eyecheck(user)
 		update_plasmacutter()
 		var/datum/effect_system/spark_spread/spark_system
@@ -276,7 +278,7 @@
 			return
 		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
-		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
+		playsound(user.loc, 'sound/items/welder.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, T, BUSY_ICON_BUILD))
 			return
 		if(!powered)

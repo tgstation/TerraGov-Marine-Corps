@@ -324,6 +324,7 @@ WEAPONS
 	name = "PB-12 pepperball gun"
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/bricks
 	name = "Brick"
@@ -351,7 +352,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 scout rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 400
+	cost = TX8_PRICE
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
@@ -429,7 +430,7 @@ WEAPONS
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 twin-barrled burst shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 1000
+	cost = ZX_PRICE
 
 /datum/supply_packs/weapons/shotguntracker
 	name = "12 gauge tracker shells"
@@ -464,7 +465,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 antimaterial rifle (AMR) kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 775
+	cost = AMR_PRICE
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
@@ -620,3 +621,8 @@ WEAPONS
 	name = "SP-13 smart machinepistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
+
+/datum/supply_packs/weapons/sledgehammer
+	name = "Sledgehammer"
+	contains = list(/obj/item/weapon/twohanded/sledgehammer)
+	cost = 50

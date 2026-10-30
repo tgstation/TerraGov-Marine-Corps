@@ -5,7 +5,7 @@
 	weight = 10
 	earliest_start = 30 MINUTES
 
-	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign", "Zombie Crash")
 
 /datum/round_event/hive_threat
 	///The human target for this event

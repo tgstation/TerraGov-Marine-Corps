@@ -13,6 +13,11 @@
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/disk_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/disk_right.dmi',
+	)
+	worn_icon_state = null
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = RESIST_ALL
 

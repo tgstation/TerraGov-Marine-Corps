@@ -110,28 +110,27 @@
 	handful_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
-/datum/ammo/tx54/he/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 3, 1, explosion_cause=src)
+/datum/ammo/tx54/he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 1, 3, 1, explosion_cause=src)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	drop_nade(get_turf(target_mob), proj)
 
 /datum/ammo/tx54/he/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_obj))
+	drop_nade(get_turf(target_obj), proj)
 
 /datum/ammo/tx54/he/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 //The secondary projectiles
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 5
-	accuracy_var_high = 5
+	accuracy_variation = 5
 	max_range = 4
 	shell_speed = 3
 	damage = 20
@@ -230,21 +229,21 @@
 	chemical_payload.start()
 
 
-/datum/ammo/tx54/tank_cannister
-	name = "cannister"
-	icon_state = "cannister_shot"
+/datum/ammo/tx54/tank_canister
+	name = "canister"
+	icon_state = "canister_shot"
 	damage = 30
 	penetration = 0
 	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	damage_falloff = 0.5
 	max_range = 3
 	projectile_greyscale_colors = "#4f0303"
-	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/one
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_canister/ricochet/one
 	bonus_projectiles_scatter = 4
 	bonus_projectile_quantity = 12
 
-/datum/ammo/bullet/tx54_spread/tank_cannister
-	name = "cannister shot"
+/datum/ammo/bullet/tx54_spread/tank_canister
+	name = "canister shot"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	max_range = 12
@@ -254,17 +253,36 @@
 	damage_falloff = 1
 	shrapnel_chance = 15
 
-/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
-	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
+/datum/ammo/bullet/tx54_spread/tank_canister/ricochet
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_canister
 	bonus_projectiles_scatter = 0
 	damage = 35
 
-/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/one
-	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
+/datum/ammo/bullet/tx54_spread/tank_canister/ricochet/one
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_canister/ricochet
 	damage = 40
 
-/datum/ammo/bullet/tx54_spread/tank_cannister/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+/datum/ammo/bullet/tx54_spread/tank_canister/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 4, stagger = 2 SECONDS, slowdown = 0.2)
 
-/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+/datum/ammo/bullet/tx54_spread/tank_canister/ricochet/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	reflect(target_turf, proj, 5)
+
+/datum/ammo/tx54/tank_canister/incendiary
+	name = "incendiary canister"
+	icon_state = "canister_shot"
+	hud_state = "grenade_fire"
+	projectile_greyscale_colors = "#5f2702"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_canister/incendiary
+	bonus_projectiles_scatter = 4
+	bonus_projectile_quantity = 12
+
+/datum/ammo/bullet/tx54_spread/tank_canister/incendiary
+	name = "incendiary canister shot"
+	ammo_behavior_flags = parent_type::ammo_behavior_flags|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	bullet_color = COLOR_LIGHT_ORANGE
+	damage = 25
+
+/datum/ammo/bullet/tx54_spread/tank_canister/incendiary/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
+	if(prob(35))
+		drop_flame(target_turf)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "motion_4"
 	w_class = WEIGHT_CLASS_SMALL
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	///Type path for what this deploys into
 	var/deployable_type
 	///Time to deploy
@@ -24,6 +24,10 @@
 	name = "orbital beacon"
 	desc = "A bulky device that is used to provide precision guidance to powerful orbital weapon systems."
 	icon_state = "motion_4"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/beacon_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/beacon_right.dmi',
+	)
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
@@ -58,7 +62,7 @@
 	if(beacon_area.type in valid_deploy_areas)
 		return TRUE
 	if(user)
-		user.balloon_alert(user, "Cannot deploy here")
+		user.balloon_alert(user, "can't deploy here!")
 	return FALSE
 
 /obj/item/campaign_beacon/bunker_buster/bluespace

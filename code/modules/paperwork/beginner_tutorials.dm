@@ -4,7 +4,7 @@
 	name = "Rifleman Tutorial"
 	info = {"As a rifleman, you are suited for virtually all theatres of combat. \
 	Your AR-12 assault rifle is accurate and effective at all ranges, and its powerful underbarrel grenade launcher poses even further danger to mid-range threats. \
-	Inside your backpack is a box of flares to refill your flare pouch, gauze and ointment for brute (slashes) and burn (acid) wounds respectively, \
+	Inside your satchel is an MRE to eat, as well as gauze and ointment for brute (slashes) and burn (acid) wounds respectively, \
 	and backup magazines for your AR 12. \
 	Your belt contains backup magazines for your AR-12, while your body armor contains additional grenades to reload your underbarrel grenade launcher. \
 	Your left pocket contains a flare gun holster and several flares. \
@@ -26,9 +26,8 @@
 	as long as you hold still. You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your AR-12, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
-	In the top left of your screen are several weapon-specific buttons. The "Take Aim" button toggles aim mode, a feature that slows your rate of fire \
-	in exchange for allowing you to shoot through allied marines. (Note that your grenades will NOT go through marines!) \
-	The second option changes the firing mode, between Single Automatic, Burst, and Burst Automatic. \
+	In the top left of your screen are several weapon-specific buttons. \
+	You can use the option to change the firing mode between Single Automatic, Burst, and Burst Automatic. \
 	Automatic modes will keep firing as long as you hold down the mouse button. \
 	The third option enables your underbarrel grenade launcher. Once enabled, you can use right-click to launch a grenade out!<BR>
 	<BR>
@@ -54,8 +53,8 @@
 	name = "Machinegunner Tutorial"
 	info = {"As a machinegunner, you are the backbone of a marine force. While you possess heavy armor reinforced with \
 	Tyr-pattern plating (strengthening its defense even further against melee attacks), your slow move speed and the unwieldy nature of your MG-60 machinegun \
-	means you should not be spearheading any pushes. Aim mode is your best friend - combined with your bipod, you are very apt at sitting just behind the front line, \
-	eliminating threats and keeping the marines in front of you safe. \
+	means you should not be spearheading any pushes. With your bipod, you are very apt at holding a flank or the frontline, \
+	eliminating threats and keeping the marines behind you safe. \
 	Your backpack contains several additional box magazines, allowing you to carry almost two THOUSAND rounds on your person at any time. \
 	Your left pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
 	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
@@ -81,9 +80,8 @@
 	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your MG-60, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
-	In the top left of your screen are several weapon-specific buttons. The "Take Aim" button toggles aim mode, a feature that slows your rate of fire \
-	in exchange for allowing you to shoot through allied marines. The bipod button will deploy your bipod, increasing fire rate and accuracy significantly \
-	for as long as you remain stationary.<BR>
+	In the top left of your screen are several weapon-specific buttons. \
+	The bipod button will deploy your bipod, increasing fire rate and accuracy significantly for as long as you remain stationary.<BR>
 	<BR>
 	On running out of ammo, the empty magazine will automatically eject from the machine gun. \
 	To reload, simply grab a new magazine with an empty hand and click your gun with it. \
@@ -204,8 +202,6 @@
 	Using the powerful knockback of your shotgun to knock xenomorphs TOWARDS other marines is a good way to get kills \
 	- most xenomorphs can't deal with that many marines at once!<BR>
 	<BR>
-	Shotguns don't have access to aimmode, so be careful near other marines so you don't risk shooting them.<BR>
-	<BR>
 	You have incredibly high per-shot damage. Waiting a little bit to allow a xenomorph to get closer before opening fire can lure it \
 	into a false sense of safety, potentially scoring you a kill."}
 
@@ -261,7 +257,7 @@
 	info = {"As a HAZMAT, you excel in situations too dangerous for other marines. Your Mimir type armor grants you complete immunity to toxic gas, \
 	from acid to neurotoxin. It also provides an increased resistance against acid in general, for dealing with ranged xenomorphs. \
 	Your AR-11 is somewhat unwieldy and inaccurate, but packs both potent bursts and an impressive 70-round magazine. \
-	Your backpack, left pouch, and suit storage are all filled with spare magazines for your AR-11. \
+	Your backpack and suit storage are both filled with spare magazines for your AR-11. \
 	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
 	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
 	Your webbing contains flares for lighting areas, gauze and ointment for treating wounds, and a miniature fire extinguisher. \
@@ -284,8 +280,8 @@
 	<BR>
 	While holding your AR-11, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. \
-	The "Take Aim" button toggles aim mode, a feature that slows your rate of fire in exchange for allowing you to shoot through allied marines. \
-	The second option changes the firing mode, between Single Automatic, Burst, and Burst Automatic. Automatic modes will keep firing as long as you hold down the mouse button. \
+	You can use the option to change the firing mode between Single Automatic, Burst, and Burst Automatic. Automatic modes will keep firing as long as you hold down the mouse button. \
+	The AR-11 is generally best used in Burst Automatic mode for maximum damage output. \
 	The tactical sensor option toggles your tactical sensor - you should keep this on always.<BR>
 	<BR>
 	Your tactical sensor will periodically blip, detecting moving targets in an area a little bigger than your screen. \
@@ -312,8 +308,7 @@
 	You are effective both spearheading the assault and pushing into flanks. \
 	Your AR-18 carbine isn't the most dangerous rifle, nor does it have a particularly high magazine size, but it's incredibly lightweight \
 	compared to almost any other weapon, and its relative accuracy and stability even while moving and high fire rate allow it to pose \
-	a surprise threat to almost any xenomorphs. Your belt, body armor, and backpack all contain spare magazines for your AR-18. \
-	Your backpack also contains an MRE (in case you get hungry) as well as gauze and ointment to treat injuries with. \
+	a surprise threat to almost any xenomorphs. Your belt, body armor, and satchel all contain spare magazines for your AR-18. \
 	Your left pocket contains a flare gun and several flares. \
 	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
 	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
@@ -336,8 +331,7 @@
 	<BR>
 	While holding your AR-18, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. \
-	The "Take Aim" button toggles aim mode, a feature that slows your rate of fire in exchange for allowing you to shoot through allied marines. \
-	The second option changes the firing mode, between Single Automatic, Burst, and Burst Automatic. \
+	Use the option to change the firing mode between Single Automatic, Burst, and Burst Automatic. \
 	Automatic modes will keep firing as long as you hold down the mouse button. The tactical sensor option toggles your tactical sensor - you should keep this on always.<BR>
 	<BR>
 	On running out of ammo, the empty magazine will automatically eject from the rifle. \
@@ -393,12 +387,12 @@
 	name = "Builder Tutorial"
 	info = {"The Builder loadout is designed around you establishing defenses, barricades made from metal, plasteel or sandbags. \
 	You are the frontline - without you marines will be exposed to attacks from any and all directions. \
-	Your backpack contains some materials, a box of flares, and extra drums for your gun, as well as gauze and ointment to treat injuries with.
+	Your backpack contains some materials, a box of flares, and extra drums for your gun.
 	Your left pocket contains a tool pouch for all the tools you'll need to perform your engineering duties. \
 	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
 	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
 	Your helmet contains protein bars for eating, and your boots contain an MRE for further eating. \
-	The optical mesons on your eyewear slot give you the ability to see the shape of rooms behind solid walls, though you can't see anything (including xenomorphs!) \
+	The welding goggles in your eyewear slot can be toggled on and off with the ability in the top right. Using a welding tool without goggles down may cause eye damage! \
 	behind those walls. \
 	Use your quicker build speed and tools to aid and repair barricades, and fix APCs for generating the nuclear disks to win the round! \
 	Your suit storage contains materials, and your loadout also containsa MG42 Light machine gun for self defense and suppression, \
@@ -407,7 +401,8 @@
 	<b>TIPS</b><BR>
 	<BR>
 	In your webbing you will find a spare powercell and a handheld cell crank charger to charge them, when fixing apcs swap the empty battery for \
-	your full one. Insert the empty one into your crank, press Z to start charging, and charge it for the next disk!<BR>
+	your full one. Insert the empty one into your crank, press Z to start charging, and charge it for the next disk! \
+	Your webbing also contains gauze and ointment, which should be used to quickly patch up injures and accelerate healing.<BR>
 	<BR>
 	When building defensive barricades it is best to not make them "flush" with nearby doors or walls. \
 	Instead pull back 1 tile and build it there; this prevents xenos from hiding around the corner behind the walls and smacking your cades freely without repercussion.<BR>
@@ -441,7 +436,6 @@
 	You are equipped with a flamethrower bag that refills your flamethrower every time you insert it back into the bag, \
 	and also have a laser carbine for more practical and pragmatic self-defense. Also comes with a large box of claymore anti-personnel mines, \
 	and some general materials for helping fortify positions in the suit storage.<BR>
-	Your backpack contains some materials, a box of flares, and extra drums for your gun, as well as gauze and ointment to treat injuries with. \
 	Your left pocket contains a tool pouch for all the tools you'll need to perform your engineering duties. \
 	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
 	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
@@ -645,8 +639,8 @@
 	Avoid giving someone more than one pill of a given medicine at a time; many pills overdose at three, and some at two, and some marines might go and take a pill themselves, \
 	so one is safest. In your armor storage are an assortment of autoinjectors. Combat injectors should be used on marines in active danger, Quick Clot Plus helps deal \
 	with internal bleeding, Peridaxon Plus heals organs, and Dexalin Plus helps with deoxygenation. \
-	Your right pouch contains three stacks of trauma and burn kits, which will cause a body part they're applied to to heal brute or burn damage over time respectively. \
-	It also contains a hypospray full of MeraDerm, a medicine mixture that heals both brute and burn damage quickly. \
+	Your right pouch contains two stacks of trauma and burn kits, which will cause a body part they're applied to to heal brute or burn damage over time respectively. \
+	It also contains hyposprays of Quick Clot Plus and Peridaxon Plus, as well as one full of MeraDerm, a medicine mixture that heals both brute and burn damage quickly. \
 	Your webbing contains Oxycodone, a painkiller; Nanoblood, a blood replacement; a stasis bag to hold patients you aren't actively treating in to prevent their \
 	condition from worsening; tweezers to remove shrapnel; a roller bed to roll around patients with; and a medivac to evacuate patients. \
 	Your boots and helmet contain food.<BR>
@@ -694,8 +688,8 @@
 	Your belt is full of hyposprays which instantly apply a dose of medicine when you click a marine with them. \
 	Examine them with shift+click to read their labels to find out what they do. \
 	Avoid injecting someone more than once or twice with the same medicine to prevent an overdose! \
-	Your pouch contains three stacks of trauma and burn kits, which will cause a body part they're applied to to heal brute or burn damage over time respectively. \
-	It also contains a hypospray full of MeraDerm, a medicine mixture that heals both brute and burn damage quickly. \
+	Your pouch contains two stacks of trauma and burn kits, which will cause a body part they're applied to to heal brute or burn damage over time respectively. \
+	It also contains hyposprays of Quick Clot Plus and Peridaxon Plus, as well as one full of MeraDerm, a medicine mixture that heals both brute and burn damage quickly. \
 	These hyposprays can be refilled by the bottles in the syringe cases of your belt. \
 	Your webbing is filled with splints for treating fractures. \
 	Your body armor contains Oxycodone, a painkiller; a stasis bag to hold patients you aren't actively treating in to prevent their condition from worsening; \

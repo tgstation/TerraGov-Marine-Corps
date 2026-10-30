@@ -4828,7 +4828,7 @@
 /area/bigredv2/outside/marshal_office)
 "aUu" = (
 /turf/open/space/basic,
-/area/bigredv2/caves/lambda_lab)
+/area/bigredv2/caves/northeast)
 "aUy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6139,7 +6139,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/caves/lambda_lab)
+/area/bigredv2/caves/northeast)
 "bsF" = (
 /obj/structure/table,
 /obj/item/circuitboard/solar_tracker,
@@ -9489,7 +9489,7 @@
 "ghw" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "ghE" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -9601,7 +9601,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
-/area/bigredv2/caves/lambda_lab)
+/area/bigredv2/caves/northeast)
 "gCs" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
@@ -9910,6 +9910,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/cargo)
+"haq" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/caves/northeast)
 "hav" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
@@ -11041,6 +11046,10 @@
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/e)
+"jzp" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "jzH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11232,7 +11241,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/caves/lambda_lab)
+/area/bigredv2/caves/northeast)
 "jNI" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
@@ -12997,7 +13006,7 @@
 "nOA" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast/garbledradio)
+/area/bigredv2/caves/northeast)
 "nQa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -13182,7 +13191,7 @@
 "okf" = (
 /obj/effect/spawner/modularmap/bigred/lambdalock,
 /turf/open/space/basic,
-/area/bigredv2/caves/lambda_lab)
+/area/bigredv2/caves/northeast)
 "okZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -13871,6 +13880,9 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"pVH" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/northeast)
 "pXt" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
@@ -13972,6 +13984,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"qfd" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "qfk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -17049,6 +17065,13 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"wRC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/caves/northeast)
 "wSJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -46423,7 +46446,7 @@ hjp
 xaJ
 xaJ
 xaJ
-xaJ
+jzp
 bNC
 xaJ
 xaJ
@@ -48771,7 +48794,7 @@ gCQ
 gCQ
 sQi
 sQi
-sQi
+qfd
 sQi
 sQi
 gCQ
@@ -53203,16 +53226,16 @@ gCQ
 gCQ
 gCQ
 gCQ
-aEu
-aEu
-aEu
-aEu
-aEu
+pVH
+pVH
+pVH
+pVH
+pVH
 aUu
 okf
-aEu
-aEu
-aEu
+pVH
+pVH
+pVH
 xHO
 xHO
 bOB
@@ -53423,13 +53446,13 @@ gCQ
 gCQ
 gCQ
 gCQ
-nQA
-xaJ
-lwj
+kKe
+vyZ
+haq
 jNo
-xaJ
-xaJ
-aEu
+vyZ
+vyZ
+pVH
 xHO
 xHO
 fot
@@ -53640,12 +53663,12 @@ gCQ
 gCQ
 gCQ
 gCQ
-ieW
+lBa
 nOA
 gCb
 bsw
-xaJ
-xaJ
+vyZ
+vyZ
 gCQ
 xHO
 nKY
@@ -53858,11 +53881,11 @@ gCQ
 gCQ
 gCQ
 gCQ
-xaJ
+vyZ
 gCb
-aUy
-xaJ
-hjp
+wRC
+vyZ
+bfc
 gCQ
 gCQ
 gCQ
@@ -54075,10 +54098,10 @@ gCQ
 gCQ
 gCQ
 gCQ
-xaJ
+vyZ
 gCb
-aUy
-xaJ
+wRC
+vyZ
 gCQ
 gCQ
 gCQ
@@ -54292,9 +54315,9 @@ gCQ
 gCQ
 gCQ
 gCQ
-xaJ
+vyZ
 gCb
-aUy
+wRC
 ghw
 gCQ
 gCQ

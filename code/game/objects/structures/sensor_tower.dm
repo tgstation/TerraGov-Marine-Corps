@@ -44,7 +44,7 @@
 	if(!ishuman(user))
 		return
 	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
+		user.balloon_alert(user, "busy!")
 		return
 	if(user.faction == faction)
 		defender_interaction(user)
@@ -54,46 +54,46 @@
 ///Handles defender interactions with the tower
 /obj/structure/sensor_tower/proc/defender_interaction(mob/living/user)
 	if(!activated && !current_timer)
-		balloon_alert(user, "This sensor tower is not activated yet, don't let it be activated!")
+		balloon_alert(user, "not activated—keep it safe!")
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 
-	balloon_alert(user, "You begin to stop the activation process!")
+	balloon_alert(user, "stopping activation...")
 	if(!do_after(user, deactivate_time, NONE, src))
 		return
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
+		balloon_alert(user, "fully activated—can't deactivate!")
 		return
 	if(!current_timer)
-		balloon_alert(user, "This sensor tower is not currently activated")
+		balloon_alert(user, "not activated!")
 		return
-	balloon_alert(user, "You stop the activation process!")
+	balloon_alert(user, "activation stopped")
 	deactivate()
 
 ///Handles attacker interactions with the tower
 /obj/structure/sensor_tower/proc/attacker_interaction(mob/living/user)
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Activating sensor tower...")
+	balloon_alert_to_viewers("activating sensor tower...")
 	if(!do_after(user, activate_time, NONE, src))
 		return
 	if(!attacker_state_check(user))
 		return
-	balloon_alert_to_viewers("Sensor tower activated!")
+	balloon_alert_to_viewers("sensor tower activated")
 	begin_activation()
 
 ///Checks whether an attack can currently activate this tower
 /obj/structure/sensor_tower/proc/attacker_state_check(mob/living/user)
 	if(activated)
-		balloon_alert(user, "This sensor tower is already fully activated!")
+		balloon_alert(user, "fully activated!")
 		return FALSE
 	if(current_timer)
-		balloon_alert(user, "This sensor tower is currently activating!")
+		balloon_alert(user, "currently activating!")
 		return FALSE
 	if(already_activated)
-		balloon_alert(user, "There's already a sensor tower being activated!")
+		balloon_alert(user, "another tower is being activated!")
 		return FALSE
 	return TRUE
 
@@ -126,7 +126,7 @@
 	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 	mode.sensors_activated += 1
 
-	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	balloon_alert_to_viewers("[src] has finished activation!")
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
@@ -171,6 +171,6 @@
 /obj/structure/sensor_tower/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(activated)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", MINIMAP_LABELS_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", MINIMAP_PRIORITY_LAYER))
 	else
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", MINIMAP_PRIORITY_LAYER))
