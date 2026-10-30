@@ -51,7 +51,7 @@
 
 /datum/status_effect/stacking/fire/stack_decay_effect()
 	if(is_ignited && debuff_owner)
-		debuff_owner.handle_fire()
+		debuff_owner.handle_fire(stacks)
 
 /datum/status_effect/stacking/fire/fadeout_effect()
 	debuff_owner.adjust_bodytemperature(-80, 300)
@@ -71,7 +71,7 @@
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_fire))
 
 	debuff_owner.update_fire()
-	debuff_owner.handle_fire()
+	debuff_owner.handle_fire(stacks)
 	debuff_owner.throw_alert(id, /atom/movable/screen/alert/fire)
 
 	to_chat(debuff_owner, span_danger("You are on fire! Use Resist to put yourself out!"))
