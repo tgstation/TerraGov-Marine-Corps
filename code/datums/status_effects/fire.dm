@@ -97,8 +97,6 @@
 	if(!debuff_owner)
 		qdel(src)
 		return
-	//if(length(debuff_owner.do_actions))
-	//	return
 	if(ishuman(debuff_owner))
 		debuff_owner.spin(30, 1.5)
 	debuff_owner.Paralyze(3 SECONDS) //check if you can spam this
