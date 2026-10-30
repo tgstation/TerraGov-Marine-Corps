@@ -49,9 +49,6 @@
 	// *** Pheromones *** //
 	aura_strength = 5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 
-	// *** Queen Abilities *** //
-	queen_leader_limit = 4 //Amount of leaders allowed
-
 	minimap_icon = "xenoqueen"
 
 	actions = list(

@@ -9,6 +9,9 @@
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
+	///Max number of leaders that can be set
+	var/max_xeno_leaders = 4
+	///Current xeno leaders
 	var/list/xeno_leader_list = list()
 	/// /datum/xeno_caste = list(xeno mobs)
 	var/list/list/xenos_by_typepath = list()
@@ -51,14 +54,6 @@
 /datum/hive_status/New()
 	. = ..()
 	LAZYINITLIST(candidates)
-	/*
-	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
-		if(caste_type.upgrade != XENO_UPGRADE_BASETYPE)
-			continue
-		if(caste_type.type != caste_type.base_strain_type)
-			continue
-			xenos_by_typepath[caste_type] = list()
-	*/
 
 	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
 		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)

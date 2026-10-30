@@ -47,22 +47,23 @@
 		/datum/xeno_caste/queen = 8,
 		/datum/xeno_caste/king = 12,
 	)
+	max_xeno_leaders = 1
 	restricted_castes = list(/datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 /datum/game_mode/infestation/sovl_war/post_setup()
 	. = ..()
-	//testing only
 	addtimer(CALLBACK(src, PROC_REF(enable_pods)), deploy_time_lock)
 	for(var/obj/machinery/computer/camera_advanced/remote_fob/computer AS in GLOB.remote_fob_computers)
-		computer.metal_remaining += 100
-		computer.plasteel_remaining += 50
+		computer.metal_remaining += 150
+		computer.plasteel_remaining += 10
 
 	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
 	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
+
 	GLOB.loadout_role_essential_set[SQUAD_LEADER][/obj/item/binoculars/fire_support] = 1
 	GLOB.loadout_role_essential_set[FIELD_COMMANDER][/obj/item/binoculars/fire_support] = 1
 	if(GLOB.vending_records[/obj/machinery/vending/weapon]) //you've seriously fucked up if marines have no weapon vendors
-		var/datum/vending_product/record = new (null, /obj/item/storage/box/crate/sentry_sniper, 3, tab = "Heavy Weapons")
+		var/datum/vending_product/record = new (null, /obj/item/storage/box/crate/sentry_sniper, 4, tab = "Heavy Weapons")
 		GLOB.vending_records[/obj/machinery/vending/weapon] += record
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
@@ -158,6 +159,7 @@
 		return TRUE
 	return FALSE
 
+///Enables pods, but they can only be used for a single drop
 /datum/game_mode/infestation/sovl_war/proc/enable_pods()
 	for(var/obj/structure/droppod/pod AS in GLOB.droppod_list)
 		pod.allow_sovl_drop()

@@ -43,9 +43,6 @@
 	// *** Pheromones *** //
 	aura_strength = 4.5
 
-	// *** Queen Abilities *** //
-	queen_leader_limit = 4
-
 	minimap_icon = "xenoking"
 
 	actions = list(
