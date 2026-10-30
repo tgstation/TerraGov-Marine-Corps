@@ -103,6 +103,9 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
+///called when speech has to be turned into runechat for players
+#define COMSIG_GLOB_RUNECHAT_HANDLER "!runechat_handler"
+
 
 ///Sent when mob is deployed via a patrol point
 #define COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED "!hvh_deploy_point_activated"

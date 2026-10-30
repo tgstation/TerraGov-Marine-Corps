@@ -66,6 +66,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	cic_mini = new(null, map_flags, map_flags)
 	GLOB.main_overwatch_consoles += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_RUNECHAT_HANDLER, PROC_REF(handle_runetext), TRUE)
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
 	QDEL_NULL(cic_mini)
@@ -395,6 +396,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='byond://?src=[text_ref(src)];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='byond://?src=[text_ref(src)];operation=back'>{Back}</a>"
 	return dat
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/handle_runetext(dcs, text, atom/target, mob/owner, list/extra_classes)
+	if(current_user != target)
+		return
+	if(!extra_classes.Find("virtual-speaker"))
+		return
+	new /datum/chatmessage(text, eyeobj, owner, extra_classes)
 
 //This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
 /obj/effect/overwatch_light
