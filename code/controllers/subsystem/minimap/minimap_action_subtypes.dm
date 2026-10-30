@@ -45,7 +45,7 @@
 	if(!clicked_coords)
 		toggle_minimap(FALSE)
 		return
-	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
+	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], map.tracked_z)
 	if(!clicked_turf)
 		toggle_minimap(FALSE)
 		return

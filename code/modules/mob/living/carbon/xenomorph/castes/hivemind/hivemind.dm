@@ -304,7 +304,7 @@
 	///The weakref to the parent hivemind mob that we're attached to
 	var/datum/weakref/parent
 
-/obj/structure/xeno/hivemindcore/Initialize(mapload)
+/obj/structure/xeno/hivemindcore/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].hivemindcores += src
 	new /obj/alien/weeds/node(loc)

@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Increased the number of engineers, smartgunners on Sovl War"
+  - balance: "Additional materials and sentries have been give to marines on Sovl War"
+  - balance: "Xenomorphs only have 1 assignable leader role on Sovl War"

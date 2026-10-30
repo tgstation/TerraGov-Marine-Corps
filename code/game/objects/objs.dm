@@ -411,17 +411,29 @@
 		location = get_turf(src)
 	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
 
-///Dissassembles the device
-/obj/proc/disassemble(mob/user)
+/// Used as a callback for disassembly of deployables
+/obj/proc/can_disassemble(mob/user)
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
+		return FALSE
+	if(!ishuman(user))
 		return FALSE
 	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
 			balloon_alert(user, "can't disassemble!")
 		return FALSE
+	return TRUE
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	if(!can_disassemble(user))
+		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE
+
+/// Handles UNsuccessful disassembly tasks, opposite of below
+/obj/proc/failed_disassemble(mob/user)
+	return
 
 /// Handles successful disassembly tasks on a deployable, cannot be used for failure checks as disassembly has completed already
 /obj/proc/post_disassemble(mob/user)

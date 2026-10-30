@@ -140,7 +140,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
-	cost = 10
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/explosives/mlrs

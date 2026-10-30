@@ -168,3 +168,36 @@
   - bugfix: fixed a SG goggle exploit
   - bugfix: Baneling death animations no longer reoccur
   - bugfix: Chem nades will no longer drain reagents out of things like welderbags
+2026-10-26:
+  Runian:
+  - code_imp: Signals can now be registered to listen to any/specific tool behavior.
+  - code_imp: Unique right-click interactions for items with tool behavior is now
+      supported.
+  - bugfix: The prefix that xenomorph names get from being part of a non-standard
+      hive now correctly appends only one space.
+  mudzbe:
+  - bugfix: Fix corrupted hive AIs treating tgmc as hostile, such as turrets and mob
+      AIs
+2026-10-27:
+  Joe13413:
+  - balance: ROC-58 Observer cameras take 2x longer to melt with acid
+  Runian:
+  - rscdel: Crates can no longer be sold via a fulton.
+  SandPoot:
+  - qol: Observers can now jump between Z levels using their minimap, on multi-z locations
+      like certain shipmaps.
+2026-10-28:
+  Lumipharon:
+  - qol: Detpacks are more audible at distance again
+  - bugfix: fixed some weird alt appearance issues
+  - code_imp: Alt appearances are actually deleted by default, when using remove_alt_appearance()
+  - balance: tfoot mortar req cost increased to 40 from 10, and for factorio 800 from
+      200
+  Runian:
+  - bugfix: Xenomorphs can now pull cocoons that are empty/opened.
+2026-10-30:
+  SandPoot:
+  - bugfix: Turning on tesla turrets during disassembly will cancel it.
+  - bugfix: TURRET_INACCURATE turrets will no longer lose their nerf if you start
+      and cancel disassembly.
+  - qol: Update tesla turret's codex (there's a stat (nerf) that wasn't visible before).

@@ -23,7 +23,7 @@
 	hit_sound = SFX_BEHEMOTH_EARTH_PILLAR_HIT
 	destroy_sound = 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg'
 	obj_flags = CAN_BE_HIT|BLOCKS_CONSTRUCTION
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|DEPART_DESTRUCTION_IMMUNE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_THROW|PASS_AIR|PASS_WALKOVER
 	hud_possible = list(HEALTH_HUD_XENO)
 	/// The xeno owner that created this object. NOT the holder.
@@ -37,7 +37,7 @@
 	/// Cooldown for exploding so that we don't get infinite loops.
 	COOLDOWN_DECLARE(explosion_cooldown)
 
-/obj/structure/xeno/earth_pillar/Initialize(mapload, mob/living/carbon/xenomorph/new_owner, health_reduction)
+/obj/structure/xeno/earth_pillar/Initialize(mapload, _hivenumber, mob/living/carbon/xenomorph/new_owner, health_reduction)
 	. = ..()
 	if(health_reduction)
 		max_integrity -= floor(max_integrity * health_reduction)
@@ -462,7 +462,7 @@
 		if(!isliving(atom_checked))
 			continue
 		step_away(atom_checked, target, 1, 1) // Displaced by a pillar spawning underneath.
-	var/obj/structure/xeno/earth_pillar/new_pillar = new(target, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
+	var/obj/structure/xeno/earth_pillar/new_pillar = new(target, xeno_owner.hivenumber, xeno_owner, creation_limit > initial(creation_limit) ? FOUNDATIONS_HEALTH_REDUCTION : FALSE)
 	active_pillars += new_pillar
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_deleted))
 	var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
