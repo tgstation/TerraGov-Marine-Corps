@@ -36,6 +36,9 @@
 	/// Assoc list of "Floor name" to "z level of destination".
 	/// By default the floor names will auto-generate ("Floor 1", "Floor 2", etc).
 	var/list/linked_elevator_destination
+	///The relative level of the destination z levels
+	///i.e. the bottom floor of the linked z levels will be 1 regardless of its true z level number
+	var/list/relative_z_to_dest
 	/// If you want to override what each floor is named as, you can do so with this list.
 	/// Make this an assoc list of "z level you want to rename" to "desired name".
 	/// So, if you want the z-level 2 destination to be named "Cargo", you would do list("2" = "Cargo").
@@ -172,12 +175,16 @@
 	add_destinations_in_a_direction_recursively(starting_locs, UP, raw_destinations)
 
 	linked_elevator_destination = list()
+	relative_z_to_dest = list()
+	var/list/linked_zs = SSmapping.get_connected_levels(z)
+	linked_zs = reverseRange(linked_zs.Copy())
 	for(var/z_level in raw_destinations)
+		var/relativez = linked_zs.Find(z_level)
+		relative_z_to_dest["[relativez]"] = z_level
 		// Check if this z-level has a preset destination associated.
-		var/preset_name = preset_destination_names?[num2text(z_level)]
-		// If we don't have a preset name, use Floor z-1 for the title.
-		// z - 1 is used because the station z-level is 2, and goes up.
-		linked_elevator_destination["[z_level]"] = preset_name || "Floor [z_level - 1]"
+		var/preset_name = preset_destination_names?[num2text(relativez)]
+		// If we don't have a preset name, use relativez for the title.
+		linked_elevator_destination["[z_level]"] = preset_name || "Floor [relativez]"
 
 	// Reverse the destination list.
 	// By this point the list will go from bottom floor to top floor,
@@ -261,7 +268,10 @@
 		data["lift_exists"] = TRUE
 		data["currently_moving"] = (lift.controller_status & CONTROLS_LOCKED) || is_in_input_cooldown
 		data["currently_moving_to_floor"] = last_move_target
-		data["current_floor"] = lift.transport_modules[1].z
+		for(var/z_lvl in relative_z_to_dest)
+			if(relative_z_to_dest[z_lvl] == lift.transport_modules[1].z)
+				data["current_floor"] = z_lvl
+				break
 
 	else
 		data["lift_exists"] = FALSE
@@ -275,9 +285,14 @@
 
 	data["all_floor_data"] = list()
 	for(var/destination in linked_elevator_destination)
+		var/relativez
+		for(var/z_lvl in relative_z_to_dest)
+			if(relative_z_to_dest[z_lvl] == text2num(destination))
+				relativez = z_lvl
+				break
 		data["all_floor_data"] += list(list(
 			"name" = linked_elevator_destination[destination],
-			"z_level" = text2num(destination),
+			"z_level" = relativez,
 		))
 
 	return data
@@ -299,10 +314,9 @@
 				balloon_alert(usr, "access denied!")
 				return
 
-			var/desired_z = params["z"]
-			// num2text here is required as the z is stored as strings in the list, but passed here as a number.
-			if(!(num2text(desired_z) in linked_elevator_destination))
+			if(!(params["z"] in (relative_z_to_dest)))
 				return TRUE // Something is inaccurate, update UI
+			var/desired_z = relative_z_to_dest[params["z"]]
 
 			var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 			if(!lift || lift.controller_status & CONTROLS_LOCKED)
@@ -310,7 +324,7 @@
 
 			INVOKE_ASYNC(lift, TYPE_PROC_REF(/datum/transport_controller/linear, move_to_zlevel), desired_z, CALLBACK(src, PROC_REF(check_panel)), usr)
 			COOLDOWN_START(src, input_cooldown, input_cooldown_duration)
-			last_move_target = desired_z
+			last_move_target = params["z"]
 			return TRUE // Succcessfully initiated a move. Regardless of whether it actually works, update the UI
 
 		if("emergency_door")
