@@ -201,3 +201,13 @@
   - bugfix: TURRET_INACCURATE turrets will no longer lose their nerf if you start
       and cancel disassembly.
   - qol: Update tesla turret's codex (there's a stat (nerf) that wasn't visible before).
+2026-10-31:
+  Lumipharon:
+  - balance: Increased the number of engineers, smartgunners on Sovl War
+  - balance: Additional materials and sentries have been give to marines on Sovl War
+  - balance: Xenomorphs only have 1 assignable leader role on Sovl War
+  - qol: Removed the !!! message when deploying in HvH modes
+  - bugfix: Fixed tank layers breaking when deploying in campaign
+  - bugfix: fixed welded crates not having the correct sprites
+  Runian:
+  - bugfix: Mutation structures now appear on the minimap for xenomorphs.
