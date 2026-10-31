@@ -1,3 +1,5 @@
+#define DEFENDER_TAIL_SPIN_FILTER "defender_tail_sweeps"
+
 // ***************************************
 // *********** Tail sweep
 // ***************************************
@@ -39,9 +41,9 @@
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps its tail in a wide circle!"), \
 	span_xenowarning("We sweep our tail in a wide circle!"))
 
-	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
-	xeno_owner.spin(4, 1)
-	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.add_filter(DEFENDER_TAIL_SPIN_FILTER, 2, gauss_blur_filter(1)) //Add cool SFX
+	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
+	xeno_owner.AddComponentFrom(name, /datum/component/throw_parry)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -50,8 +52,8 @@
 	for (var/mob/living/carbon/human/H in L)
 		if(H.stat == DEAD || !xeno_owner.Adjacent(H))
 			continue
-		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+		H.add_filter(DEFENDER_TAIL_SPIN_FILTER, 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/datum, remove_filter), DEFENDER_TAIL_SPIN_FILTER), DEFENDER_REFLECT_TIME) //Remove cool SFX
 		var/damage = xeno_owner.xeno_caste.melee_damage
 		var/affecting = H.get_limb(ran_zone(null, 0))
 		if(!affecting) //Still nothing??
@@ -71,11 +73,19 @@
 		to_chat(H, span_xenowarning("We are struck by \the [xeno_owner]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+	addtimer(CALLBACK(src, PROC_REF(finish_spin)), DEFENDER_REFLECT_TIME)
 	succeed_activate()
 	if(xeno_owner.crest_defense)
 		xeno_owner.use_plasma(ability_cost)
 	add_cooldown()
+
+///Finishes spin effects
+/datum/action/ability/xeno_action/tail_sweep/proc/finish_spin(datum/source)
+	SIGNAL_HANDLER
+	if(!xeno_owner)
+		return
+	xeno_owner.RemoveComponentSource(name, /datum/component/throw_parry)
+	xeno_owner.remove_filter(DEFENDER_TAIL_SPIN_FILTER)
 
 /datum/action/ability/xeno_action/tail_sweep/on_cooldown_finish()
 	to_chat(xeno_owner, span_notice("We gather enough strength to tail sweep again."))
@@ -506,6 +516,7 @@
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
+	xeno_owner.AddComponentFrom(name, /datum/component/throw_parry)
 	do_spin() //kick it off
 
 	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), DEFENDER_REFLECT_TIME, TIMER_STOPPABLE)
@@ -515,15 +526,14 @@
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/ability/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
-	xeno_owner.spin(4, 1)
-	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
 	playsound(xeno_owner, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, xeno_owner))
 		if(slapped.stat == DEAD)
 			continue
-		slapped.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
-		addtimer(CALLBACK(slapped, TYPE_PROC_REF(/datum, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+		slapped.add_filter(DEFENDER_TAIL_SPIN_FILTER, 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
+		addtimer(CALLBACK(slapped, TYPE_PROC_REF(/datum, remove_filter), DEFENDER_TAIL_SPIN_FILTER), 0.5 SECONDS) //Remove cool SFX
 		var/damage = xeno_owner.xeno_caste.melee_damage/2
 		var/affecting = slapped.get_limb(ran_zone(null, 0))
 		if(!affecting)
@@ -543,7 +553,7 @@
 	step_tick = !step_tick
 
 	if(can_use_action(xeno_owner, ABILITY_IGNORE_COOLDOWN))
-		spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
+		spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), DEFENDER_REFLECT_TIME, TIMER_STOPPABLE)
 		return
 	stop_spin()
 
@@ -553,4 +563,7 @@
 	if(spin_loop_timer)
 		deltimer(spin_loop_timer)
 		spin_loop_timer = null
+	xeno_owner.RemoveComponentSource(name, /datum/component/throw_parry)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
+
+#undef DEFENDER_TAIL_SPIN_FILTER

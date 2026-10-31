@@ -344,6 +344,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		adjusted_mult += 0.5
 	return adjusted_mult
 
+#define DANCER_TAIL_SPIN_FILTER "dancer_tail_sweeps"
 
 // ***************************************
 // *********** Tail Trip
@@ -365,13 +366,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
 
-	xeno_owner.add_filter("dancer_tail_trip", 2, gauss_blur_filter(1)) //Add cool SFX
+	xeno_owner.add_filter(DANCER_TAIL_SPIN_FILTER, 2, gauss_blur_filter(1)) //Add cool SFX
 	var/obj/effect/temp_visual/tail_swing/swing = new
 	xeno_owner.vis_contents += swing
 
 	xeno_owner.spin(DEFENDER_REFLECT_TIME, 1)
 	xeno_owner.emote("tail")
-	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponentFrom(name, /datum/component/throw_parry)
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
@@ -403,10 +404,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else
 				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), DEFENDER_REFLECT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_spin)), DEFENDER_REFLECT_TIME)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
+
+///Finishes spin effects
+/datum/action/ability/activable/xeno/tail_trip/proc/finish_spin(datum/source)
+	SIGNAL_HANDLER
+	if(!xeno_owner)
+		return
+	xeno_owner.RemoveComponentSource(name, /datum/component/throw_parry)
+	xeno_owner.remove_filter(DANCER_TAIL_SPIN_FILTER)
 
 ///Garbage collects the swing attack vis_overlay created during use_ability
 /datum/action/ability/activable/xeno/tail_trip/proc/remove_swing(swing_visual)
@@ -421,6 +430,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
+
+#undef DANCER_TAIL_SPIN_FILTER
 
 // ***************************************
 // *********** Tail Hook
@@ -449,7 +460,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/temp_visual/tail_hook/hook = new
 	xeno_owner.vis_contents += hook
 	xeno_owner.spin(0.8 SECONDS, 1)
-	xeno_owner.AddComponent(/datum/component/throw_parry, DEFENDER_REFLECT_TIME)
+	xeno_owner.AddComponentFrom(name, /datum/component/throw_parry)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
@@ -492,8 +503,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				living_target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, melting_fire_stacks)
 
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), hook), 3 SECONDS) //Remove cool SFX
+	addtimer(CALLBACK(src, PROC_REF(finish_spin)), DEFENDER_REFLECT_TIME)
 	succeed_activate()
 	add_cooldown()
+
+///Finishes spin effects
+/datum/action/ability/activable/xeno/tail_hook/proc/finish_spin(datum/source)
+	SIGNAL_HANDLER
+	if(!xeno_owner)
+		return
+	xeno_owner.RemoveComponentSource(name, /datum/component/throw_parry)
 
 ///Garbage collects the swing attack vis_overlay created during use_ability
 /datum/action/ability/activable/xeno/tail_hook/proc/remove_swing(swing_visual)
