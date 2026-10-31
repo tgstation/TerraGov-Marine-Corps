@@ -41,9 +41,8 @@
 ///Puts out any fire on the mob
 /mob/living/proc/extinguish_mob()
 	remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	if(!has_status_effect(STATUS_EFFECT_BURNING))
-		return
-	remove_status_effect(STATUS_EFFECT_BURNING)
+	if(amount_burning() > 0)
+		remove_status_effect(STATUS_EFFECT_BURNING)
 
 ///Updates fire visuals
 /mob/living/proc/update_fire()

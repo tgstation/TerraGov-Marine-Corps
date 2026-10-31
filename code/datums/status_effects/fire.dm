@@ -19,8 +19,8 @@
 	if(!iscarbon(new_owner) || (stacks_to_apply > 0 && (!new_owner.can_ignite())))
 		qdel(src)
 		return
-	. = ..()
 	debuff_owner = new_owner
+	. = ..()
 	if(ignite_on_start)
 		do_ignite()
 
