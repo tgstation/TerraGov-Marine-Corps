@@ -68,6 +68,8 @@
 
 ///from proc/global_rally_zombies()
 #define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
+///from /datum/action/rally_zombie/action_activate()
+#define COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY "!ai_zombie_leader_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
