@@ -45,7 +45,10 @@
 	else
 		load_ghost_gamemode_actions()
 
-	client.AddComponent(/datum/component/larva_queue)
+	// You better hope it doesn't happen
+	var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(normal_hive)
+		client.AddComponent(/datum/component/larva_queue, normal_hive)
 
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new(src)

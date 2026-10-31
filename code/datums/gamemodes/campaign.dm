@@ -55,6 +55,16 @@
 /datum/game_mode/hvh/campaign/get_map_color_variant()
 	return current_mission?.map_armor_color
 
+/datum/game_mode/hvh/campaign/get_respawn_time(mob/respawnee)
+	if(!(respawnee.faction in factions) && (current_mission?.mission_state == MISSION_STATE_ACTIVE))
+		return ..()
+	if(!GLOB.enter_allowed)
+		return -1
+	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
+	if((player_death_times[respawnee.ckey] + respawn_delay) > world.time)
+		return time2text(round((player_death_times[respawnee.ckey] + respawn_delay - world.time) / 10), "mm:ss")
+	return 0
+
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
 	if(!respawnee?.client)
 		return

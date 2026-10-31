@@ -114,7 +114,51 @@
 /datum/action/observer_action/campaign_respawn/action_activate()
 	var/datum/game_mode/mode = SSticker.mode
 	if(!mode)
-		to_chat(usr, span_warning("The round isn't ready yet!"))
+		owner.respawn()
 		return
 
 	mode.player_respawn(owner)
+
+/datum/action/observer_action/campaign_respawn/give_action(mob/M)
+	. = ..()	
+	START_PROCESSING(SSprocessing, src)
+
+	/// Placeholder, the subsystem won't tick until the round actually starts.
+	var/mutable_appearance/respawn_timer_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	visual_references[VREF_IMAGE_ONTOP] = respawn_timer_maptext
+	respawn_timer_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center("READY"))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+/datum/action/observer_action/campaign_respawn/remove_action(mob/M)
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	visual_references -= VREF_IMAGE_ONTOP
+
+/datum/action/observer_action/campaign_respawn/process()
+	if(!owner.client)
+		return
+	update_button_icon()
+
+/datum/action/observer_action/campaign_respawn/update_button_icon()
+	if(!visual_references.Find(VREF_IMAGE_ONTOP))
+		return ..()
+	var/text
+	var/datum/game_mode/mode = SSticker.mode
+	if(QDELETED(mode))
+		return
+	var/time = mode.get_respawn_time(owner)
+	switch(time)
+		if(-1)
+			text = "NO"
+		if(0)
+			text = "READY"
+		else
+			text = "[time]"
+
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	var/mutable_appearance/respawn_timer_maptext = visual_references[VREF_IMAGE_ONTOP]
+	respawn_timer_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center(text))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+	return ..()
