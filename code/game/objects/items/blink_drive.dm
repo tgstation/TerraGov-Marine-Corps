@@ -198,7 +198,11 @@
 	action_icon_state = "axe_sweep"
 	desc = "Teleport a short distance instantly."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE)
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_BLINKDRIVE,
+		KEYBINDING_ALTERNATE = COMSIG_ITEM_TOGGLE_BLINKDRIVE_SELECT,
+	)
 
 /datum/action/ability/activable/item_toggle/blink_drive/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
@@ -219,7 +223,7 @@
 			return FALSE
 		if(get_dist(owner, target) > 5)
 			return FALSE
-		if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		if(!can_use_ability(target))
 			return FALSE
 		return TRUE
 
@@ -228,7 +232,7 @@
 	var/atom/movable/movable_target = target
 	if(movable_target.faction == owner.faction)
 		return FALSE
-	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(movable_target))
 		return FALSE
 	if(!blink_parent.charges)
 		return FALSE

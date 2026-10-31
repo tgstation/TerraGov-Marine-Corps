@@ -135,10 +135,12 @@
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	use_state_flags = ABILITY_USE_BUCKLED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DRAIN_STING_SELECT,
 	)
 	/// How far can the target be in order for the ability to work?
 	var/targetable_range = 1
@@ -239,8 +241,10 @@
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOXIC_GRENADE_SELECT,
 	)
 	///Type of nade to be thrown
 	var/nade_type = /obj/item/explosive/grenade/smokebomb/xeno
@@ -274,14 +278,9 @@
 //Neuro variant
 /datum/action/ability/activable/xeno/toxic_grenade/neuro
 	name = "Neuro grenade"
-	action_icon_state = "gas mine"
-	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed neurotoxin, which explodes into a small gas cloud."
 	ability_cost = 200
 	cooldown_duration = 50 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
-	)
 	nade_type = /obj/item/explosive/grenade/smokebomb/xeno/neuro
 
 /obj/item/explosive/grenade/smokebomb/xeno/neuro

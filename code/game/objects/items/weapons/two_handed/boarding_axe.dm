@@ -53,6 +53,7 @@
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_AXESWEEP,
+		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_AXESWEEP_SELECT,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder

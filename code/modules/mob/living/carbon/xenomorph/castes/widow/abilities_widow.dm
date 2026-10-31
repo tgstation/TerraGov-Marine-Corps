@@ -19,8 +19,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 125
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_SPIT_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
@@ -45,8 +48,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 250
 	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LEASH_BALL_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
@@ -450,8 +456,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 200
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_HOOK_SELECT,
 	)
 	//ref to beam for web hook
 	var/datum/beam/web_beam

@@ -22,3 +22,21 @@
 	description = "Slams your shield into a mob in front of you, causing stagger and slowdown. Can also be triggered via right click when equipped in the offhand."
 	keybind_signal = COMSIG_WEAPONABILITY_SHIELDBASH
 	hotkey_keys = list("U")
+
+/datum/keybinding/weapon/axe_sweep_select
+	name = "Axe sweep_select"
+	full_name = "Breaching axe: Select Axe sweep"
+	description = "A powerful sweeping blow that hits foes in the direction you are facing. Cannot stun."
+	keybind_signal = COMSIG_WEAPONABILITY_AXESWEEP_SELECT
+
+/datum/keybinding/weapon/sword_lunge_select
+	name = "Lunging strike_select"
+	full_name = "Sword: Select Lunging strike"
+	description = "Dash a short distance to inflict a staggering blow on an opponent. Cannot stun."
+	keybind_signal = COMSIG_WEAPONABILITY_SWORDLUNGE_SELECT
+
+/datum/keybinding/weapon/shield_bash_select
+	name = "Shield bash_select"
+	full_name = "Shield: Select Shield bash"
+	description = "Slams your shield into a mob in front of you, causing stagger and slowdown. Can also be triggered via right click when equipped in the offhand."
+	keybind_signal = COMSIG_WEAPONABILITY_SHIELDBASH_SELECT

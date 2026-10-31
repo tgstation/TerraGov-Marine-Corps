@@ -9,7 +9,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_STOPPULLING_DOWN
 
-/datum/keybinding/mob/stop_pulling/down(client/user)
+/datum/keybinding/mob/stop_pulling/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -25,7 +25,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN
 
-/datum/keybinding/mob/cycle_intent_right/down(client/user)
+/datum/keybinding/mob/cycle_intent_right/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -40,7 +40,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN
 
-/datum/keybinding/mob/cycle_intent_left/down(client/user)
+/datum/keybinding/mob/cycle_intent_left/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -55,7 +55,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SWAPHANDS_DOWN
 
-/datum/keybinding/mob/swap_hands/down(client/user)
+/datum/keybinding/mob/swap_hands/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -69,7 +69,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SAY_DOWN
 
-/datum/keybinding/mob/say/down(client/user)
+/datum/keybinding/mob/say/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -84,7 +84,7 @@
 	description = "Uses whatever item you have inhand"
 	keybind_signal = COMSIG_KB_MOB_ACTIVATEINHAND_DOWN
 
-/datum/keybinding/mob/activate_inhand/down(client/user)
+/datum/keybinding/mob/activate_inhand/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -99,7 +99,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_DROPITEM_DOWN
 
-/datum/keybinding/mob/drop_item/down(client/user)
+/datum/keybinding/mob/drop_item/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -118,7 +118,7 @@
 	description = "Cycle to the other move intent."
 	keybind_signal = COMSIG_KB_MOB_TOGGLEMOVEINTENT_DOWN
 
-/datum/keybinding/mob/toggle_move_intent/down(client/user)
+/datum/keybinding/mob/toggle_move_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -135,7 +135,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETCYCLEHEAD_DOWN
 
-/datum/keybinding/mob/target_head_cycle/down(client/user)
+/datum/keybinding/mob/target_head_cycle/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -149,7 +149,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETRIGHTARM_DOWN
 
-/datum/keybinding/mob/target_r_arm/down(client/user)
+/datum/keybinding/mob/target_r_arm/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -163,7 +163,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETBODYCHEST_DOWN
 
-/datum/keybinding/mob/target_body_chest/down(client/user)
+/datum/keybinding/mob/target_body_chest/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -177,7 +177,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETLEFTARM_DOWN
 
-/datum/keybinding/mob/target_left_arm/down(client/user)
+/datum/keybinding/mob/target_left_arm/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -191,7 +191,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETRIGHTLEG_DOWN
 
-/datum/keybinding/mob/target_right_leg/down(client/user)
+/datum/keybinding/mob/target_right_leg/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -205,7 +205,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETBODYGROIN_DOWN
 
-/datum/keybinding/mob/target_body_groin/down(client/user)
+/datum/keybinding/mob/target_body_groin/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -219,7 +219,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_TARGETLEFTLEG_DOWN
 
-/datum/keybinding/mob/target_left_leg/down(client/user)
+/datum/keybinding/mob/target_left_leg/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -245,7 +245,7 @@
 	keybind_signal = COMSIG_KB_SELFHARM
 	hotkey_keys = list("0")
 
-/datum/keybinding/mob/toggle_self_harm/down(client/user)
+/datum/keybinding/mob/toggle_self_harm/down(client/user, turf/target)
 	. = ..()
 	if (.)
 		return
@@ -258,7 +258,7 @@
 	description = "Perform an interactive emote with another player."
 	keybind_signal = COMSIG_KB_INTERACTIVE_EMOTE
 
-/datum/keybinding/mob/interactive_emote/down(client/user)
+/datum/keybinding/mob/interactive_emote/down(client/user, turf/target)
 	. = ..()
 	if(. || !isliving(user.mob) || CHECK_BITFIELD(user.mob.status_flags, INCORPOREAL) || !user.mob.can_interact(user.mob))
 		return
@@ -276,10 +276,10 @@
 		user.mob.interaction_emote(adjacent_mobs[1])
 		return
 
-	var/mob/target = tgui_input_list(user, "Who do you want to interact with?", "Select a target", adjacent_mobs)
-	if(!target || !user.mob.Adjacent(target))	//In case the target moved away while selecting them
+	var/mob/mob_target = tgui_input_list(user, "Who do you want to interact with?", "Select a target", adjacent_mobs)
+	if(!mob_target || !user.mob.Adjacent(mob_target))	//In case the target moved away while selecting them
 		return
-	user.mob.interaction_emote(target)
+	user.mob.interaction_emote(mob_target)
 
 /datum/keybinding/mob/prevent_movement
 	hotkey_keys = list("")
@@ -288,13 +288,13 @@
 	description = "Prevents you from moving"
 	keybind_signal = COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN
 
-/datum/keybinding/mob/prevent_movement/down(client/user)
+/datum/keybinding/mob/prevent_movement/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
 	user.movement_locked = TRUE
 
-/datum/keybinding/mob/prevent_movement/up(client/user)
+/datum/keybinding/mob/prevent_movement/up(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -307,7 +307,7 @@
 	description = "Toggles click-dragging on and off."
 	keybind_signal = COMSIG_KB_MOB_TOGGLE_CLICKDRAG
 
-/datum/keybinding/mob/toggle_clickdrag/down(client/user)
+/datum/keybinding/mob/toggle_clickdrag/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
