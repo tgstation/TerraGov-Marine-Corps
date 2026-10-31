@@ -155,4 +155,3 @@
 	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 
 	return ..()
-	
