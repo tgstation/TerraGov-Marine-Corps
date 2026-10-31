@@ -1,5 +1,8 @@
+///natural reduction of fire
 #define FIRE_STACK_DECAY 1
+///When damp your stacks increase - drying to 0
 #define DAMPNESS_STACK_DECAY -1
+///Max dampness
 #define FIRE_MIN_STACKS -20
 
 /datum/status_effect/stacking/fire
