@@ -213,8 +213,7 @@
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	target_health = target_xeno.health
-	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
-	transfuse_beam.visuals.alpha = 127
+	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state = "lichbeam", beam_type = /obj/effect/ebeam/essence_link, override_origin_pixel_x = 0, override_target_pixel_x = 0, alpha = 127)
 	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		QDEL_NULL(transfuse_beam)
 		return

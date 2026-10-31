@@ -519,7 +519,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	target.beam(owner, "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, maxdistance = 10)
+	target.beam(owner, icon_state = "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, max_distance = 10)
 	target.add_filter("psi_reanimation", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 
 	if(!do_after(owner, SECTOID_REANIMATE_CHANNEL_TIME, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))

@@ -99,7 +99,7 @@
 		leash_victims += victim
 	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
 		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
-		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		beams += beam(snared_victim, icon_state = "beam_web", time = INFINITY, max_distance = INFINITY)
 		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
@@ -477,7 +477,7 @@
 
 /datum/action/ability/activable/xeno/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
-	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
+	web_beam = owner.beam(web_hook, icon_state = "beam_web", override_origin_pixel_x = 0)
 	RegisterSignals(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
 	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()
