@@ -9,7 +9,6 @@
 	. = ..()
 
 	handle_status_effects()
-	handle_fire() //Check if we're on fire
 
 /mob/living/carbon/handle_regular_hud_updates()
 	. = ..()

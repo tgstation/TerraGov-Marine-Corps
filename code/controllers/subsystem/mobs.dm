@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
 	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
 		return
-	L.ExtinguishMob()
+	L.extinguish_mob()
 	for(var/i in crates)
 		i -= L
 	STOP_PROCESSING(src, L)

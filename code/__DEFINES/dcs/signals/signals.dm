@@ -729,7 +729,7 @@
 #define COMSIG_LIVING_JETPACK_STUN "living_jetpack_stun" //from /obj/item/jetpack_marine/heavy/proc/mob_hit()
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
-#define COMSIG_LIVING_IGNITED "living_ignited" //from /mob/living/proc/IgniteMob() : (fire_stacks)
+#define COMSIG_LIVING_IGNITED "living_ignited" //from /datum/status_effect/stacking/fire/do_ignite()
 
 ///From /mob/living/can_jump
 #define COMSIG_LIVING_CAN_JUMP "living_can_jump"

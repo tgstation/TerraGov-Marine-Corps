@@ -474,7 +474,7 @@
 	if(stat == DEAD)
 		holder.icon_state = ""
 		return
-	switch(fire_stacks)
+	switch(amount_burning())
 		if(-INFINITY to 0)
 			holder.icon_state = ""
 		if(1 to 5)

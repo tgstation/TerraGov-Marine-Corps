@@ -178,7 +178,7 @@
 			continue
 		if(isliving(relevant_atom))
 			var/mob/living/caught_mob = relevant_atom
-			caught_mob.ExtinguishMob()
+			caught_mob.extinguish_mob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
 /datum/ammo/water/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

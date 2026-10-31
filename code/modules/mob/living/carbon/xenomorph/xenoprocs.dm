@@ -443,7 +443,7 @@
 	return FALSE // not normal density flag
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
-	ExtinguishMob()
+	extinguish_mob()
 	if(isnestedhost(src))
 		return
 
@@ -468,7 +468,7 @@
 	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
-	ExtinguishMob()
+	extinguish_mob()
 
 /obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	qdel(src)
