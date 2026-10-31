@@ -7,7 +7,7 @@
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
-	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
+	icon_state = "bullet_large"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
@@ -43,6 +43,7 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
+	icon_state = "bullet_large"
 	damage = 30
 	penetration = 35
 	sundering = 1
@@ -61,6 +62,7 @@
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
+	icon_state = "bullet_large"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -89,6 +91,7 @@
 
 /datum/ammo/bullet/bike_autocannon
 	name = "autocannon high-velocity bullet"
+	icon_state = "bullet_large"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -117,6 +120,7 @@
 
 /datum/ammo/bullet/auto_cannon/anti_tank
 	name = "autocannon solid-shot bullet"
+	icon_state = "bullet_large_green"
 	hud_state = "railgun_hvap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_TARGET_TURF
 	damage = 85
@@ -126,7 +130,8 @@
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
-	icon_state = "blue_bullet"
+	icon_state = "railgun"
+	ping = "ping_s"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
@@ -210,6 +215,7 @@
 
 /datum/ammo/bullet/tank_autocannon_ap
 	name = "autocannon armor piercing"
+	icon_state = "bullet_large_green"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -222,7 +228,7 @@
 
 /datum/ammo/rocket/tank_autocannon_he
 	name = "autocannon high explosive"
-	icon_state = "bullet"
+	icon_state = "atgun"
 	hud_state = "hivelo_fire"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -244,6 +250,7 @@
 
 /datum/ammo/bullet/sarden
 	name = "heavy autocannon armor piercing"
+	icon_state = "bullet_large_green"
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -253,6 +260,7 @@
 
 /datum/ammo/bullet/sarden/high_explosive
 	name = "heavy autocannon high explosive"
+	icon_state = "bullet_large_red"
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
