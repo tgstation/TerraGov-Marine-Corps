@@ -14,9 +14,8 @@
 	max_stacks = 20
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
-		///Are they actually burning
+	///Are they actually burning
 	var/is_ignited = FALSE
-
 
 /datum/status_effect/stacking/fire/on_creation(mob/living/new_owner, stacks_to_apply, ignite_on_start = TRUE)
 	if(!iscarbon(new_owner) || (stacks_to_apply > 0 && (!new_owner.can_ignite())))
