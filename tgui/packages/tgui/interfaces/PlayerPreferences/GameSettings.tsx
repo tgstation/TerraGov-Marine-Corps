@@ -444,6 +444,15 @@ export const GameSettings = (props) => {
                 action="toggle_admin_music"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
+                tooltip="Enables or disables music played by admins, such as internet sounds."
+              />
+              <ToggleFieldPreference
+                label="Toggle custom admin sounds"
+                value="toggle_admin_sounds"
+                action="toggle_admin_sounds"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Disables custom sounds played by admins, such as imported sound files and custom supply pod sounds."
               />
               <ToggleFieldPreference
                 label="Toggle ambience sound"

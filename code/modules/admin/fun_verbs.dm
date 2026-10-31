@@ -211,11 +211,11 @@ ADMIN_VERB(sound_file, R_SOUND, "Play Imported Sound", "Play a sound imported fr
 		if("Global")
 			for(var/i in GLOB.clients)
 				var/client/C = i
-				if(C.prefs.toggles_sound & SOUND_MIDI)
+				if((C.prefs.toggles_sound & SOUND_MIDI) && !(C.prefs.toggles_sound & SOUND_ADMIN_SOUNDS_OFF))
 					SEND_SOUND(C, uploaded_sound)
 					heard_midi++
 		if("Local")
-			playsound(get_turf(user.mob), uploaded_sound, 50, 0)
+			playsound(get_turf(user.mob), uploaded_sound, 50, 0, admin_sound = TRUE)
 			for(var/mob/M in view())
 				heard_midi++
 		else

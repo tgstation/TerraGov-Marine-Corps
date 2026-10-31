@@ -47,8 +47,9 @@
  * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
+ * * admin_sound: if TRUE, players who have disabled custom admin sounds will not hear it.
  */
-/proc/playsound(atom/source, soundin, vol as num, vary = FALSE, sound_range = DEFAULT_SOUND_RANGE, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE)
+/proc/playsound(atom/source, soundin, vol as num, vary = FALSE, sound_range = DEFAULT_SOUND_RANGE, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE, admin_sound = FALSE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -112,6 +113,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	for(var/mob/listener AS in listeners)
 		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE)) //todo: kill this. this seems fucking horrible
 			continue
+		if(admin_sound && (listener.client?.prefs?.toggles_sound & SOUND_ADMIN_SOUNDS_OFF))
+			continue
 		var/turf/mob_turf = get_turf(listener)
 		if(!mob_turf)
 			continue
@@ -140,7 +143,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			is_global,
 			channel,
 			ambient_sound,
-			S
+			S,
+			admin_sound
 		)
 
 	return listeners
