@@ -1514,7 +1514,7 @@
 	var/already_hearing_sensitive = HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE)
 	ADD_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
 	if(already_hearing_sensitive) // If we were already hearing sensitive, we don't wanna be in important_recursive_contents twice, else we'll have potential issues like one radio sending the same message multiple times
-		return
+		return FALSE
 
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYINITLIST(location.important_recursive_contents)
@@ -1525,6 +1525,7 @@
 
 	var/turf/our_turf = get_turf(src)
 	SSspatial_grid.add_grid_membership(src, our_turf, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
+	return TRUE
 
 /**
  * removes the hearing sensitivity channel from the important_recursive_contents list of this and all nested locs containing us if there are no more sources of the trait left
@@ -1534,10 +1535,10 @@
  */
 /atom/movable/proc/lose_hearing_sensitivity(trait_source = TRAIT_GENERIC)
 	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
-		return
+		return FALSE
 	REMOVE_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
 	if(HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
-		return
+		return FALSE
 
 	var/turf/our_turf = get_turf(src)
 	/// We get our awareness updated by the important recursive contents stuff, here we remove our membership
@@ -1550,6 +1551,7 @@
 			SSspatial_grid.remove_grid_awareness(location, SPATIAL_GRID_CONTENTS_TYPE_HEARING)
 		ASSOC_UNSETEMPTY(recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
 		UNSETEMPTY(location.important_recursive_contents)
+	return TRUE
 
 ///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
 ///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye

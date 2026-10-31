@@ -23,6 +23,7 @@
 	src.exit_callback = exit_callback
 	RegisterSignal(container, COMSIG_QDELETING, PROC_REF(handle_container_del))
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
+	RegisterSignal(SSdcs, COMSIG_GLOB_RUNECHAT_HANDLER, PROC_REF(handle_runetext), TRUE)
 	INVOKE_NEXT_TICK(src, PROC_REF(init_map))
 
 ///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new" // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF
@@ -124,6 +125,13 @@
 			continue
 		crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 		. += crew
+
+/datum/interior/proc/handle_runetext(dcs, text, atom/target, mob/owner, list/extra_classes)
+	if(!(target in occupants))
+		return
+	if(!extra_classes.Find("virtual-speaker"))
+		return
+	new /datum/chatmessage(text, container, owner, extra_classes)
 
 #undef INTERIOR_BUFFER_TILES
 
