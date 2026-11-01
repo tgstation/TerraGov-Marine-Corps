@@ -84,8 +84,11 @@
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates(seconds_per_tick)
 	if(loc_weeds_type)
 		heal_wounds(XENO_RESTING_HEAL, FALSE, seconds_per_tick) // healing in critical while on weeds ignores scaling
-	else if(!endure) //If we're not Enduring we bleed out
+		updatehealth()
+		return
+	if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD)
+		updatehealth()
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick = 2)
 	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
