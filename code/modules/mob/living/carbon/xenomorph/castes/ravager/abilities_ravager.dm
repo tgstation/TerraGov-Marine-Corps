@@ -102,6 +102,29 @@
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
+/datum/action/ability/activable/xeno/charge/acid/use_ability(atom/A)
+	if(!A)
+		return
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
+	return ..()
+
+/datum/action/ability/activable/xeno/charge/acid/charge_complete()
+	. = ..()
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	acid_burst()
+
+/datum/action/ability/activable/xeno/charge/acid/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced) //todo: make this at the /datum/action/ability/activable/xeno level
+	SIGNAL_HANDLER
+	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
+
+/datum/action/ability/activable/xeno/proc/acid_burst(quantity = 12)
+	var/list/bullets = list()
+	for(var/i=1 to quantity)
+		var/atom/movable/projectile/proj = new (xeno_owner)
+		proj.generate_bullet(xeno_owner.ammo)
+		bullets += proj
+	INVOKE_ASYNC(src, GLOBAL_PROC_REF(bullet_burst), xeno_owner, bullets, xeno_owner, pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg'), 4, 2)
+
 // ***************************************
 // *********** Ravage
 // ***************************************
@@ -140,7 +163,7 @@
 	xeno_owner.face_atom(A)
 
 	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
-		return
+		return FALSE
 
 	xeno_owner.emote("roar")
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] thrashes about in a murderous frenzy!"), \
@@ -202,6 +225,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	return TRUE
 
 /// Gets all valid turfs to hit with Ravage. Valid turfs are any turfs that have no density.
 /datum/action/ability/activable/xeno/ravage/proc/add_valid_turfs_from_cone(turf/current_turf, list/turf/valid_turfs_so_far = list(), distance_left, facing, direction_flag)
@@ -287,6 +311,20 @@
 	grow = -0.02
 	rotation = -160
 	friction = 0.6
+
+/datum/action/ability/activable/xeno/ravage/acid/use_ability(atom/A)
+	. = ..()
+	if(!.)
+		return
+	if(!A)
+	A = get_step(xeno_owner, xeno_owner.dir)
+	var/sound_to_play = pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg')
+	playsound(xeno_owner, sound_to_play, 25, 1, MEDIUM_SOUND_RANGE)
+	var/datum/ammo/xeno/acid/ammo_type = /datum/ammo/xeno/acid/auto/scatter
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
+	newspit.generate_bullet(ammo_type)
+	newspit.def_zone = BODY_ZONE_CHEST
+	newspit.fire_at(A, xeno_owner, xeno_owner)
 
 // ***************************************
 // *********** Endure
@@ -616,6 +654,19 @@
 	rage_plasma = 0
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 50) //Audio cue
 
+/datum/action/ability/xeno_action/rage/acid
+
+/datum/action/ability/xeno_action/rage/acid/action_activate()
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
+	return ..()
+
+/datum/action/ability/xeno_action/rage/acid/rage_deactivate()
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	return ..()
+
+/datum/action/ability/xeno_action/rage/acid/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced) //todo: make this at the /datum/action/ability/activable/xeno level
+	SIGNAL_HANDLER
+	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
 
 // ***************************************
 // *********** Vampirism

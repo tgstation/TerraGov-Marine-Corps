@@ -250,6 +250,14 @@
 /datum/ammo/xeno/acid/auto/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
+/datum/ammo/xeno/acid/auto/scatter
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 10
+	max_range = 4
+	shell_speed = 1
+	puddle_duration = 2 SECONDS
+	ammo_behavior_flags = AMMO_XENO
+
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
 	damage = 20

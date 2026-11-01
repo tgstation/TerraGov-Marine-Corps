@@ -37,3 +37,18 @@
 
 /mob/living/carbon/xenomorph/ravager/bloodthirster
 	caste_base_type = /datum/xeno_caste/ravager/bloodthirster
+
+/mob/living/carbon/xenomorph/ravager/corruptor
+	gib_chance = 100 //todo: this and proc belows should be on the caste if possible, not the mob
+	caste_base_type = /datum/xeno_caste/ravager/corruptor
+
+/mob/living/carbon/xenomorph/ravager/corruptor/Initialize(mapload)
+	. = ..()
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/auto] //todo: not sure if this is actually needed.
+
+/mob/living/carbon/xenomorph/ravager/corruptor/gib()
+	visible_message(span_danger("[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
+	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(src)
+	smoke.set_up(2, get_turf(src))
+	smoke.start()
+	. = ..()
