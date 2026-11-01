@@ -14,6 +14,8 @@
 #define SPATIAL_GRID_CONTENTS_TYPE_HEARING RECURSIVE_CONTENTS_HEARING_SENSITIVE
 ///every movable that has a client in it is stored in this channel
 #define SPATIAL_GRID_CONTENTS_TYPE_CLIENTS RECURSIVE_CONTENTS_CLIENT_MOBS
+///all atmos machines are stored in this channel (I'm sorry kyler)
+#define SPATIAL_GRID_CONTENTS_TYPE_ATMOS "spatial_grid_contents_type_atmos"
 
 #define ALL_CONTENTS_OF_CELL(cell) (cell.hearing_contents | cell.client_contents | cell.atmos_contents)
 
@@ -50,4 +52,5 @@
 ///remove from every list
 #define GRID_CELL_REMOVE_ALL(cell, movable) \
 	GRID_CELL_REMOVE(cell.hearing_contents, movable) \
-	GRID_CELL_REMOVE(cell.client_contents, movable)
+	GRID_CELL_REMOVE(cell.client_contents, movable) \
+	GRID_CELL_REMOVE(cell.atmos_contents, movable)
