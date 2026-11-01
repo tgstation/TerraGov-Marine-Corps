@@ -317,7 +317,7 @@
 	if(!.)
 		return
 	if(!A)
-	A = get_step(xeno_owner, xeno_owner.dir)
+		A = get_step(xeno_owner, xeno_owner.dir)
 	var/sound_to_play = pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg')
 	playsound(xeno_owner, sound_to_play, 25, 1, MEDIUM_SOUND_RANGE)
 	var/datum/ammo/xeno/acid/ammo_type = /datum/ammo/xeno/acid/auto/scatter
@@ -375,8 +375,8 @@
 
 	xeno_owner.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	xeno_owner.set_stagger(0) //Remove stagger
 	xeno_owner.set_slowdown(0) //Remove slowdown
