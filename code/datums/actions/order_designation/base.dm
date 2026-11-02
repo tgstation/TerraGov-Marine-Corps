@@ -111,13 +111,11 @@ GLOBAL_LIST_INIT(designator_mode_image_list, list(
 			if(carbon_owner.selected_ability == src)
 				RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 				RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_rotate))
-			target_flags = ABILITY_TURF_TARGET
 			use_state_flags = NONE
 			action_icon_state = "build_designator"
 			name = "Construction Designator"
 			desc = "Place a designator for construction."
 		if(INTERACT_DESIGNATOR_MODE)
-			target_flags = NONE
 			use_state_flags = ABILITY_TARGET_SELF
 			action_icon_state = "interact_designator"
 			name = "Interact Designator"
