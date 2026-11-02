@@ -38,5 +38,5 @@
 /mob/living/carbon/xenomorph/ravager/bloodthirster
 	caste_base_type = /datum/xeno_caste/ravager/bloodthirster
 
-/mob/living/carbon/xenomorph/ravager/corrupter
-	caste_base_type = /datum/xeno_caste/ravager/corrupter
+/mob/living/carbon/xenomorph/ravager/corruptor
+	caste_base_type = /datum/xeno_caste/ravager/corruptor

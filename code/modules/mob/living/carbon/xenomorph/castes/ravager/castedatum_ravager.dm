@@ -157,12 +157,12 @@
 		/datum/action/ability/xeno_action/deathmark,
 	)
 
-/datum/xeno_caste/ravager/corrupter
-	caste_name = "Corrupter"
-	display_name = "Corrupter"
+/datum/xeno_caste/ravager/corruptor
+	caste_name = "Corruptor"
+	display_name = "Corruptor"
 	upgrade_name = ""
 	caste_desc = "A hulking, terrifying clawed beast dripping in glowing acid."
-	caste_type_path = /mob/living/carbon/xenomorph/ravager/corrupter
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/corruptor
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_flags = parent_type::caste_flags|CASTE_ACID_BLOOD
 	wound_type = "ravager"
@@ -186,29 +186,29 @@
 		/datum/action/ability/xeno_action/rage/acid,
 	)
 
-/datum/xeno_caste/ravager/corrupter/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
+/datum/xeno_caste/ravager/corruptor/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/auto]
 	xenomorph.gib_chance = 100
 
-/datum/xeno_caste/ravager/corrupter/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
+/datum/xeno_caste/ravager/corruptor/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	if(!QDELETED(xenomorph))
 		xenomorph.ammo = null
 		xenomorph.gib_chance = initial(xenomorph.gib_chance)
 	return ..()
 
-/datum/xeno_caste/ravager/corrupter/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
+/datum/xeno_caste/ravager/corruptor/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
 	xenomorph.visible_message(span_danger("[xenomorph] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
 	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(xenomorph)
 	smoke.set_up(2, get_turf(xenomorph))
 	smoke.start()
 
-/datum/xeno_caste/ravager/corrupter/normal
+/datum/xeno_caste/ravager/corruptor/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/ravager/corrupter/primordial
+/datum/xeno_caste/ravager/corruptor/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "An acid drenched destroyer."
+	caste_desc = "An nightmarish, acid drenched destroyer."
 	primordial_message = "Destroy the enemies of the hive! Burn everything away in cleansing acid!"
 	upgrade = XENO_UPGRADE_PRIMO
 
