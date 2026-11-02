@@ -23,7 +23,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 380
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -36,7 +36,7 @@
 	caste_traits = list(TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_TEAR_HOLE)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 35, FIRE = 40, ACID = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
