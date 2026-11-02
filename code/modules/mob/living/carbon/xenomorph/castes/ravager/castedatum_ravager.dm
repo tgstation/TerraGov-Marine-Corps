@@ -123,7 +123,7 @@
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
-		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action/rage/blood_thirster,
 		/datum/action/ability/xeno_action/bloodthirst,
 	)
 	plasma_damage_dealt_mult = 2
@@ -152,7 +152,7 @@
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
-		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action/rage/blood_thirster,
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/deathmark,
 	)
@@ -202,6 +202,8 @@
 	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(xenomorph)
 	smoke.set_up(2, get_turf(xenomorph))
 	smoke.start()
+
+	acid_burst(15)
 
 /datum/xeno_caste/ravager/corruptor/normal
 	upgrade = XENO_UPGRADE_NORMAL

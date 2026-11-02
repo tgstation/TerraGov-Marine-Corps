@@ -105,25 +105,16 @@
 /datum/action/ability/activable/xeno/charge/acid/use_ability(atom/A)
 	if(!A)
 		return
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move)) // We drop acid on every tile we pass through.
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	return ..()
 
 /datum/action/ability/activable/xeno/charge/acid/charge_complete()
 	. = ..()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	acid_burst()
+	xeno_owner.acid_burst(12)
 
 /datum/action/ability/activable/xeno/charge/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
-
-///Drops an AOE of acid projectiles around owner
-/datum/action/ability/activable/xeno/proc/acid_burst(quantity = 12)
-	var/list/bullets = list()
-	for(var/i=1 to quantity)
-		var/atom/movable/projectile/proj = new (xeno_owner)
-		proj.generate_bullet(xeno_owner.ammo)
-		bullets += proj
-	INVOKE_ASYNC(src, GLOBAL_PROC_REF(bullet_burst), xeno_owner, bullets, xeno_owner, pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg'), 4, 2)
 
 // ***************************************
 // *********** Ravage
@@ -507,6 +498,8 @@
 	var/rage_plasma
 	/// Should the power to extend Endure's duration be granted to normal Rage?
 	var/extends_via_normal_rage = FALSE
+	///mult added to rage_power when reducing ravage and charge CD's
+	var/base_cd_reduction_mult = 0.2
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -543,7 +536,7 @@
 		if(endure_ability && !endure_ability.endure_threshold_bonus)
 			endure_ability.endure_threshold_bonus = RAVAGER_ENDURE_HP_LIMIT * rage_power
 		//charge and ravage have their cooldowns reset, and cooldown times reduced based on rage power
-		var/cd_reduction = (0.2 + rage_power)
+		var/cd_reduction = max((base_cd_reduction_mult + rage_power), 0)
 		if(charge)
 			charge.clear_cooldown()
 			charge.cooldown_duration -= charge.cooldown_duration * cd_reduction
@@ -691,6 +684,8 @@
 			continue
 		return action
 
+/datum/action/ability/xeno_action/rage/blood_thirster
+	base_cd_reduction_mult = -0.25 //blood thirster has insanely better ravages due to AOE
 
 /datum/action/ability/xeno_action/rage/acid/action_activate()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
