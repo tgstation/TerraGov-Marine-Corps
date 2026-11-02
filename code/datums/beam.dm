@@ -418,7 +418,7 @@
 	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
 
 	for(var/mob/living/carbon/xenomorph/victim AS in xenos)
-		source.beam(living, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
+		source.beam(victim, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
 		if(victim.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA)
 			victim.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 3 SECONDS)
 			victim.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 3 SECONDS)
