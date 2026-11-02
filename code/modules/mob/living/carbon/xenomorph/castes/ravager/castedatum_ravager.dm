@@ -68,12 +68,12 @@
 		/datum/mutation_upgrade/veil/bloody_endure
 	)
 
-/datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/ravager/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 	xenomorph.AddElement(/datum/element/plasma_on_attacked, plasma_damage_recieved_mult)
 
-/datum/xeno_caste/ravager/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/ravager/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, plasma_damage_recieved_mult)
@@ -185,6 +185,23 @@
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage/acid,
 	)
+
+/datum/xeno_caste/ravager/corrupter/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
+	. = ..()
+	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/auto]
+	xenomorph.gib_chance = 100
+
+/datum/xeno_caste/ravager/corrupter/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
+	if(!QDELETED(xenomorph))
+		xenomorph.ammo = null
+		xenomorph.gib_chance = initial(xenomorph.gib_chance)
+	return ..()
+
+/datum/xeno_caste/ravager/corrupter/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
+	xenomorph.visible_message(span_danger("[xenomorph] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
+	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(xenomorph)
+	smoke.set_up(2, get_turf(xenomorph))
+	smoke.start()
 
 /datum/xeno_caste/ravager/corrupter/normal
 	upgrade = XENO_UPGRADE_NORMAL
