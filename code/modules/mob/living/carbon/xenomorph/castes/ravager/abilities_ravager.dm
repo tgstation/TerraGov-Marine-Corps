@@ -769,7 +769,7 @@
 		return
 	if(timeleft(timer_ref) > 0) //the CD really only exists to prevent insane heal stacking from AOE abilities
 		return
-	var/heal_amount = (xeno_owner.fireloss + xeno_owner.bruteloss) * 0.05
+	var/heal_amount = (xeno_owner.fireloss + xeno_owner.bruteloss) * 0.04
 	HEAL_XENO_DAMAGE(xeno_owner, heal_amount, FALSE)
 
 	if(particle_holder)
