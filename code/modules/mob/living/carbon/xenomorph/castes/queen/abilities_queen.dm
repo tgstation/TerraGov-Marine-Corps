@@ -358,7 +358,7 @@
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	if(message)
 		xeno_owner.visible_message(span_notice("[xeno_owner] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
@@ -372,8 +372,7 @@
 		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno_owner.zoom_out()
 
-
-/datum/action/ability/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+/datum/action/ability/xeno_action/toggle_queen_zoom/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	zoom_xeno_out()
 
 

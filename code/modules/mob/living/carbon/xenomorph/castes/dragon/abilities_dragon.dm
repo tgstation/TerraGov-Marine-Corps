@@ -481,9 +481,7 @@
 		return
 	end_ability()
 
-/// Rotates the owner back to the starting direction.
-/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/on_move(datum/source)
-	SIGNAL_HANDLER
+/datum/action/ability/activable/xeno/backhand/dragon_breath/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xeno_owner.setDir(starting_direction)
 	visual_effect.forceMove(get_turf(xeno_owner))
 	affected_turfs_in_order.Cut()

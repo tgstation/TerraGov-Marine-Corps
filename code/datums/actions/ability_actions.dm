@@ -177,6 +177,11 @@
 	SIGNAL_HANDLER
 	return
 
+///Any special behavior on owner move
+/datum/action/ability/proc/on_move(atom/A, atom/OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
+	return
+
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
 

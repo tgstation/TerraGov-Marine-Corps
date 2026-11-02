@@ -105,7 +105,7 @@
 /datum/action/ability/activable/xeno/charge/acid/use_ability(atom/A)
 	if(!A)
 		return
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move)) // We drop acid on every tile we pass through.
 	return ..()
 
 /datum/action/ability/activable/xeno/charge/acid/charge_complete()
@@ -113,10 +113,10 @@
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	acid_burst()
 
-/datum/action/ability/activable/xeno/charge/acid/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced) //todo: make this at the /datum/action/ability/activable/xeno level
-	SIGNAL_HANDLER
+/datum/action/ability/activable/xeno/charge/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
 
+///Drops an AOE of acid projectiles around owner
 /datum/action/ability/activable/xeno/proc/acid_burst(quantity = 12)
 	var/list/bullets = list()
 	for(var/i=1 to quantity)
@@ -693,15 +693,14 @@
 
 
 /datum/action/ability/xeno_action/rage/acid/action_activate()
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	return ..()
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	return ..()
 
-/datum/action/ability/xeno_action/rage/acid/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced) //todo: make this at the /datum/action/ability/activable/xeno level
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
 
 // ***************************************
