@@ -487,9 +487,9 @@
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
-	cooldown_duration = 60 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
-	use_state_flags = ABILITY_USE_SOLIDOBJECT
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
@@ -650,7 +650,7 @@
 	if(charge)
 		charge.cooldown_duration = initial(charge.cooldown_duration)
 	if(ravage)
-		charge.cooldown_duration = initial(ravage.cooldown_duration)
+		ravage.cooldown_duration = initial(ravage.cooldown_duration)
 
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.remove_filter("ravager_rage_outline")
