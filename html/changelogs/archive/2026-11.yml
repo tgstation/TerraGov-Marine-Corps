@@ -1,0 +1,5 @@
+2026-11-02:
+  Runian:
+  - rscadd: Beams now appear to move smoothly between two connected things.
+  - bugfix: Beams no longer appear off-centered from/to xenomorphs.
+  - code_imp: Beams can now have their origin/target pixel offset overridden.
