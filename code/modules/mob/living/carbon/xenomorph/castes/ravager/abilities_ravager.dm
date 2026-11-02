@@ -771,6 +771,9 @@
 		return
 	var/heal_amount = (xeno_owner.fireloss + xeno_owner.bruteloss) * 0.05
 	HEAL_XENO_DAMAGE(xeno_owner, heal_amount, FALSE)
+
+	if(particle_holder)
+		return
 	particle_holder = new(xeno_owner, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
