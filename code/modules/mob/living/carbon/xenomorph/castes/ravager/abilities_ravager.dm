@@ -541,12 +541,14 @@
 		if(endure_ability && !endure_ability.endure_threshold_bonus)
 			endure_ability.endure_threshold_bonus = RAVAGER_ENDURE_HP_LIMIT * rage_power
 		//charge and ravage have their cooldowns reset, and cooldown times reduced based on rage power
+		var/cd_reduction = (0.2 + rage_power)
 		if(charge)
 			charge.clear_cooldown()
-			charge.cooldown_duration -= charge.cooldown_duration * (0.2 + rage_power)
+			charge.cooldown_duration -= charge.cooldown_duration * cd_reduction
 		if(ravage)
 			ravage.clear_cooldown()
-			charge.cooldown_duration -= charge.cooldown_duration * (0.2 + rage_power)
+			ravage.cooldown_duration -= ravage.cooldown_duration * cd_reduction
+
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
 	else if(extends_via_normal_rage)
