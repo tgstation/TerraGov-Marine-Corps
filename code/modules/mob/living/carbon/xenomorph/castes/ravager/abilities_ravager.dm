@@ -160,6 +160,8 @@
 #define CONE_PART_MIDDLE_DIAG (1<<5)
 
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
+	if(!A)
+		A = get_step(xeno_owner, xeno_owner.dir)
 	xeno_owner.face_atom(A)
 
 	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
