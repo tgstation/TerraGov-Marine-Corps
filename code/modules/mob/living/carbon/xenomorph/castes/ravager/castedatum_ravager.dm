@@ -157,12 +157,12 @@
 		/datum/action/ability/xeno_action/deathmark,
 	)
 
-/datum/xeno_caste/ravager/corruptor
-	caste_name = "Corruptor"
-	display_name = "Corruptor"
+/datum/xeno_caste/ravager/corrupter
+	caste_name = "Corrupter"
+	display_name = "Corrupter"
 	upgrade_name = ""
-	caste_desc = "A hulking, terrifying beast dripping in glowing acid."
-	caste_type_path = /mob/living/carbon/xenomorph/ravager/corruptor
+	caste_desc = "A hulking, terrifying clawed beast dripping in glowing acid."
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/corrupter
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_flags = parent_type::caste_flags|CASTE_ACID_BLOOD
 	wound_type = "ravager"
@@ -176,7 +176,6 @@
 
 	plasma_damage_dealt_mult = 1.75 //higher mult to scale with its lower base damage
 
-	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
@@ -187,16 +186,10 @@
 		/datum/action/ability/xeno_action/rage/acid,
 	)
 
-	mutations = list(
-		/datum/mutation_upgrade/shell/no_end,
-		/datum/mutation_upgrade/spur/early_rage,
-		/datum/mutation_upgrade/veil/safety_trap
-	)
-
-/datum/xeno_caste/ravager/corruptor/normal
+/datum/xeno_caste/ravager/corrupter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/ravager/corruptor/primordial
+/datum/xeno_caste/ravager/corrupter/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An acid drenched destroyer."
 	primordial_message = "Destroy the enemies of the hive! Burn everything away in cleansing acid!"
