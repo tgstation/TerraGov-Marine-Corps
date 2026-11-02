@@ -517,7 +517,7 @@
 
 
 /datum/action/ability/xeno_action/rage/action_activate()
-	rage_power = min(0.5, (1 - ((xeno_owner.health - (xeno_owner.maxHealth * rage_power_calculation_bonus)) / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) // Calculate the power of our rage; scales with difference between current and max HP.
+	rage_power = min(RAVAGER_RAGE_SUPER_RAGE_THRESHOLD, (1 - ((xeno_owner.health - (xeno_owner.maxHealth * rage_power_calculation_bonus)) / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) // Calculate the power of our rage; scales with difference between current and max HP.
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] becomes frenzied, bellowing with a shuddering roar!"), \
@@ -528,18 +528,21 @@
 	//Roar SFX; volume scales with rage
 	playsound(xeno_owner.loc, 'sound/voice/alien/roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
 
-	var/bonus_duration
 	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
-		var/datum/action/ability/xeno_action/charge = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
-		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
+		var/datum/action/ability/xeno_action/charge = get_charge_action()
+		var/datum/action/ability/xeno_action/ravage = get_ravage_action()
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 		if(endure_ability && !endure_ability.endure_threshold_bonus)
 			endure_ability.endure_threshold_bonus = RAVAGER_ENDURE_HP_LIMIT * rage_power
+		//charge and ravage have their cooldowns reset, and cooldown times reduced based on rage power
 		if(charge)
-			charge.clear_cooldown() //Reset charge cooldown
+			charge.clear_cooldown()
+			charge.cooldown_duration -= charge.cooldown_duration * (0.2 + rage_power)
 		if(ravage)
-			ravage.clear_cooldown() //Reset ravage cooldown
+			ravage.clear_cooldown()
+			charge.cooldown_duration -= charge.cooldown_duration * (0.2 + rage_power)
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
+
 	else if(extends_via_normal_rage)
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
@@ -560,12 +563,12 @@
 				animate(filt, size = 0.12, time = 5, loop = -1)
 			addtimer(CALLBACK(game_plane_master_controller, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 
-	var/multiplier = 1
+	var/speed_mult = 1
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			multiplier++
+			speed_mult++
 			if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST)
-				multiplier++
+				speed_mult++
 
 	xeno_owner.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
@@ -577,15 +580,15 @@
 
 	xeno_owner.xeno_melee_damage_modifier += rage_power  //Set rage melee damage bonus
 
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, xeno_owner.xeno_caste.speed * (0.5 * multiplier * rage_power)) //Set rage speed bonus
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, xeno_owner.xeno_caste.speed * (0.5 * speed_mult * rage_power)) //Set rage speed bonus
 
 	//Too angry to be stunned/slowed/staggered/knocked down
 	ADD_TRAIT(xeno_owner, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	ADD_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
-	addtimer(CALLBACK(src, PROC_REF(rage_warning), bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
-	addtimer(CALLBACK(src, PROC_REF(rage_deactivate)), (RAVAGER_RAGE_DURATION + bonus_duration))
+	addtimer(CALLBACK(src, PROC_REF(rage_warning)), RAVAGER_RAGE_DURATION * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
+	addtimer(CALLBACK(src, PROC_REF(rage_deactivate)), RAVAGER_RAGE_DURATION)
 
 	succeed_activate()
 	add_cooldown()
@@ -594,10 +597,10 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_rages")
 
 ///Warns the user when his rage is about to end.
-/datum/action/ability/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
+/datum/action/ability/xeno_action/rage/proc/rage_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_userdanger("Our rage begins to subside... [initial(name)] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("Our rage begins to subside... [initial(name)] will only last for only [RAVAGER_RAGE_DURATION * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
@@ -633,6 +636,14 @@
 /datum/action/ability/xeno_action/rage/proc/rage_deactivate()
 	if(QDELETED(owner))
 		return
+
+	var/datum/action/ability/xeno_action/charge = get_charge_action()
+	var/datum/action/ability/xeno_action/ravage = get_ravage_action()
+	if(charge)
+		charge.cooldown_duration = initial(charge.cooldown_duration)
+	if(ravage)
+		charge.cooldown_duration = initial(ravage.cooldown_duration)
+
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.remove_filter("ravager_rage_outline")
 	xeno_owner.visible_message(span_warning("[xeno_owner] seems to calm down."), \
@@ -654,7 +665,22 @@
 	rage_plasma = 0
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 50) //Audio cue
 
-/datum/action/ability/xeno_action/rage/acid
+///Returns the charge action of the xeno owner, if any
+/datum/action/ability/xeno_action/rage/proc/get_charge_action()
+	for(var/typepath in xeno_owner.actions_by_path)
+		var/datum/action/ability/xeno_action/action = xeno_owner.actions_by_path[typepath]
+		if(!istype(action, /datum/action/ability/activable/xeno/charge))
+			continue
+		return action
+
+///Returns the ravage action of the xeno owner, if any
+/datum/action/ability/xeno_action/rage/proc/get_ravage_action()
+	for(var/typepath in xeno_owner.actions_by_path)
+		var/datum/action/ability/xeno_action/action = xeno_owner.actions_by_path[typepath]
+		if(!istype(action, /datum/action/ability/activable/xeno/ravage))
+			continue
+		return action
+
 
 /datum/action/ability/xeno_action/rage/acid/action_activate()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
