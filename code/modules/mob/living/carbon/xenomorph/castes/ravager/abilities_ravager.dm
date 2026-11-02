@@ -725,7 +725,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
 	/// how long we have to wait before healing again
-	var/heal_delay = 2 SECONDS
+	var/heal_delay = 0.3 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Ref to our particle deletion timer
@@ -767,10 +767,10 @@
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(timeleft(timer_ref) > 0)
+	if(timeleft(timer_ref) > 0) //the CD really only exists to prevent insane heal stacking from AOE abilities
 		return
-	xeno_owner.adjustBruteLoss(-xeno_owner.bruteloss * 0.125)
-	xeno_owner.adjustFireLoss(-xeno_owner.fireloss * 0.125)
+	var/heal_amount = (xeno_owner.fireloss + xeno_owner.bruteloss) * 0.05
+	HEAL_XENO_DAMAGE(xeno_owner, heal_amount, FALSE)
 	particle_holder = new(xeno_owner, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
