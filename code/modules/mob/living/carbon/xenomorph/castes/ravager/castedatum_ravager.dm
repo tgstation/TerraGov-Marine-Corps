@@ -203,7 +203,7 @@
 	smoke.set_up(2, get_turf(xenomorph))
 	smoke.start()
 
-	acid_burst(15)
+	xenomorph.acid_burst(15)
 
 /datum/xeno_caste/ravager/corruptor/normal
 	upgrade = XENO_UPGRADE_NORMAL
