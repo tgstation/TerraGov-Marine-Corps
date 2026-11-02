@@ -136,9 +136,9 @@
 			return FALSE
 		attempt_upgrade(upgrade,user)
 
-/obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/miner/welder_act(mob/user, obj/item/tool)
 	. = ..()
-	var/obj/item/tool/weldingtool/weldingtool = I
+	var/obj/item/tool/weldingtool/weldingtool = tool
 	if((miner_status == MINER_RUNNING) && miner_upgrade_type)
 		if(!weldingtool.remove_fuel(2,user))
 			to_chat(user, span_info("You need more welding fuel to complete this task!"))
@@ -179,7 +179,7 @@
 			return FALSE
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
-	if(!I.use_tool(src, user, 20 SECONDS, 2, 25, null, BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 20 SECONDS, 2, 25, null, BUSY_ICON_BUILD))
 		return
 	if(miner_status != MINER_DESTROYED)
 		return FALSE
@@ -190,7 +190,7 @@
 	record_miner_repair(user)
 	return TRUE
 
-/obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
+/obj/machinery/miner/wirecutter_act(mob/user, obj/item/tool)
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
@@ -201,7 +201,7 @@
 			return FALSE
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!I.use_tool(src, user, 1.2 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 1.2 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
@@ -212,7 +212,7 @@
 	record_miner_repair(user)
 	return TRUE
 
-/obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/miner/wrench_act(mob/user, obj/item/tool)
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
@@ -223,7 +223,7 @@
 			return FALSE
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!I.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 1.5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE

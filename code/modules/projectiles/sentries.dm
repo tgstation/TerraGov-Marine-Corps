@@ -523,18 +523,28 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			continue
 		return nearby_target
 
-/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+/obj/machinery/deployable/mounted/sentry/can_disassemble(mob/user)
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
-		return
-	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+		return FALSE
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
 	. = ..()
 	if(!.)
 		return
+	set_on(FALSE)
+
+/obj/machinery/deployable/mounted/sentry/failed_disassemble(user)
+	. = ..()
+	set_on(TRUE)
+
+/obj/machinery/deployable/mounted/sentry/post_disassemble(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(internal_gun?.turret_flags & TURRET_INACCURATE)
 		internal_gun.accuracy_mult += 0.15
 		internal_gun.scatter -= 10
-
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)

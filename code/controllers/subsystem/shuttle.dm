@@ -276,7 +276,7 @@ SUBSYSTEM_DEF(shuttle)
 	new_area.parallax_movedir = travel_dir
 	new_area.contents = proposal.reserved_turfs
 	LISTASSERTLEN(new_area.turfs_by_zlevel, bottomleft.z, list())
-	new_area.turfs_by_zlevel[bottomleft.z] = proposal.reserved_turfs
+	new_area.turfs_by_zlevel[bottomleft.z] = proposal.reserved_turfs.Copy()
 
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal

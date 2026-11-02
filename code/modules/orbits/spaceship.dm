@@ -36,7 +36,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 // Standard procs
 //-------------------------------------------
 
-/obj/machinery/computer/navigation/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/computer/navigation/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 
 	if(.)

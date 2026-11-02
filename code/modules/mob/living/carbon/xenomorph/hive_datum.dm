@@ -7,8 +7,12 @@
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
 	var/color = null
+	/// The prefix added to the name of any xenomorph that is part of this hive.
 	var/prefix = ""
 	var/hive_flags = NONE
+	///Max number of leaders that can be set
+	var/max_xeno_leaders = 4
+	///Current xeno leaders
 	var/list/xeno_leader_list = list()
 	/// /datum/xeno_caste = list(xeno mobs)
 	var/list/list/xenos_by_typepath = list()
@@ -51,14 +55,6 @@
 /datum/hive_status/New()
 	. = ..()
 	LAZYINITLIST(candidates)
-	/*
-	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
-		if(caste_type.upgrade != XENO_UPGRADE_BASETYPE)
-			continue
-		if(caste_type.type != caste_type.base_strain_type)
-			continue
-			xenos_by_typepath[caste_type] = list()
-	*/
 
 	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
 		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)
@@ -1274,7 +1270,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted
 	name = "Corrupted"
 	hivenumber = XENO_HIVE_CORRUPTED
-	prefix = "Corrupted "
+	prefix = "Corrupted"
 	color = "#00ff80"
 
 // Make sure they can understand english
@@ -1370,7 +1366,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/alpha
 	name = "Alpha"
 	hivenumber = XENO_HIVE_ALPHA
-	prefix = "Alpha "
+	prefix = "Alpha"
 	color = "#cccc00"
 
 /mob/living/carbon/xenomorph/queen/Alpha
@@ -1445,7 +1441,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
-	prefix = "Beta "
+	prefix = "Beta"
 	color = "#9999ff"
 
 /mob/living/carbon/xenomorph/queen/Beta
@@ -1520,7 +1516,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/zeta
 	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
-	prefix = "Zeta "
+	prefix = "Zeta"
 	color = "#606060"
 
 /mob/living/carbon/xenomorph/queen/Zeta
@@ -1595,7 +1591,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/admeme
 	name = "Admeme"
 	hivenumber = XENO_HIVE_ADMEME
-	prefix = "Admeme "
+	prefix = "Admeme"
 
 /mob/living/carbon/xenomorph/queen/admeme
 	hivenumber = XENO_HIVE_ADMEME
@@ -1606,7 +1602,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/fallen
 	name = "Fallen"
 	hivenumber = XENO_HIVE_FALLEN
-	prefix = "Fallen "
+	prefix = "Fallen"
 	color = "#8046ba"
 
 /datum/hive_status/corrupted/fallen/can_xeno_message()
@@ -1662,4 +1658,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/human/get_xeno_hivenumber()
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
+	if(faction == FACTION_TERRAGOV)
+		return XENO_HIVE_CORRUPTED//Conditioned to think they are the same hive
 	return FALSE

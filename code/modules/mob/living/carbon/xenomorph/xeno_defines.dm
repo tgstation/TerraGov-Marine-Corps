@@ -172,10 +172,6 @@
 	///Amount of plasma drained each tick while feast buff is actuve
 	var/feast_plasma_drain = 0
 
-	// *** Queen Abilities *** //
-	///Amount of leaders allowed
-	var/queen_leader_limit = 0
-
 	// *** Wraith Abilities *** //
 
 

@@ -48,10 +48,10 @@
 		return
 	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
-/obj/machinery/air_alarm/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/air_alarm/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	balloon_alert_to_viewers("[user] starts trying to pry [src] off the wall..")
-	if(!I.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return
 
 	qdel(src)

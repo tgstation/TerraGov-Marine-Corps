@@ -179,6 +179,10 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	GLOB.goal_nodes -= faction
 	if(creator)
 		creator?.client?.images -= goal_image
+		creator = null
+	if(goal_image)
+		goal_image.loc = null
+		goal_image = null
 	return ..()
 
 ///Null creator to prevent harddel

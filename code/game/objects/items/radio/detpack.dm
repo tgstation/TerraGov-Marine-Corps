@@ -111,7 +111,7 @@
 		setAnchored(FALSE)
 	return ..()
 
-/obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
+/obj/item/detpack/multitool_act(mob/user, obj/item/tool)
 	if(!armed && !on)
 		balloon_alert(user, "inactive!")
 		return
@@ -126,8 +126,8 @@
 			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <i>very</i> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
-	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
-	span_notice("You begin disarming [src] with [I]."))
+	user.visible_message(span_notice("[user] begins disarming [src] with [tool]."),
+	span_notice("You begin disarming [src] with [tool]."))
 
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
@@ -335,11 +335,11 @@
 
 /obj/item/detpack/proc/do_play_sound_normal()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE, MEDIUM_SOUND_RANGE, 0.3)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/item/detpack/proc/do_play_sound_loud()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE, MEDIUM_SOUND_RANGE, 0.3) //Gets louder as we count down to armaggedon
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE, MEDIUM_SOUND_RANGE) //Gets louder as we count down to armaggedon
 
 /obj/item/detpack/proc/disarm(turn_off = TRUE)
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
@@ -376,7 +376,7 @@
 		disarm()
 
 	//Time to go boom
-	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE, MEDIUM_SOUND_RANGE, 0.3)
+	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE, MEDIUM_SOUND_RANGE)
 	boom = TRUE
 	var/turf/det_location = get_turf(plant_target)
 	plant_target.ex_act(EXPLODE_DEVASTATE)

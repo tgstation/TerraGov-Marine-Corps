@@ -90,8 +90,8 @@
 		playsound(src, dismount_sound, vol = 25, falloff = 1)
 	return ..()
 
-/obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
+/obj/vehicle/ridden/motorbike/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 10, 2 SECONDS, fuel_req = 1)
 
 /// Returns a boolean indicating whether the motorbike has fuel left.
 /obj/vehicle/ridden/motorbike/proc/has_fuel()
@@ -168,7 +168,7 @@
 		if(EAST, WEST)
 			pixel_x = 0
 
-/obj/vehicle/ridden/motorbike/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/ridden/motorbike/wrench_act(mob/user, obj/item/tool)
 	if(!attached_sidecar)
 		balloon_alert(user, "No sidecar attached!")
 		return TRUE

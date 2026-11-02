@@ -94,8 +94,8 @@
 	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
 	vehicle_component?.vehicle_move_delay = move_delay
 
-/obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
+/obj/vehicle/ridden/powerloader/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = FALSE, silent) //check_loc needs to be FALSE here.
 	if(buckling_mob != user)

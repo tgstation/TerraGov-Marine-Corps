@@ -64,7 +64,7 @@
 		if(isvehicle(movable_to_move))
 			var/obj/vehicle/moved_vehicle = movable_to_move
 			mobs_moving += moved_vehicle.occupants
-			if(moved_vehicle.hitbox)
+			if(length(moved_vehicle?.hitbox?.tank_desants))
 				deploy_list += moved_vehicle.hitbox.tank_desants
 
 
@@ -197,7 +197,6 @@
 	. = ..()
 	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, MEDIUM_SOUND_RANGE, 2)
 	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, LOUD_SOUND_RANGE, 2.5)
-	balloon_alert_to_viewers("!!!")
 	visible_message(span_userdanger("You see a dropship fly overhead and begin dropping ropes!"))
 	ropeanimation()
 
@@ -224,7 +223,6 @@
 /atom/movable/effect/xeno_tunnel/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 50, TRUE, falloff = 2)
-	balloon_alert_to_viewers("!!!")
 	visible_message(span_userdanger("You see a tunnel emmerging!"))
 	QDEL_IN(src, 7)
 

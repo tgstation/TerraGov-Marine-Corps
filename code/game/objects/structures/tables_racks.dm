@@ -101,7 +101,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/table/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(reinforced && table_status != TABLE_STATUS_WEAKENED)
 		return FALSE
@@ -109,7 +109,7 @@
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 		span_notice("You start disassembling [src]."))
 
-	if(!I.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 5 SECONDS, user_display = BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
@@ -448,16 +448,16 @@
 	return ..()
 
 
-/obj/structure/table/reinforced/welder_act(mob/living/user, obj/item/I)
+/obj/structure/table/reinforced/welder_act(mob/user, obj/item/tool)
 	. = ..()
-	var/obj/item/tool/weldingtool/WT = I
+	var/obj/item/tool/weldingtool/WT = tool
 	if(!WT.isOn())
 		return FALSE
 
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
-		if(!I.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD))
+		if(!tool.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] weakens [src]."),
@@ -467,7 +467,7 @@
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
-	if(!I.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] welds [src] back together."),

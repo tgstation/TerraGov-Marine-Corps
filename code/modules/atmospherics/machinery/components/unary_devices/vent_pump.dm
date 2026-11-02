@@ -68,9 +68,9 @@
 		icon_state = "vent_in"
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/plasmacutter_act(mob/living/user, obj/item/W)
-	if(isplasmacutter(W))
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
+/obj/machinery/atmospherics/components/unary/vent_pump/plasmacutter_act(mob/user, obj/item/tool)
+	if(isplasmacutter(tool))
+		var/obj/item/tool/pickaxe/plasmacutter/P = tool
 		if(!welded)
 			to_chat(user, span_warning("\The [P] can only cut open welds!"))
 			return FALSE
@@ -83,14 +83,14 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/living/user, obj/item/I)
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
+/obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/user, obj/item/tool)
+	if(iswelder(tool))
+		var/obj/item/tool/weldingtool/WT = tool
 		if(WT.remove_fuel(1, user))
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
-			if(I.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD)) // todo clean this proc up its so bay-ey :(
+			if(tool.use_tool(src, user, 5 SECONDS, 0, 25, null, BUSY_ICON_BUILD)) // todo clean this proc up its so bay-ey :(
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))

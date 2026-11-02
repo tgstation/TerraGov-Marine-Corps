@@ -20,6 +20,8 @@
 	var/list/evo_requirements = list(
 		/datum/xeno_caste/queen = 8,
 	)
+	///Max number of xeno leaders allowed in this mode
+	var/max_xeno_leaders = 4
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
@@ -30,6 +32,9 @@
 
 	if(!(round_type_flags & MODE_INFESTATION))
 		return
+
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.max_xeno_leaders = max_xeno_leaders
 
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)

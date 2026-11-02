@@ -103,8 +103,8 @@
 	. = ..()
 	. += span_notice("It has [obj_integrity]/[max_integrity] integrity left.")
 
-/obj/machinery/deployable/floodlight/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, repair_amount, 4 SECONDS)
+/obj/machinery/deployable/floodlight/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, repair_amount, 4 SECONDS)
 
 /obj/machinery/deployable/floodlight/turn_light(user, toggle_on)
 	. = ..()

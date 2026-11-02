@@ -1,9 +1,9 @@
-/obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/wirecutter_act(mob/user, obj/item/tool)
 	if(!(barricade_flags & BARRICADE_IS_WIRED) || LAZYACCESS(user.do_actions, src))
 		return FALSE
 
 	balloon_alert_to_viewers("removing wire...")
-	if(!I.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 2 SECONDS, user_display = BUSY_ICON_BUILD))
 		return TRUE
 
 	balloon_alert_to_viewers("removed")
@@ -14,45 +14,45 @@
 	update_appearance(UPDATE_ICON)
 	new /obj/item/stack/barbed_wire(loc)
 
-/obj/structure/barricade/welder_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/welder_act(mob/user, obj/item/tool)
 	if(!(barricade_flags & BARRICADE_STANDARD_REPAIR))
 		return FALSE
-	. = welder_repair_act(user, I, get_repair_amount(), 2.5 SECONDS, 0.3, skill_level, 1)
+	. = welder_repair_act(user, tool, get_repair_amount(), 2.5 SECONDS, 0.3, skill_level, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "too damaged, need [BARRICADE_REPAIR_STACK_AMOUNT] [stack_type::name] sheets!")
 
 //Screwdriver, then wrench, then crowbar to deconstruct
 
-/obj/structure/barricade/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/screwdriver_act(mob/user, obj/item/tool)
 	if(!deconstruct_tool_check(user))
 		return FALSE
 
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
 	switch(build_state)
 		if(BARRICADE_FIRM)
-			return open_panel(user, I)
+			return open_panel(user, tool)
 
 		if(BARRICADE_ANCHORED)
-			return close_panel(user, I)
+			return close_panel(user, tool)
 
-/obj/structure/barricade/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/crowbar_act(mob/user, obj/item/tool)
 	if(!deconstruct_tool_check(user))
 		return FALSE
 	if(build_state != BARRICADE_LOOSE)
 		return FALSE
 
-	return pull_apart(user, I)
+	return pull_apart(user, tool)
 
-/obj/structure/barricade/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/wrench_act(mob/user, obj/item/tool)
 	if(!deconstruct_tool_check(user))
 		return FALSE
 
 	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
 	switch(build_state)
 		if(BARRICADE_ANCHORED)
-			return unanchor_bolts(user, I)
+			return unanchor_bolts(user, tool)
 		if(BARRICADE_LOOSE)
-			return anchor_bolts(user, I)
+			return anchor_bolts(user, tool)
 
 ///Generic checks to see if we can do a decon/recon step
 /obj/structure/barricade/proc/deconstruct_tool_check(mob/living/user)

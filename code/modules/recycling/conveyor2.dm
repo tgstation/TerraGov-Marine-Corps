@@ -72,26 +72,26 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	update_move_direction()
 
-/obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/I)
-	user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
-	span_notice("You struggle to pry up \the [src] with \the [I]."))
-	if(I.use_tool(src, user, 40, volume=40))
+/obj/machinery/conveyor/crowbar_act(mob/user, obj/item/tool)
+	user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [tool]."), \
+	span_notice("You struggle to pry up \the [src] with \the [tool]."))
+	if(tool.use_tool(src, user, 40, volume=40))
 		if(!(machine_stat & BROKEN))
 			new /obj/item/stack/conveyor(loc, 1, TRUE, id)
 		to_chat(user, span_notice("You remove [src]."))
 		qdel(src)
 	return TRUE
 
-/obj/machinery/conveyor/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/conveyor/wrench_act(mob/user, obj/item/tool)
 	if(machine_stat & BROKEN)
 		return TRUE
-	I.play_tool_sound(src)
+	tool.play_tool_sound(src)
 	setDir(turn(dir,-45))
 	update_move_direction()
 	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
-/obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/conveyor/screwdriver_act(mob/user, obj/item/tool)
 	if(machine_stat & BROKEN)
 		return TRUE
 	conveyor_flags ^= CONVEYOR_INVERTED
@@ -332,7 +332,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update_linked_switches()
 
 
-/obj/machinery/conveyor_switch/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/conveyor_switch/crowbar_act(mob/user, obj/item/tool)
 	var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 	C.id = id
 	to_chat(user, span_notice("You detach the conveyor switch."))

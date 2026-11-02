@@ -170,15 +170,10 @@
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
-	if(!ishuman(user))
-		return
-	var/obj/machinery/deployable/mounted/sentry/sentry
-	if(istype(deployed_machine, /obj/machinery/deployable/mounted/sentry))
-		sentry = deployed_machine
-	sentry?.set_on(FALSE)
 	user.balloon_alert(user, "disassembling...")
-	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
-		sentry?.set_on(TRUE)
+	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD, extra_checks = CALLBACK(deployed_machine, TYPE_PROC_REF(/obj, can_disassemble), user)))
+		if(!QDELETED(deployed_machine))
+			deployed_machine.failed_disassemble(user)
 		return
 
 	deployed_machine.post_disassemble(user)

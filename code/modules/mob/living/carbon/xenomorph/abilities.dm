@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	if(!can_use_ability(A))
 		return fail_activate()
 
-	target.beam(xeno_owner,"drain_life", time = 1 SECONDS, maxdistance = 10) //visual SFX
+	target.beam(xeno_owner, icon_state = "drain_life", time = 1 SECONDS, max_distance = 10, override_origin_pixel_x = 0, override_target_pixel_x = 0) //visual SFX
 	target.add_filter(TRANSFER_PLASMA_OUTLINE, 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/datum, remove_filter), TRANSFER_PLASMA_OUTLINE), 1 SECONDS) //Failsafe blur removal
 
@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(xeno_resin_costs, list(
 	if(!do_after(xeno_owner, transfer_delay, IGNORE_LOC_CHANGE, null, BUSY_ICON_FRIENDLY, extra_checks = CALLBACK(src, PROC_REF(usage_check), transfer_target)))
 		return fail_activate()
 
-	beam_holder = transfer_target.beam(xeno_owner,"drain_life", maxdistance = 10) //visual SFX
+	beam_holder = transfer_target.beam(xeno_owner, icon_state = "drain_life", max_distance = 10, override_origin_pixel_x = 0, override_target_pixel_x = 0) //visual SFX
 	transfer_target.add_filter(TRANSFER_PLASMA_OUTLINE, 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	cycle_plasma()
 

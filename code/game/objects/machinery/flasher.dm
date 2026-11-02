@@ -41,7 +41,7 @@
 		icon_state = "[base_state]1-p"
 
 
-/obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
+/obj/machinery/flasher/wirecutter_act(mob/user, obj/item/tool)
 	disable = !disable
 	if (disable)
 		user.visible_message(span_warning("[user] has disconnected the [src]'s flashbulb!"), span_warning("You disconnect the [src]'s flashbulb!"))

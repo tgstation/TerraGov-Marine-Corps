@@ -148,7 +148,7 @@
 
 
 //Overrides.
-/mob/living/carbon/xenomorph/fulton_act(mob/living/user, obj/item/I)
+/mob/living/carbon/xenomorph/fulton_act(mob/user, obj/item/tool)
 	if(!SSpoints)
 		balloon_alert(user, "Failed to link with destination")
 		return TRUE
@@ -158,11 +158,11 @@
 		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
 
-	var/obj/item/fulton_extraction_pack/ext_pack = I
+	var/obj/item/fulton_extraction_pack/ext_pack = tool
 	ext_pack.extract(src, user)
 	return TRUE
 
-/mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
+/mob/living/carbon/human/fulton_act(mob/user, obj/item/tool)
 	if(!can_sell_human_body(src, user.faction))
 		balloon_alert(user, "High command not interested")
 		return TRUE
@@ -170,42 +170,23 @@
 		balloon_alert(user, "Target still alive")
 		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
-	var/obj/item/fulton_extraction_pack/ext_pack = I
+	var/obj/item/fulton_extraction_pack/ext_pack = tool
 	ext_pack.extract(src, user)
 	return TRUE
 
 
-/obj/structure/table/fulton_act(mob/living/user, obj/item/I)
+/obj/structure/table/fulton_act(mob/user, obj/item/tool)
 	if(!flipped)
 		return FALSE //Place it in.
 	balloon_alert(user, "Cannot extract")
 	return TRUE
 
 
-/obj/structure/closet/fulton_act(mob/living/user, obj/item/I)
+/obj/structure/closet/fulton_act(mob/user, obj/item/tool)
 	if(opened)
 		return FALSE //Place it in.
 	balloon_alert(user, "Cannot extract")
 	return TRUE
-
-
-/obj/structure/closet/crate/fulton_act(mob/living/user, obj/item/I)
-	if(opened)
-		return FALSE //Place it in.
-
-	if(!SSpoints)
-		balloon_alert(user, "Failed to link with destination")
-		return TRUE
-
-	if(length(contents))
-		balloon_alert(user, "[src] not empty")
-		to_chat(user, span_warning("Maximum weight surpassed. Empty [src] in order to extract it."))
-		return TRUE
-
-	var/obj/item/fulton_extraction_pack/ext_pack = I
-	ext_pack.extract(src, user)
-	return TRUE
-
 
 /obj/item/fulton_extraction_pack/adminbus //For adminbusing and doing quests.
 	tool_behaviour = null //We work on a different system here.
@@ -264,9 +245,9 @@
 	else
 		qdel(target)
 
-/obj/vehicle/sealed/armored/fulton_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/armored/fulton_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!istype(I, /obj/item/fulton_extraction_pack/tank))
+	if(!istype(tool, /obj/item/fulton_extraction_pack/tank))
 		user.balloon_alert(user, "needs a bigger fulton!")
 		return
 	if((armored_flags & ARMORED_WRECK_PREP_STAGE_TWO))
@@ -282,7 +263,7 @@
 		return
 
 	armored_flags |= ARMORED_WRECK_PREP_STAGE_TWO
-	var/obj/item/fulton_extraction_pack/ext_pack = I
+	var/obj/item/fulton_extraction_pack/ext_pack = tool
 	ext_pack.extract(src, user)
 	return TRUE
 

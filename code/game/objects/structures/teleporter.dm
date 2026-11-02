@@ -40,7 +40,7 @@
 		return
 	user.forceMove(get_turf(kit.linked_teleporter))
 
-/obj/machinery/deployable/teleporter/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/teleporter/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!user)
 		return
@@ -50,7 +50,7 @@
 	if(!kit.cell)
 		to_chat(user, span_warning("There is no cell to remove!"))
 		return
-	if(!I.use_tool(src, user, 2 SECONDS))
+	if(!tool.use_tool(src, user, 2 SECONDS))
 		return FALSE
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
 	user.put_in_hands(kit.cell)

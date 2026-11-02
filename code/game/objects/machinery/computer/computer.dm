@@ -138,11 +138,11 @@
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
-/obj/machinery/computer/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/computer/welder_act(mob/user, obj/item/tool)
 	if(user.do_actions)
 		return FALSE
 
-	var/obj/item/tool/weldingtool/welder = I
+	var/obj/item/tool/weldingtool/welder = tool
 
 	if(!(machine_stat & DISABLED) && durability == initial(durability))
 		to_chat(user, span_notice("The [src] doesn't need welding!"))
@@ -162,7 +162,7 @@
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
 
-	if(!I.use_tool(src, user, 5 SECONDS, fuel_use, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 5 SECONDS, fuel_use, user_display = BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] repairs [src]'s damage."),

@@ -410,7 +410,7 @@
 		unset_xeno_leader(selected_xeno)
 		return
 
-	if(xeno_owner.xeno_caste.queen_leader_limit <= length(xeno_owner.hive.xeno_leader_list))
+	if(xeno_owner.hive.max_xeno_leaders <= length(xeno_owner.hive.xeno_leader_list))
 		xeno_owner.balloon_alert(xeno_owner, "No more leadership slots")
 		return
 

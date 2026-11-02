@@ -412,7 +412,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 	rip_out_heart(user, TRUE)
 
-/mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
+/mob/living/carbon/human/welder_act(mob/user, obj/item/tool)
 	. = ..()
 
 	if(user.a_intent != INTENT_HELP)
@@ -435,7 +435,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		balloon_alert(user, "busy!")
 		return TRUE
 
-	if(!I.tool_use_check(user, 2))
+	if(!tool.tool_use_check(user, 2))
 		return TRUE
 
 	var/repair_time = 1 SECONDS
@@ -446,12 +446,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
-	while(I.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
+	while(tool.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
 			UpdateDamageIcon()
-		if(!I.tool_use_check(user, 2))
+		if(!tool.tool_use_check(user, 2))
 			break
 		if(!affecting.brute_dam)
 			var/previous_limb = affecting

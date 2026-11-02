@@ -162,7 +162,7 @@
 	return ..()
 
 ///Try to desequip the turret
-/obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/unmanned/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
@@ -380,8 +380,8 @@
 /obj/vehicle/unmanned/fire_act(burn_level)
 	take_damage(burn_level / 2, BURN, FIRE)
 
-/obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
+/obj/vehicle/unmanned/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"

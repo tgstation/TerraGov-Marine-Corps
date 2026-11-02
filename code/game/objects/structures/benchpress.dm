@@ -17,7 +17,7 @@
 	creak_loop = new
 	update_icon()
 
-/obj/structure/benchpress/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/benchpress/wrench_act(mob/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	if(anchored)
 		balloon_alert(user, "unsecured")
@@ -27,7 +27,7 @@
 		anchored = TRUE
 	return TRUE
 
-/obj/structure/benchpress/crowbar_act(mob/living/user, obj/item/tool)
+/obj/structure/benchpress/crowbar_act(mob/user, obj/item/tool)
 	if(anchored)
 		balloon_alert(user, "unsecure first!")
 		return FALSE

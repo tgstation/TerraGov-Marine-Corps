@@ -167,12 +167,12 @@
 	span_danger("You throw [grabbed_mob] on [src]."))
 	return TRUE
 
-/obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/razorwire/wirecutter_act(mob/user, obj/item/tool)
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
-	if(!I.use_tool(src, user, delay_disassembly, user_display = BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, delay_disassembly, user_display = BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
