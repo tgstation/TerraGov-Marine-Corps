@@ -255,7 +255,7 @@
 	bonus_projectiles_scatter = 10
 	max_range = 4
 	shell_speed = 1
-	puddle_duration = 2 SECONDS
+	puddle_duration = 3 SECONDS
 	ammo_behavior_flags = AMMO_XENO
 
 /datum/ammo/xeno/acid/passthrough

@@ -169,10 +169,12 @@
 
 	melee_damage = 21
 
-	acid_spray_duration = 2 SECONDS
+	acid_spray_duration = 3 SECONDS
 	acid_spray_damage = 20
 	acid_spray_damage_on_hit = 20
 	acid_spray_structure_damage = 45
+
+	plasma_damage_dealt_mult = 1.75 //higher mult to scale with its lower base damage
 
 	// *** Abilities *** //
 	actions = list(
