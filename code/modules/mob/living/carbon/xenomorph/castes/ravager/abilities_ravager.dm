@@ -177,7 +177,13 @@
 			range = 4
 
 	var/turf/current_turf = get_turf(xeno_owner)
-	var/facing = xeno_owner.dir
+
+	var/facing
+	if(get_dist(xeno_owner, A) > 1) //get_dir is useless outside of adjacent tiles
+		facing = angle2dir(Get_Angle(current_turf, get_turf(A)))
+	else
+		facing = get_dir(xeno_owner, A)
+
 	var/list/turf/ravaged_turfs = list()
 	if(!aoe)
 		activate_particles(facing)
