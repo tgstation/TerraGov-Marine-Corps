@@ -136,7 +136,7 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
 	scatter = 3
-	fire_delay = 2 SECONDS
+	fire_delay = 1.4 SECONDS
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
