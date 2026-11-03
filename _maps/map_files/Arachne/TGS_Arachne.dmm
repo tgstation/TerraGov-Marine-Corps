@@ -15,17 +15,6 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"aac" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/tool/pen,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/turf/open/floor/mainship/silver{
-	dir = 4
-	},
-/area/mainship/command/cic)
 "aad" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/silver{
@@ -56,21 +45,6 @@
 	plane = -3
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/command/cic)
-"aag" = (
-/obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/misc/paperbin{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/item/tool/pen,
-/obj/item/phone{
-	pixel_y = 5;
-	pixel_x = -5
-	},
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
 /area/mainship/command/cic)
 "aah" = (
 /obj/structure/table/mainship/nometal,
@@ -223,6 +197,38 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical)
+"aau" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/tool/pen,
+/obj/item/phone{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/command/cic)
+"aav" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/tool/pen,
+/obj/effect/spawner/random/misc/paperbin{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/command/cic)
 "aaG" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 2
@@ -37313,7 +37319,7 @@ acT
 acR
 aad
 abK
-aag
+aau
 acg
 vkb
 vkb
@@ -38741,7 +38747,7 @@ acU
 acS
 aae
 abL
-aac
+aav
 aci
 vkb
 vkb
