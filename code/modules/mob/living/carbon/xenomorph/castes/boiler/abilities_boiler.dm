@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	/// The offset in a direction for zoom_in.
 	var/tile_offset = 7
 	/// The size of the zoom for zoom_in.
-	var/view_size = 4
+	var/view_size = 16
 
 /datum/action/ability/xeno_action/toggle_long_range/remove_action(mob/living/carbon/xenomorph/removed_from_xenomorph)
 	if(xeno_owner.xeno_flags & XENO_ZOOMED)
