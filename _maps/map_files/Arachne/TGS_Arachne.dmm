@@ -205,6 +205,17 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"aas" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/marine_card,
+/obj/item/storage/box/ids{
+	pixel_x = 10
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/silver{
+	dir = 9
+	},
+/area/mainship/command/cic)
 "aat" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -729,16 +740,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship_hull,
 /area/mainship/powered)
-"acu" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/marine_card,
-/obj/item/storage/box/ids{
-	pixel_x = 10
-	},
-/turf/open/floor/mainship/silver{
-	dir = 9
-	},
-/area/mainship/command/cic)
 "acx" = (
 /obj/machinery/computer/navigation{
 	dir = 4
@@ -37302,7 +37303,7 @@ nCs
 cCG
 puU
 fVh
-acu
+aas
 adg
 acX
 abO
