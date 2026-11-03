@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Elevator controls/indicators correctly reflect the actual levels they connect to, instead of a hard coded z level reference"
-  - code_imp: "preferred floor names for elevator controls refer to the relative z level instead of a hard coded z level"

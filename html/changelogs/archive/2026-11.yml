@@ -3,3 +3,16 @@
   - rscadd: Beams now appear to move smoothly between two connected things.
   - bugfix: Beams no longer appear off-centered from/to xenomorphs.
   - code_imp: Beams can now have their origin/target pixel offset overridden.
+2026-11-03:
+  Lumipharon:
+  - bugfix: Elevator controls/indicators correctly reflect the actual levels they
+      connect to, instead of a hard coded z level reference
+  - code_imp: preferred floor names for elevator controls refer to the relative z
+      level instead of a hard coded z level
+  - balance: Zombies no longer automatically follow friendly players
+  - balance: Zombie rally action is now capped to 8 zombie followers
+  - bugfix: fixed a footstep run with silent footsteps
+  ViperSnake01:
+  - balance: Moved nuke on Magmoor into caves.
+  novaepee:
+  - balance: no more free armorlock; buy Thor armorlock for 120 points at req
