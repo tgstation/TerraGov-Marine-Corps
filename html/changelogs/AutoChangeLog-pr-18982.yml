@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added silo collapse as a win condition in sovl war - generators do not prevent silo collapse"
