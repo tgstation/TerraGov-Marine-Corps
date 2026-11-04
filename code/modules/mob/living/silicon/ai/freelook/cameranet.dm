@@ -119,21 +119,21 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 		majorChunkChange(c, 1)
 
 /// Used for Cyborg cameras. Since portable cameras can be in ANY chunk.
-/datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
-	if(!c.can_use())
+/datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/moved_camera)
+	if(!moved_camera.can_use())
 		return
-	var/turf/T = get_turf(c)
-	if(!T || T == c.last_portable_turf)
+	var/turf/camera_turf = get_turf(moved_camera)
+	if(!camera_turf || camera_turf == moved_camera.last_portable_turf)
 		return
-	c.last_portable_turf = T
-	var/list/new_chunks = get_chunks_around(T)
-	if(c.portable_chunks)
-		for(var/datum/camerachunk/old_chunk as anything in c.portable_chunks - new_chunks)
-			old_chunk.remove_camera(c)
+	moved_camera.last_portable_turf = camera_turf
+	var/list/new_chunks = get_chunks_around(camera_turf)
+	if(moved_camera.portable_chunks)
+		for(var/datum/camerachunk/old_chunk as anything in moved_camera.portable_chunks - new_chunks)
+			old_chunk.remove_camera(moved_camera)
 	for(var/datum/camerachunk/chunk as anything in new_chunks)
-		chunk.cameras["[T.z]"] |= c
-		chunk.camera_moved(c)
-	c.portable_chunks = new_chunks
+		chunk.cameras["[camera_turf.z]"] |= moved_camera
+		chunk.camera_moved(moved_camera)
+	moved_camera.portable_chunks = new_chunks
 
 /**
  * Never access this proc directly!!!!
@@ -142,21 +142,21 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
  * Setting the choice to 0 will remove the camera from the chunks.
  * If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
  */
-/datum/cameranet/proc/majorChunkChange(atom/c, choice)
-	if(!c)
+/datum/cameranet/proc/majorChunkChange(atom/changed_atom, choice)
+	if(!changed_atom)
 		return
 
-	var/turf/T = get_turf(c)
-	if(!T)
+	var/turf/center = get_turf(changed_atom)
+	if(!center)
 		return
-	for(var/datum/camerachunk/chunk as anything in get_chunks_around(T))
+	for(var/datum/camerachunk/chunk as anything in get_chunks_around(center))
 		if(choice == 0)
 			// Remove the camera.
-			chunk.cameras["[T.z]"] -= c
-			chunk.camera_visible_turfs -= c
+			chunk.cameras["[center.z]"] -= changed_atom
+			chunk.camera_visible_turfs -= changed_atom
 		else if(choice == 1)
 			// You can't have the same camera in the list twice.
-			chunk.cameras["[T.z]"] |= c
+			chunk.cameras["[center.z]"] |= changed_atom
 		chunk.hasChanged()
 
 /// Returns the already generated chunks around the given center turf.
@@ -166,9 +166,9 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 	var/y1 = max(0, center.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
 	var/x2 = min(world.maxx, center.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
 	var/y2 = min(world.maxy, center.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-	for(var/x = x1; x <= x2; x += CHUNK_SIZE)
-		for(var/y = y1; y <= y2; y += CHUNK_SIZE)
-			var/datum/camerachunk/chunk = chunkGenerated(x, y, center.z)
+	for(var/chunk_x = x1; chunk_x <= x2; chunk_x += CHUNK_SIZE)
+		for(var/chunk_y = y1; chunk_y <= y2; chunk_y += CHUNK_SIZE)
+			var/datum/camerachunk/chunk = chunkGenerated(chunk_x, chunk_y, center.z)
 			if(chunk)
 				. += chunk
 
