@@ -697,8 +697,8 @@
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	. = ..()
 	xeno_owner.update_icons(TRUE)
-	return ..()
 
 /datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, FALSE)

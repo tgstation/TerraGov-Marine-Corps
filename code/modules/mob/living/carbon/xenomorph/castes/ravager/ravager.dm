@@ -49,6 +49,9 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/ravager/corruptor/handle_special_state()
+	if(!isnull(overlays_standing[CAPE_LAYER])) //xeno icon code is really awful and the same procs are called repeatedly in the chain. Please fix.
+		return
+
 	var/datum/action/ability/xeno_action/rage/rage_action = actions_by_path[/datum/action/ability/xeno_action/rage/acid]
 	if(rage_action?.rage_power)
 		var/mutable_appearance/emissive_overlay = emissive_appearance(icon, "rage acid", src, alpha = src.alpha)
