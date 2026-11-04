@@ -399,9 +399,8 @@
 	return newbeam
 
 /// Shocks xenos, returns shocked xenos.
-/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs, max_targets = INFINITY, add_passflags = NONE)
+/proc/zap_beam(atom/source, zap_range, list/blacklistmobs, max_targets = INFINITY, add_passflags = NONE)
 	var/list/xenos = cheap_get_xenos_near(source, zap_range)
-	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
 			xenos -= living
@@ -415,12 +414,16 @@
 		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS|add_passflags) != get_turf(living))
 			xenos -= living
 			continue
-		source.beam(living, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
-		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
-			living.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 3 SECONDS)
-			living.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 3 SECONDS)
-		living.slowdown(2)
-		log_attack("[living] was zapped by [source]")
+
+	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
+
+	for(var/mob/living/carbon/xenomorph/victim AS in xenos)
+		source.beam(victim, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
+		if(victim.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA)
+			victim.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 3 SECONDS)
+			victim.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 3 SECONDS)
+		victim.slowdown(1)
+		log_attack("[victim] was zapped by [source]")
 	return xenos
 
 /// executes a BFG zap. just damages living mobs in an AOE from the source

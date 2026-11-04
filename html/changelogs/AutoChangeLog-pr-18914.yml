@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added quick cast support for a vast number of abilities - press the action and you use it where you are pointing. Check your keybinds, there are options for selection if you prefer the old behavior."
-  - code_imp: "SSmouse_entered keeps weakrefs of what clients are mousing over, used for quick casting"
-  - code_imp: "key presses now have mouse polling, used as a fallback for quick casting when the weakref fails"

@@ -39,9 +39,6 @@
 		/datum/xeno_caste/queen = 8,
 	)
 
-///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
-	var/siloless_hive_timer
-
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	var/client_count = length(GLOB.clients)
 	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)
@@ -74,12 +71,6 @@
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
 
-///Returns the time left before the hivemind collapses due to being orphaned
-/datum/game_mode/infestation/nuclear_war/get_hivemind_collapse_countdown()
-	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
-
-///Checks if the conditions for silo collapse have been met and starts/stops the countdown timer accordingly
 /datum/game_mode/infestation/nuclear_war/update_silo_death_timer(datum/hive_status/silo_owner)
 	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
@@ -111,22 +102,7 @@
 	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
 	priority_announce("Psychic distress waves detected from the xenomorph hive, imminent hive collapse in [NUCLEAR_WAR_SILO_COLLAPSE/10] seconds. Prevent xenomorphs from laying a new silo or recorrupting generators.", "Imminent Hive Collapse Detected", type = ANNOUNCEMENT_PRIORITY)
 	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
-
-///Called by [/proc/update_silo_death_timer] after [NUCLEAR_WAR_SILO_COLLAPSE] elapses to end the round
-/datum/game_mode/infestation/nuclear_war/siloless_hive_collapse()
-	if(!(round_type_flags & MODE_INFESTATION))
-		return
-	if(round_finished)
-		return
-	if(round_stage == INFESTATION_MARINE_CRASHING)
-		return
-	round_finished = MODE_INFESTATION_M_MAJOR
-
-///Returns the time left before the hive collapses due to lack of silos or corrupted generators
-/datum/game_mode/infestation/nuclear_war/get_siloless_collapse_countdown()
-	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
+	signal_siloless_collapse()
 
 /datum/game_mode/infestation/nuclear_war/check_finished()
 	if(round_finished)

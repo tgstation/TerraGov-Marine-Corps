@@ -16,3 +16,16 @@
   - balance: Moved nuke on Magmoor into caves.
   novaepee:
   - balance: no more free armorlock; buy Thor armorlock for 120 points at req
+2026-11-04:
+  Lumipharon:
+  - rscadd: Added quick cast support for a vast number of abilities - press the action
+      and you use it where you are pointing. Check your keybinds, there are options
+      for selection if you prefer the old behavior.
+  - code_imp: SSmouse_entered keeps weakrefs of what clients are mousing over, used
+      for quick casting
+  - code_imp: key presses now have mouse polling, used as a fallback for quick casting
+      when the weakref fails
+  ViperSnake01:
+  - balance: Increased the range for Boiler's long range sight ability.
+  - balance: Decreased boilers health from 380 to 350.
+  - balance: Decreased boilers melee/bullet/laser/energy/fire armour by 5.

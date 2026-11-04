@@ -28,9 +28,21 @@ GLOBAL_LIST_INIT(designator_types, list (
 
 ///build designation side of use_ability
 /datum/action/ability/activable/build_designator/proc/use_build_ability(atom/target)
+	if(istype(target, /obj/effect/build_designator))
+		qdel(target) //lets us clean up if needed
+		return TRUE
+
+	target = get_turf(target)
 	if(!isturf(target) || !update_hologram(target))
 		owner.balloon_alert(owner, "invalid spot!")
 		return FALSE
+
+	for(var/obj/effect/build_designator/existing in target)
+		if(owner.dir != existing.dir)
+			continue
+		qdel(existing) //overwrite existing so we don't stack them up
+		break
+
 	new /obj/effect/build_designator(target, construct_type, owner)
 	return TRUE
 
@@ -125,7 +137,9 @@ GLOBAL_LIST_INIT(designator_types, list (
 ///Removes the hologram
 /datum/action/ability/activable/build_designator/proc/cleanup_hologram(datum/source)
 	SIGNAL_HANDLER
-	QDEL_NULL(hologram)
+	if(!QDELETED(hologram))
+		qdel(hologram)
+	hologram = null
 
 //The actual building hologram
 
