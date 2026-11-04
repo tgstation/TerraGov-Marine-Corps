@@ -15,19 +15,7 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"aad" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
-/area/mainship/command/cic)
-"aae" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/mainship/silver{
-	dir = 4
-	},
-/area/mainship/command/cic)
-"aaf" = (
+"aac" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/phone{
 	pixel_y = 5;
@@ -40,11 +28,42 @@
 	dir = 2
 	},
 /obj/structure/prop/mainship/tgmc_table_flag{
-	pixel_x = -9;
-	pixel_y = 6;
-	plane = -3
+	pixel_w = -8;
+	pixel_z = 7
 	},
 /turf/open/floor/mainship/sterile/dark,
+/area/mainship/command/cic)
+"aad" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/command/cic)
+"aae" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/command/cic)
+"aag" = (
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = -19
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/logo,
+/obj/structure/prop/mainship/tgmc_table_flag{
+	layer = 6;
+	pixel_x = 0;
+	pixel_w = 20;
+	pixel_z = 20
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "aah" = (
 /obj/structure/table/mainship/nometal,
@@ -480,25 +499,6 @@
 "abH" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/orange/full,
-/area/mainship/command/cic)
-"abI" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = -19
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/logo,
-/obj/structure/prop/mainship/tgmc_table_flag{
-	pixel_x = 15;
-	pixel_y = 21;
-	plane = -3
-	},
-/turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "abJ" = (
 /obj/structure/table/mainship/nometal{
@@ -37929,7 +37929,7 @@ eTD
 acd
 aam
 acx
-aaf
+aac
 acP
 fVh
 abl
@@ -38027,7 +38027,7 @@ xTR
 adL
 adE
 eOz
-abI
+aag
 tZf
 acp
 abV
