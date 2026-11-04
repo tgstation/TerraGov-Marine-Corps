@@ -711,6 +711,9 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		var/flags = vehtype::armored_flags
 
+		if((flags & ARMORED_PURCHASABLE_SOVL) && !istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+			continue
+
 		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
 			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)
 				continue

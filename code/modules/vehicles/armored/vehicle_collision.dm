@@ -30,7 +30,7 @@
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
 	if(veh.armored_flags & ARMORED_SELF_WALL_DAMAGE)
-		veh.take_damage(ram_damage * 0.4, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
+		damage_ram_vehicle(veh, facing, pilot, ram_damage)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	if(stat == DEAD)
@@ -51,3 +51,12 @@
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	return
+
+///damages a ramming vehicle
+/turf/proc/damage_ram_vehicle(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+	//why is this at the turf level and not the wall level?
+	//Because ramming the wall can scrape it away, changing the turf's type mid proc
+	veh.take_damage(ram_damage * 0.4, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
+
+/turf/closed/wall/resin/damage_ram_vehicle(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
+	veh.take_damage(ram_damage * 0.1, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)

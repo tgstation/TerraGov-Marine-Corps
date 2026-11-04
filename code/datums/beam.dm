@@ -399,7 +399,7 @@
 	return newbeam
 
 /// Shocks xenos, returns shocked xenos.
-/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs, max_targets = INFINITY)
+/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs, max_targets = INFINITY, add_passflags = NONE)
 	var/list/xenos = cheap_get_xenos_near(source, zap_range)
 	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
@@ -412,7 +412,7 @@
 		if(living in blacklistmobs)
 			xenos -= living
 			continue
-		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS) != get_turf(living))
+		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS|add_passflags) != get_turf(living))
 			xenos -= living
 			continue
 		source.beam(living, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
