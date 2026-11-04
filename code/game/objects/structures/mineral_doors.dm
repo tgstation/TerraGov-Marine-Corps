@@ -71,7 +71,7 @@
 	playsound(get_turf(src), trigger_sound, 25, 1, MEDIUM_SOUND_RANGE)
 	flick("[base_icon_state][smoothing_flags ? "-[smoothing_junction]" : ""]-[open ? "opening" : "closing"]", src)
 	density = !density
-	opacity = !opacity
+	set_opacity(!opacity)
 	update_icon()
 	addtimer(VARSET_CALLBACK(src, switching_states, FALSE), 1 SECONDS)
 
@@ -195,7 +195,7 @@
 
 /obj/structure/mineral_door/transparent/toggle_state()
 	..()
-	opacity = FALSE
+	set_opacity(FALSE)
 
 /obj/structure/mineral_door/transparent/phoron
 	name = "phoron door"

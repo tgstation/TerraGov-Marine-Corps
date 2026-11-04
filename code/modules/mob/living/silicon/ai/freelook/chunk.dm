@@ -83,7 +83,11 @@
 
 ///Queues an update that only recalculates the view of the camera that moved
 /datum/camerachunk/proc/camera_moved(obj/machinery/camera/moved_camera)
-	moved_cameras[moved_camera] = TRUE
+	camera_view_changed(moved_camera)
+
+///Queues an update that only recalculates the view of the given camera
+/datum/camerachunk/proc/camera_view_changed(obj/machinery/camera/changed_camera)
+	moved_cameras[changed_camera] = TRUE
 	queue_update(update_delay_buffer = parent_cameranet.chunk_move_update_delay)
 
 ///Removes a camera from this chunk and drops its cached view

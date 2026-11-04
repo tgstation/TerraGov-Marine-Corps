@@ -103,6 +103,22 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 		return
 	majorChunkChange(A, 2)
 
+///Recalculates the view of every camera that can see the changed turf
+/datum/cameranet/proc/opacity_changed(turf/changed)
+	if(SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)
+		return
+	var/datum/camerachunk/home = chunkGenerated(changed.x, changed.y, changed.z)
+	if(!home)
+		return
+	for(var/obj/machinery/camera/camera as anything in home.camera_visible_turfs)
+		if(!home.camera_visible_turfs[camera][changed])
+			continue
+		var/turf/camera_turf = get_turf(camera)
+		if(!camera_turf)
+			continue
+		for(var/datum/camerachunk/chunk as anything in get_chunks_around(camera_turf))
+			chunk.camera_view_changed(camera)
+
 /datum/cameranet/proc/updateChunk(x, y, z)
 	var/datum/camerachunk/chunk = chunkGenerated(x, y, z)
 	if (!chunk)
