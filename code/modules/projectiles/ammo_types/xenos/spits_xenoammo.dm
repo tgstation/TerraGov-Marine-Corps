@@ -242,13 +242,13 @@
 	drop_nade(get_turf(target_mob), proj)
 
 /datum/ammo/xeno/acid/auto/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj))
+	drop_nade((target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj)), proj)
 
 /datum/ammo/xeno/acid/auto/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
 /datum/ammo/xeno/acid/auto/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
 
 /datum/ammo/xeno/acid/auto/scatter
 	bonus_projectiles_amount = 4
@@ -257,6 +257,16 @@
 	shell_speed = 1
 	puddle_duration = 3 SECONDS
 	ammo_behavior_flags = AMMO_XENO
+
+/datum/ammo/xeno/acid/auto/stun
+	puddle_duration = 3 SECONDS
+	puddle_acid_damage = 20
+	max_range = 4
+
+/datum/ammo/xeno/acid/auto/stun/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!target_turf)
+		return
+	xenomorph_spray(target_turf, puddle_duration, puddle_acid_damage, proj.firer, FALSE, TRUE)
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"

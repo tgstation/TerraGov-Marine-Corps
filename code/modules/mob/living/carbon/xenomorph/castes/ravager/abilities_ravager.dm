@@ -690,8 +690,9 @@
 	base_cd_reduction_mult = -0.25 //blood thirster has insanely better ravages due to AOE
 
 /datum/action/ability/xeno_action/rage/acid/action_activate()
+	. = ..()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	return ..()
+	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/auto/stun : xeno_owner.ammo)
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
