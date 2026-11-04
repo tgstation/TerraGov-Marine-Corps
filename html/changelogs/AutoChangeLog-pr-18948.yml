@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Removed the !!! message when deploying in HvH modes"
-  - bugfix: "Fixed tank layers breaking when deploying in campaign"

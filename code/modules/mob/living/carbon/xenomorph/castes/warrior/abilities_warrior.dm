@@ -111,6 +111,10 @@
 #define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 1.0
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
+/datum/action/ability/activable/xeno/warrior
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_MOB_TARGET
+
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
 	if(agility_action?.toggled)
@@ -202,8 +206,8 @@
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LUNGE_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
 	/// The starting amount of distance that Fling can go. Compared against euclidean distance. Rounded down for lunge throw.
 	var/starting_lunge_distance = WARRIOR_LUNGE_RANGE
 	/// The target of our lunge, we keep it to check if we are adjacent every time we move.
@@ -301,7 +305,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 2))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -323,8 +327,8 @@
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FLING_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
 	/// The starting amount of distance that Fling can go.
 	var/starting_fling_distance = WARRIOR_FLING_DISTANCE
 	/// The multiplier used for the cooldown duration if the ability was used on an allied xenomorph.
@@ -391,7 +395,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -415,6 +419,7 @@
 	cooldown_duration = WARRIOR_FLING_TOSS_COOLDOWN
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_GRAPPLE_TOSS_SELECT,
 	)
 	target_flags = ABILITY_TURF_TARGET
 	/// The starting amount of distance that Toss can go.
@@ -498,10 +503,11 @@
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_cost = 15
 	cooldown_duration = 10 SECONDS
+	target_flags = NONE //punch is often used specifically to target nonmob things, so we give players the control
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PUNCH_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/warrior/punch/encounter
 	keybinding_signals = null
@@ -563,7 +569,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -715,6 +721,7 @@
 	cooldown_duration = 7 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_JAB_SELECT,
 	)
 	/// The amount of charges we currently have. Initial value is assumed to be the maximum.
 	var/current_charges = 3

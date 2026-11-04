@@ -70,7 +70,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -86,8 +86,10 @@
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_cost = 75
 	cooldown_duration = 12 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CRESTTOSS_SELECT,
 	)
 	target_flags = ABILITY_MOB_TARGET
 	/// The amount to multiply the cooldown duration by if the ability was used on an allied xenomorph.
@@ -177,7 +179,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -193,8 +195,10 @@
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_cost = 175
 	cooldown_duration = 30 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ADVANCE_SELECT,
 	)
 	///Max charge range
 	var/advance_range = 7
@@ -245,7 +249,7 @@
 /datum/action/ability/activable/xeno/advance/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE

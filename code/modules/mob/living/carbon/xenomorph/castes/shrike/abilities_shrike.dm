@@ -64,8 +64,10 @@
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,
 	)
 	target_flags = ABILITY_MOB_TARGET
 	/// How long in deciseconds should humans be stunned? If they are to be stunned, they will also drop held items.
@@ -216,7 +218,7 @@
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -328,10 +330,12 @@
 	desc = "Heal and remove debuffs from a target."
 	cooldown_duration = 1 MINUTES
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	/// How far can the ability be used?
 	var/heal_range = SHRIKE_HEAL_RANGE
 	/// If the ability was used on themselves, what is the amount to multiply healing power by?
@@ -620,10 +624,12 @@
 	desc = "Channel at a distance to hold a human in your psychic grasp."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// How much damage by the owner or the target has been taken so far while channeling?
