@@ -54,7 +54,15 @@
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/ammo_process(atom/movable/projectile/proj, damage)
-	zap_beam(proj, 4, damage)
+	zap_beam(proj, 4, max_targets = 5)
+
+/datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	if(!isxeno(target_mob))
+		return
+	var/mob/living/carbon/xenomorph/xeno = target_mob
+	if(xeno.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE)
+		return
+	xeno.use_plasma(0.3 * xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 /datum/ammo/energy/tesla/focused
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_IFF
@@ -64,15 +72,7 @@
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/focused/ammo_process(atom/movable/projectile/proj, damage)
-	zap_beam(proj, 3, damage)
-
-
-/datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	if(isxeno(target_mob)) //need 1 second more than the actual effect time
-		var/mob/living/carbon/xenomorph/X = target_mob
-		if(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE)
-			return
-		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
+	zap_beam(proj, 3, max_targets = 4)
 
 #define BFG_SOUND_DELAY_SECONDS 1
 /datum/ammo/energy/bfg
