@@ -368,11 +368,18 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
-	return
+	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
 
 ///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
 /datum/game_mode/proc/siloless_hive_collapse()
-	return
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+	if(round_finished)
+		return
+	if(round_stage == INFESTATION_MARINE_CRASHING)
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
 
 ///This is overridden on the child types. Called to start/stop the silo death timer.
 /datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
@@ -380,7 +387,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///This is overridden on the child types. Provides the amount of time left before silo collapse.
 /datum/game_mode/proc/get_siloless_collapse_countdown()
-	return
+	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+///Sig sender when silo collapse starts
+/datum/game_mode/proc/signal_siloless_collapse()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
 
 ///Provides the amount of time left before the game ends, used for the stat panel
 /datum/game_mode/proc/game_end_countdown()
