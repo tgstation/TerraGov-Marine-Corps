@@ -39,9 +39,6 @@
 		/datum/xeno_caste/queen = 8,
 	)
 
-///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
-	var/siloless_hive_timer
-
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	var/client_count = length(GLOB.clients)
 	if(client_count >= NUCLEAR_WAR_TANK_MINIMUM_POP_REQUIRED)

@@ -362,24 +362,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	return
+
 ///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
 ///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
-	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
+	return
 
 ///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
 /datum/game_mode/proc/siloless_hive_collapse()
-	if(!(round_type_flags & MODE_INFESTATION))
-		return
-	if(round_finished)
-		return
-	if(round_stage == INFESTATION_MARINE_CRASHING)
-		return
-	round_finished = MODE_INFESTATION_M_MAJOR
+	return
 
 ///This is overridden on the child types. Called to start/stop the silo death timer.
 /datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
@@ -387,12 +384,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///This is overridden on the child types. Provides the amount of time left before silo collapse.
 /datum/game_mode/proc/get_siloless_collapse_countdown()
-	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
-
-///Sig sender when silo collapse starts
-/datum/game_mode/proc/signal_siloless_collapse()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
+	return
 
 ///Provides the amount of time left before the game ends, used for the stat panel
 /datum/game_mode/proc/game_end_countdown()
@@ -1067,16 +1059,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-
-/// Displays the orphan hivemind collapse timer, if applicable
-/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
-	if (isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno = source
-		if(xeno.hivenumber != XENO_HIVE_NORMAL)
-			return // Don't show for non-normal hives
-	var/rulerless_countdown = get_hivemind_collapse_countdown()
-	if(rulerless_countdown)
-		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
