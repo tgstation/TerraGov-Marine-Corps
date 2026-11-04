@@ -47,8 +47,11 @@
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
+	var/can_join_as_zombie = SSticker.mode?.can_ghosts_join_as_zombies()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		if(!can_join_as_zombie && iszombie(ssd_mob))
 			continue
 		free_ssd_mobs += ssd_mob
 
@@ -58,6 +61,9 @@
 
 	var/mob/living/new_mob = tgui_input_list(owner, "Pick a mob", "Available Mobs", free_ssd_mobs)
 	if(!istype(new_mob) || !owner.client)
+		return FALSE
+
+	if(iszombie(new_mob) && !SSticker.mode?.can_ghosts_join_as_zombies())
 		return FALSE
 
 	if(new_mob.stat == DEAD)

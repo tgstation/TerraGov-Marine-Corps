@@ -710,6 +710,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
+/datum/game_mode/proc/can_ghosts_join_as_zombies()
+	return TRUE
+
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
