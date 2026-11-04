@@ -299,6 +299,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+/datum/game_mode/proc/get_respawn_time(mob/respawnee)
+	if(!GLOB.respawn_allowed)
+		return -1
+	var/time = (GLOB.key_to_time_of_role_death[respawnee.key] + SSticker.mode?.respawn_time - world.time)
+	if(time <= 0)
+		return 0
+	return time2text(time, "mm:ss")
+
 ///respawns the player, overrides verb respawn behavior as required
 /datum/game_mode/proc/player_respawn(mob/respawnee)
 	respawnee.respawn()

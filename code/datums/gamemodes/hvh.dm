@@ -69,6 +69,18 @@
 			return list(FACTION_TERRAGOV)
 	return factions
 
+/datum/game_mode/hvh/get_respawn_time(mob/respawnee)
+	/// You've forced my hand by doing THAT to campaign.
+	if(type != /datum/game_mode/hvh)
+		return ..()
+	if(!(respawnee.faction in factions))
+		return ..()
+	if(!GLOB.enter_allowed)
+		return -1
+	if(respawnee.ckey in player_death_times)
+		return time2text(round(timeleft(wave_timer) * 0.1), "mm:ss")
+	return 0
+
 /datum/game_mode/hvh/player_respawn(mob/respawnee)
 	if(!respawnee?.client)
 		return
