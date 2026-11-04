@@ -65,7 +65,7 @@
  * instead be flagged to update the next time an AI Eye moves near it.
  *
  * update_delay_buffer is used for cameras that are moving around, which are cyborg inbuilt cameras and
- * mecha onboard cameras. This buffer should be usually lower than the CAMERA_CHUNK_UPDATE_DELAY config because
+ * mecha onboard cameras. This buffer should be usually lower than the cameranet's chunk_update_delay because
  * otherwise a moving camera can run out of its own view before updating static.
  */
 /datum/camerachunk/proc/hasChanged(update_now = 0, update_delay_buffer)
@@ -75,7 +75,7 @@
 ///Schedules an update if the chunk is watched, otherwise flags it to update once an eye looks at it
 /datum/camerachunk/proc/queue_update(update_now = 0, update_delay_buffer)
 	if(isnull(update_delay_buffer))
-		update_delay_buffer = CONFIG_GET(number/camera_chunk_update_delay)
+		update_delay_buffer = parent_cameranet.chunk_update_delay
 	if(seenby.len || update_now)
 		addtimer(CALLBACK(src, PROC_REF(update)), update_delay_buffer, TIMER_UNIQUE)
 	else
@@ -84,7 +84,7 @@
 ///Queues an update that only recalculates the view of the camera that moved
 /datum/camerachunk/proc/camera_moved(obj/machinery/camera/moved_camera)
 	moved_cameras[moved_camera] = TRUE
-	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
+	queue_update(update_delay_buffer = parent_cameranet.chunk_move_update_delay)
 
 ///Removes a camera from this chunk and drops its cached view
 /datum/camerachunk/proc/remove_camera(obj/machinery/camera/removed_camera)
@@ -92,7 +92,7 @@
 		cameras[z_key] -= removed_camera
 	camera_visible_turfs -= removed_camera
 	moved_cameras -= removed_camera
-	queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
+	queue_update(update_delay_buffer = parent_cameranet.chunk_move_update_delay)
 
 ///Returns the turfs in our grid the camera can see as turf -> turf, or null if it can't see into this chunk
 /datum/camerachunk/proc/get_camera_visible_turfs(obj/machinery/camera/checked_camera)
@@ -121,7 +121,7 @@
 				if(camera_turfs)
 					camera_visible_turfs[current_camera] = camera_turfs
 		needs_full_update = FALSE
-		COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
+		COOLDOWN_START(src, full_update_cooldown, parent_cameranet.chunk_full_update_interval)
 	else
 		for(var/obj/machinery/camera/moved_camera as anything in moved_cameras)
 			var/list/camera_turfs = get_camera_visible_turfs(moved_camera)
@@ -179,7 +179,8 @@
 		client.images += active_static_images
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
-/datum/camerachunk/New(x, y, lower_z)
+/datum/camerachunk/New(x, y, lower_z, datum/cameranet/net)
+	parent_cameranet = net
 	x = GET_CHUNK_COORD(x)
 	y = GET_CHUNK_COORD(y)
 
@@ -219,7 +220,7 @@
 		for(var/turf/vis_turf as anything in camera_turfs)
 			visibleTurfs[vis_turf] = vis_turf
 	needs_full_update = FALSE
-	COOLDOWN_START(src, full_update_cooldown, CONFIG_GET(number/camera_chunk_full_update_interval))
+	COOLDOWN_START(src, full_update_cooldown, parent_cameranet.chunk_full_update_interval)
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
 		var/image/new_static = turfs[obscured_turf]

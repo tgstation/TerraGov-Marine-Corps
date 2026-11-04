@@ -86,7 +86,7 @@
 		chunk.camera_visible_turfs -= src
 		chunk.moved_cameras -= src
 	for(var/datum/camerachunk/chunk as anything in portable_chunks)
-		chunk.queue_update(update_delay_buffer = CONFIG_GET(number/camera_chunk_move_update_delay))
+		chunk.queue_update(update_delay_buffer = parent_cameranet.chunk_move_update_delay)
 	portable_chunks = null
 	last_portable_turf = null
 

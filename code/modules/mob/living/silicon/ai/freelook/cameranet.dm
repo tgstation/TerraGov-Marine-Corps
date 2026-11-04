@@ -17,6 +17,15 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 	// The chunks of the map, mapping the areas that the cameras can see.
 	var/list/chunks = list()
 
+	/// How long it takes after a mob with a headset camera moves to update it's camera chunk
+	var/move_update_delay = 1 SECONDS
+	/// How long a camera that's being watched waits before updating when a moving camera enters or leaves
+	var/chunk_move_update_delay = 2.5 SECONDS
+	/// How long a camera chunk waits before updating when it registers a opacity change
+	var/chunk_update_delay = 2.5 SECONDS
+	/// The longest between full updates for cameras without any other signals
+	var/chunk_full_update_interval = 5 SECONDS
+
 	/// List of images cloned by all chunk static images put onto turfs cameras cant see
 	/// Indexed by the plane offset to use
 	var/list/image/obscured_images
@@ -57,7 +66,7 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 	var/key = "[x],[y],[lowest.z]"
 	. = chunks[key]
 	if(!.)
-		chunks[key] = . = new /datum/camerachunk(x, y, lowest.z)
+		chunks[key] = . = new /datum/camerachunk(x, y, lowest.z, src)
 
 /// Updates what the camera eye can see. It is recommended you use this when a camera eye moves or its location is set.
 /datum/cameranet/proc/visibility(list/moved_eyes)

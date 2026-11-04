@@ -1095,7 +1095,7 @@
 	if(QDELETED(H.camera))
 		return
 
-	addtimer(CALLBACK(src, PROC_REF(do_camera_update), H), CONFIG_GET(number/camera_move_update_delay), TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(do_camera_update), H), H.camera.parent_cameranet.move_update_delay, TIMER_UNIQUE)
 
 
 /mob/living/carbon/human/get_language_holder()
