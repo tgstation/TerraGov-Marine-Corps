@@ -45,7 +45,7 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"aaf" = (
+"aag" = (
 /obj/machinery/cic_maptable/drawable/big{
 	pixel_x = -19
 	},
@@ -57,6 +57,11 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/logo,
+/obj/structure/prop/mainship/tgmc_table_flag{
+	pixel_w = 21;
+	pixel_z = 21;
+	layer = 3.6
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "aah" = (
@@ -38021,7 +38026,7 @@ xTR
 adL
 adE
 eOz
-aaf
+aag
 tZf
 acp
 abV
