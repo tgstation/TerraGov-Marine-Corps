@@ -61,6 +61,8 @@
 			continue
 		if(nearby_human.last_move_time + move_sensitivity < world.time)
 			continue
+		if((nearby_human.m_intent == MOVE_INTENT_WALK) && (get_dist(detecting_mob, nearby_human) > 9))
+			continue
 		var/obj/item/card/id/nearby_id = nearby_human.get_idcard(FALSE)
 		if(our_iff_signal && nearby_id && CHECK_BITFIELD(nearby_id.iff_signal, our_iff_signal))
 			create_blip(nearby_human, MOTION_DETECTOR_FRIENDLY)
@@ -69,6 +71,8 @@
 		hostile_detected = TRUE
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(detecting_mob, range))
 		if(nearby_xeno.last_move_time + move_sensitivity < world.time)
+			continue
+		if((nearby_xeno.m_intent == MOVE_INTENT_WALK) && (get_dist(detecting_mob, nearby_xeno) > 6))
 			continue
 		if(our_iff_signal && CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), our_iff_signal))
 			create_blip(nearby_xeno, MOTION_DETECTOR_FRIENDLY)
