@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "clicking holocades with the build designator action will delete the holocade"
+  - qol: "adding a holocade will replace an existing holocade of the same dir"
+  - bugfix: "fixed a build designator runtime"
