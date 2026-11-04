@@ -1,6 +1,0 @@
-author: "ViperSnake01"
-delete-after: True
-changes:
-  - balance: "Increased the range for Boiler's long range sight ability."
-  - balance: "Decreased boilers health from 380 to 350."
-  - balance: "Decreased boilers melee/bullet/laser/energy/fire armour by 5."
