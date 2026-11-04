@@ -1,0 +1,8 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Any xenomorph builder castes can now pick up healing, armor, and plasma plants as an single-use item. This is done via drag-and-drop."
+  - rscadd: "Held xenomorph plants can be consumed in-hand, fed to others, thrown to trigger destruction effects, or re-planted elsewhere."
+  - bugfix: "Xenomorph armor plant now throws humans away from the plant, rather than opposite of the direction their facing, when destroyed."
+  - bugfix: "All xenomorph builder castes can now destroy xenomorph plants, instead of exclusively drones."
+  - imageadd: "Xenomorph healing, armor, and plasma plant item sprites."
