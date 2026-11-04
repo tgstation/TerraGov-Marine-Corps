@@ -28,14 +28,14 @@
 			reagents.add_reagent(rid, amount, data)
 
 ///Handles effects when the snack is finished
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/consumer, mob/feeder)
 	if(reagents.total_volume)
 		return
 
-	consumer.dropItemToGround(src)
+	feeder.dropItemToGround(src)
 	if(trash)
 		var/obj/item/new_trash = new trash
-		consumer.put_in_hands(new_trash)
+		feeder.put_in_hands(new_trash)
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
@@ -52,71 +52,75 @@
 		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
-
 	if(package)
 		balloon_alert(user, "packaging still on!")
 		return FALSE
+	if(!iscarbon(M))
+		return FALSE
 
-	if(iscarbon(M))
-		var/mob/living/carbon/carbon_mob = M
-		var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
-		var/bite_nutrition = nutriment.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
-		nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
-		var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
+	var/mob/living/carbon/carbon_mob = M
+	var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	var/bite_nutrition = nutriment.get_nutrition_gain((reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize)
+	nutriment = carbon_mob.reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	var/fullness = carbon_mob.nutrition + nutriment?.get_nutrition_gain() + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 
-		if(M == user) // If you're eating it yourself
-			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
-				balloon_alert(user, "you can't eat food!")
-				return
-			if(fullness <= NUTRITION_STARVING)
-				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
-			if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
-				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
-			if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
-				to_chat(M, span_warning("You take a bite of \the [src]."))
-			if(fullness > NUTRITION_WELLFED && fullness <= NUTRITION_OVERFED)
-				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
-			if(fullness > NUTRITION_OVERFED)
-				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
+	if(M == user) // If you're eating it yourself
+		if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
+			balloon_alert(user, "you can't eat food!")
+			return
+		if(fullness >= NUTRITION_MAX)
+			to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
+			return FALSE
+		if(fullness <= NUTRITION_STARVING)
+			to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
+		else if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
+			to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
+		else if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
+			to_chat(M, span_warning("You take a bite of \the [src]."))
+		else if(fullness > NUTRITION_WELLFED && fullness < NUTRITION_OVERFED)
+			to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
+		else if(fullness > NUTRITION_OVERFED)
+			to_chat(M, span_warning("You try to force more of \the [src] to go down your throat."))
+			if(!do_after(user, 0.5 SECONDS, NONE, carbon_mob, BUSY_ICON_GENERIC))
 				return FALSE
+
+	else
+		if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
+			balloon_alert(user, "you can't eat food!")
+			return FALSE
+		if(fullness >= NUTRITION_MAX)
+			to_chat(user, span_warning("You cannot force any more of \the [src] to go down their throat."))
+			return FALSE
+
+		user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
+		to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
+
+		if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
+			return
+
+		var/rgt_list_text = get_reagent_list_text()
+
+		log_combat(user, carbon_mob, "fed", src, "Reagents: [rgt_list_text]")
+
+		user.balloon_alert_to_viewers("forces [carbon_mob] to eat")
+		to_chat(carbon_mob, span_userdanger("[user] forces you to eat \the [src]."))
+
+	if(QDELETED(src) || !reagents)
+		return FALSE
+
+	playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
+	if(reagents.total_volume)
+		reagents.reaction(M, INGEST)
+		if(reagents.total_volume > bitesize)
+			//Why is bitesize used instead of an actual portion???
+			record_reagent_consumption(bitesize, reagents.reagent_list, user, carbon_mob)
+			reagents.trans_to(M, bitesize)
 		else
-			if(ishuman(carbon_mob) && (carbon_mob.species.species_flags & ROBOTIC_LIMBS))
-				balloon_alert(user, "you can't eat food!")
-				return
-			if(fullness <= NUTRITION_OVERFED)
-				user.balloon_alert_to_viewers("trying to feed [carbon_mob]...")
-				to_chat(carbon_mob, span_userdanger("[user] tries to feed you \the [src]."))
-			else
-				carbon_mob.balloon_alert(user, "[carbon_mob.p_theyre()] full!")
-				return FALSE
-
-			if(!do_after(user, 3 SECONDS, NONE, carbon_mob, BUSY_ICON_FRIENDLY))
-				return
-
-			var/rgt_list_text = get_reagent_list_text()
-
-			log_combat(user, carbon_mob, "fed", src, "Reagents: [rgt_list_text]")
-
-			user.balloon_alert_to_viewers("forces [carbon_mob] to eat")
-			to_chat(carbon_mob, span_userdanger("[user] forces you to eat \the [src]."))
-
-
-		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1, SHORT_SOUND_RANGE)
-			if(reagents.total_volume)
-				reagents.reaction(M, INGEST)
-				if(reagents.total_volume > bitesize)
-					//Why is bitesize used instead of an actual portion???
-					record_reagent_consumption(bitesize, reagents.reagent_list, user, carbon_mob)
-					reagents.trans_to(M, bitesize)
-				else
-					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, carbon_mob)
-					reagents.trans_to(carbon_mob, reagents.total_volume)
-				bitecount++
-				On_Consume(carbon_mob)
-			return TRUE
-
-	return FALSE
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, carbon_mob)
+			reagents.trans_to(carbon_mob, reagents.total_volume)
+		bitecount++
+		On_Consume(carbon_mob, user)
+	return TRUE
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
@@ -681,7 +685,7 @@
 	. = ..()
 	unpopped = rand(1,10)
 
-/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/consumer, mob/feeder)
 	if(prob(unpopped))	//lol ...what's the point?
 		to_chat(consumer, span_warning("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
@@ -844,10 +848,10 @@
 	balloon_alert_to_viewers("unwraps [src]")
 	package = FALSE
 
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/consumer)
+/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/consumer, mob/feeder)
 	to_chat(consumer, span_warning("Something inside of you suddently expands!</span>"))
 	balloon_alert_to_viewers("eats [src]", ignored_mobs = consumer)
-	consumer.dropItemToGround(src)
+	feeder.dropItemToGround(src)
 	if(!ishuman(consumer))
 		return ..()
 	//Do not try to understand.
