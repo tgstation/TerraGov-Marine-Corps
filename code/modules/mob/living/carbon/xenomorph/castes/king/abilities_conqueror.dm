@@ -8,7 +8,7 @@
 // ***************************************
 #define CONQUEROR_DASH_RANGE 2 // How far we can go with this ability.
 
-/datum/action/ability/xeno_action/conqueror_dash
+/datum/action/ability/xeno_action/conqueror_dash //todo: this should just be quick castable instead of relying on double tapping which has limitations
 	name = "Dash"
 	desc = "Move in a burst of speed. Double tap any movement direction to dash towards it."
 	action_type = ACTION_TOGGLE
@@ -690,7 +690,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/xeno_action/conqueror_endurance/keybind_activation()
+/datum/action/ability/xeno_action/conqueror_endurance/keybind_activation(turf/target)
 	if(can_use_action())
 		INVOKE_ASYNC(src, PROC_REF(toggle_ability), TRUE)
 	return COMSIG_KB_ACTIVATED
@@ -819,8 +819,10 @@
 	cooldown_duration = 20 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
 	target_flags = ABILITY_TURF_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_DOMINATION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CONQUEROR_DOMINATION_SELECT,
 	)
 	/// The radius of the area of effect.
 	var/radius = CONQUEROR_DOMINATION_EFFECT_RADIUS
@@ -968,7 +970,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/xeno_action/conqueror_obliteration/keybind_activation()
+/datum/action/ability/xeno_action/conqueror_obliteration/keybind_activation(turf/target)
 	if(can_use_action())
 		if(toggled)
 			INVOKE_ASYNC(src, PROC_REF(try_start_attack), TRUE)

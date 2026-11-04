@@ -5,8 +5,10 @@ SUBSYSTEM_DEF(mouse_entered)
 	flags = SS_NO_INIT | SS_TICKER
 	priority = FIRE_PRIORITY_MOUSE_ENTERED
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-
+	///List of atoms by client that are being hovered over in the current tick
 	var/list/hovers = list()
+	///A separate list of weakrefs to the same atoms as hovers, but not nulled in fire() so we can reference them safely
+	var/list/hover_refs = list()
 
 /datum/controller/subsystem/mouse_entered/fire()
 	for (var/hovering_client in hovers)

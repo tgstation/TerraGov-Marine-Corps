@@ -41,7 +41,7 @@
 	full_name = "Interact with other hand"
 	keybind_signal = COMSIG_KB_HUMAN_INTERACT_OTHER_HAND
 
-/datum/keybinding/human/interact_other_hand/down(client/user)
+/datum/keybinding/human/interact_other_hand/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
