@@ -902,3 +902,6 @@
 	xeno.playsound_local(xeno, 'sound/voice/hiss5.ogg', 50)
 	to_chat(owner, span_userdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
 	owner.balloon_alert(owner, "deathmark expired")
+
+/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor
+	ability_cost = 10 //corruptor has to use rage, so even when its cheap it has a higher practical cost

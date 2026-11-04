@@ -184,6 +184,7 @@
 		/datum/action/ability/activable/xeno/ravage/acid,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage/acid,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor,
 	)
 
 /datum/xeno_caste/ravager/corruptor/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
@@ -223,5 +224,6 @@
 		/datum/action/ability/activable/xeno/ravage/acid,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage/acid,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor,
 		/datum/action/ability/xeno_action/vampirism,
 	)
