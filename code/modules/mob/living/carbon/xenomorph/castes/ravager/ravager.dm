@@ -40,3 +40,23 @@
 
 /mob/living/carbon/xenomorph/ravager/corruptor
 	caste_base_type = /datum/xeno_caste/ravager/corruptor
+	icon = 'icons/Xeno/castes/corruptor.dmi'
+
+/mob/living/carbon/xenomorph/ravager/corruptor/update_icons(state_change = TRUE)
+	if(state_change)
+		remove_overlay(CAPE_LAYER)
+		remove_overlay(KAMA_LAYER)
+	return ..()
+
+/mob/living/carbon/xenomorph/ravager/corruptor/handle_special_state()
+	var/datum/action/ability/xeno_action/rage/rage_action = actions_by_path[/datum/action/ability/xeno_action/rage/acid]
+	if(rage_action?.rage_power)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon, "rage acid", src, alpha = src.alpha)
+		var/mutable_appearance/rage_overlay = mutable_appearance(icon, "rage acid", alpha = src.alpha)
+
+		overlays_standing[CAPE_LAYER] = emissive_overlay
+		overlays_standing[KAMA_LAYER] = rage_overlay
+		apply_overlay(CAPE_LAYER)
+		apply_overlay(KAMA_LAYER)
+
+	return FALSE //we still want to the actual icon_state to be set so we always return false

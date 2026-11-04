@@ -693,9 +693,11 @@
 	. = ..()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/auto/stun : xeno_owner.ammo)
+	xeno_owner.update_icons(TRUE)
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	xeno_owner.update_icons(TRUE)
 	return ..()
 
 /datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
