@@ -60,8 +60,6 @@
 		setDir(setdir)
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
-	//nodes = new(device_type)
-	//SetInitDirections()
 	if(process)
 		SSair.atmos_machinery += src
 
