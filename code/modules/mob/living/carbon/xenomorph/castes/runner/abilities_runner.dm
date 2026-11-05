@@ -10,10 +10,10 @@
 	action_icon_state = "pounce_savage_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
-	keybind_flags = null //todo: savage is on alternate so we can't quick cast unless we don't have the select option
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RUNNER_POUNCE_SELECT,
 	)
 	pounce_range = RUNNER_POUNCE_RANGE
 /// The turf that the ability was started on.
@@ -53,10 +53,13 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/runner/alternate_action_activate()
+	if(xeno_owner.selected_ability != src)
+		return ..()
 	savage_activated = !savage_activated
 	owner.balloon_alert(owner, "Savage [savage_activated ? "activated" : "deactivated"]")
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/ability/activable/xeno/pounce/runner/use_ability(atom/A)
 	var/turf/owner_turf = get_turf(xeno_owner)
