@@ -883,7 +883,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	playsound(X.loc, 'sound/voice/alien/hiss2.ogg', 50, 1)
 
-	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
+	var/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit]
 
 	var/atom/movable/projectile/newspit = new(get_turf(X))
 	newspit.generate_bullet(high_pressure_spit)

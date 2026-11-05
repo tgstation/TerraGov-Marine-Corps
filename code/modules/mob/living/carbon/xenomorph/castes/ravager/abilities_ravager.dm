@@ -321,7 +321,7 @@
 		A = get_step(xeno_owner, xeno_owner.dir)
 	var/sound_to_play = pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg')
 	playsound(xeno_owner, sound_to_play, 25, 1, MEDIUM_SOUND_RANGE)
-	var/datum/ammo/xeno/acid/ammo_type = /datum/ammo/xeno/acid/auto/scatter
+	var/datum/ammo/xeno/acid/ammo_type = /datum/ammo/xeno/acid/drop_acid/corruptor/scatter
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
 	newspit.generate_bullet(ammo_type)
 	newspit.def_zone = BODY_ZONE_CHEST
@@ -692,7 +692,7 @@
 /datum/action/ability/xeno_action/rage/acid/action_activate()
 	. = ..()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/auto/stun : xeno_owner.ammo)
+	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/drop_acid/corruptor/stun : xeno_owner.ammo)
 	xeno_owner.update_icons(TRUE)
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()

@@ -231,83 +231,74 @@
 	damage = 35
 	ammo_behavior_flags = AMMO_XENO
 
-/datum/ammo/xeno/acid/auto
+/datum/ammo/xeno/acid/passthrough
+	name = "acid spittle"
+	damage = 20
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
+
+//parent type for all acid that leave acid pools on hit
+/datum/ammo/xeno/acid/drop_acid/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	drop_nade(get_turf(target_mob), proj)
+
+/datum/ammo/xeno/acid/drop_acid/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
+	drop_nade((target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj)), proj)
+
+/datum/ammo/xeno/acid/drop_acid/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
+	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
+
+/datum/ammo/xeno/acid/drop_acid/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
+	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
+
+/datum/ammo/xeno/acid/drop_acid/auto
 	name = "light acid spatter"
 	damage = 12
 	damage_falloff = 0.2
 	spit_cost = 20
 	added_spit_delay = 0
 
-/datum/ammo/xeno/acid/auto/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_mob), proj)
-
-/datum/ammo/xeno/acid/auto/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade((target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj)), proj)
-
-/datum/ammo/xeno/acid/auto/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
-
-/datum/ammo/xeno/acid/auto/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade((target_turf.density ? get_step_towards(target_turf, proj) : target_turf), proj)
-
-/datum/ammo/xeno/acid/auto/scatter
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 10
-	max_range = 4
-	shell_speed = 1
-	puddle_duration = 3 SECONDS
-	ammo_behavior_flags = AMMO_XENO
-
-/datum/ammo/xeno/acid/auto/stun
-	puddle_duration = 3 SECONDS
-	puddle_acid_damage = 20
-	max_range = 4
-
-/datum/ammo/xeno/acid/auto/stun/drop_nade(turf/target_turf, atom/movable/projectile/proj)
-	if(!target_turf)
-		return
-	xenomorph_spray(target_turf, puddle_duration, puddle_acid_damage, proj.firer, FALSE, TRUE)
-
-/datum/ammo/xeno/acid/passthrough
-	name = "acid spittle"
-	damage = 20
-	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
-
-/datum/ammo/xeno/acid/heavy
+/datum/ammo/xeno/acid/drop_acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
 	spit_cost = 70
 	damage = 40
 
-/datum/ammo/xeno/acid/heavy/turret
+/datum/ammo/xeno/acid/drop_acid/turret
 	damage = 20
 	name = "acid turret splash"
+	damage = 20
 	shell_speed = 2
 	max_range = 9
 
-/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	var/turf/target_turf = get_turf(target_mob)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
-
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : get_turf(target_obj))
-
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
-
-/datum/ammo/xeno/acid/heavy/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
-
-
 ///For the Spitter's Scatterspit ability
-/datum/ammo/xeno/acid/heavy/scatter
+/datum/ammo/xeno/acid/drop_acid/scatter
+	name = "acid splash"
 	damage = 20
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
-	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
+	ammo_behavior_flags = parent_type::ammo_behavior_flags|AMMO_SKIPS_ALIENS
 	bonus_projectiles_amount = 6
 	bonus_projectiles_scatter = 2
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
+
+/datum/ammo/xeno/acid/drop_acid/corruptor
+	name = "light acid spatter"
+	damage = 12
+	damage_falloff = 0.2
+	ammo_behavior_flags = AMMO_XENO
+	puddle_duration = 3 SECONDS
+	max_range = 4
+
+/datum/ammo/xeno/acid/drop_acid/corruptor/scatter
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 10
+
+/datum/ammo/xeno/acid/drop_acid/corruptor/stun
+	name = "searing acid spatter"
+	puddle_acid_damage = 20
+
+/datum/ammo/xeno/acid/drop_acid/corruptor/stun/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	if(!target_turf)
+		return
+	xenomorph_spray(target_turf, puddle_duration, puddle_acid_damage, proj.firer, FALSE, TRUE)
 
 ///For the Sizzler Boiler's Spit
 /datum/ammo/xeno/acid/smokescreen
@@ -404,7 +395,7 @@
 	smoketype_fail = /datum/effect_system/smoke_spread/xeno/neuro/light/fast
 
 ///For the Sizzler Boiler's primo
-/datum/ammo/xeno/acid/heavy/high_pressure_spit
+/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit
 	name = "pressurized steam glob"
 	icon_state = "boiler_corrosive"
 	damage = 50
@@ -420,7 +411,7 @@
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 10 SECONDS
 
-/datum/ammo/xeno/acid/heavy/high_pressure_spit/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	if(!iscarbon(target_mob))
 		return
 	var/mob/living/carbon/target_carbon = target_mob

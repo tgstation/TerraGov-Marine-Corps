@@ -189,7 +189,7 @@
 
 /datum/xeno_caste/ravager/corruptor/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
-	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/auto]
+	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/corruptor]
 	xenomorph.gib_chance = 100
 
 /datum/xeno_caste/ravager/corruptor/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
