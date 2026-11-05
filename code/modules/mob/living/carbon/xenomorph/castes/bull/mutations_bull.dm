@@ -32,14 +32,14 @@
 	var/datum/action/ability/xeno_action/ready_charge/bull_charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/bull_charge]
 	if(!charge_ability)
 		return
-	charge_ability.plasma_use_multiplier *= 2
+	charge_ability.plasma_use_multiplier += initial(charge_ability.plasma_use_multiplier)
 	charge_ability.speed_per_step += additional_speed_per_step
 
 /datum/mutation_upgrade/spur/speed_demon/on_mutation_disabled()
 	var/datum/action/ability/xeno_action/ready_charge/bull_charge/charge_ability = xenomorph_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/bull_charge]
 	if(!charge_ability)
 		return
-	charge_ability.plasma_use_multiplier /= 2
+	charge_ability.plasma_use_multiplier -= initial(charge_ability.plasma_use_multiplier)
 	charge_ability.speed_per_step -= additional_speed_per_step
 
 //*********************//
