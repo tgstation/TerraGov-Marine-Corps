@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "reduced tesla slowdown to 1 from 2"
-  - balance: "Tesla gun has a max target limit of 5 for beams per 0.2 seconds, or 4 for IFF mode"
-  - bugfix: "fixed tesla beams sometimes not hitting up to their max target limit"
