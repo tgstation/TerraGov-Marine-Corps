@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - imageadd: "Updated a significant number of projectiles for visual clarity: larger bullets for higher damage rounds, red for incendiary and buckshot, green for AP and slugs, purple for flechette"

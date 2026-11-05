@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Tac sensors only pick up stalking xenos within 9 tiles, or walking hostile humans within 6 tiles"

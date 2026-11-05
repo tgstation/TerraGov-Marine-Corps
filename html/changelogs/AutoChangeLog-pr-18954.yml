@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - bugfix: "Fixes a few camera blindspots on the Pillar of Spring. The AI can now use the FOB console there without a marine nearby!"

@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Critical xenomorphs now immediately die if their off-weeds bleed out damage is enough to kill them."
-  - balance: "Critical xenomorphs now immediately leave critical if their on-weeds healing is enough to heal them out of it."
