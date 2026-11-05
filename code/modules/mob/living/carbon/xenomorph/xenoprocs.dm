@@ -477,7 +477,7 @@
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE
 
-// Vent Crawl
+///Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."

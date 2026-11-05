@@ -967,12 +967,12 @@
 		stack_trace("[candidate] was put into a qdeleted mob [src]")
 		return
 	candidate.mind.transfer_to(src, TRUE)
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING))  //If we are in a vent, fetch a fresh vent map
+		update_pipe_vision()
 
 /mob/living/carbon/xenomorph/transfer_mob(mob/candidate)
 	. = ..()
-	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		add_ventcrawl(loc)
-		get_up()
+	get_up()
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)

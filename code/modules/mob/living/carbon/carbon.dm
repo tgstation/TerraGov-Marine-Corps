@@ -147,7 +147,7 @@
 /mob/living/carbon/throw_item(atom/target, obj/item/override_item)
 	. = ..()
 	throw_mode_off()
-	if(is_ventcrawling) //NOPE
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING)) //NOPE
 		return FALSE
 	if(stat || !target)
 		return FALSE

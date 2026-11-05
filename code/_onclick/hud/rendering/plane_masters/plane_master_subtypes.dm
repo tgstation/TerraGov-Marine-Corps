@@ -350,7 +350,7 @@
 		<br>Has a few effects and a funky color matrix designed to make things a bit more visually readable."
 	plane = PIPECRAWL_IMAGES_PLANE
 	start_hidden = TRUE
-	render_relay_planes = list(LIT_GAME_RENDER_PLATE)
+	render_relay_planes = list(RENDER_PLANE_GAME)
 
 /atom/movable/screen/plane_master/pipecrawl/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()

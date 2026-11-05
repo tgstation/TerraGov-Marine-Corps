@@ -845,3 +845,9 @@ DEFINE_BITFIELD(round_type_flags, list(
 	"MODE_ALLOW_MARINE_QUICKBUILD" = MODE_ALLOW_MARINE_QUICKBUILD,
 	"MODE_APC_ALL_ACCESS" = MODE_APC_ALL_ACCESS
 ))
+
+DEFINE_BITFIELD(vent_movement, list(
+	"Ventcrawl Allowed" = VENTCRAWL_ALLOWED,
+	"Ventcrawl Entrance Allowed" = VENTCRAWL_ENTRANCE_ALLOWED,
+	"Ventcrawl Can See" = VENTCRAWL_CAN_SEE
+))
