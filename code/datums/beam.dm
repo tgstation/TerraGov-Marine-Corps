@@ -399,7 +399,7 @@
 	return newbeam
 
 /// Shocks xenos, returns shocked xenos.
-/proc/zap_beam(atom/source, zap_range, list/blacklistmobs, max_targets = INFINITY, add_passflags = NONE)
+/proc/zap_beam(atom/source, zap_range, list/blacklistmobs, max_targets = INFINITY, beam_passflags = PASS_PROJECTILE|PASS_GLASS)
 	var/list/xenos = cheap_get_xenos_near(source, zap_range)
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
@@ -411,7 +411,7 @@
 		if(living in blacklistmobs)
 			xenos -= living
 			continue
-		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS|add_passflags) != get_turf(living))
+		if(check_path(source, living, beam_passflags) != get_turf(living))
 			xenos -= living
 			continue
 

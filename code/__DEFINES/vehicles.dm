@@ -70,8 +70,6 @@
 #define ARMORED_WRECK_PREP_STAGE_TWO (1<<12)
 ///Vehicle damages itself when ramming walls
 #define ARMORED_SELF_WALL_DAMAGE (1<<13)
-///Sovl war only option
-#define ARMORED_PURCHASABLE_SOVL (1<<14)
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)
