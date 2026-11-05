@@ -9,9 +9,9 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 #define is_veil_mutation(A) is_type_in_typecache(A, GLOB.veil_mutations)
 
 // The amount of strategic points needed to purchase a mutation building.
-#define MUTATION_SHELL_CHAMBER_COST 400
-#define MUTATION_SPUR_CHAMBER_COST 400
-#define MUTATION_VEIL_CHAMBER_COST 400
+#define MUTATION_SHELL_CHAMBER_COST 800
+#define MUTATION_SPUR_CHAMBER_COST 800
+#define MUTATION_VEIL_CHAMBER_COST 800
 
 #define MUTATION_SHELL_ALERT /atom/movable/screen/alert/shell
 #define MUTATION_SPUR_ALERT /atom/movable/screen/alert/spur
@@ -24,4 +24,4 @@ GLOBAL_LIST_INIT(veil_mutations, typecacheof(/datum/mutation_upgrade/veil))
 
 /// The minimum and maximum of chambers that can exist.
 #define MUTATION_CHAMBER_MINIMUM 0
-#define MUTATION_CHAMBER_MAXIMUM 3
+#define MUTATION_CHAMBER_MAXIMUM 1
