@@ -9,6 +9,8 @@
 	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
+	///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
+	var/siloless_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
 	/// State of the nuke
@@ -361,6 +363,40 @@
 /datum/game_mode/infestation/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/infestation/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	if (isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno = source
+		if(xeno.hivenumber != XENO_HIVE_NORMAL)
+			return // Don't show for non-normal hives
+	var/rulerless_countdown = get_hivemind_collapse_countdown()
+	if(rulerless_countdown)
+		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
+/datum/game_mode/infestation/get_hivemind_collapse_countdown()
+	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
+/datum/game_mode/infestation/siloless_hive_collapse()
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+	if(round_finished)
+		return
+	if(round_stage == INFESTATION_MARINE_CRASHING)
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
+
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
+/datum/game_mode/infestation/get_siloless_collapse_countdown()
+	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+///Sig sender when silo collapse starts
+/datum/game_mode/infestation/proc/signal_siloless_collapse()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
 
 /datum/game_mode/infestation/proc/on_nuclear_defuse(obj/machinery/nuclearbomb/bomb, mob/defuser)
 	SIGNAL_HANDLER

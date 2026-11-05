@@ -68,6 +68,8 @@
 
 ///from proc/global_rally_zombies()
 #define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
+///from /datum/action/rally_zombie/action_activate()
+#define COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY "!ai_zombie_leader_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -812,6 +814,7 @@
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
+#define COMSIG_HIVE_LARVA_UPDATE "hive_larva_update"
 
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 

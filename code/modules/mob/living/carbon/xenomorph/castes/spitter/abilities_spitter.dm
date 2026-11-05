@@ -24,7 +24,7 @@
 	if(xeno_owner.do_actions || !do_after(xeno_owner, 5, NONE, target, BUSY_ICON_DANGER))
 		return
 
-	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
 	succeed_activate()
@@ -122,9 +122,12 @@
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_cost = 280
 	cooldown_duration = 5 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SCATTER_SPIT_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	/// The amount of deciseconds for the do_after.
 	var/cast_time = 0.5 SECONDS
 	/// Should the projectile get bonus damage from SPIT_UPGRADE_BONUS?
@@ -615,8 +618,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."
 	cooldown_duration = 2 MINUTES
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_ROCKET_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/acid_rocket/use_ability(atom/target)

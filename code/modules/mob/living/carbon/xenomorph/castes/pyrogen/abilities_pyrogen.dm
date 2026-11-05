@@ -10,6 +10,7 @@
 	ability_cost = 75
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRECHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIRECHARGE_SELECT,
 	)
 	paralyze_duration = 0 // Although we don't do anything related to paralyze, it is nice to have this zeroed out.
 	// Should they also slash upon hitting a mob?
@@ -45,7 +46,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, PYROGEN_CHARGEDISTANCE))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -95,8 +96,11 @@
 	desc = "Release a fireball that explodes in a 3x3 area on contact."
 	ability_cost = 300
 	cooldown_duration = 15 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIREBALL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIREBALL_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/fireball/encounter
@@ -158,8 +162,10 @@
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 300
 	cooldown_duration = 12 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FIRENADO_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/firestorm/can_use_ability(atom/A, silent, override_flags)
@@ -194,7 +200,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 6) // If we can be seen.
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	return TRUE
 
@@ -208,8 +214,10 @@
 	desc = "After a short cast time, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 125
 	cooldown_duration = 18 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_INFERNO_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
@@ -252,11 +260,13 @@
 	action_icon_state = "infernaltrigger"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Causes a chosen target's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area adjacent to them is set on fire."
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	ability_cost = 100
 	cooldown_duration = 6 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNAL_TRIGGER,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_INFERNAL_TRIGGER_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/infernal_trigger/can_use_ability(atom/A, silent, override_flags)

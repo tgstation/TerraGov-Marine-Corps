@@ -606,9 +606,11 @@
 	action_icon_state = "landslide"
 	ability_cost = 40
 	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LANDSLIDE_SELECT,
 	)
 	/// List of atoms we've hit with Landslide, so that we don't affect them multiple times.
 	var/list/atoms_hit
@@ -897,8 +899,11 @@
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GEOCRUSH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LANDSLIDE_SELECT,
 	)
 	/// Whether the Spur mutation is currently enabled.
 	var/spur_mutation = FALSE

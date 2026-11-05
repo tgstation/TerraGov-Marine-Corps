@@ -119,6 +119,11 @@ ARMOR
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
+/datum/supply_packs/armor/modular/attachments/armorlock
+	name = "Thor armor lock system"
+	contains = list(/obj/item/armor_module/module/armorlock)
+	cost = 120
+
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
 	name = "Freyr Mk.2 visual assistance helmet system"
 	contains = list(

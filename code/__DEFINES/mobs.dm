@@ -63,10 +63,16 @@
 
 //Nutrition
 
+///Serious negative effects
 #define NUTRITION_STARVING 150
+///Mild negative effects
 #define NUTRITION_HUNGRY 250
+///Healthy level of nutrition
 #define NUTRITION_WELLFED 400
+///You're fat at this level
 #define NUTRITION_OVERFED 450
+///Maximum fat
+#define NUTRITION_MAX 550
 
 //=================================================
 /*

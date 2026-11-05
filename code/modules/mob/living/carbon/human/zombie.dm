@@ -6,13 +6,55 @@
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
 	action_icon = 'icons/Xeno/actions/leader.dmi'
+	///How many zombies we can have following us
+	var/max_followers = 8
+	///assoc list of zombie followers by their ai_behavior datums
+	var/list/follower_list = list()
+
+/datum/action/rally_zombie/Destroy()
+	follower_list = null
+	return ..()
 
 /datum/action/rally_zombie/action_activate()
-	owner.balloon_alert(owner, "Zombies Rallied!")
-	global_rally_zombies(owner)
+	for(var/datum/ai_behavior/current_behavior AS in follower_list)
+		if(current_behavior.escorted_atom != owner)
+			UnregisterSignal(current_behavior, COMSIG_QDELETING)
+			follower_list -= current_behavior
+
+	if(length(follower_list) >= max_followers)
+		owner.balloon_alert(owner, "Max followers")
+		return
+
+	var/list/new_follower_list = list()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY, owner, new_follower_list)
+	for(var/datum/ai_behavior/behavior AS in new_follower_list)
+		if(length(follower_list) >= max_followers)
+			break
+		if(behavior in follower_list)
+			continue
+		var/mob/living/carbon/human/new_zom = new_follower_list[behavior]
+		if(new_zom.stat)
+			continue
+		follower_list[behavior] = new_zom
+		RegisterSignal(behavior, COMSIG_QDELETING, PROC_REF(on_follower_del))
+		behavior.set_escorted_atom(atom_to_escort = owner)
+		if(behavior.current_action == IDLE) ///Turns on passive zombies also
+			behavior.look_for_next_node()
+
+	for(var/datum/ai_behavior/current_behavior AS in follower_list)
+		var/mob/living/carbon/human/zombie = current_behavior.mob_parent
+		zombie.balloon_alert(owner, "!!!")
+
 	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
 	if(set_agressivity)
 		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
+
+	owner.balloon_alert(owner, "Zombies Rallied!")
+
+///Removes the follower from the list when deleted
+/datum/action/rally_zombie/proc/on_follower_del(datum/ai_behavior/dead_behavior)
+	SIGNAL_HANDLER
+	follower_list -= dead_behavior
 
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"

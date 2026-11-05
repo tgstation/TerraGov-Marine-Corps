@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Mutation structures now appear on the minimap for xenomorphs."
