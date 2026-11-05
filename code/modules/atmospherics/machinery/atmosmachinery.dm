@@ -294,7 +294,6 @@
 
 	if(!target_move)
 		// If we couldn't find a target to move to and we're ventcrawling, try to exit if this vent allows it
-		//if(vent_movement & VENTCRAWL_ENTRANCE_ALLOWED)
 		if(HAS_TRAIT(user, TRAIT_MOVE_VENTCRAWLING) && (vent_movement & VENTCRAWL_ENTRANCE_ALLOWED))
 			user.handle_ventcrawl(src)
 		return
