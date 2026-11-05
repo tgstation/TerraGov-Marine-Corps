@@ -9,9 +9,9 @@
 	var/timer_effect
 
 /mob/illusion/Initialize(mapload, mob/copy_mob, atom/escorted_atom, life_time)
-	. = ..()
-	if(!copy_mob)
+	if(!copy_mob || !life_time)
 		return INITIALIZE_HINT_QDEL
+	. = ..()
 	copy_appearance(copy_mob)
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, life_time)
@@ -19,6 +19,7 @@
 /mob/illusion/Destroy()
 	original_mob = null
 	deltimer(timer_effect)
+	timer_effect = null
 	return ..()
 
 /mob/illusion/examine(mob/user)
