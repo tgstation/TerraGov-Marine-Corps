@@ -15,10 +15,8 @@
 	human_user.changeNext_move(CLICK_CD_UNARMED)
 	switch(human_user.a_intent)
 		if(INTENT_HELP)
-			if(human_user == src)
-				return
 			var/datum/status_effect/stacking/fire/burning = has_status_effect(STATUS_EFFECT_BURNING)
-			if(burning && burning.is_ignited)
+			if(burning && burning.is_ignited && human_user != src)
 				adjust_burning(-1)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
@@ -29,7 +27,7 @@
 				return TRUE
 
 			var/datum/status_effect/stacking/melting_fire/melting_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(melting_fire)
+			if(melting_fire && human_user != src)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
 				span_warning("You try to put out the fire on [src]!"), null, 5)
