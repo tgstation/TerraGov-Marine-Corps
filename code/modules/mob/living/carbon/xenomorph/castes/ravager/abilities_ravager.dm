@@ -907,4 +907,4 @@
 	owner.balloon_alert(owner, "deathmark expired")
 
 /datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor
-	ability_cost = 10 //corruptor has to use rage, so even when its cheap it has a higher practical cost
+	ability_cost = 150 //corruptor has to use rage, so even when its cheap it has a higher practical cost
