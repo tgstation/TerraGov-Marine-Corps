@@ -63,7 +63,7 @@
 	GLOB.round_statistics.hunter_cloaks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloaks")
 
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
@@ -140,9 +140,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-///Handles moving while in stealth
-/datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/stealth/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 

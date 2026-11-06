@@ -674,11 +674,11 @@
 	animate(xeno_owner, animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW, pixel_z = xeno_owner.pixel_y + LANDSLIDE_RANGE)
 	animate(animation_time / 2, easing = CIRCULAR_EASING|EASE_IN, pixel_z = initial(xeno_owner.pixel_y))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_pre_move))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(owner_moved))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_IMPACT, PROC_REF(owner_impact))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_charge))
 	LAZYINITLIST(atoms_hit)
-	owner_moved(xeno_owner, xeno_owner.loc, direction) // Needed to catch things right next to us when we start our charge.
+	on_move(xeno_owner, xeno_owner.loc, direction) // Needed to catch things right next to us when we start our charge.
 	playsound(xeno_owner.loc, 'sound/effects/alien/behemoth/landslide_charge.ogg', 30, TRUE)
 	xeno_owner.throw_at(target, LANDSLIDE_RANGE, LANDSLIDE_SPEED, xeno_owner)
 	charge_visual = new(null, direction)
@@ -710,14 +710,12 @@
 			playsound(hit_vending.loc, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 			hit_vending.tip_over()
 
-/// Applies various effects to a selection of tiles in front of the user.
-/datum/action/ability/activable/xeno/landslide/proc/owner_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/after_image(get_turf(old_loc), xeno_owner)
+/datum/action/ability/activable/xeno/landslide/on_move(atom/A, atom/OldLoc, Dir, Forced)
+	new /obj/effect/temp_visual/after_image(get_turf(OldLoc), xeno_owner)
 	var/list/turf/target_turfs = list()
 	// Get the turfs we're affecting with our charge.
 	for(var/angle in list(-90, 45, 0, 45, 90))
-		target_turfs += get_step(xeno_owner, angle ? turn(movement_dir, angle) : movement_dir)
+		target_turfs += get_step(xeno_owner, angle ? turn(Dir, angle) : Dir)
 	// Then we start checking those turfs and applying effects.
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target_movable AS in target_turf)
@@ -738,7 +736,7 @@
 				if(isearthpillar(target_object)) // Pillars get thrown in the direction we're charging.
 					var/obj/structure/xeno/earth_pillar/target_pillar = target_object
 					RegisterSignal(target_pillar, COMSIG_MOVABLE_IMPACT, PROC_REF(pillar_hit))
-					target_pillar.throw_at(get_ranged_target_turf(target_pillar, movement_dir, LANDSLIDE_RANGE), LANDSLIDE_RANGE, 1, xeno_owner)
+					target_pillar.throw_at(get_ranged_target_turf(target_pillar, Dir, LANDSLIDE_RANGE), LANDSLIDE_RANGE, 1, xeno_owner)
 					atoms_hit += target_pillar
 					var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
 					xeno_stats.earth_pillars_thrown++

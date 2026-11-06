@@ -104,6 +104,20 @@
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
+/datum/action/ability/activable/xeno/charge/acid/use_ability(atom/A)
+	if(!A)
+		return
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	return ..()
+
+/datum/action/ability/activable/xeno/charge/acid/charge_complete()
+	. = ..()
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	xeno_owner.acid_burst(12)
+
+/datum/action/ability/activable/xeno/charge/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
+	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
+
 // ***************************************
 // *********** Ravage
 // ***************************************
@@ -139,10 +153,12 @@
 #define CONE_PART_MIDDLE_DIAG (1<<5)
 
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
+	if(!A)
+		A = get_step(xeno_owner, xeno_owner.dir)
 	xeno_owner.face_atom(A)
 
 	if(cast_time && !do_after(xeno_owner, cast_time, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), TRUE, ABILITY_USE_BUSY)))
-		return
+		return FALSE
 
 	xeno_owner.emote("roar")
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] thrashes about in a murderous frenzy!"), \
@@ -156,7 +172,13 @@
 			range = 4
 
 	var/turf/current_turf = get_turf(xeno_owner)
-	var/facing = xeno_owner.dir
+
+	var/facing
+	if(get_dist(xeno_owner, A) > 1) //get_dir is useless outside of adjacent tiles
+		facing = angle2dir(Get_Angle(current_turf, get_turf(A)))
+	else
+		facing = get_dir(xeno_owner, A)
+
 	var/list/turf/ravaged_turfs = list()
 	if(!aoe)
 		activate_particles(facing)
@@ -204,6 +226,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	return TRUE
 
 /// Gets all valid turfs to hit with Ravage. Valid turfs are any turfs that have no density.
 /datum/action/ability/activable/xeno/ravage/proc/add_valid_turfs_from_cone(turf/current_turf, list/turf/valid_turfs_so_far = list(), distance_left, facing, direction_flag)
@@ -290,6 +313,20 @@
 	rotation = -160
 	friction = 0.6
 
+/datum/action/ability/activable/xeno/ravage/acid/use_ability(atom/A)
+	. = ..()
+	if(!.)
+		return
+	if(!A)
+		A = get_step(xeno_owner, xeno_owner.dir)
+	var/sound_to_play = pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg')
+	playsound(xeno_owner, sound_to_play, 25, 1, MEDIUM_SOUND_RANGE)
+	var/datum/ammo/xeno/acid/ammo_type = /datum/ammo/xeno/acid/drop_acid/corruptor/scatter
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
+	newspit.generate_bullet(ammo_type)
+	newspit.def_zone = BODY_ZONE_CHEST
+	newspit.fire_at(A, xeno_owner, xeno_owner)
+
 // ***************************************
 // *********** Endure
 // ***************************************
@@ -339,8 +376,8 @@
 
 	xeno_owner.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_warning_timer = addtimer(CALLBACK(src, PROC_REF(endure_warning)), endure_duration * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_timer = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), endure_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	xeno_owner.set_stagger(0) //Remove stagger
 	xeno_owner.set_slowdown(0) //Remove slowdown
@@ -445,9 +482,9 @@
 	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
-	cooldown_duration = 60 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_SOLIDOBJECT
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_SOLIDOBJECT
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
@@ -463,6 +500,8 @@
 	var/rage_plasma
 	/// Should the power to extend Endure's duration be granted to normal Rage?
 	var/extends_via_normal_rage = FALSE
+	///mult added to rage_power when reducing ravage and charge CD's
+	var/base_cd_reduction_mult = 0.2
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -481,7 +520,7 @@
 
 
 /datum/action/ability/xeno_action/rage/action_activate()
-	rage_power = min(0.5, (1 - ((xeno_owner.health - (xeno_owner.maxHealth * rage_power_calculation_bonus)) / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) // Calculate the power of our rage; scales with difference between current and max HP.
+	rage_power = min(RAVAGER_RAGE_SUPER_RAGE_THRESHOLD, (1 - ((xeno_owner.health - (xeno_owner.maxHealth * rage_power_calculation_bonus)) / xeno_owner.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER) // Calculate the power of our rage; scales with difference between current and max HP.
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] becomes frenzied, bellowing with a shuddering roar!"), \
@@ -492,18 +531,23 @@
 	//Roar SFX; volume scales with rage
 	playsound(xeno_owner.loc, 'sound/voice/alien/roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
 
-	var/bonus_duration
 	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
-		var/datum/action/ability/xeno_action/charge = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/charge]
-		var/datum/action/ability/xeno_action/ravage = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/ravage]
+		var/datum/action/ability/xeno_action/charge = get_charge_action()
+		var/datum/action/ability/xeno_action/ravage = get_ravage_action()
 		var/datum/action/ability/xeno_action/endure/endure_ability = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/endure]
 		if(endure_ability && !endure_ability.endure_threshold_bonus)
 			endure_ability.endure_threshold_bonus = RAVAGER_ENDURE_HP_LIMIT * rage_power
+		//charge and ravage have their cooldowns reset, and cooldown times reduced based on rage power
+		var/cd_reduction = max((base_cd_reduction_mult + rage_power), 0)
 		if(charge)
-			charge.clear_cooldown() //Reset charge cooldown
+			charge.clear_cooldown()
+			charge.cooldown_duration -= charge.cooldown_duration * cd_reduction
 		if(ravage)
-			ravage.clear_cooldown() //Reset ravage cooldown
+			ravage.clear_cooldown()
+			ravage.cooldown_duration -= ravage.cooldown_duration * cd_reduction
+
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
+
 	else if(extends_via_normal_rage)
 		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
@@ -524,12 +568,12 @@
 				animate(filt, size = 0.12, time = 5, loop = -1)
 			addtimer(CALLBACK(game_plane_master_controller, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 
-	var/multiplier = 1
+	var/speed_mult = 1
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			multiplier++
+			speed_mult++
 			if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST)
-				multiplier++
+				speed_mult++
 
 	xeno_owner.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
@@ -541,15 +585,15 @@
 
 	xeno_owner.xeno_melee_damage_modifier += rage_power  //Set rage melee damage bonus
 
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, xeno_owner.xeno_caste.speed * (0.5 * multiplier * rage_power)) //Set rage speed bonus
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, xeno_owner.xeno_caste.speed * (0.5 * speed_mult * rage_power)) //Set rage speed bonus
 
 	//Too angry to be stunned/slowed/staggered/knocked down
 	ADD_TRAIT(xeno_owner, TRAIT_STUNIMMUNE, RAGE_TRAIT)
 	ADD_TRAIT(xeno_owner, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	ADD_TRAIT(xeno_owner, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
-	addtimer(CALLBACK(src, PROC_REF(rage_warning), bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
-	addtimer(CALLBACK(src, PROC_REF(rage_deactivate)), (RAVAGER_RAGE_DURATION + bonus_duration))
+	addtimer(CALLBACK(src, PROC_REF(rage_warning)), RAVAGER_RAGE_DURATION * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
+	addtimer(CALLBACK(src, PROC_REF(rage_deactivate)), RAVAGER_RAGE_DURATION)
 
 	succeed_activate()
 	add_cooldown()
@@ -558,10 +602,10 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_rages")
 
 ///Warns the user when his rage is about to end.
-/datum/action/ability/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
+/datum/action/ability/xeno_action/rage/proc/rage_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_userdanger("Our rage begins to subside... [initial(name)] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("Our rage begins to subside... [initial(name)] will only last for only [RAVAGER_RAGE_DURATION * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
@@ -597,6 +641,14 @@
 /datum/action/ability/xeno_action/rage/proc/rage_deactivate()
 	if(QDELETED(owner))
 		return
+
+	var/datum/action/ability/xeno_action/charge = get_charge_action()
+	var/datum/action/ability/xeno_action/ravage = get_ravage_action()
+	if(charge)
+		charge.cooldown_duration = initial(charge.cooldown_duration)
+	if(ravage)
+		ravage.cooldown_duration = initial(ravage.cooldown_duration)
+
 	xeno_owner.do_jitter_animation(1000)
 	xeno_owner.remove_filter("ravager_rage_outline")
 	xeno_owner.visible_message(span_warning("[xeno_owner] seems to calm down."), \
@@ -618,6 +670,45 @@
 	rage_plasma = 0
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 50) //Audio cue
 
+///Returns the charge action of the xeno owner, if any
+/datum/action/ability/xeno_action/rage/proc/get_charge_action()
+	for(var/typepath in xeno_owner.actions_by_path)
+		var/datum/action/ability/xeno_action/action = xeno_owner.actions_by_path[typepath]
+		if(!istype(action, /datum/action/ability/activable/xeno/charge))
+			continue
+		return action
+
+///Returns the ravage action of the xeno owner, if any
+/datum/action/ability/xeno_action/rage/proc/get_ravage_action()
+	for(var/typepath in xeno_owner.actions_by_path)
+		var/datum/action/ability/xeno_action/action = xeno_owner.actions_by_path[typepath]
+		if(!istype(action, /datum/action/ability/activable/xeno/ravage))
+			continue
+		return action
+
+/datum/action/ability/xeno_action/rage/blood_thirster
+	base_cd_reduction_mult = -0.25 //blood thirster has insanely better ravages due to AOE
+
+///Increase to gib chance when using rage
+#define ACID_RAGE_GIB_BUFF 75
+
+/datum/action/ability/xeno_action/rage/acid/action_activate()
+	. = ..()
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/drop_acid/corruptor/stun : xeno_owner.ammo)
+	xeno_owner.gib_chance += ACID_RAGE_GIB_BUFF
+	xeno_owner.update_icons(TRUE)
+
+/datum/action/ability/xeno_action/rage/acid/rage_deactivate()
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	. = ..()
+	xeno_owner.update_icons(TRUE)
+	xeno_owner.gib_chance -= ACID_RAGE_GIB_BUFF
+
+/datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
+	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, FALSE)
+
+#undef ACID_RAGE_GIB_BUFF
 
 // ***************************************
 // *********** Vampirism
@@ -646,7 +737,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)
 	/// how long we have to wait before healing again
-	var/heal_delay = 2 SECONDS
+	var/heal_delay = 0.3 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Ref to our particle deletion timer
@@ -688,10 +779,13 @@
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(timeleft(timer_ref) > 0)
+	if(timeleft(timer_ref) > 0) //the CD really only exists to prevent insane heal stacking from AOE abilities
 		return
-	xeno_owner.adjustBruteLoss(-xeno_owner.bruteloss * 0.125)
-	xeno_owner.adjustFireLoss(-xeno_owner.fireloss * 0.125)
+	var/heal_amount = (xeno_owner.fireloss + xeno_owner.bruteloss) * 0.04
+	HEAL_XENO_DAMAGE(xeno_owner, heal_amount, FALSE)
+
+	if(particle_holder)
+		return
 	particle_holder = new(xeno_owner, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18
@@ -818,3 +912,6 @@
 	xeno.playsound_local(xeno, 'sound/voice/hiss5.ogg', 50)
 	to_chat(owner, span_userdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
 	owner.balloon_alert(owner, "deathmark expired")
+
+/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor
+	ability_cost = 150 //corruptor has to use rage, so even when its cheap it has a higher practical cost

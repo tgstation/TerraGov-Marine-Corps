@@ -355,9 +355,7 @@
 			UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	movement_delay = new_movement_delay
 
-/// Increases the owner's next move slowdown by a variable amount.
-/datum/action/ability/xeno_action/fortify/proc/on_move(datum/source)
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/fortify/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	if(!movement_delay)
 		return
 	xeno_owner.next_move_slowdown += movement_delay
