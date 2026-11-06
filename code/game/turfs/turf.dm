@@ -1044,3 +1044,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED) & TURF_COVERED)
 		return TRUE
 	return FALSE
+
+///Returns true if the turf can be seen through
+/turf/proc/is_transparent()
+	if(!istransparentturf(src))
+		return FALSE
+	for(var/atom/movable/AM AS in src)
+		if(HAS_TRAIT(AM, MOVABLE_Z_BLOCK_TRANSPARENT_TRAIT))
+			return FALSE
+	return TRUE

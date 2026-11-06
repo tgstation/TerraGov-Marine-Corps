@@ -1092,16 +1092,16 @@
 	if(!get_step_multiz(src, direction)) //We are at the edge z-level.
 		to_chat(src, span_warning("There's nothing interesting there."))
 		return
-	else if(!istransparentturf(check_turf)) //There is no turf we can look through above us
+	else if(!check_turf.is_transparent())
 		var/turf/front_hole = get_step(check_turf, dir)
-		if(istransparentturf(front_hole))
+		if(front_hole.is_transparent())
 			check_turf = front_hole
 		else
 			for(var/turf/checkhole in TURF_NEIGHBORS(check_turf))
-				if(istransparentturf(checkhole))
+				if(checkhole.is_transparent())
 					check_turf = checkhole
 					break
-		if(!istransparentturf(check_turf))
+		if(!check_turf.is_transparent())
 			to_chat(src, span_warning("You can't see through the floor [direction == DOWN ? "below" : "above"] you."))
 			return
 	return direction == DOWN ? get_step_multiz(check_turf, DOWN) : check_turf
