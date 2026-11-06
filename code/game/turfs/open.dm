@@ -62,7 +62,7 @@
 	return TRUE
 
 //direction is direction of travel of an atom
-/turf/open/zPassOut(direction)
+/turf/open/zPassOut(direction, atom/movable/mover)
 	if(direction != UP)
 		return FALSE
 	for(var/obj/on_us in contents)
