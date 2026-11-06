@@ -474,40 +474,43 @@
 
 /obj/structure/prop/urban/misc/floorprops
 	icon_state = "solidgrate1"
+	plane = FLOOR_PLANE
 
 /obj/structure/prop/urban/misc/floorprops/grate
 	name = "solid metal grate"
 	desc = "A metal grate."
 	icon_state = "solidgrate1"
-	layer = LATTICE_LAYER
+	layer = CATWALK_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/grate2
 	name = "solid metal grate"
 	desc = "A metal grate."
 	icon_state = "solidgrate5"
-	layer = LATTICE_LAYER
+	layer = CATWALK_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/grate3
 	name = "solid metal grate"
 	desc = "A metal grate."
 	icon_state = "zhalfgrate1"
-	layer = LATTICE_LAYER
+	layer = CATWALK_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/floorglass
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon_state = "solidgrate2"
+	layer = GLASS_FLOOR_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/floorglass2
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon_state = "solidgrate3"
-	layer = 2.1
+	layer = GLASS_FLOOR_LAYER
 
 /obj/structure/prop/urban/misc/floorprops/floorglass3
 	name = "reinforced glass floor"
 	desc = "A heavily reinforced glass floor panel, this looks almost indestructible."
 	icon_state = "solidgrate4"
+	layer = GLASS_FLOOR_LAYER
 
 // Graffiti
 
