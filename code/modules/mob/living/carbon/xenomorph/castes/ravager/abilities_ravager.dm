@@ -689,19 +689,26 @@
 /datum/action/ability/xeno_action/rage/blood_thirster
 	base_cd_reduction_mult = -0.25 //blood thirster has insanely better ravages due to AOE
 
+///Increase to gib chance when using rage
+#define ACID_RAGE_GIB_BUFF 75
+
 /datum/action/ability/xeno_action/rage/acid/action_activate()
 	. = ..()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	xeno_owner.acid_burst(12, rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD ? /datum/ammo/xeno/acid/drop_acid/corruptor/stun : xeno_owner.ammo)
+	xeno_owner.gib_chance += ACID_RAGE_GIB_BUFF
 	xeno_owner.update_icons(TRUE)
 
 /datum/action/ability/xeno_action/rage/acid/rage_deactivate()
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	. = ..()
 	xeno_owner.update_icons(TRUE)
+	xeno_owner.gib_chance -= ACID_RAGE_GIB_BUFF
 
 /datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, FALSE)
+
+#undef ACID_RAGE_GIB_BUFF
 
 // ***************************************
 // *********** Vampirism

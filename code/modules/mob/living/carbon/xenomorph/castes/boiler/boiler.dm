@@ -12,7 +12,6 @@
 	mob_size = MOB_SIZE_BIG
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
-	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
 
 /mob/living/carbon/xenomorph/boiler/get_liquid_slowdown()

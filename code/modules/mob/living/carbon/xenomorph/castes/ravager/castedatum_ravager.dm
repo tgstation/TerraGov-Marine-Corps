@@ -157,6 +157,9 @@
 		/datum/action/ability/xeno_action/deathmark,
 	)
 
+///Increased gib chance for this caste
+#define CORRUPTOR_GIB_BUFF 20
+
 /datum/xeno_caste/ravager/corruptor
 	caste_name = "Corruptor"
 	display_name = "Corruptor"
@@ -190,12 +193,12 @@
 /datum/xeno_caste/ravager/corruptor/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/corruptor]
-	xenomorph.gib_chance = 100
+	xenomorph.gib_chance += CORRUPTOR_GIB_BUFF
 
 /datum/xeno_caste/ravager/corruptor/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	if(!QDELETED(xenomorph))
 		xenomorph.ammo = null
-		xenomorph.gib_chance = initial(xenomorph.gib_chance)
+		xenomorph.gib_chance -= CORRUPTOR_GIB_BUFF
 	return ..()
 
 /datum/xeno_caste/ravager/corruptor/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
@@ -227,3 +230,5 @@
 		/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor,
 		/datum/action/ability/xeno_action/vampirism,
 	)
+
+#undef CORRUPTOR_GIB_BUFF
