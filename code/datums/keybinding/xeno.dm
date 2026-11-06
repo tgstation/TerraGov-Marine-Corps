@@ -1194,11 +1194,11 @@
 	keybind_signal = COMSIG_XENOABILITY_RUNNER_POUNCE
 	hotkey_keys = list("E")
 
-/datum/keybinding/xeno/toggle_savage
-	name = "toggle_savage"
-	full_name = "Runner: Toggle Savage"
+/datum/keybinding/xeno/pounce_select
+	name = "pounce_select"
+	full_name = "Runner: Select Pounce"
 	description = ""
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+	keybind_signal = COMSIG_XENOABILITY_RUNNER_POUNCE_SELECT
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
