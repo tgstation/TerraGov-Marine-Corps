@@ -34,8 +34,9 @@
 		ADVICE_ICON = FA_ICON_ROBOT,
 		ADVICE_ICON_COLOR = "label",
 	))
+	var/datum/species/synthetic/synthetic = patient.species // this is safe because of issynth in can_show
 	. += list(list(
-		ADVICE_TEXT = "Synthetic: Patient overheats while lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]% health.",
+		ADVICE_TEXT = "Synthetic: Patient overheats while lower than [synthetic.custom_crit_threshold / patient.maxHealth * 100]% health.",
 		ADVICE_TOOLTIP = "When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
 		ADVICE_ICON = FA_ICON_ROBOT,
 		ADVICE_ICON_COLOR = "label",
