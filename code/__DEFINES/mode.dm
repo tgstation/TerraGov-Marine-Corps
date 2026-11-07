@@ -206,6 +206,8 @@
 #define ZOMBIE_CRASH_POINTS_MAXIMUM 60
 /// The marine pop considered to be high pop, only for Zombie Crash.
 #define HIGH_MARINE_POP_ZOMBIE_CRASH 20
+// The amount of alive non ssd marines in order for observers to take over sentient zombies.
+#define ZOMBIE_CRASH_MINIMUM_MARINES_FOR_SENTIENT_ZOMBIE 4
 /// The xeno stat multiplier usually set by autobalance, modifies GLOB.xeno_stat_multiplicator_buff
 #define ZOMBIE_CRASH_XENO_STAT_MULTIPLIER 4
 
