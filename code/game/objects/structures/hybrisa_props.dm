@@ -797,6 +797,10 @@
 /obj/structure/prop/urban/misc/machinery/screens/wallegg_on
 	icon_state = "wallegg_on"
 
+/obj/structure/prop/urban/misc/fake
+	plane = FLOOR_PLANE
+	layer = DISPOSAL_PIPE_LAYER
+
 /obj/structure/prop/urban/misc/fake/pipes
 	name = "disposal pipe"
 	desc = "A small pipe."
@@ -824,7 +828,7 @@
 /obj/structure/prop/urban/misc/fake/wire
 	name = "power cable"
 	desc = "A small gauge wire for conducting electricity."
-	layer = ABOVE_NORMAL_TURF_LAYER
+	layer = WIRE_LAYER
 
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
@@ -842,25 +846,21 @@
 /obj/structure/prop/urban/misc/fake/heavydutywire
 	name = "heavy duty wire"
 	desc = "A heavy duty wire for conducting electricity."
+	layer = BELOW_CATWALK_LAYER
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy1
-	layer = 2
 	icon_state = "0-1"
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy2
-	layer = 2
 	icon_state = "1-2"
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy3
-	layer = 2
 	icon_state = "1-4"
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy4
-	layer = 2
 	icon_state = "1-2-4"
 
 /obj/structure/prop/urban/misc/fake/heavydutywire/heavy5
-	layer = 2
 	icon_state = "1-2-4-8"
 
 /obj/structure/prop/urban/misc/fake/lattice
@@ -868,7 +868,7 @@
 
 /obj/structure/prop/urban/misc/fake/lattice/full
 	icon_state = "latticefull"
-	layer = 2
+	layer = LATTICE_LAYER
 
 // Barriers
 
@@ -1108,12 +1108,12 @@
 	desc = "A strange piece of machinery attached to a wall..."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "buildingventbig1"
-	bound_width = 64
+	bound_width = 64 //todo: some of these are visually way off, leading to weird boundaries for dense versions
 	bound_height = 32
 	density = FALSE
 	max_integrity = 200
 	anchored = TRUE
-	layer = 5
+	layer = HIGH_OBJ_LAYER
 	coverage = 50
 
 /obj/structure/prop/urban/misc/buildinggreeblies/dense
@@ -1353,14 +1353,21 @@
 // billboards, Signs and Posters
 
 /// Alien Isolation - posters used as reference (direct downscale of the image for some) If anyone wants to name the billboards individually ///
+/obj/structure/prop/urban/billboardsandsigns
+	layer = RIPPLE_LAYER
+	density = FALSE
+	max_integrity = 200
+	anchored = TRUE
+
+/obj/structure/prop/urban/billboardsandsigns/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/largetransparency, 0, 0, 1, 1)
+
 /obj/structure/prop/urban/billboardsandsigns/bigbillboards
 	name = "billboard"
 	desc = "A advertisement billboard."
 	icon = 'icons/obj/structures/prop/urban/32x64_urbanbillboards.dmi'
 	icon_state = "billboard_bigger"
-	density = FALSE
-	max_integrity = 200
-	anchored = TRUE
 
 /obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1
 	icon_state = "billboard1"
@@ -1383,16 +1390,6 @@
 	desc = "A road sign."
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "roadsign_1"
-	bound_width = 64
-	bound_height = 32
-	density = FALSE
-	max_integrity = 200
-	anchored = TRUE
-	layer = 8
-
-/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/largetransparency, 0, 0, 1, 0)
 
 /obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1
 	icon_state = "roadsign_1"
@@ -1432,12 +1429,13 @@
 	icon = 'icons/obj/structures/prop/urban/urban_lattice.dmi'
 	icon_state = "lattice1"
 	density = FALSE
-	layer = RIPPLE_LAYER
+	layer = ABOVE_TREE_LAYER
 	max_integrity = 6000
 
 /obj/structure/prop/urban/lattice_prop/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/largetransparency, 0, 0, 0, 0)
+	AddComponent(/datum/component/largetransparency, 0, 0, 0, 1)
+	add_filter("shadow", 2, drop_shadow_filter(0, -28, 1, 0.1))
 
 /obj/structure/prop/urban/lattice_prop/lattice_1
 	icon_state = "lattice1"
