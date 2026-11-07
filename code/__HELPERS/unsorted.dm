@@ -908,6 +908,15 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		processing += A.contents
 		. += A
 
+///Flickers an overlay on an atom
+/atom/proc/flick_overlay_static(overlay_image, duration)
+	set waitfor = FALSE
+	if(!overlay_image)
+		return
+	add_overlay(overlay_image)
+	sleep(duration)
+	cut_overlay(overlay_image)
+
 /// Perform a shake on an atom, resets its position afterwards
 /atom/proc/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
 	var/initialpixelx = pixel_x

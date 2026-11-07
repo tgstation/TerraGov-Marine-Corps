@@ -80,7 +80,7 @@
 			var/obj/machinery/atmospherics/N = nodes[i]
 			N.update_icon()
 
-/obj/machinery/atmospherics/pipe/returnPipenets()
+/obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
 
 

@@ -110,7 +110,11 @@
 			build_network()
 		parent.update = 1
 
-/obj/machinery/atmospherics/components/returnPipenets()
+/obj/machinery/atmospherics/components/return_pipenets()
 	. = list()
 	for(var/i in 1 to device_type)
 		. += returnPipenet(nodes[i])
+
+///Updates our welded state
+/obj/machinery/atmospherics/components/proc/update_weld(new_state)
+	welded = new_state
