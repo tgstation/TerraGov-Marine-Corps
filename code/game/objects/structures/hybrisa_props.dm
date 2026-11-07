@@ -1390,6 +1390,10 @@
 	anchored = TRUE
 	layer = 8
 
+/obj/structure/prop/urban/billboardsandsigns/bigroadsigns/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/largetransparency, 0, 0, 1, 0)
+
 /obj/structure/prop/urban/billboardsandsigns/bigroadsigns/road_sign_1
 	icon_state = "roadsign_1"
 
@@ -1430,6 +1434,10 @@
 	density = FALSE
 	layer = RIPPLE_LAYER
 	max_integrity = 6000
+
+/obj/structure/prop/urban/lattice_prop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/largetransparency, 0, 0, 0, 0)
 
 /obj/structure/prop/urban/lattice_prop/lattice_1
 	icon_state = "lattice1"
