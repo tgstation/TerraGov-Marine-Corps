@@ -1,0 +1,17 @@
+{
+    "map_name": "Medium Green",
+    "map_path": "map_files/Medium_Green",
+    "map_file": "medium_green.dmm",
+	"parallax_icon": "redrock",
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 2300,
+	"armor": "desert",
+	"announce_text": "Morning marines... INTERN did you forget to calibrate sensors again??? WHY THE FLOP IS MY ENTIRE CIC GREEN!!?? EVEN THE DAMN DOG IS GREEN!! Marines while i execute intern here you just get out there and do your job. You know the kill and explode nuke thing.",
+	"traits":[{
+		"weather_sandstorm": true,
+		"Baseturf": "/turf/open/floor/plating",
+		"No Parallax": true
+	}]
+}
