@@ -1140,7 +1140,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
-						M.ExtinguishMob()
+						M.extinguish_mob()
 						for(var/obj/item/clothing/mask/cigarette/C in M.contents)
 							if(C.worn_icon_state == C.icon_on)
 								C.die()

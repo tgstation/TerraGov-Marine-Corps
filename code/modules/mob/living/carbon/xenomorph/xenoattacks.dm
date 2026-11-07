@@ -78,15 +78,15 @@
 
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
-			if(on_fire)
-				fire_stacks = max(fire_stacks - 1, 0)
+			if(is_on_fire())
+				adjust_burning(-1)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire on [src]!"), \
 					span_warning("We try to put out the fire on [src]!"), null, 5)
-				if(fire_stacks <= 0)
+				if(!is_on_fire())
 					xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire on [src]!"), \
 						span_notice("We extinguished the fire on [src]."), null, 5)
-					ExtinguishMob()
+					extinguish_mob()
 				return TRUE
 			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)

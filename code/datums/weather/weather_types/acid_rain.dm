@@ -54,7 +54,7 @@
 		L.adjustFireLoss(7)
 		to_chat(L, span_danger("You feel the acid rain melting you away!"))
 	L.wash()
-	if(L.fire_stacks > -20)
+	if(L.amount_burning() > -20)
 		L.adjust_fire_stacks(-1)
 
 /datum/weather/acid_rain/harmless
@@ -80,7 +80,7 @@
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
 	L.wash()
-	if(L.fire_stacks > -20)
+	if(L.amount_burning() > -20)
 		L.adjust_fire_stacks(-1)
 		if(prob(20))
 			if(isrobot(L) || isxeno(L))

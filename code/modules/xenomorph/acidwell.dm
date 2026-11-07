@@ -170,8 +170,8 @@
 			sticky_bomb.forceMove(loc)
 			charges_used++
 
-	if(stepper.on_fire && (charges_used < charges))
-		stepper.ExtinguishMob()
+	if(stepper.is_on_fire() && (charges_used < charges))
+		stepper.extinguish_mob()
 		charges_used++
 
 	if(!isxeno(stepper))
