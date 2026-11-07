@@ -3,7 +3,6 @@
 /obj/item/weapon/gun/rifle
 	icon = 'icons/obj/items/guns/rifles.dmi'
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
