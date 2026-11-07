@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	var/list/B = explosionSize
 
 	if(landingSound)
-		playsound(get_turf(src), landingSound, soundVolume, 0, 0)
+		playsound(get_turf(src), landingSound, soundVolume, 0, 0, admin_sound = TRUE)
 
 	for(var/mob/living/L in T)
 		if(effectLimb && ishuman(L))
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		if(M.key && !forced && !broken)
 			return
 	if(openingSound)
-		playsound(get_turf(holder), openingSound, soundVolume, 0, 0)
+		playsound(get_turf(holder), openingSound, soundVolume, 0, 0, admin_sound = TRUE)
 	INVOKE_ASYNC(holder, PROC_REF(setOpened))
 	if(style == STYLE_SEETHROUGH)
 		update_icon()
@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 /obj/structure/closet/supplypod/proc/depart(atom/movable/holder)
 	if(leavingSound)
-		playsound(get_turf(holder), leavingSound, soundVolume, 0, 0)
+		playsound(get_turf(holder), leavingSound, soundVolume, 0, 0, admin_sound = TRUE)
 	if(reversing)
 		close(holder)
 	else if(bluespace)
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 
 /obj/effect/DPtarget/proc/playFallingSound()
-	playsound(src, pod.fallingSound, pod.soundVolume, 1, 6)
+	playsound(src, pod.fallingSound, pod.soundVolume, 1, 6, admin_sound = (pod.fallingSound != initial(pod.fallingSound)))
 
 
 /obj/effect/DPtarget/proc/beginLaunch(effectCircle)
