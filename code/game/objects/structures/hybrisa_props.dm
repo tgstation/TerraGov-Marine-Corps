@@ -806,23 +806,18 @@
 	desc = "A small pipe."
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe1
-	layer = 2
 	icon_state = "pipe-s"
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe2
-	layer = 2
 	icon_state = "pipe-c"
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe3
-	layer = 2
 	icon_state = "pipe-j1"
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe4
-	layer = 2
 	icon_state = "pipe-y"
 
 /obj/structure/prop/urban/misc/fake/pipes/pipe5
-	layer = 2
 	icon_state = "pipe-b"
 
 /obj/structure/prop/urban/misc/fake/wire
@@ -831,15 +826,12 @@
 	layer = WIRE_LAYER
 
 /obj/structure/prop/urban/misc/fake/wire/red
-	layer = 2
 	icon_state = "intactred"
 
 /obj/structure/prop/urban/misc/fake/wire/yellow
-	layer = 2
 	icon_state = "intactyellow"
 
 /obj/structure/prop/urban/misc/fake/wire/blue
-	layer = 2
 	icon_state = "intactblue"
 
 
