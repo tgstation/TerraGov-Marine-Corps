@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/mutation_chamber/shell
 	name = "Shell Mutation Chamber"
-	desc = "Constructs a chamber that allows xenos to buy survival mutations. Build up to 3 structures to increase mutation power."
+	desc = "Constructs a chamber that allows xenos to buy survival mutations."
 	icon = "shell"
 	psypoint_cost = MUTATION_SHELL_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/shell
@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/mutation_chamber/spur
 	name = "Spur Mutation Chamber"
-	desc = "Constructs a chamber that allows xenos to buy attack mutations. Build up to 3 structures to increase mutation power."
+	desc = "Constructs a chamber that allows xenos to buy attack mutations."
 	icon = "spur"
 	psypoint_cost = MUTATION_SPUR_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/spur
@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/mutation_chamber/veil
 	name = "Veil Mutation Chamber"
-	desc = "Constructs a chamber that allows xenos to buy utility mutations. Build up to 3 structures to increase mutation power."
+	desc = "Constructs a chamber that allows xenos to buy utility mutations."
 	icon = "veil"
 	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/veil

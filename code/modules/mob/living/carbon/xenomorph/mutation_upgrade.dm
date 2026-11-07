@@ -30,7 +30,6 @@
 			RegisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_SPUR, PROC_REF(on_structure_change))
 		if(MUTATION_VEIL)
 			RegisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_VEIL, PROC_REF(on_structure_change))
-	RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/mutation_upgrade, on_xenomorph_upgrade))
 	on_structure_change(null, MUTATION_CHAMBER_MINIMUM, get_total_structures())
 
 /// Removes the status effect for having the mutation, unregisters various signals, and then updates with zero structures.
@@ -46,7 +45,6 @@
 			UnregisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_SPUR)
 		if(MUTATION_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_VEIL)
-	UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	on_structure_change(null, get_total_structures())
 	alert = null
 	xenomorph_owner = null
@@ -58,10 +56,11 @@
 	if(previous_amount == new_amount) // No change.
 		return FALSE
 	if(!previous_amount && new_amount) // The mutation is now enabled.
+		RegisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/mutation_upgrade, on_xenomorph_upgrade))
 		on_mutation_enabled()
 	if(previous_amount && !new_amount) // The mutation is now disabled.
+		UnregisterSignal(xenomorph_owner, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 		on_mutation_disabled()
-	on_structure_update(previous_amount, new_amount)
 	if(alert)
 		handle_alert(new_amount)
 	return TRUE
@@ -72,10 +71,6 @@
 
 /// Called whenever the mutation becomes disabled (going from non-zero structures to zero structures).
 /datum/mutation_upgrade/proc/on_mutation_disabled()
-	return
-
-/// Called whenever when the amount of structures has changed.
-/datum/mutation_upgrade/proc/on_structure_update(previous_amount, new_amount)
 	return
 
 /// Updates the status effect alert's name and description.
