@@ -15,7 +15,6 @@
 	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
-	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
