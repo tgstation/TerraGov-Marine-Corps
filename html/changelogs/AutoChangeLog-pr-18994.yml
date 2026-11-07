@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed the missing combat robot critical health screen overlays"

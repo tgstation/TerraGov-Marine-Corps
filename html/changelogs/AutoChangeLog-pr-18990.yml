@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Directional attacks will check every possible target on a turf instead of only trying the first one it can find"
