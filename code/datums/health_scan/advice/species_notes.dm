@@ -30,11 +30,11 @@
 	. = list()
 	. += list(list(
 		ADVICE_TEXT = "Synthetic: Patient does not heal on defibrillation.",
-		ADVICE_TOOLTIP = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
+		ADVICE_TOOLTIP = "You can only revive this patient when their health is greater than [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
 		ADVICE_ICON = FA_ICON_ROBOT,
 		ADVICE_ICON_COLOR = "label",
 	))
-	var/datum/species/synthetic/synthetic = patient.species // this is safe because of issynth in can_show
+	var/datum/species/synthetic/synthetic = patient.species // I would consider this safe because of issynth in can_show
 	. += list(list(
 		ADVICE_TEXT = "Synthetic: Patient overheats while lower than [synthetic.custom_crit_threshold / patient.maxHealth * 100]% health.",
 		ADVICE_TOOLTIP = "When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",

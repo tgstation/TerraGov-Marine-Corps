@@ -34,10 +34,10 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 	/// Lowest percentage of max health dealt as damage when in crit
-	var/crit_damage_percentage_low = 0.035
+	var/crit_damage_percentage_low = 3.5 / 100
 	/// Highest percentage of max health dealt as damage when in crit
-	var/crit_damage_percentage_high = 0.09
-	/// Threshold at which custom crit behavior is applied
+	var/crit_damage_percentage_high = 9 / 100
+	/// Threshold where critical overheating starts
 	var/custom_crit_threshold = -30
 
 /datum/species/synthetic/handle_unique_behavior(mob/living/carbon/human/human)
@@ -46,7 +46,10 @@
 	human.apply_effect(3 SECONDS, EFFECT_STUTTER)
 	human.adjustFireLossByPart(rand(total_health * crit_damage_percentage_low, total_health * crit_damage_percentage_high), /datum/limb/chest::name)
 	if(prob(12))
-		human.visible_message(span_danger("[human] shudders violently and shoots out sparks!"), span_warning("Critical damage sustained. Internal temperature regulation systems offline. Shutdown imminent. <b>Estimated integrity: [round(human.health)]%.</b>"))
+		human.visible_message(
+			span_danger("[human] shudders violently and shoots out sparks!"),
+			span_warning("Critical damage sustained. Internal temperature regulation systems offline. Shutdown imminent. <b>Estimated integrity: [round(human.health)]%.</b>"),
+		)
 		do_sparks(4, TRUE, human)
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/human, datum/species/old_species)
@@ -54,7 +57,6 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(human)
 	human.health_threshold_crit = -100 // They overheat below custom_crit_threshold
-
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/human)
 	. = ..()
