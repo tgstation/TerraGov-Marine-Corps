@@ -278,6 +278,7 @@
 		return
 
 	armored_flags |= ARMORED_WRECK_PREP_STAGE_TWO
+	update_appearance(UPDATE_DESC)
 	var/obj/item/fulton_extraction_pack/ext_pack = tool
 	ext_pack.extract(src, user)
 	return TRUE

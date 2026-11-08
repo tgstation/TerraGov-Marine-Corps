@@ -73,7 +73,7 @@
 	else if(armored_flags & ARMORED_WRECK_PREP_STAGE_ONE)
 		desc += " It has a plasteel frame attached. Connect a heavy tank fulton to extract it."
 	else
-		desc += " apply [ARMORED_WRECK_PLASTEEL_REQ] plasteel to prepare it for fultoning."
+		desc += " Apply [ARMORED_WRECK_PLASTEEL_REQ] plasteel to prepare it for fultoning."
 
 /obj/vehicle/sealed/armored/multitile/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(armored_flags & ARMORED_WRECKABLE))
