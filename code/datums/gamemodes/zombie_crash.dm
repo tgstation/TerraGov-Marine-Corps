@@ -137,6 +137,10 @@
 			num_xenos++
 	return list(num_humans, num_zombies, num_xenos)
 
+/datum/game_mode/infestation/crash/zombie/can_ghosts_join_as_zombies()
+	var/list/living_player_list = count_humans_xenos_and_zombies(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	return living_player_list[1] >= ZOMBIE_CRASH_MINIMUM_MARINES_FOR_SENTIENT_ZOMBIE
+
 /datum/game_mode/infestation/crash/zombie/balance_scales()
 	if(GLOB.zombie_spawners == 0)
 		return
