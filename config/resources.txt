@@ -48,5 +48,5 @@ EXTERNAL_RSC_URLS http://tgstation13.download/byond/tgstationv2.zip
 # If this setting is not configured, but the webroot CDN is, that will be used instead of GitHub Pages.
 # If this setting is empty, and the webroot CDN is disabled, byondstorage will be used.
 # STORAGE_CDN_IFRAME https://tgstation.github.io/TerraGov-Marine-Corps/iframe.html
+# /tg/'s own iframe cache
 # STORAGE_CDN_IFRAME https://tgstation.github.io/byond-client-storage/iframe.html
-STORAGE_CDN_IFRAME https://tgstation.github.io/byond-client-storage/iframe.html
