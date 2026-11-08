@@ -34,9 +34,9 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 	/// Lowest percentage of max health dealt as damage when in crit
-	var/crit_damage_percentage_low = 3.5 / 100
+	var/crit_damage_percentage_low = 2 / 100
 	/// Highest percentage of max health dealt as damage when in crit
-	var/crit_damage_percentage_high = 9 / 100
+	var/crit_damage_percentage_high = 6 / 100
 	/// Threshold where critical overheating starts
 	var/custom_crit_threshold = -30
 
@@ -44,7 +44,10 @@
 	if(human.health >= custom_crit_threshold || human.stat == DEAD)
 		return
 	human.apply_effect(3 SECONDS, EFFECT_STUTTER)
-	human.adjustFireLossByPart(rand(total_health * crit_damage_percentage_low, total_health * crit_damage_percentage_high), /datum/limb/chest::name)
+	var/ignore_mod = (1 + (-burn_mod + 1))
+	var/damage_min = (total_health * crit_damage_percentage_low) * ignore_mod
+	var/damage_max = (total_health * crit_damage_percentage_high) * ignore_mod
+	human.adjustFireLossByPart(rand(damage_min, damage_max), /datum/limb/chest::name)
 	if(prob(12))
 		human.visible_message(
 			span_danger("[human] shudders violently and shoots out sparks!"),
