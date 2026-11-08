@@ -1,7 +1,7 @@
 ///Default silo scale value
-#define SOVL_WAR_SILO_SCALE 1.6
+#define SOVL_WAR_SILO_SCALE 1.8
 ///Min silo scale value, at higher pop
-#define SOVL_WAR_MIN_SILO_SCALE 1.1
+#define SOVL_WAR_MIN_SILO_SCALE 1
 ///At this pop or under, we use the max silo scale value
 #define SOVL_WAR_MIN_POP_BASE 50
 
