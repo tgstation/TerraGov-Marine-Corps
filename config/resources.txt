@@ -39,3 +39,14 @@ EXTERNAL_RSC_URLS http://tgstation13.download/byond/tgstationv2.zip
 # if you want to test this locally, you simpily run the `localhost-asset-webroot-server.py` python3 script to host assets stored in `data/asset-store/` via http://localhost:58715/
 #ASSET_CDN_URL http://localhost:58715/
 
+# If configured, this allows server operators to define the persistent origin used for clientside
+# storage (chat history, chat tabs, panel settings). This must host the same file as available in
+# tgui/public/iframe.html. By default this is hosted on the GitHub Pages site for the TGMC repository,
+# so it does not need to be configured.
+# If multiple servers use the same domain name, clientside features such as message saving
+# and chat tabs will be persistent across both.
+# If this setting is not configured, but the webroot CDN is, that will be used instead of GitHub Pages.
+# If this setting is empty, and the webroot CDN is disabled, byondstorage will be used.
+# STORAGE_CDN_IFRAME https://tgstation.github.io/TerraGov-Marine-Corps/iframe.html
+# STORAGE_CDN_IFRAME https://tgstation.github.io/byond-client-storage/iframe.html
+STORAGE_CDN_IFRAME https://tgstation.github.io/byond-client-storage/iframe.html
