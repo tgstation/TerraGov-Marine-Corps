@@ -40,11 +40,13 @@
 			user_decal.pixel_z = 43
 			user_decal.pixel_w = 54
 		if(EAST)
-			user_decal.transform = matrix().Turn(-90).Scale(1, 0.75)
+			var/matrix/newtransform = matrix().Turn(-90)
+			user_decal.transform = newtransform.Scale(1, 0.75)
 			user_decal.pixel_z = 50
 			user_decal.pixel_w = 75
 		if(WEST)
-			user_decal.transform = matrix().Turn(90).Scale(1, 0.75)
+			var/matrix/newtransform = matrix().Turn(90)
+			user_decal.transform = newtransform.Scale(1, 0.75)
 			user_decal.pixel_z = 50
 			user_decal.pixel_w = 20
 
