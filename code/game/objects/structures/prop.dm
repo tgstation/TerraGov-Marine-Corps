@@ -164,6 +164,7 @@
 	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely space asbestos helping it keep its shape. It's illegal under the new Geneva conventions"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "holosign_engi"
+	max_integrity = 50
 	density = TRUE
 
 /obj/structure/prop/mainship/holobarrier/indestructible
