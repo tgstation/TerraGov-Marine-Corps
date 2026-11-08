@@ -72,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
+	///Vehicle types that cannot be purchased in this gamemode
+	var/list/vehicle_black_list
 
 
 /datum/game_mode/New()

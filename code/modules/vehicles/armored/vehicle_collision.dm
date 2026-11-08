@@ -30,7 +30,7 @@
 /turf/closed/wall/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0)
 	if(veh.armored_flags & ARMORED_SELF_WALL_DAMAGE)
-		veh.take_damage(ram_damage * 0.4, BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
+		veh.take_damage(ram_damage * (isresinwall(src) ? 0.1 : 0.4), BRUTE, MELEE, TRUE, veh.dir, 0, pilot)
 
 /mob/living/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	if(stat == DEAD)
