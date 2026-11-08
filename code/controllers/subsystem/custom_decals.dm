@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(custom_decals)
 /datum/controller/subsystem/custom_decals/proc/radial_poll_user_fav_decals(mob/user, atom/anchor)
 	RETURN_TYPE(/datum/custom_decal)
 	if(!length(user.client?.prefs.favourite_decals))
-		balloon_alert(user, "No favourited decals")
+		anchor.balloon_alert(user, "No favourited decals")
 		return null
 	var/list/options = list()
 	var/list/decal_lookup = list()
