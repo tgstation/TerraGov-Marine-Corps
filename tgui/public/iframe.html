@@ -6,8 +6,6 @@
 
     <script type="text/javascript">
       const INDEXED_DB_VERSION = 1;
-      // Namespaced per codebase: the default page is hosted on the same
-      // origin as /tg/'s client storage, and IndexedDB is per origin.
       const INDEXED_DB_NAME = 'tgmc';
       const INDEXED_DB_STORE_NAME = 'storage';
 
@@ -111,7 +109,7 @@
       };
 
       dbPromise.then(() => {
-        window.parent.postMessage("ready", "*");
+        window.parent.postMessage('ready', '*');
       });
     </script>
   </head>
