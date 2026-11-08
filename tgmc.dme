@@ -2168,6 +2168,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\crab.dm"
 #include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
+#include "code\modules\mob\living\simple_animal\friendly\mothroach.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"
 #include "code\modules\mob\living\simple_animal\friendly\parrot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\bear.dm"
