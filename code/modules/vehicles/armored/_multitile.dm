@@ -65,8 +65,15 @@
 /obj/vehicle/sealed/armored/multitile/update_desc(updates)
 	. = ..()
 	desc = initial(desc)
-	if(armored_flags & ARMORED_IS_WRECK)
-		desc += " Now just a smouldering ruin."
+	if(!(armored_flags & ARMORED_IS_WRECK))
+		return
+	desc += " Now just a smouldering ruin."
+	if(armored_flags & ARMORED_WRECK_PREP_STAGE_TWO)
+		desc += " It has a heavy fulton attached. Wrench it into place to activate it."
+	else if(armored_flags & ARMORED_WRECK_PREP_STAGE_ONE)
+		desc += " It has a plasteel frame attached. Connect a heavy tank fulton to extract it."
+	else
+		desc += " apply [ARMORED_WRECK_PLASTEEL_REQ] plasteel to prepare it for fultoning."
 
 /obj/vehicle/sealed/armored/multitile/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(armored_flags & ARMORED_WRECKABLE))

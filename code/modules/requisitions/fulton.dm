@@ -112,8 +112,10 @@
 	active = FALSE
 
 /obj/item/fulton_extraction_pack/tank
-	name = "heavy tank fulton"
-	desc = "A heavy duty balloon intended to be used to extract severely damaged tanks and other large vehicles."
+	name = "heavy vehicle fulton"
+	desc = "A heavy duty balloon intended to be used to extract severely damaged tanks and other large vehicles. \
+	Wrecked vehicles must have plasteel applied to them before the fulton can be attached. \
+	The fulton must then be wrenched into place before it will activate."
 	w_class = WEIGHT_CLASS_BULKY
 	uses = 1
 
@@ -123,6 +125,18 @@
 	var/matrix/M = new
 	M.Scale(1.5, 1.5)
 	transform = M
+
+/obj/item/fulton_extraction_pack/tank/get_mechanics_info()
+	. = ..()
+	var/list/info_list = list()
+	info_list += "<U>How to use:</U>"
+	info_list += "1. Left click the wrecked vehicle with a stack of [ARMORED_WRECK_PLASTEEL_REQ] plasteel."
+	info_list += "2. Left click the wrecked vehicle with the heavy vehicle fulton to attach it."
+	info_list += "3. Once the fulton is attached, wrench the wrecked vehicle [ARMORED_WRECK_STAGE_MAX] times. Multiple people can do this action at the same time to speed up the process."
+	info_list += "Once wrenching is complete, the fulton will automatically activate, extracting the vehicle."
+	info_list += "The vehicle will be returned to the vehicle lift where it was originally purchased, in an operational state, ready for normal repairs and redeployment."
+
+	. += jointext(info_list, "<br>")
 
 /obj/item/fulton_extraction_pack/tank/extract(atom/movable/spirited_away, mob/living/user)
 	if(!isarmoredvehicle(spirited_away))
@@ -135,6 +149,7 @@
 	user.temporarilyRemoveItemFromInventory(src) //Removes the item without qdeling it, qdeling it this early will break the rest of the procs
 	moveToNullspace()
 
+///Gets the wreck out of there
 /obj/item/fulton_extraction_pack/tank/proc/extract_vehicle(obj/vehicle/sealed/armored/spirited_away, mob/living/user)
 	SIGNAL_HANDLER
 	do_extract(spirited_away, user)
