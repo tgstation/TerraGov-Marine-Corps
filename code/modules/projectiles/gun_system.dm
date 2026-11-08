@@ -87,9 +87,9 @@
 	var/cock_message_delay = 1 SECONDS
 
 	///Sound of cocking the gun.
-	var/cocked_sound = null
+	var/cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
 	///Sounds of opening the guns reciever. (DBs, Martinis opening.)
-	var/opened_sound = null
+	var/opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 
 	///World.time of the last cock.
 	var/last_cocked
