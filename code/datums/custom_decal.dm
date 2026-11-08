@@ -194,7 +194,7 @@
 				log_filter("Decal naming", name, filter_result)
 				return FALSE
 			var/list/tags = list()
-			var/new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to not add any tags", "Add tags", max_length = 200)
+			var/new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to not add any tags. Tags can be used to search your decal.", "Add tags", max_length = 200)
 			while(new_tag)
 				var/tag_filter_result = is_ic_filtered(new_tag)
 				if(tag_filter_result)
@@ -202,12 +202,12 @@
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 					REPORT_CHAT_FILTER_TO_USER(user, tag_filter_result)
 					log_filter("Decal tagging", new_tag, tag_filter_result)
-					new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to stop adding tags", "Add tags", max_length = 200)
+					new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to stop adding tags. Tags can be used to search your decal.", "Add tags", max_length = 200)
 					continue
 				tags += new_tag
 				if(length(tags) >= MAX_DECAL_TAGS)
 					break
-				new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to stop adding tags", "Add tags", max_length = 200)
+				new_tag = tgui_input_text(user, "Would you like to add tags? Press cancel to stop adding tags. Tags can be used to search your decal.", "Add tags", max_length = 200)
 			finalize(name, user.client, tags)
 		if("zoom_in")
 			. = TRUE

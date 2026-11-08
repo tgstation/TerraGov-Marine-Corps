@@ -1,7 +1,10 @@
 /client/verb/manage_decals()
-	set category = "OOC"
+	set category = "Preferences"
 	set name = "Favourite/View Decals"
 
+	if(!SScustom_decals.initialized)
+		to_chat(src, span_warning("Custom Decals subsystem is not initialized yet."))
+		return
 	SScustom_decals.ui_interact(mob)
 
 
@@ -13,8 +16,10 @@
 
 SUBSYSTEM_DEF(custom_decals)
 	name = "Custom Decals"
-	init_order = INIT_ORDER_CUSTOM_DECALS
 	flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/persistence
+	)
 
 	var/list/datum/custom_decal/decals = list()
 	var/list/deleted_decal_md5s = list()
@@ -204,6 +209,7 @@ SUBSYSTEM_DEF(custom_decals)
 /datum/controller/subsystem/custom_decals/proc/radial_poll_user_fav_decals(mob/user, atom/anchor)
 	RETURN_TYPE(/datum/custom_decal)
 	if(!length(user.client?.prefs.favourite_decals))
+		balloon_alert(user, "No favourited decals")
 		return null
 	var/list/options = list()
 	var/list/decal_lookup = list()
@@ -218,7 +224,6 @@ SUBSYSTEM_DEF(custom_decals)
 			user = user,
 			anchor = anchor,
 			choices = options,
-			require_near = TRUE,
 		)
 	if(!result)
 		return null

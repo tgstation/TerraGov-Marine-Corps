@@ -257,7 +257,7 @@
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
-	favourite_decals = sanitize_islist(favourite_decals, list())
+	favourite_decals = sanitize_islist(favourite_decals.Copy(1, min(MAX_FAVOURITE_DECALS+1, length(favourite_decals)+1)), list())
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 

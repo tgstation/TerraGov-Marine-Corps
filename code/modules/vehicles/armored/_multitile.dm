@@ -10,7 +10,7 @@
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_TRAINED
 	atom_flags = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE|ARMORED_ALLOW_DECALS
 	appearance_flags = PIXEL_SCALE
 	pixel_x = -56
 	pixel_y = -48
@@ -198,7 +198,6 @@
 		return
 	var/datum/custom_decal/decal = SScustom_decals.radial_poll_user_fav_decals(user, src)
 	if(!decal)
-		balloon_alert(user, "No favourited decals")
 		return
 
 	user_decal = image(decal.decal_icon, layer=layer+1)
