@@ -809,7 +809,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)
-	if(!on_fire)
+	if(!is_on_fire())
 		return
-	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', fire_stacks < 15 ? "Standing_weak" : "Standing_medium", -FIRE_LAYER)
+	if(amount_burning() <= 0)
+		return
+	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', amount_burning() < 15 ? "Standing_weak" : "Standing_medium", -FIRE_LAYER)
 	apply_overlay(FIRE_LAYER)

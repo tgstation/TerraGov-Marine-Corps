@@ -799,8 +799,7 @@
 	for(var/mob/living/mob_caught in target_turf)
 		if(mob_caught.stat == DEAD || mob_caught == target)
 			continue
-		mob_caught.adjust_fire_stacks(burn_damage)
-		mob_caught.IgniteMob()
+		mob_caught.adjust_burning(burn_damage)
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_fire(target_turf, proj)
