@@ -13,7 +13,7 @@ SMARTGUNS
 /datum/supply_packs/smartguns/smartgun_ammo
 	name = "SG-29 ammo drum"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 40
+	cost = 45
 
 /datum/supply_packs/smartguns/smart_minigun
 	name = "SG-85 smart gatling gun"
@@ -23,7 +23,7 @@ SMARTGUNS
 /datum/supply_packs/smartguns/smart_minigun_ammo
 	name = "SG-85 ammo bin"
 	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
-	cost = 40
+	cost = 45
 
 /datum/supply_packs/smartguns/smart_minigun_powerpack
 	name = "SG-85 powerpack"
@@ -43,12 +43,12 @@ SMARTGUNS
 /datum/supply_packs/smartguns/smarttarget_rifle_ammo_bin
 	name = "SG-62 smart target rifle ammo bin"
 	contains = list(/obj/item/ammo_magazine/packet/smart_targetrifle)
-	cost = 40
+	cost = 45
 
 /datum/supply_packs/smartguns/smartspotting_rifle_ammo_bin
 	name = "SG-153 spotting rifle ammo bin"
 	contains = list(/obj/item/ammo_magazine/packet/smart_spottingrifle)
-	cost = 40
+	cost = 45
 
 /datum/supply_packs/smartguns/spotting_rifle_ammo
 	name = "SG-153 spotting rifle ammo"
