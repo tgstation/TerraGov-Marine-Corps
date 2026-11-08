@@ -50,6 +50,8 @@
 	icon_state = "cas_laser"
 	initiate_chat_message = "TARGET ACQUIRED LASER RUN INBOUND."
 	initiate_screen_message = "Target received, laser run inbound."
+	///damage done to mobs
+	var/mob_damage = 100
 
 /datum/fire_support/laser/do_impact(turf/target_turf)
 	var/turf/start_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y - 6, 1, world.maxy), target_turf.z)
@@ -61,24 +63,16 @@
 ///lases each turf in the line one by one
 /datum/fire_support/laser/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed = strafelist[1]
-	playsound(strafed, 'sound/effects/pred_vision.ogg', 30, 1, LOUD_SOUND_RANGE)
-	for(var/target in strafed)
-		if(isliving(target))
-			var/mob/living/living_target = target
-			living_target.adjustFireLoss(100)
-			living_target.adjust_fire_stacks(20)
-			living_target.IgniteMob()
-		else if(ismecha(target))
-			var/obj/vehicle/sealed/mecha/mech_target = target
-			mech_target.take_damage(300, BURN, LASER, TRUE, null, 50)
-		else if(isobj(target))
-			var/obj/obj_target = target
-			obj_target.take_damage(120, BURN, LASER, TRUE, null, 50)
-	strafed.ignite(5, 30)
+	strafed.laser_strafe_act(damage = mob_damage)
 
 	strafelist -= strafed
 	if(length(strafelist))
 		INVOKE_NEXT_TICK(src, PROC_REF(strafe_turfs), strafelist)
+
+/datum/fire_support/laser/unlimited
+	fire_support_type = FIRESUPPORT_TYPE_LASER_UNLIMITED
+	uses = -1
+	mob_damage = 120
 
 /datum/fire_support/volkite
 	name = "Volkite gun run"
