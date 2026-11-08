@@ -26,7 +26,7 @@
 		return
 	holster.holstered_item = item
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
-	playsound(parent, sheathe_sound, 15, 1)
+	playsound(parent, sheathe_sound, 15, 1, SHORT_SOUND_RANGE)
 
 /datum/storage/holster/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
@@ -37,7 +37,7 @@
 	holster.update_icon() //So that the icon actually updates after we've assigned our holstered_item
 	if(silent)
 		return
-	playsound(parent, draw_sound, 15, 1)
+	playsound(parent, draw_sound, 15, 1, SHORT_SOUND_RANGE)
 
 /datum/storage/holster/backholster
 	max_w_class = WEIGHT_CLASS_NORMAL //normal items
@@ -46,6 +46,12 @@
 
 /datum/storage/holster/backholster/rpg
 	storage_slots = 5
+	max_w_class = WEIGHT_CLASS_BULKY
+	access_delay = 0.5 SECONDS
+
+/datum/storage/holster/backholster/rpg/freelancer
+	storage_slots = 7
+	max_storage_space = 30
 	max_w_class = WEIGHT_CLASS_BULKY
 	access_delay = 0.5 SECONDS
 
@@ -67,6 +73,16 @@
 			/obj/item/weapon/gun/launcher/rocket/som,
 		),
 		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/som)
+	)
+
+/datum/storage/holster/backholster/rpg/freelancer/New(atom/parent)
+	. = ..()
+	set_holdable(
+		can_hold_list = list(
+			/obj/item/ammo_magazine/rocket,
+			/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+		),
+		storage_type_limits_list = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
 	)
 
 /datum/storage/holster/backholster/mortar
@@ -104,12 +120,14 @@
 /datum/storage/holster/backholster/flamer/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
 	. = ..()
 	var/obj/item/storage/holster/backholster/flamer/holster = parent
-	if(holster.holstered_item == item)
-		var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
-		if(flamer.chamber_items.len == 0)
-			return
-		holster.refuel(flamer.chamber_items[1], user)
-		flamer.update_ammo_count()
+	if(holster.holstered_item != item)
+		return
+	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/flamer = item
+	if(flamer.chamber_items.len == 0)
+		return
+	var/obj/item/tank = flamer.chamber_items[1]
+	tank.try_refuel(holster, holster.fuel_type, user)
+	flamer.update_ammo_count()
 
 /datum/storage/holster/t19
 	storage_slots = 4

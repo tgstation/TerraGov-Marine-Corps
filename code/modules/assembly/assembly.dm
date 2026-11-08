@@ -107,7 +107,7 @@
 			to_chat(user, span_warning("Both devices must be in attachable mode to be attached together."))
 
 
-/obj/item/assembly/screwdriver_act(mob/living/user, obj/item/I)
+/obj/item/assembly/screwdriver_act(mob/user, obj/item/tool)
 	if(..())
 		return TRUE
 	if(toggle_secure())

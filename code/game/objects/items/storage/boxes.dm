@@ -91,7 +91,6 @@
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
-	desc = "A biohazard alert warning is printed on the box"
 	spawn_type = /obj/item/reagent_containers/syringe
 	spawn_number = 7
 	icon_state = "syringe"
@@ -241,20 +240,20 @@
 	spawn_number = 14
 
 /obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/match))
-		var/obj/item/tool/match/M = I
-
-		if(M.heat || M.burnt)
-			return ..()
-
-		if(prob(50))
-			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			M.light_match()
-		else
-			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
-		return TRUE
-	else
+	if(!istype(I, /obj/item/tool/match))
 		return ..()
+
+	var/obj/item/tool/match/M = I
+
+	if(M.heat || M.burnt)
+		return ..()
+
+	if(prob(50))
+		playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
+		M.light_match()
+	else
+		playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
+	return TRUE
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"
@@ -545,6 +544,7 @@
 
 	if(!deployed)
 		update_stats()
+		pickup(user)
 		user.put_in_hands(src)
 		return
 
@@ -556,17 +556,26 @@
 			return
 		storage_datum.open(user)
 
-/obj/item/storage/box/visual/MouseDrop(atom/over_object)
+/obj/item/storage/box/visual/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(!deployed)
 		return
 
-	if(!ishuman(over_object))
+	if(!ishuman(over))
 		return
 
-	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		deployed = FALSE
-		update_icon()
+	var/mob/living/carbon/human/human = over
+
+	if(human != usr)
+		return
+	if(human.incapacitated())
+		return
+	if(!Adjacent(human))
+		return
+	pickup(human)
+	if(!human.put_in_hands(src))
+		return
+	deployed = FALSE
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()
@@ -954,6 +963,45 @@
 /obj/item/storage/box/visual/magazine/compact/sh15/slug/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
+
+// sh410
+/obj/item/storage/box/visual/magazine/compact/sh410
+	name = "SH-410 magazine box"
+	desc = "A box specifically designed to hold a large amount of SH-410 magazines."
+	closed_overlay = "mag_box_small_overlay_sh410"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/ammo_magazine/rifle/sh410_buckshot,
+		/obj/item/ammo_magazine/rifle/sh410_sabot,
+		/obj/item/ammo_magazine/rifle/sh410_tracker,
+	))
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot
+	name = "SH-410 buckshot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_buckshot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_buckshot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot
+	name = "SH-410 sabot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_sabot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_sabot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker
+	name = "SH-410 tracker magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_tracker"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_tracker
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle
 	name = "Suspicious glowing box"

@@ -13,6 +13,13 @@
 	scanline.icon = 'icons/effects/effects.dmi'
 	scanline.icon_state = "scanline"
 	scanline.appearance_flags |= RESET_TRANSFORM
+
+	var/icon_height = get_cached_height()
+	var/icon_width = get_cached_width()
+	if(icon_height > ICON_SIZE_Y || icon_width > ICON_SIZE_X)
+		var/matrix/scan_matrix = scanline.transform
+		scanline.transform = scan_matrix.Scale((icon_width / ICON_SIZE_X), (icon_height / ICON_SIZE_Y))
+
 	// * so it doesn't render
 	var/static/uid_scan = 0
 	scanline.render_target = "*HoloScanline [uid_scan]"

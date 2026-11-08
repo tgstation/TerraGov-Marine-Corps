@@ -126,9 +126,6 @@
 /mob/living/simple_animal/death(gibbing, deathmessage, silent)
 	if(stat == DEAD)
 		return ..()
-	if(!silent && !gibbing && !del_on_death && !deathmessage && src.deathmessage)
-		emote("deathgasp")
-		silent = TRUE //No need to for the parent to deathmessage again.
 	return ..()
 
 

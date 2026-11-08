@@ -310,6 +310,10 @@
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/engineering)
+"bx" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/patricks_rest/ground/colonycent)
 "by" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow/full,
@@ -1628,6 +1632,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonyn)
+"hx" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/patricks_rest/ground/colonye)
 "hy" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -4192,6 +4200,10 @@
 	dir = 8
 	},
 /area/patricks_rest/surface/building/science)
+"sU" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/patricks_rest/ground/colonys)
 "sV" = (
 /obj/structure/prop/vehicle/crawler/crawler_blue,
 /turf/open/floor/mainship/mono,
@@ -4228,6 +4240,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/patricks_rest/surface/building/hydro)
+"te" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonye)
 "tf" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonynw)
@@ -5153,6 +5169,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/indestructible,
 /area/patricks_rest/ground/colonyw)
+"xD" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/patricks_rest/ground/colonyse)
 "xE" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -5347,6 +5367,10 @@
 	dir = 4
 	},
 /area/patricks_rest/ground/colonys)
+"yJ" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonyn)
 "yK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/mono,
@@ -5403,6 +5427,10 @@
 	dir = 9
 	},
 /area/patricks_rest/ground/colonyn)
+"za" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/patricks_rest/ground/underground/cave)
 "zb" = (
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/security_post_cargo)
@@ -5779,6 +5807,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/hydro)
+"Bd" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonys)
 "Be" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -7376,6 +7408,13 @@
 /obj/machinery/gibber,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
+"IL" = (
+/obj/structure/cable,
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/patricks_rest/surface/building/ore_storage)
 "IM" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -7862,6 +7901,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonyw)
+"Lf" = (
+/obj/effect/landmark/campaign_structure/sentry,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/patricks_rest/ground/colonycent)
 "Lg" = (
 /obj/structure/largecrate,
 /obj/machinery/light,
@@ -10899,6 +10944,7 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags/som{
 	dir = 1
 	},
+/obj/effect/landmark/campaign_structure/sentry,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -20062,7 +20108,7 @@ RW
 AZ
 AZ
 xp
-AZ
+yJ
 va
 Co
 Co
@@ -22905,7 +22951,7 @@ tz
 Km
 Lr
 sK
-Ni
+Bd
 SO
 QZ
 Ni
@@ -23553,7 +23599,7 @@ Lr
 wz
 Ni
 Uo
-wz
+sU
 tz
 Km
 Km
@@ -24431,7 +24477,7 @@ Tn
 Tn
 Wd
 Tt
-HK
+Lf
 Qz
 wk
 Pg
@@ -25755,7 +25801,7 @@ wJ
 Qz
 wk
 Pg
-Pg
+bx
 Pg
 UK
 Kq
@@ -27096,7 +27142,7 @@ eY
 eY
 eY
 zg
-eY
+za
 LF
 eY
 eY
@@ -28436,7 +28482,7 @@ HE
 MO
 we
 Jq
-Jq
+xD
 Ub
 bs
 ao
@@ -29086,7 +29132,7 @@ yk
 ze
 lp
 uJ
-af
+IL
 uJ
 uJ
 uJ
@@ -30368,7 +30414,7 @@ qW
 jy
 mC
 Vp
-Jz
+hx
 Jz
 ae
 GM
@@ -32366,7 +32412,7 @@ Vv
 Vv
 Vv
 Jz
-Jz
+hx
 Jz
 IX
 IX
@@ -32507,7 +32553,7 @@ Jz
 Jz
 Jz
 Jz
-IX
+te
 yh
 SA
 IX

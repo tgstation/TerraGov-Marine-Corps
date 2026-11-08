@@ -12,7 +12,7 @@ GLOBAL_VAR(restart_counter)
  * BYOND =>
  * - (secret init native) =>
  *   - world.Genesis() =>
- *     - world.init_byond_tracy()
+ *     - Tracy = new (and Tracy.enable(), if requested)
  *     - (Start native profiling)
  *     - world.init_debugger()
  *     - Master =>
@@ -57,12 +57,24 @@ GLOBAL_VAR(restart_counter)
 /world/proc/Genesis(tracy_initialized = FALSE)
 	RETURN_TYPE(/datum/controller/master)
 
+	if(!tracy_initialized)
+		Tracy = new
 #ifdef USE_BYOND_TRACY
 #warn USE_BYOND_TRACY is enabled
-	if(!tracy_initialized)
-		init_byond_tracy()
-		Genesis(tracy_initialized = TRUE)
-		return
+		if(Tracy.enable("USE_BYOND_TRACY defined"))
+			Genesis(tracy_initialized = TRUE)
+			return
+#else
+		var/tracy_enable_reason
+		if(USE_TRACY_PARAMETER in params)
+			tracy_enable_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			tracy_enable_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			fdel(TRACY_ENABLE_PATH)
+		if(!isnull(tracy_enable_reason) && Tracy.enable(tracy_enable_reason))
+			Genesis(tracy_initialized = TRUE)
+			return
 #endif
 
 	Profile(PROFILE_RESTART)
@@ -186,6 +198,9 @@ GLOBAL_VAR(restart_counter)
 
 	logger.init_logging()
 
+	if(Tracy.trace_path)
+		rustg_file_write("[Tracy.trace_path]", "[GLOB.log_directory]/tracy.loc")
+
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
@@ -250,6 +265,9 @@ GLOBAL_VAR(restart_counter)
 /world/proc/check_hard_reboot()
 	if(!TgsAvailable())
 		return FALSE
+	// byond-tracy can't clean up itself, and thus we should always hard reboot if its enabled, to avoid an infinitely growing trace.
+	if(Tracy?.enabled)
+		return TRUE
 	var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
 	switch(ruhr)
 		if(-1)
@@ -310,15 +328,21 @@ GLOBAL_VAR(restart_counter)
 	if(check_hard_reboot())
 		log_world("World hard rebooted at [time_stamp()]")
 		shutdown_logging() // See comment below.
+		QDEL_NULL(Tracy)
 		TgsEndProcess()
 		return ..()
 
 	log_world("World rebooted at [time_stamp()]")
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	QDEL_NULL(Tracy)
 
 	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
 
+	return ..()
+
+/world/Del()
+	QDEL_NULL(Tracy)
 	return ..()
 
 
@@ -445,20 +469,6 @@ GLOBAL_VAR(restart_counter)
 	SStimer?.reset_buckets()
 	SSrunechat?.reset_buckets()
 	SSautomatedfire?.reset_buckets()
-
-/world/proc/init_byond_tracy()
-	var/library
-
-	switch (system_type)
-		if (MS_WINDOWS)
-			library = "prof.dll"
-		if (UNIX)
-			library = "libprof.so"
-		else
-			CRASH("Unsupported platform: [system_type]")
-	var/init_result = call_ext(library, "init")("block")
-	if (init_result != "0")
-		CRASH("Error initializing byond-tracy: [init_result]")
 
 /world/proc/init_debugger()
 	var/dll = GetConfig("env", "AUXTOOLS_DEBUG_DLL")

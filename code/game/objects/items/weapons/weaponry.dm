@@ -46,7 +46,7 @@
 	attack_verb = list("jabs","stabs","rips")
 
 /obj/item/weapon/baseballbat
-	name = "\improper wooden baseball bat"
+	name = "wooden baseball bat"
 	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
 	icon_state = "woodbat"
 	worn_icon_state = "woodbat"
@@ -60,8 +60,20 @@
 	attack_verb = list("smashes", "beats", "slams", "strikes", "smashes", "batters", "cracks")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
+/obj/item/weapon/baseballbat/equipped(mob/user, slot)
+	. = ..()
+	user.AddComponent(/datum/component/throw_parry, null, TRUE, src)
+
+/obj/item/weapon/baseballbat/dropped(mob/user)
+	. = ..()
+	user.remove_component(/datum/component/throw_parry)
+
+/obj/item/weapon/baseballbat/on_parry_throw(atom/reflector, atom/movable/thrown)
+	reflector.visible_message(span_warning("[reflector] smashes [thrown] with [src]!"))
+	playsound(src, 'sound/weapons/base_ball_bat_hit.ogg', 60, 1, 10)
+
 /obj/item/weapon/baseballbat/metal
-	name = "\improper metal baseball bat"
+	name = "metal baseball bat"
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
 	worn_icon_state = "metalbat"
@@ -76,6 +88,7 @@
 	worn_icon_state = null
 	hitsound = null
 	w_class = WEIGHT_CLASS_TINY
+	item_flags = ITEM_ACTIVATABLE
 	force = 8
 	sharp = 0
 	edge = 0
@@ -85,28 +98,32 @@
 	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
-/obj/item/weapon/butterfly/attack_self(mob/user)
-	active = !active
+/obj/item/weapon/butterfly/update_icon_state()
+	if(active)
+		icon_state = "butterflyknife_open"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/weapon/butterfly/toggle_active(new_state, mob/user)
+	. = ..()
 	if(active)
 		to_chat(user, span_notice("You flip out your [src]."))
-		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1, SHORT_SOUND_RANGE)
 		force = 15
 		throwforce = 12
 		edge = TRUE
 		sharp = IS_SHARP_ITEM_ACCURATE
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
-		return
-	to_chat(user, span_notice("The [src] can now be concealed."))
-	force = initial(force)
-	edge = FALSE
-	sharp = IS_NOT_SHARP_ITEM
-	hitsound = initial(hitsound)
-	icon_state = initial(icon_state)
-	w_class = initial(w_class)
-	attack_verb = initial(attack_verb)
+	else
+		to_chat(user, span_notice("The [src] can now be concealed."))
+		force = initial(force)
+		edge = FALSE
+		sharp = IS_NOT_SHARP_ITEM
+		hitsound = initial(hitsound)
+		w_class = initial(w_class)
+		attack_verb = initial(attack_verb)
 
 /obj/item/weapon/butterfly/switchblade
 	name = "switchblade"

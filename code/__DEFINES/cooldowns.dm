@@ -55,11 +55,13 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
+#define COOLDOWN_ACID_DASH_ACTIVATION "cooldown_acid_dash_activation"
 #define COOLDOWN_TANK_SWIVEL "tank_turret_swivel"
 #define COOLDOWN_ARMORED_HORN "cooldown_armored_horn"
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
+#define COOLDOWN_ARMORED_TESLA "cooldown_armored_tesla"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
 #define COOLDOWN_PDA_PLAY "cooldown_pda_play"
 

@@ -5,7 +5,6 @@
 	desc = "It's a hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
 	icon_state = "chefhat"
 	worn_icon_state = "chefhat"
-	desc = "The commander in chef's head wear."
 	siemens_coefficient = 0.9
 
 //Captain: This probably shouldn't be space-worthy
@@ -24,7 +23,6 @@
 	icon_state = "capcap"
 	inventory_flags = NONE
 	inv_hide_flags = NONE
-	armor_protection_flags = NONE
 	cold_protection_flags = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9

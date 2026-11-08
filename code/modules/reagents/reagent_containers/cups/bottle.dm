@@ -256,7 +256,7 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 
-	playsound(src, SFX_SHATTER, 25, 1)
+	playsound(src, SFX_SHATTER, 25, 1, MEDIUM_SOUND_RANGE)
 	user.put_in_active_hand(B)
 
 	qdel(src)
@@ -274,7 +274,7 @@
 	var/datum/limb/affecting = user.zone_selected //Find what the player is aiming at
 
 	//apply damage
-	var/paralyze_duration = target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE)
+	var/paralyze_duration = target.apply_damage(force, BRUTE, affecting, MELEE, updating_health = TRUE, attacker = user)
 
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 

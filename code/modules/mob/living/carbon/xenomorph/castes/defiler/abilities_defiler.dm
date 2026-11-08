@@ -68,9 +68,11 @@
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DEFILE_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/defile/on_cooldown_finish()
@@ -85,19 +87,19 @@
 
 	if(!A.can_sting())
 		if(!silent)
-			A.balloon_alert(owner, "Cannot effect")
+			A.balloon_alert(owner, "can't affect that!")
 		return FALSE
 
 	if(!owner.Adjacent(A))
 		if(!silent)
-			A.balloon_alert(owner, "Cannot reach")
+			A.balloon_alert(owner, "unreachable!")
 		return FALSE
 
 
 /datum/action/ability/activable/xeno/defile/use_ability(atom/A)
 	var/mob/living/carbon/living_target = A
 	if(living_target.status_flags & GODMODE)
-		owner.balloon_alert(owner, "Cannot defile")
+		owner.balloon_alert(owner, "cannot defile!")
 		return fail_activate()
 	xeno_owner.face_atom(living_target)
 	if(!do_after(xeno_owner, DEFILER_DEFILE_CHANNEL_TIME, NONE, living_target, BUSY_ICON_HOSTILE))
@@ -108,12 +110,12 @@
 	add_cooldown()
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target)
-	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(xeno_owner, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
-	living_target.apply_damage(50, STAMINA)
-	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE)
+	living_target.apply_damage(50, STAMINA, attacker = owner)
+	living_target.apply_damage(5, BRUTE, "chest", updating_health = TRUE, attacker = owner)
 	living_target.emote("scream")
 
 	var/defile_strength_multiplier = 0.5
@@ -151,7 +153,7 @@
 		if(50 to 99)
 			to_chat(living_target, span_danger("Your insides are in agony!"))
 		if(100 to INFINITY)
-			to_chat(living_target, span_userdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
+			to_chat(living_target, span_userdanger("Your insides feel like they're on fire!"))
 
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
@@ -168,12 +170,16 @@
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Should the emitted smoke be opaque?
+	var/opaque = TRUE
+	/// The radius of emitted smoke.
+	var/radius = 2
 
 /datum/action/ability/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
@@ -186,7 +192,7 @@
 	//give them fair warning
 	xeno_owner.visible_message(span_danger("Tufts of smoke begin to billow from [xeno_owner]!"), \
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
-	xeno_owner.balloon_alert(xeno_owner, "Keep still...")
+	xeno_owner.balloon_alert(xeno_owner, "keep still...")
 
 	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
 
@@ -219,18 +225,28 @@
 /datum/action/ability/xeno_action/emit_neurogas/proc/dispense_gas(time_left = 3, datum/effect_system/smoke_spread/emitted_gas)
 	if(time_left <= 0)
 		return
-	var/smoke_range = 2
-
 	if(!emitted_gas)
 		switch(xeno_owner.selected_reagent)
 			if(/datum/reagent/toxin/xeno_neurotoxin)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro/light/extinguishing(xeno_owner)
 			if(/datum/reagent/toxin/xeno_hemodile)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/hemodile/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_transvitox)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox/light(xeno_owner)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
-				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				if(opaque)
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(xeno_owner)
+				else
+					emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn/light(xeno_owner)
 
 	if(xeno_owner.IsStaggered()) //If we got staggered, return
 		to_chat(xeno_owner, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -241,11 +257,11 @@
 		toggle_particles(FALSE)
 		return
 	var/turf/T = get_turf(xeno_owner)
-	playsound(T, 'sound/effects/smoke.ogg', 25)
+	playsound(T, 'sound/effects/smoke.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(time_left > 1)
-		emitted_gas.set_up(smoke_range, T)
+		emitted_gas.set_up(radius, T)
 	else //last emission is larger
-		emitted_gas.set_up(CEILING(smoke_range*1.3,1), T)
+		emitted_gas.set_up(CEILING(radius*1.3,1), T)
 	emitted_gas.start()
 	T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 	toggle_particles(FALSE)
@@ -290,11 +306,11 @@
 
 /datum/action/ability/activable/xeno/inject_egg_neurogas/use_ability(atom/A)
 	if(!owner.Adjacent(A))
-		A.balloon_alert(owner, "Out of reach")
+		A.balloon_alert(owner, "out of reach!")
 		return fail_activate()
 
 	if(istype(A, /obj/alien/egg/gas))
-		A.balloon_alert(xeno_owner, "Egg already injected")
+		A.balloon_alert(xeno_owner, "egg already injected!")
 		return fail_activate()
 
 	if(!istype(A, /obj/alien/egg/hugger))
@@ -302,23 +318,23 @@
 
 	var/obj/alien/egg/alien_egg = A
 	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
-		alien_egg.balloon_alert(xeno_owner, "Egg not mature")
+		alien_egg.balloon_alert(xeno_owner, "egg not mature!")
 		return fail_activate()
 
-	alien_egg.balloon_alert_to_viewers("Injecting...")
+	alien_egg.balloon_alert_to_viewers("injecting...")
 	xeno_owner.visible_message(span_danger("[xeno_owner] starts injecting the egg with neurogas, killing the little one inside!"), \
 		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
 	if(!do_after(xeno_owner, 2 SECONDS, NONE, alien_egg, BUSY_ICON_HOSTILE))
-		alien_egg.balloon_alert_to_viewers("Canceled injection")
+		alien_egg.balloon_alert_to_viewers("canceled injection")
 		xeno_owner.visible_message(span_danger("The stinger retracts from [xeno_owner], leaving the egg and little one alive."), \
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
 
 	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
-		alien_egg.balloon_alert(xeno_owner, "Egg not mature")
+		alien_egg.balloon_alert(xeno_owner, "egg not mature!")
 		return fail_activate()
 
-	alien_egg.balloon_alert_to_viewers("Injected")
+	alien_egg.balloon_alert_to_viewers("injected")
 	succeed_activate()
 	add_cooldown()
 
@@ -354,7 +370,7 @@
 
 /datum/action/ability/xeno_action/select_reagent/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1] //Set our default
+	xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1]) //Set our default
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/select_reagent/update_button_icon()
@@ -365,9 +381,9 @@
 /datum/action/ability/xeno_action/select_reagent/action_activate()
 	var/i = GLOB.defiler_toxin_type_list.Find(xeno_owner.selected_reagent)
 	if(length(GLOB.defiler_toxin_type_list) == i)
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[1])
 	else
-		xeno_owner.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
+		xeno_owner.set_selected_reagent(GLOB.defiler_toxin_type_list[i+1])
 
 	var/atom/A = xeno_owner.selected_reagent
 	xeno_owner.balloon_alert(xeno_owner, "[initial(A.name)]")
@@ -394,7 +410,7 @@
 	for(var/toxin in GLOB.defiler_toxin_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
-			xeno_owner.selected_reagent = R.type
+			xeno_owner.set_selected_reagent(R.type)
 			break
 	xeno_owner.balloon_alert(xeno_owner, "[toxin_choice]")
 	update_button_icon()
@@ -413,7 +429,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
-	target_flags = ABILITY_MOB_TARGET
 	/// How many remaining reagent slashes does this xenomorph have?
 	var/reagent_slash_count = 0
 	/// How much units is injected on slash?
@@ -425,6 +440,11 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
+/datum/action/ability/xeno_action/reagent_slash/remove_action(mob/living/L)
+	if(reagent_slash_duration_timer_id)
+		reagent_slash_deactivate(xeno_owner)
+	return ..()
+
 /datum/action/ability/xeno_action/reagent_slash/action_activate()
 	. = ..()
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(reagent_slash))
@@ -433,7 +453,7 @@
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(reagent_slash_deactivate), xeno_owner), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	reagent_slash_reagent = xeno_owner.selected_reagent
 
-	xeno_owner.balloon_alert(xeno_owner, "Reagent slash active") //Let the user know
+	xeno_owner.balloon_alert(xeno_owner, "reagent slash active") //Let the user know
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien/drool2.ogg', 25)
 
 	toggle_particles(TRUE)
@@ -450,7 +470,7 @@
 	reagent_slash_reagent = null
 	toggle_particles(FALSE)
 
-	xeno_owner.balloon_alert(xeno_owner, "Reagent slash over") //Let the user know
+	xeno_owner.balloon_alert(xeno_owner, "reagent slash over") //Let the user know
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/hiss5.ogg', 25)
 
 
@@ -464,7 +484,7 @@
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.reagents.add_reagent(reagent_slash_reagent, reagent_slash_amount)
-	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	xeno_owner.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [xeno_owner]'s spines!"))
 
 	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics
@@ -506,11 +526,14 @@
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
-	desc = "Throw one of your tentacles forward to grab a tallhost or item."
+	desc = "Throw one of your tentacles forward to grab a target or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TENTACLE_SELECT,
 	)
 	///reference to beam tentacle
 	var/datum/beam/tentacle
@@ -521,18 +544,18 @@
 		return
 	if(!isitem(A) && !ishuman(A))
 		if(!silent)
-			A.balloon_alert(owner, "Cannot grab")
+			A.balloon_alert(owner, "can't grab that!")
 		return FALSE
 	if(isliving(A))
 		var/mob/living/livingtarget = A
 		if(livingtarget.stat == DEAD)
 			if(!silent)
-				livingtarget.balloon_alert(owner, "Cannot grab, dead")
+				livingtarget.balloon_alert(owner, "it's dead!")
 			return FALSE
 	var/atom/movable/target = A
 	if(target.anchored)
 		if(!silent)
-			target.balloon_alert(owner, "Cannot grab, anchored")
+			target.balloon_alert(owner, "anchored!")
 		return FALSE
 
 	var/turf/current = get_turf(owner)
@@ -545,14 +568,14 @@
 	while((current != target_turf))
 		if(current.density)
 			if(!silent)
-				target.balloon_alert(owner, "Cannot reach")
+				target.balloon_alert(owner, "can't reach!")
 			return FALSE
 		current = get_step_towards(current, target_turf)
 
 
 /datum/action/ability/activable/xeno/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
-	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(tentacle_end, icon_state = "curse0")
 	RegisterSignals(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
 	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
 	succeed_activate()
@@ -564,13 +587,13 @@
 	QDEL_NULL(tentacle)
 	qdel(source)
 	if(!can_use_ability(target, TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA))
-		owner.balloon_alert(owner, "Grab failed")
+		owner.balloon_alert(owner, "grab failed!")
 		clear_cooldown()
 		return
-	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(target, icon_state = "curse0")
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
-	target.balloon_alert_to_viewers("Grabbed!")
+	target.balloon_alert_to_viewers("grabbed!")
 	RegisterSignal(target, COMSIG_MOVABLE_POST_THROW, PROC_REF(delete_beam))
 	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(target))

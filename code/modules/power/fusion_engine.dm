@@ -161,12 +161,12 @@
 		update_icon()
 		balloon_alert(user, "You load the [src] with the [I].")
 
-/obj/machinery/power/fusion_engine/welder_act(mob/living/user, obj/item/O)
+/obj/machinery/power/fusion_engine/welder_act(mob/user, obj/item/tool)
 	. = ..()
-	if(!iswelder(O))
+	if(!iswelder(tool))
 		return FALSE
 
-	var/obj/item/tool/weldingtool/WT = O
+	var/obj/item/tool/weldingtool/WT = tool
 	if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE)
 		balloon_alert(user, "Doesn't need welding")
 		return FALSE
@@ -181,7 +181,7 @@
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return FALSE
 	balloon_alert_to_viewers("Starts welding some damage")
-	if(!O.use_tool(src, user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), 2, 25, null, BUSY_ICON_BUILD))
+	if(!tool.use_tool(src, user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 	if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 		return FALSE
@@ -191,10 +191,10 @@
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
+/obj/machinery/power/fusion_engine/wirecutter_act(mob/user, obj/item/tool)
 	. = ..()
 
-	if(!iswirecutter(O))
+	if(!iswirecutter(tool))
 		return FALSE
 
 	if(is_on)
@@ -211,20 +211,18 @@
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	balloon_alert_to_viewers("Starts securing [src]'s wiring")
-	if(!do_after(user,  10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), NONE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
+	if(!tool.use_tool(src, user, 10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), user_display = BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 		return FALSE
-	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	buildstate = FUSION_ENGINE_LIGHT_DAMAGE
 	balloon_alert_to_viewers("Secures [src]'s wiring")
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
+/obj/machinery/power/fusion_engine/wrench_act(mob/user, obj/item/tool)
 	. = ..()
-	if(!iswrench(O))
+	if(!iswrench(tool))
 		return FALSE
 
 	if(buildstate != FUSION_ENGINE_LIGHT_DAMAGE)
@@ -236,18 +234,16 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	balloon_alert_to_viewers("Starts repairing [src]'s tubing")
-	if(!do_after(user,  15 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), NONE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
+	if(!tool.use_tool(src, user, 15 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS), user_display = BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 		return FALSE
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	buildstate = FUSION_ENGINE_NO_DAMAGE
 	balloon_alert_to_viewers("Repairs [src]'s tubing")
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/fusion_engine/crowbar_act(mob/living/user, obj/item/O)
+/obj/machinery/power/fusion_engine/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(buildstate != FUSION_ENGINE_NO_DAMAGE)
 		balloon_alert(user, "You must repair the generator first")
@@ -264,9 +260,8 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	balloon_alert_to_viewers("Starts prying [src]'s fuel bay open")
-	if(!do_after(user, 10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), NONE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
+	if(!tool.use_tool(src, user, 10 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 2 SECONDS), user_display = BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
 		return FALSE
 	balloon_alert_to_viewers("Pries [src]'s fuel bay open and removes the cell")
 	fusion_cell.update_icon()

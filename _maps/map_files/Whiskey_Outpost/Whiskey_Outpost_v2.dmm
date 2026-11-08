@@ -2754,9 +2754,7 @@
 /area/whiskey_outpost/outside/north)
 "nK" = (
 /obj/structure/barricade/sandbags,
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5889,9 +5887,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/north)
 "GZ" = (
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
@@ -6611,9 +6607,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "MO" = (
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "MQ" = (
@@ -6908,18 +6902,14 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "OQ" = (
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "OR" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/whiskey_outpost/outside/north)
 "OS" = (
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "Pc" = (
@@ -7085,9 +7075,7 @@
 /area/whiskey_outpost/outside/north)
 "QS" = (
 /obj/structure/barricade/solid,
-/obj/item/weapon/gun/sentry/premade{
-	sentry_iff_signal = 1
-	},
+/obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "QV" = (

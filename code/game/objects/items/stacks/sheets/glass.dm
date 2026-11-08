@@ -27,7 +27,8 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 
 /obj/item/stack/sheet/glass/get_main_recipes()
 	. = ..()
-	. += GLOB.glass_recipes
+	for(var/item in GLOB.glass_recipes)
+		. += GLOB.glass_recipes[item]
 
 GLOBAL_LIST_INIT(glass_radial_images, list(
 	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),

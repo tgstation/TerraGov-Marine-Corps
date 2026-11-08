@@ -30,6 +30,7 @@
 	if(ready)
 		GLOB.ready_players -= src
 	GLOB.new_player_list -= src
+	SSticker.queued_players -= src
 	assigned_role = null
 	assigned_squad = null
 	new_character = null
@@ -450,10 +451,6 @@
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)
 	if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(src, span_warning("The round is either not ready, or has already finished."))
-		return
-
-	if(SSticker.mode.round_type_flags & MODE_NO_LATEJOIN)
-		to_chat(src, span_warning("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
 		return
 
 	if(queue_override)

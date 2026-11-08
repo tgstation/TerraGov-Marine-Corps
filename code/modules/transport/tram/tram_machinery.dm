@@ -4,7 +4,7 @@
 	/// Options to be passed with the requests to the transport subsystem
 	var/options = NONE
 
-/obj/item/assembly/control/transport/multitool_act(mob/living/user)
+/obj/item/assembly/control/transport/multitool_act(mob/user, obj/item/tool)
 	var/list/available_platforms = list()
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)

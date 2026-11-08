@@ -7,7 +7,7 @@
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 
-/obj/structure/xeno/upgrade_chamber/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/mutation_chamber/Initialize(mapload, _hivenumber)
 	. = ..()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "mutation_chamber", MINIMAP_BLIPS_LAYER))
 

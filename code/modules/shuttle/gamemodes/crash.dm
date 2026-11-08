@@ -22,7 +22,7 @@
 	dwidth = 7
 	dheight = 12
 
-	callTime = 10 MINUTES
+	callTime = CRASH_DELAY_TIME
 	ignitionTime = 5 SECONDS
 	prearrivalTime = 12 SECONDS
 
@@ -43,6 +43,12 @@
 		var/initiate_title = op_name
 		var/initiate_screen_message = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] █:█<br>" + "Black Ops Platoon<br>" + "[human.job.title], ████"
 		human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(initiate_title, initiate_screen_message, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/blackop)
+
+/obj/docking_port/mobile/crashmode/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
+	. = ..()
+	if(. != DOCKING_SUCCESS)
+		return
+	SSminimaps.redraw_map(z)
 
 /obj/docking_port/stationary/crashmode/hangar
 	name = "Hangar Pad One"

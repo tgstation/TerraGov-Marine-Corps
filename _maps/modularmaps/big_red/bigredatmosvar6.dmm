@@ -692,10 +692,6 @@
 "Xe" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
-"XK" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/filtration_plant)
 "Zd" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -715,9 +711,9 @@
 /area/bigredv2/outside/filtration_plant)
 
 (1,1,1) = {"
-XK
+mz
 cG
-XK
+mz
 mz
 NG
 aw
@@ -728,7 +724,7 @@ aw
 aw
 aw
 mz
-XK
+mz
 DB
 ms
 ms
@@ -823,10 +819,10 @@ Rk
 Rk
 "}
 (5,1,1) = {"
-XK
+mz
 cG
-XK
-XK
+mz
+mz
 jC
 OK
 Zk
@@ -1123,7 +1119,7 @@ rV
 mz
 mz
 mz
-XK
+mz
 PK
 OK
 Zk

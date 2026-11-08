@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(weeds)
 		currentrun -= T
 
 		var/obj/alien/weeds/weed = locate(/obj/alien/weeds) in T
-		if(weed && !weed.parent_node && !istype(weed, /obj/alien/weeds/node))
+		if(weed && !QDELETED(node) && !weed.parent_node && !istype(weed, /obj/alien/weeds/node))
 			weed.set_parent_node(node)
 			SSweeds_decay.decaying_list -= weed
 

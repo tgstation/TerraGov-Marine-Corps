@@ -28,8 +28,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
-	//The respawn time for Xenomorphs
-	var/xenorespawn_time = 5 MINUTES
 	///How many points do you need to win in a point gamemode
 	var/win_points_needed = 0
 	///The points per faction, assoc list
@@ -74,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
+	///Vehicle types that cannot be purchased in this gamemode
+	var/list/vehicle_black_list
 
 
 /datum/game_mode/New()
@@ -124,13 +124,15 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	return TRUE
 
+///Sets up the gamemode
+///Occurs before the game starts - game will not start if this fails to return TRUE, if bypass_checks is not also TRUE
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY|MODE_ENCOUNTER))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 
@@ -299,6 +301,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+/datum/game_mode/proc/get_respawn_time(mob/respawnee)
+	if(!GLOB.respawn_allowed)
+		return -1
+	var/time = (GLOB.key_to_time_of_role_death[respawnee.key] + SSticker.mode?.respawn_time - world.time)
+	if(time <= 0)
+		return 0
+	return time2text(time, "mm:ss")
+
 ///respawns the player, overrides verb respawn behavior as required
 /datum/game_mode/proc/player_respawn(mob/respawnee)
 	respawnee.respawn()
@@ -362,10 +372,28 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	return
+
+///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
+	return
+
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+///This is overridden on the child types. Called to start/stop the silo death timer.
+/datum/game_mode/proc/update_silo_death_timer(datum/hive_status/silo_owner)
+	return
+
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
+/datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
 ///Provides the amount of time left before the game ends, used for the stat panel
@@ -414,6 +442,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.obs_fired] orbital bombardements were fired."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
 		parts += "[GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]] people were killed, among which [GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% respawn rate."
+	if(GLOB.round_statistics.zombies_permad)
+		parts += "[GLOB.round_statistics.zombies_permad] zombies were permanently killed."
 	if(SSevacuation.human_escaped)
 		parts += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
@@ -439,6 +469,18 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.all_acid_applied] objects vomitted on with corrosive acid."
 	if(GLOB.round_statistics.trap_holes)
 		parts += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
+	if(GLOB.round_statistics.drone_acidic_salve)
+		parts += "[GLOB.round_statistics.drone_acidic_salve] health points restored through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_acidic_salve_sunder)
+		parts += "[GLOB.round_statistics.drone_acidic_salve_sunder] sunder removed through Drone's Acidic Salve."
+	if(GLOB.round_statistics.drone_essence_link)
+		parts += "[GLOB.round_statistics.drone_essence_link] health points restored through Drone's Essence Link."
+	if(GLOB.round_statistics.drone_essence_link_sunder)
+		parts += "[GLOB.round_statistics.drone_essence_link_sunder] sunder removed through Drone's Essence Link."
+	if(GLOB.round_statistics.hivelord_healing_infusion)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion] health points restored through Hivelord's Healing Infusion."
+	if(GLOB.round_statistics.hivelord_healing_infusion_sunder)
+		parts += "[GLOB.round_statistics.hivelord_healing_infusion_sunder] sunder removed through Hivelord's Healing Infusion."
 	if(GLOB.round_statistics.sentinel_drain_stings)
 		parts += "[GLOB.round_statistics.sentinel_drain_stings] number of times Sentinel drain sting was used."
 	if(GLOB.round_statistics.defender_charge_victims)
@@ -521,6 +563,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used psychic shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
 		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a psychic shield."
+	if(GLOB.round_statistics.transfusion_overheal)
+		parts += "[GLOB.round_statistics.transfusion_overheal] points of overhealing were given by Gorgers through Transfusion."
 	if(GLOB.round_statistics.larva_from_psydrain)
 		parts += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
 	if(GLOB.round_statistics.larva_from_silo)
@@ -579,6 +623,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			if(H.status_flags & XENO_HOST)
 				continue
 			if(H.faction == FACTION_XENO)
+				continue
+			if(H.faction == FACTION_ZOMBIE)
 				continue
 			if(isspaceturf(H.loc))
 				continue
@@ -677,6 +723,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
+
+/datum/game_mode/proc/can_ghosts_join_as_zombies()
+	return TRUE
 
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
@@ -999,13 +1048,13 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
 	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
 		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
-	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
+	for(var/obj/machinery/computer/disk_generator AS in GLOB.nuke_disk_generator_types)
 		var/spawn_loc
 		if(length(forced_disks))
 			spawn_loc = pick_n_take(forced_disks)
 		else
 			spawn_loc = pick_n_take(viable_disks)
-		new nuke_disk_generator(get_turf(spawn_loc))
+		new disk_generator(get_turf(spawn_loc))
 		qdel(spawn_loc)
 
 /// Add gamemode related items to statpanel
@@ -1023,17 +1072,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-		handle_xeno_respawn_timer(dcs, source, items)
-
-/// Displays the orphan hivemind collapse timer, if applicable
-/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
-	if (isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno = source
-		if(xeno.hivenumber != XENO_HIVE_NORMAL)
-			return // Don't show for non-normal hives
-	var/rulerless_countdown = get_hivemind_collapse_countdown()
-	if(rulerless_countdown)
-		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
@@ -1047,15 +1085,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(stored_larva)
 		items += "Burrowed larva: [stored_larva]"
-
-/// Displays your xeno respawn timer, if applicable
-/datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
-	if(GLOB.respawn_allowed)
-		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
-		if(status_value <= 0)
-			items += "Xeno respawn timer: READY"
-		else
-			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 ///Returns a list of verbs to give ghosts in this gamemode
 /datum/game_mode/proc/ghost_verbs(mob/dead/observer/observer)

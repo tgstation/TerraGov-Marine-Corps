@@ -44,7 +44,6 @@
 
 /datum/ammo/xeno/leash_ball
 	icon_state = "widow_snareball"
-	ping = "ping_x"
 	damage_type = STAMINA
 	ammo_behavior_flags = AMMO_SKIPS_ALIENS | AMMO_TARGET_TURF
 	bullet_color = COLOR_PURPLE

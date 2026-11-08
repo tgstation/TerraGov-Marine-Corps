@@ -16,7 +16,7 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	smoke.set_up(smokeradius, loc, smoke_duration)
 	smoke.start()
 	qdel(src)

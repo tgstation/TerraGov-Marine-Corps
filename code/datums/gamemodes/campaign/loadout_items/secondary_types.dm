@@ -67,6 +67,18 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/antigas_nades
+	name = "Antigas nades"
+	desc = "Three antigas grenades, able to completely clear gas from an area."
+	ui_icon = "grenade"
+	purchase_cost = 15
+
+/datum/loadout_item/secondary/kit/antigas_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/sandbags
 	name = "Sandbags"
 	desc = "Bags, filled with sand. They catch bullets instead of your face."

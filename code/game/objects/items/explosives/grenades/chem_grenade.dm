@@ -1,5 +1,8 @@
+///Empty casing
 #define CG_EMPTY 1
+///Wired but not set
 #define CG_WIRED 2
+///Ready to use
 #define CG_READY 3
 
 /obj/item/explosive/grenade/chem_grenade
@@ -10,23 +13,32 @@
 	worn_icon_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
+	///What assembly stage the grenade is in
 	var/stage = CG_EMPTY
-	var/display_timer = FALSE
+	///The actual reagents containers in the grenade. Mixed on activation
 	var/list/obj/item/reagent_containers/glass/beakers = list()
+	///The types of containers allowed in the beaker list
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
-	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
+	///Blacklisted container types
+	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace)
+	///Chem splash area
 	var/affected_area = 3
+	///Trigger assembly
 	var/obj/item/assembly_holder/nadeassembly = null
+	///ckey of the person that attached the assembly
 	var/assemblyattacher
-	var/ignition_temp = 10 // The amount of heat added to the reagents when this grenade goes off.
-	var/threatscale = 1 // Used by advanced grenades to make them slightly more worthy.
-	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
-	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
+	///The amount of heat added to the reagents when this grenade goes off
+	var/ignition_temp = 10
+	///Chem volume multiplier
+	var/threatscale = 1
+	///If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
+	var/no_splash = FALSE
+	///Appears when examining empty casings.
+	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition."
 
 
 /obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
-	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
 
 /obj/item/explosive/grenade/chem_grenade/Destroy()
@@ -57,7 +69,7 @@
 			else
 				stage_change(CG_READY)
 				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
-				I.play_tool_sound(src, 25)
+				I.play_tool_sound(src)
 
 		else if(stage == CG_READY && !nadeassembly)
 			det_time = det_time == 50 ? 30 : 50	//toggle between 30 and 50
@@ -137,7 +149,6 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
-	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
 	if((user.skills.getRating(SKILL_MEDICAL) > SKILL_MEDICAL_NOVICE) || isobserver(usr))
 		if(length(beakers))
@@ -375,6 +386,32 @@
 		return
 	return ..()
 
+/obj/item/explosive/grenade/chem_grenade/healing_foam
+	name = "\improper EMS-02 Healing Foam Grenade"
+	desc = "An advanced foam grenade designed by BioCourse Pharmaceuticals. Deploys a foam that quickly rejuvenates those inside."
+	stage = CG_READY
+	dangerous = FALSE
+	icon_state = "grenade_healfoam"
+	worn_icon_state = "grenade_healfoam"
+
+/obj/item/explosive/grenade/chem_grenade/healing_foam/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B1.reagents.add_reagent(/datum/reagent/medicine/experimental_medical_salve, 15)
+	B2.reagents.add_reagent(/datum/reagent/water, 30)
+	B2.reagents.add_reagent(/datum/reagent/medicine/experimental_medical_salve, 15)
+
+	beakers += B1
+	beakers += B2
+
+	icon_state = initial(icon_state) +"_locked"
+
+/obj/item/explosive/grenade/chem_grenade/healing_foam/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 #undef CG_READY
 #undef CG_WIRED

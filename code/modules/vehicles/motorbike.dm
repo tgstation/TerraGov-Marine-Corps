@@ -13,7 +13,7 @@
 	integrity_failure = 0.5
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
+	buckle_flags = CAN_BUCKLE|BUCKLE_NEEDS_HAND
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
 	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
@@ -35,7 +35,9 @@
 	/// A list of potential sounds played when the bike is revved via AltClick
 	var/list/rev_sounds = list(
 		'sound/vehicles/bikerev-1.ogg',
-		'sound/vehicles/bikerev-2.ogg'
+		'sound/vehicles/bikerev-2.ogg',
+		'sound/vehicles/bikerev-3.ogg',
+		'sound/vehicles/bikerev-4.ogg',
 	)
 	/// Cooldown for revving the bike, to prevent spamming
 	COOLDOWN_DECLARE(rev_cooldown)
@@ -88,8 +90,8 @@
 		playsound(src, dismount_sound, vol = 25, falloff = 1)
 	return ..()
 
-/obj/vehicle/ridden/motorbike/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
+/obj/vehicle/ridden/motorbike/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 10, 2 SECONDS, fuel_req = 1)
 
 /// Returns a boolean indicating whether the motorbike has fuel left.
 /obj/vehicle/ridden/motorbike/proc/has_fuel()
@@ -104,9 +106,9 @@
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+/obj/vehicle/ridden/motorbike/relaydrive(mob/living/user, direction)
 	. = ..()
-	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
+	if(!.)
 		return
 	fuel_count--
 	if(fuel_count == LOW_FUEL_LEFT_MESSAGE)
@@ -134,7 +136,7 @@
 			balloon_alert(user, "Already busy!")
 			return FALSE
 		if(LAZYLEN(buckled_mobs))
-			balloon_alert("There is a rider already!")
+			balloon_alert(user, "There is a rider already!")
 			return TRUE
 		balloon_alert(user, "You start attaching the sidecar...")
 		if(!do_after(user, 3 SECONDS, NONE, src))
@@ -166,7 +168,7 @@
 		if(EAST, WEST)
 			pixel_x = 0
 
-/obj/vehicle/ridden/motorbike/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/ridden/motorbike/wrench_act(mob/user, obj/item/tool)
 	if(!attached_sidecar)
 		balloon_alert(user, "No sidecar attached!")
 		return TRUE

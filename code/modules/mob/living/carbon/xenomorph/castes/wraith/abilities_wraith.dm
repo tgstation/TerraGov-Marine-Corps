@@ -75,7 +75,7 @@
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_DEATH, PROC_REF(clean_portals))
 
-/datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags)
+/datum/action/ability/xeno_action/portal/can_use_action(silent, override_flags, selecting)
 	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
@@ -93,7 +93,7 @@
 	portal_one = new(get_turf(owner))
 	succeed_activate()
 	add_cooldown()
-	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
+	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 	if(portal_two)
 		link_portals()
 
@@ -104,7 +104,7 @@
 	portal_two = new(get_turf(owner), TRUE)
 	succeed_activate()
 	add_cooldown()
-	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
+	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 	if(portal_one)
 		link_portals()
 
@@ -189,7 +189,7 @@
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
-	playsound(loc, 'sound/effects/portal.ogg', 20)
+	playsound(loc, 'sound/effects/portal.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 
 /// Signal handler to teleport the crossing atom when its move is done
 /obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
@@ -205,7 +205,7 @@
 /// Signal handler for teleporting a crossing bullet
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, atom/movable/projectile/bullet)
 	SIGNAL_HANDLER
-	playsound(loc, 'sound/effects/portal.ogg', 20)
+	playsound(loc, 'sound/effects/portal.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
 	if(new_range <= 0)
 		bullet.loc = get_turf(linked_portal)

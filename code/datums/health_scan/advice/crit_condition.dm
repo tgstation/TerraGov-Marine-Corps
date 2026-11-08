@@ -9,7 +9,7 @@
 /datum/scanner_advice/crit_condition/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
 		ADVICE_TEXT = "Administer a single dose of Inaprovaline.",
-		ADVICE_TOOLTIP = "When used in critical condition, Inaprovaline prevents suffocation and heals the patient. This can only happen once every 5 minutes and only when the Inaprovaline enters the body.",
+		ADVICE_TOOLTIP = "Inaprovaline prevents suffocation and heals the patient if in critical condition. This can only happen once every 5 minutes and only when the Inaprovaline enters the body.",
 		ADVICE_ICON = FA_ICON_SYRINGE,
-		ADVICE_ICON_COLOR = COLOR_REAGENT_INAPROVALINE
+		ADVICE_ICON_COLOR = COLOR_REAGENT_INAPROVALINE,
 	)

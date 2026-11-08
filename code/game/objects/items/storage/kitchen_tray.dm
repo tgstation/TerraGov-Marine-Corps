@@ -7,8 +7,6 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/kitchen_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/kitchen_right.dmi',
 	)
-	desc = "A metal tray to lay food on."
-	throwforce = 12
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
@@ -97,7 +95,7 @@
 
 	if(cooldown < world.time - 25)
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
-		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		cooldown = world.time
 
 /obj/item/storage/kitchen_tray/attack_self(mob/user)

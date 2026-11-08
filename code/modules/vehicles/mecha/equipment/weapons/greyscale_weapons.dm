@@ -317,6 +317,10 @@
 	hud_icons = list("shell_apcr", "shell_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
+	. = ..()
+	projectile_to_fire.def_zone = BODY_ZONE_CHEST //no delimb spam
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun
 	name = "\improper Rhea vulcan cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
@@ -551,6 +555,12 @@
 	chassis.throw_at(target, laser_dash_range, 1)
 	return ..()
 
+/obj/item/mecha_parts/mecha_equipment/laser_sword/attack(mob/living/M, mob/living/user)
+	var/user_target_zone = user.zone_selected //stops 1 hit delimbs
+	user.zone_selected = BODY_ZONE_CHEST
+	. = ..()
+	user.zone_selected = user_target_zone
+
 ///signal handler, drops afterimage every move executed while dashing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
 	SIGNAL_HANDLER
@@ -566,7 +576,19 @@
 
 ///Hits a mob in the way
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
-	bumped_mob.attackby(src, cutter)
+	if((bumped_mob.mob_size > MOB_SIZE_HUMAN) || (bumped_mob.mob_size == MOB_SIZE_HUMAN && prob(25)))
+		bumped_mob.attackby(src, cutter)
+		return
+
+	//mech sword is less reliable at instantly obliterating humans
+	playsound(get_turf(bumped_mob), SFX_SWING_HIT, 50, null, 9)
+
+	var/knock_dir = pick(LeftAndRightOfDir(get_dir(chassis, bumped_mob), always_diag = TRUE))
+	bumped_mob.knockback(chassis, 3, 3, knock_dir)
+
+	bumped_mob.ParalyzeNoChain(modify_by_armor(1 SECONDS, MELEE, def_zone = BODY_ZONE_CHEST) * 100 / bumped_mob.maxHealth)
+	bumped_mob.adjust_stagger(1 SECONDS)
+	bumped_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, FALSE, FALSE, TRUE, 0, cutter)
 
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)

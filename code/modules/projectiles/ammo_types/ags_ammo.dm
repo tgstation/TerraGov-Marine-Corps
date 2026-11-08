@@ -52,10 +52,9 @@
 
 /datum/ammo/bullet/ags_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel_green"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 15
-	accuracy_var_high = 5
+	accuracy_variation = 15
 	max_range = 6
 	damage = 30
 	penetration = 20
@@ -64,6 +63,7 @@
 
 /datum/ammo/bullet/ags_spread/incendiary
 	name = "White phosphorous shrapnel"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 20
 	penetration = 10

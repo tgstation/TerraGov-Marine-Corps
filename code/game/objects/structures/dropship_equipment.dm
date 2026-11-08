@@ -44,7 +44,7 @@
 	if(!density)
 		for(var/atom/thing_to_check AS in loc)
 			if(thing_to_check.density)
-				balloon_alert(user, "Blocked by [thing_to_check]")
+				balloon_alert(user, "blocked by [thing_to_check]!")
 				return
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	if(!do_after(user, 7 SECONDS, IGNORE_HELD_ITEM, src))
@@ -52,10 +52,7 @@
 	if(installed_equipment || attached_clamp.loaded != loaded_equipment)
 		return
 	to_chat(user, span_notice("You install [loaded_equipment] on [src]."))
-	loaded_equipment.forceMove(loc)
-	attached_clamp.loaded = null
-	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
+	attached_clamp.do_unload(loc)
 	installed_equipment = loaded_equipment
 	loaded_equipment.ship_base = src
 
@@ -167,10 +164,10 @@
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/structures/prop/mainship.dmi'
-	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 20
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -191,6 +188,16 @@
 	///what kind of ammo this uses if any
 	var/ammo_type_used
 
+/obj/structure/dropship_equipment/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
+
 /obj/structure/dropship_equipment/Destroy()
 	QDEL_NULL(ammo_equipped)
 	if(linked_shuttle)
@@ -208,60 +215,35 @@
 
 /obj/structure/dropship_equipment/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
-		if((!(dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(attached_clamp.loaded, /obj/structure/ship_ammo))
-			return
-		var/obj/structure/ship_ammo/clamp_ammo = attached_clamp.loaded
-		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
-			to_chat(user, span_warning("[clamp_ammo] doesn't fit in [src]."))
-			return
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
-			return
-		if(ammo_equipped || attached_clamp.loaded != clamp_ammo || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
-			return
-		clamp_ammo.forceMove(src)
-		attached_clamp.loaded = null
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		attached_clamp.update_icon()
-		to_chat(user, span_notice("You load [clamp_ammo] into [src]."))
-		ammo_equipped = clamp_ammo
-		update_equipment()
-		return //refilled dropship ammo
+		try_load_ammo(user, attached_clamp, attached_clamp.loaded)
+		return
+
 	if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
-			return
-		if(!ammo_equipped || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
-			return
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!ammo_equipped.ammo_count)
-			ammo_equipped.loc = null
-			to_chat(user, span_notice("You've discarded the empty [ammo_equipped.name] in [src]."))
-			qdel(ammo_equipped)
-		else
-			ammo_equipped.forceMove(attached_clamp.linked_powerloader)
-			attached_clamp.loaded = ammo_equipped
-			attached_clamp.update_icon()
-			to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [attached_clamp]."))
-		ammo_equipped = null
-		update_icon()
-		return //emptied or removed dropship ammo
+		try_unload_ammo(user, attached_clamp)
+		return
+
 	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
 		return
 	if(get_self_acid())
 		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+		return
+
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
+	var/duration_time = ship_base ? 7 SECONDS : 1 SECONDS //uninstalling equipment takes more time
 	if(!do_after(user, duration_time, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		return
-	if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+	if(attached_clamp.loaded)
 		return
-	forceMove(attached_clamp.linked_powerloader)
-	attached_clamp.loaded = src
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+	if(get_self_acid())
+		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+		return
+
+	attached_clamp.do_load(src)
+
 	SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
-	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	attached_clamp.update_icon()
 	to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [attached_clamp.loaded] with [attached_clamp]."))
 	if(ship_base)
 		ship_base.installed_equipment = null
@@ -276,6 +258,58 @@
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
+
+///Attempts to load ammo into src
+/obj/structure/dropship_equipment/proc/try_load_ammo(mob/living/user, obj/item/powerloader_clamp/attached_clamp, obj/structure/ship_ammo/clamp_ammo)
+	if(!istype(clamp_ammo))
+		return
+	if(!(dropship_equipment_flags & USES_AMMO))
+		balloon_alert(user, "No ammo needed")
+		return
+	if(ammo_equipped)
+		balloon_alert(user, "Already loaded")
+		return
+	if(clamp_ammo.ammo_type != ammo_type_used)
+		balloon_alert(user, "Wrong ammo")
+		return
+
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		return
+	if(QDELETED(clamp_ammo) || ammo_equipped || attached_clamp.loaded != clamp_ammo)
+		return
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+
+	attached_clamp.do_unload(src)
+	to_chat(user, span_notice("You load [clamp_ammo] into [src]."))
+	ammo_equipped = clamp_ammo
+	update_equipment()
+	update_appearance(UPDATE_ICON)
+
+///Attempts to remove ammo from src
+/obj/structure/dropship_equipment/proc/try_unload_ammo(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		return
+	if(attached_clamp.loaded)
+		return
+	if(!ammo_equipped)
+		return
+	if(!LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+
+	if(ammo_equipped.ammo_count)
+		attached_clamp.do_load(ammo_equipped)
+		to_chat(user, span_notice("You've removed [ammo_equipped] from [src] and loaded it into [attached_clamp]."))
+	else
+		ammo_equipped.loc = null
+		to_chat(user, span_notice("You've discarded the empty [ammo_equipped.name] in [src]."))
+		qdel(ammo_equipped)
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+
+	ammo_equipped = null
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
@@ -326,10 +360,10 @@
 
 /obj/structure/dropship_equipment/shuttle/nade_launcher/equipment_interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, deploy_cooldown)) //prevents spamming deployment
-		user.balloon_alert(user, "Busy")
+		user.balloon_alert(user, "busy!")
 		return
 	if(length(loaded_grenades) <= 0) //check for inserted flares
-		user.balloon_alert(user, "No grenades left")
+		user.balloon_alert(user, "no grenades left!")
 		return
 	var/turf/target = get_ranged_target_turf(src, dir, 10)
 	var/obj/item/explosive/grenade/nade_to_launch = loaded_grenades[1]
@@ -394,7 +428,7 @@
 	/// Whether the system is currently enabled to activate on landing or not
 	var/enabled = FALSE
 	/// What type of smoke to use
-	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type
+	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type = /obj/item/explosive/grenade/smokebomb/drain/pellet
 	/// Cooldown for emitting smoke
 	var/cooldown_length = 10 MINUTES
 	COOLDOWN_DECLARE(use_cooldown)
@@ -404,12 +438,12 @@
 	if(!enabled)
 		enabled = TRUE
 		update_appearance()
-		user.balloon_alert(user, "Enabled")
+		user.balloon_alert(user, "enabled")
 		RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
 		return
 	enabled = FALSE
 	update_appearance()
-	user.balloon_alert(user, "Disabled")
+	user.balloon_alert(user, "disabled")
 	UnregisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE)
 
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/update_equipment()
@@ -417,9 +451,9 @@
 	if(ship_base)
 		setDir(ship_base.dir)
 		if(enabled)
-			balloon_alert_to_viewers("Enabled")
+			balloon_alert_to_viewers("enabled")
 		else
-			balloon_alert_to_viewers("Disabled")
+			balloon_alert_to_viewers("disabled")
 	else
 		setDir(initial(dir))
 	update_appearance()
@@ -448,18 +482,18 @@
 		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		console.say("Emitter system recharging. Unable to deploy smoke.")
-		playsound(console, 'sound/machines/buzz-sigh.ogg', 25)
+		playsound(console, 'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return
 
-	pellet_type = new(landing_spot)
-	pellet_type.activate()
+	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet = new pellet_type(landing_spot)
+	pellet.activate()
 
 	COOLDOWN_START(src, use_cooldown, cooldown_length)
 	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(on_cooldown_end)), cooldown_length + 1 SECONDS)
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	console.say("Emitter system deployed successfully.")
-	landing_spot.balloon_alert_to_viewers("A small pellet falls out of the sky!")
+	landing_spot.balloon_alert_to_viewers("small pellet falls out of the sky!")
 
 /// Special effects for when system cooldown finishes
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/proc/on_cooldown_end()
@@ -656,7 +690,7 @@
 	undeployed_icon_state = "hl_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder
-	name = "mortar deployment system"
+	name = "double barrel mortar deployment system"
 	desc = "A box that deploys a TA-55DB mortar. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "mortar_system"
 	point_cost = 300
@@ -797,7 +831,7 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir)
+/obj/structure/dropship_equipment/cas/weapon/proc/open_fire(obj/selected_target, attackdir, mob/firer)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, TRUE)
@@ -825,7 +859,7 @@
 	for(var/turf/impact in predicted_dangerous_turfs)
 		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
 
-	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir), ammo_travelling_time)
+	addtimer(CALLBACK(SA, TYPE_PROC_REF(/obj/structure/ship_ammo, detonate_on), target_turf, attackdir, firer), ammo_travelling_time)
 	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/cas/weapon/heavygun

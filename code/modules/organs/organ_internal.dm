@@ -27,7 +27,7 @@
 		return 0
 
 /datum/internal_organ/Destroy()
-	owner = null
+	clean_owner()
 	organ_holder = null
 	return ..()
 
@@ -49,6 +49,10 @@
 ///Signal handler to prevent hard del
 /datum/internal_organ/proc/clean_owner()
 	SIGNAL_HANDLER
+	if(!owner)
+		return
+	var/datum/limb/limb = owner.get_limb(parent_limb)
+	LAZYREMOVE(limb.internal_organs, src)
 	owner = null
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
@@ -194,7 +198,7 @@
 			O?.take_damage(0.2, TRUE)
 
 	// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
-	if(!owner.drunkenness && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
+	if(!owner.is_drunk() && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
 		heal_organ_damage(0.04)
 
 	// Do some reagent filtering/processing.
@@ -276,7 +280,7 @@
 
 	var/bypass = FALSE
 
-	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
+	if(owner.bodytemperature <= UPPER_CRYO_TEMP) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
 		bypass = TRUE
 
 	current_medicine_count += new_medicines //We want to include medicines that were individually both added and removed this tick

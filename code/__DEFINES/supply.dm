@@ -3,3 +3,6 @@
 #define B17_PRICE 800
 #define MINIGUN_PRICE 800
 #define SADAR_PRICE 800
+#define ZX_PRICE 1000
+#define AMR_PRICE 775
+#define TX8_PRICE 400

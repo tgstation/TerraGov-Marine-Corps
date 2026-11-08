@@ -31,10 +31,10 @@
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	evolve_min_xenos = 8
 	maximum_active_caste = 1
-	death_evolution_delay = 5 MINUTES
+	death_evolution_delay = 10 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_MUTATIONS_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_RULER
 	caste_traits = list(TRAIT_CAN_TEAR_HOLE, TRAIT_CAN_DISABLE_MINER)
@@ -48,9 +48,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-
-	// *** Queen Abilities *** //
-	queen_leader_limit = 4 //Amount of leaders allowed
 
 	minimap_icon = "xenoqueen"
 
@@ -84,6 +81,12 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
+	mutations = list(
+		/datum/mutation_upgrade/shell/healthy_bulwark,
+		/datum/mutation_upgrade/shell/bulwark_zone,
+		/datum/mutation_upgrade/spur/alternative_sting,
+		/datum/mutation_upgrade/veil/rallying_cry
+	)
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_NORMAL

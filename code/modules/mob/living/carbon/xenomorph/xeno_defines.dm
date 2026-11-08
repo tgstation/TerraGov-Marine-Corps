@@ -17,7 +17,8 @@
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
-
+	///Animation played on death
+	var/death_flick = ""
 	var/gib_anim = "gibbed-a-corpse"
 	var/gib_flick = "gibbed-a"
 
@@ -109,8 +110,6 @@
 	var/list/spit_types
 
 	// *** Acid spray *** //
-	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
-	var/acid_spray_range = 0
 	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
 	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
@@ -136,8 +135,6 @@
 	var/max_ammo = 0
 	///Multiplier to the effectiveness of the boiler glob. 1 by default.
 	var/bomb_strength = 0
-	///Delay between firing the bombard ability for boilers
-	var/bomb_delay = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -162,8 +159,6 @@
 	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
@@ -176,10 +171,6 @@
 	var/carnage_plasma_gain = 0
 	///Amount of plasma drained each tick while feast buff is actuve
 	var/feast_plasma_drain = 0
-
-	// *** Queen Abilities *** //
-	///Amount of leaders allowed
-	var/queen_leader_limit = 0
 
 	// *** Wraith Abilities *** //
 
@@ -220,6 +211,8 @@
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		ADD_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
@@ -228,6 +221,8 @@
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
+		REMOVE_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -360,7 +355,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	//which special resin structure to build when we secrete special resin
 	var/selected_special_resin = /turf/closed/wall/resin/regenerating/special/bulletproof
-	///which reagent to slash with using reagent slash
+	/// Which reagent to slash with using reagent slash. Use `set_selected_reagent` when changing this.
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
 	///which plant to place when we use sow
 	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
@@ -401,18 +396,22 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Boiler vars *** //
+	/// If their stored globs (corrosive + neurotoxin) surpasses this amount, they begin to glow at an increasing intensity.
+	var/glob_luminosity_threshold = BOILER_LUMINOSITY_THRESHOLD
+	/// Should the glow be replaced with a movement modifier? If so, how much for each glob above the threshold?
+	var/glob_luminosity_slowing = 0
+	/// Stored corrosive globs created from Boiler's Create Bomb.
+	var/corrosive_ammo = 0
+	/// Stored neurotoxin globs created from Boiler's Create Bomb.
+	var/neurotoxin_ammo = 0
+
 	// *** Globadier vars *** //
 	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
 
 	// *** Behemoth vars *** //
-	/// Whether we are currently charging or not.
-	var/behemoth_charging = FALSE
-	/// The amount of Wrath currently stored.
-	var/wrath_stored = 0
-
-	// *** Boiler vars *** //
-	///When true the boiler gains speed and resets the duration on attack
-	var/steam_rush = FALSE
+	/// References our currently held Earth Pillar.
+	var/obj/structure/xeno/earth_pillar/held_pillar
 
 	// *** Conqueror vars *** //
 	/// If Endurance is currently active.
@@ -440,10 +439,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/list/tunnels = list()
 	///Number of huggers the xeno is currently carrying
 	var/huggers = 0
-	///Boiler acid ammo
-	var/corrosive_ammo = 0
-	///Boiler Neuro ammo
-	var/neuro_ammo = 0
 
 	/// All active mutations they own.
 	var/list/datum/mutation_upgrade/owned_mutations = list()
@@ -466,3 +461,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/mob/living/carbon/xenomorph/xeno = attacker
 	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+
+/// Sets the xenomorph's selected reagent & sends a signal indicating that it happened.
+/mob/living/carbon/xenomorph/proc/set_selected_reagent(datum/reagent/new_reagent_typepath)
+	if(selected_reagent == new_reagent_typepath)
+		return
+	SEND_SIGNAL(src, COMSIG_XENO_SELECTED_REAGENT_CHANGED, selected_reagent, new_reagent_typepath)
+	selected_reagent = new_reagent_typepath

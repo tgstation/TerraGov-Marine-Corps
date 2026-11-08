@@ -5,6 +5,7 @@
 #define FOOTSTEP_SAND "sand"
 #define FOOTSTEP_DIRT "dirt"
 #define FOOTSTEP_GRASS "grass"
+#define FOOTSTEP_VEGETATION "vegetation"
 #define FOOTSTEP_WET "wet"
 #define FOOTSTEP_WATER "water"
 #define FOOTSTEP_SWIM "swim"
@@ -15,6 +16,7 @@
 #define FOOTSTEP_ICE "ice"
 #define FOOTSTEP_CONCRETE "concrete"
 #define FOOTSTEP_GRAVEL "gravel"
+#define FOOTSTEP_ROOF "roof"
 //barefoot and claw sounds
 #define FOOTSTEP_HARD "hard"
 //misc footstep sounds
@@ -68,6 +70,10 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 75, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -132,6 +138,11 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/gravel_16.ogg',
 		'sound/effects/footstep/gravel_17.ogg',
 		'sound/effects/footstep/gravel_18.ogg'), 75, 1),
+	FOOTSTEP_ROOF = list(list(
+		'sound/effects/footstep/roof1.ogg',
+		'sound/effects/footstep/roof2.ogg',
+		'sound/effects/footstep/roof3.ogg',
+		'sound/effects/footstep/roof4.ogg'), 40, 1),
 ))
 
 //bare footsteps lists
@@ -176,6 +187,10 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 75, 0),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 75, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -240,6 +255,11 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/gravel_16.ogg',
 		'sound/effects/footstep/gravel_17.ogg',
 		'sound/effects/footstep/gravel_18.ogg'), 60, 1),
+	FOOTSTEP_ROOF = list(list(
+		'sound/effects/footstep/roof1.ogg',
+		'sound/effects/footstep/roof2.ogg',
+		'sound/effects/footstep/roof3.ogg',
+		'sound/effects/footstep/roof4.ogg'), 25, 1),
 ))
 
 //claw footsteps lists
@@ -285,6 +305,10 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'), 65, 1),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 65, 0),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -349,6 +373,11 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/gravel_16.ogg',
 		'sound/effects/footstep/gravel_17.ogg',
 		'sound/effects/footstep/gravel_18.ogg'), 55, 1),
+	FOOTSTEP_ROOF = list(list(
+		'sound/effects/footstep/roof1.ogg',
+		'sound/effects/footstep/roof2.ogg',
+		'sound/effects/footstep/roof3.ogg',
+		'sound/effects/footstep/roof4.ogg'), 20, 1),
 ))
 
 //heavy footsteps list
@@ -392,6 +421,10 @@ GLOBAL_LIST_INIT(xenoheavystep, list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
+	FOOTSTEP_VEGETATION = list(list(
+		'sound/effects/natural/vegetation_walk_0.ogg',
+		'sound/effects/natural/vegetation_walk_1.ogg',
+		'sound/effects/natural/vegetation_walk_2.ogg'), 100, 2),
 	FOOTSTEP_WET = list(list(
 		'sound/effects/footstep/waterstep1.ogg',
 		'sound/effects/footstep/waterstep2.ogg',
@@ -432,6 +465,10 @@ GLOBAL_LIST_INIT(xenoheavystep, list(
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),
 	FOOTSTEP_GRAVEL = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg',
+		'sound/effects/footstep/heavy3.ogg'), 100, 2),
+	FOOTSTEP_ROOF = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg',
 		'sound/effects/footstep/heavy3.ogg'), 100, 2),

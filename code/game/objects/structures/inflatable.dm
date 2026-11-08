@@ -10,11 +10,11 @@
 
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
-	balloon_alert(user, "Inflating...")
+	balloon_alert(user, "inflating...")
 	if(!do_after(user, 3 SECONDS, NONE, src))
-		balloon_alert(user, "Interrupted!")
+		balloon_alert(user, "interrupted!")
 		return
-	playsound(loc, 'sound/items/zip.ogg', 25, 1)
+	playsound(loc, 'sound/items/zip.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	to_chat(user, span_notice("You inflate [src]."))
 	new inflatable_type(get_turf(user))
 	qdel(src)
@@ -93,7 +93,7 @@
 	if(deflated)
 		return
 	deflated = TRUE
-	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
+	playsound(loc, 'sound/machines/hiss.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	visible_message("[src] [violent ? "rapidly" : "slowly"] deflates!")
 	flick("wall_[violent ? "popping" : "deflating"]", src)
 	addtimer(CALLBACK(src, PROC_REF(post_deflate), violent), violent ? 1 SECONDS : 5 SECONDS)
@@ -116,10 +116,10 @@
 		return
 
 	if(!deflated)
-		balloon_alert(usr, "Deflating...")
+		balloon_alert(usr, "deflating...")
 		deflate(FALSE)
 	else
-		balloon_alert(usr, "Already deflated.")
+		balloon_alert(usr, "already deflated!")
 
 
 /obj/structure/inflatable/wall

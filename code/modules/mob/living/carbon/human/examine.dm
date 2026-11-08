@@ -175,11 +175,12 @@
 
 	//jitters
 	if(stat != DEAD)
-		if(jitteriness >= 300)
+		var/jitter_level = amount_jittered()
+		if(jitter_level >= 300)
 			msg += "[span_boldwarning("<B>[t_He] [t_is] convulsing violently!</B>")]\n"
-		else if(jitteriness >= 200)
+		else if(jitter_level >= 200)
 			msg += "[span_warning("[t_He] [t_is] extremely jittery.")]\n"
-		else if(jitteriness >= 100)
+		else if(jitter_level >= 100)
 			msg += "[span_warning("[t_He] [t_is] twitching ever so slightly.")]\n"
 
 	//splints
@@ -536,16 +537,11 @@
 		msg += "[span_deptradio("Triage holo card:")] <a href='byond://?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 
 		// scan reports
-		var/datum/data/record/N = null
-		for(var/datum/data/record/R in GLOB.datacore.medical)
-			if (R.fields["name"] == real_name)
-				N = R
-				break
-		if(!isnull(N))
-			if(!(N.fields["last_scan_time"]))
-				msg += "[span_deptradio("No body scan report on record")]\n"
-			else
-				msg += "[span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
+		var/datum/data/record/medical_record = find_medical_record(src)
+		if(!isnull(medical_record?.fields["historic_scan"]))
+			msg += "<a href='byond://?src=[text_ref(src)];scanreport=1'>Body scan from [medical_record.fields["historic_scan_time"]]...</a>\n"
+		else
+			msg += "[span_deptradio("No body scan report on record")]\n"
 
 	if(hasHUD(user,"squadleader"))
 		msg += separator_hr("SL Utilities")

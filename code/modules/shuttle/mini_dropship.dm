@@ -11,6 +11,7 @@
 	width = 7
 	height = 9
 	rechargeTime = 0
+	alarm_loop_type = /datum/looping_sound/looping_launch_announcement_alarm/tadpole
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
@@ -149,6 +150,10 @@
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
 
+// Toggle the podlock shutters from the shuttle computer
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_shutters()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_SHUTTER)
+
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -227,7 +232,7 @@
 	if(!(machine_stat & BROKEN))
 		to_chat(user,span_notice("The circuits don't need replacing"))
 		return
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
 		span_notice("You fumble around figuring out how to replace the electronics."))
@@ -241,7 +246,7 @@
 			return
 	user.visible_message(span_notice("[user] replaces the electronics."),
 	span_notice("You replace the electronics"))
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	repair()
 	qdel(I)
 
@@ -281,6 +286,7 @@
 	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
 	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+	.["takeoff_alarm"] = shuttle?.playing_takeoff_alarm
 	.["equipment_data"] = list()
 	var/element_nbr = 1
 	for(var/X in shuttle?.equipments)
@@ -294,10 +300,18 @@
 	switch(action)
 		if("take_off")
 			take_off()
+		if("toggle_shutters")
+			toggle_shutters()
 		if("return_to_ship")
 			return_to_ship()
 		if("toggle_nvg")
 			toggle_nvg()
+		if("takeoff_alarm")
+			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+			if(!shuttle.playing_takeoff_alarm)
+				. = shuttle.start_takeoff_alarm(usr, FALSE) // will fast-track a UI update if successful
+			else
+				. = shuttle.stop_takeoff_alarm(usr, FALSE)
 		if("equip_interact")
 			var/base_tag = text2num(params["equip_interact"])
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port

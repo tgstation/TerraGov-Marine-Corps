@@ -60,8 +60,6 @@ GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
 		var/list/reaction_ids = list()
 
 		if(length(D.required_reagents))
-			for(var/result in D.results)
-
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction
 

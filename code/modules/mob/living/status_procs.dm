@@ -586,12 +586,6 @@
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
 
-/mob/living/proc/jitter(amount)
-	jitteriness = clamp(jitteriness + amount,0, 1000)
-
-/mob/living/proc/dizzy(amount)
-	return // For the time being, only carbons get dizzy.
-
 /mob/living/proc/blind_eyes(amount)
 	if(amount>0)
 		var/old_eye_blind = eye_blind
@@ -671,22 +665,59 @@
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
-///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
-/mob/living/proc/adjust_drugginess(amount)
-	druggy = max(druggy + amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-	else
-		clear_fullscreen("high")
+////////////////////////////// DRUGGY ////////////////////////////////////
 
-///Sets mob's drugginess to provided amount, minimum 0. Adds or removes druggy overlay as appropriate.
+///Returns if drugged
+/mob/living/proc/is_drugged()
+	return has_status_effect(STATUS_EFFECT_DRUGGY)
+
+///Returns remaining druggy duration
+/mob/living/proc/amount_drugged()
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	return current_drugginess ? current_drugginess.duration - world.time : 0
+
+///Applies druggy from current world time unless existing duration is higher
+/mob/living/proc/druggy(amount)
+	if(status_flags & GODMODE)
+		return
+
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(current_drugginess)
+		current_drugginess.duration = max(world.time + amount, current_drugginess.duration)
+	else if(amount > 0)
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
+
+///Used to set drugginess to a set amount, commonly to remove it
 /mob/living/proc/set_drugginess(amount)
-	druggy = max(amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-	else
-		clear_fullscreen("high")
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(amount <= 0)
+		if(current_drugginess)
+			qdel(current_drugginess)
+		return
+	if(status_flags & GODMODE)
+		return
 
+	if(current_drugginess)
+		current_drugginess.duration = world.time + amount
+	else
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
+
+///Applies drugginess or adds to existing duration
+/mob/living/proc/adjust_drugginess(amount)
+	if(status_flags & GODMODE)
+		return
+
+	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
+	if(current_drugginess)
+		current_drugginess.duration += amount
+	else if(amount > 0)
+		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
+
+	return current_drugginess
 
 /mob/living/proc/adjust_bodytemperature(amount, min_temp = 0, max_temp = INFINITY)
 	if(bodytemperature < min_temp || bodytemperature > max_temp)
@@ -779,51 +810,6 @@
 		current_stagger = apply_status_effect(STATUS_EFFECT_STAGGER, amount)
 
 	return current_stagger
-
-////////////////////////////// SLOW ////////////////////////////////////
-
-///Returns number of slowdown stacks if any
-/mob/living/proc/IsSlowed() //If we're slowed
-	return slowdown
-
-///Where the magic happens. Actually applies slow stacks.
-/mob/living/proc/set_slowdown(amount)
-	if(slowdown == amount)
-		return
-	if(amount > 0 && HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
-		return
-	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLOWDOWN, amount)
-	slowdown = amount
-	if(slowdown)
-		add_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN, TRUE, 0, NONE, TRUE, slowdown)
-		return
-	remove_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN)
-
-///This is where we normalize the set_slowdown input to be at least 0
-/mob/living/proc/adjust_slowdown(amount)
-	if(amount > 0)
-		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
-			return slowdown
-		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
-	else
-		set_slowdown(max(slowdown + amount, 0))
-	return slowdown
-
-/mob/living/proc/add_slowdown(amount, capped = 0)
-	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
-		return
-	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
-
-///Standard slowdown regen called by life.dm
-/mob/living/proc/handle_slowdown()
-	if(slowdown)
-		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
-	return slowdown
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE) || is_charging >= CHARGE_ON)
-		return
-	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
 ////////////////////////////// MUTE ////////////////////////////////////
 

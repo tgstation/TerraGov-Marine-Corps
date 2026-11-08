@@ -11,7 +11,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user as mob)
 	if(canopened == FALSE)
-		playsound(src,'sound/effects/canopen.ogg', 15, 1)
+		playsound(src,'sound/effects/canopen.ogg', 15, 1, SHORT_SOUND_RANGE)
 		to_chat(user, span_notice("You open the drink with [pick("an audible", "a satisfying")] pop!"))
 		canopened = TRUE
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER_NOUNIT)

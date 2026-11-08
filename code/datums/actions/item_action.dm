@@ -34,7 +34,7 @@
 	var/obj/item/I = target
 	return I.ui_action_click(owner, src, holder_item)
 
-/datum/action/item_action/can_use_action()
+/datum/action/item_action/can_use_action(silent, override_flags, selecting)
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
 	return TRUE
@@ -69,6 +69,11 @@
 /datum/action/item_action/toggle/remove_action(mob/M)
 	deselect()
 	return ..()
+
+/datum/action/item_action/toggle/stun_proof/can_use_action(silent, override_flags, selecting)
+	if(QDELETED(owner) || owner.stat || owner.restrained())
+		return FALSE
+	return TRUE
 
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)

@@ -2,6 +2,7 @@
     "map_name": "Gelida IV",
     "map_path": "map_files/gelida_iv",
     "map_file": "gelida_iv.dmm",
+	"parallax_icon": "ice",
     "environment_traits": {
         "COLD": true
     },

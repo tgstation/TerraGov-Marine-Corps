@@ -2,6 +2,7 @@
     "map_name": "Big Red",
     "map_path": "map_files/BigRed_v2",
     "map_file": "BigRed_v2.dmm",
+	"parallax_icon": "redrock",
 	"disk_sets": {
 		"basic": 1
 	},

@@ -8,18 +8,22 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Devour your victim to be able to carry it faster."
+	desc = "Devour your victim to be able to carry it around."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DEVOUR_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
+	if(xeno_owner.eaten_mob)
+		return TRUE
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
@@ -45,25 +49,18 @@
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, xeno_owner))
-		if(!silent)
-			to_chat(xeno_owner, span_warning("We are too close to the fog."))
-		return FALSE
-
-/datum/action/ability/activable/xeno/devour/action_activate()
-	. = ..()
-	if(!xeno_owner.eaten_mob)
-		return
-
-	var/channel = SSsounds.random_available_channel()
-	playsound(xeno_owner, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(xeno_owner, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
-		to_chat(owner, span_warning("We moved too soon!"))
-		xeno_owner.stop_sound_channel(channel)
-		return
-	xeno_owner.eject_victim()
 
 /datum/action/ability/activable/xeno/devour/use_ability(atom/target)
+	if(xeno_owner.eaten_mob)
+		var/channel = SSsounds.random_available_channel()
+		playsound(xeno_owner, 'sound/vore/escape.ogg', 40, channel = channel)
+		if(!do_after(xeno_owner, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
+			to_chat(owner, span_warning("We moved too soon!"))
+			xeno_owner.stop_sound_channel(channel)
+			return
+		xeno_owner.eject_victim()
+		return
+
 	var/mob/living/carbon/human/victim = target
 	xeno_owner.face_atom(victim)
 	xeno_owner.visible_message(span_danger("[xeno_owner] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
@@ -92,10 +89,14 @@
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DRAIN_SELECT,
 	)
+	/// The multiplier to determine how much max health to heal when using Drain on a dead human.
+	var/dead_multiplier = 2.2
 
 /datum/action/ability/activable/xeno/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -123,25 +124,13 @@
 			to_chat(xeno_owner, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 
-#define DO_DRAIN_ACTION(xeno_owner, target_human) \
-	xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);\
-	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"));\
-	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE);\
-	target_human.emote("scream");\
-	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
-\
-	var/drain_healing = GORGER_DRAIN_HEAL;\
-	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
-	adjustOverheal(xeno_owner, drain_healing);\
-	SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
-	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
-
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
-		while((xeno_owner.health < xeno_owner.maxHealth || xeno_owner.overheal < xeno_owner.xeno_caste.overheal_max) &&do_after(xeno_owner, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
-			overheal_gain = xeno_owner.heal_wounds(2.2)
-			adjustOverheal(xeno_owner, overheal_gain)
+		while((xeno_owner.health < xeno_owner.maxHealth || xeno_owner.overheal < xeno_owner.xeno_caste.overheal_max) && do_after(xeno_owner, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
+			var/list/healing_results = xeno_owner.heal_wounds(dead_multiplier)
+			overheal_gain = healing_results[1]
+			xeno_owner.adjustOverheal(overheal_gain)
 			xeno_owner.adjust_sunder(-2.5)
 		to_chat(xeno_owner, span_notice("We feel fully restored."))
 		return
@@ -153,13 +142,20 @@
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
 		if(!do_after(xeno_owner, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
 			break
-		DO_DRAIN_ACTION(xeno_owner, target_human)
+		xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);
+		xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"))
+		playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE, MEDIUM_SOUND_RANGE)
+		target_human.emote("scream")
+		target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, attacker = owner)
+		var/drain_healing = GORGER_DRAIN_HEAL
+		HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE)
+		xeno_owner.adjustOverheal(drain_healing)
+		SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner)
+		xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, src)
 	target_human.blur_eyes(1)
 	add_cooldown()
-
-#undef DO_DRAIN_ACTION
 
 /datum/action/ability/activable/xeno/drain/ai_should_use(atom/target)
 	return can_use_ability(target, TRUE)
@@ -179,12 +175,15 @@
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_duration = 2 SECONDS
 	ability_cost = 20
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_XENO_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRANSFUSION_SELECT,
 	)
-
-	///Used to keep track of the target's previous health for extra_health_check()
+	/// The percentage of the target's maximum health to heal by.
+	var/heal_percentage = GORGER_TRANSFUSION_HEAL
+	/// Used to keep track of the target's previous health for extra_health_check().
 	var/target_health
 
 /datum/action/ability/activable/xeno/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
@@ -209,14 +208,6 @@
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	target_health = target_xeno.health
-	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
-	transfuse_beam.visuals.alpha = 127
-	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
-		QDEL_NULL(transfuse_beam)
-		return FALSE
-	QDEL_NULL(transfuse_beam)
-	return TRUE
 
 ///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
 /datum/action/ability/activable/xeno/transfusion/proc/extra_health_check(mob/living/target)
@@ -227,12 +218,19 @@
 
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/target_xeno = target
-	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
+	target_health = target_xeno.health
+	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state = "lichbeam", beam_type = /obj/effect/ebeam/essence_link, override_origin_pixel_x = 0, override_target_pixel_x = 0, alpha = 127)
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+		QDEL_NULL(transfuse_beam)
+		return
+	QDEL_NULL(transfuse_beam)
+
+	var/heal_amount = target_xeno.maxHealth * heal_percentage
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.heals++
-	adjustOverheal(target_xeno, heal_amount)
+	GLOB.round_statistics.transfusion_overheal += target_xeno.adjustOverheal(heal_amount)
 	new /obj/effect/temp_visual/healing(get_turf(target_xeno))
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(xeno_owner, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
@@ -247,7 +245,7 @@
 	if(target_xeno.get_xeno_hivenumber() != owner.get_xeno_hivenumber())
 		return FALSE
 	// no overhealing
-	if(target_xeno.health > target_xeno.maxHealth * (1 - GORGER_TRANSFUSION_HEAL))
+	if(target_xeno.health > target_xeno.maxHealth * (1 - heal_percentage))
 		return FALSE
 	return can_use_ability(target, TRUE)
 
@@ -276,7 +274,7 @@
 	add_cooldown()
 	succeed_activate()
 
-	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0)
+	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	xeno_owner.visible_message(span_xenodanger("[xeno_owner] smashes her fists into the ground!"), \
 	span_xenodanger("We smash our fists into the ground!"))
 
@@ -296,7 +294,7 @@
 			var/mob/living/carbon/xenomorph/target_xeno = M
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
-			adjustOverheal(target_xeno, heal_amount)
+			target_xeno.adjustOverheal(heal_amount)
 			new /obj/effect/temp_visual/healing(get_turf(target_xeno))
 			if(owner.client)
 				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
@@ -305,13 +303,13 @@
 			M.take_overall_damage(20, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			to_chat(M, span_userdanger("[xeno_owner] slams her fists into you, crushing you to the ground!"))
 			M.adjust_stagger(2 SECONDS)
-			M.adjust_slowdown(3)
+			M.slowdown(3)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
 			to_chat(M, span_userdanger("Blood shatters the ground around you!"))
 			M.adjust_stagger(2 SECONDS)
-			M.adjust_slowdown(3)
+			M.slowdown(3)
 
 ///Stops particle spawning, then gives existing particles time to fade out before deleting them.
 /datum/action/ability/activable/xeno/oppose/proc/stop_particles(obj/effect/abstract/particle_holder/aoe_particles)
@@ -331,26 +329,43 @@
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_XENO_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_LINK_SELECT,
 	)
-	///Timer for activating the link
+	/// The psychic link status effect, if any.
+	var/datum/status_effect/xeno_psychic_link/psychic_link_status_effect
+	/// Timer for activating the link.
 	var/apply_psychic_link_timer
-	///Overlay applied on the target xeno while linking
+	/// Overlay applied on the target xeno while linking.
 	var/datum/progressicon/target_overlay
+	/// Will they be forced to rest upon using this? Use `set_required_resting` to change this variable.
+	var/required_rest = TRUE
+	/// The attached armor that been given, if any.
+	var/datum/armor/attached_armor
+	/// Once the link starts, attaches to the owner this amount of soft armor.
+	var/armor_amount
+	/// Once the link starts, sets the owner's move_resist to this.
+	var/movement_resistance = MOVE_FORCE_VERY_STRONG // This is the default move_resist for xenomorphs.
+	/// Once the link starts and until it ends, multiply Drain's healing multiplier on corpses by this amount.
+	var/drain_healing_multiplier = 1
 
 /datum/action/ability/activable/xeno/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
+	if(xeno_owner.do_actions)
+		return FALSE
 	if(apply_psychic_link_timer)
 		if(!silent)
 			owner.balloon_alert(owner, "cancelled")
 		link_cleanup()
 		return FALSE
-	if(owner.do_actions)
-		return FALSE
+	if(psychic_link_status_effect)
+		return TRUE // Only just removing the link.
 	if(!isxeno(target))
 		if(!silent)
 			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
@@ -374,43 +389,75 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/psychic_link/use_ability(atom/target)
+	if(psychic_link_status_effect)
+		cancel_psychic_link()
+		return
 	apply_psychic_link_timer = addtimer(CALLBACK(src, PROC_REF(apply_psychic_link), target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
 	target_overlay = new (target, BUSY_ICON_MEDICAL)
 	owner.balloon_alert(owner, "linking...")
 
-///Activates the link
+/// Activates the link.
 /datum/action/ability/activable/xeno/psychic_link/proc/apply_psychic_link(atom/target)
 	link_cleanup()
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		return fail_activate()
 
-	var/psychic_link = xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
-	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
-	target.balloon_alert(xeno_owner, "link successul")
+	psychic_link_status_effect = xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
+	RegisterSignal(psychic_link_status_effect, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
+	if(!attached_armor)
+		attached_armor = getArmor(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
+		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
+	xeno_owner.set_move_resist(movement_resistance)
+	target.balloon_alert(xeno_owner, "link successful")
 	xeno_owner.balloon_alert(target, "linked to [xeno_owner]")
-	if(!xeno_owner.resting)
-		xeno_owner.set_resting(TRUE, TRUE)
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	if(required_rest)
+		if(!xeno_owner.resting)
+			xeno_owner.set_resting(TRUE, TRUE)
+		RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	var/datum/action/ability/activable/xeno/drain/drain_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/drain]
+	if(drain_ability)
+		drain_ability.dead_multiplier = initial(drain_ability.dead_multiplier) * drain_healing_multiplier
 	succeed_activate()
 
-///Removes the status effect on unrest
+/// Removes the status effect.
 /datum/action/ability/activable/xeno/psychic_link/proc/cancel_psychic_link(datum/source)
 	SIGNAL_HANDLER
 	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
-///Cancels the status effect
+/// Sets the `required_to_rest` variable and (un)registers signals accordingly.
+/datum/action/ability/activable/xeno/psychic_link/proc/set_required_rest(new_required_rest)
+	if(psychic_link_status_effect)
+		if(required_rest && !new_required_rest)
+			UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST)
+		if(!required_rest && new_required_rest)
+			RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	required_rest = new_required_rest
+	desc =  "Link to a xenomorph and take some damage in their place.";
+	if(required_rest)
+		desc += " Unrest to cancel."
+	update_button_icon()
+
+/// Happens when the status effect is deleted. Unregisters signals and begins the cooldown.
 /datum/action/ability/activable/xeno/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
+	psychic_link_status_effect = null
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
-	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
+	if(attached_armor)
+		xeno_owner.soft_armor = xeno_owner.soft_armor.detachArmor(attached_armor)
+		attached_armor = null
+	xeno_owner.set_move_resist(initial(xeno_owner.move_resist))
+	if(required_rest)
+		UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST)
+	var/datum/action/ability/activable/xeno/drain/drain_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/drain]
+	if(drain_ability)
+		drain_ability.dead_multiplier = initial(drain_ability.dead_multiplier)
 	add_cooldown()
 
-///Clears up things used for the linking
+/// Clears up things used for the linking.
 /datum/action/ability/activable/xeno/psychic_link/proc/link_cleanup()
 	QDEL_NULL(target_overlay)
 	deltimer(apply_psychic_link_timer)
 	apply_psychic_link_timer = null
-
 
 /datum/action/ability/activable/xeno/psychic_link/ai_should_use(atom/target)
 	return FALSE

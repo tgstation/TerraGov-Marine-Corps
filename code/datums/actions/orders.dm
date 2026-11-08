@@ -21,7 +21,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/skill/issue_order/can_use_action()
+/datum/action/skill/issue_order/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return

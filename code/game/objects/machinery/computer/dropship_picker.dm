@@ -23,6 +23,8 @@
 	return ..()
 
 /obj/machinery/computer/dropship_picker/ui_interact(mob/user, datum/tgui/ui)
+	if(SSticker?.mode?.round_type_flags & MODE_ALAMO_ONLY)
+		return
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)

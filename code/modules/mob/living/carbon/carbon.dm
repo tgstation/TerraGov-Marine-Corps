@@ -30,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, SFX_SPARKS, 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE, MEDIUM_SOUND_RANGE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning("[src] was shocked by the [source]!"), \
@@ -69,7 +69,7 @@
 
 /mob/living/carbon/proc/do_vomit()
 	adjust_stagger(3 SECONDS)
-	add_slowdown(3)
+	slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
@@ -255,7 +255,7 @@
 
 	stop_pulling()
 	visible_message(span_warning("[src] slipped on \the [slip_source_name]!"), span_warning("You slipped on \the [slip_source_name]!"))
-	playsound(src, 'sound/misc/slip.ogg', 25, 1)
+	playsound(src, 'sound/misc/slip.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	Stun(stun_time)
 	Paralyze(paralyze_time)
 	. = TRUE
@@ -295,6 +295,8 @@
 	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
@@ -305,6 +307,8 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
+	if(!hud_used?.SL_locator)
+		return
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
 

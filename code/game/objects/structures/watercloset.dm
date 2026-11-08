@@ -26,7 +26,7 @@
 		return
 	if(swirlie)
 		user.visible_message(span_danger("[user] slams the toilet seat onto [swirlie.name]'s head!"), span_notice("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
-		swirlie.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE)
+		swirlie.apply_damage(8, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = user)
 		return
 
 	if(cistern && !open)
@@ -57,7 +57,7 @@
 
 	if(iscrowbar(I))
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
@@ -331,22 +331,22 @@
 		return
 
 	if(busy)
-		balloon_alert_to_viewers("Someone else is washing")
+		balloon_alert_to_viewers("someone else is washing!")
 		return
 
-	balloon_alert_to_viewers("Starts washing hands")
-	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
+	balloon_alert_to_viewers("washing hands...")
+	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	busy = TRUE
 	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		busy = FALSE
-		balloon_alert_to_viewers("Stops washing")
+		balloon_alert_to_viewers("stops washing")
 		return
 	busy = FALSE
 
 	user.wash()
 	user:update_inv_gloves()
-	balloon_alert_to_viewers("Washes their hands")
+	balloon_alert_to_viewers("washes their hands")
 
 
 /obj/structure/sink/attackby(obj/item/I, mob/user, params)

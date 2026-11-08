@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "MRAP is now only available in Sovl War"
+  - balance: "MRAP self inflicted ram damage when ramming resin walls is significantly reduced"
+  - balance: "MRAP tesla module now causes a tesla beam effect"

@@ -11,7 +11,7 @@
 	anchored = TRUE
 	move_resist = INFINITY
 	layer = ABOVE_WEEDS_LAYER
-	obj_flags = INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 	var/force_open_above = FALSE //! replaces the turf above this stair obj with /turf/open/openspace
 	///helps us decide if we're the ending stair
@@ -143,3 +143,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz, 0)
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+/obj/structure/stairs/multiz/seamless
+	icon_state = "stairs_seamless_inv"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz/seamless, 0)

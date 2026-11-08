@@ -107,6 +107,23 @@ GLOBAL_LIST_INIT(faction_to_acronym, list(
 	FACTION_PIRATE = "Pirates",
 ))
 
+///general comms by faction where applicable
+GLOBAL_LIST_INIT(faction_to_radio, list(
+	FACTION_TERRAGOV = FREQ_COMMON,
+	FACTION_SOM = FREQ_SOM,
+	FACTION_NANOTRASEN = FREQ_PMC,
+	FACTION_FREELANCERS = FREQ_COMMON,
+	FACTION_SPECFORCE = FREQ_COMMON,
+	FACTION_ERP = FREQ_ERP,
+	FACTION_CLF = FREQ_COLONIST,
+	FACTION_DEATHSQUAD = FREQ_DEATHSQUAD,
+	FACTION_IMP = FREQ_IMPERIAL,
+	FACTION_SECTOIDS = FREQ_SECTOID,
+	FACTION_ICC = FREQ_ICC,
+	FACTION_USL = FREQ_USL,
+	FACTION_VSD = FREQ_VSD,
+))
+
 ///List of correspond factions to data hud
 GLOBAL_LIST_INIT(faction_to_data_hud, list(
 	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
@@ -121,6 +138,7 @@ GLOBAL_LIST_INIT(faction_to_squad_hud, list(
 GLOBAL_LIST_INIT(faction_to_portrait, list(
 	FACTION_TERRAGOV = /atom/movable/screen/text/screen_text/picture/potrait,
 	FACTION_SOM = /atom/movable/screen/text/screen_text/picture/potrait/som_over,
+	FACTION_XENO = /atom/movable/screen/text/screen_text/picture/potrait/queen_mother,
 ))
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
@@ -134,4 +152,11 @@ GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
 		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som,
 		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 	),
+))
+
+///Faction to formatted text for use in capture objectives
+GLOBAL_LIST_INIT(faction_to_formatted_text, list(
+	FACTION_TERRAGOV = "tgmc",
+	FACTION_SOM = "som",
+	FACTION_XENO = "xeno"
 ))

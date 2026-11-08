@@ -6,7 +6,7 @@
 	uses = 1
 	cost = 15
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END
-	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_CAS
 	blacklist_message = "Fire support unavailable during this mission."
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,
@@ -40,6 +40,7 @@
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/tgmc_mortar
 	ui_icon = "mortar"
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_SL_AVAILABLE
+	blacklist_mission_flags = MISSION_DISALLOW_MORTAR
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
@@ -54,6 +55,7 @@
 	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_SL_AVAILABLE
+	blacklist_mission_flags = MISSION_DISALLOW_MORTAR
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,

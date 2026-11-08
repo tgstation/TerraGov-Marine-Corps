@@ -89,3 +89,12 @@
 	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/tactical()
 	smoke.set_up(1, loc, 8)
 	smoke.start()
+
+/obj/item/explosive/grenade/sticky/pmc
+	name = "\improper M50 adhesive charge grenade"
+	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. Produced for private security firms. It's fuse is set to 3 seconds."
+	icon_state = "grenade_sticky_pmc"
+	icon_state_mini = "grenade_round_blue"
+	worn_icon_state = "grenade_sticky_pmc"
+	det_time = 3 SECONDS
+	light_impact_range = 3

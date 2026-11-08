@@ -34,16 +34,16 @@
 	max_range = 30
 	sundering = 15
 
-/datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
+/datum/ammo/rocket/mech/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/rocket/mech/heavy
 	name = "large heavy explosive rocket"
 	damage = 30
 	penetration = 30
 
-/datum/ammo/rocket/mech/heavy/drop_nade(turf/T)
-	explosion(T, 0, 2, 4, 0, 0, explosion_cause=src)
+/datum/ammo/rocket/mech/heavy/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 2, 4, 0, 0, explosion_cause=src)
 
 /*
 //================================================
@@ -109,8 +109,7 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mech/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 5
-	accuracy_var_low = 10
-	accuracy_var_high = 10
+	accuracy_variation = 10
 	max_range = 10
 	sundering = 5
 	penetration = 15

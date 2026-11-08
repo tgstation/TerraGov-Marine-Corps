@@ -103,8 +103,8 @@
 	. = ..()
 	. += span_notice("It has [obj_integrity]/[max_integrity] integrity left.")
 
-/obj/machinery/deployable/floodlight/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, repair_amount, 4 SECONDS)
+/obj/machinery/deployable/floodlight/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, repair_amount, 4 SECONDS)
 
 /obj/machinery/deployable/floodlight/turn_light(user, toggle_on)
 	. = ..()
@@ -118,7 +118,7 @@
 		if(user)
 			to_chat(user, span_notice("You turn off the light."))
 		set_light(0)
-	playsound(src,'sound/machines/click.ogg', 15, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
 	update_icon()
 
 /obj/machinery/deployable/floodlight/attack_hand(mob/living/user)
@@ -134,7 +134,7 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodlightcombat"
 	max_integrity = 200
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	w_class = WEIGHT_CLASS_NORMAL
 	var/deployable_item = /obj/machinery/deployable/floodlight
 
@@ -231,7 +231,7 @@
 	if(machine_stat & NOPOWER)
 		to_chat(user, span_notice("Nothing happens."))
 		return FALSE
-	playsound(src,'sound/machines/click.ogg', 15, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
 	toggle_lights(turned_on ? FALSE : TRUE)
 	update_icon()
 	return TRUE

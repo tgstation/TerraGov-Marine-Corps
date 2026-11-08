@@ -1,5 +1,6 @@
 /obj/item/weapon/energy
 	atom_flags = NOBLOODY
+	item_flags = ITEM_ACTIVATABLE
 	icon = 'icons/obj/items/weapons/energy.dmi'
 
 /obj/item/weapon/energy/suicide_act(mob/user)
@@ -26,18 +27,22 @@
 	user.visible_message(span_danger("[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
-/obj/item/weapon/energy/axe/attack_self(mob/user)
-	active = !active
+/obj/item/weapon/energy/axe/update_icon_state()
+	if(active)
+		icon_state = "axe1"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/weapon/energy/axe/toggle_active(new_state, mob/user)
+	. = ..()
 	if(active)
 		to_chat(user, span_notice("The axe is now energised."))
 		force = force_activated
-		icon_state = "axe1"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 3500
 	else
 		to_chat(user, span_notice("The axe can now be concealed."))
 		force = initial(force)
-		icon_state = "axe0"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
 
@@ -77,30 +82,31 @@
 	QDEL_NULL(special_attack)
 	return ..()
 
-/obj/item/weapon/energy/sword/attack_self(mob/living/user)
-	switch_state(src, user)
+/obj/item/weapon/energy/sword/surgery_tool_check()
+	return active
 
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	H.update_inv_l_hand()
-	H.update_inv_r_hand()
+/obj/item/weapon/energy/sword/get_activated_codex_mechanic_info(list/trait_list)
+	. = ..()
+	trait_list += "<U>Activated Penetration:</U> [active_penetration] <br>"
 
-///Handles all the state switch stuff
-/obj/item/weapon/energy/sword/proc/switch_state(datum/source, mob/living/user)
-	SIGNAL_HANDLER
-	toggle_active()
+/obj/item/weapon/energy/sword/update_icon_state()
 	if(active)
-		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
+		icon_state = "[initial(icon_state)]_[sword_color]"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/weapon/energy/sword/toggle_active(new_state, mob/user)
+	. = ..()
+	if(active)
+		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_off))
 		toggle_item_bump_attack(user, TRUE)
 		hitsound = 'sound/weapons/blade1.ogg'
 		force = force_activated
 		throwforce = force_activated
 		penetration = active_penetration
 		heat = 3500
-		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
-		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
+		playsound(src, 'sound/weapons/saberon.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(HAS_TRAIT(user, TRAIT_SWORD_EXPERT))
 			special_attack.give_action(user)
 	else
@@ -111,10 +117,17 @@
 		throwforce = initial(throwforce)
 		penetration = initial(penetration)
 		heat = 0
-		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
-		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
+		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		special_attack?.remove_action(user)
+
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
+
+///Signal handler to turn the weapon off
+/obj/item/weapon/energy/sword/proc/switch_off(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	toggle_active(FALSE, user)
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
@@ -141,20 +154,38 @@
 	force_activated = 50
 	sword_color = "on"
 
-/obj/item/weapon/energy/sword/som/Initialize(mapload)
-	. = ..()
-	set_light_range_power_color(2, 1, COLOR_ORANGE)
-
-/obj/item/weapon/energy/sword/som/switch_state(datum/source, mob/living/user)
+/obj/item/weapon/energy/sword/som/toggle_active(new_state, mob/user)
 	. = ..()
 	if(active)
 		flick("som_sword_open", src)
-		set_light_on(TRUE)
 	else
 		flick("som_sword_close", src)
-		set_light_on(FALSE)
 
 /obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
+
+
+/obj/item/weapon/twohanded/dualsaber
+	name = "double-bladed energy sword"
+	desc = "Handle with care."
+	icon = 'icons/obj/items/weapons/energy.dmi'
+	icon_state = "dualsaber"
+	worn_icon_state = "dualsaber"
+	force = 3
+	throwforce = 5
+	throw_speed = 1
+	throw_range = 5
+	w_class = WEIGHT_CLASS_SMALL
+	force_activated = 150
+	wieldsound = 'sound/weapons/saberon.ogg'
+	unwieldsound = 'sound/weapons/saberoff.ogg'
+	atom_flags = NOBLOODY
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
+	sharp = IS_SHARP_ITEM_BIG
+	edge = 1
+
+/obj/item/weapon/twohanded/dualsaber/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)

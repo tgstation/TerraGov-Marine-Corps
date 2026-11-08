@@ -118,6 +118,9 @@
 		_flash_times = 1)
 	new /obj/effect/light_flash(get_turf(src), _range, _power, _color, _duration, _flash_times)
 
+/obj/effect/light_flash
+	light_system = HYBRID_LIGHT
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/light_flash/Initialize(mapload, _range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _flash_times = 1)
 	light_range = _range
@@ -131,6 +134,7 @@
 	for(var/i in 1 to _flash_times)
 		//Something bad happened
 		if(!(light?.our_mask))
+			stack_trace("Lighting FX obj created without light!")
 			break
 		light.our_mask.alpha = 255
 		animate(light.our_mask, time = _duration, easing = SINE_EASING, alpha = 0, flags = ANIMATION_END_NOW)

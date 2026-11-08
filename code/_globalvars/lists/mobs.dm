@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/puppeteer, /datum/xeno_caste/pyrogen))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
-GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon))
+GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king))
 
 
 GLOBAL_LIST_INIT_TYPED(hive_datums, /datum/hive_status, init_hive_datum_list()) // init by make_datum_references_lists()
@@ -212,10 +212,7 @@ GLOBAL_LIST_INIT(human_init_actions, list(
 	/datum/action/skill/issue_order/move,
 	/datum/action/skill/issue_order/hold,
 	/datum/action/skill/issue_order/focus,
-	/datum/action/innate/order/attack_order/personal,
-	/datum/action/innate/order/defend_order/personal,
-	/datum/action/innate/order/retreat_order/personal,
-	/datum/action/innate/order/rally_order/personal,
+	/datum/action/innate/order/selectable/personal,
 	/datum/action/innate/message_squad,
 	/datum/action/ability/activable/build_designator,
 ))

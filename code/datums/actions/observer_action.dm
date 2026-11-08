@@ -1,4 +1,4 @@
-/datum/action/observer_action/can_use_action()
+/datum/action/observer_action/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -47,8 +47,11 @@
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
+	var/can_join_as_zombie = SSticker.mode?.can_ghosts_join_as_zombies()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		if(!can_join_as_zombie && iszombie(ssd_mob))
 			continue
 		free_ssd_mobs += ssd_mob
 
@@ -60,16 +63,14 @@
 	if(!istype(new_mob) || !owner.client)
 		return FALSE
 
+	if(iszombie(new_mob) && !SSticker.mode?.can_ghosts_join_as_zombies())
+		return FALSE
+
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
 	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
 		return
-	if(isxeno(new_mob))
-		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
-		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
-			XENODEATHTIME_MESSAGE(owner)
-			return
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
@@ -94,7 +95,7 @@
 		return
 
 	if((!(owner.client?.prefs?.be_special & BE_SSD_RANDOM_NAME)) && (CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name)))
-		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
+		to_chat(usr, span_warning("Someone has already joined the round with this character name. Go to 'Game Preferences' under the Preferences tab, and change your character/name."))
 		return
 
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
@@ -119,7 +120,51 @@
 /datum/action/observer_action/campaign_respawn/action_activate()
 	var/datum/game_mode/mode = SSticker.mode
 	if(!mode)
-		to_chat(usr, span_warning("The round isn't ready yet!"))
+		owner.respawn()
 		return
 
 	mode.player_respawn(owner)
+
+/datum/action/observer_action/campaign_respawn/give_action(mob/M)
+	. = ..()	
+	START_PROCESSING(SSprocessing, src)
+
+	/// Placeholder, the subsystem won't tick until the round actually starts.
+	var/mutable_appearance/respawn_timer_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	visual_references[VREF_IMAGE_ONTOP] = respawn_timer_maptext
+	respawn_timer_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center("READY"))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+/datum/action/observer_action/campaign_respawn/remove_action(mob/M)
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	visual_references -= VREF_IMAGE_ONTOP
+
+/datum/action/observer_action/campaign_respawn/process()
+	if(!owner.client)
+		return
+	update_button_icon()
+
+/datum/action/observer_action/campaign_respawn/update_button_icon()
+	if(!visual_references.Find(VREF_IMAGE_ONTOP))
+		return ..()
+	var/text
+	var/datum/game_mode/mode = SSticker.mode
+	if(QDELETED(mode))
+		return
+	var/time = mode.get_respawn_time(owner)
+	switch(time)
+		if(-1)
+			text = "NO"
+		if(0)
+			text = "READY"
+		else
+			text = "[time]"
+
+	button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
+	var/mutable_appearance/respawn_timer_maptext = visual_references[VREF_IMAGE_ONTOP]
+	respawn_timer_maptext.maptext = MAPTEXT_TINY_UNICODE(span_center(text))
+	button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
+
+	return ..()

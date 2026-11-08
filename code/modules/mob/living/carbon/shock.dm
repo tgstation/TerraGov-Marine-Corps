@@ -68,10 +68,6 @@
 
 	if(has_status_effect(/datum/status_effect/speech/slurring/drunk))
 		traumatic_shock -= 10
-	if(analgesic)
-		traumatic_shock = 0
-		return traumatic_shock
-
 
 	//Broken or ripped off organs and limbs will add quite a bit of pain
 	if(ishuman(src))

@@ -482,7 +482,6 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/stamina/two
 	name = "Extreme stamina"
-	desc = "Greatly stamina regen rate, and further reduces the delay before stamina begins to regenerate."
 	desc = "Mechanically augmented physical conditioning results in significantly enhanced overall stamina. Further improved max stamina, stamina regen rate, and reduced delay before stamina begins to regenerate after stamina loss."
 	req_desc = "Requires Improved stamina."
 	ui_icon = "stamina_2"

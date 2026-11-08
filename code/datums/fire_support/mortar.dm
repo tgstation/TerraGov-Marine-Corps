@@ -57,7 +57,7 @@
 /datum/fire_support/mortar/smoke/do_impact(turf/target_turf)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	playsound(target_turf, SFX_EXPLOSION_SMALL, 50)
-	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	smoke.set_up(smokeradius, target_turf, smoke_duration)
 	smoke.start()
 

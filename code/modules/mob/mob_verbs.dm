@@ -171,12 +171,13 @@
 		/datum/job/pmc,
 		/datum/job/special_forces,
 		/datum/job/icc,
+		/datum/job/vsd,
 	)
 
 	// List of HvH factions - these are handled differently, using the quick loadout outfits.
 	var/list/static/hvh_faction_list = list(/datum/job/som, /datum/job/terragov)
 	// List of rare factions, not common because they're funny in moderation / stronk.
-	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton)
+	var/list/static/rare_faction_list = list(/datum/job/sectoid, /datum/job/imperial, /datum/job/skeleton, /datum/job/erp, /datum/job/retired)
 
 
 	var/total_list = base_faction_list + hvh_faction_list
@@ -281,6 +282,8 @@
 	if(!pointed_atom.mouse_opacity)
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_POINT))
+		return FALSE
+	if(incapacitated())
 		return FALSE
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)

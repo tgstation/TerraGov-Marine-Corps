@@ -25,9 +25,9 @@
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)
 	if(adj_dizzy != 0)
-		L.dizzy(adj_dizzy)
+		L.adjust_dizziness(adj_dizzy)
 	if(adj_drowsy != 0)
-		L.adjustDrowsyness(adj_drowsy)
+		L.adjust_drowziness(adj_drowsy)
 	if(adj_sleepy != 0)
 		L.AdjustSleeping(adj_sleepy)
 	return TRUE
@@ -251,7 +251,7 @@
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
-	L.jitter(5) //Turn super salty
+	L.adjust_jitter(5) //Turn super salty
 	if(prob(10))
 		L.Paralyze(20 SECONDS)
 	if(prob(10))
@@ -289,24 +289,24 @@
 	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
-	L.druggy = max(L.druggy, 30)
+	L.druggy(30 SECONDS)
 	switch(current_cycle)
 		if(1 to 5)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
-			L.dizzy(5)
+			L.adjust_dizziness(5)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
-			L.jitter(10)
-			L.dizzy(10)
+			L.adjust_jitter(10)
+			L.adjust_dizziness(10)
 			L.set_drugginess(35)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
 			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
-			L.jitter(20)
-			L.dizzy(20)
+			L.adjust_jitter(20)
+			L.adjust_dizziness(20)
 			L.set_drugginess(40)
 			if(prob(30))
 				L.emote(pick("twitch","giggle"))
@@ -321,7 +321,7 @@
 	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.Unconscious(6 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"

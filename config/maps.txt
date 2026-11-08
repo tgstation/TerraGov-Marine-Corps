@@ -111,10 +111,14 @@ map bluesummers
 endmap
 
 map metnal
-	minplayers 45
+	minplayers 55
   endmap
-  
+
 
 map fiorina
 	minplayers 65
+endmap
+
+map bluemoon
+	maxplayers 40
 endmap

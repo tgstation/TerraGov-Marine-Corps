@@ -49,7 +49,7 @@
 				return
 		else
 			return
-	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
+	else if(ishuman(user) && user.amount_hallucinating() > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
 		if(!H.gloves || H.gloves.siemens_coefficient)
 			to_chat(H, span_danger("You feel a powerful shock course through your body!"))
@@ -303,7 +303,7 @@
 	if(xeno_attacker.do_actions)
 		return FALSE
 
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	if(hasPower())
 		xeno_attacker.visible_message(span_warning("\The [xeno_attacker] digs into \the [src] and begins to pry it open."), \
@@ -344,10 +344,16 @@
 
 /obj/machinery/door/airlock/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
-	if(. && is_mainship_level(z)) //log shipside greytiders
-		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
-		if(SSmonitor.gamestate != SHIPSIDE)
-			msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
+	if(!.)
+		return
+	if(!is_mainship_level(z))
+		return
+	if(!proj.firer)
+		return
+	//log shipside greytiders
+	log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
+	if(SSmonitor.gamestate != SHIPSIDE)
+		msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attacked_by(obj/item/I, mob/living/user, def_zone)
 	. = ..()
@@ -436,10 +442,9 @@
 			to_chat(user, span_warning("Large doors seem impossible to disassemble."))
 			return
 
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
-		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
+		if(!I.use_tool(src, user, 4 SECONDS, user_display = BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))
@@ -495,19 +500,18 @@
 
 	return TRUE
 
-/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/I)
+/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	if(no_panel)
 		to_chat(user, span_warning("\The [src] has no panel to open!"))
 		return
 
 	machine_stat ^= PANEL_OPEN
+	tool.play_tool_sound(src)
 	if(machine_stat & PANEL_OPEN)
 		to_chat(user, span_notice("You open [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1)
 	else
 		to_chat(user, span_notice("You close [src]'s panel."))
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/open(forced = FALSE)
@@ -518,9 +522,9 @@
 		return
 	use_power(active_power_usage)
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
+		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
-		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
+		playsound(loc, 'sound/machines/airlock.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
 
@@ -553,9 +557,9 @@
 
 	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
+		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
-		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
+		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		killthis?.ex_act(2)//Smashin windows

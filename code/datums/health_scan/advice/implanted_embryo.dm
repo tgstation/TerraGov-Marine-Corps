@@ -8,7 +8,7 @@
 /datum/scanner_advice/implanted_embryo/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
 		ADVICE_TEXT = "Alien embryo detected—immediate surgical intervention advised.", // friend detected :)
-		ADVICE_TOOLTIP = "The patient has been implanted with an alien embryo! Left untreated, it will burst out of their chest. Surgical intervention is strongly advised.",
+		ADVICE_TOOLTIP = "If not treated, the embryo will burst out of the patient's chest. Surgical intervention is strongly advised.",
 		ADVICE_ICON = FA_ICON_WORM,
-		ADVICE_ICON_COLOR = "orange"
+		ADVICE_ICON_COLOR = "orange",
 	)

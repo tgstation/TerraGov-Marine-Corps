@@ -402,20 +402,12 @@
 /obj/item/circuitboard/solar_tracker,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"yf" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/filtration_plant)
 "yq" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/s)
-"yF" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
 "yP" = (
 /obj/machinery/computer3/server/rack,
 /obj/effect/turf_decal/warning_stripes/box/threeside{
@@ -650,10 +642,6 @@
 /area/bigredv2/outside/filtration_plant)
 "Kl" = (
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/filtration_plant)
-"Km" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
 /area/bigredv2/outside/filtration_plant)
 "Kq" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -891,9 +879,9 @@
 /area/bigredv2/outside/filtration_plant)
 
 (1,1,1) = {"
-Km
+Gf
 pu
-Km
+Gf
 Gf
 Gf
 Gf
@@ -906,7 +894,7 @@ ah
 Kq
 Kq
 Kq
-yF
+Kq
 aI
 aI
 aI
@@ -957,7 +945,7 @@ uK
 Rz
 wU
 jf
-yF
+Kq
 Kq
 Kq
 Kq
@@ -999,15 +987,15 @@ Lx
 zq
 "}
 (5,1,1) = {"
-Km
+Gf
 pu
-Km
 Gf
 Gf
 Gf
 Gf
 Gf
-Km
+Gf
+Gf
 Xt
 kN
 Rz
@@ -1137,7 +1125,7 @@ zq
 Cp
 RA
 Bl
-Km
+Gf
 CC
 Rz
 Tf
@@ -1149,7 +1137,7 @@ Rz
 Rz
 jf
 eB
-yf
+Kl
 Ab
 aj
 Lx
@@ -1304,7 +1292,7 @@ Gf
 Gf
 jW
 Gf
-Km
+Gf
 jf
 Im
 jf

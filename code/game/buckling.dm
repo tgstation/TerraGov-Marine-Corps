@@ -38,13 +38,12 @@
 
 
 	if(buckling_mob.pulledby)
-		if(buckle_flags & BUCKLE_PREVENTS_PULL)
-			buckling_mob.pulledby.stop_pulling()
-		else if(isliving(buckling_mob.pulledby))
+		if(isliving(buckling_mob.pulledby))
 			var/mob/living/buckling_living = buckling_mob.pulledby
-			buckling_living.reset_pull_offsets(buckling_living, TRUE)
-			if(!anchored)
-				buckling_living.start_pulling(src)
+			buckling_living.stop_pulling()
+			buckling_living.start_pulling(src)
+		else
+			buckling_mob.pulledby.stop_pulling()
 
 	if(buckling_mob.loc != loc)
 		buckling_mob.forceMove(loc)

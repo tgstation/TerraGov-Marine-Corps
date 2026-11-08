@@ -158,7 +158,7 @@
 		limb.attach(src, key)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	playsound(get_turf(src), SFX_EXPLOSION_MED, 100, TRUE) //destroy sound is normally very quiet
+	playsound(get_turf(src), SFX_EXPLOSION_MED, 100, TRUE, LOUD_SOUND_RANGE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in cheap_get_living_near(src, 5))
 		shake_camera(nearby_mob, 4, 1)
@@ -186,6 +186,15 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/fire_act(burn_level)
 	. = ..()
 	take_damage(burn_level / 2, BURN, FIRE)
+
+/obj/vehicle/sealed/mecha/combat/greyscale/emp_act(severity)
+	if(!emp_timer)
+		move_delay += MECH_EMP_SLOWDOWN
+	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/emp_restore()
+	. = ..()
+	move_delay -= MECH_EMP_SLOWDOWN
 
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
@@ -489,8 +498,15 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	soft_armor = list(MELEE = 25, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 100, ACID = 30)
+	soft_armor = list(MELEE = 25, BULLET = 60, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+	limbs = list(
+		MECH_GREY_TORSO = /datum/mech_limb/torso/recon/hvh,
+		MECH_GREY_HEAD = /datum/mech_limb/head/recon,
+		MECH_GREY_LEGS = /datum/mech_limb/legs/recon,
+		MECH_GREY_R_ARM = /datum/mech_limb/arm/recon,
+		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
+	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -507,6 +523,13 @@
 	pivot_step = FALSE
 	soft_armor = list(MELEE = 35, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+	limbs = list(
+		MECH_GREY_TORSO = /datum/mech_limb/torso/assault/hvh,
+		MECH_GREY_HEAD = /datum/mech_limb/head/assault,
+		MECH_GREY_LEGS = /datum/mech_limb/legs/assault,
+		MECH_GREY_R_ARM = /datum/mech_limb/arm/assault,
+		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
+	)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"

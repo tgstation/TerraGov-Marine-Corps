@@ -17,6 +17,9 @@
 	nutrition = max(amount, 0)
 	adjust_nutrition_speed(.)
 
+/mob/living/carbon/xenomorph/adjust_nutrition(amount)
+	return //xenos don't need food, but admemes can still directly set it if desired
+
 /mob/living/carbon/proc/adjust_nutrition_speed(old_nutrition)
 	switch(nutrition)
 		if(0 to NUTRITION_HUNGRY)

@@ -75,7 +75,6 @@
 /turf/closed/wall/r_wall/prison
 	name = "reinforced metal wall"
 	icon = 'icons/turf/walls/gorg_prison_rwall_two.dmi'
-	icon_state = "rwall-0"
 	walltype = "rwall"
 	base_icon_state = "rwall"
 	icon_state = "wall-reinforced"

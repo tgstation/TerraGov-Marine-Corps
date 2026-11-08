@@ -468,7 +468,8 @@ GLOBAL_LIST(cable_radial_layer_list)
 			target_layer = CABLE_LAYER_2
 		if("Multi Z layer cable hub")
 			name = "multi z layer cable hub"
-			icon_state = "cablerelay-broken-cable"
+			icon = 'icons/obj/stationobjs.dmi'
+			icon_state = "gsensor1"
 			color = COLOR_VERY_LIGHT_GRAY
 			target_type = /obj/structure/cable/multilayer/multiz
 			target_layer = CABLE_LAYER_2

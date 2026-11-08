@@ -92,7 +92,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "L" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 4;
 	id = "minidropship_podlock";
 	name = "inner door-control"

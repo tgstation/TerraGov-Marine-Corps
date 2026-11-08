@@ -16,8 +16,6 @@ SUBSYSTEM_DEF(points)
 	var/list/xeno_strategic_points_by_hive = list()
 	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
 	var/list/xeno_tactical_points_by_hive = list()
-	/// Association list of xeno biomass points: xeno_biomass_points_by_hive["hivenum"]
-	var/list/xeno_biomass_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -88,12 +86,6 @@ SUBSYSTEM_DEF(points)
 		return
 	xeno_tactical_points_by_hive[hivenumber] += amount
 
-/// Add amount of biomass to the selected hive only if the gamemode support biomass.
-/datum/controller/subsystem/points/proc/add_biomass_points(hivenumber, amount)
-	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_BIOMASS_POINTS))
-		return
-	xeno_biomass_points_by_hive[hivenumber] += amount
-
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
 	for(var/i in O.pack)
@@ -102,6 +94,8 @@ SUBSYSTEM_DEF(points)
 	if(cost > supply_points[user.faction])
 		return
 	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle(SHUTTLE_SUPPLY)
+	if(O.faction == FACTION_SOM)
+		supply_shuttle = SSshuttle.getShuttle(SHUTTLE_SOM_SUPPLY)
 	if(length(shoppinglist[O.faction]) >= supply_shuttle.return_number_of_turfs())
 		return
 	requestlist -= "[O.id]"

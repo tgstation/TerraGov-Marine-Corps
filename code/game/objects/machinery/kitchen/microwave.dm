@@ -6,6 +6,7 @@
 	layer = GIB_LAYER
 	density = TRUE
 	anchored = TRUE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_WALKOVER
 	coverage = 10
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -27,6 +28,13 @@
 
 /obj/machinery/microwave/Initialize(mapload)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
@@ -52,41 +60,40 @@
 		return
 
 	if(broken == 2 && isscrewdriver(I))
-		balloon_alert_to_viewers("starts to fix the microwave")
+		balloon_alert_to_viewers("fixing the microwave...")
 
 		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("fixes part of the microwave")
+		balloon_alert_to_viewers("partially fixed")
 		broken = 1
 
 	else if(broken == 1 && iswrench(I))
-		balloon_alert_to_viewers("starts to fix part of the microwave")
+		balloon_alert_to_viewers("fixing the microwave...")
 
 		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("fixes the microwave")
+		balloon_alert_to_viewers("fully fixed")
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(broken > 2)
-		balloon_alert(user, "Cannot, broken")
+		balloon_alert(user, "broken!")
 		return TRUE
 
 	else if(dirty == 100)
 		if(!istype(I, /obj/item/reagent_containers/spray/cleaner))
-			balloon_alert(user, "Very dirty")
+			balloon_alert(user, "too dirty!")
 			return TRUE
 
-		balloon_alert_to_viewers("starts cleaning [src]")
+		balloon_alert_to_viewers("starts cleaning...")
 
 		if(!do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		balloon_alert_to_viewers("cleans the [src]")
 		dirty = 0
 		broken = 0
 		icon_state = "mw"
@@ -94,18 +101,18 @@
 
 	else if(is_type_in_list(I, acceptable_items))
 		if(length(contents) >= max_n_of_items)
-			balloon_alert(user, "Cannot, it's full")
+			balloon_alert(user, "it's full!")
 			return TRUE
 
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = I
 			new S.type(src)
 			S.use(1)
-			balloon_alert_to_viewers("[user] adds [I] to the [src]")
+			balloon_alert(user, "added")
 
 		else if(user.drop_held_item())
 			I.forceMove(src)
-			balloon_alert_to_viewers("[user] has added [I] to the [src]")
+			balloon_alert(user, "added")
 
 	else if(istype(I,/obj/item/reagent_containers/glass) || \
 			istype(I,/obj/item/reagent_containers/food/drinks) || \
@@ -117,13 +124,13 @@
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
 			if(!(R.type in acceptable_reagents))
-				balloon_alert(user, "Cannot, incompatible material for cooking")
+				balloon_alert(user, "incompatible material!")
 				return TRUE
 
 		return FALSE
 
 	else
-		balloon_alert(user, "Can't cook anything with this")
+		balloon_alert(user, "can't cook anything with this!")
 
 	return TRUE
 
@@ -146,18 +153,18 @@
 		to_chat(user, span_warning("They're too big to fit!"))
 		return
 	user.visible_message(span_danger("[user] starts to force [grabbed_mob] into [src]!"), span_notice("You start to force [grabbed_mob] into [src]!"))
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob)))
-		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob, user)))
+		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		return
 
 	user.visible_message(span_danger("[user] microwaves [grabbed_mob]!"), span_notice("You microwave [grabbed_mob]!"), "You hear sizzling.")
 	log_combat(user, grabbed_mob, "microwaved")
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
-/obj/machinery/microwave/proc/microwave_victim(mob/living/victim)
-	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20)
-	victim.jitter(5)
+/obj/machinery/microwave/proc/microwave_victim(mob/living/victim, mob/living/user)
+	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20, attacker = user)
+	victim.adjust_jitter(5)
 	if(prob(10))
 		victim.emote("scream")
 		victim.adjustBrainLoss(5)
@@ -318,20 +325,20 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.balloon_alert_to_viewers("Turns on")
+	src.balloon_alert_to_viewers("starting...")
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
-	src.balloon_alert_to_viewers("Turns off")
+	src.balloon_alert_to_viewers("aborted")
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
-	src.balloon_alert_to_viewers("Turns off")
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	src.balloon_alert_to_viewers("complete")
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
@@ -342,15 +349,15 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	balloon_alert(src, "Dumps the microwave contents")
+	balloon_alert_to_viewers("contents cleared")
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
-	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1) // Play a splat sound
+	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1, MEDIUM_SOUND_RANGE) // Play a splat sound
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	visible_message(span_warning("The microwave gets covered in muck!"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments

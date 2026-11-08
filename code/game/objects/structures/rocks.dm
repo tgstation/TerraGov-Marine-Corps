@@ -252,7 +252,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/rock/variable/jungle_large/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_CONCRETE] = layer
+	footstep_overrides[FOOTSTEP_CONCRETE] = get_footstep_layer(layer, plane)
 
 //drought rocks
 /obj/structure/rock/variable/drought

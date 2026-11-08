@@ -1,0 +1,4 @@
+author: "marivanwan"
+delete-after: True
+changes:
+  - bugfix: "Fixed a jitter status effect runtime"

@@ -1517,7 +1517,7 @@
 /obj/structure/transport/linear/public,
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "testvator";
-	preset_destination_names = list("2"="Bottom Floor","3"="Middle Floor","4"="Top Floor")
+	preset_destination_names = list("1"="Bottom Floor","2"="Middle Floor","3"="Top Floor")
 	},
 /turf/open/floor/elevatorshaft,
 /area/mainship/multiz_debug_area/floorone)

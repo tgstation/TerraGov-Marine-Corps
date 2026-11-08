@@ -291,3 +291,9 @@ TGUI_MAX_CHUNK_COUNT 32
 
 ## Uncomment and replace with the URL where users can verify their byond accounts
 #FORUM_LINK_URI
+
+## Uncomment to allow admins with +DEBUG to start the byond-tracy profiler during the round.
+#ALLOW_TRACY_START
+
+## Uncomment to allow admins with +DEBUG to queue the next round to run the byond-tracy profiler.
+#ALLOW_TRACY_QUEUE

@@ -87,7 +87,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		balloon_alert(user, "Frequency copied over")
+		balloon_alert(user, "frequency copied")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
 	. = ..()
@@ -96,21 +96,24 @@
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		balloon_alert(user, "Disarm it first!")
+		balloon_alert(user, "disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
+		if(QDELETED(src))
+			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
 		nullvars()
+		setAnchored(FALSE)
 	return ..()
 
-/obj/item/detpack/multitool_act(mob/living/user, obj/item/I)
+/obj/item/detpack/multitool_act(mob/user, obj/item/tool)
 	if(!armed && !on)
-		balloon_alert(user, "Inactive")
+		balloon_alert(user, "inactive!")
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
@@ -120,24 +123,30 @@
 			return
 
 		if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
-			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this."))
+			to_chat(user, span_userdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <i>very</i> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
-	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
-	span_notice("You begin disarming [src] with [I]."))
+	user.visible_message(span_notice("[user] begins disarming [src] with [tool]."),
+	span_notice("You begin disarming [src] with [tool]."))
 
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
+	if(QDELETED(src))
+		return
 
-	balloon_alert_to_viewers("Disarmed")
+	balloon_alert_to_viewers("disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
-	if(ismovableatom(plant_target) && plant_target.loc)
-		var/atom/movable/T = plant_target
-		if(T.drag_delay == 3)
-			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
-		T.vis_contents -= src
+	if(ismovable(plant_target) && plant_target.loc)
+		var/atom/movable/movable = plant_target
+		if(movable.drag_delay == 3)
+			movable.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
+		movable.vis_contents -= src
+		layer = initial(layer)
+		pixel_w = initial(pixel_w)
+		pixel_z = initial(pixel_z)
+
 	plant_target = null //null everything out now
 	target_drag_delay = null
 	armed = FALSE
@@ -269,7 +278,7 @@
 			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(!W.damageable)
+		if(!(W.resistance_flags & INDESTRUCTIBLE))
 			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
@@ -290,10 +299,11 @@
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
 		user.drop_held_item()
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
+		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, TRUE, SHORT_SOUND_RANGE)
 		var/location
 		location = target
 		forceMove(location)
+		setAnchored(TRUE)
 		boom_direction = get_dir(user, location)
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
@@ -301,16 +311,19 @@
 
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
-		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		balloon_alert(user, "Timer set for [timer] seconds")
+		target.balloon_alert_to_viewers("[timer] seconds", vision_distance = COMBAT_MESSAGE_RANGE)
 
 		plant_target = target
-		if(ismovableatom(plant_target))
-			var/atom/movable/T = plant_target
-			T.vis_contents += src
-			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
-				target_drag_delay = T.drag_delay
-				T.drag_delay = 3
+		if(ismovable(plant_target))
+			var/atom/movable/movable = plant_target
+			movable.vis_contents += src
+			layer = ABOVE_ALL_MOB_LAYER
+			//We use w and z due to sidemap, but need to take into account x/y and w/z pixel shifts, to get a roughly reliable center point
+			pixel_w = -(movable.pixel_x + movable.pixel_w)
+			pixel_z = -(movable.pixel_y + movable.pixel_z)
+			if(movable.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
+				target_drag_delay = movable.drag_delay
+				movable.drag_delay = 3
 		if(radio_connection == null)
 			set_frequency(frequency)
 		update_icon()
@@ -322,11 +335,11 @@
 
 /obj/item/detpack/proc/do_play_sound_normal()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/item/detpack/proc/do_play_sound_loud()
 	timer--
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE, MEDIUM_SOUND_RANGE) //Gets louder as we count down to armaggedon
 
 /obj/item/detpack/proc/disarm(turn_off = TRUE)
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
@@ -363,7 +376,7 @@
 		disarm()
 
 	//Time to go boom
-	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
+	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE, MEDIUM_SOUND_RANGE)
 	boom = TRUE
 	var/turf/det_location = get_turf(plant_target)
 	plant_target.ex_act(EXPLODE_DEVASTATE)

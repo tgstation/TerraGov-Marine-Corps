@@ -52,7 +52,7 @@
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
 
-/datum/action/ability/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/can_use_action(silent, override_flags, selecting)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
@@ -60,43 +60,43 @@
 
 	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_finished())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
+			carbon_owner.balloon_alert(carbon_owner, "wait [cooldown_remaining()] seconds!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
+			carbon_owner.balloon_alert(carbon_owner, "incapacitated!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
+			carbon_owner.balloon_alert(carbon_owner, "lying down!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
+			carbon_owner.balloon_alert(carbon_owner, "buckled!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
+			carbon_owner.balloon_alert(carbon_owner, "staggered!")
 		return FALSE
 
 
 	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
+			carbon_owner.balloon_alert(carbon_owner, "not right here!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
+			carbon_owner.balloon_alert(carbon_owner, "busy!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
-			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
+			carbon_owner.balloon_alert(carbon_owner, "burrowed!")
 		return FALSE
 
 	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
@@ -174,6 +174,7 @@
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
+	SIGNAL_HANDLER
 	return
 
 /datum/action/ability/activable
@@ -211,15 +212,16 @@
 		carbon_owner.selected_ability.deselect()
 	select()
 
-/datum/action/ability/activable/keybind_activation()
+/datum/action/ability/activable/keybind_activation(turf/target)
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-			use_ability()
+		var/true_target = ability_target(target)
+		if(can_use_ability(true_target, FALSE))
+			INVOKE_ASYNC(src, PROC_REF(use_ability), true_target)
 		return
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
-		action_activate()
+		INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/ability/activable/remove_action(mob/living/carbon/carbon_owner)
 	deselect()
@@ -227,7 +229,7 @@
 		carbon_owner.selected_ability = null
 	return ..()
 
-/datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/can_use_action(silent, override_flags, selecting)
 	if(selecting)
 		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()
@@ -238,10 +240,6 @@
 		return FALSE
 
 	var/to_check_flags = use_state_flags|override_flags
-
-	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(to_check_flags, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
-		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(to_check_flags, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
@@ -295,3 +293,30 @@
 		if(action_datum.type != old_ability)
 			continue
 		qdel(action_datum)
+
+#define TARGET_FLAGS_MACRO(typepath) \
+if(!istype(A, typepath)){\
+	. = locate(typepath) in get_turf(A);\
+	if(.){\
+		return;}}
+
+///Special behavior for identifying what atom to actually target
+/datum/action/ability/activable/proc/ability_target(atom/A)
+	//for quick cast, A is always going to be a turf, or null
+	if(owner.client && (isturf(A) || isnull(A)))
+		var/datum/weakref/ref = SSmouse_entered.hover_refs[owner.client]
+		var/atom/resolved = ref.resolve() //only atoms ever get put into hover_refs
+		if(resolved && resolved.loc && resolved.loc != owner) //we check for loc for click catcher and UI elements/items
+			A = resolved
+
+	if(target_flags & NONE)
+		return A
+	if((target_flags & ABILITY_TURF_TARGET))
+		return get_turf(A)
+	if((target_flags & ABILITY_MOB_TARGET) && !isliving(A))
+		TARGET_FLAGS_MACRO(/mob/living)
+	else if((target_flags & ABILITY_XENO_TARGET) && !isxeno(A))
+		TARGET_FLAGS_MACRO(/mob/living/carbon/xenomorph)
+	else if((target_flags & ABILITY_HUMAN_TARGET) && !ishuman(A))
+		TARGET_FLAGS_MACRO(/mob/living/carbon/human)
+	return A

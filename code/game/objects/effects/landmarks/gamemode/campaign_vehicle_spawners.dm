@@ -80,9 +80,9 @@
 	var/list/equipment_list = list(
 		/obj/item/armored_weapon = 1,
 		/obj/item/armored_weapon/secondary_weapon = 1,
-		/obj/item/ammo_magazine/tank/ltb_cannon/heavy = 15,
-		/obj/item/ammo_magazine/tank/ltb_cannon/apfds = 10,
-		/obj/item/ammo_magazine/tank/ltb_cannon/canister = 5,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy = 18,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds = 12,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary = 5,
 		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
 	)
 
