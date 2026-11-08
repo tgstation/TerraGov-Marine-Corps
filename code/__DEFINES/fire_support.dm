@@ -10,6 +10,10 @@
 #define FIRESUPPORT_TYPE_ROCKETS "rockets"
 ///Cruise missile strike
 #define FIRESUPPORT_TYPE_CRUISE_MISSILE "cruise_missile"
+///Napalm missile strike
+#define FIRESUPPORT_TYPE_NAPALM_MISSILE "napalm_missile"
+///Tanglefoot missile strike
+#define FIRESUPPORT_TYPE_TFOOT_MISSILE "tfoot_missile"
 ///Sentry drop pod
 #define FIRESUPPORT_TYPE_SENTRY_POD "sentry_pod"
 ///Supply drop pod
@@ -52,6 +56,8 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_GUN_UNLIMITED = new /datum/fire_support/gau/unlimited,
 	FIRESUPPORT_TYPE_ROCKETS_UNLIMITED = new /datum/fire_support/rockets/unlimited,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED = new /datum/fire_support/cruise_missile/unlimited,
+	FIRESUPPORT_TYPE_NAPALM_MISSILE = new /datum/fire_support/napalm_missile,
+	FIRESUPPORT_TYPE_TFOOT_MISSILE = new /datum/fire_support/tfoot_missile,
 	FIRESUPPORT_TYPE_GUN = new /datum/fire_support/gau,
 	FIRESUPPORT_TYPE_LASER = new /datum/fire_support/laser,
 	FIRESUPPORT_TYPE_ROCKETS = new /datum/fire_support/rockets,

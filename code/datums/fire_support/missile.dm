@@ -17,6 +17,44 @@
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED
 	uses = -1
 
+/datum/fire_support/napalm_missile
+	name = "Napalm missile strike"
+	fire_support_type = FIRESUPPORT_TYPE_NAPALM_MISSILE
+	scatter_range = 1
+	uses = -1 //todo
+	icon_state = "napalm"
+	initiate_chat_message = "TARGET ACQUIRED AGM-99 'NAPALM' INBOUND."
+	initiate_screen_message = "AGM-99 programmed, one out."
+	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
+	start_visual = null
+	start_sound = null
+
+/datum/fire_support/napalm_missile/select_target(turf/target_turf)
+	explosion(target_turf, 2, 3, 4, explosion_cause = name)
+	flame_radius(6, target_turf, 30, 60, 40, 20)
+	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
+	warcrime.set_up(6, target_turf, 5)
+	warcrime.start()
+
+/datum/fire_support/tfoot_missile
+	name = "Tanglefoot missile strike"
+	fire_support_type = FIRESUPPORT_TYPE_TFOOT_MISSILE
+	scatter_range = 1
+	uses = -1 //todo
+	icon_state = "tangle_missile"
+	initiate_chat_message = "TARGET ACQUIRED AGM-67 'TANGLEFOOT' INBOUND."
+	initiate_screen_message = "AGM-67 programmed, one out."
+	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
+	start_visual = null
+	start_sound = null
+
+/datum/fire_support/tfoot_missile/select_target(turf/target_turf)
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
+	playsound(target_turf, SFX_EXPLOSION_SMALL, 50)
+	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+	smoke.set_up(7, target_turf, 11)
+	smoke.start()
+
 /datum/fire_support/rad_missile
 	name = "Radioactive missile"
 	fire_support_type = FIRESUPPORT_TYPE_RAD_MISSILE
