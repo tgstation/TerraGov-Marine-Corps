@@ -310,10 +310,6 @@
 "bm" = (
 /turf/closed/wall/wood/reinforced,
 /area/space)
-"bn" = (
-/obj/structure/stairs/multiz/seamless/directional/north,
-/turf/closed/wall/wood/reinforced,
-/area/space)
 "bo" = (
 /obj/structure/prop/mainship/railing/corner,
 /turf/closed/wall/r_wall,
@@ -861,6 +857,10 @@
 "dw" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
+/area/space)
+"dx" = (
+/atom,
+/turf/closed/wall/wood,
 /area/space)
 "dC" = (
 /turf/open/engineership/engineer_floor10{
@@ -6266,10 +6266,6 @@
 /area/space)
 "xe" = (
 /turf/open/floor/iron/white/smooth_large,
-/area/space)
-"xf" = (
-/atom,
-/turf/closed/wall/wood/reinforced,
 /area/space)
 "xg" = (
 /obj/structure/closet/crate/mass_produced_crate/delta,
@@ -22665,7 +22661,7 @@ bm
 bm
 bm
 bm
-bn
+bm
 bm
 kP
 kP
@@ -119814,13 +119810,13 @@ bX
 by
 bz
 bz
-bm
-bm
-bm
-bm
-bm
-bm
-bm
+ar
+ar
+ar
+ar
+ar
+ar
+ar
 bz
 bX
 by
@@ -120006,13 +120002,13 @@ bX
 by
 bz
 bz
-bm
-bm
-bm
-bm
-bm
-bm
-bm
+ar
+ar
+ar
+ar
+ar
+ar
+ar
 bX
 bX
 by
@@ -120198,13 +120194,13 @@ bX
 by
 bX
 bz
-bm
-bm
+ar
+ar
 cg
 fE
 cg
-bm
-bm
+ar
+ar
 bz
 bz
 by
@@ -120390,13 +120386,13 @@ bX
 by
 bX
 bz
-bm
-bm
+ar
+ar
 fE
 fF
 fE
-bm
-bm
+ar
+ar
 bz
 bz
 by
@@ -120582,13 +120578,13 @@ bX
 by
 bX
 bX
-bm
-bm
+ar
+ar
 cg
 fE
 cg
-bm
-bm
+ar
+ar
 bz
 bz
 by
@@ -120774,13 +120770,13 @@ bX
 by
 bX
 bX
-bm
-bm
 ar
 ar
 ar
-bm
-bm
+ar
+ar
+ar
+ar
 bX
 bX
 by
@@ -120966,13 +120962,13 @@ bX
 by
 bX
 bz
-bm
-bm
 ar
 ar
 ar
-xf
-bm
+ar
+ar
+dx
+ar
 bX
 bX
 by

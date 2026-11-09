@@ -24,6 +24,12 @@
 	icon_state = "transparent"
 	area_flags = CANNOT_NUKE
 
+/area/mediumdgreen/caves/z1/
+
+/area/mediumdgreen/caves/z2/
+
+/area/mediumdgreen/caves/z3/
+
 //morphing neo-tree
 
 //lz 1 (ne)
