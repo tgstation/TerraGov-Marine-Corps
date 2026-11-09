@@ -170,7 +170,7 @@
 			sticky_bomb.forceMove(loc)
 			charges_used++
 
-	if(living_stepper && living_stepper.on_fire() && (charges_used < charges))
+	if(living_stepper && living_stepper.is_on_fire() && (charges_used < charges))
 		living_stepper.extinguish_mob()
 		charges_used++
 
