@@ -56,12 +56,9 @@
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
-		var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		if(burning)
-			qdel(burning)
-		if(L.fire_stacks <= 0)
-			L.ExtinguishMob()
-
+		var/datum/status_effect/stacking/melting_fire/melting_fire = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			qdel(melting_fire)
 
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)

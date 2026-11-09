@@ -1,0 +1,4 @@
+author: "sylvia-from-fulp-station"
+delete-after: True
+changes:
+  - balance: "You cannot take over ssd zombie mobs on zcrash without atleast 4 alive marines."

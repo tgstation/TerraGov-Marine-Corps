@@ -74,3 +74,10 @@
       healing is enough to heal them out of it.
   sylvia-from-fulp-station:
   - rscadd: adds red, blue and purple plaid skirts to synth vendor
+2026-11-07:
+  Lumipharon:
+  - qol: Runner pounce can be quickcast. Toggling savage is done via right clicking
+      or using the select hotkey while already selected
+  - bugfix: fixed the missing combat robot critical health screen overlays
+  - qol: Directional attacks will check every possible target on a turf instead of
+      only trying the first one it can find

@@ -72,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
+	///Vehicle types that cannot be purchased in this gamemode
+	var/list/vehicle_black_list
 
 
 /datum/game_mode/New()
@@ -721,6 +723,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
+
+/datum/game_mode/proc/can_ghosts_join_as_zombies()
+	return TRUE
 
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)

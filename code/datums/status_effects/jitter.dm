@@ -7,6 +7,9 @@
 	status_flags = STATUS_FLAG_CHECK_OWNER_DEATH|STATUS_FLAG_OWNER_DEATH_DEL
 
 /datum/status_effect/stacking/jitter/stack_decay_effect()
+	if(!owner)
+		qdel(src)
+		return
 	stack_decay = owner.get_resting_power()
 	owner.do_jitter_animation(stacks)
 
