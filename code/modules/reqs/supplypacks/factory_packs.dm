@@ -106,6 +106,31 @@ FACTORY
 	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 290 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
+	/datum/supply_packs/factory/smartgun_minigun_box_refill
+	name = "SG-85 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
+	cost = 350
+
+/datum/supply_packs/factory/smartgun_magazine_refill
+	name = "SG-29 ammo drum parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
+	cost = 350
+
+/datum/supply_packs/factory/smartgun_targetrifle_refill
+	name = "SG-62 ammo magazine parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
+	cost = 400
+
+/datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
+	name = "SG-62 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill)
+	cost = 400
+
+/datum/supply_packs/factory/smartgun_spottingrifle_ammobin_refill
+	name = "SG-153 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill)
+	cost = 400
+
 /datum/supply_packs/factory/swat_mask_refill
 	name = "SWAT mask assembly refill"
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
