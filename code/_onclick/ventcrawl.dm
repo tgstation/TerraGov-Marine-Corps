@@ -72,6 +72,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 	//Handle the exit here
 	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) && istype(loc, /obj/machinery/atmospherics))
+		var/turf/loc_turf = get_turf(ventcrawl_target)
+		if(loc_turf.density)
+			to_chat(src, span_notice("You cannot climb out, the exit is blocked!"))
+			return
 		to_chat(src, span_notice("You begin climbing out from the ventilation system..."))
 		if(has_client && isnull(client))
 			return
