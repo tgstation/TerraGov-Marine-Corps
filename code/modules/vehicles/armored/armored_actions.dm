@@ -247,6 +247,8 @@
 	chassis.add_filter("vehicle_tesla", 1, outline_filter(1, COLOR_PULSE_BLUE))
 	addtimer(CALLBACK(src, PROC_REF(clear_effects)), 1 SECONDS)
 
+	zap_beam(chassis, 5, beam_passflags = PASS_PROJECTILE|PASS_GLASS|PASS_TANK)
+
 	for(var/mob/living/mob_desant in chassis?.hitbox?.tank_desants)
 		mob_desant.Stun(0.2 SECONDS)
 

@@ -96,3 +96,10 @@
 			take_damage(100, armor_type = BOMB, effects = TRUE)
 		if(EXPLODE_WEAK)
 			take_damage(50, armor_type = BOMB, effects = TRUE)
+
+/obj/machinery/deployable/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(2 * S.strength, BURN, ACID)

@@ -1,0 +1,4 @@
+author: "marivanwan"
+delete-after: True
+changes:
+  - qol: "The preview icons for the alt-click tile menu are now to the right of the name of the item on the ground"

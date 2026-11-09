@@ -170,10 +170,9 @@
 			sticky_bomb.forceMove(loc)
 			charges_used++
 
-	if(living_stepper)
-		if(living_stepper.on_fire && (charges_used < charges))
-			living_stepper.ExtinguishMob()
-			charges_used++
+	if(living_stepper && living_stepper.on_fire() && (charges_used < charges))
+		living_stepper.extinguish_mob()
+		charges_used++
 
 	if(!isxeno(AM))
 		if(living_stepper)
@@ -181,13 +180,13 @@
 			living_stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID, penetration = 33)
 			living_stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID, penetration = 33)
 			charges_used = charges
-	
+
 		else if(isvehicle(AM))
 			var/obj/vehicle/vehicle_stepper = AM
 			vehicle_stepper.take_damage(charges * 20, BURN, ACID, armour_penetration = 33)
 			COOLDOWN_INCREMENT(vehicle_stepper, cooldown_vehicle_move, charges * 2)
 			charges_used = charges
-		
+
 		if(!charges_used)
 			return
 

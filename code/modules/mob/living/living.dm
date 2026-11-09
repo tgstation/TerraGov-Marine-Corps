@@ -584,6 +584,10 @@
 			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
+		if(iszombie(src) && !SSticker.mode?.can_ghosts_join_as_zombies())
+			GLOB.offered_mob_list -= src
+			return FALSE
+
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 

@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Xenomorphs can no longer eat non-mature xeno fruit by stacking interactions when it was initially mature."

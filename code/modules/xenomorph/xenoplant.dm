@@ -60,7 +60,7 @@
 		return ..() // Their claws aren't delicate enough for these plants.
 
 	balloon_alert(xenomorph_user, "gently uprooting...")
-	if(!do_after(xenomorph_user, 2 SECONDS, NONE, src))
+	if(!do_after(xenomorph_user, 2 SECONDS, NONE, src) || !can_interact(over))
 		return TRUE
 
 	var/obj/item/itemized_item = new itemized_typepath(drop_location())
@@ -72,7 +72,7 @@
 /// Returns TRUE if something happened.
 /obj/structure/xeno/plant/proc/try_use(mob/user)
 	balloon_alert(user, isxeno(user) ? "consuming..." : "touching...")
-	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src) || !can_interact(user))
 		return FALSE
 	return on_use(user)
 
