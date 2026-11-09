@@ -57,14 +57,14 @@
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/human, datum/species/old_species)
 	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.add_hud_to(human)
+	var/datum/atom_hud/atom_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	atom_hud.add_hud_to(human)
 	human.health_threshold_crit = -100 // They overheat below custom_crit_threshold
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/human)
 	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.remove_hud_from(human)
+	var/datum/atom_hud/atom_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	atom_hud.remove_hud_from(human)
 	human.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/synthetic/binarycheck(mob/human)
@@ -93,5 +93,3 @@
 	total_health = 200
 	brute_mod = 0.6
 	burn_mod = 0.6
-
-	hair_color = "#000000"
