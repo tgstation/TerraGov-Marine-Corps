@@ -619,6 +619,19 @@
 		return FALSE
 	return TRUE
 
+
+/**
+ * Checks if we can build a silo here
+ * Return TRUE if allowed, FALSE otherwise
+ */
+/turf/proc/check_disallow_alien_silo(mob/living/builder, silent = FALSE)
+	var/area/ourarea = loc
+	if(ourarea.area_flags & DISALLOW_SILO)
+		if(!silent)
+			to_chat(builder, span_warning("Queen Mother prohibits us from building a silo in this area!"))
+		return FALSE
+	return TRUE
+
 /**
  * Check if alien abilities can construct structure on the turf
  * Return TRUE if allowed, FALSE otherwise
