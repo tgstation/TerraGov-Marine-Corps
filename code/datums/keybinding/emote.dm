@@ -13,6 +13,6 @@
 	full_name = capitalize(initial(faketype.key))
 	description = "Do the emote '*[emote_key]'"
 
-/datum/keybinding/emote/down(client/user)
+/datum/keybinding/emote/down(client/user, turf/target)
 	. = ..()
 	user.mob.emote(emote_key, intentional = TRUE)

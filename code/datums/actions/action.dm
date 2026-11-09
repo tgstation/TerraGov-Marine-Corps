@@ -150,10 +150,10 @@ KEYBINDINGS
 	return TRUE
 
 ///Signal Handler for main action
-/datum/action/proc/keybind_activation()
+/datum/action/proc/keybind_activation(turf/target)
 	SIGNAL_HANDLER
 	if(can_use_action())
-		INVOKE_ASYNC(src, PROC_REF(action_activate))
+		INVOKE_ASYNC(src, PROC_REF(action_activate), target)
 	return COMSIG_KB_ACTIVATED
 
 ///Signal Handler for alternate actions
@@ -162,7 +162,7 @@ KEYBINDINGS
 	return
 
 /// Handler for what action to trigger, inherit from this and call parent before for extra actions
-/datum/action/proc/keybind_trigger(mob/source, datum/keybinding/kb_type)
+/datum/action/proc/keybind_trigger(mob/source, datum/keybinding/kb_type, turf/target)
 	SIGNAL_HANDLER
 	/**
 	 * assumption: if no keybind ref passed you want to call normally.
@@ -170,7 +170,7 @@ KEYBINDINGS
 	 * Add it if you need it
 	 */
 	if(!kb_type || kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])
-		return keybind_activation()
+		return keybind_activation(target)
 	if(kb_type.keybind_signal == keybinding_signals[KEYBINDING_ALTERNATE])
 		return alternate_action_activate()
 

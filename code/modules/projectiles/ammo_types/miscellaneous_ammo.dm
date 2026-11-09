@@ -10,7 +10,7 @@
 // TAT spread ammo
 /datum/ammo/bullet/atgun_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel_green"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_variation = 10
 	max_range = 6
@@ -21,6 +21,7 @@
 
 /datum/ammo/bullet/atgun_spread/incendiary
 	name = "incendiary flechette"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 20
 	penetration = 10
@@ -178,7 +179,7 @@
 			continue
 		if(isliving(relevant_atom))
 			var/mob/living/caught_mob = relevant_atom
-			caught_mob.ExtinguishMob()
+			caught_mob.extinguish_mob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
 /datum/ammo/water/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

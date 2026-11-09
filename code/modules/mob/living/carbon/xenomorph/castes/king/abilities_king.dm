@@ -184,10 +184,12 @@
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim and movement for a while."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_OFFGUARD_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 
 
 /datum/action/ability/activable/xeno/off_guard/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -241,8 +243,10 @@
 	ability_cost = 225
 	cooldown_duration = 45 SECONDS
 	target_flags = ABILITY_TURF_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SHATTERING_ROAR_SELECT,
 	)
 	/// Tracks victims to make sure we only hit them once
 	var/list/victims_hit = list()
@@ -436,7 +440,7 @@
 		else
 			particles_type = /particles/zero_form
 	particles = new(owner, particles_type)
-	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
+	beam = owner.loc.beam(targets[length(targets)], icon_state = "plasmabeam", beam_type = /obj/effect/ebeam/zeroform, override_origin_pixel_x = 0)
 	playsound(owner, 'sound/effects/alien/king_beam_charge.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)

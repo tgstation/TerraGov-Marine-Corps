@@ -12,8 +12,10 @@
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGER_CHARGE_SELECT,
 	)
 	/// The amount of deciseconds that carbons will be paralyze if hit.
 	var/paralyze_duration = 2 SECONDS
@@ -57,7 +59,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, charge_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -112,7 +114,7 @@
 	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_cost = 200
 	cooldown_duration = 6 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
@@ -268,7 +270,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -430,7 +432,7 @@
 		return FALSE
 	if(xeno_owner.health > 50)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	return TRUE
 
@@ -444,7 +446,7 @@
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
@@ -639,7 +641,7 @@
 	desc = "Toggle on to enable boosting on "
 	ability_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_duration = 1 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)

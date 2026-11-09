@@ -56,6 +56,7 @@
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
+	icon_state = "bullet_large"
 	hud_state = "revolver_heavy"
 	damage = 50
 	penetration = 5
@@ -68,6 +69,7 @@
 
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"
+	icon_state = "bullet_large"
 	handful_amount = 5
 	damage = 100
 	penetration = 40
@@ -78,6 +80,7 @@
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
+	icon_state = "bullet_large"
 	hud_state = "revolver_impact"
 	handful_amount = 6
 	damage = 50

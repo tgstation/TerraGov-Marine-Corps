@@ -75,8 +75,7 @@
 				living_target.flash_act(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 3 : 2)
-				living_target.adjust_fire_stacks(beam_turf ? 15 : 9)
-				living_target.IgniteMob()
+				living_target.adjust_burning(beam_turf ? 15 : 9)
 		if(!beam_turf)
 			continue
 		new /obj/effect/temp_visual/shockwave(impacted_turf, 4)
@@ -88,7 +87,7 @@
 
 	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4, explosion_cause=current_firer)
 
-	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
+	QDEL_IN(source_turf.beam(target_turf, icon_state = "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
 	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)
 
 /obj/effect/ebeam/carronade/Initialize(mapload)

@@ -367,7 +367,6 @@
 	action_icon = 'icons/mob/psionic_icons.dmi'
 	desc = "We manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_TELEKINESIS,
@@ -473,7 +472,7 @@
 	action_icon_state = "reanimate"
 	desc = "With our psionic strength we turn the dead into our puppet, or revive a fallen ally."
 	cooldown_duration = 60 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_REANIMATE,
 	)
@@ -519,7 +518,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	target.beam(owner, "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, maxdistance = 10)
+	target.beam(owner, icon_state = "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, max_distance = 10)
 	target.add_filter("psi_reanimation", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 
 	if(!do_after(owner, SECTOID_REANIMATE_CHANNEL_TIME, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))

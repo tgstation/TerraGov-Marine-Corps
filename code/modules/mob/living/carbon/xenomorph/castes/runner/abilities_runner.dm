@@ -10,9 +10,10 @@
 	action_icon_state = "pounce_savage_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RUNNER_POUNCE_SELECT,
 	)
 	pounce_range = RUNNER_POUNCE_RANGE
 /// The turf that the ability was started on.
@@ -52,10 +53,13 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/runner/alternate_action_activate()
+	if(xeno_owner.selected_ability != src)
+		return ..()
 	savage_activated = !savage_activated
 	owner.balloon_alert(owner, "Savage [savage_activated ? "activated" : "deactivated"]")
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/ability/activable/xeno/pounce/runner/use_ability(atom/A)
 	var/turf/owner_turf = get_turf(xeno_owner)
@@ -180,7 +184,7 @@
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent, override_flags, selecting)
 	. = ..()
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
 		return FALSE
@@ -348,7 +352,7 @@
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
-	if(!xeno_owner.fire_stacks)
+	if(!xeno_owner.is_on_fire())
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes, fire negates this
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE
@@ -390,10 +394,12 @@
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SNATCH_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
@@ -511,9 +517,6 @@
 /datum/action/ability/activable/xeno/charge/acid_dash/melter
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_MELTER,
-	)
 	paralyze_duration = 0.5 SECONDS
 	charge_range = 7
 	do_acid_spray_act = FALSE
@@ -525,7 +528,7 @@
 	desc = "Creates see-through acid smoke below yourself."
 	ability_cost = 50
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 32 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_MELTER,
@@ -555,9 +558,12 @@
 	ability_cost = 100
 	cooldown_duration = 60 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACIDIC_MISSILE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET
 	/// The particles effects from activation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// The acid level of the ability. Affects radius and movement speed.

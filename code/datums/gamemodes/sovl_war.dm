@@ -85,6 +85,36 @@
 	silo_scaling = LERP(SOVL_WAR_SILO_SCALE, SOVL_WAR_MIN_SILO_SCALE, clamp((length(GLOB.player_list) / SOVL_WAR_MIN_POP_BASE) - 1, 0, 1))
 	return ..()
 
+/datum/game_mode/infestation/sovl_war/update_silo_death_timer(datum/hive_status/silo_owner)
+	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
+		return
+
+	//handle potential stopping
+	if(round_stage != INFESTATION_MARINE_DEPLOYMENT)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+			silo_owner.xeno_message("A new silo has been laid! Hive collapse has been averted. Defend it and recorrupt generators to prevent future collapse.", "xenoannounce", 6, TRUE)
+			priority_announce("A new silo has been laid! Destroy the new silo before generators are recorrupted to resume hive collapse.", "Hive Collapse Averted", type = ANNOUNCEMENT_PRIORITY)
+		return
+
+	//handle starting
+	if(siloless_hive_timer)
+		return
+
+	silo_owner.xeno_message("We don't have any silos! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
+	priority_announce("Psychic distress waves detected from the xenomorph hive, imminent hive collapse in [NUCLEAR_WAR_SILO_COLLAPSE * 0.1] seconds. Prevent xenomorphs from laying a new silo.",
+	"Imminent Hive Collapse Detected",
+	type = ANNOUNCEMENT_PRIORITY)
+
+	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
+	signal_siloless_collapse()
+
 /datum/game_mode/infestation/sovl_war/orphan_hivemind_collapse()
 	if(round_finished)
 		return
@@ -92,10 +122,6 @@
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
-
-/datum/game_mode/infestation/sovl_war/get_hivemind_collapse_countdown()
-	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
-	return !isnull(eta) ? round(eta) : 0
 
 /datum/game_mode/infestation/sovl_war/check_finished()
 	if(round_finished)

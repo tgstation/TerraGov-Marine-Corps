@@ -212,11 +212,12 @@
 		carbon_owner.selected_ability.deselect()
 	select()
 
-/datum/action/ability/activable/keybind_activation()
+/datum/action/ability/activable/keybind_activation(turf/target)
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-			INVOKE_ASYNC(src, PROC_REF(use_ability))
+		var/true_target = ability_target(target)
+		if(can_use_ability(true_target, FALSE))
+			INVOKE_ASYNC(src, PROC_REF(use_ability), true_target)
 		return
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
@@ -239,10 +240,6 @@
 		return FALSE
 
 	var/to_check_flags = use_state_flags|override_flags
-
-	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(to_check_flags, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
-		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(to_check_flags, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
@@ -296,3 +293,30 @@
 		if(action_datum.type != old_ability)
 			continue
 		qdel(action_datum)
+
+#define TARGET_FLAGS_MACRO(typepath) \
+if(!istype(A, typepath)){\
+	. = locate(typepath) in get_turf(A);\
+	if(.){\
+		return;}}
+
+///Special behavior for identifying what atom to actually target
+/datum/action/ability/activable/proc/ability_target(atom/A)
+	//for quick cast, A is always going to be a turf, or null
+	if(owner.client && (isturf(A) || isnull(A)))
+		var/datum/weakref/ref = SSmouse_entered.hover_refs[owner.client]
+		var/atom/resolved = ref.resolve() //only atoms ever get put into hover_refs
+		if(resolved && resolved.loc && resolved.loc != owner) //we check for loc for click catcher and UI elements/items
+			A = resolved
+
+	if(target_flags & NONE)
+		return A
+	if((target_flags & ABILITY_TURF_TARGET))
+		return get_turf(A)
+	if((target_flags & ABILITY_MOB_TARGET) && !isliving(A))
+		TARGET_FLAGS_MACRO(/mob/living)
+	else if((target_flags & ABILITY_XENO_TARGET) && !isxeno(A))
+		TARGET_FLAGS_MACRO(/mob/living/carbon/xenomorph)
+	else if((target_flags & ABILITY_HUMAN_TARGET) && !ishuman(A))
+		TARGET_FLAGS_MACRO(/mob/living/carbon/human)
+	return A

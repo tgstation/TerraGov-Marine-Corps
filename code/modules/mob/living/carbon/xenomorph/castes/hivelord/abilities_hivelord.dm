@@ -12,9 +12,12 @@
 	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
 	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RECYCLE_SELECT,
 	)
+	target_flags = ABILITY_XENO_TARGET
 	ability_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 
@@ -27,7 +30,7 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "too far!")
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "not while on fire!")
 		return FALSE
@@ -282,11 +285,13 @@
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_duration = 12.5 SECONDS
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HEALING_INFUSION_SELECT,
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	/// The range in which this ability can be used.
 	var/heal_range = HIVELORD_HEAL_RANGE
 	/// The length of deciseconds that the Resin Jelly Coating status effect will be applied.
@@ -346,7 +351,7 @@
 
 	playsound(target, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
-	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
+	owner.beam(target, icon_state = "medbeam", time = 1 SECONDS, max_distance = 10, override_origin_pixel_x = 0, override_target_pixel_x = 0)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, span_xenodanger("Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.")) //Let the target know.

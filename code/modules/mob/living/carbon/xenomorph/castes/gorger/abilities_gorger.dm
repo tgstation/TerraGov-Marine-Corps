@@ -11,9 +11,11 @@
 	desc = "Devour your victim to be able to carry it around."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DEVOUR_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
@@ -43,7 +45,7 @@
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We have already swallowed one."))
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			to_chat(xeno_owner, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
@@ -87,9 +89,11 @@
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DRAIN_SELECT,
 	)
 	/// The multiplier to determine how much max health to heal when using Drain on a dead human.
 	var/dead_multiplier = 2.2
@@ -171,9 +175,11 @@
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_duration = 2 SECONDS
 	ability_cost = 20
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_XENO_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRANSFUSION_SELECT,
 	)
 	/// The percentage of the target's maximum health to heal by.
 	var/heal_percentage = GORGER_TRANSFUSION_HEAL
@@ -213,8 +219,7 @@
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	target_health = target_xeno.health
-	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
-	transfuse_beam.visuals.alpha = 127
+	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state = "lichbeam", beam_type = /obj/effect/ebeam/essence_link, override_origin_pixel_x = 0, override_target_pixel_x = 0, alpha = 127)
 	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		QDEL_NULL(transfuse_beam)
 		return
@@ -325,9 +330,11 @@
 	cooldown_duration = 50 SECONDS
 	ability_cost = 0
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_XENO_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_LINK_SELECT,
 	)
 	/// The psychic link status effect, if any.
 	var/datum/status_effect/xeno_psychic_link/psychic_link_status_effect

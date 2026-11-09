@@ -1845,7 +1845,6 @@
 /area/magmoor/civilian/jani)
 "blg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/nuke_spawn,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)
@@ -25382,6 +25381,11 @@
 	dir = 1
 	},
 /area/magmoor/civilian/jani)
+"rOZ" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "rPg" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
@@ -55345,7 +55349,7 @@ aPs
 hpH
 rQK
 xeb
-fCN
+rOZ
 lxN
 rQK
 kxx

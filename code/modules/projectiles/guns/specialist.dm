@@ -1037,6 +1037,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 	force = 40
 	wield_delay = 2.0 SECONDS
+	muzzleflash_iconstate = "muzzle_flash_pulse"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -1046,7 +1047,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 2 SECONDS
+	fire_delay = 1 SECONDS  //The fire delay is intentionally much shorter than the reload delay, to avoid punishing swapping to another weapon
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3

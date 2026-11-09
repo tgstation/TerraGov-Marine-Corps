@@ -350,7 +350,7 @@
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	// This proc can handle everything and hud updating, use it.
-	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
+	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max * 0.1)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
@@ -436,7 +436,8 @@
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick(delta_time)
-	owner.fire_stacks = max(owner.fire_stacks - 6, 0)
+	if(owner.is_on_fire())
+		owner.extinguish_mob()
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)

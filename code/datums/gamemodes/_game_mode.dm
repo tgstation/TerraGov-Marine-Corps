@@ -72,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
+	///Vehicle types that cannot be purchased in this gamemode
+	var/list/vehicle_black_list
 
 
 /datum/game_mode/New()
@@ -299,6 +301,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+/datum/game_mode/proc/get_respawn_time(mob/respawnee)
+	if(!GLOB.respawn_allowed)
+		return -1
+	var/time = (GLOB.key_to_time_of_role_death[respawnee.key] + SSticker.mode?.respawn_time - world.time)
+	if(time <= 0)
+		return 0
+	return time2text(time, "mm:ss")
+
 ///respawns the player, overrides verb respawn behavior as required
 /datum/game_mode/proc/player_respawn(mob/respawnee)
 	respawnee.respawn()
@@ -361,6 +371,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
+
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	return
 
 ///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
@@ -710,6 +724,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
+/datum/game_mode/proc/can_ghosts_join_as_zombies()
+	return TRUE
+
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
@@ -1055,16 +1072,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-
-/// Displays the orphan hivemind collapse timer, if applicable
-/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
-	if (isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno = source
-		if(xeno.hivenumber != XENO_HIVE_NORMAL)
-			return // Don't show for non-normal hives
-	var/rulerless_countdown = get_hivemind_collapse_countdown()
-	if(rulerless_countdown)
-		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)

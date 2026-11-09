@@ -230,6 +230,7 @@
 	use_state_flags = ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SHIELDBASH,
+		KEYBINDING_ALTERNATE = COMSIG_WEAPONABILITY_SHIELDBASH_SELECT,
 	)
 
 /datum/action/ability/activable/weapon_skill/shield_bash/give_action(mob/living/L)
@@ -282,6 +283,6 @@
 	modifiers -= "right"
 	params = list2params(modifiers)
 	var/target_atom = get_turf_on_clickcatcher(object, mob_source, params)
-	if(!can_use_ability(target_atom, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target_atom))
 		return
 	use_ability(target_atom)

@@ -90,7 +90,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -106,9 +106,12 @@
 	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_FORWARD_CHARGE_SELECT,
 	)
+	target_flags = ABILITY_HUMAN_TARGET //this is not really ideal since we might want to charge at nonhuman movables, but better than nother
 	paralyze_duration = 4 SECONDS
 	charge_range = DEFENDER_CHARGE_RANGE
 	/// How long is the windup before charging?
@@ -367,7 +370,7 @@
 	action_icon_state = "regenerate_skin"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY|ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_KEYBIND_USE_ABILITY|ABILITY_USE_LYING
 	ability_cost = 160
 	cooldown_duration = 1 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -397,7 +400,7 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	if(xeno_owner.on_fire && !resin_jelly_duration)
+	if(xeno_owner.is_on_fire() && !resin_jelly_duration)
 		to_chat(xeno_owner, span_xenowarning("We can't use that while on fire."))
 		return fail_activate()
 
@@ -429,13 +432,12 @@
 			status_effect.check_duration()
 	if(resin_jelly_duration)
 		xeno_owner.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING, resin_jelly_duration)
-		if(xeno_owner.on_fire)
+		if(xeno_owner.is_on_fire())
 			for (var/mob/living/carbon/human/nearby_human in orange(1, xeno_owner))
 				if(nearby_human.stat == DEAD || !xeno_owner.Adjacent(nearby_human))
 					continue
-				nearby_human.adjust_fire_stacks(xeno_owner.fire_stacks)
-				nearby_human.IgniteMob()
-			xeno_owner.ExtinguishMob()
+				nearby_human.adjust_burning(xeno_owner.amount_burning())
+			xeno_owner.extinguish_mob()
 	if(ally_unsunder_multiplier)
 		var/mob/living/carbon/xenomorph/ideal_xenomorph_target
 		for(var/mob/living/carbon/xenomorph/nearby_xenomorph in orange(1, xeno_owner))
