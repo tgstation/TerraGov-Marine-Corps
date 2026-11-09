@@ -74,7 +74,14 @@ export const FireSupport = (props) => {
                                   {munition.munition_name}
                                 </Stack>
                               </Stack.Item>
-                              <Stack.Item color="grey">
+                              <Stack.Item
+                                color={
+                                  currentMunition?.munition_type ===
+                                  munition.munition_type
+                                    ? 'white'
+                                    : 'grey'
+                                }
+                              >
                                 {munition.munition_cost}pt
                               </Stack.Item>
                             </Stack>

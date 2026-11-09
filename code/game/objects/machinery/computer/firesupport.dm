@@ -18,7 +18,7 @@
 	return ..()
 
 /obj/machinery/computer/fire_support/ui_interact(mob/user, datum/tgui/ui)
-	if(!SSticker.mode || istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+	if(!SSticker.mode || !istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -31,10 +31,6 @@
 /obj/machinery/computer/fire_support/ui_data(mob/user)
 	var/list/data = list()
 	data["points"] = SSpoints.dropship_points
-	return data
-
-/obj/machinery/computer/fire_support/ui_static_data(mob/user)
-	var/list/data = list()
 
 	var/list/munition_list = list()
 	for(var/munition_type in GLOB.hvz_munition_types)
@@ -43,9 +39,9 @@
 		munition_data["munition_type"] = munition_type
 		munition_data["munition_name"] = munition.name
 		munition_data["munition_uses"] = munition.uses
-		munition_data["munition_cost"] = 1 //placeholder, todo
-		munition_data["munition_desc"] = "placeholder desc" //todo
-		munition_data["munition_icon"] = (munition.icon_state)
+		munition_data["munition_cost"] = munition.purchase_cost
+		munition_data["munition_desc"] = munition.description
+		munition_data["munition_icon"] = munition.icon_state
 		munition_list += list(munition_data)
 
 	data["munition_list"] = munition_list
@@ -71,4 +67,4 @@
 			var/datum/fire_support/munition = GLOB.fire_support_types[munition_type]
 			munition.uses ++
 			SSpoints.dropship_points -= munition_cost
-			user.playsound_local(user, 'sound/effects/menu_click.ogg', 75)
+			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 75)

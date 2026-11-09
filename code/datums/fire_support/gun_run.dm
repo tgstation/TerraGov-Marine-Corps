@@ -38,9 +38,12 @@
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
 
-/datum/fire_support/gau/unlimited
-	fire_support_type = FIRESUPPORT_TYPE_GUN_UNLIMITED
-	uses = -1
+/datum/fire_support/gau/standard
+	fire_support_type = FIRESUPPORT_TYPE_GUN_STANDARD
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	uses = 12
+	purchase_cost = 20
+	description = "A gun run using 30mm cannons. Capable of strafing large areas for respectable damage. The cheap and cheerful munition of choice for over 150 years among the TGMC."
 
 /datum/fire_support/laser
 	name = "Laser run"
@@ -69,10 +72,13 @@
 	if(length(strafelist))
 		INVOKE_NEXT_TICK(src, PROC_REF(strafe_turfs), strafelist)
 
-/datum/fire_support/laser/unlimited
-	fire_support_type = FIRESUPPORT_TYPE_LASER_UNLIMITED
-	uses = -1
+/datum/fire_support/laser/standard
+	fire_support_type = FIRESUPPORT_TYPE_LASER_STANDARD
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	uses = 4
 	mob_damage = 120
+	purchase_cost = 30
+	description = "A series of power incendiary lasers. Causes huge damage and ignition along the path of the lasers, but is difficult to precisely target."
 
 /datum/fire_support/volkite
 	name = "Volkite gun run"

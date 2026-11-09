@@ -13,21 +13,27 @@
 /datum/fire_support/cruise_missile/select_target(turf/target_turf)
 	explosion(target_turf, 4, 5, 6, explosion_cause="cruise missile")
 
-/datum/fire_support/cruise_missile/unlimited
-	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED
-	uses = -1
+/datum/fire_support/cruise_missile/standard
+	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	uses = 4
+	purchase_cost = 150
+	description = "A precision guided cruise missile, carrying a powerful explosive payload. Capable of immense destruction, both to friend and to foe"
 
 /datum/fire_support/napalm_missile
 	name = "Napalm missile strike"
 	fire_support_type = FIRESUPPORT_TYPE_NAPALM_MISSILE
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
 	scatter_range = 1
-	uses = -1 //todo
+	uses = 2
 	icon_state = "napalm"
 	initiate_chat_message = "TARGET ACQUIRED AGM-99 'NAPALM' INBOUND."
 	initiate_screen_message = "AGM-99 programmed, one out."
 	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
 	start_visual = null
 	start_sound = null
+	purchase_cost = 180
+	description = "A precision guided cruise missile, carrying a powerful incendiary payload. Has a modest sized, but powerful explosive impact, but will ignite a widespread area with intense, searing flames."
 
 /datum/fire_support/napalm_missile/select_target(turf/target_turf)
 	explosion(target_turf, 2, 3, 4, explosion_cause = name)
@@ -39,20 +45,23 @@
 /datum/fire_support/tfoot_missile
 	name = "Tanglefoot missile strike"
 	fire_support_type = FIRESUPPORT_TYPE_TFOOT_MISSILE
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
 	scatter_range = 1
-	uses = -1 //todo
+	uses = 2
 	icon_state = "tangle_missile"
 	initiate_chat_message = "TARGET ACQUIRED AGM-67 'TANGLEFOOT' INBOUND."
 	initiate_screen_message = "AGM-67 programmed, one out."
 	initiate_sound = 'sound/weapons/rocket_incoming.ogg'
 	start_visual = null
 	start_sound = null
+	purchase_cost = 100
+	description = "A precision guided cruise missile, carrying a experimental chemical payload. Causes no damage, instead releasing a cloud of 'tanglefoot' gas, draining xenomorphs of plasma in its area of effect."
 
 /datum/fire_support/tfoot_missile/select_target(turf/target_turf)
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
 	playsound(target_turf, SFX_EXPLOSION_SMALL, 50)
 	playsound(target_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
-	smoke.set_up(7, target_turf, 11)
+	smoke.set_up(8, target_turf, 10)
 	smoke.start()
 
 /datum/fire_support/rad_missile
