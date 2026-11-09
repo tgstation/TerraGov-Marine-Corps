@@ -16,6 +16,7 @@
 /datum/fire_support/cruise_missile/standard
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	cooldown_duration = 60 SECONDS
 	uses = 4
 	purchase_cost = 150
 	description = "A precision guided cruise missile, carrying a powerful explosive payload. Capable of immense destruction, both to friend and to foe"
@@ -25,6 +26,7 @@
 	fire_support_type = FIRESUPPORT_TYPE_NAPALM_MISSILE
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
 	scatter_range = 1
+	cooldown_duration = 60 SECONDS
 	uses = 2
 	icon_state = "napalm"
 	initiate_chat_message = "TARGET ACQUIRED AGM-99 'NAPALM' INBOUND."
@@ -47,6 +49,7 @@
 	fire_support_type = FIRESUPPORT_TYPE_TFOOT_MISSILE
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
 	scatter_range = 1
+	cooldown_duration = 60 SECONDS
 	uses = 2
 	icon_state = "tangle_missile"
 	initiate_chat_message = "TARGET ACQUIRED AGM-67 'TANGLEFOOT' INBOUND."

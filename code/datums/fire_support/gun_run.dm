@@ -41,6 +41,7 @@
 /datum/fire_support/gau/standard
 	fire_support_type = FIRESUPPORT_TYPE_GUN_STANDARD
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	cooldown_duration = 20 SECONDS
 	uses = 12
 	purchase_cost = 20
 	description = "A gun run using 30mm cannons. Capable of strafing large areas for respectable damage. The cheap and cheerful munition of choice for over 150 years among the TGMC."
@@ -75,6 +76,7 @@
 /datum/fire_support/laser/standard
 	fire_support_type = FIRESUPPORT_TYPE_LASER_STANDARD
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	cooldown_duration = 20 SECONDS
 	uses = 4
 	mob_damage = 120
 	purchase_cost = 30

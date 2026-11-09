@@ -14,6 +14,7 @@
 /datum/fire_support/rockets/standard
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_STANDARD
 	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	cooldown_duration = 60 SECONDS
 	uses = 4
 	purchase_cost = 100
 	description = "A barrage of dumbfire rockets. Capable of saturating a large area with an intense barrage of high explosive warheads."
