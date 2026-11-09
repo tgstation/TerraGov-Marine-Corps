@@ -300,8 +300,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/mutation_chamber
-	/// The maximum amount of buildings that can exist before being disallowed from buying more.
-	var/max_chambers = MUTATION_CHAMBER_MAXIMUM
+	psypoint_cost = MUTATION_CHAMBER_COST
 
 /datum/hive_upgrade/building/mutation_chamber/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
@@ -316,48 +315,45 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	name = "Shell Mutation Chamber"
 	desc = "Constructs a chamber that allows xenos to buy survival mutations."
 	icon = "shell"
-	psypoint_cost = MUTATION_SHELL_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/shell
 
 /datum/hive_upgrade/building/mutation_chamber/shell/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(length(buyer.hive.shell_chambers) >= max_chambers)
+	if(length(buyer.hive.shell_chambers))
 		if(!silent)
-			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active shell chambers!"))
+			to_chat(buyer, span_xenowarning("Hive cannot support more than one shell chamber!"))
 		return FALSE
 
 /datum/hive_upgrade/building/mutation_chamber/spur
 	name = "Spur Mutation Chamber"
 	desc = "Constructs a chamber that allows xenos to buy attack mutations."
 	icon = "spur"
-	psypoint_cost = MUTATION_SPUR_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/spur
 
 /datum/hive_upgrade/building/mutation_chamber/spur/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(length(buyer.hive.spur_chambers) >= max_chambers)
+	if(length(buyer.hive.spur_chambers))
 		if(!silent)
-			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active spur chambers!"))
+			to_chat(buyer, span_xenowarning("Hive cannot support more than one spur chamber!"))
 		return FALSE
 
 /datum/hive_upgrade/building/mutation_chamber/veil
 	name = "Veil Mutation Chamber"
 	desc = "Constructs a chamber that allows xenos to buy utility mutations."
 	icon = "veil"
-	psypoint_cost = MUTATION_VEIL_CHAMBER_COST
 	building_type = /obj/structure/xeno/mutation_chamber/veil
 
 /datum/hive_upgrade/building/mutation_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(length(buyer.hive.veil_chambers) >= max_chambers)
+	if(length(buyer.hive.veil_chambers))
 		if(!silent)
-			to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
+			to_chat(buyer, span_xenowarning("Hive cannot support more than one veil chamber!"))
 		return FALSE
 
 /datum/hive_upgrade/building/tunnel

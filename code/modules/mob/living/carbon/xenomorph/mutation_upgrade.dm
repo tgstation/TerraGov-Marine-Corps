@@ -30,7 +30,7 @@
 			RegisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_SPUR, PROC_REF(on_structure_change))
 		if(MUTATION_VEIL)
 			RegisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_VEIL, PROC_REF(on_structure_change))
-	on_structure_change(null, MUTATION_CHAMBER_MINIMUM, get_total_structures())
+	on_structure_change(null, 0, get_total_structures())
 
 /// Removes the status effect for having the mutation, unregisters various signals, and then updates with zero structures.
 /datum/mutation_upgrade/Destroy(force)
@@ -45,7 +45,7 @@
 			UnregisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_SPUR)
 		if(MUTATION_VEIL)
 			UnregisterSignal(SSdcs, COMSIG_GLOB_MUTATION_CHAMBER_VEIL)
-	on_structure_change(null, get_total_structures())
+	on_structure_change(null, get_total_structures(), 0)
 	alert = null
 	xenomorph_owner = null
 	return ..()
@@ -98,11 +98,11 @@
 		return 0
 	switch(required_structure)
 		if(MUTATION_SHELL)
-			return clamp(length(xenomorph_owner.hive.shell_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return length(xenomorph_owner.hive.shell_chambers)
 		if(MUTATION_SPUR)
-			return clamp(length(xenomorph_owner.hive.spur_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return length(xenomorph_owner.hive.spur_chambers)
 		if(MUTATION_VEIL)
-			return clamp(length(xenomorph_owner.hive.veil_chambers), MUTATION_CHAMBER_MINIMUM, MUTATION_CHAMBER_MAXIMUM)
+			return length(xenomorph_owner.hive.veil_chambers)
 
 /**
  * Shell
