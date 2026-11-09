@@ -251,7 +251,7 @@
 	icon_state = "blue"
 	ceiling = CEILING_NONE
 	ceiling = CEILING_METAL
-	outside = FALSE  112   92
+	outside = FALSE
 	always_unpowered = FALSE
 
 
