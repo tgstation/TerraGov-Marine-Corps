@@ -51,10 +51,6 @@
 "am" = (
 /turf/open/floor/plating/ground/dirt,
 /area/space)
-"an" = (
-/obj/structure/window/framed/colony,
-/turf/closed/wall,
-/area/space)
 "ao" = (
 /obj/structure/stairs/multiz/directional/north,
 /turf/open/urban/street/asphalt,
@@ -791,6 +787,15 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"di" = (
+/obj/effect/turf_decal/tile/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/space)
 "dj" = (
 /obj/effect/spawner/random/misc/structure/rad_closet,
 /turf/open/floor/plating/ground/dirt2,
@@ -844,6 +849,10 @@
 "dv" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"dw" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
 /area/space)
 "dC" = (
 /turf/open/engineership/engineer_floor10{
@@ -1844,11 +1853,6 @@
 "hE" = (
 /obj/item/toy/plush/royalqueen,
 /turf/open/urban/street/asphalt,
-/area/space)
-"hF" = (
-/obj/structure/barricade/sandbags,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/roof/sheet,
 /area/space)
 "hG" = (
 /obj/structure/barricade/sandbags,
@@ -2872,11 +2876,6 @@
 /obj/effect/acid_hole,
 /turf/closed/wall,
 /area/space)
-"kR" = (
-/obj/structure/stairs/multiz/seamless/directional/south,
-/obj/structure/stairs/multiz/seamless/directional/south,
-/turf/open/floor/prison/redfloor,
-/area/space)
 "kS" = (
 /turf/closed/wall/prison,
 /area/space)
@@ -3815,14 +3814,6 @@
 /area/space)
 "oc" = (
 /turf/open/floor/floorthree,
-/area/space)
-"od" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/obj/effect/turf_decal/tape/door,
-/turf/open/floor/plating,
 /area/space)
 "oe" = (
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
@@ -6301,13 +6292,6 @@
 	},
 /turf/open/floor/roof/asphalt,
 /area/space)
-"xk" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/turf/closed/wall,
-/area/space)
 "xl" = (
 /obj/structure/cable,
 /obj/structure/cable/layer1,
@@ -7163,15 +7147,6 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
-/area/space)
-"zQ" = (
-/obj/effect/turf_decal/tile/white{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/smooth_large,
 /area/space)
 "zR" = (
 /obj/effect/turf_decal/tile/white{
@@ -24427,7 +24402,7 @@ on
 on
 on
 on
-od
+pC
 gp
 cy
 cy
@@ -33749,9 +33724,9 @@ lR
 lR
 lR
 lR
-an
-an
-an
+dw
+dw
+dw
 de
 du
 du
@@ -33760,9 +33735,9 @@ de
 du
 du
 de
-an
-an
-an
+dw
+dw
+dw
 de
 de
 mW
@@ -39596,7 +39571,7 @@ ad
 ac
 ac
 ac
-kR
+bh
 ah
 ar
 ar
@@ -80369,7 +80344,7 @@ hH
 hI
 hI
 hI
-hF
+hG
 bX
 bX
 bX
@@ -80945,7 +80920,7 @@ hH
 hJ
 hJ
 hJ
-hF
+hG
 bX
 bX
 bX
@@ -122333,7 +122308,7 @@ de
 bY
 xt
 bY
-xk
+pC
 bv
 bv
 bv
@@ -122722,7 +122697,7 @@ zV
 bv
 bv
 bv
-xk
+pC
 bv
 bv
 wY
@@ -150561,7 +150536,7 @@ hY
 xs
 xd
 xd
-zQ
+di
 zN
 xd
 xd
