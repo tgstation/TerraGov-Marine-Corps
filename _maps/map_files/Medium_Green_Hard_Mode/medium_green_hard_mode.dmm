@@ -8082,11 +8082,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/drought,
 /area/space)
-"Eb" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/space)
 "Ec" = (
 /obj/structure/cable,
 /obj/structure/catwalk/no_smooth,
@@ -8164,12 +8159,6 @@
 "En" = (
 /obj/structure/fence/dark/quality,
 /turf/open/floor/spiralplate,
-/area/space)
-"Eo" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/catwalk/no_smooth,
-/turf/open/urban/street/asphalt,
 /area/space)
 "Ep" = (
 /obj/structure/cable,
@@ -32417,7 +32406,7 @@ Ed
 Ed
 DV
 DV
-Eb
+DV
 cw
 ae
 De
@@ -34694,7 +34683,7 @@ tR
 hx
 Eq
 Ep
-Eo
+Ec
 Ec
 Ec
 Ec
