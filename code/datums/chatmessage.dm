@@ -166,6 +166,9 @@
 ///finishes the image generation after the MeasureText() call in generate_image().
 ///necessary because after that call the proc can resume at the end of the tick and cause overtime.
 /datum/chatmessage/proc/finish_image_generation(mheight, atom/target, mob/owner, complete_text, lifespan)
+	// The owner got deleted by the time we got here
+	if(!owned_by)
+		return
 	var/rough_time = REALTIMEOFDAY
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 	var/starting_height = target.maptext_height

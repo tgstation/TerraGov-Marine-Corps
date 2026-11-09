@@ -764,7 +764,7 @@
 		if(isliving(target))
 			var/mob/living/living_target = target
 			living_target.adjustFireLoss(damage)
-			living_target.adjust_fire_stacks(20)
+			living_target.adjust_burning(20)
 			living_target.IgniteMob()
 		else if(ismecha(target))
 			var/obj/vehicle/sealed/mecha/mech_target = target

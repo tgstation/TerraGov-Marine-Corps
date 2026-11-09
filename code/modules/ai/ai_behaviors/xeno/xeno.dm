@@ -97,7 +97,7 @@
 			UnregisterSignal(xeno_mob, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 		return FALSE
 	if(xeno_mob.resting)//Already resting
-		if(xeno_mob.on_fire)
+		if(xeno_mob.is_on_fire())
 			xeno_mob.do_resist()
 		return TRUE
 	SEND_SIGNAL(xeno_mob, COMSIG_XENOABILITY_REST)

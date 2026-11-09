@@ -10,10 +10,10 @@
 	action_icon_state = "pounce_savage_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
-	keybind_flags = null //todo: savage is on alternate so we can't quick cast unless we don't have the select option
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RUNNER_POUNCE_SELECT,
 	)
 	pounce_range = RUNNER_POUNCE_RANGE
 /// The turf that the ability was started on.
@@ -53,10 +53,13 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/runner/alternate_action_activate()
+	if(xeno_owner.selected_ability != src)
+		return ..()
 	savage_activated = !savage_activated
 	owner.balloon_alert(owner, "Savage [savage_activated ? "activated" : "deactivated"]")
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/ability/activable/xeno/pounce/runner/use_ability(atom/A)
 	var/turf/owner_turf = get_turf(xeno_owner)
@@ -181,7 +184,7 @@
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent, override_flags, selecting)
 	. = ..()
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
 		return FALSE
@@ -349,7 +352,7 @@
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
-	if(!xeno_owner.fire_stacks)
+	if(!xeno_owner.is_on_fire())
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes, fire negates this
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE

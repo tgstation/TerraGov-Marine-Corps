@@ -264,8 +264,7 @@
 	setCloneLoss(0)
 	setBrainLoss(0)
 	remove_all_status_effect()
-	ExtinguishMob()
-	fire_stacks = 0
+	extinguish_mob()
 
 	// shut down ongoing problems
 	bodytemperature = get_standard_bodytemperature()
@@ -387,9 +386,11 @@
 	do_jitter_animation(1000)
 	if(!client)
 		if(should_offer_to_ghost)
-			offer_mob()
-			addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
-			return
+			var/offering_zombie = should_zombify || iszombie(src)
+			if(!offering_zombie || SSticker.mode?.can_ghosts_join_as_zombies())
+				offer_mob()
+				addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), FALSE, should_zombify), 10 SECONDS)
+				return
 	if(should_zombify)
 		if(!iszombie(src))
 			set_species("Strong zombie")
