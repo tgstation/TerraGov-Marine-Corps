@@ -22,11 +22,16 @@ export const FireSupport = (props) => {
   const { act, data } = useBackend<FireSupportData>();
   const munitionList = data.munition_list ?? [];
 
-  const [selectedMunition, setSelectedMunition] = useLocalState<
-    MunitionData | null
-  >('selectedMunition', munitionList[0] ?? null);
+  const [selectedMunitionType, setSelectedMunitionType] = useLocalState<
+    string | null
+  >('selectedMunitionType', munitionList[0]?.munition_type ?? null);
 
-  const currentMunition = selectedMunition ?? munitionList[0] ?? null;
+  const currentMunition =
+    munitionList.find(
+      (munition) => munition.munition_type === selectedMunitionType,
+    ) ??
+    munitionList[0] ??
+    null;
 
   return (
     <Window title="Fire Support Requisition" width={760} height={540}>
@@ -59,7 +64,9 @@ export const FireSupport = (props) => {
                                 ? 'green'
                                 : 'transparent'
                             }
-                            onClick={() => setSelectedMunition(munition)}
+                            onClick={() =>
+                              setSelectedMunitionType(munition.munition_type)
+                            }
                           >
                             <Stack align="center" justify="space-between">
                               <Stack.Item grow>
@@ -118,12 +125,12 @@ export const FireSupport = (props) => {
                         disabled={
                           (data.points ?? 0) < currentMunition.munition_cost
                         }
-                        onClick={() =>
+                        onClick={() => {
                           act('purchase', {
                             munition_type: currentMunition.munition_type,
                             munition_cost: currentMunition.munition_cost,
-                          })
-                        }
+                          });
+                        }}
                       >
                         Purchase
                       </Button>
