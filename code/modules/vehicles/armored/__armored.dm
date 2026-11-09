@@ -249,6 +249,8 @@
 
 /obj/vehicle/sealed/armored/get_mechanics_info()
 	. = ..()
+	var/list/info_list = list()
+
 	var/list/named_paths = list()
 	named_paths += "<b> You can easily load the following items by attacking the vehicle at its entrance or click dragging them </b>"
 	for(var/obj/path AS in easy_load_list)
@@ -257,7 +259,23 @@
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry?.mechanics_text)
 		named_paths += general_entry.mechanics_text
-	return jointext(named_paths, "<br>")
+	info_list += jointext(named_paths, "<br>")
+
+	if(armored_flags & ARMORED_SELF_WALL_DAMAGE)
+		info_list += "<br> This vehicle will take damage when ramming into walls."
+
+	if(armored_flags & ARMORED_WRECKABLE)
+		info_list += "<br><U>How to repair a wrecked vehicle:</U>"
+		info_list += "Some vehicles leave behind a wreck when destroyed, instead of disappearing entirely. These wrecks can be restored to working order, \
+		if you can keep the wreck from being destroyed, and with a little help from requisitions. <br>"
+		info_list += "1. Left click the wrecked vehicle with a stack of [ARMORED_WRECK_PLASTEEL_REQ] plasteel."
+		info_list += "2. Left click the wrecked vehicle with a heavy vehicle fulton (purchasable from requisitions) to attach it."
+		info_list += "3. Once the fulton is attached, wrench the wrecked vehicle [ARMORED_WRECK_STAGE_MAX] times. Multiple people can do this action at the same time to speed up the process. <br>"
+		info_list += "Once wrenching is complete, the fulton will automatically activate, extracting the vehicle."
+		info_list += "The vehicle will be returned to the vehicle lift where it was originally purchased, in an operational state, ready for normal repairs and redeployment."
+		info_list += "<U>Warning:</U> Wrecks can be destroyed, and your enemies likely WILL focus on doing this. Protect the wreck and repair it via welding, as required.<br>"
+
+	. += jointext(info_list, "<br>")
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
