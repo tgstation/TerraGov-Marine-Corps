@@ -55,7 +55,7 @@
 		ruler_healing_penalty = 1
 	if(loc_weeds_type || HAS_TRAIT(src, TRAIT_INNATE_HEALING)) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE, seconds_per_tick)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.regeneration_multiplier) : 1, TRUE, seconds_per_tick)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE, seconds_per_tick) //Major healing nerf if standing.
 	updatehealth()
@@ -140,7 +140,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1
+	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.regeneration_multiplier) : 1
 
 	plasma_gain *= seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 

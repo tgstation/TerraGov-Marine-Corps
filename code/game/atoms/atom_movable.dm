@@ -1631,10 +1631,10 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	transition_filter(AM_SUBMERGE_MASK, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)), duration)
 	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
-///overrides the turf's normal footstep sound
+/// Overrides the turf's normal footstep sound.
 /atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
 	SIGNAL_HANDLER
-	return //override as required with the specific footstep sound
+	return // Change keys in [footstep_overrides] to override.
 
 ///returns that src is covering its turf. Used to prevent turf interactions such as water
 /atom/movable/proc/turf_cover_check(atom/movable/source)
