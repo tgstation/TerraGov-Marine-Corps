@@ -77,16 +77,14 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			return
 
 		var/silent_crawl = FALSE
-		var/vent_crawl_exit_time = 2 SECONDS
 		if(isxeno(src))
 			var/mob/living/carbon/xenomorph/xeno_user = src
 			silent_crawl = xeno_user.xeno_caste.silent_vent_crawl
-			vent_crawl_exit_time = xeno_user.xeno_caste.vent_exit_speed
 
 		if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
 			ventcrawl_target.visible_message(span_warning("You hear something squeezing through the ducts."))
 
-		if(!do_after(src, vent_crawl_exit_time, target = ventcrawl_target))
+		if(!do_after(src, 2 SECONDS, target = ventcrawl_target))
 			return
 		if(ventcrawl_target.welded) // in case it got welded during our sleep
 			to_chat(src, span_warning("You can't crawl around a welded vent!"))
@@ -103,7 +101,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		var/datum/pipeline/vent_parent = ventcrawl_target.parents[1]
 		if(vent_parent && (vent_parent.members.len))
 			visible_message(span_notice("[src] begins climbing into the ventilation system..."), span_notice("You begin climbing into the ventilation system..."))
-			if(!do_after(src, 4.5 SECONDS, target = ventcrawl_target, extra_checks = CALLBACK(src, PROC_REF(can_enter_vent), ventcrawl_target)))
+			if(!do_after(src, get_ventcrawl_speed(), target = ventcrawl_target, extra_checks = CALLBACK(src, PROC_REF(can_enter_vent), ventcrawl_target)))
 				return
 			if(has_client && isnull(client))
 				return
@@ -203,3 +201,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			SET_PLANE(pipenet_part.pipe_vision_img, PIPECRAWL_IMAGES_PLANE, their_turf)
 		client.images += pipenet_part.pipe_vision_img
 		pipes_shown += pipenet_part.pipe_vision_img
+
+///Returns how quickly this mob can enter a vent
+/mob/living/proc/get_ventcrawl_speed()
+	return XENO_DEFAULT_VENT_ENTER_TIME
+
+/mob/living/carbon/xenomorph/get_ventcrawl_speed()
+	return xeno_caste.ventcrawl_speed
