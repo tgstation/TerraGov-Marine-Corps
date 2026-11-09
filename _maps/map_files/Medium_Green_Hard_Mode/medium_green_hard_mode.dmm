@@ -51,6 +51,14 @@
 "am" = (
 /turf/open/floor/plating/ground/dirt,
 /area/space)
+"an" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/docking_port/stationary/marine_dropship/lz2{
+	pixel_x = 0;
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "ao" = (
 /obj/structure/stairs/multiz/directional/north,
 /turf/open/urban/street/asphalt,
@@ -1786,13 +1794,6 @@
 "hq" = (
 /obj/machinery/landinglight/lz1{
 	dir = 8
-	},
-/obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/plating,
-/area/space)
-"hr" = (
-/obj/docking_port/stationary/marine_dropship/lz1{
-	dir = 4
 	},
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
@@ -37185,7 +37186,7 @@ ho
 ho
 ho
 ho
-hr
+an
 ho
 ho
 ho
@@ -120745,8 +120746,8 @@ bX
 bX
 bX
 kX
-kX
-kX
+bX
+bX
 bX
 bX
 bX
@@ -120937,10 +120938,10 @@ bX
 bX
 bX
 bX
-kX
 bX
 bX
-kX
+bX
+bX
 bX
 bX
 bX
@@ -121132,7 +121133,7 @@ bX
 bX
 bX
 bX
-kX
+bX
 kX
 bX
 bX
