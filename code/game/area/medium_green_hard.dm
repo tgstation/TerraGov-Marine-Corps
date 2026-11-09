@@ -45,6 +45,46 @@
 	icon_state = "southeast"
 
 
+	
+/area/mediumgreen/outside/z2
+	name = "Rain Forest"
+
+/area/mediumgreen/outside/z2/northwest
+	name = "Northwest rainforest"
+	icon_state = "northwest"
+
+/area/mediumgreen/outside/z2/north
+	name = "North rainforest"
+	icon_state = "north"
+
+/area/mediumgreen/outside/z2/northeast
+	name = "Northeast rainforest"
+	icon_state = "northeast"
+
+/area/mediumgreen/outside/z2/west
+	name = "West rainforest"
+	icon_state = "west"
+
+/area/mediumgreen/outside/z2/central
+	name = "Central rainforest"
+	icon_state = "central"
+
+/area/mediumgreen/outside/z2/east
+	name = "East Lower rainforest"
+	icon_state = "east"
+
+/area/mediumgreen/outside/z2/southwest
+	name = "Southwest rainforest"
+
+/area/mediumgreen/outside/z2/south
+	name = "South rainforest"
+	icon_state = "south"
+
+/area/mediumgreen/outside/z2/southeast
+	name = "Southeast rainforest"
+	icon_state = "southeast"
+
+
 
 /area/mediumgreen/outside/z3
 	name = "upper Rain Forest"
