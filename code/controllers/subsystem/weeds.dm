@@ -88,7 +88,6 @@ SUBSYSTEM_DEF(weeds)
 	if(iswallturf(chosen_turf))
 		weed_to_spawn = /obj/alien/weeds/weedwall
 
-	var/are_we_swapping = FALSE
 	for(var/obj/found_obj AS in chosen_turf)
 		if(istype(found_obj, /obj/structure/window/framed))
 			weed_to_spawn = /obj/alien/weeds/weedwall/window
@@ -112,4 +111,4 @@ SUBSYSTEM_DEF(weeds)
 			// Otherwise, fully replace it.
 			found_weed.replace_weed(weed_to_spawn, chosen_node)
 			return
-	new weed_to_spawn(chosen_turf, chosen_node, are_we_swapping)
+	new weed_to_spawn(chosen_turf, chosen_node)
