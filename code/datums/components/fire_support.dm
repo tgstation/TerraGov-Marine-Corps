@@ -85,7 +85,7 @@
 
 ///Selects a firemode
 /datum/component/fire_support/proc/select_radial(mob/user)
-	if(user.get_active_held_item() != parent)
+	if(isitem(parent) && (user.get_active_held_item() != parent))
 		return
 	if(!parent.can_interact(user))
 		return TRUE
@@ -96,26 +96,27 @@
 			continue
 		radial_options[mode_list[fire_support_type].name] = image(icon = 'icons/mob/radial.dmi', icon_state = mode_list[fire_support_type].icon_state)
 
-	var/mode_selected = show_radial_menu(user, get_anchor(user), radial_options, null, 48, null, TRUE, TRUE)
+	var/atom/anchor = get_anchor(user)
+	var/mode_selected = show_radial_menu(user, anchor, radial_options, null, 48, tooltips = TRUE)
 	for(var/option in mode_list)
 		if(mode_list[option].name != mode_selected)
 			continue
 		mode = mode_list[option]
-		user.balloon_alert(get_anchor(user), "[mode_selected] mode")
+		anchor.balloon_alert(user, "[mode_selected] mode")
 
 ///lases a target and calls fire support on it
 /datum/component/fire_support/proc/acquire_target(atom/target, mob/living/carbon/human/user)
 	set waitfor = 0
 	var/atom/anchor = get_anchor(user)
 	if(user.do_actions)
-		user.balloon_alert(anchor, "busy!")
+		anchor.balloon_alert(user, "busy!")
 		return
 	if(is_mainship_level(anchor.z))
-		user.balloon_alert(anchor, "can't use these here!")
+		anchor.balloon_alert(user, "can't use these here!")
 		return
 	var/atom/movable/parent_movable = parent
 	if(parent_movable.faction && user.faction != parent_movable.faction) //this is like the only place we use movable parent so far
-		user.balloon_alert(anchor, "security locks engaged")
+		anchor.balloon_alert(user, "security locks engaged")
 		return
 	if(laser_overlay)
 		to_chat(user, span_warning("You're already targeting something."))
@@ -123,7 +124,7 @@
 	if(!bino_checks(target, user))
 		return
 	if(!can_see_target(target, user))
-		user.balloon_alert(anchor, "no clear view!")
+		anchor.balloon_alert(user, "no clear view!")
 		return
 
 	playsound(parent, 'sound/effects/nightvision.ogg', 35, FALSE, SHORT_SOUND_RANGE)
@@ -149,16 +150,16 @@
 /datum/component/fire_support/proc/bino_checks(atom/target, mob/living/user)
 	var/atom/anchor = get_anchor(user)
 	if(!mode)
-		user.balloon_alert(anchor, "select a mode!")
+		anchor.balloon_alert(user, "select a mode!")
 		return FALSE
 	if(!(mode.fire_support_flags & FIRESUPPORT_AVAILABLE))
-		user.balloon_alert(anchor, "[lowertext(mode.name)] unavailable!")
+		anchor.balloon_alert(user, "[lowertext(mode.name)] unavailable!")
 		return FALSE
 	if(!mode.uses)
-		user.balloon_alert(anchor, "[lowertext(mode.name)] expended!")
+		anchor.balloon_alert(user, "[lowertext(mode.name)] expended!")
 		return FALSE
 	if(mode.cooldown_timer)
-		user.balloon_alert(anchor, "on cooldown!")
+		anchor.balloon_alert(user, "on cooldown!")
 		return FALSE
 	var/area/targ_area = get_area(target)
 	if(isspacearea(targ_area))
