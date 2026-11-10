@@ -20,8 +20,8 @@ SUBSYSTEM_DEF(weeds)
 
 /datum/controller/subsystem/weeds/fire(resumed = FALSE)
 	if(!resumed)
-		creating = list()
 		current_run = pending.Copy()
+		creating = list()
 
 	for(var/turf/current_turf AS in current_run)
 		if(MC_TICK_CHECK)
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(weeds)
 		var/obj/alien/weeds/node/current_node = current_run[current_turf]
 		current_run -= current_turf
 
-		// Orphaned weed that we can take over as the new parent node.
+		// Orphaned weed that we can take over as the new parent node (or should be deleted).
 		var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in current_turf
 		if(found_weed && !QDELETED(current_node) && !found_weed.parent_node && !istype(found_weed, /obj/alien/weeds/node))
 			if(!found_weed.set_parent_node(current_node))
