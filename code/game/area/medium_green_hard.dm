@@ -88,6 +88,7 @@
 
 /area/mediumgreen/outside/z3
 	name = "upper Rain Forest"
+	area_flags = DISALLOW_SILO
 
 /area/mediumgreen/outside/z3/northwest
 	name = "Northwest upper leaves"
@@ -244,6 +245,9 @@
 /area/mediumgreen/caves/z3/Neotree
 	name = "Neo-tree"
 	icon_state = "cave"
+	area_flags = DISALLOW_SILO
+	minimap_color = MINIMAP_AREA_REQ
+
 
 /area/mediumgreen/caves/z3/Neotree/north
 	name = "Northern Neo-tree"
@@ -261,6 +265,8 @@
 	name = "Arena of destiny"
 	icon_state = "party"
 	always_unpowered = TRUE
+	area_flags = DISALLOW_SILO
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 
 //sorry how dirty it is below but uh yeah it works so
@@ -271,6 +277,7 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = NO_DROPPOD
 
 /area/mediumgreen/outside/lz2
 	name = "Southern Landing Zone"
@@ -278,6 +285,7 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = NO_DROPPOD
 
 /area/mediumgreen/outside/lz1/around
 	name = "Northern Landing Zone"
@@ -300,6 +308,7 @@
 	name = "Expeditionary Outpost"
 	ceiling = CEILING_METAL
 	always_unpowered = FALSE
+	minimap_color = MINIMAP_AREA_COMMAND
 
 
 /area/mediumgreen/outside/lz2/building/road
@@ -307,24 +316,29 @@
 
 /area/mediumgreen/outside/lz2/building/engi
 	name = "Expeditionary Outpost Engineering Storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/lz2/building/stairs
 	name = "Expeditionary Outpost Engineering Stairway"
 
 /area/mediumgreen/outside/lz2/building/medbay
 	name = "Expeditionary Outpost Medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/mediumgreen/outside/lz2/building/restroom
 	name = "Expeditionary Outpost Restroom"
 
 /area/mediumgreen/outside/lz2/building/sec_n
 	name = "Expeditionary Outpost Security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/lz2/building/sec_s
 	name = "Expeditionary Outpost Security Checkpoint"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/lz2/building/cargo
 	name = "Expeditionary Outpost Storage Bay"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/mediumgreen/outside/lz2/building/breakroom
 	name = "Expeditionary Outpost breakroom"
@@ -356,13 +370,16 @@
 
 /area/mediumgreen/outside/building/southeast/containment/vault
 	name = "Artifact vault"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/southeast/security
 	name = "Research Outpost Security Booth"
 	icon_state = "interrogation"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/southeast/security/tower/
 	name = "Research Outpost Sniper Tower"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/southeast/security/tower/one
 
@@ -374,9 +391,11 @@
 
 /area/mediumgreen/outside/building/southeast/warehouse
 	name = "Research Outpost Warehouse"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/mediumgreen/outside/building/southeast/dorm
 	name = "Research Outpost Dormitory"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/southeast/lodge
 	name = "Staff Lodge"
@@ -408,14 +427,18 @@
 	name = "Engineer ship"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 	icon_state = "supplypod_flight"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/mediumgreen/outside/building/southeast/ship/crashzone
 	name = "Ship crash zone"
 	always_unpowered = TRUE
+	minimap_color = MINIMAP_AREA_COLONY
+
 
 /area/mediumgreen/outside/building/southeast/intel
 	name = "Research Outpost intelligence outpost"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_COLONY
 
 
 //neofibre resarch Facility (tower of hell)
@@ -434,6 +457,7 @@
 	name = "Neo-fibre Research Facility"
 	ceiling = CEILING_METAL
 	always_unpowered = TRUE
+	minimap_color = MINIMAP_AREA_CELL_VIP
 
 /area/mediumgreen/outside/building/neotree/z1
 	name = "Neo-fibre Research Facility"
@@ -450,30 +474,36 @@
 
 /area/mediumgreen/outside/building/neotree/z1/engineering
 	name = "Neo-fibre Research Facility Engineering"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/neotree/z1/backroom
 	name = "Neo-fibre Research Facility backroom"
 
 /area/mediumgreen/outside/building/neotree/z1/security
 	name = "Neo-fibre Research Facility security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/neotree/z1/storage
 	name = "Neo-fibre Research Facility temporary storage"
 
 /area/mediumgreen/outside/building/neotree/z1/canteen
 	name = "Neo-fibre Research Facility lower break room"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/neotree/z1/beds
 	name = "Neo-fibre Research Facility quarters"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/neotree/z1/restroom
 	name = "Neo-fibre Research Facility restroom"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/mediumgreen/outside/building/neotree/z1/maint
 	name = "Neo-fibre Research Facility maintanance corridor"
 
 /area/mediumgreen/outside/building/neotree/z1/ladder
 	name = "Neo-fibre Research Facility maintanance ladder"
+	minimap_color = MINIMAP_AREA_PREP
 
 /area/mediumgreen/outside/building/neotree/z1/lobby
 	name = "Neo-fibre Research Facility entrance hallway"
@@ -481,6 +511,7 @@
 
 /area/mediumgreen/outside/building/neotree/z2/intel
 	name = "Neo-fibre Research Facility intelligence office"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/neotree/z2/lower
 	name = "Neo-fibre Research Facility middle floor construction area"
@@ -498,12 +529,14 @@
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
 	name = "Neo-fibre Research Facility Research checkpoint"
+	minimap_color = MINIMAP_AREA_RESEARCH_SEC
 
 /area/mediumgreen/outside/building/neotree/z3/breakroom
 	name = "Neo-fibre Research Facility upper break room"
 
 /area/mediumgreen/outside/building/neotree/z3/tree
 	name = "Neo-fibre tree"
+	minimap_color = MINIMAP_AREA_CELL_HIGH
 
 /area/mediumgreen/outside/building/neotree/z3/storage
 	name = "Neo-fibre Research Facility temporary storage"
@@ -513,56 +546,70 @@
 //power Research site (engi)
 
 /area/mediumgreen/outside/building/engineering
-	name = "Engineering Research Facility"
-	minimap_color = MINIMAP_AREA_ENGI
+	name = "Power Research Facility"
 
 /area/mediumgreen/outside/building/engineering/storage_s
 	name = "Power Research Site Secondary Storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/storage_n
 	name = "Power Research Site Primary Storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/hallway_e
 	name = "Power Research Site Eastern Hallway"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/hallway_w
 	name = "Power Research Site Western Hallway"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/hallway_s
 	name = "Power Research Site Southern Hallway"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/control
 	name = "Power Research Site Control Room"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/intel_nw
 	name = "Power Research Site Intelligence Research"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/tcoms
 	name = "Power Research Site Telecommunication"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/engineering/inner
 	name = "Power Research Site Inner Hallway"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/mediumgreen/outside/building/engineering/inner/powerroom
 	name = "Power Research Site Main Generator Room"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/mediumgreen/outside/building/engineering/inner/powerroom/upper
 	name = "Power Research Site Upper Generator Room"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/mediumgreen/outside/building/engineering/inner/disk
 	name = "Power Research Site Vault Room"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/mediumgreen/outside/building/engineering/roof
 	name = "Power Research Site Unfinished Upper Room"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/mediumgreen/outside/building/engineering/roof/z2
 	name = "Power Research Site Lower Roof"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/mediumgreen/outside/building/engineering/roof/z3
 	name = "Power Research Site Upper Roof"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_COLONY
 
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 
@@ -573,6 +620,7 @@
 
 /area/mediumgreen/outside/building/transportshuttle/engi
 	name = "Nanotrasen engineering shuttle"
+	minimap_color = MINIMAP_AREA_ENGI
 
 
 //syndi base big + small
@@ -588,9 +636,9 @@
 /area/mediumgreen/outside/building/cultist
 	name = "Cultist Hideout"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
+	minimap_color = MINIMAP_AREA_SEC
 
-//that one long line w/ power
+//that one long line w/ power - missing from map on purpose
 
 /area/mediumgreen/outside/powerline
 	name = "Central Powerline"
