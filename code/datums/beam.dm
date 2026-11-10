@@ -426,6 +426,42 @@
 		log_attack("[victim] was zapped by [source]")
 	return xenos
 
+// shocks xenos, deals damage to marines and xenos, returns shocked mobs
+//code by tery so blame them
+/proc/zap_all(atom/source, zap_range, damage, armor_pierce, max_targets = INFINITY, beam_passflags = PASS_PROJECTILE|PASS_GLASS)
+	var/list/targets = cheap_get_living_near(source, zap_range)
+	for(var/mob/living/target AS in targets)
+		if(target.stat == DEAD || (target.status_flags & (INCORPOREAL|GODMODE)))
+			targets -= target
+			continue
+		if(check_path(source, target, beam_passflags) != get_turf(target))
+			targets -= target
+			continue
+	var/list/xenos = cheap_get_xenos_near(source, zap_range)
+	for(var/mob/living/carbon/xenomorph/living AS in xenos)
+		if(!living)
+			xenos -= living
+			continue
+		if(living.stat == DEAD || (living.status_flags & (INCORPOREAL|GODMODE)))
+			xenos -= living
+			continue
+		if(check_path(source, living, beam_passflags) != get_turf(living))
+			xenos -= living
+			continue
+	targets.Cut(min(max_targets + 1, length(targets) + 1))
+
+	for(var/mob/living/carbon/xenomorph/victim AS in xenos)
+		if(victim.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA)
+			victim.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 2 SECONDS)
+			victim.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 2 SECONDS)
+		victim.slowdown(0.5)
+
+	for(var/mob/living/target AS in targets)
+		source.beam(target, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)
+		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, ENERGY, FALSE, FALSE, TRUE, armor_pierce)
+		log_attack("[target] was zapped by [source]")
+	return targets
+
 /// executes a BFG zap. just damages living mobs in an AOE from the source
 /proc/bfg_beam(atom/source, zap_range, damage, armor_pierce, list/blacklistmobs)
 	for(var/mob/living/target AS in cheap_get_living_near(source, zap_range))

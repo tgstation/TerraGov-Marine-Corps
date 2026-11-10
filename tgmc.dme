@@ -1234,6 +1234,7 @@
 #include "code\game\objects\machinery\street_lamps.dm"
 #include "code\game\objects\machinery\suit_storage_unit.dm"
 #include "code\game\objects\machinery\teleporter.dm"
+#include "code\game\objects\machinery\tesla_orb.dm"
 #include "code\game\objects\machinery\tesla_turret.dm"
 #include "code\game\objects\machinery\washing_machine.dm"
 #include "code\game\objects\machinery\artillery\boxes.dm"
