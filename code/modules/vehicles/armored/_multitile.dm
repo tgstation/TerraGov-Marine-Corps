@@ -35,7 +35,6 @@
 	)
 	max_occupants = 4
 	move_delay = 0.75 SECONDS
-	glide_size = 2.5
 
 	ram_damage = 100
 	easy_load_list = list(
@@ -181,7 +180,6 @@
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.55, VEHICLE_SIDE_ARMOUR = 0.85, VEHICLE_BACK_ARMOUR = 1.6)
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	move_delay = 0.5 SECONDS
-	glide_size = 2.8
 	faction = FACTION_TERRAGOV
 	ram_damage = 130
 
