@@ -7789,6 +7789,15 @@
 "Cs" = (
 /turf/closed/gm,
 /area/mediumgreen/outside/z2/east)
+"Ct" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/urban/tile/tilebeige,
+/area/space)
 "Cu" = (
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z2/west)
@@ -8816,6 +8825,92 @@
 /area/space)
 "Gj" = (
 /turf/closed/wall/wood/bark,
+/area/space)
+"Gk" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 4
+	},
+/area/space)
+"Gl" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/engine/atmos,
+/area/space)
+"Gm" = (
+/obj/machinery/power/apc/drained,
+/turf/open/floor/mainship/hexagon,
+/area/space)
+"Gn" = (
+/obj/structure/table/mainship,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/mainship/plate,
+/area/space)
+"Go" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 6
+	},
+/area/space)
+"Gp" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/mainship/hexagon,
+/area/space)
+"Gq" = (
+/turf/closed/wall/mainship,
+/area/space)
+"Gr" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate,
+/area/space)
+"Gs" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/mainship/plate,
+/area/space)
+"Gt" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/mainship/plate,
+/area/space)
+"Gu" = (
+/obj/machinery/power/emitter,
+/turf/open/floor/mainship/hexagon,
+/area/space)
+"Gv" = (
+/obj/structure/table/mainship,
+/obj/item/camera,
+/turf/open/floor/mainship/plate,
+/area/space)
+"Gw" = (
+/obj/structure/window/framed/mainship,
+/turf/open/urban/street/asphalt,
+/area/space)
+"Gx" = (
+/obj/item/target,
+/turf/open/floor/mainship/hexagon,
+/area/space)
+"Gy" = (
+/obj/machinery/door/airlock/mainship/command,
+/turf/open/floor/mainship/plate,
+/area/space)
+"Gz" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/space)
 
 (1,1,1) = {"
@@ -45042,7 +45137,7 @@ BO
 cw
 pZ
 pX
-pj
+Go
 cw
 Fe
 Fe
@@ -45281,7 +45376,7 @@ qR
 qR
 oD
 ow
-op
+Gk
 oi
 cw
 Fe
@@ -47384,7 +47479,7 @@ Fe
 Fe
 Fe
 cw
-gN
+Gm
 gN
 gN
 oN
@@ -48137,7 +48232,7 @@ cw
 gN
 gN
 gN
-gN
+Gp
 gN
 gN
 gN
@@ -50624,7 +50719,7 @@ Fe
 Fe
 Fe
 Fe
-Fe
+uP
 uP
 qR
 qR
@@ -50815,8 +50910,8 @@ Fe
 Fe
 Fe
 Fe
-Fe
-Fe
+uP
+uP
 uP
 uP
 uP
@@ -51006,15 +51101,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-cw
-cw
-cw
-cw
-cw
-cw
-cw
-cw
+de
+Gy
+de
+de
+de
+de
+de
+de
+de
 uP
 uP
 uP
@@ -51029,7 +51124,7 @@ uP
 cw
 ow
 op
-pj
+Go
 cw
 Fi
 Fi
@@ -51198,15 +51293,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+dH
+dH
+dH
+dH
+dH
+dH
+dH
+de
 Fe
 Fe
 uP
@@ -51232,7 +51327,7 @@ Fe
 Fe
 Fe
 de
-iX
+Gl
 iX
 iX
 iX
@@ -51390,15 +51485,15 @@ Fi
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+dH
+dH
+dH
+ix
+Gv
+Gt
+Gr
+de
 Fe
 Fe
 Fi
@@ -51582,15 +51677,15 @@ Fi
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+Gs
+Gq
+Gq
+Gw
+Gw
+Gq
+Gs
+Gq
 Fe
 Fi
 Fi
@@ -51774,15 +51869,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+cy
+Gq
+gN
+gN
+gN
+gN
+eu
+Gq
 Fe
 Fe
 Fi
@@ -51966,15 +52061,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+cy
+Gq
+Gx
+gN
+gN
+Gu
+gN
+Gq
 Fe
 Fe
 Fi
@@ -52158,15 +52253,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cw
+de
+Gz
+Gq
+gN
+gN
+gN
+gN
+gN
+Gq
 Fe
 Fe
 Fe
@@ -52350,15 +52445,15 @@ Fe
 Fe
 Fe
 Fe
-cw
-cw
-cw
-cw
-cw
-cw
-cw
-cw
-cw
+de
+de
+Gq
+Gq
+Gq
+Gq
+Gq
+Gq
+Gq
 Fe
 Fe
 Fe
@@ -55256,7 +55351,7 @@ kg
 kf
 iu
 iy
-ix
+Gn
 er
 er
 cw
@@ -55267,7 +55362,7 @@ fb
 eD
 eD
 iq
-ic
+Ct
 ic
 ic
 ig
