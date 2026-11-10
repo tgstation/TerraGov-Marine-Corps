@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed the glide size of all vehicles, resulting in less choppy movement"
+  - bugfix: "fixed cooldown macros lasting 1 tick longer than intended. This effects vehicle move delays, among many other things."
