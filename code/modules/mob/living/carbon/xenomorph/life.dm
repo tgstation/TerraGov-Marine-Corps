@@ -72,7 +72,7 @@
 		sunder_recov *= 2
 
 	if(loc_weeds_type) // Some weed types may boost sunder recovery.
-		sunder_recov *= loc_weeds_type::sunder_recov_multiplier
+		sunder_recov *= initial(loc_weeds_type.sunder_recov_multiplier)
 
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
