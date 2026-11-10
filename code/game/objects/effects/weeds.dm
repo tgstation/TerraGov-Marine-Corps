@@ -33,7 +33,7 @@
 	/// Use [replace_weed()] when swapping weed types.
 	var/swapped = FALSE
 
-/obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
+/obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, from_swapping = FALSE)
 	. = ..()
 	if(!set_parent_node(node))
 		stack_trace("Weed was created without a parent node!")
@@ -46,7 +46,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 	update_icon()
-	if(!swapped)
+	if(!from_swapping)
 		update_neighbours()
 	for(var/mob/living/living_mob in loc.contents)
 		SEND_SIGNAL(living_mob, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, src)
@@ -258,7 +258,7 @@
 	/// The plasma cost multiplier for this node.
 	var/ability_cost_mult = 1
 
-/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node, swapped)
+/obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node, from_swapping = FALSE)
 	var/are_we_swapping = FALSE
 	for(var/obj/alien/weeds/replaced_weed in loc)
 		if(replaced_weed == src)
