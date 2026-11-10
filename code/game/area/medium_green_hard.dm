@@ -529,7 +529,7 @@
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
 	name = "Neo-fibre Research Facility Research checkpoint"
-	minimap_color = MINIMAP_AREA_RESEARCH_SEC
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/neotree/z3/breakroom
 	name = "Neo-fibre Research Facility upper break room"
