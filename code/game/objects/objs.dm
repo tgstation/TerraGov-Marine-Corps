@@ -236,7 +236,7 @@
 
 /obj/on_set_interaction(mob/user)
 	. = ..()
-	ENABLE_BITFIELD(obj_flags, IN_USE)
+	ENABLE_BITFIELD(obj_flags, IN_USE) //todo: this isn't unset currently
 
 /mob/proc/unset_machine()
 	if(machine)

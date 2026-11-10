@@ -44,6 +44,15 @@
 
 /obj/structure/periscope/apc
 	name = "apc periscope"
+	var/list/mode_list = list(
+		FIRESUPPORT_TYPE_GUN_UNLIMITED,
+		FIRESUPPORT_TYPE_ROCKETS_UNLIMITED,
+		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
+	)
+
+/obj/structure/periscope/apc/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/fire_support, mode_list)
 
 /obj/structure/periscope/som
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'

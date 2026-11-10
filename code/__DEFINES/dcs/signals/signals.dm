@@ -516,6 +516,10 @@
 #define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
+
+#define COMSIG_ITEM_ZOOMED "item_zoomed"
+#define COMSIG_ITEM_UNZOOMED "item_unzoomed"
+
 #define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of /obj/item/unique_action(): (atom/target, mob/user)
 
 #define COMSIG_ITEM_IS_ATTACHING "item_is_attaching" //from base of /datum/component/attachment_handler/handle_attachment : (/obj/item, /mob)
@@ -1048,3 +1052,8 @@
 #define COMSIG_GROUNDMAP_VOTE_RESULT "groundmap_vote_result"
 ///vote cancelled
 #define COMSIG_VOTE_CANCELLED "vote_cancelled"
+
+///datum is being interacted with
+#define COMSIG_DATUM_INTERACT_SET "datum_interact_set"
+///datum is being uninteracted with
+#define COMSIG_DATUM_INTERACT_UNSET "datum_interact_unset"

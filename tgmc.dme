@@ -502,6 +502,7 @@
 #include "code\datums\components\connect_range.dm"
 #include "code\datums\components\deployable_item.dm"
 #include "code\datums\components\dripping.dm"
+#include "code\datums\components\fire_support.dm"
 #include "code\datums\components\fov_handler.dm"
 #include "code\datums\components\fuel_component.dm"
 #include "code\datums\components\grillable.dm"
