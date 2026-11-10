@@ -105,3 +105,11 @@
   sylvia-from-fulp-station:
   - balance: You cannot take over ssd zombie mobs on zcrash without atleast 4 alive
       marines.
+2026-11-10:
+  Isy232:
+  - balance: Reduces xeno silo generation rate by on Sovl War, with a larger reduction
+      with more players.
+  Lumipharon:
+  - qol: Added detailed vehicle wreck repair instructions in the codex for both the
+      heavy vehicle fulton, and applicable vehicles
+  - qol: Wrecked vehicles inform you of the next repair step required in their description

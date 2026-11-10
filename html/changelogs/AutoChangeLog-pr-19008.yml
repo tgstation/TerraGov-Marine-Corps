@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Added detailed vehicle wreck repair instructions in the codex for both the heavy vehicle fulton, and applicable vehicles"
-  - qol: "Wrecked vehicles inform you of the next repair step required in their description"
