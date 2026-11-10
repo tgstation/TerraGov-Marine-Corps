@@ -342,7 +342,7 @@
 /area/mediumgreen/outside/building/southeast
 	name = "Artifact Research Outpost"
 	icon_state = "icy_alien_stuff"
-	minimap_color = MINIMAP_AREA_Research
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/southeast/containment
 	name = "Large Artifact Containment"
@@ -553,7 +553,7 @@
 /area/mediumgreen/outside/building/transportshuttle
 	name = "Nanotrasen Research shuttle"
 	icon_state = "shuttle"
-	minimap_color = MINIMAP_AREA_Research
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/transportshuttle/engi
 	name = "Nanotrasen engineering shuttle"
