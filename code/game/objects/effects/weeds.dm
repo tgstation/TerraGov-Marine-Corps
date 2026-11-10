@@ -136,7 +136,7 @@
 /obj/alien/weeds/proc/set_parent_node(obj/alien/weeds/node/new_parent_node)
 	if(!istype(new_parent_node))
 		return FALSE
-	if(new_parent_node == parent_node) // Should never happened, but might as well check.
+	if(new_parent_node == parent_node) // Should never happen, but might as well check.
 		return TRUE
 	if(parent_node)
 		UnregisterSignal(parent_node, COMSIG_QDELETING)
