@@ -237,6 +237,8 @@
 /area/mediumgreen/caves/z2/southeast/shallow
 	name = "Shallow southeastern caves"
 
+/area/mediumgreen/caves/z2/catwalk
+	name = "Cave catwalk"
 
 
 /area/mediumgreen/caves/z3/Neotree
@@ -270,20 +272,61 @@
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/mediumgreen/outside/lz2
+	name = "Southern Landing Zone"
 	icon_state = "green"
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/mediumgreen/outside/lz1/around
-	name = "Space Port"
+	name = "Northern Landing Zone"
 	icon_state = "shuttle"
 	area_flags = NEAR_FOB
 
+/area/mediumgreen/outside/lz1/around/engi
+	name = "Northern Landing Zone engineering"
+
+/area/mediumgreen/outside/lz1/around/medbay
+	name = "Northern Landing Zone Medbay"
 
 /area/mediumgreen/outside/lz2/around
 	icon_state = "shuttle"
 	area_flags = NEAR_FOB
+
+/area/mediumgreen/outside/lz2/building
+	name = "Expeditionary Outpost"
+	ceiling = CEILING_METAL
+
+/area/mediumgreen/outside/lz2/building/road
+	name = "Expeditionary Outpost road"
+
+/area/mediumgreen/outside/lz2/building/engi
+	name = "Expeditionary Outpost Engineering Storage"
+
+/area/mediumgreen/outside/lz2/building/stairs
+	name = "Expeditionary Outpost Engineering Stairway"
+
+/area/mediumgreen/outside/lz2/building/medbay
+	name = "Expeditionary Outpost Medbay"
+
+/area/mediumgreen/outside/lz2/building/restroom
+	name = "Expeditionary Outpost Restroom"
+
+/area/mediumgreen/outside/lz2/building/sec_n
+	name = "Expeditionary Outpost Security"
+
+/area/mediumgreen/outside/lz2/building/sec_s
+	name = "Expeditionary Outpost Security Checkpoint"
+
+/area/mediumgreen/outside/lz2/building/cargo
+	name = "Expeditionary Outpost Storage Bay"
+
+/area/mediumgreen/outside/lz2/building/breakroom
+	name = "Expeditionary Outpost breakroom"
+
+/area/mediumgreen/outside/lz2/building/roof
+	name = "Expeditionary Outpost Roof"
+	ceiling = CEILING_NONE
 
 
 /area/mediumgreen/outside/building
@@ -292,6 +335,8 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	always_unpowered = FALSE
+
+
 
 /area/mediumgreen/outside/building/southeast
 	name = "Artifact Research Outpost"
@@ -303,6 +348,9 @@
 
 /area/mediumgreen/outside/building/southeast/containment/small
 	name = "Small Artifact Containment"
+
+/area/mediumgreen/outside/building/southeast/containment/vault
+	name = "Artifact vault"
 
 /area/mediumgreen/outside/building/southeast/security
 	name = "Research Outpost Security Booth"
@@ -356,10 +404,143 @@
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 	icon_state = "supplypod_flight"
 
+/area/mediumgreen/outside/building/southeast/ship/crashzone
+	name = "Ship crash zone"
+
+/area/mediumgreen/outside/building/southeast/intel
+	name = "Research Outpost intelligence outpost"
+	ceiling = CEILING_NONE
+
 
 //neofibre resarch facility (tower of hell)
 
+/area/mediumgreen/outside/neotree
+	name = "Neo-fibre Research courtyard"
+	icon_state = ""
+	always_unpowered = FALSE
+
+/area/mediumgreen/outside/neotree/tower
+	name = "guard tower"
+	ceiling = CEILING_METAL
+/area/mediumgreen/outside/neotree/tower2
+	name = "guard tower"
+	ceiling = CEILING_METAL
+
+/area/mediumgreen/outside/building/neotree
+	name = "Neo-fibre Research facility"
+	ceiling = CEILING_METAL
+
+
+/area/mediumgreen/outside/building/neotree/z1/engineering
+	name = "Neo-fibre Research facility Engineering"
+
+/area/mediumgreen/outside/building/neotree/z1/backroom
+	name = "Neo-fibre Research facility backroom"
+
+/area/mediumgreen/outside/building/neotree/z1/security
+	name = "Neo-fibre Research facility security"
+
+/area/mediumgreen/outside/building/neotree/z1/storage
+	name = "Neo-fibre Research facility temporary storage"
+
+/area/mediumgreen/outside/building/neotree/z1/canteen
+	name = "Neo-fibre Research facility lower break room"
+
+/area/mediumgreen/outside/building/neotree/z1/beds
+	name = "Neo-fibre Research facility quarters"
+
+/area/mediumgreen/outside/building/neotree/z1/restroom
+	name = "Neo-fibre Research facility restroom"
+
+/area/mediumgreen/outside/building/neotree/z1/maint
+	name = "Neo-fibre Research facility maintanance corridor"
+
+/area/mediumgreen/outside/building/neotree/z1/ladder
+	name = "Neo-fibre Research facility maintanance ladder"
+
+
+
+/area/mediumgreen/outside/building/neotree/z2/intel
+	name = "Neo-fibre research facility intelligence office"
+
+/area/mediumgreen/outside/building/neotree/z2/lower
+	name = "Neo-fibre research facility middle floor construction area"
+
+/area/mediumgreen/outside/building/neotree/z2/upper
+	name = "Neo-fibre research facility  middle floor construction area"
+
+
+
+/area/mediumgreen/outside/building/neotree/z3/upper
+	name = "Neo-fibre research facility upper floor construction area"
+
+/area/mediumgreen/outside/building/neotree/z3/lz
+	name = "Neo-fibre research facility landing zone"
+
+/area/mediumgreen/outside/building/neotree/z3/checkpoint
+	name = "Neo-fibre research facility research checkpoint"
+
+/area/mediumgreen/outside/building/neotree/z3/breakroom
+	name = "Neo-fibre research facility upper break room"
+
+/area/mediumgreen/outside/building/neotree/z3/tree
+	name = "Neo-fibre tree"
+
+
+
 //power research site (engi)
+
+/area/mediumgreen/outside/building/engineering
+	name = "Engineering Research Facility"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/mediumgreen/outside/building/engineering/storage_s
+	name = "Power Research Site Secondary Storage"
+
+/area/mediumgreen/outside/building/engineering/storage_n
+	name = "Power Research Site Primary Storage"
+
+/area/mediumgreen/outside/building/engineering/hallway_e
+	name = "Power Research Site Eastern Hallway"
+
+/area/mediumgreen/outside/building/engineering/hallway_w
+	name = "Power Research Site Western Hallway"
+
+/area/mediumgreen/outside/building/engineering/hallway_s
+	name = "Power Research Site Southern Hallway"
+
+/area/mediumgreen/outside/building/engineering/control
+	name = "Power Research Site Control Room"
+
+/area/mediumgreen/outside/building/engineering/intel_nw
+	name = "Power Research Site Intelligence Research"
+
+/area/mediumgreen/outside/building/engineering/tcoms
+	name = "Power Research Site Telecommunication"
+
+/area/mediumgreen/outside/building/engineering/inner
+	name = "Power Research Site Inner Hallway"
+
+/area/mediumgreen/outside/building/engineering/inner/powerroom
+	name = "Power Research Site Main Generator Room"
+
+/area/mediumgreen/outside/building/engineering/inner/powerroom/upper
+	name = "Power Research Site Upper Generator Room"
+
+/area/mediumgreen/outside/building/engineering/inner/disk
+	name = "Power Research Site Vault Room"
+
+/area/mediumgreen/outside/building/engineering/roof
+	name = "Power Research Site Unfinished Upper Room"
+	ceiling = CEILING_NONE
+
+/area/mediumgreen/outside/building/engineering/roof/z2
+	name = "Power Research Site Lower Roof"
+	ceiling = CEILING_NONE
+
+/area/mediumgreen/outside/building/engineering/roof/z3
+	name = "Power Research Site Upper Roof"
+	ceiling = CEILING_NONE
 
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 
@@ -386,3 +567,9 @@
 	name = "Cultist Hideout"
 	icon_state = "red"
 	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
+
+//that one long line w/ power
+
+/area/mediumgreen/outside/powerline
+	name = "Central Powerline"
+
