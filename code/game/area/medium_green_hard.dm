@@ -260,6 +260,7 @@
 /area/mediumgreen/caves/z3/arena
 	name = "Arena of destiny"
 	icon_state = "party"
+	always_unpowered = TRUE
 
 
 //sorry how dirty it is below but uh yeah it works so
@@ -341,7 +342,7 @@
 /area/mediumgreen/outside/building/southeast
 	name = "Artifact Research Outpost"
 	icon_state = "icy_alien_stuff"
-	minimap_color = MINIMAP_AREA_RESEARCH
+	minimap_color = MINIMAP_AREA_Research
 
 /area/mediumgreen/outside/building/southeast/containment
 	name = "Large Artifact Containment"
@@ -396,7 +397,7 @@
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/southeast/laser
-	name = "Research Outpost optics research room"
+	name = "Research Outpost optics Research room"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/southeast/ship
@@ -406,17 +407,17 @@
 
 /area/mediumgreen/outside/building/southeast/ship/crashzone
 	name = "Ship crash zone"
+	always_unpowered = TRUE
 
 /area/mediumgreen/outside/building/southeast/intel
 	name = "Research Outpost intelligence outpost"
 	ceiling = CEILING_NONE
 
 
-//neofibre resarch facility (tower of hell)
+//neofibre resarch Facility (tower of hell)
 
 /area/mediumgreen/outside/neotree
 	name = "Neo-fibre Research courtyard"
-	icon_state = ""
 	always_unpowered = FALSE
 
 /area/mediumgreen/outside/neotree/tower
@@ -427,68 +428,73 @@
 	ceiling = CEILING_METAL
 
 /area/mediumgreen/outside/building/neotree
-	name = "Neo-fibre Research facility"
+	name = "Neo-fibre Research Facility"
 	ceiling = CEILING_METAL
 
 
 /area/mediumgreen/outside/building/neotree/z1/engineering
-	name = "Neo-fibre Research facility Engineering"
+	name = "Neo-fibre Research Facility Engineering"
 
 /area/mediumgreen/outside/building/neotree/z1/backroom
-	name = "Neo-fibre Research facility backroom"
+	name = "Neo-fibre Research Facility backroom"
 
 /area/mediumgreen/outside/building/neotree/z1/security
-	name = "Neo-fibre Research facility security"
+	name = "Neo-fibre Research Facility security"
 
 /area/mediumgreen/outside/building/neotree/z1/storage
-	name = "Neo-fibre Research facility temporary storage"
+	name = "Neo-fibre Research Facility temporary storage"
 
 /area/mediumgreen/outside/building/neotree/z1/canteen
-	name = "Neo-fibre Research facility lower break room"
+	name = "Neo-fibre Research Facility lower break room"
 
 /area/mediumgreen/outside/building/neotree/z1/beds
-	name = "Neo-fibre Research facility quarters"
+	name = "Neo-fibre Research Facility quarters"
 
 /area/mediumgreen/outside/building/neotree/z1/restroom
-	name = "Neo-fibre Research facility restroom"
+	name = "Neo-fibre Research Facility restroom"
 
 /area/mediumgreen/outside/building/neotree/z1/maint
-	name = "Neo-fibre Research facility maintanance corridor"
+	name = "Neo-fibre Research Facility maintanance corridor"
 
 /area/mediumgreen/outside/building/neotree/z1/ladder
-	name = "Neo-fibre Research facility maintanance ladder"
+	name = "Neo-fibre Research Facility maintanance ladder"
 
+/area/mediumgreen/outside/building/neotree/z1/lobby
+	name = "Neo-fibre Research Facility entrance hallway"
 
 
 /area/mediumgreen/outside/building/neotree/z2/intel
-	name = "Neo-fibre research facility intelligence office"
+	name = "Neo-fibre Research Facility intelligence office"
 
 /area/mediumgreen/outside/building/neotree/z2/lower
-	name = "Neo-fibre research facility middle floor construction area"
+	name = "Neo-fibre Research Facility middle floor construction area"
 
 /area/mediumgreen/outside/building/neotree/z2/upper
-	name = "Neo-fibre research facility  middle floor construction area"
+	name = "Neo-fibre Research Facility middle floor construction area"
 
 
 
 /area/mediumgreen/outside/building/neotree/z3/upper
-	name = "Neo-fibre research facility upper floor construction area"
+	name = "Neo-fibre Research Facility upper floor construction area"
 
 /area/mediumgreen/outside/building/neotree/z3/lz
-	name = "Neo-fibre research facility landing zone"
+	name = "Neo-fibre Research Facility landing zone"
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
-	name = "Neo-fibre research facility research checkpoint"
+	name = "Neo-fibre Research Facility Research checkpoint"
 
 /area/mediumgreen/outside/building/neotree/z3/breakroom
-	name = "Neo-fibre research facility upper break room"
+	name = "Neo-fibre Research Facility upper break room"
 
 /area/mediumgreen/outside/building/neotree/z3/tree
 	name = "Neo-fibre tree"
 
+/area/mediumgreen/outside/building/neotree/z3/storage
+	name = "Neo-fibre Research Facility temporary storage"
 
 
-//power research site (engi)
+
+//power Research site (engi)
 
 /area/mediumgreen/outside/building/engineering
 	name = "Engineering Research Facility"
@@ -545,9 +551,9 @@
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 
 /area/mediumgreen/outside/building/transportshuttle
-	name = "Nanotrasen research shuttle"
+	name = "Nanotrasen Research shuttle"
 	icon_state = "shuttle"
-	minimap_color = MINIMAP_AREA_RESEARCH
+	minimap_color = MINIMAP_AREA_Research
 
 /area/mediumgreen/outside/building/transportshuttle/engi
 	name = "Nanotrasen engineering shuttle"
