@@ -12,8 +12,9 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/mediumgreen/caves/z1/south)
 "aae" = (
-/turf/open/urban/street/asphalt,
-/area/space)
+/obj/effect/spawner/random/misc/structure/rad_closet,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aaf" = (
 /turf/open/openspace,
 /area/mediumgreen/outside/z2/southeast)
@@ -24,10 +25,8 @@
 /area/mediumgreen/outside/z2/southeast)
 "aah" = (
 /obj/structure/cable,
-/obj/structure/cable/layer3,
-/obj/structure/cable/layer1,
-/turf/closed/wall/r_wall,
-/area/mediumgreen/outside/building/engineering)
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/vault)
 "aai" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -165,10 +164,11 @@
 /area/mediumgreen/outside/building/neotree/z3/tree)
 "aaI" = (
 /obj/structure/cable,
-/obj/structure/cable/layer1,
-/obj/structure/cable/layer3,
-/turf/closed/wall/r_wall,
-/area/mediumgreen/outside/building/engineering)
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/vault)
 "aaJ" = (
 /turf/closed/wall/wood/bark,
 /area/mediumgreen/outside/building/neotree/z3/tree)
@@ -190,14 +190,16 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/building/neotree/z3/breakroom)
 "aaO" = (
-/obj/machinery/light/red{
-	dir = 8
+/obj/item/phone,
+/obj/structure/table,
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
 	},
-/obj/structure/sign/gas{
-	dir = 8
+/turf/open/floor/prison/red{
+	dir = 1
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/building/southeast/security/tower/one)
 "aaP" = (
 /obj/machinery/computer/code_generator/nuke/blue,
 /turf/open/floor/spiralwoodalt,
@@ -253,11 +255,15 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z3/breakroom)
 "abc" = (
-/obj/structure/prop/mainship/railing/corner{
+/obj/machinery/iv_drip,
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/turf/closed/wall/r_wall,
-/area/space)
+/area/mediumgreen/outside/building/southeast/optable)
 "abd" = (
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/breakroom)
@@ -280,12 +286,14 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/warehouse)
 "abi" = (
-/obj/structure/prop/mainship/railing{
-	dir = 8
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
 	},
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/space)
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mediumgreen/outside/building/southeast/optable)
 "abj" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
@@ -344,9 +352,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/mediumgreen/outside/building/neotree/z3/tree)
-"abv" = (
-/turf/open/floor/prison,
-/area/space)
 "abw" = (
 /obj/machinery/light{
 	dir = 8
@@ -466,6 +471,18 @@
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
+"abX" = (
+/obj/effect/urban/decal/checkpoint_decal{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"abY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "abZ" = (
 /obj/structure/closet/cabinet,
 /obj/effect/decal/cleanable/dirt,
@@ -580,23 +597,14 @@
 "act" = (
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/southwest)
-"acu" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
-/area/space)
 "acv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/mediumgreen/outside/lz2/building/cargo)
-"acw" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "acx" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/cargo)
-"acy" = (
-/turf/open/floor/plating,
-/area/space)
 "acz" = (
 /obj/item/paper/crumpled,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -623,17 +631,22 @@
 /turf/open/floor/prison/marked,
 /area/mediumgreen/outside/lz2/building/cargo)
 "acE" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/mediumgreen/outside/building/southeast/security/tower)
 "acF" = (
-/obj/machinery/light{
-	dir = 4
+/obj/structure/bed,
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/wood,
+/area/mediumgreen/outside/building/southeast/lodge)
 "acG" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/prison/marked,
@@ -692,10 +705,13 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/lz2/building/sec_s)
 "acS" = (
-/obj/machinery/light/red,
-/obj/effect/spawner/random/misc/plant,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/lz2/building/sec_s)
+/obj/structure/table/urban/shiny_black,
+/obj/item/explosive/grenade/sectoid,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/rcircuit/anim,
+/area/mediumgreen/outside/building/southeast/containment/vault)
 "acT" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -705,12 +721,12 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/lz2/building/sec_s)
 "acV" = (
-/obj/machinery/vending/engivend,
+/obj/structure/prop/urban/supermart/rack/longrackempty,
 /obj/machinery/light{
-	dir = 4
+	dir = 8
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/vault)
 "acW" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -746,13 +762,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/marked,
 /area/mediumgreen/outside/lz2/building/cargo)
-"ade" = (
-/turf/closed/wall,
-/area/space)
 "adf" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering)
+/obj/structure/table/urban/shiny_black,
+/obj/item/storage/belt/marine/sectoid,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/rcircuit/anim,
+/area/mediumgreen/outside/building/southeast/containment/vault)
 "adg" = (
 /obj/structure/cable,
 /obj/structure/cable/layer3,
@@ -855,14 +872,13 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/mediumgreen/outside/z1/west)
 "adA" = (
-/obj/machinery/light/red{
-	dir = 1
+/obj/structure/toilet/alternate,
+/obj/machinery/light/mainship/small{
+	dir = 1;
+	brightness = 6
 	},
-/obj/structure/sign/heat{
-	dir = 8
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/turf/open/floor/wood,
+/area/mediumgreen/outside/building/southeast/lodge)
 "adB" = (
 /obj/structure/ladder,
 /turf/open/urban/street/asphalt,
@@ -1075,11 +1091,11 @@
 /turf/open/floor/wood/fancy,
 /area/storage/testroom)
 "aem" = (
-/obj/structure/sign/mait{
-	dir = 2
+/obj/machinery/light/red{
+	brightness = 6
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/small)
 "aen" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2
@@ -1159,10 +1175,12 @@
 /turf/open/floor/roof/asphalt,
 /area/mediumgreen/outside/z3/southeast)
 "aeD" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/newscaster,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/lz2/building/sec_s)
+/obj/machinery/light/red{
+	brightness = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/small)
 "aeE" = (
 /turf/open/floor/roof,
 /area/mediumgreen/outside/z3/south)
@@ -1223,16 +1241,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/mediumgreen/outside/building/engineering)
-"aeQ" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "checkpoint1"
-	},
-/obj/structure/cable,
-/obj/structure/cable/layer1,
-/obj/structure/cable/layer3,
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/engineering)
 "aeR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -1256,23 +1264,14 @@
 /obj/machinery/light_construct,
 /turf/open/floor/mainship/hexagon,
 /area/mediumgreen/outside/building/southeast/tree)
-"aeV" = (
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/space)
 "aeW" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
+/obj/machinery/light/red{
+	brightness = 6
 	},
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/space)
-"aeX" = (
-/obj/machinery/light{
-	dir = 4
+/turf/open/floor/mainship/purple{
+	dir = 2
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/area/mediumgreen/outside/building/southeast/containment/small)
 "aeY" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/spiralplate,
@@ -1289,11 +1288,13 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/cargo)
 "afb" = (
-/obj/structure/prop/mainship/railing{
-	dir = 8
+/obj/machinery/light/red{
+	brightness = 6
 	},
-/turf/closed/wall/r_wall,
-/area/space)
+/turf/open/floor/mainship/purple{
+	dir = 10
+	},
+/area/mediumgreen/outside/building/southeast/containment/small)
 "afc" = (
 /obj/structure/table/mainship,
 /obj/item/storage/backpack/satchel/eng,
@@ -1370,9 +1371,14 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering)
 "afs" = (
-/obj/effect/urban/decal/dirt_2,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering)
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mediumgreen/outside/building/southeast/optable)
 "aft" = (
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/engineering/hallway_w)
@@ -1454,18 +1460,19 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/restroom)
 "afI" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
+/obj/machinery/light/red{
+	brightness = 6
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/scorched,
+/area/mediumgreen/outside/building/southeast/containment/small)
 "afJ" = (
-/obj/machinery/door/poddoor/shutters/opened,
-/turf/open/floor/plating,
-/area/space)
+/obj/machinery/light/red{
+	brightness = 6
+	},
+/turf/open/floor/mainship/purple{
+	dir = 6
+	},
+/area/mediumgreen/outside/building/southeast/containment/small)
 "afK" = (
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /turf/open/floor/prison/plate,
@@ -1575,11 +1582,12 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/laser)
 "agd" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/light/red{
+	brightness = 6
 	},
-/turf/open/floor/prison,
-/area/space)
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/lz2/building/sec_s)
 "age" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -1695,10 +1703,6 @@
 	},
 /turf/open/floor,
 /area/mediumgreen/outside/lz2/building/cargo)
-"agx" = (
-/obj/structure/window/framed/colony/reinforced/tinted,
-/turf/open/floor/plating,
-/area/space)
 "agy" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 1
@@ -1947,10 +1951,6 @@
 	},
 /turf/open/floor/wood/fancy,
 /area/storage/testroom)
-"ahs" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/space)
 "aht" = (
 /obj/machinery/floodlight/landing,
 /turf/open/urban/street/asphalt,
@@ -2264,11 +2264,12 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/hallway_e)
 "aiC" = (
-/obj/structure/sign/directions/security{
-	dir = 8
+/obj/machinery/door/poddoor/mainship{
+	dir = 4;
+	id = "checkpoint1"
 	},
-/turf/closed/wall/r_wall,
-/area/space)
+/turf/open/floor/plating/ground/concrete,
+/area/mediumgreen/outside/lz2/building/cargo)
 "aiD" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -2426,15 +2427,11 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/admin)
 "ajg" = (
-/obj/item/phone,
-/obj/structure/table,
-/obj/machinery/light/mainship/small{
+/obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/mediumgreen/outside/building/southeast/security/tower/one)
+/turf/open/floor/plating/ground/dirt2,
+/area/mediumgreen/outside/building/southeast/intel)
 "ajh" = (
 /turf/open/floor/plating/ground/dirt,
 /area/mediumgreen/caves/z1/south)
@@ -2464,11 +2461,11 @@
 /turf/closed/gm,
 /area/mediumgreen/caves/z1/south)
 "ajn" = (
-/obj/machinery/light/red{
-	dir = 8
+/obj/machinery/light{
+	dir = 2
 	},
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/laser)
+/turf/open/floor/plating/ground/dirt2,
+/area/mediumgreen/outside/building/southeast/intel)
 "ajo" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 2
@@ -2487,87 +2484,79 @@
 /turf/open/floor/mainship/hexagon,
 /area/mediumgreen/outside/building/southeast/tree)
 "ajr" = (
-/obj/machinery/iv_drip,
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mediumgreen/outside/building/southeast/optable)
+/obj/structure/cable/layer1,
+/obj/structure/cable/layer3,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "ajs" = (
-/obj/machinery/light/mainship/small{
-	dir = 1
+/obj/machinery/door/poddoor/mainship{
+	dir = 2;
+	id = "checkpoint1"
 	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mediumgreen/outside/building/southeast/optable)
-"ajt" = (
-/obj/machinery/light/red,
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/containment/small)
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aju" = (
+/obj/structure/cable,
+/obj/structure/cable/layer3,
+/obj/structure/cable/layer1,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/hallway_e)
+"ajv" = (
+/obj/structure/cable,
+/obj/structure/cable/layer1,
+/obj/structure/cable/layer3,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/hallway_e)
+"ajw" = (
+/obj/structure/cable,
+/obj/structure/catwalk/no_smooth,
 /obj/machinery/light/red{
 	dir = 8
 	},
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajv" = (
-/obj/machinery/light/red{
-	dir = 4
-	},
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajw" = (
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/mediumgreen/outside/building/southeast/security/tower)
+/turf/open/urban/street/asphalt,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "ajx" = (
 /obj/structure/cable,
 /obj/structure/catwalk/no_smooth,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering)
 "ajy" = (
-/obj/machinery/light/red,
-/turf/open/floor/mainship/purple{
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/ground/concrete,
+/area/mediumgreen/outside/lz1/around/engi)
+"ajz" = (
+/obj/structure/cable,
+/obj/structure/catwalk/no_smooth,
+/obj/machinery/light/red{
+	dir = 4
+	},
+/turf/open/urban/street/asphalt,
+/area/mediumgreen/outside/building/engineering/hallway_e)
+"ajA" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
 	dir = 2
 	},
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajz" = (
-/obj/machinery/light/red{
+/obj/machinery/light/bluegreen{
+	dir = 1
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"ajB" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
+"ajC" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/turf/open/floor/scorched,
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajA" = (
-/obj/machinery/light/red{
-	dir = 4
-	},
-/turf/open/floor/mainship/purple{
-	dir = 4
-	},
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajB" = (
-/obj/machinery/light/red,
-/turf/open/floor/mainship/purple{
-	dir = 10
-	},
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajC" = (
-/obj/machinery/light/red,
-/turf/open/floor/scorched,
-/area/mediumgreen/outside/building/southeast/containment/small)
-"ajD" = (
-/obj/machinery/light/red,
-/turf/open/floor/mainship/purple{
-	dir = 6
-	},
-/area/mediumgreen/outside/building/southeast/containment/small)
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/breakroom)
 "ajE" = (
 /obj/structure/sign/securearea{
 	dir = 8
@@ -2575,11 +2564,12 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/z1/south)
 "ajF" = (
-/obj/machinery/light/red{
+/obj/machinery/vending/engivend,
+/obj/machinery/light/bluegreen{
 	dir = 4
 	},
-/turf/open/floor/scorched,
-/area/mediumgreen/outside/building/southeast/containment/small)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "ajG" = (
 /obj/structure/stairs/multiz/seamless/directional/south,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -2803,12 +2793,12 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/z2/southeast)
 "akB" = (
-/obj/effect/turf_decal/stripes/white/line,
-/obj/structure/sign/engie{
-	dir = 4
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/light/red{
+	dir = 8
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "akC" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet,
 /obj/machinery/light{
@@ -2876,10 +2866,6 @@
 "akP" = (
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/lz2/building/sec_n)
-"akQ" = (
-/obj/effect/acid_hole,
-/turf/closed/wall,
-/area/space)
 "akR" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/wood/fancy,
@@ -2888,20 +2874,21 @@
 /turf/open/floor/mainship/red,
 /area/mediumgreen/outside/building/neotree/z1/security)
 "akT" = (
-/obj/structure/closet/secure_closet/military_police,
-/obj/item/weapon/classic_baton/black,
-/obj/item/weapon/telebaton,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/lz2/building/sec_n)
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/light/red{
+	dir = 4
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "akU" = (
-/obj/machinery/light/blue{
-	dir = 2
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
 	},
-/obj/structure/sign/securearea{
-	dir = 2
+/obj/machinery/light/bluegreen{
+	dir = 8
 	},
-/turf/open/floor/prison/plate,
-/area/mediumgreen/outside/lz2/building/road)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "akV" = (
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/caves/z2/central)
@@ -2910,13 +2897,15 @@
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/caves/z2/central)
 "akX" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/light/red{
-	dir = 4
+/obj/machinery/door/poddoor/mainship{
+	dir = 2;
+	id = "checkpoint1"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/structure/cable,
+/obj/structure/cable/layer1,
+/obj/structure/cable/layer3,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "akY" = (
 /obj/machinery/light/blue{
 	dir = 8
@@ -2925,12 +2914,8 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "akZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/blue{
-	dir = 2
-	},
-/turf/open/floor/prison/plate,
-/area/mediumgreen/outside/lz2/building/road)
+/turf/open/floor/plating/ground/dirt,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "ala" = (
 /turf/open/openspace,
 /area/mediumgreen/caves/z2/north)
@@ -3288,11 +3273,11 @@
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/central)
 "amq" = (
-/obj/machinery/light/red{
+/obj/machinery/light/bluegreen{
 	dir = 4
 	},
 /turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/area/mediumgreen/outside/building/engineering/storage_s)
 "amr" = (
 /obj/structure/cable,
 /turf/closed/wall/sulaco,
@@ -3731,11 +3716,11 @@
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "anU" = (
-/obj/machinery/light/red{
-	dir = 8
+/obj/machinery/light/blue{
+	dir = 1
 	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/lz2/building/sec_n)
+/turf/open/floor/plating/ground/drought,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "anV" = (
 /turf/closed/wall/sulaco,
 /area/mediumgreen/outside/building/engineering/control)
@@ -3827,15 +3812,22 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
 "aom" = (
-/obj/structure/closet/secure_closet/military_police,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/lz2/building/sec_n)
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/obj/machinery/light/spot/blue{
+	dir = 1
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aon" = (
-/obj/effect/turf_decal/stripes/white/line{
+/obj/effect/urban/decal/dirt_2,
+/obj/machinery/light/red{
 	dir = 8
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aoo" = (
 /obj/structure/cable,
 /obj/structure/cable/layer1,
@@ -3848,17 +3840,17 @@
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/control)
 "aoq" = (
-/obj/machinery/light/blue{
-	dir = 8
-	},
-/turf/open/floor/prison/plate,
-/area/mediumgreen/outside/lz2/building/road)
-"aor" = (
-/obj/machinery/light/blue{
+/obj/machinery/light/red{
 	dir = 4
 	},
-/turf/open/floor/prison/plate,
-/area/mediumgreen/outside/lz2/building/road)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
+"aor" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aos" = (
 /obj/machinery/light/spot{
 	dir = 8
@@ -3908,9 +3900,11 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/lz2/building/sec_n)
 "aoB" = (
-/obj/effect/turf_decal/stripes/white/line,
-/turf/open/floor/prison,
-/area/space)
+/obj/machinery/light/spot/blue{
+	dir = 1
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aoC" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt2,
@@ -4015,21 +4009,24 @@
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/outside/z1/southwest)
 "aoT" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
 	},
-/obj/effect/turf_decal/stripes/white/line{
+/obj/machinery/light/bluegreen{
+	dir = 2
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"aoU" = (
+/obj/structure/cable,
+/obj/structure/catwalk/no_smooth,
+/obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/white/box,
-/turf/open/floor/prison,
-/area/space)
-"aoU" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "aoV" = (
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/outside/z1/south)
@@ -4103,9 +4100,14 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
 "apg" = (
-/obj/effect/turf_decal/stripes/white/box,
-/turf/open/floor/prison,
-/area/space)
+/obj/machinery/light/red{
+	brightness = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "aph" = (
 /obj/structure/prop/urban/containersextended/bluewywingsleft,
 /turf/open/floor/tile/darkish,
@@ -4145,11 +4147,11 @@
 	},
 /area/mediumgreen/outside/building/neotree/z1/security)
 "apn" = (
-/obj/machinery/light/blue{
-	dir = 1
+/obj/machinery/light/spot/blue{
+	dir = 4
 	},
-/turf/open/floor/prison/plate,
-/area/mediumgreen/outside/lz2/building/road)
+/turf/open/urban/street/asphalt,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "apo" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -4429,6 +4431,12 @@
 "aql" = (
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/control)
+"aqm" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aqn" = (
 /obj/structure/cable,
 /turf/open/floor/multi_tiles,
@@ -4469,15 +4477,14 @@
 "aqv" = (
 /turf/closed/gm,
 /area/mediumgreen/outside/z3/northeast)
+"aqw" = (
+/obj/structure/sign/mait{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aqx" = (
 /turf/closed/wall,
-/area/mediumgreen/outside/lz1/around/engi)
-"aqy" = (
-/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
-	name = "\improper Engineering Airlock1s"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz1/around/engi)
 "aqz" = (
 /turf/open/floor/plating/ground/concrete,
@@ -4488,12 +4495,31 @@
 "aqB" = (
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
+"aqC" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"aqD" = (
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"aqE" = (
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aqF" = (
 /obj/structure/sign/electricshock{
 	dir = 2
 	},
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/south)
+"aqG" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aqH" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/ground/dirt,
@@ -4510,6 +4536,9 @@
 "aqL" = (
 /turf/open/floor/plating/ground/dirt,
 /area/mediumgreen/outside/z1/south)
+"aqM" = (
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aqN" = (
 /obj/structure/cable,
 /obj/structure/cable/layer1,
@@ -4636,11 +4665,12 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/z2/east)
 "aro" = (
-/obj/machinery/light/red{
+/obj/structure/fence/dark/quality,
+/obj/machinery/light/spot/blue{
 	dir = 8
 	},
 /turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/intel_nw)
+/area/mediumgreen/outside/building/engineering)
 "arp" = (
 /obj/structure/prop/nt_computer/recorder,
 /obj/structure/cable,
@@ -4677,6 +4707,14 @@
 "arw" = (
 /turf/open/openspace,
 /area/mediumgreen/caves/z3/Neotree/center)
+"arx" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship_hull,
+/area/mediumgreen/outside/building/transportshuttle)
 "ary" = (
 /obj/structure/prop/mainship/shieldwall,
 /turf/open/floor/multi_tiles,
@@ -4690,6 +4728,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
+"arA" = (
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/scout)
 "arB" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -4721,6 +4766,12 @@
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
+"arI" = (
+/obj/effect/turf_decal/trimline/red/arrow_cw{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "arJ" = (
 /obj/structure/prop/mainship/sensor_computer1/white,
 /turf/open/floor/podhatch/floor,
@@ -4780,12 +4831,11 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/engineering/intel_nw)
 "arW" = (
-/obj/machinery/computer/intel_computer,
-/obj/machinery/light/red{
-	dir = 1
+/obj/machinery/light/spot/blue{
+	dir = 2
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/intel_nw)
+/turf/open/urban/street/asphalt,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "arX" = (
 /obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
 /obj/item/clothing/suit/storage/hazardvest/blue,
@@ -4797,22 +4847,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/engineering)
-"arZ" = (
-/obj/structure/prop/mainship/sensor_computer1/black,
-/turf/open/floor/podhatch/floor,
-/area/mediumgreen/outside/lz1/around/engi)
-"asa" = (
-/obj/structure/prop/mainship/sensor_computer1,
-/turf/open/floor/podhatch/floor,
-/area/mediumgreen/outside/lz1/around/engi)
-"asb" = (
-/obj/machinery/computer/telecomms/monitor,
-/turf/open/floor/podhatch/floor,
-/area/mediumgreen/outside/lz1/around/engi)
-"asc" = (
-/obj/machinery/computer/telecomms/server,
-/turf/open/floor/podhatch/floor,
-/area/mediumgreen/outside/lz1/around/engi)
 "asd" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/concrete,
@@ -4832,12 +4866,6 @@
 	},
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/building/engineering)
-"ash" = (
-/obj/machinery/computer3/powermonitor{
-	pixel_y = 15
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/mediumgreen/outside/lz1/around/engi)
 "asi" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -4958,9 +4986,6 @@
 /obj/structure/cable,
 /turf/open/openspace,
 /area/mediumgreen/outside/lz2/building/cargo)
-"asF" = (
-/turf/open/space/basic,
-/area/space)
 "asG" = (
 /turf/closed/wall,
 /area/mediumgreen/outside/lz2/around)
@@ -5001,10 +5026,6 @@
 	},
 /turf/open/openspace,
 /area/mediumgreen/outside/lz2/building/cargo)
-"asO" = (
-/obj/effect/spawner/random/misc/structure/rad_closet,
-/turf/open/floor/mainship/sterile/dark,
-/area/space)
 "asP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -5144,13 +5165,11 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/lz2/building/road)
 "ato" = (
-/obj/machinery/light/red{
+/obj/machinery/light/spot/blue{
 	dir = 8
 	},
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/mediumgreen/outside/lz2/building/sec_n)
+/turf/open/floor/plating/ground/drought,
+/area/mediumgreen/outside/building/engineering/storage_n)
 "atp" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating/mainship,
@@ -5175,10 +5194,8 @@
 /turf/open/floor/prison/red/full,
 /area/mediumgreen/outside/lz2/building/sec_n)
 "atu" = (
-/obj/structure/table/urban/shiny_black,
-/obj/item/explosive/grenade/sectoid,
-/turf/open/floor/rcircuit/anim,
-/area/mediumgreen/outside/building/southeast/containment/vault)
+/turf/closed/wall,
+/area/mediumgreen/outside/z1/central)
 "atv" = (
 /obj/machinery/landinglight/lz1{
 	dir = 1
@@ -5237,10 +5254,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
 "atE" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/mediumgreen/outside/lz2/building/stairs)
+/obj/machinery/light/spot/blue{
+	dir = 1
+	},
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "atF" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -5254,9 +5272,11 @@
 	},
 /area/mediumgreen/outside/lz2/building/sec_n)
 "atH" = (
-/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
-/turf/closed/wall,
-/area/mediumgreen/outside/lz2/building/stairs)
+/obj/machinery/light/spot/blue{
+	dir = 8
+	},
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "atI" = (
 /obj/structure/ladder,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -5524,16 +5544,6 @@
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/stairs)
-"auA" = (
-/obj/structure/closet/crate/radiation,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/space)
-"auB" = (
-/obj/structure/closet/crate/mass_produced_crate/supply,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/space)
 "auC" = (
 /obj/structure/cable/multilayer/multiz,
 /obj/structure/cable,
@@ -5556,6 +5566,10 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/mediumgreen/outside/lz2/building/medbay)
+"auG" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "auH" = (
 /turf/open/floor/mainship/sterile/purple,
 /area/mediumgreen/outside/lz2/building/medbay)
@@ -5574,14 +5588,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/purple,
 /area/mediumgreen/outside/lz2/building/medbay)
-"auM" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/space)
 "auN" = (
 /obj/structure/cable,
 /turf/open/urban/street/asphalt,
@@ -5839,11 +5845,12 @@
 /turf/open/floor/tile/dark,
 /area/mediumgreen/outside/lz2/building/engi)
 "avL" = (
-/obj/effect/urban/decal/checkpoint_decal{
-	dir = 8
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
-/turf/open/floor/prison,
-/area/space)
+/obj/structure/cable,
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "avM" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -6148,14 +6155,6 @@
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/dark,
 /area/mediumgreen/outside/lz2/building/medbay)
-"awX" = (
-/obj/structure/closet/crate/radiation,
-/turf/open/floor/prison,
-/area/space)
-"awY" = (
-/obj/structure/closet/crate/mass_produced_crate/supply,
-/turf/open/floor/prison,
-/area/space)
 "awZ" = (
 /turf/open/floor/wood/variable/damaged,
 /area/mediumgreen/caves/z3/Neotree/north)
@@ -6165,10 +6164,6 @@
 "axb" = (
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z3/Neotree/north)
-"axc" = (
-/obj/structure/closet/crate/mass_produced_crate/ammo,
-/turf/open/floor/prison,
-/area/space)
 "axd" = (
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/central)
@@ -6182,10 +6177,6 @@
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/lz2/around)
-"axg" = (
-/obj/structure/closet/crate/mass_produced_crate/delta,
-/turf/open/floor/prison,
-/area/space)
 "axh" = (
 /turf/open/floor/wood/variable/damaged,
 /area/mediumgreen/caves/z3/arena)
@@ -6488,13 +6479,9 @@
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/disk)
 "ayl" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
-/area/mediumgreen/outside/lz2/building/medbay)
+/obj/structure/cable,
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "aym" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
@@ -6834,17 +6821,16 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "azB" = (
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/obj/effect/urban/decal/trash/thirteen,
+/obj/structure/cable,
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "azC" = (
-/obj/machinery/light/red{
+/obj/machinery/light/spot/blue{
 	dir = 4
 	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "azD" = (
 /obj/structure/barricade/sandbags{
 	dir = 1
@@ -6878,26 +6864,19 @@
 /obj/structure/stairs/multiz/seamless/directional/east,
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
+"azJ" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship_hull,
+/area/mediumgreen/outside/building/transportshuttle)
 "azK" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/mediumgreen/outside/lz2/building/breakroom)
-"azL" = (
-/obj/structure/closet/crate/radiation,
-/obj/machinery/light{
-	dir = 2
-	},
-/turf/open/floor/prison,
-/area/space)
-"azM" = (
-/obj/structure/closet/crate/mass_produced_crate/delta,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
 "azN" = (
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/caves/z3/Neotree/west)
@@ -6905,11 +6884,9 @@
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/caves/z3/Neotree/north)
 "azP" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
+/obj/structure/cable,
+/turf/closed/wall/sulaco,
+/area/mediumgreen/outside/building/engineering/inner/powerroom/upper)
 "azQ" = (
 /obj/machinery/landinglight/lz1{
 	dir = 4
@@ -6992,11 +6969,11 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "aAe" = (
-/obj/machinery/light/red{
-	dir = 1
+/obj/machinery/light/spot/blue{
+	dir = 2
 	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/turf/open/openspace,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "aAf" = (
 /obj/machinery/shower{
 	dir = 8
@@ -7024,11 +7001,11 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "aAk" = (
-/obj/effect/turf_decal/trimline/red/arrow_cw{
-	dir = 4
+/obj/machinery/light/spot/blue{
+	dir = 2
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "aAl" = (
 /obj/structure/catwalk,
 /obj/structure/barricade/sandbags{
@@ -7733,9 +7710,11 @@
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/northwest)
 "aDd" = (
-/obj/effect/turf_decal/trimline/red/arrow_cw,
-/turf/open/floor/prison,
-/area/space)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/building/engineering/roof/z3)
 "aDe" = (
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/z1/north)
@@ -7869,11 +7848,11 @@
 /turf/open/floor/roof/asphalt,
 /area/mediumgreen/outside/building/engineering/roof/z3)
 "aDK" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 2
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/building/engineering/roof/z3)
 "aDL" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
@@ -7938,10 +7917,6 @@
 "aDU" = (
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/engineering/roof)
-"aDV" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/space)
 "aDW" = (
 /obj/structure/cable,
 /turf/open/urban/street/asphalt,
@@ -7950,12 +7925,13 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/building/engineering/roof)
 "aDY" = (
-/obj/machinery/door/poddoor/shutters/opened,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 2
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
+	name = "\improper Engineering Airlock1s"
 	},
-/turf/open/floor/plating,
-/area/space)
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock_autoname,
+/turf/open/floor/plating/ground/concrete,
+/area/mediumgreen/outside/lz1/around/engi)
 "aDZ" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -8022,13 +7998,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/building/neotree/z1/backroom)
-"aEl" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/space)
+"aEk" = (
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aEm" = (
 /obj/machinery/power/apc/drained{
 	dir = 2
@@ -8042,6 +8015,17 @@
 	},
 /turf/open/floor/tile/dark,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
+"aEo" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/stripes/white/full,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aEp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8049,10 +8033,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mediumgreen/outside/building/neotree/z1/canteen)
-"aEq" = (
-/obj/structure/cable,
+"aEr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
 /turf/open/floor/plating,
-/area/space)
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aEs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8223,17 +8210,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mediumgreen/outside/lz2/building/breakroom)
-"aEQ" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
 "aER" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -8247,9 +8223,24 @@
 	dir = 4
 	},
 /area/mediumgreen/outside/lz2/building/medbay)
+"aET" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aEU" = (
 /turf/open/floor/plating/ground/drought,
 /area/mediumgreen/outside/z1/southeast)
+"aEV" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aEW" = (
 /obj/machinery/power/apc{
 	dir = 2
@@ -8265,16 +8256,18 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
-"aFa" = (
-/obj/machinery/light/red{
+"aEY" = (
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 8
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"aEZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/intel_nw)
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aFb" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -8507,12 +8500,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mediumgreen/outside/lz2/building/restroom)
-"aFT" = (
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
-/turf/open/floor/roof/sheet,
-/area/mediumgreen/outside/building/engineering/roof/z2)
 "aFU" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /obj/structure/cable,
@@ -8529,15 +8516,8 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/roof)
 "aFW" = (
-/obj/machinery/light/red{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/turf/closed/wall,
+/area/mediumgreen/outside/z1/east)
 "aFX" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -8545,13 +8525,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/checkpoint)
-"aFY" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
 "aFZ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -8648,11 +8621,9 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/backroom)
 "aGo" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
+/obj/effect/acid_hole,
+/turf/closed/wall,
+/area/mediumgreen/outside/z1/central)
 "aGp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8663,23 +8634,12 @@
 	},
 /area/mediumgreen/outside/building/neotree/z1/security)
 "aGq" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/line,
-/obj/effect/turf_decal/stripes/white/full,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
+/obj/structure/cable,
+/turf/closed/wall,
+/area/mediumgreen/outside/z1/east)
 "aGr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/plating,
-/area/space)
+/turf/closed/wall/mainship/white,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aGs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 2
@@ -8687,24 +8647,18 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/security)
 "aGt" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/space)
+/obj/structure/cable,
+/turf/closed/wall/mainship/white,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aGu" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/glass/reinforced/plasma,
 /area/mediumgreen/outside/building/syndi)
 "aGv" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 2
+/turf/open/floor/mainship/sterile/corner{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aGw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9053,12 +9007,8 @@
 /turf/open/floor/freezer,
 /area/mediumgreen/outside/building/southeast/dorm)
 "aHF" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/mainship_hull,
-/area/mediumgreen/outside/building/transportshuttle)
+/turf/open/floor/mainship/sterile/side,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aHG" = (
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle)
@@ -9117,11 +9067,9 @@
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle)
 "aHR" = (
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/mainship_hull,
-/area/mediumgreen/outside/building/transportshuttle)
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/side,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aHS" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 4
@@ -9129,11 +9077,10 @@
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle)
 "aHT" = (
-/obj/machinery/light/red{
-	dir = 1
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi/scout)
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/mainship/sterile/side,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aHU" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/urban/street/asphalt,
@@ -9200,25 +9147,17 @@
 	dir = 1
 	},
 /area/mediumgreen/outside/building/southeast/security)
-"aIg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
 "aIh" = (
 /obj/machinery/processor,
 /turf/open/floor/freezer,
 /area/mediumgreen/outside/building/southeast/dorm)
 "aIi" = (
-/obj/effect/turf_decal/stripes/white/line{
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aIj" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -9701,6 +9640,12 @@
 	},
 /turf/open/floor/mainship/hexagon,
 /area/mediumgreen/outside/building/southeast/laser)
+"aJW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aJX" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/trimline/purple/filled/warning{
@@ -9735,6 +9680,15 @@
 	},
 /turf/open/floor/mainship/hexagon,
 /area/mediumgreen/outside/building/southeast/laser)
+"aKd" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aKe" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 4
@@ -9775,17 +9729,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mediumgreen/outside/building/southeast/optable)
 "aKn" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
 	},
-/turf/open/floor/prison,
-/area/space)
+/obj/effect/mapping_helpers/airlock_autoname,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aKo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9794,14 +9743,10 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/security)
 "aKp" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 2
-	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aKq" = (
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/mediumgreen/caves/z1/central)
@@ -9908,10 +9853,8 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/mediumgreen/outside/building/southeast/optable)
 "aKH" = (
-/obj/structure/table/urban/shiny_black,
-/obj/item/storage/belt/marine/sectoid,
-/turf/open/floor/rcircuit/anim,
-/area/mediumgreen/outside/building/southeast/containment/vault)
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aKI" = (
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/southeast/containment/small)
@@ -10216,24 +10159,17 @@
 /turf/open/floor/plating/scorched,
 /area/mediumgreen/outside/building/southeast/containment/small)
 "aLJ" = (
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/mediumgreen/outside/building/southeast/maintenance)
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aLK" = (
 /obj/effect/urban/decal/trash/sixteen,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/southeast/maintenance)
 "aLL" = (
-/obj/machinery/fuelcell_recycler{
-	pixel_y = -7
-	},
-/obj/machinery/light/red{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/mediumgreen/outside/building/southeast/maintenance)
+/obj/machinery/autodoc,
+/turf/open/floor/mainship/sterile/purple,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aLM" = (
 /obj/structure/girder,
 /turf/open/floor/plating/scorched,
@@ -10331,6 +10267,12 @@
 "aMg" = (
 /turf/closed/gm,
 /area/mediumgreen/outside/building/syndi)
+"aMh" = (
+/obj/structure/prop/mainship/railing/corner{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aMi" = (
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/building/syndi)
@@ -10342,19 +10284,13 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/storage)
 "aMk" = (
-/obj/structure/bed,
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/mediumgreen/outside/building/southeast/lodge)
+/obj/machinery/computer/autodoc_console,
+/turf/open/floor/mainship/sterile/purple,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMl" = (
-/obj/structure/toilet/alternate,
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/mediumgreen/outside/building/southeast/lodge)
+/obj/machinery/bodyscanner,
+/turf/open/floor/mainship/sterile/purple,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMm" = (
 /turf/closed/wall/prison,
 /area/mediumgreen/outside/building/syndi)
@@ -10377,11 +10313,9 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aMr" = (
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/obj/machinery/computer/body_scanconsole,
+/turf/open/floor/mainship/sterile/purple,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMs" = (
 /obj/structure/closet/swimsuit,
 /turf/open/floor/prison/redfloor,
@@ -10396,11 +10330,10 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aMv" = (
-/obj/machinery/light/red{
-	dir = 1
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMw" = (
 /obj/machinery/light/bluegreen{
 	dir = 2
@@ -10408,12 +10341,10 @@
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
 "aMx" = (
-/obj/structure/closet/swimsuit,
-/obj/machinery/light/red{
-	dir = 8
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMy" = (
 /obj/structure/prop/urban/misc/commandosuitemptyprop,
 /turf/open/floor/prison/redfloor,
@@ -10431,11 +10362,10 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aMC" = (
-/obj/machinery/light/red{
-	dir = 4
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMD" = (
 /obj/structure/stairs/multiz/directional/south,
 /turf/open/floor/tile/darkish,
@@ -10475,12 +10405,10 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aMM" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/obj/machinery/light/red{
-	dir = 1
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMN" = (
 /obj/machinery/computer/pod/old/syndicate,
 /turf/open/floor/prison/redfloor,
@@ -10496,14 +10424,11 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aMQ" = (
-/obj/structure/closet/malf/suits,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/machinery/light/red{
-	dir = 1
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/side{
+	dir = 5
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aMR" = (
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z1/central)
@@ -10570,12 +10495,12 @@
 /turf/closed/wall/mainship/outer,
 /area/mediumgreen/outside/building/transportshuttle/engi)
 "aNh" = (
-/obj/structure/largecrate/supply/generator,
-/obj/machinery/light/red{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
 	},
-/turf/open/floor/mainship_hull,
-/area/mediumgreen/outside/building/transportshuttle/engi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aNi" = (
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle/engi)
@@ -10604,11 +10529,10 @@
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle/engi)
 "aNp" = (
-/obj/machinery/light/red{
-	dir = 8
-	},
-/turf/open/floor/mainship_hull,
-/area/mediumgreen/outside/building/transportshuttle/engi)
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aNq" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 4
@@ -10724,11 +10648,12 @@
 /turf/open/floor/tile,
 /area/mediumgreen/outside/building/southeast/dorm)
 "aNO" = (
-/obj/machinery/light/red{
-	dir = 8
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi/scout)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aNP" = (
 /obj/structure/table/urban/shiny_black,
 /obj/item/storage/holster/belt/mateba,
@@ -10888,11 +10813,13 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/admin)
 "aOv" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 2
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
+	dir = 8
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aOw" = (
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
@@ -11116,6 +11043,18 @@
 /obj/structure/table/urban/shiny_brown,
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
+"aPm" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aPn" = (
 /obj/machinery/light/bluegreen{
 	dir = 4
@@ -11137,13 +11076,10 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aPr" = (
-/obj/structure/table/urban/shiny_brown,
-/obj/machinery/computer/marine_card,
-/obj/machinery/light/red{
-	dir = 1
+/turf/open/floor/mainship/sterile/side{
+	dir = 10
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aPs" = (
 /obj/machinery/computer/security/nuclear,
 /turf/open/floor/prison/redfloor,
@@ -11180,11 +11116,9 @@
 /turf/open/floor/glass/reinforced/plasma,
 /area/mediumgreen/outside/building/syndi)
 "aPA" = (
-/obj/machinery/light/red{
-	dir = 4
-	},
-/turf/open/floor/glass/reinforced/plasma,
-/area/mediumgreen/outside/building/syndi)
+/obj/structure/window/framed/mainship/white,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aPB" = (
 /obj/effect/landmark/corpsespawner/syndicatecommando,
 /turf/open/floor/glass/reinforced/plasma,
@@ -11218,12 +11152,10 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aPH" = (
-/obj/item/target/syndicate,
-/obj/machinery/light/red{
-	dir = 1
+/turf/open/floor/mainship/sterile/side{
+	dir = 5
 	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/building/syndi)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aPI" = (
 /obj/item/target/syndicate,
 /turf/open/floor/prison/redfloor,
@@ -11342,14 +11274,20 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
 "aQi" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
+/obj/item/storage/firstaid/regular{
+	pixel_x = 4;
+	pixel_y = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 2
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 2
 	},
-/turf/open/floor/prison,
-/area/space)
+/obj/item/storage/firstaid/regular,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQj" = (
 /obj/machinery/light/mainship/small,
 /obj/structure/cable,
@@ -11396,11 +11334,20 @@
 	},
 /area/mediumgreen/outside/building/southeast/optable)
 "aQp" = (
-/obj/structure/cable,
+/obj/item/storage/firstaid/o2{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/toxin,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/mediumgreen/outside/building/southeast/optable)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQq" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -11416,10 +11363,11 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/containment/small)
 "aQt" = (
-/obj/machinery/light/red,
-/obj/structure/cable,
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/containment/small)
+/obj/machinery/optable,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQu" = (
 /obj/structure/fence,
 /obj/structure/cable,
@@ -11490,14 +11438,22 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/storage)
 "aQH" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 6;
+	pixel_y = 10
 	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
+/obj/item/reagent_containers/spray/surgery{
+	pixel_x = -5;
+	pixel_y = 10
 	},
-/turf/open/floor/prison,
-/area/space)
+/obj/item/storage/box/gloves,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQI" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/machinery/light/spot{
@@ -11531,47 +11487,52 @@
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/lz2/around)
 "aQL" = (
-/obj/effect/turf_decal/trimline/red/corner,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/storage/box/masks{
+	pixel_x = 2;
+	pixel_y = -1
 	},
-/turf/open/floor/prison,
-/area/space)
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQM" = (
-/obj/effect/turf_decal/trimline/red/arrow_cw,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
+/obj/machinery/optable,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 2
 	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQN" = (
-/obj/effect/turf_decal/trimline/red/line{
+/obj/item/storage/firstaid/adv{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/firstaid/adv{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/adv,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/sterile/corner{
 	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQO" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 2
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQP" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 2
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQQ" = (
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering)
@@ -11611,27 +11572,27 @@
 /turf/open/urban/street/asphalt,
 /area/mediumgreen/outside/building/engineering)
 "aQW" = (
-/obj/structure/cable/layer1,
-/obj/structure/cable/layer3,
-/turf/closed/wall/r_wall,
-/area/mediumgreen/outside/building/engineering)
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 2
+	},
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQX" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "checkpoint1"
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/engineering)
+/obj/effect/mapping_helpers/airlock_autoname,
+/turf/open/floor/mainship/sterile/dark,
+/area/mediumgreen/outside/lz1/around/medbay)
 "aQY" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
+/obj/structure/toilet/alternate,
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 2;
-	on = 1
-	},
-/turf/open/floor/prison,
-/area/space)
+/obj/effect/landmark/corpsespawner/doctor/burst,
+/turf/open/floor/prison/sterilewhite,
+/area/mediumgreen/outside/lz2/building/restroom)
 "aQZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12370,11 +12331,8 @@
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/outside/building/neotree/z3/tree)
 "aTt" = (
-/obj/structure/sign/doors{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/mediumgreen/outside/neotree)
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "aTu" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -12475,12 +12433,8 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
 "aTM" = (
-/obj/structure/cable,
-/obj/structure/sign/doors{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/mediumgreen/outside/neotree)
+/turf/closed/wall,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "aTN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -13447,11 +13401,9 @@
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z2/intel)
 "aXD" = (
-/obj/structure/sign/mait{
-	dir = 4
-	},
+/obj/structure/closet/crate/radiation,
 /turf/open/floor/prison,
-/area/mediumgreen/outside/building/neotree/z2/lower)
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "aXE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -13925,14 +13877,12 @@
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/checkpoint)
 "aZy" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/effect/turf_decal/woodsiding{
-	dir = 1
+/obj/structure/closet/crate/radiation,
+/obj/machinery/light{
+	dir = 2
 	},
 /turf/open/floor/prison,
-/area/mediumgreen/outside/building/neotree/z3/checkpoint)
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "aZz" = (
 /obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange,
 /turf/open/floor/prison,
@@ -14125,26 +14075,6 @@
 	},
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/tree)
-"bae" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/space)
-"baf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/space)
-"bag" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/prison,
-/area/space)
 "bah" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14838,14 +14768,9 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "bbV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/structure/closet/crate/mass_produced_crate/supply,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bbW" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -14902,12 +14827,12 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering)
 "bce" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering)
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bcf" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
 	dir = 2
@@ -14920,20 +14845,13 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "bcg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 2
-	},
-/turf/closed/wall/r_wall,
-/area/mediumgreen/outside/building/engineering)
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bch" = (
-/obj/machinery/light/red,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/structure/closet/crate/radiation,
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bci" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -15128,12 +15046,9 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_s)
 "bcG" = (
-/obj/machinery/light/red,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bcH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -15232,18 +15147,9 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "bcU" = (
-/obj/machinery/light/red{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/grime3{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/structure/window/framed/colony/reinforced/tinted,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 "bcV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15608,6 +15514,691 @@
 	},
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
+"bdP" = (
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdQ" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdR" = (
+/obj/structure/sign/directions/security{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdS" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdT" = (
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdV" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/box,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdW" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdX" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdY" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bdZ" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bea" = (
+/obj/structure/sign/doors{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"beb" = (
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bec" = (
+/obj/machinery/door/poddoor/shutters/opened,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bed" = (
+/turf/open/floor/plating/ground/dirt,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bee" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bef" = (
+/obj/effect/turf_decal/trimline/red/corner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"beg" = (
+/obj/effect/turf_decal/trimline/red/arrow_cw,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"beh" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bei" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bej" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bek" = (
+/obj/effect/turf_decal/trimline/red/arrow_cw,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bel" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bem" = (
+/obj/machinery/door/poddoor/shutters/opened,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"ben" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"beo" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 2;
+	on = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bep" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"beq" = (
+/obj/effect/turf_decal/stripes/white/box,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"ber" = (
+/obj/effect/turf_decal/stripes/white/line,
+/obj/structure/sign/engie{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bes" = (
+/obj/structure/cable,
+/obj/structure/sign/doors{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
+"bet" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/laser)
+"beu" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/small)
+"bev" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/containment/small)
+"bew" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/scorched,
+/area/mediumgreen/outside/building/southeast/containment/small)
+"bex" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/mediumgreen/outside/building/southeast/containment/small)
+"bey" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/scorched,
+/area/mediumgreen/outside/building/southeast/containment/small)
+"bez" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/southeast/maintenance)
+"beA" = (
+/obj/machinery/fuelcell_recycler{
+	pixel_y = -7
+	},
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/southeast/maintenance)
+"beB" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/newscaster,
+/obj/machinery/light/blue{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/lz2/building/sec_s)
+"beC" = (
+/obj/structure/closet/secure_closet/military_police,
+/obj/item/weapon/classic_baton/black,
+/obj/item/weapon/telebaton,
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/lz2/building/sec_n)
+"beD" = (
+/obj/structure/sign/securearea{
+	dir = 2
+	},
+/turf/open/floor/prison/plate,
+/area/mediumgreen/outside/lz2/building/road)
+"beE" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/obj/structure/sign/gas{
+	dir = 8
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beF" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/lz2/building/sec_n)
+"beG" = (
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beH" = (
+/obj/structure/closet/swimsuit,
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beI" = (
+/obj/structure/closet/secure_closet/military_police,
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/lz2/building/sec_n)
+"beJ" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beK" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beL" = (
+/obj/structure/closet/malf/suits,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"beM" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_w)
+"beN" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_w)
+"beO" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/obj/effect/decal/cleanable/dirt/grime3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
+"beP" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/intel_nw)
+"beQ" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/intel_nw)
+"beR" = (
+/obj/machinery/computer/intel_computer,
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/intel_nw)
+"beS" = (
+/obj/structure/largecrate/supply/generator,
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship_hull,
+/area/mediumgreen/outside/building/transportshuttle/engi)
+"beT" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship_hull,
+/area/mediumgreen/outside/building/transportshuttle/engi)
+"beU" = (
+/obj/structure/catwalk,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"beV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"beW" = (
+/obj/structure/catwalk,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"beX" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/scout)
+"beY" = (
+/obj/structure/sign/mait{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"beZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"bfa" = (
+/obj/structure/catwalk,
+/obj/machinery/light{
+	dir = 2
+	},
+/turf/open/openspace,
+/area/mediumgreen/outside/building/neotree/z2/lower)
+"bfb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/mediumgreen/outside/building/neotree/z2/upper)
+"bfc" = (
+/obj/structure/catwalk,
+/obj/machinery/light{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/upper)
+"bfd" = (
+/obj/structure/catwalk,
+/obj/structure/catwalk,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/upper)
+"bfe" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z2/upper)
+"bff" = (
+/obj/structure/catwalk,
+/obj/machinery/light/blue{
+	dir = 2
+	},
+/turf/open/openspace,
+/area/mediumgreen/outside/lz2/building/cargo)
+"bfg" = (
+/obj/structure/table/urban/shiny_brown,
+/obj/machinery/computer/marine_card,
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"bfh" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"bfi" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mediumgreen/outside/lz2/building/sec_n)
+"bfj" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/glass/reinforced/plasma,
+/area/mediumgreen/outside/building/syndi)
+"bfk" = (
+/obj/structure/bed/urban/prisonbed{
+	dir = 8
+	},
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"bfl" = (
+/obj/item/target/syndicate,
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"bfm" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/engineering/tcoms)
+"bfn" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/engineering/tcoms)
+"bfo" = (
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/engineering/tcoms)
+"bfp" = (
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 2
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/engineering/tcoms)
+"bfq" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/effect/turf_decal/woodsiding{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/checkpoint)
+"bfr" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z3/lz)
+"bfs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/upper)
+"bft" = (
+/obj/machinery/light/red{
+	dir = 1;
+	brightness = 6
+	},
+/obj/structure/sign/heat{
+	dir = 8
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi)
+"bfu" = (
+/obj/structure/closet/crate/mass_produced_crate/supply,
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfz" = (
+/obj/structure/closet/crate/mass_produced_crate/ammo,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfA" = (
+/obj/structure/closet/crate/mass_produced_crate/delta,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfB" = (
+/obj/structure/closet/crate/mass_produced_crate/delta,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/storage)
+"bfC" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z3/storage)
 
 (1,1,1) = {"
 aab
@@ -29533,7 +30124,7 @@ aML
 aMo
 aMo
 aMo
-aMx
+beH
 aMs
 aMm
 aMm
@@ -29721,7 +30312,7 @@ abE
 abE
 aMg
 aMm
-aMM
+beK
 aMI
 aMF
 aMz
@@ -30489,12 +31080,12 @@ abE
 abE
 aMg
 aMm
-aMQ
+beL
 aMo
 aMo
 aMo
 aMm
-aMv
+beG
 aMq
 aMm
 aMg
@@ -30876,10 +31467,10 @@ aMm
 aMm
 aMm
 aMm
-aMC
+beJ
 aMn
 aMo
-aaO
+beE
 aMn
 aMi
 aMg
@@ -31896,23 +32487,23 @@ aUN
 aVb
 aUN
 aUu
-abi
-abi
-abi
-afb
-abi
-abi
-abi
-afb
-abi
-abi
-abi
-abc
-aIg
-acE
-aoB
-abv
-avL
+bdP
+bdP
+bdP
+beb
+bdP
+bdP
+bdP
+beb
+bdP
+bdP
+bdP
+aMh
+aJW
+aET
+aEk
+aqD
+abX
 aim
 aJK
 aSc
@@ -32088,23 +32679,23 @@ aUN
 aUv
 aUO
 aUv
-abv
-abv
-abv
-abv
-apg
-aQY
-aQH
-aKp
-aKp
-aKp
-aKp
-aKn
-aIi
-aGt
-aGq
-aGo
-aGo
+aqD
+aqD
+aqD
+aqD
+beq
+beo
+bee
+bdQ
+bdQ
+bdQ
+bdQ
+aPm
+aKd
+aEV
+aEo
+abY
+abY
 aGn
 aGm
 aGk
@@ -32282,21 +32873,21 @@ aUh
 aUh
 aUh
 aUh
-agd
-abv
-aoB
-abv
-aQL
-azP
-azP
-azP
-azP
-azP
-azP
-azP
-azP
-aAk
-azP
+bep
+aqD
+aEk
+aqD
+bef
+aqm
+aqm
+aqm
+aqm
+aqm
+aqm
+aqm
+aqm
+arI
+aqm
 aim
 aJK
 aSc
@@ -32474,21 +33065,21 @@ aUw
 aUw
 aUl
 aUh
-abv
-abv
-aoB
-abv
-aQM
-abv
-abv
-abv
-abv
-abv
-abv
-abv
-abv
-abv
-aem
+aqD
+aqD
+aEk
+aqD
+beg
+aqD
+aqD
+aqD
+aqD
+aqD
+aqD
+aqD
+aqD
+aqD
+aqw
 aim
 aEj
 aSc
@@ -32666,21 +33257,21 @@ aUw
 aUx
 aUm
 aUh
-abv
-abv
-aoB
-abv
-aQN
-abv
-aoT
-aon
-aon
-aon
-aon
-aon
-aon
-aon
-aon
+aqD
+aqD
+aEk
+aqD
+beh
+aqD
+bdV
+aqC
+aqC
+aqC
+aqC
+aqC
+aqC
+aqC
+aqC
 aSq
 aSk
 aJK
@@ -32858,21 +33449,21 @@ aUw
 aUy
 aEu
 aUh
-abv
-abv
-akB
-abv
-aQN
-abv
-aoU
-abv
-abv
-abv
-abv
-acF
-abv
-abv
-abv
+aqD
+aqD
+ber
+aqD
+beh
+aqD
+bdW
+aqD
+aqD
+aqD
+aqD
+aEY
+aqD
+aqD
+aqD
 aim
 aJK
 aJK
@@ -33053,18 +33644,18 @@ aUh
 aTK
 aTT
 aTK
-abv
-aQN
-abv
-aoU
-abv
-aiC
-acw
-acw
-acw
-acw
-acw
-acw
+aqD
+beh
+aqD
+bdW
+aqD
+bdR
+aqE
+aqE
+aqE
+aqE
+aqE
+aqE
 adH
 adH
 adH
@@ -33245,18 +33836,18 @@ aUi
 aUa
 aTU
 aTL
-aeV
-aQO
-aeV
-aeW
-aeV
-aDV
-aEq
-aEq
-aEq
-aEq
-aEq
-aEl
+bdT
+bei
+bdT
+bdX
+bdT
+bdS
+auG
+auG
+auG
+auG
+auG
+aqG
 adH
 air
 air
@@ -33437,18 +34028,18 @@ aRn
 aRm
 aRa
 aQZ
-aGo
-aQP
-aOv
-aQi
-aOv
-aGv
-aGv
-aGv
-aGv
-aGr
-acy
-acy
+abY
+bej
+bdU
+bdY
+bdU
+aEZ
+aEZ
+aEZ
+aEZ
+aEr
+aqM
+aqM
 adH
 air
 air
@@ -33629,18 +34220,18 @@ aUj
 aTK
 aRd
 aTL
-agd
-aDd
-abv
-aoU
-abv
-acy
-acy
-acy
-acy
-acy
-acy
-acy
+bep
+bek
+aqD
+bdW
+aqD
+aqM
+aqM
+aqM
+aqM
+aqM
+aqM
+aqM
 adH
 air
 air
@@ -33821,18 +34412,18 @@ aUk
 aTK
 aRd
 aTL
-abv
-aDK
-abv
-afI
-abv
-acw
-acy
-acy
-acy
-acy
-acy
-acy
+aqD
+bel
+aqD
+bdZ
+aqD
+aqE
+aqM
+aqM
+aqM
+aqM
+aqM
+aqM
 adH
 air
 air
@@ -33886,7 +34477,7 @@ aJj
 aJj
 aJj
 aJj
-aJj
+apn
 aJj
 aJj
 alZ
@@ -34013,18 +34604,18 @@ aTK
 aTK
 aRf
 aTL
-afJ
-aDY
-afJ
-acw
-acw
-acw
-acw
-acw
-acw
-acw
-acw
-acw
+bec
+bem
+bec
+aqE
+aqE
+aqE
+aqE
+aqE
+aqE
+aqE
+aqE
+aqE
 adH
 adH
 adH
@@ -34204,11 +34795,11 @@ aRR
 aRR
 aUc
 aRg
-aTM
-aTA
-aTE
-aTA
-aTt
+bes
+bed
+ben
+bed
+bea
 aRR
 aTg
 aRR
@@ -34259,7 +34850,7 @@ apF
 aqB
 aqB
 aqB
-aro
+beP
 aqB
 aqe
 apF
@@ -34460,15 +35051,15 @@ aaX
 aft
 ant
 ale
-bcU
+beO
 amW
 ahH
 afw
-amq
+beN
 ama
 alq
 bcz
-akX
+beM
 ahG
 afw
 aft
@@ -34640,7 +35231,7 @@ aDe
 aJj
 aJj
 apF
-arW
+beR
 aqB
 arp
 arp
@@ -35048,7 +35639,7 @@ ale
 ahI
 afD
 aft
-aaX
+anU
 aaX
 aaX
 aaX
@@ -35365,10 +35956,10 @@ aRR
 aSZ
 aSl
 aHy
-aHR
+azJ
 aHH
 aHG
-aHF
+arx
 aHy
 aSl
 aRR
@@ -35603,7 +36194,7 @@ apF
 aqe
 aqB
 aqB
-aFa
+beQ
 bdA
 aqj
 apU
@@ -36009,7 +36600,7 @@ ahL
 ago
 afk
 afe
-aeX
+amq
 acA
 acA
 abT
@@ -36195,15 +36786,15 @@ amH
 amt
 ame
 ahW
-bcG
+apg
 aau
 ahM
-bch
+aoT
 afk
 aau
 aau
 aau
-aEQ
+ajA
 abU
 aau
 aJj
@@ -36327,7 +36918,7 @@ aSl
 aSl
 aHI
 aHG
-aHR
+azJ
 aHI
 aSl
 aSl
@@ -36779,7 +37370,7 @@ afk
 aeY
 aeY
 bbT
-acV
+ajF
 abT
 aaw
 aJj
@@ -37162,7 +37753,7 @@ agV
 afk
 afg
 abT
-bbV
+akU
 abT
 abT
 aaw
@@ -37927,7 +38518,7 @@ alE
 alh
 ahY
 ahx
-aak
+ahC
 bcc
 aeO
 aeO
@@ -38119,7 +38710,7 @@ alF
 ali
 ahY
 ahx
-aak
+ahC
 bcc
 aeO
 aeO
@@ -38311,7 +38902,7 @@ alF
 alh
 ahY
 ahz
-aak
+ahC
 bcc
 aeO
 aeO
@@ -38367,7 +38958,7 @@ aob
 aob
 aob
 aob
-aiJ
+aiK
 aiK
 aiK
 abN
@@ -38375,7 +38966,7 @@ abN
 abN
 abN
 bax
-abR
+aiC
 afS
 abN
 abN
@@ -38503,7 +39094,7 @@ bcJ
 bct
 bcq
 bck
-bcg
+aor
 bcd
 aeO
 aeO
@@ -38695,8 +39286,8 @@ alF
 alh
 ahY
 bcl
-aak
-bce
+ahC
+aom
 aeO
 aeO
 aaX
@@ -38887,7 +39478,7 @@ alF
 alj
 ahY
 bcm
-aak
+ahC
 afr
 aeO
 aeO
@@ -39079,7 +39670,7 @@ alF
 alj
 ahY
 bcl
-aak
+ahC
 afr
 aeO
 aeO
@@ -39252,7 +39843,7 @@ aJj
 aJj
 aam
 aaX
-aaX
+ato
 alH
 aqc
 alH
@@ -39271,7 +39862,7 @@ alF
 alj
 ahY
 bcl
-aak
+ahC
 afr
 aeO
 aeO
@@ -39325,9 +39916,9 @@ anY
 ajo
 ain
 aoz
-anU
+beF
 akP
-anU
+beF
 akP
 akw
 ain
@@ -39463,7 +40054,7 @@ alh
 alj
 ahY
 bcl
-aak
+ahC
 afr
 aeP
 aeP
@@ -39655,14 +40246,14 @@ ahY
 ahY
 ahY
 bcl
-aaI
-aaI
-aeQ
-aeQ
-aaI
-aaI
-aaI
-aQW
+ajv
+ajv
+akX
+akX
+ajv
+ajv
+ajv
+ajr
 aQR
 aDe
 aDe
@@ -39709,11 +40300,11 @@ anS
 anR
 ain
 aoA
-aom
+beI
 baP
 anX
 anG
-akT
+beC
 ain
 ahE
 agD
@@ -39847,14 +40438,14 @@ alG
 alk
 aiB
 bcn
-aQX
-afs
-aeO
-aeO
-adf
-aQX
-aaK
-aQX
+ajs
+aon
+akZ
+akZ
+akB
+ajs
+ajw
+ajs
 aJj
 aDe
 aDe
@@ -39890,7 +40481,7 @@ bbr
 bbp
 aux
 aux
-atE
+auD
 apS
 aoX
 bbg
@@ -40039,14 +40630,14 @@ bcK
 bcu
 bcr
 bco
-aQX
-afr
-aeO
-aeO
-adf
-aQX
-aaK
-aQX
+ajs
+aoq
+akZ
+akZ
+akT
+ajs
+ajz
+ajs
 aJj
 aDe
 aDe
@@ -40082,22 +40673,22 @@ apN
 auI
 auD
 auy
-atF
+apN
 apO
 aiJ
 bbh
 apC
 aoL
-apn
+alT
 alT
 alT
 aoI
 aoG
-aoq
+alT
 baR
 alT
 alT
-akU
+beD
 agr
 aEG
 agF
@@ -40231,14 +40822,14 @@ alH
 bcv
 aiQ
 ahC
-aak
-aak
-aQX
-aQX
-aak
-aak
-aaV
-aah
+ahC
+ahC
+ajs
+ajs
+ahC
+ahC
+alo
+aju
 aQT
 aqo
 aqo
@@ -40274,7 +40865,7 @@ auD
 aEM
 auD
 auw
-atH
+apN
 apd
 aiJ
 bbi
@@ -40664,16 +41255,16 @@ aiJ
 bbi
 alT
 aoL
-apn
 alT
 alT
 alT
 alT
-aor
+alT
+alT
 alT
 anJ
 anJ
-akZ
+anJ
 agr
 aic
 agG
@@ -40807,7 +41398,7 @@ alJ
 aln
 ajc
 ahC
-afr
+aoB
 afr
 aeO
 aeO
@@ -40989,7 +41580,7 @@ ahC
 aAf
 atJ
 apP
-asO
+aae
 ahC
 ahC
 ahC
@@ -41035,7 +41626,7 @@ bbM
 avc
 aut
 ayN
-ayl
+awU
 awU
 bbv
 auY
@@ -41176,7 +41767,7 @@ aqd
 aqd
 aqd
 aJj
-aJj
+arW
 ahC
 ahC
 apP
@@ -41188,9 +41779,9 @@ afr
 afr
 afr
 afr
-ajx
+aoU
 afr
-aak
+ahC
 afr
 afr
 aeO
@@ -41355,10 +41946,10 @@ aDe
 aDe
 arT
 aNf
-aNp
+beT
 aNi
 aNi
-aNh
+beS
 aNf
 arT
 aeO
@@ -41369,7 +41960,7 @@ afr
 afr
 afr
 afr
-amU
+aro
 afr
 aeO
 aeO
@@ -41382,7 +41973,7 @@ afr
 afr
 ajx
 afr
-aak
+ahC
 afr
 afr
 aeO
@@ -42026,7 +42617,7 @@ age
 abR
 afW
 acO
-aeD
+beB
 baq
 acQ
 abO
@@ -42317,7 +42908,7 @@ arT
 arT
 aNk
 aNi
-aNp
+beT
 aNk
 arT
 arT
@@ -42412,7 +43003,7 @@ abR
 afP
 aeM
 aeo
-acS
+agd
 abO
 aBJ
 aBJ
@@ -47656,7 +48247,7 @@ acC
 acC
 aHh
 aHh
-aHT
+arA
 aHA
 aHB
 aHh
@@ -48040,7 +48631,7 @@ acC
 aHh
 aHh
 aHh
-aHT
+arA
 aHA
 aHA
 aHh
@@ -49875,16 +50466,16 @@ axd
 axd
 axd
 axd
-ade
-ade
-akQ
-ade
-ade
-ade
-ade
-ade
-ade
-ade
+atu
+atu
+aGo
+atu
+atu
+atu
+atu
+atu
+atu
+atu
 axd
 axd
 axd
@@ -49904,7 +50495,7 @@ axd
 axd
 aQC
 aLO
-aLJ
+bez
 aLA
 aLq
 aLn
@@ -50067,16 +50658,16 @@ axd
 axd
 axd
 axd
-akQ
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aGo
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+atu
 axd
 axd
 axd
@@ -50259,16 +50850,16 @@ axd
 axd
 axd
 axd
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+atu
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+atu
 axd
 axd
 axd
@@ -50451,16 +51042,16 @@ axd
 axd
 axd
 axd
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-acy
+atu
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+aiI
 axd
 axd
 axd
@@ -50643,16 +51234,16 @@ axd
 axd
 axd
 axd
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-acy
+atu
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+aiI
 axd
 axd
 axe
@@ -50835,16 +51426,16 @@ axd
 axd
 axd
 axd
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+atu
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+atu
 axd
 axd
 axe
@@ -51027,16 +51618,16 @@ axd
 axd
 axd
 axd
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+atu
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+axd
+atu
 axd
 axd
 axd
@@ -51219,16 +51810,16 @@ aBO
 aBO
 aBO
 aBO
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aFW
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
@@ -51248,7 +51839,7 @@ aBK
 aBO
 aQy
 aLr
-aLL
+beA
 aLG
 aQz
 aLn
@@ -51411,16 +52002,16 @@ aBO
 aBO
 aBO
 aBO
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aFW
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
@@ -51603,16 +52194,16 @@ aBO
 aBO
 aBO
 aBO
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aFW
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
@@ -51639,7 +52230,7 @@ aBO
 aBO
 aBO
 aKL
-ajw
+acE
 arj
 aKO
 aKM
@@ -51795,16 +52386,16 @@ aBO
 aBO
 aBO
 aBO
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aFW
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
@@ -51987,22 +52578,22 @@ aBO
 aBO
 aBO
 aBO
-ade
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aFW
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
 aBO
 aLX
-aMk
+acF
 aMb
 aLY
 aMb
@@ -52179,16 +52770,16 @@ aBO
 aBO
 aBO
 aBO
-ahs
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-ade
+aGq
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aBO
+aFW
 aBO
 aBO
 aBO
@@ -52371,22 +52962,22 @@ aBO
 aBO
 aBO
 aBO
-ade
-ade
-ade
-ade
-ade
-ade
-ade
-ade
-ade
-ade
+aFW
+aFW
+aFW
+aFW
+aFW
+aFW
+aFW
+aFW
+aFW
+aFW
 aBO
 aBO
 aBO
 aBO
 aLX
-aMl
+adA
 aEH
 aEF
 aEB
@@ -52770,7 +53361,7 @@ aBO
 aBO
 aBO
 aLX
-aMk
+acF
 aMb
 aLY
 aEB
@@ -53130,9 +53721,9 @@ aWC
 aWA
 aWA
 aWX
-aWA
+ajn
 aWN
-aWA
+ajg
 aWA
 aWy
 aWy
@@ -55853,18 +56444,18 @@ aWf
 aKI
 aLl
 aLl
-ajz
+bew
 aLl
 aKK
 aKK
-aju
+beu
 aKK
 aKK
-aju
+beu
 aKK
 aKK
 aKK
-aju
+beu
 aKK
 aKK
 aQq
@@ -56058,7 +56649,7 @@ aKK
 aKK
 aKK
 aKK
-ajt
+aem
 aQq
 auP
 auP
@@ -56258,7 +56849,7 @@ aqR
 aqR
 auP
 aKl
-ajr
+abc
 aKz
 aKv
 aQm
@@ -56435,10 +57026,10 @@ aVX
 aLl
 aLH
 aLy
-ajB
+afb
 aKW
 aKK
-ajt
+aem
 aKU
 aKU
 aKK
@@ -56631,10 +57222,10 @@ aLc
 aLm
 aKK
 aLe
-aju
+beu
 aKV
 aKK
-ajt
+aem
 aQq
 auP
 aqR
@@ -56642,7 +57233,7 @@ aqR
 aqR
 auP
 aKl
-ajs
+abi
 aKz
 aKv
 aQm
@@ -56835,7 +57426,7 @@ aqR
 auP
 aKl
 aKG
-aQp
+afs
 aQo
 aQn
 aKF
@@ -56911,8 +57502,8 @@ aBm
 aBm
 aBj
 aqx
-ash
-arZ
+aqz
+aqz
 aqz
 arJ
 aqz
@@ -57011,7 +57602,7 @@ aVY
 aVW
 aVW
 aVV
-ajC
+afI
 aKW
 aKW
 aLf
@@ -57104,7 +57695,7 @@ aBm
 aBj
 aqx
 aqz
-asa
+aqz
 aqz
 arJ
 aqz
@@ -57204,7 +57795,7 @@ aVY
 aVW
 aVW
 aVV
-ajz
+bew
 aLl
 aiz
 aLb
@@ -57296,7 +57887,7 @@ aBm
 aBj
 aqx
 aqz
-asb
+aqz
 aqz
 aqY
 aqz
@@ -57399,10 +57990,10 @@ aLl
 aLh
 aLh
 aLh
-ajy
+aeW
 aKW
 aiy
-ajt
+aem
 aQq
 auP
 auP
@@ -57488,7 +58079,7 @@ aBn
 aBj
 aqx
 aqz
-asc
+aqz
 aqz
 aqX
 aqz
@@ -57588,7 +58179,7 @@ aVY
 aVW
 aVW
 aLl
-ajA
+bex
 aLi
 aiA
 aLd
@@ -57626,7 +58217,7 @@ auP
 auP
 aFe
 aIU
-ajg
+aaO
 apt
 aHX
 aIU
@@ -57679,7 +58270,7 @@ aBr
 aBm
 aBj
 aqx
-arC
+ajy
 arC
 arC
 arC
@@ -57779,7 +58370,7 @@ aVY
 aVX
 aVW
 aLl
-ajC
+afI
 aKW
 aKW
 aLf
@@ -57877,7 +58468,7 @@ aqz
 aqz
 aqz
 ari
-aqy
+aDY
 aBc
 aAU
 aAU
@@ -57991,11 +58582,11 @@ aFe
 aFe
 aJO
 aLg
-ajn
+bet
 aJP
-ajn
+bet
 aJP
-ajn
+bet
 aJP
 aKD
 aFe
@@ -58167,10 +58758,10 @@ aLl
 aLm
 aKK
 aLj
-ajv
+bev
 aKV
 aKK
-ajt
+aem
 aQq
 aFe
 aFe
@@ -58355,10 +58946,10 @@ aVW
 aVW
 aVW
 aLz
-ajD
+afJ
 aKW
 aKK
-ajt
+aem
 aKU
 aKU
 aKK
@@ -58746,7 +59337,7 @@ aQs
 aQs
 aQs
 aQs
-aQt
+aeD
 aQq
 aFe
 aFe
@@ -58929,14 +59520,14 @@ aVV
 aLl
 aLl
 aLl
-ajF
+bey
 aKK
 aQw
-ajv
+bev
 aKK
 aKK
 aKK
-ajv
+bev
 aKK
 aKK
 aKI
@@ -59612,16 +60203,16 @@ aAV
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
+aKH
+aKn
+aGr
+aGr
 aAU
 aAS
 aDi
@@ -59804,16 +60395,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQt
+aKp
+aKp
+aGv
+aGr
+aMx
+aKp
+aGv
+aGr
 aAU
 aAS
 aDi
@@ -59920,7 +60511,7 @@ aFe
 aLw
 aKJ
 asJ
-atx
+acV
 asJ
 asJ
 aou
@@ -59996,16 +60587,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQH
+aKH
+aKH
+aHF
+aGr
+aMC
+aKH
+aHF
+aGr
 aAU
 aAS
 aDi
@@ -60113,8 +60704,8 @@ aLw
 aKS
 asJ
 atx
-asJ
-asJ
+aah
+aah
 asI
 aoC
 aoC
@@ -60188,16 +60779,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQL
+aKH
+aKH
+aPr
+aOv
+aMM
+aKH
+aHF
+aGr
 aAU
 aAS
 aDi
@@ -60305,7 +60896,7 @@ aLw
 aLv
 aKB
 aty
-asJ
+aaI
 asJ
 asJ
 auP
@@ -60380,16 +60971,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQM
+aMv
+aMv
+aMv
+aMv
+aMQ
+aLJ
+aHR
+aGt
 aAU
 aAS
 aDi
@@ -60572,16 +61163,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aGr
+aPA
+aPA
+aPA
+aGr
+aNh
+aLL
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -60764,16 +61355,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aQX
+aMx
+aKp
+aKp
+aKp
+aKp
+aMM
+aMk
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -60879,9 +61470,9 @@ aFe
 aFe
 asK
 asJ
-aKH
+adf
 aKx
-atu
+acS
 asJ
 asK
 auP
@@ -60956,16 +61547,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aKH
+aMC
+aKH
+aKH
+aKH
+aKH
+aKH
+aKH
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -61148,16 +61739,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQN
+aQp
+aQi
+aPH
+aMl
+aKH
+aMl
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -61340,16 +61931,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aGr
+aGr
+aGr
+aMC
+aMr
+aKH
+aMr
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -61532,16 +62123,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQO
+aGv
+aGr
+aMC
+aKH
+aKH
+aKH
+aHF
+aGr
 aAT
 aAS
 aDi
@@ -61724,16 +62315,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQP
+aHF
+aGr
+aMC
+aKH
+aNp
+aKH
+aHT
+aGr
 aAT
 aAS
 aDi
@@ -61916,16 +62507,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQP
+aPr
+aOv
+aMM
+aKH
+aNp
+aKH
+aHT
+aGr
 aAT
 aAS
 aDi
@@ -62108,16 +62699,16 @@ aAW
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aQW
+aMv
+aMv
+aMv
+aMv
+aNO
+aMv
+aIi
+aGr
 aAT
 aAS
 aDi
@@ -62300,16 +62891,16 @@ aAV
 aAT
 aAT
 aAT
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
-asF
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
+aGr
 aAT
 aAS
 aDi
@@ -77222,7 +77813,7 @@ aXy
 aXv
 aXn
 aXH
-aXD
+beY
 aXm
 aXk
 air
@@ -77591,10 +78182,10 @@ air
 aYb
 aYD
 aYE
-aYD
+bfc
 aYu
 aYu
-aYc
+bfb
 aYc
 aYc
 aYc
@@ -77972,7 +78563,7 @@ aYs
 aYs
 aYs
 aYE
-aYE
+bfd
 aYI
 aYI
 aYE
@@ -78108,7 +78699,7 @@ aMg
 aMg
 aPw
 aPw
-aPw
+bfk
 aPw
 aPw
 aMg
@@ -78378,7 +78969,7 @@ aXu
 aXm
 aXm
 aXm
-aXm
+beV
 aXm
 aXo
 aXo
@@ -78681,7 +79272,7 @@ aCn
 aCn
 aCn
 aMg
-aPH
+bfl
 aPu
 aPz
 aPy
@@ -78881,7 +79472,7 @@ aPu
 aPz
 aPv
 aMo
-aMr
+bfh
 aPo
 aPi
 aMg
@@ -78926,7 +79517,7 @@ aCg
 aCg
 aCg
 aYb
-aYs
+bfe
 aYs
 aYs
 aYs
@@ -78955,7 +79546,7 @@ aXo
 aXo
 aXo
 aXu
-aXp
+beU
 aXp
 aXm
 aXm
@@ -79557,7 +80148,7 @@ aGT
 aGT
 aGT
 aGT
-acu
+amE
 aGT
 amE
 amE
@@ -79641,12 +80232,12 @@ aCn
 aCn
 aCn
 aMg
-aMv
+beG
 aPu
 aPC
 aPC
 aPC
-aPA
+bfj
 aPu
 adm
 aMo
@@ -79749,7 +80340,7 @@ amE
 aGT
 aGT
 aGT
-acu
+amE
 aGT
 amE
 amE
@@ -79842,7 +80433,7 @@ aMm
 aMm
 aMm
 aMm
-aPr
+bfg
 aPl
 aMg
 aCn
@@ -79914,7 +80505,7 @@ aXu
 aXm
 aXm
 aXm
-aXp
+beW
 aXp
 aXp
 aXm
@@ -80102,7 +80693,7 @@ aXW
 aXR
 aXl
 aXo
-aXm
+beZ
 aXm
 aXm
 aXm
@@ -81825,7 +82416,7 @@ aYc
 aXo
 aXo
 aXy
-aXy
+bfa
 aXz
 aXz
 aXz
@@ -83610,7 +84201,7 @@ awv
 awv
 ayd
 ayd
-awv
+azC
 awv
 awv
 awv
@@ -83801,7 +84392,7 @@ awv
 awv
 awv
 ayd
-ayd
+aAe
 awJ
 awv
 awv
@@ -83811,7 +84402,7 @@ awv
 awv
 awv
 awv
-awv
+azC
 awv
 awv
 awv
@@ -84004,7 +84595,7 @@ awM
 awM
 awM
 awM
-awv
+atE
 awv
 awv
 awv
@@ -84389,7 +84980,7 @@ axM
 axo
 awM
 awJ
-aFT
+avL
 awv
 awv
 awv
@@ -84581,7 +85172,7 @@ axM
 axt
 awM
 awv
-awv
+ayl
 awv
 awv
 awv
@@ -84773,7 +85364,7 @@ axM
 axt
 awM
 awv
-awv
+ayl
 awv
 awv
 awv
@@ -84965,7 +85556,7 @@ axQ
 axt
 awM
 awv
-awv
+ayl
 awv
 awv
 awv
@@ -85157,7 +85748,7 @@ axM
 axt
 awM
 awK
-awv
+ayl
 awv
 awv
 awv
@@ -85349,7 +85940,7 @@ axM
 axt
 awM
 awK
-awv
+ayl
 awv
 awv
 awv
@@ -85541,7 +86132,7 @@ axM
 axt
 awM
 awK
-awv
+ayl
 awv
 awv
 awv
@@ -85733,7 +86324,7 @@ axQ
 axt
 awM
 awK
-awv
+ayl
 awv
 awv
 awv
@@ -85925,7 +86516,7 @@ axM
 axt
 awM
 awv
-awv
+ayl
 awv
 awv
 awv
@@ -86100,7 +86691,7 @@ awE
 azH
 awv
 awv
-awv
+aAk
 azE
 azp
 azg
@@ -86117,7 +86708,7 @@ axM
 axo
 awM
 awv
-awv
+ayl
 awv
 awv
 awv
@@ -86307,9 +86898,9 @@ ayg
 ayg
 axU
 aFU
-awM
-awL
-awv
+azP
+azB
+ayl
 awv
 awv
 awH
@@ -86695,7 +87286,7 @@ ahY
 ahY
 ahY
 ahY
-awv
+atE
 awv
 awv
 awv
@@ -86870,7 +87461,7 @@ azm
 azm
 azm
 azm
-azB
+bfm
 azm
 azk
 azi
@@ -87250,7 +87841,7 @@ aCH
 aCH
 awE
 ayO
-aAe
+bfo
 azm
 azm
 azm
@@ -87442,7 +88033,7 @@ aCH
 aCH
 awE
 ayO
-aFW
+bfp
 azk
 azk
 azk
@@ -87830,7 +88421,7 @@ aAg
 azm
 azm
 azm
-azC
+bfn
 azm
 azm
 azm
@@ -88218,7 +88809,7 @@ ayY
 awv
 awv
 awv
-awv
+atH
 awv
 awv
 ahY
@@ -88286,10 +88877,10 @@ asU
 asV
 ain
 atI
-ato
+bfi
 ats
 ats
-ato
+bfi
 ata
 ain
 ask
@@ -88615,7 +89206,7 @@ ahY
 ahY
 ahY
 ahY
-awv
+atE
 awv
 awv
 awv
@@ -88806,7 +89397,7 @@ awv
 awv
 awv
 awv
-awv
+atH
 awv
 awv
 awv
@@ -89069,7 +89660,7 @@ asq
 asq
 asq
 ask
-ask
+bff
 agr
 aCq
 aCq
@@ -91527,7 +92118,7 @@ aCq
 aCq
 aCq
 awd
-aws
+aQY
 awi
 avU
 aut
@@ -96234,7 +96825,7 @@ aHh
 aHh
 aNX
 aHA
-aNO
+beX
 aHA
 aHh
 aNF
@@ -97193,7 +97784,7 @@ aHh
 aHh
 aHh
 aHh
-aHT
+arA
 aNP
 aHh
 aHh
@@ -105180,7 +105771,7 @@ aLU
 aLU
 aLU
 aLV
-aLV
+ajB
 aLV
 ahO
 aoh
@@ -126360,7 +126951,7 @@ air
 air
 air
 aZg
-aZf
+bfs
 aZf
 aZf
 aaE
@@ -126562,7 +127153,7 @@ aaG
 aaG
 aaG
 aaB
-aai
+bfr
 aaq
 aTc
 aSK
@@ -127315,7 +127906,7 @@ aZf
 aZf
 aZf
 aZf
-aZf
+aZr
 aZf
 aZf
 aZf
@@ -128680,7 +129271,7 @@ aXR
 aZS
 aZI
 aZb
-aZy
+bfq
 aZw
 aZu
 aZb
@@ -128796,7 +129387,7 @@ ahe
 ahe
 ahf
 aMg
-adA
+bft
 aMo
 aMg
 ahf
@@ -130784,13 +131375,13 @@ abr
 abd
 bah
 aaT
-ade
-ade
-bae
-ade
-ade
-acw
-aZa
+aTM
+aTM
+bfv
+aTM
+aTM
+aTt
+aTt
 aZf
 aZf
 aZf
@@ -130976,13 +131567,13 @@ abs
 abd
 bah
 aaZ
-auM
-aeV
-baf
-auB
-auA
-awX
-ade
+bfC
+bcG
+bfw
+bfu
+bch
+aXD
+aTM
 air
 air
 air
@@ -131168,13 +131759,13 @@ abd
 abe
 bai
 aaZ
-aaN
-azM
-aIg
-awY
-auA
-azL
-ade
+aTM
+bfA
+bfx
+bbV
+bch
+aZy
+aTM
 air
 air
 air
@@ -131360,13 +131951,13 @@ abd
 abf
 baj
 aba
-aaN
-axg
-bag
-abv
-aeV
-awY
-ade
+aTM
+bfB
+bfy
+bcg
+bcG
+bbV
+aTM
 air
 air
 air
@@ -131552,13 +132143,13 @@ ban
 bam
 bak
 aba
-aaN
-axc
-axc
-abv
-aeV
-aFY
-ade
+aTM
+bfz
+bfz
+bcg
+bcG
+bce
+aTM
 air
 air
 air
@@ -131743,14 +132334,14 @@ abd
 abd
 abd
 abd
-aaZ
-aaN
-axc
-axc
-abv
-abv
-abv
-ade
+ajC
+aTM
+bfz
+bfz
+bcg
+bcg
+bcg
+aTM
 air
 air
 air
@@ -131936,13 +132527,13 @@ abg
 abg
 abg
 abb
-aaN
-ade
-agx
-agx
-agx
-ade
-ade
+aTM
+aTM
+bcU
+bcU
+bcU
+aTM
+aTM
 adH
 adH
 adH
@@ -134107,7 +134698,7 @@ amn
 amn
 amn
 aDS
-aDD
+aDK
 aDD
 aDD
 aDD
@@ -135644,7 +136235,7 @@ aDU
 aEd
 azp
 azp
-aDD
+aDd
 aDD
 aDD
 aDD
@@ -136796,7 +137387,7 @@ azg
 azg
 azg
 azp
-aDD
+aDd
 aDD
 aDD
 aDD

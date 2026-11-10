@@ -283,6 +283,7 @@
 	name = "Northern Landing Zone"
 	icon_state = "shuttle"
 	area_flags = NEAR_FOB
+	always_unpowered = FALSE
 
 /area/mediumgreen/outside/lz1/around/engi
 	name = "Northern Landing Zone engineering"
@@ -293,10 +294,13 @@
 /area/mediumgreen/outside/lz2/around
 	icon_state = "shuttle"
 	area_flags = NEAR_FOB
+	always_unpowered = FALSE
 
 /area/mediumgreen/outside/lz2/building
 	name = "Expeditionary Outpost"
 	ceiling = CEILING_METAL
+	always_unpowered = FALSE
+
 
 /area/mediumgreen/outside/lz2/building/road
 	name = "Expeditionary Outpost road"
@@ -418,7 +422,6 @@
 
 /area/mediumgreen/outside/neotree
 	name = "Neo-fibre Research courtyard"
-	always_unpowered = FALSE
 
 /area/mediumgreen/outside/neotree/tower
 	name = "guard tower"
@@ -430,6 +433,19 @@
 /area/mediumgreen/outside/building/neotree
 	name = "Neo-fibre Research Facility"
 	ceiling = CEILING_METAL
+	always_unpowered = TRUE
+
+/area/mediumgreen/outside/building/neotree/z1
+	name = "Neo-fibre Research Facility"
+	always_unpowered = FALSE
+
+/area/mediumgreen/outside/building/neotree/z3
+	name = "Neo-fibre Research Facility"
+	always_unpowered = FALSE
+
+/area/mediumgreen/outside/building/neotree/z2
+	name = "Neo-fibre Research Facility"
+	always_unpowered = FALSE
 
 
 /area/mediumgreen/outside/building/neotree/z1/engineering
