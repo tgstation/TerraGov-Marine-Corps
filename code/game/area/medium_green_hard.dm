@@ -45,7 +45,7 @@
 	icon_state = "southeast"
 
 
-	
+
 /area/mediumgreen/outside/z2
 	name = "Rain Forest"
 
@@ -286,19 +286,76 @@
 	area_flags = NEAR_FOB
 
 
-/area/bluemoon/outside/building
+/area/mediumgreen/outside/building
 	name = "unknown area?"
 	icon_state = "blue"
-	ceiling = CEILING_NONE
 	ceiling = CEILING_METAL
 	outside = FALSE
 	always_unpowered = FALSE
 
+/area/mediumgreen/outside/building/southeast
+	name = "Artifact Research Outpost"
+	icon_state = "icy_alien_stuff"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
+/area/mediumgreen/outside/building/southeast/containment
+	name = "Large Artifact Containment"
 
-//crashed ship
+/area/mediumgreen/outside/building/southeast/containment/small
+	name = "Small Artifact Containment"
 
-//South east research outpost
+/area/mediumgreen/outside/building/southeast/security
+	name = "Research Outpost Security Booth"
+	icon_state = "interrogation"
+
+/area/mediumgreen/outside/building/southeast/security/tower/
+	name = "Research Outpost Sniper Tower"
+
+/area/mediumgreen/outside/building/southeast/security/tower/one
+
+/area/mediumgreen/outside/building/southeast/tree
+	name = "Research Outpost Biological Experimentation Room"
+
+/area/mediumgreen/outside/building/southeast/admin
+	name = "Research Outpost Offices"
+
+/area/mediumgreen/outside/building/southeast/warehouse
+	name = "Research Outpost Warehouse"
+
+/area/mediumgreen/outside/building/southeast/dorm
+	name = "Research Outpost Dormitory"
+
+/area/mediumgreen/outside/building/southeast/lodge
+	name = "Staff Lodge"
+	icon_state = "patients"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/mediumgreen/outside/building/southeast/maintenance
+	name = "Research Outpost Maintenance Room"
+	icon_state = "conference"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/mediumgreen/outside/building/southeast/optable
+	name = "Research Outpost operating Room"
+	icon_state = "medical"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/mediumgreen/outside/building/southeast/crashedbuilding
+	name = "Research Outpost temporary artifact storage"
+
+/area/mediumgreen/outside/building/southeast/breakroom
+	name = "Research Outpost break tent"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/mediumgreen/outside/building/southeast/laser
+	name = "Research Outpost optics research room"
+	minimap_color = MINIMAP_AREA_ENGI
+
+/area/mediumgreen/outside/building/southeast/ship
+	name = "Engineer ship"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+	icon_state = "supplypod_flight"
+
 
 //neofibre resarch facility (tower of hell)
 
@@ -306,6 +363,26 @@
 
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 
+/area/mediumgreen/outside/building/transportshuttle
+	name = "Nanotrasen research shuttle"
+	icon_state = "shuttle"
+	minimap_color = MINIMAP_AREA_RESEARCH
+
+/area/mediumgreen/outside/building/transportshuttle/engi
+	name = "Nanotrasen engineering shuttle"
+
+
 //syndi base big + small
+/area/mediumgreen/outside/building/syndi
+	name = "Syndicate Base"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC_CAVE
+
+/area/mediumgreen/outside/building/syndi/scout
+	name = "Syndicate scoutpost"
 
 //cultist hideout
+/area/mediumgreen/outside/building/cultist
+	name = "Cultist Hideout"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_ESCAPE_CAVE
