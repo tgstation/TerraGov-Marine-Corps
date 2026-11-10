@@ -102,12 +102,14 @@ SUBSYSTEM_DEF(weeds)
 			if(istype(found_obj, /obj/alien/weeds/node))
 				return
 			var/obj/alien/weeds/found_weed = found_obj
+			// Do not take ownership of nearby weeds if they're closer to their parent than us.
 			if(found_weed.parent_node && found_weed.parent_node != chosen_node && get_dist_euclidean_square(chosen_node, found_weed) >= get_dist_euclidean_square(found_weed.parent_node, found_weed))
 				return
+			// Similar enough? Just become the new parent.
 			if((found_weed.type == weed_to_spawn) && (found_weed.color_variant == found_weed.color_variant))
 				found_weed.set_parent_node(chosen_node)
 				return
-			found_weed.swapped = TRUE
-			are_we_swapping = TRUE
-			qdel(found_obj)
+			// Otherwise, fully replace it.
+			found_weed.replace_weed(weed_to_spawn, chosen_node)
+			return
 	new weed_to_spawn(chosen_turf, chosen_node, are_we_swapping)

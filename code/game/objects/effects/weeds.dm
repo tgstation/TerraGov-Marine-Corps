@@ -29,8 +29,8 @@
 	/// The multiplier of an xenomorph's passive health/plasma regeneration.
 	/// Health multiplier is conditional to resting (or alike). Plasma multiplier is unconditional.
 	var/regeneration_multiplier = 1
-	/// Is our deletion because we're being changed with different weed type?
-	/// Should only be TRUE if this is being swapped to prevent certain effects.
+	/// Is our deletion because we're being changed with different weed type? Used to prevent certain effects from occurring.
+	/// Use [replace_weed()] when swapping weed types.
 	var/swapped = FALSE
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
@@ -124,12 +124,12 @@
 		nearby_weed?.update_icon()
 
 /// Replaces src with a new weed type. Will delete itself if none was provided.
-/obj/alien/weeds/proc/replace_weed(new_weed_type)
+/obj/alien/weeds/proc/replace_weed(new_weed_type, new_parent_node = parent_node)
 	if(!ispath(new_weed_type, /obj/alien/weeds))
 		qdel(src)
 		return
 	swapped = TRUE
-	new new_weed_type(loc, parent_node, TRUE)
+	new new_weed_type(loc, new_parent_node, TRUE)
 	qdel(src)
 
 /// Sets our parent node and handles everything that may involve it.
