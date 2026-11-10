@@ -365,11 +365,11 @@
 
 /area/mediumgreen/outside/building/southeast/containment
 	name = "Large Artifact Containment"
-	minimap_icon = MINIMAP_AREA_COMMAND
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mediumgreen/outside/building/southeast/containment/small
 	name = "Small Artifact Containment"
-	minimap_icon = MINIMAP_AREA_RESEARCH
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/southeast/containment/vault
 	name = "Artifact vault"
