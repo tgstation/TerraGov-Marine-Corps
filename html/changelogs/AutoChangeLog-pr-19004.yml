@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - qol: "Admin music volume setting now defaults to 20% instead of 50%."

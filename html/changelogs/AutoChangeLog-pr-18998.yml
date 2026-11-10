@@ -1,4 +1,0 @@
-author: "marivanwan"
-delete-after: True
-changes:
-  - bugfix: "Nuke disk computer's progress bar for the current stage works again instead of being stuck at 0%"

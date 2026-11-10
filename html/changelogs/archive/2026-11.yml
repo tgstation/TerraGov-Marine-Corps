@@ -81,3 +81,27 @@
   - bugfix: fixed the missing combat robot critical health screen overlays
   - qol: Directional attacks will check every possible target on a turf instead of
       only trying the first one it can find
+2026-11-09:
+  Lumipharon:
+  - balance: MRAP is now only available in Sovl War
+  - balance: MRAP self inflicted ram damage when ramming resin walls is significantly
+      reduced
+  - balance: MRAP tesla module now causes a tesla beam effect
+  - bugfix: fixed a variety of misc LV759 visual issues
+  - refactor: fire is now a status condition
+  Runian:
+  - bugfix: Xenomorphs can no longer eat non-mature xeno fruit by stacking interactions
+      when it was initially mature.
+  blackdav123:
+  - qol: Admin music volume setting now defaults to 20% instead of 50%.
+  marivanwan:
+  - bugfix: Nuke disk computer's progress bar for the current stage works again instead
+      of being stuck at 0%
+  - bugfix: Added a generic cocking and opening sound to guns that were missing them
+  - qol: The preview icons for the alt-click tile menu are now to the right of the
+      name of the item on the ground
+  - bugfix: Fixed a runechat runtime
+  - bugfix: Fixed a jitter status effect runtime
+  sylvia-from-fulp-station:
+  - balance: You cannot take over ssd zombie mobs on zcrash without atleast 4 alive
+      marines.
