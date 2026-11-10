@@ -39,7 +39,6 @@
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, from_swapping = FALSE)
 	. = ..()
 	if(!set_parent_node(node))
-		stack_trace("Weed was created without a parent node!")
 		return INITIALIZE_HINT_QDEL
 
 	var/static/list/connections = list(
