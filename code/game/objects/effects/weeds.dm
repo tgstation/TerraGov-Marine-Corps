@@ -26,12 +26,12 @@
 	var/obj/alien/weeds/node/parent_node
 	/// The color variant of the sprite.
 	var/color_variant = NORMAL_COLOR
-	/// Is our deletion because we're being changed with different weed type?
-	/// Should only be TRUE if this is being swapped to prevent certain effects.
-	var/swapped = FALSE
 	/// The multiplier of an xenomorph's passive health/plasma regeneration.
 	/// Health multiplier is conditional to resting (or alike). Plasma multiplier is unconditional.
 	var/regeneration_multiplier = 1
+	/// Is our deletion because we're being changed with different weed type?
+	/// Should only be TRUE if this is being swapped to prevent certain effects.
+	var/swapped = FALSE
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
