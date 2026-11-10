@@ -245,7 +245,7 @@
 /area/mediumgreen/caves/z3/Neotree
 	name = "Neo-tree"
 	icon_state = "cave"
-	area_flags = DISALLOW_SILO
+	area_flags = DISALLOW_SILO | CANNOT_NUKE
 	minimap_color = MINIMAP_AREA_REQ
 
 
@@ -265,8 +265,8 @@
 	name = "Arena of destiny"
 	icon_state = "party"
 	always_unpowered = TRUE
-	area_flags = DISALLOW_SILO
-	minimap_color = MINIMAP_AREA_REQ_CAVE
+	area_flags = CANNOT_NUKE
+	minimap_color = MINIMAP_AREA_SEC
 
 
 //sorry how dirty it is below but uh yeah it works so
@@ -277,7 +277,7 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = NO_DROPPOD
+	area_flags = NO_DROPPOD | NEAR_FOB
 
 /area/mediumgreen/outside/lz2
 	name = "Southern Landing Zone"
@@ -285,12 +285,12 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
-	area_flags = NO_DROPPOD
+	area_flags = NO_DROPPOD | NEAR_FOB
 
 /area/mediumgreen/outside/lz1/around
 	name = "Northern Landing Zone"
 	icon_state = "shuttle"
-	area_flags = NEAR_FOB
+	area_flags = NEAR_FOB | NO_DROPPOD
 	always_unpowered = FALSE
 
 /area/mediumgreen/outside/lz1/around/engi
@@ -309,6 +309,7 @@
 	ceiling = CEILING_METAL
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_COMMAND
+	area_flags = NONE
 
 
 /area/mediumgreen/outside/lz2/building/road
@@ -364,9 +365,11 @@
 
 /area/mediumgreen/outside/building/southeast/containment
 	name = "Large Artifact Containment"
+	minimap_icon = MINIMAP_AREA_COMMAND
 
 /area/mediumgreen/outside/building/southeast/containment/small
 	name = "Small Artifact Containment"
+	minimap_icon = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/southeast/containment/vault
 	name = "Artifact vault"
@@ -526,6 +529,7 @@
 
 /area/mediumgreen/outside/building/neotree/z3/lz
 	name = "Neo-fibre Research Facility landing zone"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
 	name = "Neo-fibre Research Facility Research checkpoint"
@@ -604,12 +608,12 @@
 /area/mediumgreen/outside/building/engineering/roof/z2
 	name = "Power Research Site Lower Roof"
 	ceiling = CEILING_NONE
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mediumgreen/outside/building/engineering/roof/z3
 	name = "Power Research Site Upper Roof"
 	ceiling = CEILING_NONE
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_COMMAND
 
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 

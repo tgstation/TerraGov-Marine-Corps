@@ -3,8 +3,6 @@
 
 #define TESLA_MAX_RANGE 5
 #define TESLA_MAX_TARGETS 7
-#define TESLA_COST_PASSIVE 1
-#define TESLA_COST_ACTIVE 1
 
 /obj/machinery/tesla_orb
 	name = "mysterious orbs"
@@ -22,10 +20,6 @@
 	light_color = COLOR_DARK_CYAN
 	/// Range, duh.
 	var/max_range = TESLA_MAX_RANGE
-	/// Cost for having active but doing nothing
-	var/passive_cost = TESLA_COST_PASSIVE
-	/// Cost PER XENO to drain on shock
-	var/active_cost = TESLA_COST_ACTIVE
 
 /obj/machinery/tesla_orb/Initialize(mapload)
 	. = ..()
@@ -41,7 +35,7 @@
 	. = ..()
 	if(!in_range(src, user))
 		return
-	. += span_warning("It seems to be volatile.")
+	. += span_warning("It seems to be very volatile.")
 
 /obj/machinery/tesla_orb/attack_hand_alternate(mob/living/user)
 	. = ..()
@@ -73,5 +67,3 @@
 	return ..()
 
 #undef TESLA_MAX_RANGE
-#undef TESLA_COST_PASSIVE
-#undef TESLA_COST_ACTIVE
