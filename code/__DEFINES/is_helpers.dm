@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 //Human sub-species
 #define isrobot(H) (is_species(H, /datum/species/robot))
-#define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/synthetic/early))
+#define issynth(H) (is_species(H, /datum/species/synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
