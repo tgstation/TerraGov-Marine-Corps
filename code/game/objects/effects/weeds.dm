@@ -4,8 +4,9 @@
 #define STICKY_COLOR "green"
 
 // Stat defines.
-#define RESTING_BUFF 1.2
-#define WEED_SLOWDOWN 2
+#define RESTING_REGENERATION_MULTIPLIER 1.2
+#define RESTING_SUNDER_RECOV_MULTIPLIER 2
+#define STICKY_SLOWDOWN 2
 
 // ***************************************
 // *********** Weeds
@@ -26,9 +27,11 @@
 	var/obj/alien/weeds/node/parent_node
 	/// The color variant of the sprite.
 	var/color_variant = NORMAL_COLOR
-	/// The multiplier of an xenomorph's passive health/plasma regeneration.
-	/// Health multiplier is conditional to resting (or alike). Plasma multiplier is unconditional.
+	/// The multiplier of passive health/plasma regeneration to xenomorphs ontop of us.
+	/// Health multiplier requires resting (or alike). Plasma multiplier is unconditional.
 	var/regeneration_multiplier = 1
+	/// The multiplier of passive sunder recovery to any xenomorph standing ontop of us.
+	var/sunder_recov_multiplier = 1
 	/// Is our deletion because we're being changed with different weed type? Used to prevent certain effects from occurring.
 	/// Use [replace_weed()] when swapping weed types.
 	var/swapped = FALSE
@@ -165,13 +168,14 @@
 
 /obj/alien/weeds/sticky/on_loc_entered(datum/source, atom/movable/crosser)
 	. = ..()
-	slow_down_crosser(crosser, WEED_SLOWDOWN)
+	slow_down_crosser(crosser, STICKY_SLOWDOWN)
 
 /obj/alien/weeds/resting
 	name = "resting weeds"
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
-	regeneration_multiplier = RESTING_BUFF
+	regeneration_multiplier = RESTING_REGENERATION_MULTIPLIER
+	sunder_recov_multiplier = RESTING_SUNDER_RECOV_MULTIPLIER
 
 // ***************************************
 // *********** Weed Walls
@@ -291,7 +295,7 @@
 
 /obj/alien/weeds/node/sticky/on_loc_entered(datum/source, atom/movable/crosser)
 	. = ..()
-	slow_down_crosser(crosser, WEED_SLOWDOWN)
+	slow_down_crosser(crosser, STICKY_SLOWDOWN)
 
 // Resting weed node.
 /obj/alien/weeds/node/resting
@@ -300,5 +304,6 @@
 	weed_type = /obj/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
-	regeneration_multiplier = RESTING_BUFF
+	regeneration_multiplier = RESTING_REGENERATION_MULTIPLIER
+	sunder_recov_multiplier = RESTING_SUNDER_RECOV_MULTIPLIER
 	ability_cost_mult = 2

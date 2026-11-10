@@ -71,8 +71,8 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(ispath(loc_weeds_type, /obj/alien/weeds/resting)) //Resting weeds double sunder recovery
-		sunder_recov *= 2
+	if(loc_weeds_type) // Some weed types may boost sunder recovery.
+		sunder_recov *= loc_weeds_type::sunder_recov_multiplier
 
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
