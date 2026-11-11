@@ -78,8 +78,8 @@
 			continue
 		return
 
-	if(ismecha(crosser))
-		var/obj/vehicle/sealed/vehicle = crosser
+	if(ismecha(crosser) || istype(crosser, /obj/vehicle/unmanned))
+		var/obj/vehicle/vehicle = crosser
 		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
 		return
 	if(!ishuman(crosser))
