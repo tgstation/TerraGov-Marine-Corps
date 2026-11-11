@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed food items not properly clearing from your hand when you finish forcefeeding it to someone else"
-  - qol: "You can once again overeat - with a channel time - if you wish"
-  - balance: "Being fat reduces throw distance for humans - for all types of throws"

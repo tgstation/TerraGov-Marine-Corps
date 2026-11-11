@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Railgun has a fire delay of 1 second instead of 2. Reload delay is unchanged, so this should only effect the ability to fire another weapon after the railgun."

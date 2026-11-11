@@ -463,6 +463,12 @@ function draw_listedturf() {
 				window.location.href = clickcatcher;
 			}
 		}(part);
+		var b = document.createElement("div");
+		var clickcatcher = "";
+		b.className = "link";
+		b.onmousedown = clickfunc;
+		b.textContent = part[0] + " ";
+		table.appendChild(b);
 		if (storedimages[part[1]] == null && part[2]) {
 			var img = document.createElement("img");
 			img.src = part[2];
@@ -470,21 +476,15 @@ function draw_listedturf() {
 			storedimages[part[1]] = part[2];
 			img.onerror = iconError;
 			img.onmousedown = clickfunc;
-			table.appendChild(img);
+			b.appendChild(img);
 		} else {
 			var img = document.createElement("img");
 			img.onerror = iconError;
 			img.onmousedown = clickfunc;
 			img.src = storedimages[part[1]];
 			img.id = part[1];
-			table.appendChild(img);
+			b.appendChild(img);
 		}
-		var b = document.createElement("div");
-		var clickcatcher = "";
-		b.className = "link";
-		b.onmousedown = clickfunc;
-		b.textContent = part[0];
-		table.appendChild(b);
 		table.appendChild(document.createElement("br"));
 	}
 	document.getElementById("statcontent").appendChild(table);

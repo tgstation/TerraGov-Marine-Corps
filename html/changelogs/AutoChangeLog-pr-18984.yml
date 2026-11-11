@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "The remaining Thor modules smuggled into vendors have been collected by requisition agents"
