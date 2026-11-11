@@ -1,8 +1,10 @@
 //based on the tesla turret (i gutted it)
 //code by tery so blame them
 
-#define TESLA_MAX_RANGE 5
-#define TESLA_MAX_TARGETS 7
+#define TESLA_MAX_RANGE 7
+#define TESLA_MAX_TARGETS 12
+#define TESLA_DAMAGE 60 //BURN damage
+#define TESLA_ARMOR_PIERCE 5
 
 /obj/machinery/tesla_orb
 	name = "mysterious orbs"
@@ -15,8 +17,8 @@
 	allow_pass_flags = PASSABLE
 	resistance_flags = RESIST_ALL
 	light_on = TRUE
-	light_range = 4
-	light_power = 2
+	light_range = 5
+	light_power = 6
 	light_color = COLOR_DARK_CYAN
 	/// Range, duh.
 	var/max_range = TESLA_MAX_RANGE
@@ -52,7 +54,7 @@
 		return
 
 /obj/machinery/tesla_orb/process()
-	var/targets = length(zap_all(src, max_range, 30, 0, TESLA_MAX_TARGETS))
+	var/targets = length(zap_all(src, max_range, TESLA_DAMAGE, TESLA_ARMOR_PIERCE, TESLA_MAX_TARGETS))
 	if(!targets)
 		return
 	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
@@ -65,3 +67,6 @@
 	return ..()
 
 #undef TESLA_MAX_RANGE
+#undef TESLA_MAX_TARGETS
+#undef TESLA_DAMAGE
+#undef TESLA_ARMOR_PIERCE

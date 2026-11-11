@@ -18,7 +18,7 @@
 	outside = FALSE
 	requires_power = FALSE
 	area_flags = NO_DROPPOD
-/area/mediumgreen/outside/telecomms/z2
+/area/mediumgreen/outside/telecomms/z3
 	name = "Telecomms"
 	icon_state = "tcomsatcham"
 	outside = FALSE
