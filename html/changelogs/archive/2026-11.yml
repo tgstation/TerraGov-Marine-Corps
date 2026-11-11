@@ -113,3 +113,8 @@
   - qol: Added detailed vehicle wreck repair instructions in the codex for both the
       heavy vehicle fulton, and applicable vehicles
   - qol: Wrecked vehicles inform you of the next repair step required in their description
+2026-11-11:
+  Lumipharon:
+  - bugfix: fixed the glide size of all vehicles, resulting in less choppy movement
+  - bugfix: fixed cooldown macros lasting 1 tick longer than intended. This effects
+      vehicle move delays, among many other things.
