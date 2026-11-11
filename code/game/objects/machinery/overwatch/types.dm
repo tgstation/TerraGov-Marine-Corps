@@ -17,16 +17,19 @@
 
 //Military overwatch
 /obj/machinery/computer/camera_advanced/overwatch/military/alpha
-	name = "Alpha Overwatch Console"
+	name = "\improper Alpha Overwatch Console"
 
 /obj/machinery/computer/camera_advanced/overwatch/military/bravo
-	name = "Bravo Overwatch Console"
+	name = "\improper Bravo Overwatch Console"
 
 /obj/machinery/computer/camera_advanced/overwatch/military/charlie
-	name = "Charlie Overwatch Console"
+	name = "\improper Charlie Overwatch Console"
 
 /obj/machinery/computer/camera_advanced/overwatch/military/delta
-	name = "Delta Overwatch Console"
+	name = "\improper Delta Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/mrap
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 
 /obj/machinery/computer/camera_advanced/overwatch/military/som
 	faction = FACTION_SOM

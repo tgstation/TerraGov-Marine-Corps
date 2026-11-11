@@ -143,7 +143,7 @@
 	desc = "Allows the driver to briefly electrify the vehicle's hull. Good for unwanted guests."
 	icon_state = "smoke_launcher"
 	tank_mod_flags = TANK_MOD_NOT_FABRICABLE
-	is_driver_module = TRUE
+	is_driver_module = FALSE
 	flag_controller = VEHICLE_CONTROL_DRIVE
 	ability_to_grant = /datum/action/vehicle/sealed/armored/tesla
 
@@ -206,6 +206,6 @@
 /obj/item/tank_module/interior/mrap_command
 	name = "\improper CIC interior"
 	desc = "A command and control interior package, designed for officers to direct their troops and manage firesupport in the field."
-	icon_state = "cloner_interior"
+	icon_state = "warray"
 	interior_typepath = /datum/interior/armored/mrap_command
 	set_max_occupants = 12

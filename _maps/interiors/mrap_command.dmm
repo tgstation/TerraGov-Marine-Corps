@@ -5,6 +5,15 @@
 "b" = (
 /turf/closed/interior/tank/door,
 /area/interior/apc)
+"c" = (
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = 0;
+	dir = 1;
+	pixel_z = -2;
+	pixel_w = 4
+	},
+/turf/open/interior/apc/nine,
+/area/interior/apc)
 "d" = (
 /turf/open/interior/apc/eight,
 /area/interior/apc)
@@ -28,7 +37,9 @@
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
 "j" = (
-/obj/machinery/cic_maptable/drawable,
+/obj/machinery/cic_maptable/mrap{
+	pixel_w = -6
+	},
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "k" = (
@@ -50,14 +61,15 @@
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = 0;
 	dir = 1;
-	pixel_z = -2
+	pixel_z = -2;
+	pixel_w = -4
 	},
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "o" = (
-/obj/machinery/computer/code_generator/nt_access/blue{
-	dir = 2;
-	pixel_z = -9
+/obj/machinery/computer/camera_advanced/overwatch/mrap{
+	pixel_z = -9;
+	pixel_w = -6
 	},
 /turf/closed/interior/apc/two,
 /area/interior/apc)
@@ -74,8 +86,9 @@
 /turf/closed/interior/apc/twelve,
 /area/interior/apc)
 "s" = (
-/obj/machinery/computer/code_generator/nt_access/green{
-	pixel_z = -9
+/obj/machinery/computer/camera_advanced/overwatch/mrap{
+	pixel_z = -9;
+	pixel_w = 5
 	},
 /turf/closed/interior/apc/four,
 /area/interior/apc)
@@ -118,6 +131,13 @@
 "Q" = (
 /turf/open/interior/apc/fourteen,
 /area/interior/apc)
+"S" = (
+/obj/structure/prop/nt_computer{
+	pixel_z = -12;
+	pixel_w = 1
+	},
+/turf/closed/interior/apc/two,
+/area/interior/apc)
 "T" = (
 /turf/closed/interior/apc/twentythree,
 /area/interior/apc)
@@ -159,13 +179,13 @@ k
 "}
 (6,1,1) = {"
 s
-n
+c
 M
 i
 k
 "}
 (7,1,1) = {"
-F
+S
 O
 P
 p
