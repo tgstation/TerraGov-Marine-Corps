@@ -75,7 +75,7 @@
 /area/interior/apc)
 "p" = (
 /obj/structure/periscope/apc{
-	pixel_z = 5
+	pixel_z = 13
 	},
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = 0

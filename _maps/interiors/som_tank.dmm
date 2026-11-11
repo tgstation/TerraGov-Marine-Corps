@@ -70,7 +70,7 @@
 /area/interior/tank/som)
 "V" = (
 /obj/structure/ammo_rack/secondary/som,
-/obj/structure/bed/chair/loader_seat/som,
+/obj/structure/bed/chair/loader_seat_som,
 /turf/open/interior/tank/som/one,
 /area/interior/tank/som)
 "X" = (

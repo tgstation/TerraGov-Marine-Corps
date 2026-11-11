@@ -7,22 +7,48 @@
 	dir = EAST
 	can_rotate = FALSE
 
+/obj/structure/bed/chair/loader_seat/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+
+/obj/structure/bed/chair/loader_seat/handle_layer()
+	return
+
+/obj/structure/bed/chair/loader_seat/setDir(newdir)
+	. = ..()
+	buckling_z = pixel_z + 7
+	switch(dir)
+		if(NORTH)
+			buckling_w = pixel_w
+		if(SOUTH)
+			buckling_w = pixel_w
+		if(EAST)
+			buckling_w = pixel_w + 1
+		if(WEST)
+			buckling_w = pixel_w - 1
+
 /obj/structure/bed/chair/loader_seat/update_overlays()
 	. = ..()
 	if(buckled_mobs)
 		. += mutable_appearance(icon, "[icon_state]_occupied", ABOVE_MOB_LAYER)
 
-/obj/structure/bed/chair/loader_seat/som
+/obj/structure/bed/chair/loader_seat/officer
+	name = "officer seat"
+	can_rotate = TRUE
+
+/obj/structure/bed/chair/loader_seat_som
 	name = "loader seat"
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
 	icon_state = "chair"
 	dir = NORTH
-	pixel_x = -5
-	pixel_y = 6
-	buckling_x = -5
-	buckling_y = 15
+	resistance_flags = RESIST_ALL
+	can_rotate = FALSE
+	pixel_w = -5
+	pixel_z = 6
+	buckling_w = -5
+	buckling_z = 15
 
-/obj/structure/bed/chair/loader_seat/som/handle_layer()
+/obj/structure/bed/chair/loader_seat_som/handle_layer()
 	return
 
 /obj/structure/bed/chair/vehicle_crew
@@ -31,8 +57,8 @@
 	icon_state = "vehicle_chair"
 	resistance_flags = RESIST_ALL
 	dir = EAST
-	buckling_x = -2
-	buckling_y = 0
+	buckling_w = -2
+	buckling_z = 0
 	can_rotate = FALSE
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
@@ -85,7 +111,7 @@
 
 /obj/structure/bed/chair/vehicle_crew/driver
 	name = "driver seat"
-	buckling_x = 12
+	buckling_w = 12
 	control_flags = VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
 
 /obj/structure/bed/chair/vehicle_crew/driver/get_vis_range_mod()
@@ -117,9 +143,9 @@
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
 	icon_state = "driver_chair"
 	dir = NORTH
-	pixel_y = 3
-	buckling_x = 0
-	buckling_y = 10
+	pixel_z = 3
+	buckling_w = 0
+	buckling_z = 10
 
 /obj/structure/bed/chair/vehicle_crew/driver/som/handle_layer()
 	return
@@ -128,9 +154,9 @@
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
 	icon_state = "chair"
 	dir = NORTH
-	pixel_y = 1
-	buckling_x = 0
-	buckling_y = 9
+	pixel_z = 1
+	buckling_w = 0
+	buckling_z = 9
 
 /obj/structure/bed/chair/vehicle_crew/gunner/som/handle_layer()
 	return
