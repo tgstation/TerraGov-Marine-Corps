@@ -5,6 +5,26 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = TRUE
 
+//if this doesnt work i dont know
+/area/mediumgreen/outside/telecomms/z1
+	name = "Telecomms"
+	icon_state = "tcomsatcham"
+	outside = FALSE
+	requires_power = FALSE
+	area_flags = NO_DROPPOD
+/area/mediumgreen/outside/telecomms/z2
+	name = "Telecomms"
+	icon_state = "tcomsatcham"
+	outside = FALSE
+	requires_power = FALSE
+	area_flags = NO_DROPPOD
+/area/mediumgreen/outside/telecomms/z2
+	name = "Telecomms"
+	icon_state = "tcomsatcham"
+	outside = FALSE
+	requires_power = FALSE
+	area_flags = NO_DROPPOD
+
 
 /area/mediumgreen/outside/z1
 	name = "Lower Rain Forest"

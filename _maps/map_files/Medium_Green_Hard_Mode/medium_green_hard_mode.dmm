@@ -16850,13 +16850,6 @@
 /obj/effect/soundplayer/dripplayer,
 /turf/open/openspace,
 /area/mediumgreen/caves/z2/central)
-"bhs" = (
-/obj/structure/bed/chair/sofa,
-/obj/item/paper{
-	info = "<font face='Verdana' color='black'>Imagine i put a white monster here</font>"
-	},
-/turf/open/floor/wood/fancy,
-/area/lv624/lazarus/console)
 "bht" = (
 /obj/structure/bed/chair/sofa/corner,
 /obj/item/toy/plush/royalqueen,
@@ -16918,6 +16911,13 @@
 "bhC" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/z1/northeast)
+"bhD" = (
+/obj/structure/bed/chair/sofa,
+/obj/item/paper{
+	info = null
+	},
+/turf/open/floor/wood/fancy,
+/area/lv624/lazarus/console)
 "bhS" = (
 /obj/structure/sign/electricshock{
 	dir = 8
@@ -65213,7 +65213,7 @@ aab
 (252,1,1) = {"
 aab
 ahy
-bhs
+bhD
 aGe
 aGe
 aWC
