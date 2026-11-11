@@ -952,10 +952,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle)
-"adN" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/gm/dense,
-/area/mediumgreen/caves/rock)
 "adO" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -3174,9 +3170,12 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/south)
 "alX" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/gm/dense,
-/area/mediumgreen/outside/telecomms/z2)
+/obj/item/tool/multitool{
+	pixel_x = 11;
+	pixel_y = -10
+	},
+/turf/open/floor/mainship/tcomms,
+/area/lv624/lazarus/console)
 "alY" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 2
@@ -3317,10 +3316,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/disk)
-"amz" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/gm/dense,
-/area/mediumgreen/outside/telecomms/z3)
 "amA" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12649,6 +12644,9 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
+"aUB" = (
+/turf/closed/gm/dense,
+/area/mediumgreen/outside/telecomms/z2)
 "aUC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -16139,6 +16137,9 @@
 	},
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi)
+"bfu" = (
+/turf/closed/gm/dense,
+/area/mediumgreen/outside/telecomms/z3)
 "bfv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -72144,7 +72145,7 @@ aGe
 aGe
 aFB
 aya
-aus
+alX
 asr
 ahy
 aqy
@@ -120329,7 +120330,7 @@ aab
 (248,1,2) = {"
 aab
 aqy
-adN
+aKk
 aKk
 aKk
 aKk
@@ -121480,7 +121481,7 @@ aab
 "}
 (254,1,2) = {"
 aab
-alX
+aUB
 aqy
 aqy
 aqy
@@ -169290,7 +169291,7 @@ aab
 (248,1,3) = {"
 aab
 aqy
-adN
+aKk
 aKk
 aKk
 aKk
@@ -170441,7 +170442,7 @@ aab
 "}
 (254,1,3) = {"
 aab
-amz
+bfu
 aqy
 aqy
 aqy
