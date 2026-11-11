@@ -437,6 +437,7 @@
 		if(check_path(source, target, beam_passflags) != get_turf(target))
 			targets -= target
 			continue
+
 	var/list/xenos = cheap_get_xenos_near(source, zap_range)
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
@@ -455,6 +456,8 @@
 			victim.apply_status_effect(STATUS_EFFECT_NO_PLASMA_REGEN, 2 SECONDS)
 			victim.apply_status_effect(STATUS_EFFECT_PLASMA_DRAIN, 2 SECONDS)
 		victim.slowdown(0.5)
+
+	//im too lazy so iterating over lists 3 times, this is only for like one event will fix later if atro decides to make this an actual map
 
 	for(var/mob/living/target AS in targets)
 		source.beam(target, icon_state = "lightning[rand(1,12)]", time = 3, max_distance = zap_range + 2, override_target_pixel_x = 0)

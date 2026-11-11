@@ -1,4 +1,4 @@
-//based on the tesla turret
+//based on the tesla turret (i gutted it)
 //code by tery so blame them
 
 #define TESLA_MAX_RANGE 5
@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
-	allow_pass_flags = PASS_GLASS
+	allow_pass_flags = PASSABLE
 	resistance_flags = RESIST_ALL
 	light_on = TRUE
 	light_range = 4
@@ -24,8 +24,6 @@
 /obj/machinery/tesla_orb/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	update_icon()
-	///animate(src, time = 10, loop = -1, easing = LINEAR_EASING)
 
 /obj/machinery/tesla_orb/Destroy()
 	STOP_PROCESSING(SSobj, src)

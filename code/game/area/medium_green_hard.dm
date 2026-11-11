@@ -431,11 +431,14 @@
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 	icon_state = "supplypod_flight"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	//ceiling is on purpose, alien shit = no radio
 
 /area/mediumgreen/outside/building/southeast/ship/crashzone
 	name = "Ship crash zone"
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_COLONY
+	ceiling = CEILING_NONE
+	outside = TRUE
 
 
 /area/mediumgreen/outside/building/southeast/intel
@@ -530,6 +533,8 @@
 /area/mediumgreen/outside/building/neotree/z3/lz
 	name = "Neo-fibre Research Facility landing zone"
 	minimap_color = MINIMAP_AREA_LIVING
+	outside = TRUE
+	ceiling = CEILING_NONE
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
 	name = "Neo-fibre Research Facility Research checkpoint"
