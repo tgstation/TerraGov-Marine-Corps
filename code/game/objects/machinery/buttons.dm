@@ -36,8 +36,8 @@
 /obj/machinery/button/Initialize(mapload, ndir = 0)
 	. = ..()
 	setDir(ndir)
-	pixel_x = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
-	pixel_y = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
+	pixel_w = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
+	pixel_z = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
 	update_icon()
 
 
@@ -48,6 +48,9 @@
 	else
 		icon_state = initial(icon_state)
 
+/obj/machinery/button/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "warning_emissive", src, alpha = src.alpha)
 
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
@@ -61,6 +64,11 @@
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
 
+	activate(user)
+
+///Activation effects
+/obj/machinery/button/proc/activate(mob/living/user)
+	//todo: all this code is real ass and needs updating
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
@@ -74,7 +82,6 @@
 	pulsed()
 
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
-
 
 /obj/machinery/button/proc/pulsed()
 	if(next_activate > world.time)
@@ -119,13 +126,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -12
+			pixel_z = -12
 		if(SOUTH)
-			pixel_y = 29
+			pixel_z = 29
 		if(EAST)
-			pixel_x = -21
+			pixel_w = -21
 		if(WEST)
-			pixel_x = 21
+			pixel_w = 21
 
 
 /obj/machinery/button/door/open_only/landing_zone
