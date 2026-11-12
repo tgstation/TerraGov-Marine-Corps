@@ -87,5 +87,5 @@
 /area/interior/mrap_command
 	name = "command MRAP Interior"
 	icon_state = "shuttle"
-	base_lighting_alpha = 100
+	base_lighting_alpha = 115
 	base_lighting_color = LIGHT_COLOR_EMISSIVE_RED //TACTICAL lighting
