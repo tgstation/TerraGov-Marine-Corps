@@ -792,7 +792,7 @@
 	if(. & ZIMPACT_CANCEL_DAMAGE)
 		return .
 	// multiplier for the damage taken from falling
-	var/damage_softening_multiplier = 1
+	var/damage_softening_multiplier = 1.5
 
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !incapacitated(TRUE)
