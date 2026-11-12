@@ -40,10 +40,14 @@
 	icon_state = "tank_interior_4"
 /turf/closed/interior/tank/five
 	icon_state = "tank_interior_5"
+	has_emissive = TRUE
+
 /turf/closed/interior/tank/six
 	icon_state = "tank_interior_6"
 /turf/closed/interior/tank/twelve
 	icon_state = "tank_interior_12"
+	has_emissive = TRUE
+
 /turf/closed/interior/tank/thirteen
 	icon_state = "tank_interior_13"
 /turf/closed/interior/tank/seventeen
@@ -61,6 +65,8 @@
 	layer = ABOVE_ALL_MOB_LAYER
 /turf/closed/interior/tank/twentythree
 	icon_state = "tank_interior_23"
+	has_emissive = TRUE
+
 /turf/closed/interior/tank/twentyfour
 	icon_state = "tank_interior_24"
 /turf/closed/interior/tank/twentyfive
@@ -145,6 +151,7 @@
 /turf/open/interior/tank/eleven
 	icon_state = "tank_interior_11"
 	plane = WALL_PLANE
+	has_emissive = TRUE
 
 /turf/open/interior/tank/fourteen
 	icon_state = "tank_interior_14"

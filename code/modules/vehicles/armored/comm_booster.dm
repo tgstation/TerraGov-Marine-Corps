@@ -45,6 +45,10 @@
 	else
 		icon_state = "warning_off"
 
+/obj/machinery/button/mrap/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "warning_emissive", src, alpha = src.alpha)
+
 /obj/machinery/button/mrap/update_desc(updates)
 	. = ..()
 	desc = initial(desc)

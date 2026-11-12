@@ -48,10 +48,6 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/button/update_overlays()
-	. = ..()
-	. += emissive_appearance(icon, "warning_emissive", src, alpha = src.alpha)
-
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 
