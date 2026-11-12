@@ -159,6 +159,6 @@
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
 
-/obj/structure/cocoon/opened_cocoon/Initialize(mapload)
+/obj/structure/cocoon/opened_cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
 	. = ..()
 	new /obj/structure/bed/nest(loc)
