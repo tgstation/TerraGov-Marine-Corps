@@ -36,11 +36,8 @@
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(on_shuttle_crush))
 
 /obj/structure/cocoon/Destroy()
-	if(cocoon_timer_id)
-		deltimer(cocoon_timer_id)
-		cocoon_timer_id = null
 	if(victim)
-		release_victim()
+		release_victim() // Handles timer deletion too.
 	return ..()
 
 /obj/structure/cocoon/examine(mob/user)
