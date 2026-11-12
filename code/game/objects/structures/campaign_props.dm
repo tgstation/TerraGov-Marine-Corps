@@ -117,7 +117,7 @@
 
 /obj/structure/prop/nt_computer/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()

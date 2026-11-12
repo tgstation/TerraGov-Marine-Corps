@@ -36,8 +36,8 @@
 /obj/machinery/button/Initialize(mapload, ndir = 0)
 	. = ..()
 	setDir(ndir)
-	pixel_w = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
-	pixel_z = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
+	pixel_x = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
+	pixel_y = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
 	update_icon()
 
 
@@ -126,13 +126,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_z = -12
+			pixel_y = -12
 		if(SOUTH)
-			pixel_z = 29
+			pixel_y = 29
 		if(EAST)
-			pixel_w = -21
+			pixel_x = -21
 		if(WEST)
-			pixel_w = 21
+			pixel_x = 21
 
 
 /obj/machinery/button/door/open_only/landing_zone
