@@ -44,10 +44,10 @@
 	if(human.health >= custom_crit_threshold || human.stat == DEAD)
 		return
 	human.apply_effect(3 SECONDS, EFFECT_STUTTER)
-	var/ignore_mod = (1 + (-burn_mod + 1))
-	var/damage_min = (total_health * crit_damage_percentage_low) * ignore_mod
-	var/damage_max = (total_health * crit_damage_percentage_high) * ignore_mod
-	human.adjustFireLossByPart(rand(damage_min, damage_max), /datum/limb/chest::name)
+	var/counter_burn_mod = (1 + (-burn_mod + 1))
+	var/damage_min = (total_health * crit_damage_percentage_low) * counter_burn_mod
+	var/damage_max = (total_health * crit_damage_percentage_high) * counter_burn_mod
+	human.adjustFireLossByPart(rand(damage_min, damage_max), BODY_ZONE_CHEST)
 	if(prob(12))
 		human.visible_message(
 			span_danger("[human] shudders violently and shoots out sparks!"),
