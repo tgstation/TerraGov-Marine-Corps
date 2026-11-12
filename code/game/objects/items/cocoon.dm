@@ -15,7 +15,7 @@
 	/// Who is inside the cocoon?
 	var/mob/living/victim
 	/// The amount of deciseconds the victim will be in the cocoon.
-	var/cocoon_life_time = 5 SECONDS
+	var/cocoon_life_time = 5 MINUTES
 	/// The timer ID for the proc that calls when the cocoon's time has elapsed.
 	var/cocoon_timer_id
 	/// Is someone interacting with us right now?
