@@ -10,7 +10,7 @@
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
 	resistance_flags = UNACIDABLE
-	/// Which hive we belongs to?
+	/// Which hive do we belong to?
 	var/hivenumber
 	/// Who is inside the cocoon?
 	var/mob/living/victim
