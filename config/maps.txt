@@ -128,5 +128,5 @@ map medium_green
 endmap
 
 map medium_green_hard_mode
-	minplayers 60
+	minplayers 50
 endmap
