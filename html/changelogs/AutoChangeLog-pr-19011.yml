@@ -1,0 +1,7 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - balance: "Synthetic crit damage is dealt only to the chest."
+  - balance: "Synthetic crit damage is dealt as a percentage of max health from 2% to 6%, then multiplied to account for the innate burn resistance (1.2 for standard Synthetics, 1.4 for Early Synthetics)."
+  - balance: "Standard Synthetic crit damage reduced from 5-16 (not counting burn resistance) to 2.5-7.5"
+  - balance: "Early Synthetic crit damage reduced from 7-19 (not counting burn resistance) to 4-12"
