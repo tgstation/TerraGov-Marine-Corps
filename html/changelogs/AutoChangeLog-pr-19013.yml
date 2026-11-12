@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "all vehicles trigger acidwells"
-  - balance: "unmanned vehicles are slowed by xeno sticky weeds/resin/acid wells"

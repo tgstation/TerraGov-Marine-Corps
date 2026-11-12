@@ -118,3 +118,10 @@
   - bugfix: fixed the glide size of all vehicles, resulting in less choppy movement
   - bugfix: fixed cooldown macros lasting 1 tick longer than intended. This effects
       vehicle move delays, among many other things.
+2026-11-12:
+  Atropos:
+  - balance: Fall damage increased
+  Lumipharon:
+  - balance: all vehicles trigger acidwells
+  - balance: unmanned vehicles are slowed by xeno sticky weeds/resin/acid wells
+  - bugfix: crates move between multi-z levels normally
