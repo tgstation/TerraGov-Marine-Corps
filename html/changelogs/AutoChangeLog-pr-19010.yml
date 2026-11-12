@@ -1,0 +1,5 @@
+author: "STUPIDFUCKER12345"
+delete-after: True
+changes:
+  - rscdel: "Removed all non smartgun ammo refills from req menu"
+  - balance: "Reduced the cost of all factory parts from 50 to 10 points\n:cl:"

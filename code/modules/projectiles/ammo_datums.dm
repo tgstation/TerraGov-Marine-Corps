@@ -215,8 +215,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(deflag_damage, BURN, blocked = FIRE, updating_health = TRUE, attacker = proj.firer)
 
 		staggerstun(victim, proj, 30, stagger = 0.5 SECONDS, slowdown = 0.5)
-		victim.adjust_fire_stacks(5)
-		victim.IgniteMob()
+		victim.adjust_burning(5)
 
 /**
  * Fires additional projectiles, generally considered to still be originating from a gun

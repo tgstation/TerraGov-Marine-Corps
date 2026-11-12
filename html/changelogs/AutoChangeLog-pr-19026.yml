@@ -1,0 +1,4 @@
+author: "termin-0"
+delete-after: True
+changes:
+  - bugfix: "Empty X fuel backpack now has a sprite"

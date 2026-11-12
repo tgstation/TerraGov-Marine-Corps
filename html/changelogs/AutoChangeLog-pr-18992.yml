@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Mutation structures now cost 800 strategic points, up from 400."
+  - balance: "Mutations now longer scale and only need one mutation structure for full effect."
+  - balance: "The full effect of each mutation is now what was previously 2 structures worth of power."

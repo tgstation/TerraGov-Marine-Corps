@@ -29,22 +29,13 @@
 	handle_living_health_updates(seconds_per_tick)
 	handle_living_plasma_updates(seconds_per_tick)
 	update_action_button_icons()
-	update_icons(FALSE)
-
-/mob/living/carbon/xenomorph/handle_fire()
-	. = ..()
-	if(.)
-		if(resting && fire_stacks > 0)
-			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
-		return
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
+	update_icons(FALSE) //todo: ideally we don't call this on life
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates(seconds_per_tick)
 	if(health < 0)
 		handle_critical_health_updates(seconds_per_tick)
 		return
-	if((health >= maxHealth) || on_fire) //can't regenerate.
+	if((health >= maxHealth) || is_on_fire()) //can't regenerate.
 		return
 	var/turf/T = loc
 	if(!istype(T))
@@ -55,7 +46,7 @@
 		ruler_healing_penalty = 1
 	if(loc_weeds_type || HAS_TRAIT(src, TRAIT_INNATE_HEALING)) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE, seconds_per_tick)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.regeneration_multiplier) : 1, TRUE, seconds_per_tick)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE, seconds_per_tick) //Major healing nerf if standing.
 	updatehealth()
@@ -63,7 +54,7 @@
 ///Handles sunder modification/recovery during life.dm for xenos
 /mob/living/carbon/xenomorph/proc/handle_living_sunder_updates(seconds_per_tick)
 
-	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
+	if(!sunder || is_on_fire()) //No sunder, no problem; or we're on fire and can't regenerate.
 		return
 
 	var/sunder_recov = xeno_caste.sunder_recover * -0.5 * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Baseline
@@ -71,8 +62,8 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(ispath(loc_weeds_type, /obj/alien/weeds/resting)) //Resting weeds double sunder recovery
-		sunder_recov *= 2
+	if(loc_weeds_type) // Some weed types may boost sunder recovery.
+		sunder_recov *= initial(loc_weeds_type.sunder_recov_multiplier)
 
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
@@ -140,7 +131,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1
+	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.regeneration_multiplier) : 1
 
 	plasma_gain *= seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
@@ -154,11 +145,11 @@
 
 /mob/living/carbon/xenomorph/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
 	. = ..()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Xenos on fire cannot receive pheros.
+	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && is_on_fire()) //Xenos on fire cannot receive pheros.
 		return FALSE
 
 /mob/living/carbon/xenomorph/finish_aura_cycle()
-	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()
+	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && is_on_fire()) //Has to be here to prevent desyncing between phero and life, despite making more sense in handle_fire()
 		if(current_aura)
 			current_aura.suppressed = TRUE
 		if(leader_current_aura)

@@ -35,7 +35,6 @@
 	)
 	max_occupants = 4
 	move_delay = 0.75 SECONDS
-	glide_size = 2.5
 
 	ram_damage = 100
 	easy_load_list = list(
@@ -65,8 +64,15 @@
 /obj/vehicle/sealed/armored/multitile/update_desc(updates)
 	. = ..()
 	desc = initial(desc)
-	if(armored_flags & ARMORED_IS_WRECK)
-		desc += " Now just a smouldering ruin."
+	if(!(armored_flags & ARMORED_IS_WRECK))
+		return
+	desc += " Now just a smouldering ruin."
+	if(armored_flags & ARMORED_WRECK_PREP_STAGE_TWO)
+		desc += " It has a heavy fulton attached. Wrench it into place to activate it."
+	else if(armored_flags & ARMORED_WRECK_PREP_STAGE_ONE)
+		desc += " It has a plasteel frame attached. Connect a heavy tank fulton to extract it."
+	else
+		desc += " Apply [ARMORED_WRECK_PLASTEEL_REQ] plasteel to prepare it for fultoning."
 
 /obj/vehicle/sealed/armored/multitile/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(armored_flags & ARMORED_WRECKABLE))
@@ -174,7 +180,6 @@
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.55, VEHICLE_SIDE_ARMOUR = 0.85, VEHICLE_BACK_ARMOUR = 1.6)
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	move_delay = 0.5 SECONDS
-	glide_size = 2.8
 	faction = FACTION_TERRAGOV
 	ram_damage = 130
 

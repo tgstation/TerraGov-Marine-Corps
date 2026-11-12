@@ -224,7 +224,7 @@
 		SSmobs.clients_by_zlevel[new_z] += src
 	registered_z = new_z
 
-/mob/living/proc/do_camera_update(oldLoc)
+/mob/living/proc/do_camera_update(obj/item/radio/headset/mainship/headset)
 	return
 
 
@@ -584,6 +584,10 @@
 			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
+		if(iszombie(src) && !SSticker.mode?.can_ghosts_join_as_zombies())
+			GLOB.offered_mob_list -= src
+			return FALSE
+
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
@@ -788,7 +792,7 @@
 	if(. & ZIMPACT_CANCEL_DAMAGE)
 		return .
 	// multiplier for the damage taken from falling
-	var/damage_softening_multiplier = 1
+	var/damage_softening_multiplier = 1.5
 
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !incapacitated(TRUE)
