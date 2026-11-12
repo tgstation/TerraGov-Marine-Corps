@@ -2,6 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"type": "auxtools",
+			"request": "launch",
+			"name": "Debug in DreamSeeker",
+			"dmb": "${workspaceFolder}/tgmc.dmb",
+			"server": "dreamseeker"
+		},
+		{
 			"type": "byond",
 			"request": "launch",
 			"name": "Launch DreamSeeker",
@@ -34,6 +41,12 @@
 			"name": "Launch OpenDream (requires extension, 64 bit rustg, and an SS14 account)",
 			"preLaunchTask": "OpenDream: compile ${command:CurrentDME}",
 			"json_path": "${workspaceFolder}/${command:CurrentJson}"
+		},
+		{
+			"type": "auxtools",
+			"request": "attach",
+			"name": "Attach to a world",
+			"processId": "${command:auxtools.pickWorld}"
 		}
 	]
 }
