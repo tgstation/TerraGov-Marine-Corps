@@ -952,6 +952,10 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/building/transportshuttle)
+"adN" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "adO" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -2139,9 +2143,15 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/lz2/building/cargo)
 "aig" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
 /obj/structure/nuke_disk_candidate,
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/southeast/warehouse)
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z1/lobby)
 "aih" = (
 /obj/structure/cargo_container/green{
 	dir = 2
@@ -3316,6 +3326,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/disk)
+"amz" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "amA" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12455,8 +12469,9 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/building/neotree/z3/storage)
 "aTN" = (
-/obj/effect/landmark/start/job/xenomorph,
-/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
 "aTO" = (
@@ -15535,6 +15550,14 @@
 /obj/structure/sign/directions/security{
 	dir = 8
 	},
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_y = 8
+	},
+/obj/structure/sign/directions/science{
+	pixel_y = -7;
+	dir = 8
+	},
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/lobby)
 "bdS" = (
@@ -16330,15 +16353,13 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/mainship/hexagon,
+/turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
 "bge" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 9
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
 	},
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/mainship/hexagon,
+/turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
 "bgf" = (
 /obj/effect/landmark/start/job/xenomorph,
@@ -16384,6 +16405,12 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/caves/z2/south)
+"bgn" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/mainship/hexagon,
+/area/mediumgreen/outside/building/southeast/ship)
 "bgo" = (
 /obj/structure/platform/rockcliff{
 	dir = 1
@@ -16914,6 +16941,12 @@
 /obj/effect/spawner/random/misc/structure/closet/electrical,
 /turf/open/floor/bcircuit/anim,
 /area/mediumgreen/outside/building/engineering/inner/disk)
+"bii" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor/mainship/hexagon,
+/area/mediumgreen/outside/building/southeast/ship)
 "bij" = (
 /obj/structure/sign/electricshock{
 	dir = 4
@@ -18205,6 +18238,13 @@
 /obj/effect/landmark/corpsespawner/marine/engineer,
 /turf/open/openspace,
 /area/mediumgreen/outside/building/southeast/warehouse)
+"bny" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 2
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "bnz" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/corpsespawner/syndicatecommando,
@@ -18399,6 +18439,12 @@
 /obj/structure/flora/jungle/bush,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/caves/z2/north)
+"bon" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 2
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "boo" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/structure/flora/grass/tallgrass/autosmooth,
@@ -18640,13 +18686,19 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/west)
 "bpo" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/bcircuit/anim,
-/area/mediumgreen/outside/building/engineering/inner/disk)
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "bpp" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/spiralwoodalt,
-/area/mediumgreen/outside/building/neotree/z3/tree)
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "bpq" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/grass/weedable,
@@ -19455,6 +19507,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/tree)
+"bsk" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "bsl" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -19484,6 +19541,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/tree)
+"bsq" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
 "bsr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -20883,8 +20946,9 @@
 	},
 /area/mediumgreen/outside/lz2/building/sec_n)
 "bxh" = (
-/obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/weed_node,
+/obj/structure/stairs/multiz/directional/south,
+/obj/effect/ai_node,
+/obj/effect/turf_decal/warning_stripes/stripedsquare/border,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
 "bxi" = (
@@ -21487,11 +21551,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
-"bzs" = (
-/obj/structure/stairs/multiz/directional/south,
-/obj/effect/ai_node,
-/turf/open/floor/tile/darkish,
-/area/mediumgreen/outside/building/southeast/ship)
 "bzt" = (
 /obj/structure/platform/rockcliff{
 	dir = 9
@@ -22055,6 +22114,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile,
 /area/mediumgreen/outside/building/southeast/dorm)
+"bBo" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/southeast/warehouse)
+"bBp" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/bcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "bBq" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -22135,6 +22202,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship_hull,
 /area/mediumgreen/outside/z2/east)
+"bBF" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/spiralwoodalt,
+/area/mediumgreen/outside/building/neotree/z3/tree)
 "bBG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
@@ -41002,9 +41073,9 @@ aUh
 aqD
 aqD
 aEk
-aqD
-beh
-aqD
+adN
+aig
+adN
 bdV
 aqC
 aqC
@@ -46639,7 +46710,7 @@ alF
 bhN
 bhL
 bhG
-bpo
+bBp
 alF
 alh
 ahY
@@ -64552,8 +64623,8 @@ aLV
 aLU
 aLV
 aLV
-aLV
-aLV
+bge
+aTN
 all
 bsE
 aLU
@@ -64744,8 +64815,8 @@ aLV
 aLU
 aLV
 aLV
-bsy
-bzs
+bny
+bxh
 aLU
 aLU
 aLU
@@ -64936,8 +65007,8 @@ aMw
 aLU
 aLV
 aLV
-aLV
-bzs
+bon
+bxh
 aLU
 aLU
 aLU
@@ -65128,8 +65199,8 @@ aLV
 aLV
 bsy
 aLV
-bzo
-aLV
+bpo
+bgd
 aLV
 aLV
 aLU
@@ -65703,9 +65774,9 @@ aLV
 bjA
 aLV
 aLV
-aLV
-aLV
-aLV
+amz
+amz
+amz
 aLV
 aLV
 aLU
@@ -65895,9 +65966,9 @@ aLV
 aLV
 aLV
 bsy
-aLV
-aLV
-aLV
+amz
+amz
+amz
 bzo
 aLV
 aLU
@@ -66472,8 +66543,8 @@ aLV
 aLV
 aLV
 aLV
-bzo
-aLV
+bpp
+aTN
 aLV
 aLV
 aLU
@@ -66664,8 +66735,8 @@ aMw
 aLU
 aLV
 aLV
-bsy
-bzs
+bsk
+bxh
 aLU
 aLU
 aLU
@@ -66856,8 +66927,8 @@ aLV
 aLU
 aLV
 aLV
-aLV
-bzs
+bon
+bxh
 aLU
 aLU
 aLU
@@ -67048,8 +67119,8 @@ bsy
 aLU
 aLV
 bsy
-aLV
-aLV
+bsq
+bgd
 all
 bsE
 aLU
@@ -69432,7 +69503,7 @@ acm
 bAO
 adG
 aev
-aig
+bBo
 amX
 blp
 bAA
@@ -114663,8 +114734,8 @@ aPR
 aPN
 aPK
 aLV
-aTN
-bxh
+bzo
+bsy
 aLV
 aLV
 bzo
@@ -114855,8 +114926,8 @@ aPS
 aPN
 aPL
 aLV
-bge
-bgd
+bii
+bgn
 aMB
 apE
 aLV
@@ -137004,7 +137075,7 @@ aXR
 aTs
 aTs
 aaH
-bpp
+bBF
 aaH
 aTs
 aTs
