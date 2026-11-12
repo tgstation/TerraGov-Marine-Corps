@@ -65,7 +65,7 @@
 
 	if(activated)
 		end_boost()
-		visible_message(span_warning("Comm booster shutting down."))
+		visible_message(span_warning("The communication booster cycles down and goes quiet."))
 		return
 	start_boost()
 
@@ -105,7 +105,7 @@
 	update_appearance()
 	flick("warning_success", src)
 
-	visible_message(span_warning("Comm booster starting up."))
+	visible_message(span_warning("The communication booster hums into life."))
 	boost_sound.start(src)
 
 ///Stops comm boosting

@@ -140,9 +140,14 @@
 	if(has_emissive)
 		update_appearance(UPDATE_OVERLAYS)
 
+/turf/closed/interior/link_interior(datum/interior/link)
+	var/obj/vehicle/sealed/armored/vehicle = link.container
+	name = "\improper [vehicle.name] interior"
+
 /turf/closed/interior/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
+	if(has_emissive)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /turf/open/interior
 	resistance_flags = RESIST_ALL
@@ -152,6 +157,10 @@
 	. = ..()
 	if(has_emissive)
 		update_appearance(UPDATE_OVERLAYS)
+
+/turf/open/interior/link_interior(datum/interior/link)
+	var/obj/vehicle/sealed/armored/vehicle = link.container
+	name = "\improper [vehicle.name] interior"
 
 /turf/open/interior/update_overlays()
 	. = ..()
