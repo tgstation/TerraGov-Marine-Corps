@@ -113,6 +113,10 @@
 	STOP_PROCESSING(SSslowprocess, src)
 	if(activated)
 		boost_sound.stop(src)
+
+	for(var/area/old_area AS in area_list)
+		old_area.area_flags &= ~BETTER_RADIO
+
 	activated = FALSE
 	last_loc = null
 	area_list = null
