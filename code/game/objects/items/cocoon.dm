@@ -32,7 +32,7 @@
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
 	cocoon_timer_id = addtimer(CALLBACK(src, PROC_REF(life_draining_over), null, TRUE), cocoon_life_time, TIMER_UNIQUE|TIMER_STOPPABLE)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(life_draining_over))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(on_hijack))
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(on_shuttle_crush))
 
 /obj/structure/cocoon/Destroy()
@@ -113,9 +113,6 @@
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSslowprocess, src)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
-	if(cocoon_timer_id)
-		deltimer(cocoon_timer_id)
-		cocoon_timer_id = null
 	if(anchored)
 		unanchor_from_nest()
 	if(must_release_victim)
@@ -126,6 +123,14 @@
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()
+
+/// On hijack, stops psychic point generation and changes larva point reward
+/// as we don't want to carry over any points from groundside -> shipside.
+/obj/structure/cocoon/proc/on_hijack(datum/source)
+	SIGNAL_HANDLER
+	if(is_ground_level(z))
+		larva_point_reward = 0 // We'll still time out as usual, but there is no reward at the end.
+	life_draining_over(source)
 
 /// Releases and gibs the victim if we get shuttle crushed.
 /obj/structure/cocoon/proc/on_shuttle_crush(datum/source, obj/docking_port/mobile/shuttle)
