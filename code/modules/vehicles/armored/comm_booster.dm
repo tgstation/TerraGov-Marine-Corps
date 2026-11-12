@@ -4,6 +4,7 @@
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "warning"
 	pixel_y = 17
+	layer = ABOVE_OBJ_LAYER
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
 	///Last location of owner when processing

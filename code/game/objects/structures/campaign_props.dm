@@ -108,7 +108,6 @@
 	desc = "A server rack. Who knows what's on it?."
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "serverrack_on"
-	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	light_range = 1
 	light_power = 0.5
