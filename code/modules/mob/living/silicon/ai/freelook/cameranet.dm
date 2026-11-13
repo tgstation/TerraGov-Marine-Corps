@@ -97,6 +97,8 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 		for(var/datum/camerachunk/chunk as anything in add)
 			chunk.add(eye)
 
+		eye.sync_static_client()
+
 /// Updates the chunks that the turf is located in. Use this when obstacles are destroyed or when doors open.
 /datum/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)
 	if(!SSticker || (opacity_check && !A.opacity))
@@ -178,15 +180,21 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 /// Returns the already generated chunks around the given center turf.
 /datum/cameranet/proc/get_chunks_around(turf/center)
 	. = list()
-	var/x1 = max(0, center.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-	var/y1 = max(0, center.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-	var/x2 = min(world.maxx, center.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-	var/y2 = min(world.maxy, center.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1)
-	for(var/chunk_x = x1; chunk_x <= x2; chunk_x += CHUNK_SIZE)
-		for(var/chunk_y = y1; chunk_y <= y2; chunk_y += CHUNK_SIZE)
+	var/list/bounds = get_chunk_bounds_around(center)
+	for(var/chunk_x = bounds[1]; chunk_x <= bounds[3]; chunk_x += CHUNK_SIZE)
+		for(var/chunk_y = bounds[2]; chunk_y <= bounds[4]; chunk_y += CHUNK_SIZE)
 			var/datum/camerachunk/chunk = chunkGenerated(chunk_x, chunk_y, center.z)
 			if(chunk)
 				. += chunk
+
+/// returns a list of list(x1, y1, x2, y2), the corners of the chunk a camera can see into, multiplied by CHUNK_SIZE
+/datum/cameranet/proc/get_chunk_bounds_around(turf/center)
+	return list(
+		max(0, center.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1),
+		max(0, center.y - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1),
+		min(world.maxx, center.x + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1),
+		min(world.maxy, center.y + (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1),
+	)
 
 /// Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
 /datum/cameranet/proc/checkCameraVis(mob/living/target)
