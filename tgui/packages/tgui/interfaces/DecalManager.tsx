@@ -85,7 +85,7 @@ export const DecalManager = (props) => {
       }
     });
   return (
-    <Window width={600} height={600}>
+    <Window width={745} height={800}>
       <Window.Content>
         {admin_mode && deletingDecal && (
           <Modal>
@@ -236,7 +236,7 @@ export const DecalManager = (props) => {
             </Section>
           </Modal>
         )}
-        <Stack vertical>
+        <Stack vertical fill>
           <Stack.Item>
             <Stack>
               <Input
@@ -261,7 +261,7 @@ export const DecalManager = (props) => {
               </Button>
             </Stack>
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item overflowY="auto">
             {filteredDecals?.map((slot, index) => (
               <DecalEntry
                 key={index}
