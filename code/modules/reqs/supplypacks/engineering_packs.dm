@@ -137,3 +137,10 @@ ENGINEERING
 	name = "Tesla turret"
 	contains = list(/obj/item/tesla_turret)
 	cost = 400
+
+/datum/supply_packs/engineering/Meson_Hud
+	name = "Meson scanner"
+	contains = list(
+		/obj/item/clothing/glasses/meson,
+	)
+	cost = 20
