@@ -125,3 +125,38 @@
   - balance: all vehicles trigger acidwells
   - balance: unmanned vehicles are slowed by xeno sticky weeds/resin/acid wells
   - bugfix: crates move between multi-z levels normally
+2026-11-13:
+  Apple-107:
+  - rscadd: The Arachne CIC has been reworked to allow better teamwork when fully
+      staffed.
+  - rscadd: The Pillar Of Spring CIC has been reworked to allow better teamwork when
+      fully staffed.
+  Arturlang:
+  - bugfix: probably improve camera performance
+  - rscadd: camera fog updates might be more responsive
+  Neocloudy:
+  - balance: Synthetic crit damage is dealt only to the chest.
+  - balance: Synthetic crit damage is dealt as a percentage of max health from 2%
+      to 6%, then multiplied to account for the innate burn resistance (1.2 for standard
+      Synthetics, 1.4 for Early Synthetics).
+  - balance: Standard Synthetic crit damage reduced from 5-16 (not counting burn resistance)
+      to 2.5-7.5
+  - balance: Early Synthetic crit damage reduced from 7-19 (not counting burn resistance)
+      to 4-12
+  Runian:
+  - bugfix: Xenomorphs standing ontop on specifically resting weed nodes correctly
+      give 2x sunder recovery.
+  - balance: Mutation structures now cost 800 strategic points, up from 400.
+  - balance: Mutations now longer scale and only need one mutation structure for full
+      effect.
+  - balance: The full effect of each mutation is now what was previously 2 structures
+      worth of power.
+  - bugfix: The alert for healing infusion status effect now correctly appears.
+  - imageadd: Sprite for healing infusion alert.
+  STUPIDFUCKER12345:
+  - rscdel: Removed all non smartgun ammo refills from req menu
+  - balance: 'Reduced the cost of all factory parts from 50 to 10 points
+
+      :cl:'
+  termin-0:
+  - bugfix: Empty X fuel backpack now has a sprite

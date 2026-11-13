@@ -1,5 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - bugfix: "probably improve camera performance"
-  - rscadd: "camera fog updates might be more responsive"

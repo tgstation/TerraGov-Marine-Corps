@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "The alert for healing infusion status effect now correctly appears."
-  - imageadd: "Sprite for healing infusion alert."

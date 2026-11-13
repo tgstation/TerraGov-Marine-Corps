@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Xenomorphs standing ontop on specifically resting weed nodes correctly give 2x sunder recovery."
