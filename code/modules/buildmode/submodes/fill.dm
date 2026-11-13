@@ -7,11 +7,10 @@
 	var/atom/objholder
 
 /datum/buildmode_mode/selection/fill/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Select corner")] -> Left Mouse Button on turf/obj/mob\n\
 		[span_bold("Delete region")] -> Left Mouse Button + Alt on turf/obj/mob\n\
 		[span_bold("Select object type")] -> Right Mouse Button on buildmode button"))
-	)
 
 /datum/buildmode_mode/selection/fill/change_settings(client/user)
 	var/target_path = input(user, "Enter typepath:" ,"Typepath","/obj/structure/closet")

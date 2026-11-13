@@ -50,14 +50,15 @@
 		else
 			to_chat(M, span_notice("Through a miracle you managed to survive the attack. But are you truly safe now?"))
 
-/datum/job/survivor/radio_help_message(mob/M)
+/datum/job/survivor/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
 You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
-Good luck, but do not expect to survive."})
+Good luck, but do not expect to survive."}
 
 
 //Scientist
@@ -171,31 +172,6 @@ Good luck, but do not expect to survive."})
 	title = "Roboticist Survivor"
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/roboticist
-
-
-/datum/outfit/job/survivor/roboticist
-	name = "Roboticist Survivor"
-	jobtype = /datum/job/survivor/roboticist
-
-	w_uniform = /obj/item/clothing/under/rank/roboticist
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
-	belt = /obj/item/storage/belt/utility/full
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/tox
-	ears = /obj/item/radio/survivor
-	glasses = /obj/item/clothing/glasses/welding/flipped
-	l_pocket = /obj/item/storage/pouch/electronics/full
-	r_pocket = /obj/item/flashlight/combat
-
-/datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/deployable_vehicle/tiny, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 // Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo

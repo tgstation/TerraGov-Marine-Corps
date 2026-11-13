@@ -22,9 +22,9 @@
 
 /obj/machinery/telecomms/relay/receive_information(datum/signal/subspace/signal, obj/machinery/telecomms/machine_from)
 	// Add our level and send it back
-	var/turf/T = get_turf(src)
-	if(can_send(signal) && T)
-		signal.levels |= T.z
+	var/turf/relay_turf = get_turf(src)
+	if(can_send(signal) && relay_turf)
+		signal.levels |= SSmapping.get_connected_levels(relay_turf)
 
 
 /// Checks to see if it can send/receive.
@@ -66,6 +66,7 @@
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"
 	autolinkers = list("relay")
+	use_power = NO_POWER_USE
 
 //proper cicbackup relay
 /obj/machinery/telecomms/relay/preset/telecomms/cicbackup
@@ -78,4 +79,4 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense
-	density = FALSE 
+	density = FALSE

@@ -1,0 +1,322 @@
+2025-05-01:
+  Atropos:
+  - bugfix: Small table fix on POS
+  - rscadd: Added mech drop pods on sulaco and theseus
+  - rscadd: Added 2nd mech (builder) computer on theseus
+  - bugfix: fixed soap not appearing in loadouts
+  Citruses/Vondiech:
+  - rscadd: Added the new Tadpole Panoptical Model.
+  Joe13413:
+  - balance: Moved the thermal generator on research outpost further away from disks
+  Lumipharon:
+  - bugfix: fixed AI goal nodes
+  Wisemonster:
+  - balance: Big Red's bsg has been moved deeper into engineering.
+2025-05-02:
+  Atropos:
+  - admin: Added Proccall mode to build mode
+  Lumipharon:
+  - qol: Some powerful projectiles such as tank AP rounds have brief screenshake on
+      hit for user feedback
+  TiviPlus:
+  - bugfix: fixed aghost interaction with get larva
+  Zar000:
+  - qol: Destroying catwalks now requires disarm intent instead of harm intent.
+  breadhunt:
+  - bugfix: APC cells show properly again
+  ivanmixo:
+  - bugfix: Sniper stacking works properly now for real
+2025-05-03:
+  Runian:
+  - balance: Engineer, Corpsmen, and Smartgunner now have the option to vend a construction
+      pouch which comes with 25 empty bags, 5 barbed wire, and a shovel each.
+  - bugfix: Synth's vendor correctly states that their construction pouch has materials
+      included.
+  blackdav123:
+  - rscadd: Griddles can now be jumped over and walked on.
+2025-05-04:
+  Apple-107:
+  - rscadd: 'analyze player moves with the new chess-themed :blunder:, :bookmove:,
+      and :brilliant: emojis'
+  Atropos:
+  - admin: fixed bloodless smite
+  - bugfix: Robo ac's/ro's now get their job items (pamphlet/tablet)
+  - admin: Added Player panel to VV (select options button)
+  - admin: Inspecting people while ghosted shows admin buttons
+  - admin: subtle message is now more noticeable to the player
+  Isy232:
+  - rscadd: Completion of a disk cycle rewards marines requisitions points scaling
+      with player count.
+  - balance: To counterbalance, xenomorph sell prices halved.
+  - balance: Fulton packs uses 3 => 6.
+  Isy232, Ldip999:
+  - rscadd: Marines receive 2 vendor points per disk cycle completed on Crash.
+  Looking4bros:
+  - qol: Health scanner reagents have some semblance of order
+  - bugfix: Lipozine OD works
+  Lumipharon:
+  - bugfix: fixed xeno turrets not targeting mechs/tanks in some cases
+  Wisemonster:
+  - balance: Reworked the mech's grenade launchers into heavy rocket launchers.
+  - balance: 'Reworked the mech''s hand rocket pods to fire light-explosive rockets
+      with no delay.
+
+      balance; Mech''s rocket ammo now comes in bundles of 10, rather than 1.'
+  blackdav123:
+  - rscadd: Disposal units can be right clicked to eject their contents.
+  - rscadd: Lockers can now be unlocked with right click.
+  - rscadd: APCs can now be unlocked with right click.
+  breadhunt:
+  - rscadd: SLs are no longer put in a squad if it has another SL in it. SLs can still
+      transfer to whatever squad they want, regardless of whether there's a squaddie
+      in it
+2025-05-06:
+  Atropos:
+  - bugfix: fixed holes (that let you go out of bounds) on meridian riptide
+  TiviPlus:
+  - code_imp: Improved fullscreen mode code
+  - refactor: The "gender" preference has been split into "gender" (determines voiced
+      sound effects and pronouns in messages) and "physique" (determines sprite and
+      underwear appearance)
+  - bugfix: as a result of the above neuter and plural characters will have their
+      underwear again, and will default to male options if physique is not set
+  - refactor: TGUI is updated to the v6 standard
+  - code_imp: Fully dropped internet explorer support
+  - code_imp: updated tgui-core to the lastest version
+  - code_imp: Replaced the build tooling for tgui with a faster & more modern alternative
+  - code_imp: As a result of the above, TGUI will load, run and especially compile
+      faster
+  - code_imp: Replaced SCSS with the 2010s technology CSS variables and removed some
+      unused css, which has drastically cut down on the CSS size sent to players
+  - bugfix: Fixed focusing tgui-say again
+  - bugfix: Custom colors for health analyzers work again
+  - code_imp: TGUI now supports custom cursors with CSS
+  - qol: Non-Say TGUI Inputs have been improved, and will now respond faster
+  - qol: Cargo UI will now by default focus the search and reason bars (This means
+      you don't need to click them when opening the UI you just start typing into
+      them immediately)
+  - qol: Loadout UI will now focus the import and name inputs (This means you don't
+      need to click them when opening the UI you just start typing into them immediately)
+      and the icons are now centered correctly
+  - rscdel: Removed some dead code for storage
+  Wisemonster:
+  - balance: Removes second hardpoint on panoptical tadpole model
+2025-05-07:
+  Abopos:
+  - bugfix: Whiskey outpost turrets now have iff
+  Atropos:
+  - bugfix: Moved bluespace gen warning lights around on big red (removed from previous
+      location moving to the new one)
+  - bugfix: Moved bluespace gen a little on research outpost and added cables so it
+      works
+  Looking4bros:
+  - bugfix: Harvester right click attack works
+  Lumipharon:
+  - balance: Hunter attacks now always break stealth
+  Runian:
+  - bugfix: Resisting while having a low amount of melting fire on you now correctly
+      paralyzes you instead of only spinning you.
+  TiviPlus:
+  - code_imp: Optimized fetching a sprites size
+  - code_imp: improved some xeno code
+  - code_imp: improved playsound code more
+2025-05-08:
+  Looking4bros:
+  - bugfix: Can no longer pat out melting fire on yourself
+  Runian:
+  - rscadd: R-76 scope has been added to the attachment section to Valhalla's automated
+      weapon racks.
+2025-05-09:
+  Lumipharon:
+  - balance: Psycrush, roar, wind current and unrelenting force all weaken fire in
+      their AOE's
+  - balance: Surt fire resist reduced by 5%
+  - balance: Xenos can pat out fire on open turfs with help intent
+  Runian:
+  - rscadd: Examining the escape pod controller now will tell you how long until you
+      can manually launch and how long until it automatically launches.
+  - balance: Marines can no longer immediately launch escape pods when they are activated.
+  - balance: Escape pods can be manually launched after 7.5 minutes after evacuation
+      is called.
+  - balance: Escape pods automatically launch 10 minutes after evacuation is called
+      rather than 8 minutes.
+  TiviPlus:
+  - rscadd: Supersoldiers now get the "Longer Throw" stim, which lets them throw as
+      far as if they were jumping without doing so
+2025-05-10:
+  Atropos:
+  - qol: Apc's will first turn off lights then equipment
+  - config: fixed missing allow ooc admin color and added toggle for asay colors
+  - admin: Asay can now be colored! (Fun tab ASAY text color)
+  - bugfix: Drones can again receive plasma from queen
+  Cerrik:
+  - rscadd: Added the NanoAmmo vendor to tadpoles and APC
+  Looking4bros:
+  - rscadd: Pref for taking SSD mobs with random name
+  Lumipharon:
+  - bugfix: fixed some campaign UI issues
+  Wisemonster:
+  - balance: Reduced warrior's punch damage against mechs to 68
+  - balance: Reduced warlock's psy crush damage against mechs 58
+  - balance: Reduced  warlock's lance damage against mechs to 85
+  Xander3359:
+  - code_imp: Turns obj/projectile into atom/movable/projectile
+2025-05-13:
+  Arturlang:
+  - balance: Reduces the delay on casting finishers on marines that are grabbed to
+      1.5 seconds from 3
+  - balance: Dragon breath execution now deals 110 and slap deals 76.5, and slap only
+      spreads damage to 3 limbs
+  Atropos:
+  - bugfix: fixed miners saying mineral value instead of ammount
+  - admin: Ban reason input window is now bigger to improve readability
+  Lumipharon:
+  - balance: Some areas on Prison Station are under metal roofs again, namely around
+      disks, nuke and bluespace generator
+  - admin: Fixed gamepanel windows being too short
+  TiviPlus:
+  - bugfix: fixed security exploit concerning mentor permissions
+  - bugfix: Assault armor no longer uses power unless it activates
+  - balance: Tank wam will target mech legs
+  - bugfix: Fixes tad preview while moving not working
+  Tiviplus & Kuro:
+  - rscadd: Added a mech laser sword
+  revelation-8468:
+  - rscadd: Randomises the offset of ejected magazines.
+2025-05-14:
+  Atropos:
+  - bugfix: Fixed place and select pattern keybindings for xenos
+2025-05-15:
+  Atropos:
+  - rscadd: You can now View latest ticket from admins/mentors with the new verb!
+  - code_imp: Made some ahelp code easier to read
+  Looking4bros:
+  - bugfix: Solid plasteel cades give correct material refund
+  - bugfix: Burrowed SSD Widows can now unburrow
+  TiviPlus:
+  - code_imp: typescripted ntaccess terminals
+  - code_imp: typescripted CAS shuttle UI
+  - bugfix: fixed an issue with the progressbar on nuke disk generators
+  - code_imp: typescripted nuke disk generators
+  - balance: Beetle and Mantis can pick up jelly now
+  - code_imp: converted smes UI to TSX
+  - code_imp: typescripted portable vendors
+  - code_imp: cleaned up CAS Plane UI backend
+  - code_imp: typescripted tadpole ui
+  - code_imp: Typescripted escape pod UI
+  - rscadd: Added  shooting upwards on multiz, you can shoot up as long as the turf
+      above you is free
+  - rscadd: Added shooting downwards on multiz, you can shoot downwards as long as
+      the turf below you is free or you are next to a ledge you can shoot down
+  - code_imp: Typescripted Cryo UI
+  Wisemonster:
+  - balance: Sizzler's smokescreen is now transparent
+  - balance: 'Sizzler''s smokescreen bomblets now do 6 damage each
+
+      balance:: Sizzler''s spit now does 20 damage, and the gas cloud does 15 damage.'
+  blackdav123:
+  - bugfix: Directional attack no longer hits corpses.
+2025-05-16:
+  Atropos:
+  - admin: Added Ai nodes to tdome (Ai can move and work again)
+  Cerrik:
+  - bugfix: fixed vehicle collision damage trigger speed
+  TiviPlus:
+  - qol: the supersoldier throw stim will always try to throw at max range, like jumpthrowing
+2025-05-17:
+  Atropos:
+  - bugfix: fixed Exploit that makes cades indestructible
+  Lumipharon:
+  - rscadd: Added holographic construction designation
+  - bugfix: Fixed an issue that would occasionally break hunter disguise
+  - qol: Xeno template construction holograms are only visible to the user
+  Neocloudy:
+  - bugfix: Fixed Tramadol advice showing for people with nanites in their system
+  - refactor: Visually reworked chat to be mostly analogous to TG. There are changes
+      that may not be documented here. Please report things looking fucked up.
+  - spellcheck: Reworked job spawn messages.
+  - spellcheck: Reworked vote outputs.
+  - spellcheck: Changed the admin log span color slightly.
+  - spellcheck: Changed radio span colors slightly.
+  - spellcheck: Improved the style of build mode tips.
+  - spellcheck: Improved the color of XOOC/MOOC. These also have colors in tgui-say
+      now.
+  - spellcheck: Changed the self-examine balloon alert to a chat output.
+  - spellcheck: Fixed spelling and style of nuke disk computer visible messages.
+  TiviPlus:
+  - bugfix: fixed a runtime causing death tiles
+2025-05-19:
+  Atropos:
+  - admin: Spatial agents now come equipped with radio.
+  Holoo-1:
+  - rscadd: AIs now can set a location via Ctrl + number and jump their camera to
+      that location by pressing that number
+  Looking4bros:
+  - qol: Protein shakes in Hot Foods, Leporazine in Med plus
+  Lumipharon:
+  - rscadd: Engineer NPC's can build via holo designators
+  TiviPlus:
+  - rscadd: Added new ghost emotes from the april fools prank as ghost emotes
+  - refactor: refactored the req UI backend
+  - qol: cargo ui approval is now green when there is enough money and red otherwise
+  - code_imp: costs for req ui are calculated clientside instead of serverside
+  - code_imp: req UI entries will now be sent as assets, which should lead to improved
+      performance clientside and serverside
+  - code_imp: the Req ui will now stretch it's buttons
+  - qol: Centered and aligned many things on the req menu
+2025-05-20:
+  Lumipharon:
+  - rscadd: Added a few more hazards for NPCs to look out for
+2025-05-21:
+  Lumipharon:
+  - qol: NPC's move around far less, when escorting someone
+  - bugfix: NPC's path more accurately towards their target
+  - bugfix: NPC's will generally avoid going into lava unless they have no choice
+  - bugfix: fixed some bad behaviors in npc behavior
+  Zar000:
+  - qol: Any T3 with pheros can now become a ruler
+  - code_imp: Evolving to Queen turns you into the ruler. Even if Shrike or other
+      ruler already existed
+  - refactor: Refactored how the game handles the current hive ruler
+2025-05-23:
+  Lumipharon:
+  - bugfix: fixed NPC's not putting out melting fire and intoxication
+  - balance: Standard (i.e. nonfolding) plasteel cades give 1 plasteel on destruction
+      instead of 2
+  - bugfix: Improved NPC obstacles avoidance for friendly and indestructable obstacles
+2025-05-24:
+  Isy232:
+  - balance: Hunter HP 330 => 310, Mirage CD 33 => 30, Stealth AP 20 => 10.
+  TiviPlus:
+  - code_imp: MLRS is no longer a child of the howitzer in code
+  Wisemonster:
+  - rscdel: Removed mech weapons from the riptide cave ship
+  - rscdel: Removed intelligence computer on the riptide cave ship
+  timothymtorres:
+  - balance: HEFA grenades no longer instakill every xeno (minus crusher/king) if
+      grenade explodes on the same tile as xeno. Decreased HEFA grenades firing 50
+      pellets to 30 pellets, which still kills most T1/T2s at full health, and can
+      kill T3/T4s if lower than half health.
+2025-05-26:
+  Lumipharon:
+  - bugfix: Monkeys no longer do hugely more melee damage than intended
+  - bugfix: Monkeys have pass low structure again
+  - bugfix: Monkeys have stamina
+  Vany3045:
+  - balance: HvH heavy robot armor now has medium slowdown, and additional +5 soft
+      armor for lasers.
+  - imageadd: new TDF robot armor sprites for HvH.
+  breadhunt:
+  - balance: Electrified razorwire has a cooldown, instead of being applied as fast
+      as you can accidentally walk into it
+2025-05-28:
+  Atropos:
+  - bugfix: fixed defiler's inject egg ability not selecting
+  blackdav123:
+  - balance: Harmful weather will now warn 60 seconds before hitting instead of 30.
+2025-05-29:
+  Lumipharon:
+  - balance: A couple of minor tweaks to NPC medic/engie loadouts
+2025-05-30:
+  ivanmixo:
+  - refactor: Sticky items/grenades are now a component

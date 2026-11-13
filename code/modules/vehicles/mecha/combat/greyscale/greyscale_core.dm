@@ -130,8 +130,8 @@
 	equip_by_category = list(
 		MECHA_L_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle,
 		MECHA_R_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg,
-		MECHA_L_BACK = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher,
-		MECHA_R_BACK = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher,
+		MECHA_L_BACK = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket,
+		MECHA_R_BACK = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket,
 		MECHA_UTILITY = list(),
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),

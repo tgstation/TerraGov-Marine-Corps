@@ -87,6 +87,15 @@
 	trigger_size = 2
 	///What type of hugger are produced here
 	var/hugger_type = /obj/item/clothing/mask/facehugger
+	/// The amount to multiply the hugger's hand attach time, if any, by.
+	var/hand_attach_time_multiplier = 1
+
+/obj/alien/egg/hugger/Initialize(mapload, hivenumber, new_hugger_type, new_hand_attach_time_multiplier)
+	. = ..()
+	if(new_hugger_type)
+		hugger_type = new_hugger_type
+	if(new_hand_attach_time_multiplier)
+		hand_attach_time_multiplier = new_hand_attach_time_multiplier
 
 /obj/alien/egg/hugger/update_icon_state()
 	. = ..()
@@ -108,9 +117,10 @@
 		playsound(loc, 'sound/effects/alien/egg_burst.ogg', 30)
 		flick("egg exploding", src)
 		return
-	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
+	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
+	hugger.hand_attach_time = initial(hugger.hand_attach_time) * hand_attach_time_multiplier
 	hugger_type = null
 	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
 	hugger.go_active()
@@ -137,7 +147,7 @@
 		if(3, 4)
 			xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] clears the hatched egg."), \
 			span_xenonotice("We clear the hatched egg."))
-			playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
+			playsound(loc, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 			qdel(src)
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
@@ -193,7 +203,7 @@
 		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
 	else
-		playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
+		playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		flick("egg opening", src)
 	spread += gas_size_bonus
 
@@ -205,7 +215,7 @@
 	if(maturity_stage > stage_ready_to_burst)
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))
-		playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
+		playsound(loc, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 		qdel(src)
 
 	if(!issamexenohive(xeno_attacker) || xeno_attacker.a_intent != INTENT_HELP)

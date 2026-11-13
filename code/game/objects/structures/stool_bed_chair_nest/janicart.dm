@@ -40,7 +40,7 @@
 
 		reagents.trans_to(I, 2)
 		to_chat(user, span_notice("You wet [I] in the [callme]."))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 	else if(istype(I, /obj/item/key))
 		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")

@@ -26,6 +26,26 @@
 	var/list/dir_options = .
 	dir_options = dir_options.Copy()
 	var/list/exclude_dirs = list()
+
+	var/turf/owner_turf = get_turf(mob_parent)
+
+	//lava
+	if(can_cross_lava_turf(owner_turf)) //if we're already in lava, we skip these checks since we're probs gonna have to walk through more to get out
+		for(var/dir_option in dir_options)
+			var/turf/turf_option = get_step(owner_turf, dir_option)
+			if(!islava(turf_option))
+				continue
+			if(turf_option.is_covered())
+				continue
+			exclude_dirs |= dir_option
+
+		dir_options -= exclude_dirs
+		if(!length(dir_options))
+			return NONE //if we're NOT in lava, we do not deliberately path into lava
+			//todo: Need to have NPC path around lava entirely (or jump over it), if their direct path is into lava
+
+	//hazards
+	exclude_dirs.Cut()
 	for(var/atom/movable/thing AS in hazard_list)
 		var/dist = get_dist(mob_parent, thing)
 		if(dist > hazard_list[thing] + 1)
@@ -91,7 +111,7 @@
 		if(prob(20))
 			try_speak(pick(cas_avoid_chat))
 		return
-	if(istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/behemoth/warning))
+	if(isfacehugger(hazard) || istype(hazard, /obj/effect/xeno/crush_warning) || istype(hazard, /obj/effect/xeno/abduct_warning) || istype(hazard, /obj/effect/temp_visual/xeno_warning))
 		if(prob(20))
 			try_speak(pick(xeno_avoid_chat))
 		return
@@ -105,7 +125,7 @@
 	hazard_list -= old_hazard
 	UnregisterSignal(old_hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 
-///Checks if we are in range of any hazards
+///Checks if we are safe from any hazards
 /datum/ai_behavior/human/proc/check_hazards()
 	for(var/atom/movable/thing AS in hazard_list)
 		if(get_dist(mob_parent, thing) <= hazard_list[thing])

@@ -37,8 +37,15 @@
 	name = "LTB Canister round (105mm)"
 	desc = "A 105mm canister shell for demolishing soft targets. The payload of hundreds of small metal balls imitates a shotgun blast in trajectory."
 	icon_state = "ltb_canister"
-	default_ammo = /datum/ammo/tx54/tank_cannister
+	default_ammo = /datum/ammo/tx54/tank_canister
 	callout_name = "Canister"
+
+/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary
+	name = "LTB Incendiary Canister round (105mm)"
+	desc = "A 105mm canister shell for demolishing soft targets. The payload of incendiary shrapnel imitates a shotgun blast in trajectory."
+	icon_state = "ltb_canister_incend"
+	default_ammo = /datum/ammo/tx54/tank_canister/incendiary
+	callout_name = "Incendiary"
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
 	name = "\improper LTA-AP chaingun magazine"

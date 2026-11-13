@@ -209,10 +209,10 @@
 	desc = "An ammunition case containing one box of each TGMC brand ammo type."
 	icon_state = "chest"
 	supplies = list(
-		/obj/item/shotgunbox = 1,
-		/obj/item/shotgunbox/buckshot = 1,
-		/obj/item/shotgunbox/flechette = 1,
-		/obj/item/shotgunbox/tracker = 1,
+		/obj/item/big_ammo_box/shotgun = 1,
+		/obj/item/big_ammo_box/shotgun/buckshot = 1,
+		/obj/item/big_ammo_box/shotgun/flechette = 1,
+		/obj/item/big_ammo_box/shotgun/tracker = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
@@ -226,7 +226,7 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/ar11/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/lasrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
@@ -279,8 +279,8 @@
 	icon_state = "secure_crate"
 
 /obj/structure/largecrate/supply/supplies/flares
-	name = "flare supply crate (x100)"
-	desc = "A supply crate containing twenty five-flare boxes."
+	name = "flare supply crate (x140)"
+	desc = "A supply crate containing ten boxes of fourteen flares each."
 	supplies = list(/obj/item/storage/box/m94 = 10)
 
 /obj/structure/largecrate/supply/supplies/coifs

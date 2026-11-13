@@ -15,7 +15,7 @@
 	var/mob/original = mind_to_assign.current
 	var/mob/living/carbon/human/H = .
 
-	if(H.gender == MALE)
+	if(H.physique == MALE)
 		H.h_style = pick("Bald", "Balding Hair", "Balding Fade", "Balding ponytail", "Balding medium")
 	else
 		H.h_style = pick("Overeye Very Short", "Updo", "Ponytail 1")

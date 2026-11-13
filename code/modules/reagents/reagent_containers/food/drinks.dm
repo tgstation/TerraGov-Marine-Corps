@@ -37,7 +37,7 @@
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return TRUE
 		else
 			var/mob/living/carbon/H = M
@@ -58,7 +58,7 @@
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
 
-			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1, SHORT_SOUND_RANGE)
 			return TRUE
 
 	return FALSE
@@ -219,6 +219,17 @@
 	amount_per_transfer_from_this = 10
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
+
+/obj/item/reagent_containers/food/drinks/shaker/protein
+	name = "protein shake"
+	desc = "A Nanotrasen brand protein shake"
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "shaker_n"
+	amount_per_transfer_from_this = 120
+	list_reagents = list(
+		/datum/reagent/consumable/nutriment = 60,
+		/datum/reagent/consumable/nutriment/protein = 60
+	)
 
 /obj/item/reagent_containers/food/drinks/flask
 	name = "metal flask"

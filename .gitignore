@@ -62,6 +62,9 @@ define_sanity_output.txt
 /db/
 /config/ezdb.txt
 
+# Local overrides - you can use this to change the config for your dev environment without worrying about committing it
+/config/dev_overrides.txt
+
 # Running OpenDream locally
 tgmc.json
 rust_g64.dll

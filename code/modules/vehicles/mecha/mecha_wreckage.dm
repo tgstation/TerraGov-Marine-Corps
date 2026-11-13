@@ -47,13 +47,13 @@
 		return
 	. += span_notice("The AI recovery beacon is active.")
 
-/obj/structure/mecha_wreckage/welder_act(mob/living/user, obj/item/I)
+/obj/structure/mecha_wreckage/welder_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(salvage_num <= 0 || !length(welder_salvage))
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
+		to_chat(user, span_notice("You don't see anything that can be cut with [tool]!"))
 		return
-	if(!I.use_tool(src, user, 0, volume=50))
+	if(!tool.use_tool(src, user, 0, volume=50))
 		return
 	if(prob(30))
 		to_chat(user, span_notice("You fail to salvage anything valuable from [src]!"))
@@ -65,17 +65,17 @@
 		welder_salvage -= type
 	salvage_num--
 
-/obj/structure/mecha_wreckage/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/mecha_wreckage/wirecutter_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(wires_removed)
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
+		to_chat(user, span_notice("You don't see anything that can be cut with [tool]!"))
 		return
 	var/N = new /obj/item/stack/cable_coil(get_turf(user), rand(1,3))
 	user.visible_message(span_notice("[user] cuts [N] from [src]."), span_notice("You cut [N] from [src]."))
 	wires_removed = TRUE
 
-/obj/structure/mecha_wreckage/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/mecha_wreckage/crowbar_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(length(crowbar_salvage))
@@ -84,7 +84,7 @@
 		user.visible_message(span_notice("[user] pries [S] from [src]."), span_notice("You pry [S] from [src]."))
 		crowbar_salvage -= S
 		return
-	to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
+	to_chat(user, span_notice("You don't see anything that can be cut with [tool]!"))
 
 /obj/structure/mecha_wreckage/gygax
 	name = "\improper Gygax wreckage"

@@ -36,16 +36,20 @@
 				new_icon_state = "campaign_objective_capturing_tgmc"
 			if(null)
 				new_icon_state = "campaign_objective"
+			if(FACTION_XENO)
+				new_icon_state = "campaign_objective_capturing_Xeno"
 			else
 				new_icon_state = "campaign_objective_capturing_som"
 	else
 		switch(owning_faction)
 			if(FACTION_TERRAGOV)
 				new_icon_state = capturing_faction ? "campaign_objective_decap_tgmc" : "campaign_objective_tgmc"
+			if(FACTION_XENO)
+				new_icon_state = capturing_faction ? "campaign_objective_decap_Xeno" : "campaign_objective_Xeno"
 			else
 				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
 
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state, MINIMAP_PRIORITY_LAYER))
 
 /obj/structure/campaign_objective/capture_objective/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -55,13 +59,13 @@
 	if(!capture_check(user))
 		return
 	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
+		user.balloon_alert(user, "busy!")
 		return
 	begin_capture(user)
 
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
-	user.balloon_alert_to_viewers("Activating!")
+	user.balloon_alert_to_viewers("activating...")
 	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
@@ -83,19 +87,25 @@
 
 ///Checks if this objective can be captured
 /obj/structure/campaign_objective/capture_objective/proc/capture_check(mob/living/user)
+	if(user.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(capturing_faction)
 		if(capturing_faction == user.faction)
-			user.balloon_alert(user, "Already capturing!")
+			user.balloon_alert(user, "already capturing!")
+			return FALSE
+		else if(owning_faction && (owning_faction != user.faction) && (capturing_faction != user.faction))
+			user.balloon_alert(user, "already decapturing!")
 			return FALSE
 		else
 			return TRUE //someone else is trying to cap it, whether you already own it or not
 
 	if(owning_faction)
 		if(owning_faction == user.faction)
-			user.balloon_alert(user, "Already yours!")
+			user.balloon_alert(user, "already yours!")
 			return FALSE
 		if(!(capture_flags & CAPTURE_OBJECTIVE_RECAPTURABLE))
-			user.balloon_alert(user, "Cannot recaptured!")
+			user.balloon_alert(user, "can't recapture!")
 			return FALSE
 	return TRUE
 
@@ -159,21 +169,14 @@
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
 	. = ..()
-	icon_state = initial(icon_state)
 	if(!owning_faction)
-		switch(capturing_faction)
-			if(FACTION_TERRAGOV)
-				icon_state += "_cap_tgmc"
-			if(null)
-				return
-			else
-				icon_state += "_cap_som"
-		return
-	switch(owning_faction)
-		if(FACTION_TERRAGOV)
-			icon_state += capturing_faction ? "_decap_tgmc" : "_tgmc"
-		else
-			icon_state += capturing_faction ? "_decap_som" : "_som"
+		capturing_faction ? (icon_state = "sensor_cap_" + GLOB.faction_to_formatted_text[capturing_faction]) : (icon_state = "sensor")
+	else
+		capturing_faction ? (icon_state += "_decap_[GLOB.faction_to_formatted_text[capturing_faction]]") : (icon_state = "sensor_" + GLOB.faction_to_formatted_text[owning_faction])
+
+/obj/structure/campaign_objective/capture_objective/sensor_tower/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(!(xeno_attacker.status_flags & INCORPOREAL))
+		begin_capture(xeno_attacker)
 
 //fulton objectives = they qdel after being captured
 /obj/effect/landmark/campaign_structure/phoron_crate
@@ -245,7 +248,7 @@
 /obj/structure/campaign_objective/capture_objective/asat_system/capture_check(mob/living/user)
 	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
 	if((user.faction == owning_faction) && !capturing_faction)
-		user.balloon_alert(user, "Defend this objective!")
+		user.balloon_alert(user, "defend this objective!")
 		return FALSE
 	return ..()
 

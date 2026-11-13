@@ -199,12 +199,11 @@ const StripMenuRow = (props: StripMenuRowProps) => {
       ])}
     >
       <Table.Cell pl={1.5}>{props.slotName}:</Table.Cell>
-      <Table.Cell pr={1.5} position="relative">
+      <Table.Cell position="relative">
         <Stack direction="column">
           {!props.unavailable && (
             <Stack.Item>
               <Button
-                compact
                 disabled={props.obscured === ObscuringLevel.Completely}
                 color={props.empty ? 'transparent' : null}
                 ellipsis

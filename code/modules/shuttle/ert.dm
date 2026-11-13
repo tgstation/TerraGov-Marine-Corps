@@ -125,7 +125,7 @@
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 
 		if(M.departing)
-			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			visible_message(span_warning("ERROR: Launch protocols already in process. Please standby."), 3)
 			return
 

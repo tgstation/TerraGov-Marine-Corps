@@ -34,14 +34,14 @@
 
 /turf/open/liquid/get_submerge_height(turf_only = FALSE)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return
 	. += mob_liquid_height
 
 /turf/open/liquid/get_submerge_depth()
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return 0
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return 0
@@ -57,7 +57,7 @@
 
 ///Returns TRUE if the AM is actually in the liquid instead of above it
 /turf/open/liquid/proc/check_submerge(atom/movable/submergee)
-	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+	if(is_covered())
 		return FALSE
 	if(submergee.throwing)
 		return FALSE
@@ -100,8 +100,8 @@
 	var/mob/living/carbon/carbon_mob = arrived
 	carbon_mob.wash()
 
-	if(carbon_mob.on_fire)
-		carbon_mob.ExtinguishMob()
+	if(carbon_mob.is_on_fire())
+		carbon_mob.extinguish_mob()
 
 /turf/open/liquid/water/sea
 	name = "water"
@@ -205,6 +205,58 @@
 /turf/open/liquid/water/river/desertdam/clean/shallow_water_cave_waterway/edge
 	icon_state = "shallow_water_cave_waterway_edge"
 
+// desert dam turf that doesnt make you sink when ya step on it
+ww
+/turf/open/liquid/water/river/desertdam/notliquid
+	name = "shallow river"
+	desc = "It looks shallow enough to walk in with ease."
+	icon = 'icons/turf/desertdam_map.dmi'
+	mob_liquid_height = 0
+	mob_liquid_depth = 0
+	slowdown_multiplier = 0.25
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow
+	icon_state = "shallow_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow/dirty
+	icon_state = "shallow_water_dirty"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge
+	icon_state = "shallow_to_deep_clean_water"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner
+	icon_state = "shallowcorner1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/corner2
+	icon_state = "shallowcorner2"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_edge/alt
+	icon_state = "shallow_to_deep_clean_water1"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/deep_water_clean
+	icon_state = "deep_water_clean"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast
+	icon_state = "shallow_water_desert_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_coast/edge
+	icon_state = "shallow_water_desert_coast_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway
+	icon_state = "desert_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_desert_waterway/edge
+	icon_state = "desert_waterway_edge"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_coast
+	icon_state = "shallow_water_cave_coast"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway
+	icon_state = "shallow_water_cave_waterway"
+
+/turf/open/liquid/water/river/desertdam/notliquid/clean/shallow_water_cave_waterway/edge
+	icon_state = "shallow_water_cave_waterway_edge"
+
 // LAVA
 /turf/open/liquid/lava
 	name = "lava"
@@ -216,13 +268,6 @@
 	light_color = LIGHT_COLOR_LAVA
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
-
-/turf/open/liquid/lava/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(isliving(leaver))
-		var/mob/living/L = leaver
-		if(!islava(get_step(src, direction)) && !L.on_fire)
-			L.update_fire()
 
 /turf/open/liquid/lava/process()
 	if(!burn_stuff())

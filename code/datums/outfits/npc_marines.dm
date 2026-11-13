@@ -105,14 +105,14 @@
 	gloves = /obj/item/clothing/gloves/marine/black
 	l_pocket = /obj/item/storage/pouch/medkit/medic
 	r_pocket = /obj/item/storage/pouch/magazine/large
-	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/npc
+	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancerone
 	ears = /obj/item/radio/headset/mainship/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 
 	backpack_contents = list(
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/defibrillator = 1,
-		/obj/item/ammo_magazine/rifle/standard_carbine = 6,
+		/obj/item/ammo_magazine/rifle/tx11 = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 	)
 	suit_contents = list(
@@ -139,7 +139,7 @@
 		/obj/item/healthanalyzer = 1,
 	)
 	r_pocket_contents = list(
-		/obj/item/ammo_magazine/rifle/standard_carbine = 3,
+		/obj/item/ammo_magazine/rifle/tx11 = 3,
 	)
 	head_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
@@ -247,4 +247,43 @@
 		/obj/item/explosive/grenade/bullet/hefa = 1,
 		/obj/item/explosive/grenade/smokebomb/cloak = 1,
 		/obj/item/explosive/grenade/smokebomb/antigas = 1,
+	)
+
+//
+/datum/outfit/job/npc/tgmc/squad_engineer
+	name = "NPC TGMC squad engineer"
+	jobtype = /datum/job/terragov/squad/engineer
+
+	id = /obj/item/card/id/dogtag
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
+	glasses = /obj/item/clothing/glasses/welding
+	w_uniform = /obj/item/clothing/under/marine/engineer/black_vest
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/m10x/mimir
+	back = /obj/item/storage/backpack/marine/engineerpack
+	belt = /obj/item/storage/belt/marine
+	gloves = /obj/item/clothing/gloves/marine/insulated
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
+	r_pocket = /obj/item/storage/pouch/tools/full
+	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancerone
+	ears = /obj/item/radio/headset/mainship/marine
+	shoes = /obj/item/clothing/shoes/marine/full
+
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/ammo_magazine/rifle/tx11 = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 4,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
+	)
+	belt_contents = list(/obj/item/ammo_magazine/rifle/tx11 = 6)
+	head_contents = list(/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2)
+	webbing_contents = list(
+		/obj/item/explosive/grenade/m15 = 2,
+		/obj/item/explosive/grenade/smokebomb/antigas = 1,
+		/obj/item/cell/high = 2,
 	)

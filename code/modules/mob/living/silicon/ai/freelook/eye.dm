@@ -9,9 +9,6 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/ai_detector_visible = TRUE
-	var/ai_detector_color = "#FF0000"
-
 
 /mob/camera/aiEye/Initialize(mapload, cameranet, new_faction)
 	. = ..()
@@ -32,7 +29,7 @@
 /mob/camera/aiEye/hud/Initialize(mapload)
 	. = ..()
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/datum/atom_hud/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV] //this currently only supports visibility for TGMC AI, not other factions.
 	squad_hud.add_to_hud(src)
 
 	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
@@ -43,7 +40,7 @@
 	hud_list[hud_type] = holder
 
 /mob/camera/aiEye/hud/Destroy()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV] //this currently only supports visibility for TGMC AI, not other factions.
 	squad_hud.remove_from_hud(src)
 	return ..()
 

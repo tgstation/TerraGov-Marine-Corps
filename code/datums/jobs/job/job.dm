@@ -57,7 +57,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	///whether the job has multiple outfits
 	var/multiple_outfits = FALSE
 	///list of outfit variants
-	var/list/datum/outfit/job/outfits = list()
+	var/list/datum/outfit/job/outfits
 	///Skills for this job
 	var/skills_type = /datum/skills
 	///Any special traits that are assigned for this job
@@ -80,6 +80,11 @@ GLOBAL_PROTECT(exp_specialmap)
 			stack_trace("Job created with an invalid outfit parameter ([outfit])")
 		else
 			outfit = new outfit //Can be improved to reference a singleton.
+	if(length(outfits))
+		var/list/options_list = outfits.Copy()
+		outfits.Cut()
+		for(var/path in options_list)
+			outfits += new path
 
 ///called during gamemode pre_setup, use for stuff like roundstart poplock
 /datum/job/proc/on_pre_setup()
@@ -163,16 +168,17 @@ GLOBAL_PROTECT(exp_specialmap)
 	return TRUE
 
 /// The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]
-/datum/job/proc/radio_help_message(mob/new_player)
-	var/list/message = list()
-	message += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
+/datum/job/proc/get_spawn_message_information(mob/new_player)
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	. += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		message += separator_hr("[span_role_body("<b>Radio</b>")]")
-		message += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel, in most cases this is your squad radio. For additional prefixes, examine your headset.")
+		. += separator_hr("[span_role_header("<b>Radio</b>")]")
+		. += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel—in most cases this is your squad radio if you are playing a Squad role, \
+							if you are playing a role without a Squad like Field Commander it will use the Common radio. For additional prefixes, examine your headset.")
 	if(req_admin_notify)
-		message += separator_hr("[span_role_header("This is an important job.")]")
-		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
-	to_chat(new_player, fieldset_block("[span_role_header("You are the [title].")]", jointext(message, ""), "examine_block"))
+		. += separator_hr("[span_role_header("<big>You Are Playing an Important Job</big>")]")
+		. += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
 
 
 /datum/job/proc/get_special_name(client/preference_source)
@@ -242,7 +248,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(total_positions == -1)
 		CRASH("remove_job_positions called with [amount] amount for a job set to overflow")
 	var/previous_amount = total_positions
-	total_positions -= amount
+	total_positions = max(total_positions - amount, 0)
 	manage_job_lists(previous_amount)
 	return TRUE
 
@@ -306,7 +312,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		equip_preference_gear(player)
 
 	if(!src.assigned_squad && assigned_squad)
-		job.equip_spawning_squad(src, assigned_squad, player)
+		job.equip_spawning_squad(src, assigned_squad, player, admin_action)
 
 	hud_set_job(faction)
 
@@ -323,18 +329,17 @@ GLOBAL_PROTECT(exp_specialmap)
 			valid_outfits += variant
 
 	var/datum/outfit/chosen_variant = pick(valid_outfits)
-	chosen_variant = new chosen_variant
 	chosen_variant.equip(src)
 
 
-/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	return
 
-/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+/datum/job/terragov/squad/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player, forced = FALSE)
 	if(!assigned_squad)
 		SSjob.JobDebug("Failed to put marine role in squad. Player: [player.key] Job: [title]")
 		return
-	assigned_squad.insert_into_squad(new_character)
+	assigned_squad.insert_into_squad(new_character, FALSE, forced)
 
 
 /datum/job/proc/on_late_spawn(mob/living/late_spawner)

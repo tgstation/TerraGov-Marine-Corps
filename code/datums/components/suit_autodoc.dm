@@ -22,7 +22,8 @@
 
 */
 /datum/component/suit_autodoc
-	var/obj/item/healthanalyzer/integrated/analyzer
+	/// The health scanner functionality
+	var/datum/health_scan/analyzer
 
 	var/chem_cooldown = 2.5 MINUTES
 
@@ -71,7 +72,7 @@
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
 
-	analyzer = new
+	analyzer = new(parent, SKILL_MEDICAL_UNTRAINED)
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
 
@@ -182,8 +183,8 @@
 	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite deactivates")
-		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
+		wearer.balloon_alert(wearer, "deactivated")
+		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, FALSE, ADJACENT_SOUND_RANGE)
 
 /**
 	Enable processing and calls out to register signals from the user.
@@ -198,8 +199,8 @@
 	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "Automedical suite activates")
-		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
+		wearer.balloon_alert(wearer, "activated")
+		playsound(parent,'sound/voice/b18/activate.ogg', 15, FALSE, ADJACENT_SOUND_RANGE)
 
 
 /**
@@ -259,7 +260,7 @@
 	var/pain = inject_chems(pain_chems, wearer, COOLDOWN_CHEM_PAIN, wearer.traumatic_shock, pain_threshold, "Painkiller", "User pain at performance impeding levels. Painkillers")
 
 	if(burns || brute || oxy || tox || pain)
-		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
+		playsound(parent,'sound/items/hypospray.ogg', 25, FALSE, ADJACENT_SOUND_RANGE)
 		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage."))
 
 /**
@@ -269,7 +270,7 @@
 
 	var/obj/item/I = parent // guarenteed by Initialize()
 
-	playsound(I,'sound/effects/refill.ogg', 25, 0, 1)
+	playsound(I,'sound/effects/refill.ogg', 25, FALSE, ADJACENT_SOUND_RANGE)
 
 	var/mob/living/carbon/human/H = I.loc // uncertain
 	if(!istype(H))
@@ -325,7 +326,7 @@
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item, attack), wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/datum/health_scan, analyze_vitals), wearer, wearer)
 
 /**
 	Proc to show the suit configuration page
@@ -391,7 +392,7 @@
 		action_toggle()
 
 	else if(href_list["analyzer"]) //Integrated scanner
-		analyzer.attack(wearer, wearer, TRUE)
+		analyzer.analyze_vitals(wearer, wearer)
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
@@ -405,7 +406,7 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc/can_use_action()
+/datum/action/suit_autodoc/can_use_action(silent, override_flags, selecting)
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
 	return TRUE

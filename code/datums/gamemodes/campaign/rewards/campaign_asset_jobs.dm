@@ -13,10 +13,10 @@
 	job_cost = 0
 	multiple_outfits = TRUE
 
-/datum/job/som/mercenary/militia/radio_help_message(mob/M)
+/datum/job/som/mercenary/militia/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony.
-What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"})
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += "You are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony. What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"
 
 /datum/job/som/mercenary/militia/standard
 	outfit = /datum/outfit/job/som/militia/standard/uzi
@@ -62,9 +62,9 @@ What you lack in equipment and military training you make up in bravery and conv
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/freelancer/standard/one/campaign,
-		/datum/outfit/job/freelancer/standard/two/campaign,
-		/datum/outfit/job/freelancer/standard/three/campaign,
+		/datum/outfit/job/freelancer/standard/m412/campaign,
+		/datum/outfit/job/freelancer/standard/pump/campaign,
+		/datum/outfit/job/freelancer/standard/tx11/campaign,
 	)
 
 /datum/job/freelancer/medic/campaign_bonus
@@ -72,27 +72,32 @@ What you lack in equipment and military training you make up in bravery and conv
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/freelancer/medic/campaign
+	outfits = list(
+		/datum/outfit/job/freelancer/medic/m25/campaign,
+		/datum/outfit/job/freelancer/medic/marksman/campaign,
+	)
 
 /datum/job/freelancer/grenadier/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	outfits = list(
-		/datum/outfit/job/freelancer/grenadier/one/campaign,
-		/datum/outfit/job/freelancer/grenadier/two/campaign,
-	)
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/grenadier/alf/campaign,
+		/datum/outfit/job/freelancer/grenadier/hpr/campaign,
+		/datum/outfit/job/freelancer/grenadier/tx55/campaign,
+	)
 
 /datum/job/freelancer/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	outfits = list(
-		/datum/outfit/job/freelancer/leader/one/campaign,
-		/datum/outfit/job/freelancer/leader/two/campaign,
-	)
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/leader/m41a/campaign,
+		/datum/outfit/job/freelancer/leader/tx11/campaign,
+		/datum/outfit/job/freelancer/leader/tx55/campaign,
+	)
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus
@@ -100,21 +105,60 @@ What you lack in equipment and military training you make up in bravery and conv
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/standard/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/standard/val/campaign,
+		/datum/outfit/job/pmc/standard/val/sarge/campaign,
+		/datum/outfit/job/pmc/standard/val/sargetwo/campaign,
+		/datum/outfit/job/pmc/standard/val/sargethree/campaign,
+		/datum/outfit/job/pmc/standard/val/sargefour/campaign,
+		/datum/outfit/job/pmc/standard/val/joker/campaign,
+		/datum/outfit/job/pmc/standard/val/jokertwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripes/campaign,
+		/datum/outfit/job/pmc/standard/val/stripestwo/campaign,
+		/datum/outfit/job/pmc/standard/val/stripesthree/campaign,
+		/datum/outfit/job/pmc/standard/m416/campaign,
+		/datum/outfit/job/pmc/standard/m416/sarge/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargetwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargethree/campaign,
+		/datum/outfit/job/pmc/standard/m416/sargefour/campaign,
+		/datum/outfit/job/pmc/standard/m416/joker/campaign,
+		/datum/outfit/job/pmc/standard/m416/jokertwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripes/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripestwo/campaign,
+		/datum/outfit/job/pmc/standard/m416/stripesthree/campaign,
+	)
+
 
 /datum/job/pmc/gunner/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/gunner/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/gunner/campaign,
+		/datum/outfit/job/pmc/gunner/sarge/campaign,
+		/datum/outfit/job/pmc/gunner/sargetwo/campaign,
+		/datum/outfit/job/pmc/gunner/sargethree/campaign,
+		/datum/outfit/job/pmc/gunner/sargefour/campaign,
+		/datum/outfit/job/pmc/gunner/joker/campaign,
+		/datum/outfit/job/pmc/gunner/jokertwo/campaign,
+		/datum/outfit/job/pmc/gunner/jokerthree/campaign,
+		/datum/outfit/job/pmc/gunner/jokerfour/campaign,
+		/datum/outfit/job/pmc/gunner/stripes/campaign,
+		/datum/outfit/job/pmc/gunner/stripestwo/campaign,
+		/datum/outfit/job/pmc/gunner/stripesthree/campaign,
+		/datum/outfit/job/pmc/gunner/stripes/four/campaign,
+	)
 
 /datum/job/pmc/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
-	outfit = /datum/outfit/job/pmc/leader/campaign
+	outfits = list(
+		/datum/outfit/job/pmc/leader/m416/campaign,
+		/datum/outfit/job/pmc/leader/gunner/campaign,
+	)
 
 //ICC
 /datum/job/icc/standard/campaign_bonus
@@ -178,11 +222,12 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 	job_cost = 0
 
-/datum/job/terragov/squad/standard/campaign_robot/radio_help_message(mob/M)
+/datum/job/terragov/squad/standard/campaign_robot/get_spawn_message_information(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a cold, unfeeling machine built for war, controlled by TGMC.
+	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
+	. += {"You are a cold, unfeeling machine built for war, controlled by TGMC.
 Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.
-Fight for TGMC, and attempt to achieve all objectives given to you."})
+Fight for TGMC, and attempt to achieve all objectives given to you."}
 
 
 //VSD
@@ -196,6 +241,10 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 		/datum/outfit/job/vsd/standard/ksg/campaign,
 		/datum/outfit/job/vsd/standard/grunt_second/campaign,
 		/datum/outfit/job/vsd/standard/grunt_third/campaign,
+		/datum/outfit/job/vsd/standard/lmg/campaign,
+		/datum/outfit/job/vsd/standard/upp/campaign,
+		/datum/outfit/job/vsd/standard/upp_second/campaign,
+		/datum/outfit/job/vsd/standard/upp_third/campaign,
 	)
 
 
@@ -205,11 +254,11 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/vsd/spec/flamer/campaign,
 		/datum/outfit/job/vsd/spec/demolitionist/campaign,
 		/datum/outfit/job/vsd/spec/gunslinger/campaign,
 		/datum/outfit/job/vsd/spec/uslspec_one/campaign,
 		/datum/outfit/job/vsd/spec/uslspec_two/campaign,
+		/datum/outfit/job/vsd/spec/machinegunner/campaign,
 	)
 
 /datum/job/vsd/medic/campaign_bonus
@@ -220,6 +269,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	outfits = list(
 		/datum/outfit/job/vsd/medic/ksg/campaign,
 		/datum/outfit/job/vsd/medic/vsd_rifle/campaign,
+		/datum/outfit/job/vsd/medic/vsd_carbine/campaign,
 	)
 
 
@@ -240,8 +290,9 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/vsd/juggernaut/campaign,
-		/datum/outfit/job/vsd/eod/campaign,
+		/datum/outfit/job/vsd/juggernaut/ballistic/campaign,
+		/datum/outfit/job/vsd/juggernaut/eod/campaign,
+		/datum/outfit/job/vsd/juggernaut/flamer/campaign,
 	)
 
 

@@ -1,50 +1,33 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(preattack(target, user, params))
 		return
+	if(target.tool_act(user, src, params2list(params)))
+		return
 	if(rightclick)
 		return melee_attack_chain_alternate(user, target, params)
-	if(tool_behaviour && tool_attack_chain(user, target))
-		return
 	if(user.lying_angle)
-		user.balloon_alert(user, "Can't while prone!")
+		user.balloon_alert(user, "can't while prone!")
 		return
 	// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
-	if(resolved || QDELETED(target) || QDELETED(src))
+	if(QDELETED(target) || QDELETED(src))
 		return
+	if(resolved)
+		return TRUE
 	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
+	return TRUE
 
 //Called before any other attack proc.
 /obj/item/proc/preattack(atom/target, mob/user, params)
 	return FALSE
 
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
-/obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	switch(tool_behaviour)
-		if(TOOL_CROWBAR)
-			return target.crowbar_act(user, src)
-		if(TOOL_MULTITOOL)
-			return target.multitool_act(user, src)
-		if(TOOL_SCREWDRIVER)
-			return target.screwdriver_act(user, src)
-		if(TOOL_WRENCH)
-			return target.wrench_act(user, src)
-		if(TOOL_WIRECUTTER)
-			return target.wirecutter_act(user, src)
-		if(TOOL_WELDER)
-			return target.welder_act(user, src)
-		if(TOOL_ANALYZER)
-			return target.analyzer_act(user, src)
-		if(TOOL_FULTON)
-			return target.fulton_act(user, src)
-		if(TOOL_PLASMACUTTER)
-			return target.plasmacutter_act(user, src)
-
-
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 	add_fingerprint(user, "attack_self")
+	if(item_flags & ITEM_ACTIVATABLE)
+		toggle_active(!active, user)
+		return
 	if(!can_interact(user))
 		return
 	interact(user)
@@ -117,12 +100,7 @@
 		to_chat(user, span_notice("[src] is bolted to the ground."))
 		return
 
-	forceMove(attached_clamp.linked_powerloader)
-	attached_clamp.loaded = src
-	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
-	attached_clamp.update_icon()
-	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
+	attached_clamp.do_load(src)
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
@@ -144,14 +122,14 @@
 
 	switch(attacking_item.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 			if(is_sharp(attacking_item))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 		if(STAMINA)
-			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			apply_damage(power, STAMINA, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration, user)
 
 	visible_message(span_danger("[attack_message]"),
 		span_userdanger("[attack_message_local]"), null, COMBAT_MESSAGE_RANGE)
@@ -206,7 +184,7 @@
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /turf/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -343,7 +321,7 @@
 
 	. = M.attacked_by_alternate(src, user)
 	if(. && hitsound)
-		playsound(loc, hitsound, 25, TRUE)
+		playsound(loc, hitsound, 25, TRUE, MEDIUM_SOUND_RANGE)
 
 /**
  * /mob/living attacked_by_alternate //TODO!! MAKE THIS UNIQUE FROM NORMAL ATTACKED_BY AS A FEATURE
@@ -374,9 +352,9 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)
+			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration, user)
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration))
+			if(apply_damage(power, BURN, user.zone_selected, FIRE, I.sharp, I.edge, FALSE, I.penetration, user))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message(span_danger("[attack_message]"),

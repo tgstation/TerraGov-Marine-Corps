@@ -54,6 +54,13 @@
 	},
 /area/shuttle/minidropship)
 "r" = (
+/obj/machinery/door_control/minidropship{
+	dir = 4;
+	id = "minidropship_podlock";
+	name = "inner door-control";
+	pixel_x = -25;
+	pixel_y = 8
+	},
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
@@ -152,13 +159,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
 "E" = (
-/obj/machinery/door_control{
-	dir = 8;
-	id = "minidropship_podlock";
-	name = "inner door-control";
-	pixel_x = 25;
-	pixel_y = 8
-	},
+/obj/machinery/vending/nanoammo/directional/west,
 /obj/item/stack/barbed_wire/full,
 /turf/open/floor/carpet/side{
 	dir = 4

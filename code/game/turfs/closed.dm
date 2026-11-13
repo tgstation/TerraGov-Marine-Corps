@@ -19,9 +19,23 @@
 	add_debris_element()
 
 /turf/closed/hitby(atom/movable/AM, speed = 5)
-	AM.stop_throw()
+	AM.set_throwing(FALSE)
 	AM.turf_collision(src, speed)
 	return TRUE
+
+
+#define BEHEMOTH_ROCK_EATING_MESSAGES pick(list(\
+	"We eat away at the stone. It tastes good, as expected of our primary diet.",\
+	"Yum... Delicious rock. A fitting meal for us, the hardiest of creatures.",\
+	"This boulder — its flavor fills us with glee! Our palate is thoroughly satisfied.",\
+	"These minerals are tasty. We want more...",\
+	"Will eating this stone make our hide tougher?",\
+	"A delectable flavor. Just one bite is not enough...",\
+	"One bite, two bites... why not just eat the whole thing?",\
+	"The stone. The rock. The boulder. The crag. Its name matters not when we consume it, for it is reduced to naught.",\
+	"This boulder could have other uses... is eating it a good idea?",\
+	"Delicious. Delectable. Simply exquisite.",\
+))
 
 /turf/closed/mineral
 	name = "rock"
@@ -55,28 +69,20 @@
 
 /turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(isxenobehemoth(xeno_attacker))
-		xeno_attacker.do_attack_animation(src)
-		playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 10, TRUE)
-		xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
-		span_xenonotice(pick(
-			"We eat away at the stone. It tastes good, as expected of our primary diet.",
-			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
-			"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
-			"These minerals are tasty! We want more!",
-			"Eating this stone makes us think; is our hide tougher? It is. It must be...",
-			"A delectable flavor. Just one bite is not enough...",
-			"One bite, two bites... why not just finish the whole rock?",
-			"The stone. The rock. The boulder. Its name matters not when we consume it.",
-			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
+	if(!isxenobehemoth(xeno_attacker))
+		return
+	xeno_attacker.do_attack_animation(src)
+	playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 10, TRUE, SUPER_SHORT_SOUND_RANGE)
+	xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
+	span_xenonotice(BEHEMOTH_ROCK_EATING_MESSAGES), null, 5)
 
-/turf/closed/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/turf/closed/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		to_chat(user, span_warning("[I] can't cut through this!"))
+		to_chat(user, span_warning("[tool] can't cut through this!"))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	if(!plasmacutter.start_cut(user, name, src))
@@ -153,6 +159,17 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/strata_wall
+	icon = 'icons/turf/walls/strata_ice_wall.dmi'
+	icon_state = "ice_wall-0"
+	walltype = "darkfrostwall"
+	base_icon_state = "ice_wall"
+
+/turf/closed/mineral/smooth/strata_wall/indestructible
+	name = "tough rock"
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0"
@@ -199,11 +216,15 @@
 
 //resin bone wall
 /turf/closed/mineral/smooth/resin_hard
+	name = "hardened resin wall"
+	desc = "This resin has solidified into a solid immovable mass, you can see the faint traces of what look like a dense xenomorph skeleton underneath the surface."
 	icon = 'icons/turf/walls/resin_bone_wall.dmi'
 	icon_state = "resin_bone_wall-0"
 	base_icon_state = "resin_bone_wall"
 
 /turf/closed/mineral/smooth/resin_hard/indestructible
+	name = "ultra-hardened resin wall"
+	desc = "This resin has been soaked in some sort of acidic curing substance and solidified so much you doubt anything can remove it."
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -262,6 +283,7 @@
 
 //Ground map dense jungle
 /turf/closed/gm
+	name = "thick jungle wall"
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
@@ -276,7 +298,6 @@
 /turf/closed/gm/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_LEAF, -40, 5)
 
-	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -558,6 +579,12 @@
 /turf/closed/shuttle/dropship1/edge
 	icon_state = "shuttle_interior_edge"
 
+/turf/closed/shuttle/dropship1/interiormisc/three
+	icon_state = "shuttle_interior_misc_three"
+
+/turf/closed/shuttle/dropship1/edge/misc
+	icon_state = "shuttle_exterior_edge"
+
 /turf/closed/shuttle/dropship1/edge/alt
 	icon_state = "shuttle_interior_edgealt"
 
@@ -589,6 +616,12 @@
 /turf/closed/shuttle/dropship1/enginethree
 	icon_state = "shuttle_interior_backengine3"
 
+/turf/closed/shuttle/dropship1/corners/alt
+	icon_state = "shuttle_exterior_corners_alt"
+
+/turf/closed/shuttle/dropship1/corners/interior
+	icon_state = "shuttle_interior_corners"
+
 /turf/closed/shuttle/dropship1/enginefour
 	icon_state = "shuttle_interior_backengine4"
 
@@ -617,6 +650,9 @@
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship1/interiormisc/two
+	icon_state = "shuttle_interior_misc"
 
 /turf/closed/shuttle/dropship1/cornersalt
 	icon_state = "shuttle_interior_corneralt"

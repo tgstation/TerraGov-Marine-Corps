@@ -1,6 +1,6 @@
 /datum/buildmode_mode/loadout
 	key = "loadout"
-	
+
 	/// The currently selected loadout datum
 	var/datum/loadout/loadout
 
@@ -9,12 +9,11 @@
 	return ..()
 
 /datum/buildmode_mode/loadout/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Select loadout to equip")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Equip the selected loadout")] -> Left Mouse Button on mob/living/carbon/human\n\
 		[span_bold("Copy their loadout")] -> Right Mouse Button on mob/living/carbon/human\n\
 		[span_bold("Strip and delete current loadout")] -> Shift + Left Mouse Button Button on mob/living/carbon/human"))
-	)
 
 /datum/buildmode_mode/loadout/change_settings(client/user)
 	var/loadout_choice = tgui_input_list(user, "Choose a loadout", "Loadout choice", SSpersistence.custom_loadouts)

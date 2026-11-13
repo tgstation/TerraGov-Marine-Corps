@@ -140,15 +140,11 @@
 
 
 /obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isobj(mover)) //No grenades/bullets should cross this
-		return FALSE
+	SHOULD_CALL_PARENT(FALSE) //we only care if its a xeno or not
 	if(isxeno(mover))
 		return TRUE
-	if(ishuman(mover) && !issynth(mover))
-		var/mob/living/carbon/human/H = mover
-		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
-			return TRUE
+	if(istype(mover, /mob/illusion/xeno))
+		return TRUE
 	return FALSE
 
 /obj/effect/forcefield/fog/passable_fog
@@ -167,7 +163,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
+	SHOULD_CALL_PARENT(FALSE) //we're always passable
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
@@ -246,6 +242,9 @@
 	plane = GAME_PLANE
 	alpha = 70
 
+///hologram alt appearance key
+#define HOLO_INVIS_ALT_APPEARANCE "holo_invis_alt_appearance"
+
 /obj/effect/build_hologram
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
@@ -254,12 +253,22 @@
 	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	alpha = 190
 
-/obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
-	if(ispath(copy_type))
-		icon = initial(copy_type.icon)
-		icon_state = initial(copy_type.icon_state)
-		base_icon_state = initial(copy_type.base_icon_state)
-		color = initial(copy_type.color)
-		smoothing_flags = initial(copy_type.smoothing_flags)
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type, modify_color = FALSE, mob/owner)
+	if(!ispath(copy_type))
+		return INITIALIZE_HINT_QDEL
+
+	icon = initial(copy_type.icon)
+	icon_state = initial(copy_type.icon_state)
+	base_icon_state = initial(copy_type.base_icon_state)
+	color = initial(copy_type.color)
+	smoothing_flags = initial(copy_type.smoothing_flags)
 	. = ..()
-	makeHologram(0.7, FALSE)
+	makeHologram(0.7, modify_color)
+
+	var/image/disguised_icon = image(loc = src)
+	disguised_icon.override = TRUE
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/all_but_one_person, HOLO_INVIS_ALT_APPEARANCE, disguised_icon, owner)
+
+/obj/effect/build_hologram/Destroy()
+	remove_alt_appearance(HOLO_INVIS_ALT_APPEARANCE)
+	return ..()

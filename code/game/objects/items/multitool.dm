@@ -6,7 +6,7 @@
 
 /obj/item/tool/multitool
 	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	icon_state = "multitool"
 	atom_flags = CONDUCT
 	force = 5
@@ -14,7 +14,6 @@
 	throwforce = 5
 	throw_range = 15
 	throw_speed = 3
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	tool_behaviour = TOOL_MULTITOOL
 
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
@@ -33,7 +32,7 @@
 		return
 
 	var/dist = get_dist(src, area_apc)
-	var/direction = angle_to_dir(Get_Angle(get_turf(src), get_turf(area_apc)))
+	var/direction = angle2dir(Get_Angle(get_turf(src), get_turf(area_apc)))
 	to_chat(user, span_notice("The local APC is located at [span_bold("[dist] units [dir2text(direction)]")]."))
 	user.balloon_alert(user, "[dist] units [dir2text(direction)]")
 

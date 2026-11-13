@@ -15,4 +15,5 @@
 
 /mob/living/carbon/xenomorph/gorger/Initialize(mapload)
 	. = ..()
-	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
+	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_XENO_HEART]
+	hud.add_hud_to(src)

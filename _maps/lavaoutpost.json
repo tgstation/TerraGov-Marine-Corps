@@ -2,6 +2,7 @@
     "map_name": "Lava Outpost V1",
     "map_path": "map_files/lavaoutpost",
     "map_file": "LavaOutpost.dmm",
+	"parallax_icon": "rock",
 	"disk_sets": {
 		"basic": 1
 	},

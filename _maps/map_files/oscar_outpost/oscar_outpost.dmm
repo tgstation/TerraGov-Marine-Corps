@@ -854,11 +854,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/village/central)
-"gj" = (
-/obj/structure/fence,
-/obj/effect/ai_node,
-/turf/open/ground/grass,
-/area/oscar_outpost/outside/west)
 "gm" = (
 /obj/structure/barricade/solid{
 	dir = 4
@@ -18489,7 +18484,7 @@ ZL
 ZL
 ZL
 ZL
-gj
+En
 DN
 hQ
 hQ
@@ -42718,7 +42713,7 @@ Ta
 Ta
 Ta
 Ta
-lG
+kB
 zU
 YR
 FK

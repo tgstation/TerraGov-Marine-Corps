@@ -63,6 +63,10 @@
 "D" = (
 /turf/open/interior/apc/fifteen,
 /area/interior/apc)
+"E" = (
+/obj/machinery/vending/nanoammo/directional/south,
+/turf/open/interior/apc/nine,
+/area/interior/apc)
 "F" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/interior/apc/twentynine,
@@ -132,7 +136,7 @@ l
 "}
 (3,1,1) = {"
 e
-c
+E
 D
 k
 l

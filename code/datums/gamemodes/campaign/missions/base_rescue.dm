@@ -56,7 +56,8 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING, PROC_REF(computer_running))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING, PROC_REF(computer_stop_running))
 
-/datum/campaign_mission/destroy_mission/base_rescue/set_factions()
+/datum/campaign_mission/destroy_mission/base_rescue/set_factions(initiating_faction)
+	. = ..()
 	attacking_faction = hostile_faction
 	defending_faction = starting_faction
 
@@ -165,12 +166,12 @@
 	map_text_broadcast(defending_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 
 ///Code computer is actively running a segment
-/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_running(datum/source, obj/machinery/computer/nt_access/code_computer)
+/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_running(datum/source, obj/machinery/computer/code_generator/nt_access/code_computer)
 	SIGNAL_HANDLER
 	pause_mission_timer(REF(code_computer))
 
 ///Code computer stops running a segment
-/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_stop_running(datum/source, obj/machinery/computer/nt_access/code_computer)
+/datum/campaign_mission/destroy_mission/base_rescue/proc/computer_stop_running(datum/source, obj/machinery/computer/code_generator/nt_access/code_computer)
 	SIGNAL_HANDLER
 	resume_mission_timer(REF(code_computer))
 

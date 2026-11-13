@@ -1,9 +1,6 @@
 /mob/living/proc/Life(seconds_per_tick, times_fired)
 	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
-
-	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
-
 	handle_regular_hud_updates()
 
 	handle_organs()
@@ -24,15 +21,6 @@
 	if(registered_z)
 		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
 		update_z(null)
-
-
-//this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
-/mob/living/proc/handle_status_effects()
-	if(no_stun)//anti-chainstun flag for alien tackles
-		no_stun = max(0, no_stun - 1) //decrement by 1.
-
-	handle_drugged()
-	handle_slowdown()
 
 ///Adjusts our stats based on the auras we've received and care about, then cleans out the list for next tick.
 /mob/living/proc/finish_aura_cycle()
@@ -67,14 +55,10 @@
 /mob/living/proc/update_aura_overlay()
 	return
 
+///Organ processing for life()
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_drugged()
-	if(druggy)
-		adjust_drugginess(-1)
-	return druggy
 
 /mob/living/proc/handle_staminaloss()
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)
@@ -89,13 +73,16 @@
 	if(!client)
 		return FALSE
 
+/// Updates the `health` variable and anything associated with it.
 /mob/living/proc/updatehealth()
+	SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_HEALTH)
 	if(status_flags & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
-		return
+		return FALSE
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
+	return TRUE
 
 /mob/living/update_stat()
 	. = ..()
@@ -237,7 +224,7 @@
 		SSmobs.clients_by_zlevel[new_z] += src
 	registered_z = new_z
 
-/mob/living/proc/do_camera_update(oldLoc)
+/mob/living/proc/do_camera_update(obj/item/radio/headset/mainship/headset)
 	return
 
 
@@ -391,7 +378,7 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
-	if(ismovableatom(A))
+	if(ismovable(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(!COOLDOWN_FINISHED(H,  xeno_push_delay))
@@ -408,8 +395,6 @@
 	if(now_pushing)
 		return
 	if(moving_diagonally) // No pushing in diagonal move
-		return
-	if(!client)
 		return
 	var/mob/mob_to_push = AM
 	if(istype(mob_to_push) && mob_to_push.lying_angle)
@@ -435,9 +420,8 @@
 			push_anchored = TRUE
 	if(ismob(AM))
 		var/atom/movable/mob_buckle = mob_to_push.buckled
-		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
-		// If neither are true, we're not pushing anymore.
-		if(mob_buckle && (mob_buckle.buckle_flags & BUCKLE_PREVENTS_PULL || (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO))))
+		//If they're buckled to something, we need to be able to push that instead
+		if(mob_buckle && (force < (mob_buckle.move_resist * MOVE_FORCE_PUSH_RATIO)))
 			now_pushing = FALSE
 			return
 	if((AM.anchored && !push_anchored) || (force < (AM.move_resist * MOVE_FORCE_PUSH_RATIO)))
@@ -546,11 +530,9 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_REAGENTS].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_DEBUFF].remove_from_hud(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(src)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_REAGENTS, DATA_HUD_XENO_DEBUFF, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -561,11 +543,9 @@
 
 	alpha = initial(alpha)
 
-	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_REAGENTS].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_DEBUFF].add_to_hud(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
+	for(var/hud_key in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_XENO_INFECTION, DATA_HUD_XENO_REAGENTS, DATA_HUD_XENO_DEBUFF, DATA_HUD_XENO_HEART))
+		var/datum/atom_hud/hud = GLOB.huds[hud_key]
+		hud.add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -578,37 +558,6 @@
 		return
 	else
 		smokecloak_off()
-
-
-/*
-adds a dizziness amount to a mob
-use this rather than directly changing var/dizziness
-since this ensures that the dizzy_process proc is started
-currently only humans get dizzy
-value of dizziness ranges from 0 to 1000
-below 100 is not dizzy
-*/
-
-/mob/living/carbon/dizzy(amount)
-	dizziness = clamp(dizziness + amount, 0, 1000)
-
-	if(dizziness > 100 && !is_dizzy)
-		INVOKE_ASYNC(src, PROC_REF(dizzy_process))
-
-/mob/living/proc/dizzy_process()
-	is_dizzy = TRUE
-	while(dizziness > 100)
-		if(client)
-			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
-			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
-			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
-
-		sleep(0.1 SECONDS)
-	//endwhile - reset the pixel offsets to zero
-	is_dizzy = FALSE
-	if(client)
-		client.pixel_x = 0
-		client.pixel_y = 0
 
 /mob/living/proc/update_action_button_icons()
 	for(var/X in actions)
@@ -633,6 +582,10 @@ below 100 is not dizzy
 
 		if(job && is_banned_from(M.ckey, job.title))
 			to_chat(M, span_warning("You are jobbanned from that role."))
+			return FALSE
+
+		if(iszombie(src) && !SSticker.mode?.can_ghosts_join_as_zombies())
+			GLOB.offered_mob_list -= src
 			return FALSE
 
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
@@ -839,7 +792,7 @@ below 100 is not dizzy
 	if(. & ZIMPACT_CANCEL_DAMAGE)
 		return .
 	// multiplier for the damage taken from falling
-	var/damage_softening_multiplier = 1
+	var/damage_softening_multiplier = 1.5
 
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !incapacitated(TRUE)
@@ -961,7 +914,7 @@ below 100 is not dizzy
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_LIVING_SWAPPED_HANDS)
-	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+	if(hud_used?.l_hand_hud_object && hud_used?.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()
 	return
@@ -1287,3 +1240,9 @@ below 100 is not dizzy
 		return
 
 	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])
+
+///Returns the 'strength' of the mobs restiveness
+/mob/living/proc/get_resting_power()
+	. = 3
+	if(stat || resting)
+		. += 12

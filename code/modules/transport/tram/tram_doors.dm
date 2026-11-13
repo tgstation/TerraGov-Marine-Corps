@@ -7,7 +7,7 @@ multi_tile
 	name = "tram door"
 	icon = 'icons/obj/doors/Door2x1glass.dmi' // temp due to below
 //	icon = 'icons/obj/doors/airlocks/tram/tram.dmi'
-//	overlays_file = 'icons/obj/doors/airlocks/tram/tram-overlays.dmi' // TIVI TODO tg has way better airlock overlay shit
+//	overlays_file = 'icons/obj/doors/airlocks/tram/tram-overlays.dmi' // TODO tg has way better airlock overlay shit
 	opacity = FALSE
 //	assemblytype = /obj/structure/door_assembly/multi_tile/door_assembly_tram
 	transport_linked_id = TRAMSTATION_LINE_1

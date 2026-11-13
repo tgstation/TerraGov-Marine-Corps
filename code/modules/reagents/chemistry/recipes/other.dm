@@ -109,7 +109,7 @@
 
 /datum/chemical_reaction/lipozine
 	name = "Lipozine"
-	results = list(/datum/reagent/lipozine = 3)
+	results = list(/datum/reagent/consumable/lipozine = 3)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/radium = 1)
 
 /datum/chemical_reaction/phoronsolidification

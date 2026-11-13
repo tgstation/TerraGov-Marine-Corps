@@ -21,11 +21,10 @@
 		)
 
 /datum/buildmode_mode/boom/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Set explosion destructiveness")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Kaboom")] -> Mouse Button on obj\n\n\
 		[span_warning("NOTE:")] Using the \"Config/Launch Supplypod\" verb allows you to do this in an IC way (i.e., making a cruise missile come down from the sky and explode wherever you click!)"))
-	)
 
 /datum/buildmode_mode/boom/change_settings(client/user)
 	for (var/explosion_level in explosions)

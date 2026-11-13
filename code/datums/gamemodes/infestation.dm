@@ -9,6 +9,8 @@
 	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
+	///Timer used to track the countdown to hive collapse due to lack of silos or corrupted generators
+	var/siloless_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
 	/// State of the nuke
@@ -18,14 +20,24 @@
 	 * [caste datum] = [amount of xenos needed]
 	 */
 	var/list/evo_requirements = list(
-		/datum/xeno_caste/king = 12,
 		/datum/xeno_caste/queen = 8,
 	)
+	///Max number of xeno leaders allowed in this mode
+	var/max_xeno_leaders = 4
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
 	if(bioscan_interval)
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_SEGMENT_COMPLETED, PROC_REF(on_disk_segment_completed))
+
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.max_xeno_leaders = max_xeno_leaders
+
 	var/weed_type
 	for(var/turf/T in GLOB.xeno_weed_node_turfs)
 		weed_type = pickweight(GLOB.weed_prob_list)
@@ -48,16 +60,6 @@
 /datum/game_mode/infestation/process()
 	if(round_finished)
 		return PROCESS_KILL
-
-	//Handle psy generation for hive
-	var/total_humans_groundside = 0
-	for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		total_humans_groundside += length(GLOB.humans_by_zlevel["[z_level]"])
-	if(GLOB.corruptable_generators_groundside && round_stage == INFESTATION_MARINE_DEPLOYMENT && total_humans_groundside > (0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
-		for(var/hive in GLOB.gens_corruption_by_hive)
-			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.gens_corruption_by_hive[hive]/GLOB.corruptable_generators_groundside)
-			SSpoints.add_strategic_psy_points(hive, points_generated)
-			SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
 
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
@@ -362,7 +364,41 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
 
-/datum/game_mode/infestation/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/infestation/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	if (isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno = source
+		if(xeno.hivenumber != XENO_HIVE_NORMAL)
+			return // Don't show for non-normal hives
+	var/rulerless_countdown = get_hivemind_collapse_countdown()
+	if(rulerless_countdown)
+		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+
+///This is overriden on the child types. Provides the amount of time left before orphan collapse.
+/datum/game_mode/infestation/get_hivemind_collapse_countdown()
+	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+///This is overriden on the child types. Called by [update_silo_death_timer] after a countdown to end the round.
+/datum/game_mode/infestation/siloless_hive_collapse()
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+	if(round_finished)
+		return
+	if(round_stage == INFESTATION_MARINE_CRASHING)
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
+
+///This is overridden on the child types. Provides the amount of time left before silo collapse.
+/datum/game_mode/infestation/get_siloless_collapse_countdown()
+	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+///Sig sender when silo collapse starts
+/datum/game_mode/infestation/proc/signal_siloless_collapse()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
+
+/datum/game_mode/infestation/proc/on_nuclear_defuse(obj/machinery/nuclearbomb/bomb, mob/defuser)
 	SIGNAL_HANDLER
 	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Planetary Warhead Disengaged", type = ANNOUNCEMENT_PRIORITY)
 
@@ -414,3 +450,21 @@
 		victim.adjustFireLoss(victim.maxHealth * 4)
 		victim.death()
 		CHECK_TICK
+
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
+
+/// Gives points when a segment is completed.
+/datum/game_mode/infestation/proc/on_disk_segment_completed(datum/source, obj/machinery/computer/code_generator/nuke/generating_computer)
+	SIGNAL_HANDLER
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
+
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	generating_computer.say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
+
+#undef DISK_CYCLE_REWARD_MIN
+#undef DISK_CYCLE_REWARD_MAX

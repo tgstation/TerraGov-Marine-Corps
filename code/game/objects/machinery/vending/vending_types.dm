@@ -33,7 +33,25 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	icon_vend = "boozeomat-vend"
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;\
+	Alcohol is humanity's friend. Would you abandon a friend?;\
+	Quite delighted to serve you!;\
+	Is nobody thirsty on this station? Drink up!;\
+	Booze is good for you!;\
+	Alcohol is humanity's best friend.;\
+	Quite delighted to serve you!;\
+	Care for a nice, cold beer?;\
+	Nothing cures you like booze!;\
+	Have a sip!;\
+	Have a drink!;\
+	Have a beer!;\
+	Beer is good for you!;\
+	Only the finest alcohol!;\
+	Best quality booze since 2053!;\
+	Award-winning wine!;\
+	Maximum alcohol!;\
+	Man loves beer.;\
+	A toast for progress!"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/bottle/gin = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/whiskey = -1,
@@ -68,7 +86,6 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/assist
-	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	icon_vend = "generic-vend"
 	icon_deny = "generic-deny"
 	products = list(
@@ -83,7 +100,20 @@
 /obj/machinery/vending/coffee
 	name = "\improper Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
-	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
+	product_slogans = "Have a drink!;\
+	Drink up!;\
+	It's good for you!;\
+	Would you like a hot joe?;\
+	I'd kill for some coffee!;\
+	The best beans in the galaxy.;\
+	Only the finest brew for you.;\
+	Mmmm. Nothing like a coffee.;\
+	I like coffee, don't you?;\
+	Coffee helps you work!;\
+	Try some tea.;\
+	We hope you like the best!;\
+	Try our new chocolate!;\
+	Admin conspiracies."
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	icon_deny = "coffee-deny"
@@ -100,7 +130,13 @@
 /obj/machinery/vending/snack
 	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;\
+	Eat an EAT!;\
+	Eat a Nanotrasen brand packaged hamburger.;\
+	Eat a Nanotrasen brand packaged hot dog.;\
+	Eat a Nanotrasen brand packaged burrito.;\
+	Fatten up!;\
+	Its called bulking!"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
@@ -112,6 +148,7 @@
 		/obj/item/reagent_containers/food/snacks/enrg_bar = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
+		/obj/item/reagent_containers/food/drinks/shaker/protein = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
@@ -125,7 +162,13 @@
 	name = "\improper Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;\
+	Souto Classic. You can't beat that tangerine goodness!;\
+	Souto Cherry. The sweet flavor of a cool winter morning!;\
+	Souto Lime. For that sweet and sour flavor that you know and love!;\
+	Souto Grape. There's nothing better than a grape soda.;\
+	Nanotrasen Fruit Beer. Nothing came from that lawsuit!;\
+	Nanotrasen Spring Water. It came from a spring!"
 	icon_deny = "Cola_Machine-deny"
 	icon_vend = "Cola_Machine-vend"
 	products = list(
@@ -151,8 +194,15 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	icon_vend = "med-vend"
-	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
+	slogan_delay = 10 MINUTES
+	product_slogans = "Go save some lives!;\
+	The best stuff for your medbay.;\
+	Only the finest tools.;\
+	Natural chemicals!;\
+	This stuff saves lives.;\
+	Don't you want some?;\
+	Ping!;\
+	Equipment for the home enthusiast surgeon!"
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -173,7 +223,12 @@
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 30,
+			/obj/item/reagent_containers/hypospray/advanced = 5,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -184,6 +239,7 @@
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
 			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
 			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
+			/obj/item/reagent_containers/glass/bottle/leporazine = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
@@ -204,15 +260,27 @@
 			/obj/item/storage/reagent_tank/tricordrazine = 1,
 			/obj/item/storage/reagent_tank/bktt = 1,
 		),
-		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = 2,
-			/obj/item/tool/research/excavation_tool = -1,
+		"Surgical Equipment" = list(
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/reagent_containers/spray/surgery = -1,
 			/obj/item/tool/soap = 3,
-			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
+			/obj/item/tool/surgery/scalpel/manager = -1,
+			/obj/item/tool/surgery/hemostat = -1,
+			/obj/item/tool/surgery/retractor = -1,
+			/obj/item/tool/surgery/cautery = -1,
+			/obj/item/tool/surgery/circular_saw = -1,
+			/obj/item/tool/surgery/surgical_membrane = -1,
+			/obj/item/tool/surgery/bonegel = -1,
+			/obj/item/tool/surgery/bonesetter = -1,
+			/obj/item/tool/surgery/FixOVein = -1,
+			/obj/item/tool/surgery/suture = -1,
+		),
+		"Misc" = list(
+			/obj/item/tool/research/xeno_analyzer = 2,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/clothing/glasses/hud/health = 6,
 		),
 	)
 	idle_power_usage = 211
@@ -225,6 +293,7 @@
 	use_power = NO_POWER_USE
 	req_access = list()
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 	products = list(
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
@@ -245,6 +314,7 @@
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
 			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
 			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
+			/obj/item/reagent_containers/glass/bottle/leporazine = -1,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
@@ -278,15 +348,28 @@
 			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/splint = -1,
 		),
-		"Misc" = list(
-			/obj/item/tool/research/xeno_analyzer = -1,
-			/obj/item/tool/research/excavation_tool = -1,
+		"Surgical Equipment" = list(
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/reagent_containers/spray/surgery = -1,
 			/obj/item/tool/soap = -1,
-			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
+			/obj/item/tool/surgery/scalpel/manager = -1,
+			/obj/item/tool/surgery/scalpel = -1,
+			/obj/item/tool/surgery/hemostat = -1,
+			/obj/item/tool/surgery/retractor = -1,
+			/obj/item/tool/surgery/cautery = -1,
+			/obj/item/tool/surgery/circular_saw = -1,
+			/obj/item/tool/surgery/surgical_membrane = -1,
+			/obj/item/tool/surgery/bonegel = -1,
+			/obj/item/tool/surgery/bonesetter = -1,
+			/obj/item/tool/surgery/FixOVein = -1,
+			/obj/item/tool/surgery/suture = -1,
+		),
+		"Misc" = list(
+			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
@@ -335,7 +418,7 @@
 /obj/machinery/vending/nanomed
 	name = "\improper NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+	product_slogans = "" //silent for no spam
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	icon_vend = "wallmed-vend"
@@ -355,7 +438,6 @@
 		/obj/item/stack/medical/splint = 1,
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
-
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
@@ -408,10 +490,260 @@
 		),
 	)
 
+
+
+/obj/machinery/vending/nanoammo
+	name = "\improper NanoAmmo"
+	desc = "Wall-mounted ammunition dispenser.  Can't hold infinite ammo, but it holds more than you need."
+	slogan_delay = 5 MINUTES
+	product_slogans = "Get you some!;\
+	More ammo than you'll ever need.;\
+	I'm small but my firepower isn't!;\
+	I dispense ammo, you dispense pain.;\
+	Give 'em hell!"
+	icon_state = "nanoammo"
+	icon_deny = "nanoammo-deny"
+	icon_vend = "nanoammo-vend"
+	density = FALSE
+	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	products = list(
+		"Rifles" = list(
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 30,
+			/obj/item/ammo_magazine/rifle/standard_carbine = 30,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 30,
+			/obj/item/ammo_magazine/rifle/tx11 = 30,
+			/obj/item/ammo_magazine/packet/p4570 = 16,
+		),
+		"SMGs" = list(
+			/obj/item/ammo_magazine/smg/standard_smg = 40,
+			/obj/item/ammo_magazine/smg/standard_machinepistol = 40,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = 40,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 40,
+		),
+		"Marksman" = list(
+			/obj/item/ammo_magazine/rifle/standard_dmr = 30,
+			/obj/item/ammo_magazine/rifle/standard_br = 30,
+			/obj/item/ammo_magazine/rifle/chamberedrifle = 30,
+			/obj/item/ammo_magazine/rifle/boltclip = 30,
+			/obj/item/ammo_magazine/rifle/bolt = 16,
+			/obj/item/ammo_magazine/rifle/martini = 16,
+		),
+		"Shotgun" = list(
+			/obj/item/ammo_magazine/shotgun = 16,
+			/obj/item/ammo_magazine/shotgun/buckshot = 16,
+			/obj/item/ammo_magazine/shotgun/flechette = 16,
+			/obj/item/ammo_magazine/shotgun/tracker = 16,
+			/obj/item/ammo_magazine/rifle/tx15_flechette = 30,
+			/obj/item/ammo_magazine/rifle/tx15_slug = 30,
+		),
+		"Machinegun" = list(
+			/obj/item/ammo_magazine/standard_lmg = 30,
+			/obj/item/ammo_magazine/standard_gpmg = 30,
+			/obj/item/ammo_magazine/standard_mmg = 30,
+		),
+		"Sidearm" = list(
+			/obj/item/ammo_magazine/pistol/standard_pistol = 40,
+			/obj/item/ammo_magazine/pistol/standard_heavypistol = 40,
+			/obj/item/ammo_magazine/revolver/standard_revolver = 40,
+			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 40,
+			/obj/item/ammo_magazine/pistol/vp70 = 40,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 40,
+			/obj/item/ammo_magazine/revolver/standard_magnum = 40,
+		),
+		"Specialized" = list(
+			/obj/item/ammo_magazine/rifle/pepperball = 10,
+			/obj/item/ammo_magazine/flamer_tank/water = 10,
+			/obj/item/ammo_magazine/flamer_tank/mini = 16,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 16,
+		),
+		"Seasonal" = list(
+			/obj/item/ammo_magazine/revolver/small = 0,
+			/obj/item/ammo_magazine/revolver/single_action/m44 = 0,
+			/obj/item/ammo_magazine/revolver/judge = 0,
+			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
+			/obj/item/ammo_magazine/revolver/upp = 0,
+			/obj/item/ammo_magazine/rifle/mpi_km/plum = 0,
+			/obj/item/ammo_magazine/rifle/m16 = 0,
+			/obj/item/ammo_magazine/rifle/mkh = 0,
+			/obj/item/ammo_magazine/smg/ppsh = 0,
+			/obj/item/ammo_magazine/smg/ppsh/extended = 0,
+			/obj/item/ammo_magazine/rifle/garand = 0,
+			/obj/item/ammo_magazine/pistol/m1911 = 0,
+			/obj/item/ammo_magazine/rifle = 0,
+			/obj/item/ammo_magazine/rifle/m41a = 0,
+			/obj/item/ammo_magazine/rifle/type71 = 0,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = 0,
+			/obj/item/ammo_magazine/smg/uzi = 0,
+			/obj/item/ammo_magazine/smg/m25 = 0,
+			/obj/item/ammo_magazine/smg/mp7 = 0,
+			/obj/item/ammo_magazine/smg/skorpion = 0,
+			/obj/item/ammo_magazine/revolver/cmb = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900 = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/tracking = 0,
+		)
+	)
+	max_capacities = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 60,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 60,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
+		/obj/item/ammo_magazine/rifle/tx11 = 60,
+		/obj/item/ammo_magazine/packet/p4570 = 32,
+		/obj/item/ammo_magazine/smg/standard_smg = 80,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 80,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 60,
+		/obj/item/ammo_magazine/rifle/standard_br = 60,
+		/obj/item/ammo_magazine/rifle/chamberedrifle = 60,
+		/obj/item/ammo_magazine/rifle/boltclip = 60,
+		/obj/item/ammo_magazine/rifle/bolt = 32,
+		/obj/item/ammo_magazine/rifle/martini = 32,
+		/obj/item/ammo_magazine/shotgun = 32,
+		/obj/item/ammo_magazine/shotgun/buckshot = 32,
+		/obj/item/ammo_magazine/shotgun/flechette = 32,
+		/obj/item/ammo_magazine/shotgun/tracker = 32,
+		/obj/item/ammo_magazine/rifle/tx15_flechette = 60,
+		/obj/item/ammo_magazine/rifle/tx15_slug = 60,
+		/obj/item/ammo_magazine/standard_lmg = 60,
+		/obj/item/ammo_magazine/standard_gpmg = 60,
+		/obj/item/ammo_magazine/standard_mmg = 60,
+		/obj/item/ammo_magazine/pistol/standard_pistol = 80,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 80,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 80,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 80,
+		/obj/item/ammo_magazine/pistol/vp70 = 80,
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
+		/obj/item/ammo_magazine/revolver/small = 80,
+		/obj/item/ammo_magazine/revolver/single_action/m44 = 80,
+		/obj/item/ammo_magazine/revolver/judge = 80,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
+		/obj/item/ammo_magazine/revolver/standard_magnum = 80,
+		/obj/item/ammo_magazine/revolver/upp = 80,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
+		/obj/item/ammo_magazine/rifle/m16 = 60,
+		/obj/item/ammo_magazine/rifle/mkh = 60,
+		/obj/item/ammo_magazine/smg/ppsh = 80,
+		/obj/item/ammo_magazine/smg/ppsh/extended = 80,
+		/obj/item/ammo_magazine/rifle/garand = 60,
+		/obj/item/ammo_magazine/pistol/m1911 = 80,
+		/obj/item/ammo_magazine/rifle = 60,
+		/obj/item/ammo_magazine/rifle/m41a = 60,
+		/obj/item/ammo_magazine/rifle/type71 = 60,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 60,
+		/obj/item/ammo_magazine/smg/uzi = 80,
+		/obj/item/ammo_magazine/smg/m25 = 80,
+		/obj/item/ammo_magazine/smg/mp7 = 80,
+		/obj/item/ammo_magazine/smg/skorpion = 80,
+		/obj/item/ammo_magazine/revolver/cmb = 80,
+		/obj/item/ammo_magazine/shotgun/mbx900 = 32,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 32,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 32,
+		/obj/item/ammo_magazine/rifle/pepperball = 20,
+		/obj/item/ammo_magazine/flamer_tank/water = 20,
+		/obj/item/ammo_magazine/flamer_tank/mini = 32,
+		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 32,
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
+
+/obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/box/visual/magazine))
+		var/obj/item/storage/box/visual/magazine/ammo_box = I
+		for(var/mag in ammo_box.contents)
+			stock(mag, user, FALSE)
+		user?.balloon_alert(user, "contents organized")
+		return
+
+	else if(istype(I, /obj/item/big_ammo_box))
+		var/obj/item/big_ammo_box/big_ammo_box = I
+		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
+			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
+			if(big_ammo_box.ammo_type == shotgun_shell_box.default_ammo)
+				while(big_ammo_box.current_rounds >= shotgun_shell_box.max_rounds)
+					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
+						break
+					big_ammo_box.current_rounds -= shotgun_shell_box.max_rounds
+				user?.balloon_alert(user, "shells organized")
+				return
+
+	return ..()
+
+/obj/machinery/vending/nanoammo/get_acid_delay()
+	return 10 SECONDS	// Acid application time is 1 second without this, way too short for a tadpole item
+
+/obj/machinery/vending/nanoammo/malfunction()
+	// Randomizes which product is deleted (not dispensed, to avoid client lag) and does not break on malfunction
+	var/random_product = rand(1, product_records.len)
+	for(var/i in product_records)	// i is unused, this just ensures we don't have an infinite loop on an empty vendor
+		var/datum/vending_product/record = product_records[random_product]
+		if(record.amount > 0)
+			record.amount = 0
+			src.visible_message(span_danger("All of the [record.product_name] get lost in the malfunction!"))
+			break
+		random_product = (random_product % product_records.len) + 1
+
+/obj/machinery/vending/nanoammo/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	. = ..()
+	if (.)	// The parent proc does not allow vending machines to take integrity damage from slashes due to not calling the grandparent proc
+		attack_generic(xeno_attacker, damage_amount, damage_type, armor_type, FALSE, armor_penetration)
+		return TRUE
+
+/obj/machinery/vending/nanoblood
+	name = "\improper NanoBlood"
+	desc = "Wall-mounted blood dispenser. Holds more than you'll need. Hopefully."
+	product_slogans = "" //silent for no spam
+	icon_state = "wallblood"
+	icon_vend = "wallblood-vend"
+	icon_deny = "wallblood-deny"
+	density = FALSE
+	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	products = list(
+		/obj/item/reagent_containers/blood/APlus = 5,
+		/obj/item/reagent_containers/blood/AMinus = 5,
+		/obj/item/reagent_containers/blood/BPlus = 5,
+		/obj/item/reagent_containers/blood/BMinus = 5,
+		/obj/item/reagent_containers/blood/OPlus = 5,
+		/obj/item/reagent_containers/blood/OMinus = 5,
+		/obj/item/reagent_containers/blood/empty = 10,
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/obj/machinery/vending/nanoblood/Initialize(mapload, ndir)
+	. = ..()
+	setDir(ndir ? ndir : dir)
+
+/obj/machinery/vending/nanoblood/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_z = -14
+		if(SOUTH)
+			pixel_z = 26
+		if(EAST)
+			pixel_w = -19
+		if(WEST)
+			pixel_w = 21
+
 /obj/machinery/vending/security
 	name = "\improper SecTech"
 	desc = "A security equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	slogan_delay = 6 MINUTES
+	product_slogans = "Crack capitalist skulls!;\
+	eat some heads in!;\
+	Don't forget - harm is good!;\
+	Your weapons are right here.;\
+	Handcuffs!;\
+	Freeze, scumbag!;\
+	Don't tase me bro!;\
+	Tase them, bro.;\
+	Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	icon_vend = "sec-vend"
@@ -431,8 +763,10 @@
 /obj/machinery/vending/hydronutrients
 	name = "\improper NutriMax"
 	desc = "A plant nutrients vendor."
-	//product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
-	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
+	slogan_delay = 2 MINUTES
+	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;\
+	Now with 50% less stink!;\
+	Plants are people too!"
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
 	icon_vend = "nutri-vend"
@@ -451,8 +785,10 @@
 /obj/machinery/vending/hydroseeds
 	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
-	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
-	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
+	slogan_delay = 2 MINUTES
+	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;\
+	Hands down the best seed selection on the station!;\
+	Also certain mushroom varieties available, more for experts! Get certified today!"
 	icon_state = "seeds"
 	icon_deny = "seeds-deny"
 	icon_vend = "seeds-vend"
@@ -503,9 +839,9 @@
 	name = "\improper MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
-	//product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
 	vend_reply = "Have an enchanted evening!"
-	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
+	product_slogans = "Sling spells the proper way with MagiVend!;\
+	Be your own Houdini! Use MagiVend!"
 	products = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/clothing/suit/wizrobe = 1,
@@ -518,7 +854,14 @@
 /obj/machinery/vending/dinnerware
 	name = "\improper Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
-	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
+	slogan_delay = 6 MINUTES
+	product_slogans = "Mm, food stuffs!;\
+	Food and food accessories.;\
+	Get your plates!;\
+	You like forks?;\
+	I like forks.;\
+	Woo, utensils.;\
+	You don't really need these..."
 	icon_state = "dinnerware"
 	icon_vend = "dinnerware-vend"
 	icon_deny = "dinnerware-deny"
@@ -539,7 +882,12 @@
 	name = "BODA"
 	desc = "An old sweet water vending machine,how did this end up here?"
 	icon_state = "sovietsoda"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	slogan_delay = 3 MINUTES
+	product_slogans = "For Tsar and Country.;\
+	Have you fulfilled your nutrition quota today?;\
+	Very nice!;\
+	We are simple people, for this is all we eat.;\
+	If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda = 30,
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola = 20,
@@ -581,6 +929,7 @@
 
 /obj/machinery/vending/engivend/nopower/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	product_slogans = ""
 
 //This one's from bay12
 /obj/machinery/vending/robotics

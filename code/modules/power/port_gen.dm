@@ -219,7 +219,7 @@
 			return
 		else if(O.tool_behaviour == TOOL_SCREWDRIVER)
 			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-			O.play_tool_sound(src)
+			O.play_tool_sound(src, 100)
 			if(machine_stat & PANEL_OPEN)
 				to_chat(user, span_notice("You open the access panel."))
 			else

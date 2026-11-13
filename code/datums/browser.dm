@@ -39,6 +39,7 @@
 
 /datum/browser/Destroy(force, ...)
 	user = null
+	ref = null
 	return ..()
 
 /datum/browser/proc/add_head_content(nhead_content)
@@ -226,7 +227,11 @@
 	var/datum/browser/modal/alert/A = new(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
 	A.open()
 	A.wait()
-	switch(A.selectedbutton)
+	if(QDELETED(A))
+		return
+	var/selected = A.selectedbutton
+	qdel(A)
+	switch(selected)
 		if(1)
 			return Button1
 		if(2)
@@ -278,7 +283,7 @@
 
 
 /datum/browser/modal/proc/wait()
-	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
+	while (!QDELETED(src) && opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
 		stoplag(1)
 
 

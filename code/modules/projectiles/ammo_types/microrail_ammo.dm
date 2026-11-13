@@ -17,7 +17,7 @@
 	///How many bonus projectiles to generate. New var so it doesn't trigger on firing
 	var/bonus_projectile_quantity = 5
 
-/datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
@@ -70,11 +70,9 @@
 //submunitions for micro grenades
 /datum/ammo/bullet/micro_rail_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	accuracy_var_low = 5
-	accuracy_var_high = 5
-	max_range = 7
+	accuracy_variation = 5
 	damage = 20
 	penetration = 20
 	sundering = 3
@@ -82,18 +80,19 @@
 	max_range = 7
 	shell_speed = 3
 
-/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.5)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 5
 	sundering = 1.5
 	max_range = 6
 
-/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 0.4 SECONDS, slowdown = 0.2)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
@@ -101,13 +100,13 @@
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	if(prob(40))
 		drop_flame(target_turf)
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
-	icon_state = "bullet"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	sound_hit = SFX_BALLISTIC_HIT
 	sound_armor = SFX_BALLISTIC_ARMOR
@@ -131,7 +130,7 @@
 	var/explosion_range = 2
 
 ///handles the actual bomblet detonation
-/datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
+/datum/ammo/micro_rail_cluster/proc/detonate(turf/T, atom/movable/projectile/proj)
 	playsound(T, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(0, T, rand(1,2))
@@ -144,28 +143,28 @@
 				var/mob/living/living_target = target
 				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
 					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_userdanger("you are hit by the bomblet blast!"))
-				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
-				staggerstun(living_target, P, stagger = stagger_amount, slowdown = slow_amount)
+				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE, attacker = proj.firer)
+				staggerstun(living_target, proj, stagger = stagger_amount, slowdown = slow_amount)
 			else if(isobj(target))
 				var/obj/obj_victim = target
 				obj_victim.take_damage(explosion_damage, BRUTE, BOMB)
 
-/datum/ammo/micro_rail_cluster/on_leave_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/on_leave_turf(turf/target_turf, atom/movable/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
 	var/detonate_probability = min(proj.distance_travelled * 4, 16)
 	if(prob(detonate_probability))
 		proj.proj_max_range = proj.distance_travelled
 
-/datum/ammo/micro_rail_cluster/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	detonate(get_turf(target_mob), proj)
 
-/datum/ammo/micro_rail_cluster/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	detonate(get_turf(target_obj), proj)
 
-/datum/ammo/micro_rail_cluster/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
-/datum/ammo/micro_rail_cluster/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
 /datum/ammo/smoke_burst
@@ -186,22 +185,22 @@
 	///radius this smoke will encompass
 	var/smokeradius = 1
 
-/datum/ammo/smoke_burst/drop_nade(turf/T)
+/datum/ammo/smoke_burst/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(smokeradius, T, rand(5,9))
+	playsound(target_turf, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, target_turf, rand(5,9))
 	smoke.start()
 
-/datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, obj/projectile/proj)
+/datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
 
-/datum/ammo/smoke_burst/on_hit_obj(obj/target_obj, obj/projectile/proj)
+/datum/ammo/smoke_burst/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
 	drop_nade(target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : get_turf(target_obj))
 
-/datum/ammo/smoke_burst/on_hit_turf(turf/target_turf, obj/projectile/proj)
+/datum/ammo/smoke_burst/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/smoke_burst/do_at_max_range(turf/target_turf, obj/projectile/proj)
+/datum/ammo/smoke_burst/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/smoke_burst/tank

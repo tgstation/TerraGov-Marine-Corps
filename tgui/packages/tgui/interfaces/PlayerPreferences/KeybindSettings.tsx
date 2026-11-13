@@ -59,7 +59,12 @@ export const KeybindSettings = (props) => {
         />
       )}
       <Box>
-        Search: <Input onInput={(_e, value) => setFilter(value)} />
+        <Input
+          autoFocus
+          expensive
+          placeholder="Search..."
+          onChange={setFilter}
+        />
       </Box>
       <Stack>
         <Stack.Item grow>
@@ -146,6 +151,12 @@ export const KeybindSettings = (props) => {
               <h3>Items</h3>
             </LabeledList.Item>
             {all_keybindings['ITEM']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
+            <LabeledList.Item>
+              <h3>Vehicles</h3>
+            </LabeledList.Item>
+            {all_keybindings['VEHICLE']
               ?.filter(filterSearch)
               .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
             <LabeledList.Item>

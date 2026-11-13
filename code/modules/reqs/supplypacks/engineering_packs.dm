@@ -121,10 +121,17 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 200
 
-/datum/supply_packs/engineering/teleporter
-	name = "Teleporter pads"
+/datum/supply_packs/engineering/teleporter_pair
+	name = "Teleporter pads x2"
+	notes = "Contains a pair of pre-linked teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
-	cost = 500
+	cost = 350
+
+/datum/supply_packs/engineering/teleporter_single
+	name = "Teleporter pad x1"
+	notes = "Contains a single replacement teleporter pad"
+	contains = list(/obj/item/teleporter_kit)
+	cost = 225
 
 /datum/supply_packs/engineering/tesla_turret
 	name = "Tesla turret"

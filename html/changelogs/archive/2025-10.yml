@@ -1,0 +1,136 @@
+2025-10-01:
+  Lumipharon:
+  - bugfix: fixedsome minor visual issues with barricades
+  - bugfix: fixed offsets and layering when first buckling to vehicles
+  - qol: NPC's are less likely to get stuck on obstacles in certain circumstances
+  - bugfix: fixed SH-410 projectiles being invisible
+  - bugfix: fixed SH-410 bouncy ammo bouncing without any limit
+2025-10-02:
+  00ze-cyclone:
+  - bugfix: fixed laser carbine inhand sprite
+2025-10-03:
+  Lumipharon:
+  - bugfix: fixed a minor visual issue with hover vehicle hover animations
+  - bugfix: fixed NPC medics sometimes remotely healing or moving mid heal
+  - code_imp: Improved NPC medic code
+  Xander3359:
+  - code_imp: remove ismovableatom
+2025-10-04:
+  Lumipharon:
+  - bugfix: fixed some NPC related runtimes
+  - bugfix: fixed old job/outfit related bugs
+  - admin: Spawned NPC squads will be assigned to their correct factions
+  - balance: Added the heavy motorbike for future campaign use
+  - soundadd: Better hit sounds for flora
+  - qol: Hover bike sounds at a higher pitch than the hovertank
+  - bugfix: fixed the hover tank being silent
+  - bugfix: If NPC's cannot path to a goal node after repeated attempts, they will
+      now simply ignore it instead of getting stuck in place
+  - qol: You don't scream on fire tiles if you have very high fire resist
+  Neocloudy:
+  - spellcheck: 'Checked over many, many balloon alerts in the codebase to improve
+      their quality or replace them with other forms of feedback. Please see PR #18304
+      for details.'
+2025-10-05:
+  Lumipharon:
+  - qol: 'Campaign: You can no longer place C4 onto friendly objectives'
+  - code_imp: Cleaned up some C4 code
+  Scav:
+  - rscdel: Deleted LZ1 landing on Bluemoon Crash
+2025-10-06:
+  Neocloudy:
+  - spellcheck: 'Checked over many more balloon alerts to improve their quality. Please
+      see PR #18322 for details.'
+  Runian:
+  - bugfix: Razorwire now only counts as a structure built for statistics if it was
+      successfully built rather than attempted.
+2025-10-07:
+  Lumipharon:
+  - bugfix: fixed NPC's sometimes getting stuck after removing shrapnel
+  - bugfix: fixed a beam harddel
+  - bugfix: 'Campaign: Fixed TGMC shotgun belt whitelist'
+  - bugfix: fixed NPC's not moving if they are on top of their target
+  Neocloudy:
+  - rscadd: "Death messages are now emotes. In addition to appearing in chat, they\
+      \ will appear in runechat if you have runechat emotes on. Emote death messages\
+      \ are visible to everyone with line of sight to the person dying\u2014even if\
+      \ a potential viewer is also dying."
+  - qol: Custom emotes will not have their pronouns replaced anymore, so you can emote
+      with others and not have their pronouns replaced with yours.
+  Runian:
+  - rscadd: 6 more mutations for Ravager.
+  - rscadd: Ravage now causes the turfs it hits to shake to help better visualize
+      what was affected by it.
+  - balance: Ravage now hits in a cone rather than rectangle. Only impacts Bloodthirster
+      who may have super long Ravages.
+  - balance: 'Mutations: Little More''s critical/death threshold now scales at 30/40/50
+      from 20/35/50.'
+  - balance: 'Mutations: Recurring Rage''s cooldown duration scales at 60/50/40% from
+      90/80/70%.'
+  - bugfix: 'Mutations: Deep Slash''s armor penetration now correctly affects things
+      that aren''t humans.'
+2025-10-08:
+  Atropos:
+  - balance: Crash autodoc is now 2 times faster
+  Joe13413:
+  - balance: Decreased the ammo capacity of the laser pistols standard fire mode to
+      20, from 30.
+  Lumipharon:
+  - balance: KTLD goggles no longer work when scoped
+  - bugfix: Probably fixed sticky movement from TGUI windows
+  - code_imp: Updated TGUI-core
+  - balance: SH-410 removed from normal gameplay
+  - balance: MP-19 has 30 round mags again
+  Scav:
+  - balance: Increased vendor AG nade count on crash to 25
+  blackdav123:
+  - balance: Pyrogen now has higher plasma costs, but receives plasma when slashing
+      marines or consuming firestacks with Fire Charge.
+2025-10-13:
+  Lumipharon:
+  - bugfix: fixed overhead do_after icons not appearing in many cases
+  - imageadd: 'Campaign: Palmaria is visible from space'
+  - qol: Buttons now layer over mobs
+  - bugfix: fixed vegetation sounds not working properly
+  breadhunt:
+  - rscadd: You can now punch punching bags
+2025-10-15:
+  Lumipharon:
+  - bugfix: fixed the observer menu showing blank in some cases
+  - bugfix: a variety of jobs will now correctly display their icon in the observer
+      menu
+  Runian:
+  - bugfix: 'Mutations: Enhanced Strength now correctly sets/increases your Fling
+      distance as Warrior.'
+2025-10-21:
+  Atropos:
+  - qol: Dylovene autoinjectors now inject 3 u by default
+  DaTruRiZZoB:
+  - bugfix: Fixed pointing while dead/incapacitated
+2025-10-23:
+  Lumipharon:
+  - admin: Fixed the job panel breaking if the gamemode fails to start 1 or more times
+2025-10-27:
+  Runian:
+  - bugfix: Ejecting out of an autodoc's automatic mode before it starts no longer
+      runtimes / breaks.
+2025-10-28:
+  Lumipharon:
+  - bugfix: fixed NPC's throwing grenades when they don't have a clear path
+  - bugfix: weather doesnt run on old campaign mission z levels
+  - qol: The crashed ship on Crash will show up on the minimap now
+  - qol: Windows appear on the minimap also
+  - rscadd: Added bloom effects to emissives
+  - bugfix: Vehicle lights can actually turn off and on
+  - bugfix: Stops floor emissives layering over things they shouldn't
+2025-10-30:
+  DaTruRiZZoB:
+  - qol: Sets SMES input/output to max by default
+  Joe13413, Lumipharon, harusha:
+  - rscadd: Added a new campaign mission, TGMC airfield. SoM must assault an airbase
+      defended by the TGMC, and destroy the fighters and the airstrip itself.
+  Lumipharon:
+  - bugfix: fixed minimap trackers not updating when a minimap is redrawn
+  - bugfix: NPC's will fight back when attacked while healing or doing similar tasks
+  - code_imp: mob attackers are properly tracked through the damage procs
+  - bugfix: fixed an autofire runtime

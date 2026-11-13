@@ -57,7 +57,7 @@ img.icon {
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: middle;
-	background-color: crimson;
+	background-color: #dc143c;
 	border-radius: 10px;
 }
 

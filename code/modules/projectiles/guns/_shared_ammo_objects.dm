@@ -33,6 +33,7 @@
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landing),
+		COMSIG_XENOMORPH_ATTACK_TURF = PROC_REF(on_xeno_attack),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
@@ -105,7 +106,7 @@
 		return
 	burn_ticks -= EXTINGUISH_AMOUNT
 	if(burn_ticks <= 0)
-		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20)
+		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 		qdel(src)
 		return
 	update_appearance(UPDATE_ICON)
@@ -144,9 +145,25 @@
 	SIGNAL_HANDLER
 	affect_atom(jumper)
 
+///Xeno attack interaction with this fire
+/obj/fire/proc/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	SIGNAL_HANDLER
+	return
+
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
 	return
+
+///Reduces fire duration or level
+/obj/fire/proc/reduce_fire(duration = 1, level = 0)
+	if(duration <= 0 && level <= 0)
+		return
+	burn_ticks -= duration
+	burn_level -= level
+	if(burn_ticks > 0 && burn_level > 0)
+		update_appearance(UPDATE_ICON)
+	else
+		qdel(src)
 
 /////////////////////////////
 //      FLAMER FIRE        //
@@ -165,6 +182,27 @@
 	if(burn_level <= 0)
 		qdel(src)
 		return PROCESS_KILL
+
+/obj/fire/flamer/on_xeno_attack(datum/source, mob/living/carbon/xenomorph/xeno_attacker)
+	if(xeno_attacker.a_intent != INTENT_HELP)
+		return
+	if(xeno_attacker.do_actions)
+		return
+	if(xeno_attacker.incapacitated())
+		return
+
+	xeno_attacker.changeNext_move(xeno_attacker.xeno_caste.attack_delay)
+	burn_ticks -= 10
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire!"), \
+		span_warning("We try to put out the fire!"), null, 5)
+	if(burn_ticks > 0)
+		update_appearance(UPDATE_ICON)
+		return
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire!"), \
+		span_notice("We extinguished the fire."), null, 5)
+	qdel(src)
 
 ///////////////////////////////
 //        MELTING FIRE       //
@@ -191,26 +229,29 @@
 	if(isvehicle(affected))
 		var/obj/vehicle/ghost_rider = affected
 		ghost_rider.take_damage(burn_level / 2, BURN, ACID)
-		return TRUE
+		return
 	if(!ishuman(affected))
-		return FALSE
+		return
 	var/mob/living/carbon/human/human_affected = affected
 	if(human_affected.stat == DEAD)
-		return FALSE
+		return
 	if(human_affected.status_flags & (INCORPOREAL|GODMODE))
-		return FALSE
+		return
 	if(human_affected.pass_flags & PASS_FIRE)
-		return FALSE
+		return
 	if(human_affected.soft_armor.getRating(FIRE) >= 100)
 		to_chat(human_affected, span_warning("You are untouched by the flames."))
-		return FALSE
-	var/datum/status_effect/stacking/melting_fire/debuff = human_affected.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		return
+	handle_human(human_affected)
+
+/// Handles everything that should be done to the human whom is affected by the fire.
+/obj/fire/melting_fire/proc/handle_human(mob/living/carbon/human/affected_human)
+	var/datum/status_effect/stacking/melting_fire/debuff = affected_human.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
 		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	else
-		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
-	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
-	return TRUE // For shattering fire
+		affected_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
+	affected_human.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
 
 ///////////////////////////////
 //        SHATTERING FIRE    //
@@ -222,10 +263,21 @@
 	icon_state = "violet_1"
 	flame_color = "violet"
 
-/obj/fire/melting_fire/shattering/affect_atom(atom/affected)
-	. = ..()
-	if(.) // parent proc only returns true if it applies its effects to a human, so affected must be a human, ergo no type validation needed
-		var/mob/living/carbon/human/victim = affected
-		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
+/obj/fire/melting_fire/shattering/handle_human(mob/living/carbon/human/affected_human)
+	..()
+	affected_human.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
 
+/obj/fire/melting_fire/melting_acid
+	name = "melting acid fire"
+	desc = "Cold to the touch, it burns in more ways than one."
+	icon_state = "green_1"
+	flame_color = "green"
 
+/obj/fire/melting_fire/melting_acid/handle_human(mob/living/carbon/human/affected_human)
+	// In sum, it is acid-based and can't be put out like fire. Discounting armor, better than melting at very-low (1-2) and very-high (22-30).
+	var/datum/status_effect/stacking/melting_acid/debuff = affected_human.has_status_effect(STATUS_EFFECT_MELTING_ACID)
+	if(debuff)
+		debuff.add_stacks(1)
+	else
+		affected_human.apply_status_effect(STATUS_EFFECT_MELTING_ACID, 1)
+	affected_human.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, ACID, updating_health = TRUE, max_limbs = 2)

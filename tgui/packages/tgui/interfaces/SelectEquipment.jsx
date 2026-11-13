@@ -1,4 +1,4 @@
-import { filter, map, sortBy, uniq } from 'common/collections';
+import { uniq } from 'common/collections';
 import {
   Box,
   Button,
@@ -8,7 +8,6 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
@@ -68,12 +67,13 @@ export const SelectEquipment = (props) => {
             <Stack fill vertical>
               <Stack.Item>
                 <Input
+                  expensive
                   width={20}
                   fluid
                   autoFocus
                   placeholder="Search"
                   value={searchText}
-                  onInput={(e, value) => setSearchText(value)}
+                  onChange={setSearchText}
                 />
               </Stack.Item>
               <Stack.Item>

@@ -260,7 +260,6 @@
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacity" = capacity,
 		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
 		"inputAttempt" = input_attempt,
@@ -406,8 +405,8 @@
 	outputting = initial(outputting)
 
 /obj/machinery/power/smes/preset
-	input_level = 180000
-	output_level = 100000
+	input_level = SMESMAXCHARGELEVEL
+	output_level = SMESMAXOUTPUT
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

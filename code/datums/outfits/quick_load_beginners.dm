@@ -573,7 +573,7 @@
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
-	gloves = /obj/item/healthanalyzer/gloves
+	gloves = /obj/item/clothing/gloves/healthanalyzer
 	mask = /obj/item/clothing/mask/gas/modular/coofmask
 	head = /obj/item/clothing/head/modular/m10x/antenna
 	r_pocket = /obj/item/storage/pouch/medkit/medic

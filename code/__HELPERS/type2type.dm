@@ -81,24 +81,22 @@
 			return SOUTHWEST
 
 
-//Converts an angle (degrees) into an ss13 direction
-/proc/angle2dir(degree)
-	degree = SIMPLIFY_DEGREES(degree + 22.5)
-	if(degree < 45)
-		return NORTH
-	if(degree < 90)
-		return NORTHEAST
-	if(degree < 135)
-		return EAST
-	if(degree < 180)
-		return SOUTHEAST
-	if(degree < 225)
-		return SOUTH
-	if(degree < 270)
-		return SOUTHWEST
-	if(degree < 315)
-		return WEST
-	return NORTH|WEST
+GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST))
+///Returns one of the 8 directions based on an angle
+#define angle2dir(X) (GLOB.modulo_angle_to_dir[round((((X%360)+382.5)%360)/45)+1])
+
+///Returns one of the 4 cardinal directions based on an angle
+/proc/angle2dir_cardinal(degree)
+	degree = SIMPLIFY_DEGREES(degree)
+	switch(round(degree, 0.1))
+		if(315.5 to 360, 0 to 45.5)
+			return NORTH
+		if(45.6 to 135.5)
+			return EAST
+		if(135.6 to 225.5)
+			return SOUTH
+		if(225.6 to 315.5)
+			return WEST
 
 //returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(D)
@@ -119,6 +117,8 @@
 			return 315
 		if(SOUTHWEST)
 			return 225
+		else
+			return null
 
 
 //Returns the angle in english

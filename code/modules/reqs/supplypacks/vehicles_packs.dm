@@ -78,6 +78,12 @@ VEHICLES
 	cost = 200
 	containertype = /obj/structure/closet/crate/weapon
 
+/datum/supply_packs/vehicles/uv_claw
+	name = "UV Claw module"
+	contains = list(/obj/item/uav_turret/claw)
+	cost = 50
+	containertype = /obj/structure/closet/crate/weapon
+
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo - 11x35mm"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
@@ -109,7 +115,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Dropship mounted TE-9001 heavy laser"
 	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
-	cost = 900
+	cost = 400
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Dropship mounted HSG-102 mounted heavy smartgun ammo"

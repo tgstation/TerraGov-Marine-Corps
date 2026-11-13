@@ -7,19 +7,12 @@
 
 @use '~tgui-core/styles/components/Button' as button;
 
-// Colors for obscured slots, based on Button.scss
-$button-gray: sass-color.adjust(
-  button.$color-default,
-  $lightness: -20%,
-  $space: hsl
-);
-$button-gray-hover: button.$color-default;
-$button-main: button.$color-default;
-$button-main-hover: sass-color.adjust(
-  button.$color-default,
-  $lightness: 15%,
-  $space: hsl
-);
+:root {
+  --button-gray: hsl(from var(--button-color) h s calc(l - 20));
+  --button-gray-hover: var(--button-color);
+  --button-main: var(--button-color);
+  --button-main-hover: hsl(from var(--button-color) h s calc(l + 15));
+}
 
 //Make columns have constant width, allowing buttons to cut off with ellipsis at the end
 .strip-menu-table {
@@ -32,8 +25,8 @@ $button-main-hover: sass-color.adjust(
   > td:first-child {
     border-image: linear-gradient(
         to right,
-        colors.$grey,
-        sass-color.adjust(colors.$grey, $alpha: -1, $space: rgb) 70%
+        var(--color-grey),
+        hsl(from var(--color-grey) h s calc(l - 30)) 70%
       )
       30;
     border-image-width: 1px 0 0 0;
@@ -44,8 +37,8 @@ $button-main-hover: sass-color.adjust(
   &.spacer + tr > td:first-child {
     border-image: linear-gradient(
         to right,
-        colors.$white,
-        sass-color.adjust(colors.$grey, $alpha: -1, $space: rgb) 80%
+        var(--color-white),
+        hsl(from var(--color-grey) h s calc(l - 20)) 80%
       )
       30;
     border-image-width: 1px 0 0 0;
@@ -68,7 +61,7 @@ $button-main-hover: sass-color.adjust(
 
   //Make unavailable (non-existing) slots have grayed out text
   &.unavailable > td:first-child {
-    @extend .color-grey;
+    --color-base: var(--color-grey);
   }
 
   //Give indented slots a fancy arrow and a bit of indentation
@@ -95,10 +88,10 @@ $button-main-hover: sass-color.adjust(
   &.obscured-hidden > td > div > div:first-child > .Button {
     background: repeating-linear-gradient(
       -45deg,
-      $button-gray,
-      $button-gray 5px,
-      $button-main 5px,
-      $button-main 10px
+      var(--button-grey),
+      var(--button-grey) 5px,
+      var(--button-main) 5px,
+      var(--button-main) 10px
     );
 
     transition: background 50ms;
@@ -115,10 +108,10 @@ $button-main-hover: sass-color.adjust(
     &:focus {
       background: repeating-linear-gradient(
         -45deg,
-        $button-gray-hover,
-        $button-gray-hover 5px,
-        $button-main-hover 5px,
-        $button-main-hover 10px
+        var(--button-grey-hover),
+        var(--button-grey-hover) 5px,
+        var(--button-main-hover) 5px,
+        var(--button-main-hover) 10px
       );
     }
   }

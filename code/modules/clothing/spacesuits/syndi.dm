@@ -1,9 +1,8 @@
 //Regular syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate
 	name = "red space helmet"
-	desc = "Top secret Spess Helmet."
-	icon_state = "syndicate"
 	desc = "Has a tag: Totally not property of an enemy corporation, honest."
+	icon_state = "syndicate"
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, FIRE = 15, ACID = 15)
 	siemens_coefficient = 0.6
 

@@ -45,7 +45,7 @@
 
 	if(istype(I, /obj/item/cell) && anchored)
 		if(istype(I, /obj/item/cell/night_vision_battery))
-			balloon_alert(user, "Not rechargeable")
+			balloon_alert(user, "can't be recharged!")
 			return
 
 		if(charging)
@@ -75,7 +75,7 @@
 
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		I.play_tool_sound(src)
 
 /obj/machinery/cell_charger/attack_hand(mob/living/user)
 	. = ..()

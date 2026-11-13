@@ -1,5 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/machinery/vending/nanoammo/directional/west,
 /obj/structure/coatrack,
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
@@ -37,7 +38,7 @@
 /obj/structure/bed/chair/dropship/pilot,
 /obj/structure/closet/crate/delta,
 /obj/item/book/manual/engineering_construction,
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	id = "minidropship_podlock";
 	name = "inner door-control"
 	},

@@ -56,12 +56,9 @@
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
-		var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		if(burning)
-			qdel(burning)
-		if(L.fire_stacks <= 0)
-			L.ExtinguishMob()
-
+		var/datum/status_effect/stacking/melting_fire/melting_fire = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			qdel(melting_fire)
 
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)
@@ -136,13 +133,13 @@
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.hallucination += 2
+	L.adjust_hallucination(2)
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-		L.dizzy(8)
+		L.adjust_dizziness(8)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -157,18 +154,18 @@
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","gasp","yawn"))
 	if(prob(2))
-		L.adjustDrowsyness(5)
+		L.adjust_drowziness(5)
 	return ..()
 
 /datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.3, TOX)
-	L.setDrowsyness(max(L.drowsyness, 5))
+	L.drowzy(5)
 
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
 		L.Sleeping(1 MINUTES)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 /datum/reagent/oxygen
 	name = "Oxygen"
@@ -218,6 +215,7 @@
 	reagent_state = LIQUID
 	color = "#484848" // rgb: 72, 72, 72
 	taste_multi = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/mercury/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
@@ -258,6 +256,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "chlorine"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/chlorine/on_mob_life(mob/living/L, metabolism)
 	L.take_limb_damage(0.5*effect_str, 0)
@@ -277,6 +276,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "acid"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/fluorine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(0.5*effect_str)
@@ -346,6 +346,7 @@
 	reagent_state = SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
 	L.apply_effect(effect_str/L.metabolism_efficiency, EFFECT_STAMLOSS)
@@ -390,6 +391,7 @@
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
 	L.apply_effect(1/L.metabolism_efficiency, EFFECT_STAMLOSS)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
@@ -423,6 +425,7 @@
 	taste_description = "gross metal"
 	///The effect creates when this reagent is splashed on the ground
 	var/effect_type = /obj/effect/decal/cleanable/liquid_fuel
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/fuel/reaction_turf(turf/T, volume)
 	if(volume <= 3 || !isfloorturf(T))
@@ -489,7 +492,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(2)
+	L.adjust_dizziness(2)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)
@@ -506,13 +509,14 @@
 	taste_description = "numbness"
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
-	L.jitter(-5)
+	L.adjust_jitter(-5)
 	if(prob(80))
 		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))
-		L.setDrowsyness(max(L.drowsyness, 3))
+		L.drowzy(3)
 	if(prob(10))
 		L.emote("drool")
 	return ..()
@@ -575,7 +579,7 @@
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 
-/datum/reagent/lipozine
+/datum/reagent/consumable/lipozine
 	name = "Lipozine" // The anti-nutriment.
 	description = "A chemical compound that causes a powerful fat-burning reaction."
 	reagent_state = LIQUID
@@ -583,8 +587,9 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "bitterness"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
-/datum/reagent/lipozine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/consumable/lipozine/on_mob_life(mob/living/L, metabolism)
 	if(!iscarbon(L))
 		return ..()
 	var/mob/living/carbon/C = L
@@ -609,6 +614,7 @@
 	name = "Sterilizine"
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 
 /datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)

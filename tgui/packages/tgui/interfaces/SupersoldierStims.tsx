@@ -134,7 +134,7 @@ const SequenceSelection = (_props) => {
         <Input
           fluid
           placeholder="New Cocktail"
-          onChange={(e, value) => act('new_sequence', { new_name: value })}
+          onChange={(value) => act('new_sequence', { new_name: value })}
         />
       </Stack.Item>
       {Object.keys(data.active_stimsets || {}).map((entryname) => (

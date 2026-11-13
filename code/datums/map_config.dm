@@ -22,6 +22,7 @@
 	var/list/environment_traits = list()
 	///Which disk sets this map has, key-value = name - weight for choosing.
 	var/list/disk_sets = list()
+	var/parallax_icon = ""
 	var/armor_style = "default"
 	var/quickbuilds = 1000
 	var/list/gamemodes = list()
@@ -99,6 +100,7 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	parallax_icon = json["parallax_icon"]
 	announce_text = json["announce_text"]
 
 	map_file = json["map_file"]

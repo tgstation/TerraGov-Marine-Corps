@@ -1,0 +1,3 @@
+#define TALLY_MORTAR  1
+#define TALLY_HOWITZER 2
+#define TALLY_ROCKET_ARTY 3

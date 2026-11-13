@@ -1,14 +1,15 @@
 //Takes care of organ & limb related updates, such as broken and missing limbs
 /mob/living/carbon/human/handle_organs()
 	. = ..()
+	//this has to still be handled in life due to how shock mod is reset each life tick()
+	var/datum/status_effect/stacking/drunkenness/current_drunkenness = is_drunk()
+	if(current_drunkenness)
+		reagent_shock_modifier += current_drunkenness.get_shock_modifier()
 
 	if(reagents && !CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
-		var/datum/internal_organ/liver/L
-		if(species?.has_organ["liver"])
-			L = get_organ_slot(ORGAN_SLOT_LIVER)
 		var/overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
-			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
+			reagents.metabolize(src, overdosable, !(!species?.has_organ[ORGAN_SLOT_LIVER] || get_organ_slot(ORGAN_SLOT_LIVER)))
 
 	if(species && !(species.species_flags & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
 		//Nutrition decrease
@@ -16,8 +17,6 @@
 			adjust_nutrition(-HUNGER_FACTOR)
 
 	var/leg_tally = 0
-
-	last_dam = getBruteLoss() + getFireLoss() + getToxLoss()
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.process()
@@ -27,7 +26,7 @@
 	for(var/i in limbs)
 		var/datum/limb/E = i
 
-		if((E.name in list("l_leg", "l_foot", "r_leg", "r_foot")) && !lying_angle) //Need to do this before checking need_process in order to catch missing limbs
+		if((E.name in list(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)) && !lying_angle) //Need to do this before checking need_process in order to catch missing limbs
 			if(!E.is_usable() || E.is_malfunctioning() || E.is_broken())
 				leg_tally++			//let it fail even if just foot&leg
 
@@ -36,7 +35,7 @@
 
 		E.process(multi_limb_regen_penalty)
 
-		if(!lying_angle && world.time - last_move_time < 15)
+		if(!lying_angle && world.time - last_move_time < 1.5 SECONDS)
 			if(E.is_broken() && E.internal_organs && prob(15))
 				var/datum/internal_organ/I = pick(E.internal_organs)
 				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)

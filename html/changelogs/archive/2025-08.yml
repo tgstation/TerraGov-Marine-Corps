@@ -1,0 +1,148 @@
+2025-08-01:
+  Runian:
+  - bugfix: 'Mutations: Rallying Cry no longer causes Queen''s Screech to permanently
+      grant movement speed to other xenomorphs.'
+  - balance: 'Mutations: Brittle Upclose loses its bonus bullet armor against projectiles
+      at pointblank range.'
+  - balance: 'Mutations: Breathtaking Spin''s damage has been decreased by 0.5x at
+      all ranks.'
+  - balance: 'Mutations: Ingrained Evasion''s accuracy threshold has been reduced
+      from 100% to 75%, making it significantly easier for accuracy-focused weapons
+      to bypass evasion.'
+  - balance: 'Mutations: Gaseous Blood''s cooldown has been increased 3 seconds at
+      all ranks. The emitted gas now lasts 4 seconds from 10 seconds.'
+  - balance: 'Mutations: Toxic Claws injects 1 unit more of Neurotoxin at all ranks.'
+  - balance: 'Mutations: Panic Gas and Wide Gas now emits Neurotoxin gas that is significantly
+      easier to see through, but also extinguishes fire.'
+  - balance: 'Mutations: Slow and Steady is now 0.2s faster at all ranks.'
+  - balance: 'Mutations: Borrowed Time now applies a movement speed modifier of 0.9
+      while it is active.'
+2025-08-02:
+  Atropos:
+  - balance: Removed bluespace generator from the game
+  Runian:
+  - rscadd: Shrike now has 3 new mutations that they can purchase if their hive has
+      enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  - code_imp: The signal for throw impacts is now sent first. This is a change from
+      the signal from throw ending happening first and then throw impacts second.
+  - rscadd: Humans thrown by Oppressor's Advance, Dislocate, or Tail Lash will now
+      scream and create a visual effect when they hit a wall.
+  - rscadd: Oppressor now has 3 new mutations that they can purchase if their hive
+      has enough biomass and mutation structures. Not accessible without admin intervention
+      for now.
+  Scav:
+  - rscadd: Added snack vendors to canterbury and bigbury
+  - rscdel: Removed one quick loadout vendor from canterbury and bigbury
+2025-08-03:
+  Lumipharon:
+  - balance: 'Campaign: Supply Depot missions have a 30 second delay before the attackers
+      can deploy'
+  Raven-Industries:
+  - bugfix: fixed campaign loadout UI at high screen scaling
+  blackdav123:
+  - rscadd: Minions now spawn on crash.
+2025-08-06:
+  Scav:
+  - qol: Rearranged the positions of two vendors and the shower in canter medical
+2025-08-09:
+  Scav:
+  - bugfix: Re-added a light fixture in canter medical
+  mudzbe:
+  - rscadd: Automated loadout vendors in specialist and leader rooms on sulaco
+2025-08-14:
+  Runian:
+  - rscadd: Mutations is now enabled and can be obtained without admin intervention
+      in Nuclear War.
+  - rscadd: 3 new structures in Hive Blessings that allows xenomorphs to access and
+      empower their mutations.
+2025-08-16:
+  blackdav123:
+  - bugfix: Fixed an area on Vapor Processing
+2025-08-20:
+  Atropos:
+  - admin: Vent crawling (entering, exiting) is now logged (view round logs)
+  Runian:
+  - bugfix: 'Mutations: Envenomed correctly checks for and uses plasma.'
+  - rscadd: Boiler now has 6 more new mutations that they can purchase.
+  - balance: 'Mutations: Staggered Panic now scales at 7/5/3 stored globs, changed
+      from 7/5/3 stored globs.'
+  - imageadd: Sprites for Ozelomelyn, Hemodile, and Sanguinal boiler globs.
+  - bugfix: King's Petrify now goes on cooldown if any xenomorphs affected by it were
+      given armor.
+  - rscadd: Carrier now has 5 more new mutations that they can purchase.
+  - spellcheck: Carrier's ability "Drop All Facehuggers" has been renamed to "Carrier
+      Panic".
+  - rscadd: 4 more mutations for Sentinel.
+  - balance: 'Mutations: Toxic Blood is in the Veil category and scales at 80/60/40
+      damage taken. This is changed from Shell and 100/75/50 damage taken.'
+  - balance: Drain Sting's knockdown / Drain Surge now accounts for bonus potency
+      from mutations.
+2025-08-21:
+  Joe13413:
+  - balance: The acid maw now can no longer be placed in deep caverns. The acid maws
+      price has been reduced from 1200 to 1000.
+  Runian:
+  - balance: 'Mutations: Burst Healing now gives additional maximum health healing
+      to Transfusion of 8/12/16%, changed from 7.5/15/22.5%. Slightly better early,
+      but scales much less.'
+  - balance: 'Mutations: Burst Healing now increases Transfusion''s plasma cost by
+      50/75/100% instead of a constant 100%.'
+2025-08-22:
+  Joe13413:
+  - balance: Extended the areas of shallow caves on Desparity, Kutjevo Refinery, Magmoor
+      Digsite, Meridian Riptide, and Slumbridge.
+2025-08-23:
+  blackdav123:
+  - balance: Crash now has more xenos with a 2:5 xeno to marine ratio instead of the
+      prior 1:3. This means xenos get their 3rd and 4th larva at 8 and 10 marines
+      instead of 10 and 12.
+  - balance: SSD and DNR marines no longer count for larva on crash. Keep fighting
+      to make a comeback!
+  - balance: The xeno respawn timer has been removed. You can now spawn as soon as
+      there is a burrowed available.
+2025-08-25:
+  blackdav123:
+  - imageadd: Ported new parallax sprites from RU. Enjoy the new map specific space
+      backgrounds.
+2025-08-26:
+  ChaikaCherry:
+  - balance: MBX and 12 gauge tracker shells damage raised to 40 and 90 respectively.
+  - balance: Ranges are both now 15
+  - balance: the status effect lasts for 60 seconds and drips every 3 seconds, leaving
+      same number of drops.
+  - balance: both had AP lowered from 100 to something reasonable.
+  jonash07:
+  - balance: Conqueror's hp 800 -> 650
+  - balance: Conqueror's dash cd 3.5s -> 4.5s
+  revelation-8468:
+  - rscdel: Disables Dragon, Mech Pilot, and Armoured Crewman
+  - balance: Removes Dragon, MP, and AC from Nuclear War
+2025-08-27:
+  Lumipharon:
+  - bugfix: fixed NPC's occasionally getting stuck trying to pick up items they are
+      already carrying
+  Runian:
+  - code_imp: Removes unused variable from boiler abilities and xenomorph abilities.
+  - spellcheck: 'Mutations: Neurotoxin Swap''s description now has the conjunction
+      "and" that it was missing.'
+  - spellcheck: 'Mutations: Telefrag''s description now uses the correct duration
+      to display as seconds.'
+2025-08-29:
+  Atropos:
+  - bugfix: fixed recipes not appearing on some materials (eg. wood, iron, glass)
+  TheRealMrN, Atropos:
+  - rscadd: Added a new map, Blue Moon
+2025-08-31:
+  Lumipharon:
+  - bugfix: Acid barricade upgrades no longer give far more resist than intended
+  Runian:
+  - rscadd: 8 more mutations for Shrike.
+  - rscdel: 'Mutations: Stand-In Recycler has been removed.'
+  - balance: Psychic Fling only kills facehuggers in hand if the target was a human.
+  - balance: 'Mutations: Lone Healer no longer increases cooldown duration for Psychic
+      Cure.'
+  - bugfix: You can no longer infinitely stack armor on barricades by upgrading when
+      you're not suppose to.
+  STUPIDFUCKER12345:
+  - balance: "Removed the ability to build the xenomorph Maw\n\U0001F191"

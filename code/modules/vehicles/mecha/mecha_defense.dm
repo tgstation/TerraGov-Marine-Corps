@@ -60,7 +60,7 @@
 	user.visible_message(span_danger("[user] hits [src]. Nothing happens."), null, null, COMBAT_MESSAGE_RANGE)
 	log_message("Attack by hand/paw (no damage). Attacker - [user].", LOG_MECHA, color="red")
 
-/obj/vehicle/sealed/mecha/bullet_act(obj/projectile/proj, def_zone, piercing_hit) //wrapper
+/obj/vehicle/sealed/mecha/bullet_act(atom/movable/projectile/proj, def_zone, piercing_hit) //wrapper
 	var/known_firer = key_name(proj.firer)
 	if(known_firer)
 		known_firer += " fired by [known_firer]"
@@ -154,7 +154,7 @@
 	if(time_left)
 		disable_time += time_left
 		deltimer(emp_timer)
-	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
+	emp_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, emp_restore)), disable_time, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 
@@ -163,9 +163,8 @@
 	if(enclosed || mecha_flags & SILICON_PILOT)
 		return
 	for(var/mob/living/cookedalive AS in occupants)
-		if(cookedalive.fire_stacks < 5)
-			cookedalive.adjust_fire_stacks(1)
-			cookedalive.IgniteMob()
+		if(cookedalive.amount_burning() < 5)
+			cookedalive.adjust_burning(1)
 
 /obj/vehicle/sealed/mecha/lava_act()
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -277,7 +276,7 @@
 	if(.)
 		try_damage_component(., user.zone_selected)
 
-/obj/vehicle/sealed/mecha/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/mecha/wrench_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(construction_state == MECHA_SECURE_BOLTS)
@@ -288,7 +287,7 @@
 		construction_state = MECHA_SECURE_BOLTS
 		to_chat(user, span_notice("You tighten the securing bolts."))
 
-/obj/vehicle/sealed/mecha/crowbar_act(mob/living/user, obj/item/I)
+/obj/vehicle/sealed/mecha/crowbar_act(mob/user, obj/item/tool)
 	..()
 	. = TRUE
 	if(construction_state == MECHA_LOOSE_BOLTS)
@@ -299,8 +298,8 @@
 		construction_state = MECHA_LOOSE_BOLTS
 		to_chat(user, span_notice("You close the hatch to the power unit."))
 
-/obj/vehicle/sealed/mecha/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
+/obj/vehicle/sealed/mecha/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 100, 4 SECONDS, 0, SKILL_ENGINEER_ENGI, 2, 4 SECONDS)
 
 /obj/vehicle/sealed/mecha/proc/full_repair(charge_cell)
 	obj_integrity = max_integrity

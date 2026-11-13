@@ -237,7 +237,7 @@ export const MechAssembly = (props) => {
                 fluid
                 placeholder={'Mech name'}
                 value={selected_name}
-                onChange={(e, value) => act('set_name', { new_name: value })}
+                onChange={(value) => act('set_name', { new_name: value })}
               />
             </Stack.Item>
             <Stack.Item>

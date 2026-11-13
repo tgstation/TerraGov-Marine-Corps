@@ -67,7 +67,7 @@
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 
-	var/list/msg = list("")
+	var/list/msg = list()
 	// Round ID
 	if(GLOB.round_id)
 		msg += "<b>Round ID:</b> [GLOB.round_id]"
@@ -91,4 +91,4 @@
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
 		msg += "Server tools version: [version.raw_parameter]"
-	to_chat(src, msg.Join("<br>"))
+	to_chat(src, fieldset_block("Server Revision Info", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)

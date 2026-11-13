@@ -27,7 +27,7 @@ ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEG
 		create_mob_html = replacetext(create_mob_html, "Create Object", "Create Mob")
 		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
 
-	var/datum/browser/browser = new(user, "create_mob", "<div align='center'>Create Mob</div>", 425, 475)
+	var/datum/browser/browser = new(user, "create_mob", "<div align='center'>Create Mob</div>", 425, 500)
 	browser.set_content(create_panel_helper(create_mob_html))
 	browser.open()
 
@@ -52,7 +52,7 @@ ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEG
 		create_object_html = file2text('html/browser/create_object.html')
 		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	var/datum/browser/browser = new(user, "create_object", "<div align='center'>Create Object</div>", 425, 475)
+	var/datum/browser/browser = new(user, "create_object", "<div align='center'>Create Object</div>", 425, 500)
 	browser.set_content(create_panel_helper(create_object_html))
 	browser.open()
 
@@ -74,7 +74,7 @@ ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEG
 		html_form = replacetext(html_form, "null /* object types */", "\"[objectjs]\"")
 		create_object_forms[path] = html_form
 
-	var/datum/browser/browser = new(user, "qco[path]", "<div align='center'>Quick Create Object</div>", 425, 475)
+	var/datum/browser/browser = new(user, "qco[path]", "<div align='center'>Quick Create Object</div>", 425, 500)
 	browser.set_content(create_panel_helper(html_form))
 	browser.open()
 
@@ -91,6 +91,6 @@ ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEG
 		create_turf_html = replacetext(create_turf_html, "Create Object", "Create Turf")
 		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
 
-	var/datum/browser/browser = new(user, "create_turf", "<div align='center'>Create Turf</div>", 425, 475)
+	var/datum/browser/browser = new(user, "create_turf", "<div align='center'>Create Turf</div>", 425, 500)
 	browser.set_content(create_panel_helper(create_turf_html))
 	browser.open()

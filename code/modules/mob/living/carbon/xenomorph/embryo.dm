@@ -92,7 +92,7 @@
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
 		var/mob/living/carbon/C = affected_mob
 		C.med_hud_set_status()
-		affected_mob.jitter(stage * 5)
+		affected_mob.adjust_jitter(stage * 5)
 
 	switch(stage)
 		if(2)
@@ -113,7 +113,7 @@
 					affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
 												span_danger("You start shaking uncontrollably!"))
 					affected_mob.Unconscious(20 SECONDS)
-					affected_mob.jitter(105)
+					affected_mob.adjust_jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
@@ -172,7 +172,7 @@
 	victim.Unconscious(40 SECONDS)
 	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
 								span_danger("You feel something ripping up your insides!"))
-	victim.jitter(300)
+	victim.adjust_jitter(300)
 
 	victim.emote_burstscream()
 

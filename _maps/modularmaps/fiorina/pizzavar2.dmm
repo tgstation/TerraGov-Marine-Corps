@@ -1,0 +1,414 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"b" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/space_heater{
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/turf/open/floor/prison/blue{
+	dir = 10
+	},
+/area/fiorina/station/power_ring)
+"c" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"d" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/toy/deck,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"e" = (
+/turf/open/floor/prison/blue{
+	dir = 9
+	},
+/area/fiorina/station/power_ring)
+"f" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/chem_dispenser,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"g" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/tool/kitchen/rollingpin,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"i" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/space)
+"j" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/tool/kitchen/utensil/knife{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/snacks/tomatomeat{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/snacks/tomatomeat{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/tomatomeat{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/prison/blue{
+	dir = 6
+	},
+/area/fiorina/station/power_ring)
+"k" = (
+/obj/structure/table/reinforced/prison,
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/obj/item/tool/kitchen/knife/butcher,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"l" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"m" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"n" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"p" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"q" = (
+/obj/item/tool/kitchen/rollingpin,
+/obj/effect/ai_node,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"r" = (
+/turf/open/floor/prison/blue{
+	dir = 8
+	},
+/area/fiorina/station/power_ring)
+"s" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"t" = (
+/turf/open/floor/prison/blue{
+	dir = 5
+	},
+/area/fiorina/station/power_ring)
+"u" = (
+/turf/open/floor/prison/blue{
+	dir = 4
+	},
+/area/fiorina/station/power_ring)
+"v" = (
+/obj/structure/window/framed/prison/reinforced,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"w" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/oob)
+"x" = (
+/obj/machinery/reagentgrinder{
+	pixel_y = 10
+	},
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"z" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/power_ring)
+"A" = (
+/turf/open/floor/prison/blue{
+	dir = 1
+	},
+/area/fiorina/station/power_ring)
+"B" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/box/cups{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/storage/box/cups,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"C" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/reagent_containers/food/snacks/hugemushroomslice{
+	pixel_y = 3
+	},
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"D" = (
+/obj/item/stool,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/blue{
+	dir = 8
+	},
+/area/fiorina/station/power_ring)
+"E" = (
+/obj/machinery/gibber,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"F" = (
+/obj/item/stack/sandbags,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"G" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"H" = (
+/obj/item/reagent_containers/food/snacks/burger/xeno,
+/obj/item/reagent_containers/food/snacks/burger/xeno,
+/obj/item/reagent_containers/food/snacks/burger/xeno,
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"I" = (
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"J" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"K" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"L" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"M" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/prison,
+/area/fiorina/station/power_ring)
+"N" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"O" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/blue{
+	dir = 4
+	},
+/area/fiorina/station/power_ring)
+"P" = (
+/obj/structure/lattice,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/fiorina/oob)
+"Q" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/misc/trash{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"S" = (
+/obj/effect/decal/cleanable/blood/writing{
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/blood/writing{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/blood/writing{
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/prison/kitchen,
+/area/fiorina/station/power_ring)
+"T" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"U" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/smartfridge/drinks{
+	pixel_y = 10
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/power_ring)
+"W" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"X" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/power_ring)
+"Y" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/soup/tomatosoup,
+/turf/open/floor/prison/blue,
+/area/fiorina/station/power_ring)
+
+(1,1,1) = {"
+z
+U
+d
+G
+p
+z
+s
+T
+T
+T
+"}
+(2,1,1) = {"
+v
+e
+D
+r
+r
+r
+r
+r
+b
+w
+"}
+(3,1,1) = {"
+v
+A
+X
+n
+B
+f
+N
+J
+Y
+w
+"}
+(4,1,1) = {"
+v
+t
+O
+u
+u
+u
+O
+u
+j
+w
+"}
+(5,1,1) = {"
+z
+l
+I
+a
+z
+M
+s
+W
+T
+T
+"}
+(6,1,1) = {"
+z
+k
+L
+C
+W
+m
+F
+H
+T
+i
+"}
+(7,1,1) = {"
+z
+x
+S
+c
+W
+K
+q
+H
+T
+i
+"}
+(8,1,1) = {"
+z
+E
+g
+Q
+T
+w
+w
+w
+T
+i
+"}
+(9,1,1) = {"
+T
+T
+w
+T
+T
+i
+i
+i
+P
+i
+"}

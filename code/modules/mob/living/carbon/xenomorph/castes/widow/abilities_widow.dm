@@ -2,12 +2,8 @@
 // *********** Resin building
 // ***************************************
 /datum/action/ability/activable/xeno/secrete_resin/widow
-	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/turf/closed/wall/resin/regenerating/special/bulletproof,
-		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
@@ -23,13 +19,16 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 125
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_SPIT_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
 	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(xeno_owner))
+	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
 
 	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
 	newspit.def_zone = xeno_owner.get_limbzone_target()
@@ -49,8 +48,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 250
 	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LEASH_BALL_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
@@ -60,7 +62,7 @@
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
 	leash_ball.hivenumber = xeno_owner.hivenumber
-	var/obj/projectile/newspit = new (get_turf(xeno_owner))
+	var/atom/movable/projectile/newspit = new (get_turf(xeno_owner))
 
 	newspit.generate_bullet(leash_ball)
 	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
@@ -103,7 +105,7 @@
 		leash_victims += victim
 	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
 		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
-		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		beams += beam(snared_victim, icon_state = "beam_web", time = INFINITY, max_distance = INFINITY)
 		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
@@ -128,14 +130,30 @@
 /obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
-	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
-		return
+	if(HAS_TRAIT(xeno_attacker, TRAIT_WEB_PULLER))
+		xeno_attacker.balloon_alert(xeno_attacker, "pulling...")
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts to pull in the leashes from \the [src]!"), \
+			span_xenonotice("We grab hold of all of the leashes from \the [src]..."))
+		if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_DANGER) || QDELETED(src))
+			return
+		xeno_attacker.balloon_alert(xeno_attacker, "yanked!")
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
+			span_xenonotice("We yank all the leashes from \the [src]!"))
+		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
+		for(var/mob/living/carbon/human/human_mob in leash_victims)
+			if(human_mob.stat == DEAD || human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			human_mob.throw_at(src, get_dist(src, human_mob), 2, xeno_attacker)
+			human_mob.Paralyze(0.5 SECONDS)
+	else
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
+			span_xenonotice("We start to tear down \the [src]."))
+		if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
+			return
+		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
+			span_xenonotice("We pull down \the [src]."))
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
-	span_xenonotice("We tear down \the [src]."))
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity)
 
 // ***************************************
@@ -165,7 +183,7 @@
 	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 5
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
-/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/create_spiderling/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -277,7 +295,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = ABILITY_USE_BURROWED
+	use_state_flags = ABILITY_USE_BURROWED|ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/burrow/action_activate()
 	. = ..()
@@ -292,7 +310,7 @@
 	succeed_activate()
 
 /// Burrow code for xenomorphs
-/datum/action/ability/xeno_action/burrow/proc/xeno_burrow()
+/datum/action/ability/xeno_action/burrow/proc/xeno_burrow(datum/source, damage_amount, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(xeno_owner, TRAIT_BURROWED))
 		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))
@@ -311,6 +329,7 @@
 	xeno_owner.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
+	xeno_owner.get_up()
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/ability/xeno_action/burrow/proc/xeno_burrow_doafter()
@@ -423,7 +442,7 @@
 		owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
 	else
 		owner.balloon_alert(owner, "We're full, no charges gained!")
-	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE)
+	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
 
@@ -437,8 +456,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 200
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_HOOK_SELECT,
 	)
 	//ref to beam for web hook
 	var/datum/beam/web_beam
@@ -464,7 +486,7 @@
 
 /datum/action/ability/activable/xeno/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
-	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
+	web_beam = owner.beam(web_hook, icon_state = "beam_web", override_origin_pixel_x = 0)
 	RegisterSignals(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
 	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()

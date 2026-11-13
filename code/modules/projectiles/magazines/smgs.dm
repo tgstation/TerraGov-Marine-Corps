@@ -40,7 +40,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
 	icon_state_mini = "mag_smg"
-	max_rounds = 45
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
@@ -54,6 +54,12 @@
 	max_rounds = 80
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"
+
+/obj/item/ammo_magazine/smg/standard_smg/ap
+	name = "\improper SMG-90 submachine gun AP magazine (10x20mm)"
+	desc = "A 10x20mm AP caseless submachine gun magazine."
+	icon_state = "t90_ap"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 //-------------------------------------------------------
 //SMG-45 SMG ammo
@@ -74,7 +80,21 @@
 	desc = "A .41 AE caseless submachinegun magazine that does a minituare explosion upon contact, will shred the armor off of basically anything."
 	default_ammo = /datum/ammo/bullet/smg/squash
 	icon_state = "t45_sh"
+	icon_state_mini = "mag_heavy_smg_yellow"
 	bonus_overlay = "t45_mag_sh"
+
+//-------------------------------------------------------
+//RA-VAL, PMC SMG
+
+/obj/item/ammo_magazine/smg/val
+	name = "\improper RA-VAL magazine (9x39mm)"
+	desc = "A 9x39mm submachinegun magazine."
+	default_ammo = /datum/ammo/bullet/smg/val
+	caliber = CALIBER_9X39
+	icon_state = "val"
+	max_rounds = 50
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "mag_heavy_smg"
 
 //-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.
@@ -97,7 +117,7 @@
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_smg_dark"
 	max_rounds = 20 //Can also be 10.
 
 
@@ -232,4 +252,4 @@
 	icon_state = "ppsh_ext"
 	max_rounds = 55
 	w_class = WEIGHT_CLASS_SMALL
-	icon_state_mini = "mag_heavy_smg"
+	icon_state_mini = "mag_drum_yellow"

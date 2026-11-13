@@ -218,11 +218,11 @@
 	if(internal_beaker)
 		return
 	if(!istype(I, /obj/item/reagent_containers/glass/beaker))
-		balloon_alert(user, "Cannot insert")
+		balloon_alert(user, "not a beaker!")
 		return
 	user.transferItemToLoc(I, src)
 	internal_beaker = I
-	balloon_alert(user, "Adds beaker")
+	balloon_alert(user, "beaker added")
 
 /obj/machinery/gibber/apc/interact(mob/user)
 	. = ..()
@@ -239,6 +239,6 @@
 
 /obj/machinery/gibber/apc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(HAS_TRAIT(grab.grabbed_thing, TRAIT_MAPSPAWNED))
-		balloon_alert(user, "bad meat")
+		balloon_alert(user, "bad meat!")
 		return FALSE
 	return ..()

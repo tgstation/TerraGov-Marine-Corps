@@ -172,7 +172,6 @@ export const backendReducer = (state = initialState, action) => {
 };
 
 export const backendMiddleware = (store) => {
-  let fancyState;
   let suspendInterval;
 
   return (next) => (action) => {
@@ -213,23 +212,6 @@ export const backendMiddleware = (store) => {
         'is-visible': false,
       });
       setTimeout(() => focusMap());
-    }
-
-    if (type === 'backend/update') {
-      const fancy = payload.config?.window?.fancy;
-      // Initialize fancy state
-      if (fancyState === undefined) {
-        fancyState = fancy;
-      }
-      // React to changes in fancy
-      else if (fancyState !== fancy) {
-        logger.log('changing fancy mode to', fancy);
-        fancyState = fancy;
-        Byond.winset(Byond.windowId, {
-          titlebar: !fancy,
-          'can-resize': !fancy,
-        });
-      }
     }
 
     // Resume on incoming update
@@ -348,39 +330,37 @@ const chunkSplitter = {
  */
 export const sendAct = (action: string, payload: object = {}) => {
   // Validate that payload is an object
-  // prettier-ignore
-  const isObject = typeof payload === 'object'
-    && payload !== null
-    && !Array.isArray(payload);
+  const isObject =
+    typeof payload === 'object' && payload !== null && !Array.isArray(payload);
   if (!isObject) {
     logger.error(`Payload for act() must be an object, got this:`, payload);
     return;
   }
-  if (!Byond.TRIDENT) {
-    const stringifiedPayload = JSON.stringify(payload);
-    const urlSize = Object.entries({
+
+  const stringifiedPayload = JSON.stringify(payload);
+  const urlSize = Object.entries({
+    type: 'act/' + action,
+    payload: stringifiedPayload,
+    tgui: 1,
+    windowId: Byond.windowId,
+  }).reduce(
+    (url, [key, value], i) =>
+      url +
+      `${i > 0 ? '&' : '?'}${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+    '',
+  ).length;
+  if (urlSize > 2048) {
+    let chunks: string[] = stringifiedPayload.split(chunkSplitter);
+    const id = `${Date.now()}`;
+    globalStore?.dispatch(backendCreatePayloadQueue({ id, chunks }));
+    Byond.sendMessage('oversizedPayloadRequest', {
       type: 'act/' + action,
-      payload: stringifiedPayload,
-      tgui: 1,
-      windowId: Byond.windowId,
-    }).reduce(
-      (url, [key, value], i) =>
-        url +
-        `${i > 0 ? '&' : '?'}${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      '',
-    ).length;
-    if (urlSize > 2048) {
-      let chunks: string[] = stringifiedPayload.split(chunkSplitter);
-      const id = `${Date.now()}`;
-      globalStore?.dispatch(backendCreatePayloadQueue({ id, chunks }));
-      Byond.sendMessage('oversizedPayloadRequest', {
-        type: 'act/' + action,
-        id,
-        chunkCount: chunks.length,
-      });
-      return;
-    }
+      id,
+      chunkCount: chunks.length,
+    });
+    return;
   }
+
   Byond.sendMessage('act/' + action, payload);
 };
 
@@ -396,7 +376,6 @@ type BackendState<TData> = {
     window: {
       key: string;
       size: [number, number];
-      fancy: BooleanLike;
       locked: BooleanLike;
       scale: BooleanLike;
     };

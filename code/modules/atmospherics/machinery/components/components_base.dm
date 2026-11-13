@@ -53,7 +53,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/update_layer()
-	layer = (showpipe ? initial(layer) : ABOVE_WEEDS_LAYER) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
+	layer = (showpipe ? initial(layer) : EXPOSED_ATMOS_LAYER) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)

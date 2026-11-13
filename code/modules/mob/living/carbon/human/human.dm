@@ -1,6 +1,7 @@
 /mob/living/carbon/human/Initialize(mapload)
 	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
+	set_jump_component()
 	if(!species)
 		set_species()
 
@@ -27,7 +28,6 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	AddElement(/datum/element/strippable, GLOB.strippable_human_items, GLOB.strippable_human_layout)
 	AddComponent(/datum/component/anti_juggling)
-	set_jump_component()
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
@@ -68,8 +68,10 @@
 	//and display them
 	add_to_all_mob_huds()
 
-	GLOB.huds[DATA_HUD_BASIC].add_hud_to(src)
-	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
+	var/datum/atom_hud/basic_hud = GLOB.huds[DATA_HUD_BASIC]
+	basic_hud.add_hud_to(src)
+	var/datum/atom_hud/heart_hud = GLOB.huds[DATA_HUD_XENO_HEART]
+	heart_hud.add_to_hud(src)
 
 /mob/living/carbon/human/register_init_signals()
 	. = ..()
@@ -168,7 +170,7 @@
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 		adjust_ear_damage(ear_damage_amount * bomb_armor_ratio, ear_damage_amount * 4 * bomb_armor_ratio)
 	adjust_stagger(stagger_amount * bomb_armor_ratio)
-	add_slowdown(slowdown_amount * bomb_armor_ratio)
+	slowdown(slowdown_amount * bomb_armor_ratio)
 
 	#ifdef DEBUG_HUMAN_ARMOR
 	to_chat(world, "DEBUG EX_ACT: bomb_armor_ratio: [bomb_armor_ratio], b_loss: [b_loss], f_loss: [f_loss]")
@@ -180,15 +182,15 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
-		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
+		M.emote("me", EMOTE_TYPE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 25, 1)
+			playsound(loc, M.attack_sound, 25, 1, MEDIUM_SOUND_RANGE)
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		dam_zone = ran_zone(dam_zone)
-		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE)
+		apply_damage(M.melee_damage, BRUTE, dam_zone, MELEE, updating_health = TRUE, attacker = M)
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -252,24 +254,21 @@
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	var/obj/item/card/id/id_card = get_active_held_item()
-	if(!id_card) //If there is no id, check the other hand
+	if(!istype(id_card)) // If there is no id, check the other hand.
 		id_card = get_inactive_held_item()
-
-	if(istype(id_card, /obj/item/storage/wallet))
-		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
 
 	if(istype(id_card) && hand_first)
 		return id_card
 
 	if(wear_id)
 		id_card = wear_id
-	else if(belt)
+	else if(belt && isidcard(belt))
 		id_card = belt
 
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
-		id_card = W.front_id
+		if(W.front_id)
+			id_card = W.front_id
 
 	return istype(id_card) ? id_card : null
 
@@ -605,14 +604,11 @@
 			to_chat(usr, span_warning("[src] is too far away."))
 			return
 
-		for(var/datum/data/record/medical_record in GLOB.datacore.medical)
-			if(!(medical_record.fields["name"] == real_name))
-				continue
-			if(medical_record.fields["last_scan_time"] && medical_record.fields["last_scan_result"])
-				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-				popup.set_content(medical_record.fields["last_scan_result"])
-				popup.open(FALSE)
-			break
+		var/datum/data/record/medical_record = find_medical_record(src)
+		if(isnull(medical_record))
+			return
+		var/datum/historic_scan/scan = medical_record.fields["historic_scan"]
+		scan.ui_interact(usr)
 
 	return ..()
 
@@ -696,7 +692,7 @@
 /mob/living/carbon/human/proc/play_xylophone()
 	visible_message(span_warning("[src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice("You begin to play a spooky refrain on your ribcage."),span_warning("You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-	playsound(loc, song, 25, 1)
+	playsound(loc, song, 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
@@ -803,7 +799,8 @@
 	reagents = R
 	R.my_atom = WEAKREF(src)
 
-	species.create_organs(src)
+	species.create_limbs(src, oldspecies)
+	species.create_organs(src, oldspecies)
 
 	dextrous = TRUE
 
@@ -929,6 +926,7 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
+	physique = gender
 	name = species.random_name(gender)
 	real_name = name
 	voice = random_tts_voice()
@@ -985,13 +983,13 @@
 				g_facial = 0
 				b_facial = 0
 
-		h_style = random_hair_style(gender)
+		h_style = random_hair_style(physique)
 
 		switch(pick("none", "some"))
 			if("none")
 				f_style = "Shaved"
 			if("some")
-				f_style = random_facial_hair_style(gender)
+				f_style = random_facial_hair_style(physique)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")
@@ -1078,12 +1076,12 @@
 	return TRUE
 
 
-/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
-	if(QDELETED(H?.camera) || oldloc == get_turf(src))
+/mob/living/carbon/human/do_camera_update(obj/item/radio/headset/mainship/headset)
+	if(QDELETED(headset?.camera))
 		return
 
-	var/datum/cameranet/net = H.camera.parent_cameranet
-	net.updatePortableCamera(H.camera)
+	var/datum/cameranet/net = headset.camera.parent_cameranet
+	net.updatePortableCamera(headset.camera)
 
 
 /mob/living/carbon/human/update_camera_location(oldloc)
@@ -1092,12 +1090,12 @@
 	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/mainship) || oldloc == get_turf(src))
 		return
 
-	var/obj/item/radio/headset/mainship/H = wear_ear
+	var/obj/item/radio/headset/mainship/headset = wear_ear
 
-	if(QDELETED(H.camera))
+	if(QDELETED(headset.camera))
 		return
 
-	addtimer(CALLBACK(src, PROC_REF(do_camera_update), oldloc, H), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_camera_update), headset), headset.camera.parent_cameranet.move_update_delay, TIMER_UNIQUE)
 
 
 /mob/living/carbon/human/get_language_holder()
@@ -1125,7 +1123,7 @@
 /mob/living/carbon/human/attack_ghost(mob/dead/observer/user)
 	if(!user.health_scan)
 		return FALSE
-	user.health_analyzer.analyze_vitals(src, user)
+	user.scanner_functionality.analyze_vitals(src, user)
 	return TRUE
 
 ///Checks if we have an AI behavior active

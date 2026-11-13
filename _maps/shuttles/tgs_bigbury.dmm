@@ -90,7 +90,7 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ay" = (
-/obj/machinery/autodoc,
+/obj/machinery/autodoc/crash,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "az" = (
@@ -249,22 +249,22 @@
 /area/shuttle/canterbury)
 "bc" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/surgical_tray,
-/obj/item/storage/firstaid/adv,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bd" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "be" = (
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	pixel_x = -1;
-	pixel_y = 8
-	},
+/obj/machinery/computer/camera_advanced/overwatch/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bg" = (
@@ -287,9 +287,6 @@
 /obj/machinery/door_control{
 	id = "port_umbilical_outer";
 	name = "outer door-control"
-	},
-/obj/structure/barricade/folding{
-	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
@@ -421,11 +418,6 @@
 	id = "starboard_umbilical_outer";
 	name = "outer door-control"
 	},
-/obj/structure/barricade/folding{
-	dir = 4;
-	is_wired = 1;
-	linked = 1
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "bD" = (
@@ -492,6 +484,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
+/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -510,6 +503,7 @@
 /obj/machinery/air_alarm{
 	dir = 1
 	},
+/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bT" = (
@@ -567,20 +561,11 @@
 /area/shuttle/canterbury)
 "fL" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"gv" = (
-/obj/structure/barricade/folding,
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "hc" = (
-/obj/structure/barricade/folding{
-	dir = 4;
-	is_wired = 1;
-	linked = 1
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "iy" = (
@@ -679,12 +664,6 @@
 /obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"pY" = (
-/obj/structure/barricade/folding{
-	dir = 8
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "qh" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -698,9 +677,12 @@
 	id = "Interior_Emergency_umbilical";
 	name = "Emergency door-control"
 	},
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
-/obj/item/storage/box/crate/sentry,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/small_stack,
+/obj/item/stack/sheet/plasteel/small_stack,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
+/obj/effect/landmark/sentry,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "qE" = (
@@ -857,6 +839,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "CA" = (
@@ -943,6 +926,10 @@
 	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
+"Mg" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "Mj" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -1022,6 +1009,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"SS" = (
+/obj/effect/landmark/corrupted_larva,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "TE" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal,
@@ -1038,6 +1029,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/landmark/zombie_vendor,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "Ui" = (
@@ -1049,6 +1041,7 @@
 /area/shuttle/canterbury)
 "Ul" = (
 /obj/machinery/vending/nanomed,
+/obj/effect/landmark/corrupted_larva,
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -1106,7 +1099,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Xb" = (
-/obj/structure/barricade/folding,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "aft_engine_podlock"
@@ -1199,10 +1191,10 @@ ay
 aq
 ay
 az
-aU
+aV
 vF
 Xf
-bc
+aU
 ap
 ag
 "}
@@ -1218,9 +1210,9 @@ Ui
 ac
 ab
 bi
-pY
-pY
-pY
+hc
+hc
+hc
 ab
 aS
 TE
@@ -1232,7 +1224,7 @@ aB
 aq
 aB
 az
-aV
+aW
 aA
 aA
 bd
@@ -1265,7 +1257,7 @@ aC
 aq
 aH
 az
-aW
+bc
 aA
 fL
 be
@@ -1347,7 +1339,7 @@ uu
 bN
 al
 FZ
-ac
+SS
 ab
 uZ
 an
@@ -1400,7 +1392,7 @@ Yn
 qE
 XO
 ac
-gv
+hc
 bW
 Uo
 "}
@@ -1433,7 +1425,7 @@ ac
 ac
 ac
 ac
-gv
+hc
 bW
 Uo
 "}
@@ -1466,7 +1458,7 @@ an
 an
 an
 an
-gv
+hc
 bW
 Uo
 "}
@@ -1499,7 +1491,7 @@ ac
 ac
 ac
 ac
-gv
+hc
 bW
 Uo
 "}
@@ -1661,7 +1653,7 @@ aX
 bA
 aT
 UO
-aX
+Mg
 Kk
 bA
 bg

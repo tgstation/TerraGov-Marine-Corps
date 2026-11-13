@@ -48,14 +48,15 @@
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
 
-	var/datum/trackable/track
-	///Selected order to give to marine
-	var/datum/action/innate/order/current_order
+	/// List of atoms that the AI's camera can quickly jump to through keys 1-9
+	VAR_FINAL/list/atom/cam_hotkeys = new/list(9)
+	/// The camera's last location before jumping
+	VAR_FINAL/atom/cam_prev
 
-	var/datum/action/innate/order/attack_order/send_attack_order = new
-	var/datum/action/innate/order/defend_order/send_defend_order = new
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
-	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/trackable/track
+	///Action for ordering marines around
+	var/datum/action/innate/order/selectable/order_action
+
 	var/datum/action/control_vehicle/control = new
 	var/datum/action/innate/squad_message/squad_message = new
 
@@ -124,20 +125,11 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
-	send_attack_order = new
-	send_defend_order = new
-	send_retreat_order = new
-	send_rally_order = new
+	order_action = new
 	control = new
 	squad_message = new
-	send_attack_order.target = src
-	send_attack_order.give_action(src)
-	send_defend_order.target = src
-	send_defend_order.give_action(src)
-	send_retreat_order.target = src
-	send_retreat_order.give_action(src)
-	send_rally_order.target = src
-	send_rally_order.give_action(src)
+	order_action.target = src
+	order_action.give_action(src)
 	control.give_action(src)
 	squad_message.give_action(src)
 
@@ -147,10 +139,7 @@
 	QDEL_NULL(track)
 	QDEL_NULL(mini)
 	QDEL_NULL(eyeobj)
-	QDEL_NULL(send_attack_order)
-	QDEL_NULL(send_defend_order)
-	QDEL_NULL(send_retreat_order)
-	QDEL_NULL(send_rally_order)
+	QDEL_NULL(order_action)
 	QDEL_NULL(control)
 	QDEL_NULL(squad_message)
 	return ..()
@@ -158,15 +147,15 @@
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
-	if(!current_order)
+	if(!order_action)
 		to_chat(src, span_warning("You have no order selected."))
 		return
-	current_order.send_order(target)
+	order_action.send_order(target)
 
 ///Set the current order
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
-	current_order = order
+	order_action = order
 
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
 /mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
@@ -262,7 +251,7 @@
 	var/list/obj/machinery/camera/visible = list()
 	for(var/datum/camerachunk/CC in eyeobj.visibleCameraChunks)
 		for(var/obj/machinery/camera/C in CC.cameras)
-			if(!C.can_use() || get_dist(C, eyeobj) > 7 || !C.internal_light)
+			if(!C.can_use() || get_dist(C, eyeobj) > 7 || !(C.camera_flags & CAMERA_AI_LIGHT))
 				continue
 			visible |= C
 
@@ -289,6 +278,27 @@
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
 
+/mob/living/silicon/ai/key_down(_key, client/user)
+	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
+		_key = _key[7] //strings, lists, same thing really
+	switch(_key)
+		if("`", "0")
+			if(cam_prev)
+				//ai_tracking_tool.reset_tracking()
+				eyeobj.setLoc(cam_prev)
+			return
+		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
+			_key = text2num(_key)
+			if(user.keys_held["Ctrl"]) //do we assign a new hotkey?
+				cam_hotkeys[_key] = eyeobj.loc
+				to_chat(src, "Location saved to Camera Group [_key].")
+				return
+			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
+				cam_prev = eyeobj.loc
+				//ai_tracking_tool.reset_tracking()
+				eyeobj.setLoc(cam_hotkeys[_key])
+				return
+	return ..()
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
 	if(!isturf(loc))
@@ -331,7 +341,7 @@
 	if(istype(new_eye, /obj/machinery/camera))
 		current = new_eye
 	if(client)
-		if(ismovableatom(new_eye))
+		if(ismovable(new_eye))
 			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
@@ -516,7 +526,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_SENDORDER,
 	)
 
-/datum/action/innate/squad_message/can_use_action()
+/datum/action/innate/squad_message/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))
@@ -567,7 +577,7 @@
 		var/generaldirection = "north"
 		if(istype(A, /obj/effect/xenomorph/acid)) //special check for acid
 			var/obj/effect/xenomorph/acid/pingedacid = A
-			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			playsound(M, 'sound/machines/beepalert.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			to_chat(M, span_alert("AI telemetry indicates that the <b>[pingedacid.acid_t]</b> which is <b>[newdistance]</b> units away at: [AREACOORD_NO_Z(A)] is <b> being melted</b>! by [pingedacid.name]!"))
 			return
 		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
@@ -585,9 +595,9 @@
 			else if(A.x - M.x >= 0 && A.y - M.y >= 0) //northeast
 				generaldirection = pick("northeast","north","east")
 
-			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			playsound(M, 'sound/machines/beepalert.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
 			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
 		else //if the receiver is outside AI_PING_RADIUS, give them a name and coords
-			playsound(M, 'sound/machines/twobeep.ogg', 20)
+			playsound(M, 'sound/machines/twobeep.ogg', 20, FALSE, MEDIUM_SOUND_RANGE)
 			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))

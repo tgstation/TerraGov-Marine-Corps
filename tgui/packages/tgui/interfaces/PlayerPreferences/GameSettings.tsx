@@ -197,13 +197,6 @@ export const GameSettings = (props) => {
                 tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
-                label="TGUI Window Mode"
-                value="tgui_fancy"
-                action="tgui_fancy"
-                leftLabel={'Fancy (default)'}
-                rightLabel={'Compatible (slower)'}
-              />
-              <ToggleFieldPreference
                 label="TGUI Window Placement"
                 value="tgui_lock"
                 action="tgui_lock"
@@ -276,6 +269,14 @@ export const GameSettings = (props) => {
                 action="toggle_clickdrag"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle Xeno Move Intent Keybind"
+                value="toggle_xeno_move_intent_keybind"
+                action="toggle_xeno_move_intent_keybind"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Toggles whether the Toggle Move Intent keybind works when you are a xeno."
               />
             </LabeledList>
           </Section>

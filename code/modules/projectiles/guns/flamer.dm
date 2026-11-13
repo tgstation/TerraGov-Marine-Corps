@@ -55,9 +55,6 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
-	light_range = 0.1
-	light_power = 0.1
-	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Max resin wall penetration in tiles.
@@ -81,7 +78,7 @@
 	///Damage multiplier for mobs caught in the initial stream of fire.
 	var/mob_flame_damage_mod = 2
 	///how wide of a cone the flamethrower produces on wide mode.
-	var/cone_angle = 55
+	var/cone_angle = 60
 
 /obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
@@ -122,10 +119,8 @@
 		return
 	if(light)
 		ENABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, TRUE)
 	else
 		DISABLE_BITFIELD(flamer_features_flags, FLAMER_IS_LIT)
-		turn_light(null, FALSE)
 	playsound(src, CHECK_BITFIELD(flamer_features_flags, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
 	if(CHECK_BITFIELD(flamer_features_flags, FLAMER_NO_LIT_OVERLAY))
@@ -143,12 +138,6 @@
 	lit_overlay.pixel_z += lit_overlay_offset_y
 	. += lit_overlay
 
-/obj/item/weapon/gun/flamer/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
-
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
 	if(!.)
@@ -158,24 +147,24 @@
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/do_fire(atom/movable/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
-	var/old_turfs = list(get_turf(src))
-	var/range = flame_max_range
 	var/start_location = get_turf(src)
 	var/current_target = get_turf(target)
+	var/old_turfs = list(start_location)
+
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
 			var/path_to_target = get_line(start_location, current_target) //todo: use get_traversal_line and change recursive_flame_straight to use get_dist_euclidean for range
 			path_to_target -= start_location
-			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
+			recursive_flame_straight(1, old_turfs, path_to_target, flame_max_range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_cone(get_turf(src), range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
-			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
+			var/list/turf/turfs_to_ignite = generate_cone(start_location, flame_max_range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
+			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, flame_max_range, current_target, start_location, flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
 	return TRUE
@@ -197,7 +186,9 @@
 		turf_to_check = path_to_target[iteration - 1]
 	if(LinkBlocked(turf_to_check, path_to_target[iteration], PASS_AIR|PASS_XENO)) //checks if it's actually possible to get to the next tile in the line
 		return
-	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
+	if(turf_to_check.density)
+		if(!(turf_to_check.allow_pass_flags & PASS_FIRE))
+			return
 		walls_penetrated -= 1
 	//how many resin walls we've penetrated check
 	if(walls_penetrated <= 0)
@@ -221,7 +212,9 @@
 	for(var/turf/turf AS in turfs_to_ignite)
 		if(get_dist(turf, flame_source) == iteration)
 			//Checks if turf is resin wall
-			if(turf.density && istype(turf, /turf/closed/wall/resin))
+			if(turf.density)
+				if(!(turf.allow_pass_flags & PASS_FIRE))
+					break
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
 			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
@@ -242,8 +235,8 @@
 		return FALSE
 
 	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flamer_features_flags, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
-	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
-	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
+	var/burn_level = initial(loaded_ammo.burn_level) * burn_level_mod
+	var/burn_time = initial(loaded_ammo.burn_time) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
@@ -281,8 +274,7 @@
 					log_combat(user, human_caught, "flamed", src)
 
 		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), BURN, FIRE, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
-		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
-		mob_caught.IgniteMob()
+		mob_caught.adjust_burning(rand(5, (burn_level * mob_flame_damage_mod)))
 
 		var/burn_message = "Augh! You are roasted by the flames!"
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_userdanger(burn_message))
@@ -312,8 +304,8 @@
 	)
 	lit_overlay_icon_state = "v62_lit"
 	lit_overlay_offset_x = 0
-	flame_max_range = 8
-	cone_angle = 40
+	flame_max_range = 7
+	cone_angle = 45
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/som
 	allowed_ammo_types = list(
@@ -422,7 +414,7 @@
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/weapon/gun/flamer/hydro_cannon)
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(atom/movable/projectile/projectile_to_fire)
 	if(!target)
 		return
 	if(gun_user?.skills.getRating(SKILL_COMBAT) < 0)
@@ -461,20 +453,20 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
+/turf/proc/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
 	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
-		var/new_fire_level = min(fire_lvl + old_fire.burn_ticks, fire_lvl * 2)
-		var/new_burn_level = min(burn_lvl + old_fire.burn_level, burn_lvl * 1.5)
+		var/new_fire_level = min(burn_time + old_fire.burn_ticks, burn_time * 2)
+		var/new_burn_level = min(burn_level + old_fire.burn_level, burn_level * 1.5)
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new fire_type(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new fire_type(src, burn_time, burn_level, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
-/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/open/floor/plating/ground/snow/ignite(burn_time, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
 	if(slayer > 0)
 		slayer -= 1
 		update_appearance()
@@ -544,10 +536,36 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 			continue
 		if(isliving(relevant_atom))
 			var/mob/living/mob_caught = relevant_atom
-			mob_caught.ExtinguishMob()
+			mob_caught.extinguish_mob()
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, dir)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
 	return
 
 #undef FLAMER_WATER
+
+/obj/item/weapon/gun/flamer/vsd
+	name = "\improper CC/21 flamer"
+	desc = "The CC/21 flamer, a new design made by CrashCore and is truly a sight to behold. For its heavy duty look, it makes up for it with its firepower. Canister fed and fueled by X-fuel."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "c21"
+	worn_icon_state = "c21"
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_SHOWS_LOADED
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	lit_overlay_icon_state = "c21_lit"
+	lit_overlay_offset_x = 0
+	flame_max_range = 8
+	cone_angle = 45
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/vsd
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/vsd
+	)
+	attachable_offset = list("rail_x" = 11, "rail_y" = 25, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20, "under_x" = 24, "under_y" = 15)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flamer_nozzle/wide,
+	)

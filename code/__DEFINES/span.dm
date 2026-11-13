@@ -7,8 +7,6 @@
 #define span_alert(str) ("<span class='alert'>" + str + "</span>")
 #define span_alertalien(str) ("<span class='alertalien'>" + str + "</span>")
 #define span_alien(str) ("<span class='alien'>" + str + "</span>")
-#define span_announce_body(str) ("<span class='announce_body'>" + str + "</span>")
-#define span_announce_header(str) ("<span class='announce_header'>" + str + "</span>")
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_avoidharm(str) ("<span class='avoidharms'>" + str + "</span>")
 #define span_bad(str) ("<span class='bad'>" + str + "</span>")

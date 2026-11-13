@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Pointing in held objects will now actually show what is being pointed at above your head"

@@ -24,8 +24,8 @@
 		cut_overlay(atvcover)
 	return ..()
 
-/obj/vehicle/ridden/atv/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
+/obj/vehicle/ridden/atv/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/atv/obj_break()
 	START_PROCESSING(SSobj, src)
@@ -40,7 +40,7 @@
 	smoke.set_up(0, src)
 	smoke.start()
 
-/obj/vehicle/ridden/atv/bullet_act(obj/projectile/proj)
+/obj/vehicle/ridden/atv/bullet_act(atom/movable/projectile/proj)
 	if(prob(50) || !buckled_mobs)
 		return ..()
 	for(var/mob/buckled_mob AS in buckled_mobs)

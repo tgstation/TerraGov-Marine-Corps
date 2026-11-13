@@ -4,37 +4,37 @@
 	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with facepaint!"
 	icon = 'icons/obj/items/cosmetics.dmi'
 	icon_state = "camo"
-	var/colour = "green"
+	var/paint_color = "green"
 	w_class = WEIGHT_CLASS_TINY
 	var/uses = 100
 
 /obj/item/facepaint/green
-	name = "green customization kit"
-	colour = "green"
+	name = "Green customization kit"
+	paint_color = "green"
 	icon_state = "green_camo"
 
 
 /obj/item/facepaint/brown
-	name = "brown customization kit"
-	colour = "brown"
+	name = "Brown customization kit"
+	paint_color = "brown"
 	icon_state = "brown_camo"
 
 /obj/item/facepaint/black
-	name = "black customization kit"
-	colour = "black"
+	name = "Black customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with eye black!"
+	paint_color = "black"
 	icon_state = "black_camo"
 
 /obj/item/facepaint/sniper
 	name = "Fullbody customization kit"
-	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with fullbody paint!"
-	colour = "full"
+	paint_color = "full"
 	icon_state = "full_camo"
 
 
 /obj/item/facepaint/attack(mob/M, mob/user)
 	. = ..()
 	if(!ishuman(M))
-		to_chat(user, span_warning("Foiled!"))
+		to_chat(user, span_warning("This doesn't have a human face..."))
 		return
 
 	var/mob/living/carbon/human/attacked_human = M
@@ -57,7 +57,7 @@
 		return //In case they're passed as null.
 	user.visible_message(span_notice("[user] carefully applies [src] on [H]'s face."), \
 						span_notice("You apply [src]."))
-	H.makeup_style = colour
+	H.makeup_style = paint_color
 	H.alpha = max(0, initial(H.alpha) - 1) // decreases your alpha by 1
 	H.update_body()
 	uses--

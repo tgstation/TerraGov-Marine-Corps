@@ -201,7 +201,6 @@
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 	// Tgui options
-	READ_FILE(S["tgui_fancy"], tgui_fancy)
 	READ_FILE(S["tgui_lock"], tgui_lock)
 	READ_FILE(S["ui_scale"], ui_scale)
 	READ_FILE(S["tgui_input"], tgui_input)
@@ -275,9 +274,8 @@
 	see_chat_non_mob = sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes = sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
-	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
-	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
-	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_lock = sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(ui_scale, FALSE, TRUE, initial(ui_scale))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -358,9 +356,8 @@
 	see_chat_non_mob = sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes = sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
-	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
-	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
-	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_lock = sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(ui_scale, FALSE, TRUE, initial(ui_scale))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -426,7 +423,6 @@
 	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 	// Tgui options
-	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
 	WRITE_FILE(S["ui_scale"], ui_scale)
 	WRITE_FILE(S["tgui_input"], tgui_input)
@@ -480,6 +476,7 @@
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["random_name"], random_name)
 	READ_FILE(S["gender"], gender)
+	READ_FILE(S["physique"], physique)
 	READ_FILE(S["age"], age)
 	READ_FILE(S["species"], species)
 	READ_FILE(S["ethnicity"], ethnicity)
@@ -539,6 +536,7 @@
 	real_name = reject_bad_name(real_name, TRUE)
 	random_name = sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
 	gender = sanitize_gender(gender, TRUE, TRUE)
+	physique = sanitize_gender(physique, FALSE, FALSE, USE_GENDER)
 	age = sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species = sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity = sanitize_ethnicity(ethnicity)
@@ -552,7 +550,8 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	gear = sanitize_islist(gear, default = list(), check_valid = TRUE, possible_input_list = GLOB.gear_datums)
-	if(gender == MALE)
+	var/physique_to_check = get_physique()
+	if(physique_to_check == MALE)
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
 		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
@@ -630,6 +629,7 @@
 	real_name = reject_bad_name(real_name, TRUE)
 	random_name = sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender = sanitize_gender(gender, TRUE, TRUE)
+	physique = sanitize_gender(physique, FALSE, FALSE, USE_GENDER)
 	age = sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species = sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity = sanitize_ethnicity(ethnicity)
@@ -642,7 +642,8 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
-	if(gender == MALE)
+	var/physique_to_check = get_physique()
+	if(physique_to_check == MALE)
 		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
 		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
 	else
@@ -694,6 +695,7 @@
 	WRITE_FILE(S["real_name"], real_name)
 	WRITE_FILE(S["random_name"], random_name)
 	WRITE_FILE(S["gender"], gender)
+	WRITE_FILE(S["physique"], physique)
 	WRITE_FILE(S["age"], age)
 	WRITE_FILE(S["species"], species)
 	WRITE_FILE(S["ethnicity"], ethnicity)

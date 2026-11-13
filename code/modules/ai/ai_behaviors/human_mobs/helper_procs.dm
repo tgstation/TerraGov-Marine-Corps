@@ -37,8 +37,25 @@
 /obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
 		return FALSE
+	var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	if(!nutriment)
+		return FALSE
+
 	var/mob/living/carbon/human/human_target = target
-	if((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 37.5) + human_target.nutrition >= NUTRITION_OVERFED)
+	if((human_target.nutrition + nutriment.get_nutrition_gain()) >= NUTRITION_OVERFED)
+		return FALSE
+	return TRUE
+
+/obj/item/reagent_containers/food/snacks/ai_should_use(mob/living/target, mob/living/user)
+	if(!ishuman(target))
+		return FALSE
+	var/datum/reagent/consumable/nutriment/nutriment = reagents.get_reagent(/datum/reagent/consumable/nutriment)
+	if(!nutriment)
+		return FALSE
+
+	var/nutriment_amount = (reagents.total_volume < bitesize) ? nutriment.volume : nutriment.volume / reagents.total_volume * bitesize
+	var/mob/living/carbon/human/human_target = target
+	if((human_target.nutrition + nutriment.get_nutrition_gain(nutriment_amount)) >= NUTRITION_OVERFED)
 		return FALSE
 	return TRUE
 
@@ -62,26 +79,15 @@
 	attack(target, user)
 
 /obj/item/weapon/ai_use(mob/living/target, mob/living/user)
-	if(!(item_flags & TWOHANDED))
-		return
-	if(item_flags & WIELDED)
-		return
-	wield(user)
-	return TRUE
-
-/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
-	if(!active)
-		attack_self(user)
+	if(item_flags & TWOHANDED)
+		if(item_flags & WIELDED)
+			return
+		wield(user)
 		return TRUE
-
-/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		switch_state(null, user)
-		return TRUE
-
-/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		attack_self(user)
+	if(item_flags & ITEM_ACTIVATABLE)
+		if(active)
+			return
+		toggle_active(TRUE, user)
 		return TRUE
 
 /obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
@@ -97,9 +103,209 @@
 		attack_self(user)
 	return ..()
 
+/obj/item/tool/weldingtool/ai_use(mob/living/target, mob/living/user)
+	if(!isOn())
+		toggle()
+	return TRUE
+
 ///AI mob interaction with this atom, such as picking it up
-/atom/proc/do_ai_interact(mob/living/interactor)
-	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm
+/atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	return
+
+/obj/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	//todo: this will still make non engineers investigate something they can't repair
+	if(behavior_datum.engineer_rating < AI_ENGIE_STANDARD)
+		return
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.repair_obj(src)
+
+/obj/structure/patrol_point/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	attack_hand(interactor)
+
+/obj/machinery/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	attack_hand(interactor)
+
+/obj/machinery/deployable/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(behavior_datum.engineer_rating < AI_ENGIE_STANDARD)
+		return
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.repair_obj(src)
+
+/obj/machinery/door/airlock/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(welded)
+		behavior_datum.try_speak("Its welded [density ? "shut!" : "open!"]")
+		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
+		if(!welder)
+			if(density)
+				behavior_datum.set_combat_target(src)
+				return
+			behavior_datum.try_speak("No welder!")
+			behavior_datum.on_engineering_end(src)
+			return
+
+		welder_act(interactor, welder)
+		behavior_datum.store_tool(welder)
+
+	if(locked)
+		behavior_datum.try_speak("Its locked!")
+		if(density)
+			behavior_datum.set_combat_target(src)
+		return
+
+	if(hasPower())
+		return ..()
+
+	var/obj/item/tool/crowbar/crowbar = behavior_datum.equip_tool(TOOL_CROWBAR)
+	if(!crowbar)
+		behavior_datum.try_speak("No power!")
+		if(density)
+			behavior_datum.set_combat_target(src)
+		return
+
+	attackby(crowbar, interactor)
+	behavior_datum.store_tool(crowbar)
+
+/obj/alien/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(behavior_datum.melee_weapon)
+		attackby(behavior_datum.melee_weapon, interactor)
+
+/obj/item/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	if(!isturf(loc))
+		return
+	behavior_datum.pick_up_item(src)
+
+/obj/item/clothing/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	. = ..()
+	if(loc == interactor && ishuman(interactor))
+		var/mob/living/carbon/human/human_interactor = interactor
+		human_interactor.do_quick_equip()
+
+/obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.store_hands()
+	if(interactor.get_active_held_item() && interactor.get_inactive_held_item())
+		return
+
+	var/list/valid_ammo = list()
+	for(var/obj/item/weapon/gun/gun AS in behavior_datum.mob_inventory.gun_list)
+		valid_ammo += gun.allowed_ammo_types
+
+	if(!length(valid_ammo))
+		return
+
+	var/ammo_count = 0
+	for(var/obj/magazine AS in contents)
+		if(!(magazine.type in valid_ammo))
+			continue
+		if(!behavior_datum.try_store_item(magazine))
+			break
+		ammo_count ++
+	if(!ammo_count)
+		behavior_datum.try_speak("No ammo for me here!")
+		return
+	behavior_datum.try_speak("Loaded up [ammo_count] mags!")
+
+/obj/machinery/power/apc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	//we get these separately since we might use them multiple times
+	var/obj/item/crowbar = behavior_datum.mob_inventory.find_tool(TOOL_CROWBAR)
+	var/obj/item/tool/wirecutters/cutters = behavior_datum.mob_inventory.find_tool(TOOL_WIRECUTTER)
+	var/obj/item/screwdriver = behavior_datum.mob_inventory.find_tool(TOOL_SCREWDRIVER)
+
+	if(locked)
+		locked = FALSE
+
+	if(length(wires.cut_wires) && crowbar && cutters && screwdriver)
+		if(opened == APC_COVER_OPENED)
+			behavior_datum.equip_tool(crowbar)
+			crowbar_act(interactor, crowbar)
+		if(!(machine_stat & PANEL_OPEN))
+			behavior_datum.equip_tool(screwdriver)
+			screwdriver_act(interactor, screwdriver)
+		behavior_datum.equip_tool(cutters)
+		for(var/wire in wires.cut_wires)
+			wires.cut(wire)
+		screwdriver_act(interactor, screwdriver)
+
+	if((!cell || (!cell.charge && charging == APC_NOT_CHARGING)) && screwdriver && crowbar)
+		if(machine_stat & PANEL_OPEN)
+			screwdriver_act(interactor, screwdriver)
+		if(opened != APC_COVER_OPENED)
+			coverlocked = FALSE
+			behavior_datum.equip_tool(crowbar)
+			crowbar_act(interactor, crowbar)
+		if(cell)
+			balloon_alert_to_viewers("removes [cell]")
+			interactor.put_in_hands(cell)
+			cell.update_appearance()
+			set_cell(null)
+			charging = APC_NOT_CHARGING
+			update_appearance()
+		var/obj/item/cell/new_cell
+		for(var/obj/item/cell/candidate_cell in behavior_datum.mob_inventory.engineering_list)
+			if(candidate_cell.charge)
+				new_cell = candidate_cell
+				break
+		if(!new_cell)
+			behavior_datum.try_speak("Someone get me a new cell!")
+			interactor.a_intent = INTENT_HARM
+			return
+		attackby(new_cell, interactor)
+		behavior_datum.equip_tool(crowbar)
+		crowbar_act(interactor, crowbar)
+
+	if(opened == APC_COVER_OPENED && crowbar)
+		behavior_datum.equip_tool(crowbar)
+		crowbar_act(interactor, crowbar)
+	if(machine_stat & PANEL_OPEN && screwdriver)
+		behavior_datum.equip_tool(screwdriver)
+		screwdriver_act(interactor, screwdriver)
+	if(!operating)
+		toggle_breaker(interactor)
+	lighting = APC_CHANNEL_AUTO_ON
+	equipment = APC_CHANNEL_ON
+	environ = APC_CHANNEL_AUTO_ON
+	//we don't bother storing the last tool since we should already be set to reequip a weapon anyway
+	interactor.a_intent = INTENT_HARM
+
+/obj/effect/build_designator/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.try_build_holo(src)
+
+/turf/closed/interior/tank/door/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	attack_hand(interactor)
+
+/obj/machinery/miner/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	behavior_datum.add_to_engineering_list(src)
+	behavior_datum.human_ai_state_flags |= HUMAN_AI_BUILDING
+	if(miner_status == MINER_DESTROYED)
+		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
+		if(!welder)
+			behavior_datum.try_speak("No welder!")
+			behavior_datum.on_engineering_end(src)
+			return
+
+		welder_act(interactor, welder)
+		behavior_datum.store_tool(welder)
+
+	if(miner_status == MINER_MEDIUM_DAMAGE)
+		var/obj/item/tool/wirecutters/cutters = behavior_datum.equip_tool(TOOL_WIRECUTTER)
+		if(!cutters)
+			behavior_datum.try_speak("No wirecutters!")
+			behavior_datum.on_engineering_end(src)
+			return
+		wirecutter_act(interactor, cutters)
+		behavior_datum.store_tool(cutters)
+
+	if(miner_status == MINER_SMALL_DAMAGE)
+		var/obj/item/tool/wrench/wrench = behavior_datum.equip_tool(TOOL_WRENCH)
+		if(!wrench)
+			behavior_datum.try_speak("No wrench!")
+			behavior_datum.on_engineering_end(src)
+			return
+		wrench_act(interactor, wrench)
+		behavior_datum.store_tool(wrench)
+
+	if(miner_status == MINER_RUNNING)
+		behavior_datum.remove_from_engineering_list(src)
+	behavior_datum.on_engineering_end(src)
 
 //weapon engagement range
 
@@ -108,7 +314,7 @@
 	return list(0, 1)
 
 /obj/item/weapon/twohanded/spear/get_ai_combat_range()
-	return 2
+	return list(0, 2)
 
 /obj/item/weapon/gun/get_ai_combat_range()
 	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))
@@ -167,42 +373,55 @@
 		return null
 	return 0
 
+/obj/item/clothing/mask/facehugger/get_ai_hazard_radius(mob/living/victim)
+	if(stat == DEAD)
+		return null
+	if(!isturf(loc))
+		return null
+	if(!victim.can_be_facehugged(src))
+		return null
+	return leap_range
+
 //Obstacle handling
 ///Handles the obstacle or tells AI behavior how to interact with it
 /obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???
 	if((loc == user.loc) && !(atom_flags & ON_BORDER)) //dense things under us don't block
-		return
+		return AI_OBSTACLE_IGNORED
 	if((atom_flags & ON_BORDER) && (move_dir != (loc == user.loc ? dir : REVERSE_DIR(dir)))) //we only care about border objects actually blocking us
-		return
+		return AI_OBSTACLE_IGNORED
 	//todo:walkover stuff?
 	if(user.can_jump() && is_jumpable(user))
 		return AI_OBSTACLE_JUMP
+	if(try_climb(user))
+		return AI_OBSTACLE_RESOLVED
 	if(faction == user.faction) //don't break our shit
-		return AI_OBSTACLE_RESOLVED //not sure if I need something new here
-	if(!(resistance_flags & INDESTRUCTIBLE) && (obj_flags & CAN_BE_HIT))
+		return AI_OBSTACLE_FRIENDLY
+
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
+	if(isxeno(user))
+		if(!(resistance_flags & XENO_DAMAGEABLE))
+			return
+		return AI_OBSTACLE_ATTACK
+	if(obj_flags & CAN_BE_HIT)
 		return AI_OBSTACLE_ATTACK
 
-/obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(. == AI_OBSTACLE_JUMP)
-		return //jumping is always best
-	if(!climbable)
-		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
-	return AI_OBSTACLE_RESOLVED
-
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
+	if(!can_interact(user) || !user.dextrous)
+		return ..()
 	toggle_open(null, user)
 	return AI_OBSTACLE_RESOLVED
 
-/obj/machinery/door/airlock/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(!.)
-		return
-	if(operating) //Airlock already doing something
+/obj/machinery/door/ai_handle_obstacle(mob/living/user, move_dir)
+	if(operating) //Airlock already doing something, probably opening
 		return null
-	if(welded || locked) //It's welded or locked, can't force that open
-		return
+	if(welded || locked)
+		return ..()
+	if(isxeno(user))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attack_alien), user)
+		return AI_OBSTACLE_RESOLVED
+	if(hasPower() && ishuman(user) && requiresID() && !(allowed(user) || emergency || unrestricted_side(user)))
+		return ..()
 	open(TRUE)
 	return AI_OBSTACLE_RESOLVED
 

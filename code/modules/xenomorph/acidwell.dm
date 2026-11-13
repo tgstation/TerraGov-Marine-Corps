@@ -9,9 +9,11 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-
+	plane = FLOOR_PLANE
+	layer = ABOVE_WEEDS_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
+	xeno_structure_flags = DEPART_DESTRUCTION_IMMUNE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -19,15 +21,16 @@
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize(mapload, _creator)
+/obj/structure/xeno/acidwell/Initialize(mapload, _hivenumber, _creator)
 	. = ..()
 	creator = _creator
 	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
-	var/static/list/connections = list(
+	var/static/list/listen_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_TURF_PRE_SHUTTLE_CRUSH = PROC_REF(pre_shuttle_crush)
 	)
-	AddElement(/datum/element/connect_loc, connections)
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
@@ -38,11 +41,10 @@
 	SIGNAL_HANDLER
 	creator = null
 
-///Ensures that no acid gas will be released when the well is crushed by a shuttle
-/obj/structure/xeno/acidwell/proc/shuttle_crush()
+/// Deletes this first before it can get crushed by a shuttle.
+/obj/structure/xeno/acidwell/proc/pre_shuttle_crush(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
-
 
 /obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
@@ -107,7 +109,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 		deconstruct(TRUE, xeno_attacker)
 		return
 
@@ -146,46 +148,57 @@
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	if(iscarbon(A))
+	if(iscarbon(A) || isvehicle(A))
 		HasProximity(A)
 
 /obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
 	if(!charges)
 		return
-	if(!isliving(AM))
-		return
-	var/mob/living/stepper = AM
-	if(stepper.stat == DEAD)
-		return
 
 	var/charges_used = 0
+	var/mob/living/living_stepper
+	if(isliving(AM))
+		living_stepper = AM
+		if(living_stepper.stat == DEAD)
+			return
 
-	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in stepper.contents)
+	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in AM.contents)
 		if(charges_used >= charges)
 			break
-		if(sticky_bomb.stuck_to == stepper)
-			sticky_bomb.clean_refs()
+		if(sticky_bomb.active)
+			sticky_bomb.unstick_from(src)
 			sticky_bomb.forceMove(loc)
-			charges_used ++
+			charges_used++
 
-	if(stepper.on_fire && (charges_used < charges))
-		stepper.ExtinguishMob()
-		charges_used ++
+	if(living_stepper && living_stepper.is_on_fire() && (charges_used < charges))
+		living_stepper.extinguish_mob()
+		charges_used++
 
-	if(!isxeno(stepper))
-		stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID,  penetration = 33)
-		stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID,  penetration = 33)
-		stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
+	if(!isxeno(AM))
+		if(living_stepper)
+			living_stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
+			living_stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, ACID, penetration = 33)
+			living_stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, ACID, penetration = 33)
+			charges_used = charges
+
+		else if(isvehicle(AM))
+			var/obj/vehicle/vehicle_stepper = AM
+			vehicle_stepper.take_damage(charges * 20, BURN, ACID, armour_penetration = 33)
+			COOLDOWN_INCREMENT(vehicle_stepper, cooldown_vehicle_move, charges * 2)
+			charges_used = charges
+
+		if(!charges_used)
+			return
+
+		AM.visible_message(span_danger("[AM] is immersed in [src]'s acid!") , \
 		span_danger("We are immersed in [src]'s acid!") , null, 5)
-		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
-		new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
-		charges_used = charges //humans stepping on it empties it out
+		playsound(AM, "sound/bullets/acid_impact1.ogg", 10 * charges)
+		new /obj/effect/temp_visual/acid_bath(get_turf(src))
 
 	if(!charges_used)
 		return
 
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/acid_smoke = new(get_turf(src)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 

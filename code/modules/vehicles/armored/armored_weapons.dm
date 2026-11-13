@@ -20,6 +20,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target
@@ -70,7 +71,7 @@
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
 	if(!ammo || ammo.current_rounds <= 0)
-		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
+		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1, SHORT_SOUND_RANGE)
 		return
 	if(source.incapacitated(TRUE))
 		return
@@ -170,7 +171,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/armored_weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/armored_weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	if(chassis.hitbox?.tank_desants)
@@ -212,7 +213,7 @@
 	do_fire(source_turf)
 	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
 	var/atom/sound_play_loc = interior_fire_sound && chassis.interior ? chassis : src
-	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary, FIREARM_SOUND_RANGE)
 	if(interior_fire_sound)
 		chassis.play_interior_sound(chassis.interior.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
@@ -227,7 +228,7 @@
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 	if(ammo.current_rounds > 0)
 		return AUTOFIRE_CONTINUE|AUTOFIRE_SUCCESS
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	eject_ammo()
 	if(LAZYACCESS(current_firer.do_actions, src) || length(ammo_magazine) < 1)
 		return AUTOFIRE_SUCCESS
@@ -243,8 +244,8 @@
 ///The actual firing of a projectile. Overridable for different effects
 /obj/item/armored_weapon/proc/do_fire(turf/source_turf, ammo_override)
 	var/datum/ammo/ammo_type = ammo_override ? ammo_override : ammo.default_ammo
-	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
+	var/type_to_spawn = CHECK_BITFIELD(ammo_type::ammo_behavior_flags, AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(source_turf, ammo_type:hitscan_effect_icon)
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammo_type])
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
 	var/firing_angle = get_angle_with_scatter(chassis, current_target, variance, projectile_to_fire.p_x, projectile_to_fire.p_y)
@@ -355,7 +356,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	projectile_delay = 0.1 SECONDS
-	rearm_time = 5 SECONDS
+	rearm_time = 3 SECONDS
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/tank_autocannon
@@ -369,7 +370,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 2
 	projectile_delay = 0.45 SECONDS
-	rearm_time = 9 SECONDS
+	rearm_time = 4 SECONDS
 	hud_state_empty = "hivelo_empty"
 
 /obj/item/armored_weapon/apc_cannon

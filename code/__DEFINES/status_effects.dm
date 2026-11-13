@@ -9,6 +9,11 @@
 
 #define STATUS_EFFECT_REFRESH 3 // if it only allows one, and new instances just instead refresh the timer
 
+///Status effect does something when the owner dies
+#define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
+///Status effect on owner death effect is qdel
+#define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
+
 ///////////
 // BUFFS //
 ///////////
@@ -18,6 +23,8 @@
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
 #define STATUS_EFFECT_XENO_ESSENCE_LINK /datum/status_effect/stacking/essence_link
+
+#define STATUS_EFFECT_XENO_ESSENCE_LINK_REVENGE /datum/status_effect/essence_link_revenge
 
 #define STATUS_EFFECT_XENO_SALVE_REGEN /datum/status_effect/salve_regen
 
@@ -47,6 +54,10 @@
 /////////////
 // DEBUFFS //
 /////////////
+
+#define STATUS_EFFECT_NO_PLASMA_REGEN /datum/status_effect/noplasmaregen // Stops plasma regeneration.
+
+#define STATUS_EFFECT_PLASMA_DRAIN /datum/status_effect/plasmadrain // Drains xenomorph's maximum plasma over time.
 
 #define STATUS_EFFECT_STAGGER /datum/status_effect/incapacitating/stagger //reduces human gun damage or impairs xeno ability use
 
@@ -81,6 +92,24 @@
 #define STATUS_EFFECT_LIFEDRAIN /datum/status_effect/incapacitating/lifedrain // Lifesteal for every xeno that hits this mob, applied by globadier
 
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
+///the affected is on fire
+#define STATUS_EFFECT_BURNING /datum/status_effect/stacking/fire
+
+///drugged effect
+#define STATUS_EFFECT_DRUGGY /datum/status_effect/incapacitating/druggy
+///slowdown effect
+#define STATUS_EFFECT_SLOWDOWN /datum/status_effect/stacking/slowdown
+///jitter effect
+#define STATUS_EFFECT_JITTER /datum/status_effect/stacking/jitter
+///dizziness effect
+#define STATUS_EFFECT_DIZZY /datum/status_effect/stacking/dizzy
+///hallucination effect
+#define STATUS_EFFECT_HALLUCINATION /datum/status_effect/stacking/hallucination
+///drowziness effect
+#define STATUS_EFFECT_DROWZINESS /datum/status_effect/stacking/drowziness
+///drunkenness effect
+#define STATUS_EFFECT_DRUNKENNESS /datum/status_effect/stacking/drunkenness
+
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
 #define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire
@@ -91,6 +120,12 @@
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
 ///recenly hit by a sniper round
 #define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
+// Applies a movement speed multiplier of 0.4 for 6 seconds.
+#define STATUS_EFFECT_DREAD  /datum/status_effect/dread
+/// Deals a variable amount of stamina damage for 6 seconds.
+#define STATUS_EFFECT_DRAINING_DREAD  /datum/status_effect/draining_dread
+/// Cloaked by xenomorph variant of tactical smoke (aka gas that both has SMOKE_XENO and SMOKE_CAMO).
+#define STATUS_EFFECT_XENOMORPH_CLOAKING  /datum/status_effect/xenomorph_cloaking
 
 /////////////
 // NEUTRAL //

@@ -27,6 +27,9 @@
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
+/datum/action/minimap/lone
+	minimap_flags = MINIMAP_FLAG_LONE
+
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE
@@ -42,7 +45,7 @@
 	if(!clicked_coords)
 		toggle_minimap(FALSE)
 		return
-	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
+	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], map.tracked_z)
 	if(!clicked_turf)
 		toggle_minimap(FALSE)
 		return

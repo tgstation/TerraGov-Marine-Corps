@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - admin: "Updated vv to support appearances"
-  - code_imp: "Bitfield VV backend uses new defines now"

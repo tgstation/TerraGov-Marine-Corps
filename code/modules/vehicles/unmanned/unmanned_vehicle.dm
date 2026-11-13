@@ -16,8 +16,6 @@
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	faction = FACTION_TERRAGOV
-	/// Needed to keep track of any slowdowns and/or diagonal movement
-	var/next_move_delay = 0
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -35,7 +33,7 @@
 	///Buller type we fire, declared as type but set to a reference in Initialize
 	var/datum/ammo/bullet/ammo
 	///The currently loaded and ready to fire projectile
-	var/obj/projectile/in_chamber = null
+	var/atom/movable/projectile/in_chamber = null
 	///Sound file or string type for playing the shooting sound
 	var/gunnoise = SFX_GUN_SMARTGUN
 	/// Serial number of the vehicle
@@ -110,6 +108,8 @@
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
 		if(TURRET_TYPE_DROIDLASER)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "droidlaser")
+		if(TURRET_TYPE_CLAW)
+			. += image('icons/obj/unmanned_vehicles.dmi', src, "claw")
 
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -124,6 +124,8 @@
 			. += "It is equipped with an explosive weapon system. "
 		if(TURRET_TYPE_DROIDLASER)
 			. += "It is equipped with a droid weapon system. It uses 11x35mm ammo."
+		if(TURRET_TYPE_CLAW)
+			. += "It is equipped with a mechanical claw system for grabbing and pulling objects and bodies."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -140,24 +142,30 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + next_move_delay)
-		return
-
+	if(!COOLDOWN_FINISHED(src, cooldown_vehicle_move))
+		return FALSE
 	. = Move(get_step(src, direction))
+	if(!.)
+		return
+	var/next_delay = (ISDIAGONALDIR(direction) ? move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : move_delay)
+	set_glide_size(DELAY_TO_GLIDE_SIZE(next_delay))
+	COOLDOWN_START(src, cooldown_vehicle_move, next_delay)
 
-	if(ISDIAGONALDIR(direction)) //moved diagonally successfully
-		next_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
-	else
-		next_move_delay = move_delay
+/obj/vehicle/unmanned/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		if(M.client)
+			M.client.move_delay = world.time
+	return ..()
 
 ///Try to desequip the turret
-/obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/unmanned/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
 		return
 	user.visible_message(span_notice("[user] starts to remove [initial(turret_path.name)] from [src]"),	span_notice("You start to remove [initial(turret_path.name)] from [src]"))
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	var/obj/item/equipment = new turret_path
 	user.visible_message(span_notice("[user] removes [equipment] from [src]."),
@@ -183,7 +191,7 @@
 		to_chat(user, span_warning("The [src] ammo storage is already full!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [reload_ammo]."), span_notice("You start to reload [src] with [reload_ammo]."))
-	if(!do_after(user, 3 SECONDS, NONE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 	current_rounds = current_rounds + reload_ammo.current_rounds
 	if(current_rounds > max_rounds)
@@ -193,7 +201,7 @@
 	else
 		qdel(reload_ammo)
 	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
-	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	hud_set_uav_ammo()
 
@@ -209,7 +217,7 @@
 			return
 	user.visible_message(span_notice("[user] starts to attach [I] to [src]."),
 	span_notice("You start to attach [I] to [src]."))
-	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 	turret_path = I.type
 	if(istype(I, /obj/item/uav_turret))
@@ -261,7 +269,7 @@
 		return TRUE //Already set!
 	if(current_rounds <= 0)
 		return FALSE
-	in_chamber = new /obj/projectile(src) //New bullet!
+	in_chamber = new /atom/movable/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return TRUE
 
@@ -270,7 +278,7 @@
 /obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
 	if(!COOLDOWN_FINISHED(src, fire_cooldown))
 		return FALSE
-	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
+	if(load_into_chamber() && istype(in_chamber, /atom/movable/projectile))
 		//Setup projectile
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
@@ -292,11 +300,85 @@
 /obj/vehicle/unmanned/proc/delete_muzzle_flash()
 	vis_contents -= flash
 
+///Uses the claw to grab and pull objects or mobs
+/obj/vehicle/unmanned/proc/use_claw(atom/target, mob/user)
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
+		return FALSE
+
+	if(target == pulling)
+		stop_pulling(target)
+		COOLDOWN_START(src, fire_cooldown, fire_delay)
+		return TRUE
+
+	// Check if target is adjacent
+	if(!Adjacent(target))
+		return FALSE
+
+	// Handle pulling different types of targets
+	if(ismob(target))
+		var/mob/mob_target = target
+		if(mob_target.pulledby)
+			mob_target.pulledby.stop_pulling()
+		start_pulling(mob_target)
+		to_chat(user, span_notice("[src] grabs [mob_target] and starts pulling."))
+		log_attack("[key_name(user)] used [src] to pull [key_name(mob_target)] at [AREACOORD(src)]")
+	else if(isobj(target))
+		var/obj/object_target = target
+		if(object_target.anchored)
+			to_chat(user, span_warning("[object_target] is anchored and cannot be moved!"))
+			return FALSE
+		if(object_target.pulledby)
+			object_target.pulledby.stop_pulling()
+		start_pulling(object_target)
+		to_chat(user, span_notice("[src] grabs [object_target] and starts pulling it."))
+		log_attack("[key_name(user)] used [src] to pull [object_target] at [AREACOORD(src)]")
+	else
+		to_chat(user, span_warning("[src] cannot grab that target!"))
+		return FALSE
+
+	COOLDOWN_START(src, fire_cooldown, fire_delay)
+	playsound(loc, 'sound/machines/click.ogg', 25, TRUE, 7)
+	return TRUE
+
+///Shoves target away from the vehicle.
+/obj/vehicle/unmanned/proc/claw_shove(atom/target, mob/user)
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
+		return FALSE
+
+	if(!Adjacent(target))
+		return FALSE
+
+	// Handle shoving different types of targets
+	if(ismob(target))
+		var/mob/mob_target = target
+		var/shove_dir = get_dir(loc, target.loc)
+		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
+		mob_target.Move(target_shove_turf, shove_dir)
+		to_chat(user, span_notice("[src] shoves [mob_target]."))
+		log_attack("[key_name(user)] used [src] to shove [key_name(mob_target)] at [AREACOORD(src)]")
+	else if(isobj(target))
+		var/obj/object_target = target
+		if(object_target.anchored)
+			to_chat(user, span_warning("[object_target] is anchored and cannot be moved!"))
+			return FALSE
+		var/shove_dir = get_dir(loc, object_target.loc)
+		var/turf/target_shove_turf = get_step(object_target.loc, shove_dir)
+		object_target.Move(target_shove_turf, shove_dir)
+		to_chat(user, span_notice("[src] shoves [object_target]."))
+		log_attack("[key_name(user)] used [src] to shove [object_target] at [AREACOORD(src)]")
+	else
+		to_chat(user, span_warning("[src] cannot shove that target!"))
+		return FALSE
+
+	COOLDOWN_START(src, fire_cooldown, fire_delay * 2)
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	return TRUE
+
 /obj/vehicle/unmanned/fire_act(burn_level)
 	take_damage(burn_level / 2, BURN, FIRE)
 
-/obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
+/obj/vehicle/unmanned/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"
@@ -314,7 +396,7 @@
 
 /obj/structure/closet/crate/uav_crate
 	name = "\improper UV-L Iguana Crate"
-	desc = "A crate containing an unmanned vehicle with a controller and some spare ammo."
+	desc = "A crate containing an unmanned vehicle with a controller. Weapon not included."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "closed_weapons"
 	icon_opened = "open_weapons"
@@ -322,8 +404,15 @@
 
 /obj/structure/closet/crate/uav_crate/PopulateContents()
 	new /obj/vehicle/unmanned(src)
+	new /obj/item/unmanned_vehicle_remote(src)
+
+/obj/structure/closet/crate/uav_crate/turret
+	name = "\improper Light UV Machinegun Crate"
+	desc = "A crate containing a light unmanned vehicle machinegun and some spare ammo."
+
+/obj/structure/closet/crate/uav_crate/turret/PopulateContents()
 	new /obj/item/uav_turret(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
-	new /obj/item/unmanned_vehicle_remote(src)
+

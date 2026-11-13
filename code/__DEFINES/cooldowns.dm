@@ -12,6 +12,7 @@
 #define COOLDOWN_ZOOM "zoom"
 #define COOLDOWN_BUMP "bump"
 #define COOLDOWN_ENTANGLE "entangle"
+#define COOLDOWN_ELECTROCUTED "cooldown_electrocuted"
 #define COOLDOWN_NEST "nest"
 #define COOLDOWN_BUMP_ATTACK "bump_attack"
 #define COOLDOWN_TASTE "taste"
@@ -54,11 +55,13 @@
 #define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
 #define COOLDOWN_TRY_TTS "cooldown_try_tts"
 #define COOLDOWN_EVASION_ACTIVATION "cooldown_evasion_activation"
+#define COOLDOWN_ACID_DASH_ACTIVATION "cooldown_acid_dash_activation"
 #define COOLDOWN_TANK_SWIVEL "tank_turret_swivel"
 #define COOLDOWN_ARMORED_HORN "cooldown_armored_horn"
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
+#define COOLDOWN_ARMORED_TESLA "cooldown_armored_tesla"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
 #define COOLDOWN_PDA_PLAY "cooldown_pda_play"
 
@@ -148,7 +151,7 @@
 #define CLIENT_COOLDOWN_START(cd_source, cd_index, cd_time) (cd_source.cd_index = REALTIMEOFDAY + (cd_time))
 
 //Returns true if the cooldown has run its course, false otherwise
-#define COOLDOWN_FINISHED(cd_source, cd_index) (cd_source.cd_index < world.time)
+#define COOLDOWN_FINISHED(cd_source, cd_index) (cd_source.cd_index <= world.time)
 
 #define COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - world.time))
 

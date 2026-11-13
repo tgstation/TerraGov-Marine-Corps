@@ -260,11 +260,12 @@
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
 	if(!I)
 		return
-	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	. = UnEquip(I, force, drop_location())
-	if(.)
-		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
-		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
+	if(!.)
+		return
+	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM, I)
+	I.pixel_x = initial(I.pixel_x) + rand(-6,6)
+	I.pixel_y = initial(I.pixel_y) + rand(-6,6)
 
 /**
  * For when the item will be immediately placed in a loc other than the ground.

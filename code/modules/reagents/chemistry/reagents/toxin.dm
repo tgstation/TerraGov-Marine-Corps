@@ -11,14 +11,12 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	taste_description = "bitterness"
 	taste_multi = 1.2
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
 		L.adjustToxLoss(toxpwr*0.5*effect_str)
 	return ..()
-
-///For medicines that generate toxin reagent when metabolized
-/datum/reagent/toxin/scannable
 
 /datum/reagent/toxin/hptoxin
 	name = "Toxin"
@@ -110,6 +108,7 @@
 	color = COLOR_TOXIN_MINTTOXIN
 	toxpwr = 0
 	taste_description = "mint"
+	reagent_ui_priority = REAGENT_UI_MUNDANE // not currently implimented, so it's inert
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
@@ -125,6 +124,7 @@
 	color = COLOR_TOXIN_HUSKPOWDER
 	toxpwr = 0.5
 	taste_description = "death"
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/huskpowder/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
@@ -149,22 +149,22 @@
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
-	L.hallucination += 10
+	L.adjust_hallucination(10)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
-	L.jitter(5)
+	L.adjust_jitter(5)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -172,6 +172,7 @@
 	description = "A chemical mix good for growing plants with."
 	toxpwr = 0.2 //It's not THAT poisonous.
 	color = COLOR_TOXIN_FERTILIZER
+	reagent_ui_priority = REAGENT_UI_SPACEA // current toxpwr formula makes it do 0.1 toxin, which will be healed by a healthy organ
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
@@ -229,12 +230,12 @@
 		if(7 to 10)
 			if(prob(10))
 				L.Sleeping(10 SECONDS)
-			L.drowsyness = max(L.drowsyness, 20)
+			L.drowzy(20)
 		if(11 to 80)
 			L.Sleeping(10 SECONDS) //previously knockdown, no good for a soporific.
-			L.drowsyness = max(L.drowsyness, 30)
+			L.drowzy(30)
 		if(81 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
@@ -253,13 +254,14 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 60)
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
-			L.adjustDrowsyness(2)
+			L.adjust_drowziness(2)
 			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
@@ -277,6 +279,7 @@
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
 	trait_flags = CHEARTSTOPPER
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, metabolism)
 	if(iscarbon(L))
@@ -296,6 +299,7 @@
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = COLOR_TOXIN_POTASSIUM_CHLORIDE
 	toxpwr = 2
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, metabolism)
 	if(L.stat != UNCONSCIOUS)
@@ -317,6 +321,7 @@
 	custom_metabolism = 0
 	toxpwr = 0
 	taste_description = "ow ow ow"
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE // It's a testing chem
 
 /datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier = volume
@@ -421,6 +426,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 5
 	medbayblacklist = TRUE
 	reactindeadmob = FALSE
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
@@ -458,11 +464,11 @@
 		if(21 to 45)
 			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
-			L.jitter(4) //Shows that things are bad
+			L.adjust_jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-			L.jitter(8) //Shows that things are *really* bad
+			L.adjust_jitter(8) //Shows that things are *really* bad
 
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
@@ -639,6 +645,12 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = 20
 	overdose_crit_threshold = 50
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
+
+/datum/reagent/zombium/on_mob_life(mob/living/L, metabolism)
+	. = ..()
+	if(prob(10))
+		L.emote("cough")
 
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
 	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(zombify))
@@ -690,13 +702,13 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(11 to 20)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
-			L.jitter(4)
+			L.adjust_jitter(4)
 		if(21 to 30)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-			L.jitter(6)
+			L.adjust_jitter(6)
 		if(31 to INFINITY)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.5 //bad times ahead
-			L.jitter(8)
+			L.adjust_jitter(8)
 
 	if(current_cycle > 21)
 		L.adjustStaminaLoss(effect_str)

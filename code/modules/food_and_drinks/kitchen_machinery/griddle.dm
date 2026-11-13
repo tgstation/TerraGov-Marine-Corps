@@ -7,6 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 	///Things that are being griddled right now
 	var/list/griddled_objects = list()
@@ -25,15 +26,23 @@
 	if(isnum(variant))
 		variant = rand(1,3)
 
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/machinery/griddle/Destroy()
 	QDEL_NULL(grill_loop)
 	. = ..()
 
-/obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/griddle/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(atom_flags & NODECONSTRUCT)
 		return
-	if(default_deconstruction_crowbar(I, ignore_panel = TRUE))
+	if(default_deconstruction_crowbar(tool, ignore_panel = TRUE))
 		return
 	variant = rand(1,3)
 
@@ -95,13 +104,13 @@
 	else
 		grill_loop.stop()
 
-/obj/machinery/griddle/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/griddle/wrench_act(mob/user, obj/item/tool)
 	..()
-	balloon_alert(user, "You begin [anchored ? "un" : ""]securing...")
-	I.play_tool_sound(src, 50)
-	if(!I.use_tool(src, user, 2 SECONDS))
+	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	tool.play_tool_sound(src, 50)
+	if(!tool.use_tool(src, user, 2 SECONDS))
 		return FALSE
-	balloon_alert(user, "You [anchored ? "un" : ""]secure.")
+	balloon_alert(user, "[anchored ? "un" : ""]secured")
 	anchored = !anchored
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TRUE

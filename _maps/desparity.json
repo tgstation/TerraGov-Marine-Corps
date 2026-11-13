@@ -2,6 +2,7 @@
     "map_name": "Desparity",
     "map_path": "map_files/desparity",
     "map_file": "desparity.dmm",
+	"parallax_icon": "jungle",
 	"disk_sets": {
 		"basic": 1
 	},

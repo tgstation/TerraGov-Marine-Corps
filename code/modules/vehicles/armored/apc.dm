@@ -19,6 +19,7 @@
 	enter_delay = 0.5 SECONDS
 	ram_damage = 20
 	move_delay = 0.35 SECONDS
+	larva_value = 0
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,

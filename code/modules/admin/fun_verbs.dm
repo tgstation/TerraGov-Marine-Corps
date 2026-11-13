@@ -101,7 +101,7 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 	var/input = tgui_input_text(user, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 	if(!input)
 		return
-	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")
+	var/override = tgui_input_list(user, "Pick a color for the report.", "Color", FACTION_ALERT_COLORS - "default", default = "blue")
 
 	if(tgui_alert(user, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
@@ -149,6 +149,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", AD
 	else
 		msg = sanitize(msg)
 
+	M.balloon_alert(M, "you hear a voice")
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")
@@ -164,12 +165,12 @@ ADMIN_VERB(custom_info, R_FUN, "Change Custom Info", "Set a custom info to show 
 	if(isnull(new_info) || GLOB.custom_info == new_info)
 		return
 
+	GLOB.custom_info = new_info
+
 	if(!new_info)
 		log_admin("[key_name(user)] has cleared the custom info.")
 		message_admins("[ADMIN_TPMONTY(user.mob)] has cleared the custom info.")
 		return
-
-	GLOB.custom_info = new_info
 
 	to_chat(world, assemble_alert(
 		title = "Custom Information",
@@ -590,6 +591,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(edit_appearance, R_FUN, "Edit Appearance", mob/livi
 	dat += "Body color: <font face='fixedsys' size='3' color='[bcolor]'><table style='display:inline;' bgcolor='[bcolor]'><tr><td>_.</td></tr></table></font> <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=bodycolor;mob=[REF(H)]'>Edit</a><br>"
 	dat += "<br>"
 	dat += "Gender: [H.gender] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Physique: [H.physique] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=physique;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Ethnicity: [H.ethnicity] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Species: [H.species] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=species;mob=[REF(H)]'>Edit</a><br>"
 
@@ -862,22 +864,12 @@ ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice"
 	var/turf/spawn_loc = get_turf(user.mob)
 	if(!spawn_loc)
 		return
-	var/list/mob_list = list()
-	for(var/i = 1 to quantity)
-		var/mob/living/carbon/human/new_human = new()
-		mob_list += new_human
-		var/datum/job/new_job = SSjob.GetJob(GLOB.ai_squad_presets[squad_choice][i])
-		var/squad_to_insert_into
-		if(ismarinejob(new_job) || issommarinejob(new_job))
-			squad_to_insert_into = pick(SSjob.active_squads[new_job.faction])
-		new_human.apply_assigned_role_to_spawn(new_job, new_human.client, squad_to_insert_into, admin_action = TRUE)
-		stoplag()
-	for(var/mob/living/carbon/human/dude AS in mob_list)
-		dude.forceMove(spawn_loc)
-		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+	var/list/spawn_list = GLOB.ai_squad_presets[squad_choice]
+	spawn_list = spawn_list.Copy(1, quantity + 1)
+	spawn_npc_squad(spawn_loc, spawn_list)
 
-	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z].")
-	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z]")
+	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
+	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans in [AREACOORD(spawn_loc)].")
 
 
 ADMIN_VERB(load_lazy_template, R_FUN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_FUN)

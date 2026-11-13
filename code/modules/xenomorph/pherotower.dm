@@ -19,10 +19,15 @@
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero", MINIMAP_LABELS_LAYER))
 	GLOB.hive_datums[hivenumber].pherotowers += src
 
-//Pheromone towers start off with recovery.
+	// Pheromone towers start off with recovery.
 	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
-	playsound(src, SFX_ALIEN_DROOL, 25)
+	playsound(src, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	update_icon()
+
+/obj/structure/xeno/pherotower/Destroy()
+	GLOB.hive_datums[hivenumber].pherotowers -= src
+	QDEL_NULL(current_aura)
+	return ..()
 
 /obj/structure/xeno/pherotower/ex_act(severity)
 	switch(severity)
@@ -35,10 +40,6 @@
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
 
-/obj/structure/xeno/pherotower/Destroy()
-	GLOB.hive_datums[hivenumber].pherotowers -= src
-	return ..()
-
 // Clicking on the tower brings up a radial menu that allows you to select the type of pheromone that this tower will emit.
 /obj/structure/xeno/pherotower/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/phero_choice = show_radial_menu(xeno_attacker, src, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
@@ -49,7 +50,7 @@
 	QDEL_NULL(current_aura)
 	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	balloon_alert(xeno_attacker, "[phero_choice]")
-	playsound(src, SFX_ALIEN_DROOL, 25)
+	playsound(src, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	update_icon()
 
 /obj/structure/xeno/pherotower/update_icon_state()

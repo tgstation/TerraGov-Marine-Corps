@@ -63,10 +63,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"dn" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "dz" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
@@ -310,10 +306,6 @@
 "ro" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering/east)
-"rp" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "rt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -856,10 +848,6 @@
 "Qe" = (
 /turf/closed/wall,
 /area/bigredv2/outside/engineering)
-"Qg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "Qo" = (
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseback = /obj/item/storage/backpack;
@@ -1096,7 +1084,7 @@ vP
 vP
 vP
 vP
-dn
+Qe
 EF
 wG
 OK
@@ -1188,7 +1176,7 @@ NI
 Mw
 Mw
 Mw
-rp
+vP
 vP
 vP
 ZD
@@ -1241,7 +1229,7 @@ Qe
 ub
 Qe
 Qe
-dn
+Qe
 oX
 Zv
 Fs
@@ -1306,7 +1294,7 @@ OK
 JS
 OK
 OK
-rp
+vP
 ZD
 ZD
 ZD
@@ -1416,7 +1404,7 @@ OA
 Mw
 ky
 jg
-Qg
+Oo
 Oo
 Oo
 yu
@@ -1442,7 +1430,7 @@ zc
 (14,1,1) = {"
 OK
 DP
-dn
+Qe
 PH
 eH
 Oo
@@ -1529,7 +1517,7 @@ RB
 (17,1,1) = {"
 Qe
 Qe
-dn
+Qe
 fe
 yc
 Oo
@@ -1590,7 +1578,7 @@ Pp
 Qo
 RM
 XI
-Qg
+Oo
 Oo
 Oo
 yu
@@ -1702,7 +1690,7 @@ RB
 "}
 (23,1,1) = {"
 Oo
-Qg
+Oo
 Aq
 km
 HC

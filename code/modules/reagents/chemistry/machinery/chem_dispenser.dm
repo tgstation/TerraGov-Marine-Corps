@@ -123,7 +123,7 @@
 		beaker = null
 
 
-/obj/machinery/chem_dispenser/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/chem_dispenser/multitool_act(mob/user, obj/item/tool)
 	. = ..()
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
@@ -220,7 +220,7 @@
 					overlays.Cut()
 					update_icon()
 
-					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1)
+					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 					work_animation()
 			else
 				recording_recipe[reagent_name] += amount
@@ -373,14 +373,14 @@
 		update_icon()
 		return
 
-/obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/chem_dispenser/screwdriver_act(mob/user, obj/item/tool)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	overlays.Cut()
 	balloon_alert_to_viewers("[CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "opens" : "closes"] the battery compartment")
 	update_icon()
 	return TRUE
 
-/obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/chem_dispenser/crowbar_act(mob/user, obj/item/tool)
 	if(!cell || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	cell.forceMove(loc)

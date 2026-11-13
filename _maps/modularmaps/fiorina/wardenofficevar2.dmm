@@ -1,0 +1,284 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/closet,
+/obj/item/restraints/handcuffs,
+/obj/item/clothing/mask/muzzle,
+/obj/item/weapon/chainofcommand,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"c" = (
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/fiorina/oob)
+"e" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"g" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"j" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clothing/head/helmet/warden{
+	pixel_x = 3;
+	pixel_y = 15
+	},
+/obj/effect/spawner/random/machinery/random_broken_computer,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"m" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/item/weapon/sword/katana,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"s" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"t" = (
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"w" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"x" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security/wardens)
+"y" = (
+/obj/structure/cable,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"B" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"C" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"E" = (
+/obj/item/newspaper,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"F" = (
+/obj/structure/table/wood/fancy,
+/obj/item/flashlight/lamp/green,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"G" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 2;
+	name = "Warden's Office"
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security/wardens)
+"I" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 2;
+	name = "Warden's Office"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security/wardens)
+"K" = (
+/obj/machinery/computer/security{
+	dir = 1;
+	network = list("PRISON")
+	},
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"L" = (
+/obj/structure/lattice,
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/turf/open/space,
+/area/fiorina/oob)
+"M" = (
+/obj/item/attachable/bayonet{
+	anchored = 1;
+	pixel_x = -9;
+	pixel_y = -7
+	},
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/oob)
+"O" = (
+/obj/structure/bed/chair/comfy{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"P" = (
+/obj/structure/sign/prop1{
+	name = "\improper USCM Emblem"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"Q" = (
+/obj/structure/table/wood/fancy,
+/obj/machinery/computer/guestpass,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"R" = (
+/obj/machinery/faxmachine,
+/obj/structure/table/wood/fancy,
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"S" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"T" = (
+/obj/item/frame/table/wood,
+/obj/item/paper/prison_station/warden_note,
+/obj/item/tool/pen,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+"U" = (
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"W" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 2;
+	name = "Warden's Office"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security/wardens)
+"X" = (
+/obj/structure/sign/poster{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"Y" = (
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/fiorina/station/security/wardens)
+"Z" = (
+/turf/open/floor/carpet/red,
+/area/fiorina/station/security/wardens)
+
+(1,1,1) = {"
+L
+c
+c
+c
+c
+c
+L
+"}
+(2,1,1) = {"
+c
+c
+S
+t
+t
+x
+x
+"}
+(3,1,1) = {"
+B
+E
+y
+R
+g
+m
+x
+"}
+(4,1,1) = {"
+W
+y
+w
+Q
+Z
+b
+x
+"}
+(5,1,1) = {"
+I
+C
+P
+T
+O
+s
+x
+"}
+(6,1,1) = {"
+G
+Z
+Z
+j
+Z
+K
+x
+"}
+(7,1,1) = {"
+M
+X
+Z
+F
+Z
+Y
+x
+"}
+(8,1,1) = {"
+c
+c
+U
+e
+t
+x
+x
+"}
+(9,1,1) = {"
+L
+c
+x
+x
+x
+x
+L
+"}

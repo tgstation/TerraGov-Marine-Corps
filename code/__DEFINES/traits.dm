@@ -107,6 +107,7 @@
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
+#define BULL_ABILITY_TRAIT "bull_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
 #define VORTEX_ABILITY_TRAIT "vortex_ability_trait"
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
@@ -117,6 +118,8 @@
 #define CONQUEROR_OBLITERATION_TRAIT "conqueror_obliteration_trait"
 #define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
 #define DRAGON_ABILITY_TRAIT "dragon_ability_trait"
+#define HIVELORD_ABILITY_TRAIT "hivelord_ability_trait"
+#define SHRIKE_ABILITY_TRAIT "shrike_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
@@ -133,6 +136,8 @@
 #define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
 #define MANIFESTED_TRAIT "manifested_trait"
 #define HOVERBIKE_TRAIT "hoverbike_trait"
+#define BIGBIKE_TRAIT "bigbike_trait"
+#define MUTATION_TRAIT "mutation_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
@@ -156,6 +161,9 @@
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
+
+///Given by charging
+#define CHARGING_TRAIT "charging_trait"
 
 ///AM is currently submerged
 #define TRAIT_SUBMERGED "trait_submerged"
@@ -216,6 +224,14 @@
 #define TRAIT_FOV_APPLIED "fov_applied"
 /// Expands our FOV by 30 degrees if restricted
 #define TRAIT_EXPANDED_FOV "expanded_fov"
+///xenos that can disable miners
+#define TRAIT_CAN_DISABLE_MINER "can_disable_miner"
+///xenos that can tear open holes
+#define TRAIT_CAN_TEAR_HOLE "can_tear_hole"
+/// Allows xenomorphs to heal without needing to be on weeds.
+#define TRAIT_INNATE_HEALING "innate_healing"
+///is currently jumping
+#define TRAIT_IS_JUMPING "is_jumping"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
@@ -234,6 +250,7 @@
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
+#define TRAIT_NO_STUN_ATTACK "no_stun_attack"
 #define TRAIT_BATONIMMUNE "baton_immunity"
 #define TRAIT_SLEEPIMMUNE "sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE "flashbang_immunity"
@@ -255,7 +272,7 @@
 ///massively decreases human MANUAL get up time
 #define TRAIT_QUICK_GETUP "quick_getup"
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
-#define TRAIT_MUTED "muted" //target is mute and can't speak
+#define TRAIT_MUTE "mute" //target is mute and can't speak, not to be confused with being muted by an admin
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 ///The target xenomorph's wound overlays won't be visible
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
@@ -263,6 +280,7 @@
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
 #define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
+#define TRAIT_WEB_PULLER "web_puller" // Xenomorph has a special interaction with the Snaring Web structure.
 
 //important_recursive_contents traits
 /*
@@ -291,6 +309,10 @@
 #define TRAIT_IS_CLIMBING "is_climbing"
 ///reloading a gun
 #define TRAIT_IS_RELOADING "is_reloading"
+///is removing shrapnel
+#define TRAIT_IS_SHRAP_REMOVING "is_shrap_removing"
+///is equipping some item, probably clothing
+#define TRAIT_IS_EQUIPPING_ITEM "is_equipping_item"
 
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"

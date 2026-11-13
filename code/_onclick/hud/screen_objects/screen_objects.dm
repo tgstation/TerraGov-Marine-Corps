@@ -1,6 +1,5 @@
 /*
 	Screen objects
-	Todo: improve/re-implement
 
 	Screen objects are only used for the hud and should not appear anywhere "in-game".
 	They are used with the client/screen list and the screen_loc var.
@@ -79,7 +78,6 @@
 
 /atom/movable/screen/swap_hand
 	name = "swap hand"
-	name = "swap"
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -527,9 +525,9 @@
 		return
 	var/mob/living/living_user = usr
 	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina)
-		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
+		living_user.balloon_alert(living_user, "stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
 		return
-	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
+	living_user.balloon_alert(living_user, "you have [living_user.getStaminaLoss()] stamina loss")
 
 
 /atom/movable/screen/component_button
@@ -795,6 +793,11 @@
 /atom/movable/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
+	duration = CIC_ORDER_DURATION
+
+/atom/movable/screen/arrow/retreat_order_arrow
+	name = "Retreat order arrow"
+	icon_state = "Retreat_arrow"
 	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/hunter_mark_arrow

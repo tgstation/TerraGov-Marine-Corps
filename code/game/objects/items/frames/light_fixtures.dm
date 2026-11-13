@@ -26,11 +26,11 @@
 		return
 	var/turf/loc = get_turf(user)
 	if(!isfloorturf(loc))
-		loc.balloon_alert(user, "bad spot")
+		loc.balloon_alert(user, "bad spot!")
 		return
 
 	user.balloon_alert_to_viewers("attaching")
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
+	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, SHORT_SOUND_RANGE)
 	var/constrdir = user.dir
 	var/constrloc = user.loc
 	if(!do_after(user, 30, NONE, on_wall, BUSY_ICON_BUILD))

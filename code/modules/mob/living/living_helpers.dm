@@ -5,10 +5,10 @@
 	return health_threshold_crit
 
 /mob/living/proc/has_brain()
-	return 1
+	return TRUE
 
 /mob/living/proc/has_eyes()
-	return 1
+	return TRUE
 
 /mob/living/proc/has_vision()
 	if(disabilities & BLIND)
@@ -121,13 +121,6 @@
 			target_location_feedback = "left hand"
 
 	return target_location_feedback
-
-/**
- * Sends a signal to enable throw parrying for the handed duration, provided the throw_parry component is attached. Otherwise, has no real effect.
- * For more information on parries, see throw_parry.dm
-**/
-/mob/living/proc/enable_throw_parry(duration)
-	SEND_SIGNAL(src, COMSIG_PARRY_TRIGGER, duration)
 
 ///Proc to check for a mob's ghost.
 /mob/living/proc/get_ghost(bypass_client_check = FALSE)

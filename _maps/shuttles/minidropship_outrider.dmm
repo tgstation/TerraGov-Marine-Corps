@@ -19,7 +19,7 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/minidropship{
 	dir = 8;
 	id = "minidropship_podlock";
 	name = "inner door-control"
@@ -187,6 +187,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "I" = (
+/obj/machinery/vending/nanoammo/directional/north,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},

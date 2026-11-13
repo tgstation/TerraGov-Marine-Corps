@@ -38,6 +38,20 @@
 		/obj/item/cell/hyper = 1,
 	)
 
+/obj/effect/spawner/random/engineering/powercell/empty
+	loot = list(
+		/obj/item/cell/high/empty = 40,
+		/obj/item/cell/crap/empty = 10,
+		/obj/item/cell/super/empty = 9,
+		/obj/item/cell/hyper/empty = 1,
+	)
+
+/obj/effect/spawner/random/engineering/powercell/empty_or_full
+	loot = list(
+		/obj/effect/spawner/random/engineering/powercell,
+		/obj/effect/spawner/random/engineering/powercell/empty,
+	)
+
 /obj/effect/spawner/random/engineering/pickaxe
 	name = "Random pickaxe spawner"
 	icon_state = "random_pickaxe"
@@ -75,6 +89,28 @@
 		/obj/item/storage/toolbox/emergency = 2,
 	)
 
+/obj/effect/spawner/random/engineering/toolbox/mechanicalweighted
+	loot = list(
+		/obj/item/storage/toolbox/mechanical = 10,
+		/obj/item/storage/toolbox/electrical = 1,
+		/obj/item/storage/toolbox/emergency = 1,
+	)
+
+/obj/effect/spawner/random/engineering/toolbox/electricalweighted
+	loot = list(
+		/obj/item/storage/toolbox/electrical = 10,
+		/obj/item/storage/toolbox/mechanical = 1,
+		/obj/item/storage/toolbox/emergency = 1,
+	)
+
+/obj/effect/spawner/random/engineering/toolbox/emergencyweighted
+	loot = list(
+		/obj/item/storage/toolbox/emergency = 10,
+		/obj/item/storage/toolbox/electrical = 1,
+		/obj/item/storage/toolbox/mechanical = 1,
+	)
+
+
 /obj/effect/spawner/random/engineering/tech_supply
 	name = "Random Tech Supply"
 	icon_state = "random_cell"
@@ -90,6 +126,28 @@
 		/obj/effect/spawner/random/engineering/toolbox = 2,
 		/obj/item/storage/belt/utility = 2,
 		/obj/effect/spawner/random/engineering/tool = 5,
+	)
+
+/obj/effect/spawner/random/engineering/structure/inflatable
+	name = "inflatable spawner"
+	icon_state = "random_inflatable"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/inflatable/wall,
+		/obj/structure/inflatable/popped,
+	)
+
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted
+	loot = list(
+		/obj/structure/inflatable/wall = 15,
+		/obj/structure/inflatable/popped = 1,
+	)
+
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted
+	icon_state = "random_inflatable_popped"
+	loot = list(
+		/obj/structure/inflatable/popped = 25,
+		/obj/structure/inflatable/wall = 1,
 	)
 
 /obj/effect/spawner/random/engineering/structure/gascan

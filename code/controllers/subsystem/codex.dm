@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(codex)
 	name = "Codex"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_CODEX
 	var/list/entries_by_path = list()
 	var/list/entries_by_string = list()
 	var/list/index_file = list()

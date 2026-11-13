@@ -9,8 +9,8 @@
 	storage_slots = 40
 
 /datum/storage/tank/on_attack_hand(datum/source, mob/living/user) //Override for tank subtype since this is deployed storage
-	if(parent.Adjacent(user))
-		open(user)
+	if(parent.Adjacent(user) && can_open(user))
+		INVOKE_ASYNC(src, PROC_REF(open), user)
 
 /datum/storage/tank/ammorack_primary/New(atom/parent)
 	. = ..()
@@ -21,6 +21,7 @@
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister/incendiary,
 		/obj/item/ammo_magazine/tank/volkite_carronade,
 		/obj/item/ammo_magazine/tank/particle_lance,
 		/obj/item/ammo_magazine/tank/coilgun,

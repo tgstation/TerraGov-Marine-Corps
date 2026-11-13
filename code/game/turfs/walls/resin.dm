@@ -18,13 +18,20 @@
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
+	allow_pass_flags = PASS_FIRE
 
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
-/turf/closed/wall/resin/Initialize(mapload)
+/turf/closed/wall/resin/AfterChange(flags)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
+	//This exists solely so mazes don't show up on the minimap if the map is redrawn
+	var/turf/under_turf
+	if(islist(baseturfs))
+		under_turf = baseturfs[length(baseturfs)]
+	else
+		under_turf = baseturfs
+	minimap_color = under_turf::minimap_color
 
 /turf/closed/wall/resin/get_mechanics_info()
 	. += ..()
@@ -49,12 +56,12 @@
 	ChangeTurf(/turf/closed/wall/resin/thick)
 	return TRUE
 
-/turf/closed/wall/resin/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/turf/closed/wall/resin/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	var/charge_cost = PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD
@@ -67,7 +74,7 @@
 	// 301 damage. Enough to kill normal and thick walls.
 	// Only reason why this is not ChangeTurf is to stop special walls from getting one-shot (e.g more health / melee armor).
 	take_damage(max(0, plasmacutter.force * (2 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /turf/closed/wall/resin/thick
@@ -137,7 +144,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
@@ -161,7 +168,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, I.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
@@ -254,6 +261,7 @@
 	max_upgradable_health = 200
 	soft_armor = list(MELEE = 0, BULLET = 65, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	color = COLOR_WALL_FIREPROOF
+	allow_pass_flags = NONE // To prevent fire from passing beyond it.
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"

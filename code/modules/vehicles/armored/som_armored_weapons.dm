@@ -16,12 +16,13 @@
 	hud_state_empty = "battery_empty_flash"
 	fire_sound_vary = FALSE
 	///Range of this weapon
-	var/beam_range = 20
+	var/beam_range = 15
 	///Armor pen of this weapon
 	var/armor_pen = 20
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
-	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
+	var/turf/target_turf = get_turf_at_angle_ranged(source_turf, Get_Angle(source_turf, get_turf(current_target)), beam_range)
+
 	var/list/turf/beam_turfs = get_traversal_line(source_turf, target_turf)
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
@@ -31,6 +32,8 @@
 
 	for(var/turf/line_turf AS in beam_turfs)
 		if(isclosedturf(line_turf))
+			break
+		if(get_dist_euclidean(source_turf, target_turf) > beam_range)
 			break
 		for(var/range_turf in RANGE_TURFS(1, line_turf))
 			impacted_turfs |= range_turf
@@ -66,14 +69,13 @@
 				continue
 			if(isliving(target))
 				var/mob/living/living_target = target
-				living_target.apply_damage(80, BURN, blocked = ENERGY, penetration = armor_pen)
+				living_target.apply_damage(80, BURN, blocked = ENERGY, penetration = armor_pen, attacker = current_firer)
 				if(!QDELETED(living_target))
-					living_target.apply_damage(80, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
+					living_target.apply_damage(80, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE, attacker = current_firer)
 				living_target.flash_act(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 3 : 2)
-				living_target.adjust_fire_stacks(beam_turf ? 15 : 9)
-				living_target.IgniteMob()
+				living_target.adjust_burning(beam_turf ? 15 : 9)
 		if(!beam_turf)
 			continue
 		new /obj/effect/temp_visual/shockwave(impacted_turf, 4)
@@ -85,7 +87,7 @@
 
 	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4, explosion_cause=current_firer)
 
-	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
+	QDEL_IN(source_turf.beam(target_turf, icon_state = "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
 	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)
 
 /obj/effect/ebeam/carronade/Initialize(mapload)

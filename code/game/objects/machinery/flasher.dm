@@ -41,7 +41,7 @@
 		icon_state = "[base_state]1-p"
 
 
-/obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
+/obj/machinery/flasher/wirecutter_act(mob/user, obj/item/tool)
 	disable = !disable
 	if (disable)
 		user.visible_message(span_warning("[user] has disconnected the [src]'s flashbulb!"), span_warning("You disconnect the [src]'s flashbulb!"))
@@ -60,7 +60,7 @@
 	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	playsound(loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	flick("[base_state]_flash", src)
 	last_flash = world.time
 	use_power(active_power_usage)

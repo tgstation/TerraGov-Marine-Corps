@@ -147,7 +147,12 @@
 	icon_state = "containment_window"
 	opacity = FALSE
 
-
+/turf/closed/wall/mainship/bulletproof
+	name = "bulletproof wall"
+	desc = "A huge chunk of metal used to seperate rooms and make up the ship. Impervious to small arms fire."
+	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
+	
+	
 /turf/closed/wall/desert
 	name = "wall"
 	icon = 'icons/turf/walls/chigusa.dmi'
@@ -266,7 +271,6 @@
 	icon_state = ""
 	pixel_x = -64
 
-//todo this should be using immediate instead of New()
 INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 /turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
 	. = ..()
@@ -498,3 +502,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	icon_state = "engineer_walls-0"
 	walltype = "wall"
 	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/elevator
+	name = "elevator wall"
+	desc = "Nigh indestructible walls that make up the hull of a elevator."
+	icon = 'icons/turf/walls/elevator_wall.dmi'
+	icon_state = "elevator_wall-0"
+	walltype = "wall"
+	base_icon_state = "elevator_wall"

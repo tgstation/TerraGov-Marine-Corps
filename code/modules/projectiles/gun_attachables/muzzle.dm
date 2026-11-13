@@ -72,7 +72,7 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
-/obj/item/attachable/bayonet/converted/screwdriver_act(mob/living/user, obj/item/I)
+/obj/item/attachable/bayonet/converted/screwdriver_act(mob/user, obj/item/tool)
 	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
 	if(loc == user)
 		user.dropItemToGround(src)
@@ -248,3 +248,11 @@
 
 	update_icon()
 	return TRUE
+
+/obj/item/attachable/at45barrel
+	name = "\improper CC/AT45 barrel"
+	icon_state = "at45barrel"
+	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = ATTACHMENT_SLOT_MUZZLE
+	attach_features_flags = NONE

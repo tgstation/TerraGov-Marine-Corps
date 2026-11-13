@@ -91,7 +91,6 @@
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
-	desc = "A biohazard alert warning is printed on the box"
 	spawn_type = /obj/item/reagent_containers/syringe
 	spawn_number = 7
 	icon_state = "syringe"
@@ -241,20 +240,20 @@
 	spawn_number = 14
 
 /obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/match))
-		var/obj/item/tool/match/M = I
-
-		if(M.heat || M.burnt)
-			return ..()
-
-		if(prob(50))
-			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			M.light_match()
-		else
-			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
-		return TRUE
-	else
+	if(!istype(I, /obj/item/tool/match))
 		return ..()
+
+	var/obj/item/tool/match/M = I
+
+	if(M.heat || M.burnt)
+		return ..()
+
+	if(prob(50))
+		playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
+		M.light_match()
+	else
+		playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
+	return TRUE
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"
@@ -499,7 +498,6 @@
 
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
-	update_stats()
 
 /obj/item/storage/box/visual/Destroy()
 	contents_weight = null
@@ -532,6 +530,7 @@
 			. += "A lot of: [initial(I.name)]."
 
 /obj/item/storage/box/visual/attack_self(mob/user)
+	update_stats()
 	deployed = TRUE
 	user.dropItemToGround(src)
 	update_icon()
@@ -544,6 +543,8 @@
 		return
 
 	if(!deployed)
+		update_stats()
+		pickup(user)
 		user.put_in_hands(src)
 		return
 
@@ -555,17 +556,26 @@
 			return
 		storage_datum.open(user)
 
-/obj/item/storage/box/visual/MouseDrop(atom/over_object)
+/obj/item/storage/box/visual/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(!deployed)
 		return
 
-	if(!ishuman(over_object))
+	if(!ishuman(over))
 		return
 
-	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		deployed = FALSE
-		update_icon()
+	var/mob/living/carbon/human/human = over
+
+	if(human != usr)
+		return
+	if(human.incapacitated())
+		return
+	if(!Adjacent(human))
+		return
+	pickup(human)
+	if(!human.put_in_hands(src))
+		return
+	deployed = FALSE
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()
@@ -834,6 +844,15 @@
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/smg/standard_heavysmg
 
+/obj/item/storage/box/visual/magazine/compact/standard_heavysmg/squash
+	name = "SMG-45 squash magazine box"
+	desc = "A box specifically designed to hold a large amount of SMG-45 magazines."
+	closed_overlay = "mag_box_small_overlay_smg45_squash"
+
+/obj/item/storage/box/visual/magazine/compact/standard_heavysmg/squash/full
+	spawn_number = 40
+	spawn_type = /obj/item/ammo_magazine/smg/standard_heavysmg/squashhead
+
 // -Rifle-
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle
@@ -945,6 +964,45 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
 
+// sh410
+/obj/item/storage/box/visual/magazine/compact/sh410
+	name = "SH-410 magazine box"
+	desc = "A box specifically designed to hold a large amount of SH-410 magazines."
+	closed_overlay = "mag_box_small_overlay_sh410"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 30
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/ammo_magazine/rifle/sh410_buckshot,
+		/obj/item/ammo_magazine/rifle/sh410_sabot,
+		/obj/item/ammo_magazine/rifle/sh410_tracker,
+	))
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot
+	name = "SH-410 buckshot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_buckshot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/buckshot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_buckshot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot
+	name = "SH-410 sabot magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_sabot"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/sabot/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_sabot
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker
+	name = "SH-410 tracker magazine box"
+	closed_overlay = "mag_box_small_overlay_sh410_tracker"
+
+/obj/item/storage/box/visual/magazine/compact/sh410/tracker/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sh410_tracker
+
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle
 	name = "Suspicious glowing box"
 	desc = "A purple glowing box with a big TOP SECRET label as well as conspiracy talkpoints printed topside. What a load of gibberish!"
@@ -970,9 +1028,9 @@
 // -Energy-
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle
-	name = "LR-73 cell box"
-	desc = "A box specifically designed to hold a large amount of TX-73 cells."
-	closed_overlay = "mag_box_small_overlay_lr73"
+	name = "Terra Experimental cell box"
+	desc = "A box specifically designed to hold a large amount of Terra Experimental cells."
+	closed_overlay = "mag_box_small_overlay_te"
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/Initialize(mapload, ...)
 	. = ..()
@@ -982,22 +1040,6 @@
 	))
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/full
-	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle
-
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine
-	name = "Terra Experimental cell box"
-	desc = "A box specifically designed to hold a large amount of Terra Experimental cells."
-	closed_overlay = "mag_box_small_overlay_te"
-
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/Initialize(mapload, ...)
-	. = ..()
-	storage_datum.storage_slots = 30
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/cell/lasgun/lasrifle,
-	))
-
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
 	spawn_number = 30
 	spawn_type = /obj/item/cell/lasgun/lasrifle
 
@@ -1126,7 +1168,7 @@
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "HMG-08 drum box"
 	desc = "A box specifically designed to hold a large amount of HMG-08 drum."
-	closed_overlay = "mag_box_small_overlay_mg08"
+	closed_overlay = "mag_box_small_overlay_hmg08"
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun/Initialize(mapload, ...)
 	. = ..()
@@ -1176,7 +1218,7 @@
 	desc = "A secure box holding 25 M45 Cloaker greandes. Warning: causes cancer!!!"
 	spawn_number = 25
 	spawn_type = /obj/item/explosive/grenade/sticky/cloaker
-	closed_overlay = "grenade_box_overlay_cloaker"
+	closed_overlay = "grenade_box_overlay_M45_cloak"
 
 /obj/item/storage/box/visual/grenade/trailblazer
 	name = "\improper M45 Trailblazer grenade box"

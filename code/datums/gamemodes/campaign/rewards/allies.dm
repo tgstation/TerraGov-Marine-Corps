@@ -87,7 +87,7 @@
 	name = "V.S.D. PMC squad"
 	desc = "A syndicate squadron to assist the ICC joint operation"
 	detailed_desc = "A medium amount of Security Detail squadron have been opened at a no attrition cost. \
-	The Syndicate have sent their most trusted PMC squadron to assist in your aid. Complete with Ballistic armor and Old world weaponry."
+	The Syndicate have sent their most trusted PMC squadron to assist in your aid. Complete with a strong arsenal and heavy duty armor."
 	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/vsd_reinforcement
 	ui_icon = "vsd"
 	bonus_job_list = list(

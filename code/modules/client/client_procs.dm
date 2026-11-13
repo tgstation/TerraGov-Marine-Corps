@@ -97,6 +97,9 @@
 	if(href_list["priv_msg"])
 		private_message(href_list["priv_msg"], null)
 		return
+	if (href_list["player_ticket_panel"])
+		view_latest_ticket()
+		return
 
 	if(href_list["commandbar_typing"])
 		handle_commandbar_typing(href_list)
@@ -143,7 +146,7 @@
 	GLOB.directory[ckey] = src
 
 	if(byond_version >= 516)
-		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+		winset(src, null, list("browser-options" = "find,refresh"))
 
 	//On creation of a client, add an entry into the GLOB list of the client with their stats
 	GLOB.personal_statistics_list[ckey] = new /datum/personal_statistics
@@ -884,37 +887,18 @@
 					movement_keys[key] = WEST
 				if("South")
 					movement_keys[key] = SOUTH
-				if(SAY_CHANNEL)
-					var/say = tgui_say_create_open_command(SAY_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[say]")
-				if(RADIO_CHANNEL)
-					var/radio = tgui_say_create_open_command(RADIO_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[radio]")
-				if(ME_CHANNEL)
-					var/me = tgui_say_create_open_command(ME_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[me]")
-				if(OOC_CHANNEL)
-					var/ooc = tgui_say_create_open_command(OOC_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[ooc]")
-				if(LOOC_CHANNEL)
-					var/looc = tgui_say_create_open_command(LOOC_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[looc]")
-				if(MOOC_CHANNEL)
-					var/mooc = tgui_say_create_open_command(MOOC_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[mooc]")
-				if(XOOC_CHANNEL)
-					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
-					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
 				if(ADMIN_CHANNEL)
 					if(holder)
 						var/asay = tgui_say_create_open_command(ADMIN_CHANNEL)
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[asay]")
+						winset(src, "tgui_say.browser", "focus=true")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
 				if(MENTOR_CHANNEL)
 					if(holder)
 						var/msay = tgui_say_create_open_command(MENTOR_CHANNEL)
-						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
+						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay];")
+						winset(src, "tgui_say.browser", "focus=true")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
 	calculate_move_dir()
@@ -936,14 +920,7 @@
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)
-	if (fullscreen_mode)
-		// ATTN!! ONCE 515.1631 IS REQUIRED REPLACE WITH winset(src, "mainwindow", "menu=;is-fullscreen=true") (and remember to replace the other call of course)
-		// this means no double maximise calls to make sure window fits, and supresses, titlebar, can-resize and is-maximized
-		// both implementations are functionally "windowed borderless"
-		winset(src, "mainwindow", "on-size=;titlebar=false;can-resize=false;menu=;is-maximized=false")
-		winset(src, "mainwindow", "is-maximized=true")
-	else
-		winset(src, "mainwindow", "menu=menu;titlebar=true;can-resize=true;is-maximized=true;on-size=attempt_auto_fit_viewport")
+	winset(src, "mainwindow", "menu=;is-fullscreen=[fullscreen_mode ? "true" : "false"]")
 
 /client/proc/toggle_status_bar(show_status_bar)
 	if (show_status_bar)

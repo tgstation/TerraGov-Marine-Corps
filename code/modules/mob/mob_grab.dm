@@ -26,6 +26,8 @@
 
 
 /obj/item/grab/on_thrown(mob/living/carbon/user, atom/target)
+	if(!ishuman(user))
+		return
 	if(!ismob(grabbed_thing))
 		return
 	if(user.grab_state < GRAB_NECK)

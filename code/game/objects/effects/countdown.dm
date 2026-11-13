@@ -57,7 +57,7 @@
 
 /obj/effect/countdown/Destroy()
 	attached_to = null
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/effect/countdown/ex_act(severity) //immune to explosions
@@ -103,6 +103,7 @@
 
 /obj/effect/countdown/action_cooldown/Destroy()
 	attached_action = null
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /obj/effect/countdown/action_cooldown/attach(atom/A)
@@ -118,6 +119,13 @@
 	if(!started)
 		START_PROCESSING(SSfastprocess, src)
 		started = TRUE
+
+/obj/effect/countdown/action_cooldown/stop()
+	if(started)
+		maptext = null
+		displayed_text = null
+		STOP_PROCESSING(SSfastprocess, src)
+		started = FALSE
 
 /obj/effect/countdown/action_cooldown/process()
 	if(QDELETED(attached_to))

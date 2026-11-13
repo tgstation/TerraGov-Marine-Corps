@@ -1,4 +1,0 @@
-author: "nervere"
-delete-after: True
-changes:
-  - bugfix: "Fixed all directional inhand/wielded sprites for the SG-62."

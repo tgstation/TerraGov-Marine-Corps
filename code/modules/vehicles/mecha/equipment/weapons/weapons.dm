@@ -59,6 +59,11 @@
 	equip_cooldown = projectile_delay
 	muzzle_flash = new(src, muzzle_iconstate)
 
+/obj/item/mecha_parts/mecha_equipment/weapon/Destroy()
+	current_firer = null
+	current_target = null
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target, ignore_cooldown)
 	. = ..()
 	if(!.)
@@ -74,6 +79,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
+	current_firer = source
 	if(!action_checks(target))
 		return FALSE
 
@@ -85,7 +91,7 @@
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
 			playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
@@ -94,7 +100,6 @@
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
-	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		. = ..()
 		var/fire_return = fire()
@@ -174,7 +179,7 @@
 	current_firer = null
 
 ///does any effects and changes to the projectile when it is fired
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(obj/projectile/projectile_to_fire, mob/firer)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/apply_weapon_modifiers(atom/movable/projectile/projectile_to_fire, mob/firer)
 	projectile_to_fire.shot_from = src
 	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
@@ -208,8 +213,8 @@
 		else
 			return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /atom/movable/projectile/hitscan : /atom/movable/projectile
+	var/atom/movable/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
@@ -222,9 +227,9 @@
 		else
 			holding = grey.limbs[MECH_GREY_L_ARM]
 		proj_scatter += holding.scatter_mod //todo: we can probably just make the scatter_modmod apply directly to the gun like attachments do
-	var/firing_angle = get_angle_with_scatter(chassis, current_target, max(proj_scatter, 0), projectile_to_fire.p_x, projectile_to_fire.p_y)
+	var/firing_angle = get_angle_with_scatter(chassis, current_target, clamp(proj_scatter, 0, 45), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
-	playsound(chassis, fire_sound, 25, TRUE)
+	playsound(chassis, fire_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 	projectile_to_fire.fire_at(current_target, current_firer, chassis, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	chassis.use_power(energy_drain)
@@ -374,7 +379,7 @@
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	ASYNC
 		attempt_rearm(current_firer)
 
@@ -482,7 +487,7 @@
 		occupant.hud_used.update_ammo_hud(src, hud_icons, projectiles)
 	if(projectiles > 0)
 		return TRUE
-	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
+	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 //used for projectile initilisation (priming flashbang) and additional logging

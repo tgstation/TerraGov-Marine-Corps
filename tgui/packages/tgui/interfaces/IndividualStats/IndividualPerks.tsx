@@ -83,7 +83,7 @@ export const IndividualPerks = (props) => {
           </Stack>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item grow>
         <Section
           title={
             selectedPerk ? (

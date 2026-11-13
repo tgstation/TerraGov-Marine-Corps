@@ -196,14 +196,14 @@
 		electrocute_mob(user, get_area(src), src, 0.3)
 	broken()
 
-/obj/machinery/light/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/light/screwdriver_act(mob/user, obj/item/tool)
 	if(user.a_intent == INTENT_HARM)
 		return FALSE
 	if(status != LIGHT_EMPTY)
 		balloon_alert(user, "Remove bulb first")
 		return TRUE
 
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	tool.play_tool_sound(src)
 	user.visible_message("[user] opens [src]'s casing.", \
 		"You open [src]'s casing.", "You hear a noise.")
 	var/obj/machinery/light_construct/newlight
@@ -376,11 +376,10 @@
 
 ///proc to toggle power on and off for light
 /obj/machinery/light/proc/flicker_power_state(turn_on = TRUE, turn_off = FALSE)
+	playsound(loc, pick(list('sound/effects/lightfizz.ogg', 'sound/effects/lightfizz2.ogg', 'sound/effects/lightfizz3.ogg', 'sound/effects/lightfizz4.ogg', 'sound/effects/lightfizz5.ogg', 'sound/effects/lightfizz.ogg', 'sound/effects/lightfizz6.ogg')), 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	if(!light_flicker_state)
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		update(FALSE)
 	else
-		pick(playsound(loc, 'sound/effects/lightfizz.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz2.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz3.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz4.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz5.ogg', 10, TRUE), playsound(loc, 'sound/effects/lightfizz6.ogg', 10, TRUE))
 		turn_light(null, FALSE)
 
 ///break the light and make sparks if was on
@@ -390,7 +389,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
+			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(status == LIGHT_OK && has_power())
 			var/datum/effect_system/spark_spread/spark_spread = new /datum/effect_system/spark_spread(src)
 			spark_spread.set_up(3, 1, loc)
@@ -529,6 +528,7 @@
 	icon_state = "floortube_empty"
 	base_icon_state = "floortube"
 	layer = MAP_SWITCH(ABOVE_OPEN_TURF_LAYER, LOW_OBJ_LAYER)
+	plane = FLOOR_PLANE
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
@@ -542,6 +542,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
+	plane = FLOOR_PLANE
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
@@ -593,42 +594,29 @@
 	light_power = 6
 	light_range = 4
 
-/obj/machinery/floor_warn_light/toggleable
+/obj/machinery/floor_warn_light/self_destruct
+	name = "self destruct alarm light"
 	icon_state = "rotating_alarm_off"
 	light_power = 0
 	light_range = 0
 
+
+
+/obj/machinery/floor_warn_light/self_destruct/Initialize(mapload)
+	. = ..()
+	SSevacuation.alarm_lights += src
+
+
+/obj/machinery/floor_warn_light/self_destruct/Destroy()
+	. = ..()
+	SSevacuation.alarm_lights -= src
+
 ///Enables the alarm lights and makes them start flashing
-/obj/machinery/floor_warn_light/toggleable/proc/enable()
+/obj/machinery/floor_warn_light/self_destruct/proc/enable()
 	icon_state = "rotating_alarm"
 	set_light(4,6)
 
 ///Disables the alarm lights and makes them stop flashing
-/obj/machinery/floor_warn_light/toggleable/proc/disable()
+/obj/machinery/floor_warn_light/self_destruct/proc/disable()
 	icon_state = initial(icon_state)
 	set_light(0,0)
-
-/obj/machinery/floor_warn_light/toggleable/self_destruct
-	name = "self destruct alarm light"
-
-/obj/machinery/floor_warn_light/toggleable/self_destruct/Initialize(mapload)
-	. = ..()
-	SSevacuation.alarm_lights += src
-
-/obj/machinery/floor_warn_light/toggleable/self_destruct/Destroy()
-	. = ..()
-	SSevacuation.alarm_lights -= src
-
-//A list of all generator lights so that they can be turned on when the generator enters meltdown
-GLOBAL_LIST_EMPTY_TYPED(generator_alarm_lights, /obj/machinery/floor_warn_light/toggleable)
-
-/obj/machinery/floor_warn_light/toggleable/generator
-	name = "generator meltdown alarm light"
-
-/obj/machinery/floor_warn_light/toggleable/generator/Initialize(mapload)
-	. = ..()
-	GLOB.generator_alarm_lights += src
-
-/obj/machinery/floor_warn_light/toggleable/generator/Destroy()
-	. = ..()
-	GLOB.generator_alarm_lights -= src

@@ -17,7 +17,7 @@
 	resistance_flags = UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
 	light_range = 1
-	light_power = 0.5
+	light_power = 5
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	///The area we're affecting
@@ -95,18 +95,7 @@
 
 	// offset 32 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (ndir)
-		setDir(ndir)
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = -32
-		if(SOUTH)
-			pixel_y = 32
-		if(EAST)
-			pixel_x = -32
-		if(WEST)
-			pixel_x = 32
+	setDir(ndir ? ndir : dir)
 
 	if(building)
 		var/area/A = get_area(src)
@@ -115,7 +104,7 @@
 		operating = FALSE
 		name = "\improper [area.name] APC"
 		machine_stat |= MAINT
-		update_icon()
+		update_appearance()
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 	start_processing()
@@ -126,7 +115,7 @@
 	area = A
 	name = "\improper [area.name] APC"
 
-	update_icon()
+	update_appearance()
 	update() //areas should be lit on startup
 
 	if(mapload)
@@ -136,7 +125,7 @@
 		if(cell_type)
 			set_cell(new cell_type(src))
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
-			cell.update_icon()
+			cell.update_appearance()
 
 
 		make_terminal()
@@ -146,6 +135,23 @@
 		//Break few ACPs on the colony
 		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, PROC_REF(set_broken)), 5)
+
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_APC_ALL_ACCESS))
+		req_access = null
+
+/obj/machinery/power/apc/setDir(newdir)
+	. = ..()
+	pixel_w = 0
+	pixel_z = 0
+	switch(dir)
+		if(NORTH)
+			pixel_z = -24
+		if(SOUTH)
+			pixel_z = 32
+		if(EAST)
+			pixel_w = -30
+		if(WEST)
+			pixel_w = 30
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
@@ -169,6 +175,7 @@
 	cell = new_cell
 	if(cell)
 		RegisterSignal(cell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
+	update_appearance(UPDATE_ICON)
 
 
 ///Called by the deletion of the referenced powercell.
@@ -289,7 +296,7 @@
 					balloon_alert(usr, "APC unresponsive")
 				else
 					locked = !locked
-					update_icon()
+					update_appearance()
 					. = TRUE
 		if("cover")
 			coverlocked = !coverlocked
@@ -301,20 +308,20 @@
 			chargemode = !chargemode
 			if(!chargemode)
 				charging = APC_NOT_CHARGING
-				update_icon()
+				update_appearance()
 			. = TRUE
 		if("channel")
 			if(params["eqp"])
 				equipment = setsubsystem(text2num(params["eqp"]))
-				update_icon()
+				update_appearance()
 				update()
 			else if(params["lgt"])
 				lighting = setsubsystem(text2num(params["lgt"]))
-				update_icon()
+				update_appearance()
 				update()
 			else if(params["env"])
 				environ = setsubsystem(text2num(params["env"]))
-				update_icon()
+				update_appearance()
 				update()
 			. = TRUE
 		if("overload")
@@ -352,7 +359,7 @@
 		if(APC_RESET_EMP)
 			equipment = 3
 			environ = 3
-			update_icon()
+			update_appearance()
 			update()
 
 /obj/machinery/power/apc/surplus()
@@ -377,7 +384,7 @@
 
 /obj/machinery/power/apc/process()
 	if(icon_update_needed)
-		update_icon()
+		update_appearance()
 	if(machine_stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
@@ -452,9 +459,9 @@
 			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
 			area.poweralert(0, src)
-		else if(cell.percent() < 30 && longtermpower < 0)			// <30%, turn off equipment
-			equipment = autoset(equipment, 2)
-			lighting = autoset(lighting, 1)
+		else if(cell.percent() < 30 && longtermpower < 0)			// <30%, turn off lighting
+			equipment = autoset(equipment, 1)
+			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
 			area.poweralert(0, src)
 		else									// otherwise all can be on
@@ -543,7 +550,7 @@
 	lighting = 0
 	equipment = 0
 	environ = 0
-	update_icon()
+	update_appearance()
 	update()
 	addtimer(CALLBACK(src, PROC_REF(reset), APC_RESET_EMP), 60 SECONDS)
 
@@ -585,7 +592,7 @@
 	visible_message(span_danger("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
 	machine_stat |= BROKEN
 	operating = FALSE
-	update_icon()
+	update_appearance()
 	update()
 
 
@@ -617,7 +624,7 @@
 	operating = !operating
 	log_combat(user, src, "turned [operating ? "on" : "off"]")
 	update()
-	update_icon()
+	update_appearance()
 
 
 //------Various APCs ------//

@@ -12,11 +12,10 @@
 	return ..()
 
 /datum/buildmode_mode/varedit/show_help(client/user)
-	to_chat(user, span_purple(examine_block(
+	to_chat(user, custom_boxed_message("purple_box",\
 		"[span_bold("Select var(type) & value")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Set var(type) & value")] -> Left Mouse Button on turf/obj/mob\n\
 		[span_bold("Reset var's value")] -> Right Mouse Button on turf/obj/mob"))
-	)
 
 /datum/buildmode_mode/varedit/change_settings(client/user)
 	var_name = input(user, "Enter variable name:" ,"Name", "name")

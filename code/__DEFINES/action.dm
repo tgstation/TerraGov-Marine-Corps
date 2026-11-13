@@ -24,10 +24,10 @@
 #define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
 //A reference for the special resin build counter of a xeno
 #define VREF_MUTABLE_SPECIAL_RESIN_COUNTER "VREF_SPECIAL_RESIN_COUNTER"
-// extra reference for the amount of landslide charges we have
-#define VREF_MUTABLE_LANDSLIDE "VREF_LANDSLIDE"
 // extra reference for the amount of earth pillars we have
 #define VREF_MUTABLE_EARTH_PILLAR "VREF_EARTH_PILLAR"
+// Reflects the amount of stacks we have for Primal Wrath's debuff.
+#define VREF_MUTABLE_PRIMAL_WRATH "VREF_PRIMAL_WRATH"
 // extra reference for savage's cooldown
 #define VREF_MUTABLE_SAVAGE_COOLDOWN "VREF_SAVAGE_COOLDOWN"
 // extra define for jab charges
@@ -38,6 +38,8 @@
 #define VREF_MUTABLE_CORROSIVEGLOB_COUNTER "VREF_CORROSIVEGLOB_COUNTER"
 // extra reference for how many boiler acid globs we have
 #define VREF_MUTABLE_AMMO_COUNTER "VREF_AMMO_COUNTER"
+// extra reference for how many stacks of sizzler steam rush we have
+#define VREF_MUTABLE_STEAMRUSH_STACKS "VREF_STEAMRUSH_STACKS"
 // extra reference for how many globadier acid mines we have
 #define VREF_MUTABLE_ACID_MINES_COUNTER "VREF_ACIDMINE_COUNTER"
 // extra reference for how many globadier grenades we have
@@ -50,6 +52,10 @@
 #define VREF_MUTABLE_GAS_MINE_TIMER "VREF_GASMINE_CHARGETIMER"
 // extra reference for how long untill we recharge a new gas mine
 #define VREF_MUTABLE_ACID_MINE_TIMER "VREF_ACIDMINE_CHARGETIMER"
+// The extra reference for Conqueror's Dash ability if it uses the charge cooldown system. Shows how many charges are available.
+#define VREF_MUTABLE_CONQ_DASH_CHARGES "VREF_CONQDASH_CHARGES"
+// The extra reference for Conqueror's Dash ability if it uses the charge cooldown system. Shows how much time is left before a charge is restored.
+#define VREF_MUTABLE_CONQ_DASH_CHARGETIMER "VREF_CONQDASH_CHARGETIMER"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"

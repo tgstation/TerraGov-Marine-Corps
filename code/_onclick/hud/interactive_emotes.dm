@@ -19,7 +19,7 @@
 	if(LAZYLEN(target.queued_interactions))
 		for(var/atom/movable/screen/interaction/element AS in target.queued_interactions)
 			if(element.initiator == src)
-				balloon_alert(src, "Slow your roll!")
+				balloon_alert(src, "slow your roll!")
 				return
 
 	interaction = new interaction()

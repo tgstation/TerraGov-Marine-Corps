@@ -50,6 +50,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)
 //list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)
+// List of all flares that are activated.
+GLOBAL_LIST_EMPTY(activated_flares)
 //list of all main overwatch consoles
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)
 ///List of all objectives in the campaign gamemode loaded in the current mission
@@ -103,6 +105,8 @@ GLOBAL_LIST_EMPTY(alert_consoles)
 ///list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(xeno_tunnels_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
+GLOBAL_LIST_EMPTY(xeno_encounter_resin_silo_turfs)
+GLOBAL_LIST_EMPTY(xeno_spawner_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
@@ -111,9 +115,14 @@ GLOBAL_LIST_EMPTY(xeno_jelly_pod_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
+GLOBAL_LIST_EMPTY(xeno_acid_pools_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
+
+GLOBAL_LIST_EMPTY(zombie_spawner_turfs)
+GLOBAL_LIST_EMPTY(zombie_crash_vendor_landmarks)
+GLOBAL_LIST_EMPTY(zombie_crash_vendors)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 

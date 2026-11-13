@@ -2,7 +2,7 @@
 /datum/weather/ash_storm/sand
 	name = "severe sandstorm"
 	telegraph_message = span_userdanger("You see a dust cloud rising over the horizon. That can't be good...")
-	telegraph_duration = 300
+	telegraph_duration = 600
 	telegraph_overlay = "dust_med"
 	telegraph_sound = 'sound/effects/siren.ogg'
 
@@ -27,13 +27,20 @@
 		return
 	if(is_storm_immune(L))
 		return
-	L.adjustBruteLoss(6)
 	to_chat(L, span_danger("You are battered by the coarse sand!"))
+	if(!ishuman(L))
+		L.adjustBruteLoss(6)
+		return
+
+	L.adjustBruteLoss(2)
+	L.Stagger(2 SECONDS)
+
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"
 	desc = "A passing sandstorm blankets the area in sand."
 
+	telegraph_duration = 300
 	telegraph_message = span_danger("The wind begins to intensify, blowing sand up from the ground...")
 	telegraph_overlay = "dust_low"
 	telegraph_sound = null

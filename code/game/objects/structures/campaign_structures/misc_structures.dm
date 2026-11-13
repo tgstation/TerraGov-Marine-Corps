@@ -26,3 +26,17 @@
 	icon_state = "concrete_0"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/barricade/concrete
+
+/obj/effect/landmark/campaign_structure/sentry
+	name = "marine sentry landmark"
+	icon = 'icons/obj/machines/deployable/sentry/sentry.dmi'
+	icon_state = "sentry"
+	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid/som)
+	spawn_object = /obj/item/weapon/gun/sentry/big_sentry/premade/radial
+
+/obj/effect/landmark/campaign_structure/sentry/som
+	name = "COPE sentry landmark"
+	icon = 'icons/obj/machines/deployable/sentry/cope.dmi'
+	icon_state = "cope"
+	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
+	spawn_object = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed

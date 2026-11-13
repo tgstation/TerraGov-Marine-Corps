@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(greyscale)
 	name = "Greyscale"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_GREYSCALE
+	init_stage = INITSTAGE_EARLY
 
 	var/list/datum/greyscale_config/configurations = list()
 	var/list/datum/greyscale_layer/layer_types = list()

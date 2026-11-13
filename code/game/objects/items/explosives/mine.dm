@@ -2,6 +2,8 @@
 #define MINE_VEHICLE_ONLY (1<<1)
 #define MINE_LIVING_OR_VEHICLE MINE_LIVING_ONLY|MINE_VEHICLE_ONLY
 
+#define MINE_ALT_APPEARANCE_KEY "mine_alt_appearance_key"
+
 /**
 Mines
 
@@ -89,7 +91,7 @@ Stepping directly on the mine will also blow it up
 	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
-	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	if(user)
 		user.drop_held_item()
@@ -98,6 +100,16 @@ Stepping directly on the mine will also blow it up
 		setDir(pick(CARDINAL_ALL_DIRS))
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
+
+	var/image/alt_image = image(icon, src, "[initial(icon_state)]_friendly")
+	alt_image.appearance_flags = RESET_ALPHA|RESET_COLOR
+	var/list/friendly_factions = list()
+	for(var/faction in GLOB.faction_to_iff)
+		if(GLOB.faction_to_iff[faction] != iff_signal)
+			continue
+		friendly_factions += faction
+
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/multi_faction, MINE_ALT_APPEARANCE_KEY, alt_image, friendly_factions)
 
 /// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
@@ -121,6 +133,7 @@ Stepping directly on the mine will also blow it up
 	anchored = FALSE
 	armed = FALSE
 	update_icon()
+	remove_alt_appearance(MINE_ALT_APPEARANCE_KEY)
 	QDEL_NULL(tripwire)
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
@@ -165,7 +178,7 @@ Stepping directly on the mine will also blow it up
 	span_danger("[icon2html(src, viewers(living_victim))] \The [src] clicks as you move in front of it."), \
 	span_danger("You hear a click."))
 
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 	return TRUE
 
@@ -180,7 +193,7 @@ Stepping directly on the mine will also blow it up
 		return
 	xeno_attacker.visible_message(span_danger("[xeno_attacker] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
-	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/slice.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Trigger an actual explosion and delete the mine.

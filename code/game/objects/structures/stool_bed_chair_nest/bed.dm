@@ -12,7 +12,7 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
@@ -124,8 +124,8 @@
 	. = ..()
 	if(!buckled_bodybag || buckled_bodybag.Move(loc, movement_dir, glide_size))
 		return TRUE
-	forceMove(buckled_bodybag.loc)
-	return FALSE
+	buckled_bodybag.forceMove(loc) //this should generally only happen in the bed itself is forcemoved, such as a shuttle
+	return TRUE
 
 /obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
 	if(mover == buckled_bodybag)
@@ -139,13 +139,13 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "Brakes on")
+		balloon_alert(user, "brakes on")
 		anchored = TRUE
 	else
-		balloon_alert(user, "Brakes off")
+		balloon_alert(user, "brakes off")
 		anchored = FALSE
 
-/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
+/obj/structure/bed/MouseDrop_T(atom/dropping, mob/user, params)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)
@@ -199,7 +199,7 @@
 		if(!buildstacktype)
 			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		I.play_tool_sound(src)
 		if(dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		qdel(src)
@@ -390,17 +390,17 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return
 
 	if(!linked_beacon)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
 		return
 
 	if(user.faction != linked_beacon.faction)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
 	if(world.time < last_teleport )
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
 		return
 
@@ -409,23 +409,23 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		return
 
 	if(!linked_beacon.planted)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine linked medvac beacon isn't planted and active!"))
 		return
 
 	if(!linked_beacon.check_power())
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s bluespace engine linked medvac beacon is unpowered."))
 		return
 
 	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		to_chat(user, span_warning("[src]'s beacon is out of range!"))
 		return
 
 	user.visible_message(span_warning("[user] activates [src]'s bluespace engine, causing it to rev to life."),
 	span_warning("You activate [src]'s bluespace engine, causing it to rev to life."))
-	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
+	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	teleport_timer = addtimer(CALLBACK(src, PROC_REF(medevac_teleport), user), MEDEVAC_TELE_DELAY, TIMER_STOPPABLE|TIMER_UNIQUE) //Activate after 5 second delay.
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(on_mob_unbuckle))
 	busy = TRUE
@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	busy = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
-	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	visible_message(span_warning("[src]'s safeties kick in, no longer detecting a buckled user."))
 
 
@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	busy = FALSE
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon."))
 		return
 	var/mob/living/M
@@ -452,16 +452,16 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	else if(buckled_bodybag)
 		M = locate(/mob/living) in buckled_bodybag.contents
 	else
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
 		return
 	if(!M) //We need a mob to teleport or no deal
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
 		return
 
 	if(M.faction != linked_beacon.faction)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
@@ -553,8 +553,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	timer_cooldown = max(last_teleport - world.time, 0)
 	if(!timer_cooldown)
 		if(holder)
-			balloon_alert(holder, "Medevac charged!")
-		playsound(loc,'sound/machines/ping.ogg', 10, FALSE)
+			balloon_alert(holder, "medevac charged")
+		playsound(loc,'sound/machines/ping.ogg', 10, FALSE, SUPER_SHORT_SOUND_RANGE)
 		STOP_PROCESSING(SSprocessing, src)
 	update_icon()
 
@@ -611,6 +611,10 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "med_0"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/beacon_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/beacon_right.dmi',
+	)
 	var/planted = FALSE
 	var/locked = FALSE
 	var/list/obj/item/roller/medevac/linked_beds = list()
@@ -670,7 +674,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
 	icon_state = "med_1"
-	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+	playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	faction = user.faction
 
 /obj/item/medevac_beacon/attack_hand(mob/living/user)
@@ -685,7 +689,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
 		icon_state = "med_0"
-		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
+		playsound(loc,'sound/machines/click.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 /obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -721,7 +725,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return
 		locked = !locked
 		user.visible_message(span_notice("[user] [locked ? "locks" : "unlocks"] [src]'s interface."),
@@ -729,7 +733,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	else if(istype(I, /obj/item/roller/medevac))
 		if(locked)
 			to_chat(user, span_warning("Access denied."))
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return
 
 		add_stretcher(I, user)
@@ -748,8 +752,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(rollerbed in linked_beds)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
-				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+					balloon_alert(user, "already linked!")
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return TRUE
 		if(rollerbed.linked_beacon)
 			rollerbed.linked_beacon.remove_stretcher(rollerbed)
@@ -757,8 +761,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		rollerbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
-			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+				balloon_alert(user, "linked")
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	var/obj/structure/bed/medevac_stretcher/stretcherbed = target_bed
@@ -766,8 +770,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(stretcherbed in linked_beds_deployed)
 			if(!silent)
 				if(user)
-					balloon_alert(user, "Already linked!")
-				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+					balloon_alert(user, "already linked!")
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			return TRUE
 		if(stretcherbed.linked_beacon)
 			stretcherbed.linked_beacon.remove_stretcher(stretcherbed)
@@ -775,8 +779,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		stretcherbed.linked_beacon = src
 		if(!silent)
 			if(user)
-				balloon_alert(user, "Linked!")
-			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+				balloon_alert(user, "linked")
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 		return TRUE
 
 	return	FALSE

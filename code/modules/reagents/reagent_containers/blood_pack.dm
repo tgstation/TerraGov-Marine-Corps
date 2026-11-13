@@ -30,6 +30,9 @@
 		if(50.1 to INFINITY)
 			icon_state = "full"
 
+/obj/item/reagent_containers/blood/is_refuelable()
+	return FALSE
+
 /obj/item/reagent_containers/blood/APlus
 	blood_type = "A+"
 
