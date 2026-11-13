@@ -31,7 +31,7 @@
 /area/interior/mrap_command)
 "i" = (
 /obj/machinery/computer/code_generator/nt_access/red{
-	dir = 4
+	dir = 8
 	},
 /turf/open/interior/apc/twentynine,
 /area/interior/mrap_command)
@@ -73,9 +73,13 @@
 /area/interior/mrap_command)
 "p" = (
 /obj/structure/periscope/apc{
-	pixel_z = 13
+	pixel_z = 13;
+	dir = 8
 	},
-/obj/structure/bed/chair/loader_seat/officer,
+/obj/structure/gun_breech/secondary,
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = 0
+	},
 /turf/open/interior/apc/twentytwo,
 /area/interior/mrap_command)
 "q" = (
@@ -105,6 +109,19 @@
 /area/interior/mrap_command)
 "z" = (
 /turf/closed/interior/apc/five,
+/area/interior/mrap_command)
+"C" = (
+/obj/structure/bed/chair/loader_seat/officer{
+	pixel_w = 2;
+	pixel_z = 0;
+	dir = 4
+	},
+/obj/structure/periscope/apc{
+	pixel_z = 13;
+	pixel_w = 0;
+	dir = 4
+	},
+/turf/open/interior/apc/twentynine,
 /area/interior/mrap_command)
 "D" = (
 /turf/closed/interior/apc/twentyfour,
@@ -171,7 +188,7 @@ k
 v
 j
 M
-l
+C
 k
 "}
 (6,1,1) = {"
