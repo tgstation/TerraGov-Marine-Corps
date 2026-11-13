@@ -57,6 +57,7 @@ export const DecalManager = (props) => {
   const [search_string, setSearchString] = useState('');
   const [sortType, setSortType] = useState(SortType.favourites);
   const { admin_mode, ckey, favourite_decals } = data;
+  const isAdmin = Boolean(admin_mode); // avoids 0s in the UI
   const filteredDecals = data.decals
     ?.filter((decal) =>
       decal.name.toLowerCase().includes(search_string.toLowerCase()),
@@ -87,7 +88,7 @@ export const DecalManager = (props) => {
   return (
     <Window width={745} height={800}>
       <Window.Content>
-        {admin_mode && deletingDecal && (
+        {isAdmin && deletingDecal ? (
           <Modal>
             <TextArea
               fluid
@@ -133,16 +134,16 @@ export const DecalManager = (props) => {
               </Button>
             </Stack>
           </Modal>
-        )}
+        ) : null}
         {viewedDecal && (
           <Modal>
             <Section
               title={viewedDecal.name}
               buttons={
                 <>
-                  {(admin_mode || viewedDecal.creator_ckey === ckey) && (
+                  {(isAdmin || viewedDecal.creator_ckey === ckey) && (
                     <Input
-                      placeholder="Rename this decal"
+                      placeholder="Rename decal"
                       onBlur={(input) => {
                         act('rename_decal', {
                           md5: viewedDecal.md5,
@@ -151,7 +152,7 @@ export const DecalManager = (props) => {
                       }}
                     />
                   )}
-                  {admin_mode && (
+                  {isAdmin ? (
                     <Button
                       color="danger"
                       icon="trash"
@@ -161,7 +162,7 @@ export const DecalManager = (props) => {
                         setViewedDecal(null);
                       }}
                     />
-                  )}
+                  ) : null}
                   <Button
                     color="red"
                     icon="x"

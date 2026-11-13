@@ -191,6 +191,9 @@
 	. = ..()
 	if(!istype(I, /obj/item/facepaint))
 		return
+	if(!(armored_flags & ARMORED_ALLOW_DECALS))
+		balloon_alert(user, "This vehicle does not allow decals")
+		return
 	if(user_decal)
 		balloon_alert(user, "Already has a decal")
 		return

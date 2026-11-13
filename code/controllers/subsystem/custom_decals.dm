@@ -195,15 +195,15 @@ SUBSYSTEM_DEF(custom_decals)
 	var/datum/custom_decal/decal = SScustom_decals.get_decal(md5)
 	if(!decal)
 		return
-	if(!check_other_rights(editor, R_ADMIN))
-		if(decal.creator_ckey != editor.ckey)
-			return
+	if(!check_other_rights(editor, R_ADMIN, FALSE) && decal.creator_ckey != editor.ckey)
+		return
 	var/old_name = decal.name
 	decal.name = new_name
 	var/msg = "[key_name_admin(editor)] has renamed decal [md5] from [old_name] to [decal.name]"
 	message_admins(msg)
 	log_game(msg)
 	update_static_data_for_all_viewers()
+	to_chat(editor, span_info("Successfully renamed [old_name] to [decal.name]"))
 
 ///Radial to poll a mob for their favourite decals. returns the user selected decal datum. has a max range
 /datum/controller/subsystem/custom_decals/proc/radial_poll_user_fav_decals(mob/user, atom/anchor)
@@ -215,7 +215,7 @@ SUBSYSTEM_DEF(custom_decals)
 	var/list/decal_lookup = list()
 	for(var/md5 in user.client.prefs.favourite_decals)
 		var/datum/custom_decal/decal = get_decal(md5)
-		if(!decal)
+		if(!decal) // deleted by admins for example
 			user.client.prefs.favourite_decals -= md5
 			continue
 		options[md5] = image(decal.decal_icon)
