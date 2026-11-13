@@ -102,6 +102,16 @@
 	default_ammo = /datum/ammo/bullet/cupola
 	max_rounds = 75
 
+/obj/item/ammo_magazine/tank/light_machinegun
+	name = "MG-80 Cupola Magazine"
+	desc = "A secondary armament MG magazine"
+	caliber = CALIBER_10X28
+	icon_state = "cupola"
+	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/bullet/rifle/vehicle_machinegun
+	max_rounds = 60
+
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
 	desc = "A secondary armament grenade magazine"

@@ -331,7 +331,7 @@
 	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
-	interior_fire_sound = null
+	interior_fire_sound = 'sound/vehicles/weapons/tank_minigun_loop_interior.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	armored_weapon_flags = MODULE_SECONDARY
@@ -347,16 +347,15 @@
 	name = "cupola machinegun"
 	desc = "A robotically controlled machinegun that spews lead."
 	icon_state = "cupola"
-	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
-	interior_fire_sound = null
-	//windup_delay = 0
-	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/hmg2_interior.ogg'
+	fire_sound_vary = FALSE
 	armored_weapon_flags = MODULE_SECONDARY
-	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	ammo = /obj/item/ammo_magazine/tank/light_machinegun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/light_machinegun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	projectile_delay = 2
-	variance = 5
+	projectile_delay = 0.2 SECONDS
+	variance = 4
 	rearm_time = 1 SECONDS
 	hud_state_empty = "rifle_empty"
 
@@ -365,7 +364,7 @@
 	desc = "A hefty, large caliber chaingun"
 	icon_state = "ltaap_chaingun"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
-	interior_fire_sound = null
+	interior_fire_sound = 'sound/vehicles/weapons/tank_minigun_loop_interior.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
