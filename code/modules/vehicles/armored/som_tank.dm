@@ -35,7 +35,6 @@
 	drive_loop = /datum/looping_sound/som_tank_drive
 	drive_inside_loop = /datum/looping_sound/som_tank_drive_interior
 	faction = FACTION_SOM
-	allow_decals = FALSE
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
 	. = ..()

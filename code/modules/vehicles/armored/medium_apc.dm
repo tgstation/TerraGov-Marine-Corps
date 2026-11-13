@@ -12,4 +12,3 @@
 	icon_state = "apc"
 	move_delay = 0.25 SECONDS
 	max_occupants = 5
-	allow_decals = FALSE

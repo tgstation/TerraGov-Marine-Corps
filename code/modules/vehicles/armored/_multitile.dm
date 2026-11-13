@@ -41,8 +41,6 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
-	///if we want to allow users to draw decals
-	var/allow_decals = TRUE
 	///image being used for the user created decal
 	var/image/user_decal
 	///pass_flags given to desants, in addition to the vehicle's pass_flags
