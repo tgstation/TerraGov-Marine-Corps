@@ -6319,7 +6319,7 @@
 "eEq" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -6520,7 +6520,7 @@
 "eJR" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -8620,7 +8620,7 @@
 "gpx" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -10743,7 +10743,7 @@
 "hUm" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -15855,7 +15855,7 @@
 "lIA" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -25159,7 +25159,7 @@
 "sly" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -28558,7 +28558,7 @@
 "uJV" = (
 /obj/structure/bed,
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -29993,7 +29993,7 @@
 /area/gelida/indoors/a_block/garden)
 "vMn" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 14
 	},
 /turf/open/floor/wood,
