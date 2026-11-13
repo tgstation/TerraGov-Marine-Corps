@@ -36,36 +36,23 @@
 
 /// Add a camera eye to the chunk, then update if changed.
 /datum/camerachunk/proc/add(mob/camera/eye)
-	eye.sync_static_client()
 	eye.visibleCameraChunks += src
 	seenby += eye
 	if(changed)
 		update()
 
-	show_static(eye.static_client)
+	var/client/client = eye.GetViewerClient()
+	if(client && eye.use_static)
+		client.images += active_static_images
 
 /// Remove a camera eye from the chunk
 /datum/camerachunk/proc/remove(mob/camera/eye)
-	eye.sync_static_client()
 	eye.visibleCameraChunks -= src
 	seenby -= eye
 
-	hide_static(eye.static_client)
-/// Shows the current active static to the viewer
-/datum/camerachunk/proc/show_static(client/viewer)
-	viewer?.images |= active_static_images
-
-/// Takes our static off the current viewer, unless another eye is still showing it
-/datum/camerachunk/proc/hide_static(client/viewer)
-	if(viewer && !is_watched_by_client(viewer))
-		viewer.images -= active_static_images
-
-/// is any eye still watching this chunk showing its static to the viewer
-/datum/camerachunk/proc/is_watched_by_client(client/viewer)
-	for(var/mob/camera/watcher as anything in seenby)
-		if(watcher.static_client == viewer)
-			return TRUE
-	return FALSE
+	var/client/client = eye.GetViewerClient()
+	if(client && eye.use_static && seenby.len == 0)
+		client.images -= active_static_images
 
 /// Called when a chunk has changed. I.E: A wall was deleted.
 /datum/camerachunk/proc/visibilityChanged(turf/loc)
@@ -158,17 +145,21 @@
 	///turfs that we could see last update but cant see now
 	var/list/newly_obscured_turfs = visibleTurfs - updated_visible_turfs
 
-	var/list/revealed_images = list()
+	for(var/mob/camera/client_eye as anything in seenby)
+		var/client/client = client_eye.GetViewerClient()
+		if(!client)
+			continue
+
+		client.images -= active_static_images
+
 	for(var/turf/visible_turf as anything in newly_visible_turfs)
 		var/image/static_image = obscuredTurfs[visible_turf]
 		if(!static_image)
 			continue
 
 		active_static_images -= static_image
-		revealed_images += static_image
 		obscuredTurfs -= visible_turf
 
-	var/list/hidden_images = list()
 	for(var/turf/obscured_turf as anything in newly_obscured_turfs)
 		if(obscuredTurfs[obscured_turf] || istype(obscured_turf, /turf/open/ai_visible))
 			continue
@@ -180,27 +171,16 @@
 
 		obscuredTurfs[obscured_turf] = static_image
 		active_static_images += static_image
-		hidden_images += static_image
 	visibleTurfs = updated_visible_turfs
 
 	changed = FALSE
 
 	for(var/mob/camera/client_eye as anything in seenby)
-		client_eye.sync_static_client()
-	if(!length(revealed_images) && !length(hidden_images))
-		return
-	for(var/mob/camera/client_eye as anything in seenby)
-		var/client/client = client_eye.static_client
+		var/client/client = client_eye.GetViewerClient()
 		if(!client)
 			continue
 
-		client.images -= revealed_images
-		client.images |= hidden_images
-
-/// If a portable camera would be added to this chunk
-/datum/camerachunk/proc/can_portable_camera_reach(turf/center)
-	var/list/bounds = parent_cameranet.get_chunk_bounds_around(center)
-	return x >= GET_CHUNK_COORD(bounds[1]) && x <= GET_CHUNK_COORD(bounds[3]) && y >= GET_CHUNK_COORD(bounds[2]) && y <= GET_CHUNK_COORD(bounds[4])
+		client.images += active_static_images
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
 /datum/camerachunk/New(x, y, lower_z, datum/cameranet/net)
@@ -235,17 +215,6 @@
 			turfs[lad] = our_image
 
 		all_local_cameras += local_cameras
-
-	// register the chunk for any cameras here
-	for(var/obj/machinery/camera/camera as anything in net.cameras)
-		if(isturf(camera.loc) || !camera.can_use())
-			continue
-		var/turf/camera_turf = get_turf(camera)
-		if(!camera_turf || camera_turf.z < lower_z || camera_turf.z > upper_z || !can_portable_camera_reach(camera_turf))
-			continue
-		cameras["[camera_turf.z]"] |= camera
-		all_local_cameras |= camera
-		LAZYOR(camera.portable_chunks, src)
 
 	for(var/obj/machinery/camera/camera as anything in all_local_cameras)
 		var/list/camera_turfs = get_camera_visible_turfs(camera)

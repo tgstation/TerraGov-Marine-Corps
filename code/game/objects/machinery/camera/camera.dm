@@ -264,9 +264,6 @@
 /obj/machinery/camera/proc/activate()
 	camera_flags |= CAMERA_OPERATING
 	parent_cameranet.addCamera(src)
-	if(!isturf(loc))
-		last_portable_turf = null
-		parent_cameranet.updatePortableCamera(src)
 	update_appearance(UPDATE_ICON)
 	myarea = get_area(src)
 	if(!myarea)
@@ -283,10 +280,6 @@
 	DISABLE_BITFIELD(camera_flags, CAMERA_OPERATING)
 	set_light(0)
 	parent_cameranet.removeCamera(src)
-	for(var/datum/camerachunk/chunk as anything in portable_chunks)
-		chunk.remove_camera(src)
-	portable_chunks = null
-	last_portable_turf = null
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	var/turf/camnet_turf = get_turf(src)

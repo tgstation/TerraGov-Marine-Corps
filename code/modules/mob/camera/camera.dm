@@ -19,8 +19,6 @@
 	var/use_static = TRUE
 	var/static_visibility_range = 16
 	var/datum/cameranet/parent_cameranet
-	/// Client this eye last showed static to
-	var/client/static_client
 
 
 /mob/camera/Initialize(mapload, cameranet, new_faction)
@@ -33,24 +31,9 @@
 /mob/camera/Destroy()
 	for(var/datum/camerachunk/chunk in visibleCameraChunks)
 		chunk.remove(src)
-	static_client = null
 	if(call_life)
 		GLOB.living_cameras -= src
 	return ..()
-
-/// update shown static on the client
-/mob/camera/proc/sync_static_client()
-	set_static_client(use_static ? GetViewerClient() : null)
-
-///Moves the static of every chunk we watch from our old static client to the new one
-/mob/camera/proc/set_static_client(client/new_client)
-	if(new_client == static_client)
-		return
-	var/client/old_client = static_client
-	static_client = new_client
-	for(var/datum/camerachunk/chunk as anything in visibleCameraChunks)
-		chunk.hide_static(old_client)
-		chunk.show_static(new_client)
 
 /mob/camera/update_sight()
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
