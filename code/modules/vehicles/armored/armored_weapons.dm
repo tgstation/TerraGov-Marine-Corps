@@ -343,6 +343,23 @@
 	rearm_time = 1 SECONDS
 	hud_state_empty = "rifle_empty"
 
+/obj/item/armored_weapon/light_machinegun
+	name = "cupola machinegun"
+	desc = "A robotically controlled machinegun that spews lead."
+	icon_state = "cupola"
+	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	interior_fire_sound = null
+	//windup_delay = 0
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/secondary_cupola
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	projectile_delay = 2
+	variance = 5
+	rearm_time = 1 SECONDS
+	hud_state_empty = "rifle_empty"
+
 /obj/item/armored_weapon/ltaap
 	name = "\improper LTA-AP chaingun"
 	desc = "A hefty, large caliber chaingun"

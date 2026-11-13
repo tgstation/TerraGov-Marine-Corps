@@ -134,10 +134,16 @@
 /obj/structure/bed/chair/vehicle_crew/gunner/get_vis_range_mod()
 	return (SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY) ? 4 : 1
 
+/obj/structure/bed/chair/vehicle_crew/gunner/skillless
+	skill_req = SKILL_LARGE_VEHICLE_DEFAULT
+
 /obj/structure/bed/chair/vehicle_crew/driver_gunner
 	name = "apc commander seat"
 	skill_req = SKILL_LARGE_VEHICLE_EXPERIENCED
 	control_flags = VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
+
+/obj/structure/bed/chair/vehicle_crew/driver_gunner/mrap
+	control_flags = VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
 
 /obj/structure/bed/chair/vehicle_crew/driver/som
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'

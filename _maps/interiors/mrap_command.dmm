@@ -77,9 +77,7 @@
 	dir = 8
 	},
 /obj/structure/gun_breech/secondary,
-/obj/structure/bed/chair/loader_seat{
-	pixel_y = 0
-	},
+/obj/structure/bed/chair/vehicle_crew/gunner,
 /turf/open/interior/apc/twentytwo,
 /area/interior/mrap_command)
 "q" = (
@@ -93,9 +91,7 @@
 /turf/closed/interior/apc/four,
 /area/interior/mrap_command)
 "t" = (
-/obj/structure/bed/chair/vehicle_crew/driver_gunner{
-	pixel_x = 0;
-	pixel_y = 0;
+/obj/structure/bed/chair/vehicle_crew/driver_gunner/mrap{
 	pixel_w = -3;
 	pixel_z = -5
 	},
@@ -153,6 +149,7 @@
 /turf/closed/interior/apc/two,
 /area/interior/mrap_command)
 "T" = (
+/obj/structure/ammo_rack/secondary,
 /turf/closed/interior/apc/twentythree,
 /area/interior/mrap_command)
 
