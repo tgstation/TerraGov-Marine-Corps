@@ -17,8 +17,8 @@
 	var/list/turfs = list()
 	///camera mobs that can see turfs in our grid
 	var/list/seenby = list()
-	///images currently in use on obscured turfs.
-	var/list/active_static_images = list()
+	///images currently in use on obscured turfs, by z level, so a viewer only gets the static of the level its eye is on
+	var/list/active_static_images
 
 	var/changed = FALSE
 	/// Turfs in our grid each camera can see, keyed by camera
@@ -42,7 +42,7 @@
 	if(changed)
 		update()
 
-	show_static(eye.static_client)
+	show_static(eye.static_client, eye.static_z)
 
 /// Remove a camera eye from the chunk
 /datum/camerachunk/proc/remove(mob/camera/eye)
@@ -50,22 +50,34 @@
 	eye.visibleCameraChunks -= src
 	seenby -= eye
 
-	hide_static(eye.static_client)
-/// Shows the current active static to the viewer
-/datum/camerachunk/proc/show_static(client/viewer)
-	viewer?.images |= active_static_images
+	hide_static(eye.static_client, eye.static_z)
 
-/// Takes our static off the current viewer, unless another eye is still showing it
-/datum/camerachunk/proc/hide_static(client/viewer)
-	if(viewer && !is_watched_by_client(viewer))
-		viewer.images -= active_static_images
+/// Shows the static of one of our z levels to the viewer
+/datum/camerachunk/proc/show_static(client/viewer, z_level)
+	var/list/level_static = LAZYACCESS(active_static_images, "[z_level]")
+	if(viewer && level_static)
+		viewer.images |= level_static
 
-/// is any eye still watching this chunk showing its static to the viewer
-/datum/camerachunk/proc/is_watched_by_client(client/viewer)
+/// Takes the static of one of our z levels off the viewer, unless another eye is still showing it to them
+/datum/camerachunk/proc/hide_static(client/viewer, z_level)
+	var/list/level_static = LAZYACCESS(active_static_images, "[z_level]")
+	if(viewer && level_static && !is_watched_by_client(viewer, z_level))
+		viewer.images -= level_static
+
+/// is any eye still watching this chunk showing the static of that z level to the viewer
+/datum/camerachunk/proc/is_watched_by_client(client/viewer, z_level)
 	for(var/mob/camera/watcher as anything in seenby)
-		if(watcher.static_client == viewer)
+		if(watcher.static_client == viewer && watcher.static_z == z_level)
 			return TRUE
 	return FALSE
+
+/// Adds a static image to the active static of its z level
+/datum/camerachunk/proc/add_active_static(image/static_image)
+	LAZYADDASSOCLIST(active_static_images, "[static_image.loc.z]", static_image)
+
+/// Removes a static image from the active static of its z level
+/datum/camerachunk/proc/remove_active_static(image/static_image)
+	LAZYREMOVEASSOC(active_static_images, "[static_image.loc.z]", static_image)
 
 /// Called when a chunk has changed. I.E: A wall was deleted.
 /datum/camerachunk/proc/visibilityChanged(turf/loc)
@@ -164,8 +176,8 @@
 		if(!static_image)
 			continue
 
-		active_static_images -= static_image
-		revealed_images += static_image
+		remove_active_static(static_image)
+		LAZYADDASSOCLIST(revealed_images, "[visible_turf.z]", static_image)
 		obscuredTurfs -= visible_turf
 
 	var/list/hidden_images = list()
@@ -179,8 +191,8 @@
 			break
 
 		obscuredTurfs[obscured_turf] = static_image
-		active_static_images += static_image
-		hidden_images += static_image
+		add_active_static(static_image)
+		LAZYADDASSOCLIST(hidden_images, "[obscured_turf.z]", static_image)
 	visibleTurfs = updated_visible_turfs
 
 	changed = FALSE
@@ -194,8 +206,11 @@
 		if(!client)
 			continue
 
-		client.images -= revealed_images
-		client.images |= hidden_images
+		var/z_key = "[client_eye.static_z]"
+		if(revealed_images[z_key])
+			client.images -= revealed_images[z_key]
+		if(hidden_images[z_key])
+			client.images |= hidden_images[z_key]
 
 /// If a portable camera would be added to this chunk
 /datum/camerachunk/proc/can_portable_camera_reach(turf/center)
@@ -258,8 +273,10 @@
 	COOLDOWN_START(src, full_update_cooldown, parent_cameranet.chunk_full_update_interval)
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
+		if(istype(obscured_turf, /turf/open/ai_visible))
+			continue
 		var/image/new_static = turfs[obscured_turf]
-		active_static_images += new_static
+		add_active_static(new_static)
 		obscuredTurfs[obscured_turf] = new_static
 
 #undef CHUNK_SIZE

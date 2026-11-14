@@ -21,6 +21,8 @@
 	var/datum/cameranet/parent_cameranet
 	/// Client this eye last showed static to
 	var/client/static_client
+	///The z level whose static we last showed to static_client
+	var/static_z
 
 
 /mob/camera/Initialize(mapload, cameranet, new_faction)
@@ -34,23 +36,41 @@
 	for(var/datum/camerachunk/chunk in visibleCameraChunks)
 		chunk.remove(src)
 	static_client = null
+	static_z = null
 	if(call_life)
 		GLOB.living_cameras -= src
 	return ..()
 
+#define STATIC_SCREEN_MARGIN_X 7
+#define STATIC_SCREEN_MARGIN_Y 9
+
+/// Returns a range of static we want to show, a fullscreen plus some margin
+/mob/camera/proc/get_static_range()
+	var/client/viewer = GetViewerClient()
+	if(!viewer)
+		return list(static_visibility_range, static_visibility_range)
+	var/list/view_size = getviewsize(viewer.view)
+	return list(FLOOR((view_size[1] - 1) / 2, 1) + STATIC_SCREEN_MARGIN_X, FLOOR((view_size[2] - 1) / 2, 1) + STATIC_SCREEN_MARGIN_Y)
+
+#undef STATIC_SCREEN_MARGIN_X
+#undef STATIC_SCREEN_MARGIN_Y
+
 /// update shown static on the client
 /mob/camera/proc/sync_static_client()
-	set_static_client(use_static ? GetViewerClient() : null)
+	var/turf/eye_turf = get_turf(src)
+	set_static_client(use_static ? GetViewerClient() : null, eye_turf?.z)
 
-///Moves the static of every chunk we watch from our old static client to the new one
-/mob/camera/proc/set_static_client(client/new_client)
-	if(new_client == static_client)
+///Moves the static of every chunk we watch from our old static client and z level to the new ones
+/mob/camera/proc/set_static_client(client/new_client, new_z)
+	if(new_client == static_client && new_z == static_z)
 		return
 	var/client/old_client = static_client
+	var/old_z = static_z
 	static_client = new_client
+	static_z = new_z
 	for(var/datum/camerachunk/chunk as anything in visibleCameraChunks)
-		chunk.hide_static(old_client)
-		chunk.show_static(new_client)
+		chunk.hide_static(old_client, old_z)
+		chunk.show_static(new_client, new_z)
 
 /mob/camera/update_sight()
 	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)

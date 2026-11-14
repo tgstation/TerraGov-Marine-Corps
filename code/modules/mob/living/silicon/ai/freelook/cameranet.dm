@@ -78,11 +78,11 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 		//Get the eye's turf in case its located in an object like a mecha
 		var/turf/eye_turf = get_turf(eye)
 		if(eye.loc)
-			var/static_range = eye.static_visibility_range
-			var/x1 = max(1, eye_turf.x - static_range)
-			var/y1 = max(1, eye_turf.y - static_range)
-			var/x2 = min(world.maxx, eye_turf.x + static_range)
-			var/y2 = min(world.maxy, eye_turf.y + static_range)
+			var/list/static_range = eye.get_static_range()
+			var/x1 = max(1, eye_turf.x - static_range[1])
+			var/y1 = max(1, eye_turf.y - static_range[2])
+			var/x2 = min(world.maxx, eye_turf.x + static_range[1])
+			var/y2 = min(world.maxy, eye_turf.y + static_range[2])
 
 			for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 				for(var/y = y1; y <= y2; y += CHUNK_SIZE)
