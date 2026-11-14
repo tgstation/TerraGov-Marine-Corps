@@ -63,7 +63,6 @@
 		return //bottommost z with nothing below. we still play effects just dont do anything
 	maptable.change_targeted_z(null, --currentz)
 
-
 /obj/machinery/cic_maptable
 	name = "map table"
 	desc = "A table that displays a map of the current target location"
@@ -272,6 +271,10 @@
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.zlevel = new_z
 		tool.set_zlevel(new_z, tool.minimap_flag)
+
+/obj/machinery/cic_maptable/mrap
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
+	pixel_z = -10
 
 /obj/machinery/cic_maptable/drawable/big
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'

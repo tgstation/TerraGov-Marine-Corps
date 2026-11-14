@@ -108,7 +108,6 @@
 	desc = "A server rack. Who knows what's on it?."
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "serverrack_on"
-	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	light_range = 1
 	light_power = 0.5
@@ -117,7 +116,7 @@
 
 /obj/structure/prop/nt_computer/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()

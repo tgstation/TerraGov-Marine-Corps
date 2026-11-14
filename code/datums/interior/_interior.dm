@@ -133,6 +133,35 @@
 
 /turf/closed/interior
 	resistance_flags = RESIST_ALL
+	var/has_emissive = FALSE
+
+/turf/closed/interior/Initialize(mapload)
+	. = ..()
+	if(has_emissive)
+		update_appearance(UPDATE_OVERLAYS)
+
+/turf/closed/interior/link_interior(datum/interior/link)
+	var/obj/vehicle/sealed/armored/vehicle = link.container
+	name = "\improper [vehicle.name] interior"
+
+/turf/closed/interior/update_overlays()
+	. = ..()
+	if(has_emissive)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /turf/open/interior
 	resistance_flags = RESIST_ALL
+	var/has_emissive = FALSE
+
+/turf/open/interior/Initialize(mapload)
+	. = ..()
+	if(has_emissive)
+		update_appearance(UPDATE_OVERLAYS)
+
+/turf/open/interior/link_interior(datum/interior/link)
+	var/obj/vehicle/sealed/armored/vehicle = link.container
+	name = "\improper [vehicle.name] interior"
+
+/turf/open/interior/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)

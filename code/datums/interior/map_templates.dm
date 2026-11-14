@@ -29,6 +29,10 @@
 	name = "transport mrap interior template"
 	filename = "mrap"
 
+/datum/map_template/interior/mrap_command
+	name = "command mrap interior template"
+	filename = "mrap_command"
+
 /datum/map_template/interior/som_tank
 	name = "SOM tank interior template"
 	filename = "som_tank"
