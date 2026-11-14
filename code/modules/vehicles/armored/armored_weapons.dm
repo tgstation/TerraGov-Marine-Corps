@@ -344,7 +344,7 @@
 /obj/item/armored_weapon/light_machinegun
 	name = "cupola machinegun"
 	desc = "A robotically controlled machinegun that spews lead."
-	icon_state = "cupola"
+	icon_state = "light_mg"
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	interior_fire_sound = 'sound/vehicles/weapons/hmg2_interior.ogg'
 	fire_sound_vary = FALSE
