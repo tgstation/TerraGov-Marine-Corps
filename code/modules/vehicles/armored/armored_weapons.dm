@@ -206,9 +206,7 @@
 		chassis.turret_overlay.secondary_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
-		chassis.cut_overlay(chassis.secondary_weapon_overlay)
-		chassis.secondary_weapon_overlay?.dir = get_cardinal_dir(chassis, current_target)
-		chassis.add_overlay(chassis.secondary_weapon_overlay)
+		chassis.update_secondary_overlay(secondary_new_dir = get_cardinal_dir(chassis, current_target))
 
 	do_fire(source_turf)
 	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
@@ -296,7 +294,7 @@
 			tank.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
-			tank.update_appearance(UPDATE_OVERLAYS)
+			tank.update_secondary_overlay()
 	chassis = tank
 	forceMove(tank)
 	var/icon_list
@@ -319,8 +317,8 @@
 			chassis.turret_overlay.secondary_overlay = null
 			chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
+			chassis.cut_overlay(chassis.secondary_weapon_overlay)
 			chassis.secondary_weapon_overlay = null
-			chassis.update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
 	chassis = null

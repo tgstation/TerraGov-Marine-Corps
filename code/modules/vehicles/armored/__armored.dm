@@ -94,8 +94,6 @@
 	var/wreck_repair_stage = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
-	if(type != /obj/vehicle/sealed/armored/multitile) //TODO: TESTING ONLY, SO MRAP DOESN'T HAVE A VALUE OF 5 IN A SEPARATE PR
-		larva_value = 0
 	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
 		interior = new interior(src, CALLBACK(src, PROC_REF(interior_exit)))
@@ -227,14 +225,25 @@
 /obj/vehicle/sealed/armored/update_overlays()
 	. = ..()
 	if(secondary_weapon_overlay)
-		. += secondary_weapon_overlay
+		//we shouldn't have to do this, but managed overlays for this are really cursed and create duplicates. Please fix
+		update_secondary_overlay()
 
 /obj/vehicle/sealed/armored/setDir(newdir)
 	. = ..()
 	if(secondary_weapon_overlay)
-		cut_overlay(secondary_weapon_overlay)
-		secondary_weapon_overlay.icon_state = secondary_weapon.icon_state + "_" + "[newdir]"
-		add_overlay(secondary_weapon_overlay)
+		update_secondary_overlay(newdir)
+
+///update secondary weapon overlays for vehicles that only have a secondary weapon
+/obj/vehicle/sealed/armored/proc/update_secondary_overlay(armored_new_dir, secondary_new_dir)
+	//This only exists because managed overlays does not play nice when using an image that has its dir and icon_state changed constantly, leading to duplicate states.
+	if(!secondary_weapon_overlay)
+		return
+	cut_overlay(secondary_weapon_overlay)
+	if(secondary_new_dir)
+		secondary_weapon_overlay.dir = secondary_new_dir
+	if(armored_new_dir)
+		secondary_weapon_overlay.icon_state = secondary_weapon.icon_state + "_" + "[armored_new_dir]"
+	add_overlay(secondary_weapon_overlay)
 
 /obj/vehicle/sealed/armored/examine(mob/user)
 	. = ..()

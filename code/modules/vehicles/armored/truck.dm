@@ -12,6 +12,7 @@
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
 	turret_icon = null
+	larva_value = 0
 	pixel_x = -24
 	pixel_y = -32
 	max_integrity = 900
