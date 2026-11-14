@@ -11,12 +11,12 @@ jobs:
     permissions:
       contents: write  # for JamesIves/github-pages-deploy-action to push changes in repo
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     concurrency: gen-docs
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/SpacemanDMM
           key: ${{ runner.os }}-spacemandmm-${{ secrets.CACHE_PURGE_KEY }}
@@ -29,10 +29,9 @@ jobs:
       - name: Add client storage iframe
         run: cp tgui/public/iframe.html dmdoc/iframe.html
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
-          BRANCH: gh-pages
-          CLEAN: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SINGLE_COMMIT: true
-          FOLDER: dmdoc
+          branch: gh-pages
+          clean: true
+          single-commit: true
+          folder: dmdoc
