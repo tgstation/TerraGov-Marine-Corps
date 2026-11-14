@@ -80,6 +80,10 @@
 	var/oldloc = loc
 	loc = destination
 	Moved(oldloc, NONE, TRUE)
+	var/turf/old_turf = get_turf(oldloc)
+	var/turf/new_turf = get_turf(src)
+	if(old_turf?.z != new_turf?.z && length(visibleCameraChunks))
+		parent_cameranet.visibility(src)
 
 /**
  * Getter proc for getting the current user's client.
