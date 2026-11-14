@@ -461,6 +461,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	if(incapacitated() || lying_angle)
 		return
 
+	if(isobj(interactee)) //allows you to unique action interacted things instead of just inhands
+		var/obj/obj_interactee = interactee
+		if(obj_interactee.do_unique_action(src))
+			return
+
 	var/obj/item/active_item = get_active_held_item()
 	if((istype(active_item) && active_item.do_unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
 		return

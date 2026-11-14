@@ -511,14 +511,8 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
-	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user, special_treatment)
-
-///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
-	return
+/obj/item/can_unique_action(mob/user, special_treatment = FALSE)
+	return TRUE
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
@@ -924,6 +918,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 		SEND_SIGNAL(user, COMSIG_ITEM_UNZOOM)
+		SEND_SIGNAL(src, COMSIG_ITEM_UNZOOMED, user)
 
 		if(user.interactee == src)
 			user.unset_interaction()
@@ -960,6 +955,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, PROC_REF(zoom_check_return))
+	SEND_SIGNAL(src, COMSIG_ITEM_ZOOMED, user)
 	onzoom(user)
 
 ///applies the offset of the zooming, using animate for smoothing.
