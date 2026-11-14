@@ -160,3 +160,12 @@
       :cl:'
   termin-0:
   - bugfix: Empty X fuel backpack now has a sprite
+2026-11-14:
+  Arturlang:
+  - bugfix: chat bluescreening every time you join another server
+  Lumipharon:
+  - bugfix: Telecomms works for multi-z maps
+  - qol: AI can operate doors on linked z levels, not just their own level
+  - bugfix: fixed bonus points not being applied at the end of campaign missions
+  novaepee:
+  - rscadd: update on Legacy of Spring's CIC, briefing, and medbay, and OB room

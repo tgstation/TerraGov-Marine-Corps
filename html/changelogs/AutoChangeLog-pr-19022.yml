@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "AI can operate doors on linked z levels, not just their own level"
