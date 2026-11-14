@@ -968,3 +968,20 @@
 /mob/key_down(key, client/client, full_key)
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)
+
+/mob/become_hearing_sensitive(trait_source)
+	. = ..()
+	if(!.)
+		return
+	RegisterSignal(SSdcs, COMSIG_GLOB_RUNECHAT_HANDLER, PROC_REF(handle_runetext), TRUE)
+
+/mob/lose_hearing_sensitivity(trait_source)
+	. = ..()
+	if(!.)
+		return
+	UnregisterSignal(SSdcs, COMSIG_GLOB_RUNECHAT_HANDLER)
+
+/mob/proc/handle_runetext(dcs, text, atom/target, mob/owner, list/extra_classes)
+	if(owner != src)
+		return
+	new /datum/chatmessage(text, target, src, extra_classes)
