@@ -1,5 +1,7 @@
 ///Can this firesupport type be used
 #define FIRESUPPORT_AVAILABLE (1<<0)
+///Can be used roundstart - for HvZ use
+#define FIRESUPPORT_ROUNDSTART (1<<1)
 
 //Firemodes for Campaign gamemode
 ///GAU gun run
@@ -41,17 +43,26 @@
 
 //Noncampaign mode types
 ///Unlimited GAU for regular gamemodes
-#define FIRESUPPORT_TYPE_GUN_UNLIMITED "gun_unlimited"
+#define FIRESUPPORT_TYPE_GUN_STANDARD "gun_standard"
 ///Unlimited rocket barrage for regular gamemodes
-#define FIRESUPPORT_TYPE_ROCKETS_UNLIMITED "rockets_unlimited"
+#define FIRESUPPORT_TYPE_ROCKETS_STANDARD "rockets_standard"
 ///Unlimited cruise missile for regular gamemodes
-#define FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED "cruise_missile_unlimited"
+#define FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD "cruise_missile_standard"
+///Napalm missile strike
+#define FIRESUPPORT_TYPE_NAPALM_MISSILE "napalm_missile"
+///Tanglefoot missile strike
+#define FIRESUPPORT_TYPE_TFOOT_MISSILE "tfoot_missile"
+///Laser beam run - HvX
+#define FIRESUPPORT_TYPE_LASER_STANDARD "laser_standard"
 
 ///Assoc list of firesupport types
 GLOBAL_LIST_INIT(fire_support_types, list(
-	FIRESUPPORT_TYPE_GUN_UNLIMITED = new /datum/fire_support/gau/unlimited,
-	FIRESUPPORT_TYPE_ROCKETS_UNLIMITED = new /datum/fire_support/rockets/unlimited,
-	FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED = new /datum/fire_support/cruise_missile/unlimited,
+	FIRESUPPORT_TYPE_GUN_STANDARD = new /datum/fire_support/gau/standard,
+	FIRESUPPORT_TYPE_LASER_STANDARD = new /datum/fire_support/laser/standard,
+	FIRESUPPORT_TYPE_ROCKETS_STANDARD = new /datum/fire_support/rockets/standard,
+	FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD = new /datum/fire_support/cruise_missile/standard,
+	FIRESUPPORT_TYPE_NAPALM_MISSILE = new /datum/fire_support/napalm_missile,
+	FIRESUPPORT_TYPE_TFOOT_MISSILE = new /datum/fire_support/tfoot_missile,
 	FIRESUPPORT_TYPE_GUN = new /datum/fire_support/gau,
 	FIRESUPPORT_TYPE_LASER = new /datum/fire_support/laser,
 	FIRESUPPORT_TYPE_ROCKETS = new /datum/fire_support/rockets,

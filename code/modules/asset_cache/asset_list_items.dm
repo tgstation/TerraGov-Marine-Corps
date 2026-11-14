@@ -153,12 +153,21 @@
 /datum/asset/spritesheet/campaign/missions/New()
 	icon_names = GLOB.campaign_mission_icons
 	return ..()
+
 /datum/asset/spritesheet/campaign/assets
 	name = "campaign_assets"
 	icon_sheet = 'icons/UI_Icons/campaign/asset_icons.dmi'
 
 /datum/asset/spritesheet/campaign/assets/New()
 	icon_names = GLOB.campaign_asset_icons
+	return ..()
+
+/datum/asset/spritesheet/campaign/fire_support
+	name = "munition_types"
+	icon_sheet = 'icons/mob/radial.dmi'
+
+/datum/asset/spritesheet/campaign/fire_support/New()
+	icon_names = GLOB.munition_type_icons
 	return ..()
 
 /datum/asset/spritesheet/campaign/perks

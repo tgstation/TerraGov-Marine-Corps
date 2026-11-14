@@ -1,3 +1,14 @@
+///Fire support options for HvZ modes
+GLOBAL_LIST_INIT(hvz_munition_types, list(
+	FIRESUPPORT_TYPE_GUN_STANDARD,
+	FIRESUPPORT_TYPE_ROCKETS_STANDARD,
+	FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD,
+	FIRESUPPORT_TYPE_NAPALM_MISSILE,
+	FIRESUPPORT_TYPE_TFOOT_MISSILE,
+	FIRESUPPORT_TYPE_LASER_STANDARD,
+))
+
+
 /obj/item/binoculars/fire_support
 	name = "fire support binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
@@ -12,15 +23,13 @@
 	///Current mode for support request
 	var/datum/fire_support/mode = null
 	///firemodes available for these binos
-	var/list/datum/fire_support/mode_list = list(
-		FIRESUPPORT_TYPE_GUN_UNLIMITED,
-		FIRESUPPORT_TYPE_ROCKETS_UNLIMITED,
-		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
-	)
+	var/list/datum/fire_support/mode_list
 
 /obj/item/binoculars/fire_support/Initialize(mapload)
 	. = ..()
 	update_icon()
+	if(!length(mode_list))
+		mode_list = GLOB.hvz_munition_types.Copy()
 	for(var/fire_support_type in mode_list)
 		mode_list[fire_support_type] = GLOB.fire_support_types[fire_support_type]
 
