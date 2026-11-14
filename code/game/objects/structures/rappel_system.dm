@@ -294,6 +294,37 @@
 	if(rappel_state >= RAPPEL_STATE_USABLE) //Otherwise, tadpole retracts rappels normally
 		pre_retract()
 
+///Interaction using the console's equipment menu, allows retracting the rappel system separate from camera actions.
+/obj/structure/dropship_equipment/shuttle/rappel_system/equipment_interact(mob/user)
+	if(rappel_state == RAPPEL_STATE_RETRACTING) //We're already retracting a rope!
+		return
+
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/linked_dropship = linked_shuttle?.shuttle_computer
+	var/mob/camera/aiEye/remote/remote_eye = linked_dropship?.eyeobj
+
+	if(rappel_condition < RAPPEL_CONDITION_GOOD || linked_dropship?.fly_state != SHUTTLE_IN_ATMOSPHERE) //Can't be used damaged or out of atmosphere
+		user.balloon_alert(user, "Rappel system not ready")
+		return
+
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+
+	if(rappel_state >= RAPPEL_STATE_USABLE) //Retracts deployed rope
+		pre_retract()
+		return
+
+	var/turf/target_turf = get_turf(remote_eye)
+	var/area/target_area = get_area(target_turf)
+
+	if(rappel_condition < RAPPEL_CONDITION_GOOD || target_turf.density || target_area.ceiling > CEILING_GLASS)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25)
+		return
+
+	if(!do_after(user, 5 SECONDS, NONE, remote_eye, BUSY_ICON_BAR) || rappel_condition < RAPPEL_CONDITION_GOOD || rappel_state > RAPPEL_STATE_LOCKED || target_turf.density)
+		return
+
+	deploy_rope(target_turf)
+	playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
+
 ///Handles xeno attacks on the system; called by the rappel rope whenever attack_alien() is called on the rope
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/attack_rappel(mob/living/carbon/xenomorph/attacker)
 	//Stops the pilot bringing up the rappel to prevent it being disabled
