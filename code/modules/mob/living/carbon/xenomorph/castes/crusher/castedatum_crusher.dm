@@ -61,12 +61,12 @@
 		/datum/mutation_upgrade/veil/friendly_chest
 	)
 
-/datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/crusher/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
 	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
-/datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/crusher/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)

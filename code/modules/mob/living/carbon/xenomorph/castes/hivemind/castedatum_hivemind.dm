@@ -62,10 +62,10 @@
 		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
-/datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/hivemind/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	return
 
-/datum/xeno_caste/hivemind/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/hivemind/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	return
 
 /datum/xeno_caste/hivemind/hivemind_manifestation

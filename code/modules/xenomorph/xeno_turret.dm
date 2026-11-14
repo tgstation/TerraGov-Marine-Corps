@@ -14,7 +14,7 @@
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
-	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
+	var/datum/ammo/ammo = /datum/ammo/xeno/acid/drop_acid/turret
 	///Range of the turret
 	var/range = 7
 	///Target of the turret

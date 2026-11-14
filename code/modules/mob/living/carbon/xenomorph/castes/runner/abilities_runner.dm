@@ -219,7 +219,7 @@
 		xeno_owner.allow_pass_flags |= PASS_MOB
 		xeno_owner.add_pass_flags(PASS_MOB, type)
 		has_passthrough = TRUE
-		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_passthrough_move))
+		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 	evasion_duration = evasion_starting_duration
 	owner.balloon_alert(owner, "Begin evasion: [evasion_duration]s.")
@@ -375,8 +375,7 @@
 		after_image = new /obj/effect/temp_visual/after_image(current_turf, owner) //Create the after image.
 		after_image.pixel_x = pick(randfloat(xeno_owner.pixel_x * 3, xeno_owner.pixel_x * 1.5), rand(0, xeno_owner.pixel_x * -1)) //Variation on the X position
 
-/datum/action/ability/xeno_action/evasion/proc/on_passthrough_move()
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/evasion/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	for(var/mob/living/carbon/human/human_right_here in get_turf(xeno_owner))
 		if(human_right_here in touched_humans)
 			continue

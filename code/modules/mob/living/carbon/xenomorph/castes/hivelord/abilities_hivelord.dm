@@ -127,7 +127,7 @@
 		attached_armor = getArmor(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 	set_toggle(TRUE)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	if(!silent)
@@ -144,8 +144,7 @@
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-/datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/toggle_speed/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	if(!isturf(xeno_owner.loc) || xeno_owner.plasma_stored < 10)
 		owner.balloon_alert(owner, "resin walk ended, no plasma")
 		resinwalk_off(TRUE)

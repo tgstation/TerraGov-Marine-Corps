@@ -61,11 +61,11 @@
 		/datum/mutation_upgrade/veil/burnt_wounds
 	)
 
-/datum/xeno_caste/pyrogen/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/pyrogen/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 
-/datum/xeno_caste/pyrogen/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/pyrogen/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 

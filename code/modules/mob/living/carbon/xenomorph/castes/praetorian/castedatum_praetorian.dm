@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/drop_acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 25

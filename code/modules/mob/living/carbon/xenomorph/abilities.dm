@@ -141,13 +141,13 @@
 		auto_weeding = FALSE
 		to_chat(owner, span_xenonotice("We will no longer automatically plant weeds."))
 		return
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(weed_on_move))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(toggle_auto_weeding))
 	auto_weeding = TRUE
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
-/datum/action/ability/activable/xeno/plant_weeds/proc/weed_on_move(datum/source)
+/datum/action/ability/activable/xeno/plant_weeds/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.loc_weeds_type)
 		return

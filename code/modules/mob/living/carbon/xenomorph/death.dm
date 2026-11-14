@@ -72,6 +72,8 @@
 
 	check_blood_splash(35, BURN, 65, 2)
 
+	xeno_caste.on_owner_gib(src)
+
 	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()

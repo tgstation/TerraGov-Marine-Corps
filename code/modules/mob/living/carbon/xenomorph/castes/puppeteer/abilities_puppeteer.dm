@@ -349,7 +349,7 @@
 /datum/action/ability/activable/xeno/articulate/proc/relay_speech_async(mob/living/carbon/target, text)
 	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
 
-/datum/action/ability/activable/xeno/articulate/proc/cancel(atom/target)
+/datum/action/ability/activable/xeno/articulate/proc/cancel(atom/A, atom/OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
 	if(talking)
 		owner.balloon_alert(owner, "cancelled!")

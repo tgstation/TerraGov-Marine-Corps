@@ -810,7 +810,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(acid_steps)) // We drop acid on every tile we pass through.
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move)) // We drop acid on every tile we pass through.
 	xeno_owner.xeno_flags |= XENO_LEAPING // This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown.
 	xeno_owner.add_pass_flags(charge_pass_flags, type)
 	xeno_owner.throw_at(A, charge_range, 2, xeno_owner)
@@ -839,8 +839,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	recast_decay_timer_id = addtimer(CALLBACK(src, PROC_REF(recast_decayed)), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /// Drops an acid puddle on the current owner's tile which uses the owner caste's acid_spray_damage. Creates opaque gas if gas_trail_duration is set.
-/datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
-	SIGNAL_HANDLER
+/datum/action/ability/activable/xeno/charge/acid_dash/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
 	if(!gas_trail_duration || xeno_owner.stat != CONSCIOUS)
 		return
@@ -884,7 +883,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	playsound(X.loc, 'sound/voice/alien/hiss2.ogg', 50, 1)
 
-	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
+	var/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/heavy/high_pressure_spit]
 
 	var/atom/movable/projectile/newspit = new(get_turf(X))
 	newspit.generate_bullet(high_pressure_spit)

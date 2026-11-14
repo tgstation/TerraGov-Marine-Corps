@@ -193,8 +193,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
-/// Automatically bumps living non-xenos if bump attacks are on.
-/datum/action/ability/xeno_action/dodge/proc/on_move(datum/source)
+/datum/action/ability/xeno_action/dodge/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	if(owner.stat == DEAD)
 		return FALSE
 	if(!xeno_owner.client?.prefs?.toggle_bump_attacking)
@@ -867,9 +866,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/item/item_source = source
 	item_source.throwforce -= min(item_source.w_class * 15, 90)
 
-/// On move, drop the item if they moved once already. Otherwise, set it so that they'll drop the item if they move again.
-/datum/action/ability/activable/xeno/item_throw/proc/on_move()
-	SIGNAL_HANDLER
+/datum/action/ability/activable/xeno/item_throw/on_move(atom/A, atom/OldLoc, Dir, Forced)
 	if(!has_moved_already)
 		has_moved_already = TRUE
 		return
@@ -1029,9 +1026,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	living_source.Paralyze(paralyze_duration)
 
 /// Shake the turf under for cool points.
-/datum/action/ability/activable/xeno/oppressor/advance/proc/on_move(datum/source)
-	SIGNAL_HANDLER
-	var/turf/current_turf = get_turf(source)
+/datum/action/ability/activable/xeno/oppressor/advance/on_move(atom/A, atom/OldLoc, Dir, Forced)
+	var/turf/current_turf = get_turf(A)
 	current_turf.Shake(duration = 0.2 SECONDS)
 
 /// Ends the charge when hitting an object.
