@@ -20,7 +20,7 @@
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
-/obj/alien/attackby(obj/item/I, mob/user, params)
+/obj/alien/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -29,7 +29,7 @@
 		return
 
 	if(obj_flags & CAN_BE_HIT)
-		return I.attack_obj(src, user)
+		return attacking_item.attack_obj(src, user)
 
 /obj/alien/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
@@ -78,8 +78,8 @@
 			continue
 		return
 
-	if(ismecha(crosser))
-		var/obj/vehicle/sealed/vehicle = crosser
+	if(ismecha(crosser) || istype(crosser, /obj/vehicle/unmanned))
+		var/obj/vehicle/vehicle = crosser
 		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
 		return
 	if(!ishuman(crosser))

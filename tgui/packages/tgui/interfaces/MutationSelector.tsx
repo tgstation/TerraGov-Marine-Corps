@@ -147,7 +147,7 @@ const MutationSection = (props: {
 
   return (
     <Collapsible
-      title={`${props.category_name} Mutations | ${props.category_name} Chambers: ${props.chambers}/3`}
+      title={`${props.category_name} Mutations | ${props.category_name} Chambers: ${props.chambers}/1`}
     >
       {props.mutations &&
         props.mutations.map((mutation) => (
