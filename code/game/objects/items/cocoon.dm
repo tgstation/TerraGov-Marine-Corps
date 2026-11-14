@@ -70,23 +70,23 @@
 	icon_state = "xeno_cocoon_open"
 
 /obj/structure/cocoon/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
-	if(!anchored && victim)
-		if(busy)
-			return
-		if(!attacking_item.sharp)
-			return
-		busy = TRUE
-		var/channel = SSsounds.random_available_channel()
-		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
-		if(!do_after(user, 8 SECONDS, NONE, src))
-			busy = FALSE
-			user.stop_sound_channel(channel)
-			return
+	if(anchored || !victim)
+		return ..()
+	if(busy)
+		return FALSE
+	if(!attacking_item.sharp)
+		return FALSE
+	busy = TRUE
+	var/channel = SSsounds.random_available_channel()
+	playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
+	if(!do_after(user, 8 SECONDS, NONE, src))
 		busy = FALSE
-		release_victim()
-		update_icon()
+		user.stop_sound_channel(channel)
 		return
-	return ..()
+	busy = FALSE
+	release_victim()
+	update_icon()
+	return FALSE
 
 /obj/structure/cocoon/can_be_pulled(user, force)
 	if(isxeno(user) && victim)
