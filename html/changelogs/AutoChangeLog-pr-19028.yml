@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Cocoons now only give their larva point reward when they complete, instead of always after their allocated time."
