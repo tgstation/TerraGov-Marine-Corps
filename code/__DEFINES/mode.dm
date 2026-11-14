@@ -168,7 +168,7 @@
 //How many psy points are gave for each marine psy drained at high pop
 #define PSY_DRAIN_REWARD_MIN 30
 /// How many psy points are given every second by a cocoon at low pop?
-#define COCOON_PSY_POINTS_REWARD_MAX 1
+#define COCOON_PSY_POINTS_REWARD_MAX 0.6
 /// How many psy points are given every second by a cocoon at high pop?
 #define COCOON_PSY_POINTS_REWARD_MIN 0.2
 
