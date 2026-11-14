@@ -143,7 +143,7 @@
 	control_flags = VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
 
 /obj/structure/bed/chair/vehicle_crew/driver_gunner/mrap
-	control_flags = VEHICLE_CONTROL_EQUIPMENT|VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
+	control_flags = VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS
 
 /obj/structure/bed/chair/vehicle_crew/driver/som
 	icon = 'icons/obj/armored/3x4/som_interior_small_props.dmi'
