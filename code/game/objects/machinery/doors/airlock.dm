@@ -124,7 +124,7 @@
 /obj/machinery/door/airlock/proc/canAIControl(mob/user)
 	if(hackProof)
 		return
-	if(z != user.z)
+	if(!(z in SSmapping.get_connected_levels(user.z)))
 		return
 	return ((aiControlDisabled != 1) && !isAllPowerCut())
 
