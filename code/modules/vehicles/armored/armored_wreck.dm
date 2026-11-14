@@ -36,6 +36,7 @@
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	armored_flags |= ARMORED_WRECK_PREP_STAGE_ONE
+	update_appearance(UPDATE_DESC)
 	balloon_alert_to_viewers("wreck prepped!")
 
 ///The fastening process for the fulton on the wreck, the final stage of extraction

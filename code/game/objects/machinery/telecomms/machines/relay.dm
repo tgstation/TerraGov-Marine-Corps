@@ -22,9 +22,9 @@
 
 /obj/machinery/telecomms/relay/receive_information(datum/signal/subspace/signal, obj/machinery/telecomms/machine_from)
 	// Add our level and send it back
-	var/turf/T = get_turf(src)
-	if(can_send(signal) && T)
-		signal.levels |= T.z
+	var/turf/relay_turf = get_turf(src)
+	if(can_send(signal) && relay_turf)
+		signal.levels |= SSmapping.get_connected_levels(relay_turf)
 
 
 /// Checks to see if it can send/receive.

@@ -1,4 +1,0 @@
-author: "marivanwan"
-delete-after: True
-changes:
-  - bugfix: "Added a generic cocking and opening sound to guns that were missing them"

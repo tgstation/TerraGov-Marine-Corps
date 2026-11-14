@@ -21,7 +21,6 @@
 	enter_delay = 0.4 SECONDS
 	ram_damage = 30
 	move_delay = 0.15 SECONDS
-	glide_size = 8.5
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,
