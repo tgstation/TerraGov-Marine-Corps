@@ -200,6 +200,9 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
+	if(!buildloc.check_disallow_alien_silo(buyer, silent))
+		return FALSE
+
 	for(var/hive in GLOB.xeno_resin_silos_by_hive)
 		for(var/silo in hive)
 			if(get_dist(silo, buyer) < 15)

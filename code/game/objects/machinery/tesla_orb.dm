@@ -1,0 +1,72 @@
+//based on the tesla turret (i gutted it)
+//code by tery so blame them
+
+#define TESLA_MAX_RANGE 7
+#define TESLA_MAX_TARGETS 12
+#define TESLA_DAMAGE 60 //BURN damage
+#define TESLA_ARMOR_PIERCE 5
+
+/obj/machinery/tesla_orb
+	name = "mysterious orbs"
+	desc = "A collection of mysterious floating orbs. You can see lightning arc between them, better not get too close."
+	icon = 'icons/obj/tesla_orb.dmi'
+	icon_state = "orb"
+	density = TRUE
+	anchored = TRUE
+	use_power = NO_POWER_USE
+	allow_pass_flags = PASSABLE
+	resistance_flags = RESIST_ALL
+	light_on = TRUE
+	light_range = 5
+	light_power = 6
+	light_color = COLOR_DARK_CYAN
+	/// Range, duh.
+	var/max_range = TESLA_MAX_RANGE
+
+/obj/machinery/tesla_orb/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/machinery/tesla_orb/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/machinery/tesla_orb/examine(mob/user)
+	. = ..()
+	if(!in_range(src, user))
+		return
+	. += span_warning("It seems to be very volatile.")
+
+/obj/machinery/tesla_orb/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!in_range(src, user))
+		return
+	if(shock(user, 100))
+		to_chat(user, span_userdanger("You're shocked by \the [src]!"))
+		return
+
+/obj/machinery/tesla_orb/interact(mob/user)
+	. = ..()
+	if(isdead(user))
+		return
+	if(shock(user, 100))
+		to_chat(user, span_userdanger("You're shocked by \the [src]!"))
+		return
+
+/obj/machinery/tesla_orb/process()
+	var/targets = length(zap_all(src, max_range, TESLA_DAMAGE, TESLA_ARMOR_PIERCE, TESLA_MAX_TARGETS))
+	if(!targets)
+		return
+	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
+
+/// I hate this so much, thank you for having a flag called pass_projectile but it only does so up to proj.ammo.barricade_clear_distance
+/obj/machinery/tesla_orb/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
+	if(src != proj.original_target)
+		return FALSE
+
+	return ..()
+
+#undef TESLA_MAX_RANGE
+#undef TESLA_MAX_TARGETS
+#undef TESLA_DAMAGE
+#undef TESLA_ARMOR_PIERCE

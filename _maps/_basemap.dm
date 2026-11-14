@@ -35,6 +35,8 @@
 		#include "map_files\Metnal_Operation\Metnal_Operation.dmm"
 		#include "map_files\Blue_Moon\bluemoon.dmm"
 		#include "map_files\Legacy_of_Spring\TGS_Legacy_of_Spring.dmm"
+		#include "map_files\Medium_Green\medium_green.dmm"
+		#include "map_files\Medium_Green_Hard_Mode\medium_green_hard_mode.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

@@ -1,0 +1,16 @@
+{
+    "map_name": "Medium Green HARD MODE (very hard)",
+    "map_path": "map_files/Medium_Green_Hard_Mode",
+    "map_file": "medium_green_hard_mode.dmm",
+	"parallax_icon": "jungle",
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 3500,
+	"armor": "jungle",
+	"announce_text": "Good morning marines... I got very VERY bad news for you, you're going to vietnam from hell itself. This operation will require EVERYTHING from you, and in addition eyes on your legs. Only real thing that can help you now is god...",
+	"traits":[{
+		"weather_rain": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
+}
