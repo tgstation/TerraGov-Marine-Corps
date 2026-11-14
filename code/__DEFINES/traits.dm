@@ -95,6 +95,7 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define MECH_VENDOR_TRAIT "mechvendor"
+#define VENTCRAWLING_TRAIT "ventcrawling"
 /// Trait applied to tram passengers
 #define TRAM_PASSENGER_TRAIT "tram-passenger"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
@@ -138,6 +139,9 @@
 #define HOVERBIKE_TRAIT "hoverbike_trait"
 #define BIGBIKE_TRAIT "bigbike_trait"
 #define MUTATION_TRAIT "mutation_trait"
+
+#define TRAIT_MOVE_VENTCRAWLING "move_ventcrawling"
+
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.

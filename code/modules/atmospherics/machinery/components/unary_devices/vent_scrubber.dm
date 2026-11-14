@@ -14,6 +14,7 @@
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
 	atom_flags = SHUTTLE_IMMUNE
+	vent_movement = VENTCRAWL_ALLOWED|VENTCRAWL_ENTRANCE_ALLOWED|VENTCRAWL_CAN_SEE
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
 	var/filter_types = list()///datum/gas/carbon_dioxide)
@@ -76,7 +77,7 @@
 			return FALSE
 		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, NONE, src, BUSY_ICON_BUILD))
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Vents require much less charge
-			welded = FALSE
+			update_weld(FALSE)
 			update_icon()
 			return TRUE
 	return FALSE
@@ -91,11 +92,11 @@
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))
-					welded = TRUE
+					update_weld(TRUE)
 				else
 					user.visible_message(span_notice("[user] welds [src] open."), \
 					span_notice("You weld [src] open."))
-					welded = FALSE
+					update_weld(FALSE)
 				update_icon()
 				pipe_vision_img = image(src, loc, dir = dir)
 				SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
@@ -115,8 +116,12 @@
 	if(welded)
 		. += "It seems welded shut."
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/can_crawl_through()
-	return !welded
+/obj/machinery/atmospherics/components/unary/vent_scrubber/update_weld(new_state)
+	. = ..()
+	if(welded)
+		vent_movement &= ~VENTCRAWL_ENTRANCE_ALLOWED
+	else
+		vent_movement |= VENTCRAWL_ENTRANCE_ALLOWED
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -124,7 +129,7 @@
 	if(!welded || !(do_after(xeno_attacker, 2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE)))
 		return
 	xeno_attacker.visible_message("[xeno_attacker] furiously claws at [src]!", "We manage to clear away the stuff blocking the scrubber.", "You hear loud scraping noises.")
-	welded = FALSE
+	update_weld(FALSE)
 	update_icon()
 	pipe_vision_img = image(src, loc, dir = dir)
 	SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
@@ -133,10 +138,6 @@
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/user)
 	if(!isliving(user))
-		return
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/xeno_user = user
-		xeno_user.handle_ventcrawl(src, xeno_user.xeno_caste.vent_enter_speed, xeno_user.xeno_caste.silent_vent_crawl)
 		return
 	var/mob/living/living_user = user
 	living_user.handle_ventcrawl(src)

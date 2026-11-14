@@ -198,9 +198,7 @@
 	var/plasma_icon_state = "plasma"
 
 	///How quickly the caste enters vents
-	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste exits vents
-	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
+	var/ventcrawl_speed = XENO_DEFAULT_VENT_ENTER_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
 	// Accuracy malus, 0 by default. Should NOT go over 70.

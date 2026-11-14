@@ -97,9 +97,15 @@
 
 	var/resting = FALSE
 
-	var/list/icon/pipes_shown = list()
-	/// TODO MAKE ME A TRAIT
-	var/is_ventcrawling
+	var/list/pipes_shown
+	var/last_played_vent = 0
+	/// The last direction we moved in a vent. Used to make holding two directions feel nice
+	var/last_vent_dir = 0
+	/// Cell tracker datum we use to manage the pipes around us, for faster ventcrawling
+	/// Should only exist if you're in a pipe
+	var/datum/cell_tracker/pipetracker
+	/// Cooldown for welded vent movement messages to prevent spam
+	COOLDOWN_DECLARE(welded_vent_message_cd)
 
 	///How much slower or faster this mob drags as a base
 	var/pull_speed = 0
