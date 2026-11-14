@@ -111,6 +111,7 @@
 		channel,
 		ambient_sound,
 		sound/S,
+		admin_sound = FALSE,
 	)
 	. = list()
 	var/turf/middle_turf = loaded_turfs[floor(length(loaded_turfs) * 0.5)]
@@ -121,6 +122,8 @@
 		if(!crew.client)
 			continue
 		if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
+			continue
+		if(admin_sound && (crew.client.prefs.toggles_sound & SOUND_ADMIN_SOUNDS_OFF))
 			continue
 		crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 		. += crew
