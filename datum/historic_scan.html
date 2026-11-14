@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../"><link rel="stylesheet" href="dmdoc.css"><title>/datum/historic_scan - byond</title></head><body><header><a href="index.html">byond</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a> — <a href="datum/historic_scan.html#var">Var Details</a> - <a href="datum/historic_scan.html#proc">Proc Details</a></header><main><h1>historic_scan <aside>/<a href="datum.html">datum</a>/<a href="datum/historic_scan.html">historic_scan</a></aside> <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/e74dee2e843e9ea8237bb896108df5d9d12a0571/code/datums/health_scan/historic_scans.dm#L23"><img src="git.png" width="16" height="16" title="code/datums/health_scan/historic_scans.dm 23"></a></h1><p>Holds TGUI data from <a href="datum.html#proc/ui_data" title="/datum">/datum/health_scan/ui_data</a> and <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_HEALTH_SCAN_DATA" title="COMSIG_HEALTH_SCAN_DATA">COMSIG_HEALTH_SCAN_DATA</a> for later viewing.
+These can be read (or written to, if you have something using a health scanner) wherever needed.</p>
+<p>Example read usage:</p>
+<pre><code>/obj/structure/closet/bodybag/examine(...)
+	var/datum/data/record/medical_record = find_medical_record(some_patient)
+	if(!isnull(medical_record?.fields[&quot;historic_scan&quot;]))
+		. += &quot;&lt;a href='byond://?src=[text_ref(src)];scanreport=1'&gt;Occupant's body scan from [medical_record.fields[&quot;historic_scan_time&quot;]]...&lt;/a&gt;&quot;
+// shown to users later in Topic
+</code></pre>
+<p>Example write usage:</p>
+<pre><code>/obj/machinery/computer/body_scanconsole/proc/on_scanner_data(...)
+	SIGNAL_HANDLER
+	var/datum/data/record/medical_record = find_medical_record(patient, TRUE)
+	var/datum/historic_scan/historic_scan = (medical_record.fields[&quot;historic_scan&quot;] ||= new /datum/historic_scan(patient))
+	medical_record.fields[&quot;historic_scan_time&quot;] = worldtime2text()
+	historic_scan.data = data
+</code></pre><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr><tr><th><a href="datum/historic_scan.html#var/data">data</a></th><td>Archived TGUI health scan data</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr><tr><th><a href="datum/historic_scan.html#proc/patient_qdeleted">patient_qdeleted</a></th><td>Signal handler to self destruct when the assigned patient is deleted
+because this datum will be orphaned and unviewable permanently anyway</td></tr></table><h2 id="var">Var Details</h2><h3 id="var/data"><aside class="declaration">var </aside>data <aside>– /list</aside> <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/e74dee2e843e9ea8237bb896108df5d9d12a0571/code/datums/health_scan/historic_scans.dm#L25"><img src="git.png" width="16" height="16" title="code/datums/health_scan/historic_scans.dm 25"></a></h3><p>Archived TGUI health scan data</p><h2 id="proc">Proc Details</h2><h3 id="proc/patient_qdeleted"><aside class="declaration">proc </aside>patient_qdeleted<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/source, force)  <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/e74dee2e843e9ea8237bb896108df5d9d12a0571/code/datums/health_scan/historic_scans.dm#L36"><img src="git.png" width="16" height="16" title="code/datums/health_scan/historic_scans.dm 36"></a></aside></h3><p>Signal handler to self destruct when the assigned patient is deleted
+because this datum will be orphaned and unviewable permanently anyway</p></main><footer>tgmc.dme <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/e74dee2e843e9ea8237bb896108df5d9d12a0571">e74dee2</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
