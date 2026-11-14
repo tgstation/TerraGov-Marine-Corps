@@ -232,6 +232,8 @@
 #define TRAIT_INNATE_HEALING "innate_healing"
 ///is currently jumping
 #define TRAIT_IS_JUMPING "is_jumping"
+///lets synthetics shoot guns
+#define TRAIT_SYNTH_CAN_FIRE_GUNS "synth_can_fire_guns"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
