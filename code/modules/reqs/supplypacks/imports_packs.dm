@@ -305,3 +305,11 @@ Imports
 	name = "Loot box"
 	contains = list(/obj/item/loot_box/marine)
 	cost = 500
+
+/datum/supply_packs/imports/warhead_radium
+	name = "WARNING DO NOT ORDER TOP SECRET DANGER DANGER"
+	notes = "DO NOT ORDER. IF YOU DO ORDER THIS, DO NOT LOAD IT. IF YOU DO LOAD IT, DO NOT CHAMBER. IF YOU DO CHAMBER IT, DO NOT FIRE. DON'T. DON'T. IT IS NOT WORTH IT"
+	contains = list(/obj/structure/ob_ammo/warhead/radium)
+	cost = 850
+	access = ACCESS_MARINE_CAPTAIN //only the captain can commit the sin
+	containertype = /obj/structure/closet/crate/secure/explosives
