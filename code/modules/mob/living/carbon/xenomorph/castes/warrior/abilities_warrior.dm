@@ -256,8 +256,8 @@
 	xeno_owner.throw_at(get_step_towards(A, xeno_owner), FLOOR(starting_lunge_distance, 1), 2, xeno_owner)
 
 /// Check if we are close enough to grab.
-/datum/action/ability/activable/xeno/warrior/lunge/on_move(atom/A, atom/OldLoc, Dir, Forced)
-	if(lunge_target.Adjacent(A))
+/datum/action/ability/activable/xeno/warrior/lunge/on_move(atom/source, atom/old_loc, move_dir, forced)
+	if(lunge_target.Adjacent(xeno_owner))
 		INVOKE_ASYNC(src, PROC_REF(lunge_grab), lunge_target)
 
 /// Null lunge target and reset related vars.

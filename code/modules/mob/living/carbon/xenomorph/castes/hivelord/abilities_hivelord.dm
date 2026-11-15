@@ -144,7 +144,7 @@
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-/datum/action/ability/xeno_action/toggle_speed/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/toggle_speed/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(!isturf(xeno_owner.loc) || xeno_owner.plasma_stored < 10)
 		owner.balloon_alert(owner, "resin walk ended, no plasma")
 		resinwalk_off(TRUE)

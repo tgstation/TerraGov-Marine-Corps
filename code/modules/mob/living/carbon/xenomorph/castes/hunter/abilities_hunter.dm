@@ -140,7 +140,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-/datum/action/ability/xeno_action/stealth/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/stealth/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 

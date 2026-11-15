@@ -710,12 +710,12 @@
 			playsound(hit_vending.loc, 'sound/effects/meteorimpact.ogg', 30, TRUE)
 			hit_vending.tip_over()
 
-/datum/action/ability/activable/xeno/landslide/on_move(atom/A, atom/OldLoc, Dir, Forced)
-	new /obj/effect/temp_visual/after_image(get_turf(OldLoc), xeno_owner)
+/datum/action/ability/activable/xeno/landslide/on_move(atom/source, atom/old_loc, move_dir, forced)
+	new /obj/effect/temp_visual/after_image(get_turf(old_loc), xeno_owner)
 	var/list/turf/target_turfs = list()
 	// Get the turfs we're affecting with our charge.
 	for(var/angle in list(-90, 45, 0, 45, 90))
-		target_turfs += get_step(xeno_owner, angle ? turn(Dir, angle) : Dir)
+		target_turfs += get_step(xeno_owner, angle ? turn(move_dir, angle) : move_dir)
 	// Then we start checking those turfs and applying effects.
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target_movable AS in target_turf)
@@ -736,7 +736,7 @@
 				if(isearthpillar(target_object)) // Pillars get thrown in the direction we're charging.
 					var/obj/structure/xeno/earth_pillar/target_pillar = target_object
 					RegisterSignal(target_pillar, COMSIG_MOVABLE_IMPACT, PROC_REF(pillar_hit))
-					target_pillar.throw_at(get_ranged_target_turf(target_pillar, Dir, LANDSLIDE_RANGE), LANDSLIDE_RANGE, 1, xeno_owner)
+					target_pillar.throw_at(get_ranged_target_turf(target_pillar, move_dir, LANDSLIDE_RANGE), LANDSLIDE_RANGE, 1, xeno_owner)
 					atoms_hit += target_pillar
 					var/datum/personal_statistics/xeno_stats = GLOB.personal_statistics_list[xeno_owner.ckey]
 					xeno_stats.earth_pillars_thrown++

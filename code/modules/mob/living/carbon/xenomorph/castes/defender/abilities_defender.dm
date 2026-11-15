@@ -355,7 +355,7 @@
 			UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	movement_delay = new_movement_delay
 
-/datum/action/ability/xeno_action/fortify/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/fortify/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(!movement_delay)
 		return
 	xeno_owner.next_move_slowdown += movement_delay

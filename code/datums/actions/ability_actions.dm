@@ -178,7 +178,7 @@
 	return
 
 ///Any special behavior on owner move
-/datum/action/ability/proc/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/proc/on_move(atom/source, atom/old_loc, move_dir, forced)
 	SIGNAL_HANDLER
 	return
 

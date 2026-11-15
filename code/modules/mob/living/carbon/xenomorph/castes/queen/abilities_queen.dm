@@ -372,7 +372,7 @@
 		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno_owner.zoom_out()
 
-/datum/action/ability/xeno_action/toggle_queen_zoom/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/toggle_queen_zoom/on_move(atom/source, atom/old_loc, move_dir, forced)
 	zoom_xeno_out()
 
 

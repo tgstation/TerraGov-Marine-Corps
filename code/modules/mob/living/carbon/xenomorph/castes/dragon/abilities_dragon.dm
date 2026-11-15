@@ -481,7 +481,7 @@
 		return
 	end_ability()
 
-/datum/action/ability/activable/xeno/backhand/dragon_breath/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/backhand/dragon_breath/on_move(atom/source, atom/old_loc, move_dir, forced)
 	xeno_owner.setDir(starting_direction)
 	visual_effect.forceMove(get_turf(xeno_owner))
 	affected_turfs_in_order.Cut()

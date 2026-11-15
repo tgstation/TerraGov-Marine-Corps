@@ -147,7 +147,7 @@
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
-/datum/action/ability/activable/xeno/plant_weeds/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/plant_weeds/on_move(atom/source, atom/old_loc, move_dir, forced)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.loc_weeds_type)
 		return

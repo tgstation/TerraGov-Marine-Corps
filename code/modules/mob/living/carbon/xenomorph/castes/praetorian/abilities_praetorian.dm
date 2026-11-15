@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/ability/xeno_action/dodge/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/dodge/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(owner.stat == DEAD)
 		return FALSE
 	if(!xeno_owner.client?.prefs?.toggle_bump_attacking)
@@ -866,7 +866,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/item/item_source = source
 	item_source.throwforce -= min(item_source.w_class * 15, 90)
 
-/datum/action/ability/activable/xeno/item_throw/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/item_throw/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(!has_moved_already)
 		has_moved_already = TRUE
 		return
@@ -1026,8 +1026,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	living_source.Paralyze(paralyze_duration)
 
 /// Shake the turf under for cool points.
-/datum/action/ability/activable/xeno/oppressor/advance/on_move(atom/A, atom/OldLoc, Dir, Forced)
-	var/turf/current_turf = get_turf(A)
+/datum/action/ability/activable/xeno/oppressor/advance/on_move(atom/source, atom/old_loc, move_dir, forced)
+	var/turf/current_turf = get_turf(xeno_owner)
 	current_turf.Shake(duration = 0.2 SECONDS)
 
 /// Ends the charge when hitting an object.

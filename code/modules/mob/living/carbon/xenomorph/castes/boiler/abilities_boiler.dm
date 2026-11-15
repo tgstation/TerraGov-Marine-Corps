@@ -839,7 +839,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	recast_decay_timer_id = addtimer(CALLBACK(src, PROC_REF(recast_decayed)), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /// Drops an acid puddle on the current owner's tile which uses the owner caste's acid_spray_damage. Creates opaque gas if gas_trail_duration is set.
-/datum/action/ability/activable/xeno/charge/acid_dash/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/charge/acid_dash/on_move(atom/source, atom/old_loc, move_dir, forced)
 	xenomorph_spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, do_acid_spray_act)
 	if(!gas_trail_duration || xeno_owner.stat != CONSCIOUS)
 		return

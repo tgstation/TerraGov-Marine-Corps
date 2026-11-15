@@ -115,7 +115,7 @@
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	xeno_owner.acid_burst(12)
 
-/datum/action/ability/activable/xeno/charge/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/activable/xeno/charge/acid/on_move(atom/source, atom/old_loc, move_dir, forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, TRUE)
 
 // ***************************************
@@ -705,7 +705,7 @@
 	xeno_owner.update_icons(TRUE)
 	xeno_owner.gib_chance -= ACID_RAGE_GIB_BUFF
 
-/datum/action/ability/xeno_action/rage/acid/on_move(atom/A, atom/OldLoc, Dir, Forced)
+/datum/action/ability/xeno_action/rage/acid/on_move(atom/source, atom/old_loc, move_dir, forced)
 	xenomorph_spray(get_turf(xeno_owner), xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner, FALSE, FALSE)
 
 #undef ACID_RAGE_GIB_BUFF
