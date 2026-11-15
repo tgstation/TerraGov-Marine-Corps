@@ -146,9 +146,12 @@
 	for(var/atom/movable/AM AS in deploy_list)
 		layer_list[AM] = AM.layer
 
-		if(isliving(AM)) //todo, vehicles as well
+		if(isliving(AM))
 			var/mob/living/living_deployer = AM
 			living_deployer.ImmobilizeNoChain(drop_time) //looks weird if they can move while rappeling
+		else if(isvehicle(AM))
+			var/obj/vehicle/vehicle_deployer = AM
+			COOLDOWN_INCREMENT(vehicle_deployer, cooldown_vehicle_move, drop_time)
 
 		AM.add_filter(ZFALL_EFFECT, 2, drop_shadow_filter(y = -ZFALL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
 		var/shadow_filter = AM.get_filter(ZFALL_EFFECT)
