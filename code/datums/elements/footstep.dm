@@ -25,6 +25,9 @@
 	src.e_range = e_range
 	src.footstep_type = footstep_type
 	src.sound_vary = sound_vary
+
+	RegisterSignal(target, COMSIG_ATOM_ON_Z_IMPACT, PROC_REF(on_z_fall))
+
 	switch(footstep_type)
 		if(FOOTSTEP_MOB_HUMAN)
 			if(!ishuman(target))
@@ -46,9 +49,21 @@
 	steps_for_living[target] = 0
 
 /datum/element/footstep/Detach(atom/movable/source)
-	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED, COMSIG_MOVABLE_PATROL_DEPLOYED))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED, COMSIG_MOVABLE_PATROL_DEPLOYED, COMSIG_ATOM_ON_Z_IMPACT))
 	steps_for_living -= source
 	return ..()
+
+/datum/element/footstep/proc/on_z_fall(mob/living/source, turf/impacted_turf, levels)
+	SIGNAL_HANDLER
+	if(!HAS_TRAIT(source, TRAIT_CATLIKE_GRACE) || source.incapacitated(TRUE) || source.lying_angle)
+		return //we're slamming into the ground, not landing on our feet
+
+	var/volume_mod = 2 + levels
+	var/range_mod = levels * 2
+	if(ishuman(source))
+		play_humanstep(source, TRUE, volume_mod, range_mod)
+	else
+		play_simplestep(source, TRUE, volume_mod, range_mod)
 
 ///Prepares a footstep for living mobs. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open
 /datum/element/footstep/proc/prepare_step(mob/living/source)

@@ -775,10 +775,9 @@
 		return buckled.set_currently_z_moving(value)
 	return ..()
 
-/mob/living/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+/mob/living/post_z_impact(turf/impacted_turf, levels, impact_flags)
 	if(!isgroundlessturf(impacted_turf))
 		impact_flags |= ZImpactDamage(impacted_turf, levels)
-
 	return ..()
 
 /**
@@ -841,6 +840,8 @@
 
 	if(!skip_knockdown)
 		Knockdown(levels * 2 SECONDS)
+		playsound(loc, 'sound/weapons/heavyhit.ogg', 40, TRUE)
+		emote("pain")
 	return .
 
 /**

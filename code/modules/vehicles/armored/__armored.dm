@@ -478,10 +478,7 @@
 	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
-/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
-	. = ..()
-	if(pass_flags & HOVERING)
-		return
+/obj/vehicle/sealed/armored/z_impact_effects(turf/impacted_turf, levels, impact_flags, duration)
 	var/list/mob_list = list()
 	var/list/deploy_list = list(src)
 	mob_list += occupants
@@ -489,10 +486,17 @@
 		mob_list += hitbox.tank_desants
 		deploy_list += hitbox.tank_desants
 
-	start_drop_down_effect(src, mob_list, deploy_list, RAPPEL_DURATION)
-	addtimer(CALLBACK(src, PROC_REF(post_z_impact)), RAPPEL_DURATION)
+	for(var/mob/living/living in mob_list)
+		if(living.buckled)
+			continue
+		addtimer(CALLBACK(living, TYPE_PROC_REF(/mob/living, ZImpactDamage), impacted_turf, levels), duration)
 
-/obj/vehicle/sealed/armored/post_z_impact(og_layer)
+	start_drop_down_effect(src, mob_list, deploy_list, duration)
+
+/obj/vehicle/sealed/armored/post_z_impact(turf/impacted_turf, levels, impact_flags)
+	. = ..()
+	if(pass_flags & HOVERING)
+		return
 	var/obj/hitboxtouse = hitbox ? hitbox : src
 	for(var/turf/landingzone in hitboxtouse.locs)
 		for(var/mob/living/crushed in landingzone)

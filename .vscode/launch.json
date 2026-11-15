@@ -2,6 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"type": "auxtools",
+			"request": "launch",
+			"name": "Debug in DreamSeeker",
+			"dmb": "${workspaceFolder}/tgmc.dmb",
+			"server": "dreamseeker"
+		},
+		{
 			"type": "byond",
 			"request": "launch",
 			"name": "Launch DreamSeeker",

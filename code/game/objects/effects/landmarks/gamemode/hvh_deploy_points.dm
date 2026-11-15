@@ -1,7 +1,5 @@
 //Groundside landmarks that dictate where players deploy in hvh modes
-#define PATROL_POINT_RAPPEL_EFFECT "patrol_point_rappel_effect"
 #define RAPPEL_DURATION 0.6 SECONDS
-#define RAPPEL_HEIGHT 128
 
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
@@ -195,8 +193,4 @@
 	visible_message(span_userdanger("You see a tunnel emmerging!"))
 	QDEL_IN(src, 7)
 
-/*
-#undef PATROL_POINT_RAPPEL_EFFECT
 #undef RAPPEL_DURATION
-#undef RAPPEL_HEIGHT
-*/

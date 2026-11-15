@@ -1,18 +1,31 @@
-/atom/movable/proc/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+#define ZFALL_DURATION 0.5 SECONDS
+#define ZFALL_EFFECT "zfall_effect"
+#define ZFALL_HEIGHT 128
+
+/atom/movable/proc/onZImpact(turf/impacted_turf, levels, impact_flags = NONE, duration = ZFALL_DURATION)
 	SHOULD_CALL_PARENT(TRUE)
+
+	z_impact_effects(impacted_turf, levels, impact_flags, duration)
+	addtimer(CALLBACK(src, PROC_REF(post_z_impact), impacted_turf, levels, impact_flags), duration)
+	return TRUE
+
+///Special effects during a z fall
+/atom/movable/proc/z_impact_effects(turf/impacted_turf, levels, impact_flags, duration)
+	//if(!(impact_flags & ZIMPACT_NO_SPIN))
+	//	INVOKE_ASYNC(src, PROC_REF(SpinAnimation), duration, 2)
+
+	start_drop_down_effect(src, ismob(src) ? list(src) : null, list(src), duration)
+
+///Special effects when a z impact is completed
+/atom/movable/proc/post_z_impact(turf/impacted_turf, levels, impact_flags)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_ON_Z_IMPACT, impacted_turf, levels)
+
 	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
 		visible_message(
 			span_danger("[src] crashes into [impacted_turf]!"),
 			span_userdanger("You crash into [impacted_turf]!"),
 		)
-	if(!(impact_flags & ZIMPACT_NO_SPIN))
-		INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
-	SEND_SIGNAL(src, COMSIG_ATOM_ON_Z_IMPACT, impacted_turf, levels)
-	return TRUE
-
-///Special effects when a z impact is completed
-/atom/movable/proc/post_z_impact(turf/impacted_turf, levels, NONE)
-	return
 
 /*
  * Attempts to move using zMove if direction is UP or DOWN, step if not
@@ -124,6 +137,8 @@
 		return FALSE
 	return destination //used by some child types checks and zMove()
 
+//procs for generic dropping. used for zfall and rappel effects, and are purely visual
+
 ///standard drop down effect for falling/rappelling down etc
 /proc/start_drop_down_effect(atom/movable/movable_to_move, list/mobs_moving, list/deploy_list, drop_time)
 	var/list/layer_list = list()
@@ -135,14 +150,14 @@
 			var/mob/living/living_deployer = AM
 			living_deployer.ImmobilizeNoChain(drop_time) //looks weird if they can move while rappeling
 
-		AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
-		var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
+		AM.add_filter(ZFALL_EFFECT, 2, drop_shadow_filter(y = -ZFALL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
+		var/shadow_filter = AM.get_filter(ZFALL_EFFECT)
 
 		layer_list[AM] = AM.layer
-		AM.pixel_z += RAPPEL_HEIGHT
+		AM.pixel_z += ZFALL_HEIGHT
 		AM.layer = FLY_LAYER
 
-		animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = drop_time)
+		animate(AM, pixel_z = AM.pixel_z - ZFALL_HEIGHT, time = drop_time)
 		animate(shadow_filter, y = 0, size = 0.9, time = drop_time, flags = ANIMATION_PARALLEL)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_drop_down_effect), deploy_list, layer_list, mobs_moving), drop_time)
@@ -150,10 +165,13 @@
 ///effects when drop down completes
 /proc/end_drop_down_effect(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
-		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
+		AM.remove_filter(ZFALL_EFFECT)
 		AM.layer = layer_list[AM]
 		if(ismecha(AM) || isarmoredvehicle(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)
-	for(var/user in mobs_moving)
-		shake_camera(user, 0.2 SECONDS, 0.5)
+	for(var/mob/living/living in mobs_moving)
+		var/shake_amount = 1
+		if(HAS_TRAIT(living, TRAIT_CATLIKE_GRACE) && !living.incapacitated(TRUE) && !living.lying_angle)
+			shake_amount *= 0.5
+		shake_camera(living, 0.3 SECONDS, shake_amount)

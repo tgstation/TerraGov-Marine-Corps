@@ -44,7 +44,7 @@
 	z_move_flags |= ZMOVE_ALLOW_ANCHORED
 	return ..()
 
-/obj/effect/xenomorph/spray/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+/obj/effect/xenomorph/spray/onZImpact(turf/impacted_turf, levels, impact_flags = NONE, duration = ZFALL_DURATION)
 	impact_flags |= ZIMPACT_NO_SPIN
 	return ..()
 
