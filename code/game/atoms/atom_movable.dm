@@ -781,6 +781,9 @@
 
 	throw_source = get_turf(src)	//store the origin turf
 
+	if((target.z == z + 1) && GET_TURF_ABOVE(origin) && zMove(UP, z_move_flags = ZMOVE_CHECK_PULLS))
+		range = max(0, range*0.5)
+
 	var/dist_x = abs(target.x - x)
 	var/dist_y = abs(target.y - y)
 
@@ -801,7 +804,7 @@
 	var/failed_to_move = FALSE
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST))  && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST))  && get_dist_euclidean_2d(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -827,7 +830,7 @@
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean_2d(origin, src) < range) || isspaceturf(loc)) && (!failed_to_move && throwing) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
