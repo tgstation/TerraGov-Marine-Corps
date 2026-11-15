@@ -355,13 +355,14 @@
 	return ..()
 
 /mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
-	var/turf/T = get_turf(get_step(src, direct))
+	var/turf/T = (direct & (UP|DOWN)) ? get_step_multiz(src, direct) : get_turf(get_step(src, direct))
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(!T || (length(console.z_lock) && !(T.z in console.z_lock)))
+		return
 	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
 		user.update_sight()
-	if(T)
-		setLoc(T)
+	setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
