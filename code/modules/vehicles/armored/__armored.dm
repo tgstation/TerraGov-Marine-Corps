@@ -103,6 +103,7 @@
 	if(armored_flags & ARMORED_HAS_UNDERLAY)
 		underlay = new(icon, icon_state + "_underlay", layer = layer-0.1)
 		add_overlay(underlay)
+	//damage overlay MUST be added to vis_contents before the turret for correct layering, as they both use VIS_INHERIT_LAYER
 	if(damage_icon_path)
 		damage_overlay = new()
 		damage_overlay.icon = damage_icon_path
