@@ -169,3 +169,9 @@
   - bugfix: fixed bonus points not being applied at the end of campaign missions
   novaepee:
   - rscadd: update on Legacy of Spring's CIC, briefing, and medbay, and OB room
+2026-11-15:
+  Arturlang:
+  - bugfix: hopefully chat should actually use the new cache
+  Runian:
+  - bugfix: Cocoons now only give their larva point reward when they complete, instead
+      of always after their allocated time.
