@@ -853,7 +853,7 @@
 	create_message("note", ckey(key), "SYSTEM", "Triggered automatic CID randomizer detection.", null, null, FALSE, FALSE, null, FALSE, "High")
 
 /client/proc/rescale_view(change, min, max)
-	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
+	view_size.set_width_and_height(clamp(view_size.width + change, min, max), clamp(view_size.height + change, min, max))
 
 /client/proc/set_eye(new_eye)
 	if(new_eye == eye)

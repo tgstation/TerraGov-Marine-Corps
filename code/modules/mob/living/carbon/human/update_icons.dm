@@ -77,6 +77,7 @@ There are several things that need to be remembered:
 
 	if(get_mob_height() == HUMAN_HEIGHT_MEDIUM)
 		overlays += to_add
+		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 		return
 
 	var/raw_applied = overlays_standing[cache_index]
@@ -96,6 +97,7 @@ There are several things that need to be remembered:
 			apply_height_offsets(raw_applied, offset_type)
 
 	overlays += to_add
+	SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 
 /**
@@ -255,16 +257,19 @@ There are several things that need to be remembered:
 		to_remove += overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
 	overlays -= to_remove
+	SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 /mob/living/carbon/human/apply_underlay(cache_index)
 	var/image/I = underlays_standing[cache_index]
 	if(I)
 		underlays += I
+		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 /mob/living/carbon/human/remove_underlay(cache_index)
 	if(underlays_standing[cache_index])
 		underlays -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
+		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 GLOBAL_LIST_EMPTY(damage_icon_parts)
 ///fetches the damage icon part, and caches it if it made a new one

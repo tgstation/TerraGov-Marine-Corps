@@ -19,7 +19,7 @@
 	///The associated action
 	var/datum/action/toggle_seethrough/action
 
-/datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
+/datum/component/seethrough_mob/Initialize(target_alpha = SEETHROUGH_MOB_ALPHA, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
 
 	if(!ismob(parent))
@@ -80,12 +80,21 @@
 	animate(trickery_image, alpha = target_alpha, time = animation_time)
 
 	RegisterSignal(fool, COMSIG_MOB_LOGOUT, PROC_REF(on_client_disconnect))
+	RegisterSignal(fool, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_changed))
+
+/// need to re-plane it when z-levels change or it won't show
+/datum/component/seethrough_mob/proc/on_z_changed(datum/source, old_z, new_z, same_z_layer)
+	SIGNAL_HANDLER
+	if(!clickthrough || !trickery_image)
+		return
+	var/mob/fool = parent
+	SET_PLANE_EXPLICIT(trickery_image, SEETHROUGH_PLANE, fool)
 
 ///Remove the screen object and make us appear solid to ourselves again
 /datum/component/seethrough_mob/proc/untrick_mob()
 	var/mob/fool = parent
 	animate(trickery_image, alpha = 255, time = animation_time)
-	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
+	UnregisterSignal(fool, list(COMSIG_MOB_LOGOUT, COMSIG_MOVABLE_Z_CHANGED))
 
 	//after playing the fade-in animation, remove the image and the trick atom
 	addtimer(CALLBACK(src, PROC_REF(clear_image), trickery_image, fool.client), animation_time)

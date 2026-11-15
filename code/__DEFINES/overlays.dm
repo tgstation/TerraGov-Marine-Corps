@@ -22,4 +22,5 @@
 				AA.copy_overlays(changed_on, TRUE);\
 			}\
 		} \
-	}
+	} \
+	SEND_SIGNAL(changed_on, COMSIG_ATOM_OVERLAYS_CHANGED);
