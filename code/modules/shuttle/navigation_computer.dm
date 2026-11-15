@@ -355,7 +355,7 @@
 	return ..()
 
 /mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
-	var/turf/T = (direct & (UP|DOWN)) ? get_step_multiz(src, direct) : get_turf(get_step(src, direct))
+	var/turf/T = get_step_multiz(src, direct)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
 	if(!T || (length(console.z_lock) && !(T.z in console.z_lock)))
 		return
