@@ -3305,19 +3305,6 @@
 	},
 /turf/open/floor/engine,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
-"amu" = (
-/obj/structure/prop/mainship/supermatter{
-	light_color = "#ffd04f";
-	light_power = 20;
-	light_range = 5
-	},
-/obj/structure/cable/layer1,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "amv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
 	dir = 2
@@ -25840,6 +25827,15 @@
 /obj/effect/acid_hole,
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
+"bOu" = (
+/obj/structure/prop/mainship/supermatter{
+	light_color = "#ffd04f";
+	light_power = 20;
+	light_range = 5
+	},
+/obj/structure/cable/layer1,
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 
 (1,1,1) = {"
 apJ
@@ -46613,7 +46609,7 @@ anV
 bvT
 ash
 ash
-amu
+bOu
 app
 app
 bmZ
