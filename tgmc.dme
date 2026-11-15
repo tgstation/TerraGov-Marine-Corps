@@ -903,6 +903,7 @@
 #include "code\game\atoms\atom_movable.dm"
 #include "code\game\atoms\atom_tool_act.dm"
 #include "code\game\atoms\mouse_entered.dm"
+#include "code\game\atoms\atom_movable\multi_z.dm"
 #include "code\game\atoms\atom_movable\pass_flags.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\items.dm"

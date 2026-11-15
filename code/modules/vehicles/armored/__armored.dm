@@ -482,9 +482,22 @@
 	. = ..()
 	if(pass_flags & HOVERING)
 		return
+	var/list/mob_list = list()
+	var/list/deploy_list = list(src)
+	mob_list += occupants
+	if(length(hitbox?.tank_desants))
+		mob_list += hitbox.tank_desants
+		deploy_list += hitbox.tank_desants
+
+	start_drop_down_effect(src, mob_list, deploy_list, RAPPEL_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(post_z_impact)), RAPPEL_DURATION)
+
+/obj/vehicle/sealed/armored/post_z_impact(og_layer)
 	var/obj/hitboxtouse = hitbox ? hitbox : src
 	for(var/turf/landingzone in hitboxtouse.locs)
 		for(var/mob/living/crushed in landingzone)
+			if(crushed in hitbox.tank_desants)
+				continue
 			crushed.gib()
 
 /obj/vehicle/sealed/armored/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
