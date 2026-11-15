@@ -406,8 +406,9 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	smoke.set_up(25, target, 30 - (inaccuracy_amt * 2))//Vape nation
 	smoke.start()
 
+//actually evil as shit good job tery
 /obj/structure/ob_ammo/warhead/radium
-	name = "\improper The Package"
+	name = "\improper THE Package"
 	desc = "...?"
 	warhead_kind = "radium"
 	icon_state = "ob_warhead_5"

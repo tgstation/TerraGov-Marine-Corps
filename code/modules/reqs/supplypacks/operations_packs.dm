@@ -80,8 +80,8 @@ OPERATIONS
 	name = "WARNING DO NOT ORDER TOP SECRET DANGER DANGER"
 	notes = "DO NOT ORDER. IF YOU DO ORDER THIS, DO NOT LOAD IT. IF YOU DO LOAD IT, DO NOT CHAMBER. IF YOU DO CHAMBER IT, DO NOT FIRE. DON'T. DON'T. IT IS NOT WORTH IT"
 	contains = list(/obj/structure/ob_ammo/warhead/radium)
-	cost = 800
-	access = ACCESS_MARINE_ENGINEERING
+	cost = 850
+	access = ACCESS_MARINE_CAPTAIN //only the captain can commit the sin
 	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_cluster
