@@ -41,8 +41,6 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
-	///image being used for the user created decal
-	var/image/user_decal
 	///pass_flags given to desants, in addition to the vehicle's pass_flags
 	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
 	///particle holder for smoke effects
@@ -166,8 +164,7 @@
 	QDEL_NULL(smoke_holder)
 	UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 
-///called to update the offsets of the user created decal to fit on the tank properly
-/obj/vehicle/sealed/armored/multitile/proc/update_decal_offsets()
+/obj/vehicle/sealed/armored/multitile/update_decal_offsets()
 	if(!user_decal)
 		return
 	switch(dir)
@@ -186,42 +183,6 @@
 			user_decal.transform = matrix().Scale(0.5)
 			user_decal.pixel_w = 32
 			user_decal.pixel_z = 16
-
-/obj/vehicle/sealed/armored/multitile/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/tool/soap))
-		if(!user_decal)
-			balloon_alert(user, "No decal to remove")
-			return
-		if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
-			balloon_alert(user, "Not skilled enough to wash this vehicle")
-			return FALSE
-		if(!do_after(user, 1 SECONDS, NONE, src))
-			return
-		cut_overlay(user_decal)
-		user_decal = null
-		return
-	if(!istype(I, /obj/item/facepaint))
-		return
-	if(!(armored_flags & ARMORED_ALLOW_DECALS))
-		balloon_alert(user, "This vehicle does not allow decals")
-		return
-	if(user_decal)
-		balloon_alert(user, "Already has a decal")
-		return
-	var/datum/custom_decal/decal = SScustom_decals.radial_poll_user_fav_decals(user, src)
-	if(!decal)
-		return
-
-	user_decal = image(decal.decal_icon, layer=layer+1)
-	update_decal_offsets()
-	add_overlay(user_decal)
-
-/obj/vehicle/sealed/armored/multitile/setDir(newdir)
-	. = ..()
-	cut_overlay(user_decal)
-	update_decal_offsets()
-	add_overlay(user_decal)
 
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
