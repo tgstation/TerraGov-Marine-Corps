@@ -55,7 +55,7 @@
 #undef STATIC_SCREEN_MARGIN_X
 #undef STATIC_SCREEN_MARGIN_Y
 
-/// update shown static on the client
+/// Update shown static on the client
 /mob/camera/proc/sync_static_client()
 	var/turf/eye_turf = get_turf(src)
 	set_static_client(use_static ? GetViewerClient() : null, eye_turf?.z)

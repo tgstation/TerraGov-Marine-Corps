@@ -64,7 +64,7 @@
 	if(viewer && level_static && !is_watched_by_client(viewer, z_level))
 		viewer.images -= level_static
 
-/// is any eye still watching this chunk showing the static of that z level to the viewer
+/// Is any eye still watching this chunk showing the static of that z level to the viewer
 /datum/camerachunk/proc/is_watched_by_client(client/viewer, z_level)
 	for(var/mob/camera/watcher as anything in seenby)
 		if(watcher.static_client == viewer && watcher.static_z == z_level)

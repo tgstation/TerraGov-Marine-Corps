@@ -187,7 +187,7 @@ GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 			if(chunk)
 				. += chunk
 
-/// returns a list of list(x1, y1, x2, y2), the corners of the chunk a camera can see into, multiplied by CHUNK_SIZE
+/// Returns a list of list(x1, y1, x2, y2), the corners of the chunk a camera can see into, multiplied by CHUNK_SIZE
 /datum/cameranet/proc/get_chunk_bounds_around(turf/center)
 	return list(
 		max(0, center.x - (CHUNK_SIZE / 2)) & ~(CHUNK_SIZE - 1),
