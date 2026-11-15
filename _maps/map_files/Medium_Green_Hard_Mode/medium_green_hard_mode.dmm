@@ -542,11 +542,11 @@
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/cargo)
 "acf" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 1
+/obj/structure/prop/mainship/railing{
+	dir = 10
 	},
-/turf/open/floor/roof/sheet,
-/area/mediumgreen/outside/building/engineering/roof/z2)
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
 "acg" = (
 /obj/effect/ai_node,
 /obj/structure/stairs/multiz/seamless/directional/south,
@@ -4296,11 +4296,11 @@
 /turf/closed/wall/indestructible,
 /area/space)
 "apK" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
+/obj/structure/prop/mainship/railing{
 	dir = 2
 	},
-/turf/open/floor/roof/sheet,
-/area/mediumgreen/outside/building/engineering/roof/z2)
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
 "apL" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/closet/bodybag,
@@ -4979,13 +4979,18 @@
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/cargo)
 "asv" = (
-/obj/structure/transport/linear/public,
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "lz";
-	preset_destination_names = list("1"="Bottom floor","2"="second floor","3"="Top floor")
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
 	},
-/turf/open/floor/elevatorshaft,
-/area/mediumgreen/outside/building/neotree/z1/security)
+/obj/machinery/door_control{
+	dir = 1;
+	id = "11"
+	},
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/tree)
 "asw" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -6465,8 +6470,9 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/building/engineering/inner/disk)
 "ayc" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
+/obj/effect/urban/decal/trash/eight,
+/obj/structure/prop/mainship/railing{
+	dir = 1
 	},
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
@@ -6474,8 +6480,11 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "aye" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/obj/structure/prop/mainship/railing/corner{
+	dir = 4
 	},
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
@@ -8578,11 +8587,11 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/lz)
 "aGa" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
+/obj/structure/catwalk,
+/obj/structure/barricade/handrail/urban/handrail{
 	dir = 2
 	},
-/turf/open/floor/prison,
+/turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/tree)
 "aGb" = (
 /obj/structure/cable,
@@ -14724,15 +14733,11 @@
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/road)
 "bbD" = (
-/obj/machinery/door_control{
-	dir = 2;
-	id = "11"
-	},
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 1
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8
 	},
 /turf/open/floor/prison,
-/area/mediumgreen/outside/building/neotree/z3/upper)
+/area/mediumgreen/outside/building/neotree/z3/tree)
 "bbE" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -15940,14 +15945,11 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/building/syndi/scout)
 "beO" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 8
+/obj/structure/catwalk,
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 1
 	},
-/obj/machinery/door_control{
-	dir = 1;
-	id = "11"
-	},
-/turf/open/floor/prison,
+/turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/tree)
 "beP" = (
 /obj/machinery/light/red{
@@ -22108,9 +22110,10 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/southeast)
 "bBe" = (
+/obj/structure/stairs/multiz/seamless/directional/east,
 /obj/effect/ai_node,
-/turf/open/openspace,
-/area/mediumgreen/outside/z2/southeast)
+/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
+/area/mediumgreen/outside/z1/southeast)
 "bBf" = (
 /obj/structure/catwalk,
 /obj/structure/barricade/handrail/urban/handrail,
@@ -25402,8 +25405,13 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/powerline)
 "bNd" = (
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/southeast/dorm)
+/obj/structure/catwalk,
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/openspace,
+/area/mediumgreen/outside/building/engineering/roof/z2)
 "bNe" = (
 /obj/structure/largecrate/supply/medicine,
 /turf/open/floor/prison/plate,
@@ -25549,6 +25557,10 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/side,
 /area/mediumgreen/outside/lz1/around/medbay)
+"bND" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "bNE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -25577,6 +25589,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/lz2/building/stairs)
+"bNJ" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "bNK" = (
 /obj/structure/transport/linear/public,
 /obj/machinery/elevator_control_panel/directional/north{
@@ -25677,6 +25693,153 @@
 	},
 /turf/open/floor/elevatorshaft,
 /area/mediumgreen/outside/building/engineering/hallway_e)
+"bNY" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/engineering/control)
+"bNZ" = (
+/obj/effect/acid_hole,
+/turf/closed/wall,
+/area/mediumgreen/outside/building/southeast/dorm)
+"bOa" = (
+/obj/structure/catwalk,
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/openspace,
+/area/mediumgreen/outside/building/engineering/roof/z2)
+"bOb" = (
+/obj/structure/transport/linear/public,
+/obj/machinery/elevator_control_panel/directional/north{
+	linked_elevator_id = "lz";
+	preset_destination_names = list("1"="Bottom floor","2"="Middle floor","3"="Top floor")
+	},
+/turf/open/floor/elevatorshaft,
+/area/mediumgreen/outside/building/neotree/z1/security)
+"bOc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/upper)
+"bOd" = (
+/obj/machinery/door_control{
+	dir = 2;
+	id = "11"
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/obj/structure/prop/urban/misc/road/wood/roadbarrierwoodorange,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/upper)
+"bOe" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 2
+	},
+/obj/structure/barricade/handrail/urban/handrail{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/neotree/z3/tree)
+"bOf" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/structure/prop/mainship/railing{
+	dir = 4
+	},
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
+"bOg" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
+"bOh" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 2
+	},
+/obj/structure/prop/mainship/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/roof/sheet,
+/area/mediumgreen/outside/building/engineering/roof/z2)
+"bOi" = (
+/obj/structure/prop/mainship/railing{
+	dir = 6
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOj" = (
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOk" = (
+/obj/structure/prop/mainship/railing{
+	dir = 4
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOl" = (
+/obj/structure/prop/mainship/railing/corner,
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOm" = (
+/obj/effect/ai_node,
+/obj/structure/prop/mainship/railing{
+	dir = 6
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOn" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/prop/mainship/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOo" = (
+/obj/structure/prop/mainship/railing{
+	dir = 5
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOp" = (
+/obj/structure/prop/mainship/railing{
+	dir = 9
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOq" = (
+/obj/structure/prop/mainship/railing{
+	dir = 1
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/z3/southeast)
+"bOr" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/ladder)
+"bOs" = (
+/obj/effect/acid_hole,
+/turf/closed/wall,
+/area/mediumgreen/outside/building/neotree/z2/upper)
+"bOt" = (
+/obj/structure/cable,
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall,
+/area/mediumgreen/outside/building/neotree/z1/engineering)
 
 (1,1,1) = {"
 apJ
@@ -40443,7 +40606,7 @@ aQK
 aSX
 aGz
 aTc
-asv
+bOb
 aSu
 aSu
 aSp
@@ -42347,7 +42510,7 @@ aUv
 aUv
 aUv
 aUh
-aUh
+bOr
 aUh
 aUh
 aUh
@@ -46248,7 +46411,7 @@ aqo
 bag
 buT
 aFY
-apV
+bNY
 bdD
 apV
 aaX
@@ -47589,7 +47752,7 @@ buP
 biQ
 aqd
 biQ
-apV
+bNY
 arQ
 apl
 bEO
@@ -48760,7 +48923,7 @@ bEq
 bEq
 bhI
 axY
-bMr
+bND
 alh
 ahY
 bDW
@@ -50173,7 +50336,7 @@ agF
 agr
 baB
 afG
-bNN
+afG
 agr
 ayn
 ayn
@@ -50285,7 +50448,7 @@ ahC
 ahC
 ahC
 ahC
-ahC
+bNJ
 ahC
 alH
 bcX
@@ -65550,7 +65713,7 @@ beJ
 amj
 bfS
 aFs
-acG
+bBe
 acG
 acD
 aFs
@@ -68282,7 +68445,7 @@ adj
 adj
 adj
 adj
-bde
+adj
 aGV
 aGY
 aGY
@@ -68474,7 +68637,7 @@ adj
 adj
 bMk
 adj
-adj
+bde
 aGV
 acc
 acc
@@ -69428,13 +69591,13 @@ auP
 axE
 axD
 aKr
-aqR
+aNi
 aqR
 auP
 auP
 auP
 aqR
-aqR
+aNi
 aqR
 aqR
 aqR
@@ -91117,7 +91280,7 @@ aYs
 aYF
 aYs
 aYs
-aYu
+bOs
 aYc
 aYc
 aYc
@@ -92074,7 +92237,7 @@ bBa
 bBa
 bBa
 aTK
-aTL
+bOt
 aYo
 aYo
 aYo
@@ -93668,7 +93831,7 @@ ase
 ase
 ase
 ase
-ase
+bHk
 aAi
 ayY
 awv
@@ -98277,11 +98440,11 @@ aCI
 aCH
 aCH
 aCH
-aAl
+bOa
 awE
 awE
 awE
-awE
+big
 azD
 btm
 anj
@@ -98469,7 +98632,7 @@ aCH
 aCH
 aCH
 aCH
-big
+awE
 aAh
 aAh
 awE
@@ -99138,7 +99301,7 @@ asq
 agr
 asq
 asq
-asz
+asq
 bJP
 aCq
 aCq
@@ -99253,10 +99416,10 @@ awv
 awv
 awv
 ayu
-ayc
-ayc
-ayc
-acf
+bOf
+bOf
+bOf
+aye
 awv
 awv
 awv
@@ -99448,7 +99611,7 @@ awv
 ayd
 ayd
 awE
-axl
+ayc
 awv
 awv
 awv
@@ -99625,10 +99788,10 @@ aCH
 aCH
 aCH
 aAl
-aAh
+bNd
 aAh
 awE
-awE
+big
 awE
 awE
 awv
@@ -99640,7 +99803,7 @@ awv
 ayd
 ayd
 awE
-awv
+azF
 awv
 awv
 awv
@@ -99832,7 +99995,7 @@ awv
 ayd
 ayd
 awE
-awv
+azF
 awv
 bxA
 awv
@@ -100021,10 +100184,10 @@ bxA
 awv
 awv
 ayv
-aye
-aye
-aye
-apK
+bOg
+bOg
+bOg
+bOh
 awv
 awv
 awv
@@ -114895,7 +115058,7 @@ bBD
 aOY
 adF
 adF
-adF
+bBB
 adF
 adF
 bBl
@@ -115902,7 +116065,7 @@ abJ
 abJ
 aGV
 aGV
-bNd
+bNZ
 aGV
 aGV
 aGV
@@ -116105,7 +116268,7 @@ aNA
 arc
 aNA
 aGV
-bBe
+aaf
 aaf
 aKk
 aqy
@@ -116284,7 +116447,7 @@ akt
 abJ
 abJ
 abJ
-aGV
+bNZ
 aNQ
 bBm
 aNQ
@@ -140083,9 +140246,9 @@ aXR
 aXR
 aXR
 aXR
+beO
 aaL
-aaL
-aaL
+aGa
 aXR
 aXR
 aXR
@@ -140273,18 +140436,18 @@ aYo
 aYo
 aYo
 abt
-aGa
-aZX
+bOe
+bbD
 aZX
 bsp
 aZX
-aZX
-aZX
-aZX
-beO
-aZR
 bbD
-aSO
+bbD
+bbD
+asv
+aZR
+bOd
+bOc
 aZg
 aZg
 aZg
@@ -168112,16 +168275,16 @@ adw
 adw
 adw
 adw
-aeC
-aeC
-aeC
-aeC
-aeC
-aeC
-aeC
-aeC
-aeC
-aeC
+bOp
+bOj
+bOj
+bOj
+bOj
+bOj
+bOj
+bOj
+bOj
+acf
 adw
 adw
 adw
@@ -168304,7 +168467,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 aeC
 byz
 afo
@@ -168313,7 +168476,7 @@ afo
 afo
 byw
 aeC
-aeC
+apK
 adw
 adw
 adw
@@ -168496,7 +168659,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 byl
 afm
 afm
@@ -168505,7 +168668,7 @@ aRw
 afm
 afm
 adN
-aeC
+apK
 adw
 adw
 adw
@@ -168688,7 +168851,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 agT
 afn
 afn
@@ -168697,7 +168860,7 @@ afn
 afn
 afn
 aeK
-aeC
+apK
 adw
 adw
 adw
@@ -168880,7 +169043,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 agT
 afm
 afm
@@ -168889,7 +169052,7 @@ afx
 afm
 afm
 aeK
-aeC
+apK
 adw
 adw
 aeC
@@ -169072,7 +169235,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 agT
 afm
 afm
@@ -169081,7 +169244,7 @@ afy
 afm
 byx
 aeK
-aeC
+apK
 adw
 adw
 aeC
@@ -169264,7 +169427,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 agT
 byA
 afn
@@ -169273,7 +169436,7 @@ afn
 afn
 afn
 aeK
-aeC
+apK
 adw
 adw
 aeC
@@ -169456,7 +169619,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 agS
 afm
 afm
@@ -169465,7 +169628,7 @@ afm
 afm
 afm
 aeL
-aeC
+apK
 adw
 adw
 aeC
@@ -169648,7 +169811,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 aeC
 agS
 afp
@@ -169657,7 +169820,7 @@ afp
 afp
 aeL
 aeC
-aeC
+apK
 adw
 adw
 aeC
@@ -169840,7 +170003,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 aig
 aeC
 aeC
@@ -169849,7 +170012,7 @@ aRx
 afu
 aeC
 aig
-aeC
+apK
 adw
 adw
 aeC
@@ -170032,7 +170195,7 @@ adw
 adw
 adw
 adw
-aeC
+bOq
 byy
 byy
 aeC
@@ -170041,7 +170204,7 @@ aeC
 aeC
 byy
 aeC
-aeC
+apK
 adw
 adw
 aeC
@@ -170224,16 +170387,16 @@ adw
 adw
 adw
 adw
-aeC
-aeC
-aeC
-aeC
-byy
-aeC
-aeC
-aeC
-aeC
-aeC
+bOo
+bOk
+bOk
+bOk
+bOn
+bOl
+bOk
+bOk
+bOk
+bOi
 adw
 adw
 aeC
@@ -170420,8 +170583,8 @@ adw
 adw
 adw
 adw
-aeC
-aig
+bOo
+bOm
 adw
 adw
 adw
