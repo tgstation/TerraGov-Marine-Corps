@@ -189,6 +189,18 @@
 
 /obj/vehicle/sealed/armored/multitile/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(istype(I, /obj/item/tool/soap))
+		if(!user_decal)
+			balloon_alert(user, "No decal to remove")
+			return
+		if(entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < required_entry_skill)
+			balloon_alert(user, "Not skilled enough to wash this vehicle")
+			return FALSE
+		if(!do_after(user, 1 SECONDS, NONE, src))
+			return
+		cut_overlay(user_decal)
+		user_decal = null
+		return
 	if(!istype(I, /obj/item/facepaint))
 		return
 	if(!(armored_flags & ARMORED_ALLOW_DECALS))
