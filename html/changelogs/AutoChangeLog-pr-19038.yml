@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "open air turfs on multi-z maps are a much darker colour on the minimap than ground tiles"
