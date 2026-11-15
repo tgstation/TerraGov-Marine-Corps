@@ -406,6 +406,18 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	smoke.set_up(25, target, 30 - (inaccuracy_amt * 2))//Vape nation
 	smoke.start()
 
+/obj/structure/ob_ammo/warhead/radium
+	name = "\improper The Package"
+	desc = "...?"
+	warhead_kind = "radium"
+	icon_state = "ob_warhead_5"
+
+/obj/structure/ob_ammo/warhead/radium/warhead_impact(turf/target, inaccuracy_amt = 0, mob/firer)
+	. = ..()
+	var/datum/effect_system/smoke_spread/radium/smoke = new
+	smoke.set_up(38, target, 30 - (inaccuracy_amt * 2))//Vape nation 2.0 GREEN edition (this range is far enough to hit the one who fires this thing)
+	smoke.start()
+
 /obj/structure/ob_ammo/ob_fuel
 	name = "solid fuel"
 	icon_state = "ob_fuel"

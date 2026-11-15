@@ -3,8 +3,9 @@
 
 #define TESLA_MAX_RANGE 7
 #define TESLA_MAX_TARGETS 12
-#define TESLA_DAMAGE 60 //BURN damage
+#define TESLA_DAMAGE 60
 #define TESLA_ARMOR_PIERCE 5
+#define TESLA_XENO_DAMAGE_MULTIPLIER 30 //GO MY NYMPH GIB-INATOR! GO AND FEAST ON THE MINIONS! ANNIHILATE THE T1s!
 
 /obj/machinery/tesla_orb
 	name = "mysterious orbs"
@@ -20,8 +21,6 @@
 	light_range = 5
 	light_power = 6
 	light_color = COLOR_DARK_CYAN
-	/// Range, duh.
-	var/max_range = TESLA_MAX_RANGE
 
 /obj/machinery/tesla_orb/Initialize(mapload)
 	. = ..()
@@ -54,7 +53,8 @@
 		return
 
 /obj/machinery/tesla_orb/process()
-	var/targets = length(zap_all(src, max_range, TESLA_DAMAGE, TESLA_ARMOR_PIERCE, TESLA_MAX_TARGETS))
+	var/message = "You're shocked by lightning bolts from the [src]! Get away!"
+	var/targets = length(zap_all(src, TESLA_MAX_RANGE, TESLA_DAMAGE, TESLA_ARMOR_PIERCE, message, TESLA_XENO_DAMAGE_MULTIPLIER, TESLA_MAX_TARGETS))
 	if(!targets)
 		return
 	playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
@@ -70,3 +70,4 @@
 #undef TESLA_MAX_TARGETS
 #undef TESLA_DAMAGE
 #undef TESLA_ARMOR_PIERCE
+#undef TESLA_XENO_DAMAGE_MULTIPLIER
