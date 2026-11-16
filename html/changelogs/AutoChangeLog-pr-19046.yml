@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "You can now use the rest of the UI while selecting a target in the minimap"
+  - bugfix: "Drop pods can no longer drop on open space"
+  - rscadd: "Drop pods can now change the Zlevel to drop on for multiz maps"
