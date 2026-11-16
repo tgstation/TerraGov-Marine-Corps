@@ -175,3 +175,9 @@
   Runian:
   - bugfix: Cocoons now only give their larva point reward when they complete, instead
       of always after their allocated time.
+2026-11-16:
+  Lumipharon:
+  - qol: open air turfs on multi-z maps are a much darker colour on the minimap than
+      ground tiles
+  mudzbe:
+  - admin: When using the hand labeller labels are stored in fingerprints
