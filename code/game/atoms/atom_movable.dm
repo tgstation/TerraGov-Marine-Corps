@@ -868,11 +868,12 @@
 	thrown_speed = 0
 	throw_source = null
 
-	if(!currently_z_moving) // I don't think you can zfall while thrown but hey, just in case.
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+
+	if(!currently_z_moving) //after post throw, sigs, for e.g if they change the pass flags
 		var/turf/T = get_turf(src)
 		T?.zFall(src)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 
