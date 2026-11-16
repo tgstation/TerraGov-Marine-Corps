@@ -49,12 +49,6 @@
 		return ..()
 	return 'sound/effects/swap.ogg'
 
-/turf/open/ground/get_z_fall_sound(mob/living/faller, levels)
-	return 'sound/effects/thud.ogg'
-
-/turf/open/floor/plating/ground/get_z_fall_sound(mob/living/faller, levels)
-	return 'sound/effects/thud.ogg'
-
 /turf/open/floor/plating/ground/ice/get_z_fall_sound(mob/living/faller, levels)
 	return 'sound/effects/Glasshit.ogg'
 
