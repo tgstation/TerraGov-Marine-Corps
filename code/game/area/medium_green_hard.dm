@@ -671,4 +671,4 @@
 
 /area/mediumgreen/outside/powerline
 	name = "Central Powerline"
-
+	minimap_color = MINIMAP_AREA_ENGI
