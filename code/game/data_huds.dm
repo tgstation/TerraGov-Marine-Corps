@@ -564,6 +564,9 @@
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
 	var/image/holder = hud_list[XENO_RANK_HUD]
 	holder.icon_state = ""
+	var/minutes = client?.get_exp_living(pure_numeric = TRUE)
+	if(client && minutes < 600) // 10 hours in minutes
+		holder.overlays += image('icons/mob/hud/xeno.dmi', src, "sprout")
 	if(stat != DEAD && playtime_as_number() > 0 && client.prefs.show_xeno_rank)
 		holder.icon = 'icons/mob/hud/xeno.dmi'
 		holder.icon_state = "upgrade_[playtime_as_number()]"
@@ -634,6 +637,10 @@
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 		holder.overlays += image('icons/mob/hud/job.dmi', src, "[job.comm_title]")
+
+	var/minutes = client?.get_exp_living(pure_numeric = TRUE)
+	if(client && minutes < 600) // 10 hours in minutes
+		holder.overlays += image('icons/mob/hud/job.dmi', src, "sprout")
 
 	hud_list[hud_type] = holder
 
