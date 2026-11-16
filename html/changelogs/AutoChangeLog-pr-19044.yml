@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Seethrough no longer turns you into a black blob on z change"
+  - bugfix: "Change minimap Z level indicator placement no longer layers under the Xeno or Marine UIs"
