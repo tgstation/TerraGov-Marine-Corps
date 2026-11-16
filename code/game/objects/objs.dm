@@ -460,14 +460,9 @@
 
 ///Signal sender for unique_action
 /obj/proc/do_unique_action(mob/user, special_treatment = FALSE)
-	if(!can_unique_action(user, special_treatment))
-		return FALSE
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
 	return unique_action(user, special_treatment)
-
-///Whether this obj can should ever unique action at all
-/obj/proc/can_unique_action(mob/user, special_treatment = FALSE)
-	return FALSE
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/proc/unique_action(mob/user, special_treatment = FALSE)

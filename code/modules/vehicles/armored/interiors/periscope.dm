@@ -63,6 +63,7 @@
 
 /obj/structure/periscope/fire_support
 	name = "command periscope"
+	interaction_flags = parent_type::interaction_flags|INTERACT_ALLOW_UNIQUE_ACTION
 	///Fire support options when using this periscope
 	var/list/mode_list = list(
 		FIRESUPPORT_TYPE_GUN_UNLIMITED,
@@ -73,6 +74,3 @@
 /obj/structure/periscope/fire_support/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fire_support, mode_list)
-
-/obj/structure/periscope/fire_support/can_unique_action(mob/user, special_treatment = FALSE)
-	return TRUE

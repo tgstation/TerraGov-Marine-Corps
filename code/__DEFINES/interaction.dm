@@ -6,6 +6,8 @@
 #define INTERACT_SILICON_ALLOWED (1<<3)
 #define INTERACT_POWERLOADER_PICKUP_ALLOWED (1<<4) //the powerloader is allowed to pick this up
 	#define INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR (1<<5) //same as above, but we ignore if it's anchored
+///You can unique action this thing when interacting with it instead of holding it
+#define INTERACT_ALLOW_UNIQUE_ACTION (1<<6)
 
 
 #define INTERACT_MACHINE_NOSILICON (INTERACT_REQUIRES_DEXTERITY|INTERACT_CHECK_INCAPACITATED)

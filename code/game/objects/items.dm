@@ -511,9 +511,6 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-/obj/item/can_unique_action(mob/user, special_treatment = FALSE)
-	return TRUE
-
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
 	SEND_SIGNAL(user, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, enable_bump_attack)
