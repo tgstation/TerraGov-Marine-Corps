@@ -74,6 +74,12 @@
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
 
+/obj/item/explosive/grenade/pickup(mob/user)
+	. = ..()
+	if(active && iscarbon(user))
+		var/mob/living/carbon/carbon_user = user
+		carbon_user.throw_mode_on()
+
 ///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
