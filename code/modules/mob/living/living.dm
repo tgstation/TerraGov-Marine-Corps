@@ -864,7 +864,7 @@
 
 	if(!skip_knockdown)
 		Knockdown(stun_time)
-		playsound(impacted_turf, 'sound/weapons/heavyhit.ogg', 40, TRUE)
+		playsound(impacted_turf, fall_catcher.get_z_fall_sound(src, levels), 40, TRUE)
 		emote("pain")
 
 	return .

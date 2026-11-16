@@ -37,6 +37,30 @@
 /turf/open/floor/plating/ground/concrete/get_z_fall_damage(mob/living/faller, levels)
 	return (levels * 12) ** 1.5
 
+///Returns the sound when something lands on this turf
+/atom/proc/get_z_fall_sound(mob/living/faller, levels) //not a turf proc, but this mostly relates to turfs
+	return 'sound/weapons/heavyhit.ogg'
+
+/turf/open/liquid/get_z_fall_sound(mob/living/faller, levels)
+	return pick('sound/effects/footstep/swimming1.ogg', 'sound/effects/footstep/swimming2.ogg', 'sound/effects/footstep/swimming3.ogg')
+
+/turf/open/floor/plating/ground/snow/get_z_fall_sound(mob/living/faller, levels)
+	if(!slayer)
+		return ..()
+	return 'sound/effects/swap.ogg'
+
+/turf/open/ground/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/thud.ogg'
+
+/turf/open/floor/plating/ground/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/thud.ogg'
+
+/turf/open/floor/plating/ground/ice/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/Glasshit.ogg'
+
+/turf/open/floor/glass/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/Glasshit.ogg'
+
 ///Returns the thing that breaks the fall of a mob landing on us
 /turf/proc/get_z_fall_catcher(mob/living/faller)
 	var/mob/living/lying_mob_candidate
