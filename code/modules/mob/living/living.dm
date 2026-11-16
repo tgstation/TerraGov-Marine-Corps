@@ -792,6 +792,31 @@
 		return .
 	// multiplier for the damage taken from falling
 	var/damage_softening_multiplier = 1.5
+	var/incoming_damage = (levels * 10) ** 1.5
+	var/stun_time = levels * 2 SECONDS
+
+	var/atom/fall_catcher = impacted_turf.get_z_fall_catcher(src)
+	if(!isturf(fall_catcher))
+		visible_message(
+			span_danger("[src] crashes into [fall_catcher]!"),
+			span_userdanger("You crash into [fall_catcher]!"),
+		)
+		. = . | ZIMPACT_NO_MESSAGE
+
+		//If we land on someone, it helps break our fall, but harms them
+		if(isliving(fall_catcher))
+			incoming_damage *= 0.5
+			stun_time *= 0.5
+			var/mob/living/living_fall_catcher = fall_catcher
+			if(living_fall_catcher.stat != DEAD)
+				living_fall_catcher.apply_damage(incoming_damage, BRUTE, blocked = MELEE)
+				living_fall_catcher.Knockdown(isxeno(living_fall_catcher) ? stun_time * 0.5 : stun_time * 1.5)
+				shake_camera(living_fall_catcher, 0.3 SECONDS, 1)
+				living_fall_catcher.emote("pain")
+		else if(isobj(fall_catcher))
+			var/obj/obj_fall_catcher = fall_catcher
+			obj_fall_catcher.take_damage(incoming_damage, BRUTE, MELEE)
+
 
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !incapacitated(TRUE)
@@ -800,16 +825,15 @@
 			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
 
 			if(!graceful_landing)
-				Knockdown(levels * 4 SECONDS)
+				Knockdown(stun_time)
 				emote("spin")
 
 			visible_message(
-				span_notice("[src] makes a hard landing on [impacted_turf] but remains unharmed from the fall[graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"]."),
-				span_notice("You brace for the fall. You make a hard landing on [impacted_turf], but remain unharmed[graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"]."),
+				span_notice("[src] makes a hard landing on [fall_catcher] but remains unharmed from the fall[graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"]."),
+				span_notice("You brace for the fall. You make a hard landing on [fall_catcher], but remain unharmed[graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"]."),
 			)
 			return . | ZIMPACT_NO_MESSAGE
 
-	var/incoming_damage = (levels * 5) ** 1.5
 	// Smaller mobs with catlike grace can ignore damage (EG: cats)
 	var/small_surface_area = mob_size <= MOB_SIZE_SMALL
 	var/skip_knockdown = FALSE
@@ -818,31 +842,59 @@
 		skip_knockdown = TRUE
 		if(small_surface_area)
 			visible_message(
-				span_notice("[src] makes a hard landing on [impacted_turf], but lands safely on [p_their()] feet!"),
-				span_notice("You make a hard landing on [impacted_turf], but land safely on your feet!"),
+				span_notice("[src] makes a hard landing on [fall_catcher], but lands safely on [p_their()] feet!"),
+				span_notice("You make a hard landing on [fall_catcher], but land safely on your feet!"),
 			)
 			new /obj/effect/temp_visual/leap_dust/small(impacted_turf)
 			return .
 
-		incoming_damage *= 1.66
+		incoming_damage *= 0.5
 		visible_message(
-			span_danger("[src] makes a hard landing on [impacted_turf], landing on [p_their()] feet painfully!"),
-			span_userdanger("You make a hard landing on [impacted_turf], and instinctively land on your feet - painfully!"),
+			span_danger("[src] makes a hard landing on [fall_catcher], landing on [p_their()] feet painfully!"),
+			span_userdanger("You make a hard landing on [fall_catcher], and instinctively land on your feet - painfully!"),
 		)
 		new /obj/effect/temp_visual/leap_dust(impacted_turf)
 
 	if(!lying_angle)
 		var/damage_for_each_leg = round((incoming_damage / 2) * damage_softening_multiplier)
-		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_L_LEG)
-		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_R_LEG)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_L_LEG, MELEE)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_R_LEG, MELEE)
 	else
-		apply_damage(incoming_damage, BRUTE)
+		apply_damage(incoming_damage, BRUTE, blocked = MELEE)
 
 	if(!skip_knockdown)
-		Knockdown(levels * 2 SECONDS)
-		playsound(loc, 'sound/weapons/heavyhit.ogg', 40, TRUE)
+		Knockdown(stun_time)
+		playsound(impacted_turf, 'sound/weapons/heavyhit.ogg', 40, TRUE)
 		emote("pain")
+
 	return .
+
+///Returns the thing that breaks the fall of a mob landing on us
+/turf/proc/get_z_fall_catcher(mob/living/faller)
+	var/mob/living/lying_mob_candidate
+	for(var/mob/mob in src)
+		if(!isliving(mob))
+			continue
+		if(mob == faller)
+			continue
+		var/mob/living/living_mob = mob
+		if(living_mob.lying_angle)
+			lying_mob_candidate = mob
+			continue
+		if(!living_mob.density)
+			return
+		return mob
+
+	for(var/obj/obj in src)
+		if(!obj.density)
+			continue
+		if(obj.atom_flags & ON_BORDER)
+			continue
+		return obj
+
+	if(lying_mob_candidate)
+		return lying_mob_candidate
+	return src
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.

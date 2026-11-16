@@ -13,7 +13,7 @@
 /atom/movable/proc/z_impact_effects(turf/impacted_turf, levels, impact_flags, duration)
 	//if(!(impact_flags & ZIMPACT_NO_SPIN))
 	//	INVOKE_ASYNC(src, PROC_REF(SpinAnimation), duration, 2)
-
+	//TODO: COMMENTED OUT FOR TESTING OF NEW EFFECTS ONLY
 	start_drop_down_effect(src, ismob(src) ? list(src) : null, list(src), duration)
 
 ///Special effects when a z impact is completed
