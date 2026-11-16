@@ -12,6 +12,8 @@
 	barefootstep = FOOTSTEP_SNOW
 	mediumxenofootstep = FOOTSTEP_SNOW
 	minimap_color = MINIMAP_SNOW
+	///number of snow stacks
+	var/slayer = 0
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
@@ -117,10 +119,10 @@
 /turf/open/floor/plating/ground/snow/update_overlays()
 	. = ..()
 	for(var/dirn in GLOB.alldirs)
-		var/turf/open/T = get_step(src, dirn)
-		if(!isopenturf(T))
+		var/turf/open/floor/plating/ground/snow/adjacent_snow = get_step(src, dirn)
+		if(!istype(adjacent_snow))
 			continue
-		if(slayer > T.slayer && T.slayer < 1)
+		if(slayer > adjacent_snow.slayer && adjacent_snow.slayer < 1)
 			var/image/I = new('icons/turf/snow2.dmi', "snow_[(dirn & (dirn-1)) ? "outercorner" : pick("innercorner", "outercorner")]", dir = dirn)
 			switch(dirn)
 				if(NORTH)
