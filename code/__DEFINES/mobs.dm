@@ -550,7 +550,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
-#define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
 #define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
 #define XENO_ACID_WELL_FILL_COST 150 //Cost in plasma to apply a charge to an acid pool

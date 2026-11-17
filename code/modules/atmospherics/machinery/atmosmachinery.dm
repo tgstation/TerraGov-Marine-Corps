@@ -37,8 +37,9 @@
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
 
-	///Whether we get pipenet vision while inside or just see normally.
-	var/can_see_pipes = TRUE
+	///The bitflag that's being checked on ventcrawling. Default is to allow ventcrawling and seeing pipes.
+	var/vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE
+
 
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
@@ -49,14 +50,26 @@
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	. = ..()
+	//this should be in init, but the way our simple pipes have been setup, they'll runtime when apc's init before they do.
+	//Someone should propably fully port tg atmos to tgmc
+	nodes = new(device_type)
+	SetInitDirections()
+
+/obj/machinery/atmospherics/Initialize(mapload, process = TRUE, setdir)
 	if(!isnull(setdir))
 		setDir(setdir)
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
-	nodes = new(device_type)
 	if(process)
 		SSair.atmos_machinery += src
-	SetInitDirections()
+
+	var/turf/turf_loc = null
+	if(isturf(loc))
+		turf_loc = loc
+
+	SSspatial_grid.add_grid_awareness(src, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
+	SSspatial_grid.add_grid_membership(src, turf_loc, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
+	return ..()
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/i in 1 to device_type)
@@ -120,13 +133,6 @@
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
 	return connection_check(target, piping_layer)
-
-//Find a connecting /obj/machinery/atmospherics in specified direction
-/obj/machinery/atmospherics/proc/findConnecting(direction, prompted_layer)
-	for(var/obj/machinery/atmospherics/target in get_step(src, direction))
-		if(target.initialize_directions & get_dir(target,src))
-			if(connection_check(target, prompted_layer))
-				return target
 
 /obj/machinery/atmospherics/proc/connection_check(obj/machinery/atmospherics/target, given_layer)
 	if(isConnectable(target, given_layer) && target.isConnectable(src, given_layer) && (target.initialize_directions & get_dir(target,src)))
@@ -241,82 +247,95 @@
 		A.addMember(src)
 	build_network()
 
+/**
+ * Find a connecting /obj/machinery/atmospherics in specified direction, called by relaymove()
+ * used by ventcrawling mobs to check if they can move inside a pipe in a specific direction
+ * Arguments:
+ * * direction - the direction we are checking against
+ * * prompted_layer - the piping_layer we are inside
+ */
+/obj/machinery/atmospherics/proc/find_connecting(direction, prompted_layer)
+	for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+		if(!(target.initialize_directions & get_dir(target,src))) //initialize_directions
+			continue
+		if(connection_check(target, prompted_layer))
+			return target
+
 /obj/machinery/atmospherics/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(istype(arrived, /mob/living))
 		var/mob/living/L = arrived
 		L.ventcrawl_layer = piping_layer
 	return ..()
 
-
-/obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	if(T.density)
-		to_chat(user, span_notice("You cannot climb out, the exit is blocked!"))
-		return
-	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_VENTCRAWL))
-		return FALSE
-	var/silent_crawl = FALSE
-	var/vent_crawl_exit_time = 2 SECONDS
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/X = user
-		silent_crawl = X.xeno_caste.silent_vent_crawl
-		vent_crawl_exit_time = X.xeno_caste.vent_exit_speed
-	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, vent_crawl_exit_time)
-	if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
-		visible_message(span_warning("You hear something squeezing through the ducts."))
-	to_chat(user, span_notice("You begin to climb out of [src]"))
-	if(!do_after(user, vent_crawl_exit_time, IGNORE_HELD_ITEM, src))
-		return FALSE
-	user.remove_ventcrawl()
-	user.forceMove(T)
-	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
-	span_notice("You climb out of [src].</span>"))
-	log_game("[user] Crawled out of the [src] at [AREACOORD(src)]")
-	if(!silent_crawl)
-		playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
-
-
+// Handles mob movement inside a pipenet
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
-	direction &= initialize_directions
-	if(!direction || !(direction in GLOB.cardinals)) //cant go this way.
+	if(!direction) //can't go this way.
+		return
+	if(user in buckled_mobs)
 		return
 
-	var/obj/machinery/atmospherics/target_move = findConnecting(direction, user.ventcrawl_layer)
-	if(target_move)
-		if(target_move.can_crawl_through())
-			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
-				climb_out(user, target_move.loc)
-			else
+	// We want to support holding two directions at once, so we do this
+	var/obj/machinery/atmospherics/target_move
+	for(var/canon_direction in GLOB.cardinals_multiz)
+		if(!(direction & canon_direction))
+			continue
+		var/obj/machinery/atmospherics/temp_target = find_connecting(canon_direction, user.ventcrawl_layer)
+		if(!temp_target)
+			continue
+		target_move = temp_target
+		// If you're at a fork with two directions held, we will always prefer the direction you didn't last use
+		// This way if you find a direction you've not used before, you take it, and if you don't, you take the other
+		if(user.last_vent_dir == canon_direction)
+			continue
+		user.last_vent_dir = canon_direction
+		break
 
-				// Check for impassable types
-				var/obj/effect/forcefield/fog/impassable = locate() in get_turf(target_move)
-				if(impassable)
-					return
+	if(!target_move)
+		// If we couldn't find a target to move to and we're ventcrawling, try to exit if this vent allows it
+		if(HAS_TRAIT(user, TRAIT_MOVE_VENTCRAWLING) && (vent_movement & VENTCRAWL_ENTRANCE_ALLOWED))
+			user.handle_ventcrawl(src)
+		return
 
-				user.forceMove(target_move)
-				user.update_pipe_vision()
-				user.client.set_eye(target_move)  //Byond only updates the eye every tick, This smooths out the movement
-				var/silent_crawl = FALSE //Some creatures can move through the vents silently
-				if(isxeno(user))
-					var/mob/living/carbon/xenomorph/X = user
-					silent_crawl = X.xeno_caste.silent_vent_crawl
-				if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_VENTSOUND) || silent_crawl)
-					return
-				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
-				playsound(src, pick('sound/effects/alien/ventcrawl1.ogg','sound/effects/alien/ventcrawl2.ogg'), 50, TRUE, -3)
-	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
-		climb_out(user, src.loc)
+	if(!(target_move.vent_movement & VENTCRAWL_ALLOWED))
+		return
+	user.forceMove(target_move)
+	var/list/pipenetdiff = return_pipenets() ^ target_move.return_pipenets()
+	if(pipenetdiff.len)
+		user.update_pipe_vision(full_refresh = TRUE)
+	var/silent_crawl = FALSE //Some creatures can move through the vents silently
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		silent_crawl = xeno_user.xeno_caste.silent_vent_crawl
+	if(!(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_VENTSOUND) || silent_crawl))
+		TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
+		playsound(src, pick('sound/effects/alien/ventcrawl1.ogg','sound/effects/alien/ventcrawl2.ogg'), 50, TRUE, -3)
 
-	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
+	//Would be great if this could be implemented when someone alt-clicks the image.
+	if (target_move.vent_movement & VENTCRAWL_ENTRANCE_ALLOWED)
+		user.handle_ventcrawl(target_move)
+		return
 
+	var/client/our_client = user.client
+	if(!our_client)
+		return
+	our_client.set_eye(target_move)
+	// Let's smooth out that movement with an animate yeah?
+	// If the new x is greater (move is left to right) we get a negative offset. vis versa
+	our_client.pixel_x = (x - target_move.x) * ICON_SIZE_X
+	our_client.pixel_y = (y - target_move.y) * ICON_SIZE_Y
+	animate(our_client, pixel_x = 0, pixel_y = 0, time = 0.05 SECONDS)
+	our_client.move_delay = world.time + 0.05 SECONDS
 
-/obj/machinery/atmospherics/proc/can_crawl_through()
-	return TRUE
-
-/obj/machinery/atmospherics/proc/returnPipenets()
+/**
+ * Getter of a list of pipenets
+ *
+ * called in relaymove() to create the image for vent crawling
+ */
+/obj/machinery/atmospherics/proc/return_pipenets()
 	return list()
 
 /obj/machinery/atmospherics/update_remote_sight(mob/user)
-	if(!can_see_pipes)
+	if(!(vent_movement & VENTCRAWL_CAN_SEE))
 		return
 	user.sight |= (SEE_TURFS|BLIND)
 
