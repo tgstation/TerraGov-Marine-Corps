@@ -19,6 +19,7 @@ const BUTTON_SIZE = 10;
 enum SortType {
   name = 'Name',
   creator = 'Creator',
+  date = 'Date',
   favourites = 'Favourites',
   tags = 'Tags',
   md5 = 'MD5',
@@ -81,6 +82,8 @@ export const DecalManager = (props) => {
           return a.tags.length - b.tags.length;
         case SortType.md5:
           return a.md5.localeCompare(b.md5);
+        case SortType.date:
+          return new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime();
         default:
           return 0;
       }
