@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "some issues with camera fog not updating properly"
+  - bugfix: "camera eyes send less static to client to fix maptick issues, only showing the same z-level they're on"
