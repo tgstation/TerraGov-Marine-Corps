@@ -181,3 +181,17 @@
       ground tiles
   mudzbe:
   - admin: When using the hand labeller labels are stored in fingerprints
+2026-11-17:
+  Arturlang:
+  - bugfix: tadpole camera can't go to wrong z-levels anymore
+  TiviPlus:
+  - bugfix: Runners no longer can fly using pounces
+  - bugfix: Seethrough no longer turns you into a black blob on z change
+  - bugfix: Change minimap Z level indicator placement no longer layers under the
+      Xeno or Marine UIs
+  - qol: You can now use the rest of the UI while selecting a target in the minimap
+  - bugfix: Drop pods can no longer drop on open space
+  - rscadd: Drop pods can now change the Zlevel to drop on for multiz maps
+  - qol: Updates preferences job menu descriptions for jobs
+  - bugfix: Fixes mech pulse armor having no CD
+  - bugfix: Removes debug pop count message at round start
