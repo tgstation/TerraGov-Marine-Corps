@@ -151,6 +151,9 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	var/telegraph_cameras = TRUE
 	var/telegraph_range = 7
 
+/mob/camera/aiEye/hud/pic_in_pic/get_static_range()
+	return list(static_visibility_range, static_visibility_range)
+
 /mob/camera/aiEye/hud/pic_in_pic/GetViewerClient()
 	return screen?.ai?.client
 
