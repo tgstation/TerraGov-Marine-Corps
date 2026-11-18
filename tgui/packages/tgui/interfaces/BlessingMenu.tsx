@@ -160,7 +160,9 @@ const UpgradeEntry = (props: UpgradeEntryProps) => {
       buttons={
         <Button
           mr={1}
-          tooltip={upgrade_cost + (istactical ? ' tactical' : ' strategic') + ' points'}
+          tooltip={
+            upgrade_cost + (istactical ? ' tactical' : ' strategic') + ' points'
+          }
           disabled={upgrade_cost > psy_points}
           onClick={() => act('buy', { buyname: upgrade_name })}
           color={istactical ? 'purple' : 'violet'}
