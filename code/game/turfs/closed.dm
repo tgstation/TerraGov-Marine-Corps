@@ -294,6 +294,14 @@
 	base_icon_state = "junglewall"
 	walltype = "junglewall"
 	open_turf_type = /turf/open/ground/jungle/clear
+	minimap_color = MINIMAP_BLACK
+
+/turf/closed/gm/Initialize(mapload)
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		var/turf/turf_to_check = get_step(src, direction)
+		if(!isnull(turf_to_check) && !turf_to_check.density && !isspaceturf(turf_to_check))
+			minimap_color = MINIMAP_SOLID
 
 /turf/closed/gm/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_LEAF, -40, 5)
@@ -306,15 +314,7 @@
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
-	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
-
-/turf/closed/gm/dense/Initialize(mapload)
-	. = ..()
-	for(var/direction in GLOB.cardinals)
-		var/turf/turf_to_check = get_step(src, direction)
-		if(!isnull(turf_to_check) && !turf_to_check.density && !isspaceturf(turf_to_check))
-			minimap_color = MINIMAP_SOLID
 
 //Orange Border (What else am I meant to call it?)
 /turf/closed/perimeter

@@ -477,7 +477,7 @@
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE
 
-// Vent Crawl
+///Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
@@ -486,7 +486,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
+		handle_ventcrawl(pipe)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"

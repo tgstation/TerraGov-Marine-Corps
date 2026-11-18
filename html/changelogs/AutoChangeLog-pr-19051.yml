@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - rscadd: "Added TE cells to APC and Tadpole Nano Ammo Vendors. TE cell field chargers everywhere may cry about powercreep."

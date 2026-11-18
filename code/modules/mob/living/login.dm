@@ -9,11 +9,9 @@
 	if(isturf(mob_turf))
 		update_z(mob_turf.z)
 
-	if(length(pipes_shown)) //ventcrawling, need to reapply pipe vision
-		var/obj/machinery/atmospherics/A = loc
-		if(istype(A)) //a sanity check just to be safe
-			remove_ventcrawl()
-			add_ventcrawl(A)
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING))  //If we are in a vent, fetch a fresh vent map
+		update_pipe_vision()
+
 	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 	set_afk_status(MOB_CONNECTED)
 

@@ -698,12 +698,14 @@
 		else
 			unset_interaction()
 	interactee = AM
+	SEND_SIGNAL(interactee, COMSIG_DATUM_INTERACT_SET, src)
 	interactee.on_set_interaction(src)
 
 
 /mob/proc/unset_interaction()
 	if(interactee)
 		interactee.on_unset_interaction(src)
+		SEND_SIGNAL(interactee, COMSIG_DATUM_INTERACT_UNSET, src)
 		interactee = null
 
 

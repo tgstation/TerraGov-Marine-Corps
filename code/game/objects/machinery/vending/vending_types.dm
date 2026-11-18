@@ -557,6 +557,7 @@
 			/obj/item/ammo_magazine/flamer_tank/water = 10,
 			/obj/item/ammo_magazine/flamer_tank/mini = 16,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 16,
+			/obj/item/cell/lasgun/lasrifle = 40,
 		),
 		"Seasonal" = list(
 			/obj/item/ammo_magazine/revolver/small = 0,

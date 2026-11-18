@@ -68,12 +68,12 @@
 		/datum/mutation_upgrade/veil/bloody_endure
 	)
 
-/datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/ravager/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 	xenomorph.AddElement(/datum/element/plasma_on_attacked, plasma_damage_recieved_mult)
 
-/datum/xeno_caste/ravager/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/ravager/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/plasma_on_attack, plasma_damage_dealt_mult)
 	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, plasma_damage_recieved_mult)
@@ -123,7 +123,7 @@
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
-		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action/rage/blood_thirster,
 		/datum/action/ability/xeno_action/bloodthirst,
 	)
 	plasma_damage_dealt_mult = 2
@@ -152,7 +152,83 @@
 		/datum/action/ability/activable/xeno/charge,
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
-		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action/rage/blood_thirster,
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/deathmark,
 	)
+
+///Increased gib chance for this caste
+#define CORRUPTOR_GIB_BUFF 20
+
+/datum/xeno_caste/ravager/corruptor
+	caste_name = "Corruptor"
+	display_name = "Corruptor"
+	upgrade_name = ""
+	caste_desc = "A hulking, terrifying clawed beast dripping in glowing acid."
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/corruptor
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_flags = parent_type::caste_flags|CASTE_ACID_BLOOD
+	wound_type = "ravager"
+
+	melee_damage = 21
+
+	acid_spray_duration = 3 SECONDS
+	acid_spray_damage = 20
+	acid_spray_damage_on_hit = 20
+	acid_spray_structure_damage = 45
+
+	plasma_damage_dealt_mult = 1.75 //higher mult to scale with its lower base damage
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/charge/acid,
+		/datum/action/ability/activable/xeno/ravage/acid,
+		/datum/action/ability/xeno_action/endure,
+		/datum/action/ability/xeno_action/rage/acid,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor,
+	)
+
+/datum/xeno_caste/ravager/corruptor/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
+	. = ..()
+	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/corruptor]
+	xenomorph.gib_chance += CORRUPTOR_GIB_BUFF
+
+/datum/xeno_caste/ravager/corruptor/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
+	if(!QDELETED(xenomorph))
+		xenomorph.ammo = null
+		xenomorph.gib_chance -= CORRUPTOR_GIB_BUFF
+	return ..()
+
+/datum/xeno_caste/ravager/corruptor/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
+	xenomorph.visible_message(span_danger("[xenomorph] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!"))
+	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(xenomorph)
+	smoke.set_up(2, get_turf(xenomorph))
+	smoke.start()
+
+	xenomorph.acid_burst(15)
+
+/datum/xeno_caste/ravager/corruptor/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/ravager/corruptor/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "An nightmarish, acid drenched destroyer."
+	primordial_message = "Destroy the enemies of the hive! Burn everything away in cleansing acid!"
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/charge/acid,
+		/datum/action/ability/activable/xeno/ravage/acid,
+		/datum/action/ability/xeno_action/endure,
+		/datum/action/ability/xeno_action/rage/acid,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong/corruptor,
+		/datum/action/ability/xeno_action/vampirism,
+	)
+
+#undef CORRUPTOR_GIB_BUFF
