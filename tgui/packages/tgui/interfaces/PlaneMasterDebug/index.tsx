@@ -6,6 +6,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
@@ -555,7 +556,7 @@ export function PlaneMasterDebug() {
                 options={planes.map((plane) => plane.name).sort()}
                 placeholder="Find Plane"
                 selected={zoomToPlane}
-                searchInput
+                // searchInput needs tguicore 6.0
                 onSelected={(value) => {
                   setZoomToPlane(value);
                   const locatedPlane = planes.find(
