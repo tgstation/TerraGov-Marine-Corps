@@ -121,6 +121,7 @@ const Upgrades = (props: { selectedCategory: string | null }) => {
                 upgrade_cost={upgrade.cost}
                 upgrade_times_bought={upgrade.times_bought}
                 upgradeicon={upgrade.iconstate}
+                istactical={upgrade.istactical}
               />
             ))
         )}
@@ -136,6 +137,7 @@ type UpgradeEntryProps = {
   upgrade_cost: number;
   upgrade_times_bought: number;
   upgradeicon: string;
+  istactical: boolean;
 };
 
 const UpgradeEntry = (props: UpgradeEntryProps) => {
@@ -148,6 +150,7 @@ const UpgradeEntry = (props: UpgradeEntryProps) => {
     upgrade_cost,
     upgrade_times_bought,
     upgradeicon,
+    istactical,
   } = props;
 
   return (
@@ -157,9 +160,10 @@ const UpgradeEntry = (props: UpgradeEntryProps) => {
       buttons={
         <Button
           mr={1}
-          tooltip={upgrade_cost + ' points'}
+          tooltip={upgrade_cost + (istactical ? ' tactical' : ' strategic') + ' points'}
           disabled={upgrade_cost > psy_points}
           onClick={() => act('buy', { buyname: upgrade_name })}
+          color={istactical ? 'purple' : 'violet'}
         >
           Claim Blessing
         </Button>
