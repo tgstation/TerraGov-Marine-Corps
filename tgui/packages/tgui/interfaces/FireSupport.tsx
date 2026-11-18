@@ -119,22 +119,23 @@ export const FireSupport = (props) => {
                         </Stack.Item>
                         <Stack.Item fontSize="150%" grow={1}>
                           {
-                      <Button
-                        icon="check"
-                        color="green"
-                        disabled={
-                          (data.points ?? 0) < currentMunition.munition_cost
-                        }
-                        onClick={() => {
-                          act('purchase', {
-                            munition_type: currentMunition.munition_type,
-                            munition_cost: currentMunition.munition_cost,
-                          });
-                        }}
-                      >
-                        Purchase
-                      </Button>
-                    }
+                            <Button
+                              icon="check"
+                              color="green"
+                              disabled={
+                                (data.points ?? 0) <
+                                currentMunition.munition_cost
+                              }
+                              onClick={() => {
+                                act('purchase', {
+                                  munition_type: currentMunition.munition_type,
+                                  munition_cost: currentMunition.munition_cost,
+                                });
+                              }}
+                            >
+                              Purchase
+                            </Button>
+                          }
                         </Stack.Item>
                       </Stack>
                     }
