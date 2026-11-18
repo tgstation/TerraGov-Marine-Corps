@@ -64,13 +64,7 @@
 /obj/structure/periscope/fire_support
 	name = "command periscope"
 	interaction_flags = parent_type::interaction_flags|INTERACT_ALLOW_UNIQUE_ACTION
-	///Fire support options when using this periscope
-	var/list/mode_list = list(
-		FIRESUPPORT_TYPE_GUN_UNLIMITED,
-		FIRESUPPORT_TYPE_ROCKETS_UNLIMITED,
-		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
-	)
 
 /obj/structure/periscope/fire_support/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/fire_support, mode_list)
+	AddComponent(/datum/component/fire_support)

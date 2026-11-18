@@ -11,7 +11,7 @@
 	///firemodes available for these binos
 	var/list/datum/fire_support/mode_list
 
-/datum/component/fire_support/Initialize(list/new_mode_list)
+/datum/component/fire_support/Initialize(list/new_mode_list = GLOB.hvz_munition_types)
 	. = ..()
 	if(!ismovable(parent) || !length(new_mode_list))
 		return COMPONENT_INCOMPATIBLE
