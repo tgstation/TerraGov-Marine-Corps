@@ -35,6 +35,7 @@
 	user.visible_message(span_notice("[user] labels [A] as \"[label]\"."), \
 						span_notice("You label [A] as \"[label]\"."))
 	A.name = "[initial(A.name)] ([label])"
+	A.add_fingerprint(user, "labelled: [label]", src)
 	labels_left--
 
 

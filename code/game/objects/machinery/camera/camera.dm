@@ -24,6 +24,10 @@
 	var/short_range = 2
 	///Camera behavior flags
 	var/camera_flags = CAMERA_OPERATING|CAMERA_AI_LIGHT|CAMERA_TURNED_ON
+	///Chunks a moving camera was last added to, for cleanup purposes
+	var/list/datum/camerachunk/portable_chunks
+	///Turf a moving camera last updated its chunks from, for skipping updates if it's not moving
+	var/turf/last_portable_turf
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
@@ -79,6 +83,12 @@
 		var/datum/camerachunk/chunk = parent_cameranet.chunks[chunk_key]
 		for(var/z_key in chunk.cameras)
 			chunk.cameras[z_key] -= src
+		chunk.camera_visible_turfs -= src
+		chunk.moved_cameras -= src
+	for(var/datum/camerachunk/chunk as anything in portable_chunks)
+		chunk.queue_update(update_delay_buffer = parent_cameranet.chunk_move_update_delay)
+	portable_chunks = null
+	last_portable_turf = null
 
 	return ..()
 
@@ -254,6 +264,9 @@
 /obj/machinery/camera/proc/activate()
 	camera_flags |= CAMERA_OPERATING
 	parent_cameranet.addCamera(src)
+	if(!isturf(loc))
+		last_portable_turf = null
+		parent_cameranet.updatePortableCamera(src)
 	update_appearance(UPDATE_ICON)
 	myarea = get_area(src)
 	if(!myarea)
@@ -270,6 +283,10 @@
 	DISABLE_BITFIELD(camera_flags, CAMERA_OPERATING)
 	set_light(0)
 	parent_cameranet.removeCamera(src)
+	for(var/datum/camerachunk/chunk as anything in portable_chunks)
+		chunk.remove_camera(src)
+	portable_chunks = null
+	last_portable_turf = null
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	var/turf/camnet_turf = get_turf(src)

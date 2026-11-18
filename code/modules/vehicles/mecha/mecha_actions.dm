@@ -391,10 +391,11 @@
 /datum/action/vehicle/sealed/mecha/pulsearmor
 	name = "Pulse Armor"
 	action_icon_state = "pulsearmor"
-	delay
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_PULSE_ARMOR,
 	)
+	///cooldown duration between activations
+	var/cooldown_duration = 90 SECONDS
 	///power cost of activation
 	var/power_cost = 250
 	///max damage that will be absorbed
@@ -416,7 +417,8 @@
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_EQUIPMENT(type))/10
 		chassis.balloon_alert(owner, "[time] seconds")
-	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 90 SECONDS)
+		return
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), cooldown_duration)
 	block_remaining = block_max
 	playsound(chassis, 'sound/items/eshield_recharge.ogg', 40)
 	START_PROCESSING(SSprocessing, src)

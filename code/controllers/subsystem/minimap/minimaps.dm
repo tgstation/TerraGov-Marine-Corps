@@ -450,6 +450,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /atom/movable/screen/minimap/proc/on_click(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+	if(!isturf(A.loc) && !isturf(A))
+		return NONE
 	var/list/modifiers = params2list(params)
 	// we only care about absolute coords because the map is fixed to 1,1 so no client stuff
 	var/list/pixel_coords = params2screenpixel(modifiers["screen-loc"])

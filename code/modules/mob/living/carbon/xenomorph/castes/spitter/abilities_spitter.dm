@@ -140,7 +140,7 @@
 	//Shoot at the thing
 	playsound(xeno_owner.loc, 'sound/effects/blobattack.ogg', 50, 1)
 
-	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
+	var/datum/ammo/xeno/acid/drop_acid/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/drop_acid/scatter]
 
 	var/atom/movable/projectile/newspit = new /atom/movable/projectile(get_turf(xeno_owner))
 	newspit.generate_bullet(scatter_spit, scatter_spit.damage * (should_get_upgrade_bonus ? SPIT_UPGRADE_BONUS(xeno_owner) : 0)) // Note: This spit upgrade bonus only applies to the main projectile. Making it apply to the bonus projectiles would be a damage increase of 54/72.

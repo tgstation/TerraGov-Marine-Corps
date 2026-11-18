@@ -63,7 +63,7 @@
 	GLOB.round_statistics.hunter_cloaks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloaks")
 
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
@@ -76,12 +76,12 @@
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
+		SIGNAL_ADDTRAIT(TRAIT_MOVE_VENTCRAWLING),
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOABILITY_MIRAGE_SWAP), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
-
-	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken))
 
@@ -112,10 +112,10 @@
 		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
-		COMSIG_XENOABILITY_MIRAGE_SWAP,
+		SIGNAL_ADDTRAIT(TRAIT_MOVE_VENTCRAWLING),
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		COMSIG_XENOABILITY_MIRAGE_SWAP,
 		COMSIG_XENOMORPH_ZONE_SELECT,
 		COMSIG_XENOMORPH_PLASMA_REGEN,
 		COMSIG_XENOMORPH_TAKING_DAMAGE,))
@@ -140,9 +140,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-///Handles moving while in stealth
-/datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/stealth/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 

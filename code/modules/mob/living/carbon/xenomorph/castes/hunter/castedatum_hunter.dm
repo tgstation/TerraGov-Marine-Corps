@@ -62,8 +62,7 @@
 	)
 
 	// *** Vent Crawl Parameters *** //
-	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
-	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
+	ventcrawl_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
 	mutations = list(

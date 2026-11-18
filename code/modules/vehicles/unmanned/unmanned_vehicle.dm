@@ -16,8 +16,6 @@
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	faction = FACTION_TERRAGOV
-	/// Needed to keep track of any slowdowns and/or diagonal movement
-	var/next_move_delay = 0
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -144,15 +142,14 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + next_move_delay)
-		return
-
+	if(!COOLDOWN_FINISHED(src, cooldown_vehicle_move))
+		return FALSE
 	. = Move(get_step(src, direction))
-
-	if(ISDIAGONALDIR(direction)) //moved diagonally successfully
-		next_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
-	else
-		next_move_delay = move_delay
+	if(!.)
+		return
+	var/next_delay = (ISDIAGONALDIR(direction) ? move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : move_delay)
+	set_glide_size(DELAY_TO_GLIDE_SIZE(next_delay))
+	COOLDOWN_START(src, cooldown_vehicle_move, next_delay)
 
 /obj/vehicle/unmanned/stop_pulling()
 	if(ismob(pulling))

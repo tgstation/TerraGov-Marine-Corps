@@ -10,7 +10,7 @@
 	minimap_icon_state = "tank"
 	required_entry_skill = SKILL_LARGE_VEHICLE_TRAINED
 	atom_flags = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE|ARMORED_ALLOW_DECALS
 	appearance_flags = PIXEL_SCALE
 	pixel_x = -56
 	pixel_y = -48
@@ -35,7 +35,6 @@
 	)
 	max_occupants = 4
 	move_delay = 0.75 SECONDS
-	glide_size = 2.5
 
 	ram_damage = 100
 	easy_load_list = list(
@@ -171,6 +170,26 @@
 	QDEL_NULL(smoke_holder)
 	UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 
+/obj/vehicle/sealed/armored/multitile/update_decal_offsets()
+	if(!user_decal)
+		return
+	switch(dir)
+		if(NORTH)
+			user_decal.alpha = 0
+		if(SOUTH)
+			user_decal.alpha = 0
+		if(EAST)
+			user_decal.alpha = 255
+			var/matrix/newmatrix = matrix().Invert()
+			user_decal.transform = newmatrix.Scale(0.5)
+			user_decal.pixel_z = 16
+			user_decal.pixel_w = 80
+		if(WEST)
+			user_decal.alpha = 255
+			user_decal.transform = matrix().Scale(0.5)
+			user_decal.pixel_w = 32
+			user_decal.pixel_z = 16
+
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
 	desc = "A gigantic wall of metal designed for maximum SOM destruction. Drag yourself onto it at an entrance to get inside."
@@ -181,7 +200,6 @@
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.55, VEHICLE_SIDE_ARMOUR = 0.85, VEHICLE_BACK_ARMOUR = 1.6)
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	move_delay = 0.5 SECONDS
-	glide_size = 2.8
 	faction = FACTION_TERRAGOV
 	ram_damage = 130
 
