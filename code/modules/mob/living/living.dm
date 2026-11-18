@@ -800,9 +800,10 @@
 		. = . | ZIMPACT_NO_MESSAGE
 
 	// multiplier for the damage taken from falling
+	var/current_gravity = get_gravity()
 	var/damage_softening_multiplier = 1.5
-	var/incoming_damage = fall_catcher.get_z_fall_damage(src, levels)
-	var/stun_time = levels * 2 SECONDS
+	var/incoming_damage = fall_catcher.get_z_fall_damage(src, levels) * current_gravity
+	var/stun_time = levels * 2 SECONDS * current_gravity
 
 	//If we land on someone, it helps break our fall, but harms them
 	if(isliving(fall_catcher))

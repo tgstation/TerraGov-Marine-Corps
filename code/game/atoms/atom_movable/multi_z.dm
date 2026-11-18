@@ -4,7 +4,7 @@
 
 /atom/movable/proc/onZImpact(turf/impacted_turf, levels, impact_flags = NONE, duration = ZFALL_DURATION)
 	SHOULD_CALL_PARENT(TRUE)
-
+	duration /= get_gravity()
 	z_impact_effects(impacted_turf, levels, impact_flags, duration)
 	addtimer(CALLBACK(src, PROC_REF(post_z_impact), impacted_turf, levels, impact_flags), duration)
 	return TRUE
