@@ -1,5 +1,5 @@
 /datum/status_effect/speech
-	id = null
+	id = STATUS_EFFECT_ID_ABSTRACT
 	alert_type = null
 	var/make_tts_message_original = FALSE
 	var/tts_filter = ""

@@ -97,15 +97,6 @@
 	if(staminaloss > -max_stamina)
 		handle_staminaloss()
 
-	if(IsSleeping())
-		handle_dreams()
-		if(mind)
-			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				AdjustSleeping(-2 SECONDS)
-		if(!isxeno(src))
-			if(prob(2) && health && !is_hallucinating())
-				emote("snore")
-
 	handle_disabilities()
 
 /mob/living/carbon/proc/handle_impaired_vision()

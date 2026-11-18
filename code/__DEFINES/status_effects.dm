@@ -2,27 +2,34 @@
 #define STATUS_EFFECT_MULTIPLE 0
 /// Only one of this is allowed, and new instances will be prevented
 #define STATUS_EFFECT_UNIQUE 1
-/// Only one of this is allowed, and new instances replace old ones
+/// Only one of this is allowed, and new instances will replace old ones
 #define STATUS_EFFECT_REPLACE 2
 /// Only one of this is allowed, and new instances will reset the duration
 #define STATUS_EFFECT_REFRESH 3
 
-/// Use in status effect duration to make it last forever
+/// Use in [/datum/status_effect/var/duration] to make it last forever.
+/// This is the default `duration` of every status effect, but most sources
+/// or effects will simply override it so they won't actually be permanent.
 #define STATUS_EFFECT_PERMANENT -1
 
-/// Use in status effect tick interval to prevent it from calling tick()
+/// Use in [/datum/status_effect/var/tick_interval] to prevent it from calling `tick`
 #define STATUS_EFFECT_NO_TICK -1
-/// Use in status effect tick interval to guarantee that tick() gets called on every process()
+/// Use in [/datum/status_effect/var/tick_interval] to guarantee that `tick` gets called on every `process`
 #define STATUS_EFFECT_AUTO_TICK 0
 
-///Status effect does something when the owner dies
-#define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
-///Status effect on owner death effect is qdel
-#define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
+/// Indicates this status effect is an abstract type, basically something that won't actually be created.
+/// Doesn't actually do anything in practice, this is just a marker for unit tests to ignore abstract effects.
+#define STATUS_EFFECT_ID_ABSTRACT "abstract"
 
-///////////
-// BUFFS //
-///////////
+/// This is fast and suited for most effects, relying on Fast Processing's wait (which is around 0.2 seconds)
+#define STATUS_EFFECT_FAST_PROCESS 0
+/// This is slow and suited for expensive effects, relying on Processing's wait (which is around 1 second)
+#define STATUS_EFFECT_NORMAL_PROCESS 1
+
+/// Status effect does something when the owner dies
+#define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
+/// Status effect on owner death effect is qdel
+#define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
 
 #define STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF /datum/status_effect/stacking/gun_skill/accuracy/buff // Increases the accuracy of the mob
 

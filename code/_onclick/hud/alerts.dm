@@ -246,18 +246,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	boxed_message_style = "boxed_message red_box"
 
 // HUMAN WARNINGS
-/atom/movable/screen/alert/fire
-	name = "On Fire"
-	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
-	icon_state = "fire"
-	boxed_message_style = "boxed_message red_box"
-
-/atom/movable/screen/alert/fire/Click()
-	. = ..()
-	var/mob/living/L = usr
-	if(!istype(L) || usr != owner)
-		return
-	L.resist()
 
 /atom/movable/screen/alert/not_enough_oxy
 	name = "Choking"

@@ -78,6 +78,7 @@
 #include "spawn_guns.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"
+#include "status_effect_validity.dm"
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
