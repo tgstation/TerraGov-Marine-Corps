@@ -236,7 +236,7 @@
 
 /obj/on_set_interaction(mob/user)
 	. = ..()
-	ENABLE_BITFIELD(obj_flags, IN_USE)
+	ENABLE_BITFIELD(obj_flags, IN_USE) //todo: this isn't unset currently
 
 /mob/proc/unset_machine()
 	if(machine)
@@ -457,3 +457,13 @@
 	plasmacutter.cut_apart(user, name, src)
 	deconstruct(FALSE)
 	return TRUE
+
+///Signal sender for unique_action
+/obj/proc/do_unique_action(mob/user, special_treatment = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
+	return unique_action(user, special_treatment)
+
+///Anything unique the item can do, like pumping a shotgun, spin or whatever.
+/obj/proc/unique_action(mob/user, special_treatment = FALSE)
+	return

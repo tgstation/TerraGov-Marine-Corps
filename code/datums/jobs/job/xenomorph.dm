@@ -10,10 +10,10 @@
 	faction = FACTION_XENO
 	exp_type = EXP_TYPE_SPECIAL
 	html_description = {"
-		<b>Difficulty</b>: Variable<br /><br />
-		<b>You answer to the</b> acting Hive leader<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
+		<b>Difficulty</b>: Variable<br />
+		<b>You answer to the</b> acting Hive leader<br />
+		<b>Unlock Requirement</b>: Starting Role<br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War, Sovl War<br />
 		<b>Duty</b>: Spread the hive, obey the will of your Hive Leader and the Queen Mother. Kill or capture those who get into your way. Protect the hive whenever possible. Amass your numbers.
 	"}
 	/**
@@ -65,11 +65,11 @@ Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</s
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS|JOB_FLAG_LOUDER_TTS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	html_description = {"
-		<b>Difficulty</b>: Soul crushing<br /><br />
-		<b>You answer to the</b> Queen Mother<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints
+		<b>Difficulty</b>: Soul crushing<br />
+		<b>You answer to the</b> Queen Mother<br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br />
+		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints.
 	"}
 
 /datum/job/xenomorph/queen/return_spawn_type(datum/preferences/prefs)

@@ -113,3 +113,101 @@
   - qol: Added detailed vehicle wreck repair instructions in the codex for both the
       heavy vehicle fulton, and applicable vehicles
   - qol: Wrecked vehicles inform you of the next repair step required in their description
+2026-11-11:
+  Lumipharon:
+  - bugfix: fixed the glide size of all vehicles, resulting in less choppy movement
+  - bugfix: fixed cooldown macros lasting 1 tick longer than intended. This effects
+      vehicle move delays, among many other things.
+2026-11-12:
+  Atropos:
+  - balance: Fall damage increased
+  Lumipharon:
+  - balance: all vehicles trigger acidwells
+  - balance: unmanned vehicles are slowed by xeno sticky weeds/resin/acid wells
+  - bugfix: crates move between multi-z levels normally
+2026-11-13:
+  Apple-107:
+  - rscadd: The Arachne CIC has been reworked to allow better teamwork when fully
+      staffed.
+  - rscadd: The Pillar Of Spring CIC has been reworked to allow better teamwork when
+      fully staffed.
+  Arturlang:
+  - bugfix: probably improve camera performance
+  - rscadd: camera fog updates might be more responsive
+  Neocloudy:
+  - balance: Synthetic crit damage is dealt only to the chest.
+  - balance: Synthetic crit damage is dealt as a percentage of max health from 2%
+      to 6%, then multiplied to account for the innate burn resistance (1.2 for standard
+      Synthetics, 1.4 for Early Synthetics).
+  - balance: Standard Synthetic crit damage reduced from 5-16 (not counting burn resistance)
+      to 2.5-7.5
+  - balance: Early Synthetic crit damage reduced from 7-19 (not counting burn resistance)
+      to 4-12
+  Runian:
+  - bugfix: Xenomorphs standing ontop on specifically resting weed nodes correctly
+      give 2x sunder recovery.
+  - balance: Mutation structures now cost 800 strategic points, up from 400.
+  - balance: Mutations now longer scale and only need one mutation structure for full
+      effect.
+  - balance: The full effect of each mutation is now what was previously 2 structures
+      worth of power.
+  - bugfix: The alert for healing infusion status effect now correctly appears.
+  - imageadd: Sprite for healing infusion alert.
+  STUPIDFUCKER12345:
+  - rscdel: Removed all non smartgun ammo refills from req menu
+  - balance: 'Reduced the cost of all factory parts from 50 to 10 points
+
+      :cl:'
+  termin-0:
+  - bugfix: Empty X fuel backpack now has a sprite
+2026-11-14:
+  Arturlang:
+  - bugfix: chat bluescreening every time you join another server
+  Lumipharon:
+  - bugfix: Telecomms works for multi-z maps
+  - qol: AI can operate doors on linked z levels, not just their own level
+  - bugfix: fixed bonus points not being applied at the end of campaign missions
+  novaepee:
+  - rscadd: update on Legacy of Spring's CIC, briefing, and medbay, and OB room
+2026-11-15:
+  Arturlang:
+  - bugfix: hopefully chat should actually use the new cache
+  Runian:
+  - bugfix: Cocoons now only give their larva point reward when they complete, instead
+      of always after their allocated time.
+2026-11-16:
+  Lumipharon:
+  - qol: open air turfs on multi-z maps are a much darker colour on the minimap than
+      ground tiles
+  mudzbe:
+  - admin: When using the hand labeller labels are stored in fingerprints
+2026-11-17:
+  Arturlang:
+  - bugfix: tadpole camera can't go to wrong z-levels anymore
+  TiviPlus:
+  - bugfix: Runners no longer can fly using pounces
+  - bugfix: Seethrough no longer turns you into a black blob on z change
+  - bugfix: Change minimap Z level indicator placement no longer layers under the
+      Xeno or Marine UIs
+  - qol: You can now use the rest of the UI while selecting a target in the minimap
+  - bugfix: Drop pods can no longer drop on open space
+  - rscadd: Drop pods can now change the Zlevel to drop on for multiz maps
+  - qol: Updates preferences job menu descriptions for jobs
+  - bugfix: Fixes mech pulse armor having no CD
+  - bugfix: Removes debug pop count message at round start
+2026-11-18:
+  Arturlang:
+  - bugfix: some issues with camera fog not updating properly
+  - bugfix: camera eyes send less static to client to fix maptick issues, only showing
+      the same z-level they're on
+  Lumipharon:
+  - rscadd: Added the Corruptor, an acid based strain of the Ravager
+  - balance: Rage reduces the CD of Ravage and Eviscerating Charge while active, scaling
+      with rage power
+  - balance: Rage has a 30 second CD down from 60 seconds, and can be used while staggered
+  - balance: Ravage now works diagonally
+  - balance: Vampirism has a more consistent, lower heal that can be triggered more
+      frequently
+  - bugfix: Fixed the warning message for Endure telling you that you had 3 less seconds
+      left than you actually have
+  - refactor: Significantly updated ventcrawling code for better performance

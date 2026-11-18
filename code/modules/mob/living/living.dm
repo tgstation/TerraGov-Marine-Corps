@@ -224,7 +224,7 @@
 		SSmobs.clients_by_zlevel[new_z] += src
 	registered_z = new_z
 
-/mob/living/proc/do_camera_update(oldLoc)
+/mob/living/proc/do_camera_update(obj/item/radio/headset/mainship/headset)
 	return
 
 
@@ -792,7 +792,7 @@
 	if(. & ZIMPACT_CANCEL_DAMAGE)
 		return .
 	// multiplier for the damage taken from falling
-	var/damage_softening_multiplier = 1
+	var/damage_softening_multiplier = 1.5
 
 	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !incapacitated(TRUE)
@@ -971,12 +971,12 @@
 		stack_trace("[candidate] was put into a qdeleted mob [src]")
 		return
 	candidate.mind.transfer_to(src, TRUE)
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING))  //If we are in a vent, fetch a fresh vent map
+		update_pipe_vision()
 
 /mob/living/carbon/xenomorph/transfer_mob(mob/candidate)
 	. = ..()
-	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		add_ventcrawl(loc)
-		get_up()
+	get_up()
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
 /mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)

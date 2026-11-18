@@ -231,7 +231,7 @@
 		balloon_alert(src, "busy!")
 		return FALSE
 
-	if(is_ventcrawling)
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING))
 		balloon_alert(src, "not in a vent!")
 		return FALSE
 

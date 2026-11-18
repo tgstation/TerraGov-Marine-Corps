@@ -10,7 +10,7 @@
 		return
 
 	if(!resting)
-		if(is_ventcrawling)
+		if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING))
 			return FALSE
 		set_resting(TRUE, FALSE)
 		return

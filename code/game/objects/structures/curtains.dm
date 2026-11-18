@@ -37,7 +37,7 @@
 	qdel(src)
 
 /obj/structure/curtain/proc/toggle()
-	opacity = !opacity
+	set_opacity(!opacity)
 	if(opacity)
 		icon_state = initial_icon_state
 		layer = ABOVE_MOB_LAYER

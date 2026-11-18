@@ -48,8 +48,9 @@
 	return ..()
 
 ///Pay each player additional credits based on individual performance during the mission
-/datum/individual_stats/proc/post_mission_credits(datum/source, datum/game_mode/hvh/hvh_mode)
+/datum/individual_stats/proc/post_mission_credits(datum/source)
 	SIGNAL_HANDLER
+	var/datum/game_mode/hvh/hvh_mode = SSticker.mode
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner_ckey]
 	give_funds(hvh_mode.get_fund_value(personal_statistics.get_mission_reward()))
 	if(hvh_mode.wave_timer) //wave modes don't have missions to reset this, although this could be a flag
