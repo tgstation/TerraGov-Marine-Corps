@@ -1041,12 +1041,12 @@
 		self_copy = image(loc = copy_anchor)
 		viewer?.images += self_copy
 		update_self_copy()
-		RegisterSignals(owner, list(COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_OVERLAYS_CHANGED), PROC_REF(update_self_copy))
+		RegisterSignals(owner, list(COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_self_copy))
 		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_dir_change))
 	update_view_offset(owner_spot)
 
 /atom/movable/looking_holder/Destroy()
-	UnregisterSignal(owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_OVERLAYS_CHANGED, COMSIG_MOB_LOGOUT))
+	UnregisterSignal(owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY, COMSIG_MOB_LOGOUT))
 	if(viewer)
 		UnregisterSignal(viewer, COMSIG_CLIENT_SET_EYE)
 		viewer.images -= self_copy

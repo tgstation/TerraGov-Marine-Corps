@@ -74,30 +74,28 @@ There are several things that need to be remembered:
 	if(I)
 		//TODO THIS SHOULD USE THE API! or even better just make it based off of tg
 		to_add += I
-
-	if(get_mob_height() == HUMAN_HEIGHT_MEDIUM)
-		overlays += to_add
-		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
+	if(!length(to_add))
 		return
 
-	var/raw_applied = overlays_standing[cache_index]
-	var/string_form_index = num2text(cache_index)
-	var/offset_type = GLOB.layers_to_offset[string_form_index]
-	if(isnull(offset_type))
-		if(islist(raw_applied))
-			for(var/image/applied_appearance in raw_applied)
-				apply_height_filters(applied_appearance)
-		else if(isimage(raw_applied))
-			apply_height_filters(raw_applied)
-	else
-		if(islist(raw_applied))
-			for(var/image/applied_appearance in raw_applied)
-				apply_height_offsets(applied_appearance, offset_type)
-		else if(isimage(raw_applied))
-			apply_height_offsets(raw_applied, offset_type)
+	if(get_mob_height() != HUMAN_HEIGHT_MEDIUM)
+		var/raw_applied = overlays_standing[cache_index]
+		var/string_form_index = num2text(cache_index)
+		var/offset_type = GLOB.layers_to_offset[string_form_index]
+		if(isnull(offset_type))
+			if(islist(raw_applied))
+				for(var/image/applied_appearance in raw_applied)
+					apply_height_filters(applied_appearance)
+			else if(isimage(raw_applied))
+				apply_height_filters(raw_applied)
+		else
+			if(islist(raw_applied))
+				for(var/image/applied_appearance in raw_applied)
+					apply_height_offsets(applied_appearance, offset_type)
+			else if(isimage(raw_applied))
+				apply_height_offsets(raw_applied, offset_type)
 
 	overlays += to_add
-	SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
+	SEND_SIGNAL(src, COMSIG_CARBON_APPLY_OVERLAY, cache_index, to_add)
 
 
 /**
@@ -256,20 +254,20 @@ There are several things that need to be remembered:
 	if(overlays_standing[cache_index])
 		to_remove += overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
+	if(!length(to_remove))
+		return
 	overlays -= to_remove
-	SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
+	SEND_SIGNAL(src, COMSIG_CARBON_REMOVE_OVERLAY, cache_index, to_remove)
 
 /mob/living/carbon/human/apply_underlay(cache_index)
 	var/image/I = underlays_standing[cache_index]
 	if(I)
 		underlays += I
-		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 /mob/living/carbon/human/remove_underlay(cache_index)
 	if(underlays_standing[cache_index])
 		underlays -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
-		SEND_SIGNAL(src, COMSIG_ATOM_OVERLAYS_CHANGED)
 
 GLOBAL_LIST_EMPTY(damage_icon_parts)
 ///fetches the damage icon part, and caches it if it made a new one
