@@ -60,7 +60,7 @@
 	if(iswrench(I))
 		return wrench_act(user, I)
 
-/obj/machinery/meter/wrench_act(mob/user, obj/item/I)
+/obj/machinery/meter/wrench_act(mob/user, obj/item/tool)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if(do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(

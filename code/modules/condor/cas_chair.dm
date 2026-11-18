@@ -31,7 +31,7 @@
 
 /obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
-	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	playsound(src, 'sound/effects/binoctarget.ogg', 15, FALSE, SHORT_SOUND_RANGE)
 	if(occupant)
 		to_chat(occupant, span_notice("CAS laser detected, [incoming_laser.name] [CAS_JUMP_LINK(incoming_laser)]"))
 
@@ -151,10 +151,10 @@
 	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
 	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
-	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
-	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	eject_user(TRUE)
 
 /obj/structure/caspart/caschair/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)

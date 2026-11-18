@@ -136,7 +136,9 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
+	user.client.view_size.supress_changes = FALSE //The parent proc suppresses the viewport, so we need to unsuppress it here to allow the view size to be set to view_range.
 	user.client.view_size.set_view_radius_to(view_range)
+	user.client.view_size.supress_changes = TRUE //Resuppress the viewport to prevent the user from changing it while using the console.
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
@@ -353,13 +355,14 @@
 	return ..()
 
 /mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
-	var/turf/T = get_turf(get_step(src, direct))
+	var/turf/T = get_step_multiz(src, direct)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(!T || (length(console.z_lock) && !(T.z in console.z_lock)))
+		return
 	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
 		user.update_sight()
-	if(T)
-		setLoc(T)
+	setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
@@ -416,7 +419,7 @@
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = remote_eye.origin
 
-	playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)
+	playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 
 	var/list/L = list()
 	for(var/V in SSshuttle.stationary)
@@ -429,18 +432,18 @@
 		if(console.jumpto_ports[S.id])
 			L["([length(L)])[S.name]"] = S
 
-	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
+	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	var/selected = input("Choose location to jump to", "Locations", null) as null|anything in sortList(L)
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
 		return
-	playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+	playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(selected)
 		var/turf/T = get_turf(L[selected])
 		if(T)
-			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE)
+			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 			remote_eye.setLoc(T)
 			to_chat(target, span_notice("Jumped to [selected]."))
 			C.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)
 			C.clear_fullscreen("flash", 3)
 	else
-		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE)
+		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)

@@ -163,7 +163,7 @@
 	if(!(target.getStaminaLoss() > 10 && (target.stat != UNCONSCIOUS)))
 		return
 
-	playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
+	playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	target.balloon_alert_to_viewers("K.O!!!", ignored_mobs = target)
 	to_chat(target, span_userdanger("You give up and collapse! K.O!"))
 	target.Sleeping(10 SECONDS)

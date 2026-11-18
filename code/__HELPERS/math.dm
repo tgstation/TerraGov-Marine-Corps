@@ -162,3 +162,35 @@
 		return INFINITY
 
 	return abs(A.x - B.x) + abs(A.y - B.y) + abs(A.z - B.z)
+
+/// Returns the turf at a given angle and range from the origin turf
+/proc/get_turf_at_angle_ranged(turf/origin, angle, range)
+	var/dx = sin(angle) * range
+	var/dy = cos(angle) * range
+	return locate(round(origin.x + dx), round(origin.y + dy), origin.z)
+
+///Gets a turf at an angle, up to increments number of steps away, NOT range
+///Only use this is you specifically care about steps, otherwise use get_turf_at_angle_ranged
+/proc/get_turf_at_angle_stepped(angle, turf/starting, increments)
+	var/pixel_x = 0
+	var/pixel_y = 0
+	for(var/i in 1 to increments)
+		pixel_x += sin(angle)+16*sin(angle)*2
+		pixel_y += cos(angle)+16*cos(angle)*2
+	var/new_x = starting.x
+	var/new_y = starting.y
+	while(pixel_x > 16)
+		pixel_x -= 32
+		new_x++
+	while(pixel_x < -16)
+		pixel_x += 32
+		new_x--
+	while(pixel_y > 16)
+		pixel_y -= 32
+		new_y++
+	while(pixel_y < -16)
+		pixel_y += 32
+		new_y--
+	new_x = clamp(new_x, 0, world.maxx)
+	new_y = clamp(new_y, 0, world.maxy)
+	return locate(new_x, new_y, starting.z)

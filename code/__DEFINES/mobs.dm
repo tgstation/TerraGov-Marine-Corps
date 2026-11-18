@@ -63,10 +63,16 @@
 
 //Nutrition
 
+///Serious negative effects
 #define NUTRITION_STARVING 150
+///Mild negative effects
 #define NUTRITION_HUNGRY 250
+///Healthy level of nutrition
 #define NUTRITION_WELLFED 400
+///You're fat at this level
 #define NUTRITION_OVERFED 450
+///Maximum fat
+#define NUTRITION_MAX 550
 
 //=================================================
 /*
@@ -117,6 +123,8 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
+///Below this is considered cryo levels of cold
+#define UPPER_CRYO_TEMP 170
 //=================================================
 
 //disabilities
@@ -407,6 +415,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ROBOTIC_LIMBS (1<<18)
 #define GREYSCALE_BLOOD (1<<19)
 #define IS_INSULATED (1<<20)
+#define SPECIES_NO_HUG (1<<21)
 
 //=================================================
 
@@ -541,7 +550,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
-#define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
 #define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
 #define XENO_ACID_WELL_FILL_COST 150 //Cost in plasma to apply a charge to an acid pool
@@ -549,6 +557,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 #define HIVE_CAN_HIJACK (1<<0)
 #define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
+///All xenos in the hive can build, allows non building castes to not block building
+#define HIVE_ALL_CAN_BUILD (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -618,7 +628,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_BE_LEADER (1<<2) // Can we be selected as a hive leader (not to be confused with hive ruler)?
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<3) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<4) // Can we corrupt a generator?
-#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher (or behemoth)?
+#define CASTE_CAN_RIDE_CRUSHER (1<<5) // Can we ride a crusher?
 #define CASTE_CAN_BE_RULER (1<<6) // Caste can become a ruler if no queen / shrike / king exists in the hive.
 
 ///How often we can swap strains
@@ -859,6 +869,18 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
+
+// Behemoth mutation defines
+/// Maximum amount of Earth Pillars that we can create with this mutation active.
+#define FOUNDATIONS_MAXIMUM_AMOUNT 2
+/// Health reduction applied to Earth Pillars as a percentage.
+#define FOUNDATIONS_HEALTH_REDUCTION 0.4
+/// Additional damage provided by Earth Might as a percentage.
+#define EARTH_MIGHT_ADDITIONAL_DAMAGE 1.3
+/// Amount of damage done to Earth Pillars as a percentage
+#define EARTH_MIGHT_PILLAR_DAMAGE 0.5
+/// Additional range given to Seize.
+#define GUIDED_CLAIM_ADDITIONAL_RANGE 2
 
 //misc
 

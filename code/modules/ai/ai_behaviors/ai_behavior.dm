@@ -39,7 +39,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
 	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
-	var/mob/mob_parent //todo: why god is this mob level
+	var/mob/living/mob_parent
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
@@ -52,14 +52,16 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/is_offered_on_creation = FALSE
 	///Are we waiting for advanced pathfinding
 	var/registered_for_node_pathfinding = FALSE
-	///Are we already registered for normal pathfinding
-	var/registered_for_move = FALSE
 	///Should we lose the escorted atom if we change action
 	var/weak_escort = FALSE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///Count of how many times we've failed to form a path to our goal node
 	var/fail_goal_path_count = 0
+	///timer for movement
+	var/next_move_timer
+	///the time when we can next move
+	var/next_move_time = 0
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -75,7 +77,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
+	SSadvanced_pathfinding.tile_pathfinding_to_do -= src
+	SSadvanced_pathfinding.node_pathfinding_to_do -= src
+	deltimer(next_move_timer)
 	current_node = null
+	goal_node = null
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
@@ -109,8 +115,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(ESCORTING_ATOM, escorted_atom)
 		if(IDLE)
 			change_action(IDLE)
-	if(!registered_for_move)
-		scheduled_move()
+	if(!next_move_timer)
+		prepare_move()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/proc/refresh_abilities()
@@ -239,7 +245,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_node)
 		UnregisterSignal(current_node, COMSIG_QDELETING)
 	if(next_node)
-		RegisterSignal(current_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
+		RegisterSignal(next_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
 	current_node = next_node
 
 ///Signal handler when the ai is blocked by an obstacle
@@ -366,7 +372,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_current_node(null)
 		fail_goal_path_count ++
 		if(fail_goal_path_count >= AI_MAX_GOAL_PATH_FAILS) //Failure usually means a mapping issue, or the mob/goal is outside of the normal game area
+			#ifdef TESTING
 			message_admins("[mob_parent] at [ADMIN_VERBOSEJMP(mob_parent)] failed to path to [goal_node] at [ADMIN_VERBOSEJMP(goal_node)].")
+			#endif
 			do_unset_target(goal_node)
 	look_for_next_node(previous_current_node)
 
@@ -461,17 +469,22 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
+	next_move_timer = null
 	if(QDELETED(mob_parent))
 		return
 	if(!atom_to_walk_to)
-		registered_for_move = FALSE
 		return
 	ai_do_move()
-	var/next_move = mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown
+	prepare_move()
+
+///Prepares the NPC to move
+/datum/ai_behavior/proc/prepare_move()
+	if(next_move_timer)
+		return
+	var/next_move = min(next_move_time - world.time, mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown)
 	if(next_move <= 0)
 		next_move = 1
-	addtimer(CALLBACK(src, PROC_REF(scheduled_move)), next_move, NONE, SSpathfinder)
-	registered_for_move = TRUE
+	next_move_timer = addtimer(CALLBACK(src, PROC_REF(scheduled_move)), next_move, TIMER_STOPPABLE, SSpathfinder)
 
 ///Returns true if the mob should not move for some reason
 /datum/ai_behavior/proc/should_hold()
@@ -488,6 +501,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(!mob_parent?.canmove)
 		return
 	if(should_hold())
+		return
+	if(world.time < next_move_time)
 		return
 	mob_parent.next_move_slowdown = 0
 	var/list/dir_options = find_next_dirs()
@@ -542,6 +557,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(ISDIAGONALDIR(move_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
+	next_move_time = world.time + mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown
 
 ///Finds and sets the most suitable escort candidate, if possible
 /datum/ai_behavior/proc/set_escort()
@@ -614,8 +630,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		do_unset_target(atom_to_walk_to, FALSE)
 	atom_to_walk_to = new_target
 	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
-	if(!registered_for_move)
-		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
+	if(!next_move_timer)
+		INVOKE_ASYNC(src, PROC_REF(prepare_move))
 	return TRUE
 
 ///Sets our active combat target
@@ -654,9 +670,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			look_for_next_node(should_reset_goal_nodes = TRUE)
 	if(current_node == old_target)
 		look_for_next_node()
+		if(current_node == old_target)
+			set_current_node(null)
 	if(escorted_atom == old_target)
 		if(!need_new_escort || !set_escort())
 			clean_escorted_atom()
+		else if(escorted_atom == old_target)
+			RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED, COMSIG_FACE_HUGGER_DEATH), PROC_REF(unset_target), TRUE)
 	if(combat_target == old_target)
 		combat_target = null
 	if(interact_target == old_target)

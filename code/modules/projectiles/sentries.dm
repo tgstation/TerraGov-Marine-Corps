@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/emp_act(severity)
 	. = ..()
 	machine_stat |= EMPED
-	playsound(loc, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	playsound(loc, 'sound/magic/lightningshock.ogg', 50)
 	addtimer(CALLBACK(src, PROC_REF(remove_emp)), (5 - severity) * 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //will need to add something later to be additive or something
 	update_appearance(UPDATE_OVERLAYS)
 
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/proc/remove_emp()
 	machine_stat &= ~EMPED
 	update_appearance(UPDATE_OVERLAYS)
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50)
 
 //----------------------------------------------------------------------------
 // Sentry Functions
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(SENTRY_ALERT_DESTROYED)
 			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
 
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/deployable/mounted/sentry/process()
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if((machine_stat & EMPED) || !scan())
 		sentry_stop_fire()
 		return
-	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
+	playsound(loc, 'sound/items/detector.ogg', 25)
 
 	sentry_start_fire()
 
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			return
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
-	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(!CHECK_BITFIELD(internal_gun.deployment_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		sentry_stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
@@ -523,18 +523,28 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 			continue
 		return nearby_target
 
-/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+/obj/machinery/deployable/mounted/sentry/can_disassemble(mob/user)
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
-		return
-	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+		return FALSE
+	return ..()
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
 	. = ..()
 	if(!.)
 		return
+	set_on(FALSE)
+
+/obj/machinery/deployable/mounted/sentry/failed_disassemble(user)
+	. = ..()
+	set_on(TRUE)
+
+/obj/machinery/deployable/mounted/sentry/post_disassemble(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	if(internal_gun?.turret_flags & TURRET_INACCURATE)
 		internal_gun.accuracy_mult += 0.15
 		internal_gun.scatter -= 10
-
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)

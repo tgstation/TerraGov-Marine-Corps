@@ -8,6 +8,7 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 	var/obj/item/card/id/idscan = null
 	var/authenticated = FALSE
@@ -18,10 +19,16 @@
 	var/department = CORPORATE_LIAISON
 	var/selected = "Nanotrasen"
 
-
 /obj/machinery/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.faxmachines += src
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/climbable)
 
 
 /obj/machinery/faxmachine/Destroy()
@@ -163,7 +170,7 @@
 			idscan = idcard
 
 	else if(iswrench(I))
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		I.play_tool_sound(src)
 		anchored = !anchored
 		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 

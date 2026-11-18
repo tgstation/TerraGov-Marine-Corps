@@ -27,6 +27,8 @@
 	var/alert_type = /atom/movable/screen/alert/status_effect
 	/// A reference to the visible thrown alert when it's thrown
 	var/atom/movable/screen/alert/status_effect/linked_alert = null
+	///Special behavior falgs
+	var/status_flags = NONE
 
 /datum/status_effect/New(list/arguments)
 	on_creation(arglist(arguments))
@@ -39,6 +41,9 @@
 	if(!owner || !on_apply())
 		qdel(src)
 		return
+
+	if(status_flags & STATUS_FLAG_CHECK_OWNER_DEATH)
+		RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(on_owner_death))
 	if(duration != -1)
 		duration = world.time + duration
 	tick_interval = world.time + tick_interval
@@ -119,6 +124,20 @@
 /// Gets the text to show for the alert's maptext.
 /datum/status_effect/proc/get_duration_text()
 	return MAPTEXT_TINY_UNICODE("<span style='text-align:center'>[round((duration - world.time)/10, 1)]s</span>")
+
+///Effects on owner death. Requires STATUS_FLAG_CHECK_OWNER_DEATH
+/datum/status_effect/proc/on_owner_death(datum/source)
+	SIGNAL_HANDLER
+	if(status_flags & STATUS_FLAG_OWNER_DEATH_DEL)
+		qdel(src)
+		return
+	STOP_PROCESSING(SSfastprocess, src)
+	RegisterSignal(owner, COMSIG_MOB_REVIVE, PROC_REF(on_owner_revive))
+
+///Any effects when the owner comes back to life if STATUS_FLAG_CHECK_OWNER_DEATH is used
+/datum/status_effect/proc/on_owner_revive(datum/source)
+	SIGNAL_HANDLER
+	START_PROCESSING(SSfastprocess, src)
 
 ////////////////
 // ALERT HOOK //
@@ -274,7 +293,8 @@
 			on_threshold_drop()
 		if(stacks_added > 0)
 			tick_interval += delay_before_decay //refreshes time until decay
-		stacks = min(stacks, max_stacks)
+		if(isnum(max_stacks))
+			stacks = min(stacks, max_stacks)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		status_underlay.icon_state = "[underlay_state][stacks]"
 		owner.add_overlay(status_overlay)

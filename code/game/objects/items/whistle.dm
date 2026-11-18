@@ -61,7 +61,7 @@
 	if(spamcheck)
 		return
 
-	playsound(get_turf(src), 'sound/voice/halt.ogg', 25, 1)
+	playsound(get_turf(src), 'sound/voice/halt.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	user.audible_message(span_warning("[user]'s [name] rasps, \"Halt! Security!\""))
 
 	spamcheck = TRUE

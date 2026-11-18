@@ -108,6 +108,20 @@
 			flick("olddoorctrl-denied",src)
 		return
 
+	button_pressed()
+
+
+/obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
+/obj/machinery/door_control/proc/unpress()
+	pressed = FALSE
+	update_icon()
+
+
+/// Handles anything that should happen when the button is pressed.
+/obj/machinery/door_control/proc/button_pressed()
 	use_power(active_power_usage)
 	pressed = TRUE
 	update_icon()
@@ -121,14 +135,6 @@
 	desiredstate = !desiredstate
 	addtimer(CALLBACK(src, PROC_REF(unpress)), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-
-/obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
-
-
-/obj/machinery/door_control/proc/unpress()
-	pressed = FALSE
-	update_icon()
 
 /obj/machinery/door_control/update_icon_state()
 	. = ..()
@@ -277,6 +283,10 @@
 	name = "RO Line Shutters"
 	id = "ROlobby"
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+
+/obj/machinery/door_control/mainship/req_hvh
+	name = "Requisition Shutters"
+	id = "req_hvh"
 
 /obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"

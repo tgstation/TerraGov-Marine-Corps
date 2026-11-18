@@ -90,7 +90,7 @@
 
 /obj/item/lightreplacer/proc/Use(mob/user)
 
-	playsound(src.loc, 'sound/machines/click.ogg', 25, 1)
+	playsound(src.loc, 'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	AddUses(-1)
 	return 1
 

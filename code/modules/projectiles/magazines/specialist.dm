@@ -374,7 +374,7 @@
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/railgun
 	max_rounds = 1
-	reload_delay = 20 //Hard to reload.
+	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"
 

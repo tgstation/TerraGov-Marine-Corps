@@ -341,6 +341,10 @@
 			if(owner.assigned_transit == src)
 				log_world("A transit dock was qdeled while it was assigned to [owner].")
 				owner.assigned_transit = null
+			if(owner.previous == src)
+				owner.previous = null
+			if(owner.destination == src)
+				owner.destination = null
 			owner = null
 		if(!QDELETED(reserved_area))
 			qdel(reserved_area)
@@ -561,15 +565,15 @@
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
-	playsound(return_center_turf(), ignition_sound, 60, 0)
+	playsound(return_center_turf(), ignition_sound, 60, 0, LOUD_SOUND_RANGE)
 
 
 /obj/docking_port/mobile/proc/on_prearrival()
 	if(destination.loc == loc)
 		return
 	if(destination)
-		playsound(destination.return_center_turf(), landing_sound, 60, 0)
-	playsound(return_center_turf(), landing_sound, 60, 0)
+		playsound(destination.return_center_turf(), landing_sound, 60, 0, LOUD_SOUND_RANGE)
+	playsound(return_center_turf(), landing_sound, 60, 0, LOUD_SOUND_RANGE)
 
 
 /obj/docking_port/mobile/proc/on_crash()

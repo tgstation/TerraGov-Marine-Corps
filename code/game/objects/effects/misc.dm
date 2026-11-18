@@ -140,15 +140,11 @@
 
 
 /obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isobj(mover)) //No grenades/bullets should cross this
-		return FALSE
+	SHOULD_CALL_PARENT(FALSE) //we only care if its a xeno or not
 	if(isxeno(mover))
 		return TRUE
-	if(ishuman(mover) && !issynth(mover))
-		var/mob/living/carbon/human/H = mover
-		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
-			return TRUE
+	if(istype(mover, /mob/illusion/xeno))
+		return TRUE
 	return FALSE
 
 /obj/effect/forcefield/fog/passable_fog
@@ -167,7 +163,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
+	SHOULD_CALL_PARENT(FALSE) //we're always passable
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)

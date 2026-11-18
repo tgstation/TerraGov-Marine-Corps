@@ -32,7 +32,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_MUTATIONS_ALLOWED
 	can_flags = parent_type::can_flags|CASTE_CAN_BE_GIVEN_PLASMA
-	caste_traits = list(TRAIT_STOPS_TANK_COLLISION)
+	caste_traits = list(TRAIT_CAN_DISABLE_MINER, TRAIT_CAN_TEAR_HOLE, TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 50, ACID = 100)
@@ -61,12 +61,12 @@
 		/datum/mutation_upgrade/veil/friendly_chest
 	)
 
-/datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/crusher/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
 	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
-/datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/crusher/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)

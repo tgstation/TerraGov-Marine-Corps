@@ -175,11 +175,12 @@
 
 	//jitters
 	if(stat != DEAD)
-		if(jitteriness >= 300)
+		var/jitter_level = amount_jittered()
+		if(jitter_level >= 300)
 			msg += "[span_boldwarning("<B>[t_He] [t_is] convulsing violently!</B>")]\n"
-		else if(jitteriness >= 200)
+		else if(jitter_level >= 200)
 			msg += "[span_warning("[t_He] [t_is] extremely jittery.")]\n"
-		else if(jitteriness >= 100)
+		else if(jitter_level >= 100)
 			msg += "[span_warning("[t_He] [t_is] twitching ever so slightly.")]\n"
 
 	//splints
@@ -289,11 +290,11 @@
 			else
 				msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin!</b></i>")]\n"
 
-	if(fire_stacks > 0)
+	if(amount_burning() > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
+	if(amount_burning() < 0)
 		msg += "[t_He] look[p_s()] a little soaked.\n"
-	if(on_fire)
+	if(is_on_fire())
 		msg += "[span_boldwarning("[t_He] [t_is] on fire!")]\n"
 
 	var/list/wound_flavor_text = list() //List mapping each limb's display_name to its wound description

@@ -16,8 +16,6 @@
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
 	faction = FACTION_TERRAGOV
-	/// Needed to keep track of any slowdowns and/or diagonal movement
-	var/next_move_delay = 0
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -144,18 +142,24 @@
 	if(user.incapacitated())
 		return FALSE
 
-	if(world.time < last_move_time + next_move_delay)
-		return
-
+	if(!COOLDOWN_FINISHED(src, cooldown_vehicle_move))
+		return FALSE
 	. = Move(get_step(src, direction))
+	if(!.)
+		return
+	var/next_delay = (ISDIAGONALDIR(direction) ? move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : move_delay)
+	set_glide_size(DELAY_TO_GLIDE_SIZE(next_delay))
+	COOLDOWN_START(src, cooldown_vehicle_move, next_delay)
 
-	if(ISDIAGONALDIR(direction)) //moved diagonally successfully
-		next_move_delay = move_delay * DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
-	else
-		next_move_delay = move_delay
+/obj/vehicle/unmanned/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		if(M.client)
+			M.client.move_delay = world.time
+	return ..()
 
 ///Try to desequip the turret
-/obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
+/obj/vehicle/unmanned/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!turret_path)
 		to_chat(user,"<span class='warning'>There is nothing to remove from [src]!</span>")
@@ -197,7 +201,7 @@
 	else
 		qdel(reload_ammo)
 	user.visible_message(span_notice("[user] reloads [src] with [reload_ammo]."), span_notice("You reload [src] with [reload_ammo]. It now has [current_rounds] shots left out of a maximum of [max_rounds]."))
-	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	update_icon()
 	hud_set_uav_ammo()
 
@@ -373,8 +377,8 @@
 /obj/vehicle/unmanned/fire_act(burn_level)
 	take_damage(burn_level / 2, BURN, FIRE)
 
-/obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
-	return welder_repair_act(user, I, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
+/obj/vehicle/unmanned/welder_act(mob/user, obj/item/tool)
+	return welder_repair_act(user, tool, 35, 2 SECONDS, 0, SKILL_ENGINEER_ENGI, 1, 4 SECONDS)
 
 /obj/vehicle/unmanned/medium
 	name = "UV-M Gecko"
@@ -406,7 +410,7 @@
 	name = "\improper Light UV Machinegun Crate"
 	desc = "A crate containing a light unmanned vehicle machinegun and some spare ammo."
 
-/obj/structure/closet/crate/uav_crate/light_turret/PopulateContents()
+/obj/structure/closet/crate/uav_crate/turret/PopulateContents()
 	new /obj/item/uav_turret(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)
 	new /obj/item/ammo_magazine/box11x35mm(src)

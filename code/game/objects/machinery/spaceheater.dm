@@ -5,6 +5,7 @@
 	icon_state = "sheater"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	obj_flags = CAN_BE_HIT
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	/// The cell inside the heater, used for making it work
 	var/obj/item/cell/high/cell
@@ -50,13 +51,13 @@
 		cell.emp_act(severity)
 	return ..()
 
-/obj/machinery/space_heater/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/space_heater/screwdriver_act(mob/user, obj/item/tool)
 	. = ..()
 	open = !open
 	balloon_alert_to_viewers("hatch [open ? "opened" : "closed"]")
 	update_icon()
 
-/obj/machinery/space_heater/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/space_heater/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(on)
 		balloon_alert(user, "turn it off first!")

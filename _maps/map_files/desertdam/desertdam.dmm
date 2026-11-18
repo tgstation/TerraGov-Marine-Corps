@@ -39673,6 +39673,10 @@
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_labs)
+"kSf" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_labs)
 "kSj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -42484,6 +42488,10 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
+"mMt" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/desert_dam/exterior/valley/valley_hydro)
 "mMA" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
@@ -84274,7 +84282,7 @@ aaT
 kvd
 cGD
 kMM
-cGD
+kSf
 cGD
 qss
 otn
@@ -93842,7 +93850,7 @@ peQ
 peQ
 peQ
 peQ
-qck
+mMt
 wRX
 gdW
 rCV

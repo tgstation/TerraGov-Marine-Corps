@@ -369,7 +369,8 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		//if we have no specific attachment layer, we need to pass null as the layer so it uses the default layer for MA. However -null = -0 instead of staying as null so we use a ternary
+		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, attachment_data[ATTACHMENT_LAYER] ? -attachment_data[ATTACHMENT_LAYER] : null)
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])

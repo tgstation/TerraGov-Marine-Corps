@@ -1,6 +1,7 @@
 //Stamina using weapon based abilities
 /datum/action/ability/activable/weapon_skill
 	action_icon = 'icons/mob/actions.dmi'
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	///Damage of this attack
 	var/damage
 	///Penetration of this attack
@@ -26,7 +27,7 @@
 	var/atom/movable/movable_target = target
 	if(movable_target.faction == owner.faction)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	return TRUE
 

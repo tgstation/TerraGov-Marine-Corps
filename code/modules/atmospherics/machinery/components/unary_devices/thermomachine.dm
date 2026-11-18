@@ -56,7 +56,7 @@
 	icon_state_on = "freezer_1"
 	icon_state_open = "freezer-o"
 	max_temperature = T20C
-	min_temperature = 170 //actual minimum temperature is defined by RefreshParts()
+	min_temperature = UPPER_CRYO_TEMP //actual minimum temperature is defined by RefreshParts()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on
 	on = TRUE

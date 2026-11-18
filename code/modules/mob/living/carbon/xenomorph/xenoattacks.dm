@@ -57,12 +57,12 @@
 
 			if(!H.melee_damage)
 				H.do_attack_animation(src)
-				playsound(loc, attack.miss_sound, 25, TRUE)
+				playsound(loc, attack.miss_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 				visible_message(span_danger("[H] tried to [pick(attack.attack_verb)] [src]!"), null, null, 5)
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			playsound(loc, attack.attack_sound, 25, TRUE)
+			playsound(loc, attack.attack_sound, 25, TRUE, MEDIUM_SOUND_RANGE)
 			visible_message(span_danger("[H] [pick(attack.attack_verb)] [src]!"), null, null, 5)
 			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE, attacker = user)
 
@@ -78,15 +78,15 @@
 
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
-			if(on_fire)
-				fire_stacks = max(fire_stacks - 1, 0)
+			if(is_on_fire())
+				adjust_burning(-1)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				xeno_attacker.visible_message(span_danger("[xeno_attacker] tries to put out the fire on [src]!"), \
 					span_warning("We try to put out the fire on [src]!"), null, 5)
-				if(fire_stacks <= 0)
+				if(!is_on_fire())
 					xeno_attacker.visible_message(span_danger("[xeno_attacker] has successfully extinguished the fire on [src]!"), \
 						span_notice("We extinguished the fire on [src]."), null, 5)
-					ExtinguishMob()
+					extinguish_mob()
 				return TRUE
 			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
@@ -95,3 +95,12 @@
 			return attack_alien_grab(xeno_attacker)
 		if(INTENT_HARM, INTENT_DISARM)
 			return attack_alien_harm(xeno_attacker)
+
+///Drops an AOE of acid projectiles around the xeno
+/mob/living/carbon/xenomorph/proc/acid_burst(quantity = 12, datum/ammo/xeno/ammo_type = ammo)
+	var/list/bullets = list()
+	for(var/i=1 to quantity)
+		var/atom/movable/projectile/proj = new (src)
+		proj.generate_bullet(ammo_type)
+		bullets += proj
+	INVOKE_ASYNC(src, GLOBAL_PROC_REF(bullet_burst), src, bullets, src, pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg'), 4, 2)

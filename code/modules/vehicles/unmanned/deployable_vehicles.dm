@@ -6,7 +6,7 @@
 	icon_state = "light_uv_folded"
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 0.3
-	item_flags = IS_DEPLOYABLE
+	deployment_flags = IS_DEPLOYABLE
 	max_integrity = IGUANA_MAX_INTEGRITY
 	///The vehicle this deploys into
 	var/deployable_item = /obj/vehicle/unmanned/deployable
@@ -26,8 +26,6 @@
 /obj/vehicle/unmanned/deployable
 	name = "UV-L Iguana"
 	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies. This one is configured to be foldable for portability."
-	///Whether this item can be deployed or undeployed
-	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/deployable_vehicle/internal_item
 
@@ -145,7 +143,7 @@
 ///Cloaks the probe and stops processing until it moves again.
 /obj/vehicle/unmanned/deployable/tiny/martian/proc/begin_cloaking()
 	cloaked = TRUE
-	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE)
+	playsound(src, 'sound/effects/pred_cloakon.ogg', 10, TRUE, SUPER_SHORT_SOUND_RANGE)
 	become_warped_invisible(30)
 	STOP_PROCESSING(SSobj, src)
 

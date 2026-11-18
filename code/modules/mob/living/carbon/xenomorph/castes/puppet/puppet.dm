@@ -32,7 +32,7 @@
 /mob/living/carbon/xenomorph/puppet/on_death()
 	. = ..()
 	if(!QDELETED(src))
-		gib()
+		INVOKE_ASYNC(src, PROC_REF(gib))
 
 /mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
 	. = ..()

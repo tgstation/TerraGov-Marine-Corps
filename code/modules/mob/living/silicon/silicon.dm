@@ -205,6 +205,6 @@
 
 		else
 			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-			playsound(loc, 'sound/effects/bang.ogg', 10, 1)
+			playsound(loc, 'sound/effects/bang.ogg', 10, 1, SUPER_SHORT_SOUND_RANGE)
 			visible_message(span_danger("[user] punches [src], but doesn't leave a dent."), \
 				span_warning("[user] punches [src], but doesn't leave a dent."))

@@ -7,7 +7,7 @@
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Use to emit a cloud of blinding smoke."
 	cooldown_duration = 30 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
@@ -29,7 +29,7 @@
 /datum/action/ability/emit_gas/action_activate()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	var/turf/owner_turf = get_turf(owner)
-	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	smoke.set_up(smokeradius, owner_turf, smoke_duration)
 	smoke.start()
 	toggle_particles(FALSE)
@@ -50,7 +50,7 @@
 		return FALSE
 	if(get_dist(carbon_target, owner) > 2)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	if(!line_of_sight(owner, carbon_target))
 		return FALSE
@@ -84,9 +84,12 @@
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT,
 	)
+	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = 4
@@ -116,7 +119,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	return TRUE
 
@@ -151,12 +154,13 @@
 	if(living_target.faction == owner.faction) //we leap past friendlies
 		return
 
-	if(ishuman(living_target) && (angle_to_dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle2dir(Get_Angle(owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			var/mob/living/living_owner = owner
 			living_owner.Paralyze(stun_duration)
 			living_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()
@@ -164,7 +168,7 @@
 ///Triggers the effect of a successful pounce on the target
 /datum/action/ability/activable/pounce/proc/trigger_pounce_effect(mob/living/living_target)
 	var/mob/living/living_owner = owner
-	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	living_owner.Immobilize(self_immobilize_duration)
 	living_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)
@@ -208,7 +212,7 @@
 	var/turf/own_turf = get_turf(owner)
 	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread/xeno/neuro(own_turf)
 	smoke.set_up(3, own_turf, 4)
-	playsound(own_turf, 'sound/effects/blobattack.ogg', 25)
+	playsound(own_turf, 'sound/effects/blobattack.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	smoke.start()
 
 	owner.record_war_crime()
@@ -254,7 +258,7 @@
 
 /datum/action/ability/activable/bile_spit/use_ability(atom/A)
 	owner.do_jitter_animation(1000)
-	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE, ABILITY_IGNORE_SELECTED_ABILITY) || !(A in range(get_screen_size(TRUE), owner)))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		fail_activate()
 		return
 
@@ -279,6 +283,6 @@
 		return FALSE
 	if(check_path(owner, target, PASS_PROJECTILE|PASS_MOB) != get_turf(target))
 		return
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	return TRUE

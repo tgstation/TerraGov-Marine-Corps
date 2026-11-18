@@ -9,6 +9,7 @@
 	start_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
 	start_length = 12
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/tank_idle_interior
 	mid_sounds = list(
@@ -40,6 +41,7 @@
 	vary = TRUE
 	mid_length = 20
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 
 /datum/looping_sound/som_tank_idle
@@ -48,6 +50,7 @@
 	)
 	mid_length = 20
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/som_tank_idle_interior
 	mid_sounds = list(
@@ -66,6 +69,7 @@
 	)
 	mid_length = 12
 	volume = 50
+	range = LOUD_SOUND_RANGE
 
 /datum/looping_sound/som_tank_drive_interior
 	mid_sounds = list(

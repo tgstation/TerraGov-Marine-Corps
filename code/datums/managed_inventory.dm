@@ -108,6 +108,7 @@
 		return
 	equipped_list += equipped_item
 	RegisterSignal(equipped_item, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(item_unequipped))
+	RegisterSignal(equipped_item, COMSIG_ITEM_STORED, PROC_REF(on_storage_insert))
 
 	var/list/sort_list = list(equipped_item)
 	sort_list += get_stored(equipped_item) //NOTE TO SELF:internal storage stuff isnt populated if the mob has ai BEFORE the outfit
@@ -127,7 +128,7 @@
 ///Handles the removal of an item
 /datum/managed_inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(unequipped_item, COMSIG_ITEM_REMOVED_INVENTORY)
+	UnregisterSignal(unequipped_item, list(COMSIG_ITEM_REMOVED_INVENTORY, COMSIG_ITEM_STORED))
 	equipped_list -= unequipped_item
 	if(owner in get_nested_locs(unequipped_item))
 		return //still equipped
@@ -138,6 +139,11 @@
 
 	for(var/obj/item/thing AS in sort_list)
 		SEND_SIGNAL(thing, COMSIG_INVENTORY_STORED_REMOVAL)
+
+///Handles items being directly added to storage
+/datum/managed_inventory/proc/on_storage_insert(obj/source, obj/item/stored)
+	SIGNAL_HANDLER
+	sort_item(stored)
 
 ///Wrapper for sorting a newly stored item
 /datum/managed_inventory/proc/item_stored(mob/store_mob, obj/item/new_item, slot)

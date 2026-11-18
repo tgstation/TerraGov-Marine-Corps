@@ -208,7 +208,7 @@
 	carbon_target.notransform = TRUE
 	carbon_target.status_flags |= GODMODE
 	ADD_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
-	carbon_target.move_resist = MOVE_FORCE_OVERPOWERING
+	carbon_target.set_move_resist(MOVE_FORCE_OVERPOWERING)
 	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 	carbon_target.log_message("has been petrified by [owner] for [stasis_duration] ticks", LOG_ATTACK, color="pink")
 
@@ -234,7 +234,7 @@
 	carbon_target.notransform = FALSE
 	carbon_target.status_flags &= ~GODMODE
 	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
-	carbon_target.move_resist = initial(carbon_target.move_resist)
+	carbon_target.set_move_resist(initial(carbon_target.move_resist))
 	carbon_target.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 	carbon_target.overlays -= stone_overlay
 
@@ -367,7 +367,6 @@
 	action_icon = 'icons/mob/psionic_icons.dmi'
 	desc = "We manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_TELEKINESIS,
@@ -457,7 +456,8 @@
 	if(user.a_intent == INTENT_HELP)
 		throw_at(user, 4 + psi_power, psi_power, user, TRUE)
 	else
-		var/target = get_turf_in_angle(Get_Angle(user, src), src, 7)
+		var/user_turf = get_turf(user)
+		var/target = get_turf_at_angle_ranged(user_turf, Get_Angle(user_turf, src), 7)
 		throw_at(target, 4 + psi_power, psi_power, user, TRUE)
 	return list(3 SECONDS, 10)
 
@@ -472,7 +472,7 @@
 	action_icon_state = "reanimate"
 	desc = "With our psionic strength we turn the dead into our puppet, or revive a fallen ally."
 	cooldown_duration = 60 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_ABILITY_REANIMATE,
 	)
@@ -518,7 +518,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	target.beam(owner, "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, maxdistance = 10)
+	target.beam(owner, icon_state = "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, max_distance = 10)
 	target.add_filter("psi_reanimation", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 
 	if(!do_after(owner, SECTOID_REANIMATE_CHANNEL_TIME, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))

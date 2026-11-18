@@ -8,6 +8,8 @@
 #define NO_INIT_PARAMETER "no-init"
 //Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
+//Load byond-tracy. If USE_BYOND_TRACY is defined, then this is ignored and byond-tracy is always loaded.
+#define USE_TRACY_PARAMETER "tracy"
 
 //dirt type for each turf types.
 #define NO_DIRT 0

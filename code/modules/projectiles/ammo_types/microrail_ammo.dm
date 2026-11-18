@@ -70,7 +70,7 @@
 //submunitions for micro grenades
 /datum/ammo/bullet/micro_rail_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_variation = 5
 	damage = 20
@@ -85,6 +85,7 @@
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 5
@@ -105,7 +106,7 @@
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
-	icon_state = "bullet"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	sound_hit = SFX_BALLISTIC_HIT
 	sound_armor = SFX_BALLISTIC_ARMOR
@@ -184,10 +185,10 @@
 	///radius this smoke will encompass
 	var/smokeradius = 1
 
-/datum/ammo/smoke_burst/drop_nade(turf/T)
+/datum/ammo/smoke_burst/drop_nade(turf/target_turf, atom/movable/projectile/proj)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(smokeradius, T, rand(5,9))
+	playsound(target_turf, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, target_turf, rand(5,9))
 	smoke.start()
 
 /datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)

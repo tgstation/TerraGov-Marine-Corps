@@ -8,6 +8,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = TRANSPARENT_FLOOR_PLANE
 	layer = SPACE_LAYER
+	minimap_color = MINIMAP_OPEN_AIR
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 

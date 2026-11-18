@@ -1,7 +1,3 @@
-#define DISK_CYCLE_REWARD_MIN 100
-#define DISK_CYCLE_REWARD_MAX 300
-
-
 // -- Print disk computer
 /obj/item/circuitboard/computer/nuke_disk_generator
 	name = "circuit board (nuke disk generator)"
@@ -41,7 +37,7 @@
 	return ..()
 
 /obj/machinery/computer/code_generator/nuke/complete_segment()
-	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	playsound(src, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
@@ -55,28 +51,7 @@
 
 	say("Program run has concluded! Standing by...")
 
-	if(iscrashgamemode(SSticker.mode))
-		if(iszombiecrashgamemode(SSticker.mode))
-			global_rally_zombies(src, TRUE)
-		for(var/mob/living/carbon/human/human AS in GLOB.human_mob_list)
-			if(!human.job)
-				continue
-			var/obj/item/card/id/user_id =  human.get_idcard()
-			if(!user_id)
-				continue
-			for(var/i in user_id.marine_points)
-				user_id.marine_points[i] += 2
-		return
-
-	// Requisitions points bonus per cycle.
-	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
-	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
-
-	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
-	SSpoints.dropship_points += disk_cycle_reward/10
-	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
-
-	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_SEGMENT_COMPLETED, src)
 
 /obj/machinery/computer/code_generator/nuke/start_final(mob/user)
 	busy = TRUE

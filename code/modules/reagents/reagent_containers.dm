@@ -144,7 +144,7 @@
 
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		to_chat(user, span_notice("You splash the solution onto [target]."))
-		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(target, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 		var/mob/living/M = target
 		var/list/injected = list()
@@ -162,7 +162,7 @@
 
 	else if(reagents.total_volume)
 		to_chat(user, span_notice("You splash the solution onto [target]."))
-		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(target, 'sound/effects/slosh.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		reagents.reaction(target, TOUCH)
 		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 		return

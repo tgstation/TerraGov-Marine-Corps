@@ -10,7 +10,7 @@
 	description = "Break free of your current state. Handcuffs, on fire, being trapped in an alien nest? Resist!"
 	keybind_signal = COMSIG_KB_LIVING_RESIST_DOWN
 
-/datum/keybinding/living/resist/down(client/user)
+/datum/keybinding/living/resist/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -25,7 +25,7 @@
 	description = "Jumps, if your mob is capable of doing so."
 	keybind_signal = COMSIG_KB_LIVING_JUMP_DOWN
 
-/datum/keybinding/living/attempt_jump/up(client/user)
+/datum/keybinding/living/attempt_jump/up(client/user, turf/target)
 	SEND_SIGNAL(user.mob, COMSIG_KB_LIVING_JUMP_UP)
 	return TRUE
 
@@ -37,7 +37,7 @@
 	description = "Look up at the next z-level.  Only works if directly below open space."
 	keybind_signal = COMSIG_KB_LIVING_LOOKUP_DOWN
 
-/datum/keybinding/living/look_up/down(client/user)
+/datum/keybinding/living/look_up/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -45,7 +45,7 @@
 	L.look_up()
 	return TRUE
 
-/datum/keybinding/living/look_up/up(client/user)
+/datum/keybinding/living/look_up/up(client/user, turf/target)
 	. = ..()
 	var/mob/living/L = user.mob
 	L.end_look()
@@ -58,7 +58,7 @@
 	description = "Look down at the previous z-level.  Only works if directly above open space."
 	keybind_signal = COMSIG_KB_LIVING_LOOKDOWN_DOWN
 
-/datum/keybinding/living/look_down/down(client/user)
+/datum/keybinding/living/look_down/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -66,7 +66,7 @@
 	L.look_down()
 	return TRUE
 
-/datum/keybinding/living/look_down/up(client/user)
+/datum/keybinding/living/look_down/up(client/user, turf/target)
 	. = ..()
 	var/mob/living/L = user.mob
 	L.end_look()

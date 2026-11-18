@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			P.overlays += stampoverlay
 			P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
-		playsound(FM.loc, "sound/machines/dotprinter.ogg", 25, 1)
+		playsound(FM.loc, "sound/machines/dotprinter.ogg", 25, 1, MEDIUM_SOUND_RANGE)
 
 ADMIN_VERB(view_faxes, R_ADMIN|R_MENTOR, "View Faxes", "View or send faxes", ADMIN_CATEGORY_FUN)
 	var/dat

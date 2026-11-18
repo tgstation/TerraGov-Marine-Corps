@@ -240,20 +240,20 @@
 	spawn_number = 14
 
 /obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tool/match))
-		var/obj/item/tool/match/M = I
-
-		if(M.heat || M.burnt)
-			return ..()
-
-		if(prob(50))
-			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			M.light_match()
-		else
-			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
-		return TRUE
-	else
+	if(!istype(I, /obj/item/tool/match))
 		return ..()
+
+	var/obj/item/tool/match/M = I
+
+	if(M.heat || M.burnt)
+		return ..()
+
+	if(prob(50))
+		playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1, SHORT_SOUND_RANGE)
+		M.light_match()
+	else
+		playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1, SHORT_SOUND_RANGE)
+	return TRUE
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"
@@ -544,6 +544,7 @@
 
 	if(!deployed)
 		update_stats()
+		pickup(user)
 		user.put_in_hands(src)
 		return
 
@@ -555,17 +556,26 @@
 			return
 		storage_datum.open(user)
 
-/obj/item/storage/box/visual/MouseDrop(atom/over_object)
+/obj/item/storage/box/visual/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	if(!deployed)
 		return
 
-	if(!ishuman(over_object))
+	if(!ishuman(over))
 		return
 
-	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		deployed = FALSE
-		update_icon()
+	var/mob/living/carbon/human/human = over
+
+	if(human != usr)
+		return
+	if(human.incapacitated())
+		return
+	if(!Adjacent(human))
+		return
+	pickup(human)
+	if(!human.put_in_hands(src))
+		return
+	deployed = FALSE
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/box/visual/update_icon_state()
 	. = ..()

@@ -64,8 +64,10 @@
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,
 	)
 	target_flags = ABILITY_MOB_TARGET
 	/// How long in deciseconds should humans be stunned? If they are to be stunned, they will also drop held items.
@@ -216,7 +218,7 @@
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -245,30 +247,15 @@
 		xeno_owner.face_atom(target)
 	starting_direction = xeno_owner.dir
 
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(starting_direction)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 3, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 3, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 3, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 3, xeno_owner.y + 1, xeno_owner.z)
-
 	var/list/things_to_throw = list()
 	var/list/atom/movable/projectile/things_to_deflect = list()
-	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 3x3 block is found.
+
+	for(var/turf/affected_tile AS in get_forward_square(xeno_owner, 1, 3, FALSE, FALSE))
 		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(isfire(affected))
 				var/obj/fire/fire = affected
-				fire.reduce_fire(10)
+				fire.reduce_fire(10, 10)
 				continue
 			if(projectile_cooldown_mulitplier && istype(affected, /atom/movable/projectile))
 				things_to_deflect += affected
@@ -343,10 +330,12 @@
 	desc = "Heal and remove debuffs from a target."
 	cooldown_duration = 1 MINUTES
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CURE_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	/// How far can the ability be used?
 	var/heal_range = SHRIKE_HEAL_RANGE
 	/// If the ability was used on themselves, what is the amount to multiply healing power by?
@@ -527,8 +516,8 @@
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 
-	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
-	new /obj/structure/xeno/acidwell(T, owner)
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
+	new /obj/structure/xeno/acidwell(T, xeno_owner.hivenumber, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
@@ -635,10 +624,12 @@
 	desc = "Channel at a distance to hold a human in your psychic grasp."
 	cooldown_duration = 12 SECONDS
 	ability_cost = 100
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING, // Shares the same key as you can only have this ability or the other, never both at the same time.
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_FLING_SELECT,
 	)
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// How much damage by the owner or the target has been taken so far while channeling?

@@ -6,7 +6,6 @@
 
 SUBSYSTEM_DEF(excavation)
 	name = "Excavation"
-	init_order = INIT_ORDER_EXCAVATION
 	flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 5 MINUTES
 	//todo fix this being default priority, make it something super low

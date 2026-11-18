@@ -117,6 +117,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	. = ..()
 	faction = new_faction
 	GLOB.faction_stats_datums[faction] = src
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
+	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
+
+	if(!iscampaigngamemode(SSticker.mode))
+		return
 	for(var/asset in GLOB.campaign_default_assets[faction])
 		add_asset(asset)
 	for(var/asset in GLOB.campaign_default_purchasable_assets[faction])
@@ -125,9 +130,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED, PROC_REF(mission_start))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED, COMSIG_GLOB_PLAYER_LATE_SPAWNED), PROC_REF(register_faction_member))
-
-	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
+	RegisterSignal(SSdcs, COMSIG_GLOB_HVH_RESPAWN_WAVE, PROC_REF(on_respawn_wave)) //used in non-campaign modes
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
@@ -215,16 +218,17 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	faction_leader = new_leader
 	RegisterSignals(faction_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE), PROC_REF(unset_faction_leader))
 
+	var/list/notification_list = get_notification_list()
 	if(old_leader && old_leader != faction_leader)
 		UnregisterSignal(old_leader, list(COMSIG_QDELETING, COMSIG_HUMAN_SET_UNDEFIBBABLE))
-		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
-			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[old_leader] has been demoted from the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
+		for(var/mob/faction_member in notification_list)
+			faction_member.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[old_leader] has been demoted from the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	if(!faction_leader)
 		return
 
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
-		human.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-		human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[faction_leader] has been promoted to the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
+	for(var/mob/faction_member in notification_list)
+		faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
+		faction_member.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[faction_leader] has been promoted to the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	to_chat(faction_leader, span_userdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal. \
 	Attrition must be set BEFORE a mission starts ensure you team has access to respawns. Check this in the Faction UI screen. \
 	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
@@ -261,7 +265,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	active_attrition_points = amount
 	stats_flags |= CAMPAIGN_TEAM_HAS_SET_ATTRITION
 
-	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
+	for(var/mob/faction_member in get_notification_list())
 		faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 		to_chat(faction_member, span_warning("[user ? user : "Auto selection"] has assigned [amount] attrition points for the next mission."))
 	update_static_data_for_all_viewers()
@@ -352,6 +356,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/force_update_static_data()
 	SIGNAL_HANDLER
 	update_static_data_for_all_viewers()
+
+///Updates accumulated_mission_reward when respawn waves occur, for non-campaign modes
+/datum/faction_stats/proc/on_respawn_wave(datum/game_mode/hvh/source)
+	SIGNAL_HANDLER
+	accumulated_mission_reward += source.wave_timer_length * HVH_WAVE_REWARD_MULT
 
 //UI stuff//
 /datum/faction_stats/ui_assets(mob/user)
@@ -486,13 +495,17 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
 
-	var/mob/living/user = usr
-	if(!istype(user))
-		return
+	var/mob/user = usr //the actual user
+	var/mob/living/user_body = usr //the user's body, different if they're dead
+	if(!isliving(user))
+		var/mob/dead/observer/observer_user = user
+		user_body = observer_user.can_reenter_corpse.resolve()
+		if(!user_body) //if you have no body, you can't do anything
+			return
 
 	switch(action)
 		if("set_attrition_points")
-			if(!is_leadership_role(user))
+			if(!is_leadership_role(user_body))
 				to_chat(user, span_warning("Only leadership roles can do this."))
 				return
 			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
@@ -537,24 +550,24 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!faction_assets[selected_asset])
 				return
 			var/datum/campaign_asset/choice = faction_assets[selected_asset]
-			if(!is_leadership_role(user))
+			if(!is_leadership_role(user_body))
 				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
 					to_chat(user, span_warning("Only leadership roles can do this."))
 					return
-				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
+				if(!(ismarineleaderjob(user_body.job) || issommarineleaderjob(user_body.job)))
 					to_chat(user, span_warning("Only squad leaders and above can do this."))
 					return
 			if(!choice.attempt_activatation(user))
 				return
-			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
+			for(var/mob/faction_member in get_notification_list())
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
 				faction_member.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[choice.name] asset activated", LEFT_ALIGN_TEXT), portrait)
-				to_chat(faction_member, span_warning("[user] has activated the [choice.name] campaign asset."))
+				to_chat(faction_member, span_warning("[user_body] has activated the [choice.name] campaign asset."))
 			return TRUE
 
 		if("purchase_reward")
-			if(!is_leadership_role(user))
+			if(!is_leadership_role(user_body))
 				to_chat(user, span_warning("Only leadership roles can do this."))
 				return
 			var/datum/campaign_asset/selected_asset = text2path(params["selected_reward"])
@@ -567,11 +580,22 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			add_asset(selected_asset)
 			total_attrition_points -= initial(selected_asset.cost)
-			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
+			for(var/mob/faction_member in get_notification_list())
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, span_warning("[user] has purchased the [initial(selected_asset.name)] campaign asset."))
+				to_chat(faction_member, span_warning("[user_body] has purchased the [initial(selected_asset.name)] campaign asset."))
 			update_static_data_for_all_viewers()
 			return TRUE
+
+///Returns a list of people in the faction, both living and dead
+/datum/faction_stats/proc/get_notification_list()
+	//Historically we've continued to have issues with null entries getting into these glob lists, so we avoid AS is when interacting with the result of this proc
+	var/list/mob_list = list()
+	mob_list += GLOB.alive_human_list_faction[faction]
+	for(var/mob/ghost AS in GLOB.observer_list)
+		if(ghost?.faction != faction)
+			continue
+		mob_list += ghost
+	return mob_list
 
 //overview for campaign gamemode
 /datum/action/campaign_overview

@@ -158,7 +158,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(laser_target && !line_of_sight(user, laser_target, 24))
 		laser_off()
 		to_chat(user, span_danger("You lose sight of your target!"))
-		playsound(user,'sound/machines/click.ogg', 25, 1)
+		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
@@ -194,22 +194,22 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
-		playsound(user,'sound/machines/click.ogg', 25, 1)
+		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/proc/laser_off(mob/user)
 	SIGNAL_HANDLER
+	STOP_PROCESSING(SSobj, src)
 	if(laser_target)
 		deactivate_laser_target()
 		accuracy_mult -= 0.50 //We lose a big accuracy bonus vs the now unlasered target
-		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
 	if(user?.client)
 		user.client.click_intercept = null
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
-		playsound(user,'sound/machines/click.ogg', 25, 1)
+		playsound(user,'sound/machines/click.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla
@@ -854,7 +854,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 // Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
-	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
+	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(!do_after(user, 20, NONE, src, BUSY_ICON_DANGER))
 		return
 	extended = !extended
@@ -1037,6 +1037,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 	force = 40
 	wield_delay = 2.0 SECONDS
+	muzzleflash_iconstate = "muzzle_flash_pulse"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 31, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -1046,7 +1047,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 2 SECONDS
+	fire_delay = 1 SECONDS  //The fire delay is intentionally much shorter than the reload delay, to avoid punishing swapping to another weapon
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3

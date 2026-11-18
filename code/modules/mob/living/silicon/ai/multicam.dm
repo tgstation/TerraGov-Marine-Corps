@@ -151,6 +151,9 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	var/telegraph_cameras = TRUE
 	var/telegraph_range = 7
 
+/mob/camera/aiEye/hud/pic_in_pic/get_static_range()
+	return list(static_visibility_range, static_visibility_range)
+
 /mob/camera/aiEye/hud/pic_in_pic/GetViewerClient()
 	return screen?.ai?.client
 
@@ -188,19 +191,17 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 	for(var/V in remove)
 		var/obj/machinery/camera/C = V
+		cameras_telegraphed -= C
 		if(QDELETED(C))
 			continue
-		cameras_telegraphed -= C
-		C.in_use_lights--
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 	for(var/V in add)
 		var/obj/machinery/camera/C = V
 		if(QDELETED(C))
 			continue
 		cameras_telegraphed |= C
-		C.in_use_lights++
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 
 /mob/camera/aiEye/hud/pic_in_pic/proc/disable_camera_telegraphing()
@@ -209,8 +210,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		var/obj/machinery/camera/C = V
 		if(QDELETED(C))
 			continue
-		C.in_use_lights--
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 	cameras_telegraphed.Cut()
 
 /mob/camera/aiEye/hud/pic_in_pic/Destroy()

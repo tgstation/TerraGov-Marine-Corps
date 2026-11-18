@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", title = "Self Destruct System", type = ANNOUNCEMENT_PRIORITY, color_override = "purple")
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
-	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
+	playsound(dest_master, 'sound/machines/alarm.ogg', 75, FALSE, VERY_LOUD_SOUND_RANGE)
 	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
 	SEND_SOUND(world, S)
 

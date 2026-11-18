@@ -7284,6 +7284,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "bys" = (
@@ -17193,6 +17194,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "dCq" = (
@@ -25875,6 +25877,10 @@
 	dir = 8
 	},
 /area/deltastation/medical/break_room)
+"fiM" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/deltastation/asteroidcaves/northeastcaves)
 "fiO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -26950,6 +26956,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den)
+"fuV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/iron,
+/area/deltastation/asteroidcaves/derelictwest)
 "fuW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -56651,6 +56662,7 @@
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 4
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "lBp" = (
@@ -64686,6 +64698,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/textured,
 /area/deltastation/medical/medbay)
 "nkl" = (
@@ -89362,6 +89375,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "sjL" = (
@@ -94565,6 +94579,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
 "tma" = (
@@ -94991,6 +95006,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/captain/private)
+"tqd" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/closed/wall,
+/area/deltastation/medical/treatment_center)
 "tqi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/structure/emcloset,
@@ -106135,6 +106154,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
 /turf/open/floor/iron,
 /area/deltastation/medical/pharmacy)
 "vzX" = (
@@ -129077,7 +129097,7 @@ lEi
 cUX
 xYu
 qmD
-xAg
+fuV
 rUc
 meB
 fEI
@@ -159498,7 +159518,7 @@ pPV
 lBo
 kyi
 nke
-olC
+tqd
 ydt
 fUO
 fUO
@@ -159753,7 +159773,7 @@ hPz
 fsU
 gQu
 szA
-olC
+tqd
 olC
 olC
 iTQ
@@ -168849,7 +168869,7 @@ lxH
 vNR
 wxm
 nhQ
-nhQ
+fiM
 nkc
 nhQ
 nhQ

@@ -22,7 +22,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
 	var/ui_style_alpha = 230
-	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 	var/ui_scale = TRUE
 	var/tgui_input = TRUE
@@ -48,6 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Custom emotes list
 	var/list/custom_emotes = list()
+
+	///list of md5 hashes of favourite decals
+	var/list/favourite_decals = list()
 
 	/// Current tab index of the game preferences ui
 	var/tab_index = CHARACTER_CUSTOMIZATION

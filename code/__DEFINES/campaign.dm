@@ -71,3 +71,6 @@
 #define CAMPAIGN_OBJECTIVE_DEL_ON_DISABLE (1<<1)
 ///Explodes when disabled
 #define CAMPAIGN_OBJECTIVE_EXPLODE_ON_DISABLE (1<<2)
+
+///Cash reward mult on respawn wave duration
+#define HVH_WAVE_REWARD_MULT 0.05

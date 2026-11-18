@@ -230,7 +230,7 @@
 	if(charges > 0)
 		status = !status
 		to_chat(user, span_notice("\The [src] is now [status ? "on" : "off"]."))
-		playsound(loc, SFX_SPARKS, 15, 1)
+		playsound(loc, SFX_SPARKS, 15, 1, SHORT_SOUND_RANGE)
 		update_icon()
 	else
 		status = 0
@@ -252,7 +252,7 @@
 
 		log_combat(user, L, "stunned", src)
 
-		playsound(loc, 'sound/weapons/egloves.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(charges < 1)
 			status = 0
 			update_icon()

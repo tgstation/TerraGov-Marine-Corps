@@ -10,7 +10,7 @@
 	description = "Ask an admin or mentor for help."
 	keybind_signal = COMSIG_KB_CLIENT_GETHELP_DOWN
 
-/datum/keybinding/client/get_help/down(client/user)
+/datum/keybinding/client/get_help/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -25,7 +25,7 @@
 	description = "Take a screenshot."
 	keybind_signal = COMSIG_KB_CLIENT_SCREENSHOT_DOWN
 
-/datum/keybinding/client/screenshot/down(client/user)
+/datum/keybinding/client/screenshot/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -40,7 +40,7 @@
 	description = "Hide most HUD features"
 	keybind_signal = COMSIG_KB_CLIENT_MINIMALHUD_DOWN
 
-/datum/keybinding/client/minimal_hud/down(client/user)
+/datum/keybinding/client/minimal_hud/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -54,7 +54,7 @@
 	description = "Swap to fullscreen."
 	keybind_signal = COMSIG_KB_CLIENT_FULLSCREEN_DOWN
 
-/datum/keybinding/client/fullscreen/down(client/user)
+/datum/keybinding/client/fullscreen/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return

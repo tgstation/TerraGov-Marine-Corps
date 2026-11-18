@@ -443,7 +443,7 @@
 	return FALSE // not normal density flag
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
-	ExtinguishMob()
+	extinguish_mob()
 	if(isnestedhost(src))
 		return
 
@@ -468,7 +468,7 @@
 	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
-	ExtinguishMob()
+	extinguish_mob()
 
 /obj/fire/flamer/acid_spray_act(mob/living/carbon/xenomorph/X, skip_cooldown)
 	qdel(src)
@@ -477,7 +477,7 @@
 	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE
 
-// Vent Crawl
+///Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
@@ -486,7 +486,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
+		handle_ventcrawl(pipe)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
@@ -514,8 +514,8 @@
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
 	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
-	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
+	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
+	playsound(C, SFX_ALIEN_DROOL, 15, TRUE, SHORT_SOUND_RANGE)
 	do
 		face_atom(C)
 		if(IsStaggered())
@@ -559,11 +559,6 @@
 	if(.)
 		return
 	return 1 - (sunder * 0.01)
-
-/mob/living/carbon/xenomorph/adjust_stagger(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
-		return FALSE
-	return ..()
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)

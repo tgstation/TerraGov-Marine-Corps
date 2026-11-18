@@ -184,6 +184,9 @@
 				mode = SYRINGE_DRAW
 				update_icon()
 
+/obj/item/reagent_containers/syringe/is_refuelable()
+	return FALSE
+
 
 /obj/item/reagent_containers/syringe/update_icon_state()
 	. = ..()

@@ -145,7 +145,7 @@
 			to_chat(user, "[icon2html(src, user)][span_warning("The charge card doesn't have that much money!")]")
 			return
 
-		playsound(src, 'sound/machines/chime.ogg', 25, 1)
+		playsound(src, 'sound/machines/chime.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
 		transaction_paid = TRUE
 
@@ -255,7 +255,7 @@
 					if(D)
 						if(!D.suspended)
 							if(transaction_amount <= D.money)
-								playsound(src, 'sound/machines/chime.ogg', 25, 1)
+								playsound(src, 'sound/machines/chime.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 								src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
 								transaction_paid = 1
 

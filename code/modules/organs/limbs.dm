@@ -195,7 +195,7 @@
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
-			playsound(owner, 'sound/items/splint_break.ogg', 100, sound_range = 1, falloff = 5)
+			playsound(owner, 'sound/items/splint_break.ogg', 100, FALSE, ADJACENT_SOUND_RANGE, 5)
 		else
 			splint_health = max(splint_health - (brute + burn), 0)
 
@@ -413,7 +413,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		germ_level = 0
 		return
 
-	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))	//cryo stops germs from moving and doing their bad stuffs
+	if(owner.bodytemperature >= UPPER_CRYO_TEMP && !HAS_TRAIT(owner, TRAIT_STASIS))	//cryo stops germs from moving and doing their bad stuffs
 		//** Syncing germ levels with external wounds
 		handle_germ_sync()
 
@@ -517,7 +517,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(burn_dam < 0.1)
 		burn_dam = 0
 
-	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
+	if(owner.bodytemperature >= UPPER_CRYO_TEMP && !HAS_TRAIT(owner, TRAIT_STASIS))
 		for(var/datum/wound/W in wounds)
 			W.process()
 
@@ -846,7 +846,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		span_warning("You hear a sickening crack!"),
 	)
 	var/soundeffect = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
-	playsound(owner,soundeffect, 45, 1)
+	playsound(owner,soundeffect, 45, TRUE, SHORT_SOUND_RANGE)
 	if(!(owner.species?.species_flags & NO_PAIN))
 		owner.emote("scream")
 

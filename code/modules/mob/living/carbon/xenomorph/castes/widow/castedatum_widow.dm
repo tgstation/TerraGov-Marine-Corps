@@ -41,9 +41,6 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "widow"
 
-	// *** Ruler Abilities *** ///
-	queen_leader_limit = 4
-
 	// *** Widow Abilities *** //
 	max_spiderlings = 5
 
@@ -78,12 +75,12 @@
 		/datum/mutation_upgrade/veil/incubator
 	)
 
-/datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
+/datum/xeno_caste/widow/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/widow)
 
-/datum/xeno_caste/widow/on_caste_removed(mob/xenomorph)
+/datum/xeno_caste/widow/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	. = ..()
 	xenomorph.RemoveElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
 	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/widow)

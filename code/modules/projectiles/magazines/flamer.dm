@@ -21,6 +21,9 @@
 /obj/item/ammo_magazine/flamer_tank/get_fueltype()
 	return fuel_type
 
+/obj/item/ammo_magazine/flamer_tank/is_refuelable()
+	return TRUE
+
 /obj/item/ammo_magazine/flamer_tank/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_type != get_fueltype())
 		user?.balloon_alert(user, "wrong fuel")
@@ -122,6 +125,7 @@
 	icon_state_mini = "tank_water"
 
 	default_ammo = /datum/ammo/water
+	fuel_type = /datum/reagent/water
 
 //The engineer pyro bag internal fuel tank
 /obj/item/ammo_magazine/flamer_tank/internal

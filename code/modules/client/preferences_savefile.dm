@@ -184,6 +184,7 @@
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	READ_FILE(S["custom_emotes"], custom_emotes)
+	READ_FILE(S["favourite_decals"], favourite_decals)
 	READ_FILE(S["chem_macros"], chem_macros)
 	READ_FILE(S["status_toggle_flags"], status_toggle_flags)
 
@@ -201,7 +202,6 @@
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 	// Tgui options
-	READ_FILE(S["tgui_fancy"], tgui_fancy)
 	READ_FILE(S["tgui_lock"], tgui_lock)
 	READ_FILE(S["ui_scale"], ui_scale)
 	READ_FILE(S["tgui_input"], tgui_input)
@@ -257,6 +257,7 @@
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
+	favourite_decals = sanitize_islist(favourite_decals, list())
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
@@ -275,9 +276,8 @@
 	see_chat_non_mob = sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes = sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
-	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
-	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
-	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_lock = sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(ui_scale, FALSE, TRUE, initial(ui_scale))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -345,6 +345,7 @@
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
 	show_xeno_rank = sanitize_integer(show_xeno_rank, FALSE, TRUE, initial(show_xeno_rank))
+	favourite_decals = sanitize_islist(favourite_decals, list())
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
@@ -358,9 +359,8 @@
 	see_chat_non_mob = sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes = sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
-	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
-	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
-	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_lock = sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(ui_scale, FALSE, TRUE, initial(ui_scale))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -408,6 +408,7 @@
 	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
 	WRITE_FILE(S["accessible_tgui_themes"], accessible_tgui_themes)
 	WRITE_FILE(S["allow_being_shown_health_scan"], allow_being_shown_health_scan)
+	WRITE_FILE(S["favourite_decals"], favourite_decals)
 	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
@@ -426,7 +427,6 @@
 	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 	// Tgui options
-	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
 	WRITE_FILE(S["ui_scale"], ui_scale)
 	WRITE_FILE(S["tgui_input"], tgui_input)

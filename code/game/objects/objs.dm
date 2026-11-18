@@ -236,7 +236,7 @@
 
 /obj/on_set_interaction(mob/user)
 	. = ..()
-	ENABLE_BITFIELD(obj_flags, IN_USE)
+	ENABLE_BITFIELD(obj_flags, IN_USE) //todo: this isn't unset currently
 
 /mob/proc/unset_machine()
 	if(machine)
@@ -404,35 +404,47 @@
 	return TRUE
 
 /obj/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_PLATING] = layer
+	footstep_overrides[FOOTSTEP_PLATING] = get_footstep_layer(layer, plane)
 
 /obj/proc/do_deploy(mob/user, turf/location)
 	if(!istype(location))
 		location = get_turf(src)
 	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
 
-///Dissassembles the device
-/obj/proc/disassemble(mob/user)
+/// Used as a callback for disassembly of deployables
+/obj/proc/can_disassemble(mob/user)
 	var/obj/item/internal_item = get_internal_item()
 	if(!internal_item)
 		return FALSE
-	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+	if(!ishuman(user))
+		return FALSE
+	if(internal_item.deployment_flags & DEPLOYED_NO_PICKUP)
 		if(user)
 			balloon_alert(user, "can't disassemble!")
 		return FALSE
+	return TRUE
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	if(!can_disassemble(user))
+		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE
+
+/// Handles UNsuccessful disassembly tasks, opposite of below
+/obj/proc/failed_disassemble(mob/user)
+	return
 
 /// Handles successful disassembly tasks on a deployable, cannot be used for failure checks as disassembly has completed already
 /obj/proc/post_disassemble(mob/user)
 	return TRUE
 
-/obj/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/obj/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	if(user.a_intent == INTENT_HARM) // Attack normally.
@@ -445,3 +457,13 @@
 	plasmacutter.cut_apart(user, name, src)
 	deconstruct(FALSE)
 	return TRUE
+
+///Signal sender for unique_action
+/obj/proc/do_unique_action(mob/user, special_treatment = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
+	return unique_action(user, special_treatment)
+
+///Anything unique the item can do, like pumping a shotgun, spin or whatever.
+/obj/proc/unique_action(mob/user, special_treatment = FALSE)
+	return

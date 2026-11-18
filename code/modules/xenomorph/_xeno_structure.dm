@@ -1,16 +1,18 @@
 /obj/structure/xeno
-	hit_sound = SFX_ALIEN_RESIN_BREAK
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE
-	///Bitflags specific to xeno structures
+	hit_sound = SFX_ALIEN_RESIN_BREAK
+	/// Bitflags specific to xeno structures.
 	var/xeno_structure_flags
-	///Which hive(number) do we belong to?
+	/// Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
-	///Is the structure currently detecting a threat
-	var/threat_warning
-	///proximity monitor for threat detection
+	/// Is the structure currently detecting a threat?
+	var/threat_warning = FALSE
+	/// The proximity monitor for threat detection.
 	var/datum/proximity_monitor/proximity_monitor
+	/// The cooldown between proximity threat detection.
 	COOLDOWN_DECLARE(proxy_alert_cooldown)
+	/// The cooldown between damage taken.
 	COOLDOWN_DECLARE(damage_alert_cooldown)
 
 /obj/structure/xeno/Initialize(mapload, _hivenumber)
@@ -31,9 +33,8 @@
 		proximity_monitor = new(src, XENO_STRUCTURE_DETECTION_RANGE)
 
 /obj/structure/xeno/Destroy()
-	//prox_warning_turfs = null
-	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
-		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
+	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber] + GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists.
+		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") // We don't want to CRASH because that'd block deletion completely. Just trace it and continue.
 		return ..()
 	GLOB.xeno_structures_by_hive[hivenumber] -= src
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
@@ -54,13 +55,13 @@
 			take_damage(35, BRUTE, BOMB)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
-	balloon_alert(user, "You only scrape at it")
+	balloon_alert(user, "you only scrape at it!")
 	return TRUE
 
 /obj/structure/xeno/fire_act(burn_level)
 	take_damage(burn_level / 3, BURN, FIRE)
 
-///Alerts the Hive when hostiles get too close to this structure
+/// Alerts the Hive when hostiles get too close to this structure.
 /obj/structure/xeno/HasProximity(atom/movable/hostile)
 	if(!COOLDOWN_FINISHED(src, proxy_alert_cooldown))
 		return
@@ -105,15 +106,15 @@
 		return
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	balloon_alert_to_viewers("\The [xeno_attacker] tears down \the [src]!", "We tear down \the [src].")
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	take_damage(max_integrity) // Ensure its destroyed
 
-/obj/structure/xeno/plasmacutter_act(mob/living/user, obj/item/I)
-	if(!isplasmacutter(I) || user.do_actions)
+/obj/structure/xeno/plasmacutter_act(mob/user, obj/item/tool)
+	if(!isplasmacutter(tool) || user.do_actions)
 		return FALSE
 	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
-	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = tool
 	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
 		return FALSE
 	var/charge_cost = PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD
@@ -124,7 +125,7 @@
 	user.do_attack_animation(src, used_item = plasmacutter)
 	plasmacutter.cut_apart(user, name, src, charge_cost)
 	take_damage(max(0, plasmacutter.force * (1 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	return TRUE
 
 ///Notifies the hive when we take damage

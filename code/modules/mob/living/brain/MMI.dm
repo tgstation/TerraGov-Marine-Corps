@@ -15,6 +15,10 @@
 	var/locked = 0
 	var/mob/living/brain/brainmob = null//The current occupant.
 
+/obj/item/mmi/Destroy()
+	QDEL_NULL(brainmob)
+	return ..()
+
 
 /obj/item/mmi/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/organ/brain) && !brainmob) //Time to stick a brain in it --NEO

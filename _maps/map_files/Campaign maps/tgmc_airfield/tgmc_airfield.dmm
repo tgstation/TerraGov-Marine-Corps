@@ -8346,11 +8346,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/campaign/tgmc_airfield/base/barracks/mess_hall)
-"St" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/open/floor/plating/plating_catwalk,
-/area/campaign/tgmc_airfield/outside/airstrip_south)
 "Sv" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -8921,7 +8916,7 @@
 "Vg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_airfield/outside/airstrip_south)
 "Vi" = (
 /obj/structure/cable,
@@ -23966,8 +23961,8 @@ ga
 Ly
 Vg
 Vg
-St
-St
+Vg
+Vg
 um
 GJ
 WI

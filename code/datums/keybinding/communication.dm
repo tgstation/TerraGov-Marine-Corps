@@ -1,7 +1,7 @@
 /datum/keybinding/client/communication
 	category = CATEGORY_COMMUNICATION
 
-/datum/keybinding/client/communication/down(client/user)
+/datum/keybinding/client/communication/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return

@@ -232,7 +232,7 @@
 	if(!(machine_stat & BROKEN))
 		to_chat(user,span_notice("The circuits don't need replacing"))
 		return
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
 		span_notice("You fumble around figuring out how to replace the electronics."))
@@ -246,7 +246,7 @@
 			return
 	user.visible_message(span_notice("[user] replaces the electronics."),
 	span_notice("You replace the electronics"))
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	repair()
 	qdel(I)
 

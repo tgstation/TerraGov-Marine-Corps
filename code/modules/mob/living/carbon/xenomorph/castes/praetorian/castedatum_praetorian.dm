@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/drop_acid/heavy)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 25
@@ -49,9 +49,6 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "praetorian"
-
-	// *** Ruler Abilities *** ///
-	queen_leader_limit = 4
 
 	// *** Abilities *** //
 	actions = list(
@@ -91,7 +88,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
-		/datum/action/ability/xeno_action/sticky_grenade,
+		/datum/action/ability/activable/xeno/toxic_grenade/sticky,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,

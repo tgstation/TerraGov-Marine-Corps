@@ -56,12 +56,9 @@
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
-		var/datum/status_effect/stacking/melting_fire/burning = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-		if(burning)
-			qdel(burning)
-		if(L.fire_stacks <= 0)
-			L.ExtinguishMob()
-
+		var/datum/status_effect/stacking/melting_fire/melting_fire = L.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(melting_fire)
+			qdel(melting_fire)
 
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)
@@ -136,13 +133,13 @@
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
 		L.Unconscious(10 SECONDS)
-	L.hallucination += 2
+	L.adjust_hallucination(2)
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
 		L.Unconscious(10 SECONDS)
-		L.dizzy(8)
+		L.adjust_dizziness(8)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -157,18 +154,18 @@
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","gasp","yawn"))
 	if(prob(2))
-		L.adjustDrowsyness(5)
+		L.adjust_drowziness(5)
 	return ..()
 
 /datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.3, TOX)
-	L.setDrowsyness(max(L.drowsyness, 5))
+	L.drowzy(5)
 
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
 		L.Sleeping(1 MINUTES)
-	L.setDrowsyness(max(L.drowsyness, 30))
+	L.drowzy(30)
 
 /datum/reagent/oxygen
 	name = "Oxygen"
@@ -495,7 +492,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
-	L.dizzy(2)
+	L.adjust_dizziness(2)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)
@@ -515,11 +512,11 @@
 	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
-	L.jitter(-5)
+	L.adjust_jitter(-5)
 	if(prob(80))
 		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))
-		L.setDrowsyness(max(L.drowsyness, 3))
+		L.drowzy(3)
 	if(prob(10))
 		L.emote("drool")
 	return ..()

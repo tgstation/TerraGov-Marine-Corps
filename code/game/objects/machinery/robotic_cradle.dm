@@ -155,7 +155,7 @@
 
 	if(powered())
 		use_power(active_power_usage)
-		playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+		playsound(loc, 'sound/machines/ping.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	else
 		perform_eject(CRADLE_NOTICE_NO_POWER)
 		return
@@ -267,7 +267,7 @@
 	if(isxeno(mob_ejecting))
 		mob_ejecting.visible_message(span_notice("[mob_ejecting] pries the cover of [src]"),
 		span_notice("You begin to pry at the cover of [src]."))
-		playsound(mob_ejecting,'sound/effects/metal_creaking.ogg', 25, 1)
+		playsound(mob_ejecting,'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(!do_after(mob_ejecting, 2 SECONDS, NONE, src, BUSY_ICON_DANGER) || !occupant)
 			return
 		perform_eject(CRADLE_NOTICE_XENO_FUCKERY)

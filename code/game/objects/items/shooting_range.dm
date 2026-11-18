@@ -63,9 +63,9 @@
 	///what kind of target to drop when a player removes a dummy from the targetting stake
 	var/cushion_type = "default"
 
-/obj/structure/target_stake/occupied/welder_act(mob/living/user, obj/item/I)
+/obj/structure/target_stake/occupied/welder_act(mob/user, obj/item/tool)
 	. = ..()
-	var/obj/item/tool/weldingtool/usedwelder = I
+	var/obj/item/tool/weldingtool/usedwelder = tool
 	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	if(usedwelder.remove_fuel(2, user))

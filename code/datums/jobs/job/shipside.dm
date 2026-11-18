@@ -34,11 +34,11 @@
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to</b> TGMC High Command<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
+		<b>Difficulty</b>: Hard<br />
+		<b>You answer to</b> TGMC High Command<br />
+		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
+		<b>Duty</b>: Lead the entire TGMC platoon and complete the mission from the safety of your ship. Support the marines and communicate with your Field Commander to ensure the mission's a success.
 	"}
 	minimap_icon = "captain"
 
@@ -106,11 +106,11 @@ Godspeed, Captain! And remember, you are not above the law."}
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>:Very Hard<br /><br />
-		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
+		<b>Difficulty</b>:Very Hard<br />
+		<b>You answer to the</b> Captain<br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War, Sovl War<br />
+		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you have available. Fire the Orbital Bombardment (OB) Assist the captain if available.
 	"}
 	minimap_icon = "fieldcommander"
 
@@ -177,11 +177,11 @@ Make the TGMC proud!"}
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
+		<b>Difficulty</b>: Medium<br />
+		<b>You answer to the</b> Captain<br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
+		<b>Duty</b>: Provide shipside support by coordinating Orbital Bombardments and leadership from the safety of the ships CIC.
 	"}
 
 	minimap_icon = "staffofficer"
@@ -239,10 +239,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Difficulty</b>: Hard<br />
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War<br />
 		<b>Duty</b>: Pilot the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "transportofficer"
@@ -293,10 +293,10 @@ Try to ensure the Tadpole's survival. In the case of its destruction, you may re
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Medium<br /><br />
+		<b>Difficulty</b>: Medium<br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
 		<b>Duty</b>: Pilot the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets.
 	"}
 	minimap_icon = "pilot"
@@ -350,11 +350,11 @@ Though you are an officer, your authority is limited to the dropship and the Con
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>:Very Hard<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Act as the spearhead of the operation
+		<b>Difficulty</b>:Very Hard<br />
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Sovl War<br />
+		<b>Duty</b>: Pilot the TGMCs fast and heavily armed but fragile modular mechs.
 	"}
 	minimap_icon = "mech_pilot"
 
@@ -422,8 +422,8 @@ Though you are an officer, your authority is limited to the dropship and the Con
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Provide heavy fire support
+		<b>Gamemode Availability</b>: Sovl War<br /><br /><br />
+		<b>Duty</b>: Provide heavy fire support by operating the TGMC's Tank. You are expected to work as a team with your partner as either the gunner or driver.
 	"}
 	minimap_icon = "assault_crew"
 
@@ -480,11 +480,11 @@ Though you are an officer, your authority is limited to the dropship and the Con
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>:Very Hard<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Transport and support the frontline troops
+		<b>Difficulty</b>:Very Hard<br />
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 25 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br />
+		<b>Duty</b>: Transport and support the frontline troops with an APC or MRAP.
 	"}
 	minimap_icon = "transport_crew"
 
@@ -545,11 +545,11 @@ Though you are an officer, your authority is limited to the dropship and the Con
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
+		<b>Difficulty</b>: Hard<br />
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
+		<b>Duty</b>: Supervise the Ship, and ensure that the OB is loaded.
 	"}
 	minimap_icon = "cse"
 
@@ -605,8 +605,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Chief Ship Engineer<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Maintain the ship, be in charge of the engines. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br /><br /><br />
+		<b>Duty</b>: Maintain the ship, and help Command Staff support the ground crew. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
 	"}
 	minimap_icon = "st"
 
@@ -673,10 +673,10 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 1 hour playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 1 hour playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
+		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more supply points. Supply the marines with premium equipment to ensure mission success.
 	"}
 	minimap_icon = "requisition"
 
@@ -745,11 +745,11 @@ A happy ship is a well-functioning ship."}
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
+		<b>Difficulty</b>: Hard<br />
+		<b>You answer to the</b> acting Command Staff<br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War, Sovl War<br />
+		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise and run the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 	minimap_icon = "chief_medical"
 
@@ -807,10 +807,10 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Chief Medical Officer<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Difficulty</b>: Medium<br />
+		<b>You answer to the</b> Chief Medical Officer<br />
+		<b>Unlock Requirement</b>: Starting Role<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
 	minimap_icon = "medical"
@@ -868,10 +868,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>Difficulty</b>: Medium<br />
+		<b>You answer to the</b> Nanotrasen Corporate Office<br /
+		<b>Unlock Requirement</b>: Starting Role<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
 		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
@@ -934,9 +934,9 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
+		<b>You answer to the</b> Nanotrasen Corporate Office<br />
+		<b>Unlock Requirement</b>: Starting Role<br />
+		<b>Gamemode Availability</b>: Nuclear War, Sovl War<br />
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 	minimap_icon = "cl"
@@ -999,11 +999,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Soul Crushing<br /><br />
-		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
+		<b>Difficulty</b>: Soul Crushing<br />
+		<b>You answer to the</b> acting Command Staff and the human crew<br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War, Sovl War<br />
+		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills and lack of ability to use firearms to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel.
 	"}
 	minimap_icon = "synth"
 
@@ -1068,11 +1068,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
 	html_description = {"
-		<b>Difficulty</b>: Easy<br /><br />
-		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
-		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
+		<b>Difficulty</b>: Easy<br /
+		<b>You answer to the</b> acting Command Staff and the human crew<br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br />
+		<b>Gamemode Availability</b>: Nuclear War<br />
+		<b>Duty</b>: Assist the crew whenever you’re needed. Recon the areas for threats via cameras, report your findings to the crew at various communication channels.
 	"}
 
 

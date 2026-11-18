@@ -130,7 +130,7 @@
 		message = ";" //radio message
 	switch(order_action)
 		if(ORDER_DESIGNATION_TYPE_MOVE)
-			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle_to_dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
+			message += "[ordered ? "[selected_mob], " : "everyone, "]move [dir2text(angle2dir(Get_Angle(get_turf(owner), get_turf(target))))]!"
 		if(ORDER_DESIGNATION_TYPE_ATTACK)
 			message += "[ordered ? "[selected_mob], " : "everyone, "][pick("attack", "destroy", "target")] [target]!"
 		if(ORDER_DESIGNATION_TYPE_REPAIR)

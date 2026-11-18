@@ -50,7 +50,7 @@
 
 		M.visible_message(span_notice("\The [M] starts clearing out \the [src]."), \
 		span_notice("We start clearing out \the [src]."), null, 5)
-		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 		if(!do_after(M, 0.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return FALSE
 
@@ -89,7 +89,7 @@
 		L.pixel_x += rand(-5,5)
 		L.pixel_y += rand(-5,5)
 		L.set_light(2,1)
-		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
+		playsound(user, 'sound/weapons/genhit.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)

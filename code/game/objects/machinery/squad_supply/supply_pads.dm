@@ -10,6 +10,9 @@
 	layer = ABOVE_NORMAL_TURF_LAYER
 	faction = FACTION_TERRAGOV
 
+/obj/structure/supply_drop/som
+	faction = FACTION_SOM
+
 /obj/structure/supply_drop/Initialize(mapload)
 	. = ..()
 	GLOB.supply_pad_list += src

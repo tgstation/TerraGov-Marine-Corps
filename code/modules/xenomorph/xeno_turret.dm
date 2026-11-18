@@ -14,7 +14,7 @@
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses
-	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
+	var/datum/ammo/ammo = /datum/ammo/xeno/acid/drop_acid/turret
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
@@ -130,7 +130,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, I.damtype, MELEE)
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 ///Signal handler for hard del of hostile
 /obj/structure/xeno/xeno_turret/proc/unset_hostile()

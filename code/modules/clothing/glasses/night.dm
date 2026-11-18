@@ -89,17 +89,12 @@
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_ITEM_ZOOM)
 
-/obj/item/clothing/glasses/night/sunglasses
+/obj/item/clothing/glasses/night/m56_goggles/sunglasses
 	name = "\improper KTLD sunglasses"
 	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
-	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56sunglasses"
 	worn_icon_state = "m56sunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
-	toggleable = TRUE
-	actions_types = list(/datum/action/item_action/toggle)
-	vision_flags = SEE_TURFS
-	prescription = TRUE
 
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"

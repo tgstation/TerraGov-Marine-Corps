@@ -20,12 +20,7 @@
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, PROC_REF(weed_removed))
 
-/// Destroy the alien effect when the weed it was on is destroyed
-/obj/alien/proc/weed_removed()
-	SIGNAL_HANDLER
-	obj_destruction(damage_flag = "melee")
-
-/obj/alien/attackby(obj/item/I, mob/user, params)
+/obj/alien/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -34,7 +29,7 @@
 		return
 
 	if(obj_flags & CAN_BE_HIT)
-		return I.attack_obj(src, user)
+		return attacking_item.attack_obj(src, user)
 
 /obj/alien/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
@@ -56,6 +51,43 @@
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		take_damage(rand(2, 20) * 0.1, BURN, ACID)
+
+/// Destroy the alien effect when the weed it was on is destroyed
+/obj/alien/proc/weed_removed()
+	SIGNAL_HANDLER
+	obj_destruction(damage_flag = "melee")
+
+///special behavior when atoms enter our loc
+/obj/alien/proc/on_loc_entered(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	return
+
+///Slows down non xeno crossers
+/obj/alien/proc/slow_down_crosser(atom/movable/crosser, slow_amount = 1)
+	if(isxeno(crosser))
+		return
+	if(crosser.throwing || crosser.buckled)
+		return
+	if(crosser.pass_flags & PASS_LOW_STRUCTURE)
+		return
+	//we don't want to slowdown the crosser if there is something on top of the resin
+	for(var/obj/object in orange(0, crosser))
+		if(!object.density)
+			continue
+		if(object == crosser)
+			continue
+		return
+
+	if(ismecha(crosser) || istype(crosser, /obj/vehicle/unmanned))
+		var/obj/vehicle/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, slow_amount)
+		return
+	if(!ishuman(crosser))
+		return
+	var/mob/living/carbon/human/victim = crosser
+	if(victim.lying_angle)
+		return
+	victim.next_move_slowdown += slow_amount
 
 /*
 * Resin
@@ -83,6 +115,7 @@
 	plane = FLOOR_PLANE
 	layer = ABOVE_WEEDS_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
+	///slows things by this much on cross
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
 	var/refundable = TRUE
@@ -92,35 +125,12 @@
 /obj/alien/resin/sticky/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(slow_down_crosser)
+		COMSIG_ATOM_ENTERED = PROC_REF(on_loc_entered)
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
-	SIGNAL_HANDLER
-	if(crosser.throwing || crosser.buckled)
-		return
-
-	if(issealedvehicle(crosser))
-		var/obj/vehicle/sealed/vehicle = crosser
-		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
-		return
-
-	if(!ishuman(crosser))
-		return
-
-	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
-		return
-
-	var/mob/living/carbon/human/victim = crosser
-
-	if(victim.lying_angle)
-		return
-
-	victim.next_move_slowdown += slow_amt
+/obj/alien/resin/sticky/on_loc_entered(datum/source, atom/movable/crosser)
+	slow_down_crosser(crosser, slow_amt)
 
 /obj/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.status_flags & INCORPOREAL)
@@ -130,7 +140,7 @@
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE) //SFX
 		deconstruct(TRUE)
 		return
 
@@ -217,7 +227,7 @@
 		return TRUE
 
 	src.balloon_alert(xeno_attacker, "destroying...")
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(xeno_attacker, "destroyed")
 		qdel(src)
@@ -393,150 +403,4 @@
 			var/obj/alien/resin/sticky/thin/temporary_resin = new(sticky_tile)
 			QDEL_IN(temporary_resin, 15 SECONDS)
 	playsound(loc, SFX_ALIEN_RESIN_BUILD, 50, 1)
-	qdel(src)
-
-///////////////////////
-/// Globadier Mines ///
-///////////////////////
-
-/obj/structure/xeno/acid_mine
-	name = "acid mine"
-	desc = "A weird bulb, filled with acid."
-	icon = 'icons/obj/items/mines.dmi'
-	icon_state = "acid_mine"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-	max_integrity = 5
-	hit_sound = SFX_ALIEN_RESIN_BREAK
-	///The amount of acid damage this deals
-	var/acid_damage = 30
-
-/obj/structure/xeno/acid_mine/Initialize(mapload)
-	. = ..()
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
-	)
-	AddElement(/datum/element/connect_loc, connections)
-
-/obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	detonate(blame_mob)
-	return ..()
-
-// Checks if the mob walking over the mine is human, and calls detonate if so
-/obj/structure/xeno/acid_mine/proc/oncrossed(datum/source, atom/movable/A, oldloc, oldlocs)
-	SIGNAL_HANDLER
-	if(!ishuman(A))
-		return
-	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
-		return
-	INVOKE_ASYNC(src, PROC_REF(detonate), A)
-
-/obj/structure/xeno/acid_mine/proc/detonate(triggerer)
-	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
-		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
-		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
-		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
-	qdel(src)
-
-////////////////
-/// Gas Mine ///
-////////////////
-
-/obj/structure/xeno/acid_mine/gas_mine
-	name = "gas mine"
-	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
-	icon_state = "gas_mine"
-	acid_damage = 40
-
-/obj/structure/xeno/acid_mine/gas_mine/detonate(triggerer)
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smog = new(get_turf(src))
-	smog.set_up(1,src)
-	smog.start()
-	return ..()
-
-//////////////////
-/// Incen Mine ///
-//////////////////
-
-/obj/structure/xeno/acid_mine/incen_mine
-	name = "incendiary mine"
-	desc = "A purple blob that sparks like lightning."
-	icon_state = "incen_mine"
-
-/obj/structure/xeno/acid_mine/incen_mine/detonate(triggerer)
-	flame_radius(1, get_turf(src), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "violet")
-	qdel(src)
-
-//////////////////
-/// Resin Mine ///
-//////////////////
-
-/obj/structure/xeno/acid_mine/resin_mine
-	name = "resin mine"
-	desc = "A translucent purple blob, insides lined with clear ampoules of resin."
-	icon_state = "resin_mine"
-
-/obj/structure/xeno/acid_mine/resin_mine/detonate(triggerer)
-	var/cannotbuild = FALSE
-	for(var/turf/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", pass_flags_checked = PASS_AIR))
-		cannotbuild = FALSE
-		if((resin_tile.density || istype(resin_tile, /turf/open/space))) // No structures in space
-			continue
-
-		for(var/obj/O in resin_tile.contents)
-			if(istype(O, /obj/alien/resin))
-				cannotbuild = TRUE
-
-		if(!cannotbuild)
-			new /obj/alien/resin/sticky(resin_tile)
-
-	for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
-		if(affected.stat == DEAD)
-			continue
-		var/throwloc = affected.loc
-		for(var/x in 1 to 6)
-			throwloc = get_step(throwloc, REVERSE_DIR(affected.dir))
-		affected.throw_at(throwloc, 12, 2.5, src, TRUE)
-	qdel(src)
-
-//////////////////
-/// Neuro Mine ///
-//////////////////
-
-/obj/structure/xeno/acid_mine/neuro_mine
-	name = "neurotoxin mine"
-	desc = "An oddly colored weed sac, filled with dense orange gas."
-	icon_state = "neuro_mine"
-
-/obj/structure/xeno/acid_mine/neuro_mine/detonate(triggerer)
-	var/datum/effect_system/smoke_spread/xeno/neuro/medium/gas = new(get_turf(src))
-	gas.set_up(2, src)
-	gas.start()
-
-	if(ishuman(triggerer))
-		var/mob/living/carbon/human/victim = triggerer
-		victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 5)
-		to_chat(victim, span_userdanger("You are pricked by a spike on the mine!"))
-	qdel(src)
-
-//////////////////////
-/// Lifetrade Mine ///
-//////////////////////
-
-/obj/structure/xeno/acid_mine/drain_mine
-	name = "drain mine"
-	desc = "A cyan blob that crackles with lifeblood."
-	icon_state = "emp_mine"
-
-/obj/structure/xeno/acid_mine/drain_mine/detonate(triggerer)
-	if(ishuman(triggerer))
-		var/mob/living/carbon/human/victim = triggerer
-		victim.apply_status_effect(STATUS_EFFECT_LIFEDRAIN)
-		new /obj/effect/temp_visual/telekinesis(get_turf(victim))
-	var/datum/effect_system/smoke_spread/xeno/hemodile/gas = new(get_turf(src))
-	gas.set_up(2, src)
-	gas.start()
 	qdel(src)

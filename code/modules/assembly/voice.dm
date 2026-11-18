@@ -72,7 +72,7 @@
 			if(length(raw_message))
 				. = TRUE
 
-/obj/item/assembly/voice/multitool_act(mob/living/user, obj/item/I)
+/obj/item/assembly/voice/multitool_act(mob/user, obj/item/tool)
 	mode %= length(modes)
 	mode++
 	to_chat(user, span_notice("You set [src] into [modes[mode]] mode."))

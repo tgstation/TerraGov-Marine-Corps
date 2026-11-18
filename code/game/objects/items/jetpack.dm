@@ -52,6 +52,9 @@
 	. = ..()
 	toggle_action.remove_action(user)
 
+/obj/item/jetpack_marine/is_refuelable()
+	return TRUE
+
 /obj/item/jetpack_marine/can_refuel(atom/refueler, fuel_type, mob/user)
 	if(fuel_left == fuel_max)
 		user?.balloon_alert(user, "full")
@@ -149,7 +152,11 @@
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
-	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK,
+		KEYBINDING_ALTERNATE = COMSIG_ITEM_TOGGLE_JETPACK_SELECT,
+	)
 
 /datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
 	. = ..()
@@ -177,7 +184,7 @@
 	var/atom/movable/movable_target = target
 	if(movable_target.faction == owner.faction)
 		return FALSE
-	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(movable_target))
 		return FALSE
 	var/obj/item/jetpack_marine/jetpack_parent = src.target
 	if(jetpack_parent.fuel_left < FUEL_USE)
@@ -241,7 +248,7 @@
 	var/list/stunlist = list(0, knockdown_duration, 0, 0)
 	if(SEND_SIGNAL(hit_mob, COMSIG_LIVING_JETPACK_STUN, stunlist, MELEE))
 		hit_mob.adjust_stagger(stunlist[3])
-		hit_mob.add_slowdown(stunlist[4])
+		hit_mob.adjust_slowdown(stunlist[4])
 		hit_mob.knockback(human_user, 1, 5, knockback_force = MOVE_FORCE_VERY_STRONG) //if we don't stun, we knockback
 	else
 		hit_mob.Knockdown(knockdown_duration)

@@ -68,6 +68,8 @@
 
 ///from proc/global_rally_zombies()
 #define COMSIG_GLOB_AI_ZOMBIE_RALLY "!ai_zombie_rally"
+///from /datum/action/rally_zombie/action_activate()
+#define COMSIG_GLOB_AI_ZOMBIE_LEADER_RALLY "!ai_zombie_leader_rally"
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -145,6 +147,9 @@
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
+///Sent when a respawn wave triggers
+#define COMSIG_GLOB_HVH_RESPAWN_WAVE "!hvh_respawn_wave"
+
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
@@ -161,7 +166,10 @@
 ///from /datum/action/ability/activable/build_designator/indicate_target()
 #define COMSIG_GLOB_DESIGNATED_TARGET_SET "!designated_target_set"
 
-#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!ZOMBIE_TUNNEL_DESTROYED"
+/// From [/obj/effect/ai_node/spawner/zombie/Destroy()]
+#define COMSIG_GLOB_ZOMBIE_TUNNEL_DESTROYED "!zombie_tunnel_destroyed"
+/// From [/obj/machinery/computer/code_generator/nuke/complete_segment()]: (/obj/machinery/computer/code_generator/nuke/generating_computer)
+#define COMSIG_GLOB_DISK_SEGMENT_COMPLETED "!disk_segment_completed"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -426,6 +434,12 @@
 ///Movable deployed via a patrol point
 #define COMSIG_MOVABLE_PATROL_DEPLOYED "movable_patrol_deployed"
 
+///from /atom/can_climb()
+#define COMSIG_ATOM_CHECK_CLIMBABLE "atom_check_climbable"
+	#define COMPONENT_MOVABLE_CAN_CLIMB (1<<0)
+///from /atom/try_climb()
+#define COMSIG_ATOM_TRY_CLIMBABLE "atom_try_climbable"
+
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
@@ -475,6 +489,9 @@
 
 #define COMSIG_OBJ_GET_FUELTYPE "obj_get_fueltype"				//called in /obj/get_fueltype()
 
+/// from /datum/storage/proc/handle_item_insertion when an item is stored in src
+#define COMSIG_ITEM_STORED "item_stored"
+
 // /obj/item signals
 #define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -499,6 +516,10 @@
 #define COMSIG_ITEM_UNZOOM "item_unzoom"
 #define COMSIG_ITEM_ZOOM "item_zoom"                            //from base of /obj/item/zoom(), used for telling when a scope zooms and for checking if another zoom is already on mob.
 	#define COMSIG_ITEM_ALREADY_ZOOMED (1<<0)                         //bitshift that tells to a item when zoom checking that there already soemthing zooming user.
+
+#define COMSIG_ITEM_ZOOMED "item_zoomed"
+#define COMSIG_ITEM_UNZOOMED "item_unzoomed"
+
 #define COMSIG_ITEM_UNIQUE_ACTION "item_unique_action" //from base of /obj/item/unique_action(): (atom/target, mob/user)
 
 #define COMSIG_ITEM_IS_ATTACHING "item_is_attaching" //from base of /datum/component/attachment_handler/handle_attachment : (/obj/item, /mob)
@@ -714,7 +735,7 @@
 #define COMSIG_LIVING_JETPACK_STUN "living_jetpack_stun" //from /obj/item/jetpack_marine/heavy/proc/mob_hit()
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
-#define COMSIG_LIVING_IGNITED "living_ignited" //from /mob/living/proc/IgniteMob() : (fire_stacks)
+#define COMSIG_LIVING_IGNITED "living_ignited" //from /datum/status_effect/stacking/fire/do_ignite()
 
 ///From /mob/living/can_jump
 #define COMSIG_LIVING_CAN_JUMP "living_can_jump"
@@ -744,9 +765,10 @@
 #define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()
 	#define COMPONENT_NO_MUTE (1<<0)
 
-#define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
-#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/alien/weeds/Initialize()
-#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/alien/weeds/Destroy()
+/// Sent from [obj/alien/weeds/Initialize()] to the mob: [/obj/alien/weeds/created_weeds]
+#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"
+/// Sent from [obj/alien/weeds/Destroy()] to the mob: []
+#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"
 
 #define COMSIG_LIVING_UPDATE_PLANE_BLUR "living_update_plane_blur"
 	#define COMPONENT_CANCEL_BLUR (1<<0)
@@ -798,6 +820,7 @@
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
+#define COMSIG_HIVE_LARVA_UPDATE "hive_larva_update"
 
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 
@@ -925,6 +948,9 @@
 ///from /datum/action/ability/activable/build_designator/call_interaction()
 #define COMSIG_MOB_INTERACTION_DESIGNATED "mob_interaction_designated"
 
+///From /atom/add_slaved_npc()
+#define COMSIG_COMPONENT_ADD_NEW_SLAVE_NPC "component_add_new_slave_npc"
+
 // /datum/song signals
 
 ///sent to the instrument when a song starts playing
@@ -1018,3 +1044,17 @@
 
 /// From [/datum/health_scan/proc/ui_data]: `mob/living/carbon/human/patient`, `list/data`
 #define COMSIG_HEALTH_SCAN_DATA "health_scan_data"
+
+///Gamemode vote finished
+#define COMSIG_GAMEMODE_VOTE_RESULT "gamemode_vote_result"
+///shipmap vote finished
+#define COMSIG_SHIPMAP_VOTE_RESULT "shipmap_vote_result"
+///groundmap vote finished
+#define COMSIG_GROUNDMAP_VOTE_RESULT "groundmap_vote_result"
+///vote cancelled
+#define COMSIG_VOTE_CANCELLED "vote_cancelled"
+
+///datum is being interacted with
+#define COMSIG_DATUM_INTERACT_SET "datum_interact_set"
+///datum is being uninteracted with
+#define COMSIG_DATUM_INTERACT_UNSET "datum_interact_unset"

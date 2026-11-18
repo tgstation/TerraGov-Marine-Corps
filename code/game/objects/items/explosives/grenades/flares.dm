@@ -59,13 +59,12 @@
 
 	if(isliving(hit_atom))
 		var/mob/living/living_target = hit_atom
-		living_target.fire_stacks += FLARE_FIRE_STACKS
-		living_target.IgniteMob()
+		living_target.adjust_burning(FLARE_FIRE_STACKS)
 
 		var/target_zone = check_zone(living_target.zone_selected)
 		if(!target_zone || rand(40))
 			target_zone = "chest"
-		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !living_target.on_fire)
+		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !living_target.is_on_fire())
 			living_target.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 /obj/item/explosive/grenade/flare/attack_self(mob/user)
@@ -116,7 +115,7 @@
 	damtype = BURN
 	update_icon()
 	set_light_on(TRUE)
-	playsound(src,'sound/items/flare.ogg', 15, 1)
+	playsound(src,'sound/items/flare.ogg', 15, 1, SHORT_SOUND_RANGE)
 	GLOB.activated_flares += src
 	START_PROCESSING(SSobj, src)
 

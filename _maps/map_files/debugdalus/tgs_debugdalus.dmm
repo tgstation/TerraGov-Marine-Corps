@@ -267,7 +267,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "abf" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -533,10 +533,6 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "acx" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
-/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -651,8 +647,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "acZ" = (
-/obj/machinery/power/smes/preset,
-/obj/structure/cable,
+/obj/structure/reagent_dispensers/fueltank/cas_fuel,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "ada" = (
@@ -780,7 +775,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
+/obj/machinery/power/smes/preset,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "adC" = (
@@ -873,13 +868,6 @@
 /obj/item/fuel_cell/full,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
-"adR" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "adS" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
@@ -1593,7 +1581,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "ahC" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -1953,7 +1941,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "aiV" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
@@ -2902,8 +2890,8 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "lcb" = (
-/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/power/smes/preset,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "ldZ" = (
@@ -3144,6 +3132,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
+"pgE" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/machinery/light/mainship,
+/turf/open/floor/mainship,
+/area/mainship/engineering/engineering_workshop)
 "psO" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 1
@@ -3388,6 +3387,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"tgo" = (
+/obj/machinery/refuel_station,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship,
+/area/mainship/engineering/engineering_workshop)
 "tjM" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -6402,7 +6406,7 @@ acI
 hni
 hni
 hni
-adR
+hni
 hni
 acI
 xNw
@@ -6462,10 +6466,10 @@ ach
 ade
 ach
 ach
-ach
-ach
+tgo
 afO
-ach
+tpB
+pgE
 ach
 adS
 ajp
@@ -6521,10 +6525,10 @@ aaM
 aci
 tpB
 acx
-tpB
+ach
 acZ
-ads
 afO
+tpB
 afO
 adM
 adS
@@ -6581,10 +6585,10 @@ aaM
 acj
 tpB
 afO
+ach
 afO
-acZ
-ads
 afO
+tpB
 afO
 adN
 adS
@@ -6642,10 +6646,10 @@ acn
 adA
 afO
 afO
-acZ
-ads
-ade
 afO
+afO
+ade
+tpB
 afO
 aek
 aek
@@ -6705,7 +6709,7 @@ afO
 ach
 ach
 lcb
-afO
+ads
 ach
 adS
 aeK
@@ -6765,7 +6769,7 @@ acM
 ach
 adt
 adA
-afO
+tpB
 adO
 adS
 xsM
@@ -6825,7 +6829,7 @@ acN
 ach
 ach
 adB
-afO
+ads
 ach
 adS
 xJD
@@ -6885,7 +6889,7 @@ tpB
 rrI
 tpB
 tpB
-afO
+tpB
 adP
 adS
 aet

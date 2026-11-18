@@ -345,7 +345,7 @@
 		overlays += stampoverlay
 
 		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
-		playsound(src, 'sound/items/stamp.ogg', 15, 1)
+		playsound(src, 'sound/items/stamp.ogg', 15, 1, SHORT_SOUND_RANGE)
 
 	else if(I.heat >= 400)
 		burnpaper(I, user)

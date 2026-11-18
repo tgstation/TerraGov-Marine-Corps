@@ -79,7 +79,7 @@
 		if(!(user in watchers))
 			user.unset_interaction() // no usable camera on the network, we disconnect the user from the computer.
 			return
-	playsound(src, 'sound/machines/terminal_on.ogg', 25, 0)
+	playsound(src, 'sound/machines/terminal_on.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 	user.set_interaction(src)
 	use_camera_console(user)
 
@@ -90,7 +90,7 @@
 	var/t = tgui_input_list(user, "Which camera should you change to?", null, camera_list)
 	if(!t)
 		user.unset_interaction()
-		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
+		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 		return
 
 	var/obj/machinery/camera/C = camera_list[t]
@@ -110,7 +110,7 @@
 			user.unset_interaction()
 			return FALSE
 
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
+		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0, MEDIUM_SOUND_RANGE)
 		if(isAI(user))
 			var/mob/living/silicon/ai/A = user
 			A.eyeobj.setLoc(get_turf(C))

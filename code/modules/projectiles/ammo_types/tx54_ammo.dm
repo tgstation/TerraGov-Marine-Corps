@@ -110,25 +110,25 @@
 	handful_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
-/datum/ammo/tx54/he/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 3, 1, explosion_cause=src)
+/datum/ammo/tx54/he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, 0, 0, 1, 3, 1, explosion_cause=src)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	drop_nade(get_turf(target_mob), proj)
 
 /datum/ammo/tx54/he/on_hit_obj(obj/target_obj, atom/movable/projectile/proj)
-	drop_nade(get_turf(target_obj))
+	drop_nade(get_turf(target_obj), proj)
 
 /datum/ammo/tx54/he/on_hit_turf(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 /datum/ammo/tx54/he/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf, proj)
 
 //The secondary projectiles
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
-	icon_state = "flechette"
+	icon_state = "shrapnel"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	accuracy_variation = 5
 	max_range = 4
@@ -143,6 +143,7 @@
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
+	icon_state = "buckshot"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
 	penetration = 10
@@ -161,6 +162,7 @@
 
 /datum/ammo/bullet/tx54_spread/smoke
 	name = "chemical bomblet"
+	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 3
 	damage = 5
@@ -198,6 +200,7 @@
 
 /datum/ammo/bullet/tx54_spread/razor
 	name = "chemical bomblet"
+	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 4
 	damage = 5
@@ -244,7 +247,7 @@
 
 /datum/ammo/bullet/tx54_spread/tank_canister
 	name = "canister shot"
-	icon_state = "flechette"
+	icon_state = "shrapnel_green"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	max_range = 12
 	damage = 30
@@ -279,6 +282,7 @@
 
 /datum/ammo/bullet/tx54_spread/tank_canister/incendiary
 	name = "incendiary canister shot"
+	icon_state = "buckshot"
 	ammo_behavior_flags = parent_type::ammo_behavior_flags|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	bullet_color = COLOR_LIGHT_ORANGE
 	damage = 25

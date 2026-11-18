@@ -23,7 +23,7 @@
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src
 		holed_wall = W
-		holed_wall.opacity = FALSE
+		holed_wall.set_opacity(FALSE)
 		if(W.smoothing_junction & (NORTH_JUNCTION|SOUTH_JUNCTION))
 			setDir(EAST)
 		if(W.smoothing_junction & (EAST_JUNCTION|WEST_JUNCTION))
@@ -32,7 +32,7 @@
 
 /obj/effect/acid_hole/Destroy()
 	if(holed_wall)
-		holed_wall.opacity = initial(holed_wall.opacity)
+		holed_wall.set_opacity(initial(holed_wall.opacity))
 		holed_wall.acided_hole = null
 		holed_wall = null
 	return ..()
@@ -60,7 +60,7 @@
 	if(user.do_actions || user.lying_angle)
 		return
 
-	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
+	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	if(do_after(user, 60, IGNORE_HELD_ITEM, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying_angle)
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")

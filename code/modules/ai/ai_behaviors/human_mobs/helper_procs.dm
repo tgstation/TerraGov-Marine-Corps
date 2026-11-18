@@ -79,26 +79,15 @@
 	attack(target, user)
 
 /obj/item/weapon/ai_use(mob/living/target, mob/living/user)
-	if(!(item_flags & TWOHANDED))
-		return
-	if(item_flags & WIELDED)
-		return
-	wield(user)
-	return TRUE
-
-/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
-	if(!active)
-		attack_self(user)
+	if(item_flags & TWOHANDED)
+		if(item_flags & WIELDED)
+			return
+		wield(user)
 		return TRUE
-
-/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		switch_state(null, user)
-		return TRUE
-
-/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
-	if(!active)
-		attack_self(user)
+	if(item_flags & ITEM_ACTIVATABLE)
+		if(active)
+			return
+		toggle_active(TRUE, user)
 		return TRUE
 
 /obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
@@ -113,6 +102,11 @@
 	if(package)
 		attack_self(user)
 	return ..()
+
+/obj/item/tool/weldingtool/ai_use(mob/living/target, mob/living/user)
+	if(!isOn())
+		toggle()
+	return TRUE
 
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
@@ -141,17 +135,15 @@
 	if(welded)
 		behavior_datum.try_speak("Its welded [density ? "shut!" : "open!"]")
 		var/obj/item/tool/weldingtool/welder = behavior_datum.equip_tool(TOOL_WELDER)
-		if(!welder && density)
-			behavior_datum.set_combat_target(src)
+		if(!welder)
+			if(density)
+				behavior_datum.set_combat_target(src)
+				return
+			behavior_datum.try_speak("No welder!")
+			behavior_datum.on_engineering_end(src)
 			return
 
-		welder.toggle()
 		welder_act(interactor, welder)
-		if(welder.isOn())
-			welder.toggle()
-		var/mob/living/carbon/human/human_owner = interactor
-		if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
-			human_owner.back.attackby(welder, human_owner)
 		behavior_datum.store_tool(welder)
 
 	if(locked)
@@ -182,6 +174,12 @@
 		return
 	behavior_datum.pick_up_item(src)
 
+/obj/item/clothing/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
+	. = ..()
+	if(loc == interactor && ishuman(interactor))
+		var/mob/living/carbon/human/human_interactor = interactor
+		human_interactor.do_quick_equip()
+
 /obj/item/storage/box/visual/magazine/do_ai_interact(mob/living/interactor, datum/ai_behavior/human/behavior_datum)
 	behavior_datum.store_hands()
 	if(interactor.get_active_held_item() && interactor.get_inactive_held_item())
@@ -199,7 +197,7 @@
 		if(!(magazine.type in valid_ammo))
 			continue
 		if(!behavior_datum.try_store_item(magazine))
-			return
+			break
 		ammo_count ++
 	if(!ammo_count)
 		behavior_datum.try_speak("No ammo for me here!")
@@ -283,15 +281,8 @@
 			behavior_datum.try_speak("No welder!")
 			behavior_datum.on_engineering_end(src)
 			return
-		welder.toggle()
+
 		welder_act(interactor, welder)
-		if(welder.isOn())
-			welder.toggle()
-
-		var/mob/living/carbon/human/human_owner = interactor
-		if(welder.get_fuel() < welder.max_fuel && human_owner?.back?.reagents?.get_reagent_amount(/datum/reagent/fuel))
-			human_owner.back.attackby(welder, human_owner)
-
 		behavior_datum.store_tool(welder)
 
 	if(miner_status == MINER_MEDIUM_DAMAGE)
@@ -401,6 +392,8 @@
 	//todo:walkover stuff?
 	if(user.can_jump() && is_jumpable(user))
 		return AI_OBSTACLE_JUMP
+	if(try_climb(user))
+		return AI_OBSTACLE_RESOLVED
 	if(faction == user.faction) //don't break our shit
 		return AI_OBSTACLE_FRIENDLY
 
@@ -412,17 +405,6 @@
 		return AI_OBSTACLE_ATTACK
 	if(obj_flags & CAN_BE_HIT)
 		return AI_OBSTACLE_ATTACK
-
-/obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
-	. = ..()
-	if(. == AI_OBSTACLE_IGNORED)
-		return
-	if(. == AI_OBSTACLE_JUMP)
-		return //jumping is always best
-	if(!can_climb(user))
-		return
-	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
-	return AI_OBSTACLE_RESOLVED
 
 /obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
 	if(!can_interact(user) || !user.dextrous)

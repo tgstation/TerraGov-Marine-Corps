@@ -39,7 +39,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		to_chat(xeno_owner, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
 	return TRUE
@@ -63,7 +63,7 @@
 	GLOB.round_statistics.hunter_cloaks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_cloaks")
 
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
@@ -76,12 +76,12 @@
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
+		SIGNAL_ADDTRAIT(TRAIT_MOVE_VENTCRAWLING),
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOABILITY_MIRAGE_SWAP), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
-
-	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(damage_taken))
 
@@ -112,10 +112,10 @@
 		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
-		COMSIG_XENOABILITY_MIRAGE_SWAP,
+		SIGNAL_ADDTRAIT(TRAIT_MOVE_VENTCRAWLING),
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		COMSIG_XENOABILITY_MIRAGE_SWAP,
 		COMSIG_XENOMORPH_ZONE_SELECT,
 		COMSIG_XENOMORPH_PLASMA_REGEN,
 		COMSIG_XENOMORPH_TAKING_DAMAGE,))
@@ -140,9 +140,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
-///Handles moving while in stealth
-/datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/stealth/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * movement_cost_multiplier)
 
@@ -186,7 +184,7 @@
 		return
 	if(can_sneak_attack)
 		M.adjust_stagger(3 SECONDS)
-		M.add_slowdown(1)
+		M.adjust_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
 
 ///Special sneak attack when stealthed
@@ -212,7 +210,7 @@
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks SECONDS)
-	target.add_slowdown(staggerslow_stacks)
+	target.slowdown(staggerslow_stacks)
 	if(blinding_stacks)
 		target.blind_eyes(blinding_stacks)
 	if(sneak_attack_stun_duration)
@@ -303,8 +301,10 @@
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 20
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HUNTER_POUNCE_SELECT,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
@@ -319,6 +319,7 @@
 	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/New(Target)
+	. = ..()
 	desc = "Leap at your target up to [HUNTER_POUNCE_RANGE] tiles away, stunning them for [XENO_POUNCE_STUN_DURATION / (1 SECONDS)] seconds."
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
@@ -360,18 +361,20 @@
 	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
 
-	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
+	if(ishuman(living_target) && (angle2dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
 			xeno_owner.set_throwing(FALSE)
+			playsound(get_turf(living_target), 'sound/weapons/alien_knockdown.ogg', 75, TRUE)
+			xeno_owner.visible_message(span_xenowarning("[xeno_owner] is knocked back!"), span_xenowarning("We are knocked back!"))
 			return
 	trigger_pounce_effect(living_target)
 	pounce_complete()
 
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
-	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	xeno_owner.Immobilize(self_immobilize_duration)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(stun_duration)
@@ -395,7 +398,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -660,8 +663,10 @@
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_cost = 50
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SILENCE_SELECT,
 	)
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 	/// The multiplier of Silence's effects to the victim that the owner has selected with Hunter's Mark.
@@ -710,7 +715,7 @@
 		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)
 		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
 		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
-		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
+		target.apply_status_effect(STATUS_EFFECT_MUTED, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
 		victim_count++
 
 	if(!victim_count)

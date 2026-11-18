@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = "CENTER-7,CENTER-7"
+	screen_loc = "1,1" //its positioned based on the bottom left corner of the image
 
 
 /datum/cinematic

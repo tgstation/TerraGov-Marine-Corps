@@ -53,8 +53,8 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
-	if(on_fire)
-		ExtinguishMob()
+	if(is_on_fire())
+		extinguish_mob()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0 && !(status_flags & INCORPOREAL))
 		setBruteLoss(0)
@@ -304,7 +304,7 @@
 	///The weakref to the parent hivemind mob that we're attached to
 	var/datum/weakref/parent
 
-/obj/structure/xeno/hivemindcore/Initialize(mapload)
+/obj/structure/xeno/hivemindcore/Initialize(mapload, _hivenumber)
 	. = ..()
 	GLOB.hive_datums[hivenumber].hivemindcores += src
 	new /obj/alien/weeds/node(loc)

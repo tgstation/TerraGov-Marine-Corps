@@ -273,8 +273,6 @@
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
-	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds) //Add to the squad HUD
-		mech_status_hud.add_to_hud(src)
 	hud_set_mecha_health()
 	hud_set_mecha_battery()
 	update_icon()
@@ -318,8 +316,6 @@
 	emp_timer = null
 
 	GLOB.mechas_list -= src
-	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds)
-		mech_status_hud.remove_from_hud(src)
 	return ..()
 
 /obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
@@ -385,6 +381,16 @@
 	add_mob_blood(crushed)
 	var/turf/below_us = get_turf(src)
 	below_us.add_mob_blood(crushed)
+
+	if(iszombie(crushed))
+		var/mob/living/carbon/human/H = crushed
+		var/datum/limb/limb = pick(H.limbs)
+		if(limb.body_part == CHEST || limb.body_part == GROIN)
+			limb = H.get_limb(BODY_ZONE_HEAD)//Total chance 3/11 = 27%
+
+		if(!(limb.limb_status & LIMB_DESTROYED))
+			H.visible_message(span_danger("[H]'s [parse_zone(limb.name)] is pulped by [src]!"))
+			limb.droplimb(FALSE, TRUE, FALSE, TRUE)
 
 	if(crushed.stat == DEAD)
 		return
@@ -672,7 +678,7 @@
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
 	no_footstep_particle = FALSE
-	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
+	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE, LOUD_SOUND_RANGE)
 	var/obj/effect/abstract/particle_holder/landing_particles
 	var/turf/current_turf = get_turf(src)
 	if(iswater(current_turf))

@@ -10,14 +10,14 @@
 	description = "Hold down to sprint if human or stalk if xeno, release to return to previous mode."
 	keybind_signal = COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN
 
-/datum/keybinding/carbon/hold_run_move_intent/down(client/user)
+/datum/keybinding/carbon/hold_run_move_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
 	user.mob.toggle_move_intent(!initial(user.mob.m_intent))
 	return TRUE
 
-/datum/keybinding/carbon/hold_run_move_intent/up(client/user)
+/datum/keybinding/carbon/hold_run_move_intent/up(client/user, turf/target)
 	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP) & COMSIG_KB_ACTIVATED)
 		return TRUE
 	user.mob.toggle_move_intent(initial(user.mob.m_intent))
@@ -31,7 +31,7 @@
 	description = "Toggle throwing the current item or not."
 	keybind_signal = COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN
 
-/datum/keybinding/carbon/toggle_throw_mode/down(client/user)
+/datum/keybinding/carbon/toggle_throw_mode/down(client/user, turf/target)
 	if(!iscarbon(user.mob))
 		return FALSE
 	. = ..()
@@ -48,7 +48,7 @@
 	description = "Toggle whether you are resting or not."
 	keybind_signal = COMSIG_KB_CARBON_TOGGLEREST_DOWN
 
-/datum/keybinding/carbon/toggle_rest/down(client/user)
+/datum/keybinding/carbon/toggle_rest/down(client/user, turf/target)
 	if(!iscarbon(user.mob))
 		return FALSE
 	. = ..()
@@ -65,7 +65,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN
 
-/datum/keybinding/carbon/select_help_intent/down(client/user)
+/datum/keybinding/carbon/select_help_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -80,7 +80,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN
 
-/datum/keybinding/carbon/select_disarm_intent/down(client/user)
+/datum/keybinding/carbon/select_disarm_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -95,7 +95,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN
 
-/datum/keybinding/carbon/select_grab_intent/down(client/user)
+/datum/keybinding/carbon/select_grab_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -110,7 +110,7 @@
 	description = ""
 	keybind_signal = COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN
 
-/datum/keybinding/carbon/select_harm_intent/down(client/user)
+/datum/keybinding/carbon/select_harm_intent/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return

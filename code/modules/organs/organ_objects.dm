@@ -39,6 +39,8 @@
 /obj/item/organ/Destroy()
 	if(!robotic)
 		STOP_PROCESSING(SSobj, src)
+	if(organ_data)
+		QDEL_NULL(organ_data)
 	return ..()
 
 /obj/item/organ/process()

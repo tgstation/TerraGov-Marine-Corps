@@ -12,11 +12,14 @@
 	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
 	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RECYCLE_SELECT,
 	)
+	target_flags = ABILITY_XENO_TARGET
 	ability_cost = 750
-	gamemode_flags = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR|ABILITY_ENCOUNTER
 
 /datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -27,7 +30,7 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "too far!")
 		return FALSE
-	if(xeno_owner.on_fire)
+	if(xeno_owner.is_on_fire())
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "not while on fire!")
 		return FALSE
@@ -64,9 +67,6 @@
 	ability_cost = 25
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/turf/closed/wall/resin/regenerating/special/bulletproof,
-		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
@@ -127,7 +127,7 @@
 		attached_armor = getArmor(armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount, armor_amount)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.attachArmor(attached_armor)
 	set_toggle(TRUE)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	if(!silent)
@@ -144,8 +144,7 @@
 	set_toggle(FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-/datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
-	SIGNAL_HANDLER
+/datum/action/ability/xeno_action/toggle_speed/on_move(atom/source, atom/old_loc, move_dir, forced)
 	if(!isturf(xeno_owner.loc) || xeno_owner.plasma_stored < 10)
 		owner.balloon_alert(owner, "resin walk ended, no plasma")
 		resinwalk_off(TRUE)
@@ -239,7 +238,7 @@
 
 	succeed_activate()
 
-	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(owner, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
@@ -255,6 +254,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
+
+/datum/action/ability/xeno_action/create_jelly/encounter
+	keybinding_signals = null
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent, override_flags, selecting)
 	. = ..()
@@ -282,11 +284,13 @@
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_duration = 12.5 SECONDS
 	ability_cost = 200
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_HEALING_INFUSION_SELECT,
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
 	/// The range in which this ability can be used.
 	var/heal_range = HIVELORD_HEAL_RANGE
 	/// The length of deciseconds that the Resin Jelly Coating status effect will be applied.
@@ -344,9 +348,9 @@
 	owner.visible_message(span_xenodanger("\the [owner] infuses [target] with mysterious energy!"), \
 	span_xenodanger("We empower [target] with our [src]!"))
 
-	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
-	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
-	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
+	playsound(target, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
+	playsound(owner, 'sound/effects/magic.ogg', 25, FALSE, MEDIUM_SOUND_RANGE) //Cool SFX
+	owner.beam(target, icon_state = "medbeam", time = 1 SECONDS, max_distance = 10, override_origin_pixel_x = 0, override_target_pixel_x = 0)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, span_xenodanger("Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.")) //Let the target know.
@@ -396,7 +400,7 @@
 	if(!xeno_owner.selected_plant)
 		return FALSE
 
-	playsound(src, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(src, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new xeno_owner.selected_plant(get_turf(owner))
 	add_cooldown()
 	return succeed_activate()
@@ -468,6 +472,6 @@
 /datum/action/ability/xeno_action/place_recovery_pylon/action_activate()
 	var/obj/structure/xeno/recovery_pylon/recovery_pylon = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber(), radius, damage_modifier)
 	to_chat(xeno_owner, span_xenonotice("We shape some resin into \a [recovery_pylon]."))
-	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
+	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25, FALSE, MEDIUM_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()

@@ -16,11 +16,7 @@
 
 /datum/surgery_step/necro/fix_dead_tissue //Debridement
 
-	allowed_tools = list(
-		/obj/item/tool/surgery/scalpel = 100,		\
-		/obj/item/tool/kitchen/knife = 75,	\
-		/obj/item/shard = 50, 		\
-	)
+	allowed_tools = SURGERY_TOOL_CUTTING
 
 	can_infect = 1
 	blood_level = 1

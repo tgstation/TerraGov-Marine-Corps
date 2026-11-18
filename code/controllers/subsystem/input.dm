@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(input)
 	name = "Input"
-	wait = 1 //SS_TICKER means this runs every tick
-	init_order = INIT_ORDER_INPUT
+	wait = 1
 	init_stage = INITSTAGE_EARLY
 	flags = SS_TICKER
 	priority = FIRE_PRIORITY_INPUT
@@ -21,11 +20,11 @@ SUBSYSTEM_DEF(input)
 // This is for when macro sets are eventualy datumized
 /datum/controller/subsystem/input/proc/setup_default_macro_sets()
 	macro_set = list(
-		"Any" = "\"KeyDown \[\[*\]\]\"",
-		"Any+UP" = "\"KeyUp \[\[*\]\]\"",
+		"Any" = "\"KeyDown \[\[*\]\] \[\[map.mouse-pos\]\] \[\[map.size\]\]\"",
+		"Any+UP" = "\"KeyUp \[\[*\]\] \[\[map.mouse-pos\]\] \[\[map.size\]\]\"",
 		"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
-		"Tab" = "\".winset \\\"input.focus=true ? map.focus=true : input.focus=true\\\"\"",
-		"Escape" = "Reset-Held-Keys",
+		"Tab" = "\".winset \\\"input.focus=true?map.focus=true:input.focus=true\\\"\"",
+		"Escape" = "Reset-Held-Keys", //todo: "Open-Escape-Menu"
 	)
 
 

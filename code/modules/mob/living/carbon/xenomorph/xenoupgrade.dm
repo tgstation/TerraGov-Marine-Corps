@@ -48,6 +48,7 @@
 
 	if(upgrade == XENO_UPGRADE_PRIMO && !silent)
 		to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
+		sync_hive_abilities()
 
 	generate_name() //Give them a new name now
 
@@ -160,6 +161,10 @@
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 /mob/living/carbon/xenomorph/ravager/bloodthirster/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/ravager/corruptor/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 

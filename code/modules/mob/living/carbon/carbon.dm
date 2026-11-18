@@ -30,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, SFX_SPARKS, 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE, MEDIUM_SOUND_RANGE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning("[src] was shocked by the [source]!"), \
@@ -69,7 +69,7 @@
 
 /mob/living/carbon/proc/do_vomit()
 	adjust_stagger(3 SECONDS)
-	add_slowdown(3)
+	slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
@@ -147,7 +147,7 @@
 /mob/living/carbon/throw_item(atom/target, obj/item/override_item)
 	. = ..()
 	throw_mode_off()
-	if(is_ventcrawling) //NOPE
+	if(HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING)) //NOPE
 		return FALSE
 	if(stat || !target)
 		return FALSE
@@ -255,7 +255,7 @@
 
 	stop_pulling()
 	visible_message(span_warning("[src] slipped on \the [slip_source_name]!"), span_warning("You slipped on \the [slip_source_name]!"))
-	playsound(src, 'sound/misc/slip.ogg', 25, 1)
+	playsound(src, 'sound/misc/slip.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 	Stun(stun_time)
 	Paralyze(paralyze_time)
 	. = TRUE

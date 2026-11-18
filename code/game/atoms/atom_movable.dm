@@ -599,8 +599,8 @@
 
 	if(HAS_SPATIAL_GRID_CONTENTS(src))
 		if(old_turf && new_turf && (old_turf.z != new_turf.z \
-			|| ROUND_UP(old_turf.x / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.x / SPATIAL_GRID_CELLSIZE) \
-			|| ROUND_UP(old_turf.y / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.y / SPATIAL_GRID_CELLSIZE)))
+			|| GET_SPATIAL_INDEX(old_turf.x) != GET_SPATIAL_INDEX(new_turf.x) \
+			|| GET_SPATIAL_INDEX(old_turf.y) != GET_SPATIAL_INDEX(new_turf.y)))
 
 			SSspatial_grid.exit_cell(src, old_turf)
 			SSspatial_grid.enter_cell(src, new_turf)
@@ -678,11 +678,23 @@
 
 /atom/movable/Exited(atom/movable/gone, direction)
 	. = ..()
-	if(LAZYLEN(gone.important_recursive_contents))
-		var/list/nested_locs = get_nested_locs(src) + src
-		for(var/channel in gone.important_recursive_contents)
-			for(var/atom/movable/location AS in nested_locs)
-				LAZYREMOVEASSOC(location.important_recursive_contents, channel, gone.important_recursive_contents[channel])
+	if(!LAZYLEN(gone.important_recursive_contents))
+		return
+	var/list/nested_locs = get_nested_locs(src) + src
+	for(var/channel in gone.important_recursive_contents)
+		for(var/atom/movable/location as anything in nested_locs)
+			LAZYINITLIST(location.important_recursive_contents)
+			var/list/recursive_contents = location.important_recursive_contents // blue hedgehog velocity
+			LAZYINITLIST(recursive_contents[channel])
+			recursive_contents[channel] -= gone.important_recursive_contents[channel]
+			switch(channel)
+				if(RECURSIVE_CONTENTS_CLIENT_MOBS, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+					if(!length(recursive_contents[channel]))
+						// This relies on a nice property of the linked recursive and gridmap types
+						// They're defined in relation to each other, so they have the same value
+						SSspatial_grid.remove_grid_awareness(location, channel)
+			ASSOC_UNSETEMPTY(recursive_contents, channel)
+			UNSETEMPTY(location.important_recursive_contents)
 
 /atom/movable/Entered(atom/movable/arrived, atom/old_loc)
 	. = ..()
@@ -723,7 +735,7 @@
 		return
 	if(!isturf(loc))
 		return
-	var/dir_to_proj = angle_to_cardinal_dir(Get_Angle(hit_atom, old_throw_source))
+	var/dir_to_proj = angle2dir_cardinal(Get_Angle(hit_atom, old_throw_source))
 	if(ISDIAGONALDIR(dir_to_proj))
 		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
 		for(var/direction in cardinals)
@@ -742,7 +754,7 @@
 	else if(new_angle > 360)
 		new_angle -= 360
 
-	step(src, angle_to_dir(new_angle))
+	step(src, angle2dir(new_angle))
 
 /atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
@@ -755,13 +767,13 @@
 	else if(gravity > 1)
 		range = ROUND_UP(range * (2 - gravity))
 
-	if(!targetted_throw)
-		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
-
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW) & COMPONENT_MOVABLE_BLOCK_PRE_THROW)
 		return FALSE
 
 	var/turf/origin = get_turf(src)
+
+	if(!targetted_throw)
+		target = get_turf_at_angle_ranged(origin, Get_Angle(origin, target), range)
 
 	if(spin)
 		animation_spin(5, 1)
@@ -868,11 +880,12 @@
 	thrown_speed = 0
 	throw_source = null
 
-	if(!currently_z_moving) // I don't think you can zfall while thrown but hey, just in case.
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+
+	if(!currently_z_moving) //after post throw, sigs, for e.g if they change the pass flags
 		var/turf/T = get_turf(src)
 		T?.zFall(src)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 
@@ -1338,8 +1351,6 @@
 		return FALSE
 	if(anchored || throwing)
 		return FALSE
-	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
-		return FALSE
 	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
 		return FALSE
 	if(force < (move_resist * MOVE_FORCE_PULL_RATIO))
@@ -1633,10 +1644,10 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	transition_filter(AM_SUBMERGE_MASK, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)), duration)
 	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
-///overrides the turf's normal footstep sound
+/// Overrides the turf's normal footstep sound.
 /atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
 	SIGNAL_HANDLER
-	return //override as required with the specific footstep sound
+	return // Change keys in [footstep_overrides] to override.
 
 ///returns that src is covering its turf. Used to prevent turf interactions such as water
 /atom/movable/proc/turf_cover_check(atom/movable/source)
@@ -1663,3 +1674,12 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 */
 /atom/movable/proc/keybind_face_direction(direction)
 	setDir(direction)
+
+/// Sets and deals with any changes to the move_resist variable.
+/atom/movable/proc/set_move_resist(new_move_resist)
+	if(move_resist == new_move_resist)
+		return
+	move_resist = new_move_resist
+	if(pulledby && !can_be_pulled(pulledby))
+		pulledby.stop_pulling()
+

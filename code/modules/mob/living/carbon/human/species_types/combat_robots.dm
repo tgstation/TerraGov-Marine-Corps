@@ -24,7 +24,7 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_IMMEDIATE_DEFIB, TRAIT_CRIT_IS_DEATH)
-	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED|SPECIES_NO_HUG
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -65,17 +65,19 @@
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= 0 && H.health > -50)
 		H.clear_fullscreen("robotlow")
-		H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
+		if(!H.fullscreens["robothalf"])
+			H.overlay_fullscreen("robothalf", /atom/movable/screen/fullscreen/machine/robothalf)
 	else if(H.health <= -50)
 		H.clear_fullscreen("robothalf")
-		H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
+		if(!H.fullscreens["robotlow"])
+			H.overlay_fullscreen("robotlow", /atom/movable/screen/fullscreen/machine/robotlow)
 	else
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
 	if(H.health > -25) //Staggerslowed if below crit threshold
 		return
 	H.Stagger(2 SECONDS)
-	H.adjust_slowdown(1)
+	H.slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self

@@ -206,12 +206,12 @@
 	if(!toggle)
 		QDEL_NULL(current_beam)
 		return
-	current_beam = link_owner.beam(link_target, icon_state= "medbeam", beam_type = /obj/effect/ebeam/essence_link)
+	current_beam = link_owner.beam(link_target, icon_state = "medbeam", beam_type = /obj/effect/ebeam/essence_link, override_origin_pixel_x = 0, override_target_pixel_x = 0)
 	update_beam()
 
 /// Updates the link's appearance.
 /datum/status_effect/stacking/essence_link/proc/update_beam()
-	current_beam?.visuals.alpha = round(255 / (max_stacks+1 - stacks))
+	current_beam?.alpha = round(255 / (max_stacks+1 - stacks))
 
 /// Ends the link prematurely via evolution/devolution.
 /datum/status_effect/stacking/essence_link/proc/end_link(datum/source)
@@ -464,8 +464,7 @@
 		RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(handle_brute_damage))
 		owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 		target_mob.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
-		psylink_beam = owner.beam(target_mob, icon_state= "medbeam", beam_type = /obj/effect/ebeam/essence_link)
-		psylink_beam.visuals.alpha = 127
+		psylink_beam = owner.beam(target_mob, icon_state = "medbeam", beam_type = /obj/effect/ebeam/essence_link, override_origin_pixel_x = 0, override_target_pixel_x = 0, alpha = 127)
 		return
 	UnregisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE)
 	UnregisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE)

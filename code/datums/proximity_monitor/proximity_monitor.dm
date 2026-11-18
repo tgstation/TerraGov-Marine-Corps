@@ -36,8 +36,6 @@
 	RegisterSignal(new_host, COMSIG_QDELETING, PROC_REF(on_host_or_receiver_del))
 	var/static/list/containers_connections = list(COMSIG_MOVABLE_MOVED = PROC_REF(on_moved), COMSIG_MOVABLE_Z_CHANGED = PROC_REF(on_z_change))
 	AddComponent(/datum/component/connect_containers, host, containers_connections)
-	RegisterSignal(host, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
-	RegisterSignal(host, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 	set_range(current_range, TRUE)
 
 /datum/proximity_monitor/proc/on_host_or_receiver_del(datum/source)
@@ -53,6 +51,12 @@
 	if(!force_rebuild && range == current_range)
 		return FALSE
 	. = TRUE
+	if(current_range > 0 && range == 0)
+		UnregisterSignal(host, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
+	else if(current_range == 0 && range > 0)
+		RegisterSignal(host, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+		RegisterSignal(host, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
+
 	current_range = range
 
 	//If the connect_range component exists already, this will just update its range. No errors or duplicates.

@@ -1,5 +1,7 @@
 /atom/MouseEntered(location, control, params)
 	SSmouse_entered.hovers[usr.client] = src
+	SSmouse_entered.hover_refs[usr.client] = WEAKREF(src)
+
 	return
 
 // /// Fired whenever this atom is the most recent to be hovered over in the tick.

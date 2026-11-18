@@ -45,11 +45,11 @@
 	. = ..()
 	. += "It is currently facing [dir2text(dir)], and is outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining."
 
-/obj/machinery/unboxer/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/unboxer/wrench_act(mob/user, obj/item/tool)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
 
-/obj/machinery/unboxer/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/unboxer/screwdriver_act(mob/user, obj/item/tool)
 	setDir(turn(dir, 90))
 	balloon_alert(user, "facing [dir2text(dir)]")
 
@@ -453,7 +453,7 @@
 /obj/item/factory_refill/mortar_shell_smoke_refill
 	name = "box of rounded metal plates (Mortar Smoke)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Smoke shells used in mortars, once finished."
-	refill_type = /obj/item/factory_part/mortar_shell_flare
+	refill_type = /obj/item/factory_part/mortar_shell_smoke
 	refill_amount = 30
 
 /obj/item/factory_refill/mlrs_rocket_refill

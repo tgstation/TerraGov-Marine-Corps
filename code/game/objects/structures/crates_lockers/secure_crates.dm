@@ -54,7 +54,7 @@
 			overlays.Cut()
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
+			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 			locked = 0
 		update_icon()
 	if(!opened && prob(20/severity))

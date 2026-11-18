@@ -27,6 +27,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dheight = 2
 	height = 5
 
+/obj/docking_port/stationary/supply/som
+	id = "supply_SOM_home"
+	roundstart_template = /datum/map_template/shuttle/supply/som
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = SHUTTLE_SUPPLY
@@ -47,6 +51,13 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/home_id = "supply_home"
 	///prefix for railings and gear todo should probbaly be defines instead?
 	var/railing_gear_name = "supply"
+
+/obj/docking_port/mobile/supply/som
+	name = "SOM supply shuttle"
+	id = SHUTTLE_SOM_SUPPLY
+	faction = FACTION_SOM
+	home_id = "supply_SOM_home"
+	railing_gear_name = "supply_SOM"
 
 /obj/docking_port/mobile/supply/Destroy(force)
 	for(var/i in railings)
@@ -248,6 +259,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
+
+/obj/machinery/computer/supplycomp/hvh
+	req_access = null
+
+/obj/machinery/computer/supplycomp/hvh/som
+	faction = FACTION_SOM
+	shuttle_id = SHUTTLE_SOM_SUPPLY
+	home_id = "supply_SOM_home"
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -692,6 +711,8 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 	for(var/obj/vehicle/sealed/armored/vehtype AS in typesof(/obj/vehicle/sealed/armored))
 		var/flags = vehtype::armored_flags
 
+		if(vehtype in SSticker?.mode?.vehicle_black_list)
+			continue
 		if(flags & ARMORED_PURCHASABLE_TRANSPORT)
 			if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_EXPERIENCED)
 				continue

@@ -146,6 +146,12 @@
 /obj/effect/turf_decal/tile/corsatstraight/green,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/arrivals)
+"aft" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/biodome/two)
 "afu" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/grayscale/darkgray,
@@ -48530,6 +48536,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/maint)
+"uZz" = (
+/obj/effect/turf_decal/tile/corsatcorner/cyan{
+	dir = 1
+	},
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/gamma/hangar/flightcontrol)
 "uZB" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -78037,7 +78050,7 @@ xHo
 mGe
 ixI
 ixI
-ixI
+aft
 ixI
 ixI
 mGe
@@ -84248,7 +84261,7 @@ buq
 bKt
 cch
 uoi
-slM
+uZz
 iiT
 pmu
 jnB

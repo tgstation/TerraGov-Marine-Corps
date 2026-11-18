@@ -68,9 +68,11 @@
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_HUMAN_TARGET
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_DEFILE_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/defile/on_cooldown_finish()
@@ -108,7 +110,7 @@
 	add_cooldown()
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target)
-	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	playsound(living_target, pick('sound/voice/alien/drool1.ogg', 'sound/voice/alien/drool2.ogg'), 15, 1)
 	to_chat(xeno_owner, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
@@ -168,7 +170,7 @@
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_cost = 200
 	cooldown_duration = 40 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
@@ -255,7 +257,7 @@
 		toggle_particles(FALSE)
 		return
 	var/turf/T = get_turf(xeno_owner)
-	playsound(T, 'sound/effects/smoke.ogg', 25)
+	playsound(T, 'sound/effects/smoke.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	if(time_left > 1)
 		emitted_gas.set_up(radius, T)
 	else //last emission is larger
@@ -427,7 +429,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
-	target_flags = ABILITY_MOB_TARGET
 	/// How many remaining reagent slashes does this xenomorph have?
 	var/reagent_slash_count = 0
 	/// How much units is injected on slash?
@@ -483,7 +484,7 @@
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.reagents.add_reagent(reagent_slash_reagent, reagent_slash_amount)
-	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	xeno_owner.visible_message(carbon_target, span_danger("[carbon_target] is pricked by [xeno_owner]'s spines!"))
 
 	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics
@@ -528,8 +529,11 @@
 	desc = "Throw one of your tentacles forward to grab a target or item."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 175
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TENTACLE_SELECT,
 	)
 	///reference to beam tentacle
 	var/datum/beam/tentacle
@@ -571,7 +575,7 @@
 
 /datum/action/ability/activable/xeno/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
-	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(tentacle_end, icon_state = "curse0")
 	RegisterSignals(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
 	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
 	succeed_activate()
@@ -586,7 +590,7 @@
 		owner.balloon_alert(owner, "grab failed!")
 		clear_cooldown()
 		return
-	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(target, icon_state = "curse0")
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
 	target.balloon_alert_to_viewers("grabbed!")

@@ -2,7 +2,7 @@
 	category = CATEGORY_ADMIN
 	weight = WEIGHT_ADMIN
 
-/datum/keybinding/admin/down(client/user)
+/datum/keybinding/admin/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -31,7 +31,7 @@
 	description = "Speak with the dead."
 	keybind_signal = COMSIG_KB_ADMIN_DSAY_DOWN
 
-/datum/keybinding/admin/dead_say/down(client/user)
+/datum/keybinding/admin/dead_say/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -45,7 +45,7 @@
 	description = "Toggles buildmode"
 	keybind_signal = COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN
 
-/datum/keybinding/admin/toggle_buildmode_self/down(client/user)
+/datum/keybinding/admin/toggle_buildmode_self/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -59,7 +59,7 @@
 	description = "Open the View-Tags menu"
 	keybind_signal = COMSIG_KB_ADMIN_VIEWTAGS_DOWN
 
-/datum/keybinding/admin/view_tags/down(client/user)
+/datum/keybinding/admin/view_tags/down(client/user, turf/target)
 	. = ..()
 	if(.)
 		return

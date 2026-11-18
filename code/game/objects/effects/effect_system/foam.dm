@@ -40,7 +40,7 @@
 	return ..()
 
 /obj/effect/particle_effect/foam/footstep_override(atom/movable/source, list/footstep_overrides)
-	footstep_overrides[FOOTSTEP_WET] = layer
+	footstep_overrides[FOOTSTEP_WET] = get_footstep_layer(layer, plane)
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()

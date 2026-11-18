@@ -123,7 +123,7 @@
 		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply", MINIMAP_BLIPS_LAYER))
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
-	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
+	playsound(source, 'sound/machines/twobeep.ogg', 15, 1, SHORT_SOUND_RANGE)
 	user.visible_message(span_notice("[user] activates [source]'s signal."))
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_TYPE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
 	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", source, user.faction)
@@ -157,7 +157,7 @@
 	QDEL_NULL(beacon_cam)
 	QDEL_NULL(beacon_datum)
 	activator = null
-	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
+	playsound(source, 'sound/machines/twobeep.ogg', 15, 1, SHORT_SOUND_RANGE)
 	active = FALSE //this is here because of attack hand
 	source.update_appearance()
 

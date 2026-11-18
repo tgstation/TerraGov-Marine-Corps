@@ -5,7 +5,7 @@
  */
 
 import { Store } from 'common/redux';
-import { storage } from 'common/storage';
+import { storage, type StorageDiagnostic } from 'common/storage';
 import DOMPurify from 'dompurify';
 
 import {
@@ -51,11 +51,30 @@ const saveChatToStorage = async (store: Store) => {
   storage.set('chat-messages', messages);
 };
 
+const surfaceStorageDiagnostics = (diagnostics: StorageDiagnostic[]) => {
+  const batch = diagnostics
+    .filter((d) => d.level !== 'info')
+    .map((d) =>
+      createMessage({
+        type: 'internal/storage',
+        text: `[Storage] ${d.message}`,
+      }),
+    );
+
+  if (batch.length) {
+    chatRenderer.processBatch(batch, {
+      prepend: true,
+    });
+  }
+};
+
 const loadChatFromStorage = async (store: Store) => {
   const [state, messages] = await Promise.all([
     storage.get('chat-state'),
     storage.get('chat-messages'),
   ]);
+
+  surfaceStorageDiagnostics(storage.diagnostics);
   // Discard incompatible versions
   if (state && state.version <= 4) {
     store.dispatch(loadChat());

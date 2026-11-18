@@ -59,7 +59,7 @@
 	if(!istype(turf))
 		return
 
-	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.pass_flags, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
+	if(source.buckled || source.throwing || HAS_TRAIT(source, TRAIT_MOVE_VENTCRAWLING) || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.pass_flags, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
 	if(ishuman(source))
@@ -118,6 +118,8 @@
 		volume_multiplier -= 0.5
 		range_adjustment += -3
 
+	if(volume_multiplier <= 0) //silent
+		return
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
 		playsound(source_loc, footstep_sounds, volume * volume_multiplier, sound_vary, DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
@@ -173,6 +175,9 @@
 	if(source.m_intent == MOVE_INTENT_WALK)
 		volume_multiplier -= 0.5
 		range_adjustment += -3
+
+	if(volume_multiplier <= 0) //silent
+		return
 
 	var/override_sound = source_loc.get_footstep_override()
 	var/footstep_type

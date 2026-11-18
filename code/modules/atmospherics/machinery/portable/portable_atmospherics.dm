@@ -32,17 +32,17 @@
 	I.forceMove(src)
 	update_icon()
 
-/obj/machinery/portable_atmospherics/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/portable_atmospherics/crowbar_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!holding)
 		return
 	balloon_alert(user, "pried [holding] out")
-	playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+	tool.play_tool_sound(src)
 	holding.forceMove(drop_location())
 	holding = null
 	update_icon()
 
-/obj/machinery/portable_atmospherics/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/portable_atmospherics/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 	if(!connected_port)
 		var/obj/machinery/atmospherics/components/unary/portables_connector/new_port = locate() in drop_location()
@@ -69,7 +69,7 @@
 	pixel_y = new_port.pixel_y
 	update_icon()
 
-	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(user)
 		balloon_alert(user, "connected to [new_port]")
 
@@ -90,7 +90,7 @@
 	pixel_y = initial(pixel_y)
 	update_icon()
 
-	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE)
+	playsound(src, 'sound/items/ratchet.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 	if(user)
 		balloon_alert(user, "disconnected")
 

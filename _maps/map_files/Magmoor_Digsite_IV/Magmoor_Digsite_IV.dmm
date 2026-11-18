@@ -1845,7 +1845,6 @@
 /area/magmoor/civilian/jani)
 "blg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/nuke_spawn,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)
@@ -4541,6 +4540,10 @@
 "dff" = (
 /turf/closed/wall,
 /area/magmoor/hydroponics/north)
+"dfz" = (
+/obj/effect/landmark/patrol_point/xeno/xeno_21,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/civilian/jani)
 "dfE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -7437,6 +7440,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"eXE" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/patrol_point/xeno/xeno_11,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "eYa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -25373,6 +25381,11 @@
 	dir = 1
 	},
 /area/magmoor/civilian/jani)
+"rOZ" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "rPg" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
@@ -55095,7 +55108,7 @@ lRD
 aPs
 aPs
 lxN
-uyJ
+eXE
 aPs
 aPs
 aPs
@@ -55336,7 +55349,7 @@ aPs
 hpH
 rQK
 xeb
-fCN
+rOZ
 lxN
 rQK
 kxx
@@ -62256,7 +62269,7 @@ xYz
 rtA
 rtA
 fzh
-rtA
+dfz
 gje
 sED
 noU

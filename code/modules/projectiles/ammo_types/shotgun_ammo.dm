@@ -13,6 +13,7 @@
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
 	handful_icon_state = "shotgun_slug"
+	icon_state = "bullet_large_green"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3
@@ -42,6 +43,7 @@
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
 	handful_icon_state = "incendiary_slug"
+	icon_state = "bullet_large_red"
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
@@ -130,8 +132,8 @@
 	damage_falloff = 0.5
 	penetration = 0
 
-/datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 2, tiny = TRUE, explosion_cause=src)
+/datum/ammo/bullet/shotgun/frag/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, weak_impact_range = 2, tiny = TRUE, explosion_cause=src)
 
 /datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	drop_nade(get_turf(target_mob))
@@ -185,6 +187,7 @@
 /datum/ammo/bullet/shotgun/barrikada_slug
 	name = "heavy metal slug"
 	handful_icon_state = "heavy_shotgun_barrikada"
+	icon_state = "bullet_large_green"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 4
@@ -246,7 +249,7 @@
 	max_range = 15
 	damage = 17
 	damage_falloff = 0.25
-	penetration = 15
+	penetration = 20
 	sundering = 1.5
 
 /datum/ammo/bullet/shotgun/tx15_flechette/spread
@@ -255,12 +258,13 @@
 /datum/ammo/bullet/shotgun/tx15_slug
 	name = "shotgun slug"
 	handful_icon_state = "shotgun_slug"
+	icon_state = "bullet_green"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
 	damage = 60
-	penetration = 30
+	penetration = 20
 	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
@@ -286,7 +290,7 @@
 /datum/ammo/bullet/shotgun/mbx900_sabot
 	name = "light shotgun sabot shell"
 	handful_icon_state = "light_shotgun_sabot"
-	icon_state = "shotgun_slug"
+	icon_state = "bullet_green"
 	hud_state = "shotgun_sabot"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 5
@@ -298,7 +302,7 @@
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = "light shotgun tracker round"
 	handful_icon_state = "light_shotgun_tracker"
-	icon_state = "shotgun_slug"
+	icon_state = "blue_bullet"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
 	max_range = 15
@@ -311,7 +315,7 @@
 /datum/ammo/bullet/shotgun/tracker
 	name = "shotgun tracker shell"
 	handful_icon_state = "shotgun_tracker"
-	icon_state = "shotgun_slug"
+	icon_state = "blue_bullet"
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
 	max_range = 15
@@ -336,6 +340,7 @@
 /datum/ammo/bullet/shotgun/breaching
 	name = "shotgun breaching slug"
 	handful_icon_state = "shotgun_slug"
+	icon_state = "bullet_large_green"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3

@@ -4,11 +4,13 @@
 #define CLICK_CD_LOOK_UP 5
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_CLICK_ABILITY 6
+#define CLICK_CD_UNARMED 7
 #define CLICK_CD_MELEE 8
 #define CLICK_CD_THROWING 4
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_RESIST 10
+#define CLICK_CD_MELEE_WEAPON_DEFAULT 11
 #define CLICK_CD_LONG 20
 #define CLICK_CD_BREAKOUT 100
 
@@ -139,6 +141,9 @@
 #define MAGAZINE_NOT_FABRICABLE (1<<4)
 ///ammo count shown on mag sprite
 #define MAGAZINE_SHOW_AMMO (1<<5)
+
+///Standard flamer burn duration in 2 second ticks
+#define FLAMER_STANDARD_BURN_DURATION 17
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

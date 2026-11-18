@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
+GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava, /turf/open/openspace))) // Don't drop at these tiles.
 GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
@@ -24,7 +24,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
-	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	buckle_flags = CAN_BUCKLE
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
@@ -53,8 +53,11 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS), PROC_REF(disable_launching))
-	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(allow_drop))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS), PROC_REF(allow_drop))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
+	//testing only
+	if(SSticker.mode && istype(SSticker.mode, /datum/game_mode/infestation/sovl_war) && SSmonitor.gamestate != SHUTTERS_CLOSED)
+		disable_sovl_launching()
 	GLOB.droppod_list += src
 	update_icon()
 	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
@@ -84,19 +87,29 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	return TRUE
 
 ///Disables launching
-/obj/structure/droppod/proc/disable_launching()
+/obj/structure/droppod/proc/disable_launching(datum/source)
 	SIGNAL_HANDLER
 	launch_allowed = FALSE
 	update_icon()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 ///Allow this droppod to ignore dropdelay or otherwise reenable its use
-/obj/structure/droppod/proc/allow_drop()
+/obj/structure/droppod/proc/allow_drop(datum/source)
 	SIGNAL_HANDLER
 	operation_started = TRUE
 	launch_allowed = TRUE
 	update_icon()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
+
+//testing only
+/obj/structure/droppod/proc/allow_sovl_drop()
+	allow_drop()
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, PROC_REF(disable_sovl_launching))
+
+/obj/structure/droppod/proc/disable_sovl_launching()
+	launch_allowed = FALSE
+	update_icon()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 /obj/structure/droppod/update_icon()
 	. = ..()
@@ -155,11 +168,12 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 ///Updates the z-level this pod drops to
 /obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
 	SIGNAL_HANDLER
-	for(var/mob/dropper AS in buckled_mobs)
-		unbuckle_mob(dropper)
 	target_z = new_z
 	target_x = 1
 	target_y = 1
+	if(length(buckled_mobs))
+		for(var/datum/action/innate/set_drop_target/action in interaction_actions)
+			action.update_targetted_z()
 
 ///returns boolean if the currently set target/optionally passed turf are valid to drop to
 /obj/structure/droppod/proc/checklanding(mob/user, optional_turf)
@@ -308,7 +322,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
 	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
-	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
+	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100, FALSE, LOUD_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
@@ -550,8 +564,75 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
 	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
-	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
+	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100, VERY_LOUD_SOUND_RANGE)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
+
+
+
+/atom/movable/screen/droppod_extras
+	/// minimap action this extra button is owned by
+	var/obj/structure/droppod/droppod
+
+/atom/movable/screen/droppod_extras/Destroy()
+	droppod = null
+	return ..()
+
+/atom/movable/screen/droppod_extras/minimap_z_indicator
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "zindicator"
+	screen_loc = ui_ai_floor_indicator
+
+///sets the currently indicated relative floor
+/atom/movable/screen/droppod_extras/minimap_z_indicator/proc/set_indicated_z(newz)
+	if(!newz)
+		return
+	var/list/linked_zs = SSmapping.get_connected_levels(newz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(newz)
+	var/text = "Floor<br/>[relativez]"
+	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
+
+/atom/movable/screen/droppod_extras/minimap_z_up
+	name = "go up"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "up"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/droppod_extras/minimap_z_up/Click(location,control,params)
+	flick("uppressed",src)
+	var/currentz = droppod.target_z
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == length(linked_zs))
+		return //topmost z with nothing above. we still play effects just dont do anything
+	droppod.change_targeted_z(null, ++currentz)
+
+
+/atom/movable/screen/droppod_extras/minimap_z_down
+	name = "go down"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "down"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/droppod_extras/minimap_z_down/Click(location,control,params)
+	flick("downpressed",src)
+	var/currentz = droppod.target_z
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == 1)
+		return //bottommost z with nothing below. we still play effects just dont do anything
+	droppod.change_targeted_z(null, --currentz)
+
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
@@ -567,11 +648,28 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	name = "Set drop pod target"
 	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_off"
-	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
-	var/choosing = FALSE
+	///Map currently being polled; it can be on a different z-level than the pod's target.
+	var/atom/movable/screen/minimap/choosing_map
+	var/atom/movable/screen/droppod_extras/minimap_z_indicator/z_indicator
+	var/atom/movable/screen/droppod_extras/minimap_z_up/z_up
+	var/atom/movable/screen/droppod_extras/minimap_z_down/z_down
+
+/datum/action/innate/set_drop_target/New(Target)
+	. = ..()
+	z_indicator = new
+	z_up = new
+	z_up.droppod = target
+	z_down = new
+	z_down.droppod = target
+
+/datum/action/innate/set_drop_target/Destroy()
+	QDEL_NULL(z_indicator)
+	QDEL_NULL(z_up)
+	QDEL_NULL(z_down)
+	return ..()
 
 /datum/action/innate/set_drop_target/can_use_action(silent, override_flags, selecting)
-	if(choosing)
+	if(choosing_map)
 		return FALSE
 	return ..()
 
@@ -582,23 +680,48 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		to_chat(owner, span_danger("No active combat zone detected."))
 		return
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
+	choosing_map = map
 	owner.client.screen += map
-	choosing = TRUE
+	if(length(SSmapping.get_connected_levels(pod.target_z)) > 1)
+		z_indicator.set_indicated_z(pod.target_z)
+		owner.client.screen += z_indicator
+		owner.client.screen += z_up
+		owner.client.screen += z_down
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	owner?.client?.screen -= map
-	choosing = FALSE
+	// A z-change may have already started polling a replacement map.
+	if(choosing_map == map)
+		owner?.client?.screen -= z_indicator
+		owner?.client?.screen -= z_up
+		owner?.client?.screen -= z_down
+		choosing_map = null
 	if(!polled_coords)
 		return
 	pod.set_target(polled_coords[1], polled_coords[2])
 
+///cancels a choosing operation
+/datum/action/innate/set_drop_target/proc/stop_choosing()
+	if(!choosing_map)
+		return
+	var/atom/movable/screen/minimap/map = choosing_map
+	owner?.client?.screen -= map
+	owner?.client?.screen -= z_indicator
+	owner?.client?.screen -= z_up
+	owner?.client?.screen -= z_down
+	map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+	map.stop_polling[owner] = TRUE
+	choosing_map = null
+
 /datum/action/innate/set_drop_target/remove_action(mob/M)
-	if(choosing)
-		var/obj/structure/droppod/pod = target
-		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
-		owner?.client?.screen -= map
-		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-		choosing = FALSE
+	stop_choosing()
 	return ..()
+
+/datum/action/innate/set_drop_target/proc/update_targetted_z()
+	set waitfor = FALSE
+	if(!choosing_map)
+		return
+	stop_choosing()
+	Activate()
 
 /obj/structure/drop_pod_launcher
 	name = "Zeus pod launch bay"

@@ -2,12 +2,8 @@
 // *********** Resin building
 // ***************************************
 /datum/action/ability/activable/xeno/secrete_resin/widow
-	ability_cost = 25
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/turf/closed/wall/resin/regenerating/special/bulletproof,
-		/turf/closed/wall/resin/regenerating/special/fireproof,
-		/turf/closed/wall/resin/regenerating/special/hardy,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
@@ -23,8 +19,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 125
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_HUMAN_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_SPIT_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
@@ -49,8 +48,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 250
 	cooldown_duration = 20 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_LEASH_BALL_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
@@ -103,7 +105,7 @@
 		leash_victims += victim
 	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
 		ADD_TRAIT(snared_victim, TRAIT_LEASHED, src)
-		beams += beam(snared_victim, "beam_web", 'icons/effects/beam.dmi', INFINITY, INFINITY)
+		beams += beam(snared_victim, icon_state = "beam_web", time = INFINITY, max_distance = INFINITY)
 		RegisterSignal(snared_victim, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_dist))
 	if(!length(beams))
 		return INITIALIZE_HINT_QDEL
@@ -137,7 +139,7 @@
 		xeno_attacker.balloon_alert(xeno_attacker, "yanked!")
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
 			span_xenonotice("We yank all the leashes from \the [src]!"))
-		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE)
+		playsound(src, 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
 		for(var/mob/living/carbon/human/human_mob in leash_victims)
 			if(human_mob.stat == DEAD || human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
@@ -150,7 +152,7 @@
 			return
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] yanks all the leashes from \the [src]!"), \
 			span_xenonotice("We pull down \the [src]."))
-	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25, FALSE, MEDIUM_SOUND_RANGE)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	take_damage(max_integrity)
 
@@ -440,7 +442,7 @@
 		owner.balloon_alert(owner, "[create_spiderling_action.cannibalise_charges]/3 charges")
 	else
 		owner.balloon_alert(owner, "We're full, no charges gained!")
-	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE)
+	playsound(owner.loc, 'sound/items/eatfood.ogg', 15, TRUE, SHORT_SOUND_RANGE)
 	succeed_activate()
 	add_cooldown()
 
@@ -454,8 +456,11 @@
 	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 200
 	cooldown_duration = 10 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_WEB_HOOK_SELECT,
 	)
 	//ref to beam for web hook
 	var/datum/beam/web_beam
@@ -481,7 +486,7 @@
 
 /datum/action/ability/activable/xeno/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
-	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
+	web_beam = owner.beam(web_hook, icon_state = "beam_web", override_origin_pixel_x = 0)
 	RegisterSignals(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
 	web_hook.throw_at(A, WIDOW_WEB_HOOK_RANGE, 3, owner, FALSE)
 	succeed_activate()

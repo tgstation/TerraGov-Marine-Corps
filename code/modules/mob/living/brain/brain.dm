@@ -18,6 +18,7 @@
 		if(stat != DEAD)
 			death()
 		ghostize()
+	container = null
 	return ..()
 
 /mob/living/brain/ghost()

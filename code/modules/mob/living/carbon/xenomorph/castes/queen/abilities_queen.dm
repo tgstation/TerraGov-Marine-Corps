@@ -108,7 +108,7 @@
 			succeed_activate()
 			add_cooldown()
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 			GLOB.round_statistics.queen_screech++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
@@ -139,9 +139,9 @@
 				if(!xeno_owner.issamexenohive(affected_xeno))
 					continue
 				// Gives the benefit of Hivelord's Healing Infusion but it is halved in power (lower duration and less ticks of healing).
-				affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
+				affected_xeno.apply_status_effect(STATUS_EFFECT_HEALING_INFUSION, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("plasma_screech")
 			succeed_activate()
@@ -151,9 +151,9 @@
 				if(!xeno_owner.issamexenohive(affected_xeno) || !(affected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 					continue
 				// Gives the benefit of eatting powerfruit, but everything is halved (less plasma immediately restored, less plasma regen given, shorter duration).
-				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
+				affected_xeno.apply_status_effect(STATUS_EFFECT_PLASMA_SURGE, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("frenzy_screech")
 			succeed_activate()
@@ -165,7 +165,7 @@
 				// 30 seconds of 10% increase of melee damage.
 				affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech)
 
-			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, FALSE, LOUD_SOUND_RANGE)
 			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	if(movement_speed_modifier)
 		for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 20))
@@ -235,7 +235,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 4)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -358,7 +358,7 @@
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	if(message)
 		xeno_owner.visible_message(span_notice("[xeno_owner] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
@@ -372,8 +372,7 @@
 		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno_owner.zoom_out()
 
-
-/datum/action/ability/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+/datum/action/ability/xeno_action/toggle_queen_zoom/on_move(atom/source, atom/old_loc, move_dir, forced)
 	zoom_xeno_out()
 
 
@@ -410,7 +409,7 @@
 		unset_xeno_leader(selected_xeno)
 		return
 
-	if(xeno_owner.xeno_caste.queen_leader_limit <= length(xeno_owner.hive.xeno_leader_list))
+	if(xeno_owner.hive.max_xeno_leaders <= length(xeno_owner.hive.xeno_leader_list))
 		xeno_owner.balloon_alert(xeno_owner, "No more leadership slots")
 		return
 
@@ -457,9 +456,9 @@
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_HEAL_SELECT,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
 	/// Should this ability be usable on moving targets and use an alternative flavortext?
 	var/hivemind_heal = FALSE
 
@@ -479,7 +478,7 @@
 		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
 		span_xenowarning("We feel a soothing chill."))
 
-	playsound(target, SFX_ALIEN_DROOL, 25)
+	playsound(target, SFX_ALIEN_DROOL, 25, FALSE, MEDIUM_SOUND_RANGE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()
@@ -510,17 +509,31 @@
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	ability_cost = 150
 	cooldown_duration = 8 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
-		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_QUICKCAST
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA_SELECT
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET
+	///used for repeat casting
 	var/mob/living/carbon/xenomorph/last_xenomorph_transferred_to
 
-/datum/action/ability/activable/xeno/queen_give_plasma/Destroy()
+/datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
+
+/datum/action/ability/activable/xeno/queen_give_plasma/remove_action(mob/living/L)
+	. = ..()
 	last_xenomorph_transferred_to = null
-	return ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
+
+/// Signal handler for the queen_give_plasma action that checks can_use.
+/datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
+	SIGNAL_HANDLER
+	if(!can_use_ability(target, FALSE))
+		return
+	use_ability(target)
 
 /datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -546,27 +559,6 @@
 			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
-/datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
-
-/datum/action/ability/activable/xeno/queen_give_plasma/remove_action(mob/living/L)
-	. = ..()
-	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
-
-/datum/action/ability/activable/xeno/queen_give_plasma/alternate_action_activate()
-	if(!last_xenomorph_transferred_to)
-		return
-	try_use_ability(null, last_xenomorph_transferred_to)
-	return COMSIG_KB_ACTIVATED
-
-/// Signal handler for the queen_give_plasma action that checks can_use.
-/datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
-	SIGNAL_HANDLER
-	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
-		return
-	use_ability(target)
-
 /datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
 	if(!last_xenomorph_transferred_to)
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_qdeleted))
@@ -583,6 +575,14 @@
 		owner.balloon_alert(owner, "Transferred plasma")
 	add_cooldown()
 	succeed_activate()
+
+/datum/action/ability/activable/xeno/queen_give_plasma/alternate_action_activate()
+	if(xeno_owner.selected_ability != src)
+		return ..()
+	if(!last_xenomorph_transferred_to)
+		return
+	try_use_ability(null, last_xenomorph_transferred_to)
+	return COMSIG_KB_ACTIVATED
 
 /// Should the last xenomorph get deleted, removes them from the ability as the last target.
 /datum/action/ability/activable/xeno/queen_give_plasma/proc/on_target_qdeleted(datum/source, force)

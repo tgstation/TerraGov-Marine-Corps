@@ -542,7 +542,7 @@
 		paired_sensor = null
 	. = ..()
 
-/obj/machinery/transport/guideway_sensor/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/transport/guideway_sensor/wrench_act(mob/user, obj/item/tool)
 	. = ..()
 
 	if(default_change_direction_wrench(user, tool))

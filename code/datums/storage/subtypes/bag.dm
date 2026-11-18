@@ -102,9 +102,7 @@
 		else
 			S.forceMove(src)
 
-	orient2hud()
-	for(var/mob/M in can_see_content())
-		show_to(M)
+	refresh_views()
 
 	sheetsnatcher.update_icon()
 	return TRUE

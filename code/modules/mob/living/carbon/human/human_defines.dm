@@ -97,9 +97,6 @@
 	///The current standing icon
 	var/icon/stand_icon
 
-	///Used for determining if we need to process all limbs or just some or even none.
-	var/last_dam = -1
-
 	///This human's flavor text. Shows up when they're examined.
 	var/flavor_text = ""
 	///This human's custom medical record. Fluff.

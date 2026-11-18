@@ -17,7 +17,10 @@
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
-	init_order = INIT_ORDER_MINIMAPS
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/modularmapping,
+	)
 	priority = FIRE_PRIORITY_MINIMAPS
 	wait = 10
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -447,6 +450,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /atom/movable/screen/minimap/proc/on_click(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+	if(!isturf(A.loc) && !isturf(A))
+		return NONE
 	var/list/modifiers = params2list(params)
 	// we only care about absolute coords because the map is fixed to 1,1 so no client stuff
 	var/list/pixel_coords = params2screenpixel(modifiers["screen-loc"])
@@ -723,6 +728,8 @@ SUBSYSTEM_DEF(minimaps)
 
 ///Sets our map
 /datum/action/minimap/proc/set_map(z_level)
+	if((!QDELETED(map)) && map.tracked_z == z_level)
+		return
 	map = SSminimaps.fetch_minimap_object(z_level, minimap_flags)
 	RegisterSignal(map, COMSIG_QDELETING, PROC_REF(on_map_del))
 

@@ -220,7 +220,7 @@
 		if(!juicing)
 			playsound(src, 'sound/machines/blender.ogg', 50, TRUE)
 		else
-			playsound(src, 'sound/machines/juicer.ogg', 20, TRUE)
+			playsound(src, 'sound/machines/juicer.ogg', 20, TRUE, MEDIUM_SOUND_RANGE)
 	addtimer(VARSET_CALLBACK(src, operating, FALSE), time / speed)
 
 /obj/machinery/reagentgrinder/proc/is_allowed(obj/item/reagent_containers/O)

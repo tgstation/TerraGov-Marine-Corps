@@ -956,6 +956,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
 		net.updateVisibility(src)
 
+/turf/proc/camera_opacity_changed()
+	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
+		net.opacity_changed(src)
+
 
 /turf/AllowDrop()
 	return TRUE

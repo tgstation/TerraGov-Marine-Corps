@@ -18,7 +18,6 @@
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
-	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 	/// The material dropped on destruction
 	var/drop_material = /obj/item/stack/sheet/metal
@@ -160,7 +159,7 @@
 	density = FALSE
 	dump_contents()
 	update_icon()
-	playsound(loc, open_sound, 15, 1)
+	playsound(loc, open_sound, 15, 1, SHORT_SOUND_RANGE)
 	return TRUE
 
 
@@ -177,7 +176,7 @@
 	if(!opened || !can_close(user))
 		return FALSE
 	take_contents()
-	playsound(loc, close_sound, 15, 1)
+	playsound(loc, close_sound, 15, 1, SHORT_SOUND_RANGE)
 	opened = FALSE
 	density = TRUE
 	update_icon()
@@ -253,12 +252,16 @@
 		balloon_alert(user, "something's inside!")
 		return
 
-/obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
+/obj/structure/closet/welder_act(mob/user, obj/item/tool)
+	if(!iswelder(tool))
+		return FALSE
+
+	var/obj/item/tool/weldingtool/welder = tool
 	if(!welder.isOn())
 		return FALSE
 
 	if(opened)
-		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+		if(!welder.use_tool(src, user, 2 SECONDS, 0, 50))
 			balloon_alert(user, "not enough fuel!")
 			return TRUE
 		if(drop_material)
@@ -267,7 +270,7 @@
 		qdel(src)
 		return TRUE
 
-	if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
+	if(!welder.use_tool(src, user, 2 SECONDS, 0, 50))
 		balloon_alert(user, "not enough fuel!")
 		return TRUE
 	welded = !welded
@@ -276,14 +279,14 @@
 	return TRUE
 
 
-/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool/wrench/wrenchy_tool)
+/obj/structure/closet/wrench_act(mob/user, obj/item/tool)
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)
 		balloon_alert(user, "need a firmer floor!")
 		return TRUE
 	setAnchored(!anchored)
-	wrenchy_tool.play_tool_sound(src, 75)
+	tool.play_tool_sound(src, 75)
 	balloon_alert_to_viewers("[user] [anchored ? "anchors" : "unanchors"] the [src]")
 	return TRUE
 
@@ -380,7 +383,7 @@
 	if(!opened)
 		dump_contents()
 		opened = TRUE
-		playsound(loc, open_sound, 15, 1) //Could use a more telltale sound for "being smashed open"
+		playsound(loc, open_sound, 15, 1, SHORT_SOUND_RANGE)
 		density = FALSE
 		welded = FALSE
 		update_icon()

@@ -1,6 +1,5 @@
 #define BASE_HEAL_RATE -0.0125
 
-
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
@@ -162,8 +161,8 @@
 		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
 		owner.adjustStaminaLoss(healing * 100)
 		owner.adjustCloneLoss(healing * health_ratio * 0.8)
-	if(human_owner?.drunkenness)
-		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
+	if(human_owner?.is_drunk())
+		human_owner.adjust_drunkenness(-human_owner.amount_drunkenness() * 0.03) //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
@@ -351,7 +350,7 @@
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	// This proc can handle everything and hud updating, use it.
-	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
+	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max * 0.1)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
@@ -437,7 +436,8 @@
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick(delta_time)
-	owner.fire_stacks = max(owner.fire_stacks - 6, 0)
+	if(owner.is_on_fire())
+		owner.extinguish_mob()
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)
@@ -550,7 +550,7 @@
 		stack_decay = 2
 	var/debuff_damage = SENTINEL_INTOXICATED_BASE_DAMAGE + round(stacks / 10)
 	debuff_owner.adjustFireLoss(debuff_damage)
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	if(stacks >= 20)
 		debuff_owner.adjust_slowdown(1)
@@ -670,7 +670,7 @@
 		visual_fire.icon_state = "melting_low_stacks"
 	else
 		return
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
 		return
@@ -834,7 +834,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 
 	debuff_owner.apply_damage(STATUS_EFFECT_MELTING_DAMAGE, BURN, null, FIRE)
@@ -922,7 +922,7 @@
 	if(!debuff_owner)
 		return
 
-	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 
 	debuff_owner.adjustFireLoss(stacks * MICROWAVE_STATUS_DAMAGE_MULT * (debuff_owner.mob_size > MOB_SIZE_HUMAN ? 1 : 0.5)) //this shreds humans otherwise
 
@@ -1058,7 +1058,7 @@
 	. = ..()
 	if(!owner)
 		return
-	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	playsound(owner.loc, "sound/bullets/acid_impact1.ogg", 4, FALSE, ADJACENT_SOUND_RANGE)
 	particle_holder.particles.spawning = 1 + round(stacks / 4)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
@@ -1135,3 +1135,5 @@
 	name = "Lifedrain"
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
+
+#undef BASE_HEAL_RATE

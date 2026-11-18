@@ -121,4 +121,4 @@
 		user.balloon_alert(user, "[CATWALK_ROD_REQ] rods needed!")
 		return
 	target_turf.ChangeTurf(/turf/open/floor/engine)
-	playsound(target_turf, 'sound/items/deconstruct.ogg', 25, TRUE)
+	playsound(target_turf, 'sound/items/deconstruct.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)

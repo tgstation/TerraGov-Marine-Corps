@@ -7,7 +7,7 @@
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
-	icon_state = "bullet" // Keeping it bog standard with the turret but allows it to be changed.
+	icon_state = "bullet_large"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
@@ -43,6 +43,7 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
+	icon_state = "bullet_large"
 	damage = 30
 	penetration = 35
 	sundering = 1
@@ -61,6 +62,7 @@
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
+	icon_state = "bullet_large"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -89,6 +91,7 @@
 
 /datum/ammo/bullet/bike_autocannon
 	name = "autocannon high-velocity bullet"
+	icon_state = "bullet_large"
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -105,17 +108,19 @@
 	penetration = 30
 	sundering = 5
 	max_range = 30
-	airburst_multiplier = 1
 	autocannon_wall_bonus = 25
+	///Damage done via airburst
+	var/burst_damage = 50
 
 /datum/ammo/bullet/auto_cannon/flak/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
-	airburst(target_mob, proj)
+	airburst(target_mob, proj, burst_damage)
 
-/datum/ammo/bullet/auto_cannon/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
-	airburst(target_turf, proj)
+/datum/ammo/bullet/auto_cannon/flak/do_at_max_range(turf/target_turf, atom/movable/projectile/proj)
+	airburst(target_turf, proj, burst_damage)
 
 /datum/ammo/bullet/auto_cannon/anti_tank
 	name = "autocannon solid-shot bullet"
+	icon_state = "bullet_large_green"
 	hud_state = "railgun_hvap"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_TARGET_TURF
 	damage = 85
@@ -125,7 +130,8 @@
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "railgun_ap"
-	icon_state = "blue_bullet"
+	icon_state = "railgun"
+	ping = "ping_s"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
@@ -209,34 +215,42 @@
 
 /datum/ammo/bullet/tank_autocannon_ap
 	name = "autocannon armor piercing"
+	icon_state = "bullet_large_green"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
-	penetration = 45
-	sundering = 4
+	damage = 70
+	penetration = 35
+	sundering = 8
+
+/datum/ammo/bullet/tank_autocannon_ap/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 1)
 
 /datum/ammo/rocket/tank_autocannon_he
 	name = "autocannon high explosive"
-	icon_state = "bullet"
+	icon_state = "atgun"
 	hud_state = "hivelo_fire"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 15
-	penetration = 20
+	armor_type = BOMB
+	damage = 10
+	penetration = 0
 	sundering = 0
+	shell_speed = 3
 
-/datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 2, tiny = TRUE)
+/datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	airburst(target_turf, proj, 20)
+	explosion(target_turf, weak_impact_range = 2, tiny = TRUE)
 
 /datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	//this specifically doesn't knockback. Don't change the explosion above weak.
-	drop_nade(get_turf(target_mob))
+	drop_nade(get_turf(target_mob), proj)
 
 // SARDEN
 
 /datum/ammo/bullet/sarden
 	name = "heavy autocannon armor piercing"
+	icon_state = "bullet_large_green"
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -246,6 +260,7 @@
 
 /datum/ammo/bullet/sarden/high_explosive
 	name = "heavy autocannon high explosive"
+	icon_state = "bullet_large_red"
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -254,8 +269,8 @@
 	sundering = 0.5
 	max_range = 21
 
-/datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
+/datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/target_turf, atom/movable/projectile/proj)
+	explosion(target_turf, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
 	var/target_turf = get_turf(target_mob)

@@ -12,7 +12,7 @@
 	name = "Custom emote :[id]"
 	full_name = name
 
-/datum/keybinding/custom_emote/down(client/user)
+/datum/keybinding/custom_emote/down(client/user, turf/target)
 	. = ..()
 	var/datum/custom_emote/emote = user.prefs.custom_emotes[custom_emote_id]
 	emote.run_custom_emote(user.mob)

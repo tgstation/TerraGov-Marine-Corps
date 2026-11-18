@@ -16,7 +16,7 @@
 	src.visible_message(span_danger("<B>[src] blows apart!</B>"), null, null, 1)
 	if(prob(explosion_probability))
 		explosion(loc, light_impact_range = 3, flame_range = 2, explosion_cause=blame_mob)
-	playsound(loc, 'sound/effects/car_crush.ogg', 25)
+	playsound(loc, 'sound/effects/car_crush.ogg', 25, FALSE, MEDIUM_SOUND_RANGE)
 	var/turf/Tsec = get_turf(src)
 	new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/rods(Tsec)

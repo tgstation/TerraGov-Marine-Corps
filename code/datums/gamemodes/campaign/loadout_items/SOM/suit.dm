@@ -111,7 +111,7 @@
 
 /datum/loadout_item/suit_slot/som_heavy_tyr
 	name = "H Lorica armor"
-	desc = "M-31 combat armor with a Lorica extra armor module. Provides incredible protection at the cost of further reduced mobility."
+	desc = "M-31 combat armor with a Lorica extra armor module. Provides incredible protection and limited immunity to shotgun stuns, at the cost of further reduced mobility."
 	ui_icon = "lorica"
 	req_desc = "Requires a boarding axe primary weapon."
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica

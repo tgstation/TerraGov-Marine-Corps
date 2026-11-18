@@ -201,6 +201,10 @@
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
 
+/datum/map_template/shuttle/supply/som
+	shuttle_id = SHUTTLE_SOM_SUPPLY
+	name = SHUTTLE_SOM_SUPPLY
+
 /datum/map_template/shuttle/supply/vehicle
 	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
 	name = SHUTTLE_VEHICLE_SUPPLY

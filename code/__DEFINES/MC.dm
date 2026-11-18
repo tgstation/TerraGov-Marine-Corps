@@ -24,7 +24,7 @@
 
 /// Returns true if the MC is initialized and running.
 /// Optional argument init_stage controls what stage the mc must have initializted to count as initialized. Defaults to INITSTAGE_MAX if not specified.
-#define MC_RUNNING(INIT_STAGE...) (Master && Master.processing > 0 && Master.current_runlevel && Master.init_stage_completed == (max(min(INITSTAGE_MAX, ##INIT_STAGE), 1)))
+#define MC_RUNNING(INIT_STAGE...) (Master && Master.processing > 0 && Master.current_runlevel && Master.init_stage_completed >= (max(min(INITSTAGE_MAX, ##INIT_STAGE), 1)))
 
 #define MC_LOOP_RTN_NEWSTAGES 1
 #define MC_LOOP_RTN_GRACEFUL_EXIT 2
@@ -66,18 +66,19 @@
 #define SS_OK_TO_FAIL_INIT (1 << 6)
 
 //! SUBSYSTEM STATES
-#define SS_IDLE 0		/// aint doing shit.
-#define SS_QUEUED 1		/// queued to run
-#define SS_RUNNING 2	/// actively running
-#define SS_PAUSED 3		/// paused by mc_tick_check
-#define SS_SLEEPING 4	/// fire() slept.
-#define SS_PAUSING 5 	/// in the middle of pausing
-
+#define SS_IDLE 0 //! ain't doing shit.
+#define SS_QUEUED 1 //! queued to run
+#define SS_RUNNING 2 //! actively running
+#define SS_PAUSED 3 //! paused by mc_tick_check
+#define SS_SLEEPING 4 //! fire() slept.
+#define SS_PAUSING 5 //! in the middle of pausing
 
 // Subsystem init stages
-#define INITSTAGE_EARLY 1 //! Early init stuff that doesn't need to wait for mapload
-#define INITSTAGE_MAIN 2 //! Main init stage
-#define INITSTAGE_MAX 2 //! Highest initstage.
+#define INITSTAGE_FIRST 1
+#define INITSTAGE_EARLY 2 //! Early init stuff that doesn't need to wait for mapload
+#define INITSTAGE_MAIN 3 //! Main init stage
+#define INITSTAGE_LAST 4
+#define INITSTAGE_MAX 4 //! Highest init stage
 
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\

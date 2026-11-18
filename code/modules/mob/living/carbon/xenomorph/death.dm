@@ -1,10 +1,12 @@
 
 /mob/living/carbon/xenomorph/proc/death_cry()
-	playsound(loc, prob(50) ? 'sound/voice/alien/death.ogg' : 'sound/voice/alien/death2.ogg', 25, 1)
+	playsound(loc, prob(50) ? 'sound/voice/alien/death.ogg' : 'sound/voice/alien/death2.ogg', 25, 1, MEDIUM_SOUND_RANGE)
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
-	return ..() //we're just changing the death message
+	. = ..()
+	if(xeno_caste.death_flick)
+		flick(xeno_caste.death_flick, src)
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
@@ -69,6 +71,8 @@
 	remains.icon_state = xeno_caste.gib_anim
 
 	check_blood_splash(35, BURN, 65, 2)
+
+	xeno_caste.on_owner_gib(src)
 
 	return ..()
 

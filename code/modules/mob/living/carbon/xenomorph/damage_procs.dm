@@ -1,10 +1,3 @@
-/mob/living/carbon/xenomorph/fire_act(burn_level)
-	if(status_flags & GODMODE)
-		return
-	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-		return
-	return ..()
-
 /mob/living/carbon/xenomorph/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
 	var/hard_armor_remaining = get_hard_armor(armor_type, def_zone)
 
@@ -55,7 +48,7 @@
 	if(stagger_amount > 0)
 		adjust_stagger(stagger_amount)
 	adjust_sunder(sunder_amount)
-	add_slowdown(slowdown_amount)
+	slowdown(slowdown_amount)
 
 	apply_damages(ex_damage * 0.5, ex_damage * 0.5, blocked = BOMB, updating_health = TRUE)
 
@@ -144,6 +137,24 @@
 
 	if(updating_health)
 		updatehealth()
+
+/mob/living/carbon/xenomorph/adjustToxLoss(amount)
+	return adjustBruteLoss(amount)
+
+/mob/living/carbon/xenomorph/setToxLoss(amount)
+	return setBruteLoss(amount)
+
+/mob/living/carbon/xenomorph/adjustCloneLoss(amount)
+	return adjustFireLoss(amount)
+
+/mob/living/carbon/xenomorph/setCloneLoss(amount)
+	return setFireLoss(amount)
+
+/mob/living/carbon/xenomorph/adjustOxyLoss(amount)
+	return adjustFireLoss(amount)
+
+/mob/living/carbon/xenomorph/setOxyLoss(amount)
+	return setFireLoss(amount)
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1, sharp = FALSE, edge = FALSE)
 	if(!damage)

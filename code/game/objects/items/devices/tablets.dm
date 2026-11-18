@@ -66,7 +66,22 @@
 
 /obj/item/hud_tablet/Destroy()
 	QDEL_NULL(cam_screen)
+	set_active_camera(null)
+	last_turf = null
 	return ..()
+
+/obj/item/hud_tablet/proc/set_active_camera(obj/machinery/camera/new_camera)
+	if(active_camera == new_camera)
+		return
+	if(active_camera)
+		UnregisterSignal(active_camera, COMSIG_QDELETING)
+	active_camera = new_camera
+	if(active_camera)
+		RegisterSignal(active_camera, COMSIG_QDELETING, PROC_REF(on_active_camera_deleted))
+
+/obj/item/hud_tablet/proc/on_active_camera_deleted(datum/source)
+	SIGNAL_HANDLER
+	set_active_camera(null)
 
 /obj/item/hud_tablet/proc/get_available_cameras()
 	var/list/L = list()
@@ -120,7 +135,7 @@
 	if(active_camera)
 		.["activeCamera"] = list(
 			name = active_camera.c_tag,
-			status = active_camera.status,
+			status = active_camera.camera_flags & CAMERA_OPERATING,
 			ref = ref(active_camera)
 		)
 
@@ -144,8 +159,8 @@
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/selected_camera
 
-		active_camera = cameras[camera_reference]
-		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
+		set_active_camera(cameras[camera_reference])
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE, MEDIUM_SOUND_RANGE)
 
 		if(!selected_camera)
 			return TRUE

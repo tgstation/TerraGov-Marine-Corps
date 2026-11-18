@@ -29,7 +29,7 @@
 	mob_parent.changeNext_move(original_xeno.xeno_caste.attack_delay)
 	if(ismob(interactee))
 		mob_parent.do_attack_animation(interactee, ATTACK_EFFECT_REDSLASH)
-		playsound(mob_parent.loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
+		playsound(mob_parent.loc, SFX_ALIEN_CLAW_FLESH, 25, 1, MEDIUM_SOUND_RANGE)
 		return
 	mob_parent.do_attack_animation(interactee, ATTACK_EFFECT_CLAW)
 

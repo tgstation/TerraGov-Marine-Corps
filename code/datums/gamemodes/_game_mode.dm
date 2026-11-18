@@ -72,6 +72,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/enable_fun_tads = FALSE
 
 	var/roundstart_players = 0
+	///Vehicle types that cannot be purchased in this gamemode
+	var/list/vehicle_black_list
 
 
 /datum/game_mode/New()
@@ -83,9 +85,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 
 /datum/game_mode/proc/can_start(bypass_checks = FALSE)
-	if((!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) || (SSmapping.configs[GROUND_MAP].map_name in blacklist_ground_maps)) && !bypass_checks)
-		log_world("Attempted to start [name] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
-		to_chat(world, "<b>Unable to start [name].</b> [SSmapping.configs[GROUND_MAP].map_name] isn't supported on [name].")
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
@@ -113,7 +114,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	// Determine roundstart player count, used for population locks.
 	SSticker.mode.roundstart_players = length(GLOB.clients)
-	to_chat(world, "Round initialized with a Population of [SSticker.mode.roundstart_players]")
 	SSblackbox.record_feedback("text", "initial_players", 1, SSticker.mode.roundstart_players)
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)
@@ -123,13 +123,15 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	return TRUE
 
+///Sets up the gamemode
+///Occurs before the game starts - game will not start if this fails to return TRUE, if bypass_checks is not also TRUE
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
 	transfer_characters()
-	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY))
+	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(round_type_flags, MODE_HUMAN_ONLY|MODE_ENCOUNTER))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
 
@@ -298,6 +300,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+/datum/game_mode/proc/get_respawn_time(mob/respawnee)
+	if(!GLOB.respawn_allowed)
+		return -1
+	var/time = (GLOB.key_to_time_of_role_death[respawnee.key] + SSticker.mode?.respawn_time - world.time)
+	if(time <= 0)
+		return 0
+	return time2text(time, "mm:ss")
+
 ///respawns the player, overrides verb respawn behavior as required
 /datum/game_mode/proc/player_respawn(mob/respawnee)
 	respawnee.respawn()
@@ -360,6 +370,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
 		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
+
+/// Displays the orphan hivemind collapse timer, if applicable
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	return
 
 ///This is overridden on the child types. Called by [/datum/hive_status/normal/handle_ruler_timer()] after a countdown to end the round.
 /datum/game_mode/proc/orphan_hivemind_collapse()
@@ -709,6 +723,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
+/datum/game_mode/proc/can_ghosts_join_as_zombies()
+	return TRUE
+
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
@@ -1054,16 +1071,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 	if (source.can_wait_in_larva_queue())
 		handle_larva_timer(dcs, source, items)
-
-/// Displays the orphan hivemind collapse timer, if applicable
-/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
-	if (isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno = source
-		if(xeno.hivenumber != XENO_HIVE_NORMAL)
-			return // Don't show for non-normal hives
-	var/rulerless_countdown = get_hivemind_collapse_countdown()
-	if(rulerless_countdown)
-		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)

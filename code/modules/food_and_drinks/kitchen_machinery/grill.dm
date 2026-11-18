@@ -138,12 +138,12 @@
 		grilled_item = null
 	return ..()
 
-/obj/machinery/grill/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/grill/wrench_act(mob/user, obj/item/tool)
 	..()
 	balloon_alert(user, "[anchored ? "un" : ""]securing...")
-	I.play_tool_sound(src, 50)
+	tool.play_tool_sound(src, 50)
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
-	if(!I.use_tool(src, user, 2 SECONDS))
+	if(!tool.use_tool(src, user, 2 SECONDS))
 		return FALSE
 	balloon_alert(user, "[anchored ? "un" : ""]secured")
 	anchored = !anchored

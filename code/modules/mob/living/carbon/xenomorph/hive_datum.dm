@@ -7,8 +7,12 @@
 	///Timer for caste evolution after the last one died, CASTE = TIMER
 	var/list/caste_death_timers = list()
 	var/color = null
+	/// The prefix added to the name of any xenomorph that is part of this hive.
 	var/prefix = ""
 	var/hive_flags = NONE
+	///Max number of leaders that can be set
+	var/max_xeno_leaders = 4
+	///Current xeno leaders
 	var/list/xeno_leader_list = list()
 	/// /datum/xeno_caste = list(xeno mobs)
 	var/list/list/xenos_by_typepath = list()
@@ -30,6 +34,8 @@
 	var/list/obj/structure/xeno/mutation_chamber/spur/spur_chambers = list()
 	/// List of veil mutation chambers.
 	var/list/obj/structure/xeno/mutation_chamber/veil/veil_chambers = list()
+	///List of hive ability blessings
+	var/list/datum/action/ability/hive_abilities = list()
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
@@ -49,14 +55,6 @@
 /datum/hive_status/New()
 	. = ..()
 	LAZYINITLIST(candidates)
-	/*
-	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
-		if(caste_type.upgrade != XENO_UPGRADE_BASETYPE)
-			continue
-		if(caste_type.type != caste_type.base_strain_type)
-			continue
-			xenos_by_typepath[caste_type] = list()
-	*/
 
 	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
 		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)
@@ -481,6 +479,10 @@
 	hive.update_tier_limits() //Update our tier limits.
 	hive.update_ruler()
 
+	LAZYOR(GLOB.alive_xeno_list_hive[HS.hivenumber], src)
+
+	sync_hive_abilities()
+
 /mob/living/carbon/xenomorph/hivemind/add_to_hive(datum/hive_status/HS, force = FALSE, prevent_ruler=FALSE)
 	. = ..()
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
@@ -523,6 +525,13 @@
 			return FALSE
 	else
 		remove_from_lists(X)
+
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], X)
+
+	for(var/datum/action/ability/ability AS in X.mob_abilities)
+		if(ability.type in hive_abilities)
+			ability.remove_action(X)
+			qdel(ability)
 
 	nuke_hud_timer?.remove_from(X)
 	post_removal(X)
@@ -572,6 +581,8 @@
 		hive.update_ruler()
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
+
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hive.hivenumber], src)
 
 	var/datum/hive_status/reference_hive = hive
 	hive = null
@@ -638,7 +649,7 @@
 
 ///attempts to have devolver devolve target
 /datum/hive_status/proc/attempt_deevolve(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
-	if(target.is_ventcrawling)
+	if(HAS_TRAIT(target, TRAIT_MOVE_VENTCRAWLING))
 		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
 		return
 
@@ -666,7 +677,7 @@
 	if(!devolver.check_concious_state())
 		return
 
-	if(target.is_ventcrawling)
+	if(HAS_TRAIT(target, TRAIT_MOVE_VENTCRAWLING))
 		return
 
 	if(!isturf(target.loc))
@@ -922,10 +933,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_SILOLESS_COLLAPSE), PROC_REF(setup_siloless_hud_timer))
 
-/datum/hive_status/normal/Destroy(force, ...)
-	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_SILOLESS_COLLAPSE)
-
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
 	orphan_hud_timer?.apply_to(X)
@@ -1157,7 +1164,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidates, waiter)
 	RegisterSignal(waiter, COMSIG_QDELETING, PROC_REF(cleanup_waiter))
 	var/new_position = LAZYLEN(candidates)
-	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, new_position)
+	update_larva_queue()
 	to_chat(waiter, span_warning("There are either no burrowed larva, you are on your xeno respawn timer, or there are no silos. You are in position [new_position] to become a Xenomorph."))
 	give_larva_to_next_in_queue() //Updates the queue for xeno respawn timer
 	return TRUE
@@ -1170,11 +1177,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYREMOVE(candidates, waiter)
 	UnregisterSignal(waiter, COMSIG_QDELETING)
 	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0)
+	update_larva_queue()
 	to_chat(waiter, span_warning("You left the Larva queue."))
-	var/client/client_in_queue
-	for(var/i in 1 to LAZYLEN(candidates))
-		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
 
 /// Propose larvas until their is no more candidates, or no more burrowed
 /datum/hive_status/proc/give_larva_to_next_in_queue()
@@ -1210,9 +1214,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(slot_occupied - slot_really_taken > 0)
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
-	for(var/i in 1 to LAZYLEN(candidates))
-		client_in_queue = LAZYACCESS(candidates, i)
-		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+	update_larva_queue()
 
 /// Remove ref to avoid hard del and null error
 /datum/hive_status/proc/cleanup_waiter(datum/source)
@@ -1226,6 +1228,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
 		return FALSE
 	return TRUE
+
+/datum/hive_status/proc/update_larva_queue()
+	var/client/client_in_queue
+	var/amount = LAZYLEN(candidates)
+	for(var/i in 1 to amount)
+		client_in_queue = LAZYACCESS(candidates, i)
+		SEND_SIGNAL(client_in_queue, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, i)
+	SEND_SIGNAL(src, COMSIG_HIVE_LARVA_UPDATE, amount)
 
 ///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()
@@ -1263,7 +1273,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted
 	name = "Corrupted"
 	hivenumber = XENO_HIVE_CORRUPTED
-	prefix = "Corrupted "
+	prefix = "Corrupted"
 	color = "#00ff80"
 
 // Make sure they can understand english
@@ -1317,6 +1327,12 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/larva/Corrupted/iff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
+	offer_mob()
+	LAZYOR(GLOB.ssd_living_mobs, src)
+
 /mob/living/carbon/xenomorph/praetorian/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -1353,7 +1369,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/alpha
 	name = "Alpha"
 	hivenumber = XENO_HIVE_ALPHA
-	prefix = "Alpha "
+	prefix = "Alpha"
 	color = "#cccc00"
 
 /mob/living/carbon/xenomorph/queen/Alpha
@@ -1428,7 +1444,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
-	prefix = "Beta "
+	prefix = "Beta"
 	color = "#9999ff"
 
 /mob/living/carbon/xenomorph/queen/Beta
@@ -1503,7 +1519,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/zeta
 	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
-	prefix = "Zeta "
+	prefix = "Zeta"
 	color = "#606060"
 
 /mob/living/carbon/xenomorph/queen/Zeta
@@ -1578,7 +1594,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/admeme
 	name = "Admeme"
 	hivenumber = XENO_HIVE_ADMEME
-	prefix = "Admeme "
+	prefix = "Admeme"
 
 /mob/living/carbon/xenomorph/queen/admeme
 	hivenumber = XENO_HIVE_ADMEME
@@ -1589,7 +1605,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/fallen
 	name = "Fallen"
 	hivenumber = XENO_HIVE_FALLEN
-	prefix = "Fallen "
+	prefix = "Fallen"
 	color = "#8046ba"
 
 /datum/hive_status/corrupted/fallen/can_xeno_message()
@@ -1645,4 +1661,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/human/get_xeno_hivenumber()
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
+	if(faction == FACTION_TERRAGOV)
+		return XENO_HIVE_CORRUPTED//Conditioned to think they are the same hive
 	return FALSE
