@@ -566,7 +566,7 @@
 	holder.icon = 'icons/mob/hud/xeno.dmi'
 	holder.icon_state = ""
 	var/minutes = client?.get_exp_living(pure_numeric = TRUE)
-	if(client && minutes < 600) // 10 hours in minutes
+	if(client && minutes < SPROUT_MAX_MINUTES)
 		holder.icon_state = "sprout"
 	else if(stat != DEAD && playtime_as_number() > 0 && client.prefs.show_xeno_rank)
 		holder.icon_state = "upgrade_[playtime_as_number()]"
@@ -639,7 +639,7 @@
 		holder.overlays += image('icons/mob/hud/job.dmi', src, "[job.comm_title]")
 
 	var/minutes = client?.get_exp_living(pure_numeric = TRUE)
-	if(client && minutes < 600) // 10 hours in minutes
+	if(client && minutes < SPROUT_MAX_MINUTES) // 10 hours in minutes
 		holder.overlays += image('icons/mob/hud/job.dmi', src, "sprout")
 
 	hud_list[hud_type] = holder
