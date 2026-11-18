@@ -195,3 +195,19 @@
   - qol: Updates preferences job menu descriptions for jobs
   - bugfix: Fixes mech pulse armor having no CD
   - bugfix: Removes debug pop count message at round start
+2026-11-18:
+  Arturlang:
+  - bugfix: some issues with camera fog not updating properly
+  - bugfix: camera eyes send less static to client to fix maptick issues, only showing
+      the same z-level they're on
+  Lumipharon:
+  - rscadd: Added the Corruptor, an acid based strain of the Ravager
+  - balance: Rage reduces the CD of Ravage and Eviscerating Charge while active, scaling
+      with rage power
+  - balance: Rage has a 30 second CD down from 60 seconds, and can be used while staggered
+  - balance: Ravage now works diagonally
+  - balance: Vampirism has a more consistent, lower heal that can be triggered more
+      frequently
+  - bugfix: Fixed the warning message for Endure telling you that you had 3 less seconds
+      left than you actually have
+  - refactor: Significantly updated ventcrawling code for better performance

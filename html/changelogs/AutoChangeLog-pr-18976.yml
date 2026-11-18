@@ -1,9 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added the Corruptor, an acid based strain of the Ravager"
-  - balance: "Rage reduces the CD of Ravage and Eviscerating Charge while active, scaling with rage power"
-  - balance: "Rage has a 30 second CD down from 60 seconds, and can be used while staggered"
-  - balance: "Ravage now works diagonally"
-  - balance: "Vampirism has a more consistent, lower heal that can be triggered more frequently"
-  - bugfix: "Fixed the warning message for Endure telling you that you had 3 less seconds left than you actually have"
