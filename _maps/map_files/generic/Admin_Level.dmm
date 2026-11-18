@@ -1,4 +1,44 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/vending/valhalla_seasonal_req,
+/obj/machinery/button/change_species,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
+"aac" = (
+/obj/machinery/loadout_vendor/valhalla,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/button/change_species,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
+"aad" = (
+/obj/machinery/vending/valhalla_req,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/button/change_species,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
+"aae" = (
+/obj/machinery/door/airlock/mainship/marine/general/engi{
+	dir = 3
+	},
+/obj/machinery/button/change_species,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
 "aai" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran,
@@ -5839,16 +5879,6 @@
 /obj/machinery/vending/engivend/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
-"hYu" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/vending/valhalla_seasonal_req,
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "hYZ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -6320,12 +6350,6 @@
 "iNd" = (
 /obj/machinery/status_display,
 /turf/closed/wall,
-/area/centcom/valhalla)
-"iNh" = (
-/obj/machinery/door/airlock/mainship/marine/general/engi{
-	dir = 3
-	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "iNA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -7751,16 +7775,6 @@
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/item/tool/stamp/qm,
 /turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla)
-"kKa" = (
-/obj/machinery/vending/valhalla_req,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/centcom/valhalla)
 "kKv" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -13439,16 +13453,6 @@
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"tvG" = (
-/obj/machinery/loadout_vendor/valhalla,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/valhalla)
 "tvT" = (
 /obj/item/tool/weldingtool,
 /obj/item/clothing/head/welding,
@@ -25965,7 +25969,7 @@ box
 bSp
 bSp
 box
-hYu
+aaa
 jcx
 ivs
 sJF
@@ -26735,7 +26739,7 @@ box
 uut
 jcx
 yeN
-iNh
+aae
 jaD
 rht
 wqU
@@ -26993,7 +26997,7 @@ box
 bSp
 bSp
 box
-tvG
+aac
 jcx
 ivs
 bZV
@@ -28021,7 +28025,7 @@ box
 bSp
 bSp
 box
-kKa
+aad
 fPm
 ivs
 luM
