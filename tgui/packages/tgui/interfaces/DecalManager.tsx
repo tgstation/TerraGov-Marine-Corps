@@ -84,8 +84,8 @@ export const DecalManager = (props) => {
           return a.md5.localeCompare(b.md5);
         case SortType.date:
           return (
-            new Date(b.creation_date).getTime()
-            - new Date(a.creation_date).getTime()
+            new Date(b.creation_date).getTime() -
+            new Date(a.creation_date).getTime()
           );
         default:
           return 0;
