@@ -211,3 +211,12 @@
   - bugfix: Fixed the warning message for Endure telling you that you had 3 less seconds
       left than you actually have
   - refactor: Significantly updated ventcrawling code for better performance
+2026-11-19:
+  Lumipharon:
+  - refactor: fire support bino behaviour is now via a component
+  Notamaniac:
+  - rscadd: Added TE cells to APC and Tadpole Nano Ammo Vendors. TE cell field chargers
+      everywhere may cry about powercreep.
+  TiviPlus:
+  - rscadd: Added Custom player created decals for tanks. Use OOC tab -> Favourite/View
+      Decals to access, and facepaint on tank or APC to add a decal.

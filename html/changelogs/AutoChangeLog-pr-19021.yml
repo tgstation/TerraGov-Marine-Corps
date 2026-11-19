@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - refactor: "fire support bino behaviour is now via a component"
