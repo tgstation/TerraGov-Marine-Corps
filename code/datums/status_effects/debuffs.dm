@@ -308,8 +308,10 @@
 
 /atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
-	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
+	desc = "You've fallen asleep. Any damage you have is slowly being healed.  Wait a bit and you should wake up. \
+			Unless you don't, considering how helpless you are in this state."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message green_box"
 
 //ADMIN SLEEP
 /datum/status_effect/incapacitating/adminsleep
@@ -331,17 +333,18 @@
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message red_box"
 
 //CONFUSED
 /datum/status_effect/incapacitating/confused
 	id = "confused"
 	alert_type = /atom/movable/screen/alert/status_effect/confused
-	show_duration = TRUE
 
 /atom/movable/screen/alert/status_effect/confused
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/plasmadrain
 	id = "plasmadrain"
@@ -412,6 +415,7 @@
 	name = "Muted"
 	desc = "You can't speak!"
 	icon_state = "mute"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
@@ -456,7 +460,6 @@
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/irradiated
-	show_duration = TRUE
 	///Some effects only apply to carbons
 	var/mob/living/carbon/carbon_owner
 
@@ -494,6 +497,7 @@
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
+	boxed_message_style = "boxed_message red_box"
 
 // ***************************************
 // *********** Intoxicated
@@ -743,6 +747,7 @@
 	name = "Dread"
 	desc = "A dreadful presence. You are slowed down until this expires."
 	icon_state = "dread"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/dread
 	id = "dread"
@@ -775,6 +780,7 @@
 	name = "Draining Dread"
 	desc = "A dreadful presence. You take constant stamina damage until this expires."
 	icon_state = "dread"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/draining_dread
 	id = "draining_dread"
@@ -809,7 +815,6 @@
 	max_stacks = 30
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/melting
-	show_duration = TRUE
 	///Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	///Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
@@ -860,6 +865,7 @@
 	name = "Melting"
 	desc = "You are melting away!"
 	icon_state = "melting"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/melting_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -942,6 +948,7 @@
 	name = "Microwave"
 	desc = "You are burning from the inside!"
 	icon_state = "microwave"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/microwave_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1007,6 +1014,7 @@
 	name = "Shattered"
 	desc = "Your armor has been shattered!"
 	icon_state = "shatter"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/shattered_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1046,7 +1054,6 @@
 	max_stacks = 30
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/melting_acid
-	show_duration = TRUE
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
@@ -1082,6 +1089,7 @@
 	name = "Melting (Acid)"
 	desc = "You are melting away!"
 	icon_state = "melting"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/melting_acid_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1150,5 +1158,6 @@
 	name = "Lifedrain"
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
+	boxed_message_style = "boxed_message red_box"
 
 #undef BASE_HEAL_RATE
