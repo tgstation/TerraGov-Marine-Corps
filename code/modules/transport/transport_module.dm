@@ -84,6 +84,8 @@
 	. = ..()
 
 	set_movement_registrations()
+	//transport structures can sit on open space turfs, so we need to block vision instead of our turf
+	ADD_TRAIT(src, MOVABLE_Z_BLOCK_TRANSPARENT_TRAIT, INNATE_TRAIT)
 
 	//since transport_controller datums find all connected platforms when a transport structure first creates it and then
 	//sets those platforms' transport_controller_datum to itself, this check will only evaluate to true once per tram platform
