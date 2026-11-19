@@ -630,6 +630,7 @@
 /datum/status_effect/plasma_surge
 	id = "plasma_surge"
 	alert_type = /atom/movable/screen/alert/status_effect/plasma_surge
+	show_duration = TRUE
 	///How much plasma do we instantly restore
 	var/flat_amount_restored
 	///How much extra plasma should we regenerate over time as a % of our base regen, 1 being twice the regen
