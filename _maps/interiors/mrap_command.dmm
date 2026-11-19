@@ -72,12 +72,8 @@
 /turf/closed/interior/apc/two,
 /area/interior/mrap_command)
 "p" = (
-/obj/structure/periscope/apc{
-	pixel_z = 13;
-	dir = 8
-	},
 /obj/structure/gun_breech/secondary,
-/obj/structure/bed/chair/vehicle_crew/gunner,
+/obj/structure/bed/chair/vehicle_crew/gunner/skillless,
 /turf/open/interior/apc/twentytwo,
 /area/interior/mrap_command)
 "q" = (
@@ -112,10 +108,9 @@
 	pixel_z = 0;
 	dir = 4
 	},
-/obj/structure/periscope/apc{
-	pixel_z = 13;
-	pixel_w = 0;
-	dir = 4
+/obj/structure/periscope/fire_support{
+	dir = 4;
+	pixel_z = 13
 	},
 /turf/open/interior/apc/twentynine,
 /area/interior/mrap_command)
