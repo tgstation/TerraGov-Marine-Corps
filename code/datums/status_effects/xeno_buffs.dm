@@ -306,7 +306,7 @@
 
 /datum/status_effect/drone_enhancement
 	id = "drone enhancement"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 2 SECONDS
 	alert_type = null
 	/// Used to track who is giving this buff to the owner.
@@ -838,7 +838,7 @@
 // *********** Blessings
 // ***************************************
 /datum/status_effect/blessing
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null

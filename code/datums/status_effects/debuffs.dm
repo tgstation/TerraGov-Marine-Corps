@@ -315,8 +315,7 @@
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
 	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
-	duration = -1
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = STATUS_EFFECT_PERMANENT
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
 	. = ..()

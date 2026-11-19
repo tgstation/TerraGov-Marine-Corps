@@ -1,12 +1,12 @@
 /datum/status_effect/stacking
 	id = STATUS_EFFECT_ID_ABSTRACT
-	duration = -1 //removed under specific conditions
+	duration = STATUS_EFFECT_PERMANENT // Only removed under specific conditions
 	alert_type = null
 	/// If the status effect should be removed due to being under one stack
 	var/consumed_on_fadeout = TRUE
-	/// How many stacks are accumulated, also is # of stacks that target will have when first applied
+	/// How many stacks are accumulated, also the number of stacks that the target will have when first applied
 	var/stacks = 0
-	/// Deciseconds until ticks start occuring, which removes stacks (first stack will be removed at this time plus tick_interval)
+	/// Deciseconds until ticks start occuring, which removes stacks (first stack will be removed at this time plus `tick_interval`)
 	var/delay_before_decay
 	tick_interval = 1 SECONDS
 	/// How many stacks are lost per tick (decay trigger)
