@@ -505,6 +505,7 @@
 	max_stacks = 30
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/sentinel_intoxicated
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	/// The xenomorph who will receive healing.
@@ -612,6 +613,7 @@
 	max_stacks = 10
 	consumed_on_threshold = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/pyrogen_fire
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	/// Pyrogen creator of the debuff.
