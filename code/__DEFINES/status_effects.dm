@@ -25,6 +25,9 @@
 #define STATUS_EFFECT_FAST_PROCESS 0
 /// This is slow and suited for expensive effects, relying on Processing's wait (which is around 1 second)
 #define STATUS_EFFECT_NORMAL_PROCESS 1
+/// Similar speed to [STATUS_EFFECT_FAST_PROCESS], but uses a high priority subsystem (`SSpriority_effects`).
+/// This is suitable for any status effects that must be fast and more likely to process, even under server load.
+#define STATUS_EFFECT_PRIORITY 2
 
 /// Status effect does something when the owner dies
 #define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)

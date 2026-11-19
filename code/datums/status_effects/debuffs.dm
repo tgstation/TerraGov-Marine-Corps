@@ -3,9 +3,11 @@
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
-	tick_interval = STATUS_EFFECT_AUTO_TICK
+	id = STATUS_EFFECT_ID_ABSTRACT
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
+	processing_speed = STATUS_EFFECT_PRIORITY
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE)
@@ -97,6 +99,7 @@
 //UNCONSCIOUS
 /datum/status_effect/incapacitating/unconscious
 	id = "unconscious"
+	tick_interval = STATUS_EFFECT_AUTO_TICK
 
 /datum/status_effect/incapacitating/unconscious/on_apply()
 	. = ..()
@@ -117,6 +120,7 @@
 	id = "sleeping"
 	alert_type = /atom/movable/screen/alert/status_effect/asleep
 	show_duration = TRUE
+	tick_interval = STATUS_EFFECT_AUTO_TICK
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
@@ -312,6 +316,7 @@
 	id = "adminsleep"
 	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
 	duration = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
 	. = ..()

@@ -21,6 +21,10 @@
 			if(STATUS_EFFECT_NORMAL_PROCESS)
 				if(tick_speed % SSprocessing.wait != 0 && tick_speed != STATUS_EFFECT_AUTO_TICK)
 					TEST_FAIL("Status effect [checking] has tick_interval set to [tick_speed], which is not a multiple of SSprocessing wait time ([SSprocessing.wait]).")
+			if(STATUS_EFFECT_PRIORITY)
+				var/priority_wait = world.tick_lag * SSpriority_effects.wait // SSpriority_effects has the SS_TICKER flag, so its wait is in ticks, so we have to convert it to deciseconds.
+				if(tick_speed % priority_wait != 0 && tick_speed != STATUS_EFFECT_AUTO_TICK)
+					TEST_FAIL("Status effect [checking] has tick_interval set to [tick_speed], which is not a multiple of SSpriority_effects wait time ([priority_wait]).")
 			else
 				TEST_FAIL("Invalid processing speed for status effect [checking] : [initial(checking.processing_speed)]")
 
@@ -46,6 +50,10 @@
 			if(STATUS_EFFECT_NORMAL_PROCESS)
 				if(duration % SSprocessing.wait != 0)
 					TEST_FAIL("Status effect [checking] has duration set to [duration], which is not a multiple of SSprocessing wait time ([SSprocessing.wait]).")
+			if(STATUS_EFFECT_PRIORITY)
+				var/priority_wait = world.tick_lag * SSpriority_effects.wait // SSpriority_effects has the SS_TICKER flag, so its wait is in ticks, so we have to convert it to deciseconds.
+				if(duration % priority_wait != 0)
+					TEST_FAIL("Status effect [checking] has duration set to [duration], which is not a multiple of SSpriority_effects wait time ([priority_wait]).")
 			else
 				TEST_FAIL("Invalid processing speed for status effect [checking] : [initial(checking.processing_speed)]")
 
@@ -116,7 +124,7 @@
 	for(var/datum/status_effect/checking as anything in subtypesof(/datum/status_effect))
 		if(initial(checking.id) == STATUS_EFFECT_ID_ABSTRACT)
 			// we are just assuming that a child of an abstract should not be abstract.
-			// of course in practice, this may not always be the case—but if you're
+			// of course in practice, this may not always be the case. but if you're
 			// structuring a status effect like this, you can just change the parent id to anything else
 			var/datum/status_effect/checking_parent = initial(checking.parent_type)
 			if(initial(checking_parent.id) != STATUS_EFFECT_ID_ABSTRACT)

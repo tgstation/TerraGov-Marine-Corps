@@ -1,20 +1,23 @@
 /**
- * ### Status Effects
+ * # Status Effects
  *
- * Status effects are used to apply effects (usually temporary) to all living mob types.
- * In most cases, living mobs are aware of their status effects through HUD icons or other tells.
+ * Status effects are used to apply effects, either temporarily or permanently, to living mob types.
  *
- * ***When making a new status effect, add a define of its datum to `__DEFINES/status_effects.dm` for ease of use.***
+ * _When making a new status effect, add a define of its datum to `__DEFINES/status_effects.dm` for ease of use._
  */
 /datum/status_effect
-	/// Used for screen alerts
+	/// The ID of the effect. ID is used in adding and removing effects to check for duplicates, among other things.
 	var/id = "effect"
 	/// How long the status effect lasts in DECISECONDS. Use [STATUS_EFFECT_PERMANENT] for
 	/// a status effect that is never removed except through specific means.
 	var/duration = STATUS_EFFECT_PERMANENT
-	/// When used with `alert_type`, shows the duration (or percentage of max stacks) on the alert
+	/// When used with `alert_type`, shows the duration on the alert
 	var/show_duration = FALSE
-	/// Used to define if the status effect should be using `SSfastprocess` or `SSprocessing`
+	/// Used to define if the status effect should be using `SSfastprocess`, `SSprocessing`, or `SSpriority_effects`.
+	///
+	/// `SSfastprocess` is suitable for most status effect types, with `SSprocessing` available for expensive effects
+	/// or effects that don't care about fast timing. `SSpriority_effects` is suitable for status effects that must
+	/// process fast while also being less likely to be skipped during server load due to the nature of the MC.
 	var/processing_speed = STATUS_EFFECT_FAST_PROCESS
 	/// This is how long between tick calls in deciseconds.
 	/// This has to be a multiple of the wait of the subsystem this status effect is running on, which is based on `processing_speed`.
@@ -24,15 +27,13 @@
 	/// The time until the next tick call, gets set to `tick_interval` after every tick call and decrements on every process call
 	var/time_until_next_tick
 	/// The mob that owns this status effect and is being affected by it
-	var/mob/living/owner
+	VAR_FINAL/mob/living/owner
 	/// How many of the effect can be on one mob, and what happens when you try to add another
 	var/status_type = STATUS_EFFECT_UNIQUE
-	/// If defined, this text will appear when the mob is examined - to use he, she etc. use "SUBJECTPRONOUN" and replace it in the examines themselves
-	var/examine_text
-	/// The alert thrown by the status effect
+	/// Typepath of the screen alert thrown by the status effect when created
 	var/alert_type = /atom/movable/screen/alert/status_effect
-	/// A reference to the visible thrown alert when it's thrown
-	var/atom/movable/screen/alert/status_effect/linked_alert = null
+	/// A reference to the visible thrown alert when it's thrown, if [alert_type] is specified
+	VAR_FINAL/atom/movable/screen/alert/status_effect/linked_alert
 	/// Special behavior flags
 	var/status_flags = NONE
 
@@ -110,6 +111,8 @@
 			STOP_PROCESSING(SSfastprocess, src)
 		if(STATUS_EFFECT_NORMAL_PROCESS)
 			STOP_PROCESSING(SSprocessing, src)
+		if(STATUS_EFFECT_PRIORITY)
+			STOP_PROCESSING(SSpriority_effects, src)
 
 /// Stops ticking. Entirely stops processing if the effect is permanent.
 /datum/status_effect/proc/stop_ticking()
@@ -128,6 +131,8 @@
 			START_PROCESSING(SSfastprocess, src)
 		if(STATUS_EFFECT_NORMAL_PROCESS)
 			START_PROCESSING(SSprocessing, src)
+		if(STATUS_EFFECT_PRIORITY)
+			START_PROCESSING(SSpriority_effects, src)
 
 /// (Re)starts ticking, also (re)starting processing if the effect is permanent
 /datum/status_effect/proc/start_ticking()

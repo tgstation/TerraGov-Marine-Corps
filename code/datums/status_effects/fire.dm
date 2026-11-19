@@ -27,6 +27,7 @@
 	consumed_on_threshold = FALSE
 	consumed_on_fadeout = FALSE
 	max_stacks = 20
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	///Are they actually burning
