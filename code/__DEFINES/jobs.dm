@@ -209,4 +209,4 @@ GLOBAL_LIST_INIT(default_marine_points, list(
 	))
 
 /// 30 hours in minutes
-#define SPROUT_MAX_MINUTES 1600
+#define SPROUT_MAX_MINUTES 1800
