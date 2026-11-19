@@ -172,7 +172,6 @@
 /// Called instead of `on_remove` when a status effect
 /// of `status_type` [STATUS_EFFECT_REPLACE] is replaced by itself
 /datum/status_effect/proc/be_replaced()
-	SHOULD_CALL_PARENT(TRUE) // Because of deletion
 	linked_alert = null
 	owner.clear_alert(id)
 	LAZYREMOVE(owner.status_effects, src)
