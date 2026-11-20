@@ -78,8 +78,6 @@
 
 /// Status effect process. Handles adjusting its duration and time until it should actually tick.
 /// Don't extend or override this proc, you should override [/datum/status_effect/proc/tick] instead.
-///
-/// Note that `seconds_per_tick` is a constant value that will _virtually_ never change.
 /datum/status_effect/process(seconds_per_tick)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -158,7 +156,9 @@
  *
  *
  * Arguments:
- * * `seconds_between_ticks`—This is a _CONSTANT_ value that uses the initial tick interval of the status effect divided by 10.
+ * * `seconds_between_ticks`—This is a _CONSTANT_ value that uses the tick interval of the status effect divided by 10, or just the
+ * seconds per tick of the subsystem firing it for [STATUS_EFFECT_AUTO_TICK] effects. _Don't treat it like lag compensation or anything similar._
+ * It should never be changing in practice, it's best suited for scaling an effect's numbers with its interval or subsystem wait.
  */
 /datum/status_effect/proc/tick(seconds_between_ticks)
 	return
