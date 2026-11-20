@@ -1,4 +1,5 @@
 /atom/movable/screen/paper_map_extras
+	plane = ABOVE_HUD_PLANE
 	/// minimap action this extra button is owned by
 	var/obj/item/paper_map/papermap
 

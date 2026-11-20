@@ -336,6 +336,8 @@
 #define COMSIG_ATOM_POST_UPDATE_OVERLAYS "atom_post_update_overlays"
 ///from base of [/atom/update_icon]: (signalOut, did_anything)
 #define COMSIG_ATOM_UPDATED_ICON "atom_updated_icon"
+///from [POST_OVERLAY_CHANGE], after overlays are added or cut through the overlay procs: ()
+#define COMSIG_ATOM_POST_OVERLAY_CHANGE "atom_post_overlay_change"
 
 ///called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
 #define COMSIG_ATOM_INTERCEPT_Z_FALL "movable_intercept_z_impact"
@@ -806,6 +808,10 @@
 #define COMSIG_HUMAN_APPLY_OVERLAY "human_overlay_applied"
 ///from [/mob/living/carbon/human/proc/remove_overlay]: (cache_index, list/overlays_to_remove)
 #define COMSIG_HUMAN_REMOVE_OVERLAY "human_overlay_removed"
+///Called from apply_overlay(cache_index, overlay)
+#define COMSIG_CARBON_APPLY_OVERLAY "carbon_apply_overlay"
+///Called from remove_overlay(cache_index, overlay)
+#define COMSIG_CARBON_REMOVE_OVERLAY "carbon_remove_overlay"
 
 #define COMSIG_HUMAN_SET_UNDEFIBBABLE "human_set_undefibbable"
 
