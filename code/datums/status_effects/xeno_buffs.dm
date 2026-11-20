@@ -396,6 +396,7 @@
 /datum/status_effect/xeno_psychic_link
 	id = "xeno_psychic_link"
 	tick_interval = 2 SECONDS
+	alert_type = null
 	///Xenomorph the owner is linked to
 	var/mob/living/carbon/xenomorph/target_mob
 	///How far apart the linked mobs can be
@@ -839,6 +840,7 @@
 // *********** Blessings
 // ***************************************
 /datum/status_effect/blessing
+	id = STATUS_EFFECT_ID_ABSTRACT
 	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH

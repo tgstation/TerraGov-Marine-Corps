@@ -1,5 +1,5 @@
 /datum/status_effect/gun_skill
-	id = "gun_skill"
+	id = STATUS_EFFECT_ID_ABSTRACT
 	tick_interval = STATUS_EFFECT_NO_TICK
 	///reference to particle effect holder is present for this stack, initially a reference to the type to use
 	var/obj/effect/abstract/particle_holder/particles = /particles/gun_skill

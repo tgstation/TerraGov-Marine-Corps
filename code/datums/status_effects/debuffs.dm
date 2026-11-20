@@ -348,6 +348,7 @@
 
 /datum/status_effect/plasmadrain
 	id = "plasmadrain"
+	alert_type = null
 
 /datum/status_effect/plasmadrain/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
@@ -365,6 +366,7 @@
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
 	tick_interval = 2 SECONDS
+	alert_type = null
 
 /datum/status_effect/noplasmaregen/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
