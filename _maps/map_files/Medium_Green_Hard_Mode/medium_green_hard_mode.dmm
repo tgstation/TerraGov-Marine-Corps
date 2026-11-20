@@ -4159,21 +4159,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
-"apm" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/mediumgreen/outside/building/neotree/z1/security)
 "apn" = (
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light/spot{
@@ -4823,6 +4808,19 @@
 "arP" = (
 /turf/closed/shuttle/dropship4/damagedconsoletwo,
 /area/mediumgreen/outside/building/engineering/control)
+"arQ" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 2
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/machinery/power/apc,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mediumgreen/outside/building/neotree/z1/security)
 "arR" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/decal/cleanable/dirt,
@@ -40758,7 +40756,7 @@ aSu
 aTc
 aTc
 aTc
-apm
+arQ
 akS
 aik
 atb
