@@ -814,10 +814,10 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/z1/central)
 "adh" = (
-/obj/effect/ai_node,
-/obj/structure/stairs/multiz/seamless/directional/south,
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/southeast)
+/obj/structure/table/black,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/mainship/tcomms,
+/area/lv624/lazarus/console)
 "adi" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -4958,7 +4958,7 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/lz2/building/cargo)
 "asr" = (
-/obj/machinery/telecomms/server,
+/obj/structure/prop/nt_computer/recorder,
 /turf/open/floor/mainship/tcomms,
 /area/lv624/lazarus/console)
 "ass" = (
@@ -5600,14 +5600,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
-"auB" = (
-/obj/machinery/telecomms/processor,
-/obj/machinery/light/blue{
-	dir = 8;
-	brightness = 9
-	},
-/turf/open/floor/mainship/tcomms,
-/area/lv624/lazarus/console)
 "auC" = (
 /obj/structure/cable/multilayer/multiz,
 /obj/structure/cable,
@@ -6232,7 +6224,11 @@
 	},
 /area/mediumgreen/outside/z3/east)
 "axc" = (
-/obj/machinery/telecomms/broadcaster,
+/obj/machinery/light/blue{
+	dir = 8;
+	brightness = 9
+	},
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/tcomms,
 /area/lv624/lazarus/console)
 "axd" = (
@@ -6470,7 +6466,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/building/syndi)
 "aya" = (
-/obj/machinery/telecomms/receiver,
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/tcomms,
 /area/lv624/lazarus/console)
 "ayb" = (
@@ -6691,11 +6687,7 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z2/north)
 "ayV" = (
-/obj/machinery/telecomms/processor,
-/obj/machinery/light/blue{
-	dir = 4;
-	brightness = 9
-	},
+/obj/structure/prop/nt_computer/rack,
 /turf/open/floor/mainship/tcomms,
 /area/lv624/lazarus/console)
 "ayW" = (
@@ -6828,9 +6820,13 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "azv" = (
-/obj/machinery/telecomms/server,
+/obj/machinery/light/blue{
+	dir = 4;
+	brightness = 9
+	},
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/area/lv624/lazarus/console)
 "azw" = (
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/mediumgreen/outside/building/neotree/z3/tree)
@@ -6842,7 +6838,8 @@
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z1/lobby)
 "azy" = (
-/obj/machinery/telecomms/bus,
+/obj/effect/landmark/weed_node,
+/obj/structure/prop/nt_computer/recorder,
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
 "azz" = (
@@ -6878,7 +6875,7 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "azG" = (
-/obj/machinery/telecomms/relay,
+/obj/structure/prop/nt_computer/rack,
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
 "azH" = (
@@ -6991,7 +6988,7 @@
 	},
 /area/mediumgreen/outside/lz2/building/medbay)
 "aAb" = (
-/obj/machinery/transport/tram_controller/tcomms,
+/obj/structure/prop/nt_computer/recorder,
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
 "aAc" = (
@@ -14105,9 +14102,9 @@
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/lz)
 "aZQ" = (
-/obj/machinery/telecomms/hub,
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/tcomms,
-/area/lv624/lazarus/console)
+/area/mediumgreen/outside/building/engineering/tcoms)
 "aZR" = (
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/neotree/z3/tree)
@@ -21236,10 +21233,14 @@
 /turf/open/floor/roof/sheet,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "byc" = (
-/obj/machinery/telecomms/server,
-/obj/effect/landmark/weed_node,
+/obj/structure/table/black,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -3;
+	pixel_y = -5
+	},
 /turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
+/area/lv624/lazarus/console)
 "byd" = (
 /obj/effect/urban/decal/trash/eight,
 /obj/effect/landmark/weed_node,
@@ -21257,11 +21258,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/building/cultist)
-"byh" = (
-/obj/structure/prop/mainship/telecomms,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/tcoms)
 "byi" = (
 /obj/structure/flora/jungle/large_bush,
 /obj/effect/landmark/weed_node,
@@ -23517,10 +23513,10 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z2/central)
 "bGq" = (
-/obj/effect/landmark/weed_node,
+/obj/structure/stairs/multiz/seamless/directional/south,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable,
-/area/mediumgreen/caves/z2/central)
+/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
+/area/mediumgreen/outside/z1/southeast)
 "bGr" = (
 /obj/structure/flora/jungle/grass,
 /obj/effect/ai_node,
@@ -25209,10 +25205,8 @@
 /turf/closed/wall/wood/bark,
 /area/mediumgreen/caves/z3/Neotree/center)
 "bMv" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/ladder,
-/turf/open/floor/prison/sterilewhite,
-/area/mediumgreen/outside/lz2/building/restroom)
+/turf/closed/wall/wood/bark,
+/area/mediumgreen/caves/z2/central)
 "bMw" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/closed/wall/wood/bark,
@@ -25766,17 +25760,6 @@
 "bOk" = (
 /obj/structure/prop/mainship/railing{
 	dir = 4
-	},
-/turf/open/floor/roof/asphalt,
-/area/mediumgreen/outside/z3/southeast)
-"bOl" = (
-/obj/structure/prop/mainship/railing/corner,
-/turf/open/floor/roof/asphalt,
-/area/mediumgreen/outside/z3/southeast)
-"bOm" = (
-/obj/effect/ai_node,
-/obj/structure/prop/mainship/railing{
-	dir = 6
 	},
 /turf/open/floor/roof/asphalt,
 /area/mediumgreen/outside/z3/southeast)
@@ -26557,6 +26540,33 @@
 /obj/structure/prop/mainship/mapping_computer/white,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/lz)
+"bQS" = (
+/obj/structure/stairs/multiz/seamless/directional/east,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/mediumgreen/outside/lz1/around)
+"bQT" = (
+/obj/structure/catwalk,
+/obj/effect/ai_node,
+/turf/open/openspace,
+/area/mediumgreen/outside/lz1/around)
+"bQU" = (
+/obj/effect/ai_node,
+/turf/open/floor/roof,
+/area/mediumgreen/outside/lz1/around)
+"bQV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/lz1/around)
+"bQW" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/closed/wall/wood/bark,
+/area/mediumgreen/caves/z2/central)
+"bQX" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/closed/wall/wood/bark,
+/area/mediumgreen/caves/z2/central)
 
 (1,1,1) = {"
 apJ
@@ -67491,7 +67501,7 @@ aAT
 bLP
 bte
 bck
-aAT
+aZY
 bbQ
 bfC
 bbV
@@ -67683,7 +67693,7 @@ aAT
 bLP
 bte
 bLW
-bLW
+bQS
 bLW
 bfC
 bbV
@@ -73376,8 +73386,8 @@ adS
 adS
 adS
 blj
-arz
 add
+aFo
 aFo
 arz
 adS
@@ -73568,8 +73578,8 @@ adS
 adS
 bll
 bpz
-arz
-adh
+bGq
+aFo
 aFo
 arz
 aMJ
@@ -74376,7 +74386,7 @@ aGe
 aGe
 aGd
 aFB
-auB
+axc
 aus
 amt
 ahy
@@ -74568,9 +74578,9 @@ aGe
 aGe
 aGe
 aFB
-axc
+aya
 aus
-aZQ
+asr
 ahy
 aqy
 aqy
@@ -74760,9 +74770,9 @@ aWC
 aGe
 aGe
 aFB
-aya
+ayV
 alX
-asr
+adh
 ahy
 aqy
 aqy
@@ -74952,9 +74962,9 @@ aWS
 aUW
 aUl
 aFB
-ayV
+azv
 bHW
-asr
+byc
 ahy
 aqy
 aqy
@@ -84443,17 +84453,17 @@ bnJ
 aTX
 bFX
 bob
+bQW
 bnJ
-bnJ
-bnK
+bQW
 bnN
+bQW
 bnZ
-bnZ
+bMv
 aaK
-aaK
-bGq
-aaK
-aaK
+bQX
+bMv
+bMv
 bit
 aGT
 aGT
@@ -84644,7 +84654,7 @@ akV
 akV
 aaK
 aaK
-aaK
+bMv
 aaK
 bit
 aGT
@@ -98008,11 +98018,11 @@ aCI
 big
 ayO
 azm
-byh
+azy
+aZQ
+aAb
 azG
-azG
-azv
-byc
+azy
 azk
 azi
 ayz
@@ -98586,9 +98596,9 @@ ayO
 aAg
 azm
 aAb
-azv
-azy
-azy
+azG
+azm
+azG
 bGY
 azm
 ayE
@@ -101709,7 +101719,7 @@ aCq
 aCq
 awd
 bBT
-bMv
+bxr
 bBT
 aut
 bBQ
@@ -117205,22 +117215,22 @@ aaS
 aaS
 aaS
 aaU
+bQU
 aaU
 aaU
 aaU
-aaU
-aaU
+bQU
 aaU
 aaU
 auG
-auG
+bQT
 auG
 auG
 auG
 auG
 aBm
 aBm
-aBm
+bQV
 aBm
 aBm
 aaS
@@ -117973,11 +117983,11 @@ aaS
 aaS
 aaS
 aaU
+bQU
 aaU
 aaU
 aaU
-aaU
-aaU
+bQU
 aaU
 aaU
 aaS
@@ -118372,7 +118382,7 @@ aaS
 aaS
 aaS
 auG
-auG
+bQT
 auG
 aaS
 aaS
@@ -119140,12 +119150,12 @@ aaS
 aaS
 aaS
 auG
+bQT
 auG
 auG
 auG
 auG
-auG
-auG
+bQT
 auG
 aaS
 aaS
@@ -120292,12 +120302,12 @@ aaS
 aaS
 aaU
 aaU
+bQU
 aaU
 aaU
 aaU
 aaU
-aaU
-aaU
+bQU
 aaU
 aaU
 aaS
@@ -121828,12 +121838,12 @@ aaS
 aaS
 aaU
 aaU
+bQU
 aaU
 aaU
 aaU
 aaU
-aaU
-aaU
+bQU
 aaU
 aaU
 aaS
@@ -122338,7 +122348,7 @@ aaf
 aaf
 aaf
 aaf
-aaf
+akA
 akA
 aFN
 bBx
@@ -122530,7 +122540,7 @@ aaf
 aaf
 aaf
 aaf
-aaf
+akA
 aFK
 aFK
 bBu
@@ -132647,7 +132657,7 @@ aKk
 ars
 ars
 ars
-aht
+ars
 aht
 aht
 aht
@@ -133032,7 +133042,7 @@ aKk
 axX
 ahq
 ahq
-axX
+bMu
 ahq
 ahq
 ahq
@@ -133800,7 +133810,7 @@ aKk
 axX
 ahq
 ahq
-axX
+bMu
 ahq
 bMu
 bMu
@@ -150670,7 +150680,7 @@ ahi
 ahi
 aAp
 aAp
-byt
+aAp
 aAp
 aAp
 aAp
@@ -171109,7 +171119,7 @@ bOk
 bOk
 bOk
 bOn
-bOl
+aeC
 bOk
 bOk
 bOk
@@ -171301,7 +171311,7 @@ adw
 adw
 adw
 bOo
-bOm
+aig
 adw
 adw
 adw
