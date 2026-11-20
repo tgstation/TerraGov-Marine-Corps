@@ -1,5 +1,5 @@
-///Fire support options for HvZ modes
-GLOBAL_LIST_INIT(hvz_munition_types, list(
+///Fire support options for HvX modes
+GLOBAL_LIST_INIT(hvx_munition_types, list(
 	FIRESUPPORT_TYPE_GUN_STANDARD,
 	FIRESUPPORT_TYPE_ROCKETS_STANDARD,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD,
@@ -19,7 +19,8 @@ GLOBAL_LIST_INIT(hvz_munition_types, list(
 
 /obj/item/binoculars/fire_support/Initialize(mapload)
 	. = ..()
-	mode_list = GLOB.hvz_munition_types
+	if(!length(mode_list))
+		mode_list = GLOB.hvx_munition_types
 	update_icon()
 	AddComponent(/datum/component/fire_support, mode_list)
 

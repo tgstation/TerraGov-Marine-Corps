@@ -1,5 +1,5 @@
-/obj/item/circuitboard/computer/intel_computer
-	name = "circuit board (intel computer)"
+/obj/item/circuitboard/computer/fire_support
+	name = "circuit board (fire support terminal)"
 	build_path = /obj/machinery/computer/fire_support
 
 
@@ -8,17 +8,13 @@
 	desc = "Allows for the selection and purchase of munitions to be used for close air support, called in via fire support binoculars in the field."
 	icon_state = "computer_small"
 	screen_overlay = "fire_support"
+	circuit = /obj/item/circuitboard/computer/fire_support
 	interaction_flags = INTERACT_MACHINE_TGUI
 	faction = FACTION_TERRAGOV
 
-/obj/machinery/computer/fire_support/Initialize(mapload)
-	. = ..()
-
-/obj/machinery/computer/fire_support/Destroy()
-	return ..()
-
 /obj/machinery/computer/fire_support/ui_interact(mob/user, datum/tgui/ui)
 	if(!SSticker.mode || !istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+		to_chat(user, span_warning("Fire support not currently available."))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -30,10 +26,10 @@
 
 /obj/machinery/computer/fire_support/ui_data(mob/user)
 	var/list/data = list()
-	data["points"] = SSpoints.dropship_points
+	data["points"] = floor(SSpoints.dropship_points)
 
 	var/list/munition_list = list()
-	for(var/munition_type in GLOB.hvz_munition_types)
+	for(var/munition_type in GLOB.hvx_munition_types)
 		var/datum/fire_support/munition = GLOB.fire_support_types[munition_type]
 		var/list/munition_data = list()
 		munition_data["munition_type"] = munition_type
@@ -56,15 +52,12 @@
 
 	switch(action)
 		if("purchase")
-			var/munition_cost = text2num(params["munition_cost"])
-			if(SSpoints.dropship_points < munition_cost)
-				//insufficient funds
-				return
 			var/munition_type = params["munition_type"]
 			if(!(munition_type in GLOB.fire_support_types))
-				//invalid, bad
 				return
 			var/datum/fire_support/munition = GLOB.fire_support_types[munition_type]
+			if(SSpoints.dropship_points < munition.purchase_cost)
+				return
 			munition.uses ++
 			SSpoints.dropship_points -= munition_cost
 			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 75)
