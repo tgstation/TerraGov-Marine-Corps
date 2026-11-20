@@ -134,7 +134,7 @@
 	if(get_dist(point, camera_turf) > CHUNK_SIZE + (CHUNK_SIZE / 2))
 		return
 	. = list()
-	for(var/turf/vis_turf in checked_camera.can_see())
+	for(var/turf/vis_turf in get_hear(checked_camera.view_range, camera_turf))
 		if(turfs[vis_turf])
 			.[vis_turf] = vis_turf
 
