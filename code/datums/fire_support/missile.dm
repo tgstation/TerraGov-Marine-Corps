@@ -58,7 +58,7 @@
 	start_visual = null
 	start_sound = null
 	purchase_cost = 100
-	description = "A precision guided cruise missile, carrying a experimental chemical payload. Causes no damage, instead releasing a cloud of 'tanglefoot' gas, draining xenomorphs of plasma in its area of effect."
+	description = "A precision guided cruise missile, carrying an experimental chemical payload. Causes no damage, instead releasing a cloud of 'tanglefoot' gas, draining xenomorphs of plasma in its area of effect."
 
 /datum/fire_support/tfoot_missile/select_target(turf/target_turf)
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new

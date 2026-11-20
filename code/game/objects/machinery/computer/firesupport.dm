@@ -4,8 +4,8 @@
 
 
 /obj/machinery/computer/fire_support
-	name = "fire support requistion terminal"
-	desc = "Allows for the selection and purchase a munitions to be used for close air support, called in via fire support binoculars in the field."
+	name = "fire support requisition terminal"
+	desc = "Allows for the selection and purchase of munitions to be used for close air support, called in via fire support binoculars in the field."
 	icon_state = "computer_small"
 	screen_overlay = "fire_support"
 	interaction_flags = INTERACT_MACHINE_TGUI

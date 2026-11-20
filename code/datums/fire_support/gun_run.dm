@@ -80,7 +80,7 @@
 	uses = 4
 	mob_damage = 120
 	purchase_cost = 30
-	description = "A series of power incendiary lasers. Causes huge damage and ignition along the path of the lasers, but is difficult to precisely target."
+	description = "A series of powerful incendiary lasers. Causes huge damage and ignition along the path of the lasers, but is difficult to precisely target."
 
 /datum/fire_support/volkite
 	name = "Volkite gun run"

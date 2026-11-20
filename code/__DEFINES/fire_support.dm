@@ -1,6 +1,6 @@
 ///Can this firesupport type be used
 #define FIRESUPPORT_AVAILABLE (1<<0)
-///Can be used roundstart - for HvZ use
+///Can be used roundstart - for HvX use
 #define FIRESUPPORT_ROUNDSTART (1<<1)
 
 //Firemodes for Campaign gamemode
