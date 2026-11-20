@@ -48,7 +48,7 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
 /datum/centcom_podlauncher/ui_state(mob/user)
-	return GLOB.admin_state
+	return ADMIN_STATE(R_ADMIN)
 
 /datum/centcom_podlauncher/ui_interact(mob/user, datum/tgui/ui)//ui_interact is called when the client verb is called.
 	ui = SStgui.try_update_ui(user, src, ui)

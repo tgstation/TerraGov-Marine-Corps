@@ -378,4 +378,18 @@
 /obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
 	spawn_vehicles(user)
 
+/obj/machinery/button/change_species
+	name = "change species button"
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/button/change_species/attack_hand(mob/living/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/selected_species = tgui_input_list(user, "Select a species to change to", name, GLOB.all_species)
+	if(!selected_species)
+		return
+	var/mob/living/carbon/human/human_user = user
+	human_user.set_species(selected_species)
+
 #undef DOOR_FLAG_OPEN_ONLY

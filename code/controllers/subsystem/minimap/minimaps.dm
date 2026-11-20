@@ -487,6 +487,7 @@ SUBSYSTEM_DEF(minimaps)
 	screen_loc = "[x_tile]:[x_pixel],[y_tile]:[y_pixel]"
 
 /atom/movable/screen/minimap_extras
+	plane = ABOVE_HUD_PLANE
 	/// minimap action this extra button is owned by
 	var/datum/action/minimap/minimap_action
 

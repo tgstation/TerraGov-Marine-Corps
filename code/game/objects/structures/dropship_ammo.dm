@@ -374,19 +374,11 @@
 
 ///takes the top lazertarget on the stack and fires the lazer at it
 /obj/structure/ship_ammo/cas/laser_battery/proc/process_lazer(list/lazertargets)
-	laser_burn(lazertargets[1])
+	var/turf/current_target = lazertargets[1]
+	current_target.laser_strafe_act(120)
 	lazertargets -= lazertargets[1]
 	if(length(lazertargets))
 		INVOKE_NEXT_TICK(src, PROC_REF(process_lazer), lazertargets)
-
-///Lazer ammo acts on the turf passed in
-/obj/structure/ship_ammo/cas/laser_battery/proc/laser_burn(turf/T)
-	playsound(T, 'sound/effects/pred_vision.ogg', 30, TRUE, LOUD_SOUND_RANGE)
-	for(var/mob/living/L in T)
-		L.adjustFireLoss(120)
-		L.adjust_burning(20)
-	T.ignite(5, 30) //short but intense
-
 
 //Rockets are defined by being one shot and done, and generally having solid payloads and low travel times.
 
@@ -764,3 +756,21 @@
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	crosshair = 'icons/UI_Icons/cas_crosshairs/poppies.dmi'
+
+///Laser CAS ammo acts on the turf
+/turf/proc/laser_strafe_act(damage = 120)
+	playsound(src, 'sound/effects/pred_vision.ogg', 60, TRUE, LOUD_SOUND_RANGE)
+	for(var/target in src)
+		if(isliving(target))
+			var/mob/living/living_target = target
+			living_target.adjustFireLoss(damage)
+			living_target.adjust_burning(20)
+			living_target.IgniteMob()
+		else if(ismecha(target))
+			var/obj/vehicle/sealed/mecha/mech_target = target
+			mech_target.take_damage(damage * 3, BURN, LASER, TRUE, null, 50)
+			//we do big damage to mechs, but no mult on tanks since they can get hit multiple times anyway
+		else if(isobj(target))
+			var/obj/obj_target = target
+			obj_target.take_damage(damage, BURN, LASER, TRUE, null, 50)
+	ignite(5, 30) //short but intense

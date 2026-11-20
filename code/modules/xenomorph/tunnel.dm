@@ -31,7 +31,8 @@ TUNNEL
 	var/area/tunnel_area = get_area(src)
 	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
 		icon_state = "manhole_open[rand(1,3)]"
-	tunnel_desc = "[get_area(src)] (X: [x], Y: [y])"
+	var/floor = get_tunnel_floor(z)
+	tunnel_desc = "[get_area(src)] (X: [x], Y: [y][floor ? ", Floor: [floor]" : ""])"
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
@@ -108,20 +109,64 @@ TUNNEL
 		return
 	user.forceMove(get_turf(targettunnel))
 
+/// Get the floor of a z_level within it's multi-z stack, or 0 if it's not part of the multi-z stack
+/obj/structure/xeno/tunnel/proc/get_tunnel_floor(z_level)
+	var/list/linked_zs = SSmapping.get_connected_levels(z_level)
+	if(length(linked_zs) < 2)
+		return 0
+	linked_zs = sort_list(linked_zs, GLOBAL_PROC_REF(cmp_numeric_asc))
+	return linked_zs.Find(z_level)
+
+///Returns TRUE if other_tunnel is on our z level or on another z level of the same multi-z stack
+/obj/structure/xeno/tunnel/proc/is_connected_tunnel(obj/structure/xeno/tunnel/other_tunnel)
+	if(!z || !other_tunnel.z)
+		return FALSE
+	if(other_tunnel.z == z)
+		return TRUE
+	return (other_tunnel.z in SSmapping.get_connected_levels(z))
+
+/// Returns the list of valid tunnels to travel to
+/obj/structure/xeno/tunnel/proc/get_connected_tunnels()
+	. = list()
+	for(var/obj/structure/xeno/tunnel/other_tunnel AS in GLOB.xeno_tunnels_by_hive[hivenumber])
+		if(other_tunnel == src || !is_connected_tunnel(other_tunnel))
+			continue
+		. += other_tunnel
+
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
+	var/list/obj/structure/xeno/tunnel/connected_tunnels = get_connected_tunnels()
+	if(!length(connected_tunnels))
+		balloon_alert(M, "No exit tunnel")
+		if(M.loc == src)
+			M.forceMove(loc)
+		return
+
+	var/datum/action/minimap/xeno/minimap_action = locate() in M.actions
+	if(!M.client || !minimap_action)
+		return
+
 	to_chat(M, span_notice("Select a tunnel to go to."))
 
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
-	M.client.screen += map
-	var/list/polled_coords = map.get_coords_from_click(M)
-	M?.client?.screen -= map
-	if(!polled_coords)
+	var/opened_minimap = minimap_action.toggle_minimap(TRUE)
+	if(!minimap_action.minimap_displayed)
 		return
-	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
+	var/list/polled_coords = minimap_action.map.get_coords_from_click(M)
+	var/still_displayed = minimap_action.minimap_displayed
+	var/target_z = minimap_action.map?.tracked_z
+	if(opened_minimap)
+		minimap_action.toggle_minimap(FALSE)
+	if(!polled_coords || !still_displayed || !target_z)
+		return
+	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], target_z)
 
-	///We find the tunnel, looking within 10 tiles of where the user clicked, excluding src
-	var/obj/structure/xeno/tunnel/targettunnel = cheap_get_atom(clicked_turf, /obj/structure/xeno/tunnel, 10, GLOB.xeno_tunnels_by_hive[hivenumber] - src)
+	// avoid searching tunnels on other z-levels
+	var/list/obj/structure/xeno/tunnel/floor_tunnels = list()
+	for(var/obj/structure/xeno/tunnel/other_tunnel AS in connected_tunnels)
+		if(other_tunnel.z == target_z)
+			floor_tunnels += other_tunnel
+	///We find the tunnel, looking within 10 tiles of where the user clicked on the chosen floor, excluding src
+	var/obj/structure/xeno/tunnel/targettunnel = cheap_get_atom(clicked_turf, /obj/structure/xeno/tunnel, 10, floor_tunnels)
 
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
@@ -137,16 +182,18 @@ TUNNEL
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
-	if(targettunnel.z != z)
+	if(!is_connected_tunnel(targettunnel))
 		balloon_alert(M, "Tunnel not connected")
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
-	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
-	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
+	// get-dist doesn't work across-zlevels so have to manually calculated distance
+	var/distance = max(abs(targettunnel.x - x), abs(targettunnel.y - y))
+	var/z_penalty = abs(targettunnel.z - z) * HIVELORD_TUNNEL_Z_LEVEL_TRAVEL_TIME
+	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME) + z_penalty
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
-		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
+		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME) + z_penalty * 1.5
 		M.visible_message(span_xenonotice("[M] begins heaving their huge bulk down into \the [src].") , \
 		span_xenonotice("We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.") )
 	else
