@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Added sprout icon to xeno/marines with less than 10 living hours of playtime"
+  - bugfix: "Xenos hud has been adjusted so they no longer have sunder/fire icons layering over other things in their hud overlay"
