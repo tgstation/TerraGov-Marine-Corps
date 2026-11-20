@@ -4450,10 +4450,10 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
 "aqk" = (
-/obj/machinery/telecomms/hub{
-	pixel_x = -1
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/open/floor/tcomms,
+/turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
 "aql" = (
 /turf/closed/wall,
@@ -4574,8 +4574,18 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/lz2/building/cargo)
 "aqP" = (
-/obj/machinery/telecomms/processor,
-/turf/open/floor/tcomms,
+/obj/machinery/light/blue{
+	dir = 1;
+	brightness = 5
+	},
+/obj/machinery/power/apc/drained{
+	dir = 2
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
 "aqQ" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
@@ -4813,30 +4823,14 @@
 "arP" = (
 /turf/closed/shuttle/dropship4/damagedconsoletwo,
 /area/mediumgreen/outside/building/engineering/control)
-"arQ" = (
-/obj/machinery/telecomms/server,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/multi_tiles,
-/area/mediumgreen/outside/building/engineering/control)
 "arR" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
 "arS" = (
-/obj/machinery/light/blue{
-	dir = 1;
-	brightness = 5
-	},
-/obj/structure/prop/mainship/sensor_computer3/black,
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/multi_tiles,
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/shuttle/dropship4/damagedconsoletwo,
 /area/mediumgreen/outside/building/engineering/control)
 "arT" = (
 /turf/open/floor/plating,
@@ -5600,6 +5594,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
+"auB" = (
+/obj/structure/transport/linear/public,
+/obj/machinery/elevator_control_panel/directional/north{
+	linked_elevator_id = "tower";
+	linked_elevator_destination = list("1"="bottom Floor","2"="OUT OF ORDER","3"="Top Floor")
+	},
+/turf/open/floor/elevatorshaft,
+/area/mediumgreen/outside/building/neotree/z1/security)
 "auC" = (
 /obj/structure/cable/multilayer/multiz,
 /obj/structure/cable,
@@ -15318,13 +15320,6 @@
 "bdl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
-	},
-/turf/open/floor/multi_tiles,
-/area/mediumgreen/outside/building/engineering/control)
-"bdm" = (
-/obj/structure/prop/mainship/sensor_computer1/black,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
@@ -25682,13 +25677,9 @@
 /turf/open/openspace,
 /area/mediumgreen/outside/building/engineering/roof/z2)
 "bOb" = (
-/obj/structure/transport/linear/public,
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "lz";
-	preset_destination_names = list("1"="Bottom floor","2"="Middle floor","3"="Top floor")
-	},
-/turf/open/floor/elevatorshaft,
-/area/mediumgreen/outside/building/neotree/z1/security)
+/obj/structure/prop/mainship/sensor_computer1/black,
+/turf/open/floor/tcomms,
+/area/mediumgreen/outside/building/engineering/control)
 "bOc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25763,6 +25754,10 @@
 	},
 /turf/open/floor/roof/asphalt,
 /area/mediumgreen/outside/z3/southeast)
+"bOl" = (
+/obj/structure/prop/mainship/sensor_computer3/black,
+/turf/open/floor/tcomms,
+/area/mediumgreen/outside/building/engineering/control)
 "bOn" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/prop/mainship/railing/corner{
@@ -41333,7 +41328,7 @@ aQK
 aSX
 aGz
 aTc
-bOb
+auB
 aSu
 aSu
 aSp
@@ -47907,9 +47902,9 @@ apV
 arO
 bdK
 aqN
-aqP
+bOl
+bOb
 aqk
-bdm
 apl
 aov
 aoa
@@ -48101,7 +48096,7 @@ bdL
 awX
 aql
 aql
-arS
+aqP
 bEG
 aow
 aoa
@@ -48480,7 +48475,7 @@ biQ
 aqd
 biQ
 bNY
-arQ
+arS
 apl
 bEO
 aqn
