@@ -48,7 +48,7 @@
 	if(.)
 		return
 
-	var/mob/living/user = usr
+	var/mob/living/user = ui.user
 
 	switch(action)
 		if("purchase")

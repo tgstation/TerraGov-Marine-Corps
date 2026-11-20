@@ -129,7 +129,6 @@ export const FireSupport = (props) => {
                               onClick={() => {
                                 act('purchase', {
                                   munition_type: currentMunition.munition_type,
-                                  munition_cost: currentMunition.munition_cost,
                                 });
                               }}
                             >
