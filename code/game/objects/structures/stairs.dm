@@ -85,6 +85,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz, 0)
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !climber.can_z_move(DOWN, target, z_move_flags = ZMOVE_FALL_FLAGS)) //Don't throw them into a tile that will just dump them back down.
 		climber.zMove(target = target, z_move_flags = ZMOVE_STAIRS_FLAGS)
+		if(isliving(climber))
+			var/mob/living/living_climber = climber
+			living_climber.z_change_spam_check()
+		else if(issealedvehicle(climber))
+			var/obj/vehicle/sealed/vehicle_climber = climber
+			for(var/mob/living/occupant in vehicle_climber.return_drivers())
+				occupant.z_change_spam_check()
 		/// Moves anything that's being dragged by src or anything buckled to it to the stairs turf.
 		climber.pulling?.move_from_pull(climber, loc, climber.glide_size)
 		for(var/mob/living/buckled as anything in climber.buckled_mobs)
@@ -129,6 +136,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz, 0)
 	. = ..()
 	if(levels == 1 && isTerminator()) // Stairs won't save you from a steep fall.
 		. |= FALL_INTERCEPTED | FALL_NO_MESSAGE | FALL_RETAIN_PULL
+		for(var/atom/movable/faller AS in falling_movables)
+			if(isliving(faller))
+				var/mob/living/fallingmob = faller
+				fallingmob.z_change_spam_check()
+			else if(issealedvehicle(faller))
+				var/obj/vehicle/sealed/vehicle_faller = faller
+				for(var/mob/living/occupant in vehicle_faller.return_drivers())
+					occupant.z_change_spam_check()
 
 /obj/structure/stairs/multiz/proc/isTerminator() //If this is the last stair in a chain and should move mobs up
 	if(terminator_mode != STAIR_TERMINATOR_AUTOMATIC)
