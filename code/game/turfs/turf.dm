@@ -68,8 +68,8 @@
 
 	/// We do NOT use the shortcut here, because this is faster
 	if(SSmapping.max_plane_offset)
-		if(!SSmapping.plane_offset_blacklist["[plane]"])
-			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+		if(!SSmapping.plane_offset_blacklist[plane])
+			plane -= PLANE_RANGE * SSmapping.z_level_to_plane_offset[z]
 
 		var/turf/T = GET_TURF_ABOVE(src)
 		if(T)

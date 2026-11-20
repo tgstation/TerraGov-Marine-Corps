@@ -199,8 +199,8 @@
 	if(should_sight_scale(new_sight) == should_sight_scale(old_sight))
 		return
 
-	for(var/group_key as anything in master_groups)
-		var/datum/plane_master_group/group = master_groups[group_key]
+	for(var/group_key, _group in master_groups)
+		var/datum/plane_master_group/group = _group
 		group.build_planes_offset(src, current_plane_offset)
 
 /datum/hud/proc/on_plane_increase(datum/source, old_max_offset, new_max_offset)
@@ -211,30 +211,29 @@
 
 /// Creates the required plane masters to fill out new z layers (because each "level" of multiz gets its own plane master set)
 /datum/hud/proc/build_plane_groups(starting_offset, ending_offset)
-	for(var/group_key in master_groups)
-		var/datum/plane_master_group/group = master_groups[group_key]
+	for(var/group_key, _group in master_groups)
+		var/datum/plane_master_group/group = _group
 		group.build_plane_masters(starting_offset, ending_offset)
 
 /// Returns the plane master that matches the input plane from the passed in group
-/datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN)
-	var/plane_key = "[plane]"
+/datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN) as /atom/movable/screen/plane_master
 	var/datum/plane_master_group/group = master_groups[group_key]
-	return group.plane_masters[plane_key]
+	return group.plane_masters[plane]
 
 /// Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)
-/datum/hud/proc/get_true_plane_masters(true_plane, group_key = PLANE_GROUP_MAIN)
+/datum/hud/proc/get_true_plane_masters(true_plane, group_key = PLANE_GROUP_MAIN) as /list
 	var/list/atom/movable/screen/plane_master/masters = list()
 	for(var/plane in TRUE_PLANE_TO_OFFSETS(true_plane))
 		masters += get_plane_master(plane, group_key)
 	return masters
 
 /// Returns all the planes belonging to the passed in group key
-/datum/hud/proc/get_planes_from(group_key)
+/datum/hud/proc/get_planes_from(group_key) as /alist
 	var/datum/plane_master_group/group = master_groups[group_key]
 	return group.plane_masters
 
 /// Returns the corresponding plane group datum if one exists
-/datum/hud/proc/get_plane_group(key)
+/datum/hud/proc/get_plane_group(key) as /datum/plane_master_group
 	return master_groups[key]
 
 /datum/hud/proc/eye_z_changed(atom/eye)
@@ -361,8 +360,8 @@
 	return TRUE
 
 /datum/hud/proc/plane_masters_update()
-	for(var/group_key in master_groups)
-		var/datum/plane_master_group/group = master_groups[group_key]
+	for(var/group_key, _group in master_groups)
+		var/datum/plane_master_group/group = _group
 		// Plane masters are always shown to OUR mob, never to observers
 		group.refresh_hud()
 

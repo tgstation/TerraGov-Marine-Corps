@@ -211,7 +211,7 @@
 	name = "Lighting plate"
 	documentation = "Anything on this plane will be <b>multiplied</b> with the plane it's rendered onto (typically the game plane).\
 		<br>That's how lighting functions at base. Because it uses BLEND_MULTIPLY and occasionally color matrixes, it needs a backdrop of blackness.\
-		<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">This byond post</a>\
+		<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">this byond post</a>\
 		<br>Lemme see uh, we're masked by the emissive plane so it can actually function (IE: make things glow in the dark).\
 		<br>We're also masked by the overlay lighting plane, which contains all the well overlay lights in the game. It draws to us and also the game plane.\
 		<br>Masks us out so it has the breathing room to apply its effect.\
@@ -351,7 +351,7 @@
 
 /atom/movable/screen/plane_master/rendering_plate/light_mask/hide_from(mob/oldmob)
 	. = ..()
-	var/atom/movable/screen/plane_master/emissive = home.get_plane(GET_NEW_PLANE(EMISSIVE_RENDER_PLATE, offset))
+	var/atom/movable/screen/plane_master/emissive = home.plane_masters[GET_NEW_PLANE(EMISSIVE_RENDER_PLATE, offset)]
 	emissive.remove_filter("lighting_mask")
 	remove_relay_from(GET_NEW_PLANE(LIT_GAME_RENDER_PLATE, offset))
 	UnregisterSignal(oldmob, COMSIG_MOB_SIGHT_CHANGE)
@@ -359,7 +359,7 @@
 /atom/movable/screen/plane_master/rendering_plate/light_mask/proc/handle_sight(datum/source, new_sight, old_sight)
 	// If we can see something that shows "through" blackness, and we can't see turfs, disable our draw to the game plane
 	// And instead mask JUST the overlay lighting plane, since that will look fuckin wrong
-	var/atom/movable/screen/plane_master/emissive = home.get_plane(GET_NEW_PLANE(EMISSIVE_RENDER_PLATE, offset))
+	var/atom/movable/screen/plane_master/emissive = home.plane_masters[GET_NEW_PLANE(EMISSIVE_RENDER_PLATE, offset)]
 	if(new_sight & SEE_AVOID_TURF_BLACKNESS && !(new_sight & SEE_TURFS))
 		remove_relay_from(GET_NEW_PLANE(LIT_GAME_RENDER_PLATE, offset))
 		emissive.add_filter("lighting_mask", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(LIGHT_MASK_RENDER_TARGET, offset)))
