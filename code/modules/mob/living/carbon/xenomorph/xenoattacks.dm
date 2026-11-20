@@ -95,3 +95,12 @@
 			return attack_alien_grab(xeno_attacker)
 		if(INTENT_HARM, INTENT_DISARM)
 			return attack_alien_harm(xeno_attacker)
+
+///Drops an AOE of acid projectiles around the xeno
+/mob/living/carbon/xenomorph/proc/acid_burst(quantity = 12, datum/ammo/xeno/ammo_type = ammo)
+	var/list/bullets = list()
+	for(var/i=1 to quantity)
+		var/atom/movable/projectile/proj = new (src)
+		proj.generate_bullet(ammo_type)
+		bullets += proj
+	INVOKE_ASYNC(src, GLOBAL_PROC_REF(bullet_burst), src, bullets, src, pick('sound/voice/alien/spitacid.ogg', 'sound/voice/alien/spitacid2.ogg'), 4, 2)

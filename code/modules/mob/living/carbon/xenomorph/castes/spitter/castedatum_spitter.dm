@@ -76,7 +76,7 @@
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD|CASTE_MUTATIONS_ALLOWED
 
 	spit_delay = 0.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/acid/drop_acid/auto, /datum/ammo/xeno/acid/medium)
 
 /datum/xeno_caste/spitter/globadier
 	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier

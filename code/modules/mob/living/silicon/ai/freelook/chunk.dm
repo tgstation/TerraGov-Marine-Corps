@@ -17,8 +17,8 @@
 	var/list/turfs = list()
 	///camera mobs that can see turfs in our grid
 	var/list/seenby = list()
-	///images currently in use on obscured turfs.
-	var/list/active_static_images = list()
+	///images currently in use on obscured turfs, by z level, so a viewer only gets the static of the level its eye is on
+	var/list/active_static_images
 
 	var/changed = FALSE
 	/// Turfs in our grid each camera can see, keyed by camera
@@ -36,23 +36,48 @@
 
 /// Add a camera eye to the chunk, then update if changed.
 /datum/camerachunk/proc/add(mob/camera/eye)
+	eye.sync_static_client()
 	eye.visibleCameraChunks += src
 	seenby += eye
 	if(changed)
 		update()
 
-	var/client/client = eye.GetViewerClient()
-	if(client && eye.use_static)
-		client.images += active_static_images
+	show_static(eye.static_client, eye.static_z)
 
 /// Remove a camera eye from the chunk
 /datum/camerachunk/proc/remove(mob/camera/eye)
+	eye.sync_static_client()
 	eye.visibleCameraChunks -= src
 	seenby -= eye
 
-	var/client/client = eye.GetViewerClient()
-	if(client && eye.use_static && seenby.len == 0)
-		client.images -= active_static_images
+	hide_static(eye.static_client, eye.static_z)
+
+/// Shows the static of one of our z levels to the viewer
+/datum/camerachunk/proc/show_static(client/viewer, z_level)
+	var/list/level_static = LAZYACCESS(active_static_images, "[z_level]")
+	if(viewer && level_static)
+		viewer.images |= level_static
+
+/// Takes the static of one of our z levels off the viewer, unless another eye is still showing it to them
+/datum/camerachunk/proc/hide_static(client/viewer, z_level)
+	var/list/level_static = LAZYACCESS(active_static_images, "[z_level]")
+	if(viewer && level_static && !is_watched_by_client(viewer, z_level))
+		viewer.images -= level_static
+
+/// Is any eye still watching this chunk showing the static of that z level to the viewer
+/datum/camerachunk/proc/is_watched_by_client(client/viewer, z_level)
+	for(var/mob/camera/watcher as anything in seenby)
+		if(watcher.static_client == viewer && watcher.static_z == z_level)
+			return TRUE
+	return FALSE
+
+/// Adds a static image to the active static of its z level
+/datum/camerachunk/proc/add_active_static(image/static_image)
+	LAZYADDASSOCLIST(active_static_images, "[static_image.loc.z]", static_image)
+
+/// Removes a static image from the active static of its z level
+/datum/camerachunk/proc/remove_active_static(image/static_image)
+	LAZYREMOVEASSOC(active_static_images, "[static_image.loc.z]", static_image)
 
 /// Called when a chunk has changed. I.E: A wall was deleted.
 /datum/camerachunk/proc/visibilityChanged(turf/loc)
@@ -145,21 +170,17 @@
 	///turfs that we could see last update but cant see now
 	var/list/newly_obscured_turfs = visibleTurfs - updated_visible_turfs
 
-	for(var/mob/camera/client_eye as anything in seenby)
-		var/client/client = client_eye.GetViewerClient()
-		if(!client)
-			continue
-
-		client.images -= active_static_images
-
+	var/list/revealed_images = list()
 	for(var/turf/visible_turf as anything in newly_visible_turfs)
 		var/image/static_image = obscuredTurfs[visible_turf]
 		if(!static_image)
 			continue
 
-		active_static_images -= static_image
+		remove_active_static(static_image)
+		LAZYADDASSOCLIST(revealed_images, "[visible_turf.z]", static_image)
 		obscuredTurfs -= visible_turf
 
+	var/list/hidden_images = list()
 	for(var/turf/obscured_turf as anything in newly_obscured_turfs)
 		if(obscuredTurfs[obscured_turf] || istype(obscured_turf, /turf/open/ai_visible))
 			continue
@@ -170,17 +191,31 @@
 			break
 
 		obscuredTurfs[obscured_turf] = static_image
-		active_static_images += static_image
+		add_active_static(static_image)
+		LAZYADDASSOCLIST(hidden_images, "[obscured_turf.z]", static_image)
 	visibleTurfs = updated_visible_turfs
 
 	changed = FALSE
 
 	for(var/mob/camera/client_eye as anything in seenby)
-		var/client/client = client_eye.GetViewerClient()
+		client_eye.sync_static_client()
+	if(!length(revealed_images) && !length(hidden_images))
+		return
+	for(var/mob/camera/client_eye as anything in seenby)
+		var/client/client = client_eye.static_client
 		if(!client)
 			continue
 
-		client.images += active_static_images
+		var/z_key = "[client_eye.static_z]"
+		if(revealed_images[z_key])
+			client.images -= revealed_images[z_key]
+		if(hidden_images[z_key])
+			client.images |= hidden_images[z_key]
+
+/// If a portable camera would be added to this chunk
+/datum/camerachunk/proc/can_portable_camera_reach(turf/center)
+	var/list/bounds = parent_cameranet.get_chunk_bounds_around(center)
+	return x >= GET_CHUNK_COORD(bounds[1]) && x <= GET_CHUNK_COORD(bounds[3]) && y >= GET_CHUNK_COORD(bounds[2]) && y <= GET_CHUNK_COORD(bounds[4])
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
 /datum/camerachunk/New(x, y, lower_z, datum/cameranet/net)
@@ -216,6 +251,17 @@
 
 		all_local_cameras += local_cameras
 
+	// register the chunk for any cameras here
+	for(var/obj/machinery/camera/camera as anything in net.cameras)
+		if(isturf(camera.loc) || !camera.can_use())
+			continue
+		var/turf/camera_turf = get_turf(camera)
+		if(!camera_turf || camera_turf.z < lower_z || camera_turf.z > upper_z || !can_portable_camera_reach(camera_turf))
+			continue
+		cameras["[camera_turf.z]"] |= camera
+		all_local_cameras |= camera
+		LAZYOR(camera.portable_chunks, src)
+
 	for(var/obj/machinery/camera/camera as anything in all_local_cameras)
 		var/list/camera_turfs = get_camera_visible_turfs(camera)
 		if(!camera_turfs)
@@ -227,8 +273,10 @@
 	COOLDOWN_START(src, full_update_cooldown, parent_cameranet.chunk_full_update_interval)
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)
+		if(istype(obscured_turf, /turf/open/ai_visible))
+			continue
 		var/image/new_static = turfs[obscured_turf]
-		active_static_images += new_static
+		add_active_static(new_static)
 		obscuredTurfs[obscured_turf] = new_static
 
 #undef CHUNK_SIZE

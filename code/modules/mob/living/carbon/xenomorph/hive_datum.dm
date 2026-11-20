@@ -649,7 +649,7 @@
 
 ///attempts to have devolver devolve target
 /datum/hive_status/proc/attempt_deevolve(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
-	if(target.is_ventcrawling)
+	if(HAS_TRAIT(target, TRAIT_MOVE_VENTCRAWLING))
 		to_chat(devolver, span_xenonotice("Cannot deevolve, [target] is ventcrawling."))
 		return
 
@@ -677,7 +677,7 @@
 	if(!devolver.check_concious_state())
 		return
 
-	if(target.is_ventcrawling)
+	if(HAS_TRAIT(target, TRAIT_MOVE_VENTCRAWLING))
 		return
 
 	if(!isturf(target.loc))

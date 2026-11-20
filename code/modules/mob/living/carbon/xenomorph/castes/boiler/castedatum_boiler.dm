@@ -80,6 +80,17 @@
 		/datum/mutation_upgrade/veil/binoculars
 	)
 
+/datum/xeno_caste/boiler/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
+	. = ..()
+	xenomorph.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+	xenomorph.gib_chance = 100
+
+/datum/xeno_caste/boiler/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
+	if(!QDELETED(xenomorph))
+		xenomorph.ammo = null
+		xenomorph.gib_chance = initial(xenomorph.gib_chance)
+	return ..()
+
 /datum/xeno_caste/boiler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 

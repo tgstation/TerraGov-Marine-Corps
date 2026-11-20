@@ -12,10 +12,10 @@
 	layer = ABOVE_MOB_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
-	can_see_pipes = FALSE
 	light_range = 3
 	light_power = 2
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	vent_movement = NONE
 	///Whether we will autoeject when the occupant is fully healed
 	var/autoeject = FALSE
 	///The stored beaker for healing reagents
@@ -189,9 +189,6 @@
 	put_mob(grabbed_mob, TRUE)
 
 	return TRUE
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
-	return // can't ventcrawl in or out of cryo.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
