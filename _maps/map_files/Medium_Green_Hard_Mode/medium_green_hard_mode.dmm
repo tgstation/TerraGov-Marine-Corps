@@ -4159,6 +4159,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
+"apm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "apn" = (
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
 /obj/machinery/light/spot{
@@ -15156,33 +15164,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/west)
-"bcN" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
 "bcO" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/z1/west)
-"bcP" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
-"bcQ" = (
-/obj/effect/urban/decal/dirt_2,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
 "bcR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -15216,12 +15201,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz1/around/engi)
-"bcW" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
 "bcX" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 4
@@ -15321,6 +15300,14 @@
 	},
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
+"bdm" = (
+/obj/effect/urban/decal/dirt_2,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "bdn" = (
 /obj/structure/fence/dark/quality,
 /obj/structure/fence/dark/quality,
@@ -20530,13 +20517,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/liquid/water/river/autosmooth,
 /area/mediumgreen/outside/z1/northwest)
-"bvG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
 "bvH" = (
 /obj/machinery/light/red{
 	dir = 4;
@@ -21251,6 +21231,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/building/cultist)
+"byh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "byi" = (
 /obj/structure/flora/jungle/large_bush,
 /obj/effect/landmark/weed_node,
@@ -25526,15 +25513,6 @@
 /obj/effect/acid_hole,
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/building/engineering/inner/disk)
-"bNE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/machinery/button/elevator/directional/west{
-	id = "engi"
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_e)
 "bNF" = (
 /obj/machinery/button/elevator/directional/north{
 	id = "dorms"
@@ -25756,6 +25734,13 @@
 /obj/structure/prop/mainship/sensor_computer3/black,
 /turf/open/floor/tcomms,
 /area/mediumgreen/outside/building/engineering/control)
+"bOm" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 "bOn" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/prop/mainship/railing/corner{
@@ -26560,6 +26545,19 @@
 /obj/effect/ai_node,
 /turf/closed/wall/wood/bark,
 /area/mediumgreen/caves/z2/central)
+"bQY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/machinery/button/elevator/directional/west{
+	id = "engi"
+	},
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/hallway_e)
 
 (1,1,1) = {"
 apJ
@@ -50978,15 +50976,15 @@ bmo
 bmo
 bmo
 bmf
-bNE
-bcW
-bcP
-bcP
-bcP
-bcP
-bcQ
-bvG
-bcN
+bQY
+bOm
+byh
+byh
+byh
+byh
+bdm
+apm
+bcK
 bcK
 bcu
 bDZ
