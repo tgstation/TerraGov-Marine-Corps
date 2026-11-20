@@ -212,3 +212,15 @@
 	damage = 50
 	penetration = 40
 	sundering = 3.5
+
+/datum/ammo/bullet/rifle/vehicle_machinegun
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	icon_state = "bullet_large"
+	damage = 30
+	penetration = 12.5
+	sundering = 1
+	damage_falloff = 0.5
+
+/datum/ammo/bullet/rifle/vehicle_machinegun/on_hit_mob(mob/target_mob, atom/movable/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 12, slowdown = 0.5)

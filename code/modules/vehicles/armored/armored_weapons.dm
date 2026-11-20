@@ -206,9 +206,7 @@
 		chassis.turret_overlay.secondary_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
-		chassis.cut_overlay(chassis.secondary_weapon_overlay)
-		chassis.secondary_weapon_overlay?.dir = get_cardinal_dir(chassis, current_target)
-		chassis.add_overlay(chassis.secondary_weapon_overlay)
+		chassis.update_secondary_overlay(secondary_new_dir = get_cardinal_dir(chassis, current_target))
 
 	do_fire(source_turf)
 	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
@@ -296,7 +294,7 @@
 			tank.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
 			tank.secondary_weapon_overlay = image(tank.icon, icon_state = icon_state + "_" + "[tank.dir]", dir = SOUTH)
-			tank.update_appearance(UPDATE_OVERLAYS)
+			tank.update_secondary_overlay()
 	chassis = tank
 	forceMove(tank)
 	var/icon_list
@@ -319,8 +317,8 @@
 			chassis.turret_overlay.secondary_overlay = null
 			chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 		else
+			chassis.cut_overlay(chassis.secondary_weapon_overlay)
 			chassis.secondary_weapon_overlay = null
-			chassis.update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.remove_ammo_hud(src)
 	chassis = null
@@ -331,7 +329,7 @@
 	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
-	interior_fire_sound = null
+	interior_fire_sound = 'sound/vehicles/weapons/tank_minigun_loop_interior.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	armored_weapon_flags = MODULE_SECONDARY
@@ -343,12 +341,28 @@
 	rearm_time = 1 SECONDS
 	hud_state_empty = "rifle_empty"
 
+/obj/item/armored_weapon/light_machinegun
+	name = "cupola machinegun"
+	desc = "A robotically controlled machinegun that spews lead."
+	icon_state = "light_mg"
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/hmg2_interior.ogg'
+	fire_sound_vary = FALSE
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/light_machinegun
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/light_machinegun)
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	projectile_delay = 0.2 SECONDS
+	variance = 4
+	rearm_time = 1 SECONDS
+	hud_state_empty = "rifle_empty"
+
 /obj/item/armored_weapon/ltaap
 	name = "\improper LTA-AP chaingun"
 	desc = "A hefty, large caliber chaingun"
 	icon_state = "ltaap_chaingun"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
-	interior_fire_sound = null
+	interior_fire_sound = 'sound/vehicles/weapons/tank_minigun_loop_interior.ogg'
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
