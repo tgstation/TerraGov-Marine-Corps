@@ -1,17 +1,26 @@
+///Fire support options for HvX modes
+GLOBAL_LIST_INIT(hvx_munition_types, list(
+	FIRESUPPORT_TYPE_GUN_STANDARD,
+	FIRESUPPORT_TYPE_ROCKETS_STANDARD,
+	FIRESUPPORT_TYPE_CRUISE_MISSILE_STANDARD,
+	FIRESUPPORT_TYPE_NAPALM_MISSILE,
+	FIRESUPPORT_TYPE_TFOOT_MISSILE,
+	FIRESUPPORT_TYPE_LASER_STANDARD,
+))
+
+
 /obj/item/binoculars/fire_support
 	name = "fire support binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
 	icon_state = "fire_support"
 	w_class = WEIGHT_CLASS_SMALL
 	///firemodes available for these binos
-	var/list/mode_list = list(
-		FIRESUPPORT_TYPE_GUN_UNLIMITED,
-		FIRESUPPORT_TYPE_ROCKETS_UNLIMITED,
-		FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED,
-	)
+	var/list/mode_list
 
 /obj/item/binoculars/fire_support/Initialize(mapload)
 	. = ..()
+	if(!length(mode_list))
+		mode_list = GLOB.hvx_munition_types
 	update_icon()
 	AddComponent(/datum/component/fire_support, mode_list)
 
