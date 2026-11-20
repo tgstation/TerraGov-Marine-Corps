@@ -59,5 +59,5 @@
 			if(SSpoints.dropship_points < munition.purchase_cost)
 				return
 			munition.uses ++
-			SSpoints.dropship_points -= munition_cost
+			SSpoints.dropship_points -= munition.purchase_cost
 			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 75)
