@@ -550,7 +550,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 
 #define XENO_DEFAULT_VENT_ENTER_TIME 4.5 SECONDS //Standard time for a xeno to enter a vent.
-#define XENO_DEFAULT_VENT_EXIT_TIME 2 SECONDS //Standard time for a xeno to exit a vent.
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE 14 //Standard damage dealt by acid puddles
 #define XENO_ACID_WELL_FILL_TIME 2 SECONDS //How long it takes to add a charge to an acid pool
 #define XENO_ACID_WELL_FILL_COST 150 //Cost in plasma to apply a charge to an acid pool
@@ -809,6 +808,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HIVELORD_TUNNEL_MIN_TRAVEL_TIME 2 SECONDS
 #define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME 4 SECONDS
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME 6 SECONDS
+///Extra travel time added per z level crossed when travelling between tunnels on different floors of a multi-z map
+#define HIVELORD_TUNNEL_Z_LEVEL_TRAVEL_TIME 1 SECONDS
+#define SEETHROUGH_MOB_ALPHA 170
 #define HIVELORD_TUNNEL_DIG_TIME 10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT 8
 #define HIVELORD_RECOVERY_PYLON_SET_LIMIT 4

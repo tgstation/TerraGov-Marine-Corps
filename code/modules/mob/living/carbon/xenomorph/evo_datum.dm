@@ -66,7 +66,7 @@
 		data["bypass_evolution_checks"] = (SSticker.mode?.round_type_flags & MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active
 
 	data["can_evolve"] = \
-		!xeno.is_ventcrawling && \
+		!HAS_TRAIT(xeno, TRAIT_MOVE_VENTCRAWLING) && \
 		!xeno.incapacitated(TRUE) && \
 		xeno.health >= xeno.maxHealth && \
 		xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)

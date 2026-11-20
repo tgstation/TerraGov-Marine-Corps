@@ -169,3 +169,73 @@
   - bugfix: fixed bonus points not being applied at the end of campaign missions
   novaepee:
   - rscadd: update on Legacy of Spring's CIC, briefing, and medbay, and OB room
+2026-11-15:
+  Arturlang:
+  - bugfix: hopefully chat should actually use the new cache
+  Runian:
+  - bugfix: Cocoons now only give their larva point reward when they complete, instead
+      of always after their allocated time.
+2026-11-16:
+  Lumipharon:
+  - qol: open air turfs on multi-z maps are a much darker colour on the minimap than
+      ground tiles
+  mudzbe:
+  - admin: When using the hand labeller labels are stored in fingerprints
+2026-11-17:
+  Arturlang:
+  - bugfix: tadpole camera can't go to wrong z-levels anymore
+  TiviPlus:
+  - bugfix: Runners no longer can fly using pounces
+  - bugfix: Seethrough no longer turns you into a black blob on z change
+  - bugfix: Change minimap Z level indicator placement no longer layers under the
+      Xeno or Marine UIs
+  - qol: You can now use the rest of the UI while selecting a target in the minimap
+  - bugfix: Drop pods can no longer drop on open space
+  - rscadd: Drop pods can now change the Zlevel to drop on for multiz maps
+  - qol: Updates preferences job menu descriptions for jobs
+  - bugfix: Fixes mech pulse armor having no CD
+  - bugfix: Removes debug pop count message at round start
+2026-11-18:
+  Arturlang:
+  - bugfix: some issues with camera fog not updating properly
+  - bugfix: camera eyes send less static to client to fix maptick issues, only showing
+      the same z-level they're on
+  Lumipharon:
+  - rscadd: Added the Corruptor, an acid based strain of the Ravager
+  - balance: Rage reduces the CD of Ravage and Eviscerating Charge while active, scaling
+      with rage power
+  - balance: Rage has a 30 second CD down from 60 seconds, and can be used while staggered
+  - balance: Ravage now works diagonally
+  - balance: Vampirism has a more consistent, lower heal that can be triggered more
+      frequently
+  - bugfix: Fixed the warning message for Endure telling you that you had 3 less seconds
+      left than you actually have
+  - refactor: Significantly updated ventcrawling code for better performance
+2026-11-19:
+  Lumipharon:
+  - refactor: fire support bino behaviour is now via a component
+  Notamaniac:
+  - rscadd: Added TE cells to APC and Tadpole Nano Ammo Vendors. TE cell field chargers
+      everywhere may cry about powercreep.
+  TiviPlus:
+  - rscadd: Added Custom player created decals for tanks. Use OOC tab -> Favourite/View
+      Decals to access, and facepaint on tank or APC to add a decal.
+2026-11-20:
+  Arturlang:
+  - bugfix: tunnels not working cross z-level
+  - bugfix: ghost view-size scroll getting stuck
+  - bugfix: xeno seethrough no longer breaks when changing z-levels
+  - bugfix: minimap up/down buttons being hidden by other UI
+  - rscadd: looking up/down has been reworked and no longer cancels when you move
+  TiviPlus:
+  - refactor: refactored plane and plane debugger backend
+  - qol: Color codes and puts in the tooltip whether a purchase is tac or strategic
+      in the button of the blessings UI
+  - admin: improved TGUI admin perms management backend
+  - rscadd: Added sprout icon to xeno/marines with less than 10 living hours of playtime
+  - bugfix: Xenos hud has been adjusted so they no longer have sunder/fire icons layering
+      over other things in their hud overlay
+  - rscadd: Added change species button to valhalla, can be found north of spawn at
+      the prep booth walls next to the door
+  termin-0:
+  - rscadd: Added meson goggles to the engineering tab in requisitions

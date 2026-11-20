@@ -198,9 +198,7 @@
 	var/plasma_icon_state = "plasma"
 
 	///How quickly the caste enters vents
-	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste exits vents
-	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
+	var/ventcrawl_speed = XENO_DEFAULT_VENT_ENTER_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
 	// Accuracy malus, 0 by default. Should NOT go over 70.
@@ -209,8 +207,8 @@
 	/// All mutations that this caste can view and potentially purchase.
 	var/list/datum/mutation_upgrade/mutations = list()
 
-///Add needed component to the xeno
-/datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+///Adds caste specific stuff
+/datum/xeno_caste/proc/on_caste_applied(mob/living/carbon/xenomorph/xenomorph)
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
 		ADD_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
@@ -218,13 +216,18 @@
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
-/datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
+///Removes any caste specific stuff
+/datum/xeno_caste/proc/on_caste_removed(mob/living/carbon/xenomorph/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
 	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ENCOUNTER))
 		REMOVE_TRAIT(xenomorph, TRAIT_INNATE_HEALING, XENO_TRAIT)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
+
+///Caste effects on gib
+/datum/xeno_caste/proc/on_owner_gib(mob/living/carbon/xenomorph/xenomorph)
+	return
 
 ///returns the basetype caste from this caste or typepath to get what the base caste is (e.g base rav not primo or strain rav)
 /proc/get_base_caste_type(datum/xeno_caste/current_type)

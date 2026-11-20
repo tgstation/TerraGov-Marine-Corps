@@ -8,21 +8,22 @@
 	resistance_flags = RESIST_ALL
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
+	///The mob currently using this
+	var/mob/viewer
 
 /obj/structure/periscope/Destroy()
 	owner = null
+	viewer = null
 	return ..()
 
 /obj/structure/periscope/link_interior(datum/interior/link)
 	owner = link.container
 
-/obj/structure/periscope/can_interact(mob/user)
-	. = ..()
-	if(user.client?.eye != user) // e.g someone looking outside already
-		return FALSE
-
 /obj/structure/periscope/interact(mob/user)
+	if(viewer)
+		return
 	. = ..()
+	viewer = user
 	user.reset_perspective(owner)
 	ADD_TRAIT(user, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	user.update_sight()
@@ -36,6 +37,7 @@
 
 /obj/structure/periscope/on_unset_interaction(mob/user)
 	. = ..()
+	viewer = null
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT))
 	user.reset_perspective()
 	REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
@@ -58,3 +60,11 @@
 /obj/structure/periscope/som/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, "[icon_state]_emissive", src)
+
+/obj/structure/periscope/fire_support
+	name = "command periscope"
+	interaction_flags = parent_type::interaction_flags|INTERACT_ALLOW_UNIQUE_ACTION
+
+/obj/structure/periscope/fire_support/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/fire_support)

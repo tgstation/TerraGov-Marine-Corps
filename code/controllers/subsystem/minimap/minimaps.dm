@@ -450,6 +450,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /atom/movable/screen/minimap/proc/on_click(datum/source, atom/A, params)
 	SIGNAL_HANDLER
+	if(!isturf(A.loc) && !isturf(A))
+		return NONE
 	var/list/modifiers = params2list(params)
 	// we only care about absolute coords because the map is fixed to 1,1 so no client stuff
 	var/list/pixel_coords = params2screenpixel(modifiers["screen-loc"])
@@ -485,6 +487,7 @@ SUBSYSTEM_DEF(minimaps)
 	screen_loc = "[x_tile]:[x_pixel],[y_tile]:[y_pixel]"
 
 /atom/movable/screen/minimap_extras
+	plane = ABOVE_HUD_PLANE
 	/// minimap action this extra button is owned by
 	var/datum/action/minimap/minimap_action
 

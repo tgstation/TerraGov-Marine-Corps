@@ -114,7 +114,6 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	// Determine roundstart player count, used for population locks.
 	SSticker.mode.roundstart_players = length(GLOB.clients)
-	to_chat(world, "Round initialized with a Population of [SSticker.mode.roundstart_players]")
 	SSblackbox.record_feedback("text", "initial_players", 1, SSticker.mode.roundstart_players)
 	for(var/datum/job/job AS in valid_job_types)
 		job = SSjob.GetJobType(job)

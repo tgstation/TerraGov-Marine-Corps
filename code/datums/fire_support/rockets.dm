@@ -11,9 +11,13 @@
 /datum/fire_support/rockets/do_impact(turf/target_turf)
 	explosion(target_turf, 0, 2, 4, 6, 2, explosion_cause=name)
 
-/datum/fire_support/rockets/unlimited
-	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_UNLIMITED
-	uses = -1
+/datum/fire_support/rockets/standard
+	fire_support_type = FIRESUPPORT_TYPE_ROCKETS_STANDARD
+	fire_support_flags = FIRESUPPORT_AVAILABLE|FIRESUPPORT_ROUNDSTART
+	cooldown_duration = 60 SECONDS
+	uses = 4
+	purchase_cost = 100
+	description = "A barrage of dumbfire rockets. Capable of saturating a large area with an intense barrage of high explosive warheads."
 
 /datum/fire_support/incendiary_rockets
 	name = "Incendiary rocket barrage"

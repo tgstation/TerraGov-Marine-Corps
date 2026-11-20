@@ -6,8 +6,8 @@
 	minimap_icon = "militia"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	html_description = {"
-		<b>Difficulty</b>:Moderate<br /><br />
-		<b>You answer to the</b> commanding officer<br /><br />
+		<b>Difficulty</b>:Moderate<br />
+		<b>You answer to the</b> commanding officer<br />
 		<b>Duty</b>: Help defend your colony by supporting your sympathetic faction. Follow their instructions and help achieve their goals.
 	"}
 	job_cost = 0

@@ -536,7 +536,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Add View Range"
 	set hidden = TRUE
 	if(input)
-		client.rescale_view(input, 15, 21)
+		client.rescale_view(input * 2, 0, 30)
 
 
 /mob/dead/observer/verb/toggle_darkness()

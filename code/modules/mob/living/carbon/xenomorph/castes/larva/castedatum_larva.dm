@@ -47,8 +47,7 @@
 	)
 
 	// *** Vent Crawl Parameters *** //
-	vent_enter_speed = LARVA_VENT_CRAWL_TIME
-	vent_exit_speed = LARVA_VENT_CRAWL_TIME
+	ventcrawl_speed = LARVA_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
 /datum/xeno_caste/larva/young

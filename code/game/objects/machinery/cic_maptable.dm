@@ -1,5 +1,6 @@
 
 /atom/movable/screen/maptable_extras
+	plane = ABOVE_HUD_PLANE
 	/// minimap action this extra button is owned by
 	var/obj/machinery/cic_maptable/maptable
 

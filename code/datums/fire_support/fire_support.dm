@@ -33,10 +33,14 @@
 	var/start_visual = /obj/effect/temp_visual/dropship_flyby
 	///sound when impact starts
 	var/start_sound = 'sound/effects/casplane_flyby.ogg'
+	///Purchase price for 1 use
+	var/purchase_cost = 0
+	///Fluff description
+	var/description = ""
 
 /datum/fire_support/New()
 	. = ..()
-	if(uses > 0)
+	if(!(fire_support_flags & FIRESUPPORT_ROUNDSTART))
 		disable()
 
 ///Enables the firesupport option
