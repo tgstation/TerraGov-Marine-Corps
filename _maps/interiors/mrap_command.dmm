@@ -30,7 +30,7 @@
 /turf/open/interior/apc/nine,
 /area/interior/mrap_command)
 "i" = (
-/obj/machinery/computer/code_generator/nt_access/red{
+/obj/machinery/computer/fire_support/mrap{
 	dir = 8
 	},
 /turf/open/interior/apc/twentynine,
