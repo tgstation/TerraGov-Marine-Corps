@@ -811,6 +811,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 ///Extra travel time added per z level crossed when travelling between tunnels on different floors of a multi-z map
 #define HIVELORD_TUNNEL_Z_LEVEL_TRAVEL_TIME 1 SECONDS
 #define SEETHROUGH_MOB_ALPHA 170
+#define BELOW_MOB_ALPHA 130
+#define BELOW_COPY_PIXEL_OFFSET 8
 #define HIVELORD_TUNNEL_DIG_TIME 10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT 8
 #define HIVELORD_RECOVERY_PYLON_SET_LIMIT 4
