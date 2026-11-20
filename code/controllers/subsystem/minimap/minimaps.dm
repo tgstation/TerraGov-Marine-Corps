@@ -106,8 +106,7 @@ SUBSYSTEM_DEF(minimaps)
 	icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 	//then cut all the empty pixels
 	var/icon_width = clamp(world.maxx * 2, SCREEN_PIXEL_SIZE, icon_gen.Width())
-	var/icon_height = clamp(world.maxy * 2, SCREEN_PIXEL_SIZE, icon_gen.Height())
-	icon_gen.Crop(1, 1, icon_width, icon_height)
+	icon_gen.Crop(1, 1, icon_width, SCREEN_PIXEL_SIZE)
 
 	//generation is done, now we need to center the icon to someones view,
 	//this can be left out if you like it ugly and will halve SSinit time
@@ -116,9 +115,9 @@ SUBSYSTEM_DEF(minimaps)
 	var/largest_x = 0
 	var/smallest_x = icon_width
 	var/largest_y = 0
-	var/smallest_y = icon_height
+	var/smallest_y = SCREEN_PIXEL_SIZE
 	for(var/xval=1 to icon_width step 2) //step 2 is twice as fast :)
-		for(var/yval=1 to icon_height step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
+		for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
 			if(!icon_gen.GetPixel(xval, yval))
 				continue
 			if(xval > largest_x)
@@ -135,6 +134,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
 	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+	icon_gen.Crop(1, 1, max(SCREEN_PIXEL_SIZE, largest_x + 1 + minimaps_by_z["[level]"].x_offset), SCREEN_PIXEL_SIZE)
 
 	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
 
