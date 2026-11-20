@@ -13673,8 +13673,11 @@
 /turf/open/floor/tile/dark,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
 "aYn" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /obj/structure/table/reinforced,
+/obj/machinery/door_control{
+	id = "6"
+	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mediumgreen/outside/lz2/around)
 "aYo" = (
@@ -15164,6 +15167,12 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/west)
+"bcN" = (
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/mediumgreen/outside/lz2/around)
 "bcO" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirt2,
@@ -15497,13 +15506,6 @@
 	},
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
-"bdJ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door_control{
-	id = "6"
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mediumgreen/outside/lz2/around)
 "bdK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -53337,7 +53339,7 @@ amp
 amp
 asG
 asG
-bdJ
+aYn
 amp
 amp
 aBX
@@ -53529,7 +53531,7 @@ amp
 amp
 asG
 asG
-aYn
+bcN
 amp
 aCa
 aBX
