@@ -1,8 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - bugfix: "tunnels not working cross z-level"
-  - bugfix: "ghost view-size scroll getting stuck"
-  - bugfix: "xeno seethrough no longer breaks when changing z-levels"
-  - bugfix: "minimap up/down buttons being hidden by other UI"
-  - rscadd: "looking up/down has been reworked and no longer cancels when you move"

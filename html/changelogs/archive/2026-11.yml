@@ -220,3 +220,22 @@
   TiviPlus:
   - rscadd: Added Custom player created decals for tanks. Use OOC tab -> Favourite/View
       Decals to access, and facepaint on tank or APC to add a decal.
+2026-11-20:
+  Arturlang:
+  - bugfix: tunnels not working cross z-level
+  - bugfix: ghost view-size scroll getting stuck
+  - bugfix: xeno seethrough no longer breaks when changing z-levels
+  - bugfix: minimap up/down buttons being hidden by other UI
+  - rscadd: looking up/down has been reworked and no longer cancels when you move
+  TiviPlus:
+  - refactor: refactored plane and plane debugger backend
+  - qol: Color codes and puts in the tooltip whether a purchase is tac or strategic
+      in the button of the blessings UI
+  - admin: improved TGUI admin perms management backend
+  - rscadd: Added sprout icon to xeno/marines with less than 10 living hours of playtime
+  - bugfix: Xenos hud has been adjusted so they no longer have sunder/fire icons layering
+      over other things in their hud overlay
+  - rscadd: Added change species button to valhalla, can be found north of spawn at
+      the prep booth walls next to the door
+  termin-0:
+  - rscadd: Added meson goggles to the engineering tab in requisitions

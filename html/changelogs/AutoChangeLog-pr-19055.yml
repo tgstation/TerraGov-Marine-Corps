@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Color codes and puts in the tooltip whether a purchase is tac or strategic in the button of the blessings UI"
