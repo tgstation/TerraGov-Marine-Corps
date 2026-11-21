@@ -195,6 +195,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/multiz_performance = -1
 	///how strongly the levels below us are blurred, 0 is off
 	var/multiz_blur = MULTIZ_BLUR_MAX
+	///if the edges of open space are outlined while we are next to a hole
+	var/multiz_edge_outline = TRUE
 
 	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
 	var/fast_mc_refresh = FALSE

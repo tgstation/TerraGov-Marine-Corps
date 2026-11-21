@@ -170,6 +170,7 @@
 			data["multiz_parallax"] = multiz_parallax
 			data["multiz_performance"] = multiz_performance
 			data["multiz_blur"] = multiz_blur
+			data["multiz_edge_outline"] = multiz_edge_outline
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 			data["hear_ooc_anywhere_as_staff"] = hear_ooc_anywhere_as_staff
@@ -875,6 +876,11 @@
 
 			for(var/atom/movable/screen/plane_master/rendering_plate/master/master_plate as anything in my_hud.get_true_plane_masters(RENDER_PLANE_MASTER))
 				master_plate.update_multiz_blur(my_hud.current_plane_offset)
+
+		if("multiz_edge_outline")
+			multiz_edge_outline = !multiz_edge_outline
+			for(var/atom/movable/screen/plane_master/floor/floor_plane as anything in parent.mob?.hud_used?.get_true_plane_masters(FLOOR_PLANE))
+				floor_plane.update_edge_outline()
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]

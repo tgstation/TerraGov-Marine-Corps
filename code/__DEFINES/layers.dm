@@ -389,7 +389,7 @@
 /// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
 /// If you modify this, you'll need to modify the tsx file too
 #define MAX_EXPECTED_Z_DEPTH 3
-/// The strongest blur a viewer can pick for the levels below them, 0 is off
+/// Max blur that can be picked
 #define MULTIZ_BLUR_MAX 2
 /// How much blur each z-level adds
 #define MULTIZ_BLUR_PER_LEVEL 0.5
@@ -397,6 +397,8 @@
 #define MULTIZ_EDGE_SHADOW_SIZE 5
 /// Colour of the shadow drawn around the edges of open space
 #define MULTIZ_EDGE_SHADOW_COLOR "#000000"
+/// How long the outline around the edges of the open space next to a viewer takes to fade in or out
+#define MULTIZ_EDGE_OUTLINE_FADE_TIME (0.2 SECONDS)
 
 ///returns a number that combined plane and layer such that anything visually higher has a higher number, to ensure sound consistancy for footstep overrides
 #define get_footstep_layer(layer, plane) TOPDOWN_LAYER * 2 * (100 + plane) + layer

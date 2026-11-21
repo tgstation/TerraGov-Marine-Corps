@@ -219,7 +219,15 @@ export const GameSettings = (props) => {
                 label="Multi-Z Blur"
                 value={MultiZBlurToString(multiz_blur)}
                 action="multiz_blur"
-                tooltip="How strongly the levels below you are blurred, deeper levels are blurred more. Increases performance when off."
+                tooltip="How strong the blur for z-levels below you is. Has performance impact"
+              />
+              <ToggleFieldPreference
+                label="Open Space Outline"
+                value="multiz_edge_outline"
+                action="multiz_edge_outline"
+                leftLabel={'On'}
+                rightLabel={'Off'}
+                tooltip="Whether the edges of open space (holes) get a yellow outline while you are standing next to it."
               />
               <ToggleFieldPreference
                 label="TGUI Window Placement"
