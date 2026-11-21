@@ -60,9 +60,9 @@
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/turf/screen_location = get_turf(screenmob)
-	var/client/C = screenmob.client
+	var/client/client = screenmob.client
 	var/blocked_by_level = !!SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX)
-	C?.parallax_blocked_by_level = blocked_by_level
+	client?.parallax_blocked_by_level = blocked_by_level
 
 	if(blocked_by_level)
 		for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
