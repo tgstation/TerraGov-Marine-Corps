@@ -8,7 +8,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
 	hit_sound = SFX_ALIEN_RESIN_BREAK
-	buckling_y = 6
+	buckling_z = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100

@@ -9,9 +9,6 @@
 	},
 /turf/open/interior/apc/eleven,
 /area/interior/apc)
-"c" = (
-/turf/open/interior/apc/nine,
-/area/interior/apc)
 "d" = (
 /turf/closed/interior/apc/twenty,
 /area/interior/apc)
@@ -116,7 +113,9 @@
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
 

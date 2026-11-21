@@ -45,9 +45,6 @@
 "p" = (
 /turf/closed/interior/apc/thirteen,
 /area/interior/apc)
-"s" = (
-/turf/open/interior/apc/eight,
-/area/interior/apc)
 "t" = (
 /obj/machinery/cloning/vats/apc/south{
 	pixel_y = -16
@@ -128,7 +125,9 @@
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
 

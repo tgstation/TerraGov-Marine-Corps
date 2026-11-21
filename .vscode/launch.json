@@ -41,6 +41,12 @@
 			"name": "Launch OpenDream (requires extension, 64 bit rustg, and an SS14 account)",
 			"preLaunchTask": "OpenDream: compile ${command:CurrentDME}",
 			"json_path": "${workspaceFolder}/${command:CurrentJson}"
+		},
+		{
+			"type": "auxtools",
+			"request": "attach",
+			"name": "Attach to a world",
+			"processId": "${command:auxtools.pickWorld}"
 		}
 	]
 }

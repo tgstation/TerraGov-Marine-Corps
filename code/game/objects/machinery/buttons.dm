@@ -48,7 +48,6 @@
 	else
 		icon_state = initial(icon_state)
 
-
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 
@@ -61,6 +60,11 @@
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
 
+	activate(user)
+
+///Activation effects
+/obj/machinery/button/proc/activate(mob/living/user)
+	//todo: all this code is real ass and needs updating
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
@@ -74,7 +78,6 @@
 	pulsed()
 
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
-
 
 /obj/machinery/button/proc/pulsed()
 	if(next_activate > world.time)
