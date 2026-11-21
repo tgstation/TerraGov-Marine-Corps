@@ -239,3 +239,13 @@
       the prep booth walls next to the door
   termin-0:
   - rscadd: Added meson goggles to the engineering tab in requisitions
+2026-11-21:
+  Lumipharon:
+  - rscadd: Added a Command module layout for the MRAP - containing fire support functionality,
+      overwatch, and a comms booster
+  - imageadd: TGMC vehicles have emissive interiors where needed
+  - bugfix: Fixed APC gun overlays duplicating
+  - balance: 'Sovl War: The Condor is now completely disabled.'
+  - balance: 'Sovl War: Fire support via binos is no longer infinite, and instead
+      must have uses purchased via dropship points'
+  - rscadd: 'Sovl War: Added new fire support options for use via binos'
