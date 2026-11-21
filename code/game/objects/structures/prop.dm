@@ -492,6 +492,7 @@
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
 	density = TRUE
+	allow_pass_flags =
 
 
 /obj/structure/prop/mainship/supermatter/proc/consume(atom/movable/consumed_object) //dust() and destroy living mobs, qdel thrown objects
