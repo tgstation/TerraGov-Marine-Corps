@@ -34,7 +34,8 @@ Contains most of the procs that are called when a xeno is attacked by something
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_RADIUM))
 		apply_status_effect(STATUS_EFFECT_MELTING, 10)
-		adjustFireLoss(15)
+		apply_status_effect(STATUS_EFFECT_MICROWAVE, 10)
+		adjustFireLoss(35)
 
 /mob/living/carbon/xenomorph/Stun(amount, updating, ignore_canstun)
 	amount *= 0.5 // half length

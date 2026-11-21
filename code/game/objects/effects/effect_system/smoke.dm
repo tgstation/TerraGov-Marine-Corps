@@ -325,6 +325,7 @@
 	opacity = FALSE
 	color = COLOR_VIBRANT_LIME
 	smoke_traits = SMOKE_RADIUM|SMOKE_COUGH|SMOKE_GASP|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL|SMOKE_BLISTERING
+	strength = 3
 
 
 //////////////////////////////////////

@@ -404,11 +404,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/anim,
 /area/mediumgreen/outside/building/engineering/inner/disk)
-"abC" = (
-/obj/structure/prop/mainship/holobarrier,
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/mediumgreen/outside/building/neotree/z3/upper)
 "abD" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
@@ -19208,11 +19203,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
 /area/mediumgreen/outside/building/neotree/z1/canteen)
-"brh" = (
-/obj/structure/catwalk,
-/obj/effect/ai_node,
-/turf/open/openspace,
-/area/mediumgreen/outside/building/neotree/z1/ladder)
 "bri" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -92383,8 +92373,8 @@ aYs
 aYs
 aYF
 aYJ
-brh
-aYw
+bvV
+akX
 aRJ
 aYp
 aYc
@@ -92575,7 +92565,7 @@ aYb
 aYb
 aYF
 aYo
-aYw
+akX
 bhz
 aYw
 aYp
@@ -137114,11 +137104,11 @@ adH
 bBa
 bBa
 bBa
-bBa
-bBa
-bBa
-bBa
-bBa
+azr
+azr
+azr
+azr
+azr
 aZg
 aZf
 aZf
@@ -137306,11 +137296,11 @@ adH
 bBa
 bBa
 bBa
-bBa
-bBa
-bBa
-bBa
-bBa
+azr
+azr
+azr
+azr
+azr
 aZg
 bfs
 aZf
@@ -137498,8 +137488,8 @@ adH
 bBa
 bBa
 bBa
-bBa
-bBa
+azr
+azr
 aZf
 aZf
 aZf
@@ -137690,8 +137680,8 @@ adH
 bBa
 bBa
 bBa
-bBa
-bBa
+azr
+azr
 aZf
 bIn
 aZf
@@ -137882,14 +137872,14 @@ adH
 bBa
 bBa
 bBa
-bBa
-bBa
+azr
+azr
 aZl
 aZl
 aZl
 aZl
 aZl
-abC
+aZl
 aZl
 aZl
 bsm
@@ -137911,7 +137901,7 @@ aZb
 azr
 azr
 azr
-bBa
+azr
 adH
 abA
 abA
@@ -138078,20 +138068,20 @@ aZg
 aZg
 aGb
 aZf
+aZf
 abI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
-aZI
+aZf
+aZf
+abI
+aZf
+aZf
+aZf
+aZf
+aZf
+aZf
+aZf
+aZf
+aZf
 aTc
 aTc
 aTc
@@ -138271,7 +138261,7 @@ aZr
 aZf
 aZf
 aZf
-aZI
+aZf
 aZI
 aZI
 aZI
@@ -138463,7 +138453,7 @@ aZf
 aZf
 bIn
 aZf
-aZI
+aZf
 aZI
 aZR
 aZS
@@ -138655,7 +138645,7 @@ aZf
 aZf
 aZf
 aZf
-aZI
+aZf
 aZI
 aZS
 aXR
@@ -138846,8 +138836,8 @@ aZf
 abI
 aZf
 aZf
+aZf
 abI
-aZI
 aZI
 aZS
 aXR
@@ -141364,7 +141354,7 @@ aZg
 aZg
 aZg
 aZf
-bBa
+azr
 bBa
 bBa
 bBa
@@ -141538,7 +141528,7 @@ bBa
 aYo
 aYw
 bhz
-brh
+bvV
 aVc
 abq
 aZX
@@ -141556,7 +141546,7 @@ aZf
 aZf
 brY
 bHY
-bBa
+azr
 bBa
 bBa
 bBa
@@ -141748,7 +141738,7 @@ aZf
 aZf
 aZf
 aZf
-bBa
+azr
 bBa
 bBa
 bBa
@@ -141935,12 +141925,12 @@ bLH
 bLF
 bLM
 aTt
-bBa
-bBa
-bBa
-bBa
-bBa
-bBa
+azr
+azr
+azr
+azr
+azr
+azr
 bBa
 bBa
 bBa
