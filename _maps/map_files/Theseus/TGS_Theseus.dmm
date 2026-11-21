@@ -9529,6 +9529,9 @@
 	pixel_x = -7;
 	pixel_y = 2
 	},
+/obj/machinery/computer/fire_support{
+	dir = 4
+	},
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
