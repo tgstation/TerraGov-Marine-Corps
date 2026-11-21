@@ -19,7 +19,7 @@
 	///The associated action
 	var/datum/action/toggle_seethrough/action
 
-/datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
+/datum/component/seethrough_mob/Initialize(target_alpha = SEETHROUGH_MOB_ALPHA, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
 
 	if(!ismob(parent))

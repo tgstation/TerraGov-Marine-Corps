@@ -25,7 +25,9 @@
 /turf/closed/interior/apc/five,
 /area/interior/apc)
 "m" = (
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
@@ -48,7 +50,9 @@
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "s" = (
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},

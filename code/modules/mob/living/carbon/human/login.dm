@@ -7,3 +7,5 @@
 
 	if(SStts.tts_enabled && !voice)
 		voice = random_tts_voice()
+
+	hud_set_job(faction) //sprout icon updates

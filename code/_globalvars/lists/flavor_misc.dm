@@ -338,6 +338,15 @@ GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 	for(var/icon_state in GLOB.playable_icons)
 		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
 
+GLOBAL_LIST_INIT(munition_type_icons, init_munition_type_icons())
+
+///Populates munition_type_icons
+/proc/init_munition_type_icons()
+	. = list()
+	for(var/type in GLOB.fire_support_types)
+		var/datum/fire_support/munition = GLOB.fire_support_types[type]
+		. |= munition.icon_state
+
 GLOBAL_LIST_INIT(campaign_asset_icons, init_campaign_asset_icons())
 
 ///Populates campaign_asset_icons

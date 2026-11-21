@@ -48,7 +48,6 @@
 	else
 		icon_state = initial(icon_state)
 
-
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 
@@ -61,6 +60,11 @@
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
 
+	activate(user)
+
+///Activation effects
+/obj/machinery/button/proc/activate(mob/living/user)
+	//todo: all this code is real ass and needs updating
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
@@ -74,7 +78,6 @@
 	pulsed()
 
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
-
 
 /obj/machinery/button/proc/pulsed()
 	if(next_activate > world.time)
@@ -374,5 +377,19 @@
 
 /obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
 	spawn_vehicles(user)
+
+/obj/machinery/button/change_species
+	name = "change species button"
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/button/change_species/attack_hand(mob/living/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/selected_species = tgui_input_list(user, "Select a species to change to", name, GLOB.all_species)
+	if(!selected_species)
+		return
+	var/mob/living/carbon/human/human_user = user
+	human_user.set_species(selected_species)
 
 #undef DOOR_FLAG_OPEN_ONLY

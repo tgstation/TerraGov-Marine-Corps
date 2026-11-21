@@ -19,6 +19,9 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1)
 ///Similar to DELAY_TO_GLIDE_SIZE, except without the clamping, and it supports piping in an unrelated scalar
 #define MOVEMENT_ADJUSTED_GLIDE_SIZE(delay, movement_disparity) (32 / ((delay) / world.tick_lag) * movement_disparity * GLOB.glide_size_multiplier)
 
+///Inverse of DELAY_TO_GLIDE_SIZE
+#define GLIDE_SIZE_TO_DELAY(glide_size) (ICON_SIZE_ALL / max((glide_size), MIN_GLIDE_SIZE) * world.tick_lag)
+
 #define DELAY_TO_GLIDE_SIZE_STATIC(delay) (round(clamp((32 / (delay || 1)) * (CONFIG_GET(number/glide_size_mod) * 0.01), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE), 0.1))
 
 #define GLIDE_MOD_PULLED (1<<0)

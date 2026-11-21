@@ -3,11 +3,14 @@
 	if(I)
 		//TODO THIS SHOULD USE THE API!
 		overlays += I
+		SEND_SIGNAL(src, COMSIG_CARBON_APPLY_OVERLAY, cache_index, I)
 
 /mob/living/carbon/xenomorph/remove_overlay(cache_index)
-	if(overlays_standing[cache_index])
-		overlays -= overlays_standing[cache_index]
+	var/I = overlays_standing[cache_index]
+	if(I)
+		overlays -= I
 		overlays_standing[cache_index] = null
+		SEND_SIGNAL(src, COMSIG_CARBON_REMOVE_OVERLAY, cache_index, I)
 
 /mob/living/carbon/xenomorph/proc/handle_special_state()
 	return FALSE

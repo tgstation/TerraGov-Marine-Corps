@@ -24,10 +24,10 @@
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
-	///pixel x shift to give to the buckled mob
-	var/buckling_x = 0
-	///pixel y shift to give to the buckled mob. This stacks with the lying down pixel shift when relevant
-	var/buckling_y = -2
+	///pixel w shift to give to the buckled mob
+	var/buckling_w = 0
+	///pixel z shift to give to the buckled mob. This stacks with the lying down pixel shift when relevant
+	var/buckling_z = -2
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
@@ -57,16 +57,16 @@
 
 /obj/structure/bed/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	buckling_mob.pixel_y = buckling_y
-	buckling_mob.pixel_x = buckling_x
+	buckling_mob.pixel_z = buckling_z
+	buckling_mob.pixel_w = buckling_w
 	if(base_bed_icon)
 		density = TRUE
 	update_icon()
 
 /obj/structure/bed/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
-	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
-	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
+	buckled_mob.pixel_z = initial(buckled_mob.pixel_z)
+	buckled_mob.pixel_w = initial(buckled_mob.pixel_w)
 	if(base_bed_icon)
 		density = FALSE
 	update_icon()
@@ -93,8 +93,8 @@
 	buckled_bodybag = B
 	density = TRUE
 	update_icon()
-	if(buckling_y)
-		buckled_bodybag.pixel_y = buckling_y
+	if(buckling_z)
+		buckled_bodybag.pixel_z = buckling_z
 	if(B.pulledby)
 		B.pulledby.stop_pulling()
 	if(pulledby)
@@ -105,7 +105,7 @@
 	if(!buckled_bodybag)
 		return
 	buckled_bodybag.layer = initial(buckled_bodybag.layer)
-	buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
+	buckled_bodybag.pixel_z = initial(buckled_bodybag.pixel_z)
 	buckled_bodybag.roller_buckled = null
 	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
@@ -240,7 +240,7 @@
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
-	buckling_y = 3
+	buckling_z = 3
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "A medevac stretcher with integrated beacon for rapid evacuation of an injured patient via dropship lift and an emergency bluespace teleporter for tele-evacuation to a linked beacon. Accepts patients and body bags. Right click to activate."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "stretcher_down"
-	buckling_y = 0
+	buckling_z = 0
 	buildstacktype = null
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
@@ -835,22 +835,22 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/roller/hospital_empty/bigrollerempty
 	icon_state = "bigrollerempty_down"
-	buckling_y = 2
+	buckling_z = 2
 	base_bed_icon = "bigrollerempty"
 
 /obj/structure/bed/roller/hospital_empty/bigrollerempty2
 	icon_state = "bigrollerempty2_down"
-	buckling_y = 2
+	buckling_z = 2
 	base_bed_icon = "bigrollerempty2"
 
 /obj/structure/bed/roller/hospital_empty/bigrollerempty3
 	icon_state = "bigrollerempty3_down"
-	buckling_y = 2
+	buckling_z = 2
 	base_bed_icon = "bigrollerempty3"
 
 /obj/structure/bed/roller/hospital_empty/bigrollerbloodempty
 	icon_state = "bigrollerbloodempty_down"
-	buckling_y = 2
+	buckling_z = 2
 	base_bed_icon = "bigrollerbloodempty"
 
 // Hospital divider (not a bed)

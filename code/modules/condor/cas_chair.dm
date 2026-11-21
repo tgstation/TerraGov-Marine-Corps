@@ -38,6 +38,8 @@
 /obj/structure/caspart/caschair/proc/cas_usable(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
+	if(istype(SSticker.mode, /datum/game_mode/infestation/sovl_war))
+		return
 	cas_usable = TRUE
 	if(occupant)
 		to_chat(occupant, span_notice("Combat initiated, CAS now available."))

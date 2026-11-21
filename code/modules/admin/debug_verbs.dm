@@ -519,7 +519,7 @@ ADMIN_VERB(see_dirty_varedits, R_DEBUG, "Dirty Varedits", "Shows all dirty vared
 		ui.open()
 
 /datum/mc_dependency_ui/ui_state(mob/user)
-	return GLOB.debug_state
+	return ADMIN_STATE(R_DEBUG)
 
 /datum/mc_dependency_ui/ui_data(mob/user)
 	var/list/data = list()
