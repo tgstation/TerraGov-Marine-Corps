@@ -35,6 +35,24 @@ const MultiZPerfToString = (integer) => {
   return returnval;
 };
 
+const MultiZBlurToString = (integer) => {
+  let returnval = '';
+  switch (integer) {
+    case 0:
+      returnval = 'Off';
+      break;
+    case 1:
+      returnval = 'Low';
+      break;
+    case 2:
+      returnval = 'High';
+      break;
+    default:
+      returnval = 'Error!';
+  }
+  return returnval;
+};
+
 const ParallaxNumToString = (integer) => {
   let returnval = '';
   switch (integer) {
@@ -67,6 +85,7 @@ export const GameSettings = (props) => {
     pixel_size,
     parallax,
     multiz_performance,
+    multiz_blur,
     is_admin,
   } = data;
 
@@ -195,6 +214,12 @@ export const GameSettings = (props) => {
                 value={MultiZPerfToString(multiz_performance)}
                 action="multiz_performance"
                 tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
+              />
+              <LoopingSelectionPreference
+                label="Multi-Z Blur"
+                value={MultiZBlurToString(multiz_blur)}
+                action="multiz_blur"
+                tooltip="How strongly the levels below you are blurred, deeper levels are blurred more. Increases performance when off."
               />
               <ToggleFieldPreference
                 label="TGUI Window Placement"

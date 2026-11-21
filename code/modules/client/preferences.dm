@@ -193,6 +193,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/multiz_parallax = TRUE
 	///performance setting for multiz
 	var/multiz_performance = -1
+	///how strongly the levels below us are blurred, 0 is off
+	var/multiz_blur = MULTIZ_BLUR_MAX
 
 	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
 	var/fast_mc_refresh = FALSE
