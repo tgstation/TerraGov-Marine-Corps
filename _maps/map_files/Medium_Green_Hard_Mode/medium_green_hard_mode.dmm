@@ -5600,14 +5600,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
-"auB" = (
-/obj/structure/transport/linear/public,
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "tower";
-	linked_elevator_destination = list("1"="bottom Floor","2"="OUT OF ORDER","3"="Top Floor")
-	},
-/turf/open/floor/elevatorshaft,
-/area/mediumgreen/outside/building/neotree/z1/security)
 "auC" = (
 /obj/structure/cable/multilayer/multiz,
 /obj/structure/cable,
@@ -15177,6 +15169,14 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/z1/west)
+"bcP" = (
+/obj/structure/transport/linear/public,
+/obj/machinery/elevator_control_panel/directional/north{
+	linked_elevator_id = "tower";
+	preset_destination_names = list("1"="bottom Floor","2"="OUT OF ORDER","3"="Top Floor")
+	},
+/turf/open/floor/elevatorshaft,
+/area/mediumgreen/outside/building/neotree/z1/security)
 "bcR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
@@ -41326,7 +41326,7 @@ aQK
 aSX
 aGz
 aTc
-auB
+bcP
 aSu
 aSu
 aSp
