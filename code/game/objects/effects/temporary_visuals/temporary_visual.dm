@@ -226,12 +226,16 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	name = "dust"
 	desc = "It's just a dust cloud!"
 	icon = 'icons/effects/64x64.dmi'
-	icon_state = "leap_cloud"
+	icon_state = ""
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
 	pixel_x = -16
 	pixel_y = -16
 	duration = 1 SECONDS
+
+/obj/effect/temp_visual/leap_dust/Initialize(mapload)
+	. = ..()
+	flick("leap_cloud", src)
 
 /obj/effect/temp_visual/leap_dust/small
 

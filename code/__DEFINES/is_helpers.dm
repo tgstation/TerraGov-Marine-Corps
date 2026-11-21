@@ -52,8 +52,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 	/turf/open/space,
-	/turf/open/liquid/lava,
-	/turf/open/liquid/water,
 	/turf/open/openspace,
 	)))
 

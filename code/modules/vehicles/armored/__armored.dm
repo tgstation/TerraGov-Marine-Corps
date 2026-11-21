@@ -103,6 +103,7 @@
 	if(armored_flags & ARMORED_HAS_UNDERLAY)
 		underlay = new(icon, icon_state + "_underlay", layer = layer-0.1)
 		add_overlay(underlay)
+	//damage overlay MUST be added to vis_contents before the turret for correct layering, as they both use VIS_INHERIT_LAYER
 	if(damage_icon_path)
 		damage_overlay = new()
 		damage_overlay.icon = damage_icon_path
@@ -499,13 +500,30 @@
 	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
-/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
+/obj/vehicle/sealed/armored/z_impact_effects(turf/impacted_turf, levels, impact_flags, duration)
+	var/list/mob_list = list()
+	var/list/deploy_list = list(src)
+	mob_list += occupants
+	if(length(hitbox?.tank_desants))
+		mob_list += hitbox.tank_desants
+		deploy_list += hitbox.tank_desants
+
+	for(var/mob/living/living in mob_list)
+		if(living.buckled)
+			continue
+		addtimer(CALLBACK(living, TYPE_PROC_REF(/mob/living, ZImpactDamage), impacted_turf, levels), duration)
+
+	start_drop_down_effect(src, mob_list, deploy_list, duration)
+
+/obj/vehicle/sealed/armored/post_z_impact(turf/impacted_turf, levels, impact_flags)
 	. = ..()
 	if(pass_flags & HOVERING)
 		return
 	var/obj/hitboxtouse = hitbox ? hitbox : src
 	for(var/turf/landingzone in hitboxtouse.locs)
 		for(var/mob/living/crushed in landingzone)
+			if(crushed in hitbox.tank_desants)
+				continue
 			crushed.gib()
 
 /obj/vehicle/sealed/armored/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
@@ -847,7 +865,7 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE
+	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	///overlay obj for for the attached gun
 	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary
