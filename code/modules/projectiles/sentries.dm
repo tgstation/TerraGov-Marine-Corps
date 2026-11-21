@@ -386,15 +386,15 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	potential_targets.Cut()
 	if(!gun)
 		return FALSE
-	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
+	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range, TRUE))
 		if(nearby_human.faction != FACTION_ZOMBIE && (nearby_human.stat == DEAD || CHECK_BITFIELD(nearby_human.status_flags, INCORPOREAL)  || (CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY) || nearby_human.wear_id?.iff_signal & iff_signal)))
 			continue
 		potential_targets += nearby_human
-	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range, TRUE))
 		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
-	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
+	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range, TRUE))
 		var/list/driver_list = nearby_mech.return_drivers()
 		if(!length(driver_list))
 			continue
@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		if(human_occupant.wear_id?.iff_signal & iff_signal)
 			continue
 		potential_targets += nearby_mech
-	for(var/obj/vehicle/sealed/armored/nearby_tank AS in cheap_get_tanks_near(src, range))
+	for(var/obj/vehicle/sealed/armored/nearby_tank AS in cheap_get_tanks_near(src, range, TRUE))
 		var/list/driver_list = nearby_tank.return_drivers()
 		if(!length(driver_list))
 			continue
@@ -472,7 +472,12 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target) //todo: this whole proc is giga stinky and can probably just use line_of_sight and check_path
 	if(target.loc == loc)
 		return TRUE
-	var/turf/starting_turf = get_turf(src)
+	//If the target is on another z level, we check the path from where the projectile enters it
+	var/turf/starting_turf = get_multiz_shot_origin(src, target)
+	if(!starting_turf)
+		return FALSE
+	if(starting_turf == get_turf(target))
+		return TRUE
 	var/list/turf/path = get_traversal_line(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
 	path -= starting_turf
