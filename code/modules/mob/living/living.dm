@@ -1203,6 +1203,7 @@
 	vis_flags |= VIS_HIDE
 	SET_PLANE_EXPLICIT(src, GAME_PLANE, src)
 	if(!shown || owner.alpha != 255)
+		return
 	if(!upstairs_marker)
 		upstairs_marker = mutable_appearance('icons/effects/upstairs_indicator.dmi', "upstairs", appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
 	upstairs_marker.pixel_w = max(owner.get_cached_width() - ICON_SIZE_X, 0) * 0.5
