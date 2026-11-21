@@ -115,6 +115,7 @@
 #define SHUTTLE_SUPPLY "supply"
 #define SHUTTLE_SOM_SUPPLY "supply_SOM"
 #define SHUTTLE_VEHICLE_SUPPLY "vehicle_supply"
+#define SHUTTLE_WIDEBURY "widebury"
 
 /// Time the marine dropship will wait when it's ready to automatically depart
 #define AUTOMATIC_DEPARTURE_GRACE_PERIOD (20 SECONDS)

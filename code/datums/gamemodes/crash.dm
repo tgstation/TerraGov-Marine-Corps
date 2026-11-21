@@ -53,6 +53,8 @@
 	. = ..()
 
 	// Spawn the ship
+	if(TGS_CLIENT_COUNT >= 10 && TGS_CLIENT_COUNT < 25)
+		shuttle_id = SHUTTLE_WIDEBURY
 	if(TGS_CLIENT_COUNT >= 25)
 		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
@@ -77,7 +79,7 @@
 		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
-		CRASH("No valid crash sides found!")
+		CRASH("No valid crash sites found!")
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
