@@ -140,6 +140,10 @@
 			effective_jumper_allow_pass_flags |= (PASS_MOB|PASS_DEFENSIVE_STRUCTURE)
 		jump_start_time = null
 
+	//we set the timer and CD as early as possible to avoid things breaking if we runtime somehow
+	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, effective_jumper_allow_pass_flags), effective_jump_duration)
+	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
+
 	if(jump_sound)
 		playsound(jumper, jump_sound, 65, FALSE, MEDIUM_SOUND_RANGE)
 
@@ -162,10 +166,6 @@
 	if(jump_flags & JUMP_SHADOW)
 		animate(shadow_filter, y = -effective_jump_height, size = 4, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(y = 0, size = 0.9, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
-
-	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, effective_jumper_allow_pass_flags), effective_jump_duration)
-
-	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
 /datum/component/jump/proc/end_jump(atom/movable/jumper, old_pass_flags)
