@@ -102,6 +102,7 @@
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
 	AddElement(/datum/element/directional_attack)
+	update_below_copy()
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -1156,10 +1157,17 @@
 	resistance_flags = RESIST_ALL
 	///The mob we are a copy of
 	var/mob/living/owner
+	/// A indicator to be super clear this dude is above
+	var/mutable_appearance/upstairs_marker
+	/// We're only shown if we're near a valid open turf, otherwise hidden
+	var/shown = FALSE
+	///Timer that hides us once the owner has finished stepping away, so we can actually see the leaving animation
+	var/hide_timer
 
-/atom/movable/below_copy/Initialize(mapload, mob/living/owner)
+/atom/movable/below_copy/Initialize(mapload, mob/living/owner, shown)
 	. = ..()
 	src.owner = owner
+	src.shown = shown
 	RegisterSignals(owner, list(COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_copy))
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_dir_change))
 	update_copy()
@@ -1169,40 +1177,71 @@
 	owner = null
 	return ..()
 
+/atom/movable/below_copy/proc/set_shown(new_shown)
+	if(hide_timer)
+		deltimer(hide_timer)
+		hide_timer = null
+	shown = new_shown
+	update_copy()
+
+/atom/movable/below_copy/proc/hide_after(delay)
+	hide_timer = addtimer(CALLBACK(src, PROC_REF(set_shown), FALSE), delay, TIMER_STOPPABLE)
+
 /atom/movable/below_copy/proc/update_copy()
 	SIGNAL_HANDLER
+	copy_owner(owner.dir)
+
+/atom/movable/below_copy/proc/copy_owner(copied_dir)
 	appearance = owner.appearance
-	dir = owner.dir //not part of the copied appearance
+	dir = copied_dir //not part of the copied appearance
 	render_target = null
-	alpha = owner.alpha * (BELOW_MOB_ALPHA / 255) //still fainter if the owner is, like when cloaked
+	alpha = shown ? owner.alpha * (BELOW_MOB_ALPHA / 255) : 0
 	pixel_z = owner.pixel_z + BELOW_COPY_PIXEL_OFFSET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	density = FALSE
 	opacity = FALSE
 	vis_flags |= VIS_HIDE
 	SET_PLANE_EXPLICIT(src, GAME_PLANE, src)
+	if(!shown || owner.alpha != 255)
+	if(!upstairs_marker)
+		upstairs_marker = mutable_appearance('icons/effects/upstairs_indicator.dmi', "upstairs", appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
+	upstairs_marker.pixel_w = max(owner.get_cached_width() - ICON_SIZE_X, 0) * 0.5
+	upstairs_marker.pixel_z = max(owner.get_cached_height() - ICON_SIZE_Y, 0) * 0.5
+	overlays += upstairs_marker
 
 /atom/movable/below_copy/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
-	update_copy()
-	dir = new_dir
+	copy_owner(new_dir)
 
 /mob/living/proc/update_below_copy()
 	var/turf/below_spot
-	if(SSmapping.max_plane_offset && isturf(loc) && !QDELETED(src) && get_looking_turf(DOWN, TRUE))
-		below_spot = get_step_multiz(loc, DOWN)
+	if(SSmapping.max_plane_offset && isturf(loc) && !QDELETED(src))
+		var/turf/possible_spot = get_step_multiz(loc, DOWN)
+		if(possible_spot)
+			for(var/turf/nearby_turf as anything in RANGE_TURFS(BELOW_COPY_RANGE, loc))
+				if(istransparentturf(nearby_turf))
+					below_spot = possible_spot
+					break
 	if(!below_spot)
 		if(below_copy)
 			QDEL_NULL(below_copy)
 		return
+	var/can_look_down = !!get_looking_turf(DOWN, TRUE)
 	if(!below_copy)
-		below_copy = new(below_spot, src)
+		below_copy = new(below_spot, src, can_look_down)
 		return
-	if(below_copy.loc == below_spot)
+	if(below_copy.loc == below_spot && below_copy.shown == can_look_down)
 		return
-	below_copy.set_glide_size(glide_size)
-	below_copy.abstract_move(below_spot)
-	below_copy.update_copy()
+	var/stepped = below_copy.loc != below_spot
+	if(stepped)
+		below_copy.set_glide_size(glide_size)
+		below_copy.abstract_move(below_spot)
+	// ensure that we don't hide the gliding and you don't just pop in
+	if(stepped && below_copy.shown && !can_look_down && !below_copy.hide_timer)
+		below_copy.hide_after(GLIDE_SIZE_TO_DELAY(glide_size))
+		below_copy.update_copy()
+		return
+	below_copy.set_shown(can_look_down)
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
