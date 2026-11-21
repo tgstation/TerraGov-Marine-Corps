@@ -7,7 +7,7 @@
 ///Returns remaining stun duration
 /mob/living/proc/AmountStun()
 	var/datum/status_effect/incapacitating/stun/current_stun = IsStun()
-	return current_stun ? current_stun.duration - world.time : 0
+	return current_stun ? current_stun.duration  : 0
 
 ///Applies stun from current world time unless existing duration is higher
 /mob/living/proc/Stun(amount, ignore_canstun = FALSE)
@@ -22,7 +22,7 @@
 
 	var/datum/status_effect/incapacitating/stun/current_stun = IsStun()
 	if(current_stun)
-		current_stun.duration = max(world.time + amount, current_stun.duration)
+		current_stun.duration = max(amount, current_stun.duration)
 	else if(amount > 0)
 		current_stun = apply_status_effect(STATUS_EFFECT_STUN, amount)
 
@@ -45,7 +45,7 @@
 		return
 
 	if(current_stun)
-		current_stun.duration = world.time + amount
+		current_stun.duration = amount
 	else
 		current_stun = apply_status_effect(STATUS_EFFECT_STUN, amount)
 
@@ -78,7 +78,7 @@
 ///Returns remaining knockdown duration
 /mob/living/proc/AmountKnockdown()
 	var/datum/status_effect/incapacitating/knockdown/current_knockdown = IsKnockdown()
-	return current_knockdown ? current_knockdown.duration - world.time : 0
+	return current_knockdown ? current_knockdown.duration  : 0
 
 ///Applies knockdown only if not currently applied
 /mob/living/proc/KnockdownNoChain(amount, ignore_canstun = FALSE)
@@ -101,7 +101,7 @@
 
 	var/datum/status_effect/incapacitating/knockdown/current_knockdown = IsKnockdown()
 	if(current_knockdown)
-		current_knockdown.duration = max(world.time + amount, current_knockdown.duration)
+		current_knockdown.duration = max(amount, current_knockdown.duration)
 	else if(amount > 0)
 		current_knockdown = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount)
 
@@ -124,7 +124,7 @@
 		return
 
 	if(current_knockdown)
-		current_knockdown.duration = world.time + amount
+		current_knockdown.duration = amount
 	else
 		current_knockdown = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount)
 
@@ -157,7 +157,7 @@
 ///Returns remaining immobilize duration
 /mob/living/proc/AmountImmobilized()
 	var/datum/status_effect/incapacitating/immobilized/current_immobilized = IsImmobilized()
-	return current_immobilized ? current_immobilized.duration - world.time : 0
+	return current_immobilized ? current_immobilized.duration  : 0
 
 ///Applies immobilize only if not currently applied
 /mob/living/proc/ImmobilizeNoChain(amount, ignore_canstun = FALSE)
@@ -180,7 +180,7 @@
 
 	var/datum/status_effect/incapacitating/immobilized/current_immobilized = IsImmobilized()
 	if(current_immobilized)
-		current_immobilized.duration = max(world.time + amount, current_immobilized.duration)
+		current_immobilized.duration = max(amount, current_immobilized.duration)
 	else if(amount > 0)
 		current_immobilized = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
 
@@ -203,7 +203,7 @@
 		return
 
 	if(current_immobilized)
-		current_immobilized.duration = world.time + amount
+		current_immobilized.duration = amount
 	else
 		current_immobilized = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
 
@@ -236,7 +236,7 @@
 ///Returns remaining paralyzed duration
 /mob/living/proc/AmountParalyzed()
 	var/datum/status_effect/incapacitating/paralyzed/current_paralyzed = IsParalyzed()
-	return current_paralyzed ? current_paralyzed.duration - world.time : 0
+	return current_paralyzed ? current_paralyzed.duration  : 0
 
 ///Applies paralyze only if not currently applied
 /mob/living/proc/ParalyzeNoChain(amount, ignore_canstun = FALSE)
@@ -259,7 +259,7 @@
 
 	var/datum/status_effect/incapacitating/paralyzed/current_paralyzed = IsParalyzed()
 	if(current_paralyzed)
-		current_paralyzed.duration = max(world.time + amount, current_paralyzed.duration)
+		current_paralyzed.duration = max(amount, current_paralyzed.duration)
 	else if(amount > 0)
 		current_paralyzed = apply_status_effect(STATUS_EFFECT_PARALYZED, amount)
 
@@ -290,7 +290,7 @@
 		return
 
 	if(current_paralyzed)
-		current_paralyzed.duration = world.time + amount
+		current_paralyzed.duration = amount
 	else
 		current_paralyzed = apply_status_effect(STATUS_EFFECT_PARALYZED, amount)
 
@@ -323,7 +323,7 @@
 ///Returns remaining sleeping duration
 /mob/living/proc/AmountSleeping()
 	var/datum/status_effect/incapacitating/sleeping/current_sleeping = IsSleeping()
-	return current_sleeping ? current_sleeping.duration - world.time : 0
+	return current_sleeping ? current_sleeping.duration  : 0
 
 ///Applies sleeping from current world time unless existing duration is higher
 /mob/living/proc/Sleeping(amount, ignore_canstun = FALSE)
@@ -338,7 +338,7 @@
 
 	var/datum/status_effect/incapacitating/sleeping/current_sleeping = IsSleeping()
 	if(current_sleeping)
-		current_sleeping.duration = max(world.time + amount, current_sleeping.duration)
+		current_sleeping.duration = max(amount, current_sleeping.duration)
 	else if(amount > 0)
 		current_sleeping = apply_status_effect(STATUS_EFFECT_SLEEPING, amount)
 
@@ -361,7 +361,7 @@
 		return
 
 	if(current_sleeping)
-		current_sleeping.duration = world.time + amount
+		current_sleeping.duration = amount
 	else
 		current_sleeping = apply_status_effect(STATUS_EFFECT_SLEEPING, amount)
 
@@ -415,7 +415,7 @@
 ///Returns remaining unconscious duration
 /mob/living/proc/AmountUnconscious()
 	var/datum/status_effect/incapacitating/unconscious/current_unconscious = IsUnconscious()
-	return current_unconscious ? current_unconscious.duration - world.time : 0
+	return current_unconscious ? current_unconscious.duration  : 0
 
 ///Applies unconscious from current world time unless existing duration is higher
 /mob/living/proc/Unconscious(amount, ignore_canstun = FALSE)
@@ -430,7 +430,7 @@
 
 	var/datum/status_effect/incapacitating/unconscious/current_unconscious = IsUnconscious()
 	if(current_unconscious)
-		current_unconscious.duration = max(world.time + amount, current_unconscious.duration)
+		current_unconscious.duration = max(amount, current_unconscious.duration)
 	else if(amount > 0)
 		current_unconscious = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount)
 
@@ -453,7 +453,7 @@
 		return
 
 	if(current_unconscious)
-		current_unconscious.duration = world.time + amount
+		current_unconscious.duration = amount
 	else
 		current_unconscious = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount)
 
@@ -486,7 +486,7 @@
 ///Returns remaining confused duration
 /mob/living/proc/AmountConfused()
 	var/datum/status_effect/incapacitating/confused/current_confused = IsConfused()
-	return current_confused ? current_confused.duration - world.time : 0
+	return current_confused ? current_confused.duration  : 0
 
 ///Applies confused from current world time unless existing duration is higher
 /mob/living/proc/Confused(amount, ignore_canstun = FALSE)
@@ -501,7 +501,7 @@
 
 	var/datum/status_effect/incapacitating/confused/current_confused = IsConfused()
 	if(current_confused)
-		current_confused.duration = max(world.time + amount, current_confused.duration)
+		current_confused.duration = max(amount, current_confused.duration)
 	else if(amount > 0)
 		current_confused = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 
@@ -524,7 +524,7 @@
 		return
 
 	if(current_confused)
-		current_confused.duration = world.time + amount
+		current_confused.duration = amount
 	else
 		current_confused = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 
@@ -560,7 +560,7 @@
 		stun_absorption[key]["priority"] = priority
 		stun_absorption[key]["stuns_absorbed"] = 0
 	else
-		stun_absorption[key] = list("end_time" = world.time + duration, "priority" = priority, "stuns_absorbed" = 0, \
+		stun_absorption[key] = list("end_time" = world.time +duration, "priority" = priority, "stuns_absorbed" = 0, \
 		"visible_message" = message, "self_message" = self_message, "examine_message" = examine_message)
 
 /mob/living/proc/absorb_stun(amount, ignoring_flag_presence)
@@ -674,7 +674,7 @@
 ///Returns remaining druggy duration
 /mob/living/proc/amount_drugged()
 	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
-	return current_drugginess ? current_drugginess.duration - world.time : 0
+	return current_drugginess ? current_drugginess.duration  : 0
 
 ///Applies druggy from current world time unless existing duration is higher
 /mob/living/proc/druggy(amount)
@@ -683,7 +683,7 @@
 
 	var/datum/status_effect/incapacitating/druggy/current_drugginess = is_drugged()
 	if(current_drugginess)
-		current_drugginess.duration = max(world.time + amount, current_drugginess.duration)
+		current_drugginess.duration = max(amount, current_drugginess.duration)
 	else if(amount > 0)
 		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
 
@@ -700,7 +700,7 @@
 		return
 
 	if(current_drugginess)
-		current_drugginess.duration = world.time + amount
+		current_drugginess.duration = amount
 	else
 		current_drugginess = apply_status_effect(STATUS_EFFECT_DRUGGY, amount)
 
@@ -748,7 +748,7 @@
 ///Returns remaining stagger duration
 /mob/living/proc/AmountStaggered()
 	var/datum/status_effect/incapacitating/stagger/current_stagger = IsStaggered()
-	return current_stagger ? current_stagger.duration - world.time : 0
+	return current_stagger ? current_stagger.duration  : 0
 
 ///Applies stagger from current world time unless existing duration is higher
 /mob/living/proc/Stagger(amount, ignore_canstun = FALSE)
@@ -763,7 +763,7 @@
 
 	var/datum/status_effect/incapacitating/stagger/current_stagger = IsStaggered()
 	if(current_stagger)
-		current_stagger.duration = max(world.time + amount, current_stagger.duration)
+		current_stagger.duration = max(amount, current_stagger.duration)
 	else if(amount > 0)
 		current_stagger = apply_status_effect(STATUS_EFFECT_STAGGER, amount)
 
@@ -786,7 +786,7 @@
 		return
 
 	if(current_stagger)
-		current_stagger.duration = world.time + amount
+		current_stagger.duration = amount
 	else
 		current_stagger = apply_status_effect(STATUS_EFFECT_STAGGER, amount)
 
@@ -821,7 +821,7 @@
 /mob/living/proc/AmountMute()
 	var/datum/status_effect/mute/M = IsMute()
 	if(M)
-		return M.duration - world.time
+		return M.duration
 	return 0
 
 ///Mutes the target for the stated duration
@@ -832,7 +832,7 @@
 		return
 	var/datum/status_effect/mute/M = IsMute()
 	if(M)
-		M.duration = max(world.time + amount, M.duration)
+		M.duration = max(amount, M.duration)
 	else if(amount > 0)
 		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
 	return M
@@ -850,7 +850,7 @@
 			qdel(M)
 			return
 
-		M.duration = world.time + amount
+		M.duration = amount
 		return
 
 	M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
@@ -882,7 +882,7 @@
 /mob/living/proc/amount_irradiated()
 	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
-		return irradiated.duration - world.time
+		return irradiated.duration
 	return 0
 
 ///Applies irradiation from a source
@@ -891,7 +891,7 @@
 		return
 	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
-		irradiated.duration = max(world.time + amount, irradiated.duration)
+		irradiated.duration = max(amount, irradiated.duration)
 	else if(amount > 0)
 		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
 	return irradiated
@@ -906,7 +906,7 @@
 			qdel(irradiated)
 	else
 		if(irradiated)
-			irradiated.duration = world.time + amount
+			irradiated.duration = amount
 		else
 			irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
 	return irradiated

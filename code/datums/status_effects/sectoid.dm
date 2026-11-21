@@ -1,6 +1,6 @@
 /datum/status_effect/mindmeld
 	id = "mindmeld"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 2 SECONDS
 	alert_type = null
 	/// Used to track who is the owner of this buff.
@@ -58,7 +58,7 @@
 	check_range()
 	return ..()
 
-/datum/status_effect/mindmeld/tick(delta_time)
+/datum/status_effect/mindmeld/tick(seconds_between_ticks)
 	check_range()
 
 ///Checks if mob is in buff range and toggles as required
@@ -101,8 +101,9 @@
 // ***************************************
 /datum/status_effect/reknit_form
 	id = "reknit_form"
-	tick_interval = 0.5 SECONDS
+	tick_interval = 0.4 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/reknit_form
+	show_duration = TRUE
 
 /datum/status_effect/reknit_form/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
@@ -114,7 +115,7 @@
 	. = ..()
 	owner.remove_filter("[id]")
 
-/datum/status_effect/reknit_form/tick(delta_time)
+/datum/status_effect/reknit_form/tick(seconds_between_ticks)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
