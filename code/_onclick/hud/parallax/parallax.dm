@@ -73,27 +73,27 @@
 		white_space.unhide_plane(screenmob)
 
 	// Default to HIGH
-	var/parallax_selection = C?.prefs.parallax
+	var/parallax_selection = client?.prefs.parallax
 
 	switch(parallax_selection)
 		if (PARALLAX_INSANE)
-			C.parallax_layers_max = 5
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 5
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if(PARALLAX_HIGH)
-			C.parallax_layers_max = 4
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 4
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if (PARALLAX_MED)
-			C.parallax_layers_max = 3
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 3
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if (PARALLAX_LOW)
-			C.parallax_layers_max = 1
-			C.do_parallax_animations = FALSE
+			client.parallax_layers_max = 1
+			client.do_parallax_animations = FALSE
 			return TRUE
 
 		if (PARALLAX_DISABLE)
