@@ -638,6 +638,12 @@
 	SIGNAL_HANDLER
 	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
 	LAZYADD(xenos_by_zlevel["[new_z]"], X)
+	if(old_z && new_z && (new_z in SSmapping.get_connected_levels(old_z)))
+		return
+	if(X == living_xeno_ruler)
+		update_leader_pheromones()
+	else if(X.xeno_flags & XENO_LEADER)
+		X.handle_xeno_leader_pheromones(living_xeno_ruler)
 
 // ***************************************
 // *********** Xeno upgrades
@@ -717,6 +723,8 @@
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
 	add_to_lists(X)
+	if(X.xeno_flags & XENO_LEADER)
+		X.handle_xeno_leader_pheromones(living_xeno_ruler)
 	return TRUE
 
 
@@ -747,6 +755,7 @@
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		remove_leader(leader)
 		leader.hud_set_queen_overwatch()
+		leader.update_leader_icon(FALSE)
 	ruler.hud_set_queen_overwatch()
 	update_ruler()
 	return TRUE

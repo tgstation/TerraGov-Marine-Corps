@@ -28,6 +28,14 @@
 				return get_dir(us, them)
 		return (dir | get_dir(us, them))
 
+///Whether two atoms are on the same z-level, or on related stacked z-levels
+/proc/is_on_connected_level(atom/first, atom/second)
+	var/turf/first_turf = get_turf(first)
+	var/turf/second_turf = get_turf(second)
+	if(!first_turf || !second_turf)
+		return FALSE
+	return first_turf.z == second_turf.z || (second_turf.z in SSmapping.get_connected_levels(first_turf.z))
+
 /proc/get_lowest_turf(atom/ref)
 	var/turf/us = get_turf(ref)
 	var/turf/next = GET_TURF_BELOW(us)
