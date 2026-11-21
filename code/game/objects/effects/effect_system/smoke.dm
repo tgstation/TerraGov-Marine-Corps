@@ -316,6 +316,17 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
+///////////////////////////////////////////
+// Radium
+//////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/radium
+	alpha = 90
+	opacity = FALSE
+	color = COLOR_VIBRANT_LIME
+	smoke_traits = SMOKE_RADIUM|SMOKE_COUGH|SMOKE_GASP|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL|SMOKE_BLISTERING
+
+
 //////////////////////////////////////
 // ANTIGAS SMOKE
 ////////////////////////////////////
@@ -490,6 +501,9 @@
 
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
+
+/datum/effect_system/smoke_spread/radium
+	smoke_type = /obj/effect/particle_effect/smoke/radium
 
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
