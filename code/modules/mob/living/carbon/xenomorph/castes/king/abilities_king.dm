@@ -581,7 +581,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(minions_only && sister.tier != XENO_TIER_MINION)
 			continue
-		if(sister.z != owner.z)
+		if(!can_summon(sister))
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
@@ -601,7 +601,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 		if(minions_only && sister.tier != XENO_TIER_MINION)
 			continue
 		sister.remove_filter("summonoutline")
-		if(sister.z == owner.z)
+		if(can_summon(sister))
 			sister.forceMove(get_turf(xeno_owner))
 			sisters_teleported ++
 			if(flat_damage_multiplier)
@@ -615,6 +615,9 @@ GLOBAL_LIST_EMPTY(active_summons)
 
 	add_cooldown()
 	succeed_activate()
+
+/datum/action/ability/xeno_action/psychic_summon/proc/can_summon(mob/living/carbon/xenomorph/sister)
+	return isturf(sister.loc) && is_on_connected_level(sister, owner)
 
 ///Sends a message to admins, prompting them if they want to cancel a psychic summon
 /datum/action/ability/xeno_action/psychic_summon/proc/request_admins()

@@ -42,7 +42,7 @@
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.round_type_flags & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
+	if(is_on_connected_level(hive?.living_xeno_ruler, T) || xeno_caste.can_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.round_type_flags & MODE_XENO_RULER)) //if the living queen is on our level, or on the same z-level stack
 		ruler_healing_penalty = 1
 	if(loc_weeds_type || HAS_TRAIT(src, TRAIT_INNATE_HEALING)) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
@@ -118,6 +118,8 @@
 			use_plasma(plasma_stored, FALSE)
 			QDEL_NULL(current_aura)
 			src.balloon_alert(src, "no plasma, emitting stopped!")
+			if(hive?.living_xeno_ruler == src)
+				hive.update_leader_pheromones()
 		else
 			use_plasma(pheromone_cost * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD, FALSE)
 
