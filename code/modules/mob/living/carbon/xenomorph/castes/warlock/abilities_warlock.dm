@@ -581,7 +581,7 @@
 		return FALSE
 	return ..()
 
-/obj/ex_act(severity)
+/obj/effect/xeno/crush_orb/ex_act(severity)
 	if(QDELETED(src))
 		return
 	switch(severity)
