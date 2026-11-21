@@ -109,14 +109,14 @@
 
 /datum/hud/proc/update_parallax_z(mob/viewmob)
 	var/mob/screen_mob = viewmob || mymob
-	var/client/C = screen_mob.client
-	if(!C)
+	var/client/client = screen_mob.client
+	if(!client)
 		return
 	var/turf/screen_location = get_turf(screen_mob)
-	if(C.parallax_blocked_by_level != !!SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
+	if(client.parallax_blocked_by_level != !!SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
 		update_parallax_pref(screen_mob)
 		return
-	if(length(C.parallax_layers))
+	if(length(client.parallax_layers))
 		update_parallax(screen_mob)
 
 // This sets which way the current shuttle is moving (returns true if the shuttle has stopped moving so the caller can append their animation)
