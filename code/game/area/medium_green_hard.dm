@@ -475,9 +475,11 @@
 /area/mediumgreen/outside/neotree/tower
 	name = "guard tower"
 	ceiling = CEILING_METAL
+	area_flags = CANNOT_NUKE
 /area/mediumgreen/outside/neotree/tower2
 	name = "guard tower"
 	ceiling = CEILING_METAL
+	area_flags = CANNOT_NUKE
 
 /area/mediumgreen/outside/building/neotree
 	name = "Neo-fibre Research Facility"
