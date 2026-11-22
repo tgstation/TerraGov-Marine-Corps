@@ -11230,7 +11230,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
 "irS" = (
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)

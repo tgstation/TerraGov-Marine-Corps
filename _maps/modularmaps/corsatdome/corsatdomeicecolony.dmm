@@ -236,7 +236,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "cl" = (
-/obj/machinery/computer/skills{
+/obj/machinery/prop/computer/skills{
 	dir = 4
 	},
 /obj/structure/table/wood,
@@ -760,7 +760,7 @@
 /area/corsat/gamma/biodome/toxins)
 "iS" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/skills{
+/obj/machinery/prop/computer/skills{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/corsatsemi/lightpurple{
