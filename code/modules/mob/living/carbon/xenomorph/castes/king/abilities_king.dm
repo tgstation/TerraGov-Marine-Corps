@@ -616,6 +616,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 	add_cooldown()
 	succeed_activate()
 
+/// Whether a xeno can be summoned by the king
 /datum/action/ability/xeno_action/psychic_summon/proc/can_summon(mob/living/carbon/xenomorph/sister)
 	return isturf(sister.loc) && is_on_connected_level(sister, owner)
 
