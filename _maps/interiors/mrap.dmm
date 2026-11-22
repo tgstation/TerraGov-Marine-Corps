@@ -31,11 +31,15 @@
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "o" = (
-/obj/structure/periscope/apc,
+/obj/structure/periscope/apc{
+	dir = 8
+	},
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
@@ -57,9 +61,9 @@
 /turf/closed/interior/apc/five,
 /area/interior/apc)
 "A" = (
-/obj/structure/bed/chair/vehicle_crew/driver_gunner{
-	pixel_x = -3;
-	pixel_y = -5
+/obj/structure/bed/chair/vehicle_crew/driver_gunner/mrap{
+	pixel_w = -3;
+	pixel_z = -5
 	},
 /turf/open/interior/apc/eleven,
 /area/interior/apc)

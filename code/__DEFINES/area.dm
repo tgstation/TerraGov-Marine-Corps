@@ -22,6 +22,8 @@
 #define NO_CONSTRUCTION (1<<6)
 ///Disallows nuke timer to be activated in area
 #define CANNOT_NUKE (1<<7)
+///Comms interference is reduced
+#define BETTER_RADIO (1<<8)
 
 #define AREA_FLAVOR_NONE "area_regular"
 #define AREA_FLAVOR_URBAN "area_urban"

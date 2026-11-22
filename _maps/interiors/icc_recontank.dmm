@@ -19,7 +19,9 @@
 /obj/structure/bed/chair/loader_seat{
 	pixel_y = -5
 	},
-/obj/structure/periscope,
+/obj/structure/periscope{
+	dir = 8
+	},
 /turf/open/interior/apc/nine,
 /area/interior/tank)
 "r" = (

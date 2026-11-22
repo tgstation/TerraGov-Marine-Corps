@@ -3895,7 +3895,7 @@
 	pixel_y = 4
 	},
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown,
@@ -7137,7 +7137,7 @@
 	pixel_y = 4
 	},
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown{
@@ -12774,7 +12774,7 @@
 	pixel_y = 4
 	},
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown,
@@ -13466,7 +13466,7 @@
 	pixel_y = 4
 	},
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown,
@@ -20725,7 +20725,7 @@
 	pixel_y = 4
 	},
 /obj/structure/bed{
-	buckling_y = 13;
+	buckling_z = 13;
 	pixel_y = 13
 	},
 /obj/item/bedsheet/brown,
