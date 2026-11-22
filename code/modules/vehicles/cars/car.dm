@@ -83,7 +83,7 @@
 
 /obj/vehicle/sealed/car/vehicle_move(mob/living/user, direction)
 	. = ..()
-	if(!.)
+	if(!(. & COMPONENT_DRIVER_CAN_MOVE))
 		return
 
 	if(COOLDOWN_FINISHED(src, enginesound_cooldown))

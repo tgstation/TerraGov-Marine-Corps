@@ -409,7 +409,9 @@
 #define  COMSIG_MULTITILE_VEHICLE_ROTATED "multitile_vehicle_rotated"
 ///from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle
 #define COMSIG_RIDDEN_DRIVER_MOVE "driver_move"
-	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<0)
+	#define COMPONENT_DRIVER_CAN_MOVE (1<<0)
+	#define COMPONENT_DRIVER_BLOCK_MOVE (1<<1)
+	#define COMPONENT_DRIVER_EARLY_MOVE (1<<2)
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at()
 	#define COMPONENT_MOVABLE_BLOCK_PRE_THROW (1<<0)
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()

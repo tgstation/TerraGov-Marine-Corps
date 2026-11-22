@@ -33,7 +33,7 @@
 
 /obj/vehicle/sealed/mecha/vehicle_move(mob/living/user, direction, forcerotate = FALSE)
 	. = ..()
-	if(!.)
+	if(!(. & COMPONENT_DRIVER_CAN_MOVE))
 		return
 	if(completely_disabled)
 		return FALSE

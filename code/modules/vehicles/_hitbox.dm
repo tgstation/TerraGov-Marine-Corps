@@ -565,7 +565,7 @@
 
 	if(!ISDIAGONALDIR(direction))
 		armor.forceMove(get_step(armor.loc, movement_dir))
-		return COMPONENT_DRIVER_BLOCK_MOVE
+		return COMPONENT_DRIVER_EARLY_MOVE
 	//moving left, our mid point stays unchanged either way
 	if(direction == NORTHEAST)
 		armor.forceMove(get_step(armor.loc, turn(armor.dir, -45)))
@@ -574,4 +574,4 @@
 
 	root.setDir(facing_dir)
 	COOLDOWN_START(root, cooldown_vehicle_move, root.move_delay * 2)  //turns are essentially making two moves
-	return COMPONENT_DRIVER_BLOCK_MOVE
+	return COMPONENT_DRIVER_EARLY_MOVE

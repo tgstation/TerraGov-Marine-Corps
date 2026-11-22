@@ -300,10 +300,12 @@
 
 /obj/vehicle/sealed/armored/vehicle_move(mob/living/user, direction)
 	. = ..()
-	if(!.)
+	if(. & COMPONENT_DRIVER_BLOCK_MOVE)
 		return
 	after_move(direction)
-	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	if(. & COMPONENT_DRIVER_CAN_MOVE)
+		///some vehicle types will have already made the actual move, due to unusual movement modes
+		forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 	//we still need to handroll some parts of moved though since we skipped everything
 	last_move = direction
 	last_move_time = world.time
