@@ -981,6 +981,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/shatter
 	show_duration = TRUE
 	duration = 10 SECONDS
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_REPLACE
 	///A holder for the exact armor modified by this status effect
 	var/datum/armor/armor_modifier
