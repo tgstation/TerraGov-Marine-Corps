@@ -273,7 +273,7 @@
 		tool.zlevel = new_z
 		tool.set_zlevel(new_z, tool.minimap_flag)
 
-/obj/machinery/cic_maptable/mrap
+/obj/machinery/cic_maptable/drawable/mrap
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	pixel_z = -10
 
