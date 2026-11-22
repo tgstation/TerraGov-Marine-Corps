@@ -124,9 +124,5 @@ map bluemoon
 endmap
 
 map medium_green
-	minplayers 40
-endmap
-
-map medium_green_hard_mode
 	minplayers 50
 endmap

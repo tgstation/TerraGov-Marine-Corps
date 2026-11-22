@@ -1,11 +1,11 @@
 //based on the tesla turret (i gutted it)
 //code by tery so blame them
 
-#define TESLA_MAX_RANGE 5
+#define TESLA_MAX_RANGE 6
 #define TESLA_MAX_TARGETS 14
-#define TESLA_DAMAGE 45
+#define TESLA_DAMAGE 50
 #define TESLA_ARMOR_PIERCE 5
-#define TESLA_XENO_DAMAGE_MULTIPLIER 3 //GO MY NYMPH GIB-INATOR! GO AND FEAST ON THE MINIONS! ANNIHILATE THE T1s!
+#define TESLA_XENO_DAMAGE_MULTIPLIER 2.5 //reasonable but not insta kill
 
 /obj/machinery/tesla_orb
 	name = "mysterious orbs"
