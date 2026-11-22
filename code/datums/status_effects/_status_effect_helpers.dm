@@ -28,7 +28,7 @@
 					return
 				// Replace the existing instance (deletes it)
 				if(STATUS_EFFECT_REPLACE)
-					existing_effect.be_replaced()
+					qdel(existing_effect)
 				// Refresh the existing type, then early return
 				if(STATUS_EFFECT_REFRESH)
 					existing_effect.refresh(arglist(arguments))

@@ -40,6 +40,9 @@
 /datum/status_effect/New(list/arguments)
 	on_creation(arglist(arguments))
 
+/// Called from `New` with any supplied status effect arguments.
+/// Not guaranteed to exist by the end.
+/// Returning `FALSE` from `on_apply` will stop `on_creation` and self-delete the effect.
 /datum/status_effect/proc/on_creation(mob/living/new_owner, ...)
 	if(new_owner)
 		owner = new_owner
@@ -168,15 +171,6 @@
 /// owner's status_effects list, but owner is not yet null
 /datum/status_effect/proc/on_remove()
 	return
-
-/// Called instead of `on_remove` when a status effect
-/// of `status_type` [STATUS_EFFECT_REPLACE] is replaced by itself
-/datum/status_effect/proc/be_replaced()
-	linked_alert = null
-	owner.clear_alert(id)
-	LAZYREMOVE(owner.status_effects, src)
-	owner = null
-	qdel(src)
 
 /// Called before being fully removed (before `on_remove`).
 /// Returning `FALSE` will cancel removal.
