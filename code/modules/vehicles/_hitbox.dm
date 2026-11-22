@@ -232,7 +232,7 @@
 				continue
 			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
-	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? COMPONENT_DRIVER_CAN_MOVE : COMPONENT_DRIVER_BLOCK_MOVE
 
 /obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -324,7 +324,7 @@
 			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
-	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? COMPONENT_DRIVER_CAN_MOVE : COMPONENT_DRIVER_BLOCK_MOVE
 
 //3x4
 /obj/hitbox/rectangle
@@ -440,7 +440,7 @@
 			root.setDir(direction)
 			return COMPONENT_DRIVER_BLOCK_MOVE
 		else
-			return NONE
+			return COMPONENT_DRIVER_CAN_MOVE
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
 //Some hover specific stuff for the SOM tank
