@@ -107,6 +107,7 @@
 	create_parallax(screen_mob)
 	update_parallax(screen_mob)
 
+/// Update parallax on a mob without entirely re-doing them
 /datum/hud/proc/update_parallax_z(mob/viewmob)
 	var/mob/screen_mob = viewmob || mymob
 	var/client/client = screen_mob.client
