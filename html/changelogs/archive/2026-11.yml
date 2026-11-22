@@ -249,3 +249,12 @@
   - balance: 'Sovl War: Fire support via binos is no longer infinite, and instead
       must have uses purchased via dropship points'
   - rscadd: 'Sovl War: Added new fire support options for use via binos'
+2026-11-22:
+  Arturlang:
+  - rscadd: turrets can now shoot up/down z-levels
+  - bugfix: ' big maps no longer get cut off, hopefully'
+  - bugfix: tunnels and looking down breaking seethrough
+  - rscadd: hitscan weapons can now shoot up/down z-levels
+  Lumipharon:
+  - bugfix: fixed psy crush ex_act being pathed incorrectly
+  - code_imp: auxtools added to vsc recommended extensions

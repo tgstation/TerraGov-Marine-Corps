@@ -1,4 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - rscadd: "hitscan weapons can now shoot up/down z-levels"
