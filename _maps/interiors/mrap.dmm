@@ -37,13 +37,15 @@
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "o" = (
-/obj/structure/periscope/apc{
-	dir = 8
-	},
-/obj/structure/bed/chair/loader_seat{
-	pixel_y = -5
-	},
+/obj/structure/bed/chair/vehicle_crew/gunner/skillless,
+/obj/structure/gun_breech/secondary,
 /turf/open/interior/apc/twentytwo,
+/area/interior/apc)
+"p" = (
+/obj/structure/ammo_rack/secondary{
+	pixel_y = -13
+	},
+/turf/closed/interior/apc/two,
 /area/interior/apc)
 "q" = (
 /turf/closed/interior/apc/twelve,
@@ -164,7 +166,7 @@ X
 k
 "}
 (7,1,1) = {"
-F
+p
 O
 P
 o
