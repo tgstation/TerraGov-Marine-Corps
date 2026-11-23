@@ -4553,10 +4553,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mediumgreen/outside/lz2/around)
 "aqG" = (
-/obj/effect/spawner/random/misc/structure/closet/electrical,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/bcircuit/anim,
-/area/mediumgreen/outside/building/engineering/inner/disk)
+/obj/structure/catwalk,
+/obj/item/tool/pickaxe/diamonddrill,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/neotree/z3/tree)
 "aqH" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/ground/dirt,
@@ -5589,15 +5589,6 @@
 "aut" = (
 /turf/closed/wall/mainship/white,
 /area/mediumgreen/outside/lz2/building/medbay)
-"auu" = (
-/obj/structure/closet/crate/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/tile/darkish,
-/area/mediumgreen/outside/building/southeast/ship)
 "auv" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -6800,6 +6791,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
+"azl" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/closet/crate/bravo,
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/warehouse)
 "azm" = (
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
@@ -11742,11 +11739,6 @@
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/southwest)
-"aRj" = (
-/obj/structure/catwalk,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/neotree/z3/tree)
 "aRk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -12033,15 +12025,6 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/security)
-"aSb" = (
-/obj/structure/closet/crate/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/engineership/engineer_floor5,
-/area/mediumgreen/outside/building/southeast/ship)
 "aSc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -12668,11 +12651,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/canteen)
-"aUr" = (
-/obj/effect/spawner/random/misc/structure/closet/tool,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/bcircuit/anim,
-/area/mediumgreen/outside/building/engineering/inner/disk)
 "aUs" = (
 /obj/structure/prop/mainship/railing,
 /obj/structure/window/framed/colony/reinforced,
@@ -16977,13 +16955,6 @@
 /obj/effect/ai_node,
 /turf/open/openspace,
 /area/mediumgreen/outside/building/engineering/roof/z2)
-"bih" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
 "bii" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
@@ -24889,21 +24860,6 @@
 	dir = 1
 	},
 /area/mediumgreen/outside/lz1/around)
-"bLz" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/structure/closet/crate/bravo,
-/obj/item/stack/sheet/metal/medium_stack,
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/warehouse)
-"bLA" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/landmark/weed_node,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/structure/closet/crate/bravo,
-/obj/item/stack/sheet/metal/medium_stack,
-/turf/open/floor/mainship/plate,
-/area/mediumgreen/outside/building/southeast/warehouse)
 "bLB" = (
 /obj/structure/cable,
 /obj/structure/bookcase/manuals/engineering,
@@ -24991,6 +24947,19 @@
 /obj/item/explosive/grenade/rad,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/southeast/ship)
+"bLM" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/landmark/weed_node,
+/obj/structure/closet/crate/bravo,
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/mainship/plate,
+/area/mediumgreen/outside/building/southeast/warehouse)
+"bLN" = (
+/obj/structure/table/mainship,
+/obj/item/storage/belt/utility/atmostech,
+/obj/item/storage/belt/utility/atmostech,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "bLO" = (
 /obj/structure/closet/crate/mass_produced_crate/supply,
 /obj/item/explosive/grenade/phosphorus,
@@ -25208,6 +25177,30 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/north)
+"bMu" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/southeast/ship)
+"bMv" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/turf/open/engineership/engineer_floor5,
+/area/mediumgreen/outside/building/southeast/ship)
+"bMw" = (
+/obj/effect/spawner/random/misc/structure/closet/electrical,
+/turf/open/floor/bcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/disk)
+"bMx" = (
+/obj/effect/spawner/random/misc/structure/closet/tool,
+/turf/open/floor/bcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "bMB" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/effect/landmark/xeno_tunnel_spawn,
@@ -46942,7 +46935,7 @@ aau
 ahL
 ago
 afk
-bih
+bLN
 amq
 acA
 acA
@@ -71260,7 +71253,7 @@ aIw
 aMJ
 bpz
 aaj
-bLz
+azl
 bsC
 bsC
 bAH
@@ -71452,7 +71445,7 @@ aIw
 adS
 adS
 aaj
-bLA
+bLM
 bsC
 bAN
 afN
@@ -98966,8 +98959,8 @@ bGT
 ahY
 and
 bMr
-aUr
-aqG
+bMx
+bMw
 bhG
 bhG
 bMr
@@ -116881,7 +116874,7 @@ aPM
 bsy
 aLV
 bLL
-auu
+bMu
 bIg
 apv
 aph
@@ -117073,7 +117066,7 @@ aPN
 aPJ
 aLV
 bLL
-aSb
+bMv
 bIg
 apx
 aps
@@ -140373,7 +140366,7 @@ aXR
 aXR
 aXR
 aaL
-aRj
+aqG
 aaL
 aXR
 aXR
