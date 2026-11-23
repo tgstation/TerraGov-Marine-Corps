@@ -135,6 +135,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
 	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+	icon_gen.Crop(1, 1, max(SCREEN_PIXEL_SIZE, largest_x + 1 + minimaps_by_z["[level]"].x_offset), max(SCREEN_PIXEL_SIZE, largest_y + 1 + minimaps_by_z["[level]"].y_offset))
 
 	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
 
