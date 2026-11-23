@@ -142,9 +142,11 @@
 ///standard drop down effect for falling/rappelling down etc
 /proc/start_drop_down_effect(atom/movable/movable_to_move, list/mobs_moving, list/deploy_list, drop_time)
 	var/list/layer_list = list()
+	var/list/density_list = list()
 
 	for(var/atom/movable/AM AS in deploy_list)
 		layer_list[AM] = AM.layer
+		density_list[AM] = AM.density
 
 		if(isliving(AM))
 			var/mob/living/living_deployer = AM
@@ -156,20 +158,21 @@
 		AM.add_filter(ZFALL_EFFECT, 2, drop_shadow_filter(y = -ZFALL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
 		var/shadow_filter = AM.get_filter(ZFALL_EFFECT)
 
-		layer_list[AM] = AM.layer
 		AM.pixel_z += ZFALL_HEIGHT
 		AM.layer = FLY_LAYER
+		AM.density = FALSE
 
 		animate(AM, pixel_z = AM.pixel_z - ZFALL_HEIGHT, time = drop_time)
 		animate(shadow_filter, y = 0, size = 0.9, time = drop_time, flags = ANIMATION_PARALLEL)
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_drop_down_effect), deploy_list, layer_list, mobs_moving), drop_time)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_drop_down_effect), deploy_list, layer_list, density_list, mobs_moving), drop_time)
 
 ///effects when drop down completes
-/proc/end_drop_down_effect(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
+/proc/end_drop_down_effect(list/atom/movable/movables_to_move, list/layer_list, list/density_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
 		AM.remove_filter(ZFALL_EFFECT)
 		AM.layer = layer_list[AM]
+		AM.density = density_list[AM]
 		if(ismecha(AM) || isarmoredvehicle(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)

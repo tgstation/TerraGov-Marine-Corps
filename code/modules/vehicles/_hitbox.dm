@@ -95,6 +95,8 @@
 /obj/hitbox/proc/add_desant(atom/movable/new_desant)
 	if(HAS_TRAIT(new_desant, TRAIT_TANK_DESANT))
 		return
+	if(!root.density) //if the vehicle is not solid for any reason, we can't ride it
+		return FALSE
 	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
 	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant.plane))
