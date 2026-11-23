@@ -18,7 +18,7 @@
 	  * This is infinity so you must explicitly set this
 	  */
 	var/argument_hash_start_idx = INFINITY
-	/// Assoc list of target to the list of sources we were added to it by, see [/datum/proc/AddElementSource]
+	/// Assoc list of target to the list of sources we were added to it
 	var/list/attach_sources
 
 /// Activates the functionality defined by the element on the given target datum
