@@ -576,7 +576,10 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)
+	if(buckled)
+		if(!buckled.can_buckle_rotate())
+			return FALSE
+	else if(!canmove)
 		return FALSE
 	if(stat == DEAD)
 		return FALSE
@@ -588,13 +591,12 @@
 		return FALSE
 	return TRUE
 
-
 /mob/proc/facedir(ndir)
 	if(!canface())
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_MOB_FACE_DIR, ndir)
 	setDir(ndir)
-	if(buckled && !buckled.anchored)
+	if(buckled)
 		buckled.setDir(ndir)
 	return TRUE
 
@@ -970,3 +972,7 @@
 /mob/key_down(key, client/client, full_key)
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_KEYDOWN, key, client, full_key)
+
+///Whether this AM can rotate due to a buckled mob's actions
+/atom/movable/proc/can_buckle_rotate()
+	return FALSE
