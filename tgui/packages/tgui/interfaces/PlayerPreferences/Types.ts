@@ -37,7 +37,6 @@ type GameSettingData = {
   scaling_method: string;
   pixel_size: number;
   multiz_performance: number;
-  multiz_blur: number;
   parallax: number;
   is_admin: number;
 };

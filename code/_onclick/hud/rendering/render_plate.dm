@@ -67,15 +67,6 @@
 		remove_relay_from(GET_NEW_PLANE(RENDER_PLANE_TRANSPARENT, offset - 1))
 	else // Otherwise, regenerate the relay
 		add_relay_to(GET_NEW_PLANE(RENDER_PLANE_TRANSPARENT, offset - 1))
-	update_multiz_blur(new_offset)
-
-/atom/movable/screen/plane_master/rendering_plate/master/proc/update_multiz_blur(viewer_offset)
-	remove_filter("multiz_blur")
-	var/levels_below = offset - viewer_offset
-	var/blur_strength = home?.our_hud?.mymob?.canon_client?.prefs?.multiz_blur * MULTIZ_BLUR_PER_LEVEL
-	if(levels_below <= 0 || blur_strength <= 0)
-		return
-	add_filter("multiz_blur", 1, gauss_blur_filter(blur_strength * levels_below))
 
 ///renders general in charachter game objects
 /atom/movable/screen/plane_master/rendering_plate/game_plate

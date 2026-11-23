@@ -193,8 +193,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/multiz_parallax = TRUE
 	///performance setting for multiz
 	var/multiz_performance = -1
-	///how strongly the levels below us are blurred, 0 is off
-	var/multiz_blur = MULTIZ_BLUR_MAX
 	///if the edges of open space are outlined while we are next to a hole
 	var/multiz_edge_outline = TRUE
 
