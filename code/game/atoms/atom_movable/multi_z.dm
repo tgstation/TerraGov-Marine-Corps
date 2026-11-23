@@ -161,6 +161,7 @@
 		AM.pixel_z += ZFALL_HEIGHT
 		AM.layer = FLY_LAYER
 		AM.density = FALSE
+		AM.add_nosubmerge_trait(ZFALL_EFFECT)
 
 		animate(AM, pixel_z = AM.pixel_z - ZFALL_HEIGHT, time = drop_time)
 		animate(shadow_filter, y = 0, size = 0.9, time = drop_time, flags = ANIMATION_PARALLEL)
@@ -173,6 +174,7 @@
 		AM.remove_filter(ZFALL_EFFECT)
 		AM.layer = layer_list[AM]
 		AM.density = density_list[AM]
+		REMOVE_TRAIT(AM, TRAIT_NOSUBMERGE, ZFALL_EFFECT)
 		if(ismecha(AM) || isarmoredvehicle(AM))
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)
