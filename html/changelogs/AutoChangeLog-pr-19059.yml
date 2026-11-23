@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "parallax is no longer rebuilt when changing z-levels"
