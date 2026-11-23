@@ -191,6 +191,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	density = FALSE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/deadai
 	name = "\improper deactivated AI"
