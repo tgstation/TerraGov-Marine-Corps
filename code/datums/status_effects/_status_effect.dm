@@ -60,8 +60,8 @@
 
 	if(alert_type)
 		var/atom/movable/screen/alert/status_effect/new_alert = owner.throw_alert(id, alert_type)
-		new_alert.attached_effect = src //so the alert can reference us, if it needs to
-		linked_alert = new_alert //so we can reference the alert, if we need to
+		new_alert.attached_effect = src // so the alert can reference us, if it needs to
+		linked_alert = new_alert // so we can reference the alert, if we need to
 		update_shown_duration()
 
 	if(duration != STATUS_EFFECT_PERMANENT || tick_interval != STATUS_EFFECT_NO_TICK) // don't process if we don't care
@@ -82,7 +82,7 @@
 /// Status effect process. Handles adjusting its duration and time until it should actually tick.
 /// Don't extend or override this proc, you should override [/datum/status_effect/proc/tick] instead.
 /datum/status_effect/process(seconds_per_tick)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE) // put effects in tick instead
 
 	if(QDELETED(owner))
 		qdel(src)
@@ -166,14 +166,14 @@
 /datum/status_effect/proc/tick(seconds_between_ticks)
 	return
 
-/// Called whenever the effect expires or is removed (qdeleted).
+/// Called whenever the effect expires or is removed (deleted).
 /// Note that at the point this is called, it is out of the
-/// owner's status_effects list, but owner is not yet null
+/// owner's `status_effects` list, but owner is not yet null.
 /datum/status_effect/proc/on_remove()
 	return
 
-/// Called before being fully removed (before `on_remove`).
-/// Returning `FALSE` will cancel removal.
+/// Called before being removed with [/mob/living/proc/remove_status_effect]
+/// or [/mob/living/proc/remove_all_status_effects]. Return `FALSE` to prevent removal.
 /datum/status_effect/proc/before_remove(...)
 	return TRUE
 
@@ -205,7 +205,7 @@
 /datum/status_effect/proc/get_duration_text()
 	return MAPTEXT_TINY_UNICODE("<span style='text-align:center'>[round(duration / 10, 1)]s</span>")
 
-/// Effects on owner death. Requires [STATUS_FLAG_CHECK_OWNER_DEATH].
+/// Any effects when the orner dies if [STATUS_FLAG_CHECK_OWNER_DEATH] is used
 /datum/status_effect/proc/on_owner_death(datum/source)
 	SIGNAL_HANDLER
 	if(status_flags & STATUS_FLAG_OWNER_DEATH_DEL)
@@ -221,7 +221,8 @@
 
 /atom/movable/screen/alert/status_effect
 	name = "Curse of Mundanity"
-	desc = "You don't feel any different..."
+	desc = "You shouldn't be seeing this. Someone didn't code their status effect correctly."
+	/// The status effect this is linked to
 	var/datum/status_effect/attached_effect
 
 /atom/movable/screen/alert/status_effect/Destroy()
