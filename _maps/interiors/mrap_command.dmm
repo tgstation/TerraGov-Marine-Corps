@@ -66,8 +66,8 @@
 /area/interior/mrap_command)
 "o" = (
 /obj/machinery/computer/camera_advanced/overwatch/military/mrap{
-	pixel_z = -9;
-	pixel_w = -5
+	pixel_w = -5;
+	pixel_z = -9
 	},
 /turf/closed/interior/apc/two,
 /area/interior/mrap_command)
@@ -81,8 +81,8 @@
 /area/interior/mrap_command)
 "s" = (
 /obj/machinery/computer/camera_advanced/overwatch/military/mrap{
-	pixel_z = -9;
-	pixel_w = 5
+	pixel_w = 5;
+	pixel_z = -9
 	},
 /turf/closed/interior/apc/four,
 /area/interior/mrap_command)
