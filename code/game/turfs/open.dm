@@ -78,9 +78,9 @@
 		return
 
 	var/override_sound
-	var/index = 0
+	var/index
 	for(var/i in footstep_overrides)
-		if(footstep_overrides[i] > index)
+		if(!index || (footstep_overrides[i] > index))
 			override_sound = i
 			index = footstep_overrides[i]
 	return override_sound

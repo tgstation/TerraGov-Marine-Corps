@@ -2,7 +2,7 @@
 	anchored = TRUE
 	max_integrity = 25
 	coverage = 30
-	hit_sound = 'sound/effects/natural/vegetation_hit.ogg'
+	hit_sound = list('sound/effects/natural/plant_hit_1.ogg', 'sound/effects/natural/plant_hit_2.ogg', 'sound/effects/natural/plant_hit_3.ogg')
 	var/on_fire = FALSE
 	///number of icon variants this object has
 	var/icon_variants = NONE
@@ -44,7 +44,7 @@
 	layer = ABOVE_TREE_LAYER
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	resistance_flags = XENO_DAMAGEABLE
-	hit_sound = 'sound/effects/natural/woodhit.ogg'
+	hit_sound = list('sound/effects/natural/tree_hit_1.ogg', 'sound/effects/natural/tree_hit_2.ogg', 'sound/effects/natural/tree_hit_3.ogg')
 	///How many logs you get from felling this tree
 	var/log_amount = 10
 
@@ -120,6 +120,7 @@
 	desc = "This represents our promise to cut down as many trees as possible."
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_stump"
+	hit_sound = list('sound/effects/natural/tree_hit_1.ogg', 'sound/effects/natural/tree_hit_2.ogg', 'sound/effects/natural/tree_hit_3.ogg')
 	density = FALSE
 	pixel_x = -16
 
