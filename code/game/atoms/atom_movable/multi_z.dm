@@ -171,6 +171,8 @@
 ///effects when drop down completes
 /proc/end_drop_down_effect(list/atom/movable/movables_to_move, list/layer_list, list/density_list, list/mobs_moving)
 	for(var/atom/movable/AM AS in movables_to_move)
+		if(QDELETED(AM))
+			continue
 		AM.remove_filter(ZFALL_EFFECT)
 		AM.layer = layer_list[AM]
 		AM.density = density_list[AM]
@@ -179,6 +181,8 @@
 			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
 			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)
 	for(var/mob/living/living in mobs_moving)
+		if(QDELETED(living))
+			continue
 		var/shake_amount = 1
 		if(HAS_TRAIT(living, TRAIT_CATLIKE_GRACE) && !living.incapacitated(TRUE) && !living.lying_angle)
 			shake_amount *= 0.5
