@@ -176,8 +176,6 @@
 	documentation = "The well, floor. This is mostly used as a sorting mechanism, but it also lets us create a \"border\" around the game world plane, so its drop shadow will actually work."
 	plane = FLOOR_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME, LIGHT_MASK_PLANE)
-	///Assoc list of turf to image of the outlines around the open turfs we're next to
-	var/list/edge_outlines
 
 /atom/movable/screen/plane_master/floor/show_to(mob/mymob)
 	. = ..()
@@ -188,17 +186,9 @@
 		RegisterSignal(hud, COMSIG_HUD_Z_CHANGED, PROC_REF(on_hud_z_changed), override = TRUE)
 	var/turf/eye_turf = get_turf(mymob?.canon_client?.eye)
 	update_edge_shadow(eye_turf?.z)
-	if(isliving(mymob))
-		RegisterSignal(mymob, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_moved), override = TRUE)
-	update_edge_outline()
 
 /atom/movable/screen/plane_master/floor/hide_from(mob/oldmob)
 	. = ..()
-	if(oldmob)
-		UnregisterSignal(oldmob, COMSIG_MOVABLE_MOVED)
-	for(var/turf/outlined_turf AS in edge_outlines)
-		oldmob?.client?.images -= edge_outlines[outlined_turf]
-	edge_outlines = null
 	var/datum/hud/hud = home.our_hud
 	if(hud)
 		UnregisterSignal(hud, COMSIG_HUD_Z_CHANGED)
@@ -217,48 +207,6 @@
 	if(!viewer_z || length(SSmapping.multiz_levels) < viewer_z || !SSmapping.multiz_levels[viewer_z][Z_LEVEL_DOWN])
 		return
 	add_filter("edge_shadow", 1, drop_shadow_filter(x = 0, y = 0, size = MULTIZ_EDGE_SHADOW_SIZE, color = MULTIZ_EDGE_SHADOW_COLOR))
-
-/atom/movable/screen/plane_master/floor/proc/on_mob_moved(datum/source)
-	SIGNAL_HANDLER
-	update_edge_outline()
-
-/atom/movable/screen/plane_master/floor/proc/update_edge_outline()
-	var/mob/viewer = home?.our_hud?.mymob
-	var/client/viewer_client = viewer?.canon_client
-	var/turf/viewer_turf = get_turf(viewer)
-	var/list/turf/open_turfs = list()
-	if(viewer_turf && isliving(viewer) && !istype(viewer_client?.eye, /mob/camera) && viewer_client?.prefs?.multiz_edge_outline && SSmapping.z_level_to_plane_offset[viewer_turf.z] == offset)
-		for(var/turf/nearby_turf AS in RANGE_TURFS(1, viewer_turf))
-			if(istransparentturf(nearby_turf))
-				open_turfs += nearby_turf
-
-	for(var/turf/outlined_turf AS in edge_outlines)
-		if(outlined_turf in open_turfs)
-			continue
-		var/image/old_outline = edge_outlines[outlined_turf]
-		edge_outlines -= outlined_turf
-		animate(old_outline, alpha = 0, time = MULTIZ_EDGE_OUTLINE_FADE_TIME)
-		addtimer(CALLBACK(src, PROC_REF(remove_edge_outline), old_outline, viewer_client), MULTIZ_EDGE_OUTLINE_FADE_TIME)
-
-	for(var/turf/open_turf AS in open_turfs)
-		if(edge_outlines?[open_turf])
-			continue
-		var/image/outline = image('icons/effects/open_space_outline.dmi', open_turf, "blank", ABOVE_OPEN_TURF_LAYER)
-		//only the sides that border something solid
-		for(var/direction in GLOB.cardinals)
-			var/turf/side_turf = get_step(open_turf, direction)
-			if(side_turf && istransparentturf(side_turf))
-				continue
-			outline.overlays += image('icons/effects/open_space_outline.dmi', "edge_[dir2text(direction)]")
-		SET_PLANE_EXPLICIT(outline, FLOOR_PLANE, open_turf)
-		outline.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-		outline.alpha = 0
-		LAZYSET(edge_outlines, open_turf, outline)
-		viewer_client.images += outline
-		animate(outline, alpha = 255, time = MULTIZ_EDGE_OUTLINE_FADE_TIME)
-
-/atom/movable/screen/plane_master/floor/proc/remove_edge_outline(image/outline, client/viewer_client)
-	viewer_client?.images -= outline
 
 /atom/movable/screen/plane_master/transparent_floor
 	name = "Transparent Floor"

@@ -869,8 +869,9 @@
 
 		if("multiz_edge_outline")
 			multiz_edge_outline = !multiz_edge_outline
-			for(var/atom/movable/screen/plane_master/floor/floor_plane as anything in parent.mob?.hud_used?.get_true_plane_masters(FLOOR_PLANE))
-				floor_plane.update_edge_outline()
+			if(isliving(parent.mob))
+				var/mob/living/living_mob = parent.mob
+				living_mob.update_open_space_outlines()
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
