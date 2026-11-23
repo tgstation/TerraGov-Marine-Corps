@@ -12,16 +12,6 @@
 /turf/open/liquid/get_z_fall_damage(mob/living/faller, levels)
 	return (levels * 2) ** 2
 
-/turf/open/floor/plating/ground/snow/get_z_fall_damage(mob/living/faller, levels)
-	switch(slayer)
-		if(3 to INFINITY)
-			return 0 //lucky you
-		if(2)
-			levels *= 0.5
-		if(1)
-			levels *= 0.9
-	return ..()
-
 /turf/open/floor/wood/get_z_fall_damage(mob/living/faller, levels)
 	return (levels * 8) ** 1.5
 
@@ -34,7 +24,20 @@
 /turf/open/floor/plating/ground/ice/get_z_fall_damage(mob/living/faller, levels)
 	return (levels * 10) ** 1.5
 
+/turf/open/floor/plating/ground/snow/get_z_fall_damage(mob/living/faller, levels)
+	switch(slayer)
+		if(3 to INFINITY)
+			return 0 //lucky you
+		if(2)
+			levels *= 0.5
+		if(1)
+			levels *= 0.9
+	return ..()
+
 /turf/open/floor/plating/ground/concrete/get_z_fall_damage(mob/living/faller, levels)
+	return (levels * 12) ** 1.5
+
+/turf/open/floor/plating/ground/desertdam/asphalt/get_z_fall_damage(mob/living/faller, levels)
 	return (levels * 12) ** 1.5
 
 ///Returns the sound when something lands on this turf
@@ -44,6 +47,18 @@
 /turf/open/liquid/get_z_fall_sound(mob/living/faller, levels)
 	return pick('sound/effects/footstep/swimming1.ogg', 'sound/effects/footstep/swimming2.ogg', 'sound/effects/footstep/swimming3.ogg')
 
+/turf/open/floor/glass/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/Glasshit.ogg'
+
+/turf/open/liquid/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/impacts/big_splash.ogg'
+
+/turf/open/ground/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/impacts/dirt_slam.ogg'
+
+/turf/open/floor/plating/ground/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/effects/impacts/dirt_slam.ogg'
+
 /turf/open/floor/plating/ground/snow/get_z_fall_sound(mob/living/faller, levels)
 	if(!slayer)
 		return ..()
@@ -52,8 +67,11 @@
 /turf/open/floor/plating/ground/ice/get_z_fall_sound(mob/living/faller, levels)
 	return 'sound/effects/Glasshit.ogg'
 
-/turf/open/floor/glass/get_z_fall_sound(mob/living/faller, levels)
-	return 'sound/effects/Glasshit.ogg'
+/turf/open/floor/plating/ground/concrete/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/weapons/heavyhit.ogg'
+
+/turf/open/floor/plating/ground/desertdam/asphalt/get_z_fall_sound(mob/living/faller, levels)
+	return 'sound/weapons/heavyhit.ogg'
 
 ///Returns the thing that breaks the fall of a mob landing on us
 /turf/proc/get_z_fall_catcher(mob/living/faller)
