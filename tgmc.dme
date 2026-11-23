@@ -544,6 +544,7 @@
 #include "code\datums\components\riding\riding_vehicle.dm"
 #include "code\datums\elements\_element.dm"
 #include "code\datums\elements\attachment.dm"
+#include "code\datums\elements\below_copy_zone.dm"
 #include "code\datums\elements\connect_loc.dm"
 #include "code\datums\elements\debris.dm"
 #include "code\datums\elements\directional_attack.dm"

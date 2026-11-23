@@ -102,7 +102,6 @@
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
 	AddElement(/datum/element/directional_attack)
-	update_below_copy()
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -203,7 +202,6 @@
 /mob/living/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
 	update_camera_location(old_loc)
-	update_below_copy()
 
 
 /mob/living/forceMove(atom/destination)
@@ -1213,36 +1211,6 @@
 /atom/movable/below_copy/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	copy_owner(new_dir)
-
-/mob/living/proc/update_below_copy()
-	var/turf/below_spot
-	if(SSmapping.max_plane_offset && isturf(loc) && !QDELETED(src))
-		var/turf/possible_spot = get_step_multiz(loc, DOWN)
-		if(possible_spot)
-			for(var/turf/nearby_turf as anything in RANGE_TURFS(BELOW_COPY_RANGE, loc))
-				if(istransparentturf(nearby_turf))
-					below_spot = possible_spot
-					break
-	if(!below_spot)
-		if(below_copy)
-			QDEL_NULL(below_copy)
-		return
-	var/can_look_down = !!get_looking_turf(DOWN, TRUE)
-	if(!below_copy)
-		below_copy = new(below_spot, src, can_look_down)
-		return
-	if(below_copy.loc == below_spot && below_copy.shown == can_look_down)
-		return
-	var/stepped = below_copy.loc != below_spot
-	if(stepped)
-		below_copy.set_glide_size(glide_size)
-		below_copy.abstract_move(below_spot)
-	// ensure that we don't hide the gliding and you don't just pop in
-	if(stepped && below_copy.shown && !can_look_down && !below_copy.hide_timer)
-		below_copy.hide_after(GLIDE_SIZE_TO_DELAY(glide_size))
-		below_copy.update_copy()
-		return
-	below_copy.set_shown(can_look_down)
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
