@@ -297,6 +297,8 @@
 		radio_disruption = CAVE_MINOR_INTERFERENCE
 		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			radio_disruption = CAVE_FULL_INTERFERENCE
+		if(A.area_flags & BETTER_RADIO)
+			radio_disruption --
 
 	var/list/inplace_interference = list(radio_disruption)
 	SEND_SIGNAL(talking_movable, COMSIG_CAVE_INTERFERENCE_CHECK, inplace_interference)
@@ -362,6 +364,8 @@
 			radio_disruption = CAVE_MINOR_INTERFERENCE //Unused for this case but may aswell create parity on what the value of the var is.
 			if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 				radio_disruption = CAVE_FULL_INTERFERENCE
+			if(A.area_flags & BETTER_RADIO)
+				radio_disruption --
 		var/list/potential_owners = get_nested_locs(src) //Sometimes not equipped, sometimes not even equippable, sometimes in storage, this feels like it's an okay way to do it.
 		var/mob/living/found_owner
 		for(var/mob/living/candidate in potential_owners)

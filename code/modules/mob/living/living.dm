@@ -1059,6 +1059,31 @@
 	var/turf/owner_turf = get_turf(owner)
 	return locate(owner_turf.x, owner_turf.y, z)
 
+///Copies the owner's look onto the seethrough copy
+/atom/movable/looking_holder/proc/update_self_copy()
+	SIGNAL_HANDLER
+	if(!self_copy)
+		return
+	self_copy.appearance = owner.appearance
+	self_copy.dir = owner.dir //not part of the copied appearance
+	self_copy.render_target = null //toggle seethrough hides the owner by rendering them to a target, the copy has to stay drawn and can't share that target
+	self_copy.alpha = SEETHROUGH_MOB_ALPHA
+	self_copy.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	SET_PLANE_EXPLICIT(self_copy, GAME_PLANE, copy_anchor)
+
+///The owner's dir signal is sent before their dir changes, so the new dir is set on the copy here
+/atom/movable/looking_holder/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	update_self_copy()
+	self_copy?.dir = new_dir
+
+/// Glide the copy's anchor to match the owner's movement and glide
+/atom/movable/looking_holder/proc/move_self_copy(turf/owner_spot)
+	if(!copy_anchor || copy_anchor.loc == owner_spot)
+		return
+	copy_anchor.set_glide_size(container.glide_size)
+	copy_anchor.abstract_move(owner_spot)
+
 ///called to find and set the atom on the actual turf to be the container and all relevant effects
 /atom/movable/looking_holder/proc/update_container()
 	SIGNAL_HANDLER

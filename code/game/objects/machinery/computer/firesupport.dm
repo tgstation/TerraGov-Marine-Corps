@@ -61,3 +61,8 @@
 			munition.uses ++
 			SSpoints.dropship_points -= munition.purchase_cost
 			user.playsound_local(user, 'sound/machines/terminal_prompt_confirm.ogg', 75)
+
+/obj/machinery/computer/fire_support/mrap
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "overwatch"
+	screen_overlay = "overwatch_screen"

@@ -10,6 +10,9 @@
 /datum/interior/armored/mrap
 	template = /datum/map_template/interior/mrap
 
+/datum/interior/armored/mrap_command
+	template = /datum/map_template/interior/mrap_command
+
 /turf/closed/interior/apc
 	name = "\improper Athena tank interior"
 	icon = 'icons/obj/armored/3x3/apc_interior.dmi'
@@ -24,10 +27,14 @@
 	icon_state = "apc_interior_4"
 /turf/closed/interior/apc/five
 	icon_state = "apc_interior_5"
+	has_emissive = TRUE
+
 /turf/closed/interior/apc/six
 	icon_state = "apc_interior_6"
 /turf/closed/interior/apc/twelve
 	icon_state = "apc_interior_12"
+	has_emissive = TRUE
+
 /turf/closed/interior/apc/thirteen
 	icon_state = "apc_interior_13"
 /turf/closed/interior/apc/seventeen
@@ -62,6 +69,8 @@
 	icon_state = "apc_interior_10"
 /turf/open/interior/apc/eleven
 	icon_state = "apc_interior_11"
+	has_emissive = TRUE
+
 /turf/open/interior/apc/fourteen
 	icon_state = "apc_interior_14"
 /turf/open/interior/apc/fifteen
@@ -80,3 +89,9 @@
 /area/interior/apc
 	name = "APC Interior"
 	icon_state = "shuttle"
+
+/area/interior/mrap_command
+	name = "command MRAP Interior"
+	icon_state = "shuttle"
+	base_lighting_alpha = 115
+	base_lighting_color = LIGHT_COLOR_EMISSIVE_RED //TACTICAL lighting

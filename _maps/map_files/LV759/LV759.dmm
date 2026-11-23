@@ -855,7 +855,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "aiE" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/urban/decal/gold/line4,
@@ -2839,7 +2839,7 @@
 /area/lv759/indoors/NTmart)
 "aBj" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/urban/decal/gold/line1,
@@ -2992,7 +2992,7 @@
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "aDg" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 22
 	},
@@ -3272,7 +3272,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "aFz" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/machinery/space_heater/radiator/red{
@@ -4116,7 +4116,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "aMA" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/urban/decal/gold/line1,
@@ -8585,7 +8585,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bDO" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 12
 	},
@@ -10341,7 +10341,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "bUe" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/structure/cable,
@@ -14188,7 +14188,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance)
 "cDB" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 22
 	},
@@ -14966,7 +14966,7 @@
 /area/lv759/indoors/hospital/central_hallway)
 "cKU" = (
 /obj/structure/bed/chair{
-	buckling_y = 6;
+	buckling_z = 6;
 	dir = 1;
 	pixel_y = 6
 	},
@@ -15870,7 +15870,7 @@
 /area/lv759/indoors/nt_office/floor)
 "cSY" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/item/clothing/suit/storage/apron,
@@ -17124,7 +17124,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "ddn" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -18675,7 +18675,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "drG" = (
 /obj/structure/bed/chair{
-	buckling_y = 6;
+	buckling_z = 6;
 	dir = 1;
 	pixel_y = 6
 	},
@@ -20798,7 +20798,7 @@
 /area/lv759/indoors/garage_workshop)
 "dNg" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 12
 	},
@@ -21435,7 +21435,7 @@
 "dSS" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -22836,7 +22836,7 @@
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "egC" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -29999,7 +29999,7 @@
 /area/lv759/indoors/power_plant)
 "fvb" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -31754,7 +31754,7 @@
 /area/lv759/indoors/caves/west_caves)
 "fKx" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -32338,7 +32338,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "fPB" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -32548,7 +32548,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "fRf" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/urban/tile/tilebeigecheckered,
@@ -36680,7 +36680,7 @@
 /area/lv759/indoors/spaceport/maintenance_east)
 "gBR" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 12
 	},
@@ -39997,7 +39997,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysoutheast)
 "hiB" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/landmark/weed_node,
@@ -42375,7 +42375,7 @@
 /area/lv759/indoors/nt_research_complex/vehicledeploymentbay)
 "hCL" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -45223,7 +45223,7 @@
 /area/lv759/indoors/hospital/virology)
 "idK" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -47451,7 +47451,7 @@
 /area/lv759/indoors/colonial_marshals/restroom)
 "iyY" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -47917,7 +47917,7 @@
 /area/lv759/indoors/nt_research_complex/dormsbedroom)
 "iDs" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/machinery/light/small{
@@ -49880,7 +49880,7 @@
 /area/lv759/indoors/botany/botany_greenhouse)
 "iVU" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -50438,7 +50438,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jaP" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -53404,7 +53404,7 @@
 /area/lv759/indoors/caves/central_caves)
 "jAB" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/floorthree,
@@ -54093,7 +54093,7 @@
 /area/lv759/indoors/nt_research_complex/dormsfoyer)
 "jIu" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -55388,7 +55388,7 @@
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "jUJ" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -56762,7 +56762,7 @@
 /area/lv759/indoors/nt_research_complex/securitycommand)
 "khT" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -59339,7 +59339,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "kHe" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -59653,7 +59653,7 @@
 "kKN" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/wood/variable,
@@ -64393,7 +64393,7 @@
 /area/lv759/indoors/nt_research_complex/hallwayeast)
 "lDr" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/structure/bed/stool,
@@ -65568,7 +65568,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "lNv" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/item/trash/cigbutt{
@@ -65690,7 +65690,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "lOA" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -65942,7 +65942,7 @@
 	pixel_y = 30
 	},
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/item/reagent_containers/glass/bucket{
@@ -66085,7 +66085,7 @@
 "lRl" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/mainship/black/full,
@@ -67489,7 +67489,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "meT" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/urban/metal/bluemetalcorner{
@@ -69356,7 +69356,7 @@
 /area/lv759/indoors/nt_office/pressroom)
 "muL" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/prison,
@@ -76504,7 +76504,7 @@
 /area/lv759/indoors/nt_office/pressroom)
 "nGI" = (
 /obj/structure/bed/chair{
-	buckling_y = 6;
+	buckling_z = 6;
 	dir = 1;
 	pixel_y = 6
 	},
@@ -82795,7 +82795,7 @@
 /area/lv759/indoors/hospital/morgue)
 "oPl" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -85504,7 +85504,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "ppS" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 22
 	},
@@ -93148,7 +93148,7 @@
 /area/lv759/indoors/spaceport/maintenance_east)
 "qIP" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -94140,7 +94140,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "qSo" = (
 /obj/structure/bed/chair{
-	buckling_y = 6;
+	buckling_z = 6;
 	dir = 1;
 	pixel_y = 6
 	},
@@ -96495,7 +96495,7 @@
 /area/lv759/indoors/spaceport/security_office)
 "rnY" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -100179,7 +100179,7 @@
 /area/lv759/outdoors/colony_streets/south_east_street)
 "rWK" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -106901,7 +106901,7 @@
 /area/lv759/indoors/nt_office/breakroom)
 "tfo" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/urban/carpet/carpetred,
@@ -112754,7 +112754,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "ueJ" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -113490,7 +113490,7 @@
 /area/lv759/indoors/caves/east_caves)
 "ukO" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -117870,7 +117870,7 @@
 /area/lv759/indoors/nt_research_complex_entrance)
 "uYP" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/structure/largecrate/random/mini{
@@ -118908,7 +118908,7 @@
 /area/lv759/indoors/hospital/emergency_room)
 "vho" = (
 /obj/structure/bed/chair{
-	buckling_y = 6;
+	buckling_z = 6;
 	dir = 1;
 	pixel_y = 6
 	},
@@ -120217,7 +120217,7 @@
 /area/lv759/indoors/hospital/pharmacy)
 "vrX" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -120740,7 +120740,7 @@
 /area/lv759/indoors/spaceport/flight_control_room)
 "vxn" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -121183,7 +121183,7 @@
 /area/lv759/indoors/botany/botany_greenhouse)
 "vBy" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -121663,7 +121663,7 @@
 /area/lv759/indoors/power_plant/fusion_generators)
 "vFL" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /obj/item/reagent_containers/glass/rag{
@@ -122599,7 +122599,7 @@
 /area/lv759/outdoors/colony_streets/east_central_street)
 "vOu" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -123236,7 +123236,7 @@
 /area/lv759/indoors/spaceport/communications_office)
 "vTS" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_x = 4;
 	pixel_y = 5
 	},
@@ -127791,7 +127791,7 @@
 /area/lv759/indoors/mining_outpost/processing)
 "wIQ" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -131224,7 +131224,7 @@
 	pixel_y = 21
 	},
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 14
 	},
 /turf/open/floor/mainship/black{
@@ -134329,7 +134329,7 @@
 	pixel_y = 20
 	},
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 14
 	},
 /obj/structure/barricade/handrail/urban/road/plastic/black{
@@ -135181,7 +135181,7 @@
 /area/lv759/indoors/power_plant/equipment_east)
 "xYh" = (
 /obj/structure/bed/chair{
-	buckling_y = 5;
+	buckling_z = 5;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -136297,7 +136297,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "yiq" = (
 /obj/structure/bed/stool{
-	buckling_y = 14;
+	buckling_z = 14;
 	pixel_y = 22
 	},
 /turf/open/floor/mainship{

@@ -17,7 +17,7 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = 0
-	buckling_y = 0
+	buckling_z = 0
 	max_integrity = 20
 	layer = BELOW_TABLE_LAYER
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
@@ -48,7 +48,7 @@
 		buckled_mob.setDir(direction)
 
 /obj/structure/bed/chair/proc/handle_layer()
-	if(LAZYLEN(buckled_mobs) && dir == NORTH)
+	if(LAZYLEN(buckled_mobs) && dir == NORTH) //todo: this should be replaced with having actual overlays for chairs, to work for all dirs
 		layer = FLY_LAYER
 	else
 		layer = initial(layer)
@@ -473,8 +473,8 @@
 	if(leader_chair && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		balloon_alert(buckling_mob, "you're not a leader!")
 		return FALSE
-	if(buckling_x)
-		src.pixel_x = buckling_x
+	if(buckling_w)
+		src.pixel_w = buckling_w
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/post_buckle_mob(mob/buckling_mob)
@@ -507,12 +507,12 @@
 	interactionmob.density = TRUE
 
 /obj/structure/bed/chair/dropship/doublewide/left
-	pixel_x = -8
-	buckling_x = -8
+	pixel_w = -8
+	buckling_w = -8
 
 /obj/structure/bed/chair/dropship/doublewide/right
-	pixel_x = 9
-	buckling_x = 9
+	pixel_w = 9
+	buckling_w = 9
 
 /obj/structure/bed/chair/dropship/doublewide/left/alpha
 	name = "Alpha Squad Leader's Chair"

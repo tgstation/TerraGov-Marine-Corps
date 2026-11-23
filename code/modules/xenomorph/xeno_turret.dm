@@ -168,31 +168,38 @@
 		buffer_distance = get_dist(nearby_hostile, src)
 		if(distance <= buffer_distance) //If we already found a target that's closer
 			continue
-		if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
-			continue
+		var/turf/hostile_turf = get_turf(nearby_hostile)
+		if(hostile_turf.z == z)
+			if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != hostile_turf) //xeno turret seems to not care about actual sight, for whatever reason
+				continue
+		else
+			var/turf/shot_origin = get_multiz_shot_origin(src, nearby_hostile)
+			if(!shot_origin || check_path(shot_origin, nearby_hostile, PASS_PROJECTILE) != hostile_turf)
+				continue
 		distance = buffer_distance
 		. = nearby_hostile
 
 ///Populates the target list on process
 /obj/structure/xeno/xeno_turret/proc/scan()
 	potential_hostiles.Cut()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE, TRUE))
 		if(nearby_human.stat == DEAD)
 			continue
 		if(nearby_human.get_xeno_hivenumber() == hivenumber)
 			continue
 		potential_hostiles += nearby_human
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, TURRET_SCAN_RANGE))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, TURRET_SCAN_RANGE, TRUE))
 		if(GLOB.hive_datums[hivenumber] == nearby_xeno.hive)
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
+	var/list/connected_levels = SSmapping.get_connected_levels(z)
 	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
-		if(vehicle.z == z && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
+		if((vehicle.z in connected_levels) && get_dist(vehicle, src) <= TURRET_SCAN_RANGE)
 			potential_hostiles += vehicle
 	for(var/obj/vehicle/sealed/mecha/mech AS in GLOB.mechas_list)
-		if(mech.z == z && get_dist(mech, src) <= TURRET_SCAN_RANGE)
+		if((mech.z in connected_levels) && get_dist(mech, src) <= TURRET_SCAN_RANGE)
 			potential_hostiles += mech
 
 ///Signal handler to make the turret shoot at its target
