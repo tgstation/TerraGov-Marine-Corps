@@ -206,6 +206,6 @@
 /obj/item/tank_module/interior/mrap_command
 	name = "\improper CIC interior"
 	desc = "A command and control interior package, designed for officers to direct their troops and manage firesupport in the field."
-	icon_state = "warray"
+	icon_state = "command_interior"
 	interior_typepath = /datum/interior/armored/mrap_command
 	set_max_occupants = 12
