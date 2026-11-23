@@ -89,7 +89,7 @@
 
 /obj/item/circuitboard/computer/skills
 	name = "Circuit board (Employment Records)"
-	build_path = /obj/machinery/computer/skills
+	build_path = /obj/machinery/prop/computer/skills
 
 /obj/item/circuitboard/computer/stationalert
 	name = "Circuit board (Station Alerts)"

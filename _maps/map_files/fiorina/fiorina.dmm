@@ -2154,7 +2154,7 @@
 /area/fiorina/station/flight_deck)
 "biB" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/skills{
+/obj/machinery/prop/computer/skills{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreen/full{
@@ -13295,7 +13295,7 @@
 /area/fiorina/station/medbay)
 "hsv" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/transit_hub)
 "hsC" = (
@@ -29023,7 +29023,7 @@
 /area/fiorina/tumor/civres)
 "pMz" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/skills{
+/obj/machinery/prop/computer/skills{
 	dir = 8
 	},
 /turf/open/floor/prison/blue/full,

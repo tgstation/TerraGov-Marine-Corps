@@ -8966,7 +8966,7 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbH" = (
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
