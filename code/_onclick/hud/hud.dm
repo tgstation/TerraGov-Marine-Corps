@@ -238,7 +238,7 @@
 
 /datum/hud/proc/eye_z_changed(atom/eye)
 	SIGNAL_HANDLER
-	update_parallax_pref(mymob) // If your eye changes z level, so should your parallax prefs
+	update_parallax_z(mymob) // If your eye changes z level, so should your parallax prefs
 	var/turf/eye_turf = get_turf(eye)
 	if(!eye_turf)
 		return

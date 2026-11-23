@@ -60,8 +60,11 @@
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/turf/screen_location = get_turf(screenmob)
+	var/client/client = screenmob.client
+	var/blocked_by_level = !!SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX)
+	client?.parallax_blocked_by_level = blocked_by_level
 
-	if(SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
+	if(blocked_by_level)
 		for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
 			white_space.hide_plane(screenmob)
 		return FALSE
@@ -69,30 +72,28 @@
 	for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
 		white_space.unhide_plane(screenmob)
 
-
-	var/client/C = screenmob.client
 	// Default to HIGH
-	var/parallax_selection = C?.prefs.parallax
+	var/parallax_selection = client?.prefs.parallax
 
 	switch(parallax_selection)
 		if (PARALLAX_INSANE)
-			C.parallax_layers_max = 5
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 5
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if(PARALLAX_HIGH)
-			C.parallax_layers_max = 4
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 4
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if (PARALLAX_MED)
-			C.parallax_layers_max = 3
-			C.do_parallax_animations = TRUE
+			client.parallax_layers_max = 3
+			client.do_parallax_animations = TRUE
 			return TRUE
 
 		if (PARALLAX_LOW)
-			C.parallax_layers_max = 1
-			C.do_parallax_animations = FALSE
+			client.parallax_layers_max = 1
+			client.do_parallax_animations = FALSE
 			return TRUE
 
 		if (PARALLAX_DISABLE)
@@ -105,6 +106,19 @@
 	remove_parallax(screen_mob)
 	create_parallax(screen_mob)
 	update_parallax(screen_mob)
+
+/// Update parallax on a mob without entirely re-doing them
+/datum/hud/proc/update_parallax_z(mob/viewmob)
+	var/mob/screen_mob = viewmob || mymob
+	var/client/client = screen_mob.client
+	if(!client)
+		return
+	var/turf/screen_location = get_turf(screen_mob)
+	if(client.parallax_blocked_by_level != !!SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
+		update_parallax_pref(screen_mob)
+		return
+	if(length(client.parallax_layers))
+		update_parallax(screen_mob)
 
 // This sets which way the current shuttle is moving (returns true if the shuttle has stopped moving so the caller can append their animation)
 /datum/hud/proc/set_parallax_movedir(new_parallax_movedir = NONE, skip_windups, mob/viewmob)
