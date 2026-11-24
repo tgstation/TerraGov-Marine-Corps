@@ -104,18 +104,21 @@ SUBSYSTEM_DEF(minimaps)
 				continue
 			icon_gen.DrawBox(location.minimap_color, xval, yval)
 	icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
-	icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
+	//then cut all the empty pixels
+	var/icon_width = clamp(world.maxx * 2, SCREEN_PIXEL_SIZE, icon_gen.Width())
+	var/icon_height = clamp(world.maxy * 2, SCREEN_PIXEL_SIZE, icon_gen.Height())
+	icon_gen.Crop(1, 1, icon_width, icon_height)
 
 	//generation is done, now we need to center the icon to someones view,
 	//this can be left out if you like it ugly and will halve SSinit time
 
 	//calculate the offset of the icon
 	var/largest_x = 0
-	var/smallest_x = SCREEN_PIXEL_SIZE
+	var/smallest_x = icon_width
 	var/largest_y = 0
-	var/smallest_y = SCREEN_PIXEL_SIZE
-	for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
-		for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
+	var/smallest_y = icon_height
+	for(var/xval=1 to icon_width step 2) //step 2 is twice as fast :)
+		for(var/yval=1 to icon_height step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
 			if(!icon_gen.GetPixel(xval, yval))
 				continue
 			if(xval > largest_x)
@@ -127,11 +130,12 @@ SUBSYSTEM_DEF(minimaps)
 			else if(yval < smallest_y)
 				smallest_y = yval
 
-	minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
-	minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
+	minimaps_by_z["[level]"].x_offset = max(FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1), 1 - smallest_x)
+	minimaps_by_z["[level]"].y_offset = max(FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1), 1 - smallest_y)
 
 	icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
 	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+	icon_gen.Crop(1, 1, max(SCREEN_PIXEL_SIZE, largest_x + 1 + minimaps_by_z["[level]"].x_offset), max(SCREEN_PIXEL_SIZE, largest_y + 1 + minimaps_by_z["[level]"].y_offset))
 
 	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
 

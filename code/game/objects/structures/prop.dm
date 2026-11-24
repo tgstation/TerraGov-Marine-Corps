@@ -129,6 +129,12 @@
 	screen_overlay = "dna"
 	broken_icon = "computer_blue_broken"
 
+/obj/machinery/prop/computer/skills
+	name = "Employment Records"
+	desc = "Used to view personnel's employment records. It's currently disconnected from the rest of the network and cannot be accessed."
+	icon_state = "computer_small"
+	screen_overlay = "medlaptop"
+
 /obj/structure/prop/mainship/massdiver
 	name = "mass driver"
 	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."

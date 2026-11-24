@@ -28146,7 +28146,7 @@
 /obj/effect/turf_decal/tile/corsatstraight/red{
 	dir = 4
 	},
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome)
 "mwN" = (

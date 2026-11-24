@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added a Command module layout for the MRAP - containing fire support functionality, overwatch, and a comms booster"
-  - imageadd: "TGMC vehicles have emissive interiors where needed"
-  - bugfix: "Fixed APC gun overlays duplicating"

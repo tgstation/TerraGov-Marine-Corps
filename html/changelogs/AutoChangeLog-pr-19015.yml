@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Sovl War: The Condor is now completely disabled."
-  - balance: "Sovl War: Fire support via binos is no longer infinite, and instead must have uses purchased via dropship points"
-  - rscadd: "Sovl War: Added new fire support options for use via binos"

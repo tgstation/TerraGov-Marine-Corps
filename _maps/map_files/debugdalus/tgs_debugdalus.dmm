@@ -883,7 +883,7 @@
 /area/mainship/hallways/hangar)
 "adV" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adW" = (

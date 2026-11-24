@@ -73,7 +73,7 @@
 
 	if(clickthrough)
 		//Special plane so we can click through the overlay
-		SET_PLANE(trickery_image, SEETHROUGH_PLANE, fool)
+		SET_PLANE_EXPLICIT(trickery_image, SEETHROUGH_PLANE, fool)
 		RegisterSignal(fool, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_changed))
 
 	fool.client.images += trickery_image
@@ -115,9 +115,9 @@
 /datum/component/seethrough_mob/proc/on_z_changed(datum/source)
 	SIGNAL_HANDLER
 	var/mob/fool = parent
-	fool.client.images -= trickery_image
-	SET_PLANE(trickery_image, SEETHROUGH_PLANE, fool)
-	fool.client.images += trickery_image
+	fool.client?.images -= trickery_image
+	SET_PLANE_EXPLICIT(trickery_image, SEETHROUGH_PLANE, fool)
+	fool.client?.images += trickery_image
 
 /datum/component/seethrough_mob/proc/toggle_active()
 	is_active = !is_active

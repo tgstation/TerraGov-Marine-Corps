@@ -1080,6 +1080,7 @@
 		return
 	self_copy.appearance = owner.appearance
 	self_copy.dir = owner.dir //not part of the copied appearance
+	self_copy.render_target = null //toggle seethrough hides the owner by rendering them to a target, the copy has to stay drawn and can't share that target
 	self_copy.alpha = SEETHROUGH_MOB_ALPHA
 	self_copy.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	SET_PLANE_EXPLICIT(self_copy, GAME_PLANE, copy_anchor)

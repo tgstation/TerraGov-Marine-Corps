@@ -18616,7 +18616,7 @@
 /turf/open/floor/plating,
 /area/mainship/hull/port_hull)
 "ooP" = (
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
