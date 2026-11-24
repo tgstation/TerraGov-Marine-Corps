@@ -1545,7 +1545,6 @@
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
-
 	)
 
 	prices = list()
