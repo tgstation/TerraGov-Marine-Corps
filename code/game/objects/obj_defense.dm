@@ -43,7 +43,8 @@
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	if(hit_sound)
-		playsound(loc, hit_sound, 40, 1, MEDIUM_SOUND_RANGE)
+		var/selected_sound = islist(hit_sound) ? pick(hit_sound) : hit_sound
+		playsound(loc, selected_sound, 40, 1, MEDIUM_SOUND_RANGE)
 		return
 
 	if(!damage_amount)
