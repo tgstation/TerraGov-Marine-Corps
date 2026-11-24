@@ -264,3 +264,7 @@
   - bugfix: fix minimap offsetting the screen
   Lumipharon:
   - rscadd: firesupport consoles in all CIC
+2026-11-24:
+  TiviPlus:
+  - rscadd: You can now throw objects up zlevels, but it halfs the range you throw
+      them. You can also not throw if there is something directly above you
