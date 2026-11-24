@@ -12,12 +12,22 @@ SUBSYSTEM_DEF(silo)
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/current_z = SSmonitor.gamestate == SHIPSIDE ? 3 : 2
+
+	var/list/z_list = list()
+	if(SSmonitor.gamestate == SHIPSIDE)
+		z_list = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+	else
+		z_list= SSmapping.levels_by_trait(ZTRAIT_GROUND)
 
 	var/active_humans = 0
-	var/list/human_list = length(GLOB.humans_by_zlevel["[current_z]"]) ? GLOB.humans_by_zlevel["[current_z]"].Copy() : list()
+	var/list/human_list = list()
+	for(var/z in z_list)
+		if(!length(GLOB.humans_by_zlevel["[z]"]))
+			continue
+		human_list += GLOB.humans_by_zlevel["[z]"]
+
 	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
-		if(tank.z != current_z)
+		if(!(tank.z in z_list))
 			continue
 		if(tank.armored_flags & ARMORED_IS_WRECK)
 			continue
