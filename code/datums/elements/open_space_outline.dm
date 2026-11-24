@@ -33,7 +33,7 @@
 	var/client/viewer_client = viewer.client
 	var/list/turf/open_turfs = list()
 	if(isturf(viewer.loc) && viewer_client?.prefs?.multiz_edge_outline && !istype(viewer_client.eye, /mob/camera))
-		for(var/turf/nearby_turf AS in RANGE_TURFS(1, viewer.loc))
+		for(var/turf/nearby_turf AS in RANGE_TURFS(MULTIZ_EDGE_OUTLINE_RANGE, viewer.loc))
 			if(nearby_turf.can_fall_through())
 				open_turfs += nearby_turf
 
