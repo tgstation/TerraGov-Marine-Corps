@@ -607,7 +607,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too short")
 		return FALSE
-	var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
+	var/turf/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
 	start_turf = locate(start_turf.x, start_turf.y, A.z)
 	if(check_path(locate(xeno_owner.x, xeno_owner.y, A.z), start_turf, PASS_THROW) != start_turf)
 		if(!silent)
