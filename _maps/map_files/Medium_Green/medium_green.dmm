@@ -3926,12 +3926,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
-"aoy" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/skills,
-/obj/structure/cable/layer3,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/building/engineering/control)
 "aoz" = (
 /obj/structure/ladder,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -20220,6 +20214,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/northwest)
+"bvc" = (
+/obj/structure/table/mainship/nometal,
+/obj/structure/cable/layer3,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/engineering/control)
 "bvd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
@@ -50242,7 +50241,7 @@ bdw
 bdw
 bdo
 bvX
-aoy
+bvc
 aoa
 ams
 bEn
