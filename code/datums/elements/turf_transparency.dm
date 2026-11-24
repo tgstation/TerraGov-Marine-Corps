@@ -185,8 +185,6 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 
 	RegisterSignal(target, COMSIG_TURF_MULTIZ_DEL, PROC_REF(on_multiz_turf_del))
 	RegisterSignal(target, COMSIG_TURF_MULTIZ_NEW, PROC_REF(on_multiz_turf_new))
-	for(var/turf/nearby_turf AS in RANGE_TURFS(1, our_turf))
-		nearby_turf.AddElementSource(REF(our_turf), /datum/element/open_space_outline)
 
 	if(!mapload)
 		update_multi_z(our_turf)
@@ -197,8 +195,6 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 	clear_multiz(our_turf)
 
 	UnregisterSignal(our_turf, list(COMSIG_TURF_MULTIZ_NEW, COMSIG_TURF_MULTIZ_DEL))
-	for(var/turf/nearby_turf AS in RANGE_TURFS(1, our_turf))
-		nearby_turf.RemoveElementSource(REF(our_turf), /datum/element/open_space_outline)
 
 ///Updates the viscontents or underlays below this tile.
 /datum/element/turf_z_transparency/proc/update_multi_z(turf/our_turf)

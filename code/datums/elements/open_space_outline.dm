@@ -1,4 +1,4 @@
-/// Element for turfs that shows living mobs with clients a outline if they're next to a openturf, paired with z-transparency
+/// Element for turfs that shows living mobs with clients a outline around the turfs next to them that they would fall down from, given by open space to itself and the turfs around it
 /datum/element/open_space_outline
 	///Assoc list of viewer to an assoc list of turf to the outline image they are being shown
 	var/list/shown_outlines = list()
@@ -34,7 +34,7 @@
 	var/list/turf/open_turfs = list()
 	if(isturf(viewer.loc) && viewer_client?.prefs?.multiz_edge_outline && !istype(viewer_client.eye, /mob/camera))
 		for(var/turf/nearby_turf AS in RANGE_TURFS(1, viewer.loc))
-			if(istransparentturf(nearby_turf))
+			if(nearby_turf.can_fall_through())
 				open_turfs += nearby_turf
 
 	var/list/outlines = shown_outlines[viewer]
@@ -57,11 +57,11 @@
 	for(var/turf/open_turf AS in open_turfs)
 		if(outlines[open_turf])
 			continue
-		var/image/outline = image('icons/effects/open_space_outline.dmi', open_turf, "blank", ABOVE_OPEN_TURF_LAYER)
-		//only the sides that border something solid
+		var/image/outline = image('icons/effects/open_space_outline.dmi', open_turf, "blank", ABOVE_WEEDS_LAYER)
+		//only the sides that border something that can be stood on
 		for(var/direction in GLOB.cardinals)
 			var/turf/side_turf = get_step(open_turf, direction)
-			if(side_turf && istransparentturf(side_turf))
+			if(side_turf?.can_fall_through())
 				continue
 			outline.overlays += image('icons/effects/open_space_outline.dmi', "edge_[dir2text(direction)]")
 		SET_PLANE_EXPLICIT(outline, FLOOR_PLANE, open_turf)
