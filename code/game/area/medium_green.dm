@@ -536,6 +536,8 @@
 /area/mediumgreen/outside/building/neotree/z1/lobby
 	name = "Neo-fibre Research Facility entrance hallway"
 
+/area/mediumgreen/outside/building/neotree/z1/staircase
+	name = "Neo-fibre Research Facility underground stairway"
 
 /area/mediumgreen/outside/building/neotree/z2/intel
 	name = "Neo-fibre Research Facility intelligence office"
@@ -543,6 +545,9 @@
 
 /area/mediumgreen/outside/building/neotree/z2/lower
 	name = "Neo-fibre Research Facility middle floor construction area"
+
+/area/mediumgreen/outside/building/neotree/z2/sec
+	name = "Neo-fibre Research Facility security construction area"
 
 /area/mediumgreen/outside/building/neotree/z2/upper
 	name = "Neo-fibre Research Facility middle floor construction area"
@@ -559,8 +564,12 @@
 	ceiling = CEILING_NONE
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
-	name = "Neo-fibre Research Facility Research checkpoint"
-	minimap_color = MINIMAP_AREA_SEC
+	name = "Neo-fibre Research Facility Research lab"
+	minimap_color = MINIMAP_AREA_RESEARCH
+
+/area/mediumgreen/outside/building/neotree/z3/hallway
+	name = "Neo-fibre Research Facility Research Hallway"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/neotree/z3/breakroom
 	name = "Neo-fibre Research Facility upper break room"
@@ -571,6 +580,12 @@
 
 /area/mediumgreen/outside/building/neotree/z3/storage
 	name = "Neo-fibre Research Facility temporary storage"
+
+/area/mediumgreen/outside/building/neotree/z3/engi_storage
+	name = "Neo-fibre Research Facility upper engineering backroom"
+
+/area/mediumgreen/outside/building/neotree/z3/secure_storage
+	name = "Neo-fibre Research Facility high security storage"
 
 
 
