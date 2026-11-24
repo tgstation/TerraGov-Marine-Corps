@@ -593,14 +593,15 @@
 	return TRUE
 
 // summon dropship to closest lz to A
-/datum/game_mode/proc/summon_dropship(atom/A)
+/datum/game_mode/proc/summon_dropship(atom/summoner)
 	var/list/lzs = list()
+	var/list/connected_z_levels = SSmapping.get_connected_levels(summoner.z)
 	for(var/i in SSshuttle.stationary)
-		var/obj/docking_port/stationary/S = i
-		if(S.z != A.z)
+		var/obj/docking_port/stationary/port = i
+		if(!(port.z in connected_z_levels))
 			continue
-		if(S.id == "lz1" || S.id == "lz2")
-			lzs[S] = get_dist(S, A)
+		if(port.id == "lz1" || port.id == "lz2")
+			lzs[port] = get_dist(port, summoner)
 	if(!length(lzs))
 		stack_trace("couldn't find any lzs to call down the dropship to")
 		return FALSE
@@ -608,12 +609,12 @@
 	for(var/j in lzs)
 		if(lzs[j] < lzs[closest])
 			closest = j
-	var/obj/docking_port/mobile/marine_dropship/D
+	var/obj/docking_port/mobile/marine_dropship/dropship
 	for(var/k in SSshuttle.dropships)
-		var/obj/docking_port/mobile/M = k
-		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
-			D = M
-	D.summon_dropship_to(closest)
+		var/obj/docking_port/mobile/mobile = k
+		if(mobile.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
+			dropship = mobile
+	dropship.summon_dropship_to(closest)
 	return closest
 
 // ************************************************	//
