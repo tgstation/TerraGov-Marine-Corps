@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "xenos above/below or on a different z-level of a stacked z-level stack getting 50% less health regeneration"
+  - bugfix: "xeno leaders having buggy pheremones across z-levels, hopefully"
