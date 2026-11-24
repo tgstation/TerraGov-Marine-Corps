@@ -395,6 +395,8 @@
 #define MULTIZ_EDGE_SHADOW_COLOR "#000000"
 /// How long the outline around the edges of the open space next to a viewer takes to fade in or out
 #define MULTIZ_EDGE_OUTLINE_FADE_TIME (0.2 SECONDS)
+/// The range a mob with a client needs to be within to see edge outlines
+#define MULTIZ_EDGE_OUTLINE_RANGE 2
 
 ///returns a number that combined plane and layer such that anything visually higher has a higher number, to ensure sound consistancy for footstep overrides
 #define get_footstep_layer(layer, plane) TOPDOWN_LAYER * 2 * (100 + plane) + layer

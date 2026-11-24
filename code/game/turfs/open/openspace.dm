@@ -24,11 +24,11 @@
 
 /turf/open/openspace/LateInitialize()
 	ADD_TURF_TRANSPARENCY(src, INNATE_TRAIT)
-	for(var/turf/nearby_turf AS in RANGE_TURFS(1, src))
+	for(var/turf/nearby_turf AS in RANGE_TURFS(MULTIZ_EDGE_OUTLINE_RANGE, src))
 		nearby_turf.AddElementSource(REF(src), /datum/element/open_space_outline)
 
 /turf/open/openspace/Destroy(force)
-	for(var/turf/nearby_turf AS in RANGE_TURFS(1, src))
+	for(var/turf/nearby_turf AS in RANGE_TURFS(MULTIZ_EDGE_OUTLINE_RANGE, src))
 		nearby_turf.RemoveElementSource(REF(src), /datum/element/open_space_outline)
 	return ..()
 
