@@ -1312,9 +1312,9 @@
 		),
 		"Vyacheslav Security Imports" = list(
 			/obj/item/clothing/head/helmet/marine/vsd = -1,
-			/obj/item/clothing/suit/storage/marine/vsd = -1,
-			/obj/item/clothing/suit/storage/marine/vsd/alt = -1,
-			/obj/item/clothing/suit/storage/marine/vsd/marmor = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/vendor = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/alt/vendor = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/marmor/vendor = -1,
 			/obj/item/clothing/suit/modular/vsd_exoskeleton = -1,
 			/obj/item/armor_module/armor/chest/marine/vsd_hardsuit = -1,
 			/obj/item/armor_module/armor/arms/marine/vsd_hardsuit = -1,
