@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(silo)
 	if(SSmonitor.gamestate == SHIPSIDE)
 		z_list = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 	else
-		z_list= SSmapping.levels_by_trait(ZTRAIT_GROUND)
+		z_list = SSmapping.levels_by_trait(ZTRAIT_GROUND)
 
 	var/active_humans = 0
 	var/list/human_list = list()
