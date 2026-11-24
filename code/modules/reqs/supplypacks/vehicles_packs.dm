@@ -195,6 +195,11 @@ VEHICLES
 	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
 	cost = 10
 
+/datum/supply_packs/vehicles/light_machinegun_rounds
+	name = "Light machinegun vehicle magazine"
+	contains = list(/obj/item/ammo_magazine/tank/light_machinegun)
+	cost = 15
+
 /datum/supply_packs/vehicles/repairpack
 	name = "Mech repairpack"
 	contains = list(/obj/item/repairpack)
