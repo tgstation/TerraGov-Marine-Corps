@@ -661,10 +661,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	var/list/mob/living/carbon/human/human_mobs = list()
 	for(var/turf/turf_from_line AS in turf_line)
-		for(var/target in turf_from_line.contents)
-			if(!ishuman(target))
-				continue
-			var/mob/living/carbon/human/human_mob = target
+		for(var/mob/living/carbon/human/human_mob in turf_from_line.contents)
 			if(human_mob.stat == DEAD)
 				continue
 			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
