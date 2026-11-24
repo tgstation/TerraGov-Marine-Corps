@@ -1527,7 +1527,7 @@
 			/obj/item/clothing/mask/surgical = -1,
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
-			/obj/item/clothing/suit/storage/labcoat/paramedic = -1
+			/obj/item/clothing/suit/storage/labcoat/paramedic = -1,
 		),
 		"Vyacheslav Security Imports" = list(
 			/obj/item/clothing/under/vsd = -1,
