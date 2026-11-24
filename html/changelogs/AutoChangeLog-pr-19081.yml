@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed footstep overrides not working on multi-z"
+  - soundadd: "added some new flora hit sounds"
+  - code_imp: "hit sounds can be lists instead of a single choice now"
