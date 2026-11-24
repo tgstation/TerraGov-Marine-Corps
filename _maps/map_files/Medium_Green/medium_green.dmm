@@ -318,9 +318,14 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/warehouse)
 "abl" = (
-/obj/structure/table/mainship,
-/obj/item/t_scanner,
-/obj/item/t_scanner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/machinery/light/bluegreen{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "abm" = (
@@ -487,14 +492,16 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "abU" = (
-/obj/structure/cable,
+/obj/structure/table/mainship,
+/obj/item/t_scanner,
+/obj/item/t_scanner,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "abV" = (
-/obj/machinery/door/airlock/mainship/engineering/storage{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
+/obj/structure/table/mainship,
+/obj/item/taperecorder,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "abW" = (
@@ -662,9 +669,13 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/lz2/around)
 "acA" = (
-/obj/structure/reagent_dispensers/fueltank/spacefuel,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "acB" = (
 /obj/structure/catwalk,
 /turf/open/openspace,
@@ -999,15 +1010,18 @@
 	},
 /area/mediumgreen/outside/building/southeast/warehouse)
 "adP" = (
-/obj/structure/prop/mainship/supermatter{
-	light_color = "#ffd04f";
-	light_power = 20;
-	light_range = 5
+/obj/structure/table/mainship,
+/obj/item/toner,
+/obj/item/toner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
 	},
-/obj/structure/cable/layer1,
-/obj/effect/forcefield,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "adQ" = (
 /obj/structure/prop/vehicle/truck{
 	dir = 4
@@ -1382,10 +1396,14 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
 "afg" = (
-/obj/structure/table/mainship,
-/obj/item/taperecorder,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "afh" = (
 /obj/machinery/light/bluegreen{
 	dir = 4
@@ -1479,8 +1497,8 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "afA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/mainship,
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "afB" = (
 /obj/effect/landmark/weed_node,
@@ -1497,9 +1515,14 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/mediumgreen/outside/z3/southeast)
 "afD" = (
-/obj/structure/reagent_dispensers/fueltank/spacefuel,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/structure/prop/mainship/supermatter{
+	light_color = "#ffd04f";
+	light_power = 20;
+	light_range = 5
+	},
+/obj/structure/cable/layer1,
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "afE" = (
 /obj/effect/urban/decal/dirt_2,
 /turf/open/floor/plating/ground/concrete,
@@ -2068,9 +2091,17 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "ahI" = (
-/obj/structure/reagent_dispensers/fueltank/spacefuel,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/effect/turf_decal/warning_stripes/thick/corner,
+/obj/structure/sign/cold{
+	dir = 1
+	},
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/structure/rack,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "ahJ" = (
 /obj/structure/prop/urban/supermart/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -3122,13 +3153,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/central)
-"alD" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner,
-/obj/structure/sign/cold{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
 "alE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
@@ -3184,11 +3208,12 @@
 /turf/closed/wall/r_wall,
 /area/mediumgreen/outside/z1/central)
 "alQ" = (
-/obj/machinery/door/airlock/mainship/engineering/engine{
-	dir = 2
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/turf/open/floor/tile/darkish,
+/obj/structure/rack,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/turf/open/floor/bcircuit/anim,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "alR" = (
 /obj/machinery/door/airlock/mainship/engineering/engine{
@@ -3245,8 +3270,15 @@
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "amc" = (
-/turf/open/floor/bcircuit/anim,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
+/obj/machinery/light/red{
+	brightness = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "amd" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/window/phoronreinforced{
@@ -3307,11 +3339,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mediumgreen/outside/lz2/around)
 "amq" = (
-/obj/machinery/light/bluegreen{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "amr" = (
 /obj/structure/cable,
 /turf/closed/wall/sulaco,
@@ -3835,12 +3868,16 @@
 /turf/closed/wall/sulaco,
 /area/mediumgreen/outside/building/engineering/storage_n)
 "aof" = (
-/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
-	dir = 8
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "aog" = (
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
@@ -4149,14 +4186,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
 "apg" = (
-/obj/machinery/light/red{
-	brightness = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "aph" = (
 /obj/structure/prop/urban/containersextended/bluewywingsleft,
 /turf/open/floor/tile/darkish,
@@ -4442,17 +4476,13 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
 "aqg" = (
-/obj/machinery/light/red{
-	dir = 2
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 8
-	},
-/obj/structure/sign/electricshock{
-	dir = 2
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/intel_nw)
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_s)
 "aqh" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -4468,11 +4498,10 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
 "aqk" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/multi_tiles,
-/area/mediumgreen/outside/building/engineering/control)
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "aql" = (
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/control)
@@ -4504,9 +4533,9 @@
 /area/mediumgreen/outside/building/engineering/storage_n)
 "aqs" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "aqt" = (
 /turf/open/openspace,
 /area/mediumgreen/outside/z3/northeast)
@@ -4623,9 +4652,10 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
 "aqU" = (
-/obj/structure/cable,
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "aqV" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/spiralplate,
@@ -14826,15 +14856,6 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/southeast)
-"bbZ" = (
-/obj/structure/table/mainship,
-/obj/item/toner,
-/obj/item/toner,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
 "bca" = (
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher,
@@ -15018,38 +15039,42 @@
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "bcB" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/structure/rack,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/turf/open/floor/bcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bcC" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 1
-	},
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
-"bcD" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/structure/sign/cold{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
+/obj/structure/rack,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/turf/open/floor/multi_tiles,
+/area/mediumgreen/outside/building/engineering/control)
+"bcD" = (
+/obj/machinery/light/red{
+	dir = 2
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
+/obj/structure/sign/electricshock{
+	dir = 2
+	},
+/obj/structure/rack,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/intel_nw)
 "bcE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -15057,22 +15082,24 @@
 /turf/closed/wall/sulaco,
 /area/mediumgreen/outside/building/engineering/hallway_s)
 "bcF" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
+/obj/machinery/light/blue{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/engineer/burst,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bcG" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/storage)
 "bcH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bcI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side{
@@ -15124,29 +15151,6 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/wood/reinforced/bark,
 /area/mediumgreen/caves/z3/Neotree/east)
-"bcR" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/evacuation{
-	dir = 2
-	},
-/obj/effect/mapping_helpers/airlock_autoname,
-/obj/effect/mapping_helpers/airlock/welded,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
-"bcS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/obj/effect/landmark/weed_node,
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/welded,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
 "bcT" = (
 /obj/machinery/light/blue{
 	dir = 8
@@ -15321,12 +15325,10 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_n)
 "bdt" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bdu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -15495,12 +15497,12 @@
 "bdN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 2
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bdO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/effect/decal/cleanable/dirt,
@@ -18068,12 +18070,19 @@
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/northeast)
 "bni" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/obj/machinery/power/apc/drained{
+	dir = 2
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bnj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 2
@@ -20341,10 +20350,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/north)
-"bvw" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
 "bvx" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -20369,23 +20374,31 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/northeast)
 "bvA" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/structure/sign/cold{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bvB" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
+/obj/machinery/door/airlock/mainship/evacuation{
+	dir = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/effect/mapping_helpers/airlock/welded,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bvC" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -20421,14 +20434,6 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_w)
-"bvI" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/obj/effect/turf_decal/tape,
-/turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "bvJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -20579,10 +20584,13 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mediumgreen/outside/building/engineering/control)
 "bwi" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/machinery/door/airlock/mainship/engineering/engine{
+	dir = 2
+	},
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bwj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20626,11 +20634,14 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/intel_nw)
 "bwq" = (
-/obj/machinery/light/bluegreen{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
+/obj/effect/turf_decal/tape,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bwr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -22622,12 +22633,21 @@
 "bDF" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bDG" = (
-/obj/effect/ai_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/welded,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/plating/mainship,
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bDH" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -22649,15 +22669,9 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/outside/z1/northwest)
 "bDL" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 8
-	},
-/obj/machinery/light/bluegreen{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/tile/darkish,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bDM" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -22689,11 +22703,6 @@
 "bDS" = (
 /obj/effect/ai_node,
 /turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/hallway_w)
-"bDT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
-/turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_w)
 "bDU" = (
 /obj/structure/cable,
@@ -22752,15 +22761,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z1/north)
-"bEc" = (
-/obj/machinery/light/blue{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/engineer/burst,
-/obj/effect/ai_node,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
 "bEd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -22782,12 +22782,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mediumgreen/outside/building/engineering/hallway_e)
 "bEh" = (
-/obj/effect/turf_decal/warning_stripes/thick{
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/obj/effect/turf_decal/tape,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_s)
+/area/mediumgreen/outside/building/engineering/hallway_w)
 "bEi" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -22797,11 +22798,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_s)
-"bEj" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/darkish,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bEk" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
@@ -22917,11 +22913,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/multi_tiles,
 /area/mediumgreen/outside/building/engineering/control)
-"bEH" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
 "bEI" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -24767,13 +24758,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/tree)
-"bLG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/obj/effect/turf_decal/tape,
-/turf/open/floor/plating/mainship,
-/area/mediumgreen/outside/building/engineering/hallway_w)
 "bLH" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -24839,12 +24823,6 @@
 /obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/warehouse)
-"bLN" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/utility/atmostech,
-/obj/item/storage/belt/utility/atmostech,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_s)
 "bLO" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark,
@@ -25118,14 +25096,6 @@
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z2/north)
-"bME" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 2
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/spiralplate,
-/area/mediumgreen/outside/building/engineering/storage_n)
 "bMF" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/bcircuit/anim,
@@ -26118,6 +26088,34 @@
 	},
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z2/intel)
+"bQd" = (
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"bQe" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"bQf" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"bQg" = (
+/obj/machinery/door/airlock/mainship/engineering/storage{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
+"bQh" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "bQi" = (
 /obj/machinery/light/bluegreen{
 	dir = 2
@@ -26279,10 +26277,6 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQG" = (
-/obj/structure/cable,
-/turf/open/floor/bcircuit/anim,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bQH" = (
 /obj/structure/cable,
@@ -27092,6 +27086,11 @@
 	},
 /turf/open/floor/engine,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
+"bTe" = (
+/obj/structure/reagent_dispensers/fueltank/spacefuel,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "bTf" = (
 /turf/open/floor/placeholderturf,
 /area/mediumgreen/outside/building/cultist)
@@ -27920,6 +27919,13 @@
 	},
 /turf/open/openspace,
 /area/mediumgreen/outside/z3/southeast)
+"bVH" = (
+/obj/machinery/light/bluegreen{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "bVI" = (
 /obj/structure/catwalk,
 /obj/structure/ladder,
@@ -27985,6 +27991,13 @@
 /obj/structure/cable,
 /turf/open/floor/urban/tile/tilebeige,
 /area/mediumgreen/outside/building/southeast/warehouse)
+"bVU" = (
+/obj/structure/table/mainship,
+/obj/item/storage/belt/utility/atmostech,
+/obj/item/storage/belt/utility/atmostech,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_s)
 "bVV" = (
 /obj/item/trash/trashbag{
 	pixel_x = -7;
@@ -27996,11 +28009,23 @@
 	},
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/southeast/maintenance)
+"bVY" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
 "bVZ" = (
 /obj/structure/catwalk,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/openspace,
 /area/mediumgreen/outside/building/neotree/z3/upper)
+"bWa" = (
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
 "bWb" = (
 /obj/structure/catwalk,
 /obj/item/clothing/head/hardhat,
@@ -28124,6 +28149,28 @@
 /obj/structure/prop/casammo/incendiary_minirocket,
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z3/secure_storage)
+"bWv" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bWx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/engineer,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bWy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/structure/rack,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
 "bWA" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "12"
@@ -28578,6 +28625,49 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/research,
 /area/mediumgreen/outside/building/neotree/z3/hallway)
+"bXR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bXS" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bXT" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bXU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bXV" = (
+/obj/machinery/light/bluegreen{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
+"bXW" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 2
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/liquid_fuel/xfuel,
+/turf/open/floor/spiralplate,
+/area/mediumgreen/outside/building/engineering/storage_n)
 "bYf" = (
 /turf/open/floor,
 /area/lv624/lazarus/console)
@@ -96520,7 +96610,7 @@ bRt
 bLJ
 aRg
 aft
-afw
+afA
 bvH
 ama
 alq
@@ -96904,14 +96994,14 @@ ale
 bvP
 bLI
 bcT
-bLG
-bcS
-bvI
-bcR
-bcB
-bEc
-afA
-bDT
+bEh
+bDG
+bwq
+bvB
+bdN
+bcF
+aqs
+apg
 aft
 aaM
 aaT
@@ -97100,10 +97190,10 @@ ahW
 ahW
 amr
 ahW
-bcC
-bvw
-ahI
-afD
+bni
+bcH
+aqU
+aqk
 aft
 afr
 aaM
@@ -97278,7 +97368,7 @@ aqB
 arp
 arr
 bnk
-aqg
+bcD
 apF
 ahW
 ahW
@@ -97289,13 +97379,13 @@ anb
 anb
 amO
 amb
-amb
-bEj
-alQ
-bcD
-bEd
-afD
-afD
+bDL
+bDF
+bwi
+bvA
+bdt
+aqk
+aqk
 aft
 ane
 aaM
@@ -97676,7 +97766,7 @@ bQk
 bQL
 ald
 ahW
-bcF
+acA
 aau
 ahJ
 abT
@@ -97685,7 +97775,7 @@ afc
 aeS
 adu
 aca
-abl
+abU
 aau
 aqA
 aqA
@@ -97864,11 +97954,11 @@ bQA
 ape
 amH
 ape
-amc
+alQ
 bLY
 aoj
 ahW
-bcF
+acA
 aau
 ahK
 bvh
@@ -97877,7 +97967,7 @@ afd
 abT
 bvh
 bmT
-abT
+bQd
 aau
 aqA
 aqA
@@ -98060,16 +98150,16 @@ ame
 bvJ
 aox
 ahW
-bvA
+afg
 aau
 ahL
 ago
 afk
-bLN
-amq
-acA
-acA
-abT
+bVU
+bVH
+bTe
+bTe
+bQd
 aau
 aqA
 buU
@@ -98252,7 +98342,7 @@ aep
 anz
 aoj
 ahW
-apg
+amc
 aau
 ahM
 aoT
@@ -98261,7 +98351,7 @@ aau
 aau
 aau
 ajA
-abU
+bQe
 aau
 aqA
 aqo
@@ -98438,13 +98528,13 @@ anV
 bvT
 anr
 bSP
-adP
+afD
 anu
 aep
 bmZ
 ami
 ahW
-bcH
+amq
 aau
 ahN
 bmX
@@ -98453,7 +98543,7 @@ aff
 bvh
 bmT
 abT
-abU
+bQe
 aau
 aqA
 aqo
@@ -98636,7 +98726,7 @@ aep
 bvK
 aoH
 ahW
-bvB
+aof
 bcs
 bcp
 bDU
@@ -98645,7 +98735,7 @@ bbX
 bbX
 bbS
 bve
-bDF
+bQf
 aaw
 aqA
 aqo
@@ -98828,7 +98918,7 @@ ahW
 bEn
 ami
 anf
-bEh
+aqg
 aau
 ahP
 bvo
@@ -98837,7 +98927,7 @@ aeY
 aeY
 bbT
 ajF
-abT
+bQd
 aaw
 aqA
 aqo
@@ -99007,12 +99097,12 @@ bdK
 aqN
 bOl
 bOb
-aqk
+bcC
 apl
 aov
 aoa
 bQK
-bQG
+bcB
 ape
 ape
 ape
@@ -99029,7 +99119,7 @@ aau
 aau
 bbU
 aau
-abV
+bQg
 aaw
 aQQ
 aQQ
@@ -99217,11 +99307,11 @@ alf
 ahS
 agV
 afk
-afg
-abT
-bDL
-abT
-bDG
+abV
+bQd
+abl
+bQd
+bQh
 aaw
 bkE
 bgG
@@ -99409,7 +99499,7 @@ ahd
 ahd
 bDV
 afk
-bbZ
+adP
 bmV
 bvi
 bbR
@@ -99596,7 +99686,7 @@ ami
 ami
 ami
 ahW
-alD
+ahI
 aER
 ahT
 bvp
@@ -100538,7 +100628,7 @@ bDw
 aqA
 aqA
 aqW
-bwq
+bXV
 bnl
 aog
 aqa
@@ -100730,15 +100820,15 @@ aqA
 bOI
 aqA
 aqW
-bME
-bdN
-aqU
-bwi
-aqs
-bni
-bEH
-aog
-aof
+bXW
+bXU
+bXT
+bXS
+bXR
+bWx
+bWv
+bWa
+bVY
 anD
 bEl
 ahY
@@ -100927,7 +101017,7 @@ bdO
 bdH
 bdH
 bdx
-bdt
+bWy
 bdf
 bdf
 bdf
