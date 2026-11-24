@@ -3422,7 +3422,7 @@
 /area/campaign/jungle_outpost/outpost/command)
 "pT" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /obj/machinery/light{
 	dir = 1
 	},

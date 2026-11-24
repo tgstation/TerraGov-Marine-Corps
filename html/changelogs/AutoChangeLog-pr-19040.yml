@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "You can now throw objects up zlevels, but it halfs the range you throw them. You can also not throw if there is something directly above you"

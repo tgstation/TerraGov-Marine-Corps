@@ -1226,7 +1226,7 @@
 /area/mainship/multiz_debug_area/floorone)
 "jr" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/skills,
+/obj/machinery/prop/computer/skills,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)

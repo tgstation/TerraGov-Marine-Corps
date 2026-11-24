@@ -258,3 +258,9 @@
   Lumipharon:
   - bugfix: fixed psy crush ex_act being pathed incorrectly
   - code_imp: auxtools added to vsc recommended extensions
+2026-11-23:
+  Arturlang:
+  - bugfix: parallax is no longer rebuilt when changing z-levels
+  - bugfix: fix minimap offsetting the screen
+  Lumipharon:
+  - rscadd: firesupport consoles in all CIC

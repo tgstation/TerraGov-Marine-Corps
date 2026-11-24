@@ -121,6 +121,8 @@
 	var/parallax_throttle = 0
 	var/parallax_movedir = 0
 	var/parallax_layers_max = 4
+	///If the level our mob was on had parallax turned off, the last time our parallax prefs were applied
+	var/parallax_blocked_by_level = FALSE
 	/// Timers for the area directional animation, one for each layer
 	var/list/parallax_animate_timers
 	var/parallax_animate_timer
