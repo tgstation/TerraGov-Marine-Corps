@@ -1310,6 +1310,25 @@
 			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone = -1,
 			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone = -1,
 		),
+		"Vyacheslav Security Imports" = list(
+			/obj/item/clothing/head/helmet/marine/vsd = -1,
+			/obj/item/clothing/suit/storage/marine/vsd = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/alt = -1,
+			/obj/item/clothing/suit/storage/marine/vsd/marmor = -1,
+			/obj/item/clothing/suit/modular/vsd_exoskeleton = -1,
+			/obj/item/armor_module/armor/chest/marine/vsd_hardsuit = -1,
+			/obj/item/armor_module/armor/arms/marine/vsd_hardsuit = -1,
+			/obj/item/armor_module/armor/legs/marine/vsd_hardsuit = -1,
+			/obj/item/clothing/head/modular/marine/vsd_hardsuit = -1,
+			/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/clementia = -1,
+			/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/clementia = -1,
+			/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/clementia = -1,
+			/obj/item/clothing/head/modular/marine/vsd_hardsuit/clementia = -1,
+			/obj/item/armor_module/armor/chest/marine/vsd_hardsuit/hephaestus = -1,
+			/obj/item/armor_module/armor/arms/marine/vsd_hardsuit/hephaestus = -1,
+			/obj/item/armor_module/armor/legs/marine/vsd_hardsuit/hephaestus = -1,
+			/obj/item/clothing/head/modular/marine/vsd_hardsuit/hephaestus = -1,
+		),
 	)
 
 	prices = list()
@@ -1508,7 +1527,13 @@
 			/obj/item/clothing/mask/surgical = -1,
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
-			/obj/item/clothing/suit/storage/labcoat/paramedic = -1,
+			/obj/item/clothing/suit/storage/labcoat/paramedic = -1
+		),
+		"Vyacheslav Security Imports" = list(
+			/obj/item/clothing/under/vsd = -1,
+			/obj/item/clothing/under/vsd/alt = -1,
+			/obj/item/clothing/under/vsd/upp = -1,
+			/obj/item/clothing/under/vsd/upp/alt = -1,
 		),
 		"Eyewear" = list(
 			/obj/item/clothing/glasses/regular = -1,
@@ -1520,6 +1545,7 @@
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
+
 	)
 
 	prices = list()

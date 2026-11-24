@@ -832,6 +832,7 @@
 	armor_features_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/vsd/alt
+	name = "\improper Crasher MT-L/44 ballistic armor"
 	icon_state = "vsd_armor_alt"
 	worn_icon_state = "vsd_armor_alt"
 
