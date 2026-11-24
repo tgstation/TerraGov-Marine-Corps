@@ -406,11 +406,15 @@
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/ruler)
+	var/list/old_aura_types = leader_current_aura?.aura_types
 	QDEL_NULL(leader_current_aura)
-	if(QDELETED(ruler) || !(xeno_flags & XENO_LEADER) || !ruler.current_aura || ruler.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
-		to_chat(src, span_xenowarning("Our pheromones wane. The Ruler is no longer granting us her pheromones."))
-	else
-		leader_current_aura = SSaura.add_emitter(src, ruler.current_aura.aura_types.Copy(), ruler.current_aura.range, ruler.current_aura.strength, ruler.current_aura.duration, ruler.current_aura.faction, ruler.current_aura.hive_number)
+	if(stat == DEAD || !(xeno_flags & XENO_LEADER) || QDELETED(ruler) || ruler == src || QDELETED(ruler.current_aura) || !is_on_connected_level(ruler, src))
+		if(old_aura_types)
+			to_chat(src, span_xenowarning("Our pheromones wane. The Ruler is no longer granting us her pheromones."))
+		return
+	var/datum/aura_bearer/ruler_aura = ruler.current_aura
+	leader_current_aura = SSaura.add_emitter(src, ruler_aura.aura_types.Copy(), ruler_aura.range, ruler_aura.strength, ruler_aura.duration, ruler_aura.faction, ruler_aura.hive_number)
+	if(!old_aura_types || length(old_aura_types ^ ruler_aura.aura_types))
 		to_chat(src, span_xenowarning("Our pheromones have changed. The Ruler has new plans for the Hive."))
 
 

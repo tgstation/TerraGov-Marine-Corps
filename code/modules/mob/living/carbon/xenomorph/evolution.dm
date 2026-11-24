@@ -211,9 +211,6 @@
 	if((xeno_flags & XENO_LEADER) && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
-		if(hive.living_xeno_ruler)
-			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_ruler)
-
 		new_xeno.update_leader_icon(TRUE)
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
