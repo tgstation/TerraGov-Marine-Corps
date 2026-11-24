@@ -999,13 +999,15 @@
 	},
 /area/mediumgreen/outside/building/southeast/warehouse)
 "adP" = (
-/obj/structure/cargo_container/horizontal{
-	pixel_w = -9;
-	pixel_z = 34;
-	dir = 1
+/obj/structure/prop/mainship/supermatter{
+	light_color = "#ffd04f";
+	light_power = 20;
+	light_range = 5
 	},
-/turf/open/floor/prison,
-/area/mediumgreen/outside/building/southeast/warehouse)
+/obj/structure/cable/layer1,
+/obj/effect/forcefield,
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "adQ" = (
 /obj/structure/prop/vehicle/truck{
 	dir = 4
@@ -1144,14 +1146,18 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/powerline)
 "aep" = (
-/obj/structure/cargo_container/horizontal{
-	pixel_w = -18;
+/obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/turf/open/floor/prison/cellstripe{
-	dir = 4
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
 	},
-/area/mediumgreen/outside/building/southeast/warehouse)
+/obj/structure/window/phoronreinforced{
+	dir = 2
+	},
+/turf/open/floor/rcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "aeq" = (
 /obj/machinery/door/airlock/multi_tile/mainship,
 /obj/effect/mapping_helpers/airlock_autoname,
@@ -3242,14 +3248,14 @@
 /turf/open/floor/bcircuit/anim,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "amd" = (
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/window/phoronreinforced{
-	dir = 1
+	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
+/obj/structure/window/phoronreinforced{
+	dir = 2
 	},
-/turf/open/floor/rcircuit/anim,
+/turf/open/floor/engine,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "ame" = (
 /obj/structure/prop/urban/misc/machinery/screens/redalert,
@@ -3588,12 +3594,20 @@
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/hallway_e)
 "anr" = (
-/obj/structure/cargo_container/horizontal,
-/obj/structure/cable,
-/turf/open/floor/prison/cellstripe{
-	dir = 8
+/obj/structure/window/phoronreinforced{
+	dir = 2
 	},
-/area/mediumgreen/outside/building/southeast/warehouse)
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 2
+	},
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/turf/open/floor/rcircuit/anim,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "ans" = (
 /obj/structure/closet/crate/ammo,
 /obj/item/stack/sheet/metal/large_stack,
@@ -3615,13 +3629,15 @@
 /turf/open/floor,
 /area/mediumgreen/outside/building/neotree/z1/backroom)
 "anu" = (
-/obj/structure/cargo_container/horizontal{
-	pixel_w = -9;
-	pixel_z = 34
+/obj/structure/window/phoronreinforced{
+	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/mediumgreen/outside/building/southeast/warehouse)
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
+	dir = 2
+	},
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "anv" = (
 /obj/machinery/door/airlock/mainship/security/locked/free_access{
 	dir = 4
@@ -3693,14 +3709,15 @@
 	},
 /area/mediumgreen/outside/lz2/building/sec_n)
 "anH" = (
-/obj/structure/cargo_container/horizontal{
-	pixel_w = -18
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/cellstripe{
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/area/mediumgreen/outside/building/southeast/warehouse)
+/obj/structure/window/phoronreinforced{
+	dir = 2
+	},
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "anI" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/cable,
@@ -5564,12 +5581,14 @@
 /turf/closed/wall/mainship/white,
 /area/mediumgreen/outside/lz2/building/medbay)
 "auu" = (
-/obj/structure/prop/mainship/supermatter{
-	light_color = "#ffd04f";
-	light_power = 20;
-	light_range = 5
+/obj/structure/window/phoronreinforced{
+	dir = 4
 	},
 /obj/structure/cable/layer1,
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "auv" = (
@@ -12532,12 +12551,15 @@
 /turf/open/floor/plating,
 /area/mediumgreen/outside/neotree/tower2)
 "aUe" = (
-/obj/structure/platform/rockcliff{
-	dir = 5
+/obj/structure/window/phoronreinforced{
+	dir = 8
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/mediumgreen/caves/z2/central)
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "aUf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
@@ -12645,6 +12667,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/mediumgreen/outside/building/neotree/z1/engineering)
+"aUB" = (
+/obj/structure/cable,
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/mediumgreen/outside/building/southeast/warehouse)
 "aUC" = (
 /obj/structure/catwalk,
 /obj/structure/barricade/sandbags{
@@ -26089,39 +26118,6 @@
 	},
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z2/intel)
-"bQd" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQe" = (
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQf" = (
-/obj/structure/window/phoronreinforced{
-	dir = 4
-	},
-/obj/structure/cable/layer1,
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQg" = (
-/obj/structure/window/phoronreinforced{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQh" = (
-/obj/structure/window/phoronreinforced{
-	dir = 2
-	},
-/obj/effect/turf_decal/warning_stripes/box,
-/turf/open/floor/engine,
-/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bQi" = (
 /obj/machinery/light/bluegreen{
 	dir = 2
@@ -26275,16 +26271,14 @@
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/z1/northeast)
 "bQF" = (
+/obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/window/phoronreinforced{
-	dir = 2
+	dir = 8
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
+/obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 2
-	},
-/turf/open/floor/rcircuit/anim,
+/turf/open/floor/engine,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bQG" = (
 /obj/structure/cable,
@@ -26986,9 +26980,44 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z2/sec)
+"bSI" = (
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/mediumgreen/outside/building/southeast/warehouse)
+"bSJ" = (
+/obj/structure/cable,
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/mediumgreen/outside/building/southeast/warehouse)
+"bSK" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 8
+	},
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/mediumgreen/outside/building/southeast/warehouse)
+"bSL" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 8
+	},
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/mediumgreen/outside/building/southeast/warehouse)
 "bSM" = (
 /turf/open/openspace,
 /area/lv624/lazarus/console)
+"bSN" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/mediumgreen/outside/building/southeast/warehouse)
 "bSO" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1
@@ -26996,6 +27025,16 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z3/engi_storage)
+"bSP" = (
+/obj/structure/window/phoronreinforced{
+	dir = 2
+	},
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bSQ" = (
 /turf/open/floor/prison/redfloor,
 /area/space)
@@ -27043,6 +27082,16 @@
 /obj/machinery/door/airlock/multi_tile/mainship/maint,
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/staircase)
+"bTd" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/mediumgreen/outside/building/engineering/inner/powerroom)
 "bTf" = (
 /turf/open/floor/placeholderturf,
 /area/mediumgreen/outside/building/cultist)
@@ -98195,11 +98244,11 @@ aYg
 ane
 ahW
 bne
+anr
 bQF
-bQd
-bQf
-bQd
+auu
 amd
+aep
 anz
 aoj
 ahW
@@ -98387,11 +98436,11 @@ anV
 aoa
 anV
 bvT
-bQF
-bQh
-auu
-bQe
-amd
+anr
+bSP
+adP
+anu
+aep
 bmZ
 ami
 ahW
@@ -98579,11 +98628,11 @@ bEF
 bhP
 anV
 aby
-bQF
-bQd
-bQg
-bQd
-amd
+anr
+bTd
+aUe
+anH
+aep
 bvK
 aoH
 ahW
@@ -123491,8 +123540,8 @@ btc
 aiH
 agU
 adO
-adO
-anr
+bSK
+aUB
 adk
 adl
 aco
@@ -123682,9 +123731,9 @@ adr
 aiV
 aiM
 agU
-adP
-adP
-anu
+adl
+adl
+bSI
 adl
 adl
 acp
@@ -123874,9 +123923,9 @@ adr
 aiW
 aiN
 bAJ
-aep
-aep
-anH
+bSN
+bSL
+bSJ
 adp
 acq
 acq
@@ -139173,7 +139222,7 @@ aCn
 aCn
 aCn
 aCn
-aUe
+bGa
 akb
 aGT
 aGT

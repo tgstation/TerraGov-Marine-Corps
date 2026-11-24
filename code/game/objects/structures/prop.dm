@@ -709,6 +709,7 @@
 	desc = "Used to seal minor hull breaches."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "shieldoff"
+	resistance_flags = NONE
 
 /obj/structure/prop/mainship/generator/tesla_coil
 	name = "tesla coil"
