@@ -479,6 +479,7 @@
 	damage_falloff_mult = 0.25
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
+	movement_acc_penalty_mult = 7.5
 	actions_types = list(/datum/action/item_action/aim_mode)
 
 /obj/item/weapon/gun/standard_mmg/toggle_auto_aim_mode(mob/living/carbon/human/user) //somewhat redundant, but just for clarity to the user
