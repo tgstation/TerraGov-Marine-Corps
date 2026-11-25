@@ -169,6 +169,7 @@
 			data["ambient_occlusion"] = ambient_occlusion
 			data["multiz_parallax"] = multiz_parallax
 			data["multiz_performance"] = multiz_performance
+			data["multiz_blur"] = multiz_blur
 			data["multiz_edge_outline"] = multiz_edge_outline
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
@@ -866,6 +867,15 @@
 			for(var/group_key, _group in my_hud.master_groups)
 				var/datum/plane_master_group/group = _group
 				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
+
+		if("multiz_blur")
+			multiz_blur = WRAP(multiz_blur + 1, 0, MULTIZ_BLUR_MAX + 1)
+			var/datum/hud/my_hud = parent.mob?.hud_used
+			if(!my_hud)
+				return
+
+			for(var/atom/movable/screen/plane_master/rendering_plate/master/master_plate as anything in my_hud.get_true_plane_masters(RENDER_PLANE_MASTER))
+				master_plate.update_multiz_blur(my_hud.current_plane_offset)
 
 		if("multiz_edge_outline")
 			multiz_edge_outline = !multiz_edge_outline

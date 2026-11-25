@@ -389,6 +389,10 @@
 /// Increment this define if you make a huge map. We unit test for it too just to make it easy for you
 /// If you modify this, you'll need to modify the tsx file too
 #define MAX_EXPECTED_Z_DEPTH 3
+/// Max blur that can be picked
+#define MULTIZ_BLUR_MAX 2
+/// How much blur each z-level adds
+#define MULTIZ_BLUR_PER_LEVEL 0.5
 /// Size of the shadow drawn around the edges of open space
 #define MULTIZ_EDGE_SHADOW_SIZE 5
 /// Colour of the shadow drawn around the edges of open space
