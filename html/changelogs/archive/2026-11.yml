@@ -268,3 +268,19 @@
   TiviPlus:
   - rscadd: You can now throw objects up zlevels, but it halfs the range you throw
       them. You can also not throw if there is something directly above you
+2026-11-25:
+  Arturlang:
+  - bugfix: xenos above/below or on a different z-level of a stacked z-level stack
+      getting 50% less health regeneration
+  - bugfix: xeno leaders having buggy pheremones across z-levels, hopefully
+  Lumipharon:
+  - bugfix: fixed some issue with the parry component
+  - bugfix: fixed footstep overrides not working on multi-z
+  - soundadd: added some new flora hit sounds
+  - code_imp: hit sounds can be lists instead of a single choice now
+  - rscadd: MRAP light MG ammo is purchasable in req
+  Mantlecrawler:
+  - rscadd: Mothroaches! Currently admin only
+  Notamaniac:
+  - balance: The APC (vehicle, not the device) leaves a wreck that can be fultoned,
+      similar to the tank and MRAP.
