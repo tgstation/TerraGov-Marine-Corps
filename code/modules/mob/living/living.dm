@@ -1209,9 +1209,10 @@
 	appearance = copied
 	dir = copied_dir
 
+/// Dir changes dont update overlays so this need to be separate
 /atom/movable/below_copy/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
-	copy_owner(new_dir)
+	dir = new_dir
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
