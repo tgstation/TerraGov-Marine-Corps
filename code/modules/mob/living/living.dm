@@ -811,7 +811,7 @@
 		var/mob/living/living_fall_catcher = fall_catcher
 		if(living_fall_catcher.stat != DEAD)
 			living_fall_catcher.apply_damage(incoming_damage, BRUTE, blocked = MELEE)
-			living_fall_catcher.Knockdown(isxeno(living_fall_catcher) ? stun_time * 0.5 : stun_time * 1.5)
+			living_fall_catcher.Knockdown(isxeno(living_fall_catcher) ? stun_time * 0.1 : stun_time * 1.5)
 			shake_camera(living_fall_catcher, 0.3 SECONDS, 1)
 			living_fall_catcher.emote("pain")
 	else if(isobj(fall_catcher))
@@ -864,7 +864,7 @@
 		apply_damage(incoming_damage, BRUTE, blocked = MELEE)
 
 	if(!skip_knockdown)
-		Knockdown(stun_time)
+		Knockdown(isxeno(src) ? stun_time * 0.1 : stun_time)
 		playsound(impacted_turf, fall_catcher.get_z_fall_sound(src, levels), 40, TRUE)
 		emote("pain")
 
