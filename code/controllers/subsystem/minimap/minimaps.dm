@@ -586,7 +586,6 @@ SUBSYSTEM_DEF(minimaps)
 		else
 			viewer.client?.screen -= list(indicator, up_button, down_button)
 
-///Returns the z levels stacked with the one being shown, from the lowest to the highest
 /// Returns the amount of z-levels that are in this multi-z stack
 /datum/minimap_z_controls/proc/get_levels()
 	if(!shown_z)
