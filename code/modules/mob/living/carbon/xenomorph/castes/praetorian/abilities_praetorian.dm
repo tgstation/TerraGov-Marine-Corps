@@ -617,7 +617,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
-	if(A.z != xeno_owner.z)
+	if(A.z - xeno_owner.z > 1)
 		return FALSE
 	var/distance = get_dist(xeno_owner, A)
 	if(distance > 9) //offscreen funny
@@ -626,8 +626,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too short")
 		return FALSE
-	var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
-	if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
+	var/turf/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
+	start_turf = locate(start_turf.x, start_turf.y, A.z)
+	if(check_path(locate(xeno_owner.x, xeno_owner.y, A.z), start_turf, PASS_THROW) != start_turf)
 		if(!silent)
 			A.balloon_alert(xeno_owner, "path blocked")
 		return FALSE
@@ -641,7 +642,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		add_cooldown(cooldown_duration * 0.5)
 		return
 	xeno_owner.face_atom(targetted_turf)
-	turf_line = get_traversal_line(get_step(xeno_turf, get_cardinal_dir(xeno_turf, targetted_turf)), check_path(xeno_turf, targetted_turf, PASS_THROW))
+
+	var/start_turf = locate(xeno_turf.x, xeno_turf.y, A.z)
+	start_turf = get_step(start_turf, get_cardinal_dir(xeno_owner, A))
+
+	turf_line = get_traversal_line(get_step(start_turf, get_cardinal_dir(xeno_owner, A)), check_path(start_turf, targetted_turf, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/i = 1 to length(turf_line))
 		var/turf/turf_from_line = turf_line[i]
@@ -675,10 +680,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	var/list/mob/living/carbon/human/human_mobs = list()
 	for(var/turf/turf_from_line AS in turf_line)
-		for(var/atom/movable/target AS in turf_from_line.contents)
-			if(!ishuman(target))
-				continue
-			var/mob/living/carbon/human/human_mob = target
+		for(var/mob/living/carbon/human/human_mob in turf_from_line.contents)
 			if(human_mob.stat == DEAD)
 				continue
 			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
@@ -691,7 +693,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		for(var/mob/living/carbon/human/human_mob in human_mobs)
 			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_post_throw))
 			ADD_TRAIT(human_mob, TRAIT_IMMOBILE, THROW_TRAIT) // Given that this throw will be slow compared to other abilities, we do not want humans to move DURING it.
-			human_mob.throw_at(turf_line[1], 6, 2, xeno_owner, TRUE)
+			human_mob.throw_at(turf_line[1], OPPRESSOR_ADBDUCT_RANGE, 2, xeno_owner, TRUE)
 			INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE, 0, owner)
 		xeno_owner.slowdown(0.3 * last_known_multiplier)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE, MEDIUM_SOUND_RANGE)
@@ -728,6 +730,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "abduct_hook"
+	anchored = TRUE
 
 /obj/effect/xeno/abduct_warning/Initialize(mapload)
 	. = ..()

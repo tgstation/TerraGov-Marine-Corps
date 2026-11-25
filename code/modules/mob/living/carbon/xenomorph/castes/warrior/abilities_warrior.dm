@@ -234,7 +234,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Dead")
 		return FALSE
-	if(get_dist_euclidean(living_target, owner) > starting_lunge_distance)
+	if(get_dist_euclidean_2d(living_target, owner) > starting_lunge_distance)
 		if(!silent)
 			owner.balloon_alert(owner, "Too far")
 		return FALSE

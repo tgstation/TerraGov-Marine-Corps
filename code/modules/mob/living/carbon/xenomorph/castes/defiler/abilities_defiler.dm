@@ -564,12 +564,17 @@
 		return TRUE
 	if(get_dist(current, target_turf) > TENTACLE_ABILITY_RANGE)
 		return FALSE
+	if(current.z != target_turf.z)
+		current = locate(current.x, current.y, target_turf.z)
 	current = get_step_towards(current, target_turf)
-	while((current != target_turf))
+
+	var/step_count = 0
+	while((current != target_turf) && step_count <= TENTACLE_ABILITY_RANGE)
 		if(current.density)
 			if(!silent)
 				target.balloon_alert(owner, "can't reach!")
 			return FALSE
+		step_count ++
 		current = get_step_towards(current, target_turf)
 
 
