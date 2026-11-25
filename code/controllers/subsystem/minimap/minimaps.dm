@@ -490,74 +490,122 @@ SUBSYSTEM_DEF(minimaps)
 	var/y_pixel = y_coord % 32 - 3
 	screen_loc = "[x_tile]:[x_pixel],[y_tile]:[y_pixel]"
 
-/atom/movable/screen/minimap_extras
+/atom/movable/screen/minimap_z_control
+	icon = 'icons/mob/screen_ai.dmi'
 	plane = ABOVE_HUD_PLANE
-	/// minimap action this extra button is owned by
-	var/datum/action/minimap/minimap_action
+	///The controls this object is part of
+	var/datum/minimap_z_controls/controls
 
-/atom/movable/screen/minimap_extras/Destroy()
-	minimap_action = null
+/atom/movable/screen/minimap_z_control/Destroy()
+	controls = null
 	return ..()
 
-/atom/movable/screen/minimap_extras/minimap_z_indicator
-	icon = 'icons/mob/screen_ai.dmi'
+/atom/movable/screen/minimap_z_control/indicator
 	icon_state = "zindicator"
 	screen_loc = ui_ai_floor_indicator
 
-///sets the currently indicated relative floor
-/atom/movable/screen/minimap_extras/minimap_z_indicator/proc/set_indicated_z(newz)
-	if(!newz)
-		return
-	var/list/linked_zs = SSmapping.get_connected_levels(newz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(newz)
-	var/text = "Floor<br/>[relativez]"
-	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
+/atom/movable/screen/minimap_z_control/button
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+	///UP or DOWN, which way we change the current z-level by being pressed
+	var/direction
 
-/atom/movable/screen/minimap_extras/minimap_z_up
+/atom/movable/screen/minimap_z_control/button/Click(location, control, params)
+	flick("[icon_state]pressed", src)
+	controls.step_z(direction)
+
+/atom/movable/screen/minimap_z_control/button/up
 	name = "go up"
-	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "up"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
+	direction = UP
 
-/atom/movable/screen/minimap_extras/minimap_z_up/Click(location,control,params)
-	flick("uppressed",src)
-	if(!minimap_action.map)
-		return
-	var/currentz = minimap_action.map.tracked_z
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == length(linked_zs))
-		return //topmost z with nothing above. we still play effects just dont do anything
-	minimap_action.change_z_shown(++currentz)
-
-
-/atom/movable/screen/minimap_extras/minimap_z_down
+/atom/movable/screen/minimap_z_control/button/down
 	name = "go down"
-	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "down"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
+	direction = DOWN
 
-/atom/movable/screen/minimap_extras/minimap_z_down/Click(location,control,params)
-	flick("downpressed",src)
-	if(!minimap_action.map)
+/datum/minimap_z_controls
+	///Shows which floor the minimap is showing
+	var/atom/movable/screen/minimap_z_control/indicator/indicator
+	///Button to show the z level above
+	var/atom/movable/screen/minimap_z_control/button/up/up_button
+	///Button to show the z level below
+	var/atom/movable/screen/minimap_z_control/button/down/down_button
+	///Invoked with the z level to show when a viewer tries to view another one
+	var/datum/callback/change_z
+	///The current z level the minimap is showing
+	var/shown_z
+	///The mobs looking at the minimap
+	var/list/mob/viewers = list()
+
+/datum/minimap_z_controls/New(datum/callback/change_z)
+	src.change_z = change_z
+	indicator = new
+	indicator.controls = src
+	up_button = new
+	up_button.controls = src
+	down_button = new
+	down_button.controls = src
+
+/datum/minimap_z_controls/Destroy(force)
+	for(var/mob/viewer AS in viewers)
+		hide_from(viewer)
+	QDEL_NULL(indicator)
+	QDEL_NULL(up_button)
+	QDEL_NULL(down_button)
+	change_z = null
+	return ..()
+
+/// Starts showing the minimap controls to someone, with the passed in z-level
+/datum/minimap_z_controls/proc/show_to(mob/viewer, z_level)
+	if(!(viewer in viewers))
+		viewers += viewer
+		RegisterSignal(viewer, COMSIG_LIVING_SCROLL_LOOK, PROC_REF(on_scroll_look))
+		RegisterSignal(viewer, COMSIG_QDELETING, PROC_REF(hide_from))
+	set_shown_z(z_level)
+
+///Stops showing the minimap controls to someone
+/datum/minimap_z_controls/proc/hide_from(mob/viewer)
+	SIGNAL_HANDLER
+	if(!(viewer in viewers))
 		return
-	var/currentz = minimap_action.map.tracked_z
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
+	viewers -= viewer
+	UnregisterSignal(viewer, list(COMSIG_LIVING_SCROLL_LOOK, COMSIG_QDELETING))
+	viewer.client?.screen -= list(indicator, up_button, down_button)
+
+/// Controls are only shown if there's actually other z-levels to show
+/datum/minimap_z_controls/proc/set_shown_z(z_level)
+	shown_z = z_level
+	var/list/levels = get_levels()
+	var/has_other_levels = length(levels) > 1
+	if(has_other_levels)
+		indicator.maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>Floor<br/>[levels.Find(shown_z)]</div>")
+	for(var/mob/viewer AS in viewers)
+		if(has_other_levels)
+			viewer.client?.screen += list(indicator, up_button, down_button)
+		else
+			viewer.client?.screen -= list(indicator, up_button, down_button)
+
+///Returns the z levels stacked with the one being shown, from the lowest to the highest
+/// Returns the amount of z-levels that are in this multi-z stack
+/datum/minimap_z_controls/proc/get_levels()
+	if(!shown_z)
+		return list()
+	return sort_list(SSmapping.get_connected_levels(shown_z), /proc/cmp_numeric_asc)
+
+/// Tries to change the z-level shown either above or below
+/datum/minimap_z_controls/proc/step_z(direction)
+	var/list/levels = get_levels()
+	var/new_floor = levels.Find(shown_z) + (direction == UP ? 1 : -1)
+	if(new_floor < 1 || new_floor > length(levels))
 		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == 1)
-		return //bottommost z with nothing below. we still play effects just dont do anything
-	minimap_action.change_z_shown(--currentz)
+	change_z.Invoke(levels[new_floor])
+
+/// Overrides the scroll look up/down to instead modify the minimap's view
+/datum/minimap_z_controls/proc/on_scroll_look(mob/living/source, direction)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(step_z), direction)
+	return COMPONENT_SCROLL_LOOK_HANDLED
 
 /**
  * Action that gives the owner access to the minimap pool
@@ -580,24 +628,15 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/locator_override
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/minimap_extras/minimap_z_indicator/z_indicator
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/minimap_extras/minimap_z_up/z_up
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/minimap_extras/minimap_z_down/z_down
+	///The floor indicator and buttons shown with the map when it has z levels above or below it
+	var/datum/minimap_z_controls/z_controls
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
 /datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
 	. = ..()
 	locator = new
-	z_indicator = new
-	z_indicator.minimap_action = src
-	z_up = new
-	z_up.minimap_action = src
-	z_down = new
-	z_down.minimap_action = src
+	z_controls = new(CALLBACK(src, PROC_REF(change_z_shown)))
 
 	if(new_minimap_flags)
 		minimap_flags = new_minimap_flags
@@ -608,9 +647,7 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	locator_override = null
 	QDEL_NULL(locator)
-	QDEL_NULL(z_indicator)
-	QDEL_NULL(z_up)
-	QDEL_NULL(z_down)
+	QDEL_NULL(z_controls)
 	return ..()
 
 /datum/action/minimap/action_activate()
@@ -636,19 +673,14 @@ SUBSYSTEM_DEF(minimaps)
 			return FALSE
 		owner.client.screen += map
 		owner.client.screen += locator
-		if(length(SSmapping.get_connected_levels(tracking.z)) > 1)
-			owner.client.screen += z_indicator
-			owner.client.screen += z_up
-			owner.client.screen += z_down
+		z_controls.show_to(owner, map.tracked_z)
 		locator.update(tracking)
 		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
 	else
+		z_controls.hide_from(owner)
 		if(owner.client)
 			owner.client.screen -= map
 			owner.client.screen -= locator
-			owner.client.screen -= z_indicator
-			owner.client.screen -= z_up
-			owner.client.screen -= z_down
 		map.stop_polling -= owner
 		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	minimap_displayed = force_state
@@ -716,7 +748,7 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	var/atom/movable/tracking = locator_override ? locator_override : M
 	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
-	z_indicator.set_indicated_z(default_overwatch_level ? default_overwatch_level : tracking.z)
+	z_controls.set_shown_z(default_overwatch_level ? default_overwatch_level : tracking.z)
 	if(default_overwatch_level)
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
@@ -757,30 +789,17 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client?.screen -= map
-	var/old_map_z = map?.tracked_z
 	if(map)
 		UnregisterSignal(map, COMSIG_QDELETING)
 	map = null
 
 	var/new_z_shown = default_overwatch_level ? default_overwatch_level : newz
-	if(minimap_displayed)
-		var/new_z_is_multiz = length(SSmapping.get_connected_levels(new_z_shown)) > 1
-		var/old_z_is_multiz = old_map_z ? length(SSmapping.get_connected_levels(old_map_z)) > 1 : FALSE
-		if(old_z_is_multiz != new_z_is_multiz)
-			if(new_z_is_multiz)
-				owner.client.screen += z_indicator
-				owner.client.screen += z_up
-				owner.client.screen += z_down
-			else
-				owner.client.screen -= z_indicator
-				owner.client.screen -= z_up
-				owner.client.screen -= z_down
-
-	z_indicator.set_indicated_z(new_z_shown)
+	z_controls.set_shown_z(new_z_shown)
 	if(!SSminimaps.minimaps_by_z["[new_z_shown]"] || !SSminimaps.minimaps_by_z["[new_z_shown]"].hud_image)
 		if(minimap_displayed)
 			owner.client?.screen -= locator
 			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
+			z_controls.hide_from(owner)
 			minimap_displayed = FALSE
 		return
 	set_map(new_z_shown)
@@ -788,5 +807,5 @@ SUBSYSTEM_DEF(minimaps)
 		if(owner.client)
 			owner.client.screen += map
 		else
+			z_controls.hide_from(owner)
 			minimap_displayed = FALSE
-
