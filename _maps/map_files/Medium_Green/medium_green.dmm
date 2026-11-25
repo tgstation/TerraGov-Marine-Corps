@@ -2433,9 +2433,13 @@
 	},
 /area/mediumgreen/outside/building/southeast/warehouse)
 "aiX" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/four_tile_ver{
+	id = "9"
+	},
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "aiY" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -3411,15 +3415,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/northwest)
 "amG" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/corpsespawner/syndicatecommando,
-/obj/effect/ai_node,
-/obj/machinery/light/red{
-	dir = 8;
-	brightness = 6
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "amH" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -3805,10 +3802,13 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/lz2/building/sec_n)
 "anX" = (
-/obj/structure/table/black,
-/obj/machinery/computer/camera,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock_autoname,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mediumgreen/outside/building/engineering/inner/disk)
 "anY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/concrete,
@@ -4657,9 +4657,6 @@
 /obj/structure/prop/mainship/sensor_computer2/black,
 /turf/open/floor/podhatch/floor,
 /area/mediumgreen/outside/lz1/around/engi)
-"ara" = (
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "arb" = (
 /obj/structure/prop/mainship/generator/shieldgen,
 /obj/effect/urban/decal/warning{
@@ -6548,9 +6545,6 @@
 /area/mediumgreen/outside/z1/southeast)
 "ayi" = (
 /turf/open/floor/tile/darkish,
-/area/mediumgreen/outside/building/engineering/inner/powerroom/upper)
-"ayj" = (
-/turf/open/floor/plating,
 /area/mediumgreen/outside/building/engineering/inner/powerroom/upper)
 "ayk" = (
 /obj/effect/landmark/weed_node,
@@ -10106,10 +10100,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/tile/darkgreen,
 /area/mediumgreen/outside/building/southeast/containment/small)
-"aLq" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "aLr" = (
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/southeast/maintenance)
@@ -11665,10 +11655,6 @@
 /obj/item/armor_module/module/mimir_environment_protection/mark1,
 /turf/open/floor/mainship,
 /area/mediumgreen/outside/building/neotree/z1/canteen)
-"aRc" = (
-/obj/effect/spawner/random/machinery/random_broken_computer/intel,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "aRd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11704,9 +11690,6 @@
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/southwest)
-"aRj" = (
-/turf/closed/wall/prison,
-/area/mediumgreen/outside/z1/northeast)
 "aRk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -14512,14 +14495,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/road)
-"bbe" = (
-/obj/effect/mapping_helpers/airlock_autoname,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/four_tile_ver{
-	id = "9"
-	},
-/turf/open/floor/plating,
-/area/mediumgreen/outside/building/engineering/inner/powerroom/upper)
 "bbf" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/arrow_cw{
 	dir = 4
@@ -16076,11 +16051,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
-"bfq" = (
-/obj/effect/landmark/corpsespawner/syndicatecommando,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
 "bfr" = (
 /obj/structure/flora/jungle/grass,
 /obj/effect/landmark/weed_node,
@@ -17324,13 +17294,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi/scout)
-"bkg" = (
-/obj/structure/bed/urban/chairs/black{
-	dir = 4
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
 "bkh" = (
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /obj/effect/landmark/weed_node,
@@ -17639,6 +17602,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/road)
+"blt" = (
+/turf/closed/wall/prison,
+/area/mediumgreen/outside/building/syndi/lz)
 "blu" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/prison,
@@ -18849,6 +18815,9 @@
 	dir = 4
 	},
 /area/mediumgreen/outside/building/neotree/z1/security)
+"bqi" = (
+/turf/closed/gm,
+/area/mediumgreen/outside/building/syndi/lz)
 "bqj" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
@@ -20283,6 +20252,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
+"bvj" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/syndicatecommando,
+/obj/effect/ai_node,
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bvk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -22726,6 +22705,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/hallway_w)
+"bDT" = (
+/obj/machinery/door/airlock/mainship/security/free_access{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/mediumgreen/outside/building/syndi/lz)
 "bDU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -22783,6 +22768,10 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/caves/z1/north)
+"bEc" = (
+/obj/structure/prop/nt_computer,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
 "bEd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
@@ -24867,6 +24856,10 @@
 /obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/warehouse)
+"bLN" = (
+/obj/structure/prop/nt_computer/rack,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
 "bLO" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark,
@@ -25863,14 +25856,6 @@
 	},
 /turf/open/floor/roof/asphalt,
 /area/mediumgreen/outside/z3/southeast)
-"bPn" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bPo" = (
-/obj/effect/ai_node,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bPp" = (
 /obj/structure/catwalk,
 /obj/effect/ai_node,
@@ -25918,6 +25903,10 @@
 	},
 /turf/open/floor/prison,
 /area/mediumgreen/outside/building/neotree/z2/upper)
+"bPx" = (
+/obj/structure/prop/nt_computer/recorder,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
 "bPy" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -26276,24 +26265,16 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
-"bQD" = (
-/obj/machinery/light/red{
-	dir = 8;
-	brightness = 6
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
-"bQE" = (
-/obj/machinery/light/red{
-	dir = 4;
-	brightness = 6
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bQF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/urban/tile/tileblack,
 /area/mediumgreen/outside/building/neotree/z1/staircase)
+"bQG" = (
+/obj/machinery/door/airlock/mainship/security/free_access{
+	dir = 2
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bQH" = (
 /obj/structure/cable,
 /obj/structure/cable/layer1,
@@ -26645,33 +26626,11 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/mediumgreen/outside/z1/northeast)
-"bRG" = (
-/obj/machinery/door/airlock/mainship/security/free_access{
-	dir = 8
-	},
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/northeast)
-"bRH" = (
-/obj/machinery/door/airlock/mainship/security/free_access{
-	dir = 8
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
-"bRI" = (
-/obj/machinery/door/airlock/mainship/security/free_access{
-	dir = 2
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bRJ" = (
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /obj/structure/prop/mainship/telecomms/relay,
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi/scout)
-"bRK" = (
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bRL" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/prop/computer{
@@ -26681,10 +26640,6 @@
 	dir = 1
 	},
 /area/mediumgreen/outside/lz2/building/sec_s)
-"bRM" = (
-/obj/effect/landmark/corpsespawner/syndicatesoldier/burst,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bRN" = (
 /obj/structure/prop/mainship/vat/broken/bloody,
 /turf/open/floor/mainship/sterile/side{
@@ -26701,42 +26656,9 @@
 /obj/structure/prop/templedoor,
 /turf/open/floor/wood/variable,
 /area/mediumgreen/caves/z3/arena)
-"bRQ" = (
-/obj/structure/prop/mainship/telecomms/bus,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
-"bRR" = (
-/obj/structure/prop/mainship/telecomms/relay,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
-"bRT" = (
-/obj/structure/prop/nt_computer,
+"bRS" = (
 /turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRU" = (
-/obj/structure/prop/nt_computer/rack,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRV" = (
-/obj/structure/prop/nt_computer/recorder,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRW" = (
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRX" = (
-/obj/effect/landmark/corpsespawner/syndicatesoldier/burst,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRY" = (
-/obj/effect/landmark/corpsespawner/syndicatecommando,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bRZ" = (
-/obj/structure/table/black,
-/obj/item/t_scanner,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
+/area/mediumgreen/outside/building/syndi/lz)
 "bSa" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/prop/computer{
@@ -26759,28 +26681,12 @@
 	dir = 4
 	},
 /area/mediumgreen/outside/lz2/building/sec_n)
-"bSc" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bSd" = (
 /obj/structure/prop/mainship/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/lz2/building/roof)
-"bSe" = (
-/obj/structure/table/black,
-/obj/machinery/prop/computer{
-	dir = 4
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bSf" = (
-/obj/structure/table/black,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
 "bSg" = (
 /obj/structure/prop/mainship/railing{
 	dir = 9
@@ -26818,42 +26724,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/mediumgreen/outside/building/neotree/z3/engi_storage)
-"bSm" = (
-/obj/machinery/computer/som{
-	name = "\improper Syndicate computer"
-	},
-/obj/machinery/light/blue{
-	dir = 8
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bSn" = (
-/obj/machinery/computer/intel_computer,
-/obj/item/toy/syndicateballoon{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/machinery/light/blue{
-	dir = 4
-	},
-/turf/open/floor/mainship/tcomms,
-/area/mediumgreen/outside/z1/northeast)
-"bSo" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = -2;
-	pixel_x = 0
-	},
-/obj/item/storage/toolbox/syndicate{
-	pixel_x = 0;
-	pixel_y = 7
-	},
-/obj/machinery/light/red{
-	dir = 4;
-	brightness = 6
-	},
-/turf/open/floor/prison/redfloor,
-/area/mediumgreen/outside/z1/northeast)
 "bSp" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -26878,6 +26748,21 @@
 "bSs" = (
 /turf/open/floor/mainship/research,
 /area/mediumgreen/outside/building/neotree/z1/security)
+"bSt" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bSu" = (
+/obj/effect/landmark/corpsespawner/syndicatesoldier/burst,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bSv" = (
+/obj/machinery/light/red{
+	dir = 8;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bSw" = (
 /obj/effect/acid_hole,
 /turf/closed/wall,
@@ -27006,20 +26891,53 @@
 "bSP" = (
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree)
+"bSQ" = (
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bSR" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
 "bSS" = (
 /turf/open/floor/mainship/research,
 /area/mediumgreen/outside/building/neotree/z3/checkpoint)
+"bST" = (
+/obj/machinery/door/airlock/mainship/security/free_access{
+	dir = 8
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bSU" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/research,
 /area/mediumgreen/outside/building/neotree/z3/checkpoint)
+"bSV" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bSW" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree)
+"bSX" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bSY" = (
+/obj/effect/landmark/corpsespawner/syndicatesoldier/burst,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bSZ" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bTa" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/research,
@@ -27047,6 +26965,15 @@
 /obj/effect/decal/cleanable/liquid_fuel/xfuel,
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/storage_s)
+"bTf" = (
+/obj/machinery/computer/som{
+	name = "\improper Syndicate computer"
+	},
+/obj/machinery/light/blue{
+	dir = 8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
 "bTg" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -27159,6 +27086,27 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow,
 /turf/open/floor/floorthree,
 /area/mediumgreen/outside/building/neotree/z3/hallway)
+"bTx" = (
+/obj/effect/landmark/corpsespawner/syndicatecommando,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bTy" = (
+/obj/machinery/computer/intel_computer,
+/obj/item/toy/syndicateballoon{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/machinery/light/blue{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bTz" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bTA" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -28673,6 +28621,57 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/neotree)
+"bYd" = (
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYe" = (
+/obj/structure/table/black,
+/obj/item/t_scanner,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYf" = (
+/obj/structure/prop/mainship/telecomms/bus,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYg" = (
+/obj/structure/prop/mainship/telecomms/relay,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYh" = (
+/obj/effect/landmark/corpsespawner/syndicatecommando,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYi" = (
+/obj/structure/bed/urban/chairs/black{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYj" = (
+/obj/structure/table/black,
+/obj/machinery/prop/computer{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYk" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = -2;
+	pixel_x = 0
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/machinery/light/red{
+	dir = 4;
+	brightness = 6
+	},
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 "bYl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -28701,6 +28700,24 @@
 /obj/effect/spawner/random/misc/structure/closet,
 /turf/open/floor/plating/ground/concrete,
 /area/mediumgreen/outside/neotree)
+"bYq" = (
+/obj/structure/table/black,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYr" = (
+/obj/structure/table/black,
+/obj/machinery/computer/camera,
+/turf/open/floor/mainship/tcomms,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYs" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
+"bYt" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/prison/redfloor,
+/area/mediumgreen/outside/building/syndi/lz)
 
 (1,1,1) = {"
 apJ
@@ -64817,14 +64834,14 @@ aDj
 aDj
 biN
 aDj
-aRj
-aRj
-aRj
-aRj
-aRj
-aRj
-aRj
-aRj
+blt
+blt
+blt
+blt
+blt
+blt
+blt
+blt
 aDj
 biN
 aDj
@@ -65009,14 +65026,14 @@ aDj
 aDj
 biN
 aDj
-aRj
-bSf
-bfq
-bSm
-bRW
-bRW
-bRT
-aRj
+blt
+bYq
+bYh
+bTf
+bRS
+bRS
+bEc
+blt
 aDj
 bRF
 bRE
@@ -65201,14 +65218,14 @@ aDj
 aDj
 biN
 aDj
-aRj
-anX
-bkg
-bRY
-bPn
-aiX
-bRU
-aRj
+blt
+bYr
+bYi
+bTx
+bSR
+bSt
+bLN
+blt
 aDj
 biN
 aDj
@@ -65393,14 +65410,14 @@ aDj
 aDj
 byJ
 aDj
-aRj
-anX
-bSe
-bSn
-bRW
-bRX
-bRV
-aRj
+blt
+bYr
+bYj
+bTy
+bRS
+bSu
+bPx
+blt
 aDj
 biN
 aDj
@@ -65585,14 +65602,14 @@ aDj
 bnh
 aFa
 aDj
-aRj
-aRj
-aRj
-aRj
-bRH
-aRj
-aDj
-aDj
+blt
+blt
+blt
+blt
+bST
+blt
+bqi
+bqi
 aDj
 biN
 aDj
@@ -65777,14 +65794,14 @@ byJ
 aFa
 aDj
 aDj
-aRj
-aLq
-bRM
-ara
-bPo
-bQD
-bRI
-amG
+blt
+bYs
+bSY
+bTz
+bSV
+bSv
+bQG
+bvj
 aDj
 biN
 biN
@@ -65969,14 +65986,14 @@ aFa
 aDj
 aDj
 aDj
-aRj
-aRc
-bSc
-ara
-bSc
-bQE
-aDj
-bRG
+blt
+bYt
+bSX
+bYd
+bSX
+bSQ
+bqi
+bDT
 aDj
 bsT
 aDj
@@ -66161,13 +66178,13 @@ aFa
 aDj
 aDj
 aDj
-aRj
-aRj
-bSo
-bRZ
-bRM
-aRj
-aDj
+blt
+blt
+bYk
+bYe
+bSY
+blt
+bqi
 biN
 biN
 biN
@@ -66354,12 +66371,12 @@ bJn
 bJl
 bJk
 aDj
-aRj
-aRj
-bRQ
-bSc
-aDj
-aDj
+blt
+blt
+bYf
+bSX
+bqi
+bqi
 boc
 biN
 boc
@@ -66547,10 +66564,10 @@ bsT
 bJl
 aDj
 aDj
-aRj
-bRR
-bRK
-aDj
+blt
+bYg
+bSZ
+bqi
 baP
 bRF
 aDj
@@ -66739,10 +66756,10 @@ aDj
 bJm
 boc
 aDj
-aDj
-aRj
-aRj
-aDj
+bqi
+blt
+blt
+bqi
 biN
 aDj
 aDj
@@ -99778,11 +99795,11 @@ ayz
 ayz
 ayz
 ayz
-ayz
-ayj
-ayj
-ayj
-bbe
+ahY
+amG
+amG
+amG
+aiX
 ahY
 ahY
 ahY
@@ -99970,7 +99987,7 @@ azi
 ayz
 bGW
 ayG
-ayA
+anX
 bEo
 bxR
 bEo
@@ -100162,7 +100179,7 @@ azi
 ayz
 ayG
 bxV
-ayE
+amG
 alh
 bMr
 bhG
@@ -100354,7 +100371,7 @@ azj
 ayz
 ayG
 ayJ
-ayz
+ahY
 alh
 bMr
 bGQ
@@ -100546,7 +100563,7 @@ azk
 ayA
 ayG
 bxW
-ayz
+ahY
 bxH
 bMr
 ayb
@@ -100738,7 +100755,7 @@ azm
 ayE
 bGX
 ayK
-ayz
+ahY
 alh
 bMr
 ayb
@@ -100930,7 +100947,7 @@ azm
 ayO
 ayO
 ayO
-ayz
+ahY
 alh
 bMr
 abB
