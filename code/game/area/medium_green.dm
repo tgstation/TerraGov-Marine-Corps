@@ -5,26 +5,6 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = TRUE
 
-//if this doesnt work i dont know
-/area/mediumgreen/outside/telecomms/z1
-	name = "Telecomms"
-	icon_state = "tcomsatcham"
-	outside = FALSE
-	requires_power = FALSE
-	area_flags = NO_DROPPOD
-/area/mediumgreen/outside/telecomms/z2
-	name = "Telecomms"
-	icon_state = "tcomsatcham"
-	outside = FALSE
-	requires_power = FALSE
-	area_flags = NO_DROPPOD
-/area/mediumgreen/outside/telecomms/z3
-	name = "Telecomms"
-	icon_state = "tcomsatcham"
-	outside = FALSE
-	requires_power = FALSE
-	area_flags = NO_DROPPOD
-
 
 /area/mediumgreen/outside/z1
 	name = "Lower Rain Forest"
@@ -162,52 +142,52 @@
 	area_flags = CANNOT_NUKE
 
 /area/mediumgreen/caves/z1
-	name = "Deep leaves"
+	name = "Deep Leaves"
 
 /area/mediumgreen/caves/z1/northeast
-	name = "Lower north eastern caves"
+	name = "Lower North Eastern Caves"
 	icon_state = "northeast"
 
 /area/mediumgreen/caves/z1/northeast/shallow
-	name = "Shallow lower north eastern caves"
+	name = "Shallow Lower North Eastern Caves"
 
 /area/mediumgreen/caves/z1/north
-	name = "Lower Northern caves"
+	name = "Lower Northern Caves"
 	icon_state = "north"
 
 /area/mediumgreen/caves/z1/northwest
-	name = "Lower Eastern caves"
+	name = "Lower Eastern Caves"
 	icon_state = "northwest"
 
 
 /area/mediumgreen/caves/z1/west
-	name = "Lower western caves"
+	name = "Lower Western Caves"
 	icon_state = "west"
 
 /area/mediumgreen/caves/z1/central
-	name = "Lower caves"
+	name = "Lower Caves"
 	icon_state = "central"
 
 /area/mediumgreen/caves/z1/east
-	name = "Lower eastern caves"
+	name = "Lower Eastern Caves"
 	icon_state = "east"
 
 /area/mediumgreen/caves/z1/east/shallow
-	name = "Shallow Lower eastern caves"
+	name = "Shallow Lower Eastern Caves"
 
 /area/mediumgreen/caves/z1/southwest
-	name = "Lower south southwestern caves"
+	name = "Lower South southwestern Caves"
 
 /area/mediumgreen/caves/z1/south
-	name = "Lower southern caves"
+	name = "Lower Southern Caves"
 	icon_state = "south"
 
 /area/mediumgreen/caves/z1/southeast
-	name = "Lower southeastern caves"
+	name = "Lower Southeastern Caves"
 	icon_state = "southeast"
 
 /area/mediumgreen/caves/z1/southeast/shallow
-	name = "Shallow lower southeastern caves"
+	name = "Shallow Lower Southeastern Caves"
 
 
 
@@ -215,22 +195,22 @@
 	name = "Deep leaves"
 
 /area/mediumgreen/caves/z2/northeast
-	name = "North eastern caves"
+	name = "North Eastern Caves"
 	icon_state = "northeast"
 
 /area/mediumgreen/caves/z2/northeast/shallow
-	name = "Shallow north eastern caves"
+	name = "Shallow North Eastern Caves"
 
 /area/mediumgreen/caves/z2/north
-	name = "Northern caves"
+	name = "Northern Caves"
 	icon_state = "north"
 
 /area/mediumgreen/caves/z2/northwest
-	name = "Eastern caves"
+	name = "Eastern Caves"
 	icon_state = "northwest"
 
 /area/mediumgreen/caves/z2/west
-	name = "Western caves"
+	name = "Western Caves"
 	icon_state = "west"
 
 /area/mediumgreen/caves/z2/central
@@ -238,28 +218,28 @@
 	icon_state = "central"
 
 /area/mediumgreen/caves/z2/east
-	name = "Eastern caves"
+	name = "Eastern Caves"
 	icon_state = "east"
 
 /area/mediumgreen/caves/z2/east/shallow
-	name = "Shallow eastern caves"
+	name = "Shallow Eastern Caves"
 
 /area/mediumgreen/caves/z2/southwest
-	name = "South southwestern caves"
+	name = "South Southwestern Caves"
 
 /area/mediumgreen/caves/z2/south
-	name = "Southern caves"
+	name = "Southern Caves"
 	icon_state = "south"
 
 /area/mediumgreen/caves/z2/southeast
-	name = "Southeastern caves"
+	name = "Southeastern Caves"
 	icon_state = "southeast"
 
 /area/mediumgreen/caves/z2/southeast/shallow
-	name = "Shallow southeastern caves"
+	name = "Shallow Southeastern Caves"
 
 /area/mediumgreen/caves/z2/catwalk
-	name = "Cave catwalk"
+	name = "Cave Catwalk"
 
 
 /area/mediumgreen/caves/z3/Neotree
@@ -282,7 +262,7 @@
 	name = "Western Neo-tree"
 
 /area/mediumgreen/caves/z3/arena
-	name = "Arena of destiny"
+	name = "Arena of Destiny"
 	icon_state = "party"
 	always_unpowered = TRUE
 	area_flags = CANNOT_NUKE
@@ -314,13 +294,13 @@
 	always_unpowered = FALSE
 
 /area/mediumgreen/outside/lz1/around/engi
-	name = "Northern Landing Zone engineering"
+	name = "Northern Landing Zone Engineering"
 
 /area/mediumgreen/outside/lz1/around/medbay
 	name = "Northern Landing Zone Medbay"
 
 /area/mediumgreen/outside/lz2/around
-	icon_state = "shuttle"
+	icon_state = "Shuttle"
 	area_flags = NEAR_FOB
 	always_unpowered = FALSE
 
@@ -333,7 +313,7 @@
 
 
 /area/mediumgreen/outside/lz2/building/road
-	name = "Expeditionary Outpost road"
+	name = "Expeditionary Outpost Road"
 
 /area/mediumgreen/outside/lz2/building/engi
 	name = "Expeditionary Outpost Engineering Storage"
@@ -362,7 +342,7 @@
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/mediumgreen/outside/lz2/building/breakroom
-	name = "Expeditionary Outpost breakroom"
+	name = "Expeditionary Outpost Breakroom"
 
 /area/mediumgreen/outside/lz2/building/roof
 	name = "Expeditionary Outpost Roof"
@@ -370,7 +350,7 @@
 
 
 /area/mediumgreen/outside/building
-	name = "unknown area?"
+	name = "unknown Area?"
 	icon_state = "blue"
 	ceiling = CEILING_METAL
 	outside = FALSE
@@ -392,7 +372,7 @@
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/southeast/containment/vault
-	name = "Artifact vault"
+	name = "Artifact Vault"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/southeast/security
@@ -436,25 +416,25 @@
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/mediumgreen/outside/building/southeast/crashedbuilding
-	name = "Research Outpost temporary artifact storage"
+	name = "Research Outpost Temporary Artifact Storage"
 
 /area/mediumgreen/outside/building/southeast/breakroom
-	name = "Research Outpost break tent"
+	name = "Research Outpost Break Tent"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/southeast/laser
-	name = "Research Outpost optics Research room"
+	name = "Research Outpost Optics Research Room"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/southeast/ship
-	name = "Engineer ship"
+	name = "Engineer Ship"
 	minimap_color = MINIMAP_AREA_COMMAND_CAVE
 	icon_state = "supplypod_flight"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	//ceiling is on purpose, alien shit = no radio
 
 /area/mediumgreen/outside/building/southeast/ship/crashzone
-	name = "Ship crash zone"
+	name = "Ship Crash Zone"
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_COLONY
 	ceiling = CEILING_NONE
@@ -462,7 +442,7 @@
 
 
 /area/mediumgreen/outside/building/southeast/intel
-	name = "Research Outpost intelligence outpost"
+	name = "Intelligence Outpost"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_COLONY
 
@@ -470,14 +450,14 @@
 //neofibre resarch Facility (tower of hell)
 
 /area/mediumgreen/outside/neotree
-	name = "Neo-fibre Research courtyard"
+	name = "Neo-fibre Research Courtyard"
 
 /area/mediumgreen/outside/neotree/tower
-	name = "guard tower"
+	name = "Guard Tower"
 	ceiling = CEILING_METAL
 	area_flags = CANNOT_NUKE
 /area/mediumgreen/outside/neotree/tower2
-	name = "guard tower"
+	name = "Guard Tower"
 	ceiling = CEILING_METAL
 	area_flags = CANNOT_NUKE
 
@@ -505,66 +485,66 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/neotree/z1/backroom
-	name = "Neo-fibre Research Facility backroom"
+	name = "Neo-fibre Research Facility Backroom"
 
 /area/mediumgreen/outside/building/neotree/z1/security
-	name = "Neo-fibre Research Facility security"
+	name = "Neo-fibre Research Facility Security"
 	minimap_color = MINIMAP_AREA_SEC
 
 /area/mediumgreen/outside/building/neotree/z1/storage
-	name = "Neo-fibre Research Facility temporary storage"
+	name = "Neo-fibre Research Facility Temporary Storage"
 
 /area/mediumgreen/outside/building/neotree/z1/canteen
-	name = "Neo-fibre Research Facility lower break room"
+	name = "Neo-fibre Research Facility Lower Break Room"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/neotree/z1/beds
-	name = "Neo-fibre Research Facility quarters"
+	name = "Neo-fibre Research Facility Quarters"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mediumgreen/outside/building/neotree/z1/restroom
-	name = "Neo-fibre Research Facility restroom"
+	name = "Neo-fibre Research Facility Restroom"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/mediumgreen/outside/building/neotree/z1/maint
-	name = "Neo-fibre Research Facility maintanance corridor"
+	name = "Neo-fibre Research Facility Maintanance Corridor"
 
 /area/mediumgreen/outside/building/neotree/z1/ladder
-	name = "Neo-fibre Research Facility maintanance ladder"
+	name = "Neo-fibre Research Facility Maintanance Ladder"
 	minimap_color = MINIMAP_AREA_PREP
 
 /area/mediumgreen/outside/building/neotree/z1/lobby
-	name = "Neo-fibre Research Facility entrance hallway"
+	name = "Neo-fibre Research Facility Entrance hallway"
 
 /area/mediumgreen/outside/building/neotree/z1/staircase
-	name = "Neo-fibre Research Facility underground stairway"
+	name = "Neo-fibre Research Facility Underground Stairway"
 
 /area/mediumgreen/outside/building/neotree/z2/intel
-	name = "Neo-fibre Research Facility intelligence office"
+	name = "Neo-fibre Research Facility Intelligence Office"
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/mediumgreen/outside/building/neotree/z2/lower
-	name = "Neo-fibre Research Facility middle floor construction area"
+	name = "Neo-fibre Research Facility Middle Floor Construction Area"
 
 /area/mediumgreen/outside/building/neotree/z2/sec
-	name = "Neo-fibre Research Facility security construction area"
+	name = "Neo-fibre Research Facility Security Construction Area"
 
 /area/mediumgreen/outside/building/neotree/z2/upper
-	name = "Neo-fibre Research Facility middle floor construction area"
+	name = "Neo-fibre Research Facility Middle Floor Construction Area"
 
 
 
 /area/mediumgreen/outside/building/neotree/z3/upper
-	name = "Neo-fibre Research Facility upper floor construction area"
+	name = "Neo-fibre Research Facility Upper Floor Construction Area"
 
 /area/mediumgreen/outside/building/neotree/z3/lz
-	name = "Neo-fibre Research Facility landing zone"
+	name = "Neo-fibre Research Facility Landing zone"
 	minimap_color = MINIMAP_AREA_LIVING
 	outside = TRUE
 	ceiling = CEILING_NONE
 
 /area/mediumgreen/outside/building/neotree/z3/checkpoint
-	name = "Neo-fibre Research Facility Research lab"
+	name = "Neo-fibre Research Facility Research Lab"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/neotree/z3/hallway
@@ -572,20 +552,20 @@
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/neotree/z3/breakroom
-	name = "Neo-fibre Research Facility upper break room"
+	name = "Neo-fibre Research Facility Upper Break Room"
 
 /area/mediumgreen/outside/building/neotree/z3/tree
-	name = "Neo-fibre tree"
+	name = "Neo-fibre Tree"
 	minimap_color = MINIMAP_AREA_CELL_HIGH
 
 /area/mediumgreen/outside/building/neotree/z3/storage
-	name = "Neo-fibre Research Facility temporary storage"
+	name = "Neo-fibre Research Facility Temporary Storage"
 
 /area/mediumgreen/outside/building/neotree/z3/engi_storage
-	name = "Neo-fibre Research Facility upper engineering backroom"
+	name = "Neo-fibre Research Facility Upper Engineering backroom"
 
 /area/mediumgreen/outside/building/neotree/z3/secure_storage
-	name = "Neo-fibre Research Facility high security storage"
+	name = "Neo-fibre Research Facility High Security Storage"
 
 
 
@@ -660,23 +640,26 @@
 //transport shuttle 1 + 2 (nanotrasen, engineering)
 
 /area/mediumgreen/outside/building/transportshuttle
-	name = "Nanotrasen Research shuttle"
+	name = "Nanotrasen Research Shuttle"
 	icon_state = "shuttle"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/mediumgreen/outside/building/transportshuttle/engi
-	name = "Nanotrasen engineering shuttle"
+	name = "Nanotrasen Engineering Shuttle"
 	minimap_color = MINIMAP_AREA_ENGI
 
 
-//syndi base big + small
+//syndi base big + small + by lz
 /area/mediumgreen/outside/building/syndi
 	name = "Syndicate Base"
 	icon_state = "red"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
 
 /area/mediumgreen/outside/building/syndi/scout
-	name = "Syndicate scoutpost"
+	name = "Syndicate Scoutpost"
+
+/area/mediumgreen/outside/building/syndi/lz
+	name = "Syndicate Forward Listening Post"
 
 //cultist hideout
 /area/mediumgreen/outside/building/cultist
