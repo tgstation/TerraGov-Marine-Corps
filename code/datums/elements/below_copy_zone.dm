@@ -52,7 +52,7 @@
 		below_copy.abstract_move(below_spot)
 	// ensure that we don't hide the gliding and you don't just pop in
 	if(stepped && below_copy.shown && !can_look_down && !below_copy.hide_timer)
-		below_copy.hide_after(GLIDE_SIZE_TO_DELAY(owner.glide_size))
+		below_copy.hide_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable/below_copy, set_shown), FALSE), GLIDE_SIZE_TO_DELAY(owner.glide_size), TIMER_STOPPABLE)
 		below_copy.update_copy()
 		return
 	below_copy.set_shown(can_look_down)

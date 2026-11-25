@@ -1151,6 +1151,7 @@
 
 /atom/movable/below_copy
 	anchored = TRUE
+	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = RESIST_ALL
 	///The mob we are a copy of
@@ -1175,6 +1176,7 @@
 	owner = null
 	return ..()
 
+/// Toggle if we should show the copy below us
 /atom/movable/below_copy/proc/set_shown(new_shown)
 	if(hide_timer)
 		deltimer(hide_timer)
@@ -1182,31 +1184,30 @@
 	shown = new_shown
 	update_copy()
 
-/atom/movable/below_copy/proc/hide_after(delay)
-	hide_timer = addtimer(CALLBACK(src, PROC_REF(set_shown), FALSE), delay, TIMER_STOPPABLE)
-
+/// On overlay changes gotta update the copy images
 /atom/movable/below_copy/proc/update_copy()
 	SIGNAL_HANDLER
 	copy_owner(owner.dir)
 
+/// gotta copy each variable each time because we need to build a new appearance every time
 /atom/movable/below_copy/proc/copy_owner(copied_dir)
-	appearance = owner.appearance
-	dir = copied_dir //not part of the copied appearance
-	render_target = null
-	alpha = shown ? owner.alpha * (BELOW_MOB_ALPHA / 255) : 0
-	pixel_z = owner.pixel_z + BELOW_COPY_PIXEL_OFFSET
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	density = FALSE
-	opacity = FALSE
-	vis_flags |= VIS_HIDE
-	SET_PLANE_EXPLICIT(src, GAME_PLANE, src)
-	if(!shown || owner.alpha != 255)
-		return
-	if(!upstairs_marker)
-		upstairs_marker = mutable_appearance('icons/effects/upstairs_indicator.dmi', "upstairs", appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
-	upstairs_marker.pixel_w = max(owner.get_cached_width() - ICON_SIZE_X, 0) * 0.5
-	upstairs_marker.pixel_z = max(owner.get_cached_height() - ICON_SIZE_Y, 0) * 0.5
-	overlays += upstairs_marker
+	//with a MA built and applied after so we only do one appearance change
+	var/mutable_appearance/copied = new(owner.appearance)
+	copied.render_target = null
+	copied.alpha = shown ? owner.alpha * (BELOW_MOB_ALPHA / 255) : 0
+	copied.pixel_z = owner.pixel_z + BELOW_COPY_PIXEL_OFFSET
+	copied.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	copied.opacity = FALSE
+	copied.vis_flags |= VIS_HIDE
+	SET_PLANE_EXPLICIT(copied, GAME_PLANE, src)
+	if(shown && owner.alpha == 255)
+		if(!upstairs_marker)
+			upstairs_marker = mutable_appearance('icons/effects/upstairs_indicator.dmi', "upstairs", appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
+		upstairs_marker.pixel_w = max(owner.get_cached_width() - ICON_SIZE_X, 0) * 0.5
+		upstairs_marker.pixel_z = max(owner.get_cached_height() - ICON_SIZE_Y, 0) * 0.5
+		copied.overlays += upstairs_marker
+	appearance = copied
+	dir = copied_dir
 
 /atom/movable/below_copy/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
