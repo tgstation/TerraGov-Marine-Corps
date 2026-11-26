@@ -96,6 +96,10 @@
 
 ///Extra checks to perform during the do_after to enter the vehicle
 /obj/vehicle/sealed/proc/enter_checks(mob/entering_mob, loc_override = FALSE)
+	return has_room_for(entering_mob)
+
+///Returns TRUE if there is space for this mob to enter the vehicle
+/obj/vehicle/sealed/proc/has_room_for(mob/entering_mob)
 	return occupant_amount() < max_occupants
 
 ///Enters the vehicle
