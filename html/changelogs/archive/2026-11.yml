@@ -284,3 +284,9 @@
   Notamaniac:
   - balance: The APC (vehicle, not the device) leaves a wreck that can be fultoned,
       similar to the tank and MRAP.
+2026-11-26:
+  Lumipharon:
+  - bugfix: Fixes defiler Tentacle, oppressor Abduct, and warrior Lunge to all work
+      across z-levels
+  - bugfix: Hijack works properly on multi-z maps
+  - bugfix: Larva gen is calculated correctly for multi-z maps

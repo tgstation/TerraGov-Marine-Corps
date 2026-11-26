@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixes defiler Tentacle, oppressor Abduct, and warrior Lunge to all work across z-levels"
