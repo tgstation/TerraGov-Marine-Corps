@@ -295,7 +295,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	forceMove(selectedturf)
 	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 
-	var/turf/target = locate(target_x, target_y, 2)
+	var/turf/target = locate(target_x, target_y, target_z)
 	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new (target)
 	laserpod.dir = target
 	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
