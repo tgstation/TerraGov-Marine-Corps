@@ -147,6 +147,7 @@
 			data["show_typing"] = show_typing
 			data["toggle_adminhelp_sound"] = !!(toggles_sound & SOUND_ADMINHELP)
 			data["toggle_admin_music"] = !!(toggles_sound & SOUND_MIDI)
+			data["toggle_admin_sounds"] = !(toggles_sound & SOUND_ADMIN_SOUNDS_OFF)
 			data["toggle_ambience_sound"] = !!(toggles_sound & SOUND_AMBIENCE)
 			data["toggle_lobby_music"] = !!(toggles_sound & SOUND_LOBBY)
 			data["toggle_instruments_sound"] = !(toggles_sound & SOUND_INSTRUMENTS_OFF)
@@ -805,6 +806,11 @@
 		if("toggle_admin_music")
 			toggles_sound ^= SOUND_MIDI
 			if(!(toggles_sound & SOUND_MIDI))
+				user.stop_sound_channel(CHANNEL_MIDI)
+
+		if("toggle_admin_sounds")
+			toggles_sound ^= SOUND_ADMIN_SOUNDS_OFF
+			if(toggles_sound & SOUND_ADMIN_SOUNDS_OFF)
 				user.stop_sound_channel(CHANNEL_MIDI)
 
 		if("toggle_ambience_sound")
