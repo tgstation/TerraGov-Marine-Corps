@@ -4230,7 +4230,7 @@
 /obj/structure/transport/linear/public,
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "hangar";
-	req_one_access = list(3,2,7,12,40,43,47,47)
+	req_one_access = list(3,2,7,12,40,43,47,49)
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/repair_bay)
@@ -6430,7 +6430,7 @@
 /obj/machinery/button/elevator/directional/east{
 	id = "hangar";
 	req_access = null;
-	req_one_access = list(3,2,7,12,40,43,47,47)
+	req_one_access = list(3,2,7,12,40,43,47,49)
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15223,7 +15223,7 @@
 /obj/machinery/button/elevator/directional/south{
 	id = "hangar";
 	req_access = null;
-	req_one_access = list(3,2,7,12,40,43,47,47)
+	req_one_access = list(3,2,7,12,40,43,47,49)
 	},
 /turf/open/floor/mainship/black{
 	dir = 9
