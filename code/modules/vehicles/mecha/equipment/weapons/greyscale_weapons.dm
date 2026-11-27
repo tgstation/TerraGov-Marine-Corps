@@ -504,13 +504,23 @@
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
-	force = 200
 	weight = 60
+	///Force on a mech
+	var/active_force = 200
+	///Image holder for slash effect
 	var/image/slash_extra_image
 	///ravager slash VFX but red
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// holder var for the mob that is attacking right now
 	var/mob/cutter
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/attach(obj/vehicle/sealed/mecha/M, attach_right = FALSE)
+	. = ..()
+	force = active_force
+
+/obj/item/mecha_parts/mecha_equipment/laser_sword/detach(atom/moveto)
+	. = ..()
+	force = initial(force)
 
 /obj/item/mecha_parts/mecha_equipment/laser_sword/action_checks(atom/target, ignore_cooldown)
 	. = ..()
@@ -556,6 +566,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/laser_sword/attack(mob/living/M, mob/living/user)
+	if(ismob(loc))
+		user.gib()
 	var/user_target_zone = user.zone_selected //stops 1 hit delimbs
 	user.zone_selected = BODY_ZONE_CHEST
 	. = ..()
