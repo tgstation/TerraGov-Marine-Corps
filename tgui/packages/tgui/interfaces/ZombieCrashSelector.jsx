@@ -352,6 +352,11 @@ const ItemLine = (props) => {
         Weapon
       </Box>
     ),
+    'weapon-firmware': (
+      <Box inline mr="6px" ml="6px" color="#ff00b3ff">
+        Synthetic Upgrade
+      </Box>
+    ),
     ammo: (
       <Box inline mr="6px" ml="6px" color="#ff00b3ff">
         Ammo

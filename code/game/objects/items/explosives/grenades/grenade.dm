@@ -44,7 +44,7 @@
 		balloon_alert(user, "not enough dexterity!")
 		return
 
-	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use) && !HAS_TRAIT(user, TRAIT_SYNTH_CAN_FIRE_GUNS))
 		balloon_alert(user, "against your programming!")
 		return
 
