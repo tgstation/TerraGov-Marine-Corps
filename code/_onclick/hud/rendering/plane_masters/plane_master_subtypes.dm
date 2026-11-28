@@ -307,6 +307,7 @@
 	documentation = "Anything on the game plane that needs a space to draw on that will be above the lighting plane.\
 		<br>Mostly little alerts and effects, also sometimes contains things that are meant to look as if they glow."
 	render_relay_planes = list(LIT_GAME_RENDER_PLATE)
+	offsetting_flags = BLOCKS_PLANE_OFFSETTING
 
 /atom/movable/screen/plane_master/weather_glow
 	name = "Weather Glow"
@@ -314,6 +315,7 @@
 	plane = WEATHER_GLOW_PLANE
 	start_hidden = TRUE
 	render_relay_planes = list(LIT_GAME_RENDER_PLATE)
+	offsetting_flags = BLOCKS_PLANE_OFFSETTING
 
 /atom/movable/screen/plane_master/weather_glow/set_home(datum/plane_master_group/home)
 	. = ..()
