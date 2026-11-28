@@ -232,7 +232,7 @@
 				continue
 			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
-	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? COMPONENT_DRIVER_CAN_MOVE : COMPONENT_DRIVER_BLOCK_MOVE
 
 /obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -324,7 +324,7 @@
 			root.Bump(AM) //manually call bump on everything
 			canstep = FALSE
 
-	return canstep ? NONE : COMPONENT_DRIVER_BLOCK_MOVE
+	return canstep ? COMPONENT_DRIVER_CAN_MOVE : COMPONENT_DRIVER_BLOCK_MOVE
 
 //3x4
 /obj/hitbox/rectangle
@@ -440,7 +440,7 @@
 			root.setDir(direction)
 			return COMPONENT_DRIVER_BLOCK_MOVE
 		else
-			return NONE
+			return COMPONENT_DRIVER_CAN_MOVE
 	return COMPONENT_DRIVER_BLOCK_MOVE
 
 //Some hover specific stuff for the SOM tank
@@ -565,7 +565,7 @@
 
 	if(!ISDIAGONALDIR(direction))
 		armor.forceMove(get_step(armor.loc, movement_dir))
-		return COMPONENT_DRIVER_BLOCK_MOVE
+		return COMPONENT_DRIVER_EARLY_MOVE
 	//moving left, our mid point stays unchanged either way
 	if(direction == NORTHEAST)
 		armor.forceMove(get_step(armor.loc, turn(armor.dir, -45)))
@@ -574,4 +574,4 @@
 
 	root.setDir(facing_dir)
 	COOLDOWN_START(root, cooldown_vehicle_move, root.move_delay * 2)  //turns are essentially making two moves
-	return COMPONENT_DRIVER_BLOCK_MOVE
+	return COMPONENT_DRIVER_EARLY_MOVE

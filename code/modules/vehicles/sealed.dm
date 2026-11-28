@@ -193,7 +193,10 @@
 	COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
 	set_glide_size(max(MOVEMENT_ADJUSTED_GLIDE_SIZE(move_delay, 1), 2.5))
 	//we use MOVEMENT_ADJUSTED_GLIDE_SIZE to bypass the normal minimum glide size and set it manually, otherwise very slow vehicles just look weird
-	return !(SEND_SIGNAL(src, COMSIG_VEHICLE_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+	. = SEND_SIGNAL(src, COMSIG_VEHICLE_MOVE, user, direction)
+	if(!.)
+		. = COMPONENT_DRIVER_CAN_MOVE
+	return
 
 /// returns a number for the damage multiplier for this relative angle/dir
 /obj/vehicle/sealed/proc/get_armour_facing(relative_dir)
