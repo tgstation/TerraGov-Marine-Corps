@@ -290,3 +290,6 @@
       across z-levels
   - bugfix: Hijack works properly on multi-z maps
   - bugfix: Larva gen is calculated correctly for multi-z maps
+2026-11-28:
+  Lumipharon:
+  - balance: MG-27 no longer has a vgrip, and cannot be fired mid wield
