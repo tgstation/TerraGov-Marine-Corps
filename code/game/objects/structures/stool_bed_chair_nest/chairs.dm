@@ -24,6 +24,12 @@
 	///Whether this chair can be rotated via verb
 	var/can_rotate = TRUE //this only exists because spriters don't add directional sprites to all chair types, which allows for exploits.
 
+/obj/structure/bed/chair/relaymove(mob/living/user, direct)
+	return user.facedir(direct)
+
+/obj/structure/bed/chair/can_buckle_rotate()
+	return can_rotate
+
 //directional variants mostly used for random spawners
 /obj/structure/bed/chair/east
 	dir = EAST
