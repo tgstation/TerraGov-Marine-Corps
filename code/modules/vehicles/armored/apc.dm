@@ -26,6 +26,10 @@
 		/obj/structure/closet/crate,
 	)
 
+//The transport crewman can always get in, so they aren't locked out by passengers who are dead or disconnected
+/obj/vehicle/sealed/armored/multitile/apc/has_room_for(mob/living/entering_mob)
+	return ..() || istype(entering_mob.job, /datum/job/terragov/command/transport_crewman)
+
 /obj/vehicle/sealed/armored/multitile/apc/update_decal_offsets()
 	if(!user_decal)
 		return
