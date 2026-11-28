@@ -8,6 +8,10 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 ///radius of dispersion for pods for randomisation or obstacle avoidance
 #define DROPPOD_BASE_DISPERSION 1
 
+#define DROPPOD_EFFECTIVE_DROP_TIME ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6))
+
+#define DROPPOD_WARNING_MARKER_DURATION 5 SECONDS
+
 ///base marine drop pod. can be controlled by an attached [/obj/structure/droppod/leader] or [/obj/machinery/computer/droppod_control]
 /obj/structure/droppod
 	name = "\improper TGMC Zeus orbital drop pod"
@@ -293,12 +297,18 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		CRASH("No droppod free turf found")
 	GLOB.droppod_reservation.taken_turfs += selectedturf
 	forceMove(selectedturf)
-	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), DROPPOD_EFFECTIVE_DROP_TIME)
 
-	var/turf/target = locate(target_x, target_y, 2)
-	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new (target)
-	laserpod.dir = target
-	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
+	var/time_to_warning = DROPPOD_EFFECTIVE_DROP_TIME - DROPPOD_WARNING_MARKER_DURATION
+	if(time_to_warning <= 0) //this currently should be impossible, but lets future proof
+		add_warning_marker()
+		return
+	addtimer(CALLBACK(src, PROC_REF(add_warning_marker)), time_to_warning)
+
+/// Creates a warning marker prior to landing
+/obj/structure/droppod/proc/add_warning_marker()
+	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new (locate(target_x, target_y, target_z), DROPPOD_WARNING_MARKER_DURATION)
+	QDEL_IN(laserpod, 5 SECONDS)
 
 /// Moves the droppod into its target turf, which it updates if needed
 /obj/structure/droppod/proc/finish_drop(mob/user, turf/reservedturf)
@@ -776,3 +786,5 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 #undef DROPPOD_TRANSIT_TIME
 #undef LEADER_POD_DISPERSION
 #undef DROPPOD_BASE_DISPERSION
+#undef DROPPOD_EFFECTIVE_DROP_TIME
+#undef DROPPOD_WARNING_MARKER_DURATION
