@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		return FALSE
 
 	// Create map text prior to modifying message for goonchat
-	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker)))
+	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker) || ismobspeaker(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 
 	var/deaf_message
