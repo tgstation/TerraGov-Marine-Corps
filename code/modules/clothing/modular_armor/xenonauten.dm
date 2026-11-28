@@ -239,8 +239,8 @@
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	item_flags = NONE
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = 0.25
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
 
 	greyscale_config = /datum/greyscale_config/xenonaut/pilot
 
@@ -269,8 +269,8 @@
 /obj/item/clothing/suit/storage/marine/ballistic
 	name = "\improper Crasher multi-threat ballistic armor"
 	desc = "A reused design of a old body armor system from the 21st century."
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = 0.25
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	icon = 'icons/mob/clothing/suits/marine_armor.dmi'
 	icon_state = "ballistic_vest"

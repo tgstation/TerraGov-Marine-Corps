@@ -98,8 +98,8 @@
 	desc = "A light piece of armor used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot_chest"
 	worn_icon_state = "pilot_chest"
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
-	slowdown = 0.25
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
 	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/mech_pilot
@@ -831,9 +831,18 @@
 	item_map_variant_flags = NONE
 	armor_features_flags = NONE
 
+/obj/item/clothing/suit/storage/marine/vsd/vendor //marine vendor version with normal armor
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
+
 /obj/item/clothing/suit/storage/marine/vsd/alt
+	name = "\improper Crasher MT-L/44 ballistic armor"
 	icon_state = "vsd_armor_alt"
 	worn_icon_state = "vsd_armor_alt"
+
+/obj/item/clothing/suit/storage/marine/vsd/alt/vendor
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
 
 /obj/item/clothing/suit/storage/marine/vsd/marmor
 	name = "\improper Crasher MT-M/43 ballistic armor"
@@ -842,6 +851,10 @@
 	icon_state = "vsd_armor_medium"
 	worn_icon_state = "vsd_armor_medium"
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/vendor
+	soft_armor = MARINE_ARMOR_FLAK
+	slowdown = SLOWDOWN_ARMOR_FLAK
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor
 	name = "\improper Crasher MT-H/43 powered ballistic armor"
