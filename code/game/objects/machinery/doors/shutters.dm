@@ -96,6 +96,9 @@
 /obj/machinery/door/poddoor/shutters/opened/wy
 	id = "wyoffice"
 
+/obj/machinery/door/poddoor/shutters/opened/indestructible
+	resistance_flags = INDESTRUCTIBLE
+
 /obj/machinery/door/poddoor/shutters/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter"

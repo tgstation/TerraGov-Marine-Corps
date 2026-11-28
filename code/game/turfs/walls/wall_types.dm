@@ -151,8 +151,8 @@
 	name = "bulletproof wall"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship. Impervious to small arms fire."
 	soft_armor = list(MELEE = 0, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 0, FIRE = 0, ACID = 0)
-	
-	
+
+
 /turf/closed/wall/desert
 	name = "wall"
 	icon = 'icons/turf/walls/chigusa.dmi'
@@ -401,6 +401,13 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 /turf/closed/wall/wood/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
+//Bark wall
+/turf/closed/wall/wood/bark
+	icon = 'icons/turf/walls/woodbark.dmi'
+	icon_state = "bark-0"
+	base_icon_state = "bark"
+	walltype = "bark"
+
 // Reinforced Wood Wall
 
 /turf/closed/wall/wood/reinforced
@@ -412,6 +419,13 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	walltype = "woodrwall"
 	max_integrity = 3000
 	explosion_block = 4
+
+//Reinforced bark wall
+/turf/closed/wall/wood/reinforced/bark
+	icon = 'icons/turf/walls/woodbark.dmi'
+	icon_state = "wall-reinforced"
+	base_icon_state = "bark"
+	walltype = "bark"
 
 /turf/closed/wall/dark_colony
 	icon = 'icons/turf/walls/dark_col_wall.dmi'

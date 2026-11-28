@@ -167,10 +167,15 @@
 
 /obj/structure/prop/mainship/holobarrier
 	name = "\improper Engineering holobarrier"
-	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos and is illegal under the new Geneva conventions."
+	desc = "A wonder of subsidized corporate design, this holographic barrier is almost entirely space asbestos helping it keep its shape. It's illegal under the new Geneva conventions"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "holosign_engi"
+	max_integrity = 50
 	density = TRUE
+
+/obj/structure/prop/mainship/holobarrier/indestructible
+	name = "\improper Reinforced Engineering holobarrier"
+	desc = "A true wonder of subsidized corporate design, this holographic barrier is almost entirely resistant to atmos loss and degradation by melee or ballistic damage. It's also made of space asbestos and is illegal under the new Geneva conventions."
 	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/gravestone
@@ -192,6 +197,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	density = FALSE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/deadai
 	name = "\improper deactivated AI"
@@ -492,7 +498,8 @@
 	layer = BELOW_OBJ_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
-
+	density = TRUE
+	allow_pass_flags = NONE
 
 /obj/structure/prop/mainship/supermatter/proc/consume(atom/movable/consumed_object) //dust() and destroy living mobs, qdel thrown objects
 	if(isliving(consumed_object))
@@ -702,6 +709,7 @@
 	desc = "Used to seal minor hull breaches."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "shieldoff"
+	resistance_flags = NONE
 
 /obj/structure/prop/mainship/generator/tesla_coil
 	name = "tesla coil"

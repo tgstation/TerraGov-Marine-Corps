@@ -406,6 +406,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	smoke.set_up(25, target, 30 - (inaccuracy_amt * 2))//Vape nation
 	smoke.start()
 
+
 /obj/structure/ob_ammo/ob_fuel
 	name = "solid fuel"
 	icon_state = "ob_fuel"

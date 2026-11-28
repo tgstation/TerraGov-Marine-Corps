@@ -99,6 +99,7 @@
 	icon = 'icons/turf/floors/jungle-dirt-border.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"
+	minimap_color = MINIMAP_AREA_JUNGLE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 	canSmoothWith = list(
@@ -115,6 +116,7 @@
 	icon = 'icons/turf/floors/jungle-border.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"
+	minimap_color = MINIMAP_AREA_JUNGLE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 	canSmoothWith = list(

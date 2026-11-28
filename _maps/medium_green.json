@@ -1,0 +1,16 @@
+{
+    "map_name": "Green Hell",
+    "map_path": "map_files/Medium_Green",
+    "map_file": "medium_green.dmm",
+	"parallax_icon": "jungle",
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 3500,
+	"armor": "jungle",
+	"announce_text": "Good morning marines, we have received a distress signal from TOP SECRET research facility. Your job is to retrieve the highly valuable neo-bark information package and then detonate the remaining evidence. Gear up and as always good luck!",
+	"traits":[{
+		"weather_rain": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
+}
