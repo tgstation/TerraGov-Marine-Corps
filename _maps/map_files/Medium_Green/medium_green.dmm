@@ -797,9 +797,11 @@
 /turf/open/floor/mainship/plate,
 /area/mediumgreen/outside/building/southeast/containment/vault)
 "adb" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/central)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/lz2/building/roof)
 "adc" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -2073,10 +2075,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/mediumgreen/caves/z1/south)
 "ahG" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/central)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/lz2/building/roof)
 "ahH" = (
 /turf/closed/wall,
 /area/mediumgreen/outside/building/engineering/hallway_w)
@@ -3137,9 +3140,11 @@
 /turf/open/floor/plating/mainship,
 /area/mediumgreen/outside/building/engineering/hallway_s)
 "alC" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
-/area/mediumgreen/outside/z1/central)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/roof/asphalt,
+/area/mediumgreen/outside/lz2/building/roof)
 "alD" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -3836,9 +3841,6 @@
 	},
 /turf/open/floor/plating,
 /area/mediumgreen/outside/building/neotree/z1/lobby)
-"aod" = (
-/turf/closed/wall/r_wall,
-/area/mediumgreen/outside/lz2/around)
 "aoe" = (
 /turf/closed/wall/sulaco,
 /area/mediumgreen/outside/building/engineering/storage_n)
@@ -4286,11 +4288,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/mediumgreen/outside/building/engineering/inner/powerroom)
-"apB" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
-/area/mediumgreen/outside/z1/central)
 "apC" = (
 /obj/structure/sign/safety/storage{
 	dir = 2
@@ -4788,10 +4785,6 @@
 	},
 /turf/open/floor/prison/redfloor,
 /area/mediumgreen/outside/building/syndi/scout)
-"arB" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirt2,
-/area/mediumgreen/outside/z1/central)
 "arC" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -5483,13 +5476,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/prison/plate,
 /area/mediumgreen/outside/lz2/building/road)
-"aub" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	id = "checkpoint1"
-	},
-/turf/open/floor/plating,
-/area/mediumgreen/outside/lz2/around)
 "auc" = (
 /obj/structure/prop/mainship/railing,
 /obj/structure/prop/mainship/railing{
@@ -6595,11 +6581,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
 /area/mediumgreen/outside/z1/central)
-"ayt" = (
-/obj/structure/flora/grass/tallgrass/autosmooth,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/central)
 "ayu" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
@@ -7034,10 +7015,6 @@
 /obj/structure/prop/nt_computer/recorder,
 /turf/open/floor/mainship/tcomms,
 /area/mediumgreen/outside/building/engineering/tcoms)
-"aAc" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/wood/reinforced/bark,
-/area/mediumgreen/outside/z1/central)
 "aAd" = (
 /obj/structure/prop/mainship/railing,
 /turf/open/floor/roof/sheet,
@@ -7167,6 +7144,14 @@
 "aAC" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/autosmooth,
+/area/mediumgreen/outside/lz2/around)
+"aAD" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 8;
+	id = "checkpoint1"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating,
 /area/mediumgreen/outside/lz2/around)
 "aAE" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
@@ -8018,10 +8003,6 @@
 	},
 /turf/open/floor/spiralplate,
 /area/mediumgreen/outside/building/engineering/roof)
-"aEb" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/gm,
-/area/mediumgreen/outside/z1/central)
 "aEc" = (
 /obj/structure/prop/mainship/holobarrier,
 /turf/open/floor/spiralplate,
@@ -8206,11 +8187,6 @@
 /obj/machinery/power/apc,
 /turf/open/floor,
 /area/mediumgreen/outside/lz2/building/cargo)
-"aEH" = (
-/obj/structure/flora/jungle/bush,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/grass/weedable,
-/area/mediumgreen/outside/z1/central)
 "aEI" = (
 /obj/structure/platform/rockcliff,
 /turf/open/floor/plating/ground/dirtgrassborder2/autosmooth,
@@ -56695,7 +56671,7 @@ axa
 aBJ
 aBJ
 aBJ
-aAc
+aBJ
 azB
 aij
 ajf
@@ -56887,8 +56863,8 @@ aBJ
 aBJ
 aBJ
 aBJ
-aAc
-aod
+aBJ
+azB
 adU
 ajf
 amp
@@ -57079,8 +57055,8 @@ aBJ
 aBJ
 aBJ
 aBJ
-aAc
-aod
+aBJ
+azB
 aij
 ajf
 amp
@@ -57271,8 +57247,8 @@ aBJ
 axa
 aBJ
 aBJ
-aAc
-aod
+aBJ
+azB
 aij
 ajf
 amp
@@ -57463,8 +57439,8 @@ axa
 axa
 aBJ
 aBJ
-aAc
-aod
+aBJ
+azB
 aij
 ajf
 amp
@@ -57655,8 +57631,8 @@ axa
 axa
 axa
 aBJ
-aAc
-aod
+aBJ
+azB
 aij
 ajf
 boY
@@ -57847,8 +57823,8 @@ axa
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 boY
@@ -58039,8 +58015,8 @@ axa
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 boY
@@ -58231,8 +58207,8 @@ axa
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 boY
@@ -58423,8 +58399,8 @@ bzA
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 boY
@@ -58615,8 +58591,8 @@ bgs
 aSy
 axa
 aSy
-aEb
-aod
+axa
+azB
 aij
 ajf
 boY
@@ -58807,8 +58783,8 @@ bgs
 aSy
 aSy
 aSy
-ayt
-aod
+aSy
+azB
 adU
 ajf
 boY
@@ -58999,8 +58975,8 @@ bzE
 brr
 bgs
 brs
-ayt
-aod
+aSy
+azB
 aij
 ajf
 boY
@@ -59191,8 +59167,8 @@ axa
 axa
 bgs
 bgs
-ayt
-aod
+aSy
+azB
 aij
 ajf
 boY
@@ -59383,8 +59359,8 @@ aBJ
 axa
 axa
 bgs
-adb
-aod
+bgs
+azB
 aij
 ajf
 boY
@@ -59575,8 +59551,8 @@ aBJ
 axa
 axa
 axa
-adb
-aod
+bgs
+azB
 aij
 ajf
 boY
@@ -59767,8 +59743,8 @@ axa
 axa
 axa
 axa
-ahG
-aod
+brr
+azB
 aij
 ajf
 amp
@@ -59959,8 +59935,8 @@ bgs
 axa
 bOY
 bgs
-aEH
-aod
+blS
+azB
 aij
 ajf
 amp
@@ -60151,8 +60127,8 @@ bgs
 bgs
 bgs
 blT
-adb
-aod
+bgs
+azB
 aij
 ajf
 amp
@@ -60343,8 +60319,8 @@ bgs
 brr
 bgs
 bgs
-ahG
-aod
+brr
+azB
 aij
 ajf
 amp
@@ -60535,8 +60511,8 @@ aSy
 aSy
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 amp
@@ -60727,8 +60703,8 @@ axa
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 amp
@@ -60919,8 +60895,8 @@ axa
 axa
 axa
 aBJ
-aEb
-aod
+axa
+azB
 aij
 ajf
 amp
@@ -61111,8 +61087,8 @@ aSy
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 adU
 ajf
 amp
@@ -61303,8 +61279,8 @@ aSy
 axa
 axa
 axa
-aEb
-aod
+axa
+azB
 aij
 ajf
 ajf
@@ -61495,8 +61471,8 @@ bgs
 bgs
 bgs
 aSy
-ayt
-aod
+aSy
+azB
 aij
 aij
 aij
@@ -61687,41 +61663,41 @@ bgs
 brr
 bgs
 aSy
-ayt
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aod
-aub
-aub
-aub
-aub
-aod
-aub
-aub
-aub
-aub
-aod
-aod
-aod
-aod
-aod
-aod
+aSy
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+azB
+aAD
+aAD
+aAD
+aAD
+azB
+aAD
+aAD
+aAD
+aAD
+azB
+azB
+azB
+azB
+azB
+azB
 acz
 bgw
 bOY
@@ -61879,42 +61855,42 @@ bgs
 bdv
 blT
 aSy
-ayt
-ayt
-ayt
-adb
-adb
-adb
-adb
-adb
-ahG
-adb
-ahG
-adb
-adb
-adb
-ahG
-adb
-ahG
-adb
-adb
-adb
-adb
-adb
-alC
-arB
-arB
-arB
-arB
-arB
-alC
-apB
-alC
-alC
-adb
-ahG
-adb
-adb
+aSy
+aSy
+aSy
+bgs
+bgs
+bgs
+bgs
+bgs
+brr
+bgs
+brr
+bgs
+bgs
+bgs
+brr
+bgs
+brr
+bgs
+bgs
+bgs
+bgs
+bgs
+alg
+axe
+axe
+axe
+axe
+axe
+alg
+brx
+alg
+alg
+bgs
+brr
+bgs
+bgs
 bgw
 bgs
 axa
@@ -152894,25 +152870,25 @@ aAp
 aAp
 aAp
 bvn
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
-bPz
+alC
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+ahG
+adb
 bNV
 aAp
 aAp
