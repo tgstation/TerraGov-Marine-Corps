@@ -553,6 +553,7 @@
 #include "code\datums\elements\keybinding_update.dm"
 #include "code\datums\elements\light_blocking.dm"
 #include "code\datums\elements\limb_support.dm"
+#include "code\datums\elements\open_space_outline.dm"
 #include "code\datums\elements\plasma_on_attack.dm"
 #include "code\datums\elements\plasma_on_attacked.dm"
 #include "code\datums\elements\riding.dm"

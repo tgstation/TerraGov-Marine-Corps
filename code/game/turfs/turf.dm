@@ -555,6 +555,11 @@
 /turf/proc/zPassOut(direction)
 	return FALSE
 
+///If something that steps onto this turf would fall to the z level below
+/turf/proc/can_fall_through()
+	var/turf/below = GET_TURF_BELOW(src)
+	return below && zPassOut(DOWN) && below.zPassIn(DOWN)
+
 /// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()
 /turf/proc/zFall(atom/movable/falling, levels = 1, force = FALSE, falling_from_move = FALSE)
 	var/direction = DOWN

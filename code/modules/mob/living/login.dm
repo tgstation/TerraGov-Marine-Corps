@@ -16,3 +16,4 @@
 	set_afk_status(MOB_CONNECTED)
 
 	update_fov_client()
+	update_open_space_outlines()

@@ -177,6 +177,37 @@
 	plane = FLOOR_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME, LIGHT_MASK_PLANE)
 
+/atom/movable/screen/plane_master/floor/show_to(mob/mymob)
+	. = ..()
+	if(!.)
+		return
+	var/datum/hud/hud = home.our_hud
+	if(hud)
+		RegisterSignal(hud, COMSIG_HUD_Z_CHANGED, PROC_REF(on_hud_z_changed), override = TRUE)
+	var/turf/eye_turf = get_turf(mymob?.canon_client?.eye)
+	update_edge_shadow(eye_turf?.z)
+
+/atom/movable/screen/plane_master/floor/hide_from(mob/oldmob)
+	. = ..()
+	var/datum/hud/hud = home.our_hud
+	if(hud)
+		UnregisterSignal(hud, COMSIG_HUD_Z_CHANGED)
+
+/// z-changes replane so we need to update all the edge shadows
+/atom/movable/screen/plane_master/floor/proc/on_hud_z_changed(datum/source, new_z)
+	SIGNAL_HANDLER
+	update_edge_shadow(new_z)
+
+/// Update edge shadows after removing old ones, respecting prefs
+/atom/movable/screen/plane_master/floor/proc/update_edge_shadow(viewer_z)
+	remove_filter("edge_shadow")
+	if(!home?.our_hud?.mymob?.canon_client?.prefs?.ambient_occlusion)
+		return
+	// don't add edge shadows if there's not in fact any z-levels below
+	if(!viewer_z || length(SSmapping.multiz_levels) < viewer_z || !SSmapping.multiz_levels[viewer_z][Z_LEVEL_DOWN])
+		return
+	add_filter("edge_shadow", 1, drop_shadow_filter(x = 0, y = 0, size = MULTIZ_EDGE_SHADOW_SIZE, color = MULTIZ_EDGE_SHADOW_COLOR))
+
 /atom/movable/screen/plane_master/transparent_floor
 	name = "Transparent Floor"
 	documentation = "Really just openspace, stuff that is a turf but has no color or alpha whatsoever.\

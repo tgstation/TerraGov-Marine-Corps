@@ -18,6 +18,8 @@
 	  * This is infinity so you must explicitly set this
 	  */
 	var/argument_hash_start_idx = INFINITY
+	/// Assoc list of target to the list of sources we were added to it
+	var/list/attach_sources
 
 /// Activates the functionality defined by the element on the given target datum
 /datum/element/proc/Attach(datum/target)
@@ -30,6 +32,7 @@
 
 /datum/element/proc/OnTargetDelete(datum/source, force)
 	SIGNAL_HANDLER
+	LAZYREMOVE(attach_sources, source)
 	Detach(source)
 
 /// Deactivates the functionality defines by the element on the given datum
@@ -68,3 +71,27 @@
 		ele.Detach(arglist(arguments))
 	else
 		ele.Detach(src)
+
+///Adds a element and a source for it, for keeping track for when the element should actually be removed.
+/datum/proc/AddElementSource(source, datum/element/eletype, ...)
+	var/list/arguments = args.Copy(2)
+	var/datum/element/ele = SSdcs.GetElement(arguments)
+	var/list/sources = LAZYACCESS(ele.attach_sources, src)
+	if(sources)
+		sources |= source
+		return
+	LAZYSET(ele.attach_sources, src, list(source))
+	_AddElement(arguments)
+
+///Removes a source from an element added to src and detaches the element if it was the last source
+/datum/proc/RemoveElementSource(source, datum/element/eletype, ...)
+	var/list/arguments = args.Copy(2)
+	var/datum/element/ele = SSdcs.GetElement(arguments)
+	var/list/sources = LAZYACCESS(ele.attach_sources, src)
+	if(!sources)
+		return
+	sources -= source
+	if(length(sources))
+		return
+	LAZYREMOVE(ele.attach_sources, src)
+	_RemoveElement(arguments)
