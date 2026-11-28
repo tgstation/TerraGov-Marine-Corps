@@ -165,6 +165,10 @@
 		return
 	open_prompt = FALSE
 	clean_ui_user()
+	if(istype(shuttle_port, /obj/docking_port/mobile/marine_dropship)) //Retracts rappels as we launch
+		var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+		for(var/obj/structure/dropship_equipment/shuttle/rappel_system/system in shuttle.equipments)
+			system.on_launch()
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
 /// Toggle the vision between small nightvision and turf vision
@@ -345,5 +349,9 @@
 	origin.open_prompt = FALSE
 	SStgui.close_user_uis(C, origin)
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	if(istype(origin.shuttle_port, /obj/docking_port/mobile/marine_dropship)) //Retracts rappels as we launch
+		var/obj/docking_port/mobile/marine_dropship/shuttle = origin.shuttle_port
+		for(var/obj/structure/dropship_equipment/shuttle/rappel_system/system in shuttle.equipments)
+			system.on_launch()
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
