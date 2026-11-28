@@ -725,6 +725,8 @@
 //mob/living signals
 #define COMSIG_LIVING_JOB_SET "living_job_set"	//from mob/living/proc/apply_assigned_role_to_spawn()
 #define COMSIG_LIVING_DO_RESIST "living_do_resist"		//from the base of /mob/living/do_resist()
+#define COMSIG_LIVING_SCROLL_LOOK "living_scroll_look"		//from /mob/living/MouseWheelOn() when scrolling to look up or down: (direction)
+	#define COMPONENT_SCROLL_LOOK_HANDLED (1<<0)
 #define COMSIG_LIVING_DO_MOVE_RESIST "living_do_move_resist"			//from the base of /client/Move()
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)

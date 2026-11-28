@@ -1,67 +1,3 @@
-/atom/movable/screen/paper_map_extras
-	plane = ABOVE_HUD_PLANE
-	/// minimap action this extra button is owned by
-	var/obj/item/paper_map/papermap
-
-/atom/movable/screen/paper_map_extras/Destroy()
-	papermap = null
-	return ..()
-
-/atom/movable/screen/paper_map_extras/minimap_z_indicator
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "zindicator"
-	screen_loc = ui_ai_floor_indicator
-
-///sets the currently indicated relative floor
-/atom/movable/screen/paper_map_extras/minimap_z_indicator/proc/set_indicated_z(newz)
-	if(!newz)
-		return
-	var/list/linked_zs = SSmapping.get_connected_levels(newz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(newz)
-	var/text = "Floor<br/>[relativez]"
-	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
-
-/atom/movable/screen/paper_map_extras/minimap_z_up
-	name = "go up"
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "up"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
-
-/atom/movable/screen/paper_map_extras/minimap_z_up/Click(location,control,params)
-	flick("uppressed",src)
-	var/currentz = papermap.targetted_zlevel
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == length(linked_zs))
-		return //topmost z with nothing above. we still play effects just dont do anything
-	papermap.change_z_shown(null, ++currentz)
-
-/atom/movable/screen/paper_map_extras/minimap_z_down
-	name = "go down"
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "down"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
-
-/atom/movable/screen/paper_map_extras/minimap_z_down/Click(location,control,params)
-	flick("downpressed",src)
-	var/currentz = papermap.targetted_zlevel
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == 1)
-		return //bottommost z with nothing below. we still play effects just dont do anything
-	papermap.change_z_shown(null, --currentz)
-
 /obj/item/paper_map
 	name = "paper map"
 	desc = "An ancient tool used by primitives to help them navigate."
@@ -76,33 +12,22 @@
 	var/atom/movable/screen/minimap/map
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/paper_map_extras/minimap_z_indicator/z_indicator
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/paper_map_extras/minimap_z_up/z_up
-	///button granted when you're on a multiz level that lets you check above and below you
-	var/atom/movable/screen/paper_map_extras/minimap_z_down/z_down
+	///The floor indicator and buttons shown with the map when it has z levels above or below it
+	var/datum/minimap_z_controls/z_controls
 	///the mob that is currently using this map
 	var/mob/interactee
 
 /obj/item/paper_map/Initialize(mapload)
 	. = ..()
 	locator = new
-	z_indicator = new
-	z_indicator.papermap = src
-	z_up = new
-	z_up.papermap = src
-	z_down = new
-	z_down.papermap = src
+	z_controls = new(CALLBACK(src, PROC_REF(change_z_shown), null))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_z_shown))
 
 /obj/item/paper_map/Destroy()
 	map = null
 	interactee = null
 	QDEL_NULL(locator)
-	QDEL_NULL(z_indicator)
-	QDEL_NULL(z_up)
-	QDEL_NULL(z_down)
+	QDEL_NULL(z_controls)
 	return ..()
 
 /obj/item/paper_map/attack_self(mob/user)
@@ -116,11 +41,7 @@
 		return
 	user.client.screen += map
 	handle_locator(user)
-	if(length(SSmapping.get_connected_levels(targetted_zlevel)) > 1)
-		user.client.screen += z_indicator
-		z_indicator.set_indicated_z(targetted_zlevel)
-		user.client.screen += z_up
-		user.client.screen += z_down
+	z_controls.show_to(user, targetted_zlevel)
 	RegisterSignal(src, COMSIG_ITEM_UNEQUIPPED, PROC_REF(close_map))
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 
@@ -130,10 +51,7 @@
 	unequipper.client.screen -= SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	map = null
 	interactee = null
-	if(length(SSmapping.get_connected_levels(targetted_zlevel)) > 1)
-		unequipper.client.screen -= z_indicator
-		unequipper.client.screen -= z_up
-		unequipper.client.screen -= z_down
+	z_controls.hide_from(unequipper)
 	handle_locator(unequipper)
 	UnregisterSignal(src, COMSIG_ITEM_UNEQUIPPED)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
@@ -173,7 +91,7 @@
 	map = null
 
 	targetted_zlevel = newz
-	z_indicator.set_indicated_z(newz)
+	z_controls.set_shown_z(newz)
 	map = SSminimaps.fetch_minimap_object(newz, minimap_flag)
 	interactee.client?.screen += map
 	handle_locator(interactee)

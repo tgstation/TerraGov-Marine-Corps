@@ -569,71 +569,6 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 
 
-/atom/movable/screen/droppod_extras
-	/// minimap action this extra button is owned by
-	var/obj/structure/droppod/droppod
-
-/atom/movable/screen/droppod_extras/Destroy()
-	droppod = null
-	return ..()
-
-/atom/movable/screen/droppod_extras/minimap_z_indicator
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "zindicator"
-	screen_loc = ui_ai_floor_indicator
-
-///sets the currently indicated relative floor
-/atom/movable/screen/droppod_extras/minimap_z_indicator/proc/set_indicated_z(newz)
-	if(!newz)
-		return
-	var/list/linked_zs = SSmapping.get_connected_levels(newz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(newz)
-	var/text = "Floor<br/>[relativez]"
-	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
-
-/atom/movable/screen/droppod_extras/minimap_z_up
-	name = "go up"
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "up"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
-
-/atom/movable/screen/droppod_extras/minimap_z_up/Click(location,control,params)
-	flick("uppressed",src)
-	var/currentz = droppod.target_z
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == length(linked_zs))
-		return //topmost z with nothing above. we still play effects just dont do anything
-	droppod.change_targeted_z(null, ++currentz)
-
-
-/atom/movable/screen/droppod_extras/minimap_z_down
-	name = "go down"
-	icon = 'icons/mob/screen_ai.dmi'
-	icon_state = "down"
-	mouse_over_pointer = MOUSE_HAND_POINTER
-	screen_loc = ui_ai_godownup
-
-/atom/movable/screen/droppod_extras/minimap_z_down/Click(location,control,params)
-	flick("downpressed",src)
-	var/currentz = droppod.target_z
-	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
-	if(!length(linked_zs))
-		return
-	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
-	var/relativez = linked_zs.Find(currentz)
-	if(relativez == 1)
-		return //bottommost z with nothing below. we still play effects just dont do anything
-	droppod.change_targeted_z(null, --currentz)
-
-
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
 	action_icon = 'icons/mob/actions/actions_mecha.dmi'
@@ -650,22 +585,15 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	action_icon_state = "mech_zoom_off"
 	///Map currently being polled; it can be on a different z-level than the pod's target.
 	var/atom/movable/screen/minimap/choosing_map
-	var/atom/movable/screen/droppod_extras/minimap_z_indicator/z_indicator
-	var/atom/movable/screen/droppod_extras/minimap_z_up/z_up
-	var/atom/movable/screen/droppod_extras/minimap_z_down/z_down
+	///The floor indicator and buttons shown with the map when it has z levels above or below it
+	var/datum/minimap_z_controls/z_controls
 
 /datum/action/innate/set_drop_target/New(Target)
 	. = ..()
-	z_indicator = new
-	z_up = new
-	z_up.droppod = target
-	z_down = new
-	z_down.droppod = target
+	z_controls = new(CALLBACK(target, TYPE_PROC_REF(/obj/structure/droppod, change_targeted_z), null))
 
 /datum/action/innate/set_drop_target/Destroy()
-	QDEL_NULL(z_indicator)
-	QDEL_NULL(z_up)
-	QDEL_NULL(z_down)
+	QDEL_NULL(z_controls)
 	return ..()
 
 /datum/action/innate/set_drop_target/can_use_action(silent, override_flags, selecting)
@@ -682,18 +610,12 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
 	choosing_map = map
 	owner.client.screen += map
-	if(length(SSmapping.get_connected_levels(pod.target_z)) > 1)
-		z_indicator.set_indicated_z(pod.target_z)
-		owner.client.screen += z_indicator
-		owner.client.screen += z_up
-		owner.client.screen += z_down
+	z_controls.show_to(owner, pod.target_z)
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	owner?.client?.screen -= map
 	// A z-change may have already started polling a replacement map.
 	if(choosing_map == map)
-		owner?.client?.screen -= z_indicator
-		owner?.client?.screen -= z_up
-		owner?.client?.screen -= z_down
+		z_controls.hide_from(owner)
 		choosing_map = null
 	if(!polled_coords)
 		return
@@ -705,9 +627,7 @@ GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 		return
 	var/atom/movable/screen/minimap/map = choosing_map
 	owner?.client?.screen -= map
-	owner?.client?.screen -= z_indicator
-	owner?.client?.screen -= z_up
-	owner?.client?.screen -= z_down
+	z_controls.hide_from(owner)
 	map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 	map.stop_polling[owner] = TRUE
 	choosing_map = null
