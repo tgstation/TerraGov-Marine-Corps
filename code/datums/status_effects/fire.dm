@@ -5,6 +5,21 @@
 ///Max dampness
 #define FIRE_MIN_STACKS -20
 
+// This isn't /alert/status_effect and isn't set up with alert_type because
+// you can technically have the "fire" effect while being drenched in water
+/atom/movable/screen/alert/fire
+	name = "On Fire"
+	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
+	icon_state = "fire"
+	boxed_message_style = "boxed_message red_box"
+
+/atom/movable/screen/alert/fire/Click()
+	. = ..()
+	var/mob/living/living = usr
+	if(!istype(living) || usr != owner)
+		return
+	living.resist()
+
 /datum/status_effect/stacking/fire
 	id = "fire"
 	tick_interval = 2 SECONDS
@@ -12,6 +27,7 @@
 	consumed_on_threshold = FALSE
 	consumed_on_fadeout = FALSE
 	max_stacks = 20
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	///Are they actually burning
@@ -55,9 +71,6 @@
 	if(is_ignited && debuff_owner)
 		debuff_owner.handle_fire(stacks)
 
-/datum/status_effect/stacking/fire/fadeout_effect()
-	debuff_owner.adjust_bodytemperature(-80, 300)
-
 ///Actually sets them on fire
 /datum/status_effect/stacking/fire/proc/do_ignite()
 	if(is_ignited)
@@ -86,6 +99,7 @@
 	UnregisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST)
 	if(stacks < FIRE_MIN_STACKS) //you can only get so damp
 		stacks = FIRE_MIN_STACKS
+	debuff_owner.adjust_bodytemperature(-80, 300)
 	debuff_owner.update_fire()
 	debuff_owner.clear_alert(id)
 

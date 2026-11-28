@@ -263,7 +263,7 @@
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	remove_all_status_effect()
+	remove_all_status_effects()
 	extinguish_mob()
 
 	// shut down ongoing problems

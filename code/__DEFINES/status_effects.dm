@@ -1,22 +1,38 @@
+/// Multiple instances are allowed
+#define STATUS_EFFECT_MULTIPLE 0
+/// Only one of this is allowed, and new instances will be prevented
+#define STATUS_EFFECT_UNIQUE 1
+/// Only one of this is allowed, and new instances will replace old ones
+#define STATUS_EFFECT_REPLACE 2
+/// Only one of this is allowed, and new instances will reset the duration
+#define STATUS_EFFECT_REFRESH 3
 
-//These are all the different status effects. Use the paths for each effect in the defines.
+/// Use in [/datum/status_effect/var/duration] to make it last forever.
+/// This is the default `duration` of every status effect, but most sources
+/// or effects will simply override it so they won't actually be permanent.
+#define STATUS_EFFECT_PERMANENT -1
 
-#define STATUS_EFFECT_MULTIPLE 0 //if it allows multiple instances of the effect
+/// Use in [/datum/status_effect/var/tick_interval] to prevent it from calling `tick`
+#define STATUS_EFFECT_NO_TICK -1
+/// Use in [/datum/status_effect/var/tick_interval] to guarantee that `tick` gets called on every `process`
+#define STATUS_EFFECT_AUTO_TICK 0
 
-#define STATUS_EFFECT_UNIQUE 1 //if it allows only one, preventing new instances
+/// Indicates this status effect is an abstract type, basically something that won't actually be created.
+/// Doesn't actually do anything in practice, this is just a marker for unit tests to ignore abstract effects.
+#define STATUS_EFFECT_ID_ABSTRACT "abstract"
 
-#define STATUS_EFFECT_REPLACE 2 //if it allows only one, but new instances replace
+/// This is fast and suited for most effects, relying on Fast Processing's wait (which is around 0.2 seconds)
+#define STATUS_EFFECT_FAST_PROCESS 0
+/// This is slow and suited for expensive effects, relying on Processing's wait (which is around 1 second)
+#define STATUS_EFFECT_NORMAL_PROCESS 1
+/// Similar speed to [STATUS_EFFECT_FAST_PROCESS], but uses a high priority subsystem (`SSpriority_effects`).
+/// This is suitable for any status effects that must be fast and more likely to process, even under server load.
+#define STATUS_EFFECT_PRIORITY 2
 
-#define STATUS_EFFECT_REFRESH 3 // if it only allows one, and new instances just instead refresh the timer
-
-///Status effect does something when the owner dies
+/// Status effect does something when the owner dies
 #define STATUS_FLAG_CHECK_OWNER_DEATH (1<<0)
-///Status effect on owner death effect is qdel
+/// Status effect on owner death effect is qdel
 #define STATUS_FLAG_OWNER_DEATH_DEL (1<<1)
-
-///////////
-// BUFFS //
-///////////
 
 #define STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF /datum/status_effect/stacking/gun_skill/accuracy/buff // Increases the accuracy of the mob
 

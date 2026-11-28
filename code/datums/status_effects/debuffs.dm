@@ -3,9 +3,11 @@
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
-	tick_interval = 0
+	id = STATUS_EFFECT_ID_ABSTRACT
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
+	processing_speed = STATUS_EFFECT_PRIORITY
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE)
@@ -97,6 +99,7 @@
 //UNCONSCIOUS
 /datum/status_effect/incapacitating/unconscious
 	id = "unconscious"
+	tick_interval = STATUS_EFFECT_AUTO_TICK
 
 /datum/status_effect/incapacitating/unconscious/on_apply()
 	. = ..()
@@ -108,7 +111,7 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/unconscious/tick(delta_time)
+/datum/status_effect/incapacitating/unconscious/tick(seconds_between_ticks)
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
 
@@ -116,6 +119,8 @@
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
 	alert_type = /atom/movable/screen/alert/status_effect/asleep
+	show_duration = TRUE
+	tick_interval = STATUS_EFFECT_AUTO_TICK
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
@@ -142,7 +147,7 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/sleeping/tick(delta_time)
+/datum/status_effect/incapacitating/sleeping/proc/handle_healing(delta_time)
 	if(!owner.maxHealth)
 		return
 	var/health_ratio = owner.health / owner.maxHealth
@@ -163,11 +168,14 @@
 		owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner?.is_drunk())
 		human_owner.adjust_drunkenness(-human_owner.amount_drunkenness() * 0.03) //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
+
+/datum/status_effect/incapacitating/sleeping/tick(seconds_between_ticks)
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
 		if(prob(10) && owner.health > owner.get_crit_threshold())
 			owner.emote("snore")
+	handle_healing(seconds_between_ticks)
 
 ///Basically a temporary self-inflicted shutdown for maintenance
 /datum/status_effect/incapacitating/repair_mode
@@ -193,7 +201,7 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/repair_mode/tick(delta_time)
+/datum/status_effect/incapacitating/repair_mode/tick(seconds_between_ticks)
 	var/sound_to_play
 	if(owner.getBruteLoss())
 		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
@@ -243,21 +251,20 @@
 		if(isnum(max_duration) && duration > 0)
 			// Check the duration remaining on the existing status effect
 			// If it's greater than / equal to our passed max duration, we don't need to do anything
-			var/remaining_duration = existing.duration - world.time
-			if(remaining_duration >= max_duration)
+			if(existing.duration >= max_duration)
 				return
 
 			// Otherwise, add duration up to the max (max_duration - remaining_duration),
 			// or just add duration if it doesn't exceed our max at all
-			existing.duration += min(max_duration - remaining_duration, duration)
+			existing.duration += min(max_duration - existing.duration, duration)
 
 		else
 			existing.duration += duration
 
-		// If the duration was decreased and is now less 0 seconds,
+		// If the duration was decreased and is now less than 0 seconds,
 		// qdel it / clean up the status effect immediately
 		// (rather than waiting for the process tick to handle it)
-		if(existing.duration <= world.time)
+		if(existing.duration <= 0)
 			qdel(existing)
 
 	else if(duration > 0)
@@ -290,26 +297,27 @@
 		if(only_if_higher)
 			// If the existing status effect has a higher remaining duration
 			// than what we aim to set it to, don't downgrade it - do nothing (return)
-			var/remaining_duration = existing.duration - world.time
-			if(remaining_duration >= duration)
+			if(existing.duration >= duration)
 				return
 
 		// Set the duration accordingly
-		existing.duration = world.time + duration
+		existing.duration = duration
 
 	else if(duration > 0)
 		apply_status_effect(effect, duration)
 
 /atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
-	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
+	desc = "You've fallen asleep. Any damage you have is slowly being healed.  Wait a bit and you should wake up. \
+			Unless you don't, considering how helpless you are in this state."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message green_box"
 
 //ADMIN SLEEP
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
 	alert_type = /atom/movable/screen/alert/status_effect/adminsleep
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
 	. = ..()
@@ -325,6 +333,7 @@
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message red_box"
 
 //CONFUSED
 /datum/status_effect/incapacitating/confused
@@ -335,9 +344,11 @@
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/plasmadrain
 	id = "plasmadrain"
+	alert_type = null
 
 /datum/status_effect/plasmadrain/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
@@ -347,7 +358,7 @@
 	else
 		CRASH("something applied plasmadrain on a nonxeno, dont do that")
 
-/datum/status_effect/plasmadrain/tick(delta_time)
+/datum/status_effect/plasmadrain/tick(seconds_between_ticks)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	// This proc can handle everything and hud updating, use it.
 	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max * 0.1)
@@ -355,6 +366,7 @@
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
 	tick_interval = 2 SECONDS
+	alert_type = null
 
 /datum/status_effect/noplasmaregen/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
@@ -374,7 +386,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/noplasmaregen/tick(delta_time)
+/datum/status_effect/noplasmaregen/tick(seconds_between_ticks)
 	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
@@ -399,11 +411,13 @@
 /datum/status_effect/mute
 	id = "mute"
 	alert_type = /atom/movable/screen/alert/status_effect/mute
+	show_duration = TRUE
 
 /atom/movable/screen/alert/status_effect/mute
 	name = "Muted"
 	desc = "You can't speak!"
 	icon_state = "mute"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
@@ -429,13 +443,13 @@
 	. = ..()
 	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 
-/datum/status_effect/spacefreeze/tick(delta_time)
+/datum/status_effect/spacefreeze/tick(seconds_between_ticks)
 	owner.adjustFireLoss(40)
 
 /datum/status_effect/spacefreeze/light
 	id = "spacefreeze_light"
 
-/datum/status_effect/spacefreeze/light/tick(delta_time)
+/datum/status_effect/spacefreeze/light/tick(seconds_between_ticks)
 	if(owner.is_on_fire())
 		owner.extinguish_mob()
 	if(owner.stat == DEAD)
@@ -464,7 +478,7 @@
 	carbon_owner = null
 	return ..()
 
-/datum/status_effect/incapacitating/irradiated/tick(delta_time)
+/datum/status_effect/incapacitating/irradiated/tick(seconds_between_ticks)
 	var/mob/living/living_owner = owner
 	//Roulette of bad things
 	if(prob(15))
@@ -485,6 +499,7 @@
 	name = "Irradiated"
 	desc = "You've been irradiated! The effects of the radiation will continue to harm you until purged from your system."
 	icon_state = "radiation"
+	boxed_message_style = "boxed_message red_box"
 
 // ***************************************
 // *********** Intoxicated
@@ -495,6 +510,8 @@
 	stacks = 1
 	max_stacks = 30
 	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/sentinel_intoxicated
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	/// The xenomorph who will receive healing.
@@ -523,6 +540,7 @@
 	xenomorph_to_heal = expected_xenomorph_to_heal
 	healing_per_stack = expected_healing_per_stack
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	to_chat(debuff_owner, span_userdanger("You're covered in painful green bile! Resist to clear it away!"))
 	debuff_owner.balloon_alert(debuff_owner, "intoxicated!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	particle_holder = new(debuff_owner, /particles/toxic_slash)
@@ -539,7 +557,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/intoxicated/tick(delta_time)
+/datum/status_effect/stacking/intoxicated/tick(seconds_between_ticks)
 	. = ..()
 	if(!debuff_owner)
 		return
@@ -577,6 +595,18 @@
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
 
+/atom/movable/screen/alert/status_effect/sentinel_intoxicated
+	name = "Intoxicated"
+	desc = "You're covered in burning bile from a Sentinel. Resist or click this alert to remove it."
+	icon_state = "sentinel_intoxicated"
+	boxed_message_style = "boxed_message red_box"
+
+/atom/movable/screen/alert/status_effect/sentinel_intoxicated/Click(location, control, params)
+	. = ..()
+	var/mob/living/L = usr
+	if(!istype(L) || usr != owner)
+		return
+	L.resist()
 
 // ***************************************
 // *********** Melting fire
@@ -588,6 +618,8 @@
 	stacks = 1
 	max_stacks = 10
 	consumed_on_threshold = FALSE
+	alert_type = /atom/movable/screen/alert/status_effect/pyrogen_fire
+	processing_speed = STATUS_EFFECT_PRIORITY
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
 	/// Pyrogen creator of the debuff.
@@ -596,6 +628,19 @@
 	var/obj/vis_melt_fire/visual_fire
 	// The percentage of brute/burn healing that should be negated.
 	var/healing_debuff = 0
+
+/atom/movable/screen/alert/status_effect/pyrogen_fire
+	name = "Melting Fire"
+	desc = "You're covered in melting fire from a Pyrogen. Resist or click this alert to remove it."
+	icon_state = "melting_fire"
+	boxed_message_style = "boxed_message red_box"
+
+/atom/movable/screen/alert/status_effect/pyrogen_fire/Click(location, control, params)
+	. = ..()
+	var/mob/living/L = usr
+	if(!istype(L) || usr != owner)
+		return
+	L.resist()
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -612,6 +657,7 @@
 	visual_fire.icon_state = "melting_low_stacks"
 	debuff_owner = new_owner
 	debuff_owner.vis_contents += visual_fire
+	to_chat(new_owner, span_userdanger("You're covered in strange melting fire! Resist to stop, drop and roll!"))
 	debuff_owner.balloon_alert(debuff_owner, "melting fire!")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
@@ -624,7 +670,7 @@
 	QDEL_NULL(visual_fire)
 	return ..()
 
-/datum/status_effect/stacking/melting_fire/tick(delta_time)
+/datum/status_effect/stacking/melting_fire/tick(seconds_between_ticks)
 	. = ..()
 	if(!debuff_owner)
 		qdel(src)
@@ -703,6 +749,7 @@
 	name = "Dread"
 	desc = "A dreadful presence. You are slowed down until this expires."
 	icon_state = "dread"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/dread
 	id = "dread"
@@ -710,12 +757,13 @@
 	tick_interval = 2 SECONDS
 	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dread
+	show_duration = TRUE
 
 /datum/status_effect/dread/on_creation(mob/living/new_owner)
 	owner = new_owner
 	return ..()
 
-/datum/status_effect/dread/tick(delta_time)
+/datum/status_effect/dread/tick(seconds_between_ticks)
 	. = ..()
 	var/mob/living/living_owner = owner
 	living_owner.do_jitter_animation(250)
@@ -734,12 +782,14 @@
 	name = "Draining Dread"
 	desc = "A dreadful presence. You take constant stamina damage until this expires."
 	icon_state = "dread"
+	boxed_message_style = "boxed_message red_box"
 
 /datum/status_effect/draining_dread
 	id = "draining_dread"
 	status_type = STATUS_EFFECT_REPLACE
 	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/draining_dread
+	show_duration = TRUE
 	var/stamina_damage = 4
 
 /datum/status_effect/draining_dread/on_creation(mob/living/new_owner, set_stamina_damage)
@@ -748,7 +798,7 @@
 		stamina_damage = set_stamina_damage
 	return ..()
 
-/datum/status_effect/draining_dread/tick(delta_time)
+/datum/status_effect/draining_dread/tick(seconds_between_ticks)
 	. = ..()
 	owner.do_jitter_animation(250)
 	owner.adjustStaminaLoss(stamina_damage)
@@ -798,7 +848,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/melting/tick(delta_time)
+/datum/status_effect/stacking/melting/tick(seconds_between_ticks)
 	. = ..()
 	if(!debuff_owner)
 		return
@@ -817,6 +867,7 @@
 	name = "Melting"
 	desc = "You are melting away!"
 	icon_state = "melting"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/melting_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -883,7 +934,7 @@
 	if(stacks_added > 0 && stacks >= max_stacks) //proc is run even if stacks are not actually added
 		COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
 
-/datum/status_effect/stacking/microwave/tick(delta_time)
+/datum/status_effect/stacking/microwave/tick(seconds_between_ticks)
 	. = ..()
 	if(COOLDOWN_FINISHED(src, cooldown_microwave_status))
 		return qdel(src)
@@ -899,6 +950,7 @@
 	name = "Microwave"
 	desc = "You are burning from the inside!"
 	icon_state = "microwave"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/microwave_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -927,7 +979,9 @@
 /datum/status_effect/shatter
 	id = "shatter"
 	alert_type = /atom/movable/screen/alert/status_effect/shatter
+	show_duration = TRUE
 	duration = 10 SECONDS
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_REPLACE
 	///A holder for the exact armor modified by this status effect
 	var/datum/armor/armor_modifier
@@ -963,6 +1017,7 @@
 	name = "Shattered"
 	desc = "Your armor has been shattered!"
 	icon_state = "shatter"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/shattered_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1023,7 +1078,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/melting_acid/tick(delta_time)
+/datum/status_effect/stacking/melting_acid/tick(seconds_between_ticks)
 	. = ..()
 	if(!owner)
 		return
@@ -1037,6 +1092,7 @@
 	name = "Melting (Acid)"
 	desc = "You are melting away!"
 	icon_state = "melting"
+	boxed_message_style = "boxed_message red_box"
 
 /particles/melting_acid_status
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1099,10 +1155,12 @@
 	id = "life_drain"
 	duration = 10 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/lifedrain
+	show_duration = TRUE
 
 /atom/movable/screen/alert/status_effect/lifedrain
 	name = "Lifedrain"
 	desc = "Your life force transfers to xenos when they slash you!"
 	icon_state = "skullemoji"
+	boxed_message_style = "boxed_message red_box"
 
 #undef BASE_HEAL_RATE

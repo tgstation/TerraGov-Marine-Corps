@@ -300,7 +300,7 @@
 		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
 		old_overflow = TRUE
 
-	owner.set_drugginess(3)
+	owner.set_drugginess(3 SECONDS)
 	if(prob(overflow * (organ_status + 1) * 10))
 		owner.Confused(2 SECONDS * (organ_status + 1))
 

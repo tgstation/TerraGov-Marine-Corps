@@ -434,7 +434,7 @@
 				var/datum/status_effect/stacking/stacking_status_effect = status_effect
 				stacking_status_effect.add_stacks(-debuff_removal_amount)
 				continue
-			if(status_effect.duration == -1)
+			if(status_effect.duration == STATUS_EFFECT_PERMANENT)
 				continue
 			status_effect.duration -= debuff_removal_amount * 2 SECONDS
 			status_effect.check_duration()

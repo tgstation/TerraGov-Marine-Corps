@@ -4,7 +4,7 @@
 /datum/status_effect/resin_jelly_coating
 	id = "resin jelly"
 	duration = 15 SECONDS
-	tick_interval = 30
+	tick_interval = 3 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 
@@ -37,7 +37,7 @@
 	owner.balloon_alert(owner, "you're vulnerable again")
 	return ..()
 
-/datum/status_effect/resin_jelly_coating/tick(delta_time)
+/datum/status_effect/resin_jelly_coating/tick(seconds_between_ticks)
 	owner.heal_limb_damage(0, 5)
 	return ..()
 
@@ -113,7 +113,7 @@
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/stacking/essence_link/tick(delta_time)
+/datum/status_effect/stacking/essence_link/tick(seconds_between_ticks)
 	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range != was_within_range) // Toggles the link depending on whether the linked xenos are still in range or not.
 		was_within_range = within_range
@@ -272,7 +272,7 @@
 	buff_owner.balloon_alert(buff_owner, "salve regeneration ended")
 	return ..()
 
-/datum/status_effect/salve_regen/tick(delta_time)
+/datum/status_effect/salve_regen/tick(seconds_between_ticks)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
 	var/leftover_healing = heal_amount
@@ -306,7 +306,7 @@
 
 /datum/status_effect/drone_enhancement
 	id = "drone enhancement"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 2 SECONDS
 	alert_type = null
 	/// Used to track who is giving this buff to the owner.
@@ -344,7 +344,7 @@
 	toggle_buff(FALSE)
 	return ..()
 
-/datum/status_effect/drone_enhancement/tick(delta_time)
+/datum/status_effect/drone_enhancement/tick(seconds_between_ticks)
 	var/within_range = get_dist(buffed_xeno, buffing_xeno) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range != was_within_range)
 		was_within_range = within_range
@@ -396,6 +396,7 @@
 /datum/status_effect/xeno_psychic_link
 	id = "xeno_psychic_link"
 	tick_interval = 2 SECONDS
+	alert_type = null
 	///Xenomorph the owner is linked to
 	var/mob/living/carbon/xenomorph/target_mob
 	///How far apart the linked mobs can be
@@ -510,6 +511,7 @@
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
 	alert_type = /atom/movable/screen/alert/status_effect/xeno_carnage
+	show_duration = TRUE
 	///Effects modifier based on plasma amount on status application
 	var/plasma_mod
 	///Plasma gain on attack
@@ -612,7 +614,7 @@
 	owner.clear_fullscreen("xeno_feast", 0.7 SECONDS)
 	owner.remove_filter(list("[id]1", "[id]2"))
 
-/datum/status_effect/xeno_feast/tick(delta_time)
+/datum/status_effect/xeno_feast/tick(seconds_between_ticks)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored < plasma_drain)
 		to_chat(X, span_notice("Our feast has come to an end..."))
@@ -629,6 +631,7 @@
 /datum/status_effect/plasma_surge
 	id = "plasma_surge"
 	alert_type = /atom/movable/screen/alert/status_effect/plasma_surge
+	show_duration = TRUE
 	///How much plasma do we instantly restore
 	var/flat_amount_restored
 	///How much extra plasma should we regenerate over time as a % of our base regen, 1 being twice the regen
@@ -837,7 +840,8 @@
 // *********** Blessings
 // ***************************************
 /datum/status_effect/blessing
-	duration = -1
+	id = STATUS_EFFECT_ID_ABSTRACT
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = 5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
@@ -848,7 +852,7 @@
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 
-/datum/status_effect/blessing/tick(delta_time)
+/datum/status_effect/blessing/tick(seconds_between_ticks)
 	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
 	if(!xeno)
 		return
@@ -944,6 +948,7 @@
 /datum/status_effect/baton_pass
 	id = "xeno_batonpass"
 	alert_type = /atom/movable/screen/alert/status_effect/baton_pass
+	show_duration = TRUE
 	duration = 6 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
