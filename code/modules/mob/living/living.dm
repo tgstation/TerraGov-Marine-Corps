@@ -114,6 +114,7 @@
 			embedded.unembed_ourself() //This should remove the object from the list directly.
 	if(buckled)
 		buckled.unbuckle_mob(src, force = TRUE)
+	QDEL_NULL(below_copy)
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
@@ -1015,10 +1016,6 @@
 	var/atom/movable/container
 	///the actual owner who is "looking"
 	var/mob/living/owner
-	///See through copy of the owner shown to them where they stand, only made when looking down
-	var/image/self_copy
-	///Images cannot glide but atoms can, so we have perfect matching glide
-	var/atom/movable/looking_copy_anchor/copy_anchor
 	///How much the owner's view is offset on the x axis
 	var/view_offset_x = 0
 	///How much the owner's view is offset on the y axis
@@ -1035,27 +1032,16 @@
 	RegisterSignal(owner, COMSIG_MOB_LOGOUT, PROC_REF(on_owner_logout))
 	if(viewer)
 		RegisterSignal(viewer, COMSIG_CLIENT_SET_EYE, PROC_REF(on_eye_changed))
-	var/turf/owner_spot = get_owner_spot()
-	if(look_direction == DOWN)
-		copy_anchor = new(owner_spot)
-		self_copy = image(loc = copy_anchor)
-		viewer?.images += self_copy
-		update_self_copy()
-		RegisterSignals(owner, list(COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_self_copy))
-		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_dir_change))
-	update_view_offset(owner_spot)
+	update_view_offset(get_owner_spot())
 
 /atom/movable/looking_holder/Destroy()
-	UnregisterSignal(owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY, COMSIG_MOB_LOGOUT))
+	UnregisterSignal(owner, COMSIG_MOB_LOGOUT)
 	if(viewer)
 		UnregisterSignal(viewer, COMSIG_CLIENT_SET_EYE)
-		viewer.images -= self_copy
 		animate(viewer) // reset animations
 		viewer.pixel_x -= view_offset_x
 		viewer.pixel_y -= view_offset_y
 		viewer = null
-	self_copy = null
-	QDEL_NULL(copy_anchor)
 	owner = null
 	return ..()
 
@@ -1072,31 +1058,6 @@
 /atom/movable/looking_holder/proc/get_owner_spot()
 	var/turf/owner_turf = get_turf(owner)
 	return locate(owner_turf.x, owner_turf.y, z)
-
-///Copies the owner's look onto the seethrough copy
-/atom/movable/looking_holder/proc/update_self_copy()
-	SIGNAL_HANDLER
-	if(!self_copy)
-		return
-	self_copy.appearance = owner.appearance
-	self_copy.dir = owner.dir //not part of the copied appearance
-	self_copy.render_target = null //toggle seethrough hides the owner by rendering them to a target, the copy has to stay drawn and can't share that target
-	self_copy.alpha = SEETHROUGH_MOB_ALPHA
-	self_copy.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	SET_PLANE_EXPLICIT(self_copy, GAME_PLANE, copy_anchor)
-
-///The owner's dir signal is sent before their dir changes, so the new dir is set on the copy here
-/atom/movable/looking_holder/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
-	SIGNAL_HANDLER
-	update_self_copy()
-	self_copy?.dir = new_dir
-
-/// Glide the copy's anchor to match the owner's movement and glide
-/atom/movable/looking_holder/proc/move_self_copy(turf/owner_spot)
-	if(!copy_anchor || copy_anchor.loc == owner_spot)
-		return
-	copy_anchor.set_glide_size(container.glide_size)
-	copy_anchor.abstract_move(owner_spot)
 
 ///called to find and set the atom on the actual turf to be the container and all relevant effects
 /atom/movable/looking_holder/proc/update_container()
@@ -1135,7 +1096,6 @@
 			glide_time = GLIDE_SIZE_TO_DELAY(container.glide_size)
 	if(eye_turf != loc)
 		abstract_move(eye_turf)
-	move_self_copy(owner_spot)
 	update_view_offset(owner_spot, glide_time, old_eye_turf)
 
 ///Returns TRUE if the owner can look out from this turf, being inside dense walls blind you
@@ -1189,10 +1149,70 @@
 		viewer.pixel_y += (old_eye_turf.y - y) * ICON_SIZE_Y
 	animate(viewer, pixel_x = target_x, pixel_y = target_y, time = glide_time)
 
-/atom/movable/looking_copy_anchor
+/atom/movable/below_copy
 	anchored = TRUE
+	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	resistance_flags = RESIST_ALL
+	///The mob we are a copy of
+	var/mob/living/owner
+	/// A indicator to be super clear this dude is above
+	var/mutable_appearance/upstairs_marker
+	/// We're only shown if we're near a valid open turf, otherwise hidden
+	var/shown = FALSE
+	///Timer that hides us once the owner has finished stepping away, so we can actually see the leaving animation
+	var/hide_timer
+
+/atom/movable/below_copy/Initialize(mapload, mob/living/owner, shown)
+	. = ..()
+	src.owner = owner
+	src.shown = shown
+	RegisterSignals(owner, list(COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY), PROC_REF(update_copy))
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_dir_change))
+	update_copy()
+
+/atom/movable/below_copy/Destroy()
+	UnregisterSignal(owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_ATOM_UPDATED_ICON, COMSIG_ATOM_POST_OVERLAY_CHANGE, COMSIG_CARBON_APPLY_OVERLAY, COMSIG_CARBON_REMOVE_OVERLAY))
+	owner = null
+	return ..()
+
+/// Toggle if we should show the copy below us
+/atom/movable/below_copy/proc/set_shown(new_shown)
+	if(hide_timer)
+		deltimer(hide_timer)
+		hide_timer = null
+	shown = new_shown
+	update_copy()
+
+/// On overlay changes gotta update the copy images
+/atom/movable/below_copy/proc/update_copy()
+	SIGNAL_HANDLER
+	copy_owner(owner.dir)
+
+/// gotta copy each variable each time because we need to build a new appearance every time
+/atom/movable/below_copy/proc/copy_owner(copied_dir)
+	//with a MA built and applied after so we only do one appearance change
+	var/mutable_appearance/copied = new(owner.appearance)
+	copied.render_target = null
+	copied.alpha = shown ? owner.alpha * (BELOW_MOB_ALPHA / 255) : 0
+	copied.pixel_z = owner.pixel_z + BELOW_COPY_PIXEL_OFFSET
+	copied.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	copied.opacity = FALSE
+	copied.vis_flags |= VIS_HIDE
+	SET_PLANE_EXPLICIT(copied, GAME_PLANE, src)
+	if(shown && owner.alpha == 255)
+		if(!upstairs_marker)
+			upstairs_marker = mutable_appearance('icons/effects/upstairs_indicator.dmi', "upstairs", appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
+		upstairs_marker.pixel_w = max(owner.get_cached_width() - ICON_SIZE_X, 0) * 0.5
+		upstairs_marker.pixel_z = max(owner.get_cached_height() - ICON_SIZE_Y, 0) * 0.5
+		copied.overlays += upstairs_marker
+	appearance = copied
+	dir = copied_dir
+
+/// Dir changes dont update overlays so this need to be separate
+/atom/movable/below_copy/proc/on_owner_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	dir = new_dir
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()

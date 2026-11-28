@@ -28,6 +28,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/obj/machinery/computer/code_generator/nuke,
 		///Single use case holder atom requiring a user
 		/atom/movable/looking_holder,
+		///Copy of a mob, requires that mob
+		/atom/movable/below_copy,
 	)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)

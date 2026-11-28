@@ -84,6 +84,8 @@
 	var/looking_vertically = NONE
 	///looking holder we use for look_up and look_down. we use this over resetting to the turf because we want to glide
 	var/atom/movable/looking_holder/looking_holder
+	///See through copy of us shown on the level below while we stand somewhere we could look down from
+	var/atom/movable/below_copy/below_copy
 
 	///a list of all status effects the mob has
 	var/list/status_effects
