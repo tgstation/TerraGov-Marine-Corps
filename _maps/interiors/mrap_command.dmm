@@ -36,7 +36,7 @@
 /turf/open/interior/apc/twentynine,
 /area/interior/mrap_command)
 "j" = (
-/obj/machinery/cic_maptable/mrap{
+/obj/machinery/cic_maptable/drawable/mrap{
 	pixel_w = -6
 	},
 /turf/open/interior/apc/nine,
@@ -65,9 +65,9 @@
 /turf/open/interior/apc/nine,
 /area/interior/mrap_command)
 "o" = (
-/obj/machinery/computer/camera_advanced/overwatch/mrap{
-	pixel_z = -9;
-	pixel_w = -5
+/obj/machinery/computer/camera_advanced/overwatch/military/mrap{
+	pixel_w = -5;
+	pixel_z = -9
 	},
 /turf/closed/interior/apc/two,
 /area/interior/mrap_command)
@@ -80,9 +80,9 @@
 /turf/closed/interior/apc/twelve,
 /area/interior/mrap_command)
 "s" = (
-/obj/machinery/computer/camera_advanced/overwatch/mrap{
-	pixel_z = -9;
-	pixel_w = 5
+/obj/machinery/computer/camera_advanced/overwatch/military/mrap{
+	pixel_w = 5;
+	pixel_z = -9
 	},
 /turf/closed/interior/apc/four,
 /area/interior/mrap_command)

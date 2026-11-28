@@ -28,7 +28,7 @@
 /obj/machinery/computer/camera_advanced/overwatch/military/delta
 	name = "\improper Delta Overwatch Console"
 
-/obj/machinery/computer/camera_advanced/overwatch/mrap
+/obj/machinery/computer/camera_advanced/overwatch/military/mrap
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 
 /obj/machinery/computer/camera_advanced/overwatch/military/som
