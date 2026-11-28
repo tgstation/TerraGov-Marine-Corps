@@ -5,7 +5,6 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
-	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
 	var/shoefootstep = FOOTSTEP_FLOOR
 	var/barefootstep = FOOTSTEP_HARD

@@ -1,7 +1,5 @@
 //Groundside landmarks that dictate where players deploy in hvh modes
-#define PATROL_POINT_RAPPEL_EFFECT "patrol_point_rappel_effect"
 #define RAPPEL_DURATION 0.6 SECONDS
-#define RAPPEL_HEIGHT 128
 
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
@@ -78,29 +76,11 @@
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
 
 /obj/effect/landmark/patrol_point/proc/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
-	var/list/layer_list = list()
-
 	if(isliving(movable_to_move))
 		new /atom/movable/effect/rappel_rope(target_turf)
 
-	for(var/atom/movable/AM AS in deploy_list)
-		layer_list[AM] = AM.layer
-
-		if(isliving(AM))
-			var/mob/living/living_deployer = AM
-			living_deployer.ImmobilizeNoChain(RAPPEL_DURATION) //looks weird if they can move while rappeling
-
-		AM.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
-		var/shadow_filter = AM.get_filter(PATROL_POINT_RAPPEL_EFFECT)
-
-		layer_list[AM] = AM.layer
-		AM.pixel_z += RAPPEL_HEIGHT
-		AM.layer = FLY_LAYER
-
-		animate(AM, pixel_z = AM.pixel_z - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
-		animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
-
-	addtimer(CALLBACK(src, PROC_REF(end_deployment_effects), deploy_list, layer_list, mobs_moving), RAPPEL_DURATION)
+	start_drop_down_effect(movable_to_move, mobs_moving, deploy_list, RAPPEL_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(notify_deploy_finished), deploy_list), RAPPEL_DURATION)
 
 /obj/effect/landmark/patrol_point/xeno/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
 	new /atom/movable/effect/xeno_tunnel(target_turf)
@@ -110,26 +90,13 @@
 	user.status_flags |= GODMODE
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
-///Ends the deployment effects
-/obj/effect/landmark/patrol_point/proc/end_deployment_effects(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
-	for(var/atom/movable/AM AS in movables_to_move)
-		AM.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
-		AM.layer = layer_list[AM]
-		if(ismecha(AM) || isarmoredvehicle(AM))
-			new /obj/effect/temp_visual/rappel_dust(AM.loc, 3)
-			playsound(AM.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE, LOUD_SOUND_RANGE)
-	for(var/user in mobs_moving)
-		shake_camera(user, 0.2 SECONDS, 0.5)
-
-	notify_deploy_finished(movables_to_move)
-
-/obj/effect/landmark/patrol_point/xeno/end_deployment_effects(list/atom/movable/movables_to_move, list/layer_list, list/mobs_moving)
-	return
-
 ///sends a signal for every movable moved. Intended to be sent when any deployment visuals are finished, in end_deploy_effects()
 /obj/effect/landmark/patrol_point/proc/notify_deploy_finished(list/movables_to_move)
 	for(var/atom/movable/AM AS in movables_to_move)
 		SEND_SIGNAL(AM, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2) //these args should be killed but that can be done in a later pr
+
+/obj/effect/landmark/patrol_point/xeno/notify_deploy_finished(list/movables_to_move)
+	return
 
 /obj/effect/landmark/patrol_point/xeno/do_deployment_effects(turf/target_turf, atom/movable/movable_to_move, list/mobs_moving, list/deploy_list)
 	for(var/atom/movable/AM AS in deploy_list)
@@ -226,6 +193,4 @@
 	visible_message(span_userdanger("You see a tunnel emmerging!"))
 	QDEL_IN(src, 7)
 
-#undef PATROL_POINT_RAPPEL_EFFECT
 #undef RAPPEL_DURATION
-#undef RAPPEL_HEIGHT

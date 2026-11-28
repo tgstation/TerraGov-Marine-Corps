@@ -41,7 +41,7 @@
 		for(var/occupant in occupants)
 			conditionalwall.bumpopen(occupant)
 
-/obj/vehicle/sealed/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+/obj/vehicle/sealed/onZImpact(turf/impacted_turf, levels, impact_flags = NONE, duration = ZFALL_DURATION)
 	impact_flags |= ZIMPACT_NO_SPIN
 	return ..()
 
